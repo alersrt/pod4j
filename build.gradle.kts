@@ -1,6 +1,5 @@
 plugins {
     id("java")
-    id("org.openapi.generator") version "7.8.0"
 }
 
 group = "io.github.alersrt"
@@ -11,6 +10,7 @@ repositories {
 }
 
 dependencies {
+    implementation(project(":openapi"))
     testImplementation(platform("org.junit:junit-bom:5.10.3"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
