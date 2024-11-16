@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * GraphDriverData Information about the storage driver used to store the container&#39;s and image&#39;s filesystem.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class GraphDriverData {
   public static final String SERIALIZED_NAME_DATA = "Data";
   @SerializedName(SERIALIZED_NAME_DATA)

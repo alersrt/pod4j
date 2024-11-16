@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
     organization := "io.github.alersrt",
-    name := "pod4j-api",
+    name := "podman-api",
     version := "1.0-SNAPSHOT",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),

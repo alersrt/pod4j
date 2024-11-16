@@ -55,7 +55,7 @@ import org.openapitools.client.JSON;
 /**
  * InspectNetworkSettings holds information about the network settings of the container. Many fields are maintained only for compatibility with &#x60;docker inspect&#x60; and are unused within Libpod.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class InspectNetworkSettings {
   public static final String SERIALIZED_NAME_ADDITIONAL_M_A_C_ADDRESSES = "AdditionalMACAddresses";
   @SerializedName(SERIALIZED_NAME_ADDITIONAL_M_A_C_ADDRESSES)

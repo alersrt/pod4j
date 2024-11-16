@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * Secret represents a Swarm Secret value that must be passed to the CSI storage plugin when operating on this Volume. It represents one key-value pair of possibly many.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class Secret {
   public static final String SERIALIZED_NAME_KEY = "Key";
   @SerializedName(SERIALIZED_NAME_KEY)

@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * InspectPodInfraConfig contains the configuration of the pod&#39;s infra container.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class InspectPodInfraConfig {
   public static final String SERIALIZED_NAME_DN_S_OPTION = "DNSOption";
   @SerializedName(SERIALIZED_NAME_DN_S_OPTION)

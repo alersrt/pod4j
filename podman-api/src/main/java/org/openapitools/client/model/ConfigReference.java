@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * ConfigReference specifies the source which provides a network&#39;s configuration
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class ConfigReference {
   public static final String SERIALIZED_NAME_NETWORK = "Network";
   @SerializedName(SERIALIZED_NAME_NETWORK)

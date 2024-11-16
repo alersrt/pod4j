@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * InspectHostPort provides information on a port on the host that a container&#39;s port is bound to.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class InspectHostPort {
   public static final String SERIALIZED_NAME_HOST_IP = "HostIp";
   @SerializedName(SERIALIZED_NAME_HOST_IP)

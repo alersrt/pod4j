@@ -89,7 +89,7 @@ if(hasProperty('target') && target == 'android') {
     publishing {
         publications {
             maven(MavenPublication) {
-               artifactId = 'pod4j-api'
+               artifactId = 'podman-api'
                from components.java
             }
         }

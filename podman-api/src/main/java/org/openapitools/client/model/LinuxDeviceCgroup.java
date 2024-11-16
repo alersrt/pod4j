@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * LinuxDeviceCgroup represents a device rule for the devices specified to the device controller
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class LinuxDeviceCgroup {
   public static final String SERIALIZED_NAME_ACCESS = "access";
   @SerializedName(SERIALIZED_NAME_ACCESS)

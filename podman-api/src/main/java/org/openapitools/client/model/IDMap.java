@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * IDMap contains a single entry for user namespace range remapping. An array of IDMap entries represents the structure that will be provided to the Linux kernel for creating a user namespace.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class IDMap {
   public static final String SERIALIZED_NAME_CONTAINER_ID = "container_id";
   @SerializedName(SERIALIZED_NAME_CONTAINER_ID)

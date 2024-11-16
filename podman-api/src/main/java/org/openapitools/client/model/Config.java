@@ -53,7 +53,7 @@ import org.openapitools.client.JSON;
 /**
  * It should hold only portable information about the container. Here, \&quot;portable\&quot; means \&quot;independent from the host we are running on\&quot;. Non-portable information *should* appear in HostConfig. All fields added to this struct must be marked &#x60;omitempty&#x60; to keep getting predictable hashes from the old &#x60;v1Compatibility&#x60; configuration.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class Config {
   public static final String SERIALIZED_NAME_ARGS_ESCAPED = "ArgsEscaped";
   @SerializedName(SERIALIZED_NAME_ARGS_ESCAPED)

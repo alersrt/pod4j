@@ -50,7 +50,7 @@ import org.openapitools.client.JSON;
 /**
  * TypeMount contains options for using a volume as a Mount-type volume.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class TypeMount {
   public static final String SERIALIZED_NAME_FS_TYPE = "FsType";
   @SerializedName(SERIALIZED_NAME_FS_TYPE)

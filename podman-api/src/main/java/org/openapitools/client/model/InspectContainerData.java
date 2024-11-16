@@ -57,7 +57,7 @@ import org.openapitools.client.JSON;
 /**
  * InspectContainerData provides a detailed record of a container&#39;s configuration and state as viewed by Libpod. Large portions of this structure are defined such that the output is compatible with &#x60;docker inspect&#x60; JSON, but additional fields have been added as required to share information not in the original output.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class InspectContainerData {
   public static final String SERIALIZED_NAME_APP_ARMOR_PROFILE = "AppArmorProfile";
   @SerializedName(SERIALIZED_NAME_APP_ARMOR_PROFILE)

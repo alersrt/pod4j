@@ -48,7 +48,7 @@ import org.openapitools.client.JSON;
 /**
  * InspectBlkioThrottleDevice holds information about a speed cap for a device node. This cap applies to a specific operation (read, write, etc) on the given node.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class InspectBlkioThrottleDevice {
   public static final String SERIALIZED_NAME_PATH = "Path";
   @SerializedName(SERIALIZED_NAME_PATH)

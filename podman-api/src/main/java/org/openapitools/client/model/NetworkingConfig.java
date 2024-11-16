@@ -51,7 +51,7 @@ import org.openapitools.client.JSON;
 /**
  * NetworkingConfig represents the container&#39;s networking configuration for each of its interfaces Carries the networking configs specified in the &#x60;docker run&#x60; and &#x60;docker network connect&#x60; commands
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]", comments = "Generator version: 7.8.0")
 public class NetworkingConfig {
   public static final String SERIALIZED_NAME_ENDPOINTS_CONFIG = "EndpointsConfig";
   @SerializedName(SERIALIZED_NAME_ENDPOINTS_CONFIG)

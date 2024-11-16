@@ -1,8 +1,8 @@
-# pod4j-api
+# podman-api
 
 supports a RESTful API for the Libpod library
 - API version: 5.0.0
-  - Build date: 2024-11-16T16:02:35.210602253+07:00[Asia/Barnaul]
+  - Build date: 2024-11-16T18:07:05.610979114+07:00[Asia/Barnaul]
   - Generator version: 7.8.0
 
 This documentation describes the Podman v2.x+ RESTful API. It consists of a Docker-compatible
@@ -76,7 +76,7 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
   <groupId>io.github.alersrt</groupId>
-  <artifactId>pod4j-api</artifactId>
+  <artifactId>podman-api</artifactId>
   <version>1.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
@@ -88,12 +88,12 @@ Add this dependency to your project's build file:
 
 ```groovy
   repositories {
-    mavenCentral()     // Needed if the 'pod4j-api' jar has been published to maven central.
-    mavenLocal()       // Needed if the 'pod4j-api' jar has been published to the local maven repo.
+    mavenCentral()     // Needed if the 'podman-api' jar has been published to maven central.
+    mavenLocal()       // Needed if the 'podman-api' jar has been published to the local maven repo.
   }
 
   dependencies {
-     implementation "io.github.alersrt:pod4j-api:1.0-SNAPSHOT"
+     implementation "io.github.alersrt:podman-api:1.0-SNAPSHOT"
   }
 ```
 
@@ -107,7 +107,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/pod4j-api-1.0-SNAPSHOT.jar`
+* `target/podman-api-1.0-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
