@@ -1,0 +1,29 @@
+## Ignore all files
+/*
+
+## Include project files
+!/src/
+
+!pom.xml
+!system.properties
+
+## Infrastructure
+!.editorconfig
+!.gitignore
+
+## Documentation
+!README.md
+!CONTRIBUTING.md
+!LICENSE
+
+## Gradle wrapper
+!gradle/
+!gradlew
+!gradlew.bat
+!build.gradle.kts
+!settings.gradle.kts
+!gradle.properties
+
+## Exclude IDE files
+# JetBrains
+*.iml
