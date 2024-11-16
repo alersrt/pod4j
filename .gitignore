@@ -3,8 +3,6 @@
 
 ## Include project files
 !/src/
-!/podman-api/
-!swagger-latest.yaml
 
 ## Infrastructure
 !system.properties
