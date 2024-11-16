@@ -3,11 +3,11 @@
 
 ## Include project files
 !/src/
-
-!pom.xml
-!system.properties
+!/podman-api/
+!swagger-latest.yaml
 
 ## Infrastructure
+!system.properties
 !.editorconfig
 !.gitignore
 
