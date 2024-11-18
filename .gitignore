@@ -3,7 +3,9 @@
 
 ## Include project files
 !/src/
-!openapi
+!/openapi/src/
+!/openapi/docs/
+!/openapi/swagger-latest.yaml
 
 ## Infrastructure
 !system.properties
@@ -22,6 +24,7 @@
 !build.gradle.kts
 !settings.gradle.kts
 !gradle.properties
+!openapi/build.gradle
 
 ## Exclude IDE files
 # JetBrains
