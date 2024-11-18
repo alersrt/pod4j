@@ -51,7 +51,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * TypeMount contains options for using a volume as a Mount-type volume.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:32:04.765618819+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:55:00.918558451+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class TypeMount {
   public static final String SERIALIZED_NAME_FS_TYPE = "FsType";
   @SerializedName(SERIALIZED_NAME_FS_TYPE)

@@ -56,7 +56,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * InspectNetworkSettings holds information about the network settings of the container. Many fields are maintained only for compatibility with &#x60;docker inspect&#x60; and are unused within Libpod.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:32:04.765618819+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:55:00.918558451+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectNetworkSettings {
   public static final String SERIALIZED_NAME_ADDITIONAL_M_A_C_ADDRESSES = "AdditionalMACAddresses";
   @SerializedName(SERIALIZED_NAME_ADDITIONAL_M_A_C_ADDRESSES)

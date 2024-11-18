@@ -54,7 +54,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * InspectAdditionalNetwork holds information about non-default networks the container has been connected to. As with InspectNetworkSettings, many fields are unused and maintained only for compatibility with Docker.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:32:04.765618819+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:55:00.918558451+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectAdditionalNetwork {
   public static final String SERIALIZED_NAME_ADDITIONAL_M_A_C_ADDRESSES = "AdditionalMACAddresses";
   @SerializedName(SERIALIZED_NAME_ADDITIONAL_M_A_C_ADDRESSES)

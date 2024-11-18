@@ -53,7 +53,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * SystemCheckReport provides a report of what a storage consistency check found, and if we removed anything that was damaged, what we removed.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:32:04.765618819+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:55:00.918558451+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemCheckReport {
   public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
   @SerializedName(SERIALIZED_NAME_CONTAINERS)

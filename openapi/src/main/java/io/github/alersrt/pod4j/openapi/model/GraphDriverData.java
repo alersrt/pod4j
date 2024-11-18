@@ -51,7 +51,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * GraphDriverData Information about the storage driver used to store the container&#39;s and image&#39;s filesystem.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:32:04.765618819+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:55:00.918558451+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class GraphDriverData {
   public static final String SERIALIZED_NAME_DATA = "Data";
   @SerializedName(SERIALIZED_NAME_DATA)
