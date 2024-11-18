@@ -1,10 +1,6 @@
 package io.github.alersrt.pod4j;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.api.ContainersApi;
-import io.github.alersrt.pod4j.openapi.api.PodsApi;
+
 
 public class Main {
     public static void main(String[] args) throws ApiException {
