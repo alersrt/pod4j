@@ -13,8 +13,8 @@
 !README.md
 
 ## Gradle wrapper
-!build.gradle
-!settings.gradle
+!build.gradle.kts
+!settings.gradle.kts
 
 ## Exclude IDE files
 # JetBrains
