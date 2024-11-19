@@ -16,7 +16,7 @@ public class Main {
                 .socketFactory(new UnixDomainSocketFactory(socketFile))
                 .build();
 
-        var apiClient = new ApiClient(httpClient).setBasePath("http://d/v5.0.0");
+        var apiClient = new ApiClient(httpClient).setBasePath("http://localhost/v5.0.0");
         var imagesApi = new ImagesApi(apiClient);
         imagesApi.imageListLibpod(true, null).forEach(System.out::println);
 
