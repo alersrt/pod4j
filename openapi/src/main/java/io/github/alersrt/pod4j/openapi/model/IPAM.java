@@ -54,7 +54,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * IPAM represents IP Address Management
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:55:00.918558451+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IPAM {
   public static final String SERIALIZED_NAME_CONFIG = "Config";
   @SerializedName(SERIALIZED_NAME_CONFIG)

@@ -51,7 +51,7 @@ import io.github.alersrt.pod4j.openapi.JSON;
 /**
  * Schema2PlatformSpec describes the platform which a particular manifest is specialized for. This is publicly visible as c/image/manifest.Schema2PlatformSpec.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-18T19:55:00.918558451+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2PlatformSpec {
   public static final String SERIALIZED_NAME_ARCHITECTURE = "architecture";
   @SerializedName(SERIALIZED_NAME_ARCHITECTURE)
