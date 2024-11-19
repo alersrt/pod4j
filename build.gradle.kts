@@ -2,9 +2,6 @@ plugins {
     id("java")
 }
 
-group = "io.github.alersrt"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
@@ -17,6 +14,22 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-tasks.test {
-    useJUnitPlatform()
+
+configure(subprojects) {
+    apply(plugin = "idea")
+    apply(plugin = "eclipse")
+    apply(plugin = "java")
+    apply(plugin = "maven-publish")
+    apply(plugin = "signing")
+
+    group = "io.github.alersrt.pod4j"
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    tasks.test {
+        useJUnitPlatform()
+    }
 }

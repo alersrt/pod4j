@@ -1,5 +1,6 @@
 ## Ignore all files
 /*
+gradle.properties
 
 ## Include project files
 !/src/
@@ -21,7 +22,6 @@
 !gradlew.bat
 !build.gradle.kts
 !settings.gradle.kts
-!gradle.properties
 
 ## Exclude IDE files
 # JetBrains
