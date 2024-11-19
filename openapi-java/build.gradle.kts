@@ -11,6 +11,7 @@ repositories {
     mavenCentral()
 }
 
+group = "io.github.alersrt.pod4j"
 version = "5.0.0"
 
 dependencies {

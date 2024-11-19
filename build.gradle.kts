@@ -18,10 +18,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
+group = "io.github.alersrt.pod4j"
+
 configure(allprojects) {
     apply(plugin = "java")
-
-    group = "io.github.alersrt.pod4j"
 
     java {
         withJavadocJar()
