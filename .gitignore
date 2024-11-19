@@ -4,7 +4,7 @@ gradle.properties
 
 ## Include project files
 !/src/
-!/openapi/
+!/openapi-java/
 
 ## Infrastructure
 !system.properties
