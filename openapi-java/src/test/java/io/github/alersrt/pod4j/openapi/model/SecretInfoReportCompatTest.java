@@ -10,82 +10,53 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.SecretSpec;
-import io.github.alersrt.pod4j.openapi.model.SecretVersion;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for SecretInfoReportCompat
- */
+/** Model tests for SecretInfoReportCompat */
 public class SecretInfoReportCompatTest {
     private final SecretInfoReportCompat model = new SecretInfoReportCompat();
 
-    /**
-     * Model tests for SecretInfoReportCompat
-     */
+    /** Model tests for SecretInfoReportCompat */
     @Test
     public void testSecretInfoReportCompat() {
         // TODO: test SecretInfoReportCompat
     }
 
-    /**
-     * Test the property 'createdAt'
-     */
+    /** Test the property 'createdAt' */
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
     }
 
-    /**
-     * Test the property 'ID'
-     */
+    /** Test the property 'ID' */
     @Test
     public void IDTest() {
         // TODO: test ID
     }
 
-    /**
-     * Test the property 'secretData'
-     */
+    /** Test the property 'secretData' */
     @Test
     public void secretDataTest() {
         // TODO: test secretData
     }
 
-    /**
-     * Test the property 'spec'
-     */
+    /** Test the property 'spec' */
     @Test
     public void specTest() {
         // TODO: test spec
     }
 
-    /**
-     * Test the property 'updatedAt'
-     */
+    /** Test the property 'updatedAt' */
     @Test
     public void updatedAtTest() {
         // TODO: test updatedAt
     }
 
-    /**
-     * Test the property 'version'
-     */
+    /** Test the property 'version' */
     @Test
     public void versionTest() {
         // TODO: test version
     }
-
 }

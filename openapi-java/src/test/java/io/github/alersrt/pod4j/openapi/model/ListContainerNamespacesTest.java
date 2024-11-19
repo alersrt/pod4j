@@ -10,87 +10,59 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ListContainerNamespaces
- */
+/** Model tests for ListContainerNamespaces */
 public class ListContainerNamespacesTest {
     private final ListContainerNamespaces model = new ListContainerNamespaces();
 
-    /**
-     * Model tests for ListContainerNamespaces
-     */
+    /** Model tests for ListContainerNamespaces */
     @Test
     public void testListContainerNamespaces() {
         // TODO: test ListContainerNamespaces
     }
 
-    /**
-     * Test the property 'cgroup'
-     */
+    /** Test the property 'cgroup' */
     @Test
     public void cgroupTest() {
         // TODO: test cgroup
     }
 
-    /**
-     * Test the property 'ipc'
-     */
+    /** Test the property 'ipc' */
     @Test
     public void ipcTest() {
         // TODO: test ipc
     }
 
-    /**
-     * Test the property 'mnt'
-     */
+    /** Test the property 'mnt' */
     @Test
     public void mntTest() {
         // TODO: test mnt
     }
 
-    /**
-     * Test the property 'net'
-     */
+    /** Test the property 'net' */
     @Test
     public void netTest() {
         // TODO: test net
     }
 
-    /**
-     * Test the property 'pidns'
-     */
+    /** Test the property 'pidns' */
     @Test
     public void pidnsTest() {
         // TODO: test pidns
     }
 
-    /**
-     * Test the property 'user'
-     */
+    /** Test the property 'user' */
     @Test
     public void userTest() {
         // TODO: test user
     }
 
-    /**
-     * Test the property 'uts'
-     */
+    /** Test the property 'uts' */
     @Test
     public void utsTest() {
         // TODO: test uts
     }
-
 }

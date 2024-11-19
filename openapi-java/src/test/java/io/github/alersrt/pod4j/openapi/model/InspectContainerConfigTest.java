@@ -10,334 +10,239 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.InspectSecret;
-import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
-import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for InspectContainerConfig
- */
+/** Model tests for InspectContainerConfig */
 public class InspectContainerConfigTest {
     private final InspectContainerConfig model = new InspectContainerConfig();
 
-    /**
-     * Model tests for InspectContainerConfig
-     */
+    /** Model tests for InspectContainerConfig */
     @Test
     public void testInspectContainerConfig() {
         // TODO: test InspectContainerConfig
     }
 
-    /**
-     * Test the property 'annotations'
-     */
+    /** Test the property 'annotations' */
     @Test
     public void annotationsTest() {
         // TODO: test annotations
     }
 
-    /**
-     * Test the property 'attachStderr'
-     */
+    /** Test the property 'attachStderr' */
     @Test
     public void attachStderrTest() {
         // TODO: test attachStderr
     }
 
-    /**
-     * Test the property 'attachStdin'
-     */
+    /** Test the property 'attachStdin' */
     @Test
     public void attachStdinTest() {
         // TODO: test attachStdin
     }
 
-    /**
-     * Test the property 'attachStdout'
-     */
+    /** Test the property 'attachStdout' */
     @Test
     public void attachStdoutTest() {
         // TODO: test attachStdout
     }
 
-    /**
-     * Test the property 'chrootDirs'
-     */
+    /** Test the property 'chrootDirs' */
     @Test
     public void chrootDirsTest() {
         // TODO: test chrootDirs
     }
 
-    /**
-     * Test the property 'cmd'
-     */
+    /** Test the property 'cmd' */
     @Test
     public void cmdTest() {
         // TODO: test cmd
     }
 
-    /**
-     * Test the property 'createCommand'
-     */
+    /** Test the property 'createCommand' */
     @Test
     public void createCommandTest() {
         // TODO: test createCommand
     }
 
-    /**
-     * Test the property 'domainname'
-     */
+    /** Test the property 'domainname' */
     @Test
     public void domainnameTest() {
         // TODO: test domainname
     }
 
-    /**
-     * Test the property 'entrypoint'
-     */
+    /** Test the property 'entrypoint' */
     @Test
     public void entrypointTest() {
         // TODO: test entrypoint
     }
 
-    /**
-     * Test the property 'env'
-     */
+    /** Test the property 'env' */
     @Test
     public void envTest() {
         // TODO: test env
     }
 
-    /**
-     * Test the property 'exposedPorts'
-     */
+    /** Test the property 'exposedPorts' */
     @Test
     public void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
-    /**
-     * Test the property 'healthLogDestination'
-     */
+    /** Test the property 'healthLogDestination' */
     @Test
     public void healthLogDestinationTest() {
         // TODO: test healthLogDestination
     }
 
-    /**
-     * Test the property 'healthcheck'
-     */
+    /** Test the property 'healthcheck' */
     @Test
     public void healthcheckTest() {
         // TODO: test healthcheck
     }
 
-    /**
-     * Test the property 'healthcheckMaxLogCount'
-     */
+    /** Test the property 'healthcheckMaxLogCount' */
     @Test
     public void healthcheckMaxLogCountTest() {
         // TODO: test healthcheckMaxLogCount
     }
 
-    /**
-     * Test the property 'healthcheckMaxLogSize'
-     */
+    /** Test the property 'healthcheckMaxLogSize' */
     @Test
     public void healthcheckMaxLogSizeTest() {
         // TODO: test healthcheckMaxLogSize
     }
 
-    /**
-     * Test the property 'healthcheckOnFailureAction'
-     */
+    /** Test the property 'healthcheckOnFailureAction' */
     @Test
     public void healthcheckOnFailureActionTest() {
         // TODO: test healthcheckOnFailureAction
     }
 
-    /**
-     * Test the property 'hostname'
-     */
+    /** Test the property 'hostname' */
     @Test
     public void hostnameTest() {
         // TODO: test hostname
     }
 
-    /**
-     * Test the property 'image'
-     */
+    /** Test the property 'image' */
     @Test
     public void imageTest() {
         // TODO: test image
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'onBuild'
-     */
+    /** Test the property 'onBuild' */
     @Test
     public void onBuildTest() {
         // TODO: test onBuild
     }
 
-    /**
-     * Test the property 'openStdin'
-     */
+    /** Test the property 'openStdin' */
     @Test
     public void openStdinTest() {
         // TODO: test openStdin
     }
 
-    /**
-     * Test the property 'passwd'
-     */
+    /** Test the property 'passwd' */
     @Test
     public void passwdTest() {
         // TODO: test passwd
     }
 
-    /**
-     * Test the property 'secrets'
-     */
+    /** Test the property 'secrets' */
     @Test
     public void secretsTest() {
         // TODO: test secrets
     }
 
-    /**
-     * Test the property 'startupHealthCheck'
-     */
+    /** Test the property 'startupHealthCheck' */
     @Test
     public void startupHealthCheckTest() {
         // TODO: test startupHealthCheck
     }
 
-    /**
-     * Test the property 'stdinOnce'
-     */
+    /** Test the property 'stdinOnce' */
     @Test
     public void stdinOnceTest() {
         // TODO: test stdinOnce
     }
 
-    /**
-     * Test the property 'stopSignal'
-     */
+    /** Test the property 'stopSignal' */
     @Test
     public void stopSignalTest() {
         // TODO: test stopSignal
     }
 
-    /**
-     * Test the property 'stopTimeout'
-     */
+    /** Test the property 'stopTimeout' */
     @Test
     public void stopTimeoutTest() {
         // TODO: test stopTimeout
     }
 
-    /**
-     * Test the property 'systemdMode'
-     */
+    /** Test the property 'systemdMode' */
     @Test
     public void systemdModeTest() {
         // TODO: test systemdMode
     }
 
-    /**
-     * Test the property 'timeout'
-     */
+    /** Test the property 'timeout' */
     @Test
     public void timeoutTest() {
         // TODO: test timeout
     }
 
-    /**
-     * Test the property 'timezone'
-     */
+    /** Test the property 'timezone' */
     @Test
     public void timezoneTest() {
         // TODO: test timezone
     }
 
-    /**
-     * Test the property 'tty'
-     */
+    /** Test the property 'tty' */
     @Test
     public void ttyTest() {
         // TODO: test tty
     }
 
-    /**
-     * Test the property 'umask'
-     */
+    /** Test the property 'umask' */
     @Test
     public void umaskTest() {
         // TODO: test umask
     }
 
-    /**
-     * Test the property 'user'
-     */
+    /** Test the property 'user' */
     @Test
     public void userTest() {
         // TODO: test user
     }
 
-    /**
-     * Test the property 'volumes'
-     */
+    /** Test the property 'volumes' */
     @Test
     public void volumesTest() {
         // TODO: test volumes
     }
 
-    /**
-     * Test the property 'workingDir'
-     */
+    /** Test the property 'workingDir' */
     @Test
     public void workingDirTest() {
         // TODO: test workingDir
     }
 
-    /**
-     * Test the property 'sdNotifyMode'
-     */
+    /** Test the property 'sdNotifyMode' */
     @Test
     public void sdNotifyModeTest() {
         // TODO: test sdNotifyMode
     }
 
-    /**
-     * Test the property 'sdNotifySocket'
-     */
+    /** Test the property 'sdNotifySocket' */
     @Test
     public void sdNotifySocketTest() {
         // TODO: test sdNotifySocket
     }
-
 }

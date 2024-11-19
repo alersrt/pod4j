@@ -10,225 +10,155 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.DriverData;
-import io.github.alersrt.pod4j.openapi.model.History;
-import io.github.alersrt.pod4j.openapi.model.ImageConfig;
-import io.github.alersrt.pod4j.openapi.model.RootFS;
-import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ImageData
- */
+/** Model tests for ImageData */
 public class ImageDataTest {
     private final ImageData model = new ImageData();
 
-    /**
-     * Model tests for ImageData
-     */
+    /** Model tests for ImageData */
     @Test
     public void testImageData() {
         // TODO: test ImageData
     }
 
-    /**
-     * Test the property 'annotations'
-     */
+    /** Test the property 'annotations' */
     @Test
     public void annotationsTest() {
         // TODO: test annotations
     }
 
-    /**
-     * Test the property 'architecture'
-     */
+    /** Test the property 'architecture' */
     @Test
     public void architectureTest() {
         // TODO: test architecture
     }
 
-    /**
-     * Test the property 'author'
-     */
+    /** Test the property 'author' */
     @Test
     public void authorTest() {
         // TODO: test author
     }
 
-    /**
-     * Test the property 'comment'
-     */
+    /** Test the property 'comment' */
     @Test
     public void commentTest() {
         // TODO: test comment
     }
 
-    /**
-     * Test the property 'config'
-     */
+    /** Test the property 'config' */
     @Test
     public void configTest() {
         // TODO: test config
     }
 
-    /**
-     * Test the property 'created'
-     */
+    /** Test the property 'created' */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /**
-     * Test the property 'digest'
-     */
+    /** Test the property 'digest' */
     @Test
     public void digestTest() {
         // TODO: test digest
     }
 
-    /**
-     * Test the property 'graphDriver'
-     */
+    /** Test the property 'graphDriver' */
     @Test
     public void graphDriverTest() {
         // TODO: test graphDriver
     }
 
-    /**
-     * Test the property 'healthcheck'
-     */
+    /** Test the property 'healthcheck' */
     @Test
     public void healthcheckTest() {
         // TODO: test healthcheck
     }
 
-    /**
-     * Test the property 'history'
-     */
+    /** Test the property 'history' */
     @Test
     public void historyTest() {
         // TODO: test history
     }
 
-    /**
-     * Test the property 'id'
-     */
+    /** Test the property 'id' */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'manifestType'
-     */
+    /** Test the property 'manifestType' */
     @Test
     public void manifestTypeTest() {
         // TODO: test manifestType
     }
 
-    /**
-     * Test the property 'namesHistory'
-     */
+    /** Test the property 'namesHistory' */
     @Test
     public void namesHistoryTest() {
         // TODO: test namesHistory
     }
 
-    /**
-     * Test the property 'os'
-     */
+    /** Test the property 'os' */
     @Test
     public void osTest() {
         // TODO: test os
     }
 
-    /**
-     * Test the property 'parent'
-     */
+    /** Test the property 'parent' */
     @Test
     public void parentTest() {
         // TODO: test parent
     }
 
-    /**
-     * Test the property 'repoDigests'
-     */
+    /** Test the property 'repoDigests' */
     @Test
     public void repoDigestsTest() {
         // TODO: test repoDigests
     }
 
-    /**
-     * Test the property 'repoTags'
-     */
+    /** Test the property 'repoTags' */
     @Test
     public void repoTagsTest() {
         // TODO: test repoTags
     }
 
-    /**
-     * Test the property 'rootFS'
-     */
+    /** Test the property 'rootFS' */
     @Test
     public void rootFSTest() {
         // TODO: test rootFS
     }
 
-    /**
-     * Test the property 'size'
-     */
+    /** Test the property 'size' */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /**
-     * Test the property 'user'
-     */
+    /** Test the property 'user' */
     @Test
     public void userTest() {
         // TODO: test user
     }
 
-    /**
-     * Test the property 'version'
-     */
+    /** Test the property 'version' */
     @Test
     public void versionTest() {
         // TODO: test version
     }
 
-    /**
-     * Test the property 'virtualSize'
-     */
+    /** Test the property 'virtualSize' */
     @Test
     public void virtualSizeTest() {
         // TODO: test virtualSize
     }
-
 }

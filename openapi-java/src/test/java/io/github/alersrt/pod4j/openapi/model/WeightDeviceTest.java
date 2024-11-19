@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for WeightDevice
- */
+/** Model tests for WeightDevice */
 public class WeightDeviceTest {
     private final WeightDevice model = new WeightDevice();
 
-    /**
-     * Model tests for WeightDevice
-     */
+    /** Model tests for WeightDevice */
     @Test
     public void testWeightDevice() {
         // TODO: test WeightDevice
     }
 
-    /**
-     * Test the property 'path'
-     */
+    /** Test the property 'path' */
     @Test
     public void pathTest() {
         // TODO: test path
     }
 
-    /**
-     * Test the property 'weight'
-     */
+    /** Test the property 'weight' */
     @Test
     public void weightTest() {
         // TODO: test weight
     }
-
 }

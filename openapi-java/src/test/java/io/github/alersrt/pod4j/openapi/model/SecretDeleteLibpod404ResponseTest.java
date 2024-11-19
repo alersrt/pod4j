@@ -10,55 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for SecretDeleteLibpod404Response
- */
+/** Model tests for SecretDeleteLibpod404Response */
 public class SecretDeleteLibpod404ResponseTest {
     private final SecretDeleteLibpod404Response model = new SecretDeleteLibpod404Response();
 
-    /**
-     * Model tests for SecretDeleteLibpod404Response
-     */
+    /** Model tests for SecretDeleteLibpod404Response */
     @Test
     public void testSecretDeleteLibpod404Response() {
         // TODO: test SecretDeleteLibpod404Response
     }
 
-    /**
-     * Test the property 'cause'
-     */
+    /** Test the property 'cause' */
     @Test
     public void causeTest() {
         // TODO: test cause
     }
 
-    /**
-     * Test the property 'message'
-     */
+    /** Test the property 'message' */
     @Test
     public void messageTest() {
         // TODO: test message
     }
 
-    /**
-     * Test the property 'response'
-     */
+    /** Test the property 'response' */
     @Test
     public void responseTest() {
         // TODO: test response
     }
-
 }

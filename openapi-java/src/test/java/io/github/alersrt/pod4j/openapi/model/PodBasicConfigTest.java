@@ -10,196 +10,137 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for PodBasicConfig
- */
+/** Model tests for PodBasicConfig */
 public class PodBasicConfigTest {
     private final PodBasicConfig model = new PodBasicConfig();
 
-    /**
-     * Model tests for PodBasicConfig
-     */
+    /** Model tests for PodBasicConfig */
     @Test
     public void testPodBasicConfig() {
         // TODO: test PodBasicConfig
     }
 
-    /**
-     * Test the property 'exitPolicy'
-     */
+    /** Test the property 'exitPolicy' */
     @Test
     public void exitPolicyTest() {
         // TODO: test exitPolicy
     }
 
-    /**
-     * Test the property 'hostname'
-     */
+    /** Test the property 'hostname' */
     @Test
     public void hostnameTest() {
         // TODO: test hostname
     }
 
-    /**
-     * Test the property 'infraCommand'
-     */
+    /** Test the property 'infraCommand' */
     @Test
     public void infraCommandTest() {
         // TODO: test infraCommand
     }
 
-    /**
-     * Test the property 'infraConmonPidFile'
-     */
+    /** Test the property 'infraConmonPidFile' */
     @Test
     public void infraConmonPidFileTest() {
         // TODO: test infraConmonPidFile
     }
 
-    /**
-     * Test the property 'infraImage'
-     */
+    /** Test the property 'infraImage' */
     @Test
     public void infraImageTest() {
         // TODO: test infraImage
     }
 
-    /**
-     * Test the property 'infraName'
-     */
+    /** Test the property 'infraName' */
     @Test
     public void infraNameTest() {
         // TODO: test infraName
     }
 
-    /**
-     * Test the property 'ipcns'
-     */
+    /** Test the property 'ipcns' */
     @Test
     public void ipcnsTest() {
         // TODO: test ipcns
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'noInfra'
-     */
+    /** Test the property 'noInfra' */
     @Test
     public void noInfraTest() {
         // TODO: test noInfra
     }
 
-    /**
-     * Test the property 'pidns'
-     */
+    /** Test the property 'pidns' */
     @Test
     public void pidnsTest() {
         // TODO: test pidns
     }
 
-    /**
-     * Test the property 'podCreateCommand'
-     */
+    /** Test the property 'podCreateCommand' */
     @Test
     public void podCreateCommandTest() {
         // TODO: test podCreateCommand
     }
 
-    /**
-     * Test the property 'podDevices'
-     */
+    /** Test the property 'podDevices' */
     @Test
     public void podDevicesTest() {
         // TODO: test podDevices
     }
 
-    /**
-     * Test the property 'restartPolicy'
-     */
+    /** Test the property 'restartPolicy' */
     @Test
     public void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
-    /**
-     * Test the property 'restartTries'
-     */
+    /** Test the property 'restartTries' */
     @Test
     public void restartTriesTest() {
         // TODO: test restartTries
     }
 
-    /**
-     * Test the property 'shareParent'
-     */
+    /** Test the property 'shareParent' */
     @Test
     public void shareParentTest() {
         // TODO: test shareParent
     }
 
-    /**
-     * Test the property 'sharedNamespaces'
-     */
+    /** Test the property 'sharedNamespaces' */
     @Test
     public void sharedNamespacesTest() {
         // TODO: test sharedNamespaces
     }
 
-    /**
-     * Test the property 'sysctl'
-     */
+    /** Test the property 'sysctl' */
     @Test
     public void sysctlTest() {
         // TODO: test sysctl
     }
 
-    /**
-     * Test the property 'userns'
-     */
+    /** Test the property 'userns' */
     @Test
     public void usernsTest() {
         // TODO: test userns
     }
 
-    /**
-     * Test the property 'utsns'
-     */
+    /** Test the property 'utsns' */
     @Test
     public void utsnsTest() {
         // TODO: test utsns
     }
-
 }

@@ -10,71 +10,47 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for EndpointResource
- */
+/** Model tests for EndpointResource */
 public class EndpointResourceTest {
     private final EndpointResource model = new EndpointResource();
 
-    /**
-     * Model tests for EndpointResource
-     */
+    /** Model tests for EndpointResource */
     @Test
     public void testEndpointResource() {
         // TODO: test EndpointResource
     }
 
-    /**
-     * Test the property 'endpointID'
-     */
+    /** Test the property 'endpointID' */
     @Test
     public void endpointIDTest() {
         // TODO: test endpointID
     }
 
-    /**
-     * Test the property 'ipv4Address'
-     */
+    /** Test the property 'ipv4Address' */
     @Test
     public void ipv4AddressTest() {
         // TODO: test ipv4Address
     }
 
-    /**
-     * Test the property 'ipv6Address'
-     */
+    /** Test the property 'ipv6Address' */
     @Test
     public void ipv6AddressTest() {
         // TODO: test ipv6Address
     }
 
-    /**
-     * Test the property 'macAddress'
-     */
+    /** Test the property 'macAddress' */
     @Test
     public void macAddressTest() {
         // TODO: test macAddress
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
-
 }

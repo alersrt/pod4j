@@ -10,49 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for RootFS
- */
+/** Model tests for RootFS */
 public class RootFSTest {
     private final RootFS model = new RootFS();
 
-    /**
-     * Model tests for RootFS
-     */
+    /** Model tests for RootFS */
     @Test
     public void testRootFS() {
         // TODO: test RootFS
     }
 
-    /**
-     * Test the property 'layers'
-     */
+    /** Test the property 'layers' */
     @Test
     public void layersTest() {
         // TODO: test layers
     }
 
-    /**
-     * Test the property 'type'
-     */
+    /** Test the property 'type' */
     @Test
     public void typeTest() {
         // TODO: test type
     }
-
 }

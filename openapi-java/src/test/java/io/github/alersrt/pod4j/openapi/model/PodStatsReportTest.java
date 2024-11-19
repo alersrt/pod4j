@@ -10,111 +10,77 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for PodStatsReport
- */
+/** Model tests for PodStatsReport */
 public class PodStatsReportTest {
     private final PodStatsReport model = new PodStatsReport();
 
-    /**
-     * Model tests for PodStatsReport
-     */
+    /** Model tests for PodStatsReport */
     @Test
     public void testPodStatsReport() {
         // TODO: test PodStatsReport
     }
 
-    /**
-     * Test the property 'blockIO'
-     */
+    /** Test the property 'blockIO' */
     @Test
     public void blockIOTest() {
         // TODO: test blockIO
     }
 
-    /**
-     * Test the property 'CID'
-     */
+    /** Test the property 'CID' */
     @Test
     public void CIDTest() {
         // TODO: test CID
     }
 
-    /**
-     * Test the property 'CPU'
-     */
+    /** Test the property 'CPU' */
     @Test
     public void CPUTest() {
         // TODO: test CPU
     }
 
-    /**
-     * Test the property 'mem'
-     */
+    /** Test the property 'mem' */
     @Test
     public void memTest() {
         // TODO: test mem
     }
 
-    /**
-     * Test the property 'memUsage'
-     */
+    /** Test the property 'memUsage' */
     @Test
     public void memUsageTest() {
         // TODO: test memUsage
     }
 
-    /**
-     * Test the property 'memUsageBytes'
-     */
+    /** Test the property 'memUsageBytes' */
     @Test
     public void memUsageBytesTest() {
         // TODO: test memUsageBytes
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'netIO'
-     */
+    /** Test the property 'netIO' */
     @Test
     public void netIOTest() {
         // TODO: test netIO
     }
 
-    /**
-     * Test the property 'PIDS'
-     */
+    /** Test the property 'PIDS' */
     @Test
     public void PIDSTest() {
         // TODO: test PIDS
     }
 
-    /**
-     * Test the property 'pod'
-     */
+    /** Test the property 'pod' */
     @Test
     public void podTest() {
         // TODO: test pod
     }
-
 }

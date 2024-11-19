@@ -10,182 +10,125 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Address;
-import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
-import io.github.alersrt.pod4j.openapi.model.PortBinding;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for NetworkSettings
- */
+/** Model tests for NetworkSettings */
 public class NetworkSettingsTest {
     private final NetworkSettings model = new NetworkSettings();
 
-    /**
-     * Model tests for NetworkSettings
-     */
+    /** Model tests for NetworkSettings */
     @Test
     public void testNetworkSettings() {
         // TODO: test NetworkSettings
     }
 
-    /**
-     * Test the property 'bridge'
-     */
+    /** Test the property 'bridge' */
     @Test
     public void bridgeTest() {
         // TODO: test bridge
     }
 
-    /**
-     * Test the property 'endpointID'
-     */
+    /** Test the property 'endpointID' */
     @Test
     public void endpointIDTest() {
         // TODO: test endpointID
     }
 
-    /**
-     * Test the property 'gateway'
-     */
+    /** Test the property 'gateway' */
     @Test
     public void gatewayTest() {
         // TODO: test gateway
     }
 
-    /**
-     * Test the property 'globalIPv6Address'
-     */
+    /** Test the property 'globalIPv6Address' */
     @Test
     public void globalIPv6AddressTest() {
         // TODO: test globalIPv6Address
     }
 
-    /**
-     * Test the property 'globalIPv6PrefixLen'
-     */
+    /** Test the property 'globalIPv6PrefixLen' */
     @Test
     public void globalIPv6PrefixLenTest() {
         // TODO: test globalIPv6PrefixLen
     }
 
-    /**
-     * Test the property 'hairpinMode'
-     */
+    /** Test the property 'hairpinMode' */
     @Test
     public void hairpinModeTest() {
         // TODO: test hairpinMode
     }
 
-    /**
-     * Test the property 'ipAddress'
-     */
+    /** Test the property 'ipAddress' */
     @Test
     public void ipAddressTest() {
         // TODO: test ipAddress
     }
 
-    /**
-     * Test the property 'ipPrefixLen'
-     */
+    /** Test the property 'ipPrefixLen' */
     @Test
     public void ipPrefixLenTest() {
         // TODO: test ipPrefixLen
     }
 
-    /**
-     * Test the property 'ipv6Gateway'
-     */
+    /** Test the property 'ipv6Gateway' */
     @Test
     public void ipv6GatewayTest() {
         // TODO: test ipv6Gateway
     }
 
-    /**
-     * Test the property 'linkLocalIPv6Address'
-     */
+    /** Test the property 'linkLocalIPv6Address' */
     @Test
     public void linkLocalIPv6AddressTest() {
         // TODO: test linkLocalIPv6Address
     }
 
-    /**
-     * Test the property 'linkLocalIPv6PrefixLen'
-     */
+    /** Test the property 'linkLocalIPv6PrefixLen' */
     @Test
     public void linkLocalIPv6PrefixLenTest() {
         // TODO: test linkLocalIPv6PrefixLen
     }
 
-    /**
-     * Test the property 'macAddress'
-     */
+    /** Test the property 'macAddress' */
     @Test
     public void macAddressTest() {
         // TODO: test macAddress
     }
 
-    /**
-     * Test the property 'networks'
-     */
+    /** Test the property 'networks' */
     @Test
     public void networksTest() {
         // TODO: test networks
     }
 
-    /**
-     * Test the property 'ports'
-     */
+    /** Test the property 'ports' */
     @Test
     public void portsTest() {
         // TODO: test ports
     }
 
-    /**
-     * Test the property 'sandboxID'
-     */
+    /** Test the property 'sandboxID' */
     @Test
     public void sandboxIDTest() {
         // TODO: test sandboxID
     }
 
-    /**
-     * Test the property 'sandboxKey'
-     */
+    /** Test the property 'sandboxKey' */
     @Test
     public void sandboxKeyTest() {
         // TODO: test sandboxKey
     }
 
-    /**
-     * Test the property 'secondaryIPAddresses'
-     */
+    /** Test the property 'secondaryIPAddresses' */
     @Test
     public void secondaryIPAddressesTest() {
         // TODO: test secondaryIPAddresses
     }
 
-    /**
-     * Test the property 'secondaryIPv6Addresses'
-     */
+    /** Test the property 'secondaryIPv6Addresses' */
     @Test
     public void secondaryIPv6AddressesTest() {
         // TODO: test secondaryIPv6Addresses
     }
-
 }

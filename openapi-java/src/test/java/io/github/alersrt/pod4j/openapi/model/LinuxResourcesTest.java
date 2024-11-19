@@ -10,115 +10,71 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LinuxBlockIO;
-import io.github.alersrt.pod4j.openapi.model.LinuxCPU;
-import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
-import io.github.alersrt.pod4j.openapi.model.LinuxHugepageLimit;
-import io.github.alersrt.pod4j.openapi.model.LinuxMemory;
-import io.github.alersrt.pod4j.openapi.model.LinuxNetwork;
-import io.github.alersrt.pod4j.openapi.model.LinuxPids;
-import io.github.alersrt.pod4j.openapi.model.LinuxRdma;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LinuxResources
- */
+/** Model tests for LinuxResources */
 public class LinuxResourcesTest {
     private final LinuxResources model = new LinuxResources();
 
-    /**
-     * Model tests for LinuxResources
-     */
+    /** Model tests for LinuxResources */
     @Test
     public void testLinuxResources() {
         // TODO: test LinuxResources
     }
 
-    /**
-     * Test the property 'blockIO'
-     */
+    /** Test the property 'blockIO' */
     @Test
     public void blockIOTest() {
         // TODO: test blockIO
     }
 
-    /**
-     * Test the property 'cpu'
-     */
+    /** Test the property 'cpu' */
     @Test
     public void cpuTest() {
         // TODO: test cpu
     }
 
-    /**
-     * Test the property 'devices'
-     */
+    /** Test the property 'devices' */
     @Test
     public void devicesTest() {
         // TODO: test devices
     }
 
-    /**
-     * Test the property 'hugepageLimits'
-     */
+    /** Test the property 'hugepageLimits' */
     @Test
     public void hugepageLimitsTest() {
         // TODO: test hugepageLimits
     }
 
-    /**
-     * Test the property 'memory'
-     */
+    /** Test the property 'memory' */
     @Test
     public void memoryTest() {
         // TODO: test memory
     }
 
-    /**
-     * Test the property 'network'
-     */
+    /** Test the property 'network' */
     @Test
     public void networkTest() {
         // TODO: test network
     }
 
-    /**
-     * Test the property 'pids'
-     */
+    /** Test the property 'pids' */
     @Test
     public void pidsTest() {
         // TODO: test pids
     }
 
-    /**
-     * Test the property 'rdma'
-     */
+    /** Test the property 'rdma' */
     @Test
     public void rdmaTest() {
         // TODO: test rdma
     }
 
-    /**
-     * Test the property 'unified'
-     */
+    /** Test the property 'unified' */
     @Test
     public void unifiedTest() {
         // TODO: test unified
     }
-
 }

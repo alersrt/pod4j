@@ -10,63 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for SystemDfVolumeReport
- */
+/** Model tests for SystemDfVolumeReport */
 public class SystemDfVolumeReportTest {
     private final SystemDfVolumeReport model = new SystemDfVolumeReport();
 
-    /**
-     * Model tests for SystemDfVolumeReport
-     */
+    /** Model tests for SystemDfVolumeReport */
     @Test
     public void testSystemDfVolumeReport() {
         // TODO: test SystemDfVolumeReport
     }
 
-    /**
-     * Test the property 'links'
-     */
+    /** Test the property 'links' */
     @Test
     public void linksTest() {
         // TODO: test links
     }
 
-    /**
-     * Test the property 'reclaimableSize'
-     */
+    /** Test the property 'reclaimableSize' */
     @Test
     public void reclaimableSizeTest() {
         // TODO: test reclaimableSize
     }
 
-    /**
-     * Test the property 'size'
-     */
+    /** Test the property 'size' */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /**
-     * Test the property 'volumeName'
-     */
+    /** Test the property 'volumeName' */
     @Test
     public void volumeNameTest() {
         // TODO: test volumeName
     }
-
 }

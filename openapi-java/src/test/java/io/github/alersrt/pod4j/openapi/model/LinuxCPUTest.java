@@ -10,103 +10,71 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LinuxCPU
- */
+/** Model tests for LinuxCPU */
 public class LinuxCPUTest {
     private final LinuxCPU model = new LinuxCPU();
 
-    /**
-     * Model tests for LinuxCPU
-     */
+    /** Model tests for LinuxCPU */
     @Test
     public void testLinuxCPU() {
         // TODO: test LinuxCPU
     }
 
-    /**
-     * Test the property 'burst'
-     */
+    /** Test the property 'burst' */
     @Test
     public void burstTest() {
         // TODO: test burst
     }
 
-    /**
-     * Test the property 'cpus'
-     */
+    /** Test the property 'cpus' */
     @Test
     public void cpusTest() {
         // TODO: test cpus
     }
 
-    /**
-     * Test the property 'idle'
-     */
+    /** Test the property 'idle' */
     @Test
     public void idleTest() {
         // TODO: test idle
     }
 
-    /**
-     * Test the property 'mems'
-     */
+    /** Test the property 'mems' */
     @Test
     public void memsTest() {
         // TODO: test mems
     }
 
-    /**
-     * Test the property 'period'
-     */
+    /** Test the property 'period' */
     @Test
     public void periodTest() {
         // TODO: test period
     }
 
-    /**
-     * Test the property 'quota'
-     */
+    /** Test the property 'quota' */
     @Test
     public void quotaTest() {
         // TODO: test quota
     }
 
-    /**
-     * Test the property 'realtimePeriod'
-     */
+    /** Test the property 'realtimePeriod' */
     @Test
     public void realtimePeriodTest() {
         // TODO: test realtimePeriod
     }
 
-    /**
-     * Test the property 'realtimeRuntime'
-     */
+    /** Test the property 'realtimeRuntime' */
     @Test
     public void realtimeRuntimeTest() {
         // TODO: test realtimeRuntime
     }
 
-    /**
-     * Test the property 'shares'
-     */
+    /** Test the property 'shares' */
     @Test
     public void sharesTest() {
         // TODO: test shares
     }
-
 }

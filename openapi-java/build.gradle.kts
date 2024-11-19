@@ -1,12 +1,17 @@
 plugins {
-    id("com.diffplug.spotless") version "6.11.0"
+    id("idea")
+    id("eclipse")
+    id("java")
+    id("maven-publish")
+    id("signing")
+    id("com.diffplug.spotless") version "6.25.0"
 }
-
-version = "5.0.0"
 
 repositories {
     mavenCentral()
 }
+
+version = "5.0.0"
 
 dependencies {
     implementation("io.swagger:swagger-annotations:1.6.14")
@@ -25,6 +30,12 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
 }
 
+tasks.withType<Javadoc> {
+    (options as StandardJavadocDocletOptions)
+        .tags("http.response.details:a:Http Response Details")
+        .addStringOption("Xdoclint:none", "-quiet")
+}
+
 // Use spotless plugin to automatically format code, remove unused import, etc
 // To apply changes directly to the file, run `gradlew spotlessApply`
 // Ref: https://github.com/diffplug/spotless/tree/main/plugin-gradle
@@ -40,7 +51,7 @@ spotless {
     java {
         // don't need to set target, it is inferred from java
         // apply a specific flavor of google-java-format
-        googleJavaFormat("1.8").aosp().reflowLongStrings()
+        googleJavaFormat("1.24.0").aosp().reflowLongStrings()
         removeUnusedImports()
         importOrder()
     }

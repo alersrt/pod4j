@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for PortBinding
- */
+/** Model tests for PortBinding */
 public class PortBindingTest {
     private final PortBinding model = new PortBinding();
 
-    /**
-     * Model tests for PortBinding
-     */
+    /** Model tests for PortBinding */
     @Test
     public void testPortBinding() {
         // TODO: test PortBinding
     }
 
-    /**
-     * Test the property 'hostIp'
-     */
+    /** Test the property 'hostIp' */
     @Test
     public void hostIpTest() {
         // TODO: test hostIp
     }
 
-    /**
-     * Test the property 'hostPort'
-     */
+    /** Test the property 'hostPort' */
     @Test
     public void hostPortTest() {
         // TODO: test hostPort
     }
-
 }

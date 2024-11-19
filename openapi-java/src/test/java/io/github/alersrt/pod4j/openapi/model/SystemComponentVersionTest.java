@@ -10,131 +10,89 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ComponentVersion;
-import io.github.alersrt.pod4j.openapi.model.SystemComponentVersionPlatform;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for SystemComponentVersion
- */
+/** Model tests for SystemComponentVersion */
 public class SystemComponentVersionTest {
     private final SystemComponentVersion model = new SystemComponentVersion();
 
-    /**
-     * Model tests for SystemComponentVersion
-     */
+    /** Model tests for SystemComponentVersion */
     @Test
     public void testSystemComponentVersion() {
         // TODO: test SystemComponentVersion
     }
 
-    /**
-     * Test the property 'apiVersion'
-     */
+    /** Test the property 'apiVersion' */
     @Test
     public void apiVersionTest() {
         // TODO: test apiVersion
     }
 
-    /**
-     * Test the property 'arch'
-     */
+    /** Test the property 'arch' */
     @Test
     public void archTest() {
         // TODO: test arch
     }
 
-    /**
-     * Test the property 'buildTime'
-     */
+    /** Test the property 'buildTime' */
     @Test
     public void buildTimeTest() {
         // TODO: test buildTime
     }
 
-    /**
-     * Test the property 'components'
-     */
+    /** Test the property 'components' */
     @Test
     public void componentsTest() {
         // TODO: test components
     }
 
-    /**
-     * Test the property 'experimental'
-     */
+    /** Test the property 'experimental' */
     @Test
     public void experimentalTest() {
         // TODO: test experimental
     }
 
-    /**
-     * Test the property 'gitCommit'
-     */
+    /** Test the property 'gitCommit' */
     @Test
     public void gitCommitTest() {
         // TODO: test gitCommit
     }
 
-    /**
-     * Test the property 'goVersion'
-     */
+    /** Test the property 'goVersion' */
     @Test
     public void goVersionTest() {
         // TODO: test goVersion
     }
 
-    /**
-     * Test the property 'kernelVersion'
-     */
+    /** Test the property 'kernelVersion' */
     @Test
     public void kernelVersionTest() {
         // TODO: test kernelVersion
     }
 
-    /**
-     * Test the property 'minAPIVersion'
-     */
+    /** Test the property 'minAPIVersion' */
     @Test
     public void minAPIVersionTest() {
         // TODO: test minAPIVersion
     }
 
-    /**
-     * Test the property 'os'
-     */
+    /** Test the property 'os' */
     @Test
     public void osTest() {
         // TODO: test os
     }
 
-    /**
-     * Test the property 'platform'
-     */
+    /** Test the property 'platform' */
     @Test
     public void platformTest() {
         // TODO: test platform
     }
 
-    /**
-     * Test the property 'version'
-     */
+    /** Test the property 'version' */
     @Test
     public void versionTest() {
         // TODO: test version
     }
-
 }

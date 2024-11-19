@@ -10,63 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LinuxWeightDevice
- */
+/** Model tests for LinuxWeightDevice */
 public class LinuxWeightDeviceTest {
     private final LinuxWeightDevice model = new LinuxWeightDevice();
 
-    /**
-     * Model tests for LinuxWeightDevice
-     */
+    /** Model tests for LinuxWeightDevice */
     @Test
     public void testLinuxWeightDevice() {
         // TODO: test LinuxWeightDevice
     }
 
-    /**
-     * Test the property 'leafWeight'
-     */
+    /** Test the property 'leafWeight' */
     @Test
     public void leafWeightTest() {
         // TODO: test leafWeight
     }
 
-    /**
-     * Test the property 'major'
-     */
+    /** Test the property 'major' */
     @Test
     public void majorTest() {
         // TODO: test major
     }
 
-    /**
-     * Test the property 'minor'
-     */
+    /** Test the property 'minor' */
     @Test
     public void minorTest() {
         // TODO: test minor
     }
 
-    /**
-     * Test the property 'weight'
-     */
+    /** Test the property 'weight' */
     @Test
     public void weightTest() {
         // TODO: test weight
     }
-
 }

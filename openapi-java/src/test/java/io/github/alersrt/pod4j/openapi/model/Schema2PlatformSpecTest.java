@@ -10,81 +10,53 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Schema2PlatformSpec
- */
+/** Model tests for Schema2PlatformSpec */
 public class Schema2PlatformSpecTest {
     private final Schema2PlatformSpec model = new Schema2PlatformSpec();
 
-    /**
-     * Model tests for Schema2PlatformSpec
-     */
+    /** Model tests for Schema2PlatformSpec */
     @Test
     public void testSchema2PlatformSpec() {
         // TODO: test Schema2PlatformSpec
     }
 
-    /**
-     * Test the property 'architecture'
-     */
+    /** Test the property 'architecture' */
     @Test
     public void architectureTest() {
         // TODO: test architecture
     }
 
-    /**
-     * Test the property 'features'
-     */
+    /** Test the property 'features' */
     @Test
     public void featuresTest() {
         // TODO: test features
     }
 
-    /**
-     * Test the property 'os'
-     */
+    /** Test the property 'os' */
     @Test
     public void osTest() {
         // TODO: test os
     }
 
-    /**
-     * Test the property 'osFeatures'
-     */
+    /** Test the property 'osFeatures' */
     @Test
     public void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
-    /**
-     * Test the property 'osVersion'
-     */
+    /** Test the property 'osVersion' */
     @Test
     public void osVersionTest() {
         // TODO: test osVersion
     }
 
-    /**
-     * Test the property 'variant'
-     */
+    /** Test the property 'variant' */
     @Test
     public void variantTest() {
         // TODO: test variant
     }
-
 }

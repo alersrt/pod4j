@@ -10,55 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LinuxIDMapping
- */
+/** Model tests for LinuxIDMapping */
 public class LinuxIDMappingTest {
     private final LinuxIDMapping model = new LinuxIDMapping();
 
-    /**
-     * Model tests for LinuxIDMapping
-     */
+    /** Model tests for LinuxIDMapping */
     @Test
     public void testLinuxIDMapping() {
         // TODO: test LinuxIDMapping
     }
 
-    /**
-     * Test the property 'containerID'
-     */
+    /** Test the property 'containerID' */
     @Test
     public void containerIDTest() {
         // TODO: test containerID
     }
 
-    /**
-     * Test the property 'hostID'
-     */
+    /** Test the property 'hostID' */
     @Test
     public void hostIDTest() {
         // TODO: test hostID
     }
 
-    /**
-     * Test the property 'size'
-     */
+    /** Test the property 'size' */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
-
 }

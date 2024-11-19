@@ -10,239 +10,235 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * PodSecurityConfig
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** PodSecurityConfig */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class PodSecurityConfig {
-  public static final String SERIALIZED_NAME_IDMAPPINGS = "idmappings";
-  @SerializedName(SERIALIZED_NAME_IDMAPPINGS)
-  private IDMappingOptions idmappings;
+    public static final String SERIALIZED_NAME_IDMAPPINGS = "idmappings";
 
-  public static final String SERIALIZED_NAME_SECURITY_OPT = "security_opt";
-  @SerializedName(SERIALIZED_NAME_SECURITY_OPT)
-  private List<String> securityOpt = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_IDMAPPINGS)
+    private IDMappingOptions idmappings;
 
-  public PodSecurityConfig() {
-  }
+    public static final String SERIALIZED_NAME_SECURITY_OPT = "security_opt";
 
-  public PodSecurityConfig idmappings(IDMappingOptions idmappings) {
-    this.idmappings = idmappings;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_SECURITY_OPT)
+    private List<String> securityOpt = new ArrayList<>();
 
-  /**
-   * Get idmappings
-   * @return idmappings
-   */
-  @javax.annotation.Nullable
-  public IDMappingOptions getIdmappings() {
-    return idmappings;
-  }
+    public PodSecurityConfig() {}
 
-  public void setIdmappings(IDMappingOptions idmappings) {
-    this.idmappings = idmappings;
-  }
-
-
-  public PodSecurityConfig securityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
-    return this;
-  }
-
-  public PodSecurityConfig addSecurityOptItem(String securityOptItem) {
-    if (this.securityOpt == null) {
-      this.securityOpt = new ArrayList<>();
+    public PodSecurityConfig idmappings(IDMappingOptions idmappings) {
+        this.idmappings = idmappings;
+        return this;
     }
-    this.securityOpt.add(securityOptItem);
-    return this;
-  }
 
-  /**
-   * Get securityOpt
-   * @return securityOpt
-   */
-  @javax.annotation.Nullable
-  public List<String> getSecurityOpt() {
-    return securityOpt;
-  }
-
-  public void setSecurityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get idmappings
+     *
+     * @return idmappings
+     */
+    @javax.annotation.Nullable
+    public IDMappingOptions getIdmappings() {
+        return idmappings;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public void setIdmappings(IDMappingOptions idmappings) {
+        this.idmappings = idmappings;
     }
-    PodSecurityConfig podSecurityConfig = (PodSecurityConfig) o;
-    return Objects.equals(this.idmappings, podSecurityConfig.idmappings) &&
-        Objects.equals(this.securityOpt, podSecurityConfig.securityOpt);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(idmappings, securityOpt);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PodSecurityConfig {\n");
-    sb.append("    idmappings: ").append(toIndentedString(idmappings)).append("\n");
-    sb.append("    securityOpt: ").append(toIndentedString(securityOpt)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public PodSecurityConfig securityOpt(List<String> securityOpt) {
+        this.securityOpt = securityOpt;
+        return this;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("idmappings");
-    openapiFields.add("security_opt");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PodSecurityConfig
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PodSecurityConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PodSecurityConfig is not found in the empty JSON string", PodSecurityConfig.openapiRequiredFields.toString()));
+    public PodSecurityConfig addSecurityOptItem(String securityOptItem) {
+        if (this.securityOpt == null) {
+            this.securityOpt = new ArrayList<>();
         }
-      }
+        this.securityOpt.add(securityOptItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PodSecurityConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodSecurityConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `idmappings`
-      if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
-        IDMappingOptions.validateJsonElement(jsonObj.get("idmappings"));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("security_opt") != null && !jsonObj.get("security_opt").isJsonNull() && !jsonObj.get("security_opt").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `security_opt` to be an array in the JSON string but got `%s`", jsonObj.get("security_opt").toString()));
-      }
-  }
+    /**
+     * Get securityOpt
+     *
+     * @return securityOpt
+     */
+    @javax.annotation.Nullable
+    public List<String> getSecurityOpt() {
+        return securityOpt;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public void setSecurityOpt(List<String> securityOpt) {
+        this.securityOpt = securityOpt;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PodSecurityConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PodSecurityConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PodSecurityConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PodSecurityConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PodSecurityConfig>() {
-           @Override
-           public void write(JsonWriter out, PodSecurityConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PodSecurityConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PodSecurityConfig podSecurityConfig = (PodSecurityConfig) o;
+        return Objects.equals(this.idmappings, podSecurityConfig.idmappings)
+                && Objects.equals(this.securityOpt, podSecurityConfig.securityOpt);
     }
-  }
 
-  /**
-   * Create an instance of PodSecurityConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PodSecurityConfig
-   * @throws IOException if the JSON string is invalid with respect to PodSecurityConfig
-   */
-  public static PodSecurityConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PodSecurityConfig.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(idmappings, securityOpt);
+    }
 
-  /**
-   * Convert an instance of PodSecurityConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PodSecurityConfig {\n");
+        sb.append("    idmappings: ").append(toIndentedString(idmappings)).append("\n");
+        sb.append("    securityOpt: ").append(toIndentedString(securityOpt)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("idmappings");
+        openapiFields.add("security_opt");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to PodSecurityConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!PodSecurityConfig.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in PodSecurityConfig is not found in the"
+                                        + " empty JSON string",
+                                PodSecurityConfig.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!PodSecurityConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `PodSecurityConfig` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `idmappings`
+        if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
+            IDMappingOptions.validateJsonElement(jsonObj.get("idmappings"));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("security_opt") != null
+                && !jsonObj.get("security_opt").isJsonNull()
+                && !jsonObj.get("security_opt").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `security_opt` to be an array in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("security_opt").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PodSecurityConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PodSecurityConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PodSecurityConfig> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(PodSecurityConfig.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<PodSecurityConfig>() {
+                        @Override
+                        public void write(JsonWriter out, PodSecurityConfig value)
+                                throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public PodSecurityConfig read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of PodSecurityConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PodSecurityConfig
+     * @throws IOException if the JSON string is invalid with respect to PodSecurityConfig
+     */
+    public static PodSecurityConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PodSecurityConfig.class);
+    }
+
+    /**
+     * Convert an instance of PodSecurityConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

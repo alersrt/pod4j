@@ -10,87 +10,59 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ImageSearch200Response
- */
+/** Model tests for ImageSearch200Response */
 public class ImageSearch200ResponseTest {
     private final ImageSearch200Response model = new ImageSearch200Response();
 
-    /**
-     * Model tests for ImageSearch200Response
-     */
+    /** Model tests for ImageSearch200Response */
     @Test
     public void testImageSearch200Response() {
         // TODO: test ImageSearch200Response
     }
 
-    /**
-     * Test the property 'automated'
-     */
+    /** Test the property 'automated' */
     @Test
     public void automatedTest() {
         // TODO: test automated
     }
 
-    /**
-     * Test the property 'description'
-     */
+    /** Test the property 'description' */
     @Test
     public void descriptionTest() {
         // TODO: test description
     }
 
-    /**
-     * Test the property 'index'
-     */
+    /** Test the property 'index' */
     @Test
     public void indexTest() {
         // TODO: test index
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'official'
-     */
+    /** Test the property 'official' */
     @Test
     public void officialTest() {
         // TODO: test official
     }
 
-    /**
-     * Test the property 'stars'
-     */
+    /** Test the property 'stars' */
     @Test
     public void starsTest() {
         // TODO: test stars
     }
 
-    /**
-     * Test the property 'tag'
-     */
+    /** Test the property 'tag' */
     @Test
     public void tagTest() {
         // TODO: test tag
     }
-
 }

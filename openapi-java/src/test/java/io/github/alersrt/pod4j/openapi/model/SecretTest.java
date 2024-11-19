@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Secret
- */
+/** Model tests for Secret */
 public class SecretTest {
     private final Secret model = new Secret();
 
-    /**
-     * Model tests for Secret
-     */
+    /** Model tests for Secret */
     @Test
     public void testSecret() {
         // TODO: test Secret
     }
 
-    /**
-     * Test the property 'key'
-     */
+    /** Test the property 'key' */
     @Test
     public void keyTest() {
         // TODO: test key
     }
 
-    /**
-     * Test the property 'secret'
-     */
+    /** Test the property 'secret' */
     @Test
     public void secretTest() {
         // TODO: test secret
     }
-
 }

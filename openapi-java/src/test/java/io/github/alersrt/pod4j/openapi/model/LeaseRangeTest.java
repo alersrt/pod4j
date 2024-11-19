@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LeaseRange
- */
+/** Model tests for LeaseRange */
 public class LeaseRangeTest {
     private final LeaseRange model = new LeaseRange();
 
-    /**
-     * Model tests for LeaseRange
-     */
+    /** Model tests for LeaseRange */
     @Test
     public void testLeaseRange() {
         // TODO: test LeaseRange
     }
 
-    /**
-     * Test the property 'endIp'
-     */
+    /** Test the property 'endIp' */
     @Test
     public void endIpTest() {
         // TODO: test endIp
     }
 
-    /**
-     * Test the property 'startIp'
-     */
+    /** Test the property 'startIp' */
     @Test
     public void startIpTest() {
         // TODO: test startIp
     }
-
 }

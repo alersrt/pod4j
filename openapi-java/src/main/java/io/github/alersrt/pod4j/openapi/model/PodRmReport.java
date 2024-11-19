@@ -10,262 +10,262 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * PodRmReport
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** PodRmReport */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class PodRmReport {
-  public static final String SERIALIZED_NAME_ERR = "Err";
-  @SerializedName(SERIALIZED_NAME_ERR)
-  private String err;
+    public static final String SERIALIZED_NAME_ERR = "Err";
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+    @SerializedName(SERIALIZED_NAME_ERR)
+    private String err;
 
-  public static final String SERIALIZED_NAME_REMOVED_CTRS = "RemovedCtrs";
-  @SerializedName(SERIALIZED_NAME_REMOVED_CTRS)
-  private Map<String, String> removedCtrs = new HashMap<>();
+    public static final String SERIALIZED_NAME_ID = "Id";
 
-  public PodRmReport() {
-  }
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
 
-  public PodRmReport err(String err) {
-    this.err = err;
-    return this;
-  }
+    public static final String SERIALIZED_NAME_REMOVED_CTRS = "RemovedCtrs";
 
-  /**
-   * Get err
-   * @return err
-   */
-  @javax.annotation.Nullable
-  public String getErr() {
-    return err;
-  }
+    @SerializedName(SERIALIZED_NAME_REMOVED_CTRS)
+    private Map<String, String> removedCtrs = new HashMap<>();
 
-  public void setErr(String err) {
-    this.err = err;
-  }
+    public PodRmReport() {}
 
-
-  public PodRmReport id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @javax.annotation.Nullable
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public PodRmReport removedCtrs(Map<String, String> removedCtrs) {
-    this.removedCtrs = removedCtrs;
-    return this;
-  }
-
-  public PodRmReport putRemovedCtrsItem(String key, String removedCtrsItem) {
-    if (this.removedCtrs == null) {
-      this.removedCtrs = new HashMap<>();
+    public PodRmReport err(String err) {
+        this.err = err;
+        return this;
     }
-    this.removedCtrs.put(key, removedCtrsItem);
-    return this;
-  }
 
-  /**
-   * Get removedCtrs
-   * @return removedCtrs
-   */
-  @javax.annotation.Nullable
-  public Map<String, String> getRemovedCtrs() {
-    return removedCtrs;
-  }
-
-  public void setRemovedCtrs(Map<String, String> removedCtrs) {
-    this.removedCtrs = removedCtrs;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get err
+     *
+     * @return err
+     */
+    @javax.annotation.Nullable
+    public String getErr() {
+        return err;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public void setErr(String err) {
+        this.err = err;
     }
-    PodRmReport podRmReport = (PodRmReport) o;
-    return Objects.equals(this.err, podRmReport.err) &&
-        Objects.equals(this.id, podRmReport.id) &&
-        Objects.equals(this.removedCtrs, podRmReport.removedCtrs);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(err, id, removedCtrs);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PodRmReport {\n");
-    sb.append("    err: ").append(toIndentedString(err)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    removedCtrs: ").append(toIndentedString(removedCtrs)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public PodRmReport id(String id) {
+        this.id = id;
+        return this;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @javax.annotation.Nullable
+    public String getId() {
+        return id;
+    }
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Err");
-    openapiFields.add("Id");
-    openapiFields.add("RemovedCtrs");
+    public PodRmReport removedCtrs(Map<String, String> removedCtrs) {
+        this.removedCtrs = removedCtrs;
+        return this;
+    }
 
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PodRmReport
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PodRmReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PodRmReport is not found in the empty JSON string", PodRmReport.openapiRequiredFields.toString()));
+    public PodRmReport putRemovedCtrsItem(String key, String removedCtrsItem) {
+        if (this.removedCtrs == null) {
+            this.removedCtrs = new HashMap<>();
         }
-      }
+        this.removedCtrs.put(key, removedCtrsItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PodRmReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodRmReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Err") != null && !jsonObj.get("Err").isJsonNull()) && !jsonObj.get("Err").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Err` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Err").toString()));
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-  }
+    /**
+     * Get removedCtrs
+     *
+     * @return removedCtrs
+     */
+    @javax.annotation.Nullable
+    public Map<String, String> getRemovedCtrs() {
+        return removedCtrs;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public void setRemovedCtrs(Map<String, String> removedCtrs) {
+        this.removedCtrs = removedCtrs;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PodRmReport.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PodRmReport' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PodRmReport> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PodRmReport.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PodRmReport>() {
-           @Override
-           public void write(JsonWriter out, PodRmReport value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PodRmReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PodRmReport podRmReport = (PodRmReport) o;
+        return Objects.equals(this.err, podRmReport.err)
+                && Objects.equals(this.id, podRmReport.id)
+                && Objects.equals(this.removedCtrs, podRmReport.removedCtrs);
     }
-  }
 
-  /**
-   * Create an instance of PodRmReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PodRmReport
-   * @throws IOException if the JSON string is invalid with respect to PodRmReport
-   */
-  public static PodRmReport fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PodRmReport.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(err, id, removedCtrs);
+    }
 
-  /**
-   * Convert an instance of PodRmReport to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PodRmReport {\n");
+        sb.append("    err: ").append(toIndentedString(err)).append("\n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    removedCtrs: ").append(toIndentedString(removedCtrs)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Err");
+        openapiFields.add("Id");
+        openapiFields.add("RemovedCtrs");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to PodRmReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!PodRmReport.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in PodRmReport is not found in the empty"
+                                        + " JSON string",
+                                PodRmReport.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!PodRmReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `PodRmReport` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Err") != null && !jsonObj.get("Err").isJsonNull())
+                && !jsonObj.get("Err").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Err` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Err").toString()));
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull())
+                && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Id").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PodRmReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PodRmReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PodRmReport> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(PodRmReport.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<PodRmReport>() {
+                        @Override
+                        public void write(JsonWriter out, PodRmReport value) throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public PodRmReport read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of PodRmReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PodRmReport
+     * @throws IOException if the JSON string is invalid with respect to PodRmReport
+     */
+    public static PodRmReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PodRmReport.class);
+    }
+
+    /**
+     * Convert an instance of PodRmReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

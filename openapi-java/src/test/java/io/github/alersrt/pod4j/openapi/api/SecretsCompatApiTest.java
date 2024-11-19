@@ -10,26 +10,17 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.SecretCreate;
 import io.github.alersrt.pod4j.openapi.model.SecretCreateLibpod201Response;
-import io.github.alersrt.pod4j.openapi.model.SecretDeleteLibpod404Response;
 import io.github.alersrt.pod4j.openapi.model.SecretInfoReportCompat;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * API tests for SecretsCompatApi
- */
+/** API tests for SecretsCompatApi */
 @Disabled
 public class SecretsCompatApiTest {
 
@@ -74,7 +65,7 @@ public class SecretsCompatApiTest {
     /**
      * List secrets
      *
-     * Returns a list of secrets
+     * <p>Returns a list of secrets
      *
      * @throws ApiException if the Api call fails
      */
@@ -84,5 +75,4 @@ public class SecretsCompatApiTest {
         List<SecretInfoReportCompat> response = api.secretList(filters);
         // TODO: test validations
     }
-
 }

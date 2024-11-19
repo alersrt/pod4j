@@ -10,217 +10,155 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.HealthCheckResults;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for InspectContainerState
- */
+/** Model tests for InspectContainerState */
 public class InspectContainerStateTest {
     private final InspectContainerState model = new InspectContainerState();
 
-    /**
-     * Model tests for InspectContainerState
-     */
+    /** Model tests for InspectContainerState */
     @Test
     public void testInspectContainerState() {
         // TODO: test InspectContainerState
     }
 
-    /**
-     * Test the property 'cgroupPath'
-     */
+    /** Test the property 'cgroupPath' */
     @Test
     public void cgroupPathTest() {
         // TODO: test cgroupPath
     }
 
-    /**
-     * Test the property 'checkpointLog'
-     */
+    /** Test the property 'checkpointLog' */
     @Test
     public void checkpointLogTest() {
         // TODO: test checkpointLog
     }
 
-    /**
-     * Test the property 'checkpointPath'
-     */
+    /** Test the property 'checkpointPath' */
     @Test
     public void checkpointPathTest() {
         // TODO: test checkpointPath
     }
 
-    /**
-     * Test the property 'checkpointed'
-     */
+    /** Test the property 'checkpointed' */
     @Test
     public void checkpointedTest() {
         // TODO: test checkpointed
     }
 
-    /**
-     * Test the property 'checkpointedAt'
-     */
+    /** Test the property 'checkpointedAt' */
     @Test
     public void checkpointedAtTest() {
         // TODO: test checkpointedAt
     }
 
-    /**
-     * Test the property 'conmonPid'
-     */
+    /** Test the property 'conmonPid' */
     @Test
     public void conmonPidTest() {
         // TODO: test conmonPid
     }
 
-    /**
-     * Test the property 'dead'
-     */
+    /** Test the property 'dead' */
     @Test
     public void deadTest() {
         // TODO: test dead
     }
 
-    /**
-     * Test the property 'error'
-     */
+    /** Test the property 'error' */
     @Test
     public void errorTest() {
         // TODO: test error
     }
 
-    /**
-     * Test the property 'exitCode'
-     */
+    /** Test the property 'exitCode' */
     @Test
     public void exitCodeTest() {
         // TODO: test exitCode
     }
 
-    /**
-     * Test the property 'finishedAt'
-     */
+    /** Test the property 'finishedAt' */
     @Test
     public void finishedAtTest() {
         // TODO: test finishedAt
     }
 
-    /**
-     * Test the property 'health'
-     */
+    /** Test the property 'health' */
     @Test
     public void healthTest() {
         // TODO: test health
     }
 
-    /**
-     * Test the property 'ooMKilled'
-     */
+    /** Test the property 'ooMKilled' */
     @Test
     public void ooMKilledTest() {
         // TODO: test ooMKilled
     }
 
-    /**
-     * Test the property 'ociVersion'
-     */
+    /** Test the property 'ociVersion' */
     @Test
     public void ociVersionTest() {
         // TODO: test ociVersion
     }
 
-    /**
-     * Test the property 'paused'
-     */
+    /** Test the property 'paused' */
     @Test
     public void pausedTest() {
         // TODO: test paused
     }
 
-    /**
-     * Test the property 'pid'
-     */
+    /** Test the property 'pid' */
     @Test
     public void pidTest() {
         // TODO: test pid
     }
 
-    /**
-     * Test the property 'restarting'
-     */
+    /** Test the property 'restarting' */
     @Test
     public void restartingTest() {
         // TODO: test restarting
     }
 
-    /**
-     * Test the property 'restoreLog'
-     */
+    /** Test the property 'restoreLog' */
     @Test
     public void restoreLogTest() {
         // TODO: test restoreLog
     }
 
-    /**
-     * Test the property 'restored'
-     */
+    /** Test the property 'restored' */
     @Test
     public void restoredTest() {
         // TODO: test restored
     }
 
-    /**
-     * Test the property 'restoredAt'
-     */
+    /** Test the property 'restoredAt' */
     @Test
     public void restoredAtTest() {
         // TODO: test restoredAt
     }
 
-    /**
-     * Test the property 'running'
-     */
+    /** Test the property 'running' */
     @Test
     public void runningTest() {
         // TODO: test running
     }
 
-    /**
-     * Test the property 'startedAt'
-     */
+    /** Test the property 'startedAt' */
     @Test
     public void startedAtTest() {
         // TODO: test startedAt
     }
 
-    /**
-     * Test the property 'status'
-     */
+    /** Test the property 'status' */
     @Test
     public void statusTest() {
         // TODO: test status
     }
 
-    /**
-     * Test the property 'stoppedByUser'
-     */
+    /** Test the property 'stoppedByUser' */
     @Test
     public void stoppedByUserTest() {
         // TODO: test stoppedByUser
     }
-
 }

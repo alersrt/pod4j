@@ -10,14 +10,11 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi;
 
+import java.io.IOException;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-
-import java.io.IOException;
-
 import okio.Buffer;
 import okio.BufferedSink;
 import okio.ForwardingSink;
@@ -66,7 +63,8 @@ public class ProgressRequestBody extends RequestBody {
                 }
 
                 bytesWritten += byteCount;
-                callback.onUploadProgress(bytesWritten, contentLength, bytesWritten == contentLength);
+                callback.onUploadProgress(
+                        bytesWritten, contentLength, bytesWritten == contentLength);
             }
         };
     }

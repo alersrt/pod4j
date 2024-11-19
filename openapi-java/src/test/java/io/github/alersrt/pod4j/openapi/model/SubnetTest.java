@@ -10,56 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LeaseRange;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Subnet
- */
+/** Model tests for Subnet */
 public class SubnetTest {
     private final Subnet model = new Subnet();
 
-    /**
-     * Model tests for Subnet
-     */
+    /** Model tests for Subnet */
     @Test
     public void testSubnet() {
         // TODO: test Subnet
     }
 
-    /**
-     * Test the property 'gateway'
-     */
+    /** Test the property 'gateway' */
     @Test
     public void gatewayTest() {
         // TODO: test gateway
     }
 
-    /**
-     * Test the property 'leaseRange'
-     */
+    /** Test the property 'leaseRange' */
     @Test
     public void leaseRangeTest() {
         // TODO: test leaseRange
     }
 
-    /**
-     * Test the property 'subnet'
-     */
+    /** Test the property 'subnet' */
     @Test
     public void subnetTest() {
         // TODO: test subnet
     }
-
 }

@@ -10,63 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ExecStartLibpodRequest
- */
+/** Model tests for ExecStartLibpodRequest */
 public class ExecStartLibpodRequestTest {
     private final ExecStartLibpodRequest model = new ExecStartLibpodRequest();
 
-    /**
-     * Model tests for ExecStartLibpodRequest
-     */
+    /** Model tests for ExecStartLibpodRequest */
     @Test
     public void testExecStartLibpodRequest() {
         // TODO: test ExecStartLibpodRequest
     }
 
-    /**
-     * Test the property 'detach'
-     */
+    /** Test the property 'detach' */
     @Test
     public void detachTest() {
         // TODO: test detach
     }
 
-    /**
-     * Test the property 'tty'
-     */
+    /** Test the property 'tty' */
     @Test
     public void ttyTest() {
         // TODO: test tty
     }
 
-    /**
-     * Test the property 'h'
-     */
+    /** Test the property 'h' */
     @Test
     public void hTest() {
         // TODO: test h
     }
 
-    /**
-     * Test the property 'w'
-     */
+    /** Test the property 'w' */
     @Test
     public void wTest() {
         // TODO: test w
     }
-
 }

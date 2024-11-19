@@ -10,120 +10,83 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.InspectExecProcess;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for InspectExecSession
- */
+/** Model tests for InspectExecSession */
 public class InspectExecSessionTest {
     private final InspectExecSession model = new InspectExecSession();
 
-    /**
-     * Model tests for InspectExecSession
-     */
+    /** Model tests for InspectExecSession */
     @Test
     public void testInspectExecSession() {
         // TODO: test InspectExecSession
     }
 
-    /**
-     * Test the property 'canRemove'
-     */
+    /** Test the property 'canRemove' */
     @Test
     public void canRemoveTest() {
         // TODO: test canRemove
     }
 
-    /**
-     * Test the property 'containerID'
-     */
+    /** Test the property 'containerID' */
     @Test
     public void containerIDTest() {
         // TODO: test containerID
     }
 
-    /**
-     * Test the property 'detachKeys'
-     */
+    /** Test the property 'detachKeys' */
     @Test
     public void detachKeysTest() {
         // TODO: test detachKeys
     }
 
-    /**
-     * Test the property 'exitCode'
-     */
+    /** Test the property 'exitCode' */
     @Test
     public void exitCodeTest() {
         // TODO: test exitCode
     }
 
-    /**
-     * Test the property 'ID'
-     */
+    /** Test the property 'ID' */
     @Test
     public void IDTest() {
         // TODO: test ID
     }
 
-    /**
-     * Test the property 'openStderr'
-     */
+    /** Test the property 'openStderr' */
     @Test
     public void openStderrTest() {
         // TODO: test openStderr
     }
 
-    /**
-     * Test the property 'openStdin'
-     */
+    /** Test the property 'openStdin' */
     @Test
     public void openStdinTest() {
         // TODO: test openStdin
     }
 
-    /**
-     * Test the property 'openStdout'
-     */
+    /** Test the property 'openStdout' */
     @Test
     public void openStdoutTest() {
         // TODO: test openStdout
     }
 
-    /**
-     * Test the property 'pid'
-     */
+    /** Test the property 'pid' */
     @Test
     public void pidTest() {
         // TODO: test pid
     }
 
-    /**
-     * Test the property 'processConfig'
-     */
+    /** Test the property 'processConfig' */
     @Test
     public void processConfigTest() {
         // TODO: test processConfig
     }
 
-    /**
-     * Test the property 'running'
-     */
+    /** Test the property 'running' */
     @Test
     public void runningTest() {
         // TODO: test running
     }
-
 }

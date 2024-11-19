@@ -10,180 +10,125 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.InspectHostPort;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for InspectPodInfraConfig
- */
+/** Model tests for InspectPodInfraConfig */
 public class InspectPodInfraConfigTest {
     private final InspectPodInfraConfig model = new InspectPodInfraConfig();
 
-    /**
-     * Model tests for InspectPodInfraConfig
-     */
+    /** Model tests for InspectPodInfraConfig */
     @Test
     public void testInspectPodInfraConfig() {
         // TODO: test InspectPodInfraConfig
     }
 
-    /**
-     * Test the property 'dnSOption'
-     */
+    /** Test the property 'dnSOption' */
     @Test
     public void dnSOptionTest() {
         // TODO: test dnSOption
     }
 
-    /**
-     * Test the property 'dnSSearch'
-     */
+    /** Test the property 'dnSSearch' */
     @Test
     public void dnSSearchTest() {
         // TODO: test dnSSearch
     }
 
-    /**
-     * Test the property 'dnSServer'
-     */
+    /** Test the property 'dnSServer' */
     @Test
     public void dnSServerTest() {
         // TODO: test dnSServer
     }
 
-    /**
-     * Test the property 'hostAdd'
-     */
+    /** Test the property 'hostAdd' */
     @Test
     public void hostAddTest() {
         // TODO: test hostAdd
     }
 
-    /**
-     * Test the property 'hostNetwork'
-     */
+    /** Test the property 'hostNetwork' */
     @Test
     public void hostNetworkTest() {
         // TODO: test hostNetwork
     }
 
-    /**
-     * Test the property 'networkOptions'
-     */
+    /** Test the property 'networkOptions' */
     @Test
     public void networkOptionsTest() {
         // TODO: test networkOptions
     }
 
-    /**
-     * Test the property 'networks'
-     */
+    /** Test the property 'networks' */
     @Test
     public void networksTest() {
         // TODO: test networks
     }
 
-    /**
-     * Test the property 'noManageHosts'
-     */
+    /** Test the property 'noManageHosts' */
     @Test
     public void noManageHostsTest() {
         // TODO: test noManageHosts
     }
 
-    /**
-     * Test the property 'noManageResolvConf'
-     */
+    /** Test the property 'noManageResolvConf' */
     @Test
     public void noManageResolvConfTest() {
         // TODO: test noManageResolvConf
     }
 
-    /**
-     * Test the property 'portBindings'
-     */
+    /** Test the property 'portBindings' */
     @Test
     public void portBindingsTest() {
         // TODO: test portBindings
     }
 
-    /**
-     * Test the property 'staticIP'
-     */
+    /** Test the property 'staticIP' */
     @Test
     public void staticIPTest() {
         // TODO: test staticIP
     }
 
-    /**
-     * Test the property 'staticMAC'
-     */
+    /** Test the property 'staticMAC' */
     @Test
     public void staticMACTest() {
         // TODO: test staticMAC
     }
 
-    /**
-     * Test the property 'cpuPeriod'
-     */
+    /** Test the property 'cpuPeriod' */
     @Test
     public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
-    /**
-     * Test the property 'cpuQuota'
-     */
+    /** Test the property 'cpuQuota' */
     @Test
     public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
-    /**
-     * Test the property 'cpusetCpus'
-     */
+    /** Test the property 'cpusetCpus' */
     @Test
     public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
-    /**
-     * Test the property 'pidNs'
-     */
+    /** Test the property 'pidNs' */
     @Test
     public void pidNsTest() {
         // TODO: test pidNs
     }
 
-    /**
-     * Test the property 'userns'
-     */
+    /** Test the property 'userns' */
     @Test
     public void usernsTest() {
         // TODO: test userns
     }
 
-    /**
-     * Test the property 'utsNs'
-     */
+    /** Test the property 'utsNs' */
     @Test
     public void utsNsTest() {
         // TODO: test utsNs
     }
-
 }

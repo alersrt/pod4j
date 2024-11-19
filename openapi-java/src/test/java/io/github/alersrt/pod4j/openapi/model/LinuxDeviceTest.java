@@ -10,87 +10,59 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LinuxDevice
- */
+/** Model tests for LinuxDevice */
 public class LinuxDeviceTest {
     private final LinuxDevice model = new LinuxDevice();
 
-    /**
-     * Model tests for LinuxDevice
-     */
+    /** Model tests for LinuxDevice */
     @Test
     public void testLinuxDevice() {
         // TODO: test LinuxDevice
     }
 
-    /**
-     * Test the property 'fileMode'
-     */
+    /** Test the property 'fileMode' */
     @Test
     public void fileModeTest() {
         // TODO: test fileMode
     }
 
-    /**
-     * Test the property 'gid'
-     */
+    /** Test the property 'gid' */
     @Test
     public void gidTest() {
         // TODO: test gid
     }
 
-    /**
-     * Test the property 'major'
-     */
+    /** Test the property 'major' */
     @Test
     public void majorTest() {
         // TODO: test major
     }
 
-    /**
-     * Test the property 'minor'
-     */
+    /** Test the property 'minor' */
     @Test
     public void minorTest() {
         // TODO: test minor
     }
 
-    /**
-     * Test the property 'path'
-     */
+    /** Test the property 'path' */
     @Test
     public void pathTest() {
         // TODO: test path
     }
 
-    /**
-     * Test the property 'type'
-     */
+    /** Test the property 'type' */
     @Test
     public void typeTest() {
         // TODO: test type
     }
 
-    /**
-     * Test the property 'uid'
-     */
+    /** Test the property 'uid' */
     @Test
     public void uidTest() {
         // TODO: test uid
     }
-
 }

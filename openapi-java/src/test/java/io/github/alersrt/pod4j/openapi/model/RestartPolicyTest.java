@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for RestartPolicy
- */
+/** Model tests for RestartPolicy */
 public class RestartPolicyTest {
     private final RestartPolicy model = new RestartPolicy();
 
-    /**
-     * Model tests for RestartPolicy
-     */
+    /** Model tests for RestartPolicy */
     @Test
     public void testRestartPolicy() {
         // TODO: test RestartPolicy
     }
 
-    /**
-     * Test the property 'maximumRetryCount'
-     */
+    /** Test the property 'maximumRetryCount' */
     @Test
     public void maximumRetryCountTest() {
         // TODO: test maximumRetryCount
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
-
 }

@@ -10,464 +10,515 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.LinuxWeightDevice;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * LinuxBlockIO for Linux cgroup &#39;blkio&#39; resource management
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** LinuxBlockIO for Linux cgroup &#39;blkio&#39; resource management */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class LinuxBlockIO {
-  public static final String SERIALIZED_NAME_LEAF_WEIGHT = "leafWeight";
-  @SerializedName(SERIALIZED_NAME_LEAF_WEIGHT)
-  private Integer leafWeight;
+    public static final String SERIALIZED_NAME_LEAF_WEIGHT = "leafWeight";
 
-  public static final String SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
-  @SerializedName(SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE)
-  private List<LinuxThrottleDevice> throttleReadBpsDevice = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_LEAF_WEIGHT)
+    private Integer leafWeight;
 
-  public static final String SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE = "throttleReadIOPSDevice";
-  @SerializedName(SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE)
-  private List<LinuxThrottleDevice> throttleReadIOPSDevice = new ArrayList<>();
+    public static final String SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
 
-  public static final String SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
-  @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE)
-  private List<LinuxThrottleDevice> throttleWriteBpsDevice = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE)
+    private List<LinuxThrottleDevice> throttleReadBpsDevice = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE = "throttleWriteIOPSDevice";
-  @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE)
-  private List<LinuxThrottleDevice> throttleWriteIOPSDevice = new ArrayList<>();
+    public static final String SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE =
+            "throttleReadIOPSDevice";
 
-  public static final String SERIALIZED_NAME_WEIGHT = "weight";
-  @SerializedName(SERIALIZED_NAME_WEIGHT)
-  private Integer weight;
+    @SerializedName(SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE)
+    private List<LinuxThrottleDevice> throttleReadIOPSDevice = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_WEIGHT_DEVICE = "weightDevice";
-  @SerializedName(SERIALIZED_NAME_WEIGHT_DEVICE)
-  private List<LinuxWeightDevice> weightDevice = new ArrayList<>();
+    public static final String SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
 
-  public LinuxBlockIO() {
-  }
+    @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE)
+    private List<LinuxThrottleDevice> throttleWriteBpsDevice = new ArrayList<>();
 
-  public LinuxBlockIO leafWeight(Integer leafWeight) {
-    this.leafWeight = leafWeight;
-    return this;
-  }
+    public static final String SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE =
+            "throttleWriteIOPSDevice";
 
-  /**
-   * Specifies tasks&#39; weight in the given cgroup while competing with the cgroup&#39;s child cgroups, CFQ scheduler only
-   * @return leafWeight
-   */
-  @javax.annotation.Nullable
-  public Integer getLeafWeight() {
-    return leafWeight;
-  }
+    @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE)
+    private List<LinuxThrottleDevice> throttleWriteIOPSDevice = new ArrayList<>();
 
-  public void setLeafWeight(Integer leafWeight) {
-    this.leafWeight = leafWeight;
-  }
+    public static final String SERIALIZED_NAME_WEIGHT = "weight";
 
+    @SerializedName(SERIALIZED_NAME_WEIGHT)
+    private Integer weight;
 
-  public LinuxBlockIO throttleReadBpsDevice(List<LinuxThrottleDevice> throttleReadBpsDevice) {
-    this.throttleReadBpsDevice = throttleReadBpsDevice;
-    return this;
-  }
+    public static final String SERIALIZED_NAME_WEIGHT_DEVICE = "weightDevice";
 
-  public LinuxBlockIO addThrottleReadBpsDeviceItem(LinuxThrottleDevice throttleReadBpsDeviceItem) {
-    if (this.throttleReadBpsDevice == null) {
-      this.throttleReadBpsDevice = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_WEIGHT_DEVICE)
+    private List<LinuxWeightDevice> weightDevice = new ArrayList<>();
+
+    public LinuxBlockIO() {}
+
+    public LinuxBlockIO leafWeight(Integer leafWeight) {
+        this.leafWeight = leafWeight;
+        return this;
     }
-    this.throttleReadBpsDevice.add(throttleReadBpsDeviceItem);
-    return this;
-  }
 
-  /**
-   * IO read rate limit per cgroup per device, bytes per second
-   * @return throttleReadBpsDevice
-   */
-  @javax.annotation.Nullable
-  public List<LinuxThrottleDevice> getThrottleReadBpsDevice() {
-    return throttleReadBpsDevice;
-  }
-
-  public void setThrottleReadBpsDevice(List<LinuxThrottleDevice> throttleReadBpsDevice) {
-    this.throttleReadBpsDevice = throttleReadBpsDevice;
-  }
-
-
-  public LinuxBlockIO throttleReadIOPSDevice(List<LinuxThrottleDevice> throttleReadIOPSDevice) {
-    this.throttleReadIOPSDevice = throttleReadIOPSDevice;
-    return this;
-  }
-
-  public LinuxBlockIO addThrottleReadIOPSDeviceItem(LinuxThrottleDevice throttleReadIOPSDeviceItem) {
-    if (this.throttleReadIOPSDevice == null) {
-      this.throttleReadIOPSDevice = new ArrayList<>();
+    /**
+     * Specifies tasks&#39; weight in the given cgroup while competing with the cgroup&#39;s child
+     * cgroups, CFQ scheduler only
+     *
+     * @return leafWeight
+     */
+    @javax.annotation.Nullable
+    public Integer getLeafWeight() {
+        return leafWeight;
     }
-    this.throttleReadIOPSDevice.add(throttleReadIOPSDeviceItem);
-    return this;
-  }
 
-  /**
-   * IO read rate limit per cgroup per device, IO per second
-   * @return throttleReadIOPSDevice
-   */
-  @javax.annotation.Nullable
-  public List<LinuxThrottleDevice> getThrottleReadIOPSDevice() {
-    return throttleReadIOPSDevice;
-  }
-
-  public void setThrottleReadIOPSDevice(List<LinuxThrottleDevice> throttleReadIOPSDevice) {
-    this.throttleReadIOPSDevice = throttleReadIOPSDevice;
-  }
-
-
-  public LinuxBlockIO throttleWriteBpsDevice(List<LinuxThrottleDevice> throttleWriteBpsDevice) {
-    this.throttleWriteBpsDevice = throttleWriteBpsDevice;
-    return this;
-  }
-
-  public LinuxBlockIO addThrottleWriteBpsDeviceItem(LinuxThrottleDevice throttleWriteBpsDeviceItem) {
-    if (this.throttleWriteBpsDevice == null) {
-      this.throttleWriteBpsDevice = new ArrayList<>();
+    public void setLeafWeight(Integer leafWeight) {
+        this.leafWeight = leafWeight;
     }
-    this.throttleWriteBpsDevice.add(throttleWriteBpsDeviceItem);
-    return this;
-  }
 
-  /**
-   * IO write rate limit per cgroup per device, bytes per second
-   * @return throttleWriteBpsDevice
-   */
-  @javax.annotation.Nullable
-  public List<LinuxThrottleDevice> getThrottleWriteBpsDevice() {
-    return throttleWriteBpsDevice;
-  }
-
-  public void setThrottleWriteBpsDevice(List<LinuxThrottleDevice> throttleWriteBpsDevice) {
-    this.throttleWriteBpsDevice = throttleWriteBpsDevice;
-  }
-
-
-  public LinuxBlockIO throttleWriteIOPSDevice(List<LinuxThrottleDevice> throttleWriteIOPSDevice) {
-    this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
-    return this;
-  }
-
-  public LinuxBlockIO addThrottleWriteIOPSDeviceItem(LinuxThrottleDevice throttleWriteIOPSDeviceItem) {
-    if (this.throttleWriteIOPSDevice == null) {
-      this.throttleWriteIOPSDevice = new ArrayList<>();
+    public LinuxBlockIO throttleReadBpsDevice(List<LinuxThrottleDevice> throttleReadBpsDevice) {
+        this.throttleReadBpsDevice = throttleReadBpsDevice;
+        return this;
     }
-    this.throttleWriteIOPSDevice.add(throttleWriteIOPSDeviceItem);
-    return this;
-  }
 
-  /**
-   * IO write rate limit per cgroup per device, IO per second
-   * @return throttleWriteIOPSDevice
-   */
-  @javax.annotation.Nullable
-  public List<LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
-    return throttleWriteIOPSDevice;
-  }
-
-  public void setThrottleWriteIOPSDevice(List<LinuxThrottleDevice> throttleWriteIOPSDevice) {
-    this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
-  }
-
-
-  public LinuxBlockIO weight(Integer weight) {
-    this.weight = weight;
-    return this;
-  }
-
-  /**
-   * Specifies per cgroup weight
-   * @return weight
-   */
-  @javax.annotation.Nullable
-  public Integer getWeight() {
-    return weight;
-  }
-
-  public void setWeight(Integer weight) {
-    this.weight = weight;
-  }
-
-
-  public LinuxBlockIO weightDevice(List<LinuxWeightDevice> weightDevice) {
-    this.weightDevice = weightDevice;
-    return this;
-  }
-
-  public LinuxBlockIO addWeightDeviceItem(LinuxWeightDevice weightDeviceItem) {
-    if (this.weightDevice == null) {
-      this.weightDevice = new ArrayList<>();
-    }
-    this.weightDevice.add(weightDeviceItem);
-    return this;
-  }
-
-  /**
-   * Weight per cgroup per device, can override BlkioWeight
-   * @return weightDevice
-   */
-  @javax.annotation.Nullable
-  public List<LinuxWeightDevice> getWeightDevice() {
-    return weightDevice;
-  }
-
-  public void setWeightDevice(List<LinuxWeightDevice> weightDevice) {
-    this.weightDevice = weightDevice;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxBlockIO linuxBlockIO = (LinuxBlockIO) o;
-    return Objects.equals(this.leafWeight, linuxBlockIO.leafWeight) &&
-        Objects.equals(this.throttleReadBpsDevice, linuxBlockIO.throttleReadBpsDevice) &&
-        Objects.equals(this.throttleReadIOPSDevice, linuxBlockIO.throttleReadIOPSDevice) &&
-        Objects.equals(this.throttleWriteBpsDevice, linuxBlockIO.throttleWriteBpsDevice) &&
-        Objects.equals(this.throttleWriteIOPSDevice, linuxBlockIO.throttleWriteIOPSDevice) &&
-        Objects.equals(this.weight, linuxBlockIO.weight) &&
-        Objects.equals(this.weightDevice, linuxBlockIO.weightDevice);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(leafWeight, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, weight, weightDevice);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxBlockIO {\n");
-    sb.append("    leafWeight: ").append(toIndentedString(leafWeight)).append("\n");
-    sb.append("    throttleReadBpsDevice: ").append(toIndentedString(throttleReadBpsDevice)).append("\n");
-    sb.append("    throttleReadIOPSDevice: ").append(toIndentedString(throttleReadIOPSDevice)).append("\n");
-    sb.append("    throttleWriteBpsDevice: ").append(toIndentedString(throttleWriteBpsDevice)).append("\n");
-    sb.append("    throttleWriteIOPSDevice: ").append(toIndentedString(throttleWriteIOPSDevice)).append("\n");
-    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
-    sb.append("    weightDevice: ").append(toIndentedString(weightDevice)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("leafWeight");
-    openapiFields.add("throttleReadBpsDevice");
-    openapiFields.add("throttleReadIOPSDevice");
-    openapiFields.add("throttleWriteBpsDevice");
-    openapiFields.add("throttleWriteIOPSDevice");
-    openapiFields.add("weight");
-    openapiFields.add("weightDevice");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxBlockIO
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxBlockIO.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxBlockIO is not found in the empty JSON string", LinuxBlockIO.openapiRequiredFields.toString()));
+    public LinuxBlockIO addThrottleReadBpsDeviceItem(
+            LinuxThrottleDevice throttleReadBpsDeviceItem) {
+        if (this.throttleReadBpsDevice == null) {
+            this.throttleReadBpsDevice = new ArrayList<>();
         }
-      }
+        this.throttleReadBpsDevice.add(throttleReadBpsDeviceItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LinuxBlockIO.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxBlockIO` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+    /**
+     * IO read rate limit per cgroup per device, bytes per second
+     *
+     * @return throttleReadBpsDevice
+     */
+    @javax.annotation.Nullable
+    public List<LinuxThrottleDevice> getThrottleReadBpsDevice() {
+        return throttleReadBpsDevice;
+    }
+
+    public void setThrottleReadBpsDevice(List<LinuxThrottleDevice> throttleReadBpsDevice) {
+        this.throttleReadBpsDevice = throttleReadBpsDevice;
+    }
+
+    public LinuxBlockIO throttleReadIOPSDevice(List<LinuxThrottleDevice> throttleReadIOPSDevice) {
+        this.throttleReadIOPSDevice = throttleReadIOPSDevice;
+        return this;
+    }
+
+    public LinuxBlockIO addThrottleReadIOPSDeviceItem(
+            LinuxThrottleDevice throttleReadIOPSDeviceItem) {
+        if (this.throttleReadIOPSDevice == null) {
+            this.throttleReadIOPSDevice = new ArrayList<>();
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("throttleReadBpsDevice") != null && !jsonObj.get("throttleReadBpsDevice").isJsonNull()) {
-        JsonArray jsonArraythrottleReadBpsDevice = jsonObj.getAsJsonArray("throttleReadBpsDevice");
-        if (jsonArraythrottleReadBpsDevice != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("throttleReadBpsDevice").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `throttleReadBpsDevice` to be an array in the JSON string but got `%s`", jsonObj.get("throttleReadBpsDevice").toString()));
-          }
+        this.throttleReadIOPSDevice.add(throttleReadIOPSDeviceItem);
+        return this;
+    }
 
-          // validate the optional field `throttleReadBpsDevice` (array)
-          for (int i = 0; i < jsonArraythrottleReadBpsDevice.size(); i++) {
-            LinuxThrottleDevice.validateJsonElement(jsonArraythrottleReadBpsDevice.get(i));
-          };
+    /**
+     * IO read rate limit per cgroup per device, IO per second
+     *
+     * @return throttleReadIOPSDevice
+     */
+    @javax.annotation.Nullable
+    public List<LinuxThrottleDevice> getThrottleReadIOPSDevice() {
+        return throttleReadIOPSDevice;
+    }
+
+    public void setThrottleReadIOPSDevice(List<LinuxThrottleDevice> throttleReadIOPSDevice) {
+        this.throttleReadIOPSDevice = throttleReadIOPSDevice;
+    }
+
+    public LinuxBlockIO throttleWriteBpsDevice(List<LinuxThrottleDevice> throttleWriteBpsDevice) {
+        this.throttleWriteBpsDevice = throttleWriteBpsDevice;
+        return this;
+    }
+
+    public LinuxBlockIO addThrottleWriteBpsDeviceItem(
+            LinuxThrottleDevice throttleWriteBpsDeviceItem) {
+        if (this.throttleWriteBpsDevice == null) {
+            this.throttleWriteBpsDevice = new ArrayList<>();
         }
-      }
-      if (jsonObj.get("throttleReadIOPSDevice") != null && !jsonObj.get("throttleReadIOPSDevice").isJsonNull()) {
-        JsonArray jsonArraythrottleReadIOPSDevice = jsonObj.getAsJsonArray("throttleReadIOPSDevice");
-        if (jsonArraythrottleReadIOPSDevice != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("throttleReadIOPSDevice").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `throttleReadIOPSDevice` to be an array in the JSON string but got `%s`", jsonObj.get("throttleReadIOPSDevice").toString()));
-          }
+        this.throttleWriteBpsDevice.add(throttleWriteBpsDeviceItem);
+        return this;
+    }
 
-          // validate the optional field `throttleReadIOPSDevice` (array)
-          for (int i = 0; i < jsonArraythrottleReadIOPSDevice.size(); i++) {
-            LinuxThrottleDevice.validateJsonElement(jsonArraythrottleReadIOPSDevice.get(i));
-          };
+    /**
+     * IO write rate limit per cgroup per device, bytes per second
+     *
+     * @return throttleWriteBpsDevice
+     */
+    @javax.annotation.Nullable
+    public List<LinuxThrottleDevice> getThrottleWriteBpsDevice() {
+        return throttleWriteBpsDevice;
+    }
+
+    public void setThrottleWriteBpsDevice(List<LinuxThrottleDevice> throttleWriteBpsDevice) {
+        this.throttleWriteBpsDevice = throttleWriteBpsDevice;
+    }
+
+    public LinuxBlockIO throttleWriteIOPSDevice(List<LinuxThrottleDevice> throttleWriteIOPSDevice) {
+        this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
+        return this;
+    }
+
+    public LinuxBlockIO addThrottleWriteIOPSDeviceItem(
+            LinuxThrottleDevice throttleWriteIOPSDeviceItem) {
+        if (this.throttleWriteIOPSDevice == null) {
+            this.throttleWriteIOPSDevice = new ArrayList<>();
         }
-      }
-      if (jsonObj.get("throttleWriteBpsDevice") != null && !jsonObj.get("throttleWriteBpsDevice").isJsonNull()) {
-        JsonArray jsonArraythrottleWriteBpsDevice = jsonObj.getAsJsonArray("throttleWriteBpsDevice");
-        if (jsonArraythrottleWriteBpsDevice != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("throttleWriteBpsDevice").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `throttleWriteBpsDevice` to be an array in the JSON string but got `%s`", jsonObj.get("throttleWriteBpsDevice").toString()));
-          }
+        this.throttleWriteIOPSDevice.add(throttleWriteIOPSDeviceItem);
+        return this;
+    }
 
-          // validate the optional field `throttleWriteBpsDevice` (array)
-          for (int i = 0; i < jsonArraythrottleWriteBpsDevice.size(); i++) {
-            LinuxThrottleDevice.validateJsonElement(jsonArraythrottleWriteBpsDevice.get(i));
-          };
+    /**
+     * IO write rate limit per cgroup per device, IO per second
+     *
+     * @return throttleWriteIOPSDevice
+     */
+    @javax.annotation.Nullable
+    public List<LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
+        return throttleWriteIOPSDevice;
+    }
+
+    public void setThrottleWriteIOPSDevice(List<LinuxThrottleDevice> throttleWriteIOPSDevice) {
+        this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
+    }
+
+    public LinuxBlockIO weight(Integer weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    /**
+     * Specifies per cgroup weight
+     *
+     * @return weight
+     */
+    @javax.annotation.Nullable
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public LinuxBlockIO weightDevice(List<LinuxWeightDevice> weightDevice) {
+        this.weightDevice = weightDevice;
+        return this;
+    }
+
+    public LinuxBlockIO addWeightDeviceItem(LinuxWeightDevice weightDeviceItem) {
+        if (this.weightDevice == null) {
+            this.weightDevice = new ArrayList<>();
         }
-      }
-      if (jsonObj.get("throttleWriteIOPSDevice") != null && !jsonObj.get("throttleWriteIOPSDevice").isJsonNull()) {
-        JsonArray jsonArraythrottleWriteIOPSDevice = jsonObj.getAsJsonArray("throttleWriteIOPSDevice");
-        if (jsonArraythrottleWriteIOPSDevice != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("throttleWriteIOPSDevice").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `throttleWriteIOPSDevice` to be an array in the JSON string but got `%s`", jsonObj.get("throttleWriteIOPSDevice").toString()));
-          }
+        this.weightDevice.add(weightDeviceItem);
+        return this;
+    }
 
-          // validate the optional field `throttleWriteIOPSDevice` (array)
-          for (int i = 0; i < jsonArraythrottleWriteIOPSDevice.size(); i++) {
-            LinuxThrottleDevice.validateJsonElement(jsonArraythrottleWriteIOPSDevice.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("weightDevice") != null && !jsonObj.get("weightDevice").isJsonNull()) {
-        JsonArray jsonArrayweightDevice = jsonObj.getAsJsonArray("weightDevice");
-        if (jsonArrayweightDevice != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("weightDevice").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `weightDevice` to be an array in the JSON string but got `%s`", jsonObj.get("weightDevice").toString()));
-          }
+    /**
+     * Weight per cgroup per device, can override BlkioWeight
+     *
+     * @return weightDevice
+     */
+    @javax.annotation.Nullable
+    public List<LinuxWeightDevice> getWeightDevice() {
+        return weightDevice;
+    }
 
-          // validate the optional field `weightDevice` (array)
-          for (int i = 0; i < jsonArrayweightDevice.size(); i++) {
-            LinuxWeightDevice.validateJsonElement(jsonArrayweightDevice.get(i));
-          };
-        }
-      }
-  }
+    public void setWeightDevice(List<LinuxWeightDevice> weightDevice) {
+        this.weightDevice = weightDevice;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LinuxBlockIO.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LinuxBlockIO' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LinuxBlockIO> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxBlockIO.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LinuxBlockIO>() {
-           @Override
-           public void write(JsonWriter out, LinuxBlockIO value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LinuxBlockIO read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxBlockIO linuxBlockIO = (LinuxBlockIO) o;
+        return Objects.equals(this.leafWeight, linuxBlockIO.leafWeight)
+                && Objects.equals(this.throttleReadBpsDevice, linuxBlockIO.throttleReadBpsDevice)
+                && Objects.equals(this.throttleReadIOPSDevice, linuxBlockIO.throttleReadIOPSDevice)
+                && Objects.equals(this.throttleWriteBpsDevice, linuxBlockIO.throttleWriteBpsDevice)
+                && Objects.equals(
+                        this.throttleWriteIOPSDevice, linuxBlockIO.throttleWriteIOPSDevice)
+                && Objects.equals(this.weight, linuxBlockIO.weight)
+                && Objects.equals(this.weightDevice, linuxBlockIO.weightDevice);
     }
-  }
 
-  /**
-   * Create an instance of LinuxBlockIO given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxBlockIO
-   * @throws IOException if the JSON string is invalid with respect to LinuxBlockIO
-   */
-  public static LinuxBlockIO fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LinuxBlockIO.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                leafWeight,
+                throttleReadBpsDevice,
+                throttleReadIOPSDevice,
+                throttleWriteBpsDevice,
+                throttleWriteIOPSDevice,
+                weight,
+                weightDevice);
+    }
 
-  /**
-   * Convert an instance of LinuxBlockIO to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class LinuxBlockIO {\n");
+        sb.append("    leafWeight: ").append(toIndentedString(leafWeight)).append("\n");
+        sb.append("    throttleReadBpsDevice: ")
+                .append(toIndentedString(throttleReadBpsDevice))
+                .append("\n");
+        sb.append("    throttleReadIOPSDevice: ")
+                .append(toIndentedString(throttleReadIOPSDevice))
+                .append("\n");
+        sb.append("    throttleWriteBpsDevice: ")
+                .append(toIndentedString(throttleWriteBpsDevice))
+                .append("\n");
+        sb.append("    throttleWriteIOPSDevice: ")
+                .append(toIndentedString(throttleWriteIOPSDevice))
+                .append("\n");
+        sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+        sb.append("    weightDevice: ").append(toIndentedString(weightDevice)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("leafWeight");
+        openapiFields.add("throttleReadBpsDevice");
+        openapiFields.add("throttleReadIOPSDevice");
+        openapiFields.add("throttleWriteBpsDevice");
+        openapiFields.add("throttleWriteIOPSDevice");
+        openapiFields.add("weight");
+        openapiFields.add("weightDevice");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxBlockIO
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxBlockIO.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in LinuxBlockIO is not found in the empty"
+                                        + " JSON string",
+                                LinuxBlockIO.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxBlockIO.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `LinuxBlockIO` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (jsonObj.get("throttleReadBpsDevice") != null
+                && !jsonObj.get("throttleReadBpsDevice").isJsonNull()) {
+            JsonArray jsonArraythrottleReadBpsDevice =
+                    jsonObj.getAsJsonArray("throttleReadBpsDevice");
+            if (jsonArraythrottleReadBpsDevice != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("throttleReadBpsDevice").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `throttleReadBpsDevice` to be an array in"
+                                            + " the JSON string but got `%s`",
+                                    jsonObj.get("throttleReadBpsDevice").toString()));
+                }
+
+                // validate the optional field `throttleReadBpsDevice` (array)
+                for (int i = 0; i < jsonArraythrottleReadBpsDevice.size(); i++) {
+                    LinuxThrottleDevice.validateJsonElement(jsonArraythrottleReadBpsDevice.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("throttleReadIOPSDevice") != null
+                && !jsonObj.get("throttleReadIOPSDevice").isJsonNull()) {
+            JsonArray jsonArraythrottleReadIOPSDevice =
+                    jsonObj.getAsJsonArray("throttleReadIOPSDevice");
+            if (jsonArraythrottleReadIOPSDevice != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("throttleReadIOPSDevice").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `throttleReadIOPSDevice` to be an array in"
+                                            + " the JSON string but got `%s`",
+                                    jsonObj.get("throttleReadIOPSDevice").toString()));
+                }
+
+                // validate the optional field `throttleReadIOPSDevice` (array)
+                for (int i = 0; i < jsonArraythrottleReadIOPSDevice.size(); i++) {
+                    LinuxThrottleDevice.validateJsonElement(jsonArraythrottleReadIOPSDevice.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("throttleWriteBpsDevice") != null
+                && !jsonObj.get("throttleWriteBpsDevice").isJsonNull()) {
+            JsonArray jsonArraythrottleWriteBpsDevice =
+                    jsonObj.getAsJsonArray("throttleWriteBpsDevice");
+            if (jsonArraythrottleWriteBpsDevice != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("throttleWriteBpsDevice").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `throttleWriteBpsDevice` to be an array in"
+                                            + " the JSON string but got `%s`",
+                                    jsonObj.get("throttleWriteBpsDevice").toString()));
+                }
+
+                // validate the optional field `throttleWriteBpsDevice` (array)
+                for (int i = 0; i < jsonArraythrottleWriteBpsDevice.size(); i++) {
+                    LinuxThrottleDevice.validateJsonElement(jsonArraythrottleWriteBpsDevice.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("throttleWriteIOPSDevice") != null
+                && !jsonObj.get("throttleWriteIOPSDevice").isJsonNull()) {
+            JsonArray jsonArraythrottleWriteIOPSDevice =
+                    jsonObj.getAsJsonArray("throttleWriteIOPSDevice");
+            if (jsonArraythrottleWriteIOPSDevice != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("throttleWriteIOPSDevice").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `throttleWriteIOPSDevice` to be an array in"
+                                            + " the JSON string but got `%s`",
+                                    jsonObj.get("throttleWriteIOPSDevice").toString()));
+                }
+
+                // validate the optional field `throttleWriteIOPSDevice` (array)
+                for (int i = 0; i < jsonArraythrottleWriteIOPSDevice.size(); i++) {
+                    LinuxThrottleDevice.validateJsonElement(
+                            jsonArraythrottleWriteIOPSDevice.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("weightDevice") != null && !jsonObj.get("weightDevice").isJsonNull()) {
+            JsonArray jsonArrayweightDevice = jsonObj.getAsJsonArray("weightDevice");
+            if (jsonArrayweightDevice != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("weightDevice").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `weightDevice` to be an array in the JSON"
+                                            + " string but got `%s`",
+                                    jsonObj.get("weightDevice").toString()));
+                }
+
+                // validate the optional field `weightDevice` (array)
+                for (int i = 0; i < jsonArrayweightDevice.size(); i++) {
+                    LinuxWeightDevice.validateJsonElement(jsonArrayweightDevice.get(i));
+                }
+                ;
+            }
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxBlockIO.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxBlockIO' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxBlockIO> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(LinuxBlockIO.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<LinuxBlockIO>() {
+                        @Override
+                        public void write(JsonWriter out, LinuxBlockIO value) throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public LinuxBlockIO read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of LinuxBlockIO given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxBlockIO
+     * @throws IOException if the JSON string is invalid with respect to LinuxBlockIO
+     */
+    public static LinuxBlockIO fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxBlockIO.class);
+    }
+
+    /**
+     * Convert an instance of LinuxBlockIO to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

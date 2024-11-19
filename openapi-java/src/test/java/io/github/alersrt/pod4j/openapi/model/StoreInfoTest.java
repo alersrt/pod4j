@@ -10,139 +10,95 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ContainerStore;
-import io.github.alersrt.pod4j.openapi.model.ImageStore;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for StoreInfo
- */
+/** Model tests for StoreInfo */
 public class StoreInfoTest {
     private final StoreInfo model = new StoreInfo();
 
-    /**
-     * Model tests for StoreInfo
-     */
+    /** Model tests for StoreInfo */
     @Test
     public void testStoreInfo() {
         // TODO: test StoreInfo
     }
 
-    /**
-     * Test the property 'configFile'
-     */
+    /** Test the property 'configFile' */
     @Test
     public void configFileTest() {
         // TODO: test configFile
     }
 
-    /**
-     * Test the property 'containerStore'
-     */
+    /** Test the property 'containerStore' */
     @Test
     public void containerStoreTest() {
         // TODO: test containerStore
     }
 
-    /**
-     * Test the property 'graphDriverName'
-     */
+    /** Test the property 'graphDriverName' */
     @Test
     public void graphDriverNameTest() {
         // TODO: test graphDriverName
     }
 
-    /**
-     * Test the property 'graphOptions'
-     */
+    /** Test the property 'graphOptions' */
     @Test
     public void graphOptionsTest() {
         // TODO: test graphOptions
     }
 
-    /**
-     * Test the property 'graphRoot'
-     */
+    /** Test the property 'graphRoot' */
     @Test
     public void graphRootTest() {
         // TODO: test graphRoot
     }
 
-    /**
-     * Test the property 'graphRootAllocated'
-     */
+    /** Test the property 'graphRootAllocated' */
     @Test
     public void graphRootAllocatedTest() {
         // TODO: test graphRootAllocated
     }
 
-    /**
-     * Test the property 'graphRootUsed'
-     */
+    /** Test the property 'graphRootUsed' */
     @Test
     public void graphRootUsedTest() {
         // TODO: test graphRootUsed
     }
 
-    /**
-     * Test the property 'graphStatus'
-     */
+    /** Test the property 'graphStatus' */
     @Test
     public void graphStatusTest() {
         // TODO: test graphStatus
     }
 
-    /**
-     * Test the property 'imageCopyTmpDir'
-     */
+    /** Test the property 'imageCopyTmpDir' */
     @Test
     public void imageCopyTmpDirTest() {
         // TODO: test imageCopyTmpDir
     }
 
-    /**
-     * Test the property 'imageStore'
-     */
+    /** Test the property 'imageStore' */
     @Test
     public void imageStoreTest() {
         // TODO: test imageStore
     }
 
-    /**
-     * Test the property 'runRoot'
-     */
+    /** Test the property 'runRoot' */
     @Test
     public void runRootTest() {
         // TODO: test runRoot
     }
 
-    /**
-     * Test the property 'transientStore'
-     */
+    /** Test the property 'transientStore' */
     @Test
     public void transientStoreTest() {
         // TODO: test transientStore
     }
 
-    /**
-     * Test the property 'volumePath'
-     */
+    /** Test the property 'volumePath' */
     @Test
     public void volumePathTest() {
         // TODO: test volumePath
     }
-
 }

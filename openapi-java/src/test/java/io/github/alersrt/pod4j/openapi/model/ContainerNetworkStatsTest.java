@@ -10,95 +10,65 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ContainerNetworkStats
- */
+/** Model tests for ContainerNetworkStats */
 public class ContainerNetworkStatsTest {
     private final ContainerNetworkStats model = new ContainerNetworkStats();
 
-    /**
-     * Model tests for ContainerNetworkStats
-     */
+    /** Model tests for ContainerNetworkStats */
     @Test
     public void testContainerNetworkStats() {
         // TODO: test ContainerNetworkStats
     }
 
-    /**
-     * Test the property 'rxBytes'
-     */
+    /** Test the property 'rxBytes' */
     @Test
     public void rxBytesTest() {
         // TODO: test rxBytes
     }
 
-    /**
-     * Test the property 'rxDropped'
-     */
+    /** Test the property 'rxDropped' */
     @Test
     public void rxDroppedTest() {
         // TODO: test rxDropped
     }
 
-    /**
-     * Test the property 'rxErrors'
-     */
+    /** Test the property 'rxErrors' */
     @Test
     public void rxErrorsTest() {
         // TODO: test rxErrors
     }
 
-    /**
-     * Test the property 'rxPackets'
-     */
+    /** Test the property 'rxPackets' */
     @Test
     public void rxPacketsTest() {
         // TODO: test rxPackets
     }
 
-    /**
-     * Test the property 'txBytes'
-     */
+    /** Test the property 'txBytes' */
     @Test
     public void txBytesTest() {
         // TODO: test txBytes
     }
 
-    /**
-     * Test the property 'txDropped'
-     */
+    /** Test the property 'txDropped' */
     @Test
     public void txDroppedTest() {
         // TODO: test txDropped
     }
 
-    /**
-     * Test the property 'txErrors'
-     */
+    /** Test the property 'txErrors' */
     @Test
     public void txErrorsTest() {
         // TODO: test txErrors
     }
 
-    /**
-     * Test the property 'txPackets'
-     */
+    /** Test the property 'txPackets' */
     @Test
     public void txPacketsTest() {
         // TODO: test txPackets
     }
-
 }

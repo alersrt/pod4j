@@ -10,13 +10,10 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi;
 
-import java.io.IOException;
-
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Callback for asynchronous API call.

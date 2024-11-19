@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for FilesystemChange
- */
+/** Model tests for FilesystemChange */
 public class FilesystemChangeTest {
     private final FilesystemChange model = new FilesystemChange();
 
-    /**
-     * Model tests for FilesystemChange
-     */
+    /** Model tests for FilesystemChange */
     @Test
     public void testFilesystemChange() {
         // TODO: test FilesystemChange
     }
 
-    /**
-     * Test the property 'kind'
-     */
+    /** Test the property 'kind' */
     @Test
     public void kindTest() {
         // TODO: test kind
     }
 
-    /**
-     * Test the property 'path'
-     */
+    /** Test the property 'path' */
     @Test
     public void pathTest() {
         // TODO: test path
     }
-
 }

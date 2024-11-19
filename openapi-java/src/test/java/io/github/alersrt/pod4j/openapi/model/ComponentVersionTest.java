@@ -10,57 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ComponentVersion
- */
+/** Model tests for ComponentVersion */
 public class ComponentVersionTest {
     private final ComponentVersion model = new ComponentVersion();
 
-    /**
-     * Model tests for ComponentVersion
-     */
+    /** Model tests for ComponentVersion */
     @Test
     public void testComponentVersion() {
         // TODO: test ComponentVersion
     }
 
-    /**
-     * Test the property 'details'
-     */
+    /** Test the property 'details' */
     @Test
     public void detailsTest() {
         // TODO: test details
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'version'
-     */
+    /** Test the property 'version' */
     @Test
     public void versionTest() {
         // TODO: test version
     }
-
 }

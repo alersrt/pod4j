@@ -10,284 +10,297 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * DistributionInfo describes the host distribution for libpod
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** DistributionInfo describes the host distribution for libpod */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class DistributionInfo {
-  public static final String SERIALIZED_NAME_CODENAME = "codename";
-  @SerializedName(SERIALIZED_NAME_CODENAME)
-  private String codename;
+    public static final String SERIALIZED_NAME_CODENAME = "codename";
 
-  public static final String SERIALIZED_NAME_DISTRIBUTION = "distribution";
-  @SerializedName(SERIALIZED_NAME_DISTRIBUTION)
-  private String distribution;
+    @SerializedName(SERIALIZED_NAME_CODENAME)
+    private String codename;
 
-  public static final String SERIALIZED_NAME_VARIANT = "variant";
-  @SerializedName(SERIALIZED_NAME_VARIANT)
-  private String variant;
+    public static final String SERIALIZED_NAME_DISTRIBUTION = "distribution";
 
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
-  private String version;
+    @SerializedName(SERIALIZED_NAME_DISTRIBUTION)
+    private String distribution;
 
-  public DistributionInfo() {
-  }
+    public static final String SERIALIZED_NAME_VARIANT = "variant";
 
-  public DistributionInfo codename(String codename) {
-    this.codename = codename;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_VARIANT)
+    private String variant;
 
-  /**
-   * Get codename
-   * @return codename
-   */
-  @javax.annotation.Nullable
-  public String getCodename() {
-    return codename;
-  }
+    public static final String SERIALIZED_NAME_VERSION = "version";
 
-  public void setCodename(String codename) {
-    this.codename = codename;
-  }
+    @SerializedName(SERIALIZED_NAME_VERSION)
+    private String version;
 
+    public DistributionInfo() {}
 
-  public DistributionInfo distribution(String distribution) {
-    this.distribution = distribution;
-    return this;
-  }
-
-  /**
-   * Get distribution
-   * @return distribution
-   */
-  @javax.annotation.Nullable
-  public String getDistribution() {
-    return distribution;
-  }
-
-  public void setDistribution(String distribution) {
-    this.distribution = distribution;
-  }
-
-
-  public DistributionInfo variant(String variant) {
-    this.variant = variant;
-    return this;
-  }
-
-  /**
-   * Get variant
-   * @return variant
-   */
-  @javax.annotation.Nullable
-  public String getVariant() {
-    return variant;
-  }
-
-  public void setVariant(String variant) {
-    this.variant = variant;
-  }
-
-
-  public DistributionInfo version(String version) {
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * Get version
-   * @return version
-   */
-  @javax.annotation.Nullable
-  public String getVersion() {
-    return version;
-  }
-
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public DistributionInfo codename(String codename) {
+        this.codename = codename;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get codename
+     *
+     * @return codename
+     */
+    @javax.annotation.Nullable
+    public String getCodename() {
+        return codename;
     }
-    DistributionInfo distributionInfo = (DistributionInfo) o;
-    return Objects.equals(this.codename, distributionInfo.codename) &&
-        Objects.equals(this.distribution, distributionInfo.distribution) &&
-        Objects.equals(this.variant, distributionInfo.variant) &&
-        Objects.equals(this.version, distributionInfo.version);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(codename, distribution, variant, version);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class DistributionInfo {\n");
-    sb.append("    codename: ").append(toIndentedString(codename)).append("\n");
-    sb.append("    distribution: ").append(toIndentedString(distribution)).append("\n");
-    sb.append("    variant: ").append(toIndentedString(variant)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setCodename(String codename) {
+        this.codename = codename;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public DistributionInfo distribution(String distribution) {
+        this.distribution = distribution;
+        return this;
+    }
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
+    /**
+     * Get distribution
+     *
+     * @return distribution
+     */
+    @javax.annotation.Nullable
+    public String getDistribution() {
+        return distribution;
+    }
 
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("codename");
-    openapiFields.add("distribution");
-    openapiFields.add("variant");
-    openapiFields.add("version");
+    public void setDistribution(String distribution) {
+        this.distribution = distribution;
+    }
 
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
+    public DistributionInfo variant(String variant) {
+        this.variant = variant;
+        return this;
+    }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to DistributionInfo
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!DistributionInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in DistributionInfo is not found in the empty JSON string", DistributionInfo.openapiRequiredFields.toString()));
-        }
-      }
+    /**
+     * Get variant
+     *
+     * @return variant
+     */
+    @javax.annotation.Nullable
+    public String getVariant() {
+        return variant;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!DistributionInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DistributionInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("codename") != null && !jsonObj.get("codename").isJsonNull()) && !jsonObj.get("codename").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `codename` to be a primitive type in the JSON string but got `%s`", jsonObj.get("codename").toString()));
-      }
-      if ((jsonObj.get("distribution") != null && !jsonObj.get("distribution").isJsonNull()) && !jsonObj.get("distribution").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `distribution` to be a primitive type in the JSON string but got `%s`", jsonObj.get("distribution").toString()));
-      }
-      if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
-      }
-      if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
-      }
-  }
+    public void setVariant(String variant) {
+        this.variant = variant;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public DistributionInfo version(String version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return version
+     */
+    @javax.annotation.Nullable
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!DistributionInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'DistributionInfo' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<DistributionInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(DistributionInfo.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<DistributionInfo>() {
-           @Override
-           public void write(JsonWriter out, DistributionInfo value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public DistributionInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        DistributionInfo distributionInfo = (DistributionInfo) o;
+        return Objects.equals(this.codename, distributionInfo.codename)
+                && Objects.equals(this.distribution, distributionInfo.distribution)
+                && Objects.equals(this.variant, distributionInfo.variant)
+                && Objects.equals(this.version, distributionInfo.version);
     }
-  }
 
-  /**
-   * Create an instance of DistributionInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of DistributionInfo
-   * @throws IOException if the JSON string is invalid with respect to DistributionInfo
-   */
-  public static DistributionInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, DistributionInfo.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(codename, distribution, variant, version);
+    }
 
-  /**
-   * Convert an instance of DistributionInfo to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class DistributionInfo {\n");
+        sb.append("    codename: ").append(toIndentedString(codename)).append("\n");
+        sb.append("    distribution: ").append(toIndentedString(distribution)).append("\n");
+        sb.append("    variant: ").append(toIndentedString(variant)).append("\n");
+        sb.append("    version: ").append(toIndentedString(version)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("codename");
+        openapiFields.add("distribution");
+        openapiFields.add("variant");
+        openapiFields.add("version");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to DistributionInfo
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!DistributionInfo.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in DistributionInfo is not found in the"
+                                        + " empty JSON string",
+                                DistributionInfo.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!DistributionInfo.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `DistributionInfo` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("codename") != null && !jsonObj.get("codename").isJsonNull())
+                && !jsonObj.get("codename").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `codename` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("codename").toString()));
+        }
+        if ((jsonObj.get("distribution") != null && !jsonObj.get("distribution").isJsonNull())
+                && !jsonObj.get("distribution").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `distribution` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("distribution").toString()));
+        }
+        if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull())
+                && !jsonObj.get("variant").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `variant` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("variant").toString()));
+        }
+        if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull())
+                && !jsonObj.get("version").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `version` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("version").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!DistributionInfo.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'DistributionInfo' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<DistributionInfo> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(DistributionInfo.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<DistributionInfo>() {
+                        @Override
+                        public void write(JsonWriter out, DistributionInfo value)
+                                throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public DistributionInfo read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of DistributionInfo given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of DistributionInfo
+     * @throws IOException if the JSON string is invalid with respect to DistributionInfo
+     */
+    public static DistributionInfo fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, DistributionInfo.class);
+    }
+
+    /**
+     * Convert an instance of DistributionInfo to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

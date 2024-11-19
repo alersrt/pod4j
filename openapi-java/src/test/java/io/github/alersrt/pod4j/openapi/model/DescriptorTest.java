@@ -10,100 +10,65 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Platform;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Descriptor
- */
+/** Model tests for Descriptor */
 public class DescriptorTest {
     private final Descriptor model = new Descriptor();
 
-    /**
-     * Model tests for Descriptor
-     */
+    /** Model tests for Descriptor */
     @Test
     public void testDescriptor() {
         // TODO: test Descriptor
     }
 
-    /**
-     * Test the property 'annotations'
-     */
+    /** Test the property 'annotations' */
     @Test
     public void annotationsTest() {
         // TODO: test annotations
     }
 
-    /**
-     * Test the property 'artifactType'
-     */
+    /** Test the property 'artifactType' */
     @Test
     public void artifactTypeTest() {
         // TODO: test artifactType
     }
 
-    /**
-     * Test the property 'data'
-     */
+    /** Test the property 'data' */
     @Test
     public void dataTest() {
         // TODO: test data
     }
 
-    /**
-     * Test the property 'digest'
-     */
+    /** Test the property 'digest' */
     @Test
     public void digestTest() {
         // TODO: test digest
     }
 
-    /**
-     * Test the property 'mediaType'
-     */
+    /** Test the property 'mediaType' */
     @Test
     public void mediaTypeTest() {
         // TODO: test mediaType
     }
 
-    /**
-     * Test the property 'platform'
-     */
+    /** Test the property 'platform' */
     @Test
     public void platformTest() {
         // TODO: test platform
     }
 
-    /**
-     * Test the property 'size'
-     */
+    /** Test the property 'size' */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /**
-     * Test the property 'urls'
-     */
+    /** Test the property 'urls' */
     @Test
     public void urlsTest() {
         // TODO: test urls
     }
-
 }

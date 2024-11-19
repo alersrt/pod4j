@@ -10,83 +10,53 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.AutoUserNsOptions;
-import io.github.alersrt.pod4j.openapi.model.IDMap;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for IDMappingOptions
- */
+/** Model tests for IDMappingOptions */
 public class IDMappingOptionsTest {
     private final IDMappingOptions model = new IDMappingOptions();
 
-    /**
-     * Model tests for IDMappingOptions
-     */
+    /** Model tests for IDMappingOptions */
     @Test
     public void testIDMappingOptions() {
         // TODO: test IDMappingOptions
     }
 
-    /**
-     * Test the property 'autoUserNs'
-     */
+    /** Test the property 'autoUserNs' */
     @Test
     public void autoUserNsTest() {
         // TODO: test autoUserNs
     }
 
-    /**
-     * Test the property 'autoUserNsOpts'
-     */
+    /** Test the property 'autoUserNsOpts' */
     @Test
     public void autoUserNsOptsTest() {
         // TODO: test autoUserNsOpts
     }
 
-    /**
-     * Test the property 'giDMap'
-     */
+    /** Test the property 'giDMap' */
     @Test
     public void giDMapTest() {
         // TODO: test giDMap
     }
 
-    /**
-     * Test the property 'hostGIDMapping'
-     */
+    /** Test the property 'hostGIDMapping' */
     @Test
     public void hostGIDMappingTest() {
         // TODO: test hostGIDMapping
     }
 
-    /**
-     * Test the property 'hostUIDMapping'
-     */
+    /** Test the property 'hostUIDMapping' */
     @Test
     public void hostUIDMappingTest() {
         // TODO: test hostUIDMapping
     }
 
-    /**
-     * Test the property 'uiDMap'
-     */
+    /** Test the property 'uiDMap' */
     @Test
     public void uiDMapTest() {
         // TODO: test uiDMap
     }
-
 }

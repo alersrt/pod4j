@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LinuxHugepageLimit
- */
+/** Model tests for LinuxHugepageLimit */
 public class LinuxHugepageLimitTest {
     private final LinuxHugepageLimit model = new LinuxHugepageLimit();
 
-    /**
-     * Model tests for LinuxHugepageLimit
-     */
+    /** Model tests for LinuxHugepageLimit */
     @Test
     public void testLinuxHugepageLimit() {
         // TODO: test LinuxHugepageLimit
     }
 
-    /**
-     * Test the property 'limit'
-     */
+    /** Test the property 'limit' */
     @Test
     public void limitTest() {
         // TODO: test limit
     }
 
-    /**
-     * Test the property 'pageSize'
-     */
+    /** Test the property 'pageSize' */
     @Test
     public void pageSizeTest() {
         // TODO: test pageSize
     }
-
 }

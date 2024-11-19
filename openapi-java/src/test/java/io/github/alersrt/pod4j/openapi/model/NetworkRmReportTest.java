@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for NetworkRmReport
- */
+/** Model tests for NetworkRmReport */
 public class NetworkRmReportTest {
     private final NetworkRmReport model = new NetworkRmReport();
 
-    /**
-     * Model tests for NetworkRmReport
-     */
+    /** Model tests for NetworkRmReport */
     @Test
     public void testNetworkRmReport() {
         // TODO: test NetworkRmReport
     }
 
-    /**
-     * Test the property 'err'
-     */
+    /** Test the property 'err' */
     @Test
     public void errTest() {
         // TODO: test err
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
-
 }

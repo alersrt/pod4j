@@ -10,170 +10,119 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for VolumeConfigResponse
- */
+/** Model tests for VolumeConfigResponse */
 public class VolumeConfigResponseTest {
     private final VolumeConfigResponse model = new VolumeConfigResponse();
 
-    /**
-     * Model tests for VolumeConfigResponse
-     */
+    /** Model tests for VolumeConfigResponse */
     @Test
     public void testVolumeConfigResponse() {
         // TODO: test VolumeConfigResponse
     }
 
-    /**
-     * Test the property 'anonymous'
-     */
+    /** Test the property 'anonymous' */
     @Test
     public void anonymousTest() {
         // TODO: test anonymous
     }
 
-    /**
-     * Test the property 'createdAt'
-     */
+    /** Test the property 'createdAt' */
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
     }
 
-    /**
-     * Test the property 'driver'
-     */
+    /** Test the property 'driver' */
     @Test
     public void driverTest() {
         // TODO: test driver
     }
 
-    /**
-     * Test the property 'GID'
-     */
+    /** Test the property 'GID' */
     @Test
     public void GIDTest() {
         // TODO: test GID
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'lockNumber'
-     */
+    /** Test the property 'lockNumber' */
     @Test
     public void lockNumberTest() {
         // TODO: test lockNumber
     }
 
-    /**
-     * Test the property 'mountCount'
-     */
+    /** Test the property 'mountCount' */
     @Test
     public void mountCountTest() {
         // TODO: test mountCount
     }
 
-    /**
-     * Test the property 'mountpoint'
-     */
+    /** Test the property 'mountpoint' */
     @Test
     public void mountpointTest() {
         // TODO: test mountpoint
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'needsChown'
-     */
+    /** Test the property 'needsChown' */
     @Test
     public void needsChownTest() {
         // TODO: test needsChown
     }
 
-    /**
-     * Test the property 'needsCopyUp'
-     */
+    /** Test the property 'needsCopyUp' */
     @Test
     public void needsCopyUpTest() {
         // TODO: test needsCopyUp
     }
 
-    /**
-     * Test the property 'options'
-     */
+    /** Test the property 'options' */
     @Test
     public void optionsTest() {
         // TODO: test options
     }
 
-    /**
-     * Test the property 'scope'
-     */
+    /** Test the property 'scope' */
     @Test
     public void scopeTest() {
         // TODO: test scope
     }
 
-    /**
-     * Test the property 'status'
-     */
+    /** Test the property 'status' */
     @Test
     public void statusTest() {
         // TODO: test status
     }
 
-    /**
-     * Test the property 'storageID'
-     */
+    /** Test the property 'storageID' */
     @Test
     public void storageIDTest() {
         // TODO: test storageID
     }
 
-    /**
-     * Test the property 'timeout'
-     */
+    /** Test the property 'timeout' */
     @Test
     public void timeoutTest() {
         // TODO: test timeout
     }
 
-    /**
-     * Test the property 'UID'
-     */
+    /** Test the property 'UID' */
     @Test
     public void UIDTest() {
         // TODO: test UID
     }
-
 }

@@ -10,91 +10,59 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.LinuxWeightDevice;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LinuxBlockIO
- */
+/** Model tests for LinuxBlockIO */
 public class LinuxBlockIOTest {
     private final LinuxBlockIO model = new LinuxBlockIO();
 
-    /**
-     * Model tests for LinuxBlockIO
-     */
+    /** Model tests for LinuxBlockIO */
     @Test
     public void testLinuxBlockIO() {
         // TODO: test LinuxBlockIO
     }
 
-    /**
-     * Test the property 'leafWeight'
-     */
+    /** Test the property 'leafWeight' */
     @Test
     public void leafWeightTest() {
         // TODO: test leafWeight
     }
 
-    /**
-     * Test the property 'throttleReadBpsDevice'
-     */
+    /** Test the property 'throttleReadBpsDevice' */
     @Test
     public void throttleReadBpsDeviceTest() {
         // TODO: test throttleReadBpsDevice
     }
 
-    /**
-     * Test the property 'throttleReadIOPSDevice'
-     */
+    /** Test the property 'throttleReadIOPSDevice' */
     @Test
     public void throttleReadIOPSDeviceTest() {
         // TODO: test throttleReadIOPSDevice
     }
 
-    /**
-     * Test the property 'throttleWriteBpsDevice'
-     */
+    /** Test the property 'throttleWriteBpsDevice' */
     @Test
     public void throttleWriteBpsDeviceTest() {
         // TODO: test throttleWriteBpsDevice
     }
 
-    /**
-     * Test the property 'throttleWriteIOPSDevice'
-     */
+    /** Test the property 'throttleWriteIOPSDevice' */
     @Test
     public void throttleWriteIOPSDeviceTest() {
         // TODO: test throttleWriteIOPSDevice
     }
 
-    /**
-     * Test the property 'weight'
-     */
+    /** Test the property 'weight' */
     @Test
     public void weightTest() {
         // TODO: test weight
     }
 
-    /**
-     * Test the property 'weightDevice'
-     */
+    /** Test the property 'weightDevice' */
     @Test
     public void weightDeviceTest() {
         // TODO: test weightDevice
     }
-
 }

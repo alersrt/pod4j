@@ -10,77 +10,47 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.HostInfo;
-import io.github.alersrt.pod4j.openapi.model.Plugins;
-import io.github.alersrt.pod4j.openapi.model.StoreInfo;
-import io.github.alersrt.pod4j.openapi.model.Version;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LibpodInfo
- */
+/** Model tests for LibpodInfo */
 public class LibpodInfoTest {
     private final LibpodInfo model = new LibpodInfo();
 
-    /**
-     * Model tests for LibpodInfo
-     */
+    /** Model tests for LibpodInfo */
     @Test
     public void testLibpodInfo() {
         // TODO: test LibpodInfo
     }
 
-    /**
-     * Test the property 'host'
-     */
+    /** Test the property 'host' */
     @Test
     public void hostTest() {
         // TODO: test host
     }
 
-    /**
-     * Test the property 'plugins'
-     */
+    /** Test the property 'plugins' */
     @Test
     public void pluginsTest() {
         // TODO: test plugins
     }
 
-    /**
-     * Test the property 'registries'
-     */
+    /** Test the property 'registries' */
     @Test
     public void registriesTest() {
         // TODO: test registries
     }
 
-    /**
-     * Test the property 'store'
-     */
+    /** Test the property 'store' */
     @Test
     public void storeTest() {
         // TODO: test store
     }
 
-    /**
-     * Test the property 'version'
-     */
+    /** Test the property 'version' */
     @Test
     public void versionTest() {
         // TODO: test version
     }
-
 }

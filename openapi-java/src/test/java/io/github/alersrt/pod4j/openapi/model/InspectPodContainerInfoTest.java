@@ -10,55 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for InspectPodContainerInfo
- */
+/** Model tests for InspectPodContainerInfo */
 public class InspectPodContainerInfoTest {
     private final InspectPodContainerInfo model = new InspectPodContainerInfo();
 
-    /**
-     * Model tests for InspectPodContainerInfo
-     */
+    /** Model tests for InspectPodContainerInfo */
     @Test
     public void testInspectPodContainerInfo() {
         // TODO: test InspectPodContainerInfo
     }
 
-    /**
-     * Test the property 'id'
-     */
+    /** Test the property 'id' */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'state'
-     */
+    /** Test the property 'state' */
     @Test
     public void stateTest() {
         // TODO: test state
     }
-
 }

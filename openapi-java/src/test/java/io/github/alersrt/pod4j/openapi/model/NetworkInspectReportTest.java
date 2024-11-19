@@ -10,159 +10,107 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.NetworkContainerInfo;
-import io.github.alersrt.pod4j.openapi.model.Route;
-import io.github.alersrt.pod4j.openapi.model.Subnet;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for NetworkInspectReport
- */
+/** Model tests for NetworkInspectReport */
 public class NetworkInspectReportTest {
     private final NetworkInspectReport model = new NetworkInspectReport();
 
-    /**
-     * Model tests for NetworkInspectReport
-     */
+    /** Model tests for NetworkInspectReport */
     @Test
     public void testNetworkInspectReport() {
         // TODO: test NetworkInspectReport
     }
 
-    /**
-     * Test the property 'containers'
-     */
+    /** Test the property 'containers' */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /**
-     * Test the property 'created'
-     */
+    /** Test the property 'created' */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /**
-     * Test the property 'dnsEnabled'
-     */
+    /** Test the property 'dnsEnabled' */
     @Test
     public void dnsEnabledTest() {
         // TODO: test dnsEnabled
     }
 
-    /**
-     * Test the property 'driver'
-     */
+    /** Test the property 'driver' */
     @Test
     public void driverTest() {
         // TODO: test driver
     }
 
-    /**
-     * Test the property 'id'
-     */
+    /** Test the property 'id' */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /**
-     * Test the property 'internal'
-     */
+    /** Test the property 'internal' */
     @Test
     public void internalTest() {
         // TODO: test internal
     }
 
-    /**
-     * Test the property 'ipamOptions'
-     */
+    /** Test the property 'ipamOptions' */
     @Test
     public void ipamOptionsTest() {
         // TODO: test ipamOptions
     }
 
-    /**
-     * Test the property 'ipv6Enabled'
-     */
+    /** Test the property 'ipv6Enabled' */
     @Test
     public void ipv6EnabledTest() {
         // TODO: test ipv6Enabled
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'networkDnsServers'
-     */
+    /** Test the property 'networkDnsServers' */
     @Test
     public void networkDnsServersTest() {
         // TODO: test networkDnsServers
     }
 
-    /**
-     * Test the property 'networkInterface'
-     */
+    /** Test the property 'networkInterface' */
     @Test
     public void networkInterfaceTest() {
         // TODO: test networkInterface
     }
 
-    /**
-     * Test the property 'options'
-     */
+    /** Test the property 'options' */
     @Test
     public void optionsTest() {
         // TODO: test options
     }
 
-    /**
-     * Test the property 'routes'
-     */
+    /** Test the property 'routes' */
     @Test
     public void routesTest() {
         // TODO: test routes
     }
 
-    /**
-     * Test the property 'subnets'
-     */
+    /** Test the property 'subnets' */
     @Test
     public void subnetsTest() {
         // TODO: test subnets
     }
-
 }

@@ -10,106 +10,71 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.BindOptions;
-import io.github.alersrt.pod4j.openapi.model.TmpfsOptions;
-import io.github.alersrt.pod4j.openapi.model.VolumeOptions;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Mount
- */
+/** Model tests for Mount */
 public class MountTest {
     private final Mount model = new Mount();
 
-    /**
-     * Model tests for Mount
-     */
+    /** Model tests for Mount */
     @Test
     public void testMount() {
         // TODO: test Mount
     }
 
-    /**
-     * Test the property 'bindOptions'
-     */
+    /** Test the property 'bindOptions' */
     @Test
     public void bindOptionsTest() {
         // TODO: test bindOptions
     }
 
-    /**
-     * Test the property 'clusterOptions'
-     */
+    /** Test the property 'clusterOptions' */
     @Test
     public void clusterOptionsTest() {
         // TODO: test clusterOptions
     }
 
-    /**
-     * Test the property 'consistency'
-     */
+    /** Test the property 'consistency' */
     @Test
     public void consistencyTest() {
         // TODO: test consistency
     }
 
-    /**
-     * Test the property 'readOnly'
-     */
+    /** Test the property 'readOnly' */
     @Test
     public void readOnlyTest() {
         // TODO: test readOnly
     }
 
-    /**
-     * Test the property 'source'
-     */
+    /** Test the property 'source' */
     @Test
     public void sourceTest() {
         // TODO: test source
     }
 
-    /**
-     * Test the property 'target'
-     */
+    /** Test the property 'target' */
     @Test
     public void targetTest() {
         // TODO: test target
     }
 
-    /**
-     * Test the property 'tmpfsOptions'
-     */
+    /** Test the property 'tmpfsOptions' */
     @Test
     public void tmpfsOptionsTest() {
         // TODO: test tmpfsOptions
     }
 
-    /**
-     * Test the property 'type'
-     */
+    /** Test the property 'type' */
     @Test
     public void typeTest() {
         // TODO: test type
     }
 
-    /**
-     * Test the property 'volumeOptions'
-     */
+    /** Test the property 'volumeOptions' */
     @Test
     public void volumeOptionsTest() {
         // TODO: test volumeOptions
     }
-
 }

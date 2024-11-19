@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for AuthenticateOKBody
- */
+/** Model tests for AuthenticateOKBody */
 public class AuthenticateOKBodyTest {
     private final AuthenticateOKBody model = new AuthenticateOKBody();
 
-    /**
-     * Model tests for AuthenticateOKBody
-     */
+    /** Model tests for AuthenticateOKBody */
     @Test
     public void testAuthenticateOKBody() {
         // TODO: test AuthenticateOKBody
     }
 
-    /**
-     * Test the property 'identityToken'
-     */
+    /** Test the property 'identityToken' */
     @Test
     public void identityTokenTest() {
         // TODO: test identityToken
     }
 
-    /**
-     * Test the property 'status'
-     */
+    /** Test the property 'status' */
     @Test
     public void statusTest() {
         // TODO: test status
     }
-
 }

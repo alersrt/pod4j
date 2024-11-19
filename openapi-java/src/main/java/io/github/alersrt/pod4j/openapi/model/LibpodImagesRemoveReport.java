@@ -10,310 +10,322 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * LibpodImagesRemoveReport is the return type for image removal via the rest api.
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** LibpodImagesRemoveReport is the return type for image removal via the rest api. */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class LibpodImagesRemoveReport {
-  public static final String SERIALIZED_NAME_DELETED = "Deleted";
-  @SerializedName(SERIALIZED_NAME_DELETED)
-  private List<String> deleted = new ArrayList<>();
+    public static final String SERIALIZED_NAME_DELETED = "Deleted";
 
-  public static final String SERIALIZED_NAME_ERRORS = "Errors";
-  @SerializedName(SERIALIZED_NAME_ERRORS)
-  private List<String> errors = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DELETED)
+    private List<String> deleted = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
-  private Long exitCode;
+    public static final String SERIALIZED_NAME_ERRORS = "Errors";
 
-  public static final String SERIALIZED_NAME_UNTAGGED = "Untagged";
-  @SerializedName(SERIALIZED_NAME_UNTAGGED)
-  private List<String> untagged = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ERRORS)
+    private List<String> errors = new ArrayList<>();
 
-  public LibpodImagesRemoveReport() {
-  }
+    public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
 
-  public LibpodImagesRemoveReport deleted(List<String> deleted) {
-    this.deleted = deleted;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+    private Long exitCode;
 
-  public LibpodImagesRemoveReport addDeletedItem(String deletedItem) {
-    if (this.deleted == null) {
-      this.deleted = new ArrayList<>();
+    public static final String SERIALIZED_NAME_UNTAGGED = "Untagged";
+
+    @SerializedName(SERIALIZED_NAME_UNTAGGED)
+    private List<String> untagged = new ArrayList<>();
+
+    public LibpodImagesRemoveReport() {}
+
+    public LibpodImagesRemoveReport deleted(List<String> deleted) {
+        this.deleted = deleted;
+        return this;
     }
-    this.deleted.add(deletedItem);
-    return this;
-  }
 
-  /**
-   * Deleted images.
-   * @return deleted
-   */
-  @javax.annotation.Nullable
-  public List<String> getDeleted() {
-    return deleted;
-  }
-
-  public void setDeleted(List<String> deleted) {
-    this.deleted = deleted;
-  }
-
-
-  public LibpodImagesRemoveReport errors(List<String> errors) {
-    this.errors = errors;
-    return this;
-  }
-
-  public LibpodImagesRemoveReport addErrorsItem(String errorsItem) {
-    if (this.errors == null) {
-      this.errors = new ArrayList<>();
-    }
-    this.errors.add(errorsItem);
-    return this;
-  }
-
-  /**
-   * Image removal requires is to return data and an error.
-   * @return errors
-   */
-  @javax.annotation.Nullable
-  public List<String> getErrors() {
-    return errors;
-  }
-
-  public void setErrors(List<String> errors) {
-    this.errors = errors;
-  }
-
-
-  public LibpodImagesRemoveReport exitCode(Long exitCode) {
-    this.exitCode = exitCode;
-    return this;
-  }
-
-  /**
-   * ExitCode describes the exit codes as described in the &#x60;podman rmi&#x60; man page.
-   * @return exitCode
-   */
-  @javax.annotation.Nullable
-  public Long getExitCode() {
-    return exitCode;
-  }
-
-  public void setExitCode(Long exitCode) {
-    this.exitCode = exitCode;
-  }
-
-
-  public LibpodImagesRemoveReport untagged(List<String> untagged) {
-    this.untagged = untagged;
-    return this;
-  }
-
-  public LibpodImagesRemoveReport addUntaggedItem(String untaggedItem) {
-    if (this.untagged == null) {
-      this.untagged = new ArrayList<>();
-    }
-    this.untagged.add(untaggedItem);
-    return this;
-  }
-
-  /**
-   * Untagged images. Can be longer than Deleted.
-   * @return untagged
-   */
-  @javax.annotation.Nullable
-  public List<String> getUntagged() {
-    return untagged;
-  }
-
-  public void setUntagged(List<String> untagged) {
-    this.untagged = untagged;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LibpodImagesRemoveReport libpodImagesRemoveReport = (LibpodImagesRemoveReport) o;
-    return Objects.equals(this.deleted, libpodImagesRemoveReport.deleted) &&
-        Objects.equals(this.errors, libpodImagesRemoveReport.errors) &&
-        Objects.equals(this.exitCode, libpodImagesRemoveReport.exitCode) &&
-        Objects.equals(this.untagged, libpodImagesRemoveReport.untagged);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(deleted, errors, exitCode, untagged);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LibpodImagesRemoveReport {\n");
-    sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
-    sb.append("    untagged: ").append(toIndentedString(untagged)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Deleted");
-    openapiFields.add("Errors");
-    openapiFields.add("ExitCode");
-    openapiFields.add("Untagged");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LibpodImagesRemoveReport
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LibpodImagesRemoveReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LibpodImagesRemoveReport is not found in the empty JSON string", LibpodImagesRemoveReport.openapiRequiredFields.toString()));
+    public LibpodImagesRemoveReport addDeletedItem(String deletedItem) {
+        if (this.deleted == null) {
+            this.deleted = new ArrayList<>();
         }
-      }
+        this.deleted.add(deletedItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LibpodImagesRemoveReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LibpodImagesRemoveReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+    /**
+     * Deleted images.
+     *
+     * @return deleted
+     */
+    @javax.annotation.Nullable
+    public List<String> getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(List<String> deleted) {
+        this.deleted = deleted;
+    }
+
+    public LibpodImagesRemoveReport errors(List<String> errors) {
+        this.errors = errors;
+        return this;
+    }
+
+    public LibpodImagesRemoveReport addErrorsItem(String errorsItem) {
+        if (this.errors == null) {
+            this.errors = new ArrayList<>();
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Deleted") != null && !jsonObj.get("Deleted").isJsonNull() && !jsonObj.get("Deleted").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Deleted` to be an array in the JSON string but got `%s`", jsonObj.get("Deleted").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Errors") != null && !jsonObj.get("Errors").isJsonNull() && !jsonObj.get("Errors").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Errors` to be an array in the JSON string but got `%s`", jsonObj.get("Errors").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Untagged") != null && !jsonObj.get("Untagged").isJsonNull() && !jsonObj.get("Untagged").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Untagged` to be an array in the JSON string but got `%s`", jsonObj.get("Untagged").toString()));
-      }
-  }
+        this.errors.add(errorsItem);
+        return this;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    /**
+     * Image removal requires is to return data and an error.
+     *
+     * @return errors
+     */
+    @javax.annotation.Nullable
+    public List<String> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<String> errors) {
+        this.errors = errors;
+    }
+
+    public LibpodImagesRemoveReport exitCode(Long exitCode) {
+        this.exitCode = exitCode;
+        return this;
+    }
+
+    /**
+     * ExitCode describes the exit codes as described in the &#x60;podman rmi&#x60; man page.
+     *
+     * @return exitCode
+     */
+    @javax.annotation.Nullable
+    public Long getExitCode() {
+        return exitCode;
+    }
+
+    public void setExitCode(Long exitCode) {
+        this.exitCode = exitCode;
+    }
+
+    public LibpodImagesRemoveReport untagged(List<String> untagged) {
+        this.untagged = untagged;
+        return this;
+    }
+
+    public LibpodImagesRemoveReport addUntaggedItem(String untaggedItem) {
+        if (this.untagged == null) {
+            this.untagged = new ArrayList<>();
+        }
+        this.untagged.add(untaggedItem);
+        return this;
+    }
+
+    /**
+     * Untagged images. Can be longer than Deleted.
+     *
+     * @return untagged
+     */
+    @javax.annotation.Nullable
+    public List<String> getUntagged() {
+        return untagged;
+    }
+
+    public void setUntagged(List<String> untagged) {
+        this.untagged = untagged;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LibpodImagesRemoveReport.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LibpodImagesRemoveReport' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LibpodImagesRemoveReport> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LibpodImagesRemoveReport.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LibpodImagesRemoveReport>() {
-           @Override
-           public void write(JsonWriter out, LibpodImagesRemoveReport value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LibpodImagesRemoveReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LibpodImagesRemoveReport libpodImagesRemoveReport = (LibpodImagesRemoveReport) o;
+        return Objects.equals(this.deleted, libpodImagesRemoveReport.deleted)
+                && Objects.equals(this.errors, libpodImagesRemoveReport.errors)
+                && Objects.equals(this.exitCode, libpodImagesRemoveReport.exitCode)
+                && Objects.equals(this.untagged, libpodImagesRemoveReport.untagged);
     }
-  }
 
-  /**
-   * Create an instance of LibpodImagesRemoveReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LibpodImagesRemoveReport
-   * @throws IOException if the JSON string is invalid with respect to LibpodImagesRemoveReport
-   */
-  public static LibpodImagesRemoveReport fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LibpodImagesRemoveReport.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(deleted, errors, exitCode, untagged);
+    }
 
-  /**
-   * Convert an instance of LibpodImagesRemoveReport to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class LibpodImagesRemoveReport {\n");
+        sb.append("    deleted: ").append(toIndentedString(deleted)).append("\n");
+        sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
+        sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
+        sb.append("    untagged: ").append(toIndentedString(untagged)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Deleted");
+        openapiFields.add("Errors");
+        openapiFields.add("ExitCode");
+        openapiFields.add("Untagged");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LibpodImagesRemoveReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LibpodImagesRemoveReport.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in LibpodImagesRemoveReport is not found"
+                                        + " in the empty JSON string",
+                                LibpodImagesRemoveReport.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LibpodImagesRemoveReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `LibpodImagesRemoveReport` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Deleted") != null
+                && !jsonObj.get("Deleted").isJsonNull()
+                && !jsonObj.get("Deleted").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Deleted` to be an array in the JSON string but got"
+                                    + " `%s`",
+                            jsonObj.get("Deleted").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Errors") != null
+                && !jsonObj.get("Errors").isJsonNull()
+                && !jsonObj.get("Errors").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Errors` to be an array in the JSON string but got"
+                                    + " `%s`",
+                            jsonObj.get("Errors").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Untagged") != null
+                && !jsonObj.get("Untagged").isJsonNull()
+                && !jsonObj.get("Untagged").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Untagged` to be an array in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Untagged").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LibpodImagesRemoveReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LibpodImagesRemoveReport' and its
+                // subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LibpodImagesRemoveReport> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(LibpodImagesRemoveReport.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<LibpodImagesRemoveReport>() {
+                        @Override
+                        public void write(JsonWriter out, LibpodImagesRemoveReport value)
+                                throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public LibpodImagesRemoveReport read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of LibpodImagesRemoveReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LibpodImagesRemoveReport
+     * @throws IOException if the JSON string is invalid with respect to LibpodImagesRemoveReport
+     */
+    public static LibpodImagesRemoveReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LibpodImagesRemoveReport.class);
+    }
+
+    /**
+     * Convert an instance of LibpodImagesRemoveReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

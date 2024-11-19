@@ -10,26 +10,17 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.model.AuthConfig;
 import io.github.alersrt.pod4j.openapi.model.AuthReport;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.SystemComponentVersion;
 import io.github.alersrt.pod4j.openapi.model.SystemDfReport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * API tests for SystemCompatApi
- */
+/** API tests for SystemCompatApi */
 @Disabled
 public class SystemCompatApiTest {
 
@@ -50,7 +41,7 @@ public class SystemCompatApiTest {
     /**
      * Show disk usage
      *
-     * Return information about disk usage for containers, images, and volumes
+     * <p>Return information about disk usage for containers, images, and volumes
      *
      * @throws ApiException if the Api call fails
      */
@@ -63,7 +54,7 @@ public class SystemCompatApiTest {
     /**
      * Get events
      *
-     * Returns events filtered on query parameters
+     * <p>Returns events filtered on query parameters
      *
      * @throws ApiException if the Api call fails
      */
@@ -79,7 +70,7 @@ public class SystemCompatApiTest {
     /**
      * Get info
      *
-     * Returns information on the system and libpod configuration
+     * <p>Returns information on the system and libpod configuration
      *
      * @throws ApiException if the Api call fails
      */
@@ -92,7 +83,9 @@ public class SystemCompatApiTest {
     /**
      * Ping service
      *
-     * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned. 
+     * <p>Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also
+     * supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The
+     * &#39;_ping&#39; endpoints are not versioned.
      *
      * @throws ApiException if the Api call fails
      */
@@ -112,5 +105,4 @@ public class SystemCompatApiTest {
         SystemComponentVersion response = api.systemVersion();
         // TODO: test validations
     }
-
 }

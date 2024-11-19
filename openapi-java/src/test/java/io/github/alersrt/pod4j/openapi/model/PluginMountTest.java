@@ -10,89 +10,59 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for PluginMount
- */
+/** Model tests for PluginMount */
 public class PluginMountTest {
     private final PluginMount model = new PluginMount();
 
-    /**
-     * Model tests for PluginMount
-     */
+    /** Model tests for PluginMount */
     @Test
     public void testPluginMount() {
         // TODO: test PluginMount
     }
 
-    /**
-     * Test the property 'description'
-     */
+    /** Test the property 'description' */
     @Test
     public void descriptionTest() {
         // TODO: test description
     }
 
-    /**
-     * Test the property 'destination'
-     */
+    /** Test the property 'destination' */
     @Test
     public void destinationTest() {
         // TODO: test destination
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'options'
-     */
+    /** Test the property 'options' */
     @Test
     public void optionsTest() {
         // TODO: test options
     }
 
-    /**
-     * Test the property 'settable'
-     */
+    /** Test the property 'settable' */
     @Test
     public void settableTest() {
         // TODO: test settable
     }
 
-    /**
-     * Test the property 'source'
-     */
+    /** Test the property 'source' */
     @Test
     public void sourceTest() {
         // TODO: test source
     }
 
-    /**
-     * Test the property 'type'
-     */
+    /** Test the property 'type' */
     @Test
     public void typeTest() {
         // TODO: test type
     }
-
 }

@@ -10,237 +10,239 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * LinuxPersonality represents the Linux personality syscall input
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** LinuxPersonality represents the Linux personality syscall input */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class LinuxPersonality {
-  public static final String SERIALIZED_NAME_DOMAIN = "domain";
-  @SerializedName(SERIALIZED_NAME_DOMAIN)
-  private String domain;
+    public static final String SERIALIZED_NAME_DOMAIN = "domain";
 
-  public static final String SERIALIZED_NAME_FLAGS = "flags";
-  @SerializedName(SERIALIZED_NAME_FLAGS)
-  private List<String> flags = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DOMAIN)
+    private String domain;
 
-  public LinuxPersonality() {
-  }
+    public static final String SERIALIZED_NAME_FLAGS = "flags";
 
-  public LinuxPersonality domain(String domain) {
-    this.domain = domain;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_FLAGS)
+    private List<String> flags = new ArrayList<>();
 
-  /**
-   * Get domain
-   * @return domain
-   */
-  @javax.annotation.Nullable
-  public String getDomain() {
-    return domain;
-  }
+    public LinuxPersonality() {}
 
-  public void setDomain(String domain) {
-    this.domain = domain;
-  }
-
-
-  public LinuxPersonality flags(List<String> flags) {
-    this.flags = flags;
-    return this;
-  }
-
-  public LinuxPersonality addFlagsItem(String flagsItem) {
-    if (this.flags == null) {
-      this.flags = new ArrayList<>();
+    public LinuxPersonality domain(String domain) {
+        this.domain = domain;
+        return this;
     }
-    this.flags.add(flagsItem);
-    return this;
-  }
 
-  /**
-   * Additional flags
-   * @return flags
-   */
-  @javax.annotation.Nullable
-  public List<String> getFlags() {
-    return flags;
-  }
-
-  public void setFlags(List<String> flags) {
-    this.flags = flags;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get domain
+     *
+     * @return domain
+     */
+    @javax.annotation.Nullable
+    public String getDomain() {
+        return domain;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
-    LinuxPersonality linuxPersonality = (LinuxPersonality) o;
-    return Objects.equals(this.domain, linuxPersonality.domain) &&
-        Objects.equals(this.flags, linuxPersonality.flags);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(domain, flags);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxPersonality {\n");
-    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
-    sb.append("    flags: ").append(toIndentedString(flags)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public LinuxPersonality flags(List<String> flags) {
+        this.flags = flags;
+        return this;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("domain");
-    openapiFields.add("flags");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxPersonality
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxPersonality.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxPersonality is not found in the empty JSON string", LinuxPersonality.openapiRequiredFields.toString()));
+    public LinuxPersonality addFlagsItem(String flagsItem) {
+        if (this.flags == null) {
+            this.flags = new ArrayList<>();
         }
-      }
+        this.flags.add(flagsItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LinuxPersonality.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxPersonality` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("domain") != null && !jsonObj.get("domain").isJsonNull()) && !jsonObj.get("domain").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `domain` to be a primitive type in the JSON string but got `%s`", jsonObj.get("domain").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("flags") != null && !jsonObj.get("flags").isJsonNull() && !jsonObj.get("flags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `flags` to be an array in the JSON string but got `%s`", jsonObj.get("flags").toString()));
-      }
-  }
+    /**
+     * Additional flags
+     *
+     * @return flags
+     */
+    @javax.annotation.Nullable
+    public List<String> getFlags() {
+        return flags;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public void setFlags(List<String> flags) {
+        this.flags = flags;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LinuxPersonality.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LinuxPersonality' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LinuxPersonality> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxPersonality.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LinuxPersonality>() {
-           @Override
-           public void write(JsonWriter out, LinuxPersonality value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LinuxPersonality read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxPersonality linuxPersonality = (LinuxPersonality) o;
+        return Objects.equals(this.domain, linuxPersonality.domain)
+                && Objects.equals(this.flags, linuxPersonality.flags);
     }
-  }
 
-  /**
-   * Create an instance of LinuxPersonality given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxPersonality
-   * @throws IOException if the JSON string is invalid with respect to LinuxPersonality
-   */
-  public static LinuxPersonality fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LinuxPersonality.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(domain, flags);
+    }
 
-  /**
-   * Convert an instance of LinuxPersonality to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class LinuxPersonality {\n");
+        sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
+        sb.append("    flags: ").append(toIndentedString(flags)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("domain");
+        openapiFields.add("flags");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxPersonality
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxPersonality.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in LinuxPersonality is not found in the"
+                                        + " empty JSON string",
+                                LinuxPersonality.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxPersonality.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `LinuxPersonality` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("domain") != null && !jsonObj.get("domain").isJsonNull())
+                && !jsonObj.get("domain").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `domain` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("domain").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("flags") != null
+                && !jsonObj.get("flags").isJsonNull()
+                && !jsonObj.get("flags").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `flags` to be an array in the JSON string but got"
+                                    + " `%s`",
+                            jsonObj.get("flags").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxPersonality.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxPersonality' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxPersonality> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(LinuxPersonality.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<LinuxPersonality>() {
+                        @Override
+                        public void write(JsonWriter out, LinuxPersonality value)
+                                throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public LinuxPersonality read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of LinuxPersonality given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxPersonality
+     * @throws IOException if the JSON string is invalid with respect to LinuxPersonality
+     */
+    public static LinuxPersonality fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxPersonality.class);
+    }
+
+    /**
+     * Convert an instance of LinuxPersonality to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

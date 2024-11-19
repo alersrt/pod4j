@@ -10,55 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for DeviceMapping
- */
+/** Model tests for DeviceMapping */
 public class DeviceMappingTest {
     private final DeviceMapping model = new DeviceMapping();
 
-    /**
-     * Model tests for DeviceMapping
-     */
+    /** Model tests for DeviceMapping */
     @Test
     public void testDeviceMapping() {
         // TODO: test DeviceMapping
     }
 
-    /**
-     * Test the property 'cgroupPermissions'
-     */
+    /** Test the property 'cgroupPermissions' */
     @Test
     public void cgroupPermissionsTest() {
         // TODO: test cgroupPermissions
     }
 
-    /**
-     * Test the property 'pathInContainer'
-     */
+    /** Test the property 'pathInContainer' */
     @Test
     public void pathInContainerTest() {
         // TODO: test pathInContainer
     }
 
-    /**
-     * Test the property 'pathOnHost'
-     */
+    /** Test the property 'pathOnHost' */
     @Test
     public void pathOnHostTest() {
         // TODO: test pathOnHost
     }
-
 }

@@ -10,79 +10,53 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for SecurityInfo
- */
+/** Model tests for SecurityInfo */
 public class SecurityInfoTest {
     private final SecurityInfo model = new SecurityInfo();
 
-    /**
-     * Model tests for SecurityInfo
-     */
+    /** Model tests for SecurityInfo */
     @Test
     public void testSecurityInfo() {
         // TODO: test SecurityInfo
     }
 
-    /**
-     * Test the property 'apparmorEnabled'
-     */
+    /** Test the property 'apparmorEnabled' */
     @Test
     public void apparmorEnabledTest() {
         // TODO: test apparmorEnabled
     }
 
-    /**
-     * Test the property 'capabilities'
-     */
+    /** Test the property 'capabilities' */
     @Test
     public void capabilitiesTest() {
         // TODO: test capabilities
     }
 
-    /**
-     * Test the property 'rootless'
-     */
+    /** Test the property 'rootless' */
     @Test
     public void rootlessTest() {
         // TODO: test rootless
     }
 
-    /**
-     * Test the property 'seccompEnabled'
-     */
+    /** Test the property 'seccompEnabled' */
     @Test
     public void seccompEnabledTest() {
         // TODO: test seccompEnabled
     }
 
-    /**
-     * Test the property 'seccompProfilePath'
-     */
+    /** Test the property 'seccompProfilePath' */
     @Test
     public void seccompProfilePathTest() {
         // TODO: test seccompProfilePath
     }
 
-    /**
-     * Test the property 'selinuxEnabled'
-     */
+    /** Test the property 'selinuxEnabled' */
     @Test
     public void selinuxEnabledTest() {
         // TODO: test selinuxEnabled
     }
-
 }

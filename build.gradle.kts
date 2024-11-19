@@ -1,5 +1,9 @@
 plugins {
+    id("idea")
+    id("eclipse")
     id("java")
+    id("maven-publish")
+    id("signing")
 }
 
 repositories {
@@ -14,13 +18,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
-
-configure(subprojects) {
-    apply(plugin = "idea")
-    apply(plugin = "eclipse")
+configure(allprojects) {
     apply(plugin = "java")
-    apply(plugin = "maven-publish")
-    apply(plugin = "signing")
 
     group = "io.github.alersrt.pod4j"
 

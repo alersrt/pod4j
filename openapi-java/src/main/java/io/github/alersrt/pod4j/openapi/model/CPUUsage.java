@@ -10,246 +10,237 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * CPUUsage
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** CPUUsage */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class CPUUsage {
-  public static final String SERIALIZED_NAME_IDLE_PERCENT = "idlePercent";
-  @SerializedName(SERIALIZED_NAME_IDLE_PERCENT)
-  private Double idlePercent;
+    public static final String SERIALIZED_NAME_IDLE_PERCENT = "idlePercent";
 
-  public static final String SERIALIZED_NAME_SYSTEM_PERCENT = "systemPercent";
-  @SerializedName(SERIALIZED_NAME_SYSTEM_PERCENT)
-  private Double systemPercent;
+    @SerializedName(SERIALIZED_NAME_IDLE_PERCENT)
+    private Double idlePercent;
 
-  public static final String SERIALIZED_NAME_USER_PERCENT = "userPercent";
-  @SerializedName(SERIALIZED_NAME_USER_PERCENT)
-  private Double userPercent;
+    public static final String SERIALIZED_NAME_SYSTEM_PERCENT = "systemPercent";
 
-  public CPUUsage() {
-  }
+    @SerializedName(SERIALIZED_NAME_SYSTEM_PERCENT)
+    private Double systemPercent;
 
-  public CPUUsage idlePercent(Double idlePercent) {
-    this.idlePercent = idlePercent;
-    return this;
-  }
+    public static final String SERIALIZED_NAME_USER_PERCENT = "userPercent";
 
-  /**
-   * Get idlePercent
-   * @return idlePercent
-   */
-  @javax.annotation.Nullable
-  public Double getIdlePercent() {
-    return idlePercent;
-  }
+    @SerializedName(SERIALIZED_NAME_USER_PERCENT)
+    private Double userPercent;
 
-  public void setIdlePercent(Double idlePercent) {
-    this.idlePercent = idlePercent;
-  }
+    public CPUUsage() {}
 
-
-  public CPUUsage systemPercent(Double systemPercent) {
-    this.systemPercent = systemPercent;
-    return this;
-  }
-
-  /**
-   * Get systemPercent
-   * @return systemPercent
-   */
-  @javax.annotation.Nullable
-  public Double getSystemPercent() {
-    return systemPercent;
-  }
-
-  public void setSystemPercent(Double systemPercent) {
-    this.systemPercent = systemPercent;
-  }
-
-
-  public CPUUsage userPercent(Double userPercent) {
-    this.userPercent = userPercent;
-    return this;
-  }
-
-  /**
-   * Get userPercent
-   * @return userPercent
-   */
-  @javax.annotation.Nullable
-  public Double getUserPercent() {
-    return userPercent;
-  }
-
-  public void setUserPercent(Double userPercent) {
-    this.userPercent = userPercent;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public CPUUsage idlePercent(Double idlePercent) {
+        this.idlePercent = idlePercent;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get idlePercent
+     *
+     * @return idlePercent
+     */
+    @javax.annotation.Nullable
+    public Double getIdlePercent() {
+        return idlePercent;
     }
-    CPUUsage cpUUsage = (CPUUsage) o;
-    return Objects.equals(this.idlePercent, cpUUsage.idlePercent) &&
-        Objects.equals(this.systemPercent, cpUUsage.systemPercent) &&
-        Objects.equals(this.userPercent, cpUUsage.userPercent);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(idlePercent, systemPercent, userPercent);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CPUUsage {\n");
-    sb.append("    idlePercent: ").append(toIndentedString(idlePercent)).append("\n");
-    sb.append("    systemPercent: ").append(toIndentedString(systemPercent)).append("\n");
-    sb.append("    userPercent: ").append(toIndentedString(userPercent)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setIdlePercent(Double idlePercent) {
+        this.idlePercent = idlePercent;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public CPUUsage systemPercent(Double systemPercent) {
+        this.systemPercent = systemPercent;
+        return this;
+    }
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
+    /**
+     * Get systemPercent
+     *
+     * @return systemPercent
+     */
+    @javax.annotation.Nullable
+    public Double getSystemPercent() {
+        return systemPercent;
+    }
 
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("idlePercent");
-    openapiFields.add("systemPercent");
-    openapiFields.add("userPercent");
+    public void setSystemPercent(Double systemPercent) {
+        this.systemPercent = systemPercent;
+    }
 
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
+    public CPUUsage userPercent(Double userPercent) {
+        this.userPercent = userPercent;
+        return this;
+    }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CPUUsage
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CPUUsage.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CPUUsage is not found in the empty JSON string", CPUUsage.openapiRequiredFields.toString()));
-        }
-      }
+    /**
+     * Get userPercent
+     *
+     * @return userPercent
+     */
+    @javax.annotation.Nullable
+    public Double getUserPercent() {
+        return userPercent;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CPUUsage.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CPUUsage` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-  }
+    public void setUserPercent(Double userPercent) {
+        this.userPercent = userPercent;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CPUUsage.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CPUUsage' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CPUUsage> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CPUUsage.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<CPUUsage>() {
-           @Override
-           public void write(JsonWriter out, CPUUsage value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public CPUUsage read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CPUUsage cpUUsage = (CPUUsage) o;
+        return Objects.equals(this.idlePercent, cpUUsage.idlePercent)
+                && Objects.equals(this.systemPercent, cpUUsage.systemPercent)
+                && Objects.equals(this.userPercent, cpUUsage.userPercent);
     }
-  }
 
-  /**
-   * Create an instance of CPUUsage given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of CPUUsage
-   * @throws IOException if the JSON string is invalid with respect to CPUUsage
-   */
-  public static CPUUsage fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CPUUsage.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(idlePercent, systemPercent, userPercent);
+    }
 
-  /**
-   * Convert an instance of CPUUsage to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class CPUUsage {\n");
+        sb.append("    idlePercent: ").append(toIndentedString(idlePercent)).append("\n");
+        sb.append("    systemPercent: ").append(toIndentedString(systemPercent)).append("\n");
+        sb.append("    userPercent: ").append(toIndentedString(userPercent)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("idlePercent");
+        openapiFields.add("systemPercent");
+        openapiFields.add("userPercent");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to CPUUsage
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!CPUUsage.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in CPUUsage is not found in the empty"
+                                        + " JSON string",
+                                CPUUsage.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!CPUUsage.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the `CPUUsage`"
+                                        + " properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!CPUUsage.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'CPUUsage' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<CPUUsage> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(CPUUsage.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<CPUUsage>() {
+                        @Override
+                        public void write(JsonWriter out, CPUUsage value) throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public CPUUsage read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of CPUUsage given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of CPUUsage
+     * @throws IOException if the JSON string is invalid with respect to CPUUsage
+     */
+    public static CPUUsage fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, CPUUsage.class);
+    }
+
+    /**
+     * Convert an instance of CPUUsage to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

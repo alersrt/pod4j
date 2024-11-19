@@ -10,29 +10,21 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
-import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.HistoryResponse;
 import io.github.alersrt.pod4j.openapi.model.ImageBuild200Response;
 import io.github.alersrt.pod4j.openapi.model.ImageDelete200ResponseInner;
 import io.github.alersrt.pod4j.openapi.model.ImageInspect;
 import io.github.alersrt.pod4j.openapi.model.ImageSearch200Response;
 import io.github.alersrt.pod4j.openapi.model.Summary;
+import java.io.File;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * API tests for ImagesCompatApi
- */
+/** API tests for ImagesCompatApi */
 @Disabled
 public class ImagesCompatApiTest {
 
@@ -41,7 +33,7 @@ public class ImagesCompatApiTest {
     /**
      * Create image
      *
-     * Build an image from the given Dockerfile(s)
+     * <p>Build an image from the given Dockerfile(s)
      *
      * @throws ApiException if the Api call fails
      */
@@ -77,14 +69,45 @@ public class ImagesCompatApiTest {
         String target = null;
         String outputs = null;
         File inputStream = null;
-        ImageBuild200Response response = api.imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
+        ImageBuild200Response response =
+                api.imageBuild(
+                        contentType,
+                        xRegistryConfig,
+                        dockerfile,
+                        t,
+                        extrahosts,
+                        remote,
+                        retry,
+                        retryDelay,
+                        q,
+                        compatvolumes,
+                        nocache,
+                        cachefrom,
+                        pull,
+                        rm,
+                        forcerm,
+                        memory,
+                        memswap,
+                        cpushares,
+                        cpusetcpus,
+                        cpuperiod,
+                        cpuquota,
+                        buildargs,
+                        shmsize,
+                        squash,
+                        labels,
+                        networkmode,
+                        platform,
+                        target,
+                        outputs,
+                        inputStream);
         // TODO: test validations
     }
 
     /**
      * Create an image
      *
-     * Create an image by either pulling it from a registry or importing it.
+     * <p>Create an image by either pulling it from a registry or importing it.
      *
      * @throws ApiException if the Api call fails
      */
@@ -98,14 +121,23 @@ public class ImagesCompatApiTest {
         String message = null;
         String platform = null;
         File inputImage = null;
-        File response = api.imageCreate(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage);
+        File response =
+                api.imageCreate(
+                        xRegistryAuth,
+                        fromImage,
+                        fromSrc,
+                        repo,
+                        tag,
+                        message,
+                        platform,
+                        inputImage);
         // TODO: test validations
     }
 
     /**
      * Remove Image
      *
-     * Delete an image from local storage
+     * <p>Delete an image from local storage
      *
      * @throws ApiException if the Api call fails
      */
@@ -121,7 +153,7 @@ public class ImagesCompatApiTest {
     /**
      * Export an image
      *
-     * Export an image in tarball format
+     * <p>Export an image in tarball format
      *
      * @throws ApiException if the Api call fails
      */
@@ -135,7 +167,7 @@ public class ImagesCompatApiTest {
     /**
      * Export several images
      *
-     * Get a tarball containing all images and metadata for several image repositories
+     * <p>Get a tarball containing all images and metadata for several image repositories
      *
      * @throws ApiException if the Api call fails
      */
@@ -149,7 +181,7 @@ public class ImagesCompatApiTest {
     /**
      * History of an image
      *
-     * Return parent layers of an image.
+     * <p>Return parent layers of an image.
      *
      * @throws ApiException if the Api call fails
      */
@@ -163,7 +195,7 @@ public class ImagesCompatApiTest {
     /**
      * Inspect an image
      *
-     * Return low-level information about an image.
+     * <p>Return low-level information about an image.
      *
      * @throws ApiException if the Api call fails
      */
@@ -177,7 +209,8 @@ public class ImagesCompatApiTest {
     /**
      * List Images
      *
-     * Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image.
+     * <p>Returns a list of images on the server. Note that it uses a different, smaller
+     * representation of an image than inspecting a single image.
      *
      * @throws ApiException if the Api call fails
      */
@@ -193,7 +226,7 @@ public class ImagesCompatApiTest {
     /**
      * Import image
      *
-     * Load a set of images and tags into a repository.
+     * <p>Load a set of images and tags into a repository.
      *
      * @throws ApiException if the Api call fails
      */
@@ -208,7 +241,7 @@ public class ImagesCompatApiTest {
     /**
      * Prune unused images
      *
-     * Remove images from local storage that are not being used by a container
+     * <p>Remove images from local storage that are not being used by a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -222,7 +255,7 @@ public class ImagesCompatApiTest {
     /**
      * Push Image
      *
-     * Push an image to a container registry
+     * <p>Push an image to a container registry
      *
      * @throws ApiException if the Api call fails
      */
@@ -236,14 +269,16 @@ public class ImagesCompatApiTest {
         String format = null;
         Boolean tlsVerify = null;
         String xRegistryAuth = null;
-        File response = api.imagePush(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
+        File response =
+                api.imagePush(
+                        name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
         // TODO: test validations
     }
 
     /**
      * Search images
      *
-     * Search registries for an image
+     * <p>Search registries for an image
      *
      * @throws ApiException if the Api call fails
      */
@@ -254,14 +289,15 @@ public class ImagesCompatApiTest {
         String filters = null;
         Boolean tlsVerify = null;
         Boolean listTags = null;
-        ImageSearch200Response response = api.imageSearch(term, limit, filters, tlsVerify, listTags);
+        ImageSearch200Response response =
+                api.imageSearch(term, limit, filters, tlsVerify, listTags);
         // TODO: test validations
     }
 
     /**
      * Tag an image
      *
-     * Tag an image so that it becomes part of a repository.
+     * <p>Tag an image so that it becomes part of a repository.
      *
      * @throws ApiException if the Api call fails
      */
@@ -273,5 +309,4 @@ public class ImagesCompatApiTest {
         api.imageTag(name, repo, tag);
         // TODO: test validations
     }
-
 }

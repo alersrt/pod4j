@@ -10,494 +10,542 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.TypeAdapterFactory;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ListPodContainer;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * ListPodsReport
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** ListPodsReport */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class ListPodsReport {
-  public static final String SERIALIZED_NAME_CGROUP = "Cgroup";
-  @SerializedName(SERIALIZED_NAME_CGROUP)
-  private String cgroup;
+    public static final String SERIALIZED_NAME_CGROUP = "Cgroup";
 
-  public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
-  @SerializedName(SERIALIZED_NAME_CONTAINERS)
-  private List<ListPodContainer> containers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CGROUP)
+    private String cgroup;
 
-  public static final String SERIALIZED_NAME_CREATED = "Created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
-  private OffsetDateTime created;
+    public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+    @SerializedName(SERIALIZED_NAME_CONTAINERS)
+    private List<ListPodContainer> containers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_INFRA_ID = "InfraId";
-  @SerializedName(SERIALIZED_NAME_INFRA_ID)
-  private String infraId;
+    public static final String SERIALIZED_NAME_CREATED = "Created";
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+    public static final String SERIALIZED_NAME_ID = "Id";
 
-  public static final String SERIALIZED_NAME_NAMESPACE = "Namespace";
-  @SerializedName(SERIALIZED_NAME_NAMESPACE)
-  private String namespace;
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
 
-  public static final String SERIALIZED_NAME_NETWORKS = "Networks";
-  @SerializedName(SERIALIZED_NAME_NETWORKS)
-  private List<String> networks = new ArrayList<>();
+    public static final String SERIALIZED_NAME_INFRA_ID = "InfraId";
 
-  public static final String SERIALIZED_NAME_STATUS = "Status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+    @SerializedName(SERIALIZED_NAME_INFRA_ID)
+    private String infraId;
 
-  public ListPodsReport() {
-  }
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
 
-  public ListPodsReport cgroup(String cgroup) {
-    this.cgroup = cgroup;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
 
-  /**
-   * Get cgroup
-   * @return cgroup
-   */
-  @javax.annotation.Nullable
-  public String getCgroup() {
-    return cgroup;
-  }
+    public static final String SERIALIZED_NAME_NAME = "Name";
 
-  public void setCgroup(String cgroup) {
-    this.cgroup = cgroup;
-  }
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
 
+    public static final String SERIALIZED_NAME_NAMESPACE = "Namespace";
 
-  public ListPodsReport containers(List<ListPodContainer> containers) {
-    this.containers = containers;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_NAMESPACE)
+    private String namespace;
 
-  public ListPodsReport addContainersItem(ListPodContainer containersItem) {
-    if (this.containers == null) {
-      this.containers = new ArrayList<>();
+    public static final String SERIALIZED_NAME_NETWORKS = "Networks";
+
+    @SerializedName(SERIALIZED_NAME_NETWORKS)
+    private List<String> networks = new ArrayList<>();
+
+    public static final String SERIALIZED_NAME_STATUS = "Status";
+
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private String status;
+
+    public ListPodsReport() {}
+
+    public ListPodsReport cgroup(String cgroup) {
+        this.cgroup = cgroup;
+        return this;
     }
-    this.containers.add(containersItem);
-    return this;
-  }
 
-  /**
-   * Get containers
-   * @return containers
-   */
-  @javax.annotation.Nullable
-  public List<ListPodContainer> getContainers() {
-    return containers;
-  }
-
-  public void setContainers(List<ListPodContainer> containers) {
-    this.containers = containers;
-  }
-
-
-  public ListPodsReport created(OffsetDateTime created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Get created
-   * @return created
-   */
-  @javax.annotation.Nullable
-  public OffsetDateTime getCreated() {
-    return created;
-  }
-
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
-  }
-
-
-  public ListPodsReport id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @javax.annotation.Nullable
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ListPodsReport infraId(String infraId) {
-    this.infraId = infraId;
-    return this;
-  }
-
-  /**
-   * Get infraId
-   * @return infraId
-   */
-  @javax.annotation.Nullable
-  public String getInfraId() {
-    return infraId;
-  }
-
-  public void setInfraId(String infraId) {
-    this.infraId = infraId;
-  }
-
-
-  public ListPodsReport labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public ListPodsReport putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
+    /**
+     * Get cgroup
+     *
+     * @return cgroup
+     */
+    @javax.annotation.Nullable
+    public String getCgroup() {
+        return cgroup;
     }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
 
-  /**
-   * Get labels
-   * @return labels
-   */
-  @javax.annotation.Nullable
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public ListPodsReport name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ListPodsReport namespace(String namespace) {
-    this.namespace = namespace;
-    return this;
-  }
-
-  /**
-   * Get namespace
-   * @return namespace
-   */
-  @javax.annotation.Nullable
-  public String getNamespace() {
-    return namespace;
-  }
-
-  public void setNamespace(String namespace) {
-    this.namespace = namespace;
-  }
-
-
-  public ListPodsReport networks(List<String> networks) {
-    this.networks = networks;
-    return this;
-  }
-
-  public ListPodsReport addNetworksItem(String networksItem) {
-    if (this.networks == null) {
-      this.networks = new ArrayList<>();
+    public void setCgroup(String cgroup) {
+        this.cgroup = cgroup;
     }
-    this.networks.add(networksItem);
-    return this;
-  }
 
-  /**
-   * Network names connected to infra container
-   * @return networks
-   */
-  @javax.annotation.Nullable
-  public List<String> getNetworks() {
-    return networks;
-  }
-
-  public void setNetworks(List<String> networks) {
-    this.networks = networks;
-  }
-
-
-  public ListPodsReport status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-   */
-  @javax.annotation.Nullable
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ListPodsReport containers(List<ListPodContainer> containers) {
+        this.containers = containers;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ListPodsReport listPodsReport = (ListPodsReport) o;
-    return Objects.equals(this.cgroup, listPodsReport.cgroup) &&
-        Objects.equals(this.containers, listPodsReport.containers) &&
-        Objects.equals(this.created, listPodsReport.created) &&
-        Objects.equals(this.id, listPodsReport.id) &&
-        Objects.equals(this.infraId, listPodsReport.infraId) &&
-        Objects.equals(this.labels, listPodsReport.labels) &&
-        Objects.equals(this.name, listPodsReport.name) &&
-        Objects.equals(this.namespace, listPodsReport.namespace) &&
-        Objects.equals(this.networks, listPodsReport.networks) &&
-        Objects.equals(this.status, listPodsReport.status);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(cgroup, containers, created, id, infraId, labels, name, namespace, networks, status);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ListPodsReport {\n");
-    sb.append("    cgroup: ").append(toIndentedString(cgroup)).append("\n");
-    sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    infraId: ").append(toIndentedString(infraId)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    namespace: ").append(toIndentedString(namespace)).append("\n");
-    sb.append("    networks: ").append(toIndentedString(networks)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Cgroup");
-    openapiFields.add("Containers");
-    openapiFields.add("Created");
-    openapiFields.add("Id");
-    openapiFields.add("InfraId");
-    openapiFields.add("Labels");
-    openapiFields.add("Name");
-    openapiFields.add("Namespace");
-    openapiFields.add("Networks");
-    openapiFields.add("Status");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListPodsReport
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListPodsReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListPodsReport is not found in the empty JSON string", ListPodsReport.openapiRequiredFields.toString()));
+    public ListPodsReport addContainersItem(ListPodContainer containersItem) {
+        if (this.containers == null) {
+            this.containers = new ArrayList<>();
         }
-      }
+        this.containers.add(containersItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListPodsReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListPodsReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+    /**
+     * Get containers
+     *
+     * @return containers
+     */
+    @javax.annotation.Nullable
+    public List<ListPodContainer> getContainers() {
+        return containers;
+    }
+
+    public void setContainers(List<ListPodContainer> containers) {
+        this.containers = containers;
+    }
+
+    public ListPodsReport created(OffsetDateTime created) {
+        this.created = created;
+        return this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return created
+     */
+    @javax.annotation.Nullable
+    public OffsetDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(OffsetDateTime created) {
+        this.created = created;
+    }
+
+    public ListPodsReport id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @javax.annotation.Nullable
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ListPodsReport infraId(String infraId) {
+        this.infraId = infraId;
+        return this;
+    }
+
+    /**
+     * Get infraId
+     *
+     * @return infraId
+     */
+    @javax.annotation.Nullable
+    public String getInfraId() {
+        return infraId;
+    }
+
+    public void setInfraId(String infraId) {
+        this.infraId = infraId;
+    }
+
+    public ListPodsReport labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public ListPodsReport putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Cgroup") != null && !jsonObj.get("Cgroup").isJsonNull()) && !jsonObj.get("Cgroup").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Cgroup` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Cgroup").toString()));
-      }
-      if (jsonObj.get("Containers") != null && !jsonObj.get("Containers").isJsonNull()) {
-        JsonArray jsonArraycontainers = jsonObj.getAsJsonArray("Containers");
-        if (jsonArraycontainers != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Containers").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Containers` to be an array in the JSON string but got `%s`", jsonObj.get("Containers").toString()));
-          }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
 
-          // validate the optional field `Containers` (array)
-          for (int i = 0; i < jsonArraycontainers.size(); i++) {
-            ListPodContainer.validateJsonElement(jsonArraycontainers.get(i));
-          };
+    /**
+     * Get labels
+     *
+     * @return labels
+     */
+    @javax.annotation.Nullable
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public ListPodsReport name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @javax.annotation.Nullable
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ListPodsReport namespace(String namespace) {
+        this.namespace = namespace;
+        return this;
+    }
+
+    /**
+     * Get namespace
+     *
+     * @return namespace
+     */
+    @javax.annotation.Nullable
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
+
+    public ListPodsReport networks(List<String> networks) {
+        this.networks = networks;
+        return this;
+    }
+
+    public ListPodsReport addNetworksItem(String networksItem) {
+        if (this.networks == null) {
+            this.networks = new ArrayList<>();
         }
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      if ((jsonObj.get("InfraId") != null && !jsonObj.get("InfraId").isJsonNull()) && !jsonObj.get("InfraId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `InfraId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("InfraId").toString()));
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      if ((jsonObj.get("Namespace") != null && !jsonObj.get("Namespace").isJsonNull()) && !jsonObj.get("Namespace").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Namespace` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Namespace").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Networks") != null && !jsonObj.get("Networks").isJsonNull() && !jsonObj.get("Networks").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Networks` to be an array in the JSON string but got `%s`", jsonObj.get("Networks").toString()));
-      }
-      if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
-      }
-  }
+        this.networks.add(networksItem);
+        return this;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    /**
+     * Network names connected to infra container
+     *
+     * @return networks
+     */
+    @javax.annotation.Nullable
+    public List<String> getNetworks() {
+        return networks;
+    }
+
+    public void setNetworks(List<String> networks) {
+        this.networks = networks;
+    }
+
+    public ListPodsReport status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return status
+     */
+    @javax.annotation.Nullable
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListPodsReport.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListPodsReport' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListPodsReport> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListPodsReport.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListPodsReport>() {
-           @Override
-           public void write(JsonWriter out, ListPodsReport value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListPodsReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ListPodsReport listPodsReport = (ListPodsReport) o;
+        return Objects.equals(this.cgroup, listPodsReport.cgroup)
+                && Objects.equals(this.containers, listPodsReport.containers)
+                && Objects.equals(this.created, listPodsReport.created)
+                && Objects.equals(this.id, listPodsReport.id)
+                && Objects.equals(this.infraId, listPodsReport.infraId)
+                && Objects.equals(this.labels, listPodsReport.labels)
+                && Objects.equals(this.name, listPodsReport.name)
+                && Objects.equals(this.namespace, listPodsReport.namespace)
+                && Objects.equals(this.networks, listPodsReport.networks)
+                && Objects.equals(this.status, listPodsReport.status);
     }
-  }
 
-  /**
-   * Create an instance of ListPodsReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListPodsReport
-   * @throws IOException if the JSON string is invalid with respect to ListPodsReport
-   */
-  public static ListPodsReport fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListPodsReport.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                cgroup,
+                containers,
+                created,
+                id,
+                infraId,
+                labels,
+                name,
+                namespace,
+                networks,
+                status);
+    }
 
-  /**
-   * Convert an instance of ListPodsReport to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ListPodsReport {\n");
+        sb.append("    cgroup: ").append(toIndentedString(cgroup)).append("\n");
+        sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
+        sb.append("    created: ").append(toIndentedString(created)).append("\n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    infraId: ").append(toIndentedString(infraId)).append("\n");
+        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    namespace: ").append(toIndentedString(namespace)).append("\n");
+        sb.append("    networks: ").append(toIndentedString(networks)).append("\n");
+        sb.append("    status: ").append(toIndentedString(status)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Cgroup");
+        openapiFields.add("Containers");
+        openapiFields.add("Created");
+        openapiFields.add("Id");
+        openapiFields.add("InfraId");
+        openapiFields.add("Labels");
+        openapiFields.add("Name");
+        openapiFields.add("Namespace");
+        openapiFields.add("Networks");
+        openapiFields.add("Status");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ListPodsReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ListPodsReport.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in ListPodsReport is not found in the"
+                                        + " empty JSON string",
+                                ListPodsReport.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ListPodsReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `ListPodsReport` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Cgroup") != null && !jsonObj.get("Cgroup").isJsonNull())
+                && !jsonObj.get("Cgroup").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Cgroup` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("Cgroup").toString()));
+        }
+        if (jsonObj.get("Containers") != null && !jsonObj.get("Containers").isJsonNull()) {
+            JsonArray jsonArraycontainers = jsonObj.getAsJsonArray("Containers");
+            if (jsonArraycontainers != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Containers").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `Containers` to be an array in the JSON"
+                                            + " string but got `%s`",
+                                    jsonObj.get("Containers").toString()));
+                }
+
+                // validate the optional field `Containers` (array)
+                for (int i = 0; i < jsonArraycontainers.size(); i++) {
+                    ListPodContainer.validateJsonElement(jsonArraycontainers.get(i));
+                }
+                ;
+            }
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull())
+                && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Id").toString()));
+        }
+        if ((jsonObj.get("InfraId") != null && !jsonObj.get("InfraId").isJsonNull())
+                && !jsonObj.get("InfraId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `InfraId` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("InfraId").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull())
+                && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Name` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("Name").toString()));
+        }
+        if ((jsonObj.get("Namespace") != null && !jsonObj.get("Namespace").isJsonNull())
+                && !jsonObj.get("Namespace").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Namespace` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("Namespace").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Networks") != null
+                && !jsonObj.get("Networks").isJsonNull()
+                && !jsonObj.get("Networks").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Networks` to be an array in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Networks").toString()));
+        }
+        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull())
+                && !jsonObj.get("Status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Status` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("Status").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ListPodsReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ListPodsReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ListPodsReport> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(ListPodsReport.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<ListPodsReport>() {
+                        @Override
+                        public void write(JsonWriter out, ListPodsReport value) throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public ListPodsReport read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of ListPodsReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ListPodsReport
+     * @throws IOException if the JSON string is invalid with respect to ListPodsReport
+     */
+    public static ListPodsReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ListPodsReport.class);
+    }
+
+    /**
+     * Convert an instance of ListPodsReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

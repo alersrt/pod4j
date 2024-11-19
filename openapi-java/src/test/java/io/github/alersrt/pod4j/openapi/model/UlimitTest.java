@@ -10,55 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Ulimit
- */
+/** Model tests for Ulimit */
 public class UlimitTest {
     private final Ulimit model = new Ulimit();
 
-    /**
-     * Model tests for Ulimit
-     */
+    /** Model tests for Ulimit */
     @Test
     public void testUlimit() {
         // TODO: test Ulimit
     }
 
-    /**
-     * Test the property 'hard'
-     */
+    /** Test the property 'hard' */
     @Test
     public void hardTest() {
         // TODO: test hard
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'soft'
-     */
+    /** Test the property 'soft' */
     @Test
     public void softTest() {
         // TODO: test soft
     }
-
 }

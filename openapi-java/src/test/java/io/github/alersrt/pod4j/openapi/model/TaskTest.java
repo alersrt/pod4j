@@ -10,65 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Task
- */
+/** Model tests for Task */
 public class TaskTest {
     private final Task model = new Task();
 
-    /**
-     * Model tests for Task
-     */
+    /** Model tests for Task */
     @Test
     public void testTask() {
         // TODO: test Task
     }
 
-    /**
-     * Test the property 'endpointID'
-     */
+    /** Test the property 'endpointID' */
     @Test
     public void endpointIDTest() {
         // TODO: test endpointID
     }
 
-    /**
-     * Test the property 'endpointIP'
-     */
+    /** Test the property 'endpointIP' */
     @Test
     public void endpointIPTest() {
         // TODO: test endpointIP
     }
 
-    /**
-     * Test the property 'info'
-     */
+    /** Test the property 'info' */
     @Test
     public void infoTest() {
         // TODO: test info
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
-
 }

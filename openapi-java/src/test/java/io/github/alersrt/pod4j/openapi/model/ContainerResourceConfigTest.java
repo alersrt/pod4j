@@ -10,120 +10,77 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.LinuxIntelRdt;
-import io.github.alersrt.pod4j.openapi.model.LinuxResources;
-import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.LinuxWeightDevice;
-import io.github.alersrt.pod4j.openapi.model.POSIXRlimit;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ContainerResourceConfig
- */
+/** Model tests for ContainerResourceConfig */
 public class ContainerResourceConfigTest {
     private final ContainerResourceConfig model = new ContainerResourceConfig();
 
-    /**
-     * Model tests for ContainerResourceConfig
-     */
+    /** Model tests for ContainerResourceConfig */
     @Test
     public void testContainerResourceConfig() {
         // TODO: test ContainerResourceConfig
     }
 
-    /**
-     * Test the property 'intelRdt'
-     */
+    /** Test the property 'intelRdt' */
     @Test
     public void intelRdtTest() {
         // TODO: test intelRdt
     }
 
-    /**
-     * Test the property 'oomScoreAdj'
-     */
+    /** Test the property 'oomScoreAdj' */
     @Test
     public void oomScoreAdjTest() {
         // TODO: test oomScoreAdj
     }
 
-    /**
-     * Test the property 'rLimits'
-     */
+    /** Test the property 'rLimits' */
     @Test
     public void rLimitsTest() {
         // TODO: test rLimits
     }
 
-    /**
-     * Test the property 'resourceLimits'
-     */
+    /** Test the property 'resourceLimits' */
     @Test
     public void resourceLimitsTest() {
         // TODO: test resourceLimits
     }
 
-    /**
-     * Test the property 'throttleReadBpsDevice'
-     */
+    /** Test the property 'throttleReadBpsDevice' */
     @Test
     public void throttleReadBpsDeviceTest() {
         // TODO: test throttleReadBpsDevice
     }
 
-    /**
-     * Test the property 'throttleReadIOPSDevice'
-     */
+    /** Test the property 'throttleReadIOPSDevice' */
     @Test
     public void throttleReadIOPSDeviceTest() {
         // TODO: test throttleReadIOPSDevice
     }
 
-    /**
-     * Test the property 'throttleWriteBpsDevice'
-     */
+    /** Test the property 'throttleWriteBpsDevice' */
     @Test
     public void throttleWriteBpsDeviceTest() {
         // TODO: test throttleWriteBpsDevice
     }
 
-    /**
-     * Test the property 'throttleWriteIOPSDevice'
-     */
+    /** Test the property 'throttleWriteIOPSDevice' */
     @Test
     public void throttleWriteIOPSDeviceTest() {
         // TODO: test throttleWriteIOPSDevice
     }
 
-    /**
-     * Test the property 'unified'
-     */
+    /** Test the property 'unified' */
     @Test
     public void unifiedTest() {
         // TODO: test unified
     }
 
-    /**
-     * Test the property 'weightDevice'
-     */
+    /** Test the property 'weightDevice' */
     @Test
     public void weightDeviceTest() {
         // TODO: test weightDevice
     }
-
 }

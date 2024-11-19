@@ -10,55 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Route
- */
+/** Model tests for Route */
 public class RouteTest {
     private final Route model = new Route();
 
-    /**
-     * Model tests for Route
-     */
+    /** Model tests for Route */
     @Test
     public void testRoute() {
         // TODO: test Route
     }
 
-    /**
-     * Test the property 'destination'
-     */
+    /** Test the property 'destination' */
     @Test
     public void destinationTest() {
         // TODO: test destination
     }
 
-    /**
-     * Test the property 'gateway'
-     */
+    /** Test the property 'gateway' */
     @Test
     public void gatewayTest() {
         // TODO: test gateway
     }
 
-    /**
-     * Test the property 'metric'
-     */
+    /** Test the property 'metric' */
     @Test
     public void metricTest() {
         // TODO: test metric
     }
-
 }

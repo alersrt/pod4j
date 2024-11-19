@@ -10,81 +10,53 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
-import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ContainerHealthCheckConfig
- */
+/** Model tests for ContainerHealthCheckConfig */
 public class ContainerHealthCheckConfigTest {
     private final ContainerHealthCheckConfig model = new ContainerHealthCheckConfig();
 
-    /**
-     * Model tests for ContainerHealthCheckConfig
-     */
+    /** Model tests for ContainerHealthCheckConfig */
     @Test
     public void testContainerHealthCheckConfig() {
         // TODO: test ContainerHealthCheckConfig
     }
 
-    /**
-     * Test the property 'healthCheckOnFailureAction'
-     */
+    /** Test the property 'healthCheckOnFailureAction' */
     @Test
     public void healthCheckOnFailureActionTest() {
         // TODO: test healthCheckOnFailureAction
     }
 
-    /**
-     * Test the property 'healthLogDestination'
-     */
+    /** Test the property 'healthLogDestination' */
     @Test
     public void healthLogDestinationTest() {
         // TODO: test healthLogDestination
     }
 
-    /**
-     * Test the property 'healthMaxLogCount'
-     */
+    /** Test the property 'healthMaxLogCount' */
     @Test
     public void healthMaxLogCountTest() {
         // TODO: test healthMaxLogCount
     }
 
-    /**
-     * Test the property 'healthMaxLogSize'
-     */
+    /** Test the property 'healthMaxLogSize' */
     @Test
     public void healthMaxLogSizeTest() {
         // TODO: test healthMaxLogSize
     }
 
-    /**
-     * Test the property 'healthconfig'
-     */
+    /** Test the property 'healthconfig' */
     @Test
     public void healthconfigTest() {
         // TODO: test healthconfig
     }
 
-    /**
-     * Test the property 'startupHealthConfig'
-     */
+    /** Test the property 'startupHealthConfig' */
     @Test
     public void startupHealthConfigTest() {
         // TODO: test startupHealthConfig
     }
-
 }

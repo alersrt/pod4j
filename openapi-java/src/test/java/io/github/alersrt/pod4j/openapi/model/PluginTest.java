@@ -10,81 +10,53 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.PluginConfig;
-import io.github.alersrt.pod4j.openapi.model.PluginSettings;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Plugin
- */
+/** Model tests for Plugin */
 public class PluginTest {
     private final Plugin model = new Plugin();
 
-    /**
-     * Model tests for Plugin
-     */
+    /** Model tests for Plugin */
     @Test
     public void testPlugin() {
         // TODO: test Plugin
     }
 
-    /**
-     * Test the property 'config'
-     */
+    /** Test the property 'config' */
     @Test
     public void configTest() {
         // TODO: test config
     }
 
-    /**
-     * Test the property 'enabled'
-     */
+    /** Test the property 'enabled' */
     @Test
     public void enabledTest() {
         // TODO: test enabled
     }
 
-    /**
-     * Test the property 'id'
-     */
+    /** Test the property 'id' */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'pluginReference'
-     */
+    /** Test the property 'pluginReference' */
     @Test
     public void pluginReferenceTest() {
         // TODO: test pluginReference
     }
 
-    /**
-     * Test the property 'settings'
-     */
+    /** Test the property 'settings' */
     @Test
     public void settingsTest() {
         // TODO: test settings
     }
-
 }

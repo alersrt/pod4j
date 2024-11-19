@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for NetworkCreate201Response
- */
+/** Model tests for NetworkCreate201Response */
 public class NetworkCreate201ResponseTest {
     private final NetworkCreate201Response model = new NetworkCreate201Response();
 
-    /**
-     * Model tests for NetworkCreate201Response
-     */
+    /** Model tests for NetworkCreate201Response */
     @Test
     public void testNetworkCreate201Response() {
         // TODO: test NetworkCreate201Response
     }
 
-    /**
-     * Test the property 'id'
-     */
+    /** Test the property 'id' */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /**
-     * Test the property 'warning'
-     */
+    /** Test the property 'warning' */
     @Test
     public void warningTest() {
         // TODO: test warning
     }
-
 }

@@ -10,96 +10,65 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for SystemDfImageReport
- */
+/** Model tests for SystemDfImageReport */
 public class SystemDfImageReportTest {
     private final SystemDfImageReport model = new SystemDfImageReport();
 
-    /**
-     * Model tests for SystemDfImageReport
-     */
+    /** Model tests for SystemDfImageReport */
     @Test
     public void testSystemDfImageReport() {
         // TODO: test SystemDfImageReport
     }
 
-    /**
-     * Test the property 'containers'
-     */
+    /** Test the property 'containers' */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /**
-     * Test the property 'created'
-     */
+    /** Test the property 'created' */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /**
-     * Test the property 'imageID'
-     */
+    /** Test the property 'imageID' */
     @Test
     public void imageIDTest() {
         // TODO: test imageID
     }
 
-    /**
-     * Test the property 'repository'
-     */
+    /** Test the property 'repository' */
     @Test
     public void repositoryTest() {
         // TODO: test repository
     }
 
-    /**
-     * Test the property 'sharedSize'
-     */
+    /** Test the property 'sharedSize' */
     @Test
     public void sharedSizeTest() {
         // TODO: test sharedSize
     }
 
-    /**
-     * Test the property 'size'
-     */
+    /** Test the property 'size' */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /**
-     * Test the property 'tag'
-     */
+    /** Test the property 'tag' */
     @Test
     public void tagTest() {
         // TODO: test tag
     }
 
-    /**
-     * Test the property 'uniqueSize'
-     */
+    /** Test the property 'uniqueSize' */
     @Test
     public void uniqueSizeTest() {
         // TODO: test uniqueSize
     }
-
 }

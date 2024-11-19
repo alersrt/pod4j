@@ -10,93 +10,59 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ImageVolume;
-import io.github.alersrt.pod4j.openapi.model.Mount;
-import io.github.alersrt.pod4j.openapi.model.NamedVolume;
-import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for PodStorageConfig
- */
+/** Model tests for PodStorageConfig */
 public class PodStorageConfigTest {
     private final PodStorageConfig model = new PodStorageConfig();
 
-    /**
-     * Model tests for PodStorageConfig
-     */
+    /** Model tests for PodStorageConfig */
     @Test
     public void testPodStorageConfig() {
         // TODO: test PodStorageConfig
     }
 
-    /**
-     * Test the property 'imageVolumes'
-     */
+    /** Test the property 'imageVolumes' */
     @Test
     public void imageVolumesTest() {
         // TODO: test imageVolumes
     }
 
-    /**
-     * Test the property 'mounts'
-     */
+    /** Test the property 'mounts' */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /**
-     * Test the property 'overlayVolumes'
-     */
+    /** Test the property 'overlayVolumes' */
     @Test
     public void overlayVolumesTest() {
         // TODO: test overlayVolumes
     }
 
-    /**
-     * Test the property 'shmSize'
-     */
+    /** Test the property 'shmSize' */
     @Test
     public void shmSizeTest() {
         // TODO: test shmSize
     }
 
-    /**
-     * Test the property 'shmSizeSystemd'
-     */
+    /** Test the property 'shmSizeSystemd' */
     @Test
     public void shmSizeSystemdTest() {
         // TODO: test shmSizeSystemd
     }
 
-    /**
-     * Test the property 'volumes'
-     */
+    /** Test the property 'volumes' */
     @Test
     public void volumesTest() {
         // TODO: test volumes
     }
 
-    /**
-     * Test the property 'volumesFrom'
-     */
+    /** Test the property 'volumesFrom' */
     @Test
     public void volumesFromTest() {
         // TODO: test volumesFrom
     }
-
 }

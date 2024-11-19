@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for LinuxInterfacePriority
- */
+/** Model tests for LinuxInterfacePriority */
 public class LinuxInterfacePriorityTest {
     private final LinuxInterfacePriority model = new LinuxInterfacePriority();
 
-    /**
-     * Model tests for LinuxInterfacePriority
-     */
+    /** Model tests for LinuxInterfacePriority */
     @Test
     public void testLinuxInterfacePriority() {
         // TODO: test LinuxInterfacePriority
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'priority'
-     */
+    /** Test the property 'priority' */
     @Test
     public void priorityTest() {
         // TODO: test priority
     }
-
 }

@@ -10,55 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for IDMap
- */
+/** Model tests for IDMap */
 public class IDMapTest {
     private final IDMap model = new IDMap();
 
-    /**
-     * Model tests for IDMap
-     */
+    /** Model tests for IDMap */
     @Test
     public void testIDMap() {
         // TODO: test IDMap
     }
 
-    /**
-     * Test the property 'containerId'
-     */
+    /** Test the property 'containerId' */
     @Test
     public void containerIdTest() {
         // TODO: test containerId
     }
 
-    /**
-     * Test the property 'hostId'
-     */
+    /** Test the property 'hostId' */
     @Test
     public void hostIdTest() {
         // TODO: test hostId
     }
 
-    /**
-     * Test the property 'size'
-     */
+    /** Test the property 'size' */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
-
 }

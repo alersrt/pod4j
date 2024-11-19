@@ -10,65 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ManifestRemoveReport
- */
+/** Model tests for ManifestRemoveReport */
 public class ManifestRemoveReportTest {
     private final ManifestRemoveReport model = new ManifestRemoveReport();
 
-    /**
-     * Model tests for ManifestRemoveReport
-     */
+    /** Model tests for ManifestRemoveReport */
     @Test
     public void testManifestRemoveReport() {
         // TODO: test ManifestRemoveReport
     }
 
-    /**
-     * Test the property 'deleted'
-     */
+    /** Test the property 'deleted' */
     @Test
     public void deletedTest() {
         // TODO: test deleted
     }
 
-    /**
-     * Test the property 'errors'
-     */
+    /** Test the property 'errors' */
     @Test
     public void errorsTest() {
         // TODO: test errors
     }
 
-    /**
-     * Test the property 'exitCode'
-     */
+    /** Test the property 'exitCode' */
     @Test
     public void exitCodeTest() {
         // TODO: test exitCode
     }
 
-    /**
-     * Test the property 'untagged'
-     */
+    /** Test the property 'untagged' */
     @Test
     public void untaggedTest() {
         // TODO: test untagged
     }
-
 }

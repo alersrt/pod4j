@@ -10,89 +10,59 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ContainerNode
- */
+/** Model tests for ContainerNode */
 public class ContainerNodeTest {
     private final ContainerNode model = new ContainerNode();
 
-    /**
-     * Model tests for ContainerNode
-     */
+    /** Model tests for ContainerNode */
     @Test
     public void testContainerNode() {
         // TODO: test ContainerNode
     }
 
-    /**
-     * Test the property 'addr'
-     */
+    /** Test the property 'addr' */
     @Test
     public void addrTest() {
         // TODO: test addr
     }
 
-    /**
-     * Test the property 'cpus'
-     */
+    /** Test the property 'cpus' */
     @Test
     public void cpusTest() {
         // TODO: test cpus
     }
 
-    /**
-     * Test the property 'ID'
-     */
+    /** Test the property 'ID' */
     @Test
     public void IDTest() {
         // TODO: test ID
     }
 
-    /**
-     * Test the property 'IP'
-     */
+    /** Test the property 'IP' */
     @Test
     public void IPTest() {
         // TODO: test IP
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'memory'
-     */
+    /** Test the property 'memory' */
     @Test
     public void memoryTest() {
         // TODO: test memory
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
-
 }

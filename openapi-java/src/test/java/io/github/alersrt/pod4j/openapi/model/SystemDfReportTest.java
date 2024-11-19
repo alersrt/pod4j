@@ -10,68 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.SystemDfContainerReport;
-import io.github.alersrt.pod4j.openapi.model.SystemDfImageReport;
-import io.github.alersrt.pod4j.openapi.model.SystemDfVolumeReport;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for SystemDfReport
- */
+/** Model tests for SystemDfReport */
 public class SystemDfReportTest {
     private final SystemDfReport model = new SystemDfReport();
 
-    /**
-     * Model tests for SystemDfReport
-     */
+    /** Model tests for SystemDfReport */
     @Test
     public void testSystemDfReport() {
         // TODO: test SystemDfReport
     }
 
-    /**
-     * Test the property 'containers'
-     */
+    /** Test the property 'containers' */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /**
-     * Test the property 'images'
-     */
+    /** Test the property 'images' */
     @Test
     public void imagesTest() {
         // TODO: test images
     }
 
-    /**
-     * Test the property 'imagesSize'
-     */
+    /** Test the property 'imagesSize' */
     @Test
     public void imagesSizeTest() {
         // TODO: test imagesSize
     }
 
-    /**
-     * Test the property 'volumes'
-     */
+    /** Test the property 'volumes' */
     @Test
     public void volumesTest() {
         // TODO: test volumes
     }
-
 }

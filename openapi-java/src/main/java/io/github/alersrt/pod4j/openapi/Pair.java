@@ -10,15 +10,17 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class Pair {
     private String name = "";
     private String value = "";
 
-    public Pair (String name, String value) {
+    public Pair(String name, String value) {
         setName(name);
         setValue(value);
     }

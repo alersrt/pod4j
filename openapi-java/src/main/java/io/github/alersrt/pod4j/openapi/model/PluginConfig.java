@@ -10,695 +10,748 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.PluginConfigArgs;
-import io.github.alersrt.pod4j.openapi.model.PluginConfigInterface;
-import io.github.alersrt.pod4j.openapi.model.PluginConfigLinux;
-import io.github.alersrt.pod4j.openapi.model.PluginConfigNetwork;
-import io.github.alersrt.pod4j.openapi.model.PluginConfigRootfs;
-import io.github.alersrt.pod4j.openapi.model.PluginConfigUser;
-import io.github.alersrt.pod4j.openapi.model.PluginEnv;
-import io.github.alersrt.pod4j.openapi.model.PluginMount;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * PluginConfig
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** PluginConfig */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class PluginConfig {
-  public static final String SERIALIZED_NAME_ARGS = "Args";
-  @SerializedName(SERIALIZED_NAME_ARGS)
-  private PluginConfigArgs args;
+    public static final String SERIALIZED_NAME_ARGS = "Args";
 
-  public static final String SERIALIZED_NAME_DESCRIPTION = "Description";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTION)
-  private String description;
+    @SerializedName(SERIALIZED_NAME_ARGS)
+    private PluginConfigArgs args;
 
-  public static final String SERIALIZED_NAME_DOCKER_VERSION = "DockerVersion";
-  @SerializedName(SERIALIZED_NAME_DOCKER_VERSION)
-  private String dockerVersion;
+    public static final String SERIALIZED_NAME_DESCRIPTION = "Description";
 
-  public static final String SERIALIZED_NAME_DOCUMENTATION = "Documentation";
-  @SerializedName(SERIALIZED_NAME_DOCUMENTATION)
-  private String documentation;
+    @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+    private String description;
 
-  public static final String SERIALIZED_NAME_ENTRYPOINT = "Entrypoint";
-  @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
-  private List<String> entrypoint = new ArrayList<>();
+    public static final String SERIALIZED_NAME_DOCKER_VERSION = "DockerVersion";
 
-  public static final String SERIALIZED_NAME_ENV = "Env";
-  @SerializedName(SERIALIZED_NAME_ENV)
-  private List<PluginEnv> env = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DOCKER_VERSION)
+    private String dockerVersion;
 
-  public static final String SERIALIZED_NAME_INTERFACE = "Interface";
-  @SerializedName(SERIALIZED_NAME_INTERFACE)
-  private PluginConfigInterface _interface;
+    public static final String SERIALIZED_NAME_DOCUMENTATION = "Documentation";
 
-  public static final String SERIALIZED_NAME_IPC_HOST = "IpcHost";
-  @SerializedName(SERIALIZED_NAME_IPC_HOST)
-  private Boolean ipcHost;
+    @SerializedName(SERIALIZED_NAME_DOCUMENTATION)
+    private String documentation;
 
-  public static final String SERIALIZED_NAME_LINUX = "Linux";
-  @SerializedName(SERIALIZED_NAME_LINUX)
-  private PluginConfigLinux linux;
+    public static final String SERIALIZED_NAME_ENTRYPOINT = "Entrypoint";
 
-  public static final String SERIALIZED_NAME_MOUNTS = "Mounts";
-  @SerializedName(SERIALIZED_NAME_MOUNTS)
-  private List<PluginMount> mounts = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
+    private List<String> entrypoint = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NETWORK = "Network";
-  @SerializedName(SERIALIZED_NAME_NETWORK)
-  private PluginConfigNetwork network;
+    public static final String SERIALIZED_NAME_ENV = "Env";
 
-  public static final String SERIALIZED_NAME_PID_HOST = "PidHost";
-  @SerializedName(SERIALIZED_NAME_PID_HOST)
-  private Boolean pidHost;
+    @SerializedName(SERIALIZED_NAME_ENV)
+    private List<PluginEnv> env = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_PROPAGATED_MOUNT = "PropagatedMount";
-  @SerializedName(SERIALIZED_NAME_PROPAGATED_MOUNT)
-  private String propagatedMount;
+    public static final String SERIALIZED_NAME_INTERFACE = "Interface";
 
-  public static final String SERIALIZED_NAME_USER = "User";
-  @SerializedName(SERIALIZED_NAME_USER)
-  private PluginConfigUser user;
+    @SerializedName(SERIALIZED_NAME_INTERFACE)
+    private PluginConfigInterface _interface;
 
-  public static final String SERIALIZED_NAME_WORK_DIR = "WorkDir";
-  @SerializedName(SERIALIZED_NAME_WORK_DIR)
-  private String workDir;
+    public static final String SERIALIZED_NAME_IPC_HOST = "IpcHost";
 
-  public static final String SERIALIZED_NAME_ROOTFS = "rootfs";
-  @SerializedName(SERIALIZED_NAME_ROOTFS)
-  private PluginConfigRootfs rootfs;
+    @SerializedName(SERIALIZED_NAME_IPC_HOST)
+    private Boolean ipcHost;
 
-  public PluginConfig() {
-  }
+    public static final String SERIALIZED_NAME_LINUX = "Linux";
 
-  public PluginConfig args(PluginConfigArgs args) {
-    this.args = args;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_LINUX)
+    private PluginConfigLinux linux;
 
-  /**
-   * Get args
-   * @return args
-   */
-  @javax.annotation.Nonnull
-  public PluginConfigArgs getArgs() {
-    return args;
-  }
+    public static final String SERIALIZED_NAME_MOUNTS = "Mounts";
 
-  public void setArgs(PluginConfigArgs args) {
-    this.args = args;
-  }
+    @SerializedName(SERIALIZED_NAME_MOUNTS)
+    private List<PluginMount> mounts = new ArrayList<>();
 
+    public static final String SERIALIZED_NAME_NETWORK = "Network";
 
-  public PluginConfig description(String description) {
-    this.description = description;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_NETWORK)
+    private PluginConfigNetwork network;
 
-  /**
-   * description
-   * @return description
-   */
-  @javax.annotation.Nonnull
-  public String getDescription() {
-    return description;
-  }
+    public static final String SERIALIZED_NAME_PID_HOST = "PidHost";
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    @SerializedName(SERIALIZED_NAME_PID_HOST)
+    private Boolean pidHost;
 
+    public static final String SERIALIZED_NAME_PROPAGATED_MOUNT = "PropagatedMount";
 
-  public PluginConfig dockerVersion(String dockerVersion) {
-    this.dockerVersion = dockerVersion;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_PROPAGATED_MOUNT)
+    private String propagatedMount;
 
-  /**
-   * Docker Version used to create the plugin
-   * @return dockerVersion
-   */
-  @javax.annotation.Nullable
-  public String getDockerVersion() {
-    return dockerVersion;
-  }
+    public static final String SERIALIZED_NAME_USER = "User";
 
-  public void setDockerVersion(String dockerVersion) {
-    this.dockerVersion = dockerVersion;
-  }
+    @SerializedName(SERIALIZED_NAME_USER)
+    private PluginConfigUser user;
 
+    public static final String SERIALIZED_NAME_WORK_DIR = "WorkDir";
 
-  public PluginConfig documentation(String documentation) {
-    this.documentation = documentation;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_WORK_DIR)
+    private String workDir;
 
-  /**
-   * documentation
-   * @return documentation
-   */
-  @javax.annotation.Nonnull
-  public String getDocumentation() {
-    return documentation;
-  }
+    public static final String SERIALIZED_NAME_ROOTFS = "rootfs";
 
-  public void setDocumentation(String documentation) {
-    this.documentation = documentation;
-  }
+    @SerializedName(SERIALIZED_NAME_ROOTFS)
+    private PluginConfigRootfs rootfs;
 
+    public PluginConfig() {}
 
-  public PluginConfig entrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-    return this;
-  }
-
-  public PluginConfig addEntrypointItem(String entrypointItem) {
-    if (this.entrypoint == null) {
-      this.entrypoint = new ArrayList<>();
+    public PluginConfig args(PluginConfigArgs args) {
+        this.args = args;
+        return this;
     }
-    this.entrypoint.add(entrypointItem);
-    return this;
-  }
 
-  /**
-   * entrypoint
-   * @return entrypoint
-   */
-  @javax.annotation.Nonnull
-  public List<String> getEntrypoint() {
-    return entrypoint;
-  }
-
-  public void setEntrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-  }
-
-
-  public PluginConfig env(List<PluginEnv> env) {
-    this.env = env;
-    return this;
-  }
-
-  public PluginConfig addEnvItem(PluginEnv envItem) {
-    if (this.env == null) {
-      this.env = new ArrayList<>();
+    /**
+     * Get args
+     *
+     * @return args
+     */
+    @javax.annotation.Nonnull
+    public PluginConfigArgs getArgs() {
+        return args;
     }
-    this.env.add(envItem);
-    return this;
-  }
 
-  /**
-   * env
-   * @return env
-   */
-  @javax.annotation.Nonnull
-  public List<PluginEnv> getEnv() {
-    return env;
-  }
-
-  public void setEnv(List<PluginEnv> env) {
-    this.env = env;
-  }
-
-
-  public PluginConfig _interface(PluginConfigInterface _interface) {
-    this._interface = _interface;
-    return this;
-  }
-
-  /**
-   * Get _interface
-   * @return _interface
-   */
-  @javax.annotation.Nonnull
-  public PluginConfigInterface getInterface() {
-    return _interface;
-  }
-
-  public void setInterface(PluginConfigInterface _interface) {
-    this._interface = _interface;
-  }
-
-
-  public PluginConfig ipcHost(Boolean ipcHost) {
-    this.ipcHost = ipcHost;
-    return this;
-  }
-
-  /**
-   * ipc host
-   * @return ipcHost
-   */
-  @javax.annotation.Nonnull
-  public Boolean getIpcHost() {
-    return ipcHost;
-  }
-
-  public void setIpcHost(Boolean ipcHost) {
-    this.ipcHost = ipcHost;
-  }
-
-
-  public PluginConfig linux(PluginConfigLinux linux) {
-    this.linux = linux;
-    return this;
-  }
-
-  /**
-   * Get linux
-   * @return linux
-   */
-  @javax.annotation.Nonnull
-  public PluginConfigLinux getLinux() {
-    return linux;
-  }
-
-  public void setLinux(PluginConfigLinux linux) {
-    this.linux = linux;
-  }
-
-
-  public PluginConfig mounts(List<PluginMount> mounts) {
-    this.mounts = mounts;
-    return this;
-  }
-
-  public PluginConfig addMountsItem(PluginMount mountsItem) {
-    if (this.mounts == null) {
-      this.mounts = new ArrayList<>();
+    public void setArgs(PluginConfigArgs args) {
+        this.args = args;
     }
-    this.mounts.add(mountsItem);
-    return this;
-  }
 
-  /**
-   * mounts
-   * @return mounts
-   */
-  @javax.annotation.Nonnull
-  public List<PluginMount> getMounts() {
-    return mounts;
-  }
-
-  public void setMounts(List<PluginMount> mounts) {
-    this.mounts = mounts;
-  }
-
-
-  public PluginConfig network(PluginConfigNetwork network) {
-    this.network = network;
-    return this;
-  }
-
-  /**
-   * Get network
-   * @return network
-   */
-  @javax.annotation.Nonnull
-  public PluginConfigNetwork getNetwork() {
-    return network;
-  }
-
-  public void setNetwork(PluginConfigNetwork network) {
-    this.network = network;
-  }
-
-
-  public PluginConfig pidHost(Boolean pidHost) {
-    this.pidHost = pidHost;
-    return this;
-  }
-
-  /**
-   * pid host
-   * @return pidHost
-   */
-  @javax.annotation.Nonnull
-  public Boolean getPidHost() {
-    return pidHost;
-  }
-
-  public void setPidHost(Boolean pidHost) {
-    this.pidHost = pidHost;
-  }
-
-
-  public PluginConfig propagatedMount(String propagatedMount) {
-    this.propagatedMount = propagatedMount;
-    return this;
-  }
-
-  /**
-   * propagated mount
-   * @return propagatedMount
-   */
-  @javax.annotation.Nonnull
-  public String getPropagatedMount() {
-    return propagatedMount;
-  }
-
-  public void setPropagatedMount(String propagatedMount) {
-    this.propagatedMount = propagatedMount;
-  }
-
-
-  public PluginConfig user(PluginConfigUser user) {
-    this.user = user;
-    return this;
-  }
-
-  /**
-   * Get user
-   * @return user
-   */
-  @javax.annotation.Nullable
-  public PluginConfigUser getUser() {
-    return user;
-  }
-
-  public void setUser(PluginConfigUser user) {
-    this.user = user;
-  }
-
-
-  public PluginConfig workDir(String workDir) {
-    this.workDir = workDir;
-    return this;
-  }
-
-  /**
-   * work dir
-   * @return workDir
-   */
-  @javax.annotation.Nonnull
-  public String getWorkDir() {
-    return workDir;
-  }
-
-  public void setWorkDir(String workDir) {
-    this.workDir = workDir;
-  }
-
-
-  public PluginConfig rootfs(PluginConfigRootfs rootfs) {
-    this.rootfs = rootfs;
-    return this;
-  }
-
-  /**
-   * Get rootfs
-   * @return rootfs
-   */
-  @javax.annotation.Nullable
-  public PluginConfigRootfs getRootfs() {
-    return rootfs;
-  }
-
-  public void setRootfs(PluginConfigRootfs rootfs) {
-    this.rootfs = rootfs;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public PluginConfig description(String description) {
+        this.description = description;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * description
+     *
+     * @return description
+     */
+    @javax.annotation.Nonnull
+    public String getDescription() {
+        return description;
     }
-    PluginConfig pluginConfig = (PluginConfig) o;
-    return Objects.equals(this.args, pluginConfig.args) &&
-        Objects.equals(this.description, pluginConfig.description) &&
-        Objects.equals(this.dockerVersion, pluginConfig.dockerVersion) &&
-        Objects.equals(this.documentation, pluginConfig.documentation) &&
-        Objects.equals(this.entrypoint, pluginConfig.entrypoint) &&
-        Objects.equals(this.env, pluginConfig.env) &&
-        Objects.equals(this._interface, pluginConfig._interface) &&
-        Objects.equals(this.ipcHost, pluginConfig.ipcHost) &&
-        Objects.equals(this.linux, pluginConfig.linux) &&
-        Objects.equals(this.mounts, pluginConfig.mounts) &&
-        Objects.equals(this.network, pluginConfig.network) &&
-        Objects.equals(this.pidHost, pluginConfig.pidHost) &&
-        Objects.equals(this.propagatedMount, pluginConfig.propagatedMount) &&
-        Objects.equals(this.user, pluginConfig.user) &&
-        Objects.equals(this.workDir, pluginConfig.workDir) &&
-        Objects.equals(this.rootfs, pluginConfig.rootfs);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(args, description, dockerVersion, documentation, entrypoint, env, _interface, ipcHost, linux, mounts, network, pidHost, propagatedMount, user, workDir, rootfs);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PluginConfig {\n");
-    sb.append("    args: ").append(toIndentedString(args)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    dockerVersion: ").append(toIndentedString(dockerVersion)).append("\n");
-    sb.append("    documentation: ").append(toIndentedString(documentation)).append("\n");
-    sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
-    sb.append("    env: ").append(toIndentedString(env)).append("\n");
-    sb.append("    _interface: ").append(toIndentedString(_interface)).append("\n");
-    sb.append("    ipcHost: ").append(toIndentedString(ipcHost)).append("\n");
-    sb.append("    linux: ").append(toIndentedString(linux)).append("\n");
-    sb.append("    mounts: ").append(toIndentedString(mounts)).append("\n");
-    sb.append("    network: ").append(toIndentedString(network)).append("\n");
-    sb.append("    pidHost: ").append(toIndentedString(pidHost)).append("\n");
-    sb.append("    propagatedMount: ").append(toIndentedString(propagatedMount)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    workDir: ").append(toIndentedString(workDir)).append("\n");
-    sb.append("    rootfs: ").append(toIndentedString(rootfs)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setDescription(String description) {
+        this.description = description;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public PluginConfig dockerVersion(String dockerVersion) {
+        this.dockerVersion = dockerVersion;
+        return this;
+    }
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
+    /**
+     * Docker Version used to create the plugin
+     *
+     * @return dockerVersion
+     */
+    @javax.annotation.Nullable
+    public String getDockerVersion() {
+        return dockerVersion;
+    }
 
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Args");
-    openapiFields.add("Description");
-    openapiFields.add("DockerVersion");
-    openapiFields.add("Documentation");
-    openapiFields.add("Entrypoint");
-    openapiFields.add("Env");
-    openapiFields.add("Interface");
-    openapiFields.add("IpcHost");
-    openapiFields.add("Linux");
-    openapiFields.add("Mounts");
-    openapiFields.add("Network");
-    openapiFields.add("PidHost");
-    openapiFields.add("PropagatedMount");
-    openapiFields.add("User");
-    openapiFields.add("WorkDir");
-    openapiFields.add("rootfs");
+    public void setDockerVersion(String dockerVersion) {
+        this.dockerVersion = dockerVersion;
+    }
 
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("Args");
-    openapiRequiredFields.add("Description");
-    openapiRequiredFields.add("Documentation");
-    openapiRequiredFields.add("Entrypoint");
-    openapiRequiredFields.add("Env");
-    openapiRequiredFields.add("Interface");
-    openapiRequiredFields.add("IpcHost");
-    openapiRequiredFields.add("Linux");
-    openapiRequiredFields.add("Mounts");
-    openapiRequiredFields.add("Network");
-    openapiRequiredFields.add("PidHost");
-    openapiRequiredFields.add("PropagatedMount");
-    openapiRequiredFields.add("WorkDir");
-  }
+    public PluginConfig documentation(String documentation) {
+        this.documentation = documentation;
+        return this;
+    }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PluginConfig
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PluginConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PluginConfig is not found in the empty JSON string", PluginConfig.openapiRequiredFields.toString()));
+    /**
+     * documentation
+     *
+     * @return documentation
+     */
+    @javax.annotation.Nonnull
+    public String getDocumentation() {
+        return documentation;
+    }
+
+    public void setDocumentation(String documentation) {
+        this.documentation = documentation;
+    }
+
+    public PluginConfig entrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
+        return this;
+    }
+
+    public PluginConfig addEntrypointItem(String entrypointItem) {
+        if (this.entrypoint == null) {
+            this.entrypoint = new ArrayList<>();
         }
-      }
+        this.entrypoint.add(entrypointItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PluginConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+    /**
+     * entrypoint
+     *
+     * @return entrypoint
+     */
+    @javax.annotation.Nonnull
+    public List<String> getEntrypoint() {
+        return entrypoint;
+    }
+
+    public void setEntrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
+    }
+
+    public PluginConfig env(List<PluginEnv> env) {
+        this.env = env;
+        return this;
+    }
+
+    public PluginConfig addEnvItem(PluginEnv envItem) {
+        if (this.env == null) {
+            this.env = new ArrayList<>();
         }
-      }
+        this.env.add(envItem);
+        return this;
+    }
 
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : PluginConfig.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+    /**
+     * env
+     *
+     * @return env
+     */
+    @javax.annotation.Nonnull
+    public List<PluginEnv> getEnv() {
+        return env;
+    }
+
+    public void setEnv(List<PluginEnv> env) {
+        this.env = env;
+    }
+
+    public PluginConfig _interface(PluginConfigInterface _interface) {
+        this._interface = _interface;
+        return this;
+    }
+
+    /**
+     * Get _interface
+     *
+     * @return _interface
+     */
+    @javax.annotation.Nonnull
+    public PluginConfigInterface getInterface() {
+        return _interface;
+    }
+
+    public void setInterface(PluginConfigInterface _interface) {
+        this._interface = _interface;
+    }
+
+    public PluginConfig ipcHost(Boolean ipcHost) {
+        this.ipcHost = ipcHost;
+        return this;
+    }
+
+    /**
+     * ipc host
+     *
+     * @return ipcHost
+     */
+    @javax.annotation.Nonnull
+    public Boolean getIpcHost() {
+        return ipcHost;
+    }
+
+    public void setIpcHost(Boolean ipcHost) {
+        this.ipcHost = ipcHost;
+    }
+
+    public PluginConfig linux(PluginConfigLinux linux) {
+        this.linux = linux;
+        return this;
+    }
+
+    /**
+     * Get linux
+     *
+     * @return linux
+     */
+    @javax.annotation.Nonnull
+    public PluginConfigLinux getLinux() {
+        return linux;
+    }
+
+    public void setLinux(PluginConfigLinux linux) {
+        this.linux = linux;
+    }
+
+    public PluginConfig mounts(List<PluginMount> mounts) {
+        this.mounts = mounts;
+        return this;
+    }
+
+    public PluginConfig addMountsItem(PluginMount mountsItem) {
+        if (this.mounts == null) {
+            this.mounts = new ArrayList<>();
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `Args`
-      PluginConfigArgs.validateJsonElement(jsonObj.get("Args"));
-      if (!jsonObj.get("Description").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Description").toString()));
-      }
-      if ((jsonObj.get("DockerVersion") != null && !jsonObj.get("DockerVersion").isJsonNull()) && !jsonObj.get("DockerVersion").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `DockerVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("DockerVersion").toString()));
-      }
-      if (!jsonObj.get("Documentation").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Documentation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Documentation").toString()));
-      }
-      // ensure the required json array is present
-      if (jsonObj.get("Entrypoint") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("Entrypoint").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("Entrypoint").toString()));
-      }
-      // ensure the json data is an array
-      if (!jsonObj.get("Env").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
-      }
+        this.mounts.add(mountsItem);
+        return this;
+    }
 
-      JsonArray jsonArrayenv = jsonObj.getAsJsonArray("Env");
-      // validate the required field `Env` (array)
-      for (int i = 0; i < jsonArrayenv.size(); i++) {
-        PluginEnv.validateJsonElement(jsonArrayenv.get(i));
-      };
-      // validate the required field `Interface`
-      PluginConfigInterface.validateJsonElement(jsonObj.get("Interface"));
-      // validate the required field `Linux`
-      PluginConfigLinux.validateJsonElement(jsonObj.get("Linux"));
-      // ensure the json data is an array
-      if (!jsonObj.get("Mounts").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Mounts` to be an array in the JSON string but got `%s`", jsonObj.get("Mounts").toString()));
-      }
+    /**
+     * mounts
+     *
+     * @return mounts
+     */
+    @javax.annotation.Nonnull
+    public List<PluginMount> getMounts() {
+        return mounts;
+    }
 
-      JsonArray jsonArraymounts = jsonObj.getAsJsonArray("Mounts");
-      // validate the required field `Mounts` (array)
-      for (int i = 0; i < jsonArraymounts.size(); i++) {
-        PluginMount.validateJsonElement(jsonArraymounts.get(i));
-      };
-      // validate the required field `Network`
-      PluginConfigNetwork.validateJsonElement(jsonObj.get("Network"));
-      if (!jsonObj.get("PropagatedMount").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `PropagatedMount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PropagatedMount").toString()));
-      }
-      // validate the optional field `User`
-      if (jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) {
-        PluginConfigUser.validateJsonElement(jsonObj.get("User"));
-      }
-      if (!jsonObj.get("WorkDir").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `WorkDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("WorkDir").toString()));
-      }
-      // validate the optional field `rootfs`
-      if (jsonObj.get("rootfs") != null && !jsonObj.get("rootfs").isJsonNull()) {
-        PluginConfigRootfs.validateJsonElement(jsonObj.get("rootfs"));
-      }
-  }
+    public void setMounts(List<PluginMount> mounts) {
+        this.mounts = mounts;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public PluginConfig network(PluginConfigNetwork network) {
+        this.network = network;
+        return this;
+    }
+
+    /**
+     * Get network
+     *
+     * @return network
+     */
+    @javax.annotation.Nonnull
+    public PluginConfigNetwork getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(PluginConfigNetwork network) {
+        this.network = network;
+    }
+
+    public PluginConfig pidHost(Boolean pidHost) {
+        this.pidHost = pidHost;
+        return this;
+    }
+
+    /**
+     * pid host
+     *
+     * @return pidHost
+     */
+    @javax.annotation.Nonnull
+    public Boolean getPidHost() {
+        return pidHost;
+    }
+
+    public void setPidHost(Boolean pidHost) {
+        this.pidHost = pidHost;
+    }
+
+    public PluginConfig propagatedMount(String propagatedMount) {
+        this.propagatedMount = propagatedMount;
+        return this;
+    }
+
+    /**
+     * propagated mount
+     *
+     * @return propagatedMount
+     */
+    @javax.annotation.Nonnull
+    public String getPropagatedMount() {
+        return propagatedMount;
+    }
+
+    public void setPropagatedMount(String propagatedMount) {
+        this.propagatedMount = propagatedMount;
+    }
+
+    public PluginConfig user(PluginConfigUser user) {
+        this.user = user;
+        return this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return user
+     */
+    @javax.annotation.Nullable
+    public PluginConfigUser getUser() {
+        return user;
+    }
+
+    public void setUser(PluginConfigUser user) {
+        this.user = user;
+    }
+
+    public PluginConfig workDir(String workDir) {
+        this.workDir = workDir;
+        return this;
+    }
+
+    /**
+     * work dir
+     *
+     * @return workDir
+     */
+    @javax.annotation.Nonnull
+    public String getWorkDir() {
+        return workDir;
+    }
+
+    public void setWorkDir(String workDir) {
+        this.workDir = workDir;
+    }
+
+    public PluginConfig rootfs(PluginConfigRootfs rootfs) {
+        this.rootfs = rootfs;
+        return this;
+    }
+
+    /**
+     * Get rootfs
+     *
+     * @return rootfs
+     */
+    @javax.annotation.Nullable
+    public PluginConfigRootfs getRootfs() {
+        return rootfs;
+    }
+
+    public void setRootfs(PluginConfigRootfs rootfs) {
+        this.rootfs = rootfs;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PluginConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PluginConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PluginConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PluginConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PluginConfig>() {
-           @Override
-           public void write(JsonWriter out, PluginConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PluginConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PluginConfig pluginConfig = (PluginConfig) o;
+        return Objects.equals(this.args, pluginConfig.args)
+                && Objects.equals(this.description, pluginConfig.description)
+                && Objects.equals(this.dockerVersion, pluginConfig.dockerVersion)
+                && Objects.equals(this.documentation, pluginConfig.documentation)
+                && Objects.equals(this.entrypoint, pluginConfig.entrypoint)
+                && Objects.equals(this.env, pluginConfig.env)
+                && Objects.equals(this._interface, pluginConfig._interface)
+                && Objects.equals(this.ipcHost, pluginConfig.ipcHost)
+                && Objects.equals(this.linux, pluginConfig.linux)
+                && Objects.equals(this.mounts, pluginConfig.mounts)
+                && Objects.equals(this.network, pluginConfig.network)
+                && Objects.equals(this.pidHost, pluginConfig.pidHost)
+                && Objects.equals(this.propagatedMount, pluginConfig.propagatedMount)
+                && Objects.equals(this.user, pluginConfig.user)
+                && Objects.equals(this.workDir, pluginConfig.workDir)
+                && Objects.equals(this.rootfs, pluginConfig.rootfs);
     }
-  }
 
-  /**
-   * Create an instance of PluginConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PluginConfig
-   * @throws IOException if the JSON string is invalid with respect to PluginConfig
-   */
-  public static PluginConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PluginConfig.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                args,
+                description,
+                dockerVersion,
+                documentation,
+                entrypoint,
+                env,
+                _interface,
+                ipcHost,
+                linux,
+                mounts,
+                network,
+                pidHost,
+                propagatedMount,
+                user,
+                workDir,
+                rootfs);
+    }
 
-  /**
-   * Convert an instance of PluginConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class PluginConfig {\n");
+        sb.append("    args: ").append(toIndentedString(args)).append("\n");
+        sb.append("    description: ").append(toIndentedString(description)).append("\n");
+        sb.append("    dockerVersion: ").append(toIndentedString(dockerVersion)).append("\n");
+        sb.append("    documentation: ").append(toIndentedString(documentation)).append("\n");
+        sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
+        sb.append("    env: ").append(toIndentedString(env)).append("\n");
+        sb.append("    _interface: ").append(toIndentedString(_interface)).append("\n");
+        sb.append("    ipcHost: ").append(toIndentedString(ipcHost)).append("\n");
+        sb.append("    linux: ").append(toIndentedString(linux)).append("\n");
+        sb.append("    mounts: ").append(toIndentedString(mounts)).append("\n");
+        sb.append("    network: ").append(toIndentedString(network)).append("\n");
+        sb.append("    pidHost: ").append(toIndentedString(pidHost)).append("\n");
+        sb.append("    propagatedMount: ").append(toIndentedString(propagatedMount)).append("\n");
+        sb.append("    user: ").append(toIndentedString(user)).append("\n");
+        sb.append("    workDir: ").append(toIndentedString(workDir)).append("\n");
+        sb.append("    rootfs: ").append(toIndentedString(rootfs)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Args");
+        openapiFields.add("Description");
+        openapiFields.add("DockerVersion");
+        openapiFields.add("Documentation");
+        openapiFields.add("Entrypoint");
+        openapiFields.add("Env");
+        openapiFields.add("Interface");
+        openapiFields.add("IpcHost");
+        openapiFields.add("Linux");
+        openapiFields.add("Mounts");
+        openapiFields.add("Network");
+        openapiFields.add("PidHost");
+        openapiFields.add("PropagatedMount");
+        openapiFields.add("User");
+        openapiFields.add("WorkDir");
+        openapiFields.add("rootfs");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("Args");
+        openapiRequiredFields.add("Description");
+        openapiRequiredFields.add("Documentation");
+        openapiRequiredFields.add("Entrypoint");
+        openapiRequiredFields.add("Env");
+        openapiRequiredFields.add("Interface");
+        openapiRequiredFields.add("IpcHost");
+        openapiRequiredFields.add("Linux");
+        openapiRequiredFields.add("Mounts");
+        openapiRequiredFields.add("Network");
+        openapiRequiredFields.add("PidHost");
+        openapiRequiredFields.add("PropagatedMount");
+        openapiRequiredFields.add("WorkDir");
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to PluginConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!PluginConfig.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in PluginConfig is not found in the empty"
+                                        + " JSON string",
+                                PluginConfig.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!PluginConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `PluginConfig` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : PluginConfig.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field `%s` is not found in the JSON string: %s",
+                                requiredField, jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the required field `Args`
+        PluginConfigArgs.validateJsonElement(jsonObj.get("Args"));
+        if (!jsonObj.get("Description").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Description` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("Description").toString()));
+        }
+        if ((jsonObj.get("DockerVersion") != null && !jsonObj.get("DockerVersion").isJsonNull())
+                && !jsonObj.get("DockerVersion").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `DockerVersion` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("DockerVersion").toString()));
+        }
+        if (!jsonObj.get("Documentation").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Documentation` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("Documentation").toString()));
+        }
+        // ensure the required json array is present
+        if (jsonObj.get("Entrypoint") == null) {
+            throw new IllegalArgumentException(
+                    "Expected the field `linkedContent` to be an array in the JSON string but got"
+                            + " `null`");
+        } else if (!jsonObj.get("Entrypoint").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Entrypoint` to be an array in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Entrypoint").toString()));
+        }
+        // ensure the json data is an array
+        if (!jsonObj.get("Env").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Env` to be an array in the JSON string but got"
+                                    + " `%s`",
+                            jsonObj.get("Env").toString()));
+        }
+
+        JsonArray jsonArrayenv = jsonObj.getAsJsonArray("Env");
+        // validate the required field `Env` (array)
+        for (int i = 0; i < jsonArrayenv.size(); i++) {
+            PluginEnv.validateJsonElement(jsonArrayenv.get(i));
+        }
+        ;
+        // validate the required field `Interface`
+        PluginConfigInterface.validateJsonElement(jsonObj.get("Interface"));
+        // validate the required field `Linux`
+        PluginConfigLinux.validateJsonElement(jsonObj.get("Linux"));
+        // ensure the json data is an array
+        if (!jsonObj.get("Mounts").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Mounts` to be an array in the JSON string but got"
+                                    + " `%s`",
+                            jsonObj.get("Mounts").toString()));
+        }
+
+        JsonArray jsonArraymounts = jsonObj.getAsJsonArray("Mounts");
+        // validate the required field `Mounts` (array)
+        for (int i = 0; i < jsonArraymounts.size(); i++) {
+            PluginMount.validateJsonElement(jsonArraymounts.get(i));
+        }
+        ;
+        // validate the required field `Network`
+        PluginConfigNetwork.validateJsonElement(jsonObj.get("Network"));
+        if (!jsonObj.get("PropagatedMount").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `PropagatedMount` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("PropagatedMount").toString()));
+        }
+        // validate the optional field `User`
+        if (jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) {
+            PluginConfigUser.validateJsonElement(jsonObj.get("User"));
+        }
+        if (!jsonObj.get("WorkDir").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `WorkDir` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("WorkDir").toString()));
+        }
+        // validate the optional field `rootfs`
+        if (jsonObj.get("rootfs") != null && !jsonObj.get("rootfs").isJsonNull()) {
+            PluginConfigRootfs.validateJsonElement(jsonObj.get("rootfs"));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PluginConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PluginConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PluginConfig> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(PluginConfig.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<PluginConfig>() {
+                        @Override
+                        public void write(JsonWriter out, PluginConfig value) throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public PluginConfig read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of PluginConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PluginConfig
+     * @throws IOException if the JSON string is invalid with respect to PluginConfig
+     */
+    public static PluginConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PluginConfig.class);
+    }
+
+    /**
+     * Convert an instance of PluginConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

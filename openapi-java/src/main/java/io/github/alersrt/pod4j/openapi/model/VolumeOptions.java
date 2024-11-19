@@ -10,290 +10,285 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Driver;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * VolumeOptions
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** VolumeOptions */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class VolumeOptions {
-  public static final String SERIALIZED_NAME_DRIVER_CONFIG = "DriverConfig";
-  @SerializedName(SERIALIZED_NAME_DRIVER_CONFIG)
-  private Driver driverConfig;
+    public static final String SERIALIZED_NAME_DRIVER_CONFIG = "DriverConfig";
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_DRIVER_CONFIG)
+    private Driver driverConfig;
 
-  public static final String SERIALIZED_NAME_NO_COPY = "NoCopy";
-  @SerializedName(SERIALIZED_NAME_NO_COPY)
-  private Boolean noCopy;
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
 
-  public static final String SERIALIZED_NAME_SUBPATH = "Subpath";
-  @SerializedName(SERIALIZED_NAME_SUBPATH)
-  private String subpath;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
 
-  public VolumeOptions() {
-  }
+    public static final String SERIALIZED_NAME_NO_COPY = "NoCopy";
 
-  public VolumeOptions driverConfig(Driver driverConfig) {
-    this.driverConfig = driverConfig;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_NO_COPY)
+    private Boolean noCopy;
 
-  /**
-   * Get driverConfig
-   * @return driverConfig
-   */
-  @javax.annotation.Nullable
-  public Driver getDriverConfig() {
-    return driverConfig;
-  }
+    public static final String SERIALIZED_NAME_SUBPATH = "Subpath";
 
-  public void setDriverConfig(Driver driverConfig) {
-    this.driverConfig = driverConfig;
-  }
+    @SerializedName(SERIALIZED_NAME_SUBPATH)
+    private String subpath;
 
+    public VolumeOptions() {}
 
-  public VolumeOptions labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public VolumeOptions putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
+    public VolumeOptions driverConfig(Driver driverConfig) {
+        this.driverConfig = driverConfig;
+        return this;
     }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
 
-  /**
-   * Get labels
-   * @return labels
-   */
-  @javax.annotation.Nullable
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public VolumeOptions noCopy(Boolean noCopy) {
-    this.noCopy = noCopy;
-    return this;
-  }
-
-  /**
-   * Get noCopy
-   * @return noCopy
-   */
-  @javax.annotation.Nullable
-  public Boolean getNoCopy() {
-    return noCopy;
-  }
-
-  public void setNoCopy(Boolean noCopy) {
-    this.noCopy = noCopy;
-  }
-
-
-  public VolumeOptions subpath(String subpath) {
-    this.subpath = subpath;
-    return this;
-  }
-
-  /**
-   * Get subpath
-   * @return subpath
-   */
-  @javax.annotation.Nullable
-  public String getSubpath() {
-    return subpath;
-  }
-
-  public void setSubpath(String subpath) {
-    this.subpath = subpath;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get driverConfig
+     *
+     * @return driverConfig
+     */
+    @javax.annotation.Nullable
+    public Driver getDriverConfig() {
+        return driverConfig;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public void setDriverConfig(Driver driverConfig) {
+        this.driverConfig = driverConfig;
     }
-    VolumeOptions volumeOptions = (VolumeOptions) o;
-    return Objects.equals(this.driverConfig, volumeOptions.driverConfig) &&
-        Objects.equals(this.labels, volumeOptions.labels) &&
-        Objects.equals(this.noCopy, volumeOptions.noCopy) &&
-        Objects.equals(this.subpath, volumeOptions.subpath);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(driverConfig, labels, noCopy, subpath);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class VolumeOptions {\n");
-    sb.append("    driverConfig: ").append(toIndentedString(driverConfig)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    noCopy: ").append(toIndentedString(noCopy)).append("\n");
-    sb.append("    subpath: ").append(toIndentedString(subpath)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public VolumeOptions labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("DriverConfig");
-    openapiFields.add("Labels");
-    openapiFields.add("NoCopy");
-    openapiFields.add("Subpath");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
-
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to VolumeOptions
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!VolumeOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in VolumeOptions is not found in the empty JSON string", VolumeOptions.openapiRequiredFields.toString()));
+    public VolumeOptions putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
         }
-      }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!VolumeOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `VolumeOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `DriverConfig`
-      if (jsonObj.get("DriverConfig") != null && !jsonObj.get("DriverConfig").isJsonNull()) {
-        Driver.validateJsonElement(jsonObj.get("DriverConfig"));
-      }
-      if ((jsonObj.get("Subpath") != null && !jsonObj.get("Subpath").isJsonNull()) && !jsonObj.get("Subpath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Subpath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Subpath").toString()));
-      }
-  }
+    /**
+     * Get labels
+     *
+     * @return labels
+     */
+    @javax.annotation.Nullable
+    public Map<String, String> getLabels() {
+        return labels;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public VolumeOptions noCopy(Boolean noCopy) {
+        this.noCopy = noCopy;
+        return this;
+    }
+
+    /**
+     * Get noCopy
+     *
+     * @return noCopy
+     */
+    @javax.annotation.Nullable
+    public Boolean getNoCopy() {
+        return noCopy;
+    }
+
+    public void setNoCopy(Boolean noCopy) {
+        this.noCopy = noCopy;
+    }
+
+    public VolumeOptions subpath(String subpath) {
+        this.subpath = subpath;
+        return this;
+    }
+
+    /**
+     * Get subpath
+     *
+     * @return subpath
+     */
+    @javax.annotation.Nullable
+    public String getSubpath() {
+        return subpath;
+    }
+
+    public void setSubpath(String subpath) {
+        this.subpath = subpath;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!VolumeOptions.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'VolumeOptions' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<VolumeOptions> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(VolumeOptions.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<VolumeOptions>() {
-           @Override
-           public void write(JsonWriter out, VolumeOptions value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public VolumeOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        VolumeOptions volumeOptions = (VolumeOptions) o;
+        return Objects.equals(this.driverConfig, volumeOptions.driverConfig)
+                && Objects.equals(this.labels, volumeOptions.labels)
+                && Objects.equals(this.noCopy, volumeOptions.noCopy)
+                && Objects.equals(this.subpath, volumeOptions.subpath);
     }
-  }
 
-  /**
-   * Create an instance of VolumeOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of VolumeOptions
-   * @throws IOException if the JSON string is invalid with respect to VolumeOptions
-   */
-  public static VolumeOptions fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, VolumeOptions.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(driverConfig, labels, noCopy, subpath);
+    }
 
-  /**
-   * Convert an instance of VolumeOptions to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class VolumeOptions {\n");
+        sb.append("    driverConfig: ").append(toIndentedString(driverConfig)).append("\n");
+        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+        sb.append("    noCopy: ").append(toIndentedString(noCopy)).append("\n");
+        sb.append("    subpath: ").append(toIndentedString(subpath)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("DriverConfig");
+        openapiFields.add("Labels");
+        openapiFields.add("NoCopy");
+        openapiFields.add("Subpath");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to VolumeOptions
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!VolumeOptions.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in VolumeOptions is not found in the"
+                                        + " empty JSON string",
+                                VolumeOptions.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!VolumeOptions.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `VolumeOptions` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `DriverConfig`
+        if (jsonObj.get("DriverConfig") != null && !jsonObj.get("DriverConfig").isJsonNull()) {
+            Driver.validateJsonElement(jsonObj.get("DriverConfig"));
+        }
+        if ((jsonObj.get("Subpath") != null && !jsonObj.get("Subpath").isJsonNull())
+                && !jsonObj.get("Subpath").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Subpath` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("Subpath").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!VolumeOptions.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'VolumeOptions' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<VolumeOptions> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(VolumeOptions.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<VolumeOptions>() {
+                        @Override
+                        public void write(JsonWriter out, VolumeOptions value) throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public VolumeOptions read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of VolumeOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of VolumeOptions
+     * @throws IOException if the JSON string is invalid with respect to VolumeOptions
+     */
+    public static VolumeOptions fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, VolumeOptions.class);
+    }
+
+    /**
+     * Convert an instance of VolumeOptions to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

@@ -10,48 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ConnectOptions
- */
+/** Model tests for ConnectOptions */
 public class ConnectOptionsTest {
     private final ConnectOptions model = new ConnectOptions();
 
-    /**
-     * Model tests for ConnectOptions
-     */
+    /** Model tests for ConnectOptions */
     @Test
     public void testConnectOptions() {
         // TODO: test ConnectOptions
     }
 
-    /**
-     * Test the property 'container'
-     */
+    /** Test the property 'container' */
     @Test
     public void containerTest() {
         // TODO: test container
     }
 
-    /**
-     * Test the property 'endpointConfig'
-     */
+    /** Test the property 'endpointConfig' */
     @Test
     public void endpointConfigTest() {
         // TODO: test endpointConfig
     }
-
 }

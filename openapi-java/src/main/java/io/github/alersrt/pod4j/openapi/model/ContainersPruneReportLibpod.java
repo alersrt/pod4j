@@ -10,264 +10,275 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import io.github.alersrt.pod4j.openapi.JSON;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import org.openapitools.jackson.nullable.JsonNullable;
 
-/**
- * ContainersPruneReportLibpod
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** ContainersPruneReportLibpod */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class ContainersPruneReportLibpod {
-  public static final String SERIALIZED_NAME_ERR = "Err";
-  @SerializedName(SERIALIZED_NAME_ERR)
-  private String err;
+    public static final String SERIALIZED_NAME_ERR = "Err";
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+    @SerializedName(SERIALIZED_NAME_ERR)
+    private String err;
 
-  public static final String SERIALIZED_NAME_SIZE = "Size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
-  private Long size;
+    public static final String SERIALIZED_NAME_ID = "Id";
 
-  public ContainersPruneReportLibpod() {
-  }
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
 
-  public ContainersPruneReportLibpod err(String err) {
-    this.err = err;
-    return this;
-  }
+    public static final String SERIALIZED_NAME_SIZE = "Size";
 
-  /**
-   * Error which occurred during prune operation (if any). This field is optional and may be omitted if no error occurred.
-   * @return err
-   */
-  @javax.annotation.Nullable
-  public String getErr() {
-    return err;
-  }
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Long size;
 
-  public void setErr(String err) {
-    this.err = err;
-  }
+    public ContainersPruneReportLibpod() {}
 
-
-  public ContainersPruneReportLibpod id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @javax.annotation.Nullable
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ContainersPruneReportLibpod size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Get size
-   * @return size
-   */
-  @javax.annotation.Nullable
-  public Long getSize() {
-    return size;
-  }
-
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ContainersPruneReportLibpod err(String err) {
+        this.err = err;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Error which occurred during prune operation (if any). This field is optional and may be
+     * omitted if no error occurred.
+     *
+     * @return err
+     */
+    @javax.annotation.Nullable
+    public String getErr() {
+        return err;
     }
-    ContainersPruneReportLibpod containersPruneReportLibpod = (ContainersPruneReportLibpod) o;
-    return Objects.equals(this.err, containersPruneReportLibpod.err) &&
-        Objects.equals(this.id, containersPruneReportLibpod.id) &&
-        Objects.equals(this.size, containersPruneReportLibpod.size);
-  }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(err, id, size);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
+    public void setErr(String err) {
+        this.err = err;
     }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
-  }
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ContainersPruneReportLibpod {\n");
-    sb.append("    err: ").append(toIndentedString(err)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public ContainersPruneReportLibpod id(String id) {
+        this.id = id;
+        return this;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @javax.annotation.Nullable
+    public String getId() {
+        return id;
+    }
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Err");
-    openapiFields.add("Id");
-    openapiFields.add("Size");
+    public ContainersPruneReportLibpod size(Long size) {
+        this.size = size;
+        return this;
+    }
 
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
+    /**
+     * Get size
+     *
+     * @return size
+     */
+    @javax.annotation.Nullable
+    public Long getSize() {
+        return size;
+    }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainersPruneReportLibpod
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainersPruneReportLibpod.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainersPruneReportLibpod is not found in the empty JSON string", ContainersPruneReportLibpod.openapiRequiredFields.toString()));
-        }
-      }
+    public void setSize(Long size) {
+        this.size = size;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainersPruneReportLibpod.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainersPruneReportLibpod` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Err") != null && !jsonObj.get("Err").isJsonNull()) && !jsonObj.get("Err").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Err` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Err").toString()));
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainersPruneReportLibpod.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainersPruneReportLibpod' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainersPruneReportLibpod> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainersPruneReportLibpod.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainersPruneReportLibpod>() {
-           @Override
-           public void write(JsonWriter out, ContainersPruneReportLibpod value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainersPruneReportLibpod read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ContainersPruneReportLibpod containersPruneReportLibpod = (ContainersPruneReportLibpod) o;
+        return Objects.equals(this.err, containersPruneReportLibpod.err)
+                && Objects.equals(this.id, containersPruneReportLibpod.id)
+                && Objects.equals(this.size, containersPruneReportLibpod.size);
     }
-  }
 
-  /**
-   * Create an instance of ContainersPruneReportLibpod given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainersPruneReportLibpod
-   * @throws IOException if the JSON string is invalid with respect to ContainersPruneReportLibpod
-   */
-  public static ContainersPruneReportLibpod fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainersPruneReportLibpod.class);
-  }
+    private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+        return a == b
+                || (a != null
+                        && b != null
+                        && a.isPresent()
+                        && b.isPresent()
+                        && Objects.deepEquals(a.get(), b.get()));
+    }
 
-  /**
-   * Convert an instance of ContainersPruneReportLibpod to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(err, id, size);
+    }
+
+    private static <T> int hashCodeNullable(JsonNullable<T> a) {
+        if (a == null) {
+            return 1;
+        }
+        return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ContainersPruneReportLibpod {\n");
+        sb.append("    err: ").append(toIndentedString(err)).append("\n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    size: ").append(toIndentedString(size)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Err");
+        openapiFields.add("Id");
+        openapiFields.add("Size");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to
+     *     ContainersPruneReportLibpod
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ContainersPruneReportLibpod.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in ContainersPruneReportLibpod is not"
+                                        + " found in the empty JSON string",
+                                ContainersPruneReportLibpod.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ContainersPruneReportLibpod.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `ContainersPruneReportLibpod` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Err") != null && !jsonObj.get("Err").isJsonNull())
+                && !jsonObj.get("Err").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Err` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Err").toString()));
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull())
+                && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("Id").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ContainersPruneReportLibpod.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ContainersPruneReportLibpod' and its
+                // subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ContainersPruneReportLibpod> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(ContainersPruneReportLibpod.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<ContainersPruneReportLibpod>() {
+                        @Override
+                        public void write(JsonWriter out, ContainersPruneReportLibpod value)
+                                throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public ContainersPruneReportLibpod read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of ContainersPruneReportLibpod given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainersPruneReportLibpod
+     * @throws IOException if the JSON string is invalid with respect to ContainersPruneReportLibpod
+     */
+    public static ContainersPruneReportLibpod fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ContainersPruneReportLibpod.class);
+    }
+
+    /**
+     * Convert an instance of ContainersPruneReportLibpod to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

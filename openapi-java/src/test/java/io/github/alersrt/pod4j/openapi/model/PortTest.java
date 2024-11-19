@@ -10,63 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Port
- */
+/** Model tests for Port */
 public class PortTest {
     private final Port model = new Port();
 
-    /**
-     * Model tests for Port
-     */
+    /** Model tests for Port */
     @Test
     public void testPort() {
         // TODO: test Port
     }
 
-    /**
-     * Test the property 'IP'
-     */
+    /** Test the property 'IP' */
     @Test
     public void IPTest() {
         // TODO: test IP
     }
 
-    /**
-     * Test the property 'privatePort'
-     */
+    /** Test the property 'privatePort' */
     @Test
     public void privatePortTest() {
         // TODO: test privatePort
     }
 
-    /**
-     * Test the property 'publicPort'
-     */
+    /** Test the property 'publicPort' */
     @Test
     public void publicPortTest() {
         // TODO: test publicPort
     }
 
-    /**
-     * Test the property 'type'
-     */
+    /** Test the property 'type' */
     @Test
     public void typeTest() {
         // TODO: test type
     }
-
 }

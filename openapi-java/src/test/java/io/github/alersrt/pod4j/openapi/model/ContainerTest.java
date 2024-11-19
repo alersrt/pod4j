@@ -10,202 +10,137 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Config;
-import io.github.alersrt.pod4j.openapi.model.HostConfig;
-import io.github.alersrt.pod4j.openapi.model.MountPoint;
-import io.github.alersrt.pod4j.openapi.model.NetworkingConfig;
-import io.github.alersrt.pod4j.openapi.model.Platform;
-import io.github.alersrt.pod4j.openapi.model.Port;
-import io.github.alersrt.pod4j.openapi.model.SummaryNetworkSettings;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Container
- */
+/** Model tests for Container */
 public class ContainerTest {
     private final Container model = new Container();
 
-    /**
-     * Model tests for Container
-     */
+    /** Model tests for Container */
     @Test
     public void testContainer() {
         // TODO: test Container
     }
 
-    /**
-     * Test the property 'command'
-     */
+    /** Test the property 'command' */
     @Test
     public void commandTest() {
         // TODO: test command
     }
 
-    /**
-     * Test the property 'config'
-     */
+    /** Test the property 'config' */
     @Test
     public void configTest() {
         // TODO: test config
     }
 
-    /**
-     * Test the property 'created'
-     */
+    /** Test the property 'created' */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /**
-     * Test the property 'defaultReadOnlyNonRecursive'
-     */
+    /** Test the property 'defaultReadOnlyNonRecursive' */
     @Test
     public void defaultReadOnlyNonRecursiveTest() {
         // TODO: test defaultReadOnlyNonRecursive
     }
 
-    /**
-     * Test the property 'hostConfig'
-     */
+    /** Test the property 'hostConfig' */
     @Test
     public void hostConfigTest() {
         // TODO: test hostConfig
     }
 
-    /**
-     * Test the property 'id'
-     */
+    /** Test the property 'id' */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /**
-     * Test the property 'image'
-     */
+    /** Test the property 'image' */
     @Test
     public void imageTest() {
         // TODO: test image
     }
 
-    /**
-     * Test the property 'imageID'
-     */
+    /** Test the property 'imageID' */
     @Test
     public void imageIDTest() {
         // TODO: test imageID
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'mounts'
-     */
+    /** Test the property 'mounts' */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'names'
-     */
+    /** Test the property 'names' */
     @Test
     public void namesTest() {
         // TODO: test names
     }
 
-    /**
-     * Test the property 'networkSettings'
-     */
+    /** Test the property 'networkSettings' */
     @Test
     public void networkSettingsTest() {
         // TODO: test networkSettings
     }
 
-    /**
-     * Test the property 'networkingConfig'
-     */
+    /** Test the property 'networkingConfig' */
     @Test
     public void networkingConfigTest() {
         // TODO: test networkingConfig
     }
 
-    /**
-     * Test the property 'platform'
-     */
+    /** Test the property 'platform' */
     @Test
     public void platformTest() {
         // TODO: test platform
     }
 
-    /**
-     * Test the property 'ports'
-     */
+    /** Test the property 'ports' */
     @Test
     public void portsTest() {
         // TODO: test ports
     }
 
-    /**
-     * Test the property 'sizeRootFs'
-     */
+    /** Test the property 'sizeRootFs' */
     @Test
     public void sizeRootFsTest() {
         // TODO: test sizeRootFs
     }
 
-    /**
-     * Test the property 'sizeRw'
-     */
+    /** Test the property 'sizeRw' */
     @Test
     public void sizeRwTest() {
         // TODO: test sizeRw
     }
 
-    /**
-     * Test the property 'state'
-     */
+    /** Test the property 'state' */
     @Test
     public void stateTest() {
         // TODO: test state
     }
 
-    /**
-     * Test the property 'status'
-     */
+    /** Test the property 'status' */
     @Test
     public void statusTest() {
         // TODO: test status
     }
-
 }

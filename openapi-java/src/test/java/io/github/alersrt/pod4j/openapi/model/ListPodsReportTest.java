@@ -10,117 +10,77 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.ListPodContainer;
-import java.io.IOException;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ListPodsReport
- */
+/** Model tests for ListPodsReport */
 public class ListPodsReportTest {
     private final ListPodsReport model = new ListPodsReport();
 
-    /**
-     * Model tests for ListPodsReport
-     */
+    /** Model tests for ListPodsReport */
     @Test
     public void testListPodsReport() {
         // TODO: test ListPodsReport
     }
 
-    /**
-     * Test the property 'cgroup'
-     */
+    /** Test the property 'cgroup' */
     @Test
     public void cgroupTest() {
         // TODO: test cgroup
     }
 
-    /**
-     * Test the property 'containers'
-     */
+    /** Test the property 'containers' */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /**
-     * Test the property 'created'
-     */
+    /** Test the property 'created' */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /**
-     * Test the property 'id'
-     */
+    /** Test the property 'id' */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /**
-     * Test the property 'infraId'
-     */
+    /** Test the property 'infraId' */
     @Test
     public void infraIdTest() {
         // TODO: test infraId
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'name'
-     */
+    /** Test the property 'name' */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /**
-     * Test the property 'namespace'
-     */
+    /** Test the property 'namespace' */
     @Test
     public void namespaceTest() {
         // TODO: test namespace
     }
 
-    /**
-     * Test the property 'networks'
-     */
+    /** Test the property 'networks' */
     @Test
     public void networksTest() {
         // TODO: test networks
     }
 
-    /**
-     * Test the property 'status'
-     */
+    /** Test the property 'status' */
     @Test
     public void statusTest() {
         // TODO: test status
     }
-
 }

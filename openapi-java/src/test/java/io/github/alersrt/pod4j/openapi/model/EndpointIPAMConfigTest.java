@@ -10,57 +10,35 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for EndpointIPAMConfig
- */
+/** Model tests for EndpointIPAMConfig */
 public class EndpointIPAMConfigTest {
     private final EndpointIPAMConfig model = new EndpointIPAMConfig();
 
-    /**
-     * Model tests for EndpointIPAMConfig
-     */
+    /** Model tests for EndpointIPAMConfig */
     @Test
     public void testEndpointIPAMConfig() {
         // TODO: test EndpointIPAMConfig
     }
 
-    /**
-     * Test the property 'ipv4Address'
-     */
+    /** Test the property 'ipv4Address' */
     @Test
     public void ipv4AddressTest() {
         // TODO: test ipv4Address
     }
 
-    /**
-     * Test the property 'ipv6Address'
-     */
+    /** Test the property 'ipv6Address' */
     @Test
     public void ipv6AddressTest() {
         // TODO: test ipv6Address
     }
 
-    /**
-     * Test the property 'linkLocalIPs'
-     */
+    /** Test the property 'linkLocalIPs' */
     @Test
     public void linkLocalIPsTest() {
         // TODO: test linkLocalIPs
     }
-
 }

@@ -10,236 +10,167 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.HealthcheckConfig;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Config
- */
+/** Model tests for Config */
 public class ConfigTest {
     private final Config model = new Config();
 
-    /**
-     * Model tests for Config
-     */
+    /** Model tests for Config */
     @Test
     public void testConfig() {
         // TODO: test Config
     }
 
-    /**
-     * Test the property 'argsEscaped'
-     */
+    /** Test the property 'argsEscaped' */
     @Test
     public void argsEscapedTest() {
         // TODO: test argsEscaped
     }
 
-    /**
-     * Test the property 'attachStderr'
-     */
+    /** Test the property 'attachStderr' */
     @Test
     public void attachStderrTest() {
         // TODO: test attachStderr
     }
 
-    /**
-     * Test the property 'attachStdin'
-     */
+    /** Test the property 'attachStdin' */
     @Test
     public void attachStdinTest() {
         // TODO: test attachStdin
     }
 
-    /**
-     * Test the property 'attachStdout'
-     */
+    /** Test the property 'attachStdout' */
     @Test
     public void attachStdoutTest() {
         // TODO: test attachStdout
     }
 
-    /**
-     * Test the property 'cmd'
-     */
+    /** Test the property 'cmd' */
     @Test
     public void cmdTest() {
         // TODO: test cmd
     }
 
-    /**
-     * Test the property 'domainname'
-     */
+    /** Test the property 'domainname' */
     @Test
     public void domainnameTest() {
         // TODO: test domainname
     }
 
-    /**
-     * Test the property 'entrypoint'
-     */
+    /** Test the property 'entrypoint' */
     @Test
     public void entrypointTest() {
         // TODO: test entrypoint
     }
 
-    /**
-     * Test the property 'env'
-     */
+    /** Test the property 'env' */
     @Test
     public void envTest() {
         // TODO: test env
     }
 
-    /**
-     * Test the property 'exposedPorts'
-     */
+    /** Test the property 'exposedPorts' */
     @Test
     public void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
-    /**
-     * Test the property 'healthcheck'
-     */
+    /** Test the property 'healthcheck' */
     @Test
     public void healthcheckTest() {
         // TODO: test healthcheck
     }
 
-    /**
-     * Test the property 'hostname'
-     */
+    /** Test the property 'hostname' */
     @Test
     public void hostnameTest() {
         // TODO: test hostname
     }
 
-    /**
-     * Test the property 'image'
-     */
+    /** Test the property 'image' */
     @Test
     public void imageTest() {
         // TODO: test image
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'macAddress'
-     */
+    /** Test the property 'macAddress' */
     @Test
     public void macAddressTest() {
         // TODO: test macAddress
     }
 
-    /**
-     * Test the property 'networkDisabled'
-     */
+    /** Test the property 'networkDisabled' */
     @Test
     public void networkDisabledTest() {
         // TODO: test networkDisabled
     }
 
-    /**
-     * Test the property 'onBuild'
-     */
+    /** Test the property 'onBuild' */
     @Test
     public void onBuildTest() {
         // TODO: test onBuild
     }
 
-    /**
-     * Test the property 'openStdin'
-     */
+    /** Test the property 'openStdin' */
     @Test
     public void openStdinTest() {
         // TODO: test openStdin
     }
 
-    /**
-     * Test the property 'shell'
-     */
+    /** Test the property 'shell' */
     @Test
     public void shellTest() {
         // TODO: test shell
     }
 
-    /**
-     * Test the property 'stdinOnce'
-     */
+    /** Test the property 'stdinOnce' */
     @Test
     public void stdinOnceTest() {
         // TODO: test stdinOnce
     }
 
-    /**
-     * Test the property 'stopSignal'
-     */
+    /** Test the property 'stopSignal' */
     @Test
     public void stopSignalTest() {
         // TODO: test stopSignal
     }
 
-    /**
-     * Test the property 'stopTimeout'
-     */
+    /** Test the property 'stopTimeout' */
     @Test
     public void stopTimeoutTest() {
         // TODO: test stopTimeout
     }
 
-    /**
-     * Test the property 'tty'
-     */
+    /** Test the property 'tty' */
     @Test
     public void ttyTest() {
         // TODO: test tty
     }
 
-    /**
-     * Test the property 'user'
-     */
+    /** Test the property 'user' */
     @Test
     public void userTest() {
         // TODO: test user
     }
 
-    /**
-     * Test the property 'volumes'
-     */
+    /** Test the property 'volumes' */
     @Test
     public void volumesTest() {
         // TODO: test volumes
     }
 
-    /**
-     * Test the property 'workingDir'
-     */
+    /** Test the property 'workingDir' */
     @Test
     public void workingDirTest() {
         // TODO: test workingDir
     }
-
 }

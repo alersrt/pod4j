@@ -10,148 +10,101 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.EndpointIPAMConfig;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for EndpointSettings
- */
+/** Model tests for EndpointSettings */
 public class EndpointSettingsTest {
     private final EndpointSettings model = new EndpointSettings();
 
-    /**
-     * Model tests for EndpointSettings
-     */
+    /** Model tests for EndpointSettings */
     @Test
     public void testEndpointSettings() {
         // TODO: test EndpointSettings
     }
 
-    /**
-     * Test the property 'aliases'
-     */
+    /** Test the property 'aliases' */
     @Test
     public void aliasesTest() {
         // TODO: test aliases
     }
 
-    /**
-     * Test the property 'dnSNames'
-     */
+    /** Test the property 'dnSNames' */
     @Test
     public void dnSNamesTest() {
         // TODO: test dnSNames
     }
 
-    /**
-     * Test the property 'driverOpts'
-     */
+    /** Test the property 'driverOpts' */
     @Test
     public void driverOptsTest() {
         // TODO: test driverOpts
     }
 
-    /**
-     * Test the property 'endpointID'
-     */
+    /** Test the property 'endpointID' */
     @Test
     public void endpointIDTest() {
         // TODO: test endpointID
     }
 
-    /**
-     * Test the property 'gateway'
-     */
+    /** Test the property 'gateway' */
     @Test
     public void gatewayTest() {
         // TODO: test gateway
     }
 
-    /**
-     * Test the property 'globalIPv6Address'
-     */
+    /** Test the property 'globalIPv6Address' */
     @Test
     public void globalIPv6AddressTest() {
         // TODO: test globalIPv6Address
     }
 
-    /**
-     * Test the property 'globalIPv6PrefixLen'
-     */
+    /** Test the property 'globalIPv6PrefixLen' */
     @Test
     public void globalIPv6PrefixLenTest() {
         // TODO: test globalIPv6PrefixLen
     }
 
-    /**
-     * Test the property 'ipAMConfig'
-     */
+    /** Test the property 'ipAMConfig' */
     @Test
     public void ipAMConfigTest() {
         // TODO: test ipAMConfig
     }
 
-    /**
-     * Test the property 'ipAddress'
-     */
+    /** Test the property 'ipAddress' */
     @Test
     public void ipAddressTest() {
         // TODO: test ipAddress
     }
 
-    /**
-     * Test the property 'ipPrefixLen'
-     */
+    /** Test the property 'ipPrefixLen' */
     @Test
     public void ipPrefixLenTest() {
         // TODO: test ipPrefixLen
     }
 
-    /**
-     * Test the property 'ipv6Gateway'
-     */
+    /** Test the property 'ipv6Gateway' */
     @Test
     public void ipv6GatewayTest() {
         // TODO: test ipv6Gateway
     }
 
-    /**
-     * Test the property 'links'
-     */
+    /** Test the property 'links' */
     @Test
     public void linksTest() {
         // TODO: test links
     }
 
-    /**
-     * Test the property 'macAddress'
-     */
+    /** Test the property 'macAddress' */
     @Test
     public void macAddressTest() {
         // TODO: test macAddress
     }
 
-    /**
-     * Test the property 'networkID'
-     */
+    /** Test the property 'networkID' */
     @Test
     public void networkIDTest() {
         // TODO: test networkID
     }
-
 }

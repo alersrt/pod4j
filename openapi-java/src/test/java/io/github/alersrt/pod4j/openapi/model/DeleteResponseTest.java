@@ -10,47 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for DeleteResponse
- */
+/** Model tests for DeleteResponse */
 public class DeleteResponseTest {
     private final DeleteResponse model = new DeleteResponse();
 
-    /**
-     * Model tests for DeleteResponse
-     */
+    /** Model tests for DeleteResponse */
     @Test
     public void testDeleteResponse() {
         // TODO: test DeleteResponse
     }
 
-    /**
-     * Test the property 'deleted'
-     */
+    /** Test the property 'deleted' */
     @Test
     public void deletedTest() {
         // TODO: test deleted
     }
 
-    /**
-     * Test the property 'untagged'
-     */
+    /** Test the property 'untagged' */
     @Test
     public void untaggedTest() {
         // TODO: test untagged
     }
-
 }

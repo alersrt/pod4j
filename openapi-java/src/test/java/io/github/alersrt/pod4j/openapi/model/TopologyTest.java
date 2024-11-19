@@ -10,41 +10,23 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Topology
- */
+/** Model tests for Topology */
 public class TopologyTest {
     private final Topology model = new Topology();
 
-    /**
-     * Model tests for Topology
-     */
+    /** Model tests for Topology */
     @Test
     public void testTopology() {
         // TODO: test Topology
     }
 
-    /**
-     * Test the property 'segments'
-     */
+    /** Test the property 'segments' */
     @Test
     public void segmentsTest() {
         // TODO: test segments
     }
-
 }

@@ -10,66 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Driver;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for VolumeOptions
- */
+/** Model tests for VolumeOptions */
 public class VolumeOptionsTest {
     private final VolumeOptions model = new VolumeOptions();
 
-    /**
-     * Model tests for VolumeOptions
-     */
+    /** Model tests for VolumeOptions */
     @Test
     public void testVolumeOptions() {
         // TODO: test VolumeOptions
     }
 
-    /**
-     * Test the property 'driverConfig'
-     */
+    /** Test the property 'driverConfig' */
     @Test
     public void driverConfigTest() {
         // TODO: test driverConfig
     }
 
-    /**
-     * Test the property 'labels'
-     */
+    /** Test the property 'labels' */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /**
-     * Test the property 'noCopy'
-     */
+    /** Test the property 'noCopy' */
     @Test
     public void noCopyTest() {
         // TODO: test noCopy
     }
 
-    /**
-     * Test the property 'subpath'
-     */
+    /** Test the property 'subpath' */
     @Test
     public void subpathTest() {
         // TODO: test subpath
     }
-
 }

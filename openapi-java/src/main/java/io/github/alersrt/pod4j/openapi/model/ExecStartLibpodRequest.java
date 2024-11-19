@@ -10,272 +10,265 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * ExecStartLibpodRequest
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** ExecStartLibpodRequest */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class ExecStartLibpodRequest {
-  public static final String SERIALIZED_NAME_DETACH = "Detach";
-  @SerializedName(SERIALIZED_NAME_DETACH)
-  private Boolean detach;
+    public static final String SERIALIZED_NAME_DETACH = "Detach";
 
-  public static final String SERIALIZED_NAME_TTY = "Tty";
-  @SerializedName(SERIALIZED_NAME_TTY)
-  private Boolean tty;
+    @SerializedName(SERIALIZED_NAME_DETACH)
+    private Boolean detach;
 
-  public static final String SERIALIZED_NAME_H = "h";
-  @SerializedName(SERIALIZED_NAME_H)
-  private Integer h;
+    public static final String SERIALIZED_NAME_TTY = "Tty";
 
-  public static final String SERIALIZED_NAME_W = "w";
-  @SerializedName(SERIALIZED_NAME_W)
-  private Integer w;
+    @SerializedName(SERIALIZED_NAME_TTY)
+    private Boolean tty;
 
-  public ExecStartLibpodRequest() {
-  }
+    public static final String SERIALIZED_NAME_H = "h";
 
-  public ExecStartLibpodRequest detach(Boolean detach) {
-    this.detach = detach;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_H)
+    private Integer h;
 
-  /**
-   * Detach from the command.
-   * @return detach
-   */
-  @javax.annotation.Nullable
-  public Boolean getDetach() {
-    return detach;
-  }
+    public static final String SERIALIZED_NAME_W = "w";
 
-  public void setDetach(Boolean detach) {
-    this.detach = detach;
-  }
+    @SerializedName(SERIALIZED_NAME_W)
+    private Integer w;
 
+    public ExecStartLibpodRequest() {}
 
-  public ExecStartLibpodRequest tty(Boolean tty) {
-    this.tty = tty;
-    return this;
-  }
-
-  /**
-   * Allocate a pseudo-TTY.
-   * @return tty
-   */
-  @javax.annotation.Nullable
-  public Boolean getTty() {
-    return tty;
-  }
-
-  public void setTty(Boolean tty) {
-    this.tty = tty;
-  }
-
-
-  public ExecStartLibpodRequest h(Integer h) {
-    this.h = h;
-    return this;
-  }
-
-  /**
-   * Height of the TTY session in characters. Tty must be set to true to use it.
-   * @return h
-   */
-  @javax.annotation.Nullable
-  public Integer getH() {
-    return h;
-  }
-
-  public void setH(Integer h) {
-    this.h = h;
-  }
-
-
-  public ExecStartLibpodRequest w(Integer w) {
-    this.w = w;
-    return this;
-  }
-
-  /**
-   * Width of the TTY session in characters. Tty must be set to true to use it.
-   * @return w
-   */
-  @javax.annotation.Nullable
-  public Integer getW() {
-    return w;
-  }
-
-  public void setW(Integer w) {
-    this.w = w;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ExecStartLibpodRequest detach(Boolean detach) {
+        this.detach = detach;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Detach from the command.
+     *
+     * @return detach
+     */
+    @javax.annotation.Nullable
+    public Boolean getDetach() {
+        return detach;
     }
-    ExecStartLibpodRequest execStartLibpodRequest = (ExecStartLibpodRequest) o;
-    return Objects.equals(this.detach, execStartLibpodRequest.detach) &&
-        Objects.equals(this.tty, execStartLibpodRequest.tty) &&
-        Objects.equals(this.h, execStartLibpodRequest.h) &&
-        Objects.equals(this.w, execStartLibpodRequest.w);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(detach, tty, h, w);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ExecStartLibpodRequest {\n");
-    sb.append("    detach: ").append(toIndentedString(detach)).append("\n");
-    sb.append("    tty: ").append(toIndentedString(tty)).append("\n");
-    sb.append("    h: ").append(toIndentedString(h)).append("\n");
-    sb.append("    w: ").append(toIndentedString(w)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setDetach(Boolean detach) {
+        this.detach = detach;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public ExecStartLibpodRequest tty(Boolean tty) {
+        this.tty = tty;
+        return this;
+    }
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
+    /**
+     * Allocate a pseudo-TTY.
+     *
+     * @return tty
+     */
+    @javax.annotation.Nullable
+    public Boolean getTty() {
+        return tty;
+    }
 
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Detach");
-    openapiFields.add("Tty");
-    openapiFields.add("h");
-    openapiFields.add("w");
+    public void setTty(Boolean tty) {
+        this.tty = tty;
+    }
 
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
+    public ExecStartLibpodRequest h(Integer h) {
+        this.h = h;
+        return this;
+    }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ExecStartLibpodRequest
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ExecStartLibpodRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ExecStartLibpodRequest is not found in the empty JSON string", ExecStartLibpodRequest.openapiRequiredFields.toString()));
-        }
-      }
+    /**
+     * Height of the TTY session in characters. Tty must be set to true to use it.
+     *
+     * @return h
+     */
+    @javax.annotation.Nullable
+    public Integer getH() {
+        return h;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ExecStartLibpodRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ExecStartLibpodRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-  }
+    public void setH(Integer h) {
+        this.h = h;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public ExecStartLibpodRequest w(Integer w) {
+        this.w = w;
+        return this;
+    }
+
+    /**
+     * Width of the TTY session in characters. Tty must be set to true to use it.
+     *
+     * @return w
+     */
+    @javax.annotation.Nullable
+    public Integer getW() {
+        return w;
+    }
+
+    public void setW(Integer w) {
+        this.w = w;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ExecStartLibpodRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ExecStartLibpodRequest' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ExecStartLibpodRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ExecStartLibpodRequest.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ExecStartLibpodRequest>() {
-           @Override
-           public void write(JsonWriter out, ExecStartLibpodRequest value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ExecStartLibpodRequest read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ExecStartLibpodRequest execStartLibpodRequest = (ExecStartLibpodRequest) o;
+        return Objects.equals(this.detach, execStartLibpodRequest.detach)
+                && Objects.equals(this.tty, execStartLibpodRequest.tty)
+                && Objects.equals(this.h, execStartLibpodRequest.h)
+                && Objects.equals(this.w, execStartLibpodRequest.w);
     }
-  }
 
-  /**
-   * Create an instance of ExecStartLibpodRequest given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ExecStartLibpodRequest
-   * @throws IOException if the JSON string is invalid with respect to ExecStartLibpodRequest
-   */
-  public static ExecStartLibpodRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ExecStartLibpodRequest.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(detach, tty, h, w);
+    }
 
-  /**
-   * Convert an instance of ExecStartLibpodRequest to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ExecStartLibpodRequest {\n");
+        sb.append("    detach: ").append(toIndentedString(detach)).append("\n");
+        sb.append("    tty: ").append(toIndentedString(tty)).append("\n");
+        sb.append("    h: ").append(toIndentedString(h)).append("\n");
+        sb.append("    w: ").append(toIndentedString(w)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Detach");
+        openapiFields.add("Tty");
+        openapiFields.add("h");
+        openapiFields.add("w");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ExecStartLibpodRequest
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ExecStartLibpodRequest.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in ExecStartLibpodRequest is not found in"
+                                        + " the empty JSON string",
+                                ExecStartLibpodRequest.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ExecStartLibpodRequest.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `ExecStartLibpodRequest` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ExecStartLibpodRequest.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ExecStartLibpodRequest' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ExecStartLibpodRequest> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(ExecStartLibpodRequest.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<ExecStartLibpodRequest>() {
+                        @Override
+                        public void write(JsonWriter out, ExecStartLibpodRequest value)
+                                throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public ExecStartLibpodRequest read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of ExecStartLibpodRequest given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ExecStartLibpodRequest
+     * @throws IOException if the JSON string is invalid with respect to ExecStartLibpodRequest
+     */
+    public static ExecStartLibpodRequest fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ExecStartLibpodRequest.class);
+    }
+
+    /**
+     * Convert an instance of ExecStartLibpodRequest to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

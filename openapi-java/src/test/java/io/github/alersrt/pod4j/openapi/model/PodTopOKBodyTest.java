@@ -10,49 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for PodTopOKBody
- */
+/** Model tests for PodTopOKBody */
 public class PodTopOKBodyTest {
     private final PodTopOKBody model = new PodTopOKBody();
 
-    /**
-     * Model tests for PodTopOKBody
-     */
+    /** Model tests for PodTopOKBody */
     @Test
     public void testPodTopOKBody() {
         // TODO: test PodTopOKBody
     }
 
-    /**
-     * Test the property 'processes'
-     */
+    /** Test the property 'processes' */
     @Test
     public void processesTest() {
         // TODO: test processes
     }
 
-    /**
-     * Test the property 'titles'
-     */
+    /** Test the property 'titles' */
     @Test
     public void titlesTest() {
         // TODO: test titles
     }
-
 }

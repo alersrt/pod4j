@@ -10,12 +10,9 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
-import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.IdResponse;
 import io.github.alersrt.pod4j.openapi.model.InspectPodData;
 import io.github.alersrt.pod4j.openapi.model.ListPodsReport;
@@ -31,17 +28,13 @@ import io.github.alersrt.pod4j.openapi.model.PodStatsReport;
 import io.github.alersrt.pod4j.openapi.model.PodStopReport;
 import io.github.alersrt.pod4j.openapi.model.PodTopOKBody;
 import io.github.alersrt.pod4j.openapi.model.PodUnpauseReport;
+import java.io.File;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * API tests for PodsApi
- */
+/** API tests for PodsApi */
 @Disabled
 public class PodsApiTest {
 
@@ -50,7 +43,7 @@ public class PodsApiTest {
     /**
      * Generate a Kubernetes YAML file.
      *
-     * Generate Kubernetes YAML based on a pod or container.
+     * <p>Generate Kubernetes YAML based on a pod or container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -69,7 +62,7 @@ public class PodsApiTest {
     /**
      * Generate Systemd Units
      *
-     * Generate Systemd Units based on a pod or container.
+     * <p>Generate Systemd Units based on a pod or container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -90,14 +83,30 @@ public class PodsApiTest {
         List<String> after = null;
         List<String> requires = null;
         List<String> additionalEnvVariables = null;
-        Map<String, String> response = api.generateSystemdLibpod(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
+        Map<String, String> response =
+                api.generateSystemdLibpod(
+                        name,
+                        useName,
+                        _new,
+                        noHeader,
+                        startTimeout,
+                        stopTimeout,
+                        restartPolicy,
+                        containerPrefix,
+                        podPrefix,
+                        separator,
+                        restartSec,
+                        wants,
+                        after,
+                        requires,
+                        additionalEnvVariables);
         // TODO: test validations
     }
 
     /**
      * Apply a podman workload or Kubernetes YAML file.
      *
-     * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
+     * <p>Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
      *
      * @throws ApiException if the Api call fails
      */
@@ -109,14 +118,15 @@ public class PodsApiTest {
         Boolean service = null;
         String _file = null;
         String request = null;
-        File response = api.kubeApplyLibpod(caCertFile, kubeConfig, namespace, service, _file, request);
+        File response =
+                api.kubeApplyLibpod(caCertFile, kubeConfig, namespace, service, _file, request);
         // TODO: test validations
     }
 
     /**
      * Remove resources created from kube play
      *
-     * Tears down pods, secrets, and volumes defined in a YAML file
+     * <p>Tears down pods, secrets, and volumes defined in a YAML file
      *
      * @throws ApiException if the Api call fails
      */
@@ -130,7 +140,17 @@ public class PodsApiTest {
     /**
      * Play a Kubernetes YAML file.
      *
-     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
+     * <p>Create and run pods based on a Kubernetes YAML file. ### Content-Type Then endpoint
+     * support two Content-Type - &#x60;plain/text&#x60; for yaml format -
+     * &#x60;application/x-tar&#x60; for sending context(s) required for building images #### Tar
+     * format The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be
+     * used. If the file format requires context to build an image, it uses the image name and check
+     * for corresponding folder. For example, the client sends a tar file with the following
+     * structure: &#x60;&#x60;&#x60; └── content.tar ├── play.yaml └── foobar/ └── Containerfile
+     * &#x60;&#x60;&#x60; The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image
+     * means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind:
+     * Pod metadata: name: demo-build-remote spec: containers: - name: container image: foobar
+     * &#x60;&#x60;&#x60;
      *
      * @throws ApiException if the Api call fails
      */
@@ -155,7 +175,27 @@ public class PodsApiTest {
         Boolean wait = null;
         Boolean build = null;
         String request = null;
-        PlayKubeReport response = api.playKubeLibpod(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
+        PlayKubeReport response =
+                api.playKubeLibpod(
+                        contentType,
+                        annotations,
+                        logDriver,
+                        logOptions,
+                        network,
+                        noHosts,
+                        noTrunc,
+                        publishPorts,
+                        publishAllPorts,
+                        replace,
+                        serviceContainer,
+                        start,
+                        staticIPs,
+                        staticMACs,
+                        tlsVerify,
+                        userns,
+                        wait,
+                        build,
+                        request);
         // TODO: test validations
     }
 
@@ -187,7 +227,7 @@ public class PodsApiTest {
     /**
      * Pod exists
      *
-     * Check if a pod exists by name or ID
+     * <p>Check if a pod exists by name or ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -238,7 +278,7 @@ public class PodsApiTest {
     /**
      * Pause a pod
      *
-     * Pause a pod
+     * <p>Pause a pod
      *
      * @throws ApiException if the Api call fails
      */
@@ -287,7 +327,7 @@ public class PodsApiTest {
     /**
      * Statistics for one or more pods
      *
-     * Display a live stream of resource usage statistics for the containers in one or more pods
+     * <p>Display a live stream of resource usage statistics for the containers in one or more pods
      *
      * @throws ApiException if the Api call fails
      */
@@ -315,7 +355,7 @@ public class PodsApiTest {
     /**
      * List processes
      *
-     * List processes running inside a pod
+     * <p>List processes running inside a pod
      *
      * @throws ApiException if the Api call fails
      */
@@ -340,5 +380,4 @@ public class PodsApiTest {
         PodUnpauseReport response = api.podUnpauseLibpod(name);
         // TODO: test validations
     }
-
 }

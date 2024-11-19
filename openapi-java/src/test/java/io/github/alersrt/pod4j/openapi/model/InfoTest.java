@@ -10,68 +10,41 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Topology;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for Info
- */
+/** Model tests for Info */
 public class InfoTest {
     private final Info model = new Info();
 
-    /**
-     * Model tests for Info
-     */
+    /** Model tests for Info */
     @Test
     public void testInfo() {
         // TODO: test Info
     }
 
-    /**
-     * Test the property 'accessibleTopology'
-     */
+    /** Test the property 'accessibleTopology' */
     @Test
     public void accessibleTopologyTest() {
         // TODO: test accessibleTopology
     }
 
-    /**
-     * Test the property 'capacityBytes'
-     */
+    /** Test the property 'capacityBytes' */
     @Test
     public void capacityBytesTest() {
         // TODO: test capacityBytes
     }
 
-    /**
-     * Test the property 'volumeContext'
-     */
+    /** Test the property 'volumeContext' */
     @Test
     public void volumeContextTest() {
         // TODO: test volumeContext
     }
 
-    /**
-     * Test the property 'volumeID'
-     */
+    /** Test the property 'volumeID' */
     @Test
     public void volumeIDTest() {
         // TODO: test volumeID
     }
-
 }

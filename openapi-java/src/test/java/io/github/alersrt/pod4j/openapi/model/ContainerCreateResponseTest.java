@@ -10,49 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for ContainerCreateResponse
- */
+/** Model tests for ContainerCreateResponse */
 public class ContainerCreateResponseTest {
     private final ContainerCreateResponse model = new ContainerCreateResponse();
 
-    /**
-     * Model tests for ContainerCreateResponse
-     */
+    /** Model tests for ContainerCreateResponse */
     @Test
     public void testContainerCreateResponse() {
         // TODO: test ContainerCreateResponse
     }
 
-    /**
-     * Test the property 'id'
-     */
+    /** Test the property 'id' */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /**
-     * Test the property 'warnings'
-     */
+    /** Test the property 'warnings' */
     @Test
     public void warningsTest() {
         // TODO: test warnings
     }
-
 }

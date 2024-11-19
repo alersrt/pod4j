@@ -10,12 +10,9 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
-import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.HistoryResponse;
 import io.github.alersrt.pod4j.openapi.model.ImageBuildLibpod200Response;
 import io.github.alersrt.pod4j.openapi.model.ImageData;
@@ -28,17 +25,12 @@ import io.github.alersrt.pod4j.openapi.model.LibpodImagesPullReport;
 import io.github.alersrt.pod4j.openapi.model.LibpodImagesRemoveReport;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
 import io.github.alersrt.pod4j.openapi.model.ScpReport;
+import java.io.File;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * API tests for ImagesApi
- */
+/** API tests for ImagesApi */
 @Disabled
 public class ImagesApiTest {
 
@@ -47,7 +39,7 @@ public class ImagesApiTest {
     /**
      * Create image
      *
-     * Build an image from the given Dockerfile(s)
+     * <p>Build an image from the given Dockerfile(s)
      *
      * @throws ApiException if the Api call fails
      */
@@ -85,14 +77,48 @@ public class ImagesApiTest {
         List<String> unsetenv = null;
         List<String> unsetlabel = null;
         List<String> volume = null;
-        ImageBuildLibpod200Response response = api.imageBuildLibpod(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume);
+        ImageBuildLibpod200Response response =
+                api.imageBuildLibpod(
+                        dockerfile,
+                        t,
+                        allplatforms,
+                        extrahosts,
+                        remote,
+                        q,
+                        compatvolumes,
+                        nocache,
+                        cachefrom,
+                        pull,
+                        rm,
+                        forcerm,
+                        memory,
+                        memswap,
+                        cpushares,
+                        cpusetcpus,
+                        cpuperiod,
+                        cpuquota,
+                        buildargs,
+                        shmsize,
+                        squash,
+                        labels,
+                        layerLabel,
+                        layers,
+                        networkmode,
+                        platform,
+                        target,
+                        outputs,
+                        httpproxy,
+                        unsetenv,
+                        unsetlabel,
+                        volume);
         // TODO: test validations
     }
 
     /**
      * Report on changes to images&#39;s filesystem; adds, deletes or modifications.
      *
-     * Returns which files in an image&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
+     * <p>Returns which files in an image&#39;s filesystem have been added, deleted, or modified.
+     * The Kind of modification can be one of: 0: Modified 1: Added 2: Deleted
      *
      * @throws ApiException if the Api call fails
      */
@@ -108,7 +134,7 @@ public class ImagesApiTest {
     /**
      * Remove one or more images from the storage.
      *
-     * Remove one or more images from the storage.
+     * <p>Remove one or more images from the storage.
      *
      * @throws ApiException if the Api call fails
      */
@@ -119,14 +145,15 @@ public class ImagesApiTest {
         Boolean force = null;
         Boolean ignore = null;
         Boolean lookupManifest = null;
-        LibpodImagesRemoveReport response = api.imageDeleteAllLibpod(images, all, force, ignore, lookupManifest);
+        LibpodImagesRemoveReport response =
+                api.imageDeleteAllLibpod(images, all, force, ignore, lookupManifest);
         // TODO: test validations
     }
 
     /**
      * Remove an image from the local storage.
      *
-     * Remove an image from the local storage.
+     * <p>Remove an image from the local storage.
      *
      * @throws ApiException if the Api call fails
      */
@@ -141,7 +168,7 @@ public class ImagesApiTest {
     /**
      * Image exists
      *
-     * Check if image exists in local store
+     * <p>Check if image exists in local store
      *
      * @throws ApiException if the Api call fails
      */
@@ -155,7 +182,8 @@ public class ImagesApiTest {
     /**
      * Export multiple images
      *
-     * Export multiple images into a single object. Only &#x60;docker-archive&#x60; is currently supported.
+     * <p>Export multiple images into a single object. Only &#x60;docker-archive&#x60; is currently
+     * supported.
      *
      * @throws ApiException if the Api call fails
      */
@@ -165,14 +193,15 @@ public class ImagesApiTest {
         List<String> references = null;
         Boolean compress = null;
         Boolean ociAcceptUncompressedLayers = null;
-        File response = api.imageExportLibpod(format, references, compress, ociAcceptUncompressedLayers);
+        File response =
+                api.imageExportLibpod(format, references, compress, ociAcceptUncompressedLayers);
         // TODO: test validations
     }
 
     /**
      * Export an image
      *
-     * Export an image
+     * <p>Export an image
      *
      * @throws ApiException if the Api call fails
      */
@@ -188,7 +217,7 @@ public class ImagesApiTest {
     /**
      * History of an image
      *
-     * Return parent layers of an image.
+     * <p>Return parent layers of an image.
      *
      * @throws ApiException if the Api call fails
      */
@@ -202,7 +231,7 @@ public class ImagesApiTest {
     /**
      * Import image
      *
-     * Import a previously exported tarball as an image.
+     * <p>Import a previously exported tarball as an image.
      *
      * @throws ApiException if the Api call fails
      */
@@ -214,14 +243,15 @@ public class ImagesApiTest {
         String message = null;
         String reference = null;
         String url = null;
-        ImageImportReport response = api.imageImportLibpod(upload, contentType, changes, message, reference, url);
+        ImageImportReport response =
+                api.imageImportLibpod(upload, contentType, changes, message, reference, url);
         // TODO: test validations
     }
 
     /**
      * Inspect an image
      *
-     * Obtain low-level information about an image
+     * <p>Obtain low-level information about an image
      *
      * @throws ApiException if the Api call fails
      */
@@ -235,7 +265,7 @@ public class ImagesApiTest {
     /**
      * List Images
      *
-     * Returns a list of images on the server
+     * <p>Returns a list of images on the server
      *
      * @throws ApiException if the Api call fails
      */
@@ -250,7 +280,7 @@ public class ImagesApiTest {
     /**
      * Load image
      *
-     * Load an image (oci-archive or docker-archive) stream.
+     * <p>Load an image (oci-archive or docker-archive) stream.
      *
      * @throws ApiException if the Api call fails
      */
@@ -264,7 +294,7 @@ public class ImagesApiTest {
     /**
      * Prune unused images
      *
-     * Remove images that are not being used by a container
+     * <p>Remove images that are not being used by a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -281,7 +311,7 @@ public class ImagesApiTest {
     /**
      * Pull images
      *
-     * Pull one or more images from a container registry.
+     * <p>Pull one or more images from a container registry.
      *
      * @throws ApiException if the Api call fails
      */
@@ -297,14 +327,25 @@ public class ImagesApiTest {
         Boolean tlsVerify = null;
         Boolean allTags = null;
         String xRegistryAuth = null;
-        LibpodImagesPullReport response = api.imagePullLibpod(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth);
+        LibpodImagesPullReport response =
+                api.imagePullLibpod(
+                        reference,
+                        quiet,
+                        compatMode,
+                        arch,
+                        OS,
+                        variant,
+                        policy,
+                        tlsVerify,
+                        allTags,
+                        xRegistryAuth);
         // TODO: test validations
     }
 
     /**
      * Push Image
      *
-     * Push an image to a container registry
+     * <p>Push an image to a container registry
      *
      * @throws ApiException if the Api call fails
      */
@@ -323,14 +364,29 @@ public class ImagesApiTest {
         Integer retry = null;
         String retryDelay = null;
         String xRegistryAuth = null;
-        File response = api.imagePushLibpod(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth);
+        File response =
+                api.imagePushLibpod(
+                        name,
+                        destination,
+                        forceCompressionFormat,
+                        compressionFormat,
+                        compressionLevel,
+                        tlsVerify,
+                        quiet,
+                        format,
+                        all,
+                        removeSignatures,
+                        retry,
+                        retryDelay,
+                        xRegistryAuth);
         // TODO: test validations
     }
 
     /**
      * Resolve an image (short) name
      *
-     * Resolve the passed image name to a list of fully-qualified images referring to container registries.
+     * <p>Resolve the passed image name to a list of fully-qualified images referring to container
+     * registries.
      *
      * @throws ApiException if the Api call fails
      */
@@ -344,7 +400,7 @@ public class ImagesApiTest {
     /**
      * Copy an image from one host to another
      *
-     * Copy an image from one host to another
+     * <p>Copy an image from one host to another
      *
      * @throws ApiException if the Api call fails
      */
@@ -360,7 +416,7 @@ public class ImagesApiTest {
     /**
      * Search images
      *
-     * Search registries for images
+     * <p>Search registries for images
      *
      * @throws ApiException if the Api call fails
      */
@@ -371,14 +427,15 @@ public class ImagesApiTest {
         String filters = null;
         Boolean tlsVerify = null;
         Boolean listTags = null;
-        ImageSearch200Response response = api.imageSearchLibpod(term, limit, filters, tlsVerify, listTags);
+        ImageSearch200Response response =
+                api.imageSearchLibpod(term, limit, filters, tlsVerify, listTags);
         // TODO: test validations
     }
 
     /**
      * Tag an image
      *
-     * Tag an image so that it becomes part of a repository.
+     * <p>Tag an image so that it becomes part of a repository.
      *
      * @throws ApiException if the Api call fails
      */
@@ -394,7 +451,7 @@ public class ImagesApiTest {
     /**
      * Image tree
      *
-     * Retrieve the image tree for the provided image name or ID
+     * <p>Retrieve the image tree for the provided image name or ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -409,7 +466,7 @@ public class ImagesApiTest {
     /**
      * Untag an image
      *
-     * Untag an image. If not repo and tag are specified, all tags are removed from the image.
+     * <p>Untag an image. If not repo and tag are specified, all tags are removed from the image.
      *
      * @throws ApiException if the Api call fails
      */
@@ -421,5 +478,4 @@ public class ImagesApiTest {
         api.imageUntagLibpod(name, repo, tag);
         // TODO: test validations
     }
-
 }

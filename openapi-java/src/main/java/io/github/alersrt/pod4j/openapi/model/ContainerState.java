@@ -10,497 +10,531 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Health;
-import java.io.IOException;
-import java.util.Arrays;
-
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
 /**
- * ContainerState stores container&#39;s running state it&#39;s part of ContainerJSONBase and will return by \&quot;inspect\&quot; command
+ * ContainerState stores container&#39;s running state it&#39;s part of ContainerJSONBase and will
+ * return by \&quot;inspect\&quot; command
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class ContainerState {
-  public static final String SERIALIZED_NAME_DEAD = "Dead";
-  @SerializedName(SERIALIZED_NAME_DEAD)
-  private Boolean dead;
+    public static final String SERIALIZED_NAME_DEAD = "Dead";
 
-  public static final String SERIALIZED_NAME_ERROR = "Error";
-  @SerializedName(SERIALIZED_NAME_ERROR)
-  private String error;
+    @SerializedName(SERIALIZED_NAME_DEAD)
+    private Boolean dead;
 
-  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
-  private Long exitCode;
+    public static final String SERIALIZED_NAME_ERROR = "Error";
 
-  public static final String SERIALIZED_NAME_FINISHED_AT = "FinishedAt";
-  @SerializedName(SERIALIZED_NAME_FINISHED_AT)
-  private String finishedAt;
+    @SerializedName(SERIALIZED_NAME_ERROR)
+    private String error;
 
-  public static final String SERIALIZED_NAME_HEALTH = "Health";
-  @SerializedName(SERIALIZED_NAME_HEALTH)
-  private Health health;
+    public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
 
-  public static final String SERIALIZED_NAME_OO_M_KILLED = "OOMKilled";
-  @SerializedName(SERIALIZED_NAME_OO_M_KILLED)
-  private Boolean ooMKilled;
+    @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+    private Long exitCode;
 
-  public static final String SERIALIZED_NAME_PAUSED = "Paused";
-  @SerializedName(SERIALIZED_NAME_PAUSED)
-  private Boolean paused;
+    public static final String SERIALIZED_NAME_FINISHED_AT = "FinishedAt";
 
-  public static final String SERIALIZED_NAME_PID = "Pid";
-  @SerializedName(SERIALIZED_NAME_PID)
-  private Long pid;
+    @SerializedName(SERIALIZED_NAME_FINISHED_AT)
+    private String finishedAt;
 
-  public static final String SERIALIZED_NAME_RESTARTING = "Restarting";
-  @SerializedName(SERIALIZED_NAME_RESTARTING)
-  private Boolean restarting;
+    public static final String SERIALIZED_NAME_HEALTH = "Health";
 
-  public static final String SERIALIZED_NAME_RUNNING = "Running";
-  @SerializedName(SERIALIZED_NAME_RUNNING)
-  private Boolean running;
+    @SerializedName(SERIALIZED_NAME_HEALTH)
+    private Health health;
 
-  public static final String SERIALIZED_NAME_STARTED_AT = "StartedAt";
-  @SerializedName(SERIALIZED_NAME_STARTED_AT)
-  private String startedAt;
+    public static final String SERIALIZED_NAME_OO_M_KILLED = "OOMKilled";
 
-  public static final String SERIALIZED_NAME_STATUS = "Status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
-  private String status;
+    @SerializedName(SERIALIZED_NAME_OO_M_KILLED)
+    private Boolean ooMKilled;
 
-  public ContainerState() {
-  }
+    public static final String SERIALIZED_NAME_PAUSED = "Paused";
 
-  public ContainerState dead(Boolean dead) {
-    this.dead = dead;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_PAUSED)
+    private Boolean paused;
 
-  /**
-   * Get dead
-   * @return dead
-   */
-  @javax.annotation.Nullable
-  public Boolean getDead() {
-    return dead;
-  }
+    public static final String SERIALIZED_NAME_PID = "Pid";
 
-  public void setDead(Boolean dead) {
-    this.dead = dead;
-  }
+    @SerializedName(SERIALIZED_NAME_PID)
+    private Long pid;
 
+    public static final String SERIALIZED_NAME_RESTARTING = "Restarting";
 
-  public ContainerState error(String error) {
-    this.error = error;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_RESTARTING)
+    private Boolean restarting;
 
-  /**
-   * Get error
-   * @return error
-   */
-  @javax.annotation.Nullable
-  public String getError() {
-    return error;
-  }
+    public static final String SERIALIZED_NAME_RUNNING = "Running";
 
-  public void setError(String error) {
-    this.error = error;
-  }
+    @SerializedName(SERIALIZED_NAME_RUNNING)
+    private Boolean running;
 
+    public static final String SERIALIZED_NAME_STARTED_AT = "StartedAt";
 
-  public ContainerState exitCode(Long exitCode) {
-    this.exitCode = exitCode;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_STARTED_AT)
+    private String startedAt;
 
-  /**
-   * Get exitCode
-   * @return exitCode
-   */
-  @javax.annotation.Nullable
-  public Long getExitCode() {
-    return exitCode;
-  }
+    public static final String SERIALIZED_NAME_STATUS = "Status";
 
-  public void setExitCode(Long exitCode) {
-    this.exitCode = exitCode;
-  }
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private String status;
 
+    public ContainerState() {}
 
-  public ContainerState finishedAt(String finishedAt) {
-    this.finishedAt = finishedAt;
-    return this;
-  }
-
-  /**
-   * Get finishedAt
-   * @return finishedAt
-   */
-  @javax.annotation.Nullable
-  public String getFinishedAt() {
-    return finishedAt;
-  }
-
-  public void setFinishedAt(String finishedAt) {
-    this.finishedAt = finishedAt;
-  }
-
-
-  public ContainerState health(Health health) {
-    this.health = health;
-    return this;
-  }
-
-  /**
-   * Get health
-   * @return health
-   */
-  @javax.annotation.Nullable
-  public Health getHealth() {
-    return health;
-  }
-
-  public void setHealth(Health health) {
-    this.health = health;
-  }
-
-
-  public ContainerState ooMKilled(Boolean ooMKilled) {
-    this.ooMKilled = ooMKilled;
-    return this;
-  }
-
-  /**
-   * Get ooMKilled
-   * @return ooMKilled
-   */
-  @javax.annotation.Nullable
-  public Boolean getOoMKilled() {
-    return ooMKilled;
-  }
-
-  public void setOoMKilled(Boolean ooMKilled) {
-    this.ooMKilled = ooMKilled;
-  }
-
-
-  public ContainerState paused(Boolean paused) {
-    this.paused = paused;
-    return this;
-  }
-
-  /**
-   * Get paused
-   * @return paused
-   */
-  @javax.annotation.Nullable
-  public Boolean getPaused() {
-    return paused;
-  }
-
-  public void setPaused(Boolean paused) {
-    this.paused = paused;
-  }
-
-
-  public ContainerState pid(Long pid) {
-    this.pid = pid;
-    return this;
-  }
-
-  /**
-   * Get pid
-   * @return pid
-   */
-  @javax.annotation.Nullable
-  public Long getPid() {
-    return pid;
-  }
-
-  public void setPid(Long pid) {
-    this.pid = pid;
-  }
-
-
-  public ContainerState restarting(Boolean restarting) {
-    this.restarting = restarting;
-    return this;
-  }
-
-  /**
-   * Get restarting
-   * @return restarting
-   */
-  @javax.annotation.Nullable
-  public Boolean getRestarting() {
-    return restarting;
-  }
-
-  public void setRestarting(Boolean restarting) {
-    this.restarting = restarting;
-  }
-
-
-  public ContainerState running(Boolean running) {
-    this.running = running;
-    return this;
-  }
-
-  /**
-   * Get running
-   * @return running
-   */
-  @javax.annotation.Nullable
-  public Boolean getRunning() {
-    return running;
-  }
-
-  public void setRunning(Boolean running) {
-    this.running = running;
-  }
-
-
-  public ContainerState startedAt(String startedAt) {
-    this.startedAt = startedAt;
-    return this;
-  }
-
-  /**
-   * Get startedAt
-   * @return startedAt
-   */
-  @javax.annotation.Nullable
-  public String getStartedAt() {
-    return startedAt;
-  }
-
-  public void setStartedAt(String startedAt) {
-    this.startedAt = startedAt;
-  }
-
-
-  public ContainerState status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-   */
-  @javax.annotation.Nullable
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public ContainerState dead(Boolean dead) {
+        this.dead = dead;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get dead
+     *
+     * @return dead
+     */
+    @javax.annotation.Nullable
+    public Boolean getDead() {
+        return dead;
     }
-    ContainerState containerState = (ContainerState) o;
-    return Objects.equals(this.dead, containerState.dead) &&
-        Objects.equals(this.error, containerState.error) &&
-        Objects.equals(this.exitCode, containerState.exitCode) &&
-        Objects.equals(this.finishedAt, containerState.finishedAt) &&
-        Objects.equals(this.health, containerState.health) &&
-        Objects.equals(this.ooMKilled, containerState.ooMKilled) &&
-        Objects.equals(this.paused, containerState.paused) &&
-        Objects.equals(this.pid, containerState.pid) &&
-        Objects.equals(this.restarting, containerState.restarting) &&
-        Objects.equals(this.running, containerState.running) &&
-        Objects.equals(this.startedAt, containerState.startedAt) &&
-        Objects.equals(this.status, containerState.status);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(dead, error, exitCode, finishedAt, health, ooMKilled, paused, pid, restarting, running, startedAt, status);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ContainerState {\n");
-    sb.append("    dead: ").append(toIndentedString(dead)).append("\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
-    sb.append("    finishedAt: ").append(toIndentedString(finishedAt)).append("\n");
-    sb.append("    health: ").append(toIndentedString(health)).append("\n");
-    sb.append("    ooMKilled: ").append(toIndentedString(ooMKilled)).append("\n");
-    sb.append("    paused: ").append(toIndentedString(paused)).append("\n");
-    sb.append("    pid: ").append(toIndentedString(pid)).append("\n");
-    sb.append("    restarting: ").append(toIndentedString(restarting)).append("\n");
-    sb.append("    running: ").append(toIndentedString(running)).append("\n");
-    sb.append("    startedAt: ").append(toIndentedString(startedAt)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setDead(Boolean dead) {
+        this.dead = dead;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public ContainerState error(String error) {
+        this.error = error;
+        return this;
+    }
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
+    /**
+     * Get error
+     *
+     * @return error
+     */
+    @javax.annotation.Nullable
+    public String getError() {
+        return error;
+    }
 
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Dead");
-    openapiFields.add("Error");
-    openapiFields.add("ExitCode");
-    openapiFields.add("FinishedAt");
-    openapiFields.add("Health");
-    openapiFields.add("OOMKilled");
-    openapiFields.add("Paused");
-    openapiFields.add("Pid");
-    openapiFields.add("Restarting");
-    openapiFields.add("Running");
-    openapiFields.add("StartedAt");
-    openapiFields.add("Status");
+    public void setError(String error) {
+        this.error = error;
+    }
 
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
+    public ContainerState exitCode(Long exitCode) {
+        this.exitCode = exitCode;
+        return this;
+    }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerState
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerState.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerState is not found in the empty JSON string", ContainerState.openapiRequiredFields.toString()));
-        }
-      }
+    /**
+     * Get exitCode
+     *
+     * @return exitCode
+     */
+    @javax.annotation.Nullable
+    public Long getExitCode() {
+        return exitCode;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerState.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerState` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull()) && !jsonObj.get("Error").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Error` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Error").toString()));
-      }
-      if ((jsonObj.get("FinishedAt") != null && !jsonObj.get("FinishedAt").isJsonNull()) && !jsonObj.get("FinishedAt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `FinishedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("FinishedAt").toString()));
-      }
-      // validate the optional field `Health`
-      if (jsonObj.get("Health") != null && !jsonObj.get("Health").isJsonNull()) {
-        Health.validateJsonElement(jsonObj.get("Health"));
-      }
-      if ((jsonObj.get("StartedAt") != null && !jsonObj.get("StartedAt").isJsonNull()) && !jsonObj.get("StartedAt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `StartedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StartedAt").toString()));
-      }
-      if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
-      }
-  }
+    public void setExitCode(Long exitCode) {
+        this.exitCode = exitCode;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    public ContainerState finishedAt(String finishedAt) {
+        this.finishedAt = finishedAt;
+        return this;
+    }
+
+    /**
+     * Get finishedAt
+     *
+     * @return finishedAt
+     */
+    @javax.annotation.Nullable
+    public String getFinishedAt() {
+        return finishedAt;
+    }
+
+    public void setFinishedAt(String finishedAt) {
+        this.finishedAt = finishedAt;
+    }
+
+    public ContainerState health(Health health) {
+        this.health = health;
+        return this;
+    }
+
+    /**
+     * Get health
+     *
+     * @return health
+     */
+    @javax.annotation.Nullable
+    public Health getHealth() {
+        return health;
+    }
+
+    public void setHealth(Health health) {
+        this.health = health;
+    }
+
+    public ContainerState ooMKilled(Boolean ooMKilled) {
+        this.ooMKilled = ooMKilled;
+        return this;
+    }
+
+    /**
+     * Get ooMKilled
+     *
+     * @return ooMKilled
+     */
+    @javax.annotation.Nullable
+    public Boolean getOoMKilled() {
+        return ooMKilled;
+    }
+
+    public void setOoMKilled(Boolean ooMKilled) {
+        this.ooMKilled = ooMKilled;
+    }
+
+    public ContainerState paused(Boolean paused) {
+        this.paused = paused;
+        return this;
+    }
+
+    /**
+     * Get paused
+     *
+     * @return paused
+     */
+    @javax.annotation.Nullable
+    public Boolean getPaused() {
+        return paused;
+    }
+
+    public void setPaused(Boolean paused) {
+        this.paused = paused;
+    }
+
+    public ContainerState pid(Long pid) {
+        this.pid = pid;
+        return this;
+    }
+
+    /**
+     * Get pid
+     *
+     * @return pid
+     */
+    @javax.annotation.Nullable
+    public Long getPid() {
+        return pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public ContainerState restarting(Boolean restarting) {
+        this.restarting = restarting;
+        return this;
+    }
+
+    /**
+     * Get restarting
+     *
+     * @return restarting
+     */
+    @javax.annotation.Nullable
+    public Boolean getRestarting() {
+        return restarting;
+    }
+
+    public void setRestarting(Boolean restarting) {
+        this.restarting = restarting;
+    }
+
+    public ContainerState running(Boolean running) {
+        this.running = running;
+        return this;
+    }
+
+    /**
+     * Get running
+     *
+     * @return running
+     */
+    @javax.annotation.Nullable
+    public Boolean getRunning() {
+        return running;
+    }
+
+    public void setRunning(Boolean running) {
+        this.running = running;
+    }
+
+    public ContainerState startedAt(String startedAt) {
+        this.startedAt = startedAt;
+        return this;
+    }
+
+    /**
+     * Get startedAt
+     *
+     * @return startedAt
+     */
+    @javax.annotation.Nullable
+    public String getStartedAt() {
+        return startedAt;
+    }
+
+    public void setStartedAt(String startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public ContainerState status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return status
+     */
+    @javax.annotation.Nullable
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerState.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerState' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerState> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerState.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerState>() {
-           @Override
-           public void write(JsonWriter out, ContainerState value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerState read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ContainerState containerState = (ContainerState) o;
+        return Objects.equals(this.dead, containerState.dead)
+                && Objects.equals(this.error, containerState.error)
+                && Objects.equals(this.exitCode, containerState.exitCode)
+                && Objects.equals(this.finishedAt, containerState.finishedAt)
+                && Objects.equals(this.health, containerState.health)
+                && Objects.equals(this.ooMKilled, containerState.ooMKilled)
+                && Objects.equals(this.paused, containerState.paused)
+                && Objects.equals(this.pid, containerState.pid)
+                && Objects.equals(this.restarting, containerState.restarting)
+                && Objects.equals(this.running, containerState.running)
+                && Objects.equals(this.startedAt, containerState.startedAt)
+                && Objects.equals(this.status, containerState.status);
     }
-  }
 
-  /**
-   * Create an instance of ContainerState given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerState
-   * @throws IOException if the JSON string is invalid with respect to ContainerState
-   */
-  public static ContainerState fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerState.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                dead,
+                error,
+                exitCode,
+                finishedAt,
+                health,
+                ooMKilled,
+                paused,
+                pid,
+                restarting,
+                running,
+                startedAt,
+                status);
+    }
 
-  /**
-   * Convert an instance of ContainerState to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ContainerState {\n");
+        sb.append("    dead: ").append(toIndentedString(dead)).append("\n");
+        sb.append("    error: ").append(toIndentedString(error)).append("\n");
+        sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
+        sb.append("    finishedAt: ").append(toIndentedString(finishedAt)).append("\n");
+        sb.append("    health: ").append(toIndentedString(health)).append("\n");
+        sb.append("    ooMKilled: ").append(toIndentedString(ooMKilled)).append("\n");
+        sb.append("    paused: ").append(toIndentedString(paused)).append("\n");
+        sb.append("    pid: ").append(toIndentedString(pid)).append("\n");
+        sb.append("    restarting: ").append(toIndentedString(restarting)).append("\n");
+        sb.append("    running: ").append(toIndentedString(running)).append("\n");
+        sb.append("    startedAt: ").append(toIndentedString(startedAt)).append("\n");
+        sb.append("    status: ").append(toIndentedString(status)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Dead");
+        openapiFields.add("Error");
+        openapiFields.add("ExitCode");
+        openapiFields.add("FinishedAt");
+        openapiFields.add("Health");
+        openapiFields.add("OOMKilled");
+        openapiFields.add("Paused");
+        openapiFields.add("Pid");
+        openapiFields.add("Restarting");
+        openapiFields.add("Running");
+        openapiFields.add("StartedAt");
+        openapiFields.add("Status");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ContainerState
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ContainerState.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in ContainerState is not found in the"
+                                        + " empty JSON string",
+                                ContainerState.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ContainerState.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the"
+                                        + " `ContainerState` properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull())
+                && !jsonObj.get("Error").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Error` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("Error").toString()));
+        }
+        if ((jsonObj.get("FinishedAt") != null && !jsonObj.get("FinishedAt").isJsonNull())
+                && !jsonObj.get("FinishedAt").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `FinishedAt` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("FinishedAt").toString()));
+        }
+        // validate the optional field `Health`
+        if (jsonObj.get("Health") != null && !jsonObj.get("Health").isJsonNull()) {
+            Health.validateJsonElement(jsonObj.get("Health"));
+        }
+        if ((jsonObj.get("StartedAt") != null && !jsonObj.get("StartedAt").isJsonNull())
+                && !jsonObj.get("StartedAt").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `StartedAt` to be a primitive type in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("StartedAt").toString()));
+        }
+        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull())
+                && !jsonObj.get("Status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `Status` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("Status").toString()));
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ContainerState.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ContainerState' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ContainerState> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(ContainerState.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<ContainerState>() {
+                        @Override
+                        public void write(JsonWriter out, ContainerState value) throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public ContainerState read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of ContainerState given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerState
+     * @throws IOException if the JSON string is invalid with respect to ContainerState
+     */
+    public static ContainerState fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ContainerState.class);
+    }
+
+    /**
+     * Convert an instance of ContainerState to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-

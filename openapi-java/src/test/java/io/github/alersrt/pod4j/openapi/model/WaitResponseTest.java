@@ -10,48 +10,29 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.WaitExitError;
-import java.io.IOException;
-import java.util.Arrays;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Model tests for WaitResponse
- */
+/** Model tests for WaitResponse */
 public class WaitResponseTest {
     private final WaitResponse model = new WaitResponse();
 
-    /**
-     * Model tests for WaitResponse
-     */
+    /** Model tests for WaitResponse */
     @Test
     public void testWaitResponse() {
         // TODO: test WaitResponse
     }
 
-    /**
-     * Test the property 'error'
-     */
+    /** Test the property 'error' */
     @Test
     public void errorTest() {
         // TODO: test error
     }
 
-    /**
-     * Test the property 'statusCode'
-     */
+    /** Test the property 'statusCode' */
     @Test
     public void statusCodeTest() {
         // TODO: test statusCode
     }
-
 }

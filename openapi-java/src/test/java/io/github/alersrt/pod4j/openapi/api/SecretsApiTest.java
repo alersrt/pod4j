@@ -10,25 +10,16 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.SecretCreateLibpod201Response;
-import io.github.alersrt.pod4j.openapi.model.SecretDeleteLibpod404Response;
 import io.github.alersrt.pod4j.openapi.model.SecretInfoReport;
+import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-/**
- * API tests for SecretsApi
- */
+/** API tests for SecretsApi */
 @Disabled
 public class SecretsApiTest {
 
@@ -46,7 +37,8 @@ public class SecretsApiTest {
         String driveropts = null;
         String labels = null;
         String request = null;
-        SecretCreateLibpod201Response response = api.secretCreateLibpod(name, driver, driveropts, labels, request);
+        SecretCreateLibpod201Response response =
+                api.secretCreateLibpod(name, driver, driveropts, labels, request);
         // TODO: test validations
     }
 
@@ -91,7 +83,7 @@ public class SecretsApiTest {
     /**
      * List secrets
      *
-     * Returns a list of secrets
+     * <p>Returns a list of secrets
      *
      * @throws ApiException if the Api call fails
      */
@@ -101,5 +93,4 @@ public class SecretsApiTest {
         List<SecretInfoReport> response = api.secretListLibpod(filters);
         // TODO: test validations
     }
-
 }

@@ -10,631 +10,686 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.TypeAdapterFactory;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Route;
-import io.github.alersrt.pod4j.openapi.model.Subnet;
+import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.JSON;
-
-/**
- * Network
- */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+/** Network */
+@javax.annotation.Generated(
+        value = "org.openapitools.codegen.languages.JavaClientCodegen",
+        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        comments = "Generator version: 7.7.0")
 public class Network {
-  public static final String SERIALIZED_NAME_CREATED = "created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
-  private OffsetDateTime created;
+    public static final String SERIALIZED_NAME_CREATED = "created";
 
-  public static final String SERIALIZED_NAME_DNS_ENABLED = "dns_enabled";
-  @SerializedName(SERIALIZED_NAME_DNS_ENABLED)
-  private Boolean dnsEnabled;
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_DRIVER = "driver";
-  @SerializedName(SERIALIZED_NAME_DRIVER)
-  private String driver;
+    public static final String SERIALIZED_NAME_DNS_ENABLED = "dns_enabled";
 
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+    @SerializedName(SERIALIZED_NAME_DNS_ENABLED)
+    private Boolean dnsEnabled;
 
-  public static final String SERIALIZED_NAME_INTERNAL = "internal";
-  @SerializedName(SERIALIZED_NAME_INTERNAL)
-  private Boolean internal;
+    public static final String SERIALIZED_NAME_DRIVER = "driver";
 
-  public static final String SERIALIZED_NAME_IPAM_OPTIONS = "ipam_options";
-  @SerializedName(SERIALIZED_NAME_IPAM_OPTIONS)
-  private Map<String, String> ipamOptions = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_DRIVER)
+    private String driver;
 
-  public static final String SERIALIZED_NAME_IPV6_ENABLED = "ipv6_enabled";
-  @SerializedName(SERIALIZED_NAME_IPV6_ENABLED)
-  private Boolean ipv6Enabled;
+    public static final String SERIALIZED_NAME_ID = "id";
 
-  public static final String SERIALIZED_NAME_LABELS = "labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
-  private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
-  private String name;
+    public static final String SERIALIZED_NAME_INTERNAL = "internal";
 
-  public static final String SERIALIZED_NAME_NETWORK_DNS_SERVERS = "network_dns_servers";
-  @SerializedName(SERIALIZED_NAME_NETWORK_DNS_SERVERS)
-  private List<String> networkDnsServers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_INTERNAL)
+    private Boolean internal;
 
-  public static final String SERIALIZED_NAME_NETWORK_INTERFACE = "network_interface";
-  @SerializedName(SERIALIZED_NAME_NETWORK_INTERFACE)
-  private String networkInterface;
+    public static final String SERIALIZED_NAME_IPAM_OPTIONS = "ipam_options";
 
-  public static final String SERIALIZED_NAME_OPTIONS = "options";
-  @SerializedName(SERIALIZED_NAME_OPTIONS)
-  private Map<String, String> options = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_IPAM_OPTIONS)
+    private Map<String, String> ipamOptions = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_ROUTES = "routes";
-  @SerializedName(SERIALIZED_NAME_ROUTES)
-  private List<Route> routes = new ArrayList<>();
+    public static final String SERIALIZED_NAME_IPV6_ENABLED = "ipv6_enabled";
 
-  public static final String SERIALIZED_NAME_SUBNETS = "subnets";
-  @SerializedName(SERIALIZED_NAME_SUBNETS)
-  private List<Subnet> subnets = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_IPV6_ENABLED)
+    private Boolean ipv6Enabled;
 
-  public Network() {
-  }
+    public static final String SERIALIZED_NAME_LABELS = "labels";
 
-  public Network created(OffsetDateTime created) {
-    this.created = created;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
 
-  /**
-   * Created contains the timestamp when this network was created.
-   * @return created
-   */
-  @javax.annotation.Nullable
-  public OffsetDateTime getCreated() {
-    return created;
-  }
+    public static final String SERIALIZED_NAME_NAME = "name";
 
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
-  }
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
 
+    public static final String SERIALIZED_NAME_NETWORK_DNS_SERVERS = "network_dns_servers";
 
-  public Network dnsEnabled(Boolean dnsEnabled) {
-    this.dnsEnabled = dnsEnabled;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_NETWORK_DNS_SERVERS)
+    private List<String> networkDnsServers = new ArrayList<>();
 
-  /**
-   * DNSEnabled is whether name resolution is active for container on this Network. Only supported with the bridge driver.
-   * @return dnsEnabled
-   */
-  @javax.annotation.Nullable
-  public Boolean getDnsEnabled() {
-    return dnsEnabled;
-  }
+    public static final String SERIALIZED_NAME_NETWORK_INTERFACE = "network_interface";
 
-  public void setDnsEnabled(Boolean dnsEnabled) {
-    this.dnsEnabled = dnsEnabled;
-  }
+    @SerializedName(SERIALIZED_NAME_NETWORK_INTERFACE)
+    private String networkInterface;
 
+    public static final String SERIALIZED_NAME_OPTIONS = "options";
 
-  public Network driver(String driver) {
-    this.driver = driver;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_OPTIONS)
+    private Map<String, String> options = new HashMap<>();
 
-  /**
-   * Driver for this Network, e.g. bridge, macvlan...
-   * @return driver
-   */
-  @javax.annotation.Nullable
-  public String getDriver() {
-    return driver;
-  }
+    public static final String SERIALIZED_NAME_ROUTES = "routes";
 
-  public void setDriver(String driver) {
-    this.driver = driver;
-  }
+    @SerializedName(SERIALIZED_NAME_ROUTES)
+    private List<Route> routes = new ArrayList<>();
 
+    public static final String SERIALIZED_NAME_SUBNETS = "subnets";
 
-  public Network id(String id) {
-    this.id = id;
-    return this;
-  }
+    @SerializedName(SERIALIZED_NAME_SUBNETS)
+    private List<Subnet> subnets = new ArrayList<>();
 
-  /**
-   * ID of the Network.
-   * @return id
-   */
-  @javax.annotation.Nullable
-  public String getId() {
-    return id;
-  }
+    public Network() {}
 
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Network internal(Boolean internal) {
-    this.internal = internal;
-    return this;
-  }
-
-  /**
-   * Internal is whether the Network should not have external routes to public or other Networks.
-   * @return internal
-   */
-  @javax.annotation.Nullable
-  public Boolean getInternal() {
-    return internal;
-  }
-
-  public void setInternal(Boolean internal) {
-    this.internal = internal;
-  }
-
-
-  public Network ipamOptions(Map<String, String> ipamOptions) {
-    this.ipamOptions = ipamOptions;
-    return this;
-  }
-
-  public Network putIpamOptionsItem(String key, String ipamOptionsItem) {
-    if (this.ipamOptions == null) {
-      this.ipamOptions = new HashMap<>();
+    public Network created(OffsetDateTime created) {
+        this.created = created;
+        return this;
     }
-    this.ipamOptions.put(key, ipamOptionsItem);
-    return this;
-  }
 
-  /**
-   * IPAMOptions contains options used for the ip assignment.
-   * @return ipamOptions
-   */
-  @javax.annotation.Nullable
-  public Map<String, String> getIpamOptions() {
-    return ipamOptions;
-  }
-
-  public void setIpamOptions(Map<String, String> ipamOptions) {
-    this.ipamOptions = ipamOptions;
-  }
-
-
-  public Network ipv6Enabled(Boolean ipv6Enabled) {
-    this.ipv6Enabled = ipv6Enabled;
-    return this;
-  }
-
-  /**
-   * IPv6Enabled if set to true an ipv6 subnet should be created for this net.
-   * @return ipv6Enabled
-   */
-  @javax.annotation.Nullable
-  public Boolean getIpv6Enabled() {
-    return ipv6Enabled;
-  }
-
-  public void setIpv6Enabled(Boolean ipv6Enabled) {
-    this.ipv6Enabled = ipv6Enabled;
-  }
-
-
-  public Network labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public Network putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
+    /**
+     * Created contains the timestamp when this network was created.
+     *
+     * @return created
+     */
+    @javax.annotation.Nullable
+    public OffsetDateTime getCreated() {
+        return created;
     }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
 
-  /**
-   * Labels is a set of key-value labels that have been applied to the Network.
-   * @return labels
-   */
-  @javax.annotation.Nullable
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public Network name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Name of the Network.
-   * @return name
-   */
-  @javax.annotation.Nullable
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public Network networkDnsServers(List<String> networkDnsServers) {
-    this.networkDnsServers = networkDnsServers;
-    return this;
-  }
-
-  public Network addNetworkDnsServersItem(String networkDnsServersItem) {
-    if (this.networkDnsServers == null) {
-      this.networkDnsServers = new ArrayList<>();
+    public void setCreated(OffsetDateTime created) {
+        this.created = created;
     }
-    this.networkDnsServers.add(networkDnsServersItem);
-    return this;
-  }
 
-  /**
-   * List of custom DNS server for podman&#39;s DNS resolver at network level, all the containers attached to this network will consider resolvers configured at network level.
-   * @return networkDnsServers
-   */
-  @javax.annotation.Nullable
-  public List<String> getNetworkDnsServers() {
-    return networkDnsServers;
-  }
-
-  public void setNetworkDnsServers(List<String> networkDnsServers) {
-    this.networkDnsServers = networkDnsServers;
-  }
-
-
-  public Network networkInterface(String networkInterface) {
-    this.networkInterface = networkInterface;
-    return this;
-  }
-
-  /**
-   * NetworkInterface is the network interface name on the host.
-   * @return networkInterface
-   */
-  @javax.annotation.Nullable
-  public String getNetworkInterface() {
-    return networkInterface;
-  }
-
-  public void setNetworkInterface(String networkInterface) {
-    this.networkInterface = networkInterface;
-  }
-
-
-  public Network options(Map<String, String> options) {
-    this.options = options;
-    return this;
-  }
-
-  public Network putOptionsItem(String key, String optionsItem) {
-    if (this.options == null) {
-      this.options = new HashMap<>();
+    public Network dnsEnabled(Boolean dnsEnabled) {
+        this.dnsEnabled = dnsEnabled;
+        return this;
     }
-    this.options.put(key, optionsItem);
-    return this;
-  }
 
-  /**
-   * Options is a set of key-value options that have been applied to the Network.
-   * @return options
-   */
-  @javax.annotation.Nullable
-  public Map<String, String> getOptions() {
-    return options;
-  }
-
-  public void setOptions(Map<String, String> options) {
-    this.options = options;
-  }
-
-
-  public Network routes(List<Route> routes) {
-    this.routes = routes;
-    return this;
-  }
-
-  public Network addRoutesItem(Route routesItem) {
-    if (this.routes == null) {
-      this.routes = new ArrayList<>();
+    /**
+     * DNSEnabled is whether name resolution is active for container on this Network. Only supported
+     * with the bridge driver.
+     *
+     * @return dnsEnabled
+     */
+    @javax.annotation.Nullable
+    public Boolean getDnsEnabled() {
+        return dnsEnabled;
     }
-    this.routes.add(routesItem);
-    return this;
-  }
 
-  /**
-   * Routes to use for this network.
-   * @return routes
-   */
-  @javax.annotation.Nullable
-  public List<Route> getRoutes() {
-    return routes;
-  }
-
-  public void setRoutes(List<Route> routes) {
-    this.routes = routes;
-  }
-
-
-  public Network subnets(List<Subnet> subnets) {
-    this.subnets = subnets;
-    return this;
-  }
-
-  public Network addSubnetsItem(Subnet subnetsItem) {
-    if (this.subnets == null) {
-      this.subnets = new ArrayList<>();
+    public void setDnsEnabled(Boolean dnsEnabled) {
+        this.dnsEnabled = dnsEnabled;
     }
-    this.subnets.add(subnetsItem);
-    return this;
-  }
 
-  /**
-   * Subnets to use for this network.
-   * @return subnets
-   */
-  @javax.annotation.Nullable
-  public List<Subnet> getSubnets() {
-    return subnets;
-  }
-
-  public void setSubnets(List<Subnet> subnets) {
-    this.subnets = subnets;
-  }
-
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    public Network driver(String driver) {
+        this.driver = driver;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Driver for this Network, e.g. bridge, macvlan...
+     *
+     * @return driver
+     */
+    @javax.annotation.Nullable
+    public String getDriver() {
+        return driver;
     }
-    Network network = (Network) o;
-    return Objects.equals(this.created, network.created) &&
-        Objects.equals(this.dnsEnabled, network.dnsEnabled) &&
-        Objects.equals(this.driver, network.driver) &&
-        Objects.equals(this.id, network.id) &&
-        Objects.equals(this.internal, network.internal) &&
-        Objects.equals(this.ipamOptions, network.ipamOptions) &&
-        Objects.equals(this.ipv6Enabled, network.ipv6Enabled) &&
-        Objects.equals(this.labels, network.labels) &&
-        Objects.equals(this.name, network.name) &&
-        Objects.equals(this.networkDnsServers, network.networkDnsServers) &&
-        Objects.equals(this.networkInterface, network.networkInterface) &&
-        Objects.equals(this.options, network.options) &&
-        Objects.equals(this.routes, network.routes) &&
-        Objects.equals(this.subnets, network.subnets);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(created, dnsEnabled, driver, id, internal, ipamOptions, ipv6Enabled, labels, name, networkDnsServers, networkInterface, options, routes, subnets);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Network {\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    dnsEnabled: ").append(toIndentedString(dnsEnabled)).append("\n");
-    sb.append("    driver: ").append(toIndentedString(driver)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    internal: ").append(toIndentedString(internal)).append("\n");
-    sb.append("    ipamOptions: ").append(toIndentedString(ipamOptions)).append("\n");
-    sb.append("    ipv6Enabled: ").append(toIndentedString(ipv6Enabled)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    networkDnsServers: ").append(toIndentedString(networkDnsServers)).append("\n");
-    sb.append("    networkInterface: ").append(toIndentedString(networkInterface)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    routes: ").append(toIndentedString(routes)).append("\n");
-    sb.append("    subnets: ").append(toIndentedString(subnets)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public void setDriver(String driver) {
+        this.driver = driver;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
 
+    public Network id(String id) {
+        this.id = id;
+        return this;
+    }
 
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
+    /**
+     * ID of the Network.
+     *
+     * @return id
+     */
+    @javax.annotation.Nullable
+    public String getId() {
+        return id;
+    }
 
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("created");
-    openapiFields.add("dns_enabled");
-    openapiFields.add("driver");
-    openapiFields.add("id");
-    openapiFields.add("internal");
-    openapiFields.add("ipam_options");
-    openapiFields.add("ipv6_enabled");
-    openapiFields.add("labels");
-    openapiFields.add("name");
-    openapiFields.add("network_dns_servers");
-    openapiFields.add("network_interface");
-    openapiFields.add("options");
-    openapiFields.add("routes");
-    openapiFields.add("subnets");
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-  }
+    public Network internal(Boolean internal) {
+        this.internal = internal;
+        return this;
+    }
 
-  /**
-   * Validates the JSON Element and throws an exception if issues found
-   *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Network
-   */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Network.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Network is not found in the empty JSON string", Network.openapiRequiredFields.toString()));
+    /**
+     * Internal is whether the Network should not have external routes to public or other Networks.
+     *
+     * @return internal
+     */
+    @javax.annotation.Nullable
+    public Boolean getInternal() {
+        return internal;
+    }
+
+    public void setInternal(Boolean internal) {
+        this.internal = internal;
+    }
+
+    public Network ipamOptions(Map<String, String> ipamOptions) {
+        this.ipamOptions = ipamOptions;
+        return this;
+    }
+
+    public Network putIpamOptionsItem(String key, String ipamOptionsItem) {
+        if (this.ipamOptions == null) {
+            this.ipamOptions = new HashMap<>();
         }
-      }
+        this.ipamOptions.put(key, ipamOptionsItem);
+        return this;
+    }
 
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Network.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Network` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+    /**
+     * IPAMOptions contains options used for the ip assignment.
+     *
+     * @return ipamOptions
+     */
+    @javax.annotation.Nullable
+    public Map<String, String> getIpamOptions() {
+        return ipamOptions;
+    }
+
+    public void setIpamOptions(Map<String, String> ipamOptions) {
+        this.ipamOptions = ipamOptions;
+    }
+
+    public Network ipv6Enabled(Boolean ipv6Enabled) {
+        this.ipv6Enabled = ipv6Enabled;
+        return this;
+    }
+
+    /**
+     * IPv6Enabled if set to true an ipv6 subnet should be created for this net.
+     *
+     * @return ipv6Enabled
+     */
+    @javax.annotation.Nullable
+    public Boolean getIpv6Enabled() {
+        return ipv6Enabled;
+    }
+
+    public void setIpv6Enabled(Boolean ipv6Enabled) {
+        this.ipv6Enabled = ipv6Enabled;
+    }
+
+    public Network labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public Network putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
         }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("driver") != null && !jsonObj.get("driver").isJsonNull()) && !jsonObj.get("driver").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("driver").toString()));
-      }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("network_dns_servers") != null && !jsonObj.get("network_dns_servers").isJsonNull() && !jsonObj.get("network_dns_servers").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `network_dns_servers` to be an array in the JSON string but got `%s`", jsonObj.get("network_dns_servers").toString()));
-      }
-      if ((jsonObj.get("network_interface") != null && !jsonObj.get("network_interface").isJsonNull()) && !jsonObj.get("network_interface").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `network_interface` to be a primitive type in the JSON string but got `%s`", jsonObj.get("network_interface").toString()));
-      }
-      if (jsonObj.get("routes") != null && !jsonObj.get("routes").isJsonNull()) {
-        JsonArray jsonArrayroutes = jsonObj.getAsJsonArray("routes");
-        if (jsonArrayroutes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("routes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `routes` to be an array in the JSON string but got `%s`", jsonObj.get("routes").toString()));
-          }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
 
-          // validate the optional field `routes` (array)
-          for (int i = 0; i < jsonArrayroutes.size(); i++) {
-            Route.validateJsonElement(jsonArrayroutes.get(i));
-          };
+    /**
+     * Labels is a set of key-value labels that have been applied to the Network.
+     *
+     * @return labels
+     */
+    @javax.annotation.Nullable
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public Network name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name of the Network.
+     *
+     * @return name
+     */
+    @javax.annotation.Nullable
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Network networkDnsServers(List<String> networkDnsServers) {
+        this.networkDnsServers = networkDnsServers;
+        return this;
+    }
+
+    public Network addNetworkDnsServersItem(String networkDnsServersItem) {
+        if (this.networkDnsServers == null) {
+            this.networkDnsServers = new ArrayList<>();
         }
-      }
-      if (jsonObj.get("subnets") != null && !jsonObj.get("subnets").isJsonNull()) {
-        JsonArray jsonArraysubnets = jsonObj.getAsJsonArray("subnets");
-        if (jsonArraysubnets != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("subnets").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `subnets` to be an array in the JSON string but got `%s`", jsonObj.get("subnets").toString()));
-          }
+        this.networkDnsServers.add(networkDnsServersItem);
+        return this;
+    }
 
-          // validate the optional field `subnets` (array)
-          for (int i = 0; i < jsonArraysubnets.size(); i++) {
-            Subnet.validateJsonElement(jsonArraysubnets.get(i));
-          };
+    /**
+     * List of custom DNS server for podman&#39;s DNS resolver at network level, all the containers
+     * attached to this network will consider resolvers configured at network level.
+     *
+     * @return networkDnsServers
+     */
+    @javax.annotation.Nullable
+    public List<String> getNetworkDnsServers() {
+        return networkDnsServers;
+    }
+
+    public void setNetworkDnsServers(List<String> networkDnsServers) {
+        this.networkDnsServers = networkDnsServers;
+    }
+
+    public Network networkInterface(String networkInterface) {
+        this.networkInterface = networkInterface;
+        return this;
+    }
+
+    /**
+     * NetworkInterface is the network interface name on the host.
+     *
+     * @return networkInterface
+     */
+    @javax.annotation.Nullable
+    public String getNetworkInterface() {
+        return networkInterface;
+    }
+
+    public void setNetworkInterface(String networkInterface) {
+        this.networkInterface = networkInterface;
+    }
+
+    public Network options(Map<String, String> options) {
+        this.options = options;
+        return this;
+    }
+
+    public Network putOptionsItem(String key, String optionsItem) {
+        if (this.options == null) {
+            this.options = new HashMap<>();
         }
-      }
-  }
+        this.options.put(key, optionsItem);
+        return this;
+    }
 
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
+    /**
+     * Options is a set of key-value options that have been applied to the Network.
+     *
+     * @return options
+     */
+    @javax.annotation.Nullable
+    public Map<String, String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Map<String, String> options) {
+        this.options = options;
+    }
+
+    public Network routes(List<Route> routes) {
+        this.routes = routes;
+        return this;
+    }
+
+    public Network addRoutesItem(Route routesItem) {
+        if (this.routes == null) {
+            this.routes = new ArrayList<>();
+        }
+        this.routes.add(routesItem);
+        return this;
+    }
+
+    /**
+     * Routes to use for this network.
+     *
+     * @return routes
+     */
+    @javax.annotation.Nullable
+    public List<Route> getRoutes() {
+        return routes;
+    }
+
+    public void setRoutes(List<Route> routes) {
+        this.routes = routes;
+    }
+
+    public Network subnets(List<Subnet> subnets) {
+        this.subnets = subnets;
+        return this;
+    }
+
+    public Network addSubnetsItem(Subnet subnetsItem) {
+        if (this.subnets == null) {
+            this.subnets = new ArrayList<>();
+        }
+        this.subnets.add(subnetsItem);
+        return this;
+    }
+
+    /**
+     * Subnets to use for this network.
+     *
+     * @return subnets
+     */
+    @javax.annotation.Nullable
+    public List<Subnet> getSubnets() {
+        return subnets;
+    }
+
+    public void setSubnets(List<Subnet> subnets) {
+        this.subnets = subnets;
+    }
+
     @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Network.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Network' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Network> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Network.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Network>() {
-           @Override
-           public void write(JsonWriter out, Network value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Network read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Network network = (Network) o;
+        return Objects.equals(this.created, network.created)
+                && Objects.equals(this.dnsEnabled, network.dnsEnabled)
+                && Objects.equals(this.driver, network.driver)
+                && Objects.equals(this.id, network.id)
+                && Objects.equals(this.internal, network.internal)
+                && Objects.equals(this.ipamOptions, network.ipamOptions)
+                && Objects.equals(this.ipv6Enabled, network.ipv6Enabled)
+                && Objects.equals(this.labels, network.labels)
+                && Objects.equals(this.name, network.name)
+                && Objects.equals(this.networkDnsServers, network.networkDnsServers)
+                && Objects.equals(this.networkInterface, network.networkInterface)
+                && Objects.equals(this.options, network.options)
+                && Objects.equals(this.routes, network.routes)
+                && Objects.equals(this.subnets, network.subnets);
     }
-  }
 
-  /**
-   * Create an instance of Network given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Network
-   * @throws IOException if the JSON string is invalid with respect to Network
-   */
-  public static Network fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Network.class);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                created,
+                dnsEnabled,
+                driver,
+                id,
+                internal,
+                ipamOptions,
+                ipv6Enabled,
+                labels,
+                name,
+                networkDnsServers,
+                networkInterface,
+                options,
+                routes,
+                subnets);
+    }
 
-  /**
-   * Convert an instance of Network to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
-  }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class Network {\n");
+        sb.append("    created: ").append(toIndentedString(created)).append("\n");
+        sb.append("    dnsEnabled: ").append(toIndentedString(dnsEnabled)).append("\n");
+        sb.append("    driver: ").append(toIndentedString(driver)).append("\n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    internal: ").append(toIndentedString(internal)).append("\n");
+        sb.append("    ipamOptions: ").append(toIndentedString(ipamOptions)).append("\n");
+        sb.append("    ipv6Enabled: ").append(toIndentedString(ipv6Enabled)).append("\n");
+        sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
+        sb.append("    networkDnsServers: ")
+                .append(toIndentedString(networkDnsServers))
+                .append("\n");
+        sb.append("    networkInterface: ").append(toIndentedString(networkInterface)).append("\n");
+        sb.append("    options: ").append(toIndentedString(options)).append("\n");
+        sb.append("    routes: ").append(toIndentedString(routes)).append("\n");
+        sb.append("    subnets: ").append(toIndentedString(subnets)).append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces (except the first
+     * line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("created");
+        openapiFields.add("dns_enabled");
+        openapiFields.add("driver");
+        openapiFields.add("id");
+        openapiFields.add("internal");
+        openapiFields.add("ipam_options");
+        openapiFields.add("ipv6_enabled");
+        openapiFields.add("labels");
+        openapiFields.add("name");
+        openapiFields.add("network_dns_servers");
+        openapiFields.add("network_interface");
+        openapiFields.add("options");
+        openapiFields.add("routes");
+        openapiFields.add("subnets");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Network
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Network.openapiRequiredFields
+                    .isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The required field(s) %s in Network is not found in the empty JSON"
+                                        + " string",
+                                Network.openapiRequiredFields.toString()));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Network.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(
+                        String.format(
+                                "The field `%s` in the JSON string is not defined in the `Network`"
+                                        + " properties. JSON: %s",
+                                entry.getKey(), jsonElement.toString()));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("driver") != null && !jsonObj.get("driver").isJsonNull())
+                && !jsonObj.get("driver").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `driver` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("driver").toString()));
+        }
+        if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull())
+                && !jsonObj.get("id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `id` to be a primitive type in the JSON string but"
+                                    + " got `%s`",
+                            jsonObj.get("id").toString()));
+        }
+        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull())
+                && !jsonObj.get("name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `name` to be a primitive type in the JSON string"
+                                    + " but got `%s`",
+                            jsonObj.get("name").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("network_dns_servers") != null
+                && !jsonObj.get("network_dns_servers").isJsonNull()
+                && !jsonObj.get("network_dns_servers").isJsonArray()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `network_dns_servers` to be an array in the JSON"
+                                    + " string but got `%s`",
+                            jsonObj.get("network_dns_servers").toString()));
+        }
+        if ((jsonObj.get("network_interface") != null
+                        && !jsonObj.get("network_interface").isJsonNull())
+                && !jsonObj.get("network_interface").isJsonPrimitive()) {
+            throw new IllegalArgumentException(
+                    String.format(
+                            "Expected the field `network_interface` to be a primitive type in the"
+                                    + " JSON string but got `%s`",
+                            jsonObj.get("network_interface").toString()));
+        }
+        if (jsonObj.get("routes") != null && !jsonObj.get("routes").isJsonNull()) {
+            JsonArray jsonArrayroutes = jsonObj.getAsJsonArray("routes");
+            if (jsonArrayroutes != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("routes").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `routes` to be an array in the JSON string"
+                                            + " but got `%s`",
+                                    jsonObj.get("routes").toString()));
+                }
+
+                // validate the optional field `routes` (array)
+                for (int i = 0; i < jsonArrayroutes.size(); i++) {
+                    Route.validateJsonElement(jsonArrayroutes.get(i));
+                }
+                ;
+            }
+        }
+        if (jsonObj.get("subnets") != null && !jsonObj.get("subnets").isJsonNull()) {
+            JsonArray jsonArraysubnets = jsonObj.getAsJsonArray("subnets");
+            if (jsonArraysubnets != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("subnets").isJsonArray()) {
+                    throw new IllegalArgumentException(
+                            String.format(
+                                    "Expected the field `subnets` to be an array in the JSON string"
+                                            + " but got `%s`",
+                                    jsonObj.get("subnets").toString()));
+                }
+
+                // validate the optional field `subnets` (array)
+                for (int i = 0; i < jsonArraysubnets.size(); i++) {
+                    Subnet.validateJsonElement(jsonArraysubnets.get(i));
+                }
+                ;
+            }
+        }
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Network.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Network' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Network> thisAdapter =
+                    gson.getDelegateAdapter(this, TypeToken.get(Network.class));
+
+            return (TypeAdapter<T>)
+                    new TypeAdapter<Network>() {
+                        @Override
+                        public void write(JsonWriter out, Network value) throws IOException {
+                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                            elementAdapter.write(out, obj);
+                        }
+
+                        @Override
+                        public Network read(JsonReader in) throws IOException {
+                            JsonElement jsonElement = elementAdapter.read(in);
+                            validateJsonElement(jsonElement);
+                            return thisAdapter.fromJsonTree(jsonElement);
+                        }
+                    }.nullSafe();
+        }
+    }
+
+    /**
+     * Create an instance of Network given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Network
+     * @throws IOException if the JSON string is invalid with respect to Network
+     */
+    public static Network fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Network.class);
+    }
+
+    /**
+     * Convert an instance of Network to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
 }
-
