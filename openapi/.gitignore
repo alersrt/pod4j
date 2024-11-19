@@ -3,25 +3,18 @@
 
 ## Include project files
 !/src/
-!/openapi/
+!/docs/
+!/swagger-latest.yaml
 
 ## Infrastructure
-!system.properties
-!.editorconfig
 !.gitignore
 
 ## Documentation
 !README.md
-!CONTRIBUTING.md
-!LICENSE
 
 ## Gradle wrapper
-!gradle/
-!gradlew
-!gradlew.bat
-!build.gradle.kts
-!settings.gradle.kts
-!gradle.properties
+!build.gradle
+!settings.gradle
 
 ## Exclude IDE files
 # JetBrains
