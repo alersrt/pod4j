@@ -15,6 +15,7 @@
 ## Gradle wrapper
 !build.gradle.kts
 !settings.gradle.kts
+!gradle.properties
 
 ## Exclude IDE files
 # JetBrains
