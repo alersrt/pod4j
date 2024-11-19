@@ -20,15 +20,11 @@ dependencies {
 
 group = "io.github.alersrt.pod4j"
 
-configure(allprojects) {
-    apply(plugin = "java")
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
 
-    java {
-        withJavadocJar()
-        withSourcesJar()
-    }
-
-    tasks.test {
-        useJUnitPlatform()
-    }
+tasks.test {
+    useJUnitPlatform()
 }

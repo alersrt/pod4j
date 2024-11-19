@@ -1,9 +1,12 @@
+import java.net.URI
+
 plugins {
     id("idea")
     id("eclipse")
     id("java")
     id("maven-publish")
     id("signing")
+    id("org.jreleaser") version "1.15.0"
     id("com.diffplug.spotless") version "6.25.0"
 }
 
@@ -11,7 +14,7 @@ repositories {
     mavenCentral()
 }
 
-group = "io.github.alersrt.pod4j"
+group = "io.github.alersrt"
 version = "5.0.0"
 
 dependencies {
@@ -35,6 +38,15 @@ tasks.withType<Javadoc> {
     (options as StandardJavadocDocletOptions)
         .tags("http.response.details:a:Http Response Details")
         .addStringOption("Xdoclint:none", "-quiet")
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
 
 // Use spotless plugin to automatically format code, remove unused import, etc
@@ -72,6 +84,18 @@ publishing {
                 url.set("https://github.com/alersrt/pod4j/openapi-java")
                 description.set("Generated Podman API")
 
+                scm {
+                    url.set("https://github.com/alersrt/pod4j")
+                    connection.set("scm:git:git://github.com/alersrt/pod4j.git")
+                    developerConnection.set("scm:git:git://github.com/alersrt/pod4j.git")
+                }
+
+                developers {
+                    developer {
+                        name.set("Aleksandr")
+                    }
+                }
+
                 licenses {
                     license {
                         name.set("MIT")
@@ -83,20 +107,25 @@ publishing {
     }
     repositories {
         maven {
-            val releasesUrl = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            val snapshotsUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-            url = if (version.toString().endsWith("SNAPSHOT")) snapshotsUrl else releasesUrl
-            credentials {
-                username = project.properties["ossrhUsername"].toString()
-                password = project.properties["ossrhPassword"].toString()
-            }
+            setUrl(layout.buildDirectory.dir("staging-deploy"))
         }
     }
 }
 
-signing {
-    if (!version.toString().endsWith("SNAPSHOT")) {
-        useGpgCmd()
-        sign(publishing.publications["mavenJava"])
+jreleaser {
+    signing {
+        setActive("ALWAYS")
+        armored = true
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                create("sonatype") {
+                    setActive("ALWAYS")
+                    url = "https://central.sonatype.com/api/v1/publisher"
+                    stagingRepository("build/staging-deploy")
+                }
+            }
+        }
     }
 }
