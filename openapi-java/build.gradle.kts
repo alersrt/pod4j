@@ -88,6 +88,8 @@ publishing {
                     developerConnection.set("scm:git:git://github.com/alersrt/pod4j.git")
                 }
 
+                inceptionYear = "2024"
+
                 developers {
                     developer {
                         name.set("Aleksandr")
@@ -111,6 +113,18 @@ publishing {
 }
 
 jreleaser {
+    project {
+        inceptionYear = "2024"
+        author("Aleksandr")
+        description = "Podman API"
+        license = "MIT"
+    }
+    gitRootSearch = true
+    release {
+        github {
+            token = "dummy"
+        }
+    }
     signing {
         setActive("ALWAYS")
         armored = true
