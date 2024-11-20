@@ -1,5 +1,3 @@
-import java.net.URI
-
 plugins {
     id("idea")
     id("eclipse")
@@ -116,6 +114,12 @@ jreleaser {
     signing {
         setActive("ALWAYS")
         armored = true
+        passphrase = properties["signing.gnupg.passphrase"].toString()
+        setMode("COMMAND")
+        command {
+            executable = properties["signing.gnupg.executable"].toString()
+            keyName = properties["signing.gnupg.keyName"].toString()
+        }
     }
     deploy {
         maven {
@@ -124,6 +128,8 @@ jreleaser {
                     setActive("ALWAYS")
                     url = "https://central.sonatype.com/api/v1/publisher"
                     stagingRepository("build/staging-deploy")
+                    username.set(properties["ossrhUsername"].toString())
+                    password.set(properties["ossrhPassword"].toString())
                 }
             }
         }
