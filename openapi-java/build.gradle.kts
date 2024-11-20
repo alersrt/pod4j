@@ -122,6 +122,7 @@ jreleaser {
     gitRootSearch = true
     release {
         github {
+            // https://github.com/jreleaser/jreleaser/discussions/367
             token = "dummy"
         }
     }
