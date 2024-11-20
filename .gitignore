@@ -3,7 +3,7 @@
 gradle.properties
 
 ## Include project files
-!/src/
+!/common/
 !/openapi-java/
 
 ## Infrastructure
@@ -12,7 +12,7 @@ gradle.properties
 !.gitignore
 
 ## Documentation
-!README.md
+!common/README.md
 !CONTRIBUTING.md
 !LICENSE
 
@@ -20,8 +20,8 @@ gradle.properties
 !gradle/
 !gradlew
 !gradlew.bat
-!build.gradle.kts
-!settings.gradle.kts
+!common/build.gradle.kts
+!common/settings.gradle.kts
 
 ## Exclude IDE files
 # JetBrains
