@@ -30,12 +30,12 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * Deprecated: ContainerNode was used for the classic Docker Swarm standalone API. It will be
- * removed in the next release.
+ * ContainerNode stores information about the node that a container is running on. It&#39;s only
+ * used by the Docker Swarm standalone API
  */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class ContainerNode {
     public static final String SERIALIZED_NAME_ADDR = "Addr";

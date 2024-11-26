@@ -35,7 +35,7 @@ import java.util.Set;
 /** InspectContainerConfig holds further data about how a container was initially configured. */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class InspectContainerConfig {
     public static final String SERIALIZED_NAME_ANNOTATIONS = "Annotations";
@@ -88,30 +88,10 @@ public class InspectContainerConfig {
     @SerializedName(SERIALIZED_NAME_ENV)
     private List<String> env = new ArrayList<>();
 
-    public static final String SERIALIZED_NAME_EXPOSED_PORTS = "ExposedPorts";
-
-    @SerializedName(SERIALIZED_NAME_EXPOSED_PORTS)
-    private Map<String, Object> exposedPorts = new HashMap<>();
-
-    public static final String SERIALIZED_NAME_HEALTH_LOG_DESTINATION = "HealthLogDestination";
-
-    @SerializedName(SERIALIZED_NAME_HEALTH_LOG_DESTINATION)
-    private String healthLogDestination;
-
     public static final String SERIALIZED_NAME_HEALTHCHECK = "Healthcheck";
 
     @SerializedName(SERIALIZED_NAME_HEALTHCHECK)
     private Schema2HealthConfig healthcheck;
-
-    public static final String SERIALIZED_NAME_HEALTHCHECK_MAX_LOG_COUNT = "HealthcheckMaxLogCount";
-
-    @SerializedName(SERIALIZED_NAME_HEALTHCHECK_MAX_LOG_COUNT)
-    private Integer healthcheckMaxLogCount;
-
-    public static final String SERIALIZED_NAME_HEALTHCHECK_MAX_LOG_SIZE = "HealthcheckMaxLogSize";
-
-    @SerializedName(SERIALIZED_NAME_HEALTHCHECK_MAX_LOG_SIZE)
-    private Integer healthcheckMaxLogSize;
 
     public static final String SERIALIZED_NAME_HEALTHCHECK_ON_FAILURE_ACTION =
             "HealthcheckOnFailureAction";
@@ -153,11 +133,6 @@ public class InspectContainerConfig {
 
     @SerializedName(SERIALIZED_NAME_SECRETS)
     private List<InspectSecret> secrets = new ArrayList<>();
-
-    public static final String SERIALIZED_NAME_STARTUP_HEALTH_CHECK = "StartupHealthCheck";
-
-    @SerializedName(SERIALIZED_NAME_STARTUP_HEALTH_CHECK)
-    private StartupHealthCheck startupHealthCheck;
 
     public static final String SERIALIZED_NAME_STDIN_ONCE = "StdinOnce";
 
@@ -466,52 +441,6 @@ public class InspectContainerConfig {
         this.env = env;
     }
 
-    public InspectContainerConfig exposedPorts(Map<String, Object> exposedPorts) {
-        this.exposedPorts = exposedPorts;
-        return this;
-    }
-
-    public InspectContainerConfig putExposedPortsItem(String key, Object exposedPortsItem) {
-        if (this.exposedPorts == null) {
-            this.exposedPorts = new HashMap<>();
-        }
-        this.exposedPorts.put(key, exposedPortsItem);
-        return this;
-    }
-
-    /**
-     * ExposedPorts includes ports the container has exposed.
-     *
-     * @return exposedPorts
-     */
-    @javax.annotation.Nullable
-    public Map<String, Object> getExposedPorts() {
-        return exposedPorts;
-    }
-
-    public void setExposedPorts(Map<String, Object> exposedPorts) {
-        this.exposedPorts = exposedPorts;
-    }
-
-    public InspectContainerConfig healthLogDestination(String healthLogDestination) {
-        this.healthLogDestination = healthLogDestination;
-        return this;
-    }
-
-    /**
-     * HealthLogDestination defines the destination where the log is stored
-     *
-     * @return healthLogDestination
-     */
-    @javax.annotation.Nullable
-    public String getHealthLogDestination() {
-        return healthLogDestination;
-    }
-
-    public void setHealthLogDestination(String healthLogDestination) {
-        this.healthLogDestination = healthLogDestination;
-    }
-
     public InspectContainerConfig healthcheck(Schema2HealthConfig healthcheck) {
         this.healthcheck = healthcheck;
         return this;
@@ -529,46 +458,6 @@ public class InspectContainerConfig {
 
     public void setHealthcheck(Schema2HealthConfig healthcheck) {
         this.healthcheck = healthcheck;
-    }
-
-    public InspectContainerConfig healthcheckMaxLogCount(Integer healthcheckMaxLogCount) {
-        this.healthcheckMaxLogCount = healthcheckMaxLogCount;
-        return this;
-    }
-
-    /**
-     * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39;
-     * value means an infinite number of attempts in the log file)
-     *
-     * @return healthcheckMaxLogCount
-     */
-    @javax.annotation.Nullable
-    public Integer getHealthcheckMaxLogCount() {
-        return healthcheckMaxLogCount;
-    }
-
-    public void setHealthcheckMaxLogCount(Integer healthcheckMaxLogCount) {
-        this.healthcheckMaxLogCount = healthcheckMaxLogCount;
-    }
-
-    public InspectContainerConfig healthcheckMaxLogSize(Integer healthcheckMaxLogSize) {
-        this.healthcheckMaxLogSize = healthcheckMaxLogSize;
-        return this;
-    }
-
-    /**
-     * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
-     * (\&quot;0\&quot; value means an infinite log length)
-     *
-     * @return healthcheckMaxLogSize
-     */
-    @javax.annotation.Nullable
-    public Integer getHealthcheckMaxLogSize() {
-        return healthcheckMaxLogSize;
-    }
-
-    public void setHealthcheckMaxLogSize(Integer healthcheckMaxLogSize) {
-        this.healthcheckMaxLogSize = healthcheckMaxLogSize;
     }
 
     public InspectContainerConfig healthcheckOnFailureAction(String healthcheckOnFailureAction) {
@@ -737,25 +626,6 @@ public class InspectContainerConfig {
 
     public void setSecrets(List<InspectSecret> secrets) {
         this.secrets = secrets;
-    }
-
-    public InspectContainerConfig startupHealthCheck(StartupHealthCheck startupHealthCheck) {
-        this.startupHealthCheck = startupHealthCheck;
-        return this;
-    }
-
-    /**
-     * Get startupHealthCheck
-     *
-     * @return startupHealthCheck
-     */
-    @javax.annotation.Nullable
-    public StartupHealthCheck getStartupHealthCheck() {
-        return startupHealthCheck;
-    }
-
-    public void setStartupHealthCheck(StartupHealthCheck startupHealthCheck) {
-        this.startupHealthCheck = startupHealthCheck;
     }
 
     public InspectContainerConfig stdinOnce(Boolean stdinOnce) {
@@ -1034,14 +904,7 @@ public class InspectContainerConfig {
                 && Objects.equals(this.domainname, inspectContainerConfig.domainname)
                 && Objects.equals(this.entrypoint, inspectContainerConfig.entrypoint)
                 && Objects.equals(this.env, inspectContainerConfig.env)
-                && Objects.equals(this.exposedPorts, inspectContainerConfig.exposedPorts)
-                && Objects.equals(
-                        this.healthLogDestination, inspectContainerConfig.healthLogDestination)
                 && Objects.equals(this.healthcheck, inspectContainerConfig.healthcheck)
-                && Objects.equals(
-                        this.healthcheckMaxLogCount, inspectContainerConfig.healthcheckMaxLogCount)
-                && Objects.equals(
-                        this.healthcheckMaxLogSize, inspectContainerConfig.healthcheckMaxLogSize)
                 && Objects.equals(
                         this.healthcheckOnFailureAction,
                         inspectContainerConfig.healthcheckOnFailureAction)
@@ -1052,8 +915,6 @@ public class InspectContainerConfig {
                 && Objects.equals(this.openStdin, inspectContainerConfig.openStdin)
                 && Objects.equals(this.passwd, inspectContainerConfig.passwd)
                 && Objects.equals(this.secrets, inspectContainerConfig.secrets)
-                && Objects.equals(
-                        this.startupHealthCheck, inspectContainerConfig.startupHealthCheck)
                 && Objects.equals(this.stdinOnce, inspectContainerConfig.stdinOnce)
                 && Objects.equals(this.stopSignal, inspectContainerConfig.stopSignal)
                 && Objects.equals(this.stopTimeout, inspectContainerConfig.stopTimeout)
@@ -1082,11 +943,7 @@ public class InspectContainerConfig {
                 domainname,
                 entrypoint,
                 env,
-                exposedPorts,
-                healthLogDestination,
                 healthcheck,
-                healthcheckMaxLogCount,
-                healthcheckMaxLogSize,
                 healthcheckOnFailureAction,
                 hostname,
                 image,
@@ -1095,7 +952,6 @@ public class InspectContainerConfig {
                 openStdin,
                 passwd,
                 secrets,
-                startupHealthCheck,
                 stdinOnce,
                 stopSignal,
                 stopTimeout,
@@ -1125,17 +981,7 @@ public class InspectContainerConfig {
         sb.append("    domainname: ").append(toIndentedString(domainname)).append("\n");
         sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
         sb.append("    env: ").append(toIndentedString(env)).append("\n");
-        sb.append("    exposedPorts: ").append(toIndentedString(exposedPorts)).append("\n");
-        sb.append("    healthLogDestination: ")
-                .append(toIndentedString(healthLogDestination))
-                .append("\n");
         sb.append("    healthcheck: ").append(toIndentedString(healthcheck)).append("\n");
-        sb.append("    healthcheckMaxLogCount: ")
-                .append(toIndentedString(healthcheckMaxLogCount))
-                .append("\n");
-        sb.append("    healthcheckMaxLogSize: ")
-                .append(toIndentedString(healthcheckMaxLogSize))
-                .append("\n");
         sb.append("    healthcheckOnFailureAction: ")
                 .append(toIndentedString(healthcheckOnFailureAction))
                 .append("\n");
@@ -1146,9 +992,6 @@ public class InspectContainerConfig {
         sb.append("    openStdin: ").append(toIndentedString(openStdin)).append("\n");
         sb.append("    passwd: ").append(toIndentedString(passwd)).append("\n");
         sb.append("    secrets: ").append(toIndentedString(secrets)).append("\n");
-        sb.append("    startupHealthCheck: ")
-                .append(toIndentedString(startupHealthCheck))
-                .append("\n");
         sb.append("    stdinOnce: ").append(toIndentedString(stdinOnce)).append("\n");
         sb.append("    stopSignal: ").append(toIndentedString(stopSignal)).append("\n");
         sb.append("    stopTimeout: ").append(toIndentedString(stopTimeout)).append("\n");
@@ -1193,11 +1036,7 @@ public class InspectContainerConfig {
         openapiFields.add("Domainname");
         openapiFields.add("Entrypoint");
         openapiFields.add("Env");
-        openapiFields.add("ExposedPorts");
-        openapiFields.add("HealthLogDestination");
         openapiFields.add("Healthcheck");
-        openapiFields.add("HealthcheckMaxLogCount");
-        openapiFields.add("HealthcheckMaxLogSize");
         openapiFields.add("HealthcheckOnFailureAction");
         openapiFields.add("Hostname");
         openapiFields.add("Image");
@@ -1206,7 +1045,6 @@ public class InspectContainerConfig {
         openapiFields.add("OpenStdin");
         openapiFields.add("Passwd");
         openapiFields.add("Secrets");
-        openapiFields.add("StartupHealthCheck");
         openapiFields.add("StdinOnce");
         openapiFields.add("StopSignal");
         openapiFields.add("StopTimeout");
@@ -1313,15 +1151,6 @@ public class InspectContainerConfig {
                                     + " `%s`",
                             jsonObj.get("Env").toString()));
         }
-        if ((jsonObj.get("HealthLogDestination") != null
-                        && !jsonObj.get("HealthLogDestination").isJsonNull())
-                && !jsonObj.get("HealthLogDestination").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `HealthLogDestination` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("HealthLogDestination").toString()));
-        }
         // validate the optional field `Healthcheck`
         if (jsonObj.get("Healthcheck") != null && !jsonObj.get("Healthcheck").isJsonNull()) {
             Schema2HealthConfig.validateJsonElement(jsonObj.get("Healthcheck"));
@@ -1377,11 +1206,6 @@ public class InspectContainerConfig {
                 }
                 ;
             }
-        }
-        // validate the optional field `StartupHealthCheck`
-        if (jsonObj.get("StartupHealthCheck") != null
-                && !jsonObj.get("StartupHealthCheck").isJsonNull()) {
-            StartupHealthCheck.validateJsonElement(jsonObj.get("StartupHealthCheck"));
         }
         if ((jsonObj.get("StopSignal") != null && !jsonObj.get("StopSignal").isJsonNull())
                 && !jsonObj.get("StopSignal").isJsonPrimitive()) {

@@ -37,7 +37,7 @@ import java.util.Set;
  */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class InspectMount {
     public static final String SERIALIZED_NAME_DESTINATION = "Destination";
@@ -79,11 +79,6 @@ public class InspectMount {
 
     @SerializedName(SERIALIZED_NAME_SOURCE)
     private String source;
-
-    public static final String SERIALIZED_NAME_SUB_PATH = "SubPath";
-
-    @SerializedName(SERIALIZED_NAME_SUB_PATH)
-    private String subPath;
 
     public static final String SERIALIZED_NAME_TYPE = "Type";
 
@@ -254,26 +249,6 @@ public class InspectMount {
         this.source = source;
     }
 
-    public InspectMount subPath(String subPath) {
-        this.subPath = subPath;
-        return this;
-    }
-
-    /**
-     * SubPath object from the volume. Specified as a path within the source volume to be mounted at
-     * the Destination.
-     *
-     * @return subPath
-     */
-    @javax.annotation.Nullable
-    public String getSubPath() {
-        return subPath;
-    }
-
-    public void setSubPath(String subPath) {
-        this.subPath = subPath;
-    }
-
     public InspectMount type(String type) {
         this.type = type;
         return this;
@@ -311,14 +286,13 @@ public class InspectMount {
                 && Objects.equals(this.propagation, inspectMount.propagation)
                 && Objects.equals(this.RW, inspectMount.RW)
                 && Objects.equals(this.source, inspectMount.source)
-                && Objects.equals(this.subPath, inspectMount.subPath)
                 && Objects.equals(this.type, inspectMount.type);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                destination, driver, mode, name, options, propagation, RW, source, subPath, type);
+                destination, driver, mode, name, options, propagation, RW, source, type);
     }
 
     @Override
@@ -333,7 +307,6 @@ public class InspectMount {
         sb.append("    propagation: ").append(toIndentedString(propagation)).append("\n");
         sb.append("    RW: ").append(toIndentedString(RW)).append("\n");
         sb.append("    source: ").append(toIndentedString(source)).append("\n");
-        sb.append("    subPath: ").append(toIndentedString(subPath)).append("\n");
         sb.append("    type: ").append(toIndentedString(type)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -364,7 +337,6 @@ public class InspectMount {
         openapiFields.add("Propagation");
         openapiFields.add("RW");
         openapiFields.add("Source");
-        openapiFields.add("SubPath");
         openapiFields.add("Type");
 
         // a set of required properties/fields (JSON key names)
@@ -458,14 +430,6 @@ public class InspectMount {
                             "Expected the field `Source` to be a primitive type in the JSON string"
                                     + " but got `%s`",
                             jsonObj.get("Source").toString()));
-        }
-        if ((jsonObj.get("SubPath") != null && !jsonObj.get("SubPath").isJsonNull())
-                && !jsonObj.get("SubPath").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `SubPath` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("SubPath").toString()));
         }
         if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull())
                 && !jsonObj.get("Type").isJsonPrimitive()) {

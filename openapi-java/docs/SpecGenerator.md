@@ -38,9 +38,6 @@ SpecGenerator creates an OCI spec and Libpod configuration options to create a c
 |**groupEntry** | **String** | GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional. |  [optional] |
 |**groups** | **List&lt;String&gt;** | Groups are a list of supplemental groups the container&#39;s user will be granted access to. Optional. |  [optional] |
 |**healthCheckOnFailureAction** | **Long** | HealthCheckOnFailureAction defines how Podman reacts when a container&#39;s health status turns unhealthy. |  [optional] |
-|**healthLogDestination** | **String** | HealthLogDestination defines the destination where the log is stored |  [optional] |
-|**healthMaxLogCount** | **Integer** | HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file) |  [optional] |
-|**healthMaxLogSize** | **Integer** | HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length) |  [optional] |
 |**healthconfig** | [**Schema2HealthConfig**](Schema2HealthConfig.md) |  |  [optional] |
 |**hostDeviceList** | [**List&lt;LinuxDevice&gt;**](LinuxDevice.md) | HostDeviceList is used to recreate the mounted device on inherited containers |  [optional] |
 |**hostadd** | **List&lt;String&gt;** | HostAdd is a set of hosts which will be added to the container&#39;s etc/hosts file. Conflicts with UseImageHosts. Optional. |  [optional] |
@@ -85,7 +82,6 @@ SpecGenerator creates an OCI spec and Libpod configuration options to create a c
 |**readOnlyFilesystem** | **Boolean** | ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional. |  [optional] |
 |**readWriteTmpfs** | **Boolean** | ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional. |  [optional] |
 |**remove** | **Boolean** | Remove indicates if the container should be removed once it has been started and exits. Optional. |  [optional] |
-|**removeImage** | **Boolean** | RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional. |  [optional] |
 |**resourceLimits** | [**LinuxResources**](LinuxResources.md) |  |  [optional] |
 |**restartPolicy** | **String** | RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional. |  [optional] |
 |**restartTries** | **Integer** | RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional. |  [optional] |
@@ -103,7 +99,7 @@ SpecGenerator creates an OCI spec and Libpod configuration options to create a c
 |**shmSizeSystemd** | **Long** | ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional |  [optional] |
 |**startupHealthConfig** | [**StartupHealthCheck**](StartupHealthCheck.md) |  |  [optional] |
 |**stdin** | **Boolean** | Stdin is whether the container will keep its STDIN open. Optional. |  [optional] |
-|**stopSignal** | **Long** | It implements the [os.Signal] interface. |  [optional] |
+|**stopSignal** | **Long** | It implements the os.Signal interface. |  [optional] |
 |**stopTimeout** | **Integer** | StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional. |  [optional] |
 |**storageOpts** | **Map&lt;String, String&gt;** | StorageOpts is the container&#39;s storage options Optional. |  [optional] |
 |**sysctl** | **Map&lt;String, String&gt;** | Sysctl sets kernel parameters for the container |  [optional] |
@@ -118,8 +114,8 @@ SpecGenerator creates an OCI spec and Libpod configuration options to create a c
 |**umask** | **String** | Umask is the umask the init process of the container will be run with. |  [optional] |
 |**unified** | **Map&lt;String, String&gt;** | CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional. |  [optional] |
 |**unmask** | **List&lt;String&gt;** | Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional. |  [optional] |
-|**unsetenv** | **List&lt;String&gt;** | UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional. |  [optional] |
-|**unsetenvall** | **Boolean** | UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional. |  [optional] |
+|**unsetenv** | **List&lt;String&gt;** | UnsetEnv unsets the specified default environment variables from the image or from buildin or containers.conf Optional. |  [optional] |
+|**unsetenvall** | **Boolean** | UnsetEnvAll unsetall default environment variables from the image or from buildin or containers.conf UnsetEnvAll unsets all default environment variables from the image or from buildin Optional. |  [optional] |
 |**useImageHosts** | **Boolean** | UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional. |  [optional] |
 |**useImageResolveConf** | **Boolean** | UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional. |  [optional] |
 |**user** | **String** | User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container&#39;s /etc/passwd. If unset, the container will be run as root. Optional. |  [optional] |

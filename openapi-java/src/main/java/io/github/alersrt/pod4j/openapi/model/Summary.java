@@ -13,7 +13,6 @@
 package io.github.alersrt.pod4j.openapi.model;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
@@ -32,10 +31,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-/** Summary */
+/** Summary summary */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class Summary {
     public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
@@ -57,11 +56,6 @@ public class Summary {
 
     @SerializedName(SERIALIZED_NAME_LABELS)
     private Map<String, String> labels = new HashMap<>();
-
-    public static final String SERIALIZED_NAME_MANIFESTS = "Manifests";
-
-    @SerializedName(SERIALIZED_NAME_MANIFESTS)
-    private List<ManifestSummary> manifests = new ArrayList<>();
 
     public static final String SERIALIZED_NAME_PARENT_ID = "ParentId";
 
@@ -122,7 +116,7 @@ public class Summary {
     }
 
     /**
-     * Date and time at which the image was created as a Unix timestamp (number of seconds since
+     * Date and time at which the image was created as a Unix timestamp (number of seconds sinds
      * EPOCH).
      *
      * @return created
@@ -183,36 +177,6 @@ public class Summary {
 
     public void setLabels(Map<String, String> labels) {
         this.labels = labels;
-    }
-
-    public Summary manifests(List<ManifestSummary> manifests) {
-        this.manifests = manifests;
-        return this;
-    }
-
-    public Summary addManifestsItem(ManifestSummary manifestsItem) {
-        if (this.manifests == null) {
-            this.manifests = new ArrayList<>();
-        }
-        this.manifests.add(manifestsItem);
-        return this;
-    }
-
-    /**
-     * Manifests is a list of image manifests available in this image. It provides a more detailed
-     * view of the platform-specific image manifests or other image-attached data like build
-     * attestations. WARNING: This is experimental and may change at any time without any backward
-     * compatibility.
-     *
-     * @return manifests
-     */
-    @javax.annotation.Nullable
-    public List<ManifestSummary> getManifests() {
-        return manifests;
-    }
-
-    public void setManifests(List<ManifestSummary> manifests) {
-        this.manifests = manifests;
     }
 
     public Summary parentId(String parentId) {
@@ -369,7 +333,6 @@ public class Summary {
                 && Objects.equals(this.created, summary.created)
                 && Objects.equals(this.id, summary.id)
                 && Objects.equals(this.labels, summary.labels)
-                && Objects.equals(this.manifests, summary.manifests)
                 && Objects.equals(this.parentId, summary.parentId)
                 && Objects.equals(this.repoDigests, summary.repoDigests)
                 && Objects.equals(this.repoTags, summary.repoTags)
@@ -385,7 +348,6 @@ public class Summary {
                 created,
                 id,
                 labels,
-                manifests,
                 parentId,
                 repoDigests,
                 repoTags,
@@ -402,7 +364,6 @@ public class Summary {
         sb.append("    created: ").append(toIndentedString(created)).append("\n");
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
         sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-        sb.append("    manifests: ").append(toIndentedString(manifests)).append("\n");
         sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
         sb.append("    repoDigests: ").append(toIndentedString(repoDigests)).append("\n");
         sb.append("    repoTags: ").append(toIndentedString(repoTags)).append("\n");
@@ -434,7 +395,6 @@ public class Summary {
         openapiFields.add("Created");
         openapiFields.add("Id");
         openapiFields.add("Labels");
-        openapiFields.add("Manifests");
         openapiFields.add("ParentId");
         openapiFields.add("RepoDigests");
         openapiFields.add("RepoTags");
@@ -501,25 +461,6 @@ public class Summary {
                             "Expected the field `Id` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("Id").toString()));
-        }
-        if (jsonObj.get("Manifests") != null && !jsonObj.get("Manifests").isJsonNull()) {
-            JsonArray jsonArraymanifests = jsonObj.getAsJsonArray("Manifests");
-            if (jsonArraymanifests != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("Manifests").isJsonArray()) {
-                    throw new IllegalArgumentException(
-                            String.format(
-                                    "Expected the field `Manifests` to be an array in the JSON"
-                                            + " string but got `%s`",
-                                    jsonObj.get("Manifests").toString()));
-                }
-
-                // validate the optional field `Manifests` (array)
-                for (int i = 0; i < jsonArraymanifests.size(); i++) {
-                    ManifestSummary.validateJsonElement(jsonArraymanifests.get(i));
-                }
-                ;
-            }
         }
         if (!jsonObj.get("ParentId").isJsonPrimitive()) {
             throw new IllegalArgumentException(

@@ -31,21 +31,20 @@
 |**pidns** | [**Namespace**](Namespace.md) |  |  [optional] |
 |**pod** | **String** | Pod is the ID of the pod the container will join. Optional. |  [optional] |
 |**remove** | **Boolean** | Remove indicates if the container should be removed once it has been started and exits. Optional. |  [optional] |
-|**removeImage** | **Boolean** | RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional. |  [optional] |
 |**restartPolicy** | **String** | RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional. |  [optional] |
 |**restartTries** | **Integer** | RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional. |  [optional] |
 |**sdnotifyMode** | **String** | Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional. |  [optional] |
 |**secretEnv** | **Map&lt;String, String&gt;** | EnvSecrets are secrets that will be set as environment variables Optional. |  [optional] |
 |**stdin** | **Boolean** | Stdin is whether the container will keep its STDIN open. Optional. |  [optional] |
-|**stopSignal** | **Long** | It implements the [os.Signal] interface. |  [optional] |
+|**stopSignal** | **Long** | It implements the os.Signal interface. |  [optional] |
 |**stopTimeout** | **Integer** | StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional. |  [optional] |
 |**sysctl** | **Map&lt;String, String&gt;** | Sysctl sets kernel parameters for the container |  [optional] |
 |**systemd** | **String** | Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional. |  [optional] |
 |**terminal** | **Boolean** | Terminal is whether the container will create a PTY. Optional. |  [optional] |
 |**timeout** | **Integer** | Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional. |  [optional] |
 |**timezone** | **String** | Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional. |  [optional] |
-|**unsetenv** | **List&lt;String&gt;** | UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional. |  [optional] |
-|**unsetenvall** | **Boolean** | UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional. |  [optional] |
+|**unsetenv** | **List&lt;String&gt;** | UnsetEnv unsets the specified default environment variables from the image or from buildin or containers.conf Optional. |  [optional] |
+|**unsetenvall** | **Boolean** | UnsetEnvAll unsetall default environment variables from the image or from buildin or containers.conf UnsetEnvAll unsets all default environment variables from the image or from buildin Optional. |  [optional] |
 |**utsns** | [**Namespace**](Namespace.md) |  |  [optional] |
 
 

@@ -33,7 +33,7 @@ import java.util.Set;
 /** PodStartReport */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class PodStartReport {
     public static final String SERIALIZED_NAME_ERRS = "Errs";
@@ -45,11 +45,6 @@ public class PodStartReport {
 
     @SerializedName(SERIALIZED_NAME_ID)
     private String id;
-
-    public static final String SERIALIZED_NAME_RAW_INPUT = "RawInput";
-
-    @SerializedName(SERIALIZED_NAME_RAW_INPUT)
-    private String rawInput;
 
     public PodStartReport() {}
 
@@ -99,25 +94,6 @@ public class PodStartReport {
         this.id = id;
     }
 
-    public PodStartReport rawInput(String rawInput) {
-        this.rawInput = rawInput;
-        return this;
-    }
-
-    /**
-     * Get rawInput
-     *
-     * @return rawInput
-     */
-    @javax.annotation.Nullable
-    public String getRawInput() {
-        return rawInput;
-    }
-
-    public void setRawInput(String rawInput) {
-        this.rawInput = rawInput;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -128,13 +104,12 @@ public class PodStartReport {
         }
         PodStartReport podStartReport = (PodStartReport) o;
         return Objects.equals(this.errs, podStartReport.errs)
-                && Objects.equals(this.id, podStartReport.id)
-                && Objects.equals(this.rawInput, podStartReport.rawInput);
+                && Objects.equals(this.id, podStartReport.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(errs, id, rawInput);
+        return Objects.hash(errs, id);
     }
 
     @Override
@@ -143,7 +118,6 @@ public class PodStartReport {
         sb.append("class PodStartReport {\n");
         sb.append("    errs: ").append(toIndentedString(errs)).append("\n");
         sb.append("    id: ").append(toIndentedString(id)).append("\n");
-        sb.append("    rawInput: ").append(toIndentedString(rawInput)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -167,7 +141,6 @@ public class PodStartReport {
         openapiFields = new HashSet<String>();
         openapiFields.add("Errs");
         openapiFields.add("Id");
-        openapiFields.add("RawInput");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -220,14 +193,6 @@ public class PodStartReport {
                             "Expected the field `Id` to be a primitive type in the JSON string but"
                                     + " got `%s`",
                             jsonObj.get("Id").toString()));
-        }
-        if ((jsonObj.get("RawInput") != null && !jsonObj.get("RawInput").isJsonNull())
-                && !jsonObj.get("RawInput").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `RawInput` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("RawInput").toString()));
         }
     }
 

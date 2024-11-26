@@ -2,7 +2,7 @@
 
 # ContainerNode
 
-Deprecated: ContainerNode was used for the classic Docker Swarm standalone API. It will be removed in the next release.
+ContainerNode stores information about the node that a container is running on.  It's only used by the Docker Swarm standalone API
 
 ## Properties
 

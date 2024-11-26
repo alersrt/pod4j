@@ -23,9 +23,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -33,18 +31,13 @@ import java.util.Set;
 /** TmpfsOptions */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class TmpfsOptions {
     public static final String SERIALIZED_NAME_MODE = "Mode";
 
     @SerializedName(SERIALIZED_NAME_MODE)
     private Integer mode;
-
-    public static final String SERIALIZED_NAME_OPTIONS = "Options";
-
-    @SerializedName(SERIALIZED_NAME_OPTIONS)
-    private List<List<String>> options = new ArrayList<>();
 
     public static final String SERIALIZED_NAME_SIZE_BYTES = "SizeBytes";
 
@@ -72,35 +65,6 @@ public class TmpfsOptions {
 
     public void setMode(Integer mode) {
         this.mode = mode;
-    }
-
-    public TmpfsOptions options(List<List<String>> options) {
-        this.options = options;
-        return this;
-    }
-
-    public TmpfsOptions addOptionsItem(List<String> optionsItem) {
-        if (this.options == null) {
-            this.options = new ArrayList<>();
-        }
-        this.options.add(optionsItem);
-        return this;
-    }
-
-    /**
-     * Options to be passed to the tmpfs mount. An array of arrays. Flag options should be provided
-     * as 1-length arrays. Other types should be provided as 2-length arrays, where the first item
-     * is the key and the second the value.
-     *
-     * @return options
-     */
-    @javax.annotation.Nullable
-    public List<List<String>> getOptions() {
-        return options;
-    }
-
-    public void setOptions(List<List<String>> options) {
-        this.options = options;
     }
 
     public TmpfsOptions sizeBytes(Long sizeBytes) {
@@ -135,13 +99,12 @@ public class TmpfsOptions {
         }
         TmpfsOptions tmpfsOptions = (TmpfsOptions) o;
         return Objects.equals(this.mode, tmpfsOptions.mode)
-                && Objects.equals(this.options, tmpfsOptions.options)
                 && Objects.equals(this.sizeBytes, tmpfsOptions.sizeBytes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(mode, options, sizeBytes);
+        return Objects.hash(mode, sizeBytes);
     }
 
     @Override
@@ -149,7 +112,6 @@ public class TmpfsOptions {
         StringBuilder sb = new StringBuilder();
         sb.append("class TmpfsOptions {\n");
         sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
-        sb.append("    options: ").append(toIndentedString(options)).append("\n");
         sb.append("    sizeBytes: ").append(toIndentedString(sizeBytes)).append("\n");
         sb.append("}");
         return sb.toString();
@@ -173,7 +135,6 @@ public class TmpfsOptions {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("Mode");
-        openapiFields.add("Options");
         openapiFields.add("SizeBytes");
 
         // a set of required properties/fields (JSON key names)
@@ -210,16 +171,6 @@ public class TmpfsOptions {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("Options") != null
-                && !jsonObj.get("Options").isJsonNull()
-                && !jsonObj.get("Options").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Options` to be an array in the JSON string but got"
-                                    + " `%s`",
-                            jsonObj.get("Options").toString()));
-        }
     }
 
     public static class CustomTypeAdapterFactory implements TypeAdapterFactory {

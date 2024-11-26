@@ -34,7 +34,7 @@ import java.util.Set;
  */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class ContainerHealthCheckConfig {
     public static final String SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION =
@@ -42,21 +42,6 @@ public class ContainerHealthCheckConfig {
 
     @SerializedName(SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION)
     private Long healthCheckOnFailureAction;
-
-    public static final String SERIALIZED_NAME_HEALTH_LOG_DESTINATION = "healthLogDestination";
-
-    @SerializedName(SERIALIZED_NAME_HEALTH_LOG_DESTINATION)
-    private String healthLogDestination;
-
-    public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT = "healthMaxLogCount";
-
-    @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT)
-    private Integer healthMaxLogCount;
-
-    public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE = "healthMaxLogSize";
-
-    @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE)
-    private Integer healthMaxLogSize;
 
     public static final String SERIALIZED_NAME_HEALTHCONFIG = "healthconfig";
 
@@ -88,65 +73,6 @@ public class ContainerHealthCheckConfig {
 
     public void setHealthCheckOnFailureAction(Long healthCheckOnFailureAction) {
         this.healthCheckOnFailureAction = healthCheckOnFailureAction;
-    }
-
-    public ContainerHealthCheckConfig healthLogDestination(String healthLogDestination) {
-        this.healthLogDestination = healthLogDestination;
-        return this;
-    }
-
-    /**
-     * HealthLogDestination defines the destination where the log is stored
-     *
-     * @return healthLogDestination
-     */
-    @javax.annotation.Nullable
-    public String getHealthLogDestination() {
-        return healthLogDestination;
-    }
-
-    public void setHealthLogDestination(String healthLogDestination) {
-        this.healthLogDestination = healthLogDestination;
-    }
-
-    public ContainerHealthCheckConfig healthMaxLogCount(Integer healthMaxLogCount) {
-        this.healthMaxLogCount = healthMaxLogCount;
-        return this;
-    }
-
-    /**
-     * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39;
-     * value means an infinite number of attempts in the log file)
-     *
-     * @return healthMaxLogCount
-     */
-    @javax.annotation.Nullable
-    public Integer getHealthMaxLogCount() {
-        return healthMaxLogCount;
-    }
-
-    public void setHealthMaxLogCount(Integer healthMaxLogCount) {
-        this.healthMaxLogCount = healthMaxLogCount;
-    }
-
-    public ContainerHealthCheckConfig healthMaxLogSize(Integer healthMaxLogSize) {
-        this.healthMaxLogSize = healthMaxLogSize;
-        return this;
-    }
-
-    /**
-     * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
-     * (\&quot;0\&quot; value means an infinite log length)
-     *
-     * @return healthMaxLogSize
-     */
-    @javax.annotation.Nullable
-    public Integer getHealthMaxLogSize() {
-        return healthMaxLogSize;
-    }
-
-    public void setHealthMaxLogSize(Integer healthMaxLogSize) {
-        this.healthMaxLogSize = healthMaxLogSize;
     }
 
     public ContainerHealthCheckConfig healthconfig(Schema2HealthConfig healthconfig) {
@@ -199,12 +125,6 @@ public class ContainerHealthCheckConfig {
         return Objects.equals(
                         this.healthCheckOnFailureAction,
                         containerHealthCheckConfig.healthCheckOnFailureAction)
-                && Objects.equals(
-                        this.healthLogDestination, containerHealthCheckConfig.healthLogDestination)
-                && Objects.equals(
-                        this.healthMaxLogCount, containerHealthCheckConfig.healthMaxLogCount)
-                && Objects.equals(
-                        this.healthMaxLogSize, containerHealthCheckConfig.healthMaxLogSize)
                 && Objects.equals(this.healthconfig, containerHealthCheckConfig.healthconfig)
                 && Objects.equals(
                         this.startupHealthConfig, containerHealthCheckConfig.startupHealthConfig);
@@ -212,13 +132,7 @@ public class ContainerHealthCheckConfig {
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-                healthCheckOnFailureAction,
-                healthLogDestination,
-                healthMaxLogCount,
-                healthMaxLogSize,
-                healthconfig,
-                startupHealthConfig);
+        return Objects.hash(healthCheckOnFailureAction, healthconfig, startupHealthConfig);
     }
 
     @Override
@@ -228,13 +142,6 @@ public class ContainerHealthCheckConfig {
         sb.append("    healthCheckOnFailureAction: ")
                 .append(toIndentedString(healthCheckOnFailureAction))
                 .append("\n");
-        sb.append("    healthLogDestination: ")
-                .append(toIndentedString(healthLogDestination))
-                .append("\n");
-        sb.append("    healthMaxLogCount: ")
-                .append(toIndentedString(healthMaxLogCount))
-                .append("\n");
-        sb.append("    healthMaxLogSize: ").append(toIndentedString(healthMaxLogSize)).append("\n");
         sb.append("    healthconfig: ").append(toIndentedString(healthconfig)).append("\n");
         sb.append("    startupHealthConfig: ")
                 .append(toIndentedString(startupHealthConfig))
@@ -261,9 +168,6 @@ public class ContainerHealthCheckConfig {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
         openapiFields.add("health_check_on_failure_action");
-        openapiFields.add("healthLogDestination");
-        openapiFields.add("healthMaxLogCount");
-        openapiFields.add("healthMaxLogSize");
         openapiFields.add("healthconfig");
         openapiFields.add("startupHealthConfig");
 
@@ -301,15 +205,6 @@ public class ContainerHealthCheckConfig {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("healthLogDestination") != null
-                        && !jsonObj.get("healthLogDestination").isJsonNull())
-                && !jsonObj.get("healthLogDestination").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `healthLogDestination` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("healthLogDestination").toString()));
-        }
         // validate the optional field `healthconfig`
         if (jsonObj.get("healthconfig") != null && !jsonObj.get("healthconfig").isJsonNull()) {
             Schema2HealthConfig.validateJsonElement(jsonObj.get("healthconfig"));

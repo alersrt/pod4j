@@ -33,10 +33,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-/** NetworkCreateLibpod */
+/** Network create */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class NetworkCreateLibpod {
     public static final String SERIALIZED_NAME_CREATED = "created";

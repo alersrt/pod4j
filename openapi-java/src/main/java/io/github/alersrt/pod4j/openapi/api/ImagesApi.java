@@ -97,8 +97,6 @@ public class ImagesApi {
      *     tarball and the dockerfile parameter is also specified, there must be a file with the
      *     corresponding path inside the tarball. (As of version 1.xx) (optional)
      * @param q Suppress verbose build output (optional, default to false)
-     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
-     *     version v5.2) (optional, default to false)
      * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
      *     default to false)
      * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
@@ -171,7 +169,6 @@ public class ImagesApi {
             String extrahosts,
             String remote,
             Boolean q,
-            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -246,11 +243,6 @@ public class ImagesApi {
 
         if (q != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("q", q));
-        }
-
-        if (compatvolumes != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("compatvolumes", compatvolumes));
         }
 
         if (nocache != null) {
@@ -394,7 +386,6 @@ public class ImagesApi {
             String extrahosts,
             String remote,
             Boolean q,
-            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -429,7 +420,6 @@ public class ImagesApi {
                 extrahosts,
                 remote,
                 q,
-                compatvolumes,
                 nocache,
                 cachefrom,
                 pull,
@@ -480,8 +470,6 @@ public class ImagesApi {
      *     tarball and the dockerfile parameter is also specified, there must be a file with the
      *     corresponding path inside the tarball. (As of version 1.xx) (optional)
      * @param q Suppress verbose build output (optional, default to false)
-     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
-     *     version v5.2) (optional, default to false)
      * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
      *     default to false)
      * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
@@ -554,7 +542,6 @@ public class ImagesApi {
             String extrahosts,
             String remote,
             Boolean q,
-            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -589,7 +576,6 @@ public class ImagesApi {
                         extrahosts,
                         remote,
                         q,
-                        compatvolumes,
                         nocache,
                         cachefrom,
                         pull,
@@ -640,8 +626,6 @@ public class ImagesApi {
      *     tarball and the dockerfile parameter is also specified, there must be a file with the
      *     corresponding path inside the tarball. (As of version 1.xx) (optional)
      * @param q Suppress verbose build output (optional, default to false)
-     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
-     *     version v5.2) (optional, default to false)
      * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
      *     default to false)
      * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
@@ -714,7 +698,6 @@ public class ImagesApi {
             String extrahosts,
             String remote,
             Boolean q,
-            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -749,7 +732,6 @@ public class ImagesApi {
                         extrahosts,
                         remote,
                         q,
-                        compatvolumes,
                         nocache,
                         cachefrom,
                         pull,
@@ -802,8 +784,6 @@ public class ImagesApi {
      *     tarball and the dockerfile parameter is also specified, there must be a file with the
      *     corresponding path inside the tarball. (As of version 1.xx) (optional)
      * @param q Suppress verbose build output (optional, default to false)
-     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
-     *     version v5.2) (optional, default to false)
      * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
      *     default to false)
      * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
@@ -877,7 +857,6 @@ public class ImagesApi {
             String extrahosts,
             String remote,
             Boolean q,
-            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -914,7 +893,6 @@ public class ImagesApi {
                         extrahosts,
                         remote,
                         q,
-                        compatvolumes,
                         nocache,
                         cachefrom,
                         pull,
@@ -2928,8 +2906,6 @@ public class ImagesApi {
      *     default to false)
      * @param external Remove images even when they are used by external containers (e.g, by build
      *     containers) (optional, default to false)
-     * @param buildcache Remove persistent build cache created by build instructions such as
-     *     &#x60;--mount&#x3D;type&#x3D;cache&#x60;. (optional, default to false)
      * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string).
      *     Available filters: - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to
      *     &#x60;true&#x60; (or &#x60;1&#x60;), prune only unused *and* untagged images. When set to
@@ -2953,11 +2929,7 @@ public class ImagesApi {
      * </table>
      */
     public okhttp3.Call imagePruneLibpodCall(
-            Boolean all,
-            Boolean external,
-            Boolean buildcache,
-            String filters,
-            final ApiCallback _callback)
+            Boolean all, Boolean external, String filters, final ApiCallback _callback)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -2989,10 +2961,6 @@ public class ImagesApi {
 
         if (external != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("external", external));
-        }
-
-        if (buildcache != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("buildcache", buildcache));
         }
 
         if (filters != null) {
@@ -3029,13 +2997,9 @@ public class ImagesApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call imagePruneLibpodValidateBeforeCall(
-            Boolean all,
-            Boolean external,
-            Boolean buildcache,
-            String filters,
-            final ApiCallback _callback)
+            Boolean all, Boolean external, String filters, final ApiCallback _callback)
             throws ApiException {
-        return imagePruneLibpodCall(all, external, buildcache, filters, _callback);
+        return imagePruneLibpodCall(all, external, filters, _callback);
     }
 
     /**
@@ -3045,8 +3009,6 @@ public class ImagesApi {
      *     default to false)
      * @param external Remove images even when they are used by external containers (e.g, by build
      *     containers) (optional, default to false)
-     * @param buildcache Remove persistent build cache created by build instructions such as
-     *     &#x60;--mount&#x3D;type&#x3D;cache&#x60;. (optional, default to false)
      * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string).
      *     Available filters: - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to
      *     &#x60;true&#x60; (or &#x60;1&#x60;), prune only unused *and* untagged images. When set to
@@ -3069,10 +3031,10 @@ public class ImagesApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public List<PruneReport> imagePruneLibpod(
-            Boolean all, Boolean external, Boolean buildcache, String filters) throws ApiException {
+    public List<PruneReport> imagePruneLibpod(Boolean all, Boolean external, String filters)
+            throws ApiException {
         ApiResponse<List<PruneReport>> localVarResp =
-                imagePruneLibpodWithHttpInfo(all, external, buildcache, filters);
+                imagePruneLibpodWithHttpInfo(all, external, filters);
         return localVarResp.getData();
     }
 
@@ -3083,8 +3045,6 @@ public class ImagesApi {
      *     default to false)
      * @param external Remove images even when they are used by external containers (e.g, by build
      *     containers) (optional, default to false)
-     * @param buildcache Remove persistent build cache created by build instructions such as
-     *     &#x60;--mount&#x3D;type&#x3D;cache&#x60;. (optional, default to false)
      * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string).
      *     Available filters: - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to
      *     &#x60;true&#x60; (or &#x60;1&#x60;), prune only unused *and* untagged images. When set to
@@ -3108,9 +3068,9 @@ public class ImagesApi {
      * </table>
      */
     public ApiResponse<List<PruneReport>> imagePruneLibpodWithHttpInfo(
-            Boolean all, Boolean external, Boolean buildcache, String filters) throws ApiException {
+            Boolean all, Boolean external, String filters) throws ApiException {
         okhttp3.Call localVarCall =
-                imagePruneLibpodValidateBeforeCall(all, external, buildcache, filters, null);
+                imagePruneLibpodValidateBeforeCall(all, external, filters, null);
         Type localVarReturnType = new TypeToken<List<PruneReport>>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -3122,8 +3082,6 @@ public class ImagesApi {
      *     default to false)
      * @param external Remove images even when they are used by external containers (e.g, by build
      *     containers) (optional, default to false)
-     * @param buildcache Remove persistent build cache created by build instructions such as
-     *     &#x60;--mount&#x3D;type&#x3D;cache&#x60;. (optional, default to false)
      * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string).
      *     Available filters: - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to
      *     &#x60;true&#x60; (or &#x60;1&#x60;), prune only unused *and* untagged images. When set to
@@ -3150,13 +3108,12 @@ public class ImagesApi {
     public okhttp3.Call imagePruneLibpodAsync(
             Boolean all,
             Boolean external,
-            Boolean buildcache,
             String filters,
             final ApiCallback<List<PruneReport>> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall =
-                imagePruneLibpodValidateBeforeCall(all, external, buildcache, filters, _callback);
+                imagePruneLibpodValidateBeforeCall(all, external, filters, _callback);
         Type localVarReturnType = new TypeToken<List<PruneReport>>() {}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -3502,17 +3459,8 @@ public class ImagesApi {
      * @param forceCompressionFormat Enforce compressing the layers with the specified --compression
      *     and do not reuse differently compressed blobs on the registry. (optional, default to
      *     false)
-     * @param compressionFormat Compression format used to compress image layers. (optional)
-     * @param compressionLevel Compression level used to compress image layers. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
-     * @param quiet Silences extra stream data on push. (optional, default to true)
-     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
-     *     manifest type of source, with fallbacks. (optional)
-     * @param all All indicates whether to push all images related to the image list. (optional)
-     * @param removeSignatures Discard any pre-existing signatures in the image. (optional)
-     * @param retry Number of times to retry push in case of failure. (optional)
-     * @param retryDelay Delay between retries in case of push failures. Duration format such as
-     *     \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
+     * @param quiet silences extra stream data on push (optional, default to true)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -3529,15 +3477,8 @@ public class ImagesApi {
             String name,
             String destination,
             Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
             Boolean tlsVerify,
             Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
             String xRegistryAuth,
             final ApiCallback _callback)
             throws ApiException {
@@ -3580,43 +3521,12 @@ public class ImagesApi {
                             "forceCompressionFormat", forceCompressionFormat));
         }
 
-        if (compressionFormat != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("compressionFormat", compressionFormat));
-        }
-
-        if (compressionLevel != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("compressionLevel", compressionLevel));
-        }
-
         if (tlsVerify != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("tlsVerify", tlsVerify));
         }
 
         if (quiet != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("quiet", quiet));
-        }
-
-        if (format != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("format", format));
-        }
-
-        if (all != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("all", all));
-        }
-
-        if (removeSignatures != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("removeSignatures", removeSignatures));
-        }
-
-        if (retry != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("retry", retry));
-        }
-
-        if (retryDelay != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("retryDelay", retryDelay));
         }
 
         if (xRegistryAuth != null) {
@@ -3657,15 +3567,8 @@ public class ImagesApi {
             String name,
             String destination,
             Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
             Boolean tlsVerify,
             Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
             String xRegistryAuth,
             final ApiCallback _callback)
             throws ApiException {
@@ -3679,15 +3582,8 @@ public class ImagesApi {
                 name,
                 destination,
                 forceCompressionFormat,
-                compressionFormat,
-                compressionLevel,
                 tlsVerify,
                 quiet,
-                format,
-                all,
-                removeSignatures,
-                retry,
-                retryDelay,
                 xRegistryAuth,
                 _callback);
     }
@@ -3701,17 +3597,8 @@ public class ImagesApi {
      * @param forceCompressionFormat Enforce compressing the layers with the specified --compression
      *     and do not reuse differently compressed blobs on the registry. (optional, default to
      *     false)
-     * @param compressionFormat Compression format used to compress image layers. (optional)
-     * @param compressionLevel Compression level used to compress image layers. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
-     * @param quiet Silences extra stream data on push. (optional, default to true)
-     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
-     *     manifest type of source, with fallbacks. (optional)
-     * @param all All indicates whether to push all images related to the image list. (optional)
-     * @param removeSignatures Discard any pre-existing signatures in the image. (optional)
-     * @param retry Number of times to retry push in case of failure. (optional)
-     * @param retryDelay Delay between retries in case of push failures. Duration format such as
-     *     \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
+     * @param quiet silences extra stream data on push (optional, default to true)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3728,32 +3615,13 @@ public class ImagesApi {
             String name,
             String destination,
             Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
             Boolean tlsVerify,
             Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
             String xRegistryAuth)
             throws ApiException {
         ApiResponse<File> localVarResp =
                 imagePushLibpodWithHttpInfo(
-                        name,
-                        destination,
-                        forceCompressionFormat,
-                        compressionFormat,
-                        compressionLevel,
-                        tlsVerify,
-                        quiet,
-                        format,
-                        all,
-                        removeSignatures,
-                        retry,
-                        retryDelay,
-                        xRegistryAuth);
+                        name, destination, forceCompressionFormat, tlsVerify, quiet, xRegistryAuth);
         return localVarResp.getData();
     }
 
@@ -3766,17 +3634,8 @@ public class ImagesApi {
      * @param forceCompressionFormat Enforce compressing the layers with the specified --compression
      *     and do not reuse differently compressed blobs on the registry. (optional, default to
      *     false)
-     * @param compressionFormat Compression format used to compress image layers. (optional)
-     * @param compressionLevel Compression level used to compress image layers. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
-     * @param quiet Silences extra stream data on push. (optional, default to true)
-     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
-     *     manifest type of source, with fallbacks. (optional)
-     * @param all All indicates whether to push all images related to the image list. (optional)
-     * @param removeSignatures Discard any pre-existing signatures in the image. (optional)
-     * @param retry Number of times to retry push in case of failure. (optional)
-     * @param retryDelay Delay between retries in case of push failures. Duration format such as
-     *     \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
+     * @param quiet silences extra stream data on push (optional, default to true)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -3793,15 +3652,8 @@ public class ImagesApi {
             String name,
             String destination,
             Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
             Boolean tlsVerify,
             Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
             String xRegistryAuth)
             throws ApiException {
         okhttp3.Call localVarCall =
@@ -3809,15 +3661,8 @@ public class ImagesApi {
                         name,
                         destination,
                         forceCompressionFormat,
-                        compressionFormat,
-                        compressionLevel,
                         tlsVerify,
                         quiet,
-                        format,
-                        all,
-                        removeSignatures,
-                        retry,
-                        retryDelay,
                         xRegistryAuth,
                         null);
         Type localVarReturnType = new TypeToken<File>() {}.getType();
@@ -3833,17 +3678,8 @@ public class ImagesApi {
      * @param forceCompressionFormat Enforce compressing the layers with the specified --compression
      *     and do not reuse differently compressed blobs on the registry. (optional, default to
      *     false)
-     * @param compressionFormat Compression format used to compress image layers. (optional)
-     * @param compressionLevel Compression level used to compress image layers. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
-     * @param quiet Silences extra stream data on push. (optional, default to true)
-     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
-     *     manifest type of source, with fallbacks. (optional)
-     * @param all All indicates whether to push all images related to the image list. (optional)
-     * @param removeSignatures Discard any pre-existing signatures in the image. (optional)
-     * @param retry Number of times to retry push in case of failure. (optional)
-     * @param retryDelay Delay between retries in case of push failures. Duration format such as
-     *     \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
+     * @param quiet silences extra stream data on push (optional, default to true)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -3861,15 +3697,8 @@ public class ImagesApi {
             String name,
             String destination,
             Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
             Boolean tlsVerify,
             Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
             String xRegistryAuth,
             final ApiCallback<File> _callback)
             throws ApiException {
@@ -3879,15 +3708,8 @@ public class ImagesApi {
                         name,
                         destination,
                         forceCompressionFormat,
-                        compressionFormat,
-                        compressionLevel,
                         tlsVerify,
                         quiet,
-                        format,
-                        all,
-                        removeSignatures,
-                        retry,
-                        retryDelay,
                         xRegistryAuth,
                         _callback);
         Type localVarReturnType = new TypeToken<File>() {}.getType();

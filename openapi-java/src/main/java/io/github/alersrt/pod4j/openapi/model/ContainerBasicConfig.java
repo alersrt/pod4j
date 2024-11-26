@@ -34,7 +34,7 @@ import java.util.Set;
 /** ContainerBasicConfig */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class ContainerBasicConfig {
     public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
@@ -156,11 +156,6 @@ public class ContainerBasicConfig {
 
     @SerializedName(SERIALIZED_NAME_REMOVE)
     private Boolean remove;
-
-    public static final String SERIALIZED_NAME_REMOVE_IMAGE = "removeImage";
-
-    @SerializedName(SERIALIZED_NAME_REMOVE_IMAGE)
-    private Boolean removeImage;
 
     public static final String SERIALIZED_NAME_RESTART_POLICY = "restart_policy";
 
@@ -786,26 +781,6 @@ public class ContainerBasicConfig {
         this.remove = remove;
     }
 
-    public ContainerBasicConfig removeImage(Boolean removeImage) {
-        this.removeImage = removeImage;
-        return this;
-    }
-
-    /**
-     * RemoveImage indicates that the container should remove the image it was created from after it
-     * exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
-     *
-     * @return removeImage
-     */
-    @javax.annotation.Nullable
-    public Boolean getRemoveImage() {
-        return removeImage;
-    }
-
-    public void setRemoveImage(Boolean removeImage) {
-        this.removeImage = removeImage;
-    }
-
     public ContainerBasicConfig restartPolicy(String restartPolicy) {
         this.restartPolicy = restartPolicy;
         return this;
@@ -921,7 +896,7 @@ public class ContainerBasicConfig {
     }
 
     /**
-     * It implements the [os.Signal] interface.
+     * It implements the os.Signal interface.
      *
      * @return stopSignal
      */
@@ -1081,8 +1056,8 @@ public class ContainerBasicConfig {
     }
 
     /**
-     * UnsetEnv unsets the specified default environment variables from the image or from built-in
-     * or containers.conf Optional.
+     * UnsetEnv unsets the specified default environment variables from the image or from buildin or
+     * containers.conf Optional.
      *
      * @return unsetenv
      */
@@ -1101,9 +1076,9 @@ public class ContainerBasicConfig {
     }
 
     /**
-     * UnsetEnvAll unsetall default environment variables from the image or from built-in or
+     * UnsetEnvAll unsetall default environment variables from the image or from buildin or
      * containers.conf UnsetEnvAll unsets all default environment variables from the image or from
-     * built-in Optional.
+     * buildin Optional.
      *
      * @return unsetenvall
      */
@@ -1170,7 +1145,6 @@ public class ContainerBasicConfig {
                 && Objects.equals(this.pidns, containerBasicConfig.pidns)
                 && Objects.equals(this.pod, containerBasicConfig.pod)
                 && Objects.equals(this.remove, containerBasicConfig.remove)
-                && Objects.equals(this.removeImage, containerBasicConfig.removeImage)
                 && Objects.equals(this.restartPolicy, containerBasicConfig.restartPolicy)
                 && Objects.equals(this.restartTries, containerBasicConfig.restartTries)
                 && Objects.equals(this.sdnotifyMode, containerBasicConfig.sdnotifyMode)
@@ -1215,7 +1189,6 @@ public class ContainerBasicConfig {
                 pidns,
                 pod,
                 remove,
-                removeImage,
                 restartPolicy,
                 restartTries,
                 sdnotifyMode,
@@ -1267,7 +1240,6 @@ public class ContainerBasicConfig {
         sb.append("    pidns: ").append(toIndentedString(pidns)).append("\n");
         sb.append("    pod: ").append(toIndentedString(pod)).append("\n");
         sb.append("    remove: ").append(toIndentedString(remove)).append("\n");
-        sb.append("    removeImage: ").append(toIndentedString(removeImage)).append("\n");
         sb.append("    restartPolicy: ").append(toIndentedString(restartPolicy)).append("\n");
         sb.append("    restartTries: ").append(toIndentedString(restartTries)).append("\n");
         sb.append("    sdnotifyMode: ").append(toIndentedString(sdnotifyMode)).append("\n");
@@ -1328,7 +1300,6 @@ public class ContainerBasicConfig {
         openapiFields.add("pidns");
         openapiFields.add("pod");
         openapiFields.add("remove");
-        openapiFields.add("removeImage");
         openapiFields.add("restart_policy");
         openapiFields.add("restart_tries");
         openapiFields.add("sdnotifyMode");

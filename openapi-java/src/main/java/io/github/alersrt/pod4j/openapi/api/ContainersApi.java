@@ -7314,7 +7314,6 @@ public class ContainersApi {
     /**
      * Build call for playKubeLibpod
      *
-     * @param contentType (optional, default to plain/text)
      * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
      * @param logDriver Logging driver for the containers in the pod. (optional)
      * @param logOptions logging driver options (optional)
@@ -7337,7 +7336,6 @@ public class ContainersApi {
      * @param userns Set the user namespace mode for the pods. (optional)
      * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional,
      *     default to false)
-     * @param build Build the images with corresponding context. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -7350,7 +7348,6 @@ public class ContainersApi {
      * </table>
      */
     public okhttp3.Call playKubeLibpodCall(
-            String contentType,
             String annotations,
             String logDriver,
             List<String> logOptions,
@@ -7367,7 +7364,6 @@ public class ContainersApi {
             Boolean tlsVerify,
             String userns,
             Boolean wait,
-            Boolean build,
             String request,
             final ApiCallback _callback)
             throws ApiException {
@@ -7467,15 +7463,6 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("wait", wait));
         }
 
-        if (build != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("build", build));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put(
-                    "Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {"application/json"};
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -7506,7 +7493,6 @@ public class ContainersApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call playKubeLibpodValidateBeforeCall(
-            String contentType,
             String annotations,
             String logDriver,
             List<String> logOptions,
@@ -7523,12 +7509,10 @@ public class ContainersApi {
             Boolean tlsVerify,
             String userns,
             Boolean wait,
-            Boolean build,
             String request,
             final ApiCallback _callback)
             throws ApiException {
         return playKubeLibpodCall(
-                contentType,
                 annotations,
                 logDriver,
                 logOptions,
@@ -7545,25 +7529,14 @@ public class ContainersApi {
                 tlsVerify,
                 userns,
                 wait,
-                build,
                 request,
                 _callback);
     }
 
     /**
-     * Play a Kubernetes YAML file. Create and run pods based on a Kubernetes YAML file. ###
-     * Content-Type Then endpoint support two Content-Type - &#x60;plain/text&#x60; for yaml format
-     * - &#x60;application/x-tar&#x60; for sending context(s) required for building images #### Tar
-     * format The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be
-     * used. If the file format requires context to build an image, it uses the image name and check
-     * for corresponding folder. For example, the client sends a tar file with the following
-     * structure: &#x60;&#x60;&#x60; └── content.tar ├── play.yaml └── foobar/ └── Containerfile
-     * &#x60;&#x60;&#x60; The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image
-     * means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind:
-     * Pod metadata: name: demo-build-remote spec: containers: - name: container image: foobar
-     * &#x60;&#x60;&#x60;
+     * Play a Kubernetes YAML file. Create and run pods based on a Kubernetes YAML file (pod or
+     * service kind).
      *
-     * @param contentType (optional, default to plain/text)
      * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
      * @param logDriver Logging driver for the containers in the pod. (optional)
      * @param logOptions logging driver options (optional)
@@ -7586,7 +7559,6 @@ public class ContainersApi {
      * @param userns Set the user namespace mode for the pods. (optional)
      * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional,
      *     default to false)
-     * @param build Build the images with corresponding context. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @return PlayKubeReport
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -7599,7 +7571,6 @@ public class ContainersApi {
      * </table>
      */
     public PlayKubeReport playKubeLibpod(
-            String contentType,
             String annotations,
             String logDriver,
             List<String> logOptions,
@@ -7616,12 +7587,10 @@ public class ContainersApi {
             Boolean tlsVerify,
             String userns,
             Boolean wait,
-            Boolean build,
             String request)
             throws ApiException {
         ApiResponse<PlayKubeReport> localVarResp =
                 playKubeLibpodWithHttpInfo(
-                        contentType,
                         annotations,
                         logDriver,
                         logOptions,
@@ -7638,25 +7607,14 @@ public class ContainersApi {
                         tlsVerify,
                         userns,
                         wait,
-                        build,
                         request);
         return localVarResp.getData();
     }
 
     /**
-     * Play a Kubernetes YAML file. Create and run pods based on a Kubernetes YAML file. ###
-     * Content-Type Then endpoint support two Content-Type - &#x60;plain/text&#x60; for yaml format
-     * - &#x60;application/x-tar&#x60; for sending context(s) required for building images #### Tar
-     * format The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be
-     * used. If the file format requires context to build an image, it uses the image name and check
-     * for corresponding folder. For example, the client sends a tar file with the following
-     * structure: &#x60;&#x60;&#x60; └── content.tar ├── play.yaml └── foobar/ └── Containerfile
-     * &#x60;&#x60;&#x60; The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image
-     * means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind:
-     * Pod metadata: name: demo-build-remote spec: containers: - name: container image: foobar
-     * &#x60;&#x60;&#x60;
+     * Play a Kubernetes YAML file. Create and run pods based on a Kubernetes YAML file (pod or
+     * service kind).
      *
-     * @param contentType (optional, default to plain/text)
      * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
      * @param logDriver Logging driver for the containers in the pod. (optional)
      * @param logOptions logging driver options (optional)
@@ -7679,7 +7637,6 @@ public class ContainersApi {
      * @param userns Set the user namespace mode for the pods. (optional)
      * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional,
      *     default to false)
-     * @param build Build the images with corresponding context. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @return ApiResponse&lt;PlayKubeReport&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -7692,7 +7649,6 @@ public class ContainersApi {
      * </table>
      */
     public ApiResponse<PlayKubeReport> playKubeLibpodWithHttpInfo(
-            String contentType,
             String annotations,
             String logDriver,
             List<String> logOptions,
@@ -7709,12 +7665,10 @@ public class ContainersApi {
             Boolean tlsVerify,
             String userns,
             Boolean wait,
-            Boolean build,
             String request)
             throws ApiException {
         okhttp3.Call localVarCall =
                 playKubeLibpodValidateBeforeCall(
-                        contentType,
                         annotations,
                         logDriver,
                         logOptions,
@@ -7731,7 +7685,6 @@ public class ContainersApi {
                         tlsVerify,
                         userns,
                         wait,
-                        build,
                         request,
                         null);
         Type localVarReturnType = new TypeToken<PlayKubeReport>() {}.getType();
@@ -7740,18 +7693,8 @@ public class ContainersApi {
 
     /**
      * Play a Kubernetes YAML file. (asynchronously) Create and run pods based on a Kubernetes YAML
-     * file. ### Content-Type Then endpoint support two Content-Type - &#x60;plain/text&#x60; for
-     * yaml format - &#x60;application/x-tar&#x60; for sending context(s) required for building
-     * images #### Tar format The tar format must contain a &#x60;play.yaml&#x60; file at the root
-     * that will be used. If the file format requires context to build an image, it uses the image
-     * name and check for corresponding folder. For example, the client sends a tar file with the
-     * following structure: &#x60;&#x60;&#x60; └── content.tar ├── play.yaml └── foobar/ └──
-     * Containerfile &#x60;&#x60;&#x60; The &#x60;play.yaml&#x60; is the following, the
-     * &#x60;foobar&#x60; image means we are looking for a context with this name.
-     * &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec:
-     * containers: - name: container image: foobar &#x60;&#x60;&#x60;
+     * file (pod or service kind).
      *
-     * @param contentType (optional, default to plain/text)
      * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
      * @param logDriver Logging driver for the containers in the pod. (optional)
      * @param logOptions logging driver options (optional)
@@ -7774,7 +7717,6 @@ public class ContainersApi {
      * @param userns Set the user namespace mode for the pods. (optional)
      * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional,
      *     default to false)
-     * @param build Build the images with corresponding context. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -7788,7 +7730,6 @@ public class ContainersApi {
      * </table>
      */
     public okhttp3.Call playKubeLibpodAsync(
-            String contentType,
             String annotations,
             String logDriver,
             List<String> logOptions,
@@ -7805,14 +7746,12 @@ public class ContainersApi {
             Boolean tlsVerify,
             String userns,
             Boolean wait,
-            Boolean build,
             String request,
             final ApiCallback<PlayKubeReport> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall =
                 playKubeLibpodValidateBeforeCall(
-                        contentType,
                         annotations,
                         logDriver,
                         logOptions,
@@ -7829,7 +7768,6 @@ public class ContainersApi {
                         tlsVerify,
                         userns,
                         wait,
-                        build,
                         request,
                         _callback);
         Type localVarReturnType = new TypeToken<PlayKubeReport>() {}.getType();

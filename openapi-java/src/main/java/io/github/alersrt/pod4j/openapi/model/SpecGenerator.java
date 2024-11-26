@@ -38,7 +38,7 @@ import java.util.Set;
  */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class SpecGenerator {
     public static final String SERIALIZED_NAME_NETWORKS = "Networks";
@@ -191,21 +191,6 @@ public class SpecGenerator {
 
     @SerializedName(SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION)
     private Long healthCheckOnFailureAction;
-
-    public static final String SERIALIZED_NAME_HEALTH_LOG_DESTINATION = "healthLogDestination";
-
-    @SerializedName(SERIALIZED_NAME_HEALTH_LOG_DESTINATION)
-    private String healthLogDestination;
-
-    public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT = "healthMaxLogCount";
-
-    @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT)
-    private Integer healthMaxLogCount;
-
-    public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE = "healthMaxLogSize";
-
-    @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE)
-    private Integer healthMaxLogSize;
 
     public static final String SERIALIZED_NAME_HEALTHCONFIG = "healthconfig";
 
@@ -426,11 +411,6 @@ public class SpecGenerator {
 
     @SerializedName(SERIALIZED_NAME_REMOVE)
     private Boolean remove;
-
-    public static final String SERIALIZED_NAME_REMOVE_IMAGE = "removeImage";
-
-    @SerializedName(SERIALIZED_NAME_REMOVE_IMAGE)
-    private Boolean removeImage;
 
     public static final String SERIALIZED_NAME_RESOURCE_LIMITS = "resource_limits";
 
@@ -1420,65 +1400,6 @@ public class SpecGenerator {
         this.healthCheckOnFailureAction = healthCheckOnFailureAction;
     }
 
-    public SpecGenerator healthLogDestination(String healthLogDestination) {
-        this.healthLogDestination = healthLogDestination;
-        return this;
-    }
-
-    /**
-     * HealthLogDestination defines the destination where the log is stored
-     *
-     * @return healthLogDestination
-     */
-    @javax.annotation.Nullable
-    public String getHealthLogDestination() {
-        return healthLogDestination;
-    }
-
-    public void setHealthLogDestination(String healthLogDestination) {
-        this.healthLogDestination = healthLogDestination;
-    }
-
-    public SpecGenerator healthMaxLogCount(Integer healthMaxLogCount) {
-        this.healthMaxLogCount = healthMaxLogCount;
-        return this;
-    }
-
-    /**
-     * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39;
-     * value means an infinite number of attempts in the log file)
-     *
-     * @return healthMaxLogCount
-     */
-    @javax.annotation.Nullable
-    public Integer getHealthMaxLogCount() {
-        return healthMaxLogCount;
-    }
-
-    public void setHealthMaxLogCount(Integer healthMaxLogCount) {
-        this.healthMaxLogCount = healthMaxLogCount;
-    }
-
-    public SpecGenerator healthMaxLogSize(Integer healthMaxLogSize) {
-        this.healthMaxLogSize = healthMaxLogSize;
-        return this;
-    }
-
-    /**
-     * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
-     * (\&quot;0\&quot; value means an infinite log length)
-     *
-     * @return healthMaxLogSize
-     */
-    @javax.annotation.Nullable
-    public Integer getHealthMaxLogSize() {
-        return healthMaxLogSize;
-    }
-
-    public void setHealthMaxLogSize(Integer healthMaxLogSize) {
-        this.healthMaxLogSize = healthMaxLogSize;
-    }
-
     public SpecGenerator healthconfig(Schema2HealthConfig healthconfig) {
         this.healthconfig = healthconfig;
         return this;
@@ -2447,26 +2368,6 @@ public class SpecGenerator {
         this.remove = remove;
     }
 
-    public SpecGenerator removeImage(Boolean removeImage) {
-        this.removeImage = removeImage;
-        return this;
-    }
-
-    /**
-     * RemoveImage indicates that the container should remove the image it was created from after it
-     * exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
-     *
-     * @return removeImage
-     */
-    @javax.annotation.Nullable
-    public Boolean getRemoveImage() {
-        return removeImage;
-    }
-
-    public void setRemoveImage(Boolean removeImage) {
-        this.removeImage = removeImage;
-    }
-
     public SpecGenerator resourceLimits(LinuxResources resourceLimits) {
         this.resourceLimits = resourceLimits;
         return this;
@@ -2834,7 +2735,7 @@ public class SpecGenerator {
     }
 
     /**
-     * It implements the [os.Signal] interface.
+     * It implements the os.Signal interface.
      *
      * @return stopSignal
      */
@@ -3214,8 +3115,8 @@ public class SpecGenerator {
     }
 
     /**
-     * UnsetEnv unsets the specified default environment variables from the image or from built-in
-     * or containers.conf Optional.
+     * UnsetEnv unsets the specified default environment variables from the image or from buildin or
+     * containers.conf Optional.
      *
      * @return unsetenv
      */
@@ -3234,9 +3135,9 @@ public class SpecGenerator {
     }
 
     /**
-     * UnsetEnvAll unsetall default environment variables from the image or from built-in or
+     * UnsetEnvAll unsetall default environment variables from the image or from buildin or
      * containers.conf UnsetEnvAll unsets all default environment variables from the image or from
-     * built-in Optional.
+     * buildin Optional.
      *
      * @return unsetenvall
      */
@@ -3513,9 +3414,6 @@ public class SpecGenerator {
                 && Objects.equals(this.groups, specGenerator.groups)
                 && Objects.equals(
                         this.healthCheckOnFailureAction, specGenerator.healthCheckOnFailureAction)
-                && Objects.equals(this.healthLogDestination, specGenerator.healthLogDestination)
-                && Objects.equals(this.healthMaxLogCount, specGenerator.healthMaxLogCount)
-                && Objects.equals(this.healthMaxLogSize, specGenerator.healthMaxLogSize)
                 && Objects.equals(this.healthconfig, specGenerator.healthconfig)
                 && Objects.equals(this.hostDeviceList, specGenerator.hostDeviceList)
                 && Objects.equals(this.hostadd, specGenerator.hostadd)
@@ -3560,7 +3458,6 @@ public class SpecGenerator {
                 && Objects.equals(this.readOnlyFilesystem, specGenerator.readOnlyFilesystem)
                 && Objects.equals(this.readWriteTmpfs, specGenerator.readWriteTmpfs)
                 && Objects.equals(this.remove, specGenerator.remove)
-                && Objects.equals(this.removeImage, specGenerator.removeImage)
                 && Objects.equals(this.resourceLimits, specGenerator.resourceLimits)
                 && Objects.equals(this.restartPolicy, specGenerator.restartPolicy)
                 && Objects.equals(this.restartTries, specGenerator.restartTries)
@@ -3641,9 +3538,6 @@ public class SpecGenerator {
                 groupEntry,
                 groups,
                 healthCheckOnFailureAction,
-                healthLogDestination,
-                healthMaxLogCount,
-                healthMaxLogSize,
                 healthconfig,
                 hostDeviceList,
                 hostadd,
@@ -3688,7 +3582,6 @@ public class SpecGenerator {
                 readOnlyFilesystem,
                 readWriteTmpfs,
                 remove,
-                removeImage,
                 resourceLimits,
                 restartPolicy,
                 restartTries,
@@ -3777,13 +3670,6 @@ public class SpecGenerator {
         sb.append("    healthCheckOnFailureAction: ")
                 .append(toIndentedString(healthCheckOnFailureAction))
                 .append("\n");
-        sb.append("    healthLogDestination: ")
-                .append(toIndentedString(healthLogDestination))
-                .append("\n");
-        sb.append("    healthMaxLogCount: ")
-                .append(toIndentedString(healthMaxLogCount))
-                .append("\n");
-        sb.append("    healthMaxLogSize: ").append(toIndentedString(healthMaxLogSize)).append("\n");
         sb.append("    healthconfig: ").append(toIndentedString(healthconfig)).append("\n");
         sb.append("    hostDeviceList: ").append(toIndentedString(hostDeviceList)).append("\n");
         sb.append("    hostadd: ").append(toIndentedString(hostadd)).append("\n");
@@ -3834,7 +3720,6 @@ public class SpecGenerator {
                 .append("\n");
         sb.append("    readWriteTmpfs: ").append(toIndentedString(readWriteTmpfs)).append("\n");
         sb.append("    remove: ").append(toIndentedString(remove)).append("\n");
-        sb.append("    removeImage: ").append(toIndentedString(removeImage)).append("\n");
         sb.append("    resourceLimits: ").append(toIndentedString(resourceLimits)).append("\n");
         sb.append("    restartPolicy: ").append(toIndentedString(restartPolicy)).append("\n");
         sb.append("    restartTries: ").append(toIndentedString(restartTries)).append("\n");
@@ -3946,9 +3831,6 @@ public class SpecGenerator {
         openapiFields.add("group_entry");
         openapiFields.add("groups");
         openapiFields.add("health_check_on_failure_action");
-        openapiFields.add("healthLogDestination");
-        openapiFields.add("healthMaxLogCount");
-        openapiFields.add("healthMaxLogSize");
         openapiFields.add("healthconfig");
         openapiFields.add("host_device_list");
         openapiFields.add("hostadd");
@@ -3993,7 +3875,6 @@ public class SpecGenerator {
         openapiFields.add("read_only_filesystem");
         openapiFields.add("read_write_tmpfs");
         openapiFields.add("remove");
-        openapiFields.add("removeImage");
         openapiFields.add("resource_limits");
         openapiFields.add("restart_policy");
         openapiFields.add("restart_tries");
@@ -4304,15 +4185,6 @@ public class SpecGenerator {
                             "Expected the field `groups` to be an array in the JSON string but got"
                                     + " `%s`",
                             jsonObj.get("groups").toString()));
-        }
-        if ((jsonObj.get("healthLogDestination") != null
-                        && !jsonObj.get("healthLogDestination").isJsonNull())
-                && !jsonObj.get("healthLogDestination").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `healthLogDestination` to be a primitive type in"
-                                    + " the JSON string but got `%s`",
-                            jsonObj.get("healthLogDestination").toString()));
         }
         // validate the optional field `healthconfig`
         if (jsonObj.get("healthconfig") != null && !jsonObj.get("healthconfig").isJsonNull()) {

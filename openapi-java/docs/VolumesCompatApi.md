@@ -262,7 +262,7 @@ No authorization required
 
 <a id="volumePrune"></a>
 # **volumePrune**
-> PruneReport volumePrune(filters)
+> VolumesPruneReport volumePrune(filters)
 
 Prune volumes
 
@@ -283,7 +283,7 @@ public class Example {
     VolumesCompatApi apiInstance = new VolumesCompatApi(defaultClient);
     String filters = "filters_example"; // String | JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - `until=<timestamp>` Prune volumes created before this timestamp. The `<timestamp>` can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. `10m`, `1h30m`) computed relative to the daemon machine’s time.   - `label` (`label=<key>`, `label=<key>=<value>`, `label!=<key>`, or `label!=<key>=<value>`) Prune volumes with (or without, in case `label!=...` is used) the specified labels. 
     try {
-      PruneReport result = apiInstance.volumePrune(filters);
+      VolumesPruneReport result = apiInstance.volumePrune(filters);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling VolumesCompatApi#volumePrune");
@@ -304,7 +304,7 @@ public class Example {
 
 ### Return type
 
-[**PruneReport**](PruneReport.md)
+[**VolumesPruneReport**](VolumesPruneReport.md)
 
 ### Authorization
 

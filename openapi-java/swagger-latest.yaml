@@ -26,12 +26,6 @@ definitions:
         title: Address represents an IP address.
         type: object
         x-go-package: github.com/containers/podman/v5/libpod/define
-    AttestationProperties:
-        properties:
-            For:
-                $ref: '#/definitions/Digest'
-        type: object
-        x-go-package: github.com/docker/docker/api/types/image
     AuthConfig:
         description: AuthConfig contains authorization information for connecting to a Registry
         properties:
@@ -377,17 +371,6 @@ definitions:
                 x-go-name: Version
         type: object
         x-go-package: github.com/containers/podman/v5/libpod/define
-    ConnectOptions:
-        description: |-
-            ConnectOptions represents the data to be used to connect a container to the
-            network.
-        properties:
-            Container:
-                type: string
-            EndpointConfig:
-                $ref: '#/definitions/EndpointSettings'
-        type: object
-        x-go-package: github.com/docker/docker/api/types/network
     Consistency:
         title: Consistency represents the consistency requirements of a mount.
         type: string
@@ -624,15 +607,6 @@ definitions:
                     Optional.
                 type: boolean
                 x-go-name: Remove
-            removeImage:
-                description: |-
-                    RemoveImage indicates that the container should remove the image it
-                    was created from after it exits.
-                    Only allowed if Remove is set to true and Image, not Rootfs, is in
-                    use.
-                    Optional.
-                type: boolean
-                x-go-name: RemoveImage
             restart_policy:
                 description: |-
                     RestartPolicy is the container's restart policy - an action which
@@ -731,7 +705,7 @@ definitions:
                 x-go-name: Timezone
             unsetenv:
                 description: |-
-                    UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf
+                    UnsetEnv unsets the specified default environment variables from the image or from buildin or containers.conf
                     Optional.
                 items:
                     type: string
@@ -739,8 +713,8 @@ definitions:
                 x-go-name: UnsetEnv
             unsetenvall:
                 description: |-
-                    UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf
-                    UnsetEnvAll unsets all default environment variables from the image or from built-in
+                    UnsetEnvAll unsetall default environment variables from the image or from buildin or containers.conf
+                    UnsetEnvAll unsets all default environment variables from the image or from buildin
                     Optional.
                 type: boolean
                 x-go-name: UnsetEnvAll
@@ -796,24 +770,6 @@ definitions:
         properties:
             health_check_on_failure_action:
                 $ref: '#/definitions/HealthCheckOnFailureAction'
-            healthLogDestination:
-                description: HealthLogDestination defines the destination where the log is stored
-                type: string
-                x-go-name: HealthLogDestination
-            healthMaxLogCount:
-                description: |-
-                    HealthMaxLogCount is maximum number of attempts in the HealthCheck log file.
-                    ('0' value means an infinite number of attempts in the log file)
-                format: uint64
-                type: integer
-                x-go-name: HealthMaxLogCount
-            healthMaxLogSize:
-                description: |-
-                    HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
-                    ("0" value means an infinite log length)
-                format: uint64
-                type: integer
-                x-go-name: HealthMaxLogSize
             healthconfig:
                 $ref: '#/definitions/Schema2HealthConfig'
             startupHealthConfig:
@@ -1061,7 +1017,9 @@ definitions:
         type: object
         x-go-package: github.com/containers/podman/v5/libpod/define
     ContainerNode:
-        description: 'Deprecated: ContainerNode was used for the classic Docker Swarm standalone API. It will be removed in the next release.'
+        description: |-
+            ContainerNode stores information about the node that a container
+            is running on.  It's only used by the Docker Swarm standalone API
         properties:
             Addr:
                 type: string
@@ -1082,9 +1040,6 @@ definitions:
                 type: integer
             Name:
                 type: string
-        title: |-
-            ContainerNode stores information about the node that a container
-            is running on.  It's only used by the Docker Swarm standalone API.
         type: object
         x-go-package: github.com/docker/docker/api/types
     ContainerResourceConfig:
@@ -1816,76 +1771,31 @@ definitions:
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/api/handlers
     CreateOptions:
+        description: Volume configuration
         properties:
-            Attachable:
-                type: boolean
-            ConfigFrom:
-                $ref: '#/definitions/ConfigReference'
-            ConfigOnly:
-                type: boolean
+            ClusterVolumeSpec:
+                $ref: '#/definitions/ClusterVolumeSpec'
             Driver:
                 description: Name of the volume driver to use.
                 type: string
-            EnableIPv6:
-                type: boolean
-            IPAM:
-                $ref: '#/definitions/IPAM'
-            Ingress:
-                type: boolean
-            Internal:
-                type: boolean
+            DriverOpts:
+                additionalProperties:
+                    type: string
+                description: |-
+                    A mapping of driver options and values. These options are
+                    passed directly to the driver and are driver specific.
+                type: object
             Labels:
                 additionalProperties:
                     type: string
                 description: User-defined key/value metadata.
                 type: object
-            Options:
-                additionalProperties:
-                    type: string
-                type: object
-            Scope:
-                type: string
-        title: CreateOptions holds options to create a network.
-        type: object
-        x-go-package: github.com/docker/docker/api/types/network
-    CreateRequest:
-        properties:
-            Attachable:
-                type: boolean
-            CheckDuplicate:
-                description: |-
-                    Deprecated: CheckDuplicate is deprecated since API v1.44, but it defaults to true when sent by the client
-                    package to older daemons.
-                type: boolean
-            ConfigFrom:
-                $ref: '#/definitions/ConfigReference'
-            ConfigOnly:
-                type: boolean
-            Driver:
-                type: string
-            EnableIPv6:
-                type: boolean
-            IPAM:
-                $ref: '#/definitions/IPAM'
-            Ingress:
-                type: boolean
-            Internal:
-                type: boolean
-            Labels:
-                additionalProperties:
-                    type: string
-                type: object
             Name:
+                description: The new volume's name. If not specified, Docker generates a name.
                 type: string
-            Options:
-                additionalProperties:
-                    type: string
-                type: object
-            Scope:
-                type: string
-        title: CreateRequest is the request message sent to the server for network create call.
+        title: CreateOptions VolumeConfig
         type: object
-        x-go-package: github.com/docker/docker/api/types/network
+        x-go-package: github.com/docker/docker/api/types/volume
     CreateResponse:
         description: OK response to ContainerCreate operation
         properties:
@@ -1929,53 +1839,6 @@ definitions:
                 type: string
         type: object
         x-go-package: github.com/docker/docker/api/types/image
-    Descriptor:
-        description: |-
-            This structure provides `application/vnd.oci.descriptor.v1+json` mediatype
-            when marshalled to JSON.
-        properties:
-            annotations:
-                additionalProperties:
-                    type: string
-                description: Annotations contains arbitrary metadata relating to the targeted content.
-                type: object
-                x-go-name: Annotations
-            artifactType:
-                description: ArtifactType is the IANA media type of this artifact.
-                type: string
-                x-go-name: ArtifactType
-            data:
-                description: |-
-                    Data is an embedding of the targeted content. This is encoded as a base64
-                    string when marshalled to JSON (automatically, by encoding/json). If
-                    present, Data can be used directly to avoid fetching the targeted content.
-                items:
-                    format: uint8
-                    type: integer
-                type: array
-                x-go-name: Data
-            digest:
-                $ref: '#/definitions/Digest'
-            mediaType:
-                description: MediaType is the media type of the object this schema refers to.
-                type: string
-                x-go-name: MediaType
-            platform:
-                $ref: '#/definitions/Platform'
-            size:
-                description: Size specifies the size in bytes of the blob.
-                format: int64
-                type: integer
-                x-go-name: Size
-            urls:
-                description: URLs specifies a list of URLs from which this object MAY be downloaded
-                items:
-                    type: string
-                type: array
-                x-go-name: URLs
-        title: Descriptor describes the disposition of targeted content.
-        type: object
-        x-go-package: github.com/opencontainers/image-spec/specs-go/v1
     DeviceMapping:
         properties:
             CgroupPermissions:
@@ -2027,17 +1890,6 @@ definitions:
             digest string.
         type: string
         x-go-package: github.com/opencontainers/go-digest
-    DisconnectOptions:
-        description: |-
-            DisconnectOptions represents the data to be used to disconnect a container
-            from the network.
-        properties:
-            Container:
-                type: string
-            Force:
-                type: boolean
-        type: object
-        x-go-package: github.com/docker/docker/api/types/network
     DistributionInfo:
         description: DistributionInfo describes the host distribution for libpod
         properties:
@@ -2099,9 +1951,7 @@ definitions:
         type: object
         x-go-package: github.com/docker/docker/api/types/network
     EndpointResource:
-        description: |-
-            EndpointResource contains network resources allocated and used for a
-            container in a network.
+        description: EndpointResource contains network resources allocated and used for a container in a network
         properties:
             EndpointID:
                 type: string
@@ -2114,7 +1964,7 @@ definitions:
             Name:
                 type: string
         type: object
-        x-go-package: github.com/docker/docker/api/types/network
+        x-go-package: github.com/docker/docker/api/types
     EndpointSettings:
         description: EndpointSettings stores the network endpoint details
         properties:
@@ -3168,38 +3018,6 @@ definitions:
                 type: array
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
-    ImageProperties:
-        properties:
-            Containers:
-                description: |-
-                    Containers is an array containing the IDs of the containers that are
-                    using this image.
-                items:
-                    type: string
-                type: array
-            Platform:
-                $ref: '#/definitions/Platform'
-            Size:
-                properties:
-                    Unpacked:
-                        description: |-
-                            Unpacked is the size (in bytes) of the locally unpacked
-                            (uncompressed) image content that's directly usable by the containers
-                            running this image.
-                            It's independent of the distributable content - e.g.
-                            the image might still have an unpacked data that's still used by
-                            some container even when the distributable/compressed content is
-                            already gone.
-                        format: int64
-                        type: integer
-                required:
-                    - Unpacked
-                type: object
-        required:
-            - Platform
-            - Containers
-        type: object
-        x-go-package: github.com/docker/docker/api/types/image
     ImageStore:
         description: |-
             ImageStore describes the image store.  Right now only the number
@@ -3249,7 +3067,7 @@ definitions:
         properties:
             AccessibleTopology:
                 description: |-
-                    AccessibleTopology is the topology this volume is actually accessible
+                    AccessibleTopolgoy is the topology this volume is actually accessible
                     from.
                 items:
                     $ref: '#/definitions/Topology'
@@ -3276,57 +3094,6 @@ definitions:
                 type: string
         type: object
         x-go-package: github.com/docker/docker/api/types/volume
-    Inspect:
-        properties:
-            Attachable:
-                type: boolean
-            ConfigFrom:
-                $ref: '#/definitions/ConfigReference'
-            ConfigOnly:
-                type: boolean
-            Containers:
-                additionalProperties:
-                    $ref: '#/definitions/EndpointResource'
-                type: object
-            Created:
-                format: date-time
-                type: string
-            Driver:
-                type: string
-            EnableIPv6:
-                type: boolean
-            IPAM:
-                $ref: '#/definitions/IPAM'
-            Id:
-                type: string
-                x-go-name: ID
-            Ingress:
-                type: boolean
-            Internal:
-                type: boolean
-            Labels:
-                additionalProperties:
-                    type: string
-                type: object
-            Name:
-                type: string
-            Options:
-                additionalProperties:
-                    type: string
-                type: object
-            Peers:
-                items:
-                    $ref: '#/definitions/PeerInfo'
-                type: array
-            Scope:
-                type: string
-            Services:
-                additionalProperties:
-                    $ref: '#/definitions/ServiceInfo'
-                type: object
-        title: Inspect is the body of the "get network" http response message.
-        type: object
-        x-go-package: github.com/docker/docker/api/types/network
     InspectAdditionalNetwork:
         description: |-
             InspectAdditionalNetwork holds information about non-default networks the
@@ -3502,30 +3269,8 @@ definitions:
                 items:
                     type: string
                 type: array
-            ExposedPorts:
-                additionalProperties:
-                    type: object
-                description: ExposedPorts includes ports the container has exposed.
-                type: object
-            HealthLogDestination:
-                description: HealthLogDestination defines the destination where the log is stored
-                type: string
             Healthcheck:
                 $ref: '#/definitions/Schema2HealthConfig'
-            HealthcheckMaxLogCount:
-                description: |-
-                    HealthMaxLogCount is maximum number of attempts in the HealthCheck log file.
-                    ('0' value means an infinite number of attempts in the log file)
-                format: uint64
-                type: integer
-                x-go-name: HealthMaxLogCount
-            HealthcheckMaxLogSize:
-                description: |-
-                    HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
-                    ("0" value means an infinite log length)
-                format: uint64
-                type: integer
-                x-go-name: HealthMaxLogSize
             HealthcheckOnFailureAction:
                 description: HealthcheckOnFailureAction defines an action to take once the container turns unhealthy.
                 type: string
@@ -3554,8 +3299,6 @@ definitions:
                 items:
                     $ref: '#/definitions/InspectSecret'
                 type: array
-            StartupHealthCheck:
-                $ref: '#/definitions/StartupHealthCheck'
             StdinOnce:
                 description: |-
                     Whether STDIN is only left open once.
@@ -3733,13 +3476,6 @@ definitions:
                 description: |-
                     AutoRemove is whether the container will be automatically removed on
                     exiting.
-                    It is not handled directly within libpod and is stored in an
-                    annotation.
-                type: boolean
-            AutoRemoveImage:
-                description: |-
-                    AutoRemoveImage is whether the container's image will be
-                    automatically removed on exiting.
                     It is not handled directly within libpod and is stored in an
                     annotation.
                 type: boolean
@@ -4494,11 +4230,6 @@ definitions:
                 type: boolean
             Source:
                 description: The source directory for the volume.
-                type: string
-            SubPath:
-                description: |-
-                    SubPath object from the volume. Specified as a path within
-                    the source volume to be mounted at the Destination.
                 type: string
             Type:
                 description: |-
@@ -6068,9 +5799,6 @@ definitions:
                 x-go-name: Variant
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities
-    ManifestKind:
-        type: string
-        x-go-package: github.com/docker/docker/api/types/image
     ManifestModifyOptions:
         description: |-
             swagger 2.0 does not support oneOf for schema validation.
@@ -6255,60 +5983,6 @@ definitions:
                 type: array
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
-    ManifestSummary:
-        properties:
-            AttestationData:
-                $ref: '#/definitions/AttestationProperties'
-            Available:
-                description: |-
-                    Indicates whether all the child content (image config, layers) is
-                    fully available locally
-                type: boolean
-            Descriptor:
-                $ref: '#/definitions/Descriptor'
-            ID:
-                description: |-
-                    ID is the content-addressable ID of an image and is the same as the
-                    digest of the image manifest.
-                type: string
-            ImageData:
-                $ref: '#/definitions/ImageProperties'
-            Kind:
-                $ref: '#/definitions/ManifestKind'
-            Size:
-                description: |-
-                    Size is the size information of the content related to this manifest.
-                    Note: These sizes only take the locally available content into account.
-                properties:
-                    Content:
-                        description: |-
-                            Content is the size (in bytes) of all the locally present
-                            content in the content store (e.g. image config, layers)
-                            referenced by this manifest and its children.
-                            This only includes blobs in the content store.
-                        format: int64
-                        type: integer
-                    Total:
-                        description: |-
-                            Total is the total size (in bytes) of all the locally present
-                            data (both distributable and non-distributable) that's related to
-                            this manifest and its children.
-                            This equal to the sum of [Content] size AND all the sizes in the
-                            [Size] struct present in the Kind-specific data struct.
-                            For example, for an image kind (Kind == ManifestKindImage),
-                            this would include the size of the image content and unpacked
-                            image snapshots ([Size.Content] + [ImageData.Size.Unpacked]).
-                        format: int64
-                        type: integer
-                type: object
-        required:
-            - ID
-            - Descriptor
-            - Available
-            - Size
-            - Kind
-        type: object
-        x-go-package: github.com/docker/docker/api/types/image
     Meta:
         properties:
             CreatedAt:
@@ -6616,6 +6290,15 @@ definitions:
     NetworkBackend:
         type: string
         x-go-package: github.com/containers/common/libnetwork/types
+    NetworkConnect:
+        description: NetworkConnect represents the data to be used to connect a container to the network
+        properties:
+            Container:
+                type: string
+            EndpointConfig:
+                $ref: '#/definitions/EndpointSettings'
+        type: object
+        x-go-package: github.com/docker/docker/api/types
     NetworkConnectOptions:
         description: |-
             NetworkConnectOptions describes options for connecting
@@ -6641,12 +6324,6 @@ definitions:
                     Optional in the frontend. Will be filled with ethX (where X is a integer) when empty.
                 type: string
                 x-go-name: InterfaceName
-            options:
-                additionalProperties:
-                    type: string
-                description: Driver-specific options for this container.
-                type: object
-                x-go-name: Options
             static_ips:
                 description: StaticIPs for this container. Optional.
                 items:
@@ -6674,6 +6351,89 @@ definitions:
                 x-go-name: Name
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
+    NetworkCreate:
+        description: NetworkCreate is the expected body of the "create network" http request message
+        properties:
+            Attachable:
+                type: boolean
+            CheckDuplicate:
+                description: |-
+                    Deprecated: CheckDuplicate is deprecated since API v1.44, but it defaults to true when sent by the client
+                    package to older daemons.
+                type: boolean
+            ConfigFrom:
+                $ref: '#/definitions/ConfigReference'
+            ConfigOnly:
+                type: boolean
+            Driver:
+                type: string
+            EnableIPv6:
+                type: boolean
+            IPAM:
+                $ref: '#/definitions/IPAM'
+            Ingress:
+                type: boolean
+            Internal:
+                type: boolean
+            Labels:
+                additionalProperties:
+                    type: string
+                type: object
+            Options:
+                additionalProperties:
+                    type: string
+                type: object
+            Scope:
+                type: string
+        type: object
+        x-go-package: github.com/docker/docker/api/types
+    NetworkCreateRequest:
+        properties:
+            Attachable:
+                type: boolean
+            CheckDuplicate:
+                description: |-
+                    Deprecated: CheckDuplicate is deprecated since API v1.44, but it defaults to true when sent by the client
+                    package to older daemons.
+                type: boolean
+            ConfigFrom:
+                $ref: '#/definitions/ConfigReference'
+            ConfigOnly:
+                type: boolean
+            Driver:
+                type: string
+            EnableIPv6:
+                type: boolean
+            IPAM:
+                $ref: '#/definitions/IPAM'
+            Ingress:
+                type: boolean
+            Internal:
+                type: boolean
+            Labels:
+                additionalProperties:
+                    type: string
+                type: object
+            Name:
+                type: string
+            Options:
+                additionalProperties:
+                    type: string
+                type: object
+            Scope:
+                type: string
+        title: NetworkCreateRequest is the request message sent to the server for network create call.
+        type: object
+        x-go-package: github.com/docker/docker/api/types
+    NetworkDisconnect:
+        description: NetworkDisconnect represents the data to be used to disconnect a container from the network
+        properties:
+            Container:
+                type: string
+            Force:
+                type: boolean
+        type: object
+        x-go-package: github.com/docker/docker/api/types
     NetworkInfo:
         properties:
             backend:
@@ -6796,6 +6556,57 @@ definitions:
                 type: string
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
+    NetworkResource:
+        description: NetworkResource is the body of the "get network" http response message
+        properties:
+            Attachable:
+                type: boolean
+            ConfigFrom:
+                $ref: '#/definitions/ConfigReference'
+            ConfigOnly:
+                type: boolean
+            Containers:
+                additionalProperties:
+                    $ref: '#/definitions/EndpointResource'
+                type: object
+            Created:
+                format: date-time
+                type: string
+            Driver:
+                type: string
+            EnableIPv6:
+                type: boolean
+            IPAM:
+                $ref: '#/definitions/IPAM'
+            Id:
+                type: string
+                x-go-name: ID
+            Ingress:
+                type: boolean
+            Internal:
+                type: boolean
+            Labels:
+                additionalProperties:
+                    type: string
+                type: object
+            Name:
+                type: string
+            Options:
+                additionalProperties:
+                    type: string
+                type: object
+            Peers:
+                items:
+                    $ref: '#/definitions/PeerInfo'
+                type: array
+            Scope:
+                type: string
+            Services:
+                additionalProperties:
+                    $ref: '#/definitions/ServiceInfo'
+                type: object
+        type: object
+        x-go-package: github.com/docker/docker/api/types
     NetworkRmReport:
         description: NetworkRmReport describes the results of network removal
         properties:
@@ -6994,12 +6805,6 @@ definitions:
                     Optional in the frontend. Will be filled with ethX (where X is a integer) when empty.
                 type: string
                 x-go-name: InterfaceName
-            options:
-                additionalProperties:
-                    type: string
-                description: Driver-specific options for this container.
-                type: object
-                x-go-name: Options
             static_ips:
                 description: StaticIPs for this container. Optional.
                 items:
@@ -8321,8 +8126,6 @@ definitions:
                 type: array
             Id:
                 type: string
-            RawInput:
-                type: string
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
     PodStatsReport:
@@ -8374,8 +8177,6 @@ definitions:
                     type: string
                 type: array
             Id:
-                type: string
-            RawInput:
                 type: string
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
@@ -8580,7 +8381,6 @@ definitions:
         type: string
         x-go-package: github.com/docker/docker/api/types/mount
     PruneReport:
-        description: POST "/volumes/prune"
         properties:
             Err:
                 type: string
@@ -8589,7 +8389,6 @@ definitions:
             Size:
                 format: uint64
                 type: integer
-        title: 'PruneReport contains the response for Engine API:'
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/reports
     PublishState:
@@ -9094,7 +8893,7 @@ definitions:
         type: string
         x-go-package: github.com/docker/docker/api/types/volume
     Signal:
-        description: It implements the [os.Signal] interface.
+        description: It implements the os.Signal interface.
         format: int64
         title: A Signal is a number describing a process signal.
         type: integer
@@ -9380,24 +9179,6 @@ definitions:
                 x-go-name: Groups
             health_check_on_failure_action:
                 $ref: '#/definitions/HealthCheckOnFailureAction'
-            healthLogDestination:
-                description: HealthLogDestination defines the destination where the log is stored
-                type: string
-                x-go-name: HealthLogDestination
-            healthMaxLogCount:
-                description: |-
-                    HealthMaxLogCount is maximum number of attempts in the HealthCheck log file.
-                    ('0' value means an infinite number of attempts in the log file)
-                format: uint64
-                type: integer
-                x-go-name: HealthMaxLogCount
-            healthMaxLogSize:
-                description: |-
-                    HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
-                    ("0" value means an infinite log length)
-                format: uint64
-                type: integer
-                x-go-name: HealthMaxLogSize
             healthconfig:
                 $ref: '#/definitions/Schema2HealthConfig'
             host_device_list:
@@ -9697,15 +9478,6 @@ definitions:
                     Optional.
                 type: boolean
                 x-go-name: Remove
-            removeImage:
-                description: |-
-                    RemoveImage indicates that the container should remove the image it
-                    was created from after it exits.
-                    Only allowed if Remove is set to true and Image, not Rootfs, is in
-                    use.
-                    Optional.
-                type: boolean
-                x-go-name: RemoveImage
             resource_limits:
                 $ref: '#/definitions/LinuxResources'
             restart_policy:
@@ -9939,7 +9711,7 @@ definitions:
                 x-go-name: Unmask
             unsetenv:
                 description: |-
-                    UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf
+                    UnsetEnv unsets the specified default environment variables from the image or from buildin or containers.conf
                     Optional.
                 items:
                     type: string
@@ -9947,8 +9719,8 @@ definitions:
                 x-go-name: UnsetEnv
             unsetenvall:
                 description: |-
-                    UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf
-                    UnsetEnvAll unsets all default environment variables from the image or from built-in
+                    UnsetEnvAll unsetall default environment variables from the image or from buildin or containers.conf
+                    UnsetEnvAll unsets all default environment variables from the image or from buildin
                     Optional.
                 type: boolean
                 x-go-name: UnsetEnvAll
@@ -10138,6 +9910,7 @@ definitions:
         type: object
         x-go-package: github.com/containers/common/libnetwork/types
     Summary:
+        description: Summary summary
         properties:
             Containers:
                 description: |-
@@ -10151,7 +9924,7 @@ definitions:
             Created:
                 description: |-
                     Date and time at which the image was created as a Unix timestamp
-                    (number of seconds since EPOCH).
+                    (number of seconds sinds EPOCH).
                 format: int64
                 type: integer
             Id:
@@ -10171,17 +9944,6 @@ definitions:
                     type: string
                 description: User-defined key/value metadata.
                 type: object
-            Manifests:
-                description: |-
-                    Manifests is a list of image manifests available in this image.  It
-                    provides a more detailed view of the platform-specific image manifests or
-                    other image-attached data like build attestations.
-
-                    WARNING: This is experimental and may change at any time without any backward
-                    compatibility.
-                items:
-                    $ref: '#/definitions/ManifestSummary'
-                type: array
             ParentId:
                 description: |-
                     ID of the parent image.
@@ -10257,59 +10019,6 @@ definitions:
                 type: object
         type: object
         x-go-package: github.com/docker/docker/api/types
-    SystemCheckReport:
-        description: |-
-            SystemCheckReport provides a report of what a storage consistency check
-            found, and if we removed anything that was damaged, what we removed.
-        properties:
-            Containers:
-                additionalProperties:
-                    items:
-                        type: string
-                    type: array
-                type: object
-            Errors:
-                type: boolean
-            Images:
-                additionalProperties:
-                    items:
-                        type: string
-                    type: array
-                type: object
-            Layers:
-                additionalProperties:
-                    items:
-                        type: string
-                    type: array
-                type: object
-            ROImages:
-                additionalProperties:
-                    items:
-                        type: string
-                    type: array
-                type: object
-            ROLayers:
-                additionalProperties:
-                    items:
-                        type: string
-                    type: array
-                type: object
-            RemovedContainers:
-                additionalProperties:
-                    type: string
-                type: object
-            RemovedImages:
-                additionalProperties:
-                    items:
-                        type: string
-                    type: array
-                type: object
-            RemovedLayers:
-                items:
-                    type: string
-                type: array
-        type: object
-        x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
     SystemComponentVersion:
         description: SystemComponentVersion is the type used by pkg/domain/entities
         properties:
@@ -10493,17 +10202,6 @@ definitions:
         properties:
             Mode:
                 $ref: '#/definitions/FileMode'
-            Options:
-                description: |-
-                    Options to be passed to the tmpfs mount. An array of arrays. Flag
-                    options should be provided as 1-length arrays. Other types should be
-                    provided as 2-length arrays, where the first item is the key and the
-                    second the value.
-                items:
-                    items:
-                        type: string
-                    type: array
-                type: array
             SizeBytes:
                 description: |-
                     Size sets the size of the tmpfs, in bytes.
@@ -11116,6 +10814,19 @@ definitions:
                 type: string
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
+    VolumesPruneReport:
+        description: POST "/volumes/prune"
+        properties:
+            SpaceReclaimed:
+                format: uint64
+                type: integer
+            VolumesDeleted:
+                items:
+                    type: string
+                type: array
+        title: 'VolumesPruneReport contains the response for Engine API:'
+        type: object
+        x-go-package: github.com/docker/docker/api/types
     WaitExitError:
         description: WaitExitError container waiting error, if any
         properties:
@@ -11154,12 +10865,13 @@ definitions:
     containerUpdateRequest:
         $ref: '#/definitions/UpdateConfig'
     networkConnectRequest:
-        $ref: '#/definitions/ConnectOptions'
+        $ref: '#/definitions/NetworkConnect'
     networkConnectRequestLibpod:
         $ref: '#/definitions/NetworkConnectOptions'
     networkCreate:
-        $ref: '#/definitions/CreateRequest'
+        $ref: '#/definitions/NetworkCreateRequest'
     networkCreateLibpod:
+        description: Network create
         properties:
             created:
                 description: Created contains the timestamp when this network was created.
@@ -11244,7 +10956,7 @@ definitions:
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/api/handlers/swagger
     networkDisconnectRequest:
-        $ref: '#/definitions/DisconnectOptions'
+        $ref: '#/definitions/NetworkDisconnect'
     networkUpdateRequestLibpod:
         $ref: '#/definitions/NetworkUpdateOptions'
     volumeCreate:
@@ -11391,30 +11103,11 @@ paths:
                   in: query
                   name: remote
                   type: string
-                - default: 3
-                  description: |
-                    Number of times to retry in case of failure when performing push/pull.
-                  in: query
-                  name: retry
-                  type: integer
-                - default: 2s
-                  description: |
-                    Delay between retries in case of push/pull failures.
-                  in: query
-                  name: retry-delay
-                  type: string
                 - default: false
                   description: |
                     Suppress verbose build output
                   in: query
                   name: q
-                  type: boolean
-                - default: false
-                  description: |
-                    Contents of base images to be modified on ADD or COPY only
-                    (As of Podman version v5.2)
-                  in: query
-                  name: compatvolumes
                   type: boolean
                 - default: false
                   description: |
@@ -11537,7 +11230,6 @@ paths:
                   type: string
                 - description: |
                     Platform format os[/arch[/variant]]
-                    Can be comma separated list for multi arch builds.
                     (As of version 1.xx)
                   in: query
                   name: platform
@@ -12662,23 +12354,14 @@ paths:
                   in: query
                   name: all
                   type: boolean
-                - description: Use compression on image.
+                - description: use compression on image
                   in: query
                   name: compress
                   type: boolean
-                - description: Allows for pushing the image to a different destination than the image refers to.
+                - description: destination name for the image being pushed
                   in: query
                   name: destination
                   type: string
-                - description: Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks.
-                  in: query
-                  name: format
-                  type: string
-                - default: true
-                  description: Require TLS verification.
-                  in: query
-                  name: tlsVerify
-                  type: boolean
                 - description: A base64-encoded auth configuration.
                   in: header
                   name: X-Registry-Auth
@@ -13052,13 +12735,6 @@ paths:
                     Suppress verbose build output
                   in: query
                   name: q
-                  type: boolean
-                - default: false
-                  description: |
-                    Contents of base images to be modified on ADD or COPY only
-                    (As of Podman version v5.2)
-                  in: query
-                  name: compatvolumes
                   type: boolean
                 - default: false
                   description: |
@@ -15046,44 +14722,16 @@ paths:
                   in: query
                   name: forceCompressionFormat
                   type: boolean
-                - description: Compression format used to compress image layers.
-                  in: query
-                  name: compressionFormat
-                  type: string
-                - description: Compression level used to compress image layers.
-                  in: query
-                  name: compressionLevel
-                  type: integer
                 - default: true
                   description: Require TLS verification.
                   in: query
                   name: tlsVerify
                   type: boolean
                 - default: true
-                  description: Silences extra stream data on push.
+                  description: silences extra stream data on push
                   in: query
                   name: quiet
                   type: boolean
-                - description: Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks.
-                  in: query
-                  name: format
-                  type: string
-                - description: All indicates whether to push all images related to the image list.
-                  in: query
-                  name: all
-                  type: boolean
-                - description: Discard any pre-existing signatures in the image.
-                  in: query
-                  name: removeSignatures
-                  type: boolean
-                - description: Number of times to retry push in case of failure.
-                  in: query
-                  name: retry
-                  type: integer
-                - description: Delay between retries in case of push failures. Duration format such as "412ms", or "3.5h".
-                  in: query
-                  name: retryDelay
-                  type: string
                 - description: A base64-encoded auth configuration.
                   in: header
                   name: X-Registry-Auth
@@ -15379,12 +15027,6 @@ paths:
                     Remove images even when they are used by external containers (e.g, by build containers)
                   in: query
                   name: external
-                  type: boolean
-                - default: false
-                  description: |
-                    Remove persistent build cache created by build instructions such as `--mount=type=cache`.
-                  in: query
-                  name: buildcache
                   type: boolean
                 - description: |
                     filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:
@@ -16187,50 +15829,9 @@ paths:
                 - containers
                 - pods
         post:
-            description: |
-                Create and run pods based on a Kubernetes YAML file.
-
-                ### Content-Type
-
-                Then endpoint support two Content-Type
-                 - `plain/text` for yaml format
-                 - `application/x-tar` for sending context(s) required for building images
-
-                #### Tar format
-
-                The tar format must contain a `play.yaml` file at the root that will be used.
-                If the file format requires context to build an image, it uses the image name and
-                check for corresponding folder.
-
-                For example, the client sends a tar file with the following structure:
-
-                ```
-                └── content.tar
-                 ├── play.yaml
-                 └── foobar/
-                     └── Containerfile
-                ```
-
-                The `play.yaml` is the following, the `foobar` image means we are looking for a context with this name.
-                ```
-                apiVersion: v1
-                kind: Pod
-                metadata:
-                name: demo-build-remote
-                spec:
-                containers:
-                 - name: container
-                   image: foobar
-                ```
+            description: Create and run pods based on a Kubernetes YAML file (pod or service kind).
             operationId: PlayKubeLibpod
             parameters:
-                - default: plain/text
-                  enum:
-                    - plain/text
-                    - application/x-tar
-                  in: header
-                  name: Content-Type
-                  type: string
                 - description: JSON encoded value of annotations (a map[string]string).
                   in: query
                   name: annotations
@@ -16311,10 +15912,6 @@ paths:
                   description: Clean up all objects created when a SIGTERM is received or pods exit.
                   in: query
                   name: wait
-                  type: boolean
-                - description: Build the images with corresponding context.
-                  in: query
-                  name: build
                   type: boolean
                 - description: Kubernetes YAML file.
                   in: body
@@ -16829,39 +16426,6 @@ paths:
             summary: List secrets
             tags:
                 - secrets
-    /libpod/system/check:
-        post:
-            operationId: SystemCheckLibpod
-            parameters:
-                - description: Skip time-consuming checks
-                  in: query
-                  name: quick
-                  type: boolean
-                - description: Remove inconsistent images
-                  in: query
-                  name: repair
-                  type: boolean
-                - description: Remove inconsistent containers and images
-                  in: query
-                  name: repair_lossy
-                  type: boolean
-                - default: 24h0m0s
-                  description: Maximum allowed age of unreferenced layers
-                  in: query
-                  name: unreferenced_layer_max_age
-                  type: string
-            produces:
-                - application/json
-            responses:
-                "200":
-                    $ref: '#/responses/systemCheckResponse'
-                "400":
-                    $ref: '#/responses/badParamError'
-                "500":
-                    $ref: '#/responses/internalError'
-            summary: Performs consistency checks on storage, optionally removing items which fail checks
-            tags:
-                - system
     /libpod/system/df:
         get:
             description: Return information about disk usage for containers, images, and volumes
@@ -17722,7 +17286,7 @@ responses:
     networkInspectCompat:
         description: Network inspect
         schema:
-            $ref: '#/definitions/Inspect'
+            $ref: '#/definitions/NetworkResource'
     networkInspectResponse:
         description: Network inspect
         schema:
@@ -17731,7 +17295,7 @@ responses:
         description: Network list
         schema:
             items:
-                $ref: '#/definitions/Inspect'
+                $ref: '#/definitions/NetworkResource'
             type: array
     networkListLibpod:
         description: Network list
@@ -17860,10 +17424,6 @@ responses:
         description: Auth response
         schema:
             $ref: '#/definitions/AuthReport'
-    systemCheckResponse:
-        description: Check
-        schema:
-            $ref: '#/definitions/SystemCheckReport'
     systemDiskUsage:
         description: Disk usage
         schema:
@@ -17911,7 +17471,7 @@ responses:
     volumePruneResponse:
         description: Volume prune
         schema:
-            $ref: '#/definitions/PruneReport'
+            $ref: '#/definitions/VolumesPruneReport'
 schemes:
     - http
     - https

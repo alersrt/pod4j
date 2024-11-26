@@ -2,7 +2,6 @@
 
 # PruneReport
 
-POST \"/volumes/prune\"
 
 ## Properties
 

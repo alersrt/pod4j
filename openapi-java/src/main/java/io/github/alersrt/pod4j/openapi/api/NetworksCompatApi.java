@@ -19,12 +19,12 @@ import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
-import io.github.alersrt.pod4j.openapi.model.ConnectOptions;
-import io.github.alersrt.pod4j.openapi.model.CreateRequest;
-import io.github.alersrt.pod4j.openapi.model.DisconnectOptions;
-import io.github.alersrt.pod4j.openapi.model.Inspect;
+import io.github.alersrt.pod4j.openapi.model.NetworkConnect;
 import io.github.alersrt.pod4j.openapi.model.NetworkCreate201Response;
+import io.github.alersrt.pod4j.openapi.model.NetworkCreateRequest;
+import io.github.alersrt.pod4j.openapi.model.NetworkDisconnect;
 import io.github.alersrt.pod4j.openapi.model.NetworkPrune200Response;
+import io.github.alersrt.pod4j.openapi.model.NetworkResource;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,7 +86,7 @@ public class NetworksCompatApi {
      * </table>
      */
     public okhttp3.Call networkConnectCall(
-            String name, ConnectOptions create, final ApiCallback _callback) throws ApiException {
+            String name, NetworkConnect create, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {};
@@ -145,7 +145,7 @@ public class NetworksCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call networkConnectValidateBeforeCall(
-            String name, ConnectOptions create, final ApiCallback _callback) throws ApiException {
+            String name, NetworkConnect create, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
             throw new ApiException(
@@ -171,7 +171,7 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public void networkConnect(String name, ConnectOptions create) throws ApiException {
+    public void networkConnect(String name, NetworkConnect create) throws ApiException {
         networkConnectWithHttpInfo(name, create);
     }
 
@@ -192,7 +192,7 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public ApiResponse<Void> networkConnectWithHttpInfo(String name, ConnectOptions create)
+    public ApiResponse<Void> networkConnectWithHttpInfo(String name, NetworkConnect create)
             throws ApiException {
         okhttp3.Call localVarCall = networkConnectValidateBeforeCall(name, create, null);
         return localVarApiClient.execute(localVarCall);
@@ -217,7 +217,7 @@ public class NetworksCompatApi {
      * </table>
      */
     public okhttp3.Call networkConnectAsync(
-            String name, ConnectOptions create, final ApiCallback<Void> _callback)
+            String name, NetworkConnect create, final ApiCallback<Void> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall = networkConnectValidateBeforeCall(name, create, _callback);
@@ -240,7 +240,7 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public okhttp3.Call networkCreateCall(CreateRequest create, final ApiCallback _callback)
+    public okhttp3.Call networkCreateCall(NetworkCreateRequest create, final ApiCallback _callback)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -296,7 +296,7 @@ public class NetworksCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call networkCreateValidateBeforeCall(
-            CreateRequest create, final ApiCallback _callback) throws ApiException {
+            NetworkCreateRequest create, final ApiCallback _callback) throws ApiException {
         return networkCreateCall(create, _callback);
     }
 
@@ -315,7 +315,7 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public NetworkCreate201Response networkCreate(CreateRequest create) throws ApiException {
+    public NetworkCreate201Response networkCreate(NetworkCreateRequest create) throws ApiException {
         ApiResponse<NetworkCreate201Response> localVarResp = networkCreateWithHttpInfo(create);
         return localVarResp.getData();
     }
@@ -335,8 +335,8 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public ApiResponse<NetworkCreate201Response> networkCreateWithHttpInfo(CreateRequest create)
-            throws ApiException {
+    public ApiResponse<NetworkCreate201Response> networkCreateWithHttpInfo(
+            NetworkCreateRequest create) throws ApiException {
         okhttp3.Call localVarCall = networkCreateValidateBeforeCall(create, null);
         Type localVarReturnType = new TypeToken<NetworkCreate201Response>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -359,7 +359,7 @@ public class NetworksCompatApi {
      * </table>
      */
     public okhttp3.Call networkCreateAsync(
-            CreateRequest create, final ApiCallback<NetworkCreate201Response> _callback)
+            NetworkCreateRequest create, final ApiCallback<NetworkCreate201Response> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall = networkCreateValidateBeforeCall(create, _callback);
@@ -532,7 +532,7 @@ public class NetworksCompatApi {
      * </table>
      */
     public okhttp3.Call networkDisconnectCall(
-            String name, DisconnectOptions create, final ApiCallback _callback)
+            String name, NetworkDisconnect create, final ApiCallback _callback)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -592,7 +592,7 @@ public class NetworksCompatApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call networkDisconnectValidateBeforeCall(
-            String name, DisconnectOptions create, final ApiCallback _callback)
+            String name, NetworkDisconnect create, final ApiCallback _callback)
             throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -618,7 +618,7 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public void networkDisconnect(String name, DisconnectOptions create) throws ApiException {
+    public void networkDisconnect(String name, NetworkDisconnect create) throws ApiException {
         networkDisconnectWithHttpInfo(name, create);
     }
 
@@ -638,7 +638,7 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public ApiResponse<Void> networkDisconnectWithHttpInfo(String name, DisconnectOptions create)
+    public ApiResponse<Void> networkDisconnectWithHttpInfo(String name, NetworkDisconnect create)
             throws ApiException {
         okhttp3.Call localVarCall = networkDisconnectValidateBeforeCall(name, create, null);
         return localVarApiClient.execute(localVarCall);
@@ -662,7 +662,7 @@ public class NetworksCompatApi {
      * </table>
      */
     public okhttp3.Call networkDisconnectAsync(
-            String name, DisconnectOptions create, final ApiCallback<Void> _callback)
+            String name, NetworkDisconnect create, final ApiCallback<Void> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall = networkDisconnectValidateBeforeCall(name, create, _callback);
@@ -773,7 +773,7 @@ public class NetworksCompatApi {
      * @param name the name of the network (required)
      * @param verbose Detailed inspect output for troubleshooting (optional)
      * @param scope Filter the network by scope (swarm, global, or local) (optional)
-     * @return Inspect
+     * @return NetworkResource
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
@@ -784,8 +784,10 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public Inspect networkInspect(String name, Boolean verbose, String scope) throws ApiException {
-        ApiResponse<Inspect> localVarResp = networkInspectWithHttpInfo(name, verbose, scope);
+    public NetworkResource networkInspect(String name, Boolean verbose, String scope)
+            throws ApiException {
+        ApiResponse<NetworkResource> localVarResp =
+                networkInspectWithHttpInfo(name, verbose, scope);
         return localVarResp.getData();
     }
 
@@ -795,7 +797,7 @@ public class NetworksCompatApi {
      * @param name the name of the network (required)
      * @param verbose Detailed inspect output for troubleshooting (optional)
      * @param scope Filter the network by scope (swarm, global, or local) (optional)
-     * @return ApiResponse&lt;Inspect&gt;
+     * @return ApiResponse&lt;NetworkResource&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
@@ -806,10 +808,10 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public ApiResponse<Inspect> networkInspectWithHttpInfo(
+    public ApiResponse<NetworkResource> networkInspectWithHttpInfo(
             String name, Boolean verbose, String scope) throws ApiException {
         okhttp3.Call localVarCall = networkInspectValidateBeforeCall(name, verbose, scope, null);
-        Type localVarReturnType = new TypeToken<Inspect>() {}.getType();
+        Type localVarReturnType = new TypeToken<NetworkResource>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -832,12 +834,15 @@ public class NetworksCompatApi {
      * </table>
      */
     public okhttp3.Call networkInspectAsync(
-            String name, Boolean verbose, String scope, final ApiCallback<Inspect> _callback)
+            String name,
+            Boolean verbose,
+            String scope,
+            final ApiCallback<NetworkResource> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall =
                 networkInspectValidateBeforeCall(name, verbose, scope, _callback);
-        Type localVarReturnType = new TypeToken<Inspect>() {}.getType();
+        Type localVarReturnType = new TypeToken<NetworkResource>() {}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -934,7 +939,7 @@ public class NetworksCompatApi {
      *     partial ID. - &#x60;driver&#x3D;[driver]&#x60; Only bridge is supported. -
      *     &#x60;label&#x3D;[key]&#x60; or &#x60;label&#x3D;[key&#x3D;value]&#x60; Matches networks
      *     based on the presence of a label alone or a label and a value. (optional)
-     * @return List&lt;Inspect&gt;
+     * @return List&lt;NetworkResource&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
@@ -944,8 +949,8 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public List<Inspect> networkList(String filters) throws ApiException {
-        ApiResponse<List<Inspect>> localVarResp = networkListWithHttpInfo(filters);
+    public List<NetworkResource> networkList(String filters) throws ApiException {
+        ApiResponse<List<NetworkResource>> localVarResp = networkListWithHttpInfo(filters);
         return localVarResp.getData();
     }
 
@@ -958,7 +963,7 @@ public class NetworksCompatApi {
      *     partial ID. - &#x60;driver&#x3D;[driver]&#x60; Only bridge is supported. -
      *     &#x60;label&#x3D;[key]&#x60; or &#x60;label&#x3D;[key&#x3D;value]&#x60; Matches networks
      *     based on the presence of a label alone or a label and a value. (optional)
-     * @return ApiResponse&lt;List&lt;Inspect&gt;&gt;
+     * @return ApiResponse&lt;List&lt;NetworkResource&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
@@ -968,9 +973,10 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public ApiResponse<List<Inspect>> networkListWithHttpInfo(String filters) throws ApiException {
+    public ApiResponse<List<NetworkResource>> networkListWithHttpInfo(String filters)
+            throws ApiException {
         okhttp3.Call localVarCall = networkListValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<Inspect>>() {}.getType();
+        Type localVarReturnType = new TypeToken<List<NetworkResource>>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -994,11 +1000,12 @@ public class NetworksCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public okhttp3.Call networkListAsync(String filters, final ApiCallback<List<Inspect>> _callback)
+    public okhttp3.Call networkListAsync(
+            String filters, final ApiCallback<List<NetworkResource>> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall = networkListValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<Inspect>>() {}.getType();
+        Type localVarReturnType = new TypeToken<List<NetworkResource>>() {}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

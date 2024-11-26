@@ -28,10 +28,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-/** EndpointResource contains network resources allocated and used for a container in a network. */
+/** EndpointResource contains network resources allocated and used for a container in a network */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class EndpointResource {
     public static final String SERIALIZED_NAME_ENDPOINT_I_D = "EndpointID";

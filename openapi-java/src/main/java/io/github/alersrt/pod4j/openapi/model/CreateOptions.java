@@ -29,124 +29,56 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-/** CreateOptions */
+/** Volume configuration */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class CreateOptions {
-    public static final String SERIALIZED_NAME_ATTACHABLE = "Attachable";
+    public static final String SERIALIZED_NAME_CLUSTER_VOLUME_SPEC = "ClusterVolumeSpec";
 
-    @SerializedName(SERIALIZED_NAME_ATTACHABLE)
-    private Boolean attachable;
-
-    public static final String SERIALIZED_NAME_CONFIG_FROM = "ConfigFrom";
-
-    @SerializedName(SERIALIZED_NAME_CONFIG_FROM)
-    private ConfigReference configFrom;
-
-    public static final String SERIALIZED_NAME_CONFIG_ONLY = "ConfigOnly";
-
-    @SerializedName(SERIALIZED_NAME_CONFIG_ONLY)
-    private Boolean configOnly;
+    @SerializedName(SERIALIZED_NAME_CLUSTER_VOLUME_SPEC)
+    private ClusterVolumeSpec clusterVolumeSpec;
 
     public static final String SERIALIZED_NAME_DRIVER = "Driver";
 
     @SerializedName(SERIALIZED_NAME_DRIVER)
     private String driver;
 
-    public static final String SERIALIZED_NAME_ENABLE_I_PV6 = "EnableIPv6";
+    public static final String SERIALIZED_NAME_DRIVER_OPTS = "DriverOpts";
 
-    @SerializedName(SERIALIZED_NAME_ENABLE_I_PV6)
-    private Boolean enableIPv6;
-
-    public static final String SERIALIZED_NAME_I_P_A_M = "IPAM";
-
-    @SerializedName(SERIALIZED_NAME_I_P_A_M)
-    private IPAM ipam;
-
-    public static final String SERIALIZED_NAME_INGRESS = "Ingress";
-
-    @SerializedName(SERIALIZED_NAME_INGRESS)
-    private Boolean ingress;
-
-    public static final String SERIALIZED_NAME_INTERNAL = "Internal";
-
-    @SerializedName(SERIALIZED_NAME_INTERNAL)
-    private Boolean internal;
+    @SerializedName(SERIALIZED_NAME_DRIVER_OPTS)
+    private Map<String, String> driverOpts = new HashMap<>();
 
     public static final String SERIALIZED_NAME_LABELS = "Labels";
 
     @SerializedName(SERIALIZED_NAME_LABELS)
     private Map<String, String> labels = new HashMap<>();
 
-    public static final String SERIALIZED_NAME_OPTIONS = "Options";
+    public static final String SERIALIZED_NAME_NAME = "Name";
 
-    @SerializedName(SERIALIZED_NAME_OPTIONS)
-    private Map<String, String> options = new HashMap<>();
-
-    public static final String SERIALIZED_NAME_SCOPE = "Scope";
-
-    @SerializedName(SERIALIZED_NAME_SCOPE)
-    private String scope;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
 
     public CreateOptions() {}
 
-    public CreateOptions attachable(Boolean attachable) {
-        this.attachable = attachable;
+    public CreateOptions clusterVolumeSpec(ClusterVolumeSpec clusterVolumeSpec) {
+        this.clusterVolumeSpec = clusterVolumeSpec;
         return this;
     }
 
     /**
-     * Get attachable
+     * Get clusterVolumeSpec
      *
-     * @return attachable
+     * @return clusterVolumeSpec
      */
     @javax.annotation.Nullable
-    public Boolean getAttachable() {
-        return attachable;
+    public ClusterVolumeSpec getClusterVolumeSpec() {
+        return clusterVolumeSpec;
     }
 
-    public void setAttachable(Boolean attachable) {
-        this.attachable = attachable;
-    }
-
-    public CreateOptions configFrom(ConfigReference configFrom) {
-        this.configFrom = configFrom;
-        return this;
-    }
-
-    /**
-     * Get configFrom
-     *
-     * @return configFrom
-     */
-    @javax.annotation.Nullable
-    public ConfigReference getConfigFrom() {
-        return configFrom;
-    }
-
-    public void setConfigFrom(ConfigReference configFrom) {
-        this.configFrom = configFrom;
-    }
-
-    public CreateOptions configOnly(Boolean configOnly) {
-        this.configOnly = configOnly;
-        return this;
-    }
-
-    /**
-     * Get configOnly
-     *
-     * @return configOnly
-     */
-    @javax.annotation.Nullable
-    public Boolean getConfigOnly() {
-        return configOnly;
-    }
-
-    public void setConfigOnly(Boolean configOnly) {
-        this.configOnly = configOnly;
+    public void setClusterVolumeSpec(ClusterVolumeSpec clusterVolumeSpec) {
+        this.clusterVolumeSpec = clusterVolumeSpec;
     }
 
     public CreateOptions driver(String driver) {
@@ -168,80 +100,32 @@ public class CreateOptions {
         this.driver = driver;
     }
 
-    public CreateOptions enableIPv6(Boolean enableIPv6) {
-        this.enableIPv6 = enableIPv6;
+    public CreateOptions driverOpts(Map<String, String> driverOpts) {
+        this.driverOpts = driverOpts;
+        return this;
+    }
+
+    public CreateOptions putDriverOptsItem(String key, String driverOptsItem) {
+        if (this.driverOpts == null) {
+            this.driverOpts = new HashMap<>();
+        }
+        this.driverOpts.put(key, driverOptsItem);
         return this;
     }
 
     /**
-     * Get enableIPv6
+     * A mapping of driver options and values. These options are passed directly to the driver and
+     * are driver specific.
      *
-     * @return enableIPv6
+     * @return driverOpts
      */
     @javax.annotation.Nullable
-    public Boolean getEnableIPv6() {
-        return enableIPv6;
+    public Map<String, String> getDriverOpts() {
+        return driverOpts;
     }
 
-    public void setEnableIPv6(Boolean enableIPv6) {
-        this.enableIPv6 = enableIPv6;
-    }
-
-    public CreateOptions ipam(IPAM ipam) {
-        this.ipam = ipam;
-        return this;
-    }
-
-    /**
-     * Get ipam
-     *
-     * @return ipam
-     */
-    @javax.annotation.Nullable
-    public IPAM getIPAM() {
-        return ipam;
-    }
-
-    public void setIPAM(IPAM ipam) {
-        this.ipam = ipam;
-    }
-
-    public CreateOptions ingress(Boolean ingress) {
-        this.ingress = ingress;
-        return this;
-    }
-
-    /**
-     * Get ingress
-     *
-     * @return ingress
-     */
-    @javax.annotation.Nullable
-    public Boolean getIngress() {
-        return ingress;
-    }
-
-    public void setIngress(Boolean ingress) {
-        this.ingress = ingress;
-    }
-
-    public CreateOptions internal(Boolean internal) {
-        this.internal = internal;
-        return this;
-    }
-
-    /**
-     * Get internal
-     *
-     * @return internal
-     */
-    @javax.annotation.Nullable
-    public Boolean getInternal() {
-        return internal;
-    }
-
-    public void setInternal(Boolean internal) {
-        this.internal = internal;
+    public void setDriverOpts(Map<String, String> driverOpts) {
+        this.driverOpts = driverOpts;
     }
 
     public CreateOptions labels(Map<String, String> labels) {
@@ -271,50 +155,23 @@ public class CreateOptions {
         this.labels = labels;
     }
 
-    public CreateOptions options(Map<String, String> options) {
-        this.options = options;
-        return this;
-    }
-
-    public CreateOptions putOptionsItem(String key, String optionsItem) {
-        if (this.options == null) {
-            this.options = new HashMap<>();
-        }
-        this.options.put(key, optionsItem);
+    public CreateOptions name(String name) {
+        this.name = name;
         return this;
     }
 
     /**
-     * Get options
+     * The new volume&#39;s name. If not specified, Docker generates a name.
      *
-     * @return options
+     * @return name
      */
     @javax.annotation.Nullable
-    public Map<String, String> getOptions() {
-        return options;
+    public String getName() {
+        return name;
     }
 
-    public void setOptions(Map<String, String> options) {
-        this.options = options;
-    }
-
-    public CreateOptions scope(String scope) {
-        this.scope = scope;
-        return this;
-    }
-
-    /**
-     * Get scope
-     *
-     * @return scope
-     */
-    @javax.annotation.Nullable
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
@@ -326,50 +183,29 @@ public class CreateOptions {
             return false;
         }
         CreateOptions createOptions = (CreateOptions) o;
-        return Objects.equals(this.attachable, createOptions.attachable)
-                && Objects.equals(this.configFrom, createOptions.configFrom)
-                && Objects.equals(this.configOnly, createOptions.configOnly)
+        return Objects.equals(this.clusterVolumeSpec, createOptions.clusterVolumeSpec)
                 && Objects.equals(this.driver, createOptions.driver)
-                && Objects.equals(this.enableIPv6, createOptions.enableIPv6)
-                && Objects.equals(this.ipam, createOptions.ipam)
-                && Objects.equals(this.ingress, createOptions.ingress)
-                && Objects.equals(this.internal, createOptions.internal)
+                && Objects.equals(this.driverOpts, createOptions.driverOpts)
                 && Objects.equals(this.labels, createOptions.labels)
-                && Objects.equals(this.options, createOptions.options)
-                && Objects.equals(this.scope, createOptions.scope);
+                && Objects.equals(this.name, createOptions.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-                attachable,
-                configFrom,
-                configOnly,
-                driver,
-                enableIPv6,
-                ipam,
-                ingress,
-                internal,
-                labels,
-                options,
-                scope);
+        return Objects.hash(clusterVolumeSpec, driver, driverOpts, labels, name);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class CreateOptions {\n");
-        sb.append("    attachable: ").append(toIndentedString(attachable)).append("\n");
-        sb.append("    configFrom: ").append(toIndentedString(configFrom)).append("\n");
-        sb.append("    configOnly: ").append(toIndentedString(configOnly)).append("\n");
+        sb.append("    clusterVolumeSpec: ")
+                .append(toIndentedString(clusterVolumeSpec))
+                .append("\n");
         sb.append("    driver: ").append(toIndentedString(driver)).append("\n");
-        sb.append("    enableIPv6: ").append(toIndentedString(enableIPv6)).append("\n");
-        sb.append("    ipam: ").append(toIndentedString(ipam)).append("\n");
-        sb.append("    ingress: ").append(toIndentedString(ingress)).append("\n");
-        sb.append("    internal: ").append(toIndentedString(internal)).append("\n");
+        sb.append("    driverOpts: ").append(toIndentedString(driverOpts)).append("\n");
         sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-        sb.append("    options: ").append(toIndentedString(options)).append("\n");
-        sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
+        sb.append("    name: ").append(toIndentedString(name)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -391,17 +227,11 @@ public class CreateOptions {
     static {
         // a set of all properties/fields (JSON key names)
         openapiFields = new HashSet<String>();
-        openapiFields.add("Attachable");
-        openapiFields.add("ConfigFrom");
-        openapiFields.add("ConfigOnly");
+        openapiFields.add("ClusterVolumeSpec");
         openapiFields.add("Driver");
-        openapiFields.add("EnableIPv6");
-        openapiFields.add("IPAM");
-        openapiFields.add("Ingress");
-        openapiFields.add("Internal");
+        openapiFields.add("DriverOpts");
         openapiFields.add("Labels");
-        openapiFields.add("Options");
-        openapiFields.add("Scope");
+        openapiFields.add("Name");
 
         // a set of required properties/fields (JSON key names)
         openapiRequiredFields = new HashSet<String>();
@@ -437,9 +267,10 @@ public class CreateOptions {
             }
         }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // validate the optional field `ConfigFrom`
-        if (jsonObj.get("ConfigFrom") != null && !jsonObj.get("ConfigFrom").isJsonNull()) {
-            ConfigReference.validateJsonElement(jsonObj.get("ConfigFrom"));
+        // validate the optional field `ClusterVolumeSpec`
+        if (jsonObj.get("ClusterVolumeSpec") != null
+                && !jsonObj.get("ClusterVolumeSpec").isJsonNull()) {
+            ClusterVolumeSpec.validateJsonElement(jsonObj.get("ClusterVolumeSpec"));
         }
         if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull())
                 && !jsonObj.get("Driver").isJsonPrimitive()) {
@@ -449,17 +280,13 @@ public class CreateOptions {
                                     + " but got `%s`",
                             jsonObj.get("Driver").toString()));
         }
-        // validate the optional field `IPAM`
-        if (jsonObj.get("IPAM") != null && !jsonObj.get("IPAM").isJsonNull()) {
-            IPAM.validateJsonElement(jsonObj.get("IPAM"));
-        }
-        if ((jsonObj.get("Scope") != null && !jsonObj.get("Scope").isJsonNull())
-                && !jsonObj.get("Scope").isJsonPrimitive()) {
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull())
+                && !jsonObj.get("Name").isJsonPrimitive()) {
             throw new IllegalArgumentException(
                     String.format(
-                            "Expected the field `Scope` to be a primitive type in the JSON string"
+                            "Expected the field `Name` to be a primitive type in the JSON string"
                                     + " but got `%s`",
-                            jsonObj.get("Scope").toString()));
+                            jsonObj.get("Name").toString()));
         }
     }
 

@@ -24,7 +24,6 @@ import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +33,7 @@ import java.util.Set;
 /** PerNetworkOptions */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class PerNetworkOptions {
     public static final String SERIALIZED_NAME_ALIASES = "aliases";
@@ -46,11 +45,6 @@ public class PerNetworkOptions {
 
     @SerializedName(SERIALIZED_NAME_INTERFACE_NAME)
     private String interfaceName;
-
-    public static final String SERIALIZED_NAME_OPTIONS = "options";
-
-    @SerializedName(SERIALIZED_NAME_OPTIONS)
-    private Map<String, String> options = new HashMap<>();
 
     public static final String SERIALIZED_NAME_STATIC_IPS = "static_ips";
 
@@ -114,33 +108,6 @@ public class PerNetworkOptions {
         this.interfaceName = interfaceName;
     }
 
-    public PerNetworkOptions options(Map<String, String> options) {
-        this.options = options;
-        return this;
-    }
-
-    public PerNetworkOptions putOptionsItem(String key, String optionsItem) {
-        if (this.options == null) {
-            this.options = new HashMap<>();
-        }
-        this.options.put(key, optionsItem);
-        return this;
-    }
-
-    /**
-     * Driver-specific options for this container.
-     *
-     * @return options
-     */
-    @javax.annotation.Nullable
-    public Map<String, String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(Map<String, String> options) {
-        this.options = options;
-    }
-
     public PerNetworkOptions staticIps(List<String> staticIps) {
         this.staticIps = staticIps;
         return this;
@@ -198,14 +165,13 @@ public class PerNetworkOptions {
         PerNetworkOptions perNetworkOptions = (PerNetworkOptions) o;
         return Objects.equals(this.aliases, perNetworkOptions.aliases)
                 && Objects.equals(this.interfaceName, perNetworkOptions.interfaceName)
-                && Objects.equals(this.options, perNetworkOptions.options)
                 && Objects.equals(this.staticIps, perNetworkOptions.staticIps)
                 && Objects.equals(this.staticMac, perNetworkOptions.staticMac);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(aliases, interfaceName, options, staticIps, staticMac);
+        return Objects.hash(aliases, interfaceName, staticIps, staticMac);
     }
 
     @Override
@@ -214,7 +180,6 @@ public class PerNetworkOptions {
         sb.append("class PerNetworkOptions {\n");
         sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
         sb.append("    interfaceName: ").append(toIndentedString(interfaceName)).append("\n");
-        sb.append("    options: ").append(toIndentedString(options)).append("\n");
         sb.append("    staticIps: ").append(toIndentedString(staticIps)).append("\n");
         sb.append("    staticMac: ").append(toIndentedString(staticMac)).append("\n");
         sb.append("}");
@@ -240,7 +205,6 @@ public class PerNetworkOptions {
         openapiFields = new HashSet<String>();
         openapiFields.add("aliases");
         openapiFields.add("interface_name");
-        openapiFields.add("options");
         openapiFields.add("static_ips");
         openapiFields.add("static_mac");
 

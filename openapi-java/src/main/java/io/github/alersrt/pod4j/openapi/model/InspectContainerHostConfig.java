@@ -35,7 +35,7 @@ import java.util.Set;
 /** nolint:revive,stylecheck // Field names are fixed for compatibility and cannot be changed. */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class InspectContainerHostConfig {
     public static final String SERIALIZED_NAME_ANNOTATIONS = "Annotations";
@@ -47,11 +47,6 @@ public class InspectContainerHostConfig {
 
     @SerializedName(SERIALIZED_NAME_AUTO_REMOVE)
     private Boolean autoRemove;
-
-    public static final String SERIALIZED_NAME_AUTO_REMOVE_IMAGE = "AutoRemoveImage";
-
-    @SerializedName(SERIALIZED_NAME_AUTO_REMOVE_IMAGE)
-    private Boolean autoRemoveImage;
 
     public static final String SERIALIZED_NAME_BINDS = "Binds";
 
@@ -435,26 +430,6 @@ public class InspectContainerHostConfig {
 
     public void setAutoRemove(Boolean autoRemove) {
         this.autoRemove = autoRemove;
-    }
-
-    public InspectContainerHostConfig autoRemoveImage(Boolean autoRemoveImage) {
-        this.autoRemoveImage = autoRemoveImage;
-        return this;
-    }
-
-    /**
-     * AutoRemoveImage is whether the container&#39;s image will be automatically removed on
-     * exiting. It is not handled directly within libpod and is stored in an annotation.
-     *
-     * @return autoRemoveImage
-     */
-    @javax.annotation.Nullable
-    public Boolean getAutoRemoveImage() {
-        return autoRemoveImage;
-    }
-
-    public void setAutoRemoveImage(Boolean autoRemoveImage) {
-        this.autoRemoveImage = autoRemoveImage;
     }
 
     public InspectContainerHostConfig binds(List<String> binds) {
@@ -2015,7 +1990,6 @@ public class InspectContainerHostConfig {
         InspectContainerHostConfig inspectContainerHostConfig = (InspectContainerHostConfig) o;
         return Objects.equals(this.annotations, inspectContainerHostConfig.annotations)
                 && Objects.equals(this.autoRemove, inspectContainerHostConfig.autoRemove)
-                && Objects.equals(this.autoRemoveImage, inspectContainerHostConfig.autoRemoveImage)
                 && Objects.equals(this.binds, inspectContainerHostConfig.binds)
                 && Objects.equals(
                         this.blkioDeviceReadBps, inspectContainerHostConfig.blkioDeviceReadBps)
@@ -2100,7 +2074,6 @@ public class InspectContainerHostConfig {
         return Objects.hash(
                 annotations,
                 autoRemove,
-                autoRemoveImage,
                 binds,
                 blkioDeviceReadBps,
                 blkioDeviceReadIOps,
@@ -2176,7 +2149,6 @@ public class InspectContainerHostConfig {
         sb.append("class InspectContainerHostConfig {\n");
         sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
         sb.append("    autoRemove: ").append(toIndentedString(autoRemove)).append("\n");
-        sb.append("    autoRemoveImage: ").append(toIndentedString(autoRemoveImage)).append("\n");
         sb.append("    binds: ").append(toIndentedString(binds)).append("\n");
         sb.append("    blkioDeviceReadBps: ")
                 .append(toIndentedString(blkioDeviceReadBps))
@@ -2285,7 +2257,6 @@ public class InspectContainerHostConfig {
         openapiFields = new HashSet<String>();
         openapiFields.add("Annotations");
         openapiFields.add("AutoRemove");
-        openapiFields.add("AutoRemoveImage");
         openapiFields.add("Binds");
         openapiFields.add("BlkioDeviceReadBps");
         openapiFields.add("BlkioDeviceReadIOps");

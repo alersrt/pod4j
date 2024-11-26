@@ -32,7 +32,7 @@ import java.util.Set;
 /** SummaryNetworkSettings provides a summary of container&#39;s networks in /containers/json */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-19T11:19:05.435500352+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class SummaryNetworkSettings {
     public static final String SERIALIZED_NAME_NETWORKS = "Networks";

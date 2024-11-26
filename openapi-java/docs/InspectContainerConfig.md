@@ -18,11 +18,7 @@ InspectContainerConfig holds further data about how a container was initially co
 |**domainname** | **String** | Container domain name - unused at present |  [optional] |
 |**entrypoint** | **List&lt;String&gt;** | Container entrypoint |  [optional] |
 |**env** | **List&lt;String&gt;** | Container environment variables |  [optional] |
-|**exposedPorts** | **Map&lt;String, Object&gt;** | ExposedPorts includes ports the container has exposed. |  [optional] |
-|**healthLogDestination** | **String** | HealthLogDestination defines the destination where the log is stored |  [optional] |
 |**healthcheck** | [**Schema2HealthConfig**](Schema2HealthConfig.md) |  |  [optional] |
-|**healthcheckMaxLogCount** | **Integer** | HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file) |  [optional] |
-|**healthcheckMaxLogSize** | **Integer** | HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length) |  [optional] |
 |**healthcheckOnFailureAction** | **String** | HealthcheckOnFailureAction defines an action to take once the container turns unhealthy. |  [optional] |
 |**hostname** | **String** | Container hostname |  [optional] |
 |**image** | **String** | Container image |  [optional] |
@@ -31,7 +27,6 @@ InspectContainerConfig holds further data about how a container was initially co
 |**openStdin** | **Boolean** | Whether the container leaves STDIN open |  [optional] |
 |**passwd** | **Boolean** | Passwd determines whether or not podman can add entries to /etc/passwd and /etc/group |  [optional] |
 |**secrets** | [**List&lt;InspectSecret&gt;**](InspectSecret.md) | Secrets are the secrets mounted in the container |  [optional] |
-|**startupHealthCheck** | [**StartupHealthCheck**](StartupHealthCheck.md) |  |  [optional] |
 |**stdinOnce** | **Boolean** | Whether STDIN is only left open once. Presently not supported by Podman, unused. |  [optional] |
 |**stopSignal** | **String** | Container stop signal |  [optional] |
 |**stopTimeout** | **Integer** | StopTimeout is time before container is stopped when calling stop |  [optional] |
