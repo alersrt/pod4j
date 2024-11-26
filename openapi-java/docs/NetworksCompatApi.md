@@ -37,7 +37,7 @@ public class Example {
 
     NetworksCompatApi apiInstance = new NetworksCompatApi(defaultClient);
     String name = "name_example"; // String | the name of the network
-    NetworkConnect create = new NetworkConnect(); // NetworkConnect | attributes for connecting a container to a network
+    ConnectOptions create = new ConnectOptions(); // ConnectOptions | attributes for connecting a container to a network
     try {
       apiInstance.networkConnect(name, create);
     } catch (ApiException e) {
@@ -56,7 +56,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**| the name of the network | |
-| **create** | **NetworkConnect**| attributes for connecting a container to a network | [optional] |
+| **create** | **ConnectOptions**| attributes for connecting a container to a network | [optional] |
 
 ### Return type
 
@@ -102,7 +102,7 @@ public class Example {
     defaultClient.setBasePath("http://podman.io");
 
     NetworksCompatApi apiInstance = new NetworksCompatApi(defaultClient);
-    NetworkCreateRequest create = new NetworkCreateRequest(); // NetworkCreateRequest | attributes for creating a network
+    CreateRequest create = new CreateRequest(); // CreateRequest | attributes for creating a network
     try {
       NetworkCreate201Response result = apiInstance.networkCreate(create);
       System.out.println(result);
@@ -121,7 +121,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **create** | **NetworkCreateRequest**| attributes for creating a network | [optional] |
+| **create** | **CreateRequest**| attributes for creating a network | [optional] |
 
 ### Return type
 
@@ -230,7 +230,7 @@ public class Example {
 
     NetworksCompatApi apiInstance = new NetworksCompatApi(defaultClient);
     String name = "name_example"; // String | the name of the network
-    NetworkDisconnect create = new NetworkDisconnect(); // NetworkDisconnect | attributes for disconnecting a container from a network
+    DisconnectOptions create = new DisconnectOptions(); // DisconnectOptions | attributes for disconnecting a container from a network
     try {
       apiInstance.networkDisconnect(name, create);
     } catch (ApiException e) {
@@ -249,7 +249,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**| the name of the network | |
-| **create** | **NetworkDisconnect**| attributes for disconnecting a container from a network | [optional] |
+| **create** | **DisconnectOptions**| attributes for disconnecting a container from a network | [optional] |
 
 ### Return type
 
@@ -273,7 +273,7 @@ No authorization required
 
 <a id="networkInspect"></a>
 # **networkInspect**
-> NetworkResource networkInspect(name, verbose, scope)
+> Inspect networkInspect(name, verbose, scope)
 
 Inspect a network
 
@@ -298,7 +298,7 @@ public class Example {
     Boolean verbose = true; // Boolean | Detailed inspect output for troubleshooting
     String scope = "scope_example"; // String | Filter the network by scope (swarm, global, or local)
     try {
-      NetworkResource result = apiInstance.networkInspect(name, verbose, scope);
+      Inspect result = apiInstance.networkInspect(name, verbose, scope);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling NetworksCompatApi#networkInspect");
@@ -321,7 +321,7 @@ public class Example {
 
 ### Return type
 
-[**NetworkResource**](NetworkResource.md)
+[**Inspect**](Inspect.md)
 
 ### Authorization
 
@@ -341,7 +341,7 @@ No authorization required
 
 <a id="networkList"></a>
 # **networkList**
-> List&lt;NetworkResource&gt; networkList(filters)
+> List&lt;Inspect&gt; networkList(filters)
 
 List networks
 
@@ -364,7 +364,7 @@ public class Example {
     NetworksCompatApi apiInstance = new NetworksCompatApi(defaultClient);
     String filters = "filters_example"; // String | JSON encoded value of the filters (a `map[string][]string`) to process on the network list. Currently available filters:   - `name=[name]` Matches network name (accepts regex).   - `id=[id]` Matches for full or partial ID.   - `driver=[driver]` Only bridge is supported.   - `label=[key]` or `label=[key=value]` Matches networks based on the presence of a label alone or a label and a value. 
     try {
-      List<NetworkResource> result = apiInstance.networkList(filters);
+      List<Inspect> result = apiInstance.networkList(filters);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling NetworksCompatApi#networkList");
@@ -385,7 +385,7 @@ public class Example {
 
 ### Return type
 
-[**List&lt;NetworkResource&gt;**](NetworkResource.md)
+[**List&lt;Inspect&gt;**](Inspect.md)
 
 ### Authorization
 

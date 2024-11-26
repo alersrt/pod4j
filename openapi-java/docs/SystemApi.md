@@ -4,6 +4,7 @@ All URIs are relative to *http://podman.io*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**systemCheckLibpod**](SystemApi.md#systemCheckLibpod) | **POST** /libpod/system/check | Performs consistency checks on storage, optionally removing items which fail checks |
 | [**systemDataUsageLibpod**](SystemApi.md#systemDataUsageLibpod) | **GET** /libpod/system/df | Show disk usage |
 | [**systemEventsLibpod**](SystemApi.md#systemEventsLibpod) | **GET** /libpod/events | Get events |
 | [**systemInfoLibpod**](SystemApi.md#systemInfoLibpod) | **GET** /libpod/info | Get info |
@@ -11,6 +12,74 @@ All URIs are relative to *http://podman.io*
 | [**systemPruneLibpod**](SystemApi.md#systemPruneLibpod) | **POST** /libpod/system/prune | Prune unused data |
 | [**systemVersionLibpod**](SystemApi.md#systemVersionLibpod) | **GET** /libpod/version | Component Version information |
 
+
+<a id="systemCheckLibpod"></a>
+# **systemCheckLibpod**
+> SystemCheckReport systemCheckLibpod(quick, repair, repairLossy, unreferencedLayerMaxAge)
+
+Performs consistency checks on storage, optionally removing items which fail checks
+
+### Example
+```java
+// Import classes:
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import io.github.alersrt.pod4j.openapi.ApiException;
+import io.github.alersrt.pod4j.openapi.Configuration;
+import io.github.alersrt.pod4j.openapi.models.*;
+import io.github.alersrt.pod4j.openapi.api.SystemApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
+
+    SystemApi apiInstance = new SystemApi(defaultClient);
+    Boolean quick = true; // Boolean | Skip time-consuming checks
+    Boolean repair = true; // Boolean | Remove inconsistent images
+    Boolean repairLossy = true; // Boolean | Remove inconsistent containers and images
+    String unreferencedLayerMaxAge = "24h0m0s"; // String | Maximum allowed age of unreferenced layers
+    try {
+      SystemCheckReport result = apiInstance.systemCheckLibpod(quick, repair, repairLossy, unreferencedLayerMaxAge);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling SystemApi#systemCheckLibpod");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **quick** | **Boolean**| Skip time-consuming checks | [optional] |
+| **repair** | **Boolean**| Remove inconsistent images | [optional] |
+| **repairLossy** | **Boolean**| Remove inconsistent containers and images | [optional] |
+| **unreferencedLayerMaxAge** | **String**| Maximum allowed age of unreferenced layers | [optional] [default to 24h0m0s] |
+
+### Return type
+
+[**SystemCheckReport**](SystemCheckReport.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Check |  -  |
+| **400** | Bad parameter in request |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="systemDataUsageLibpod"></a>
 # **systemDataUsageLibpod**

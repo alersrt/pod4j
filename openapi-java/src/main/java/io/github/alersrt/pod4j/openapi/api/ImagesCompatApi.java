@@ -88,6 +88,8 @@ public class ImagesCompatApi {
      *     tarball and the dockerfile parameter is also specified, there must be a file with the
      *     corresponding path inside the tarball. (As of version 1.xx) (optional)
      * @param q Suppress verbose build output (optional, default to false)
+     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
+     *     version v5.2) (optional, default to false)
      * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
      *     default to false)
      * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
@@ -129,7 +131,8 @@ public class ImagesCompatApi {
      *     container * container:&lt;nameOrID&gt; share networking with given container ---All other
      *     values are assumed to be a custom network&#39;s name (As of version 1.xx) (optional,
      *     default to bridge)
-     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx) (optional)
+     * @param platform Platform format os[/arch[/variant]] Can be comma separated list for multi
+     *     arch builds. (As of version 1.xx) (optional)
      * @param target Target build stage (As of version 1.xx) (optional)
      * @param outputs output configuration TBD (As of version 1.xx) (optional)
      * @param inputStream A tar archive compressed with one of the following algorithms: identity
@@ -153,6 +156,7 @@ public class ImagesCompatApi {
             String extrahosts,
             String remote,
             Boolean q,
+            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -217,6 +221,11 @@ public class ImagesCompatApi {
 
         if (q != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("q", q));
+        }
+
+        if (compatvolumes != null) {
+            localVarQueryParams.addAll(
+                    localVarApiClient.parameterToPair("compatvolumes", compatvolumes));
         }
 
         if (nocache != null) {
@@ -343,6 +352,7 @@ public class ImagesCompatApi {
             String extrahosts,
             String remote,
             Boolean q,
+            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -373,6 +383,7 @@ public class ImagesCompatApi {
                 extrahosts,
                 remote,
                 q,
+                compatvolumes,
                 nocache,
                 cachefrom,
                 pull,
@@ -415,6 +426,8 @@ public class ImagesCompatApi {
      *     tarball and the dockerfile parameter is also specified, there must be a file with the
      *     corresponding path inside the tarball. (As of version 1.xx) (optional)
      * @param q Suppress verbose build output (optional, default to false)
+     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
+     *     version v5.2) (optional, default to false)
      * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
      *     default to false)
      * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
@@ -456,7 +469,8 @@ public class ImagesCompatApi {
      *     container * container:&lt;nameOrID&gt; share networking with given container ---All other
      *     values are assumed to be a custom network&#39;s name (As of version 1.xx) (optional,
      *     default to bridge)
-     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx) (optional)
+     * @param platform Platform format os[/arch[/variant]] Can be comma separated list for multi
+     *     arch builds. (As of version 1.xx) (optional)
      * @param target Target build stage (As of version 1.xx) (optional)
      * @param outputs output configuration TBD (As of version 1.xx) (optional)
      * @param inputStream A tar archive compressed with one of the following algorithms: identity
@@ -480,6 +494,7 @@ public class ImagesCompatApi {
             String extrahosts,
             String remote,
             Boolean q,
+            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -510,6 +525,7 @@ public class ImagesCompatApi {
                         extrahosts,
                         remote,
                         q,
+                        compatvolumes,
                         nocache,
                         cachefrom,
                         pull,
@@ -552,6 +568,8 @@ public class ImagesCompatApi {
      *     tarball and the dockerfile parameter is also specified, there must be a file with the
      *     corresponding path inside the tarball. (As of version 1.xx) (optional)
      * @param q Suppress verbose build output (optional, default to false)
+     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
+     *     version v5.2) (optional, default to false)
      * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
      *     default to false)
      * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
@@ -593,7 +611,8 @@ public class ImagesCompatApi {
      *     container * container:&lt;nameOrID&gt; share networking with given container ---All other
      *     values are assumed to be a custom network&#39;s name (As of version 1.xx) (optional,
      *     default to bridge)
-     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx) (optional)
+     * @param platform Platform format os[/arch[/variant]] Can be comma separated list for multi
+     *     arch builds. (As of version 1.xx) (optional)
      * @param target Target build stage (As of version 1.xx) (optional)
      * @param outputs output configuration TBD (As of version 1.xx) (optional)
      * @param inputStream A tar archive compressed with one of the following algorithms: identity
@@ -617,6 +636,7 @@ public class ImagesCompatApi {
             String extrahosts,
             String remote,
             Boolean q,
+            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -647,6 +667,7 @@ public class ImagesCompatApi {
                         extrahosts,
                         remote,
                         q,
+                        compatvolumes,
                         nocache,
                         cachefrom,
                         pull,
@@ -691,6 +712,8 @@ public class ImagesCompatApi {
      *     tarball and the dockerfile parameter is also specified, there must be a file with the
      *     corresponding path inside the tarball. (As of version 1.xx) (optional)
      * @param q Suppress verbose build output (optional, default to false)
+     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
+     *     version v5.2) (optional, default to false)
      * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
      *     default to false)
      * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
@@ -732,7 +755,8 @@ public class ImagesCompatApi {
      *     container * container:&lt;nameOrID&gt; share networking with given container ---All other
      *     values are assumed to be a custom network&#39;s name (As of version 1.xx) (optional,
      *     default to bridge)
-     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx) (optional)
+     * @param platform Platform format os[/arch[/variant]] Can be comma separated list for multi
+     *     arch builds. (As of version 1.xx) (optional)
      * @param target Target build stage (As of version 1.xx) (optional)
      * @param outputs output configuration TBD (As of version 1.xx) (optional)
      * @param inputStream A tar archive compressed with one of the following algorithms: identity
@@ -757,6 +781,7 @@ public class ImagesCompatApi {
             String extrahosts,
             String remote,
             Boolean q,
+            Boolean compatvolumes,
             Boolean nocache,
             String cachefrom,
             Boolean pull,
@@ -789,6 +814,7 @@ public class ImagesCompatApi {
                         extrahosts,
                         remote,
                         q,
+                        compatvolumes,
                         nocache,
                         cachefrom,
                         pull,
@@ -2436,8 +2462,12 @@ public class ImagesCompatApi {
      * @param name Name of image to push. (required)
      * @param tag The tag to associate with the image on the registry. (optional)
      * @param all All indicates whether to push all images related to the image list (optional)
-     * @param compress use compression on image (optional)
-     * @param destination destination name for the image being pushed (optional)
+     * @param compress Use compression on image. (optional)
+     * @param destination Allows for pushing the image to a different destination than the image
+     *     refers to. (optional)
+     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
+     *     manifest type of source, with fallbacks. (optional)
+     * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -2456,6 +2486,8 @@ public class ImagesCompatApi {
             Boolean all,
             Boolean compress,
             String destination,
+            String format,
+            Boolean tlsVerify,
             String xRegistryAuth,
             final ApiCallback _callback)
             throws ApiException {
@@ -2504,6 +2536,14 @@ public class ImagesCompatApi {
                     localVarApiClient.parameterToPair("destination", destination));
         }
 
+        if (format != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("format", format));
+        }
+
+        if (tlsVerify != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tlsVerify", tlsVerify));
+        }
+
         if (xRegistryAuth != null) {
             localVarHeaderParams.put(
                     "X-Registry-Auth", localVarApiClient.parameterToString(xRegistryAuth));
@@ -2544,6 +2584,8 @@ public class ImagesCompatApi {
             Boolean all,
             Boolean compress,
             String destination,
+            String format,
+            Boolean tlsVerify,
             String xRegistryAuth,
             final ApiCallback _callback)
             throws ApiException {
@@ -2553,7 +2595,8 @@ public class ImagesCompatApi {
                     "Missing the required parameter 'name' when calling imagePush(Async)");
         }
 
-        return imagePushCall(name, tag, all, compress, destination, xRegistryAuth, _callback);
+        return imagePushCall(
+                name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth, _callback);
     }
 
     /**
@@ -2562,8 +2605,12 @@ public class ImagesCompatApi {
      * @param name Name of image to push. (required)
      * @param tag The tag to associate with the image on the registry. (optional)
      * @param all All indicates whether to push all images related to the image list (optional)
-     * @param compress use compression on image (optional)
-     * @param destination destination name for the image being pushed (optional)
+     * @param compress Use compression on image. (optional)
+     * @param destination Allows for pushing the image to a different destination than the image
+     *     refers to. (optional)
+     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
+     *     manifest type of source, with fallbacks. (optional)
+     * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @return File
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2582,10 +2629,13 @@ public class ImagesCompatApi {
             Boolean all,
             Boolean compress,
             String destination,
+            String format,
+            Boolean tlsVerify,
             String xRegistryAuth)
             throws ApiException {
         ApiResponse<File> localVarResp =
-                imagePushWithHttpInfo(name, tag, all, compress, destination, xRegistryAuth);
+                imagePushWithHttpInfo(
+                        name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
         return localVarResp.getData();
     }
 
@@ -2595,8 +2645,12 @@ public class ImagesCompatApi {
      * @param name Name of image to push. (required)
      * @param tag The tag to associate with the image on the registry. (optional)
      * @param all All indicates whether to push all images related to the image list (optional)
-     * @param compress use compression on image (optional)
-     * @param destination destination name for the image being pushed (optional)
+     * @param compress Use compression on image. (optional)
+     * @param destination Allows for pushing the image to a different destination than the image
+     *     refers to. (optional)
+     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
+     *     manifest type of source, with fallbacks. (optional)
+     * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @return ApiResponse&lt;File&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
@@ -2615,11 +2669,21 @@ public class ImagesCompatApi {
             Boolean all,
             Boolean compress,
             String destination,
+            String format,
+            Boolean tlsVerify,
             String xRegistryAuth)
             throws ApiException {
         okhttp3.Call localVarCall =
                 imagePushValidateBeforeCall(
-                        name, tag, all, compress, destination, xRegistryAuth, null);
+                        name,
+                        tag,
+                        all,
+                        compress,
+                        destination,
+                        format,
+                        tlsVerify,
+                        xRegistryAuth,
+                        null);
         Type localVarReturnType = new TypeToken<File>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -2630,8 +2694,12 @@ public class ImagesCompatApi {
      * @param name Name of image to push. (required)
      * @param tag The tag to associate with the image on the registry. (optional)
      * @param all All indicates whether to push all images related to the image list (optional)
-     * @param compress use compression on image (optional)
-     * @param destination destination name for the image being pushed (optional)
+     * @param compress Use compression on image. (optional)
+     * @param destination Allows for pushing the image to a different destination than the image
+     *     refers to. (optional)
+     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
+     *     manifest type of source, with fallbacks. (optional)
+     * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -2651,13 +2719,23 @@ public class ImagesCompatApi {
             Boolean all,
             Boolean compress,
             String destination,
+            String format,
+            Boolean tlsVerify,
             String xRegistryAuth,
             final ApiCallback<File> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall =
                 imagePushValidateBeforeCall(
-                        name, tag, all, compress, destination, xRegistryAuth, _callback);
+                        name,
+                        tag,
+                        all,
+                        compress,
+                        destination,
+                        format,
+                        tlsVerify,
+                        xRegistryAuth,
+                        _callback);
         Type localVarReturnType = new TypeToken<File>() {}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

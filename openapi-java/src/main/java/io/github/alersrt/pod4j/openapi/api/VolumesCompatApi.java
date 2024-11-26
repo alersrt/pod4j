@@ -20,9 +20,9 @@ import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
 import io.github.alersrt.pod4j.openapi.model.ListResponse;
+import io.github.alersrt.pod4j.openapi.model.PruneReport;
 import io.github.alersrt.pod4j.openapi.model.Volume;
 import io.github.alersrt.pod4j.openapi.model.VolumeCreate;
-import io.github.alersrt.pod4j.openapi.model.VolumesPruneReport;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -799,7 +799,7 @@ public class VolumesCompatApi {
      *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
      *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without,
      *     in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
-     * @return VolumesPruneReport
+     * @return PruneReport
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
@@ -809,8 +809,8 @@ public class VolumesCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public VolumesPruneReport volumePrune(String filters) throws ApiException {
-        ApiResponse<VolumesPruneReport> localVarResp = volumePruneWithHttpInfo(filters);
+    public PruneReport volumePrune(String filters) throws ApiException {
+        ApiResponse<PruneReport> localVarResp = volumePruneWithHttpInfo(filters);
         return localVarResp.getData();
     }
 
@@ -827,7 +827,7 @@ public class VolumesCompatApi {
      *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
      *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without,
      *     in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
-     * @return ApiResponse&lt;VolumesPruneReport&gt;
+     * @return ApiResponse&lt;PruneReport&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
      *     response body
      * @http.response.details
@@ -837,10 +837,9 @@ public class VolumesCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public ApiResponse<VolumesPruneReport> volumePruneWithHttpInfo(String filters)
-            throws ApiException {
+    public ApiResponse<PruneReport> volumePruneWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = volumePruneValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<VolumesPruneReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<PruneReport>() {}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -868,11 +867,11 @@ public class VolumesCompatApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public okhttp3.Call volumePruneAsync(
-            String filters, final ApiCallback<VolumesPruneReport> _callback) throws ApiException {
+    public okhttp3.Call volumePruneAsync(String filters, final ApiCallback<PruneReport> _callback)
+            throws ApiException {
 
         okhttp3.Call localVarCall = volumePruneValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<VolumesPruneReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<PruneReport>() {}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

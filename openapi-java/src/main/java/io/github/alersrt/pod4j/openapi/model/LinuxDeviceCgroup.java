@@ -31,7 +31,7 @@ import java.util.Set;
 /** LinuxDeviceCgroup represents a device rule for the devices specified to the device controller */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class LinuxDeviceCgroup {
     public static final String SERIALIZED_NAME_ACCESS = "access";

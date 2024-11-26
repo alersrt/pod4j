@@ -29,7 +29,7 @@ All URIs are relative to *http://podman.io*
 
 <a id="imageBuildLibpod"></a>
 # **imageBuildLibpod**
-> ImageBuildLibpod200Response imageBuildLibpod(dockerfile, t, allplatforms, extrahosts, remote, q, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume)
+> ImageBuildLibpod200Response imageBuildLibpod(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume)
 
 Create image
 
@@ -56,6 +56,7 @@ public class Example {
     String extrahosts = "extrahosts_example"; // String | TBD Extra hosts to add to /etc/hosts (As of version 1.xx) 
     String remote = "remote_example"; // String | A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx) 
     Boolean q = false; // Boolean | Suppress verbose build output 
+    Boolean compatvolumes = false; // Boolean | Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2) 
     Boolean nocache = false; // Boolean | Do not use the cache when building the image (As of version 1.xx) 
     String cachefrom = "cachefrom_example"; // String | JSON array of images used to build cache resolution (As of version 1.xx) 
     Boolean pull = false; // Boolean | Attempt to pull the image even if an older image exists locally (As of version 1.xx) 
@@ -82,7 +83,7 @@ public class Example {
     List<String> unsetlabel = Arrays.asList(); // List<String> | Unset the image label, causing the label not to be inherited from the base image.
     List<String> volume = Arrays.asList(); // List<String> | Extra volumes that should be mounted in the build container.
     try {
-      ImageBuildLibpod200Response result = apiInstance.imageBuildLibpod(dockerfile, t, allplatforms, extrahosts, remote, q, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume);
+      ImageBuildLibpod200Response result = apiInstance.imageBuildLibpod(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ImagesApi#imageBuildLibpod");
@@ -105,6 +106,7 @@ public class Example {
 | **extrahosts** | **String**| TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  | [optional] |
 | **remote** | **String**| A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  | [optional] |
 | **q** | **Boolean**| Suppress verbose build output  | [optional] [default to false] |
+| **compatvolumes** | **Boolean**| Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  | [optional] [default to false] |
 | **nocache** | **Boolean**| Do not use the cache when building the image (As of version 1.xx)  | [optional] [default to false] |
 | **cachefrom** | **String**| JSON array of images used to build cache resolution (As of version 1.xx)  | [optional] |
 | **pull** | **Boolean**| Attempt to pull the image even if an older image exists locally (As of version 1.xx)  | [optional] [default to false] |
@@ -1041,7 +1043,7 @@ No authorization required
 
 <a id="imagePushLibpod"></a>
 # **imagePushLibpod**
-> File imagePushLibpod(name, destination, forceCompressionFormat, tlsVerify, quiet, xRegistryAuth)
+> File imagePushLibpod(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth)
 
 Push Image
 
@@ -1065,11 +1067,18 @@ public class Example {
     String name = "name_example"; // String | Name of image to push.
     String destination = "destination_example"; // String | Allows for pushing the image to a different destination than the image refers to.
     Boolean forceCompressionFormat = false; // Boolean | Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry.
+    String compressionFormat = "compressionFormat_example"; // String | Compression format used to compress image layers.
+    Integer compressionLevel = 56; // Integer | Compression level used to compress image layers.
     Boolean tlsVerify = true; // Boolean | Require TLS verification.
-    Boolean quiet = true; // Boolean | silences extra stream data on push
+    Boolean quiet = true; // Boolean | Silences extra stream data on push.
+    String format = "format_example"; // String | Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks.
+    Boolean all = true; // Boolean | All indicates whether to push all images related to the image list.
+    Boolean removeSignatures = true; // Boolean | Discard any pre-existing signatures in the image.
+    Integer retry = 56; // Integer | Number of times to retry push in case of failure.
+    String retryDelay = "retryDelay_example"; // String | Delay between retries in case of push failures. Duration format such as \"412ms\", or \"3.5h\".
     String xRegistryAuth = "xRegistryAuth_example"; // String | A base64-encoded auth configuration.
     try {
-      File result = apiInstance.imagePushLibpod(name, destination, forceCompressionFormat, tlsVerify, quiet, xRegistryAuth);
+      File result = apiInstance.imagePushLibpod(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ImagesApi#imagePushLibpod");
@@ -1089,8 +1098,15 @@ public class Example {
 | **name** | **String**| Name of image to push. | |
 | **destination** | **String**| Allows for pushing the image to a different destination than the image refers to. | [optional] |
 | **forceCompressionFormat** | **Boolean**| Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. | [optional] [default to false] |
+| **compressionFormat** | **String**| Compression format used to compress image layers. | [optional] |
+| **compressionLevel** | **Integer**| Compression level used to compress image layers. | [optional] |
 | **tlsVerify** | **Boolean**| Require TLS verification. | [optional] [default to true] |
-| **quiet** | **Boolean**| silences extra stream data on push | [optional] [default to true] |
+| **quiet** | **Boolean**| Silences extra stream data on push. | [optional] [default to true] |
+| **format** | **String**| Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. | [optional] |
+| **all** | **Boolean**| All indicates whether to push all images related to the image list. | [optional] |
+| **removeSignatures** | **Boolean**| Discard any pre-existing signatures in the image. | [optional] |
+| **retry** | **Integer**| Number of times to retry push in case of failure. | [optional] |
+| **retryDelay** | **String**| Delay between retries in case of push failures. Duration format such as \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. | [optional] |
 | **xRegistryAuth** | **String**| A base64-encoded auth configuration. | [optional] |
 
 ### Return type

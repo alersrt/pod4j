@@ -34,7 +34,7 @@ import java.util.Set;
 /** Health stores information about the container&#39;s healthcheck results */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class Health {
     public static final String SERIALIZED_NAME_FAILING_STREAK = "FailingStreak";

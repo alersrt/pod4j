@@ -235,7 +235,7 @@ public class Example {
 
     NetworksApi apiInstance = new NetworksApi(defaultClient);
     String name = "name_example"; // String | the name of the network
-    NetworkDisconnect create = new NetworkDisconnect(); // NetworkDisconnect | attributes for disconnecting a container from a network
+    DisconnectOptions create = new DisconnectOptions(); // DisconnectOptions | attributes for disconnecting a container from a network
     try {
       apiInstance.networkDisconnectLibpod(name, create);
     } catch (ApiException e) {
@@ -254,7 +254,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **name** | **String**| the name of the network | |
-| **create** | **NetworkDisconnect**| attributes for disconnecting a container from a network | [optional] |
+| **create** | **DisconnectOptions**| attributes for disconnecting a container from a network | [optional] |
 
 ### Return type
 

@@ -2,7 +2,7 @@
 
 supports a RESTful API for the Libpod library
 - API version: 5.0.0
-  - Build date: 2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]
+  - Build date: 2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]
   - Generator version: 7.7.0
 
 This documentation describes the Podman v2.x+ RESTful API. It consists of a Docker-compatible
@@ -312,6 +312,7 @@ Class | Method | HTTP request | Description
 *SecretsCompatApi* | [**secretDelete**](docs/SecretsCompatApi.md#secretDelete) | **DELETE** /secrets/{name} | Remove secret
 *SecretsCompatApi* | [**secretInspect**](docs/SecretsCompatApi.md#secretInspect) | **GET** /secrets/{name} | Inspect secret
 *SecretsCompatApi* | [**secretList**](docs/SecretsCompatApi.md#secretList) | **GET** /secrets | List secrets
+*SystemApi* | [**systemCheckLibpod**](docs/SystemApi.md#systemCheckLibpod) | **POST** /libpod/system/check | Performs consistency checks on storage, optionally removing items which fail checks
 *SystemApi* | [**systemDataUsageLibpod**](docs/SystemApi.md#systemDataUsageLibpod) | **GET** /libpod/system/df | Show disk usage
 *SystemApi* | [**systemEventsLibpod**](docs/SystemApi.md#systemEventsLibpod) | **GET** /libpod/events | Get events
 *SystemApi* | [**systemInfoLibpod**](docs/SystemApi.md#systemInfoLibpod) | **GET** /libpod/info | Get info
@@ -354,6 +355,7 @@ Class | Method | HTTP request | Description
  - [Config](docs/Config.md)
  - [ConfigReference](docs/ConfigReference.md)
  - [ConmonInfo](docs/ConmonInfo.md)
+ - [ConnectOptions](docs/ConnectOptions.md)
  - [Container](docs/Container.md)
  - [ContainerBasicConfig](docs/ContainerBasicConfig.md)
  - [ContainerCgroupConfig](docs/ContainerCgroupConfig.md)
@@ -379,11 +381,13 @@ Class | Method | HTTP request | Description
  - [ContainersPruneReportLibpod](docs/ContainersPruneReportLibpod.md)
  - [CreateContainerConfig](docs/CreateContainerConfig.md)
  - [CreateOptions](docs/CreateOptions.md)
+ - [CreateRequest](docs/CreateRequest.md)
  - [CreateResponse](docs/CreateResponse.md)
  - [DNSNetworkInfo](docs/DNSNetworkInfo.md)
  - [DeleteResponse](docs/DeleteResponse.md)
  - [DeviceMapping](docs/DeviceMapping.md)
  - [DeviceRequest](docs/DeviceRequest.md)
+ - [DisconnectOptions](docs/DisconnectOptions.md)
  - [DistributionInfo](docs/DistributionInfo.md)
  - [Driver](docs/Driver.md)
  - [DriverData](docs/DriverData.md)
@@ -426,6 +430,7 @@ Class | Method | HTTP request | Description
  - [ImageTreeReport](docs/ImageTreeReport.md)
  - [ImageVolume](docs/ImageVolume.md)
  - [Info](docs/Info.md)
+ - [Inspect](docs/Inspect.md)
  - [InspectAdditionalNetwork](docs/InspectAdditionalNetwork.md)
  - [InspectBlkioThrottleDevice](docs/InspectBlkioThrottleDevice.md)
  - [InspectBlkioWeightDevice](docs/InspectBlkioWeightDevice.md)
@@ -494,18 +499,14 @@ Class | Method | HTTP request | Description
  - [NetInterface](docs/NetInterface.md)
  - [NetOptions](docs/NetOptions.md)
  - [Network](docs/Network.md)
- - [NetworkConnect](docs/NetworkConnect.md)
  - [NetworkConnectOptions](docs/NetworkConnectOptions.md)
  - [NetworkContainerInfo](docs/NetworkContainerInfo.md)
  - [NetworkCreate201Response](docs/NetworkCreate201Response.md)
  - [NetworkCreateLibpod](docs/NetworkCreateLibpod.md)
- - [NetworkCreateRequest](docs/NetworkCreateRequest.md)
- - [NetworkDisconnect](docs/NetworkDisconnect.md)
  - [NetworkInfo](docs/NetworkInfo.md)
  - [NetworkInspectReport](docs/NetworkInspectReport.md)
  - [NetworkPrune200Response](docs/NetworkPrune200Response.md)
  - [NetworkPruneReport](docs/NetworkPruneReport.md)
- - [NetworkResource](docs/NetworkResource.md)
  - [NetworkRmReport](docs/NetworkRmReport.md)
  - [NetworkSettings](docs/NetworkSettings.md)
  - [NetworkUpdateOptions](docs/NetworkUpdateOptions.md)
@@ -590,6 +591,7 @@ Class | Method | HTTP request | Description
  - [Subnet](docs/Subnet.md)
  - [Summary](docs/Summary.md)
  - [SummaryNetworkSettings](docs/SummaryNetworkSettings.md)
+ - [SystemCheckReport](docs/SystemCheckReport.md)
  - [SystemComponentVersion](docs/SystemComponentVersion.md)
  - [SystemComponentVersionPlatform](docs/SystemComponentVersionPlatform.md)
  - [SystemDfContainerReport](docs/SystemDfContainerReport.md)
@@ -614,7 +616,6 @@ Class | Method | HTTP request | Description
  - [VolumeCreateOptions](docs/VolumeCreateOptions.md)
  - [VolumeOptions](docs/VolumeOptions.md)
  - [VolumeRmReport](docs/VolumeRmReport.md)
- - [VolumesPruneReport](docs/VolumesPruneReport.md)
  - [WaitExitError](docs/WaitExitError.md)
  - [WaitResponse](docs/WaitResponse.md)
  - [WeightDevice](docs/WeightDevice.md)

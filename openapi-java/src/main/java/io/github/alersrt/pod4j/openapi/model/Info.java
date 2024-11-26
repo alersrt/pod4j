@@ -35,7 +35,7 @@ import java.util.Set;
 /** Info contains information about the Volume as a whole as provided by the CSI storage plugin. */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class Info {
     public static final String SERIALIZED_NAME_ACCESSIBLE_TOPOLOGY = "AccessibleTopology";

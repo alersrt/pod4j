@@ -2,7 +2,7 @@
 
 # EndpointResource
 
-EndpointResource contains network resources allocated and used for a container in a network
+EndpointResource contains network resources allocated and used for a container in a network.
 
 ## Properties
 

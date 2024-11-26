@@ -2,17 +2,22 @@
 
 # CreateOptions
 
-Volume configuration
 
 ## Properties
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**clusterVolumeSpec** | [**ClusterVolumeSpec**](ClusterVolumeSpec.md) |  |  [optional] |
+|**attachable** | **Boolean** |  |  [optional] |
+|**configFrom** | [**ConfigReference**](ConfigReference.md) |  |  [optional] |
+|**configOnly** | **Boolean** |  |  [optional] |
 |**driver** | **String** | Name of the volume driver to use. |  [optional] |
-|**driverOpts** | **Map&lt;String, String&gt;** | A mapping of driver options and values. These options are passed directly to the driver and are driver specific. |  [optional] |
+|**enableIPv6** | **Boolean** |  |  [optional] |
+|**ipam** | [**IPAM**](IPAM.md) |  |  [optional] |
+|**ingress** | **Boolean** |  |  [optional] |
+|**internal** | **Boolean** |  |  [optional] |
 |**labels** | **Map&lt;String, String&gt;** | User-defined key/value metadata. |  [optional] |
-|**name** | **String** | The new volume&#39;s name. If not specified, Docker generates a name. |  [optional] |
+|**options** | **Map&lt;String, String&gt;** |  |  [optional] |
+|**scope** | **String** |  |  [optional] |
 
 
 

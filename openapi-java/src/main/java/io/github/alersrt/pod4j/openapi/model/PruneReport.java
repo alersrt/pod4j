@@ -28,10 +28,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-/** PruneReport */
+/** POST \&quot;/volumes/prune\&quot; */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class PruneReport {
     public static final String SERIALIZED_NAME_ERR = "Err";

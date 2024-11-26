@@ -21,7 +21,7 @@ All URIs are relative to *http://podman.io*
 
 <a id="imageBuild"></a>
 # **imageBuild**
-> ImageBuild200Response imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, q, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream)
+> ImageBuild200Response imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream)
 
 Create image
 
@@ -49,6 +49,7 @@ public class Example {
     String extrahosts = "extrahosts_example"; // String | TBD Extra hosts to add to /etc/hosts (As of version 1.xx) 
     String remote = "remote_example"; // String | A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx) 
     Boolean q = false; // Boolean | Suppress verbose build output 
+    Boolean compatvolumes = false; // Boolean | Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2) 
     Boolean nocache = false; // Boolean | Do not use the cache when building the image (As of version 1.xx) 
     String cachefrom = "cachefrom_example"; // String | JSON array of images used to build cache resolution (As of version 1.xx) 
     Boolean pull = false; // Boolean | Attempt to pull the image even if an older image exists locally (As of version 1.xx) 
@@ -65,12 +66,12 @@ public class Example {
     Boolean squash = false; // Boolean | Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx) 
     String labels = "labels_example"; // String | JSON map of key, value pairs to set as labels on the new image (As of version 1.xx) 
     String networkmode = "bridge"; // String | Sets the networking mode for the run commands during build. Supported standard values are:   * `bridge` limited to containers within a single host, port mapping required for external access   * `host` no isolation between host and containers on this network   * `none` disable all networking for this container   * container:<nameOrID> share networking with given container   ---All other values are assumed to be a custom network's name (As of version 1.xx) 
-    String platform = "platform_example"; // String | Platform format os[/arch[/variant]] (As of version 1.xx) 
+    String platform = "platform_example"; // String | Platform format os[/arch[/variant]] Can be comma separated list for multi arch builds. (As of version 1.xx) 
     String target = "target_example"; // String | Target build stage (As of version 1.xx) 
     String outputs = "outputs_example"; // String | output configuration TBD (As of version 1.xx) 
     File inputStream = new File("/path/to/file"); // File | A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. 
     try {
-      ImageBuild200Response result = apiInstance.imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, q, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
+      ImageBuild200Response result = apiInstance.imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ImagesCompatApi#imageBuild");
@@ -94,6 +95,7 @@ public class Example {
 | **extrahosts** | **String**| TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  | [optional] |
 | **remote** | **String**| A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  | [optional] |
 | **q** | **Boolean**| Suppress verbose build output  | [optional] [default to false] |
+| **compatvolumes** | **Boolean**| Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  | [optional] [default to false] |
 | **nocache** | **Boolean**| Do not use the cache when building the image (As of version 1.xx)  | [optional] [default to false] |
 | **cachefrom** | **String**| JSON array of images used to build cache resolution (As of version 1.xx)  | [optional] |
 | **pull** | **Boolean**| Attempt to pull the image even if an older image exists locally (As of version 1.xx)  | [optional] [default to false] |
@@ -110,7 +112,7 @@ public class Example {
 | **squash** | **Boolean**| Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  | [optional] [default to false] |
 | **labels** | **String**| JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  | [optional] |
 | **networkmode** | **String**| Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  | [optional] [default to bridge] |
-| **platform** | **String**| Platform format os[/arch[/variant]] (As of version 1.xx)  | [optional] |
+| **platform** | **String**| Platform format os[/arch[/variant]] Can be comma separated list for multi arch builds. (As of version 1.xx)  | [optional] |
 | **target** | **String**| Target build stage (As of version 1.xx)  | [optional] |
 | **outputs** | **String**| output configuration TBD (As of version 1.xx)  | [optional] |
 | **inputStream** | **File**| A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz.  | [optional] |
@@ -732,7 +734,7 @@ No authorization required
 
 <a id="imagePush"></a>
 # **imagePush**
-> File imagePush(name, tag, all, compress, destination, xRegistryAuth)
+> File imagePush(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth)
 
 Push Image
 
@@ -756,11 +758,13 @@ public class Example {
     String name = "name_example"; // String | Name of image to push.
     String tag = "tag_example"; // String | The tag to associate with the image on the registry.
     Boolean all = true; // Boolean | All indicates whether to push all images related to the image list
-    Boolean compress = true; // Boolean | use compression on image
-    String destination = "destination_example"; // String | destination name for the image being pushed
+    Boolean compress = true; // Boolean | Use compression on image.
+    String destination = "destination_example"; // String | Allows for pushing the image to a different destination than the image refers to.
+    String format = "format_example"; // String | Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks.
+    Boolean tlsVerify = true; // Boolean | Require TLS verification.
     String xRegistryAuth = "xRegistryAuth_example"; // String | A base64-encoded auth configuration.
     try {
-      File result = apiInstance.imagePush(name, tag, all, compress, destination, xRegistryAuth);
+      File result = apiInstance.imagePush(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ImagesCompatApi#imagePush");
@@ -780,8 +784,10 @@ public class Example {
 | **name** | **String**| Name of image to push. | |
 | **tag** | **String**| The tag to associate with the image on the registry. | [optional] |
 | **all** | **Boolean**| All indicates whether to push all images related to the image list | [optional] |
-| **compress** | **Boolean**| use compression on image | [optional] |
-| **destination** | **String**| destination name for the image being pushed | [optional] |
+| **compress** | **Boolean**| Use compression on image. | [optional] |
+| **destination** | **String**| Allows for pushing the image to a different destination than the image refers to. | [optional] |
+| **format** | **String**| Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. | [optional] |
+| **tlsVerify** | **Boolean**| Require TLS verification. | [optional] [default to true] |
 | **xRegistryAuth** | **String**| A base64-encoded auth configuration. | [optional] |
 
 ### Return type

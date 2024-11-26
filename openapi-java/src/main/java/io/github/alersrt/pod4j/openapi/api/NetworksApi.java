@@ -19,10 +19,10 @@ import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.model.DisconnectOptions;
 import io.github.alersrt.pod4j.openapi.model.Network;
 import io.github.alersrt.pod4j.openapi.model.NetworkConnectOptions;
 import io.github.alersrt.pod4j.openapi.model.NetworkCreateLibpod;
-import io.github.alersrt.pod4j.openapi.model.NetworkDisconnect;
 import io.github.alersrt.pod4j.openapi.model.NetworkInspectReport;
 import io.github.alersrt.pod4j.openapi.model.NetworkPruneReport;
 import io.github.alersrt.pod4j.openapi.model.NetworkRmReport;
@@ -554,7 +554,7 @@ public class NetworksApi {
      * </table>
      */
     public okhttp3.Call networkDisconnectLibpodCall(
-            String name, NetworkDisconnect create, final ApiCallback _callback)
+            String name, DisconnectOptions create, final ApiCallback _callback)
             throws ApiException {
         String basePath = null;
         // Operation Servers
@@ -614,7 +614,7 @@ public class NetworksApi {
 
     @SuppressWarnings("rawtypes")
     private okhttp3.Call networkDisconnectLibpodValidateBeforeCall(
-            String name, NetworkDisconnect create, final ApiCallback _callback)
+            String name, DisconnectOptions create, final ApiCallback _callback)
             throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -641,7 +641,7 @@ public class NetworksApi {
      * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
      * </table>
      */
-    public void networkDisconnectLibpod(String name, NetworkDisconnect create) throws ApiException {
+    public void networkDisconnectLibpod(String name, DisconnectOptions create) throws ApiException {
         networkDisconnectLibpodWithHttpInfo(name, create);
     }
 
@@ -662,7 +662,7 @@ public class NetworksApi {
      * </table>
      */
     public ApiResponse<Void> networkDisconnectLibpodWithHttpInfo(
-            String name, NetworkDisconnect create) throws ApiException {
+            String name, DisconnectOptions create) throws ApiException {
         okhttp3.Call localVarCall = networkDisconnectLibpodValidateBeforeCall(name, create, null);
         return localVarApiClient.execute(localVarCall);
     }
@@ -685,7 +685,7 @@ public class NetworksApi {
      * </table>
      */
     public okhttp3.Call networkDisconnectLibpodAsync(
-            String name, NetworkDisconnect create, final ApiCallback<Void> _callback)
+            String name, DisconnectOptions create, final ApiCallback<Void> _callback)
             throws ApiException {
 
         okhttp3.Call localVarCall =

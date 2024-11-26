@@ -31,7 +31,7 @@ import java.util.Set;
 /** LinuxMemory for Linux cgroup &#39;memory&#39; resource management */
 @javax.annotation.Generated(
         value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:05:51.842033247+07:00[Asia/Barnaul]",
+        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
         comments = "Generator version: 7.7.0")
 public class LinuxMemory {
     public static final String SERIALIZED_NAME_CHECK_BEFORE_UPDATE = "checkBeforeUpdate";
