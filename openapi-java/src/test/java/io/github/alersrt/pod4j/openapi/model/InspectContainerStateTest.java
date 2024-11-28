@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.HealthCheckResults;
+
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectContainerState
  */
-class InspectContainerStateTest {
+public class InspectContainerStateTest {
     private final InspectContainerState model = new InspectContainerState();
 
     /**
      * Model tests for InspectContainerState
      */
     @Test
-    void testInspectContainerState() {
+    public void testInspectContainerState() {
         // TODO: test InspectContainerState
     }
 
@@ -44,7 +45,7 @@ class InspectContainerStateTest {
      * Test the property 'cgroupPath'
      */
     @Test
-    void cgroupPathTest() {
+    public void cgroupPathTest() {
         // TODO: test cgroupPath
     }
 
@@ -52,7 +53,7 @@ class InspectContainerStateTest {
      * Test the property 'checkpointLog'
      */
     @Test
-    void checkpointLogTest() {
+    public void checkpointLogTest() {
         // TODO: test checkpointLog
     }
 
@@ -60,7 +61,7 @@ class InspectContainerStateTest {
      * Test the property 'checkpointPath'
      */
     @Test
-    void checkpointPathTest() {
+    public void checkpointPathTest() {
         // TODO: test checkpointPath
     }
 
@@ -68,7 +69,7 @@ class InspectContainerStateTest {
      * Test the property 'checkpointed'
      */
     @Test
-    void checkpointedTest() {
+    public void checkpointedTest() {
         // TODO: test checkpointed
     }
 
@@ -76,7 +77,7 @@ class InspectContainerStateTest {
      * Test the property 'checkpointedAt'
      */
     @Test
-    void checkpointedAtTest() {
+    public void checkpointedAtTest() {
         // TODO: test checkpointedAt
     }
 
@@ -84,7 +85,7 @@ class InspectContainerStateTest {
      * Test the property 'conmonPid'
      */
     @Test
-    void conmonPidTest() {
+    public void conmonPidTest() {
         // TODO: test conmonPid
     }
 
@@ -92,7 +93,7 @@ class InspectContainerStateTest {
      * Test the property 'dead'
      */
     @Test
-    void deadTest() {
+    public void deadTest() {
         // TODO: test dead
     }
 
@@ -100,7 +101,7 @@ class InspectContainerStateTest {
      * Test the property 'error'
      */
     @Test
-    void errorTest() {
+    public void errorTest() {
         // TODO: test error
     }
 
@@ -108,7 +109,7 @@ class InspectContainerStateTest {
      * Test the property 'exitCode'
      */
     @Test
-    void exitCodeTest() {
+    public void exitCodeTest() {
         // TODO: test exitCode
     }
 
@@ -116,7 +117,7 @@ class InspectContainerStateTest {
      * Test the property 'finishedAt'
      */
     @Test
-    void finishedAtTest() {
+    public void finishedAtTest() {
         // TODO: test finishedAt
     }
 
@@ -124,7 +125,7 @@ class InspectContainerStateTest {
      * Test the property 'health'
      */
     @Test
-    void healthTest() {
+    public void healthTest() {
         // TODO: test health
     }
 
@@ -132,7 +133,7 @@ class InspectContainerStateTest {
      * Test the property 'ooMKilled'
      */
     @Test
-    void ooMKilledTest() {
+    public void ooMKilledTest() {
         // TODO: test ooMKilled
     }
 
@@ -140,7 +141,7 @@ class InspectContainerStateTest {
      * Test the property 'ociVersion'
      */
     @Test
-    void ociVersionTest() {
+    public void ociVersionTest() {
         // TODO: test ociVersion
     }
 
@@ -148,7 +149,7 @@ class InspectContainerStateTest {
      * Test the property 'paused'
      */
     @Test
-    void pausedTest() {
+    public void pausedTest() {
         // TODO: test paused
     }
 
@@ -156,7 +157,7 @@ class InspectContainerStateTest {
      * Test the property 'pid'
      */
     @Test
-    void pidTest() {
+    public void pidTest() {
         // TODO: test pid
     }
 
@@ -164,7 +165,7 @@ class InspectContainerStateTest {
      * Test the property 'restarting'
      */
     @Test
-    void restartingTest() {
+    public void restartingTest() {
         // TODO: test restarting
     }
 
@@ -172,7 +173,7 @@ class InspectContainerStateTest {
      * Test the property 'restoreLog'
      */
     @Test
-    void restoreLogTest() {
+    public void restoreLogTest() {
         // TODO: test restoreLog
     }
 
@@ -180,7 +181,7 @@ class InspectContainerStateTest {
      * Test the property 'restored'
      */
     @Test
-    void restoredTest() {
+    public void restoredTest() {
         // TODO: test restored
     }
 
@@ -188,7 +189,7 @@ class InspectContainerStateTest {
      * Test the property 'restoredAt'
      */
     @Test
-    void restoredAtTest() {
+    public void restoredAtTest() {
         // TODO: test restoredAt
     }
 
@@ -196,7 +197,7 @@ class InspectContainerStateTest {
      * Test the property 'running'
      */
     @Test
-    void runningTest() {
+    public void runningTest() {
         // TODO: test running
     }
 
@@ -204,7 +205,7 @@ class InspectContainerStateTest {
      * Test the property 'startedAt'
      */
     @Test
-    void startedAtTest() {
+    public void startedAtTest() {
         // TODO: test startedAt
     }
 
@@ -212,7 +213,7 @@ class InspectContainerStateTest {
      * Test the property 'status'
      */
     @Test
-    void statusTest() {
+    public void statusTest() {
         // TODO: test status
     }
 
@@ -220,7 +221,7 @@ class InspectContainerStateTest {
      * Test the property 'stoppedByUser'
      */
     @Test
-    void stoppedByUserTest() {
+    public void stoppedByUserTest() {
         // TODO: test stoppedByUser
     }
 

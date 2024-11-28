@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxPids
  */
-class LinuxPidsTest {
+public class LinuxPidsTest {
     private final LinuxPids model = new LinuxPids();
 
     /**
      * Model tests for LinuxPids
      */
     @Test
-    void testLinuxPids() {
+    public void testLinuxPids() {
         // TODO: test LinuxPids
     }
 
@@ -42,7 +43,7 @@ class LinuxPidsTest {
      * Test the property 'limit'
      */
     @Test
-    void limitTest() {
+    public void limitTest() {
         // TODO: test limit
     }
 

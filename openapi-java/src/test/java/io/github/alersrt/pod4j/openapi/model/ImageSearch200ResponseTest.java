@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ImageSearch200Response
  */
-class ImageSearch200ResponseTest {
+public class ImageSearch200ResponseTest {
     private final ImageSearch200Response model = new ImageSearch200Response();
 
     /**
      * Model tests for ImageSearch200Response
      */
     @Test
-    void testImageSearch200Response() {
+    public void testImageSearch200Response() {
         // TODO: test ImageSearch200Response
     }
 
@@ -42,7 +43,7 @@ class ImageSearch200ResponseTest {
      * Test the property 'automated'
      */
     @Test
-    void automatedTest() {
+    public void automatedTest() {
         // TODO: test automated
     }
 
@@ -50,7 +51,7 @@ class ImageSearch200ResponseTest {
      * Test the property 'description'
      */
     @Test
-    void descriptionTest() {
+    public void descriptionTest() {
         // TODO: test description
     }
 
@@ -58,7 +59,7 @@ class ImageSearch200ResponseTest {
      * Test the property 'index'
      */
     @Test
-    void indexTest() {
+    public void indexTest() {
         // TODO: test index
     }
 
@@ -66,7 +67,7 @@ class ImageSearch200ResponseTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -74,7 +75,7 @@ class ImageSearch200ResponseTest {
      * Test the property 'official'
      */
     @Test
-    void officialTest() {
+    public void officialTest() {
         // TODO: test official
     }
 
@@ -82,7 +83,7 @@ class ImageSearch200ResponseTest {
      * Test the property 'stars'
      */
     @Test
-    void starsTest() {
+    public void starsTest() {
         // TODO: test stars
     }
 
@@ -90,7 +91,7 @@ class ImageSearch200ResponseTest {
      * Test the property 'tag'
      */
     @Test
-    void tagTest() {
+    public void tagTest() {
         // TODO: test tag
     }
 

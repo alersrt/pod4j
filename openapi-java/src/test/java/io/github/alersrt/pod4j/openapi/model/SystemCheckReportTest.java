@@ -13,32 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemCheckReport
  */
-class SystemCheckReportTest {
+public class SystemCheckReportTest {
     private final SystemCheckReport model = new SystemCheckReport();
 
     /**
      * Model tests for SystemCheckReport
      */
     @Test
-    void testSystemCheckReport() {
+    public void testSystemCheckReport() {
         // TODO: test SystemCheckReport
     }
 
@@ -46,7 +33,7 @@ class SystemCheckReportTest {
      * Test the property 'containers'
      */
     @Test
-    void containersTest() {
+    public void containersTest() {
         // TODO: test containers
     }
 
@@ -54,7 +41,7 @@ class SystemCheckReportTest {
      * Test the property 'errors'
      */
     @Test
-    void errorsTest() {
+    public void errorsTest() {
         // TODO: test errors
     }
 
@@ -62,7 +49,7 @@ class SystemCheckReportTest {
      * Test the property 'images'
      */
     @Test
-    void imagesTest() {
+    public void imagesTest() {
         // TODO: test images
     }
 
@@ -70,7 +57,7 @@ class SystemCheckReportTest {
      * Test the property 'layers'
      */
     @Test
-    void layersTest() {
+    public void layersTest() {
         // TODO: test layers
     }
 
@@ -78,7 +65,7 @@ class SystemCheckReportTest {
      * Test the property 'roImages'
      */
     @Test
-    void roImagesTest() {
+    public void roImagesTest() {
         // TODO: test roImages
     }
 
@@ -86,7 +73,7 @@ class SystemCheckReportTest {
      * Test the property 'roLayers'
      */
     @Test
-    void roLayersTest() {
+    public void roLayersTest() {
         // TODO: test roLayers
     }
 
@@ -94,7 +81,7 @@ class SystemCheckReportTest {
      * Test the property 'removedContainers'
      */
     @Test
-    void removedContainersTest() {
+    public void removedContainersTest() {
         // TODO: test removedContainers
     }
 
@@ -102,7 +89,7 @@ class SystemCheckReportTest {
      * Test the property 'removedImages'
      */
     @Test
-    void removedImagesTest() {
+    public void removedImagesTest() {
         // TODO: test removedImages
     }
 
@@ -110,7 +97,7 @@ class SystemCheckReportTest {
      * Test the property 'removedLayers'
      */
     @Test
-    void removedLayersTest() {
+    public void removedLayersTest() {
         // TODO: test removedLayers
     }
 

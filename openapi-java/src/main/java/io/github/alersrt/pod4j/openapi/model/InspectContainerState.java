@@ -13,940 +13,777 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.HealthCheckResults;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectContainerState provides a detailed record of a container&#39;s current state. It is returned as part of InspectContainerData. As with InspectContainerData, many portions of this struct are matched to Docker, but here we see more fields that are unused (nonsensical in the context of Libpod).
  */
-@JsonPropertyOrder({
-  InspectContainerState.JSON_PROPERTY_CGROUP_PATH,
-  InspectContainerState.JSON_PROPERTY_CHECKPOINT_LOG,
-  InspectContainerState.JSON_PROPERTY_CHECKPOINT_PATH,
-  InspectContainerState.JSON_PROPERTY_CHECKPOINTED,
-  InspectContainerState.JSON_PROPERTY_CHECKPOINTED_AT,
-  InspectContainerState.JSON_PROPERTY_CONMON_PID,
-  InspectContainerState.JSON_PROPERTY_DEAD,
-  InspectContainerState.JSON_PROPERTY_ERROR,
-  InspectContainerState.JSON_PROPERTY_EXIT_CODE,
-  InspectContainerState.JSON_PROPERTY_FINISHED_AT,
-  InspectContainerState.JSON_PROPERTY_HEALTH,
-  InspectContainerState.JSON_PROPERTY_OO_M_KILLED,
-  InspectContainerState.JSON_PROPERTY_OCI_VERSION,
-  InspectContainerState.JSON_PROPERTY_PAUSED,
-  InspectContainerState.JSON_PROPERTY_PID,
-  InspectContainerState.JSON_PROPERTY_RESTARTING,
-  InspectContainerState.JSON_PROPERTY_RESTORE_LOG,
-  InspectContainerState.JSON_PROPERTY_RESTORED,
-  InspectContainerState.JSON_PROPERTY_RESTORED_AT,
-  InspectContainerState.JSON_PROPERTY_RUNNING,
-  InspectContainerState.JSON_PROPERTY_STARTED_AT,
-  InspectContainerState.JSON_PROPERTY_STATUS,
-  InspectContainerState.JSON_PROPERTY_STOPPED_BY_USER
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerState {
-  public static final String JSON_PROPERTY_CGROUP_PATH = "CgroupPath";
-  private String cgroupPath;
-
-  public static final String JSON_PROPERTY_CHECKPOINT_LOG = "CheckpointLog";
-  private String checkpointLog;
-
-  public static final String JSON_PROPERTY_CHECKPOINT_PATH = "CheckpointPath";
-  private String checkpointPath;
-
-  public static final String JSON_PROPERTY_CHECKPOINTED = "Checkpointed";
-  private Boolean checkpointed;
-
-  public static final String JSON_PROPERTY_CHECKPOINTED_AT = "CheckpointedAt";
-  private OffsetDateTime checkpointedAt;
-
-  public static final String JSON_PROPERTY_CONMON_PID = "ConmonPid";
-  private Long conmonPid;
-
-  public static final String JSON_PROPERTY_DEAD = "Dead";
-  private Boolean dead;
-
-  public static final String JSON_PROPERTY_ERROR = "Error";
-  private String error;
-
-  public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
-  private Integer exitCode;
-
-  public static final String JSON_PROPERTY_FINISHED_AT = "FinishedAt";
-  private OffsetDateTime finishedAt;
-
-  public static final String JSON_PROPERTY_HEALTH = "Health";
-  private HealthCheckResults health;
-
-  public static final String JSON_PROPERTY_OO_M_KILLED = "OOMKilled";
-  private Boolean ooMKilled;
-
-  public static final String JSON_PROPERTY_OCI_VERSION = "OciVersion";
-  private String ociVersion;
-
-  public static final String JSON_PROPERTY_PAUSED = "Paused";
-  private Boolean paused;
-
-  public static final String JSON_PROPERTY_PID = "Pid";
-  private Long pid;
-
-  public static final String JSON_PROPERTY_RESTARTING = "Restarting";
-  private Boolean restarting;
-
-  public static final String JSON_PROPERTY_RESTORE_LOG = "RestoreLog";
-  private String restoreLog;
-
-  public static final String JSON_PROPERTY_RESTORED = "Restored";
-  private Boolean restored;
-
-  public static final String JSON_PROPERTY_RESTORED_AT = "RestoredAt";
-  private OffsetDateTime restoredAt;
-
-  public static final String JSON_PROPERTY_RUNNING = "Running";
-  private Boolean running;
-
-  public static final String JSON_PROPERTY_STARTED_AT = "StartedAt";
-  private OffsetDateTime startedAt;
-
-  public static final String JSON_PROPERTY_STATUS = "Status";
-  private String status;
-
-  public static final String JSON_PROPERTY_STOPPED_BY_USER = "StoppedByUser";
-  private Boolean stoppedByUser;
-
-  public InspectContainerState() { 
-  }
-
-  public InspectContainerState cgroupPath(String cgroupPath) {
-    this.cgroupPath = cgroupPath;
-    return this;
-  }
-
-  /**
-   * Get cgroupPath
-   * @return cgroupPath
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupPath() {
-    return cgroupPath;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupPath(String cgroupPath) {
-    this.cgroupPath = cgroupPath;
-  }
-
-
-  public InspectContainerState checkpointLog(String checkpointLog) {
-    this.checkpointLog = checkpointLog;
-    return this;
-  }
-
-  /**
-   * Get checkpointLog
-   * @return checkpointLog
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CHECKPOINT_LOG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCheckpointLog() {
-    return checkpointLog;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHECKPOINT_LOG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCheckpointLog(String checkpointLog) {
-    this.checkpointLog = checkpointLog;
-  }
-
-
-  public InspectContainerState checkpointPath(String checkpointPath) {
-    this.checkpointPath = checkpointPath;
-    return this;
-  }
-
-  /**
-   * Get checkpointPath
-   * @return checkpointPath
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CHECKPOINT_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCheckpointPath() {
-    return checkpointPath;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHECKPOINT_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCheckpointPath(String checkpointPath) {
-    this.checkpointPath = checkpointPath;
-  }
-
-
-  public InspectContainerState checkpointed(Boolean checkpointed) {
-    this.checkpointed = checkpointed;
-    return this;
-  }
-
-  /**
-   * Get checkpointed
-   * @return checkpointed
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CHECKPOINTED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getCheckpointed() {
-    return checkpointed;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHECKPOINTED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCheckpointed(Boolean checkpointed) {
-    this.checkpointed = checkpointed;
-  }
-
-
-  public InspectContainerState checkpointedAt(OffsetDateTime checkpointedAt) {
-    this.checkpointedAt = checkpointedAt;
-    return this;
-  }
-
-  /**
-   * Get checkpointedAt
-   * @return checkpointedAt
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CHECKPOINTED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getCheckpointedAt() {
-    return checkpointedAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHECKPOINTED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCheckpointedAt(OffsetDateTime checkpointedAt) {
-    this.checkpointedAt = checkpointedAt;
-  }
-
-
-  public InspectContainerState conmonPid(Long conmonPid) {
-    this.conmonPid = conmonPid;
-    return this;
-  }
-
-  /**
-   * Get conmonPid
-   * @return conmonPid
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONMON_PID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getConmonPid() {
-    return conmonPid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONMON_PID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConmonPid(Long conmonPid) {
-    this.conmonPid = conmonPid;
-  }
-
-
-  public InspectContainerState dead(Boolean dead) {
-    this.dead = dead;
-    return this;
-  }
-
-  /**
-   * Get dead
-   * @return dead
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DEAD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getDead() {
-    return dead;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEAD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDead(Boolean dead) {
-    this.dead = dead;
-  }
-
-
-  public InspectContainerState error(String error) {
-    this.error = error;
-    return this;
-  }
-
-  /**
-   * Get error
-   * @return error
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getError() {
-    return error;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setError(String error) {
-    this.error = error;
-  }
-
-
-  public InspectContainerState exitCode(Integer exitCode) {
-    this.exitCode = exitCode;
-    return this;
-  }
-
-  /**
-   * Get exitCode
-   * @return exitCode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getExitCode() {
-    return exitCode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExitCode(Integer exitCode) {
-    this.exitCode = exitCode;
-  }
-
-
-  public InspectContainerState finishedAt(OffsetDateTime finishedAt) {
-    this.finishedAt = finishedAt;
-    return this;
-  }
-
-  /**
-   * Get finishedAt
-   * @return finishedAt
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_FINISHED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getFinishedAt() {
-    return finishedAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FINISHED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFinishedAt(OffsetDateTime finishedAt) {
-    this.finishedAt = finishedAt;
-  }
-
-
-  public InspectContainerState health(HealthCheckResults health) {
-    this.health = health;
-    return this;
-  }
-
-  /**
-   * Get health
-   * @return health
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_HEALTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public HealthCheckResults getHealth() {
-    return health;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HEALTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealth(HealthCheckResults health) {
-    this.health = health;
-  }
-
-
-  public InspectContainerState ooMKilled(Boolean ooMKilled) {
-    this.ooMKilled = ooMKilled;
-    return this;
-  }
-
-  /**
-   * Get ooMKilled
-   * @return ooMKilled
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OO_M_KILLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOoMKilled() {
-    return ooMKilled;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OO_M_KILLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOoMKilled(Boolean ooMKilled) {
-    this.ooMKilled = ooMKilled;
-  }
-
-
-  public InspectContainerState ociVersion(String ociVersion) {
-    this.ociVersion = ociVersion;
-    return this;
-  }
-
-  /**
-   * Get ociVersion
-   * @return ociVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OCI_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOciVersion() {
-    return ociVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OCI_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOciVersion(String ociVersion) {
-    this.ociVersion = ociVersion;
-  }
-
-
-  public InspectContainerState paused(Boolean paused) {
-    this.paused = paused;
-    return this;
-  }
-
-  /**
-   * Get paused
-   * @return paused
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PAUSED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPaused() {
-    return paused;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAUSED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPaused(Boolean paused) {
-    this.paused = paused;
-  }
-
-
-  public InspectContainerState pid(Long pid) {
-    this.pid = pid;
-    return this;
-  }
-
-  /**
-   * Get pid
-   * @return pid
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getPid() {
-    return pid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPid(Long pid) {
-    this.pid = pid;
-  }
-
-
-  public InspectContainerState restarting(Boolean restarting) {
-    this.restarting = restarting;
-    return this;
-  }
-
-  /**
-   * Get restarting
-   * @return restarting
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESTARTING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRestarting() {
-    return restarting;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTARTING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestarting(Boolean restarting) {
-    this.restarting = restarting;
-  }
-
-
-  public InspectContainerState restoreLog(String restoreLog) {
-    this.restoreLog = restoreLog;
-    return this;
-  }
-
-  /**
-   * Get restoreLog
-   * @return restoreLog
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESTORE_LOG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRestoreLog() {
-    return restoreLog;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTORE_LOG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestoreLog(String restoreLog) {
-    this.restoreLog = restoreLog;
-  }
-
-
-  public InspectContainerState restored(Boolean restored) {
-    this.restored = restored;
-    return this;
-  }
-
-  /**
-   * Get restored
-   * @return restored
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESTORED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRestored() {
-    return restored;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTORED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestored(Boolean restored) {
-    this.restored = restored;
-  }
-
-
-  public InspectContainerState restoredAt(OffsetDateTime restoredAt) {
-    this.restoredAt = restoredAt;
-    return this;
-  }
-
-  /**
-   * Get restoredAt
-   * @return restoredAt
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_RESTORED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getRestoredAt() {
-    return restoredAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTORED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestoredAt(OffsetDateTime restoredAt) {
-    this.restoredAt = restoredAt;
-  }
-
-
-  public InspectContainerState running(Boolean running) {
-    this.running = running;
-    return this;
-  }
-
-  /**
-   * Get running
-   * @return running
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RUNNING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRunning() {
-    return running;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RUNNING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRunning(Boolean running) {
-    this.running = running;
-  }
-
-
-  public InspectContainerState startedAt(OffsetDateTime startedAt) {
-    this.startedAt = startedAt;
-    return this;
-  }
-
-  /**
-   * Get startedAt
-   * @return startedAt
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_STARTED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getStartedAt() {
-    return startedAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STARTED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartedAt(OffsetDateTime startedAt) {
-    this.startedAt = startedAt;
-  }
-
-
-  public InspectContainerState status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  public InspectContainerState stoppedByUser(Boolean stoppedByUser) {
-    this.stoppedByUser = stoppedByUser;
-    return this;
-  }
-
-  /**
-   * Get stoppedByUser
-   * @return stoppedByUser
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOPPED_BY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getStoppedByUser() {
-    return stoppedByUser;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOPPED_BY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStoppedByUser(Boolean stoppedByUser) {
-    this.stoppedByUser = stoppedByUser;
-  }
-
-
-  /**
-   * Return true if this InspectContainerState object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InspectContainerState inspectContainerState = (InspectContainerState) o;
-    return Objects.equals(this.cgroupPath, inspectContainerState.cgroupPath) &&
-        Objects.equals(this.checkpointLog, inspectContainerState.checkpointLog) &&
-        Objects.equals(this.checkpointPath, inspectContainerState.checkpointPath) &&
-        Objects.equals(this.checkpointed, inspectContainerState.checkpointed) &&
-        Objects.equals(this.checkpointedAt, inspectContainerState.checkpointedAt) &&
-        Objects.equals(this.conmonPid, inspectContainerState.conmonPid) &&
-        Objects.equals(this.dead, inspectContainerState.dead) &&
-        Objects.equals(this.error, inspectContainerState.error) &&
-        Objects.equals(this.exitCode, inspectContainerState.exitCode) &&
-        Objects.equals(this.finishedAt, inspectContainerState.finishedAt) &&
-        Objects.equals(this.health, inspectContainerState.health) &&
-        Objects.equals(this.ooMKilled, inspectContainerState.ooMKilled) &&
-        Objects.equals(this.ociVersion, inspectContainerState.ociVersion) &&
-        Objects.equals(this.paused, inspectContainerState.paused) &&
-        Objects.equals(this.pid, inspectContainerState.pid) &&
-        Objects.equals(this.restarting, inspectContainerState.restarting) &&
-        Objects.equals(this.restoreLog, inspectContainerState.restoreLog) &&
-        Objects.equals(this.restored, inspectContainerState.restored) &&
-        Objects.equals(this.restoredAt, inspectContainerState.restoredAt) &&
-        Objects.equals(this.running, inspectContainerState.running) &&
-        Objects.equals(this.startedAt, inspectContainerState.startedAt) &&
-        Objects.equals(this.status, inspectContainerState.status) &&
-        Objects.equals(this.stoppedByUser, inspectContainerState.stoppedByUser);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(cgroupPath, checkpointLog, checkpointPath, checkpointed, checkpointedAt, conmonPid, dead, error, exitCode, finishedAt, health, ooMKilled, ociVersion, paused, pid, restarting, restoreLog, restored, restoredAt, running, startedAt, status, stoppedByUser);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InspectContainerState {\n");
-    sb.append("    cgroupPath: ").append(toIndentedString(cgroupPath)).append("\n");
-    sb.append("    checkpointLog: ").append(toIndentedString(checkpointLog)).append("\n");
-    sb.append("    checkpointPath: ").append(toIndentedString(checkpointPath)).append("\n");
-    sb.append("    checkpointed: ").append(toIndentedString(checkpointed)).append("\n");
-    sb.append("    checkpointedAt: ").append(toIndentedString(checkpointedAt)).append("\n");
-    sb.append("    conmonPid: ").append(toIndentedString(conmonPid)).append("\n");
-    sb.append("    dead: ").append(toIndentedString(dead)).append("\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
-    sb.append("    finishedAt: ").append(toIndentedString(finishedAt)).append("\n");
-    sb.append("    health: ").append(toIndentedString(health)).append("\n");
-    sb.append("    ooMKilled: ").append(toIndentedString(ooMKilled)).append("\n");
-    sb.append("    ociVersion: ").append(toIndentedString(ociVersion)).append("\n");
-    sb.append("    paused: ").append(toIndentedString(paused)).append("\n");
-    sb.append("    pid: ").append(toIndentedString(pid)).append("\n");
-    sb.append("    restarting: ").append(toIndentedString(restarting)).append("\n");
-    sb.append("    restoreLog: ").append(toIndentedString(restoreLog)).append("\n");
-    sb.append("    restored: ").append(toIndentedString(restored)).append("\n");
-    sb.append("    restoredAt: ").append(toIndentedString(restoredAt)).append("\n");
-    sb.append("    running: ").append(toIndentedString(running)).append("\n");
-    sb.append("    startedAt: ").append(toIndentedString(startedAt)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    stoppedByUser: ").append(toIndentedString(stoppedByUser)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_CGROUP_PATH = "CgroupPath";
+    public static final String SERIALIZED_NAME_CHECKPOINT_LOG = "CheckpointLog";
+    public static final String SERIALIZED_NAME_CHECKPOINT_PATH = "CheckpointPath";
+    public static final String SERIALIZED_NAME_CHECKPOINTED = "Checkpointed";
+    public static final String SERIALIZED_NAME_CHECKPOINTED_AT = "CheckpointedAt";
+    public static final String SERIALIZED_NAME_CONMON_PID = "ConmonPid";
+    public static final String SERIALIZED_NAME_DEAD = "Dead";
+    public static final String SERIALIZED_NAME_ERROR = "Error";
+    public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
+    public static final String SERIALIZED_NAME_FINISHED_AT = "FinishedAt";
+    public static final String SERIALIZED_NAME_HEALTH = "Health";
+    public static final String SERIALIZED_NAME_OO_M_KILLED = "OOMKilled";
+    public static final String SERIALIZED_NAME_OCI_VERSION = "OciVersion";
+    public static final String SERIALIZED_NAME_PAUSED = "Paused";
+    public static final String SERIALIZED_NAME_PID = "Pid";
+    public static final String SERIALIZED_NAME_RESTARTING = "Restarting";
+    public static final String SERIALIZED_NAME_RESTORE_LOG = "RestoreLog";
+    public static final String SERIALIZED_NAME_RESTORED = "Restored";
+    public static final String SERIALIZED_NAME_RESTORED_AT = "RestoredAt";
+    public static final String SERIALIZED_NAME_RUNNING = "Running";
+    public static final String SERIALIZED_NAME_STARTED_AT = "StartedAt";
+    public static final String SERIALIZED_NAME_STATUS = "Status";
+    public static final String SERIALIZED_NAME_STOPPED_BY_USER = "StoppedByUser";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("CgroupPath");
+        openapiFields.add("CheckpointLog");
+        openapiFields.add("CheckpointPath");
+        openapiFields.add("Checkpointed");
+        openapiFields.add("CheckpointedAt");
+        openapiFields.add("ConmonPid");
+        openapiFields.add("Dead");
+        openapiFields.add("Error");
+        openapiFields.add("ExitCode");
+        openapiFields.add("FinishedAt");
+        openapiFields.add("Health");
+        openapiFields.add("OOMKilled");
+        openapiFields.add("OciVersion");
+        openapiFields.add("Paused");
+        openapiFields.add("Pid");
+        openapiFields.add("Restarting");
+        openapiFields.add("RestoreLog");
+        openapiFields.add("Restored");
+        openapiFields.add("RestoredAt");
+        openapiFields.add("Running");
+        openapiFields.add("StartedAt");
+        openapiFields.add("Status");
+        openapiFields.add("StoppedByUser");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CGROUP_PATH)
+    private String cgroupPath;
+    @SerializedName(SERIALIZED_NAME_CHECKPOINT_LOG)
+    private String checkpointLog;
+    @SerializedName(SERIALIZED_NAME_CHECKPOINT_PATH)
+    private String checkpointPath;
+    @SerializedName(SERIALIZED_NAME_CHECKPOINTED)
+    private Boolean checkpointed;
+    @SerializedName(SERIALIZED_NAME_CHECKPOINTED_AT)
+    private OffsetDateTime checkpointedAt;
+    @SerializedName(SERIALIZED_NAME_CONMON_PID)
+    private Long conmonPid;
+    @SerializedName(SERIALIZED_NAME_DEAD)
+    private Boolean dead;
+    @SerializedName(SERIALIZED_NAME_ERROR)
+    private String error;
+    @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+    private Integer exitCode;
+    @SerializedName(SERIALIZED_NAME_FINISHED_AT)
+    private OffsetDateTime finishedAt;
+    @SerializedName(SERIALIZED_NAME_HEALTH)
+    private HealthCheckResults health;
+    @SerializedName(SERIALIZED_NAME_OO_M_KILLED)
+    private Boolean ooMKilled;
+    @SerializedName(SERIALIZED_NAME_OCI_VERSION)
+    private String ociVersion;
+    @SerializedName(SERIALIZED_NAME_PAUSED)
+    private Boolean paused;
+    @SerializedName(SERIALIZED_NAME_PID)
+    private Long pid;
+    @SerializedName(SERIALIZED_NAME_RESTARTING)
+    private Boolean restarting;
+    @SerializedName(SERIALIZED_NAME_RESTORE_LOG)
+    private String restoreLog;
+    @SerializedName(SERIALIZED_NAME_RESTORED)
+    private Boolean restored;
+    @SerializedName(SERIALIZED_NAME_RESTORED_AT)
+    private OffsetDateTime restoredAt;
+    @SerializedName(SERIALIZED_NAME_RUNNING)
+    private Boolean running;
+    @SerializedName(SERIALIZED_NAME_STARTED_AT)
+    private OffsetDateTime startedAt;
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private String status;
+    @SerializedName(SERIALIZED_NAME_STOPPED_BY_USER)
+    private Boolean stoppedByUser;
 
-    // add `CgroupPath` to the URL query string
-    if (getCgroupPath() != null) {
-      joiner.add(String.format("%sCgroupPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerState() {
     }
 
-    // add `CheckpointLog` to the URL query string
-    if (getCheckpointLog() != null) {
-      joiner.add(String.format("%sCheckpointLog%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckpointLog()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to InspectContainerState
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!InspectContainerState.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerState is not found in the empty JSON string", InspectContainerState.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!InspectContainerState.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerState` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("CgroupPath") != null && !jsonObj.get("CgroupPath").isJsonNull()) && !jsonObj.get("CgroupPath").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CgroupPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupPath").toString()));
+        }
+        if ((jsonObj.get("CheckpointLog") != null && !jsonObj.get("CheckpointLog").isJsonNull()) && !jsonObj.get("CheckpointLog").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CheckpointLog` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CheckpointLog").toString()));
+        }
+        if ((jsonObj.get("CheckpointPath") != null && !jsonObj.get("CheckpointPath").isJsonNull()) && !jsonObj.get("CheckpointPath").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CheckpointPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CheckpointPath").toString()));
+        }
+        if ((jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull()) && !jsonObj.get("Error").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Error` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Error").toString()));
+        }
+        // validate the optional field `Health`
+        if (jsonObj.get("Health") != null && !jsonObj.get("Health").isJsonNull()) {
+            HealthCheckResults.validateJsonElement(jsonObj.get("Health"));
+        }
+        if ((jsonObj.get("OciVersion") != null && !jsonObj.get("OciVersion").isJsonNull()) && !jsonObj.get("OciVersion").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `OciVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OciVersion").toString()));
+        }
+        if ((jsonObj.get("RestoreLog") != null && !jsonObj.get("RestoreLog").isJsonNull()) && !jsonObj.get("RestoreLog").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `RestoreLog` to be a primitive type in the JSON string but got `%s`", jsonObj.get("RestoreLog").toString()));
+        }
+        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
+        }
     }
 
-    // add `CheckpointPath` to the URL query string
-    if (getCheckpointPath() != null) {
-      joiner.add(String.format("%sCheckpointPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckpointPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of InspectContainerState given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectContainerState
+     * @throws IOException if the JSON string is invalid with respect to InspectContainerState
+     */
+    public static InspectContainerState fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, InspectContainerState.class);
     }
 
-    // add `Checkpointed` to the URL query string
-    if (getCheckpointed() != null) {
-      joiner.add(String.format("%sCheckpointed%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckpointed()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerState cgroupPath(String cgroupPath) {
+        this.cgroupPath = cgroupPath;
+        return this;
     }
 
-    // add `CheckpointedAt` to the URL query string
-    if (getCheckpointedAt() != null) {
-      joiner.add(String.format("%sCheckpointedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckpointedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get cgroupPath
+     *
+     * @return cgroupPath
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupPath() {
+        return cgroupPath;
     }
 
-    // add `ConmonPid` to the URL query string
-    if (getConmonPid() != null) {
-      joiner.add(String.format("%sConmonPid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConmonPid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCgroupPath(String cgroupPath) {
+        this.cgroupPath = cgroupPath;
     }
 
-    // add `Dead` to the URL query string
-    if (getDead() != null) {
-      joiner.add(String.format("%sDead%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDead()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerState checkpointLog(String checkpointLog) {
+        this.checkpointLog = checkpointLog;
+        return this;
     }
 
-    // add `Error` to the URL query string
-    if (getError() != null) {
-      joiner.add(String.format("%sError%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getError()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get checkpointLog
+     *
+     * @return checkpointLog
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCheckpointLog() {
+        return checkpointLog;
     }
 
-    // add `ExitCode` to the URL query string
-    if (getExitCode() != null) {
-      joiner.add(String.format("%sExitCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCheckpointLog(String checkpointLog) {
+        this.checkpointLog = checkpointLog;
     }
 
-    // add `FinishedAt` to the URL query string
-    if (getFinishedAt() != null) {
-      joiner.add(String.format("%sFinishedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFinishedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerState checkpointPath(String checkpointPath) {
+        this.checkpointPath = checkpointPath;
+        return this;
     }
 
-    // add `Health` to the URL query string
-    if (getHealth() != null) {
-      joiner.add(getHealth().toUrlQueryString(prefix + "Health" + suffix));
+    /**
+     * Get checkpointPath
+     *
+     * @return checkpointPath
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCheckpointPath() {
+        return checkpointPath;
     }
 
-    // add `OOMKilled` to the URL query string
-    if (getOoMKilled() != null) {
-      joiner.add(String.format("%sOOMKilled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOoMKilled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCheckpointPath(String checkpointPath) {
+        this.checkpointPath = checkpointPath;
     }
 
-    // add `OciVersion` to the URL query string
-    if (getOciVersion() != null) {
-      joiner.add(String.format("%sOciVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOciVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerState checkpointed(Boolean checkpointed) {
+        this.checkpointed = checkpointed;
+        return this;
     }
 
-    // add `Paused` to the URL query string
-    if (getPaused() != null) {
-      joiner.add(String.format("%sPaused%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPaused()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get checkpointed
+     *
+     * @return checkpointed
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getCheckpointed() {
+        return checkpointed;
     }
 
-    // add `Pid` to the URL query string
-    if (getPid() != null) {
-      joiner.add(String.format("%sPid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCheckpointed(Boolean checkpointed) {
+        this.checkpointed = checkpointed;
     }
 
-    // add `Restarting` to the URL query string
-    if (getRestarting() != null) {
-      joiner.add(String.format("%sRestarting%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestarting()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerState checkpointedAt(OffsetDateTime checkpointedAt) {
+        this.checkpointedAt = checkpointedAt;
+        return this;
     }
 
-    // add `RestoreLog` to the URL query string
-    if (getRestoreLog() != null) {
-      joiner.add(String.format("%sRestoreLog%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestoreLog()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get checkpointedAt
+     *
+     * @return checkpointedAt
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getCheckpointedAt() {
+        return checkpointedAt;
     }
 
-    // add `Restored` to the URL query string
-    if (getRestored() != null) {
-      joiner.add(String.format("%sRestored%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestored()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCheckpointedAt(OffsetDateTime checkpointedAt) {
+        this.checkpointedAt = checkpointedAt;
     }
 
-    // add `RestoredAt` to the URL query string
-    if (getRestoredAt() != null) {
-      joiner.add(String.format("%sRestoredAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestoredAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerState conmonPid(Long conmonPid) {
+        this.conmonPid = conmonPid;
+        return this;
     }
 
-    // add `Running` to the URL query string
-    if (getRunning() != null) {
-      joiner.add(String.format("%sRunning%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRunning()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get conmonPid
+     *
+     * @return conmonPid
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getConmonPid() {
+        return conmonPid;
     }
 
-    // add `StartedAt` to the URL query string
-    if (getStartedAt() != null) {
-      joiner.add(String.format("%sStartedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setConmonPid(Long conmonPid) {
+        this.conmonPid = conmonPid;
     }
 
-    // add `Status` to the URL query string
-    if (getStatus() != null) {
-      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerState dead(Boolean dead) {
+        this.dead = dead;
+        return this;
     }
 
-    // add `StoppedByUser` to the URL query string
-    if (getStoppedByUser() != null) {
-      joiner.add(String.format("%sStoppedByUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStoppedByUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get dead
+     *
+     * @return dead
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getDead() {
+        return dead;
     }
 
-    return joiner.toString();
-  }
+    public void setDead(Boolean dead) {
+        this.dead = dead;
+    }
+
+    public InspectContainerState error(String error) {
+        this.error = error;
+        return this;
+    }
+
+    /**
+     * Get error
+     *
+     * @return error
+     */
+    @jakarta.annotation.Nullable
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public InspectContainerState exitCode(Integer exitCode) {
+        this.exitCode = exitCode;
+        return this;
+    }
+
+    /**
+     * Get exitCode
+     *
+     * @return exitCode
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getExitCode() {
+        return exitCode;
+    }
+
+    public void setExitCode(Integer exitCode) {
+        this.exitCode = exitCode;
+    }
+
+    public InspectContainerState finishedAt(OffsetDateTime finishedAt) {
+        this.finishedAt = finishedAt;
+        return this;
+    }
+
+    /**
+     * Get finishedAt
+     *
+     * @return finishedAt
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getFinishedAt() {
+        return finishedAt;
+    }
+
+    public void setFinishedAt(OffsetDateTime finishedAt) {
+        this.finishedAt = finishedAt;
+    }
+
+    public InspectContainerState health(HealthCheckResults health) {
+        this.health = health;
+        return this;
+    }
+
+    /**
+     * Get health
+     *
+     * @return health
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public HealthCheckResults getHealth() {
+        return health;
+    }
+
+    public void setHealth(HealthCheckResults health) {
+        this.health = health;
+    }
+
+    public InspectContainerState ooMKilled(Boolean ooMKilled) {
+        this.ooMKilled = ooMKilled;
+        return this;
+    }
+
+    /**
+     * Get ooMKilled
+     *
+     * @return ooMKilled
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOoMKilled() {
+        return ooMKilled;
+    }
+
+    public void setOoMKilled(Boolean ooMKilled) {
+        this.ooMKilled = ooMKilled;
+    }
+
+    public InspectContainerState ociVersion(String ociVersion) {
+        this.ociVersion = ociVersion;
+        return this;
+    }
+
+    /**
+     * Get ociVersion
+     *
+     * @return ociVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOciVersion() {
+        return ociVersion;
+    }
+
+    public void setOciVersion(String ociVersion) {
+        this.ociVersion = ociVersion;
+    }
+
+    public InspectContainerState paused(Boolean paused) {
+        this.paused = paused;
+        return this;
+    }
+
+    /**
+     * Get paused
+     *
+     * @return paused
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPaused() {
+        return paused;
+    }
+
+    public void setPaused(Boolean paused) {
+        this.paused = paused;
+    }
+
+    public InspectContainerState pid(Long pid) {
+        this.pid = pid;
+        return this;
+    }
+
+    /**
+     * Get pid
+     *
+     * @return pid
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getPid() {
+        return pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public InspectContainerState restarting(Boolean restarting) {
+        this.restarting = restarting;
+        return this;
+    }
+
+    /**
+     * Get restarting
+     *
+     * @return restarting
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRestarting() {
+        return restarting;
+    }
+
+    public void setRestarting(Boolean restarting) {
+        this.restarting = restarting;
+    }
+
+    public InspectContainerState restoreLog(String restoreLog) {
+        this.restoreLog = restoreLog;
+        return this;
+    }
+
+    /**
+     * Get restoreLog
+     *
+     * @return restoreLog
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRestoreLog() {
+        return restoreLog;
+    }
+
+    public void setRestoreLog(String restoreLog) {
+        this.restoreLog = restoreLog;
+    }
+
+    public InspectContainerState restored(Boolean restored) {
+        this.restored = restored;
+        return this;
+    }
+
+    /**
+     * Get restored
+     *
+     * @return restored
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRestored() {
+        return restored;
+    }
+
+    public void setRestored(Boolean restored) {
+        this.restored = restored;
+    }
+
+    public InspectContainerState restoredAt(OffsetDateTime restoredAt) {
+        this.restoredAt = restoredAt;
+        return this;
+    }
+
+    /**
+     * Get restoredAt
+     *
+     * @return restoredAt
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getRestoredAt() {
+        return restoredAt;
+    }
+
+    public void setRestoredAt(OffsetDateTime restoredAt) {
+        this.restoredAt = restoredAt;
+    }
+
+    public InspectContainerState running(Boolean running) {
+        this.running = running;
+        return this;
+    }
+
+    /**
+     * Get running
+     *
+     * @return running
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRunning() {
+        return running;
+    }
+
+    public void setRunning(Boolean running) {
+        this.running = running;
+    }
+
+    public InspectContainerState startedAt(OffsetDateTime startedAt) {
+        this.startedAt = startedAt;
+        return this;
+    }
+
+    /**
+     * Get startedAt
+     *
+     * @return startedAt
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getStartedAt() {
+        return startedAt;
+    }
+
+    public void setStartedAt(OffsetDateTime startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public InspectContainerState status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return status
+     */
+    @jakarta.annotation.Nullable
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public InspectContainerState stoppedByUser(Boolean stoppedByUser) {
+        this.stoppedByUser = stoppedByUser;
+        return this;
+    }
+
+    /**
+     * Get stoppedByUser
+     *
+     * @return stoppedByUser
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getStoppedByUser() {
+        return stoppedByUser;
+    }
+
+    public void setStoppedByUser(Boolean stoppedByUser) {
+        this.stoppedByUser = stoppedByUser;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectContainerState inspectContainerState = (InspectContainerState) o;
+        return Objects.equals(this.cgroupPath, inspectContainerState.cgroupPath) &&
+                Objects.equals(this.checkpointLog, inspectContainerState.checkpointLog) &&
+                Objects.equals(this.checkpointPath, inspectContainerState.checkpointPath) &&
+                Objects.equals(this.checkpointed, inspectContainerState.checkpointed) &&
+                Objects.equals(this.checkpointedAt, inspectContainerState.checkpointedAt) &&
+                Objects.equals(this.conmonPid, inspectContainerState.conmonPid) &&
+                Objects.equals(this.dead, inspectContainerState.dead) &&
+                Objects.equals(this.error, inspectContainerState.error) &&
+                Objects.equals(this.exitCode, inspectContainerState.exitCode) &&
+                Objects.equals(this.finishedAt, inspectContainerState.finishedAt) &&
+                Objects.equals(this.health, inspectContainerState.health) &&
+                Objects.equals(this.ooMKilled, inspectContainerState.ooMKilled) &&
+                Objects.equals(this.ociVersion, inspectContainerState.ociVersion) &&
+                Objects.equals(this.paused, inspectContainerState.paused) &&
+                Objects.equals(this.pid, inspectContainerState.pid) &&
+                Objects.equals(this.restarting, inspectContainerState.restarting) &&
+                Objects.equals(this.restoreLog, inspectContainerState.restoreLog) &&
+                Objects.equals(this.restored, inspectContainerState.restored) &&
+                Objects.equals(this.restoredAt, inspectContainerState.restoredAt) &&
+                Objects.equals(this.running, inspectContainerState.running) &&
+                Objects.equals(this.startedAt, inspectContainerState.startedAt) &&
+                Objects.equals(this.status, inspectContainerState.status) &&
+                Objects.equals(this.stoppedByUser, inspectContainerState.stoppedByUser);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cgroupPath, checkpointLog, checkpointPath, checkpointed, checkpointedAt, conmonPid, dead, error, exitCode, finishedAt, health, ooMKilled, ociVersion, paused, pid, restarting, restoreLog, restored, restoredAt, running, startedAt, status, stoppedByUser);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class InspectContainerState {\n" +
+                "    cgroupPath: " + toIndentedString(cgroupPath) + "\n" +
+                "    checkpointLog: " + toIndentedString(checkpointLog) + "\n" +
+                "    checkpointPath: " + toIndentedString(checkpointPath) + "\n" +
+                "    checkpointed: " + toIndentedString(checkpointed) + "\n" +
+                "    checkpointedAt: " + toIndentedString(checkpointedAt) + "\n" +
+                "    conmonPid: " + toIndentedString(conmonPid) + "\n" +
+                "    dead: " + toIndentedString(dead) + "\n" +
+                "    error: " + toIndentedString(error) + "\n" +
+                "    exitCode: " + toIndentedString(exitCode) + "\n" +
+                "    finishedAt: " + toIndentedString(finishedAt) + "\n" +
+                "    health: " + toIndentedString(health) + "\n" +
+                "    ooMKilled: " + toIndentedString(ooMKilled) + "\n" +
+                "    ociVersion: " + toIndentedString(ociVersion) + "\n" +
+                "    paused: " + toIndentedString(paused) + "\n" +
+                "    pid: " + toIndentedString(pid) + "\n" +
+                "    restarting: " + toIndentedString(restarting) + "\n" +
+                "    restoreLog: " + toIndentedString(restoreLog) + "\n" +
+                "    restored: " + toIndentedString(restored) + "\n" +
+                "    restoredAt: " + toIndentedString(restoredAt) + "\n" +
+                "    running: " + toIndentedString(running) + "\n" +
+                "    startedAt: " + toIndentedString(startedAt) + "\n" +
+                "    status: " + toIndentedString(status) + "\n" +
+                "    stoppedByUser: " + toIndentedString(stoppedByUser) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of InspectContainerState to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!InspectContainerState.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'InspectContainerState' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<InspectContainerState> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(InspectContainerState.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<InspectContainerState>() {
+                @Override
+                public void write(JsonWriter out, InspectContainerState value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public InspectContainerState read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

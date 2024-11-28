@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for History
  */
-class HistoryTest {
+public class HistoryTest {
     private final History model = new History();
 
     /**
      * Model tests for History
      */
     @Test
-    void testHistory() {
+    public void testHistory() {
         // TODO: test History
     }
 
@@ -43,7 +44,7 @@ class HistoryTest {
      * Test the property 'author'
      */
     @Test
-    void authorTest() {
+    public void authorTest() {
         // TODO: test author
     }
 
@@ -51,7 +52,7 @@ class HistoryTest {
      * Test the property 'comment'
      */
     @Test
-    void commentTest() {
+    public void commentTest() {
         // TODO: test comment
     }
 
@@ -59,7 +60,7 @@ class HistoryTest {
      * Test the property 'created'
      */
     @Test
-    void createdTest() {
+    public void createdTest() {
         // TODO: test created
     }
 
@@ -67,7 +68,7 @@ class HistoryTest {
      * Test the property 'createdBy'
      */
     @Test
-    void createdByTest() {
+    public void createdByTest() {
         // TODO: test createdBy
     }
 
@@ -75,7 +76,7 @@ class HistoryTest {
      * Test the property 'emptyLayer'
      */
     @Test
-    void emptyLayerTest() {
+    public void emptyLayerTest() {
         // TODO: test emptyLayer
     }
 

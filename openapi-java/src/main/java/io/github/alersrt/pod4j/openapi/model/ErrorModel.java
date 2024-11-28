@@ -13,206 +13,233 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.constraints.Min;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * ErrorModel is used in remote connections with podman
  */
-@JsonPropertyOrder({
-  ErrorModel.JSON_PROPERTY_CAUSE,
-  ErrorModel.JSON_PROPERTY_MESSAGE,
-  ErrorModel.JSON_PROPERTY_RESPONSE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ErrorModel {
-  public static final String JSON_PROPERTY_CAUSE = "cause";
-  private String cause;
+    public static final String SERIALIZED_NAME_CAUSE = "cause";
+    public static final String SERIALIZED_NAME_MESSAGE = "message";
+    public static final String SERIALIZED_NAME_RESPONSE = "response";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_MESSAGE = "message";
-  private String message;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("cause");
+        openapiFields.add("message");
+        openapiFields.add("response");
 
-  public static final String JSON_PROPERTY_RESPONSE = "response";
-  private Long response;
-
-  public ErrorModel() { 
-  }
-
-  public ErrorModel cause(String cause) {
-    this.cause = cause;
-    return this;
-  }
-
-  /**
-   * API root cause formatted for automated parsing
-   * @return cause
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAUSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCause() {
-    return cause;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAUSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCause(String cause) {
-    this.cause = cause;
-  }
-
-
-  public ErrorModel message(String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * human error message, formatted for a human to read
-   * @return message
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMessage() {
-    return message;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-
-  public ErrorModel response(Long response) {
-    this.response = response;
-    return this;
-  }
-
-  /**
-   * HTTP response code
-   * minimum: 400
-   * @return response
-   */
-  @jakarta.annotation.Nullable
- @Min(400L)
-  @JsonProperty(JSON_PROPERTY_RESPONSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getResponse() {
-    return response;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESPONSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResponse(Long response) {
-    this.response = response;
-  }
-
-
-  /**
-   * Return true if this ErrorModel object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ErrorModel errorModel = (ErrorModel) o;
-    return Objects.equals(this.cause, errorModel.cause) &&
-        Objects.equals(this.message, errorModel.message) &&
-        Objects.equals(this.response, errorModel.response);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(cause, message, response);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorModel {\n");
-    sb.append("    cause: ").append(toIndentedString(cause)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    response: ").append(toIndentedString(response)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CAUSE)
+    private String cause;
+    @SerializedName(SERIALIZED_NAME_MESSAGE)
+    private String message;
+    @SerializedName(SERIALIZED_NAME_RESPONSE)
+    private Long response;
 
-    // add `cause` to the URL query string
-    if (getCause() != null) {
-      joiner.add(String.format("%scause%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCause()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ErrorModel() {
     }
 
-    // add `message` to the URL query string
-    if (getMessage() != null) {
-      joiner.add(String.format("%smessage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMessage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ErrorModel
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ErrorModel.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ErrorModel is not found in the empty JSON string", ErrorModel.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ErrorModel.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ErrorModel` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("cause") != null && !jsonObj.get("cause").isJsonNull()) && !jsonObj.get("cause").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cause` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cause").toString()));
+        }
+        if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+        }
     }
 
-    // add `response` to the URL query string
-    if (getResponse() != null) {
-      joiner.add(String.format("%sresponse%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getResponse()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ErrorModel given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ErrorModel
+     * @throws IOException if the JSON string is invalid with respect to ErrorModel
+     */
+    public static ErrorModel fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ErrorModel.class);
     }
 
-    return joiner.toString();
-  }
+    public ErrorModel cause(String cause) {
+        this.cause = cause;
+        return this;
+    }
+
+    /**
+     * API root cause formatted for automated parsing
+     *
+     * @return cause
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
+
+    public ErrorModel message(String message) {
+        this.message = message;
+        return this;
+    }
+
+    /**
+     * human error message, formatted for a human to read
+     *
+     * @return message
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public ErrorModel response(Long response) {
+        this.response = response;
+        return this;
+    }
+
+    /**
+     * HTTP response code
+     * minimum: 400
+     *
+     * @return response
+     */
+    @jakarta.annotation.Nullable
+    @Min(400L)
+    public Long getResponse() {
+        return response;
+    }
+
+    public void setResponse(Long response) {
+        this.response = response;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ErrorModel errorModel = (ErrorModel) o;
+        return Objects.equals(this.cause, errorModel.cause) &&
+                Objects.equals(this.message, errorModel.message) &&
+                Objects.equals(this.response, errorModel.response);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cause, message, response);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ErrorModel {\n" +
+                "    cause: " + toIndentedString(cause) + "\n" +
+                "    message: " + toIndentedString(message) + "\n" +
+                "    response: " + toIndentedString(response) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ErrorModel to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ErrorModel.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ErrorModel' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ErrorModel> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ErrorModel.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ErrorModel>() {
+                @Override
+                public void write(JsonWriter out, ErrorModel value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ErrorModel read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

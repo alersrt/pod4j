@@ -13,228 +13,241 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * TmpfsOptions
  */
-@JsonPropertyOrder({
-  TmpfsOptions.JSON_PROPERTY_MODE,
-  TmpfsOptions.JSON_PROPERTY_OPTIONS,
-  TmpfsOptions.JSON_PROPERTY_SIZE_BYTES
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class TmpfsOptions {
-  public static final String JSON_PROPERTY_MODE = "Mode";
-  private Integer mode;
+    public static final String SERIALIZED_NAME_MODE = "Mode";
+    public static final String SERIALIZED_NAME_OPTIONS = "Options";
+    public static final String SERIALIZED_NAME_SIZE_BYTES = "SizeBytes";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_OPTIONS = "Options";
-  private List<List<String>> options = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Mode");
+        openapiFields.add("Options");
+        openapiFields.add("SizeBytes");
 
-  public static final String JSON_PROPERTY_SIZE_BYTES = "SizeBytes";
-  private Long sizeBytes;
-
-  public TmpfsOptions() { 
-  }
-
-  public TmpfsOptions mode(Integer mode) {
-    this.mode = mode;
-    return this;
-  }
-
-  /**
-   * The bits have the same definition on all systems, so that information about files can be moved from one system to another portably. Not all bits apply to all systems. The only required bit is [ModeDir] for directories.
-   * @return mode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getMode() {
-    return mode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMode(Integer mode) {
-    this.mode = mode;
-  }
-
-
-  public TmpfsOptions options(List<List<String>> options) {
-    this.options = options;
-    return this;
-  }
-
-  public TmpfsOptions addOptionsItem(List<String> optionsItem) {
-    if (this.options == null) {
-      this.options = new ArrayList<>();
-    }
-    this.options.add(optionsItem);
-    return this;
-  }
-
-  /**
-   * Options to be passed to the tmpfs mount. An array of arrays. Flag options should be provided as 1-length arrays. Other types should be provided as 2-length arrays, where the first item is the key and the second the value.
-   * @return options
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<List<String>> getOptions() {
-    return options;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOptions(List<List<String>> options) {
-    this.options = options;
-  }
-
-
-  public TmpfsOptions sizeBytes(Long sizeBytes) {
-    this.sizeBytes = sizeBytes;
-    return this;
-  }
-
-  /**
-   * Size sets the size of the tmpfs, in bytes.  This will be converted to an operating system specific value depending on the host. For example, on linux, it will be converted to use a &#39;k&#39;, &#39;m&#39; or &#39;g&#39; syntax. BSD, though not widely supported with docker, uses a straight byte value.  Percentages are not supported.
-   * @return sizeBytes
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE_BYTES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSizeBytes() {
-    return sizeBytes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE_BYTES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSizeBytes(Long sizeBytes) {
-    this.sizeBytes = sizeBytes;
-  }
-
-
-  /**
-   * Return true if this TmpfsOptions object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    TmpfsOptions tmpfsOptions = (TmpfsOptions) o;
-    return Objects.equals(this.mode, tmpfsOptions.mode) &&
-        Objects.equals(this.options, tmpfsOptions.options) &&
-        Objects.equals(this.sizeBytes, tmpfsOptions.sizeBytes);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(mode, options, sizeBytes);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class TmpfsOptions {\n");
-    sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    sizeBytes: ").append(toIndentedString(sizeBytes)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_MODE)
+    private Integer mode;
+    @SerializedName(SERIALIZED_NAME_OPTIONS)
+    private List<List<String>> options = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SIZE_BYTES)
+    private Long sizeBytes;
 
-    // add `Mode` to the URL query string
-    if (getMode() != null) {
-      joiner.add(String.format("%sMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public TmpfsOptions() {
     }
 
-    // add `Options` to the URL query string
-    if (getOptions() != null) {
-      for (int i = 0; i < getOptions().size(); i++) {
-        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getOptions().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to TmpfsOptions
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!TmpfsOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in TmpfsOptions is not found in the empty JSON string", TmpfsOptions.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!TmpfsOptions.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TmpfsOptions` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull() && !jsonObj.get("Options").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
+        }
     }
 
-    // add `SizeBytes` to the URL query string
-    if (getSizeBytes() != null) {
-      joiner.add(String.format("%sSizeBytes%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSizeBytes()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of TmpfsOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of TmpfsOptions
+     * @throws IOException if the JSON string is invalid with respect to TmpfsOptions
+     */
+    public static TmpfsOptions fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, TmpfsOptions.class);
     }
 
-    return joiner.toString();
-  }
+    public TmpfsOptions mode(Integer mode) {
+        this.mode = mode;
+        return this;
+    }
+
+    /**
+     * The bits have the same definition on all systems, so that information about files can be moved from one system to another portably. Not all bits apply to all systems. The only required bit is [ModeDir] for directories.
+     *
+     * @return mode
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getMode() {
+        return mode;
+    }
+
+    public void setMode(Integer mode) {
+        this.mode = mode;
+    }
+
+    public TmpfsOptions options(List<List<String>> options) {
+        this.options = options;
+        return this;
+    }
+
+    public TmpfsOptions addOptionsItem(List<String> optionsItem) {
+        if (this.options == null) {
+            this.options = new ArrayList<>();
+        }
+        this.options.add(optionsItem);
+        return this;
+    }
+
+    /**
+     * Options to be passed to the tmpfs mount. An array of arrays. Flag options should be provided as 1-length arrays. Other types should be provided as 2-length arrays, where the first item is the key and the second the value.
+     *
+     * @return options
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<List<String>> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<List<String>> options) {
+        this.options = options;
+    }
+
+    public TmpfsOptions sizeBytes(Long sizeBytes) {
+        this.sizeBytes = sizeBytes;
+        return this;
+    }
+
+    /**
+     * Size sets the size of the tmpfs, in bytes.  This will be converted to an operating system specific value depending on the host. For example, on linux, it will be converted to use a &#39;k&#39;, &#39;m&#39; or &#39;g&#39; syntax. BSD, though not widely supported with docker, uses a straight byte value.  Percentages are not supported.
+     *
+     * @return sizeBytes
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSizeBytes() {
+        return sizeBytes;
+    }
+
+    public void setSizeBytes(Long sizeBytes) {
+        this.sizeBytes = sizeBytes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        TmpfsOptions tmpfsOptions = (TmpfsOptions) o;
+        return Objects.equals(this.mode, tmpfsOptions.mode) &&
+                Objects.equals(this.options, tmpfsOptions.options) &&
+                Objects.equals(this.sizeBytes, tmpfsOptions.sizeBytes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(mode, options, sizeBytes);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class TmpfsOptions {\n" +
+                "    mode: " + toIndentedString(mode) + "\n" +
+                "    options: " + toIndentedString(options) + "\n" +
+                "    sizeBytes: " + toIndentedString(sizeBytes) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of TmpfsOptions to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!TmpfsOptions.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'TmpfsOptions' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<TmpfsOptions> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(TmpfsOptions.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<TmpfsOptions>() {
+                @Override
+                public void write(JsonWriter out, TmpfsOptions value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public TmpfsOptions read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

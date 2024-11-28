@@ -13,796 +13,675 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ConfigReference;
-import io.github.alersrt.pod4j.openapi.model.EndpointResource;
-import io.github.alersrt.pod4j.openapi.model.IPAM;
-import io.github.alersrt.pod4j.openapi.model.PeerInfo;
-import io.github.alersrt.pod4j.openapi.model.ServiceInfo;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Inspect
  */
-@JsonPropertyOrder({
-  Inspect.JSON_PROPERTY_ATTACHABLE,
-  Inspect.JSON_PROPERTY_CONFIG_FROM,
-  Inspect.JSON_PROPERTY_CONFIG_ONLY,
-  Inspect.JSON_PROPERTY_CONTAINERS,
-  Inspect.JSON_PROPERTY_CREATED,
-  Inspect.JSON_PROPERTY_DRIVER,
-  Inspect.JSON_PROPERTY_ENABLE_I_PV6,
-  Inspect.JSON_PROPERTY_I_P_A_M,
-  Inspect.JSON_PROPERTY_ID,
-  Inspect.JSON_PROPERTY_INGRESS,
-  Inspect.JSON_PROPERTY_INTERNAL,
-  Inspect.JSON_PROPERTY_LABELS,
-  Inspect.JSON_PROPERTY_NAME,
-  Inspect.JSON_PROPERTY_OPTIONS,
-  Inspect.JSON_PROPERTY_PEERS,
-  Inspect.JSON_PROPERTY_SCOPE,
-  Inspect.JSON_PROPERTY_SERVICES
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Inspect {
-  public static final String JSON_PROPERTY_ATTACHABLE = "Attachable";
-  private Boolean attachable;
-
-  public static final String JSON_PROPERTY_CONFIG_FROM = "ConfigFrom";
-  private ConfigReference configFrom;
-
-  public static final String JSON_PROPERTY_CONFIG_ONLY = "ConfigOnly";
-  private Boolean configOnly;
-
-  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
-  private Map<String, EndpointResource> containers = new HashMap<>();
-
-  public static final String JSON_PROPERTY_CREATED = "Created";
-  private OffsetDateTime created;
-
-  public static final String JSON_PROPERTY_DRIVER = "Driver";
-  private String driver;
-
-  public static final String JSON_PROPERTY_ENABLE_I_PV6 = "EnableIPv6";
-  private Boolean enableIPv6;
-
-  public static final String JSON_PROPERTY_I_P_A_M = "IPAM";
-  private IPAM ipam;
-
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
-
-  public static final String JSON_PROPERTY_INGRESS = "Ingress";
-  private Boolean ingress;
-
-  public static final String JSON_PROPERTY_INTERNAL = "Internal";
-  private Boolean internal;
-
-  public static final String JSON_PROPERTY_LABELS = "Labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_OPTIONS = "Options";
-  private Map<String, String> options = new HashMap<>();
-
-  public static final String JSON_PROPERTY_PEERS = "Peers";
-  private List<@Valid PeerInfo> peers = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SCOPE = "Scope";
-  private String scope;
-
-  public static final String JSON_PROPERTY_SERVICES = "Services";
-  private Map<String, ServiceInfo> services = new HashMap<>();
-
-  public Inspect() { 
-  }
-
-  public Inspect attachable(Boolean attachable) {
-    this.attachable = attachable;
-    return this;
-  }
-
-  /**
-   * Get attachable
-   * @return attachable
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACHABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachable() {
-    return attachable;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACHABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachable(Boolean attachable) {
-    this.attachable = attachable;
-  }
-
-
-  public Inspect configFrom(ConfigReference configFrom) {
-    this.configFrom = configFrom;
-    return this;
-  }
-
-  /**
-   * Get configFrom
-   * @return configFrom
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CONFIG_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public ConfigReference getConfigFrom() {
-    return configFrom;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONFIG_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConfigFrom(ConfigReference configFrom) {
-    this.configFrom = configFrom;
-  }
-
-
-  public Inspect configOnly(Boolean configOnly) {
-    this.configOnly = configOnly;
-    return this;
-  }
-
-  /**
-   * Get configOnly
-   * @return configOnly
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONFIG_ONLY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getConfigOnly() {
-    return configOnly;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONFIG_ONLY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConfigOnly(Boolean configOnly) {
-    this.configOnly = configOnly;
-  }
-
-
-  public Inspect containers(Map<String, EndpointResource> containers) {
-    this.containers = containers;
-    return this;
-  }
-
-  public Inspect putContainersItem(String key, EndpointResource containersItem) {
-    if (this.containers == null) {
-      this.containers = new HashMap<>();
-    }
-    this.containers.put(key, containersItem);
-    return this;
-  }
-
-  /**
-   * Get containers
-   * @return containers
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, EndpointResource> getContainers() {
-    return containers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainers(Map<String, EndpointResource> containers) {
-    this.containers = containers;
-  }
-
-
-  public Inspect created(OffsetDateTime created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Get created
-   * @return created
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getCreated() {
-    return created;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
-  }
-
-
-  public Inspect driver(String driver) {
-    this.driver = driver;
-    return this;
-  }
-
-  /**
-   * Get driver
-   * @return driver
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDriver() {
-    return driver;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDriver(String driver) {
-    this.driver = driver;
-  }
-
-
-  public Inspect enableIPv6(Boolean enableIPv6) {
-    this.enableIPv6 = enableIPv6;
-    return this;
-  }
-
-  /**
-   * Get enableIPv6
-   * @return enableIPv6
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENABLE_I_PV6)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getEnableIPv6() {
-    return enableIPv6;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENABLE_I_PV6)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnableIPv6(Boolean enableIPv6) {
-    this.enableIPv6 = enableIPv6;
-  }
-
-
-  public Inspect ipam(IPAM ipam) {
-    this.ipam = ipam;
-    return this;
-  }
-
-  /**
-   * Get ipam
-   * @return ipam
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_I_P_A_M)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public IPAM getIPAM() {
-    return ipam;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_I_P_A_M)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIPAM(IPAM ipam) {
-    this.ipam = ipam;
-  }
-
-
-  public Inspect id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Inspect ingress(Boolean ingress) {
-    this.ingress = ingress;
-    return this;
-  }
-
-  /**
-   * Get ingress
-   * @return ingress
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INGRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getIngress() {
-    return ingress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INGRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIngress(Boolean ingress) {
-    this.ingress = ingress;
-  }
-
-
-  public Inspect internal(Boolean internal) {
-    this.internal = internal;
-    return this;
-  }
-
-  /**
-   * Get internal
-   * @return internal
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INTERNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getInternal() {
-    return internal;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INTERNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInternal(Boolean internal) {
-    this.internal = internal;
-  }
-
-
-  public Inspect labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public Inspect putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * Get labels
-   * @return labels
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public Inspect name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public Inspect options(Map<String, String> options) {
-    this.options = options;
-    return this;
-  }
-
-  public Inspect putOptionsItem(String key, String optionsItem) {
-    if (this.options == null) {
-      this.options = new HashMap<>();
-    }
-    this.options.put(key, optionsItem);
-    return this;
-  }
-
-  /**
-   * Get options
-   * @return options
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getOptions() {
-    return options;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOptions(Map<String, String> options) {
-    this.options = options;
-  }
-
-
-  public Inspect peers(List<@Valid PeerInfo> peers) {
-    this.peers = peers;
-    return this;
-  }
-
-  public Inspect addPeersItem(PeerInfo peersItem) {
-    if (this.peers == null) {
-      this.peers = new ArrayList<>();
-    }
-    this.peers.add(peersItem);
-    return this;
-  }
-
-  /**
-   * Get peers
-   * @return peers
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PEERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid PeerInfo> getPeers() {
-    return peers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PEERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPeers(List<@Valid PeerInfo> peers) {
-    this.peers = peers;
-  }
-
-
-  public Inspect scope(String scope) {
-    this.scope = scope;
-    return this;
-  }
-
-  /**
-   * Get scope
-   * @return scope
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SCOPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getScope() {
-    return scope;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SCOPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setScope(String scope) {
-    this.scope = scope;
-  }
-
-
-  public Inspect services(Map<String, ServiceInfo> services) {
-    this.services = services;
-    return this;
-  }
-
-  public Inspect putServicesItem(String key, ServiceInfo servicesItem) {
-    if (this.services == null) {
-      this.services = new HashMap<>();
-    }
-    this.services.put(key, servicesItem);
-    return this;
-  }
-
-  /**
-   * Get services
-   * @return services
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_SERVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, ServiceInfo> getServices() {
-    return services;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SERVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setServices(Map<String, ServiceInfo> services) {
-    this.services = services;
-  }
-
-
-  /**
-   * Return true if this Inspect object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Inspect inspect = (Inspect) o;
-    return Objects.equals(this.attachable, inspect.attachable) &&
-        Objects.equals(this.configFrom, inspect.configFrom) &&
-        Objects.equals(this.configOnly, inspect.configOnly) &&
-        Objects.equals(this.containers, inspect.containers) &&
-        Objects.equals(this.created, inspect.created) &&
-        Objects.equals(this.driver, inspect.driver) &&
-        Objects.equals(this.enableIPv6, inspect.enableIPv6) &&
-        Objects.equals(this.ipam, inspect.ipam) &&
-        Objects.equals(this.id, inspect.id) &&
-        Objects.equals(this.ingress, inspect.ingress) &&
-        Objects.equals(this.internal, inspect.internal) &&
-        Objects.equals(this.labels, inspect.labels) &&
-        Objects.equals(this.name, inspect.name) &&
-        Objects.equals(this.options, inspect.options) &&
-        Objects.equals(this.peers, inspect.peers) &&
-        Objects.equals(this.scope, inspect.scope) &&
-        Objects.equals(this.services, inspect.services);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(attachable, configFrom, configOnly, containers, created, driver, enableIPv6, ipam, id, ingress, internal, labels, name, options, peers, scope, services);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Inspect {\n");
-    sb.append("    attachable: ").append(toIndentedString(attachable)).append("\n");
-    sb.append("    configFrom: ").append(toIndentedString(configFrom)).append("\n");
-    sb.append("    configOnly: ").append(toIndentedString(configOnly)).append("\n");
-    sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    driver: ").append(toIndentedString(driver)).append("\n");
-    sb.append("    enableIPv6: ").append(toIndentedString(enableIPv6)).append("\n");
-    sb.append("    ipam: ").append(toIndentedString(ipam)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    ingress: ").append(toIndentedString(ingress)).append("\n");
-    sb.append("    internal: ").append(toIndentedString(internal)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    peers: ").append(toIndentedString(peers)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    services: ").append(toIndentedString(services)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ATTACHABLE = "Attachable";
+    public static final String SERIALIZED_NAME_CONFIG_FROM = "ConfigFrom";
+    public static final String SERIALIZED_NAME_CONFIG_ONLY = "ConfigOnly";
+    public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
+    public static final String SERIALIZED_NAME_CREATED = "Created";
+    public static final String SERIALIZED_NAME_DRIVER = "Driver";
+    public static final String SERIALIZED_NAME_ENABLE_I_PV6 = "EnableIPv6";
+    public static final String SERIALIZED_NAME_I_P_A_M = "IPAM";
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_INGRESS = "Ingress";
+    public static final String SERIALIZED_NAME_INTERNAL = "Internal";
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_OPTIONS = "Options";
+    public static final String SERIALIZED_NAME_PEERS = "Peers";
+    public static final String SERIALIZED_NAME_SCOPE = "Scope";
+    public static final String SERIALIZED_NAME_SERVICES = "Services";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Attachable");
+        openapiFields.add("ConfigFrom");
+        openapiFields.add("ConfigOnly");
+        openapiFields.add("Containers");
+        openapiFields.add("Created");
+        openapiFields.add("Driver");
+        openapiFields.add("EnableIPv6");
+        openapiFields.add("IPAM");
+        openapiFields.add("Id");
+        openapiFields.add("Ingress");
+        openapiFields.add("Internal");
+        openapiFields.add("Labels");
+        openapiFields.add("Name");
+        openapiFields.add("Options");
+        openapiFields.add("Peers");
+        openapiFields.add("Scope");
+        openapiFields.add("Services");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ATTACHABLE)
+    private Boolean attachable;
+    @SerializedName(SERIALIZED_NAME_CONFIG_FROM)
+    private ConfigReference configFrom;
+    @SerializedName(SERIALIZED_NAME_CONFIG_ONLY)
+    private Boolean configOnly;
+    @SerializedName(SERIALIZED_NAME_CONTAINERS)
+    private Map<String, EndpointResource> containers = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private OffsetDateTime created;
+    @SerializedName(SERIALIZED_NAME_DRIVER)
+    private String driver;
+    @SerializedName(SERIALIZED_NAME_ENABLE_I_PV6)
+    private Boolean enableIPv6;
+    @SerializedName(SERIALIZED_NAME_I_P_A_M)
+    private IPAM ipam;
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_INGRESS)
+    private Boolean ingress;
+    @SerializedName(SERIALIZED_NAME_INTERNAL)
+    private Boolean internal;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_OPTIONS)
+    private Map<String, String> options = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_PEERS)
+    private List<@Valid PeerInfo> peers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SCOPE)
+    private String scope;
+    @SerializedName(SERIALIZED_NAME_SERVICES)
+    private Map<String, ServiceInfo> services = new HashMap<>();
 
-    // add `Attachable` to the URL query string
-    if (getAttachable() != null) {
-      joiner.add(String.format("%sAttachable%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Inspect() {
     }
 
-    // add `ConfigFrom` to the URL query string
-    if (getConfigFrom() != null) {
-      joiner.add(getConfigFrom().toUrlQueryString(prefix + "ConfigFrom" + suffix));
-    }
-
-    // add `ConfigOnly` to the URL query string
-    if (getConfigOnly() != null) {
-      joiner.add(String.format("%sConfigOnly%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConfigOnly()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Containers` to the URL query string
-    if (getContainers() != null) {
-      for (String _key : getContainers().keySet()) {
-        if (getContainers().get(_key) != null) {
-          joiner.add(getContainers().get(_key).toUrlQueryString(String.format("%sContainers%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Inspect
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Inspect.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Inspect is not found in the empty JSON string", Inspect.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `Created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Driver` to the URL query string
-    if (getDriver() != null) {
-      joiner.add(String.format("%sDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `EnableIPv6` to the URL query string
-    if (getEnableIPv6() != null) {
-      joiner.add(String.format("%sEnableIPv6%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnableIPv6()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IPAM` to the URL query string
-    if (getIPAM() != null) {
-      joiner.add(getIPAM().toUrlQueryString(prefix + "IPAM" + suffix));
-    }
-
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Ingress` to the URL query string
-    if (getIngress() != null) {
-      joiner.add(String.format("%sIngress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIngress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Internal` to the URL query string
-    if (getInternal() != null) {
-      joiner.add(String.format("%sInternal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInternal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Options` to the URL query string
-    if (getOptions() != null) {
-      for (String _key : getOptions().keySet()) {
-        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getOptions().get(_key), URLEncoder.encode(ApiClient.valueToString(getOptions().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Peers` to the URL query string
-    if (getPeers() != null) {
-      for (int i = 0; i < getPeers().size(); i++) {
-        if (getPeers().get(i) != null) {
-          joiner.add(getPeers().get(i).toUrlQueryString(String.format("%sPeers%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Inspect.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Inspect` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
-    }
-
-    // add `Scope` to the URL query string
-    if (getScope() != null) {
-      joiner.add(String.format("%sScope%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getScope()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Services` to the URL query string
-    if (getServices() != null) {
-      for (String _key : getServices().keySet()) {
-        if (getServices().get(_key) != null) {
-          joiner.add(getServices().get(_key).toUrlQueryString(String.format("%sServices%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `ConfigFrom`
+        if (jsonObj.get("ConfigFrom") != null && !jsonObj.get("ConfigFrom").isJsonNull()) {
+            ConfigReference.validateJsonElement(jsonObj.get("ConfigFrom"));
         }
-      }
+        if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
+        }
+        // validate the optional field `IPAM`
+        if (jsonObj.get("IPAM") != null && !jsonObj.get("IPAM").isJsonNull()) {
+            IPAM.validateJsonElement(jsonObj.get("IPAM"));
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
+        if (jsonObj.get("Peers") != null && !jsonObj.get("Peers").isJsonNull()) {
+            JsonArray jsonArraypeers = jsonObj.getAsJsonArray("Peers");
+            if (jsonArraypeers != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Peers").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Peers` to be an array in the JSON string but got `%s`", jsonObj.get("Peers").toString()));
+                }
+
+                // validate the optional field `Peers` (array)
+                for (int i = 0; i < jsonArraypeers.size(); i++) {
+                    PeerInfo.validateJsonElement(jsonArraypeers.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("Scope") != null && !jsonObj.get("Scope").isJsonNull()) && !jsonObj.get("Scope").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Scope").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of Inspect given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Inspect
+     * @throws IOException if the JSON string is invalid with respect to Inspect
+     */
+    public static Inspect fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Inspect.class);
+    }
+
+    public Inspect attachable(Boolean attachable) {
+        this.attachable = attachable;
+        return this;
+    }
+
+    /**
+     * Get attachable
+     *
+     * @return attachable
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachable() {
+        return attachable;
+    }
+
+    public void setAttachable(Boolean attachable) {
+        this.attachable = attachable;
+    }
+
+    public Inspect configFrom(ConfigReference configFrom) {
+        this.configFrom = configFrom;
+        return this;
+    }
+
+    /**
+     * Get configFrom
+     *
+     * @return configFrom
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public ConfigReference getConfigFrom() {
+        return configFrom;
+    }
+
+    public void setConfigFrom(ConfigReference configFrom) {
+        this.configFrom = configFrom;
+    }
+
+    public Inspect configOnly(Boolean configOnly) {
+        this.configOnly = configOnly;
+        return this;
+    }
+
+    /**
+     * Get configOnly
+     *
+     * @return configOnly
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getConfigOnly() {
+        return configOnly;
+    }
+
+    public void setConfigOnly(Boolean configOnly) {
+        this.configOnly = configOnly;
+    }
+
+    public Inspect containers(Map<String, EndpointResource> containers) {
+        this.containers = containers;
+        return this;
+    }
+
+    public Inspect putContainersItem(String key, EndpointResource containersItem) {
+        if (this.containers == null) {
+            this.containers = new HashMap<>();
+        }
+        this.containers.put(key, containersItem);
+        return this;
+    }
+
+    /**
+     * Get containers
+     *
+     * @return containers
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, EndpointResource> getContainers() {
+        return containers;
+    }
+
+    public void setContainers(Map<String, EndpointResource> containers) {
+        this.containers = containers;
+    }
+
+    public Inspect created(OffsetDateTime created) {
+        this.created = created;
+        return this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return created
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(OffsetDateTime created) {
+        this.created = created;
+    }
+
+    public Inspect driver(String driver) {
+        this.driver = driver;
+        return this;
+    }
+
+    /**
+     * Get driver
+     *
+     * @return driver
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDriver() {
+        return driver;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
+
+    public Inspect enableIPv6(Boolean enableIPv6) {
+        this.enableIPv6 = enableIPv6;
+        return this;
+    }
+
+    /**
+     * Get enableIPv6
+     *
+     * @return enableIPv6
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getEnableIPv6() {
+        return enableIPv6;
+    }
+
+    public void setEnableIPv6(Boolean enableIPv6) {
+        this.enableIPv6 = enableIPv6;
+    }
+
+    public Inspect ipam(IPAM ipam) {
+        this.ipam = ipam;
+        return this;
+    }
+
+    /**
+     * Get ipam
+     *
+     * @return ipam
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public IPAM getIPAM() {
+        return ipam;
+    }
+
+    public void setIPAM(IPAM ipam) {
+        this.ipam = ipam;
+    }
+
+    public Inspect id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Inspect ingress(Boolean ingress) {
+        this.ingress = ingress;
+        return this;
+    }
+
+    /**
+     * Get ingress
+     *
+     * @return ingress
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getIngress() {
+        return ingress;
+    }
+
+    public void setIngress(Boolean ingress) {
+        this.ingress = ingress;
+    }
+
+    public Inspect internal(Boolean internal) {
+        this.internal = internal;
+        return this;
+    }
+
+    /**
+     * Get internal
+     *
+     * @return internal
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getInternal() {
+        return internal;
+    }
+
+    public void setInternal(Boolean internal) {
+        this.internal = internal;
+    }
+
+    public Inspect labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public Inspect putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * Get labels
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public Inspect name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Inspect options(Map<String, String> options) {
+        this.options = options;
+        return this;
+    }
+
+    public Inspect putOptionsItem(String key, String optionsItem) {
+        if (this.options == null) {
+            this.options = new HashMap<>();
+        }
+        this.options.put(key, optionsItem);
+        return this;
+    }
+
+    /**
+     * Get options
+     *
+     * @return options
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Map<String, String> options) {
+        this.options = options;
+    }
+
+    public Inspect peers(List<@Valid PeerInfo> peers) {
+        this.peers = peers;
+        return this;
+    }
+
+    public Inspect addPeersItem(PeerInfo peersItem) {
+        if (this.peers == null) {
+            this.peers = new ArrayList<>();
+        }
+        this.peers.add(peersItem);
+        return this;
+    }
+
+    /**
+     * Get peers
+     *
+     * @return peers
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid PeerInfo> getPeers() {
+        return peers;
+    }
+
+    public void setPeers(List<@Valid PeerInfo> peers) {
+        this.peers = peers;
+    }
+
+    public Inspect scope(String scope) {
+        this.scope = scope;
+        return this;
+    }
+
+    /**
+     * Get scope
+     *
+     * @return scope
+     */
+    @jakarta.annotation.Nullable
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+    public Inspect services(Map<String, ServiceInfo> services) {
+        this.services = services;
+        return this;
+    }
+
+    public Inspect putServicesItem(String key, ServiceInfo servicesItem) {
+        if (this.services == null) {
+            this.services = new HashMap<>();
+        }
+        this.services.put(key, servicesItem);
+        return this;
+    }
+
+    /**
+     * Get services
+     *
+     * @return services
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, ServiceInfo> getServices() {
+        return services;
+    }
+
+    public void setServices(Map<String, ServiceInfo> services) {
+        this.services = services;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Inspect inspect = (Inspect) o;
+        return Objects.equals(this.attachable, inspect.attachable) &&
+                Objects.equals(this.configFrom, inspect.configFrom) &&
+                Objects.equals(this.configOnly, inspect.configOnly) &&
+                Objects.equals(this.containers, inspect.containers) &&
+                Objects.equals(this.created, inspect.created) &&
+                Objects.equals(this.driver, inspect.driver) &&
+                Objects.equals(this.enableIPv6, inspect.enableIPv6) &&
+                Objects.equals(this.ipam, inspect.ipam) &&
+                Objects.equals(this.id, inspect.id) &&
+                Objects.equals(this.ingress, inspect.ingress) &&
+                Objects.equals(this.internal, inspect.internal) &&
+                Objects.equals(this.labels, inspect.labels) &&
+                Objects.equals(this.name, inspect.name) &&
+                Objects.equals(this.options, inspect.options) &&
+                Objects.equals(this.peers, inspect.peers) &&
+                Objects.equals(this.scope, inspect.scope) &&
+                Objects.equals(this.services, inspect.services);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(attachable, configFrom, configOnly, containers, created, driver, enableIPv6, ipam, id, ingress, internal, labels, name, options, peers, scope, services);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Inspect {\n" +
+                "    attachable: " + toIndentedString(attachable) + "\n" +
+                "    configFrom: " + toIndentedString(configFrom) + "\n" +
+                "    configOnly: " + toIndentedString(configOnly) + "\n" +
+                "    containers: " + toIndentedString(containers) + "\n" +
+                "    created: " + toIndentedString(created) + "\n" +
+                "    driver: " + toIndentedString(driver) + "\n" +
+                "    enableIPv6: " + toIndentedString(enableIPv6) + "\n" +
+                "    ipam: " + toIndentedString(ipam) + "\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    ingress: " + toIndentedString(ingress) + "\n" +
+                "    internal: " + toIndentedString(internal) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    options: " + toIndentedString(options) + "\n" +
+                "    peers: " + toIndentedString(peers) + "\n" +
+                "    scope: " + toIndentedString(scope) + "\n" +
+                "    services: " + toIndentedString(services) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Inspect to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Inspect.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Inspect' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Inspect> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Inspect.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Inspect>() {
+                @Override
+                public void write(JsonWriter out, Inspect value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Inspect read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

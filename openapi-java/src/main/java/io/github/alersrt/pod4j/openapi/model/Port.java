@@ -13,251 +13,269 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import jakarta.validation.constraints.NotNull;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Port An open port on a container
  */
-@JsonPropertyOrder({
-  Port.JSON_PROPERTY_I_P,
-  Port.JSON_PROPERTY_PRIVATE_PORT,
-  Port.JSON_PROPERTY_PUBLIC_PORT,
-  Port.JSON_PROPERTY_TYPE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Port {
-  public static final String JSON_PROPERTY_I_P = "IP";
-  private String IP;
+    public static final String SERIALIZED_NAME_I_P = "IP";
+    public static final String SERIALIZED_NAME_PRIVATE_PORT = "PrivatePort";
+    public static final String SERIALIZED_NAME_PUBLIC_PORT = "PublicPort";
+    public static final String SERIALIZED_NAME_TYPE = "Type";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_PRIVATE_PORT = "PrivatePort";
-  private Integer privatePort;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("IP");
+        openapiFields.add("PrivatePort");
+        openapiFields.add("PublicPort");
+        openapiFields.add("Type");
 
-  public static final String JSON_PROPERTY_PUBLIC_PORT = "PublicPort";
-  private Integer publicPort;
-
-  public static final String JSON_PROPERTY_TYPE = "Type";
-  private String type;
-
-  public Port() { 
-  }
-
-  public Port IP(String IP) {
-    this.IP = IP;
-    return this;
-  }
-
-  /**
-   * Host IP address that the container&#39;s port is mapped to
-   * @return IP
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_I_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIP() {
-    return IP;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_I_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIP(String IP) {
-    this.IP = IP;
-  }
-
-
-  public Port privatePort(Integer privatePort) {
-    this.privatePort = privatePort;
-    return this;
-  }
-
-  /**
-   * Port on the container
-   * @return privatePort
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_PRIVATE_PORT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Integer getPrivatePort() {
-    return privatePort;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PRIVATE_PORT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPrivatePort(Integer privatePort) {
-    this.privatePort = privatePort;
-  }
-
-
-  public Port publicPort(Integer publicPort) {
-    this.publicPort = publicPort;
-    return this;
-  }
-
-  /**
-   * Port exposed on the host
-   * @return publicPort
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PUBLIC_PORT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getPublicPort() {
-    return publicPort;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PUBLIC_PORT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPublicPort(Integer publicPort) {
-    this.publicPort = publicPort;
-  }
-
-
-  public Port type(String type) {
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * type
-   * @return type
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  /**
-   * Return true if this Port object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Port port = (Port) o;
-    return Objects.equals(this.IP, port.IP) &&
-        Objects.equals(this.privatePort, port.privatePort) &&
-        Objects.equals(this.publicPort, port.publicPort) &&
-        Objects.equals(this.type, port.type);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(IP, privatePort, publicPort, type);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Port {\n");
-    sb.append("    IP: ").append(toIndentedString(IP)).append("\n");
-    sb.append("    privatePort: ").append(toIndentedString(privatePort)).append("\n");
-    sb.append("    publicPort: ").append(toIndentedString(publicPort)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("PrivatePort");
+        openapiRequiredFields.add("Type");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_I_P)
+    private String IP;
+    @SerializedName(SERIALIZED_NAME_PRIVATE_PORT)
+    private Integer privatePort;
+    @SerializedName(SERIALIZED_NAME_PUBLIC_PORT)
+    private Integer publicPort;
+    @SerializedName(SERIALIZED_NAME_TYPE)
+    private String type;
 
-    // add `IP` to the URL query string
-    if (getIP() != null) {
-      joiner.add(String.format("%sIP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Port() {
     }
 
-    // add `PrivatePort` to the URL query string
-    if (getPrivatePort() != null) {
-      joiner.add(String.format("%sPrivatePort%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivatePort()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Port
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Port.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Port is not found in the empty JSON string", Port.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Port.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Port` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : Port.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("IP") != null && !jsonObj.get("IP").isJsonNull()) && !jsonObj.get("IP").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IP").toString()));
+        }
+        if (!jsonObj.get("Type").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Type").toString()));
+        }
     }
 
-    // add `PublicPort` to the URL query string
-    if (getPublicPort() != null) {
-      joiner.add(String.format("%sPublicPort%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPublicPort()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Port given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Port
+     * @throws IOException if the JSON string is invalid with respect to Port
+     */
+    public static Port fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Port.class);
     }
 
-    // add `Type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format("%sType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Port IP(String IP) {
+        this.IP = IP;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Host IP address that the container&#39;s port is mapped to
+     *
+     * @return IP
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIP() {
+        return IP;
+    }
+
+    public void setIP(String IP) {
+        this.IP = IP;
+    }
+
+    public Port privatePort(Integer privatePort) {
+        this.privatePort = privatePort;
+        return this;
+    }
+
+    /**
+     * Port on the container
+     *
+     * @return privatePort
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Integer getPrivatePort() {
+        return privatePort;
+    }
+
+    public void setPrivatePort(Integer privatePort) {
+        this.privatePort = privatePort;
+    }
+
+    public Port publicPort(Integer publicPort) {
+        this.publicPort = publicPort;
+        return this;
+    }
+
+    /**
+     * Port exposed on the host
+     *
+     * @return publicPort
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getPublicPort() {
+        return publicPort;
+    }
+
+    public void setPublicPort(Integer publicPort) {
+        this.publicPort = publicPort;
+    }
+
+    public Port type(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * type
+     *
+     * @return type
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Port port = (Port) o;
+        return Objects.equals(this.IP, port.IP) &&
+                Objects.equals(this.privatePort, port.privatePort) &&
+                Objects.equals(this.publicPort, port.publicPort) &&
+                Objects.equals(this.type, port.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(IP, privatePort, publicPort, type);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Port {\n" +
+                "    IP: " + toIndentedString(IP) + "\n" +
+                "    privatePort: " + toIndentedString(privatePort) + "\n" +
+                "    publicPort: " + toIndentedString(publicPort) + "\n" +
+                "    type: " + toIndentedString(type) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Port to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Port.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Port' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Port> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Port.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Port>() {
+                @Override
+                public void write(JsonWriter out, Port value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Port read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

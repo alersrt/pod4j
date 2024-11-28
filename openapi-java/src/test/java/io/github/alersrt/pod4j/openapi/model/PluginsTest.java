@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Plugins
  */
-class PluginsTest {
+public class PluginsTest {
     private final Plugins model = new Plugins();
 
     /**
      * Model tests for Plugins
      */
     @Test
-    void testPlugins() {
+    public void testPlugins() {
         // TODO: test Plugins
     }
 
@@ -44,7 +45,7 @@ class PluginsTest {
      * Test the property 'authorization'
      */
     @Test
-    void authorizationTest() {
+    public void authorizationTest() {
         // TODO: test authorization
     }
 
@@ -52,7 +53,7 @@ class PluginsTest {
      * Test the property 'log'
      */
     @Test
-    void logTest() {
+    public void logTest() {
         // TODO: test log
     }
 
@@ -60,7 +61,7 @@ class PluginsTest {
      * Test the property 'network'
      */
     @Test
-    void networkTest() {
+    public void networkTest() {
         // TODO: test network
     }
 
@@ -68,7 +69,7 @@ class PluginsTest {
      * Test the property 'volume'
      */
     @Test
-    void volumeTest() {
+    public void volumeTest() {
         // TODO: test volume
     }
 

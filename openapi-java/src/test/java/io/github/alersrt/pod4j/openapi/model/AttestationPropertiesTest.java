@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for AttestationProperties
  */
-class AttestationPropertiesTest {
+public class AttestationPropertiesTest {
     private final AttestationProperties model = new AttestationProperties();
 
     /**
      * Model tests for AttestationProperties
      */
     @Test
-    void testAttestationProperties() {
+    public void testAttestationProperties() {
         // TODO: test AttestationProperties
     }
 
@@ -42,7 +33,7 @@ class AttestationPropertiesTest {
      * Test the property '_for'
      */
     @Test
-    void _forTest() {
+    public void _forTest() {
         // TODO: test _for
     }
 

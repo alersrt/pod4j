@@ -13,482 +13,442 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * ContainerExecRequest
  */
-@JsonPropertyOrder({
-  ContainerExecRequest.JSON_PROPERTY_ATTACH_STDERR,
-  ContainerExecRequest.JSON_PROPERTY_ATTACH_STDIN,
-  ContainerExecRequest.JSON_PROPERTY_ATTACH_STDOUT,
-  ContainerExecRequest.JSON_PROPERTY_CMD,
-  ContainerExecRequest.JSON_PROPERTY_DETACH_KEYS,
-  ContainerExecRequest.JSON_PROPERTY_ENV,
-  ContainerExecRequest.JSON_PROPERTY_PRIVILEGED,
-  ContainerExecRequest.JSON_PROPERTY_TTY,
-  ContainerExecRequest.JSON_PROPERTY_USER,
-  ContainerExecRequest.JSON_PROPERTY_WORKING_DIR
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerExecRequest {
-  public static final String JSON_PROPERTY_ATTACH_STDERR = "AttachStderr";
-  private Boolean attachStderr;
-
-  public static final String JSON_PROPERTY_ATTACH_STDIN = "AttachStdin";
-  private Boolean attachStdin;
-
-  public static final String JSON_PROPERTY_ATTACH_STDOUT = "AttachStdout";
-  private Boolean attachStdout;
-
-  public static final String JSON_PROPERTY_CMD = "Cmd";
-  private List<String> cmd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DETACH_KEYS = "DetachKeys";
-  private String detachKeys;
-
-  public static final String JSON_PROPERTY_ENV = "Env";
-  private List<String> env = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_PRIVILEGED = "Privileged";
-  private Boolean privileged = false;
-
-  public static final String JSON_PROPERTY_TTY = "Tty";
-  private Boolean tty;
-
-  public static final String JSON_PROPERTY_USER = "User";
-  private String user;
-
-  public static final String JSON_PROPERTY_WORKING_DIR = "WorkingDir";
-  private String workingDir;
-
-  public ContainerExecRequest() { 
-  }
-
-  public ContainerExecRequest attachStderr(Boolean attachStderr) {
-    this.attachStderr = attachStderr;
-    return this;
-  }
-
-  /**
-   * Attach to stderr of the exec command
-   * @return attachStderr
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStderr() {
-    return attachStderr;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStderr(Boolean attachStderr) {
-    this.attachStderr = attachStderr;
-  }
-
-
-  public ContainerExecRequest attachStdin(Boolean attachStdin) {
-    this.attachStdin = attachStdin;
-    return this;
-  }
-
-  /**
-   * Attach to stdin of the exec command
-   * @return attachStdin
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStdin() {
-    return attachStdin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStdin(Boolean attachStdin) {
-    this.attachStdin = attachStdin;
-  }
-
-
-  public ContainerExecRequest attachStdout(Boolean attachStdout) {
-    this.attachStdout = attachStdout;
-    return this;
-  }
-
-  /**
-   * Attach to stdout of the exec command
-   * @return attachStdout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStdout() {
-    return attachStdout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStdout(Boolean attachStdout) {
-    this.attachStdout = attachStdout;
-  }
-
-
-  public ContainerExecRequest cmd(List<String> cmd) {
-    this.cmd = cmd;
-    return this;
-  }
-
-  public ContainerExecRequest addCmdItem(String cmdItem) {
-    if (this.cmd == null) {
-      this.cmd = new ArrayList<>();
-    }
-    this.cmd.add(cmdItem);
-    return this;
-  }
-
-  /**
-   * Command to run, as a string or array of strings.
-   * @return cmd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCmd() {
-    return cmd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCmd(List<String> cmd) {
-    this.cmd = cmd;
-  }
-
-
-  public ContainerExecRequest detachKeys(String detachKeys) {
-    this.detachKeys = detachKeys;
-    return this;
-  }
-
-  /**
-   * \&quot;Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _.\&quot; 
-   * @return detachKeys
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDetachKeys() {
-    return detachKeys;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetachKeys(String detachKeys) {
-    this.detachKeys = detachKeys;
-  }
-
-
-  public ContainerExecRequest env(List<String> env) {
-    this.env = env;
-    return this;
-  }
-
-  public ContainerExecRequest addEnvItem(String envItem) {
-    if (this.env == null) {
-      this.env = new ArrayList<>();
-    }
-    this.env.add(envItem);
-    return this;
-  }
-
-  /**
-   * A list of environment variables in the form [\&quot;VAR&#x3D;value\&quot;, ...]
-   * @return env
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEnv() {
-    return env;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnv(List<String> env) {
-    this.env = env;
-  }
-
-
-  public ContainerExecRequest privileged(Boolean privileged) {
-    this.privileged = privileged;
-    return this;
-  }
-
-  /**
-   * Runs the exec process with extended privileges
-   * @return privileged
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPrivileged() {
-    return privileged;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPrivileged(Boolean privileged) {
-    this.privileged = privileged;
-  }
-
-
-  public ContainerExecRequest tty(Boolean tty) {
-    this.tty = tty;
-    return this;
-  }
-
-  /**
-   * Allocate a pseudo-TTY
-   * @return tty
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TTY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getTty() {
-    return tty;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TTY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTty(Boolean tty) {
-    this.tty = tty;
-  }
-
-
-  public ContainerExecRequest user(String user) {
-    this.user = user;
-    return this;
-  }
-
-  /**
-   * \&quot;The user, and optionally, group to run the exec process inside the container. Format is one of: user, user:group, uid, or uid:gid.\&quot; 
-   * @return user
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUser() {
-    return user;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-
-  public ContainerExecRequest workingDir(String workingDir) {
-    this.workingDir = workingDir;
-    return this;
-  }
-
-  /**
-   * The working directory for the exec process inside the container.
-   * @return workingDir
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getWorkingDir() {
-    return workingDir;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWorkingDir(String workingDir) {
-    this.workingDir = workingDir;
-  }
-
-
-  /**
-   * Return true if this ContainerExec_request object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ContainerExecRequest containerExecRequest = (ContainerExecRequest) o;
-    return Objects.equals(this.attachStderr, containerExecRequest.attachStderr) &&
-        Objects.equals(this.attachStdin, containerExecRequest.attachStdin) &&
-        Objects.equals(this.attachStdout, containerExecRequest.attachStdout) &&
-        Objects.equals(this.cmd, containerExecRequest.cmd) &&
-        Objects.equals(this.detachKeys, containerExecRequest.detachKeys) &&
-        Objects.equals(this.env, containerExecRequest.env) &&
-        Objects.equals(this.privileged, containerExecRequest.privileged) &&
-        Objects.equals(this.tty, containerExecRequest.tty) &&
-        Objects.equals(this.user, containerExecRequest.user) &&
-        Objects.equals(this.workingDir, containerExecRequest.workingDir);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(attachStderr, attachStdin, attachStdout, cmd, detachKeys, env, privileged, tty, user, workingDir);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ContainerExecRequest {\n");
-    sb.append("    attachStderr: ").append(toIndentedString(attachStderr)).append("\n");
-    sb.append("    attachStdin: ").append(toIndentedString(attachStdin)).append("\n");
-    sb.append("    attachStdout: ").append(toIndentedString(attachStdout)).append("\n");
-    sb.append("    cmd: ").append(toIndentedString(cmd)).append("\n");
-    sb.append("    detachKeys: ").append(toIndentedString(detachKeys)).append("\n");
-    sb.append("    env: ").append(toIndentedString(env)).append("\n");
-    sb.append("    privileged: ").append(toIndentedString(privileged)).append("\n");
-    sb.append("    tty: ").append(toIndentedString(tty)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    workingDir: ").append(toIndentedString(workingDir)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ATTACH_STDERR = "AttachStderr";
+    public static final String SERIALIZED_NAME_ATTACH_STDIN = "AttachStdin";
+    public static final String SERIALIZED_NAME_ATTACH_STDOUT = "AttachStdout";
+    public static final String SERIALIZED_NAME_CMD = "Cmd";
+    public static final String SERIALIZED_NAME_DETACH_KEYS = "DetachKeys";
+    public static final String SERIALIZED_NAME_ENV = "Env";
+    public static final String SERIALIZED_NAME_PRIVILEGED = "Privileged";
+    public static final String SERIALIZED_NAME_TTY = "Tty";
+    public static final String SERIALIZED_NAME_USER = "User";
+    public static final String SERIALIZED_NAME_WORKING_DIR = "WorkingDir";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("AttachStderr");
+        openapiFields.add("AttachStdin");
+        openapiFields.add("AttachStdout");
+        openapiFields.add("Cmd");
+        openapiFields.add("DetachKeys");
+        openapiFields.add("Env");
+        openapiFields.add("Privileged");
+        openapiFields.add("Tty");
+        openapiFields.add("User");
+        openapiFields.add("WorkingDir");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDERR)
+    private Boolean attachStderr;
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDIN)
+    private Boolean attachStdin;
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDOUT)
+    private Boolean attachStdout;
+    @SerializedName(SERIALIZED_NAME_CMD)
+    private List<String> cmd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DETACH_KEYS)
+    private String detachKeys;
+    @SerializedName(SERIALIZED_NAME_ENV)
+    private List<String> env = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_PRIVILEGED)
+    private Boolean privileged = false;
+    @SerializedName(SERIALIZED_NAME_TTY)
+    private Boolean tty;
+    @SerializedName(SERIALIZED_NAME_USER)
+    private String user;
+    @SerializedName(SERIALIZED_NAME_WORKING_DIR)
+    private String workingDir;
 
-    // add `AttachStderr` to the URL query string
-    if (getAttachStderr() != null) {
-      joiner.add(String.format("%sAttachStderr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStderr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerExecRequest() {
     }
 
-    // add `AttachStdin` to the URL query string
-    if (getAttachStdin() != null) {
-      joiner.add(String.format("%sAttachStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ContainerExecRequest
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ContainerExecRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerExecRequest is not found in the empty JSON string", ContainerExecRequest.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ContainerExecRequest.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerExecRequest` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull() && !jsonObj.get("Cmd").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Cmd` to be an array in the JSON string but got `%s`", jsonObj.get("Cmd").toString()));
+        }
+        if ((jsonObj.get("DetachKeys") != null && !jsonObj.get("DetachKeys").isJsonNull()) && !jsonObj.get("DetachKeys").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DetachKeys` to be a primitive type in the JSON string but got `%s`", jsonObj.get("DetachKeys").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull() && !jsonObj.get("Env").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
+        }
+        if ((jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) && !jsonObj.get("User").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `User` to be a primitive type in the JSON string but got `%s`", jsonObj.get("User").toString()));
+        }
+        if ((jsonObj.get("WorkingDir") != null && !jsonObj.get("WorkingDir").isJsonNull()) && !jsonObj.get("WorkingDir").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `WorkingDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("WorkingDir").toString()));
+        }
     }
 
-    // add `AttachStdout` to the URL query string
-    if (getAttachStdout() != null) {
-      joiner.add(String.format("%sAttachStdout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ContainerExecRequest given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerExecRequest
+     * @throws IOException if the JSON string is invalid with respect to ContainerExecRequest
+     */
+    public static ContainerExecRequest fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ContainerExecRequest.class);
     }
 
-    // add `Cmd` to the URL query string
-    if (getCmd() != null) {
-      for (int i = 0; i < getCmd().size(); i++) {
-        joiner.add(String.format("%sCmd%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCmd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ContainerExecRequest attachStderr(Boolean attachStderr) {
+        this.attachStderr = attachStderr;
+        return this;
     }
 
-    // add `DetachKeys` to the URL query string
-    if (getDetachKeys() != null) {
-      joiner.add(String.format("%sDetachKeys%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDetachKeys()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Attach to stderr of the exec command
+     *
+     * @return attachStderr
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStderr() {
+        return attachStderr;
     }
 
-    // add `Env` to the URL query string
-    if (getEnv() != null) {
-      for (int i = 0; i < getEnv().size(); i++) {
-        joiner.add(String.format("%sEnv%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEnv().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setAttachStderr(Boolean attachStderr) {
+        this.attachStderr = attachStderr;
     }
 
-    // add `Privileged` to the URL query string
-    if (getPrivileged() != null) {
-      joiner.add(String.format("%sPrivileged%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivileged()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerExecRequest attachStdin(Boolean attachStdin) {
+        this.attachStdin = attachStdin;
+        return this;
     }
 
-    // add `Tty` to the URL query string
-    if (getTty() != null) {
-      joiner.add(String.format("%sTty%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTty()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Attach to stdin of the exec command
+     *
+     * @return attachStdin
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStdin() {
+        return attachStdin;
     }
 
-    // add `User` to the URL query string
-    if (getUser() != null) {
-      joiner.add(String.format("%sUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setAttachStdin(Boolean attachStdin) {
+        this.attachStdin = attachStdin;
     }
 
-    // add `WorkingDir` to the URL query string
-    if (getWorkingDir() != null) {
-      joiner.add(String.format("%sWorkingDir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWorkingDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerExecRequest attachStdout(Boolean attachStdout) {
+        this.attachStdout = attachStdout;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Attach to stdout of the exec command
+     *
+     * @return attachStdout
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStdout() {
+        return attachStdout;
+    }
+
+    public void setAttachStdout(Boolean attachStdout) {
+        this.attachStdout = attachStdout;
+    }
+
+    public ContainerExecRequest cmd(List<String> cmd) {
+        this.cmd = cmd;
+        return this;
+    }
+
+    public ContainerExecRequest addCmdItem(String cmdItem) {
+        if (this.cmd == null) {
+            this.cmd = new ArrayList<>();
+        }
+        this.cmd.add(cmdItem);
+        return this;
+    }
+
+    /**
+     * Command to run, as a string or array of strings.
+     *
+     * @return cmd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCmd() {
+        return cmd;
+    }
+
+    public void setCmd(List<String> cmd) {
+        this.cmd = cmd;
+    }
+
+    public ContainerExecRequest detachKeys(String detachKeys) {
+        this.detachKeys = detachKeys;
+        return this;
+    }
+
+    /**
+     * \&quot;Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _.\&quot;
+     *
+     * @return detachKeys
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDetachKeys() {
+        return detachKeys;
+    }
+
+    public void setDetachKeys(String detachKeys) {
+        this.detachKeys = detachKeys;
+    }
+
+    public ContainerExecRequest env(List<String> env) {
+        this.env = env;
+        return this;
+    }
+
+    public ContainerExecRequest addEnvItem(String envItem) {
+        if (this.env == null) {
+            this.env = new ArrayList<>();
+        }
+        this.env.add(envItem);
+        return this;
+    }
+
+    /**
+     * A list of environment variables in the form [\&quot;VAR&#x3D;value\&quot;, ...]
+     *
+     * @return env
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEnv() {
+        return env;
+    }
+
+    public void setEnv(List<String> env) {
+        this.env = env;
+    }
+
+    public ContainerExecRequest privileged(Boolean privileged) {
+        this.privileged = privileged;
+        return this;
+    }
+
+    /**
+     * Runs the exec process with extended privileges
+     *
+     * @return privileged
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPrivileged() {
+        return privileged;
+    }
+
+    public void setPrivileged(Boolean privileged) {
+        this.privileged = privileged;
+    }
+
+    public ContainerExecRequest tty(Boolean tty) {
+        this.tty = tty;
+        return this;
+    }
+
+    /**
+     * Allocate a pseudo-TTY
+     *
+     * @return tty
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getTty() {
+        return tty;
+    }
+
+    public void setTty(Boolean tty) {
+        this.tty = tty;
+    }
+
+    public ContainerExecRequest user(String user) {
+        this.user = user;
+        return this;
+    }
+
+    /**
+     * \&quot;The user, and optionally, group to run the exec process inside the container. Format is one of: user, user:group, uid, or uid:gid.\&quot;
+     *
+     * @return user
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public ContainerExecRequest workingDir(String workingDir) {
+        this.workingDir = workingDir;
+        return this;
+    }
+
+    /**
+     * The working directory for the exec process inside the container.
+     *
+     * @return workingDir
+     */
+    @jakarta.annotation.Nullable
+
+    public String getWorkingDir() {
+        return workingDir;
+    }
+
+    public void setWorkingDir(String workingDir) {
+        this.workingDir = workingDir;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ContainerExecRequest containerExecRequest = (ContainerExecRequest) o;
+        return Objects.equals(this.attachStderr, containerExecRequest.attachStderr) &&
+                Objects.equals(this.attachStdin, containerExecRequest.attachStdin) &&
+                Objects.equals(this.attachStdout, containerExecRequest.attachStdout) &&
+                Objects.equals(this.cmd, containerExecRequest.cmd) &&
+                Objects.equals(this.detachKeys, containerExecRequest.detachKeys) &&
+                Objects.equals(this.env, containerExecRequest.env) &&
+                Objects.equals(this.privileged, containerExecRequest.privileged) &&
+                Objects.equals(this.tty, containerExecRequest.tty) &&
+                Objects.equals(this.user, containerExecRequest.user) &&
+                Objects.equals(this.workingDir, containerExecRequest.workingDir);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(attachStderr, attachStdin, attachStdout, cmd, detachKeys, env, privileged, tty, user, workingDir);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ContainerExecRequest {\n" +
+                "    attachStderr: " + toIndentedString(attachStderr) + "\n" +
+                "    attachStdin: " + toIndentedString(attachStdin) + "\n" +
+                "    attachStdout: " + toIndentedString(attachStdout) + "\n" +
+                "    cmd: " + toIndentedString(cmd) + "\n" +
+                "    detachKeys: " + toIndentedString(detachKeys) + "\n" +
+                "    env: " + toIndentedString(env) + "\n" +
+                "    privileged: " + toIndentedString(privileged) + "\n" +
+                "    tty: " + toIndentedString(tty) + "\n" +
+                "    user: " + toIndentedString(user) + "\n" +
+                "    workingDir: " + toIndentedString(workingDir) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ContainerExecRequest to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ContainerExecRequest.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ContainerExecRequest' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ContainerExecRequest> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ContainerExecRequest.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ContainerExecRequest>() {
+                @Override
+                public void write(JsonWriter out, ContainerExecRequest value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ContainerExecRequest read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

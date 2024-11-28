@@ -13,227 +13,245 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * OverlayVolume holds information about an overlay volume that will be mounted into the container.
  */
-@JsonPropertyOrder({
-  OverlayVolume.JSON_PROPERTY_DESTINATION,
-  OverlayVolume.JSON_PROPERTY_OPTIONS,
-  OverlayVolume.JSON_PROPERTY_SOURCE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class OverlayVolume {
-  public static final String JSON_PROPERTY_DESTINATION = "destination";
-  private String destination;
+    public static final String SERIALIZED_NAME_DESTINATION = "destination";
+    public static final String SERIALIZED_NAME_OPTIONS = "options";
+    public static final String SERIALIZED_NAME_SOURCE = "source";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_OPTIONS = "options";
-  private List<String> options = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("destination");
+        openapiFields.add("options");
+        openapiFields.add("source");
 
-  public static final String JSON_PROPERTY_SOURCE = "source";
-  private String source;
-
-  public OverlayVolume() { 
-  }
-
-  public OverlayVolume destination(String destination) {
-    this.destination = destination;
-    return this;
-  }
-
-  /**
-   * Destination is the absolute path where the mount will be placed in the container.
-   * @return destination
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDestination() {
-    return destination;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestination(String destination) {
-    this.destination = destination;
-  }
-
-
-  public OverlayVolume options(List<String> options) {
-    this.options = options;
-    return this;
-  }
-
-  public OverlayVolume addOptionsItem(String optionsItem) {
-    if (this.options == null) {
-      this.options = new ArrayList<>();
-    }
-    this.options.add(optionsItem);
-    return this;
-  }
-
-  /**
-   * Options holds overlay volume options.
-   * @return options
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getOptions() {
-    return options;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOptions(List<String> options) {
-    this.options = options;
-  }
-
-
-  public OverlayVolume source(String source) {
-    this.source = source;
-    return this;
-  }
-
-  /**
-   * Source specifies the source path of the mount.
-   * @return source
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSource() {
-    return source;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSource(String source) {
-    this.source = source;
-  }
-
-
-  /**
-   * Return true if this OverlayVolume object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    OverlayVolume overlayVolume = (OverlayVolume) o;
-    return Objects.equals(this.destination, overlayVolume.destination) &&
-        Objects.equals(this.options, overlayVolume.options) &&
-        Objects.equals(this.source, overlayVolume.source);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(destination, options, source);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class OverlayVolume {\n");
-    sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_DESTINATION)
+    private String destination;
+    @SerializedName(SERIALIZED_NAME_OPTIONS)
+    private List<String> options = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SOURCE)
+    private String source;
 
-    // add `destination` to the URL query string
-    if (getDestination() != null) {
-      joiner.add(String.format("%sdestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public OverlayVolume() {
     }
 
-    // add `options` to the URL query string
-    if (getOptions() != null) {
-      for (int i = 0; i < getOptions().size(); i++) {
-        joiner.add(String.format("%soptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getOptions().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to OverlayVolume
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!OverlayVolume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in OverlayVolume is not found in the empty JSON string", OverlayVolume.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!OverlayVolume.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OverlayVolume` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("destination") != null && !jsonObj.get("destination").isJsonNull()) && !jsonObj.get("destination").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("destination").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("options") != null && !jsonObj.get("options").isJsonNull() && !jsonObj.get("options").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `options` to be an array in the JSON string but got `%s`", jsonObj.get("options").toString()));
+        }
+        if ((jsonObj.get("source") != null && !jsonObj.get("source").isJsonNull()) && !jsonObj.get("source").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("source").toString()));
+        }
     }
 
-    // add `source` to the URL query string
-    if (getSource() != null) {
-      joiner.add(String.format("%ssource%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSource()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of OverlayVolume given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of OverlayVolume
+     * @throws IOException if the JSON string is invalid with respect to OverlayVolume
+     */
+    public static OverlayVolume fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, OverlayVolume.class);
     }
 
-    return joiner.toString();
-  }
+    public OverlayVolume destination(String destination) {
+        this.destination = destination;
+        return this;
+    }
+
+    /**
+     * Destination is the absolute path where the mount will be placed in the container.
+     *
+     * @return destination
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public OverlayVolume options(List<String> options) {
+        this.options = options;
+        return this;
+    }
+
+    public OverlayVolume addOptionsItem(String optionsItem) {
+        if (this.options == null) {
+            this.options = new ArrayList<>();
+        }
+        this.options.add(optionsItem);
+        return this;
+    }
+
+    /**
+     * Options holds overlay volume options.
+     *
+     * @return options
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+
+    public OverlayVolume source(String source) {
+        this.source = source;
+        return this;
+    }
+
+    /**
+     * Source specifies the source path of the mount.
+     *
+     * @return source
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        OverlayVolume overlayVolume = (OverlayVolume) o;
+        return Objects.equals(this.destination, overlayVolume.destination) &&
+                Objects.equals(this.options, overlayVolume.options) &&
+                Objects.equals(this.source, overlayVolume.source);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(destination, options, source);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class OverlayVolume {\n" +
+                "    destination: " + toIndentedString(destination) + "\n" +
+                "    options: " + toIndentedString(options) + "\n" +
+                "    source: " + toIndentedString(source) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of OverlayVolume to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!OverlayVolume.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'OverlayVolume' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<OverlayVolume> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(OverlayVolume.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<OverlayVolume>() {
+                @Override
+                public void write(JsonWriter out, OverlayVolume value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public OverlayVolume read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

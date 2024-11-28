@@ -14,8 +14,6 @@
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
-import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.HistoryResponse;
 import io.github.alersrt.pod4j.openapi.model.ImageBuild200Response;
 import io.github.alersrt.pod4j.openapi.model.ImageDelete200ResponseInner;
@@ -25,15 +23,8 @@ import io.github.alersrt.pod4j.openapi.model.Summary;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for ImagesCompatApi
@@ -43,14 +34,12 @@ public class ImagesCompatApiTest {
 
     private final ImagesCompatApi api = new ImagesCompatApi();
 
-
     /**
      * Create image
-     *
+     * <p>
      * Build an image from the given Dockerfile(s)
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageBuildTest() throws ApiException {
@@ -84,19 +73,16 @@ public class ImagesCompatApiTest {
         String target = null;
         String outputs = null;
         File inputStream = null;
-        ImageBuild200Response response =
-                api.imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
-        
+        ImageBuild200Response response = api.imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
         // TODO: test validations
     }
 
     /**
      * Create an image
-     *
+     * <p>
      * Create an image by either pulling it from a registry or importing it.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageCreateTest() throws ApiException {
@@ -108,160 +94,133 @@ public class ImagesCompatApiTest {
         String message = null;
         String platform = null;
         File inputImage = null;
-        File response =
-                api.imageCreate(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage);
-        
+        File response = api.imageCreate(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage);
         // TODO: test validations
     }
 
     /**
      * Remove Image
-     *
+     * <p>
      * Delete an image from local storage
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageDeleteTest() throws ApiException {
         String name = null;
         Boolean force = null;
         Boolean noprune = null;
-        List<ImageDelete200ResponseInner> response =
-                api.imageDelete(name, force, noprune);
-        
+        List<ImageDelete200ResponseInner> response = api.imageDelete(name, force, noprune);
         // TODO: test validations
     }
 
     /**
      * Export an image
-     *
+     * <p>
      * Export an image in tarball format
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageGetTest() throws ApiException {
         String name = null;
-        File response =
-                api.imageGet(name);
-        
+        File response = api.imageGet(name);
         // TODO: test validations
     }
 
     /**
      * Export several images
-     *
+     * <p>
      * Get a tarball containing all images and metadata for several image repositories
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageGetAllTest() throws ApiException {
         String names = null;
-        File response =
-                api.imageGetAll(names);
-        
+        File response = api.imageGetAll(names);
         // TODO: test validations
     }
 
     /**
      * History of an image
-     *
+     * <p>
      * Return parent layers of an image.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageHistoryTest() throws ApiException {
         String name = null;
-        HistoryResponse response =
-                api.imageHistory(name);
-        
+        HistoryResponse response = api.imageHistory(name);
         // TODO: test validations
     }
 
     /**
      * Inspect an image
-     *
+     * <p>
      * Return low-level information about an image.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageInspectTest() throws ApiException {
         String name = null;
-        ImageInspect response =
-                api.imageInspect(name);
-        
+        ImageInspect response = api.imageInspect(name);
         // TODO: test validations
     }
 
     /**
      * List Images
-     *
+     * <p>
      * Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageListTest() throws ApiException {
         Boolean all = null;
         String filters = null;
         Boolean digests = null;
-        List<Summary> response =
-                api.imageList(all, filters, digests);
-        
+        List<Summary> response = api.imageList(all, filters, digests);
         // TODO: test validations
     }
 
     /**
      * Import image
-     *
+     * <p>
      * Load a set of images and tags into a repository.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageLoadTest() throws ApiException {
         Boolean quiet = null;
         String request = null;
-
         api.imageLoad(quiet, request);
-
         // TODO: test validations
     }
 
     /**
      * Prune unused images
-     *
+     * <p>
      * Remove images from local storage that are not being used by a container
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imagePruneTest() throws ApiException {
         String filters = null;
-        List<ImageDelete200ResponseInner> response =
-                api.imagePrune(filters);
-        
+        List<ImageDelete200ResponseInner> response = api.imagePrune(filters);
         // TODO: test validations
     }
 
     /**
      * Push Image
-     *
+     * <p>
      * Push an image to a container registry
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imagePushTest() throws ApiException {
@@ -273,19 +232,16 @@ public class ImagesCompatApiTest {
         String format = null;
         Boolean tlsVerify = null;
         String xRegistryAuth = null;
-        File response =
-                api.imagePush(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
-        
+        File response = api.imagePush(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
         // TODO: test validations
     }
 
     /**
      * Search images
-     *
+     * <p>
      * Search registries for an image
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageSearchTest() throws ApiException {
@@ -294,28 +250,23 @@ public class ImagesCompatApiTest {
         String filters = null;
         Boolean tlsVerify = null;
         Boolean listTags = null;
-        ImageSearch200Response response =
-                api.imageSearch(term, limit, filters, tlsVerify, listTags);
-        
+        ImageSearch200Response response = api.imageSearch(term, limit, filters, tlsVerify, listTags);
         // TODO: test validations
     }
 
     /**
      * Tag an image
-     *
+     * <p>
      * Tag an image so that it becomes part of a repository.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageTagTest() throws ApiException {
         String name = null;
         String repo = null;
         String tag = null;
-
         api.imageTag(name, repo, tag);
-
         // TODO: test validations
     }
 

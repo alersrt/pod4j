@@ -15,7 +15,6 @@ package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.model.DisconnectOptions;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.Network;
 import io.github.alersrt.pod4j.openapi.model.NetworkConnectOptions;
 import io.github.alersrt.pod4j.openapi.model.NetworkCreateLibpod;
@@ -26,15 +25,7 @@ import io.github.alersrt.pod4j.openapi.model.NetworkUpdateOptions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for NetworksApi
@@ -44,161 +35,133 @@ public class NetworksApiTest {
 
     private final NetworksApi api = new NetworksApi();
 
-
     /**
      * Connect container to network
-     *
+     * <p>
      * Connect a container to a network.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkConnectLibpodTest() throws ApiException {
         String name = null;
         NetworkConnectOptions create = null;
-
         api.networkConnectLibpod(name, create);
-
         // TODO: test validations
     }
 
     /**
      * Create network
-     *
+     * <p>
      * Create a new network configuration
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkCreateLibpodTest() throws ApiException {
         NetworkCreateLibpod create = null;
-        Network response =
-                api.networkCreateLibpod(create);
-        
+        Network response = api.networkCreateLibpod(create);
         // TODO: test validations
     }
 
     /**
      * Remove a network
-     *
+     * <p>
      * Remove a configured network
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkDeleteLibpodTest() throws ApiException {
         String name = null;
         Boolean force = null;
-        List<NetworkRmReport> response =
-                api.networkDeleteLibpod(name, force);
-        
+        List<NetworkRmReport> response = api.networkDeleteLibpod(name, force);
         // TODO: test validations
     }
 
     /**
      * Disconnect container from network
-     *
+     * <p>
      * Disconnect a container from a network.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkDisconnectLibpodTest() throws ApiException {
         String name = null;
         DisconnectOptions create = null;
-
         api.networkDisconnectLibpod(name, create);
-
         // TODO: test validations
     }
 
     /**
      * Network exists
-     *
+     * <p>
      * Check if network exists
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkExistsLibpodTest() throws ApiException {
         String name = null;
-
         api.networkExistsLibpod(name);
-
         // TODO: test validations
     }
 
     /**
      * Inspect a network
+     * <p>
+     * Display configuration for a network.
      *
-     * Display configuration for a network. 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkInspectLibpodTest() throws ApiException {
         String name = null;
-        NetworkInspectReport response =
-                api.networkInspectLibpod(name);
-        
+        NetworkInspectReport response = api.networkInspectLibpod(name);
         // TODO: test validations
     }
 
     /**
      * List networks
+     * <p>
+     * Display summary of network configurations.   - In a 200 response, all of the fields named Bytes are returned as a Base64 encoded string.
      *
-     * Display summary of network configurations.   - In a 200 response, all of the fields named Bytes are returned as a Base64 encoded string. 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkListLibpodTest() throws ApiException {
         String filters = null;
-        List<Network> response =
-                api.networkListLibpod(filters);
-        
+        List<Network> response = api.networkListLibpod(filters);
         // TODO: test validations
     }
 
     /**
      * Delete unused networks
-     *
+     * <p>
      * Remove networks that do not have containers
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkPruneLibpodTest() throws ApiException {
         String filters = null;
-        List<NetworkPruneReport> response =
-                api.networkPruneLibpod(filters);
-        
+        List<NetworkPruneReport> response = api.networkPruneLibpod(filters);
         // TODO: test validations
     }
 
     /**
      * Update existing podman network
-     *
+     * <p>
      * Update existing podman network
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkUpdateLibpodTest() throws ApiException {
         String name = null;
         NetworkUpdateOptions update = null;
-
         api.networkUpdateLibpod(name, update);
-
         // TODO: test validations
     }
 

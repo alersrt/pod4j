@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for HistoryResponse
  */
-class HistoryResponseTest {
+public class HistoryResponseTest {
     private final HistoryResponse model = new HistoryResponse();
 
     /**
      * Model tests for HistoryResponse
      */
     @Test
-    void testHistoryResponse() {
+    public void testHistoryResponse() {
         // TODO: test HistoryResponse
     }
 
@@ -44,7 +45,7 @@ class HistoryResponseTest {
      * Test the property 'comment'
      */
     @Test
-    void commentTest() {
+    public void commentTest() {
         // TODO: test comment
     }
 
@@ -52,7 +53,7 @@ class HistoryResponseTest {
      * Test the property 'created'
      */
     @Test
-    void createdTest() {
+    public void createdTest() {
         // TODO: test created
     }
 
@@ -60,7 +61,7 @@ class HistoryResponseTest {
      * Test the property 'createdBy'
      */
     @Test
-    void createdByTest() {
+    public void createdByTest() {
         // TODO: test createdBy
     }
 
@@ -68,7 +69,7 @@ class HistoryResponseTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -76,7 +77,7 @@ class HistoryResponseTest {
      * Test the property 'size'
      */
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         // TODO: test size
     }
 
@@ -84,7 +85,7 @@ class HistoryResponseTest {
      * Test the property 'tags'
      */
     @Test
-    void tagsTest() {
+    public void tagsTest() {
         // TODO: test tags
     }
 

@@ -13,287 +13,292 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ManifestModifyReport
  */
-@JsonPropertyOrder({
-  ManifestModifyReport.JSON_PROPERTY_ID,
-  ManifestModifyReport.JSON_PROPERTY_ERRORS,
-  ManifestModifyReport.JSON_PROPERTY_FILES,
-  ManifestModifyReport.JSON_PROPERTY_IMAGES
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestModifyReport {
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_ERRORS = "errors";
+    public static final String SERIALIZED_NAME_FILES = "files";
+    public static final String SERIALIZED_NAME_IMAGES = "images";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ERRORS = "errors";
-  private List<String> errors = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Id");
+        openapiFields.add("errors");
+        openapiFields.add("files");
+        openapiFields.add("images");
 
-  public static final String JSON_PROPERTY_FILES = "files";
-  private List<String> files = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_IMAGES = "images";
-  private List<String> images = new ArrayList<>();
-
-  public ManifestModifyReport() { 
-  }
-
-  public ManifestModifyReport id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Manifest List ID
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ManifestModifyReport errors(List<String> errors) {
-    this.errors = errors;
-    return this;
-  }
-
-  public ManifestModifyReport addErrorsItem(String errorsItem) {
-    if (this.errors == null) {
-      this.errors = new ArrayList<>();
-    }
-    this.errors.add(errorsItem);
-    return this;
-  }
-
-  /**
-   * Errors associated with operation
-   * @return errors
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ERRORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getErrors() {
-    return errors;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERRORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrors(List<String> errors) {
-    this.errors = errors;
-  }
-
-
-  public ManifestModifyReport files(List<String> files) {
-    this.files = files;
-    return this;
-  }
-
-  public ManifestModifyReport addFilesItem(String filesItem) {
-    if (this.files == null) {
-      this.files = new ArrayList<>();
-    }
-    this.files.add(filesItem);
-    return this;
-  }
-
-  /**
-   * Files added to manifest list, otherwise not provided.
-   * @return files
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_FILES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getFiles() {
-    return files;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FILES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFiles(List<String> files) {
-    this.files = files;
-  }
-
-
-  public ManifestModifyReport images(List<String> images) {
-    this.images = images;
-    return this;
-  }
-
-  public ManifestModifyReport addImagesItem(String imagesItem) {
-    if (this.images == null) {
-      this.images = new ArrayList<>();
-    }
-    this.images.add(imagesItem);
-    return this;
-  }
-
-  /**
-   * Images added to or removed from manifest list, otherwise not provided.
-   * @return images
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getImages() {
-    return images;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImages(List<String> images) {
-    this.images = images;
-  }
-
-
-  /**
-   * Return true if this ManifestModifyReport object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ManifestModifyReport manifestModifyReport = (ManifestModifyReport) o;
-    return Objects.equals(this.id, manifestModifyReport.id) &&
-        Objects.equals(this.errors, manifestModifyReport.errors) &&
-        Objects.equals(this.files, manifestModifyReport.files) &&
-        Objects.equals(this.images, manifestModifyReport.images);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, errors, files, images);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ManifestModifyReport {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("    files: ").append(toIndentedString(files)).append("\n");
-    sb.append("    images: ").append(toIndentedString(images)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_ERRORS)
+    private List<String> errors = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_FILES)
+    private List<String> files = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_IMAGES)
+    private List<String> images = new ArrayList<>();
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ManifestModifyReport() {
     }
 
-    // add `errors` to the URL query string
-    if (getErrors() != null) {
-      for (int i = 0; i < getErrors().size(); i++) {
-        joiner.add(String.format("%serrors%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getErrors().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ManifestModifyReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ManifestModifyReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestModifyReport is not found in the empty JSON string", ManifestModifyReport.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ManifestModifyReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestModifyReport` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("errors") != null && !jsonObj.get("errors").isJsonNull() && !jsonObj.get("errors").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `errors` to be an array in the JSON string but got `%s`", jsonObj.get("errors").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("files") != null && !jsonObj.get("files").isJsonNull() && !jsonObj.get("files").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `files` to be an array in the JSON string but got `%s`", jsonObj.get("files").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("images") != null && !jsonObj.get("images").isJsonNull() && !jsonObj.get("images").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `images` to be an array in the JSON string but got `%s`", jsonObj.get("images").toString()));
+        }
     }
 
-    // add `files` to the URL query string
-    if (getFiles() != null) {
-      for (int i = 0; i < getFiles().size(); i++) {
-        joiner.add(String.format("%sfiles%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getFiles().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Create an instance of ManifestModifyReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ManifestModifyReport
+     * @throws IOException if the JSON string is invalid with respect to ManifestModifyReport
+     */
+    public static ManifestModifyReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ManifestModifyReport.class);
     }
 
-    // add `images` to the URL query string
-    if (getImages() != null) {
-      for (int i = 0; i < getImages().size(); i++) {
-        joiner.add(String.format("%simages%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getImages().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ManifestModifyReport id(String id) {
+        this.id = id;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Manifest List ID
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ManifestModifyReport errors(List<String> errors) {
+        this.errors = errors;
+        return this;
+    }
+
+    public ManifestModifyReport addErrorsItem(String errorsItem) {
+        if (this.errors == null) {
+            this.errors = new ArrayList<>();
+        }
+        this.errors.add(errorsItem);
+        return this;
+    }
+
+    /**
+     * Errors associated with operation
+     *
+     * @return errors
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<String> errors) {
+        this.errors = errors;
+    }
+
+    public ManifestModifyReport files(List<String> files) {
+        this.files = files;
+        return this;
+    }
+
+    public ManifestModifyReport addFilesItem(String filesItem) {
+        if (this.files == null) {
+            this.files = new ArrayList<>();
+        }
+        this.files.add(filesItem);
+        return this;
+    }
+
+    /**
+     * Files added to manifest list, otherwise not provided.
+     *
+     * @return files
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<String> files) {
+        this.files = files;
+    }
+
+    public ManifestModifyReport images(List<String> images) {
+        this.images = images;
+        return this;
+    }
+
+    public ManifestModifyReport addImagesItem(String imagesItem) {
+        if (this.images == null) {
+            this.images = new ArrayList<>();
+        }
+        this.images.add(imagesItem);
+        return this;
+    }
+
+    /**
+     * Images added to or removed from manifest list, otherwise not provided.
+     *
+     * @return images
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ManifestModifyReport manifestModifyReport = (ManifestModifyReport) o;
+        return Objects.equals(this.id, manifestModifyReport.id) &&
+                Objects.equals(this.errors, manifestModifyReport.errors) &&
+                Objects.equals(this.files, manifestModifyReport.files) &&
+                Objects.equals(this.images, manifestModifyReport.images);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, errors, files, images);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ManifestModifyReport {\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    errors: " + toIndentedString(errors) + "\n" +
+                "    files: " + toIndentedString(files) + "\n" +
+                "    images: " + toIndentedString(images) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ManifestModifyReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ManifestModifyReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ManifestModifyReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ManifestModifyReport> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ManifestModifyReport.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ManifestModifyReport>() {
+                @Override
+                public void write(JsonWriter out, ManifestModifyReport value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ManifestModifyReport read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

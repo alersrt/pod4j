@@ -17,22 +17,13 @@ import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.model.ConnectOptions;
 import io.github.alersrt.pod4j.openapi.model.CreateRequest;
 import io.github.alersrt.pod4j.openapi.model.DisconnectOptions;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.Inspect;
 import io.github.alersrt.pod4j.openapi.model.NetworkCreate201Response;
 import io.github.alersrt.pod4j.openapi.model.NetworkPrune200Response;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for NetworksCompatApi
@@ -42,127 +33,105 @@ public class NetworksCompatApiTest {
 
     private final NetworksCompatApi api = new NetworksCompatApi();
 
-
     /**
      * Connect container to network
-     *
+     * <p>
      * Connect a container to a network
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkConnectTest() throws ApiException {
         String name = null;
         ConnectOptions create = null;
-
         api.networkConnect(name, create);
-
         // TODO: test validations
     }
 
     /**
      * Create network
-     *
+     * <p>
      * Create a network configuration
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkCreateTest() throws ApiException {
         CreateRequest create = null;
-        NetworkCreate201Response response =
-                api.networkCreate(create);
-        
+        NetworkCreate201Response response = api.networkCreate(create);
         // TODO: test validations
     }
 
     /**
      * Remove a network
-     *
+     * <p>
      * Remove a network
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkDeleteTest() throws ApiException {
         String name = null;
-
         api.networkDelete(name);
-
         // TODO: test validations
     }
 
     /**
      * Disconnect container from network
-     *
+     * <p>
      * Disconnect a container from a network
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkDisconnectTest() throws ApiException {
         String name = null;
         DisconnectOptions create = null;
-
         api.networkDisconnect(name, create);
-
         // TODO: test validations
     }
 
     /**
      * Inspect a network
-     *
+     * <p>
      * Display low level configuration network
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkInspectTest() throws ApiException {
         String name = null;
         Boolean verbose = null;
         String scope = null;
-        Inspect response =
-                api.networkInspect(name, verbose, scope);
-        
+        Inspect response = api.networkInspect(name, verbose, scope);
         // TODO: test validations
     }
 
     /**
      * List networks
-     *
+     * <p>
      * Display summary of network configurations
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkListTest() throws ApiException {
         String filters = null;
-        List<Inspect> response =
-                api.networkList(filters);
-        
+        List<Inspect> response = api.networkList(filters);
         // TODO: test validations
     }
 
     /**
      * Delete unused networks
-     *
+     * <p>
      * Remove networks that do not have containers
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void networkPruneTest() throws ApiException {
         String filters = null;
-        NetworkPrune200Response response =
-                api.networkPrune(filters);
-        
+        NetworkPrune200Response response = api.networkPrune(filters);
         // TODO: test validations
     }
 

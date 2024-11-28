@@ -13,215 +13,237 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.LeaseRange;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Subnet
  */
-@JsonPropertyOrder({
-  Subnet.JSON_PROPERTY_GATEWAY,
-  Subnet.JSON_PROPERTY_LEASE_RANGE,
-  Subnet.JSON_PROPERTY_SUBNET
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Subnet {
-  public static final String JSON_PROPERTY_GATEWAY = "gateway";
-  private String gateway;
+    public static final String SERIALIZED_NAME_GATEWAY = "gateway";
+    public static final String SERIALIZED_NAME_LEASE_RANGE = "lease_range";
+    public static final String SERIALIZED_NAME_SUBNET = "subnet";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_LEASE_RANGE = "lease_range";
-  private LeaseRange leaseRange;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("gateway");
+        openapiFields.add("lease_range");
+        openapiFields.add("subnet");
 
-  public static final String JSON_PROPERTY_SUBNET = "subnet";
-  private String subnet;
-
-  public Subnet() { 
-  }
-
-  public Subnet gateway(String gateway) {
-    this.gateway = gateway;
-    return this;
-  }
-
-  /**
-   * Gateway IP for this Network.
-   * @return gateway
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGateway() {
-    return gateway;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGateway(String gateway) {
-    this.gateway = gateway;
-  }
-
-
-  public Subnet leaseRange(LeaseRange leaseRange) {
-    this.leaseRange = leaseRange;
-    return this;
-  }
-
-  /**
-   * Get leaseRange
-   * @return leaseRange
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_LEASE_RANGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LeaseRange getLeaseRange() {
-    return leaseRange;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LEASE_RANGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLeaseRange(LeaseRange leaseRange) {
-    this.leaseRange = leaseRange;
-  }
-
-
-  public Subnet subnet(String subnet) {
-    this.subnet = subnet;
-    return this;
-  }
-
-  /**
-   * Subnet for this Network in CIDR form.
-   * @return subnet
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SUBNET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSubnet() {
-    return subnet;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SUBNET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubnet(String subnet) {
-    this.subnet = subnet;
-  }
-
-
-  /**
-   * Return true if this Subnet object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Subnet subnet = (Subnet) o;
-    return Objects.equals(this.gateway, subnet.gateway) &&
-        Objects.equals(this.leaseRange, subnet.leaseRange) &&
-        Objects.equals(this.subnet, subnet.subnet);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(gateway, leaseRange, subnet);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Subnet {\n");
-    sb.append("    gateway: ").append(toIndentedString(gateway)).append("\n");
-    sb.append("    leaseRange: ").append(toIndentedString(leaseRange)).append("\n");
-    sb.append("    subnet: ").append(toIndentedString(subnet)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_GATEWAY)
+    private String gateway;
+    @SerializedName(SERIALIZED_NAME_LEASE_RANGE)
+    private LeaseRange leaseRange;
+    @SerializedName(SERIALIZED_NAME_SUBNET)
+    private String subnet;
 
-    // add `gateway` to the URL query string
-    if (getGateway() != null) {
-      joiner.add(String.format("%sgateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Subnet() {
     }
 
-    // add `lease_range` to the URL query string
-    if (getLeaseRange() != null) {
-      joiner.add(getLeaseRange().toUrlQueryString(prefix + "lease_range" + suffix));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Subnet
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Subnet.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Subnet is not found in the empty JSON string", Subnet.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Subnet.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Subnet` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("gateway") != null && !jsonObj.get("gateway").isJsonNull()) && !jsonObj.get("gateway").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("gateway").toString()));
+        }
+        // validate the optional field `lease_range`
+        if (jsonObj.get("lease_range") != null && !jsonObj.get("lease_range").isJsonNull()) {
+            LeaseRange.validateJsonElement(jsonObj.get("lease_range"));
+        }
+        if ((jsonObj.get("subnet") != null && !jsonObj.get("subnet").isJsonNull()) && !jsonObj.get("subnet").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `subnet` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subnet").toString()));
+        }
     }
 
-    // add `subnet` to the URL query string
-    if (getSubnet() != null) {
-      joiner.add(String.format("%ssubnet%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubnet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Subnet given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Subnet
+     * @throws IOException if the JSON string is invalid with respect to Subnet
+     */
+    public static Subnet fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Subnet.class);
     }
 
-    return joiner.toString();
-  }
+    public Subnet gateway(String gateway) {
+        this.gateway = gateway;
+        return this;
+    }
+
+    /**
+     * Gateway IP for this Network.
+     *
+     * @return gateway
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGateway() {
+        return gateway;
+    }
+
+    public void setGateway(String gateway) {
+        this.gateway = gateway;
+    }
+
+    public Subnet leaseRange(LeaseRange leaseRange) {
+        this.leaseRange = leaseRange;
+        return this;
+    }
+
+    /**
+     * Get leaseRange
+     *
+     * @return leaseRange
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LeaseRange getLeaseRange() {
+        return leaseRange;
+    }
+
+    public void setLeaseRange(LeaseRange leaseRange) {
+        this.leaseRange = leaseRange;
+    }
+
+    public Subnet subnet(String subnet) {
+        this.subnet = subnet;
+        return this;
+    }
+
+    /**
+     * Subnet for this Network in CIDR form.
+     *
+     * @return subnet
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSubnet() {
+        return subnet;
+    }
+
+    public void setSubnet(String subnet) {
+        this.subnet = subnet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Subnet subnet = (Subnet) o;
+        return Objects.equals(this.gateway, subnet.gateway) &&
+                Objects.equals(this.leaseRange, subnet.leaseRange) &&
+                Objects.equals(this.subnet, subnet.subnet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gateway, leaseRange, subnet);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Subnet {\n" +
+                "    gateway: " + toIndentedString(gateway) + "\n" +
+                "    leaseRange: " + toIndentedString(leaseRange) + "\n" +
+                "    subnet: " + toIndentedString(subnet) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Subnet to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Subnet.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Subnet' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Subnet> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Subnet.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Subnet>() {
+                @Override
+                public void write(JsonWriter out, Subnet value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Subnet read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

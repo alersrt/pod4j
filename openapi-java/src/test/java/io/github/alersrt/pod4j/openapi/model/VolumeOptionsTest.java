@@ -13,31 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Driver;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for VolumeOptions
  */
-class VolumeOptionsTest {
+public class VolumeOptionsTest {
     private final VolumeOptions model = new VolumeOptions();
 
     /**
      * Model tests for VolumeOptions
      */
     @Test
-    void testVolumeOptions() {
+    public void testVolumeOptions() {
         // TODO: test VolumeOptions
     }
 
@@ -45,7 +33,7 @@ class VolumeOptionsTest {
      * Test the property 'driverConfig'
      */
     @Test
-    void driverConfigTest() {
+    public void driverConfigTest() {
         // TODO: test driverConfig
     }
 
@@ -53,7 +41,7 @@ class VolumeOptionsTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -61,7 +49,7 @@ class VolumeOptionsTest {
      * Test the property 'noCopy'
      */
     @Test
-    void noCopyTest() {
+    public void noCopyTest() {
         // TODO: test noCopy
     }
 
@@ -69,7 +57,7 @@ class VolumeOptionsTest {
      * Test the property 'subpath'
      */
     @Test
-    void subpathTest() {
+    public void subpathTest() {
         // TODO: test subpath
     }
 

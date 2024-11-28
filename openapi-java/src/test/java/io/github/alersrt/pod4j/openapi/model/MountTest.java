@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.BindOptions;
 import io.github.alersrt.pod4j.openapi.model.TmpfsOptions;
 import io.github.alersrt.pod4j.openapi.model.VolumeOptions;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Mount
  */
-class MountTest {
+public class MountTest {
     private final Mount model = new Mount();
 
     /**
      * Model tests for Mount
      */
     @Test
-    void testMount() {
+    public void testMount() {
         // TODO: test Mount
     }
 
@@ -45,7 +46,7 @@ class MountTest {
      * Test the property 'bindOptions'
      */
     @Test
-    void bindOptionsTest() {
+    public void bindOptionsTest() {
         // TODO: test bindOptions
     }
 
@@ -53,7 +54,7 @@ class MountTest {
      * Test the property 'clusterOptions'
      */
     @Test
-    void clusterOptionsTest() {
+    public void clusterOptionsTest() {
         // TODO: test clusterOptions
     }
 
@@ -61,7 +62,7 @@ class MountTest {
      * Test the property 'consistency'
      */
     @Test
-    void consistencyTest() {
+    public void consistencyTest() {
         // TODO: test consistency
     }
 
@@ -69,7 +70,7 @@ class MountTest {
      * Test the property 'readOnly'
      */
     @Test
-    void readOnlyTest() {
+    public void readOnlyTest() {
         // TODO: test readOnly
     }
 
@@ -77,7 +78,7 @@ class MountTest {
      * Test the property 'source'
      */
     @Test
-    void sourceTest() {
+    public void sourceTest() {
         // TODO: test source
     }
 
@@ -85,7 +86,7 @@ class MountTest {
      * Test the property 'target'
      */
     @Test
-    void targetTest() {
+    public void targetTest() {
         // TODO: test target
     }
 
@@ -93,7 +94,7 @@ class MountTest {
      * Test the property 'tmpfsOptions'
      */
     @Test
-    void tmpfsOptionsTest() {
+    public void tmpfsOptionsTest() {
         // TODO: test tmpfsOptions
     }
 
@@ -101,7 +102,7 @@ class MountTest {
      * Test the property 'type'
      */
     @Test
-    void typeTest() {
+    public void typeTest() {
         // TODO: test type
     }
 
@@ -109,7 +110,7 @@ class MountTest {
      * Test the property 'volumeOptions'
      */
     @Test
-    void volumeOptionsTest() {
+    public void volumeOptionsTest() {
         // TODO: test volumeOptions
     }
 

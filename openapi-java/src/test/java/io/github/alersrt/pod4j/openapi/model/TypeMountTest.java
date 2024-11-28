@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for TypeMount
  */
-class TypeMountTest {
+public class TypeMountTest {
     private final TypeMount model = new TypeMount();
 
     /**
      * Model tests for TypeMount
      */
     @Test
-    void testTypeMount() {
+    public void testTypeMount() {
         // TODO: test TypeMount
     }
 
@@ -44,7 +33,7 @@ class TypeMountTest {
      * Test the property 'fsType'
      */
     @Test
-    void fsTypeTest() {
+    public void fsTypeTest() {
         // TODO: test fsType
     }
 
@@ -52,7 +41,7 @@ class TypeMountTest {
      * Test the property 'mountFlags'
      */
     @Test
-    void mountFlagsTest() {
+    public void mountFlagsTest() {
         // TODO: test mountFlags
     }
 

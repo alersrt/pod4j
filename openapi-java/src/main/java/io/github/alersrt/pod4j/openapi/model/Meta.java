@@ -13,218 +13,234 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Version;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Meta
  */
-@JsonPropertyOrder({
-  Meta.JSON_PROPERTY_CREATED_AT,
-  Meta.JSON_PROPERTY_UPDATED_AT,
-  Meta.JSON_PROPERTY_VERSION
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Meta {
-  public static final String JSON_PROPERTY_CREATED_AT = "CreatedAt";
-  private OffsetDateTime createdAt;
+    public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
+    public static final String SERIALIZED_NAME_UPDATED_AT = "UpdatedAt";
+    public static final String SERIALIZED_NAME_VERSION = "Version";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_UPDATED_AT = "UpdatedAt";
-  private OffsetDateTime updatedAt;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("CreatedAt");
+        openapiFields.add("UpdatedAt");
+        openapiFields.add("Version");
 
-  public static final String JSON_PROPERTY_VERSION = "Version";
-  private Version version;
-
-  public Meta() { 
-  }
-
-  public Meta createdAt(OffsetDateTime createdAt) {
-    this.createdAt = createdAt;
-    return this;
-  }
-
-  /**
-   * Get createdAt
-   * @return createdAt
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedAt(OffsetDateTime createdAt) {
-    this.createdAt = createdAt;
-  }
-
-
-  public Meta updatedAt(OffsetDateTime updatedAt) {
-    this.updatedAt = updatedAt;
-    return this;
-  }
-
-  /**
-   * Get updatedAt
-   * @return updatedAt
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_UPDATED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UPDATED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUpdatedAt(OffsetDateTime updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
-
-  public Meta version(Version version) {
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * Get version
-   * @return version
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Version getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVersion(Version version) {
-    this.version = version;
-  }
-
-
-  /**
-   * Return true if this Meta object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Meta meta = (Meta) o;
-    return Objects.equals(this.createdAt, meta.createdAt) &&
-        Objects.equals(this.updatedAt, meta.updatedAt) &&
-        Objects.equals(this.version, meta.version);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(createdAt, updatedAt, version);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Meta {\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CREATED_AT)
+    private OffsetDateTime createdAt;
+    @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+    private OffsetDateTime updatedAt;
+    @SerializedName(SERIALIZED_NAME_VERSION)
+    private Version version;
 
-    // add `CreatedAt` to the URL query string
-    if (getCreatedAt() != null) {
-      joiner.add(String.format("%sCreatedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreatedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Meta() {
     }
 
-    // add `UpdatedAt` to the URL query string
-    if (getUpdatedAt() != null) {
-      joiner.add(String.format("%sUpdatedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUpdatedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Meta
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Meta.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Meta is not found in the empty JSON string", Meta.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Meta.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Meta` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `Version`
+        if (jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) {
+            Version.validateJsonElement(jsonObj.get("Version"));
+        }
     }
 
-    // add `Version` to the URL query string
-    if (getVersion() != null) {
-      joiner.add(getVersion().toUrlQueryString(prefix + "Version" + suffix));
+    /**
+     * Create an instance of Meta given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Meta
+     * @throws IOException if the JSON string is invalid with respect to Meta
+     */
+    public static Meta fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Meta.class);
     }
 
-    return joiner.toString();
-  }
+    public Meta createdAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return createdAt
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Meta updatedAt(OffsetDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+        return this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return updatedAt
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(OffsetDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Meta version(Version version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return version
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Version getVersion() {
+        return version;
+    }
+
+    public void setVersion(Version version) {
+        this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Meta meta = (Meta) o;
+        return Objects.equals(this.createdAt, meta.createdAt) &&
+                Objects.equals(this.updatedAt, meta.updatedAt) &&
+                Objects.equals(this.version, meta.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(createdAt, updatedAt, version);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Meta {\n" +
+                "    createdAt: " + toIndentedString(createdAt) + "\n" +
+                "    updatedAt: " + toIndentedString(updatedAt) + "\n" +
+                "    version: " + toIndentedString(version) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Meta to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Meta.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Meta' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Meta> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Meta.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Meta>() {
+                @Override
+                public void write(JsonWriter out, Meta value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Meta read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

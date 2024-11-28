@@ -13,177 +13,199 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxRdma for Linux cgroup &#39;rdma&#39; resource management (Linux 4.11)
  */
-@JsonPropertyOrder({
-  LinuxRdma.JSON_PROPERTY_HCA_HANDLES,
-  LinuxRdma.JSON_PROPERTY_HCA_OBJECTS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxRdma {
-  public static final String JSON_PROPERTY_HCA_HANDLES = "hcaHandles";
-  private Integer hcaHandles;
+    public static final String SERIALIZED_NAME_HCA_HANDLES = "hcaHandles";
+    public static final String SERIALIZED_NAME_HCA_OBJECTS = "hcaObjects";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_HCA_OBJECTS = "hcaObjects";
-  private Integer hcaObjects;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("hcaHandles");
+        openapiFields.add("hcaObjects");
 
-  public LinuxRdma() { 
-  }
-
-  public LinuxRdma hcaHandles(Integer hcaHandles) {
-    this.hcaHandles = hcaHandles;
-    return this;
-  }
-
-  /**
-   * Maximum number of HCA handles that can be opened. Default is \&quot;no limit\&quot;.
-   * @return hcaHandles
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HCA_HANDLES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getHcaHandles() {
-    return hcaHandles;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HCA_HANDLES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHcaHandles(Integer hcaHandles) {
-    this.hcaHandles = hcaHandles;
-  }
-
-
-  public LinuxRdma hcaObjects(Integer hcaObjects) {
-    this.hcaObjects = hcaObjects;
-    return this;
-  }
-
-  /**
-   * Maximum number of HCA objects that can be created. Default is \&quot;no limit\&quot;.
-   * @return hcaObjects
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HCA_OBJECTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getHcaObjects() {
-    return hcaObjects;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HCA_OBJECTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHcaObjects(Integer hcaObjects) {
-    this.hcaObjects = hcaObjects;
-  }
-
-
-  /**
-   * Return true if this LinuxRdma object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxRdma linuxRdma = (LinuxRdma) o;
-    return Objects.equals(this.hcaHandles, linuxRdma.hcaHandles) &&
-        Objects.equals(this.hcaObjects, linuxRdma.hcaObjects);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(hcaHandles, hcaObjects);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxRdma {\n");
-    sb.append("    hcaHandles: ").append(toIndentedString(hcaHandles)).append("\n");
-    sb.append("    hcaObjects: ").append(toIndentedString(hcaObjects)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_HCA_HANDLES)
+    private Integer hcaHandles;
+    @SerializedName(SERIALIZED_NAME_HCA_OBJECTS)
+    private Integer hcaObjects;
 
-    // add `hcaHandles` to the URL query string
-    if (getHcaHandles() != null) {
-      joiner.add(String.format("%shcaHandles%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHcaHandles()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxRdma() {
     }
 
-    // add `hcaObjects` to the URL query string
-    if (getHcaObjects() != null) {
-      joiner.add(String.format("%shcaObjects%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHcaObjects()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxRdma
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxRdma.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxRdma is not found in the empty JSON string", LinuxRdma.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxRdma.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxRdma` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of LinuxRdma given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxRdma
+     * @throws IOException if the JSON string is invalid with respect to LinuxRdma
+     */
+    public static LinuxRdma fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxRdma.class);
+    }
+
+    public LinuxRdma hcaHandles(Integer hcaHandles) {
+        this.hcaHandles = hcaHandles;
+        return this;
+    }
+
+    /**
+     * Maximum number of HCA handles that can be opened. Default is \&quot;no limit\&quot;.
+     *
+     * @return hcaHandles
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getHcaHandles() {
+        return hcaHandles;
+    }
+
+    public void setHcaHandles(Integer hcaHandles) {
+        this.hcaHandles = hcaHandles;
+    }
+
+    public LinuxRdma hcaObjects(Integer hcaObjects) {
+        this.hcaObjects = hcaObjects;
+        return this;
+    }
+
+    /**
+     * Maximum number of HCA objects that can be created. Default is \&quot;no limit\&quot;.
+     *
+     * @return hcaObjects
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getHcaObjects() {
+        return hcaObjects;
+    }
+
+    public void setHcaObjects(Integer hcaObjects) {
+        this.hcaObjects = hcaObjects;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxRdma linuxRdma = (LinuxRdma) o;
+        return Objects.equals(this.hcaHandles, linuxRdma.hcaHandles) &&
+                Objects.equals(this.hcaObjects, linuxRdma.hcaObjects);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(hcaHandles, hcaObjects);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LinuxRdma {\n" +
+                "    hcaHandles: " + toIndentedString(hcaHandles) + "\n" +
+                "    hcaObjects: " + toIndentedString(hcaObjects) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LinuxRdma to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxRdma.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxRdma' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxRdma> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxRdma.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LinuxRdma>() {
+                @Override
+                public void write(JsonWriter out, LinuxRdma value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LinuxRdma read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

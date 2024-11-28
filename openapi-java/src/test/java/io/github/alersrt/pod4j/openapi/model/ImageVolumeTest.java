@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ImageVolume
  */
-class ImageVolumeTest {
+public class ImageVolumeTest {
     private final ImageVolume model = new ImageVolume();
 
     /**
      * Model tests for ImageVolume
      */
     @Test
-    void testImageVolume() {
+    public void testImageVolume() {
         // TODO: test ImageVolume
     }
 
@@ -42,7 +43,7 @@ class ImageVolumeTest {
      * Test the property 'destination'
      */
     @Test
-    void destinationTest() {
+    public void destinationTest() {
         // TODO: test destination
     }
 
@@ -50,7 +51,7 @@ class ImageVolumeTest {
      * Test the property 'readWrite'
      */
     @Test
-    void readWriteTest() {
+    public void readWriteTest() {
         // TODO: test readWrite
     }
 
@@ -58,7 +59,7 @@ class ImageVolumeTest {
      * Test the property 'source'
      */
     @Test
-    void sourceTest() {
+    public void sourceTest() {
         // TODO: test source
     }
 
@@ -66,7 +67,7 @@ class ImageVolumeTest {
      * Test the property 'subPath'
      */
     @Test
-    void subPathTest() {
+    public void subPathTest() {
         // TODO: test subPath
     }
 

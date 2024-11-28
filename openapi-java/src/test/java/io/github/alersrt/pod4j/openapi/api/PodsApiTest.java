@@ -14,8 +14,6 @@
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
-import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.IdResponse;
 import io.github.alersrt.pod4j.openapi.model.InspectPodData;
 import io.github.alersrt.pod4j.openapi.model.ListPodsReport;
@@ -34,15 +32,9 @@ import io.github.alersrt.pod4j.openapi.model.PodUnpauseReport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for PodsApi
@@ -52,14 +44,12 @@ public class PodsApiTest {
 
     private final PodsApi api = new PodsApi();
 
-
     /**
      * Generate a Kubernetes YAML file.
-     *
+     * <p>
      * Generate Kubernetes YAML based on a pod or container.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void generateKubeLibpodTest() throws ApiException {
@@ -69,19 +59,16 @@ public class PodsApiTest {
         Integer replicas = null;
         Boolean noTrunc = null;
         Boolean podmanOnly = null;
-        File response =
-                api.generateKubeLibpod(names, service, type, replicas, noTrunc, podmanOnly);
-        
+        File response = api.generateKubeLibpod(names, service, type, replicas, noTrunc, podmanOnly);
         // TODO: test validations
     }
 
     /**
      * Generate Systemd Units
-     *
+     * <p>
      * Generate Systemd Units based on a pod or container.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void generateSystemdLibpodTest() throws ApiException {
@@ -100,19 +87,16 @@ public class PodsApiTest {
         List<String> after = null;
         List<String> requires = null;
         List<String> additionalEnvVariables = null;
-        Map<String, String> response =
-                api.generateSystemdLibpod(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
-        
+        Map<String, String> response = api.generateSystemdLibpod(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
         // TODO: test validations
     }
 
     /**
      * Apply a podman workload or Kubernetes YAML file.
-     *
+     * <p>
      * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void kubeApplyLibpodTest() throws ApiException {
@@ -122,38 +106,32 @@ public class PodsApiTest {
         Boolean service = null;
         String _file = null;
         String request = null;
-        File response =
-                api.kubeApplyLibpod(caCertFile, kubeConfig, namespace, service, _file, request);
-        
+        File response = api.kubeApplyLibpod(caCertFile, kubeConfig, namespace, service, _file, request);
         // TODO: test validations
     }
 
     /**
      * Remove resources created from kube play
-     *
+     * <p>
      * Tears down pods, secrets, and volumes defined in a YAML file
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void playKubeDownLibpodTest() throws ApiException {
         String contentType = null;
         Boolean force = null;
         String request = null;
-        PlayKubeReport response =
-                api.playKubeDownLibpod(contentType, force, request);
-        
+        PlayKubeReport response = api.playKubeDownLibpod(contentType, force, request);
         // TODO: test validations
     }
 
     /**
      * Play a Kubernetes YAML file.
+     * <p>
+     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60;
      *
-     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void playKubeLibpodTest() throws ApiException {
@@ -176,226 +154,169 @@ public class PodsApiTest {
         Boolean wait = null;
         Boolean build = null;
         String request = null;
-        PlayKubeReport response =
-                api.playKubeLibpod(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
-        
+        PlayKubeReport response = api.playKubeLibpod(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
         // TODO: test validations
     }
 
     /**
      * Create a pod
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podCreateLibpodTest() throws ApiException {
         PodSpecGenerator create = null;
-        IdResponse response =
-                api.podCreateLibpod(create);
-        
+        IdResponse response = api.podCreateLibpod(create);
         // TODO: test validations
     }
 
     /**
      * Remove pod
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podDeleteLibpodTest() throws ApiException {
         String name = null;
         Boolean force = null;
-        PodRmReport response =
-                api.podDeleteLibpod(name, force);
-        
+        PodRmReport response = api.podDeleteLibpod(name, force);
         // TODO: test validations
     }
 
     /**
      * Pod exists
-     *
+     * <p>
      * Check if a pod exists by name or ID
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podExistsLibpodTest() throws ApiException {
         String name = null;
-
         api.podExistsLibpod(name);
-
         // TODO: test validations
     }
 
     /**
      * Inspect pod
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podInspectLibpodTest() throws ApiException {
         String name = null;
-        InspectPodData response =
-                api.podInspectLibpod(name);
-        
+        InspectPodData response = api.podInspectLibpod(name);
         // TODO: test validations
     }
 
     /**
      * Kill a pod
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podKillLibpodTest() throws ApiException {
         String name = null;
         String signal = null;
-        PodKillReport response =
-                api.podKillLibpod(name, signal);
-        
+        PodKillReport response = api.podKillLibpod(name, signal);
         // TODO: test validations
     }
 
     /**
      * List pods
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podListLibpodTest() throws ApiException {
         String filters = null;
-        List<ListPodsReport> response =
-                api.podListLibpod(filters);
-        
+        List<ListPodsReport> response = api.podListLibpod(filters);
         // TODO: test validations
     }
 
     /**
      * Pause a pod
-     *
+     * <p>
      * Pause a pod
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podPauseLibpodTest() throws ApiException {
         String name = null;
-        PodPauseReport response =
-                api.podPauseLibpod(name);
-        
+        PodPauseReport response = api.podPauseLibpod(name);
         // TODO: test validations
     }
 
     /**
      * Prune unused pods
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podPruneLibpodTest() throws ApiException {
-        PodPruneReport response =
-                api.podPruneLibpod();
-        
+        PodPruneReport response = api.podPruneLibpod();
         // TODO: test validations
     }
 
     /**
      * Restart a pod
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podRestartLibpodTest() throws ApiException {
         String name = null;
-        PodRestartReport response =
-                api.podRestartLibpod(name);
-        
+        PodRestartReport response = api.podRestartLibpod(name);
         // TODO: test validations
     }
 
     /**
      * Start a pod
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podStartLibpodTest() throws ApiException {
         String name = null;
-        PodStartReport response =
-                api.podStartLibpod(name);
-        
+        PodStartReport response = api.podStartLibpod(name);
         // TODO: test validations
     }
 
     /**
      * Statistics for one or more pods
-     *
+     * <p>
      * Display a live stream of resource usage statistics for the containers in one or more pods
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podStatsAllLibpodTest() throws ApiException {
         Boolean all = null;
         List<String> namesOrIDs = null;
-        List<PodStatsReport> response =
-                api.podStatsAllLibpod(all, namesOrIDs);
-        
+        List<PodStatsReport> response = api.podStatsAllLibpod(all, namesOrIDs);
         // TODO: test validations
     }
 
     /**
      * Stop a pod
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podStopLibpodTest() throws ApiException {
         String name = null;
         Integer t = null;
-        PodStopReport response =
-                api.podStopLibpod(name, t);
-        
+        PodStopReport response = api.podStopLibpod(name, t);
         // TODO: test validations
     }
 
     /**
      * List processes
-     *
+     * <p>
      * List processes running inside a pod
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podTopLibpodTest() throws ApiException {
@@ -403,26 +324,19 @@ public class PodsApiTest {
         Boolean stream = null;
         Integer delay = null;
         String psArgs = null;
-        PodTopOKBody response =
-                api.podTopLibpod(name, stream, delay, psArgs);
-        
+        PodTopOKBody response = api.podTopLibpod(name, stream, delay, psArgs);
         // TODO: test validations
     }
 
     /**
      * Unpause a pod
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void podUnpauseLibpodTest() throws ApiException {
         String name = null;
-        PodUnpauseReport response =
-                api.podUnpauseLibpod(name);
-        
+        PodUnpauseReport response = api.podUnpauseLibpod(name);
         // TODO: test validations
     }
 

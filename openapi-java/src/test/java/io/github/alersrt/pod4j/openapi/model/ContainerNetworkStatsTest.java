@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerNetworkStats
  */
-class ContainerNetworkStatsTest {
+public class ContainerNetworkStatsTest {
     private final ContainerNetworkStats model = new ContainerNetworkStats();
 
     /**
      * Model tests for ContainerNetworkStats
      */
     @Test
-    void testContainerNetworkStats() {
+    public void testContainerNetworkStats() {
         // TODO: test ContainerNetworkStats
     }
 
@@ -42,7 +33,7 @@ class ContainerNetworkStatsTest {
      * Test the property 'rxBytes'
      */
     @Test
-    void rxBytesTest() {
+    public void rxBytesTest() {
         // TODO: test rxBytes
     }
 
@@ -50,7 +41,7 @@ class ContainerNetworkStatsTest {
      * Test the property 'rxDropped'
      */
     @Test
-    void rxDroppedTest() {
+    public void rxDroppedTest() {
         // TODO: test rxDropped
     }
 
@@ -58,7 +49,7 @@ class ContainerNetworkStatsTest {
      * Test the property 'rxErrors'
      */
     @Test
-    void rxErrorsTest() {
+    public void rxErrorsTest() {
         // TODO: test rxErrors
     }
 
@@ -66,7 +57,7 @@ class ContainerNetworkStatsTest {
      * Test the property 'rxPackets'
      */
     @Test
-    void rxPacketsTest() {
+    public void rxPacketsTest() {
         // TODO: test rxPackets
     }
 
@@ -74,7 +65,7 @@ class ContainerNetworkStatsTest {
      * Test the property 'txBytes'
      */
     @Test
-    void txBytesTest() {
+    public void txBytesTest() {
         // TODO: test txBytes
     }
 
@@ -82,7 +73,7 @@ class ContainerNetworkStatsTest {
      * Test the property 'txDropped'
      */
     @Test
-    void txDroppedTest() {
+    public void txDroppedTest() {
         // TODO: test txDropped
     }
 
@@ -90,7 +81,7 @@ class ContainerNetworkStatsTest {
      * Test the property 'txErrors'
      */
     @Test
-    void txErrorsTest() {
+    public void txErrorsTest() {
         // TODO: test txErrors
     }
 
@@ -98,7 +89,7 @@ class ContainerNetworkStatsTest {
      * Test the property 'txPackets'
      */
     @Test
-    void txPacketsTest() {
+    public void txPacketsTest() {
         // TODO: test txPackets
     }
 

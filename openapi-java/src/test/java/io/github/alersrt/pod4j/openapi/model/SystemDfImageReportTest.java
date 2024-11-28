@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemDfImageReport
  */
-class SystemDfImageReportTest {
+public class SystemDfImageReportTest {
     private final SystemDfImageReport model = new SystemDfImageReport();
 
     /**
      * Model tests for SystemDfImageReport
      */
     @Test
-    void testSystemDfImageReport() {
+    public void testSystemDfImageReport() {
         // TODO: test SystemDfImageReport
     }
 
@@ -43,7 +33,7 @@ class SystemDfImageReportTest {
      * Test the property 'containers'
      */
     @Test
-    void containersTest() {
+    public void containersTest() {
         // TODO: test containers
     }
 
@@ -51,7 +41,7 @@ class SystemDfImageReportTest {
      * Test the property 'created'
      */
     @Test
-    void createdTest() {
+    public void createdTest() {
         // TODO: test created
     }
 
@@ -59,7 +49,7 @@ class SystemDfImageReportTest {
      * Test the property 'imageID'
      */
     @Test
-    void imageIDTest() {
+    public void imageIDTest() {
         // TODO: test imageID
     }
 
@@ -67,7 +57,7 @@ class SystemDfImageReportTest {
      * Test the property 'repository'
      */
     @Test
-    void repositoryTest() {
+    public void repositoryTest() {
         // TODO: test repository
     }
 
@@ -75,7 +65,7 @@ class SystemDfImageReportTest {
      * Test the property 'sharedSize'
      */
     @Test
-    void sharedSizeTest() {
+    public void sharedSizeTest() {
         // TODO: test sharedSize
     }
 
@@ -83,7 +73,7 @@ class SystemDfImageReportTest {
      * Test the property 'size'
      */
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         // TODO: test size
     }
 
@@ -91,7 +81,7 @@ class SystemDfImageReportTest {
      * Test the property 'tag'
      */
     @Test
-    void tagTest() {
+    public void tagTest() {
         // TODO: test tag
     }
 
@@ -99,7 +89,7 @@ class SystemDfImageReportTest {
      * Test the property 'uniqueSize'
      */
     @Test
-    void uniqueSizeTest() {
+    public void uniqueSizeTest() {
         // TODO: test uniqueSize
     }
 

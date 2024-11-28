@@ -13,301 +13,303 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Schema2PlatformSpec;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * This is publicly visible as c/image/manifest.Schema2ManifestDescriptor.
  */
-@JsonPropertyOrder({
-  Schema2ManifestDescriptor.JSON_PROPERTY_DIGEST,
-  Schema2ManifestDescriptor.JSON_PROPERTY_MEDIA_TYPE,
-  Schema2ManifestDescriptor.JSON_PROPERTY_PLATFORM,
-  Schema2ManifestDescriptor.JSON_PROPERTY_SIZE,
-  Schema2ManifestDescriptor.JSON_PROPERTY_URLS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2ManifestDescriptor {
-  public static final String JSON_PROPERTY_DIGEST = "digest";
-  private String digest;
+    public static final String SERIALIZED_NAME_DIGEST = "digest";
+    public static final String SERIALIZED_NAME_MEDIA_TYPE = "mediaType";
+    public static final String SERIALIZED_NAME_PLATFORM = "platform";
+    public static final String SERIALIZED_NAME_SIZE = "size";
+    public static final String SERIALIZED_NAME_URLS = "urls";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_MEDIA_TYPE = "mediaType";
-  private String mediaType;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("digest");
+        openapiFields.add("mediaType");
+        openapiFields.add("platform");
+        openapiFields.add("size");
+        openapiFields.add("urls");
 
-  public static final String JSON_PROPERTY_PLATFORM = "platform";
-  private Schema2PlatformSpec platform;
-
-  public static final String JSON_PROPERTY_SIZE = "size";
-  private Long size;
-
-  public static final String JSON_PROPERTY_URLS = "urls";
-  private List<String> urls = new ArrayList<>();
-
-  public Schema2ManifestDescriptor() { 
-  }
-
-  public Schema2ManifestDescriptor digest(String digest) {
-    this.digest = digest;
-    return this;
-  }
-
-  /**
-   * The following is an example of the contents of Digest types:  sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc  This allows to abstract the digest behind this type and work only in those terms.
-   * @return digest
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DIGEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDigest() {
-    return digest;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DIGEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDigest(String digest) {
-    this.digest = digest;
-  }
-
-
-  public Schema2ManifestDescriptor mediaType(String mediaType) {
-    this.mediaType = mediaType;
-    return this;
-  }
-
-  /**
-   * Get mediaType
-   * @return mediaType
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMediaType() {
-    return mediaType;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaType(String mediaType) {
-    this.mediaType = mediaType;
-  }
-
-
-  public Schema2ManifestDescriptor platform(Schema2PlatformSpec platform) {
-    this.platform = platform;
-    return this;
-  }
-
-  /**
-   * Get platform
-   * @return platform
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PLATFORM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Schema2PlatformSpec getPlatform() {
-    return platform;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PLATFORM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(Schema2PlatformSpec platform) {
-    this.platform = platform;
-  }
-
-
-  public Schema2ManifestDescriptor size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Get size
-   * @return size
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public Schema2ManifestDescriptor urls(List<String> urls) {
-    this.urls = urls;
-    return this;
-  }
-
-  public Schema2ManifestDescriptor addUrlsItem(String urlsItem) {
-    if (this.urls == null) {
-      this.urls = new ArrayList<>();
-    }
-    this.urls.add(urlsItem);
-    return this;
-  }
-
-  /**
-   * Get urls
-   * @return urls
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_URLS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getUrls() {
-    return urls;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_URLS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUrls(List<String> urls) {
-    this.urls = urls;
-  }
-
-
-  /**
-   * Return true if this Schema2ManifestDescriptor object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Schema2ManifestDescriptor schema2ManifestDescriptor = (Schema2ManifestDescriptor) o;
-    return Objects.equals(this.digest, schema2ManifestDescriptor.digest) &&
-        Objects.equals(this.mediaType, schema2ManifestDescriptor.mediaType) &&
-        Objects.equals(this.platform, schema2ManifestDescriptor.platform) &&
-        Objects.equals(this.size, schema2ManifestDescriptor.size) &&
-        Objects.equals(this.urls, schema2ManifestDescriptor.urls);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(digest, mediaType, platform, size, urls);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Schema2ManifestDescriptor {\n");
-    sb.append("    digest: ").append(toIndentedString(digest)).append("\n");
-    sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
-    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_DIGEST)
+    private String digest;
+    @SerializedName(SERIALIZED_NAME_MEDIA_TYPE)
+    private String mediaType;
+    @SerializedName(SERIALIZED_NAME_PLATFORM)
+    private Schema2PlatformSpec platform;
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Long size;
+    @SerializedName(SERIALIZED_NAME_URLS)
+    private List<String> urls = new ArrayList<>();
 
-    // add `digest` to the URL query string
-    if (getDigest() != null) {
-      joiner.add(String.format("%sdigest%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDigest()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Schema2ManifestDescriptor() {
     }
 
-    // add `mediaType` to the URL query string
-    if (getMediaType() != null) {
-      joiner.add(String.format("%smediaType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMediaType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Schema2ManifestDescriptor
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Schema2ManifestDescriptor.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Schema2ManifestDescriptor is not found in the empty JSON string", Schema2ManifestDescriptor.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Schema2ManifestDescriptor.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Schema2ManifestDescriptor` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("digest") != null && !jsonObj.get("digest").isJsonNull()) && !jsonObj.get("digest").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `digest` to be a primitive type in the JSON string but got `%s`", jsonObj.get("digest").toString()));
+        }
+        if ((jsonObj.get("mediaType") != null && !jsonObj.get("mediaType").isJsonNull()) && !jsonObj.get("mediaType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `mediaType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mediaType").toString()));
+        }
+        // validate the optional field `platform`
+        if (jsonObj.get("platform") != null && !jsonObj.get("platform").isJsonNull()) {
+            Schema2PlatformSpec.validateJsonElement(jsonObj.get("platform"));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("urls") != null && !jsonObj.get("urls").isJsonNull() && !jsonObj.get("urls").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `urls` to be an array in the JSON string but got `%s`", jsonObj.get("urls").toString()));
+        }
     }
 
-    // add `platform` to the URL query string
-    if (getPlatform() != null) {
-      joiner.add(getPlatform().toUrlQueryString(prefix + "platform" + suffix));
+    /**
+     * Create an instance of Schema2ManifestDescriptor given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Schema2ManifestDescriptor
+     * @throws IOException if the JSON string is invalid with respect to Schema2ManifestDescriptor
+     */
+    public static Schema2ManifestDescriptor fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Schema2ManifestDescriptor.class);
     }
 
-    // add `size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Schema2ManifestDescriptor digest(String digest) {
+        this.digest = digest;
+        return this;
     }
 
-    // add `urls` to the URL query string
-    if (getUrls() != null) {
-      for (int i = 0; i < getUrls().size(); i++) {
-        joiner.add(String.format("%surls%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getUrls().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * The following is an example of the contents of Digest types:  sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc  This allows to abstract the digest behind this type and work only in those terms.
+     *
+     * @return digest
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDigest() {
+        return digest;
     }
 
-    return joiner.toString();
-  }
+    public void setDigest(String digest) {
+        this.digest = digest;
+    }
+
+    public Schema2ManifestDescriptor mediaType(String mediaType) {
+        this.mediaType = mediaType;
+        return this;
+    }
+
+    /**
+     * Get mediaType
+     *
+     * @return mediaType
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
+    public Schema2ManifestDescriptor platform(Schema2PlatformSpec platform) {
+        this.platform = platform;
+        return this;
+    }
+
+    /**
+     * Get platform
+     *
+     * @return platform
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Schema2PlatformSpec getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(Schema2PlatformSpec platform) {
+        this.platform = platform;
+    }
+
+    public Schema2ManifestDescriptor size(Long size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return size
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public Schema2ManifestDescriptor urls(List<String> urls) {
+        this.urls = urls;
+        return this;
+    }
+
+    public Schema2ManifestDescriptor addUrlsItem(String urlsItem) {
+        if (this.urls == null) {
+            this.urls = new ArrayList<>();
+        }
+        this.urls.add(urlsItem);
+        return this;
+    }
+
+    /**
+     * Get urls
+     *
+     * @return urls
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getUrls() {
+        return urls;
+    }
+
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Schema2ManifestDescriptor schema2ManifestDescriptor = (Schema2ManifestDescriptor) o;
+        return Objects.equals(this.digest, schema2ManifestDescriptor.digest) &&
+                Objects.equals(this.mediaType, schema2ManifestDescriptor.mediaType) &&
+                Objects.equals(this.platform, schema2ManifestDescriptor.platform) &&
+                Objects.equals(this.size, schema2ManifestDescriptor.size) &&
+                Objects.equals(this.urls, schema2ManifestDescriptor.urls);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(digest, mediaType, platform, size, urls);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Schema2ManifestDescriptor {\n" +
+                "    digest: " + toIndentedString(digest) + "\n" +
+                "    mediaType: " + toIndentedString(mediaType) + "\n" +
+                "    platform: " + toIndentedString(platform) + "\n" +
+                "    size: " + toIndentedString(size) + "\n" +
+                "    urls: " + toIndentedString(urls) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Schema2ManifestDescriptor to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Schema2ManifestDescriptor.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Schema2ManifestDescriptor' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Schema2ManifestDescriptor> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Schema2ManifestDescriptor.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Schema2ManifestDescriptor>() {
+                @Override
+                public void write(JsonWriter out, Schema2ManifestDescriptor value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Schema2ManifestDescriptor read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

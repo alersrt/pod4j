@@ -13,203 +13,225 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * NetworkUpdateOptions describes options to update a network
  */
-@JsonPropertyOrder({
-  NetworkUpdateOptions.JSON_PROPERTY_ADDDNSSERVERS,
-  NetworkUpdateOptions.JSON_PROPERTY_REMOVEDNSSERVERS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkUpdateOptions {
-  public static final String JSON_PROPERTY_ADDDNSSERVERS = "adddnsservers";
-  private List<String> adddnsservers = new ArrayList<>();
+    public static final String SERIALIZED_NAME_ADDDNSSERVERS = "adddnsservers";
+    public static final String SERIALIZED_NAME_REMOVEDNSSERVERS = "removednsservers";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_REMOVEDNSSERVERS = "removednsservers";
-  private List<String> removednsservers = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("adddnsservers");
+        openapiFields.add("removednsservers");
 
-  public NetworkUpdateOptions() { 
-  }
-
-  public NetworkUpdateOptions adddnsservers(List<String> adddnsservers) {
-    this.adddnsservers = adddnsservers;
-    return this;
-  }
-
-  public NetworkUpdateOptions addAdddnsserversItem(String adddnsserversItem) {
-    if (this.adddnsservers == null) {
-      this.adddnsservers = new ArrayList<>();
-    }
-    this.adddnsservers.add(adddnsserversItem);
-    return this;
-  }
-
-  /**
-   * Get adddnsservers
-   * @return adddnsservers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ADDDNSSERVERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getAdddnsservers() {
-    return adddnsservers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ADDDNSSERVERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdddnsservers(List<String> adddnsservers) {
-    this.adddnsservers = adddnsservers;
-  }
-
-
-  public NetworkUpdateOptions removednsservers(List<String> removednsservers) {
-    this.removednsservers = removednsservers;
-    return this;
-  }
-
-  public NetworkUpdateOptions addRemovednsserversItem(String removednsserversItem) {
-    if (this.removednsservers == null) {
-      this.removednsservers = new ArrayList<>();
-    }
-    this.removednsservers.add(removednsserversItem);
-    return this;
-  }
-
-  /**
-   * Get removednsservers
-   * @return removednsservers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REMOVEDNSSERVERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getRemovednsservers() {
-    return removednsservers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMOVEDNSSERVERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemovednsservers(List<String> removednsservers) {
-    this.removednsservers = removednsservers;
-  }
-
-
-  /**
-   * Return true if this NetworkUpdateOptions object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    NetworkUpdateOptions networkUpdateOptions = (NetworkUpdateOptions) o;
-    return Objects.equals(this.adddnsservers, networkUpdateOptions.adddnsservers) &&
-        Objects.equals(this.removednsservers, networkUpdateOptions.removednsservers);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(adddnsservers, removednsservers);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class NetworkUpdateOptions {\n");
-    sb.append("    adddnsservers: ").append(toIndentedString(adddnsservers)).append("\n");
-    sb.append("    removednsservers: ").append(toIndentedString(removednsservers)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ADDDNSSERVERS)
+    private List<String> adddnsservers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_REMOVEDNSSERVERS)
+    private List<String> removednsservers = new ArrayList<>();
 
-    // add `adddnsservers` to the URL query string
-    if (getAdddnsservers() != null) {
-      for (int i = 0; i < getAdddnsservers().size(); i++) {
-        joiner.add(String.format("%sadddnsservers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getAdddnsservers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public NetworkUpdateOptions() {
     }
 
-    // add `removednsservers` to the URL query string
-    if (getRemovednsservers() != null) {
-      for (int i = 0; i < getRemovednsservers().size(); i++) {
-        joiner.add(String.format("%sremovednsservers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getRemovednsservers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to NetworkUpdateOptions
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!NetworkUpdateOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkUpdateOptions is not found in the empty JSON string", NetworkUpdateOptions.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!NetworkUpdateOptions.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkUpdateOptions` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("adddnsservers") != null && !jsonObj.get("adddnsservers").isJsonNull() && !jsonObj.get("adddnsservers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `adddnsservers` to be an array in the JSON string but got `%s`", jsonObj.get("adddnsservers").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("removednsservers") != null && !jsonObj.get("removednsservers").isJsonNull() && !jsonObj.get("removednsservers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `removednsservers` to be an array in the JSON string but got `%s`", jsonObj.get("removednsservers").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of NetworkUpdateOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetworkUpdateOptions
+     * @throws IOException if the JSON string is invalid with respect to NetworkUpdateOptions
+     */
+    public static NetworkUpdateOptions fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, NetworkUpdateOptions.class);
+    }
+
+    public NetworkUpdateOptions adddnsservers(List<String> adddnsservers) {
+        this.adddnsservers = adddnsservers;
+        return this;
+    }
+
+    public NetworkUpdateOptions addAdddnsserversItem(String adddnsserversItem) {
+        if (this.adddnsservers == null) {
+            this.adddnsservers = new ArrayList<>();
+        }
+        this.adddnsservers.add(adddnsserversItem);
+        return this;
+    }
+
+    /**
+     * Get adddnsservers
+     *
+     * @return adddnsservers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getAdddnsservers() {
+        return adddnsservers;
+    }
+
+    public void setAdddnsservers(List<String> adddnsservers) {
+        this.adddnsservers = adddnsservers;
+    }
+
+    public NetworkUpdateOptions removednsservers(List<String> removednsservers) {
+        this.removednsservers = removednsservers;
+        return this;
+    }
+
+    public NetworkUpdateOptions addRemovednsserversItem(String removednsserversItem) {
+        if (this.removednsservers == null) {
+            this.removednsservers = new ArrayList<>();
+        }
+        this.removednsservers.add(removednsserversItem);
+        return this;
+    }
+
+    /**
+     * Get removednsservers
+     *
+     * @return removednsservers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getRemovednsservers() {
+        return removednsservers;
+    }
+
+    public void setRemovednsservers(List<String> removednsservers) {
+        this.removednsservers = removednsservers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        NetworkUpdateOptions networkUpdateOptions = (NetworkUpdateOptions) o;
+        return Objects.equals(this.adddnsservers, networkUpdateOptions.adddnsservers) &&
+                Objects.equals(this.removednsservers, networkUpdateOptions.removednsservers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(adddnsservers, removednsservers);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class NetworkUpdateOptions {\n" +
+                "    adddnsservers: " + toIndentedString(adddnsservers) + "\n" +
+                "    removednsservers: " + toIndentedString(removednsservers) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of NetworkUpdateOptions to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!NetworkUpdateOptions.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'NetworkUpdateOptions' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<NetworkUpdateOptions> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(NetworkUpdateOptions.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<NetworkUpdateOptions>() {
+                @Override
+                public void write(JsonWriter out, NetworkUpdateOptions value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public NetworkUpdateOptions read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

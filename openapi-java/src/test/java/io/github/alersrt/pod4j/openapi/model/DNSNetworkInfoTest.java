@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for DNSNetworkInfo
  */
-class DNSNetworkInfoTest {
+public class DNSNetworkInfoTest {
     private final DNSNetworkInfo model = new DNSNetworkInfo();
 
     /**
      * Model tests for DNSNetworkInfo
      */
     @Test
-    void testDNSNetworkInfo() {
+    public void testDNSNetworkInfo() {
         // TODO: test DNSNetworkInfo
     }
 
@@ -42,7 +43,7 @@ class DNSNetworkInfoTest {
      * Test the property '_package'
      */
     @Test
-    void _packageTest() {
+    public void _packageTest() {
         // TODO: test _package
     }
 
@@ -50,7 +51,7 @@ class DNSNetworkInfoTest {
      * Test the property 'path'
      */
     @Test
-    void pathTest() {
+    public void pathTest() {
         // TODO: test path
     }
 
@@ -58,7 +59,7 @@ class DNSNetworkInfoTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

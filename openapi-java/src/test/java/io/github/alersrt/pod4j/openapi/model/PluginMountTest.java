@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PluginMount
  */
-class PluginMountTest {
+public class PluginMountTest {
     private final PluginMount model = new PluginMount();
 
     /**
      * Model tests for PluginMount
      */
     @Test
-    void testPluginMount() {
+    public void testPluginMount() {
         // TODO: test PluginMount
     }
 
@@ -44,7 +45,7 @@ class PluginMountTest {
      * Test the property 'description'
      */
     @Test
-    void descriptionTest() {
+    public void descriptionTest() {
         // TODO: test description
     }
 
@@ -52,7 +53,7 @@ class PluginMountTest {
      * Test the property 'destination'
      */
     @Test
-    void destinationTest() {
+    public void destinationTest() {
         // TODO: test destination
     }
 
@@ -60,7 +61,7 @@ class PluginMountTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -68,7 +69,7 @@ class PluginMountTest {
      * Test the property 'options'
      */
     @Test
-    void optionsTest() {
+    public void optionsTest() {
         // TODO: test options
     }
 
@@ -76,7 +77,7 @@ class PluginMountTest {
      * Test the property 'settable'
      */
     @Test
-    void settableTest() {
+    public void settableTest() {
         // TODO: test settable
     }
 
@@ -84,7 +85,7 @@ class PluginMountTest {
      * Test the property 'source'
      */
     @Test
-    void sourceTest() {
+    public void sourceTest() {
         // TODO: test source
     }
 
@@ -92,7 +93,7 @@ class PluginMountTest {
      * Test the property 'type'
      */
     @Test
-    void typeTest() {
+    public void typeTest() {
         // TODO: test type
     }
 

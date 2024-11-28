@@ -13,348 +13,350 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * AuthConfig contains authorization information for connecting to a Registry
  */
-@JsonPropertyOrder({
-  AuthConfig.JSON_PROPERTY_AUTH,
-  AuthConfig.JSON_PROPERTY_EMAIL,
-  AuthConfig.JSON_PROPERTY_IDENTITYTOKEN,
-  AuthConfig.JSON_PROPERTY_PASSWORD,
-  AuthConfig.JSON_PROPERTY_REGISTRYTOKEN,
-  AuthConfig.JSON_PROPERTY_SERVERADDRESS,
-  AuthConfig.JSON_PROPERTY_USERNAME
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class AuthConfig {
-  public static final String JSON_PROPERTY_AUTH = "auth";
-  private String auth;
+    public static final String SERIALIZED_NAME_AUTH = "auth";
+    public static final String SERIALIZED_NAME_EMAIL = "email";
+    public static final String SERIALIZED_NAME_IDENTITYTOKEN = "identitytoken";
+    public static final String SERIALIZED_NAME_PASSWORD = "password";
+    public static final String SERIALIZED_NAME_REGISTRYTOKEN = "registrytoken";
+    public static final String SERIALIZED_NAME_SERVERADDRESS = "serveraddress";
+    public static final String SERIALIZED_NAME_USERNAME = "username";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_EMAIL = "email";
-  private String email;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("auth");
+        openapiFields.add("email");
+        openapiFields.add("identitytoken");
+        openapiFields.add("password");
+        openapiFields.add("registrytoken");
+        openapiFields.add("serveraddress");
+        openapiFields.add("username");
 
-  public static final String JSON_PROPERTY_IDENTITYTOKEN = "identitytoken";
-  private String identitytoken;
-
-  public static final String JSON_PROPERTY_PASSWORD = "password";
-  private String password;
-
-  public static final String JSON_PROPERTY_REGISTRYTOKEN = "registrytoken";
-  private String registrytoken;
-
-  public static final String JSON_PROPERTY_SERVERADDRESS = "serveraddress";
-  private String serveraddress;
-
-  public static final String JSON_PROPERTY_USERNAME = "username";
-  private String username;
-
-  public AuthConfig() { 
-  }
-
-  public AuthConfig auth(String auth) {
-    this.auth = auth;
-    return this;
-  }
-
-  /**
-   * Get auth
-   * @return auth
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getAuth() {
-    return auth;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuth(String auth) {
-    this.auth = auth;
-  }
-
-
-  public AuthConfig email(String email) {
-    this.email = email;
-    return this;
-  }
-
-  /**
-   * Email is an optional value associated with the username. This field is deprecated and will be removed in a later version of docker.
-   * @return email
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getEmail() {
-    return email;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EMAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-
-  public AuthConfig identitytoken(String identitytoken) {
-    this.identitytoken = identitytoken;
-    return this;
-  }
-
-  /**
-   * IdentityToken is used to authenticate the user and get an access token for the registry.
-   * @return identitytoken
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IDENTITYTOKEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIdentitytoken() {
-    return identitytoken;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IDENTITYTOKEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdentitytoken(String identitytoken) {
-    this.identitytoken = identitytoken;
-  }
-
-
-  public AuthConfig password(String password) {
-    this.password = password;
-    return this;
-  }
-
-  /**
-   * Get password
-   * @return password
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PASSWORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPassword() {
-    return password;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PASSWORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-
-  public AuthConfig registrytoken(String registrytoken) {
-    this.registrytoken = registrytoken;
-    return this;
-  }
-
-  /**
-   * RegistryToken is a bearer token to be sent to a registry
-   * @return registrytoken
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REGISTRYTOKEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRegistrytoken() {
-    return registrytoken;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REGISTRYTOKEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRegistrytoken(String registrytoken) {
-    this.registrytoken = registrytoken;
-  }
-
-
-  public AuthConfig serveraddress(String serveraddress) {
-    this.serveraddress = serveraddress;
-    return this;
-  }
-
-  /**
-   * Get serveraddress
-   * @return serveraddress
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SERVERADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getServeraddress() {
-    return serveraddress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SERVERADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setServeraddress(String serveraddress) {
-    this.serveraddress = serveraddress;
-  }
-
-
-  public AuthConfig username(String username) {
-    this.username = username;
-    return this;
-  }
-
-  /**
-   * Get username
-   * @return username
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USERNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUsername() {
-    return username;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USERNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-
-  /**
-   * Return true if this AuthConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    AuthConfig authConfig = (AuthConfig) o;
-    return Objects.equals(this.auth, authConfig.auth) &&
-        Objects.equals(this.email, authConfig.email) &&
-        Objects.equals(this.identitytoken, authConfig.identitytoken) &&
-        Objects.equals(this.password, authConfig.password) &&
-        Objects.equals(this.registrytoken, authConfig.registrytoken) &&
-        Objects.equals(this.serveraddress, authConfig.serveraddress) &&
-        Objects.equals(this.username, authConfig.username);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(auth, email, identitytoken, password, registrytoken, serveraddress, username);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AuthConfig {\n");
-    sb.append("    auth: ").append(toIndentedString(auth)).append("\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    identitytoken: ").append(toIndentedString(identitytoken)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
-    sb.append("    registrytoken: ").append(toIndentedString(registrytoken)).append("\n");
-    sb.append("    serveraddress: ").append(toIndentedString(serveraddress)).append("\n");
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_AUTH)
+    private String auth;
+    @SerializedName(SERIALIZED_NAME_EMAIL)
+    private String email;
+    @SerializedName(SERIALIZED_NAME_IDENTITYTOKEN)
+    private String identitytoken;
+    @SerializedName(SERIALIZED_NAME_PASSWORD)
+    private String password;
+    @SerializedName(SERIALIZED_NAME_REGISTRYTOKEN)
+    private String registrytoken;
+    @SerializedName(SERIALIZED_NAME_SERVERADDRESS)
+    private String serveraddress;
+    @SerializedName(SERIALIZED_NAME_USERNAME)
+    private String username;
 
-    // add `auth` to the URL query string
-    if (getAuth() != null) {
-      joiner.add(String.format("%sauth%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAuth()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public AuthConfig() {
     }
 
-    // add `email` to the URL query string
-    if (getEmail() != null) {
-      joiner.add(String.format("%semail%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEmail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to AuthConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!AuthConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in AuthConfig is not found in the empty JSON string", AuthConfig.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!AuthConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("auth") != null && !jsonObj.get("auth").isJsonNull()) && !jsonObj.get("auth").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `auth` to be a primitive type in the JSON string but got `%s`", jsonObj.get("auth").toString()));
+        }
+        if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
+        }
+        if ((jsonObj.get("identitytoken") != null && !jsonObj.get("identitytoken").isJsonNull()) && !jsonObj.get("identitytoken").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `identitytoken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identitytoken").toString()));
+        }
+        if ((jsonObj.get("password") != null && !jsonObj.get("password").isJsonNull()) && !jsonObj.get("password").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `password` to be a primitive type in the JSON string but got `%s`", jsonObj.get("password").toString()));
+        }
+        if ((jsonObj.get("registrytoken") != null && !jsonObj.get("registrytoken").isJsonNull()) && !jsonObj.get("registrytoken").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `registrytoken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("registrytoken").toString()));
+        }
+        if ((jsonObj.get("serveraddress") != null && !jsonObj.get("serveraddress").isJsonNull()) && !jsonObj.get("serveraddress").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `serveraddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("serveraddress").toString()));
+        }
+        if ((jsonObj.get("username") != null && !jsonObj.get("username").isJsonNull()) && !jsonObj.get("username").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
+        }
     }
 
-    // add `identitytoken` to the URL query string
-    if (getIdentitytoken() != null) {
-      joiner.add(String.format("%sidentitytoken%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIdentitytoken()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of AuthConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of AuthConfig
+     * @throws IOException if the JSON string is invalid with respect to AuthConfig
+     */
+    public static AuthConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, AuthConfig.class);
     }
 
-    // add `password` to the URL query string
-    if (getPassword() != null) {
-      joiner.add(String.format("%spassword%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPassword()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public AuthConfig auth(String auth) {
+        this.auth = auth;
+        return this;
     }
 
-    // add `registrytoken` to the URL query string
-    if (getRegistrytoken() != null) {
-      joiner.add(String.format("%sregistrytoken%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRegistrytoken()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get auth
+     *
+     * @return auth
+     */
+    @jakarta.annotation.Nullable
+
+    public String getAuth() {
+        return auth;
     }
 
-    // add `serveraddress` to the URL query string
-    if (getServeraddress() != null) {
-      joiner.add(String.format("%sserveraddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getServeraddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setAuth(String auth) {
+        this.auth = auth;
     }
 
-    // add `username` to the URL query string
-    if (getUsername() != null) {
-      joiner.add(String.format("%susername%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUsername()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public AuthConfig email(String email) {
+        this.email = email;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Email is an optional value associated with the username. This field is deprecated and will be removed in a later version of docker.
+     *
+     * @return email
+     */
+    @jakarta.annotation.Nullable
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public AuthConfig identitytoken(String identitytoken) {
+        this.identitytoken = identitytoken;
+        return this;
+    }
+
+    /**
+     * IdentityToken is used to authenticate the user and get an access token for the registry.
+     *
+     * @return identitytoken
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIdentitytoken() {
+        return identitytoken;
+    }
+
+    public void setIdentitytoken(String identitytoken) {
+        this.identitytoken = identitytoken;
+    }
+
+    public AuthConfig password(String password) {
+        this.password = password;
+        return this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return password
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public AuthConfig registrytoken(String registrytoken) {
+        this.registrytoken = registrytoken;
+        return this;
+    }
+
+    /**
+     * RegistryToken is a bearer token to be sent to a registry
+     *
+     * @return registrytoken
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRegistrytoken() {
+        return registrytoken;
+    }
+
+    public void setRegistrytoken(String registrytoken) {
+        this.registrytoken = registrytoken;
+    }
+
+    public AuthConfig serveraddress(String serveraddress) {
+        this.serveraddress = serveraddress;
+        return this;
+    }
+
+    /**
+     * Get serveraddress
+     *
+     * @return serveraddress
+     */
+    @jakarta.annotation.Nullable
+
+    public String getServeraddress() {
+        return serveraddress;
+    }
+
+    public void setServeraddress(String serveraddress) {
+        this.serveraddress = serveraddress;
+    }
+
+    public AuthConfig username(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return username
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AuthConfig authConfig = (AuthConfig) o;
+        return Objects.equals(this.auth, authConfig.auth) &&
+                Objects.equals(this.email, authConfig.email) &&
+                Objects.equals(this.identitytoken, authConfig.identitytoken) &&
+                Objects.equals(this.password, authConfig.password) &&
+                Objects.equals(this.registrytoken, authConfig.registrytoken) &&
+                Objects.equals(this.serveraddress, authConfig.serveraddress) &&
+                Objects.equals(this.username, authConfig.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(auth, email, identitytoken, password, registrytoken, serveraddress, username);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class AuthConfig {\n" +
+                "    auth: " + toIndentedString(auth) + "\n" +
+                "    email: " + toIndentedString(email) + "\n" +
+                "    identitytoken: " + toIndentedString(identitytoken) + "\n" +
+                "    password: " + toIndentedString(password) + "\n" +
+                "    registrytoken: " + toIndentedString(registrytoken) + "\n" +
+                "    serveraddress: " + toIndentedString(serveraddress) + "\n" +
+                "    username: " + toIndentedString(username) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of AuthConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!AuthConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'AuthConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<AuthConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(AuthConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<AuthConfig>() {
+                @Override
+                public void write(JsonWriter out, AuthConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public AuthConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

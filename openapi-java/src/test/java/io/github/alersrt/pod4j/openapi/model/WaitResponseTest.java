@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.WaitExitError;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for WaitResponse
  */
-class WaitResponseTest {
+public class WaitResponseTest {
     private final WaitResponse model = new WaitResponse();
 
     /**
      * Model tests for WaitResponse
      */
     @Test
-    void testWaitResponse() {
+    public void testWaitResponse() {
         // TODO: test WaitResponse
     }
 
@@ -43,7 +33,7 @@ class WaitResponseTest {
      * Test the property 'error'
      */
     @Test
-    void errorTest() {
+    public void errorTest() {
         // TODO: test error
     }
 
@@ -51,7 +41,7 @@ class WaitResponseTest {
      * Test the property 'statusCode'
      */
     @Test
-    void statusCodeTest() {
+    public void statusCodeTest() {
         // TODO: test statusCode
     }
 

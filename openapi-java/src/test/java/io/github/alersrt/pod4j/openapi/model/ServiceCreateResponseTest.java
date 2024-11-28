@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ServiceCreateResponse
  */
-class ServiceCreateResponseTest {
+public class ServiceCreateResponseTest {
     private final ServiceCreateResponse model = new ServiceCreateResponse();
 
     /**
      * Model tests for ServiceCreateResponse
      */
     @Test
-    void testServiceCreateResponse() {
+    public void testServiceCreateResponse() {
         // TODO: test ServiceCreateResponse
     }
 
@@ -43,7 +33,7 @@ class ServiceCreateResponseTest {
      * Test the property 'ID'
      */
     @Test
-    void IDTest() {
+    public void IDTest() {
         // TODO: test ID
     }
 
@@ -51,7 +41,7 @@ class ServiceCreateResponseTest {
      * Test the property 'warnings'
      */
     @Test
-    void warningsTest() {
+    public void warningsTest() {
         // TODO: test warnings
     }
 

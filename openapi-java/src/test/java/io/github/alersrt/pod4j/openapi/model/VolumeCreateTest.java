@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for VolumeCreate
  */
-class VolumeCreateTest {
+public class VolumeCreateTest {
     private final VolumeCreate model = new VolumeCreate();
 
     /**
      * Model tests for VolumeCreate
      */
     @Test
-    void testVolumeCreate() {
+    public void testVolumeCreate() {
         // TODO: test VolumeCreate
     }
 
@@ -44,7 +33,7 @@ class VolumeCreateTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -52,7 +41,7 @@ class VolumeCreateTest {
      * Test the property 'driverOpts'
      */
     @Test
-    void driverOptsTest() {
+    public void driverOptsTest() {
         // TODO: test driverOpts
     }
 
@@ -60,7 +49,7 @@ class VolumeCreateTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -68,7 +57,7 @@ class VolumeCreateTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 

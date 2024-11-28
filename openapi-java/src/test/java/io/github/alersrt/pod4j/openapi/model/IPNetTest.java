@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for IPNet
  */
-class IPNetTest {
+public class IPNetTest {
     private final IPNet model = new IPNet();
 
     /**
      * Model tests for IPNet
      */
     @Test
-    void testIPNet() {
+    public void testIPNet() {
         // TODO: test IPNet
     }
 
@@ -44,7 +45,7 @@ class IPNetTest {
      * Test the property 'IP'
      */
     @Test
-    void IPTest() {
+    public void IPTest() {
         // TODO: test IP
     }
 
@@ -52,7 +53,7 @@ class IPNetTest {
      * Test the property 'mask'
      */
     @Test
-    void maskTest() {
+    public void maskTest() {
         // TODO: test mask
     }
 

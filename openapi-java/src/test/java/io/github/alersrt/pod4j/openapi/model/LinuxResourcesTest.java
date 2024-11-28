@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.LinuxBlockIO;
 import io.github.alersrt.pod4j.openapi.model.LinuxCPU;
 import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
@@ -26,27 +26,28 @@ import io.github.alersrt.pod4j.openapi.model.LinuxMemory;
 import io.github.alersrt.pod4j.openapi.model.LinuxNetwork;
 import io.github.alersrt.pod4j.openapi.model.LinuxPids;
 import io.github.alersrt.pod4j.openapi.model.LinuxRdma;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxResources
  */
-class LinuxResourcesTest {
+public class LinuxResourcesTest {
     private final LinuxResources model = new LinuxResources();
 
     /**
      * Model tests for LinuxResources
      */
     @Test
-    void testLinuxResources() {
+    public void testLinuxResources() {
         // TODO: test LinuxResources
     }
 
@@ -54,7 +55,7 @@ class LinuxResourcesTest {
      * Test the property 'blockIO'
      */
     @Test
-    void blockIOTest() {
+    public void blockIOTest() {
         // TODO: test blockIO
     }
 
@@ -62,7 +63,7 @@ class LinuxResourcesTest {
      * Test the property 'cpu'
      */
     @Test
-    void cpuTest() {
+    public void cpuTest() {
         // TODO: test cpu
     }
 
@@ -70,7 +71,7 @@ class LinuxResourcesTest {
      * Test the property 'devices'
      */
     @Test
-    void devicesTest() {
+    public void devicesTest() {
         // TODO: test devices
     }
 
@@ -78,7 +79,7 @@ class LinuxResourcesTest {
      * Test the property 'hugepageLimits'
      */
     @Test
-    void hugepageLimitsTest() {
+    public void hugepageLimitsTest() {
         // TODO: test hugepageLimits
     }
 
@@ -86,7 +87,7 @@ class LinuxResourcesTest {
      * Test the property 'memory'
      */
     @Test
-    void memoryTest() {
+    public void memoryTest() {
         // TODO: test memory
     }
 
@@ -94,7 +95,7 @@ class LinuxResourcesTest {
      * Test the property 'network'
      */
     @Test
-    void networkTest() {
+    public void networkTest() {
         // TODO: test network
     }
 
@@ -102,7 +103,7 @@ class LinuxResourcesTest {
      * Test the property 'pids'
      */
     @Test
-    void pidsTest() {
+    public void pidsTest() {
         // TODO: test pids
     }
 
@@ -110,7 +111,7 @@ class LinuxResourcesTest {
      * Test the property 'rdma'
      */
     @Test
-    void rdmaTest() {
+    public void rdmaTest() {
         // TODO: test rdma
     }
 
@@ -118,7 +119,7 @@ class LinuxResourcesTest {
      * Test the property 'unified'
      */
     @Test
-    void unifiedTest() {
+    public void unifiedTest() {
         // TODO: test unified
     }
 

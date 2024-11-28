@@ -10,509 +10,789 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.reflect.TypeToken;
+import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
+import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
 import io.github.alersrt.pod4j.openapi.model.AuthConfig;
 import io.github.alersrt.pod4j.openapi.model.AuthReport;
 import io.github.alersrt.pod4j.openapi.model.SystemComponentVersion;
 import io.github.alersrt.pod4j.openapi.model.SystemDfReport;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.StringJoiner;
-import java.util.function.Consumer;
+import java.util.Map;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemCompatApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public SystemCompatApi() {
-    this(new ApiClient());
-  }
-
-  public SystemCompatApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
-    }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
-
-  /**
-   * Check auth configuration
-   * 
-   * @param authConfig Authentication to check (optional)
-   * @return AuthReport
-   * @throws ApiException if fails to make API call
-   */
-  public AuthReport systemAuth(AuthConfig authConfig) throws ApiException {
-    ApiResponse<AuthReport> localVarResponse = systemAuthWithHttpInfo(authConfig);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Check auth configuration
-   * 
-   * @param authConfig Authentication to check (optional)
-   * @return ApiResponse&lt;AuthReport&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<AuthReport> systemAuthWithHttpInfo(AuthConfig authConfig) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = systemAuthRequestBuilder(authConfig);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("systemAuth", localVarResponse);
-        }
-        return new ApiResponse<AuthReport>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<AuthReport>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder systemAuthRequestBuilder(AuthConfig authConfig) throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/auth";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(authConfig);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Show disk usage
-   * Return information about disk usage for containers, images, and volumes
-   * @return SystemDfReport
-   * @throws ApiException if fails to make API call
-   */
-  public SystemDfReport systemDataUsage() throws ApiException {
-    ApiResponse<SystemDfReport> localVarResponse = systemDataUsageWithHttpInfo();
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Show disk usage
-   * Return information about disk usage for containers, images, and volumes
-   * @return ApiResponse&lt;SystemDfReport&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SystemDfReport> systemDataUsageWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = systemDataUsageRequestBuilder();
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("systemDataUsage", localVarResponse);
-        }
-        return new ApiResponse<SystemDfReport>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SystemDfReport>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder systemDataUsageRequestBuilder() throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/system/df";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Get events
-   * Returns events filtered on query parameters
-   * @param since start streaming events from this time (optional)
-   * @param until stop streaming events later than this (optional)
-   * @param filters JSON encoded map[string][]string of constraints (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void systemEvents(String since, String until, String filters) throws ApiException {
-    systemEventsWithHttpInfo(since, until, filters);
-  }
-
-  /**
-   * Get events
-   * Returns events filtered on query parameters
-   * @param since start streaming events from this time (optional)
-   * @param until stop streaming events later than this (optional)
-   * @param filters JSON encoded map[string][]string of constraints (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> systemEventsWithHttpInfo(String since, String until, String filters) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = systemEventsRequestBuilder(since, until, filters);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("systemEvents", localVarResponse);
-        }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
-        }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
-
-  private HttpRequest.Builder systemEventsRequestBuilder(String since, String until, String filters) throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/events";
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "since";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("since", since));
-    localVarQueryParameterBaseName = "until";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("until", until));
-    localVarQueryParameterBaseName = "filters";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("filters", filters));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    public SystemCompatApi() {
+        this(Configuration.getDefaultApiClient());
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    public SystemCompatApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    public ApiClient getApiClient() {
+        return localVarApiClient;
     }
-    return localVarRequestBuilder;
-  }
 
-  /**
-   * Get info
-   * Returns information on the system and libpod configuration
-   * @throws ApiException if fails to make API call
-   */
-  public void systemInfo() throws ApiException {
-    systemInfoWithHttpInfo();
-  }
-
-  /**
-   * Get info
-   * Returns information on the system and libpod configuration
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> systemInfoWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = systemInfoRequestBuilder();
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("systemInfo", localVarResponse);
-        }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
-        }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+
+    public int getHostIndex() {
+        return localHostIndex;
     }
-  }
 
-  private HttpRequest.Builder systemInfoRequestBuilder() throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/info";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
     }
-    return localVarRequestBuilder;
-  }
 
-  /**
-   * Ping service
-   * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned. 
-   * @return String
-   * @throws ApiException if fails to make API call
-   */
-  public String systemPing() throws ApiException {
-    ApiResponse<String> localVarResponse = systemPingWithHttpInfo();
-    return localVarResponse.getData();
-  }
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
 
-  /**
-   * Ping service
-   * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned. 
-   * @return ApiResponse&lt;String&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<String> systemPingWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = systemPingRequestBuilder();
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("systemPing", localVarResponse);
-        }
-        // for plain text response
-        if (localVarResponse.headers().map().containsKey("Content-Type") &&
-                "text/plain".equalsIgnoreCase(localVarResponse.headers().map().get("Content-Type").get(0).split(";")[0].trim())) {
-          java.util.Scanner s = new java.util.Scanner(localVarResponse.body()).useDelimiter("\\A");
-          String responseBodyText = s.hasNext() ? s.next() : "";
-          return new ApiResponse<String>(
-                  localVarResponse.statusCode(),
-                  localVarResponse.headers().map(),
-                  responseBodyText
-          );
+    /**
+     * Build call for systemAuth
+     *
+     * @param authConfig Authentication to check (optional)
+     * @param _callback  Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Auth response </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemAuthCall(AuthConfig authConfig, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
         } else {
-            throw new RuntimeException("Error! The response Content-Type is supposed to be `text/plain` but it's not: " + localVarResponse);
+            basePath = null;
         }
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder systemPingRequestBuilder() throws ApiException {
+        Object localVarPostBody = authConfig;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/auth";
 
-    String localVarPath = "/libpod/_ping";
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "text/plain");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Component Version information
-   * 
-   * @return SystemComponentVersion
-   * @throws ApiException if fails to make API call
-   */
-  public SystemComponentVersion systemVersion() throws ApiException {
-    ApiResponse<SystemComponentVersion> localVarResponse = systemVersionWithHttpInfo();
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Component Version information
-   * 
-   * @return ApiResponse&lt;SystemComponentVersion&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<SystemComponentVersion> systemVersionWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = systemVersionRequestBuilder();
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("systemVersion", localVarResponse);
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<SystemComponentVersion>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<SystemComponentVersion>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
+
+        final String[] localVarContentTypes = {
+                "application/json",
+                "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call systemAuthValidateBeforeCall(AuthConfig authConfig, final ApiCallback _callback) throws ApiException {
+        return systemAuthCall(authConfig, _callback);
+
     }
-  }
 
-  private HttpRequest.Builder systemVersionRequestBuilder() throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/version";
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Check auth configuration
+     *
+     * @param authConfig Authentication to check (optional)
+     * @return AuthReport
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Auth response </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public AuthReport systemAuth(AuthConfig authConfig) throws ApiException {
+        ApiResponse<AuthReport> localVarResp = systemAuthWithHttpInfo(authConfig);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
 
+    /**
+     * Check auth configuration
+     *
+     * @param authConfig Authentication to check (optional)
+     * @return ApiResponse&lt;AuthReport&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Auth response </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<AuthReport> systemAuthWithHttpInfo(AuthConfig authConfig) throws ApiException {
+        okhttp3.Call localVarCall = systemAuthValidateBeforeCall(authConfig, null);
+        Type localVarReturnType = new TypeToken<AuthReport>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Check auth configuration (asynchronously)
+     *
+     * @param authConfig Authentication to check (optional)
+     * @param _callback  The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Auth response </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemAuthAsync(AuthConfig authConfig, final ApiCallback<AuthReport> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = systemAuthValidateBeforeCall(authConfig, _callback);
+        Type localVarReturnType = new TypeToken<AuthReport>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for systemDataUsage
+     *
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Disk usage </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemDataUsageCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/system/df";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call systemDataUsageValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return systemDataUsageCall(_callback);
+
+    }
+
+    /**
+     * Show disk usage
+     * Return information about disk usage for containers, images, and volumes
+     *
+     * @return SystemDfReport
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Disk usage </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public SystemDfReport systemDataUsage() throws ApiException {
+        ApiResponse<SystemDfReport> localVarResp = systemDataUsageWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * Show disk usage
+     * Return information about disk usage for containers, images, and volumes
+     *
+     * @return ApiResponse&lt;SystemDfReport&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Disk usage </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<SystemDfReport> systemDataUsageWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = systemDataUsageValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<SystemDfReport>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Show disk usage (asynchronously)
+     * Return information about disk usage for containers, images, and volumes
+     *
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Disk usage </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemDataUsageAsync(final ApiCallback<SystemDfReport> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = systemDataUsageValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<SystemDfReport>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for systemEvents
+     *
+     * @param since     start streaming events from this time (optional)
+     * @param until     stop streaming events later than this (optional)
+     * @param filters   JSON encoded map[string][]string of constraints (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> returns a string of json data describing an event </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemEventsCall(String since, String until, String filters, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/events";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (since != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("since", since));
+        }
+
+        if (until != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("until", until));
+        }
+
+        if (filters != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filters", filters));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call systemEventsValidateBeforeCall(String since, String until, String filters, final ApiCallback _callback) throws ApiException {
+        return systemEventsCall(since, until, filters, _callback);
+
+    }
+
+    /**
+     * Get events
+     * Returns events filtered on query parameters
+     *
+     * @param since   start streaming events from this time (optional)
+     * @param until   stop streaming events later than this (optional)
+     * @param filters JSON encoded map[string][]string of constraints (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> returns a string of json data describing an event </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void systemEvents(String since, String until, String filters) throws ApiException {
+        systemEventsWithHttpInfo(since, until, filters);
+    }
+
+    /**
+     * Get events
+     * Returns events filtered on query parameters
+     *
+     * @param since   start streaming events from this time (optional)
+     * @param until   stop streaming events later than this (optional)
+     * @param filters JSON encoded map[string][]string of constraints (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> returns a string of json data describing an event </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> systemEventsWithHttpInfo(String since, String until, String filters) throws ApiException {
+        okhttp3.Call localVarCall = systemEventsValidateBeforeCall(since, until, filters, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Get events (asynchronously)
+     * Returns events filtered on query parameters
+     *
+     * @param since     start streaming events from this time (optional)
+     * @param until     stop streaming events later than this (optional)
+     * @param filters   JSON encoded map[string][]string of constraints (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> returns a string of json data describing an event </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemEventsAsync(String since, String until, String filters, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = systemEventsValidateBeforeCall(since, until, filters, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for systemInfo
+     *
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> to be determined </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemInfoCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/info";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call systemInfoValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return systemInfoCall(_callback);
+
+    }
+
+    /**
+     * Get info
+     * Returns information on the system and libpod configuration
+     *
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> to be determined </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void systemInfo() throws ApiException {
+        systemInfoWithHttpInfo();
+    }
+
+    /**
+     * Get info
+     * Returns information on the system and libpod configuration
+     *
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> to be determined </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> systemInfoWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = systemInfoValidateBeforeCall(null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Get info (asynchronously)
+     * Returns information on the system and libpod configuration
+     *
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> to be determined </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemInfoAsync(final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = systemInfoValidateBeforeCall(_callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for systemPing
+     *
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  * Docker-Experimental - If the server is running with experimental mode enabled, always true <br>  * Cache-Control - always no-cache <br>  * Libpod-Buildah-Version - Default version of libpod image builder.   Available if service is backed by Podman, therefore may be used to   determine if talking to Podman engine or another engine  <br>  * Libpod-API-Version - Max Podman API Version the server supports. Available if service is backed by Podman, therefore may be used to determine if talking to Podman engine or another engine  <br>  * BuildKit-Version - Default version of docker image builder <br>  * Pragma - always no-cache <br>  * API-Version - Max compatibility API Version the server supports <br>  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemPingCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/_ping";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "text/plain"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call systemPingValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return systemPingCall(_callback);
+
+    }
+
+    /**
+     * Ping service
+     * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned.
+     *
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  * Docker-Experimental - If the server is running with experimental mode enabled, always true <br>  * Cache-Control - always no-cache <br>  * Libpod-Buildah-Version - Default version of libpod image builder.   Available if service is backed by Podman, therefore may be used to   determine if talking to Podman engine or another engine  <br>  * Libpod-API-Version - Max Podman API Version the server supports. Available if service is backed by Podman, therefore may be used to determine if talking to Podman engine or another engine  <br>  * BuildKit-Version - Default version of docker image builder <br>  * Pragma - always no-cache <br>  * API-Version - Max compatibility API Version the server supports <br>  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public String systemPing() throws ApiException {
+        ApiResponse<String> localVarResp = systemPingWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * Ping service
+     * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned.
+     *
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  * Docker-Experimental - If the server is running with experimental mode enabled, always true <br>  * Cache-Control - always no-cache <br>  * Libpod-Buildah-Version - Default version of libpod image builder.   Available if service is backed by Podman, therefore may be used to   determine if talking to Podman engine or another engine  <br>  * Libpod-API-Version - Max Podman API Version the server supports. Available if service is backed by Podman, therefore may be used to determine if talking to Podman engine or another engine  <br>  * BuildKit-Version - Default version of docker image builder <br>  * Pragma - always no-cache <br>  * API-Version - Max compatibility API Version the server supports <br>  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<String> systemPingWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = systemPingValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<String>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Ping service (asynchronously)
+     * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned.
+     *
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  * Docker-Experimental - If the server is running with experimental mode enabled, always true <br>  * Cache-Control - always no-cache <br>  * Libpod-Buildah-Version - Default version of libpod image builder.   Available if service is backed by Podman, therefore may be used to   determine if talking to Podman engine or another engine  <br>  * Libpod-API-Version - Max Podman API Version the server supports. Available if service is backed by Podman, therefore may be used to determine if talking to Podman engine or another engine  <br>  * BuildKit-Version - Default version of docker image builder <br>  * Pragma - always no-cache <br>  * API-Version - Max compatibility API Version the server supports <br>  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemPingAsync(final ApiCallback<String> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = systemPingValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<String>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for systemVersion
+     *
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Version </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemVersionCall(final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/version";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call systemVersionValidateBeforeCall(final ApiCallback _callback) throws ApiException {
+        return systemVersionCall(_callback);
+
+    }
+
+    /**
+     * Component Version information
+     *
+     * @return SystemComponentVersion
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Version </td><td>  -  </td></tr>
+     * </table>
+     */
+    public SystemComponentVersion systemVersion() throws ApiException {
+        ApiResponse<SystemComponentVersion> localVarResp = systemVersionWithHttpInfo();
+        return localVarResp.getData();
+    }
+
+    /**
+     * Component Version information
+     *
+     * @return ApiResponse&lt;SystemComponentVersion&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Version </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<SystemComponentVersion> systemVersionWithHttpInfo() throws ApiException {
+        okhttp3.Call localVarCall = systemVersionValidateBeforeCall(null);
+        Type localVarReturnType = new TypeToken<SystemComponentVersion>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Component Version information (asynchronously)
+     *
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Version </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call systemVersionAsync(final ApiCallback<SystemComponentVersion> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = systemVersionValidateBeforeCall(_callback);
+        Type localVarReturnType = new TypeToken<SystemComponentVersion>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

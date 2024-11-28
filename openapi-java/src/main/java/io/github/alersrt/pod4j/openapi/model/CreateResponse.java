@@ -13,185 +13,230 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.constraints.NotNull;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * OK response to ContainerCreate operation
  */
-@JsonPropertyOrder({
-  CreateResponse.JSON_PROPERTY_ID,
-  CreateResponse.JSON_PROPERTY_WARNINGS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class CreateResponse {
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_WARNINGS = "Warnings";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_WARNINGS = "Warnings";
-  private List<String> warnings = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Id");
+        openapiFields.add("Warnings");
 
-  public CreateResponse() { 
-  }
-
-  public CreateResponse id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * The ID of the created container
-   * @return id
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public CreateResponse warnings(List<String> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public CreateResponse addWarningsItem(String warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
-    }
-    this.warnings.add(warningsItem);
-    return this;
-  }
-
-  /**
-   * Warnings encountered when creating the container
-   * @return warnings
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<String> getWarnings() {
-    return warnings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setWarnings(List<String> warnings) {
-    this.warnings = warnings;
-  }
-
-
-  /**
-   * Return true if this CreateResponse object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    CreateResponse createResponse = (CreateResponse) o;
-    return Objects.equals(this.id, createResponse.id) &&
-        Objects.equals(this.warnings, createResponse.warnings);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, warnings);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("Id");
+        openapiRequiredFields.add("Warnings");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_WARNINGS)
+    private List<String> warnings = new ArrayList<>();
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateResponse() {
     }
 
-    // add `Warnings` to the URL query string
-    if (getWarnings() != null) {
-      for (int i = 0; i < getWarnings().size(); i++) {
-        joiner.add(String.format("%sWarnings%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getWarnings().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to CreateResponse
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!CreateResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in CreateResponse is not found in the empty JSON string", CreateResponse.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!CreateResponse.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateResponse` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : CreateResponse.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (!jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        // ensure the required json array is present
+        if (jsonObj.get("Warnings") == null) {
+            throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+        } else if (!jsonObj.get("Warnings").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Warnings` to be an array in the JSON string but got `%s`", jsonObj.get("Warnings").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of CreateResponse given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of CreateResponse
+     * @throws IOException if the JSON string is invalid with respect to CreateResponse
+     */
+    public static CreateResponse fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, CreateResponse.class);
+    }
+
+    public CreateResponse id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * The ID of the created container
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public CreateResponse warnings(List<String> warnings) {
+        this.warnings = warnings;
+        return this;
+    }
+
+    public CreateResponse addWarningsItem(String warningsItem) {
+        if (this.warnings == null) {
+            this.warnings = new ArrayList<>();
+        }
+        this.warnings.add(warningsItem);
+        return this;
+    }
+
+    /**
+     * Warnings encountered when creating the container
+     *
+     * @return warnings
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public List<String> getWarnings() {
+        return warnings;
+    }
+
+    public void setWarnings(List<String> warnings) {
+        this.warnings = warnings;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CreateResponse createResponse = (CreateResponse) o;
+        return Objects.equals(this.id, createResponse.id) &&
+                Objects.equals(this.warnings, createResponse.warnings);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, warnings);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class CreateResponse {\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    warnings: " + toIndentedString(warnings) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of CreateResponse to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!CreateResponse.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'CreateResponse' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<CreateResponse> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(CreateResponse.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<CreateResponse>() {
+                @Override
+                public void write(JsonWriter out, CreateResponse value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public CreateResponse read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

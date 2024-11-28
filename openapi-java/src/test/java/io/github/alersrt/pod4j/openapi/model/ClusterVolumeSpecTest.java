@@ -13,34 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.AccessMode;
-import io.github.alersrt.pod4j.openapi.model.CapacityRange;
-import io.github.alersrt.pod4j.openapi.model.Secret;
-import io.github.alersrt.pod4j.openapi.model.TopologyRequirement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ClusterVolumeSpec
  */
-class ClusterVolumeSpecTest {
+public class ClusterVolumeSpecTest {
     private final ClusterVolumeSpec model = new ClusterVolumeSpec();
 
     /**
      * Model tests for ClusterVolumeSpec
      */
     @Test
-    void testClusterVolumeSpec() {
+    public void testClusterVolumeSpec() {
         // TODO: test ClusterVolumeSpec
     }
 
@@ -48,7 +33,7 @@ class ClusterVolumeSpecTest {
      * Test the property 'accessMode'
      */
     @Test
-    void accessModeTest() {
+    public void accessModeTest() {
         // TODO: test accessMode
     }
 
@@ -56,7 +41,7 @@ class ClusterVolumeSpecTest {
      * Test the property 'accessibilityRequirements'
      */
     @Test
-    void accessibilityRequirementsTest() {
+    public void accessibilityRequirementsTest() {
         // TODO: test accessibilityRequirements
     }
 
@@ -64,7 +49,7 @@ class ClusterVolumeSpecTest {
      * Test the property 'availability'
      */
     @Test
-    void availabilityTest() {
+    public void availabilityTest() {
         // TODO: test availability
     }
 
@@ -72,7 +57,7 @@ class ClusterVolumeSpecTest {
      * Test the property 'capacityRange'
      */
     @Test
-    void capacityRangeTest() {
+    public void capacityRangeTest() {
         // TODO: test capacityRange
     }
 
@@ -80,7 +65,7 @@ class ClusterVolumeSpecTest {
      * Test the property 'group'
      */
     @Test
-    void groupTest() {
+    public void groupTest() {
         // TODO: test group
     }
 
@@ -88,7 +73,7 @@ class ClusterVolumeSpecTest {
      * Test the property 'secrets'
      */
     @Test
-    void secretsTest() {
+    public void secretsTest() {
         // TODO: test secrets
     }
 

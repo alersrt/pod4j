@@ -13,177 +13,202 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * WeightDevice is a structure that holds device:weight pair
  */
-@JsonPropertyOrder({
-  WeightDevice.JSON_PROPERTY_PATH,
-  WeightDevice.JSON_PROPERTY_WEIGHT
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class WeightDevice {
-  public static final String JSON_PROPERTY_PATH = "Path";
-  private String path;
+    public static final String SERIALIZED_NAME_PATH = "Path";
+    public static final String SERIALIZED_NAME_WEIGHT = "Weight";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_WEIGHT = "Weight";
-  private Integer weight;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Path");
+        openapiFields.add("Weight");
 
-  public WeightDevice() { 
-  }
-
-  public WeightDevice path(String path) {
-    this.path = path;
-    return this;
-  }
-
-  /**
-   * Get path
-   * @return path
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPath() {
-    return path;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-
-  public WeightDevice weight(Integer weight) {
-    this.weight = weight;
-    return this;
-  }
-
-  /**
-   * Get weight
-   * @return weight
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getWeight() {
-    return weight;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWeight(Integer weight) {
-    this.weight = weight;
-  }
-
-
-  /**
-   * Return true if this WeightDevice object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    WeightDevice weightDevice = (WeightDevice) o;
-    return Objects.equals(this.path, weightDevice.path) &&
-        Objects.equals(this.weight, weightDevice.weight);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(path, weight);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class WeightDevice {\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
-    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_PATH)
+    private String path;
+    @SerializedName(SERIALIZED_NAME_WEIGHT)
+    private Integer weight;
 
-    // add `Path` to the URL query string
-    if (getPath() != null) {
-      joiner.add(String.format("%sPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public WeightDevice() {
     }
 
-    // add `Weight` to the URL query string
-    if (getWeight() != null) {
-      joiner.add(String.format("%sWeight%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWeight()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to WeightDevice
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!WeightDevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in WeightDevice is not found in the empty JSON string", WeightDevice.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!WeightDevice.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `WeightDevice` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Path") != null && !jsonObj.get("Path").isJsonNull()) && !jsonObj.get("Path").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Path").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of WeightDevice given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of WeightDevice
+     * @throws IOException if the JSON string is invalid with respect to WeightDevice
+     */
+    public static WeightDevice fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, WeightDevice.class);
+    }
+
+    public WeightDevice path(String path) {
+        this.path = path;
+        return this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return path
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public WeightDevice weight(Integer weight) {
+        this.weight = weight;
+        return this;
+    }
+
+    /**
+     * Get weight
+     *
+     * @return weight
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        WeightDevice weightDevice = (WeightDevice) o;
+        return Objects.equals(this.path, weightDevice.path) &&
+                Objects.equals(this.weight, weightDevice.weight);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(path, weight);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class WeightDevice {\n" +
+                "    path: " + toIndentedString(path) + "\n" +
+                "    weight: " + toIndentedString(weight) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of WeightDevice to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!WeightDevice.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'WeightDevice' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<WeightDevice> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(WeightDevice.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<WeightDevice>() {
+                @Override
+                public void write(JsonWriter out, WeightDevice value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public WeightDevice read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

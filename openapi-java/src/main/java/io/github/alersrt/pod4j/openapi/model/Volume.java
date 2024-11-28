@@ -13,513 +13,478 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ClusterVolume;
-import io.github.alersrt.pod4j.openapi.model.UsageData;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Volume volume
  */
-@JsonPropertyOrder({
-  Volume.JSON_PROPERTY_CLUSTER_VOLUME,
-  Volume.JSON_PROPERTY_CREATED_AT,
-  Volume.JSON_PROPERTY_DRIVER,
-  Volume.JSON_PROPERTY_LABELS,
-  Volume.JSON_PROPERTY_MOUNTPOINT,
-  Volume.JSON_PROPERTY_NAME,
-  Volume.JSON_PROPERTY_OPTIONS,
-  Volume.JSON_PROPERTY_SCOPE,
-  Volume.JSON_PROPERTY_STATUS,
-  Volume.JSON_PROPERTY_USAGE_DATA
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Volume {
-  public static final String JSON_PROPERTY_CLUSTER_VOLUME = "ClusterVolume";
-  private ClusterVolume clusterVolume;
-
-  public static final String JSON_PROPERTY_CREATED_AT = "CreatedAt";
-  private String createdAt;
-
-  public static final String JSON_PROPERTY_DRIVER = "Driver";
-  private String driver;
-
-  public static final String JSON_PROPERTY_LABELS = "Labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_MOUNTPOINT = "Mountpoint";
-  private String mountpoint;
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_OPTIONS = "Options";
-  private Map<String, String> options = new HashMap<>();
-
-  public static final String JSON_PROPERTY_SCOPE = "Scope";
-  private String scope;
-
-  public static final String JSON_PROPERTY_STATUS = "Status";
-  private Map<String, Object> status = new HashMap<>();
-
-  public static final String JSON_PROPERTY_USAGE_DATA = "UsageData";
-  private UsageData usageData;
-
-  public Volume() { 
-  }
-
-  public Volume clusterVolume(ClusterVolume clusterVolume) {
-    this.clusterVolume = clusterVolume;
-    return this;
-  }
-
-  /**
-   * Get clusterVolume
-   * @return clusterVolume
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CLUSTER_VOLUME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public ClusterVolume getClusterVolume() {
-    return clusterVolume;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CLUSTER_VOLUME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClusterVolume(ClusterVolume clusterVolume) {
-    this.clusterVolume = clusterVolume;
-  }
-
-
-  public Volume createdAt(String createdAt) {
-    this.createdAt = createdAt;
-    return this;
-  }
-
-  /**
-   * Date/Time the volume was created.
-   * @return createdAt
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCreatedAt() {
-    return createdAt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedAt(String createdAt) {
-    this.createdAt = createdAt;
-  }
-
-
-  public Volume driver(String driver) {
-    this.driver = driver;
-    return this;
-  }
-
-  /**
-   * Name of the volume driver used by the volume.
-   * @return driver
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getDriver() {
-    return driver;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDriver(String driver) {
-    this.driver = driver;
-  }
-
-
-  public Volume labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public Volume putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * User-defined key/value metadata.
-   * @return labels
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public Volume mountpoint(String mountpoint) {
-    this.mountpoint = mountpoint;
-    return this;
-  }
-
-  /**
-   * Mount path of the volume on the host.
-   * @return mountpoint
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_MOUNTPOINT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getMountpoint() {
-    return mountpoint;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MOUNTPOINT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setMountpoint(String mountpoint) {
-    this.mountpoint = mountpoint;
-  }
-
-
-  public Volume name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Name of the volume.
-   * @return name
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public Volume options(Map<String, String> options) {
-    this.options = options;
-    return this;
-  }
-
-  public Volume putOptionsItem(String key, String optionsItem) {
-    if (this.options == null) {
-      this.options = new HashMap<>();
-    }
-    this.options.put(key, optionsItem);
-    return this;
-  }
-
-  /**
-   * The driver specific options used when creating the volume.
-   * @return options
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Map<String, String> getOptions() {
-    return options;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setOptions(Map<String, String> options) {
-    this.options = options;
-  }
-
-
-  public Volume scope(String scope) {
-    this.scope = scope;
-    return this;
-  }
-
-  /**
-   * The level at which the volume exists. Either &#x60;global&#x60; for cluster-wide, or &#x60;local&#x60; for machine level.
-   * @return scope
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_SCOPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getScope() {
-    return scope;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SCOPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setScope(String scope) {
-    this.scope = scope;
-  }
-
-
-  public Volume status(Map<String, Object> status) {
-    this.status = status;
-    return this;
-  }
-
-  public Volume putStatusItem(String key, Object statusItem) {
-    if (this.status == null) {
-      this.status = new HashMap<>();
-    }
-    this.status.put(key, statusItem);
-    return this;
-  }
-
-  /**
-   * Low-level details about the volume, provided by the volume driver. Details are returned as a map with key/value pairs: &#x60;{\&quot;key\&quot;:\&quot;value\&quot;,\&quot;key2\&quot;:\&quot;value2\&quot;}&#x60;.  The &#x60;Status&#x60; field is optional, and is omitted if the volume driver does not support this feature.
-   * @return status
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, Object> getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(Map<String, Object> status) {
-    this.status = status;
-  }
-
-
-  public Volume usageData(UsageData usageData) {
-    this.usageData = usageData;
-    return this;
-  }
-
-  /**
-   * Get usageData
-   * @return usageData
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_USAGE_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public UsageData getUsageData() {
-    return usageData;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USAGE_DATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsageData(UsageData usageData) {
-    this.usageData = usageData;
-  }
-
-
-  /**
-   * Return true if this Volume object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Volume volume = (Volume) o;
-    return Objects.equals(this.clusterVolume, volume.clusterVolume) &&
-        Objects.equals(this.createdAt, volume.createdAt) &&
-        Objects.equals(this.driver, volume.driver) &&
-        Objects.equals(this.labels, volume.labels) &&
-        Objects.equals(this.mountpoint, volume.mountpoint) &&
-        Objects.equals(this.name, volume.name) &&
-        Objects.equals(this.options, volume.options) &&
-        Objects.equals(this.scope, volume.scope) &&
-        Objects.equals(this.status, volume.status) &&
-        Objects.equals(this.usageData, volume.usageData);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(clusterVolume, createdAt, driver, labels, mountpoint, name, options, scope, status, usageData);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Volume {\n");
-    sb.append("    clusterVolume: ").append(toIndentedString(clusterVolume)).append("\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    driver: ").append(toIndentedString(driver)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    mountpoint: ").append(toIndentedString(mountpoint)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    usageData: ").append(toIndentedString(usageData)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_CLUSTER_VOLUME = "ClusterVolume";
+    public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
+    public static final String SERIALIZED_NAME_DRIVER = "Driver";
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
+    public static final String SERIALIZED_NAME_MOUNTPOINT = "Mountpoint";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_OPTIONS = "Options";
+    public static final String SERIALIZED_NAME_SCOPE = "Scope";
+    public static final String SERIALIZED_NAME_STATUS = "Status";
+    public static final String SERIALIZED_NAME_USAGE_DATA = "UsageData";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("ClusterVolume");
+        openapiFields.add("CreatedAt");
+        openapiFields.add("Driver");
+        openapiFields.add("Labels");
+        openapiFields.add("Mountpoint");
+        openapiFields.add("Name");
+        openapiFields.add("Options");
+        openapiFields.add("Scope");
+        openapiFields.add("Status");
+        openapiFields.add("UsageData");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("Driver");
+        openapiRequiredFields.add("Labels");
+        openapiRequiredFields.add("Mountpoint");
+        openapiRequiredFields.add("Name");
+        openapiRequiredFields.add("Options");
+        openapiRequiredFields.add("Scope");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CLUSTER_VOLUME)
+    private ClusterVolume clusterVolume;
+    @SerializedName(SERIALIZED_NAME_CREATED_AT)
+    private String createdAt;
+    @SerializedName(SERIALIZED_NAME_DRIVER)
+    private String driver;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_MOUNTPOINT)
+    private String mountpoint;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_OPTIONS)
+    private Map<String, String> options = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_SCOPE)
+    private String scope;
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private Map<String, Object> status = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_USAGE_DATA)
+    private UsageData usageData;
 
-    // add `ClusterVolume` to the URL query string
-    if (getClusterVolume() != null) {
-      joiner.add(getClusterVolume().toUrlQueryString(prefix + "ClusterVolume" + suffix));
+    public Volume() {
     }
 
-    // add `CreatedAt` to the URL query string
-    if (getCreatedAt() != null) {
-      joiner.add(String.format("%sCreatedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreatedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Volume
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Volume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Volume is not found in the empty JSON string", Volume.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Volume.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Volume` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : Volume.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `ClusterVolume`
+        if (jsonObj.get("ClusterVolume") != null && !jsonObj.get("ClusterVolume").isJsonNull()) {
+            ClusterVolume.validateJsonElement(jsonObj.get("ClusterVolume"));
+        }
+        if ((jsonObj.get("CreatedAt") != null && !jsonObj.get("CreatedAt").isJsonNull()) && !jsonObj.get("CreatedAt").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CreatedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CreatedAt").toString()));
+        }
+        if (!jsonObj.get("Driver").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
+        }
+        if (!jsonObj.get("Mountpoint").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Mountpoint` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Mountpoint").toString()));
+        }
+        if (!jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
+        if (!jsonObj.get("Scope").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Scope").toString()));
+        }
+        // validate the optional field `UsageData`
+        if (jsonObj.get("UsageData") != null && !jsonObj.get("UsageData").isJsonNull()) {
+            UsageData.validateJsonElement(jsonObj.get("UsageData"));
+        }
     }
 
-    // add `Driver` to the URL query string
-    if (getDriver() != null) {
-      joiner.add(String.format("%sDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Volume given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Volume
+     * @throws IOException if the JSON string is invalid with respect to Volume
+     */
+    public static Volume fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Volume.class);
     }
 
-    // add `Labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Volume clusterVolume(ClusterVolume clusterVolume) {
+        this.clusterVolume = clusterVolume;
+        return this;
     }
 
-    // add `Mountpoint` to the URL query string
-    if (getMountpoint() != null) {
-      joiner.add(String.format("%sMountpoint%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMountpoint()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get clusterVolume
+     *
+     * @return clusterVolume
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public ClusterVolume getClusterVolume() {
+        return clusterVolume;
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setClusterVolume(ClusterVolume clusterVolume) {
+        this.clusterVolume = clusterVolume;
     }
 
-    // add `Options` to the URL query string
-    if (getOptions() != null) {
-      for (String _key : getOptions().keySet()) {
-        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getOptions().get(_key), URLEncoder.encode(ApiClient.valueToString(getOptions().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Volume createdAt(String createdAt) {
+        this.createdAt = createdAt;
+        return this;
     }
 
-    // add `Scope` to the URL query string
-    if (getScope() != null) {
-      joiner.add(String.format("%sScope%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getScope()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Date/Time the volume was created.
+     *
+     * @return createdAt
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    // add `Status` to the URL query string
-    if (getStatus() != null) {
-      for (String _key : getStatus().keySet()) {
-        joiner.add(String.format("%sStatus%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getStatus().get(_key), URLEncoder.encode(ApiClient.valueToString(getStatus().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    // add `UsageData` to the URL query string
-    if (getUsageData() != null) {
-      joiner.add(getUsageData().toUrlQueryString(prefix + "UsageData" + suffix));
+    public Volume driver(String driver) {
+        this.driver = driver;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Name of the volume driver used by the volume.
+     *
+     * @return driver
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getDriver() {
+        return driver;
+    }
+
+    public void setDriver(String driver) {
+        this.driver = driver;
+    }
+
+    public Volume labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public Volume putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * User-defined key/value metadata.
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public Volume mountpoint(String mountpoint) {
+        this.mountpoint = mountpoint;
+        return this;
+    }
+
+    /**
+     * Mount path of the volume on the host.
+     *
+     * @return mountpoint
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getMountpoint() {
+        return mountpoint;
+    }
+
+    public void setMountpoint(String mountpoint) {
+        this.mountpoint = mountpoint;
+    }
+
+    public Volume name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name of the volume.
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Volume options(Map<String, String> options) {
+        this.options = options;
+        return this;
+    }
+
+    public Volume putOptionsItem(String key, String optionsItem) {
+        if (this.options == null) {
+            this.options = new HashMap<>();
+        }
+        this.options.put(key, optionsItem);
+        return this;
+    }
+
+    /**
+     * The driver specific options used when creating the volume.
+     *
+     * @return options
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Map<String, String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(Map<String, String> options) {
+        this.options = options;
+    }
+
+    public Volume scope(String scope) {
+        this.scope = scope;
+        return this;
+    }
+
+    /**
+     * The level at which the volume exists. Either &#x60;global&#x60; for cluster-wide, or &#x60;local&#x60; for machine level.
+     *
+     * @return scope
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+    public Volume status(Map<String, Object> status) {
+        this.status = status;
+        return this;
+    }
+
+    public Volume putStatusItem(String key, Object statusItem) {
+        if (this.status == null) {
+            this.status = new HashMap<>();
+        }
+        this.status.put(key, statusItem);
+        return this;
+    }
+
+    /**
+     * Low-level details about the volume, provided by the volume driver. Details are returned as a map with key/value pairs: &#x60;{\&quot;key\&quot;:\&quot;value\&quot;,\&quot;key2\&quot;:\&quot;value2\&quot;}&#x60;.  The &#x60;Status&#x60; field is optional, and is omitted if the volume driver does not support this feature.
+     *
+     * @return status
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, Object> getStatus() {
+        return status;
+    }
+
+    public void setStatus(Map<String, Object> status) {
+        this.status = status;
+    }
+
+    public Volume usageData(UsageData usageData) {
+        this.usageData = usageData;
+        return this;
+    }
+
+    /**
+     * Get usageData
+     *
+     * @return usageData
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public UsageData getUsageData() {
+        return usageData;
+    }
+
+    public void setUsageData(UsageData usageData) {
+        this.usageData = usageData;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Volume volume = (Volume) o;
+        return Objects.equals(this.clusterVolume, volume.clusterVolume) &&
+                Objects.equals(this.createdAt, volume.createdAt) &&
+                Objects.equals(this.driver, volume.driver) &&
+                Objects.equals(this.labels, volume.labels) &&
+                Objects.equals(this.mountpoint, volume.mountpoint) &&
+                Objects.equals(this.name, volume.name) &&
+                Objects.equals(this.options, volume.options) &&
+                Objects.equals(this.scope, volume.scope) &&
+                Objects.equals(this.status, volume.status) &&
+                Objects.equals(this.usageData, volume.usageData);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clusterVolume, createdAt, driver, labels, mountpoint, name, options, scope, status, usageData);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Volume {\n" +
+                "    clusterVolume: " + toIndentedString(clusterVolume) + "\n" +
+                "    createdAt: " + toIndentedString(createdAt) + "\n" +
+                "    driver: " + toIndentedString(driver) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    mountpoint: " + toIndentedString(mountpoint) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    options: " + toIndentedString(options) + "\n" +
+                "    scope: " + toIndentedString(scope) + "\n" +
+                "    status: " + toIndentedString(status) + "\n" +
+                "    usageData: " + toIndentedString(usageData) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Volume to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Volume.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Volume' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Volume> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Volume.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Volume>() {
+                @Override
+                public void write(JsonWriter out, Volume value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Volume read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

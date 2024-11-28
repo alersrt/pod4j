@@ -13,347 +13,341 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Schema2PlatformSpec describes the platform which a particular manifest is specialized for. This is publicly visible as c/image/manifest.Schema2PlatformSpec.
  */
-@JsonPropertyOrder({
-  Schema2PlatformSpec.JSON_PROPERTY_ARCHITECTURE,
-  Schema2PlatformSpec.JSON_PROPERTY_FEATURES,
-  Schema2PlatformSpec.JSON_PROPERTY_OS,
-  Schema2PlatformSpec.JSON_PROPERTY_OS_FEATURES,
-  Schema2PlatformSpec.JSON_PROPERTY_OS_VERSION,
-  Schema2PlatformSpec.JSON_PROPERTY_VARIANT
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2PlatformSpec {
-  public static final String JSON_PROPERTY_ARCHITECTURE = "architecture";
-  private String architecture;
+    public static final String SERIALIZED_NAME_ARCHITECTURE = "architecture";
+    public static final String SERIALIZED_NAME_FEATURES = "features";
+    public static final String SERIALIZED_NAME_OS = "os";
+    public static final String SERIALIZED_NAME_OS_FEATURES = "os.features";
+    public static final String SERIALIZED_NAME_OS_VERSION = "os.version";
+    public static final String SERIALIZED_NAME_VARIANT = "variant";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_FEATURES = "features";
-  private List<String> features = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("architecture");
+        openapiFields.add("features");
+        openapiFields.add("os");
+        openapiFields.add("os.features");
+        openapiFields.add("os.version");
+        openapiFields.add("variant");
 
-  public static final String JSON_PROPERTY_OS = "os";
-  private String os;
-
-  public static final String JSON_PROPERTY_OS_FEATURES = "os.features";
-  private List<String> osFeatures = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_OS_VERSION = "os.version";
-  private String osVersion;
-
-  public static final String JSON_PROPERTY_VARIANT = "variant";
-  private String variant;
-
-  public Schema2PlatformSpec() { 
-  }
-
-  public Schema2PlatformSpec architecture(String architecture) {
-    this.architecture = architecture;
-    return this;
-  }
-
-  /**
-   * Get architecture
-   * @return architecture
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getArchitecture() {
-    return architecture;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setArchitecture(String architecture) {
-    this.architecture = architecture;
-  }
-
-
-  public Schema2PlatformSpec features(List<String> features) {
-    this.features = features;
-    return this;
-  }
-
-  public Schema2PlatformSpec addFeaturesItem(String featuresItem) {
-    if (this.features == null) {
-      this.features = new ArrayList<>();
-    }
-    this.features.add(featuresItem);
-    return this;
-  }
-
-  /**
-   * Get features
-   * @return features
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_FEATURES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getFeatures() {
-    return features;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FEATURES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFeatures(List<String> features) {
-    this.features = features;
-  }
-
-
-  public Schema2PlatformSpec os(String os) {
-    this.os = os;
-    return this;
-  }
-
-  /**
-   * Get os
-   * @return os
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOs() {
-    return os;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOs(String os) {
-    this.os = os;
-  }
-
-
-  public Schema2PlatformSpec osFeatures(List<String> osFeatures) {
-    this.osFeatures = osFeatures;
-    return this;
-  }
-
-  public Schema2PlatformSpec addOsFeaturesItem(String osFeaturesItem) {
-    if (this.osFeatures == null) {
-      this.osFeatures = new ArrayList<>();
-    }
-    this.osFeatures.add(osFeaturesItem);
-    return this;
-  }
-
-  /**
-   * Get osFeatures
-   * @return osFeatures
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS_FEATURES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getOsFeatures() {
-    return osFeatures;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS_FEATURES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOsFeatures(List<String> osFeatures) {
-    this.osFeatures = osFeatures;
-  }
-
-
-  public Schema2PlatformSpec osVersion(String osVersion) {
-    this.osVersion = osVersion;
-    return this;
-  }
-
-  /**
-   * Get osVersion
-   * @return osVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOsVersion() {
-    return osVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOsVersion(String osVersion) {
-    this.osVersion = osVersion;
-  }
-
-
-  public Schema2PlatformSpec variant(String variant) {
-    this.variant = variant;
-    return this;
-  }
-
-  /**
-   * Get variant
-   * @return variant
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VARIANT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVariant() {
-    return variant;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VARIANT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVariant(String variant) {
-    this.variant = variant;
-  }
-
-
-  /**
-   * Return true if this Schema2PlatformSpec object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Schema2PlatformSpec schema2PlatformSpec = (Schema2PlatformSpec) o;
-    return Objects.equals(this.architecture, schema2PlatformSpec.architecture) &&
-        Objects.equals(this.features, schema2PlatformSpec.features) &&
-        Objects.equals(this.os, schema2PlatformSpec.os) &&
-        Objects.equals(this.osFeatures, schema2PlatformSpec.osFeatures) &&
-        Objects.equals(this.osVersion, schema2PlatformSpec.osVersion) &&
-        Objects.equals(this.variant, schema2PlatformSpec.variant);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(architecture, features, os, osFeatures, osVersion, variant);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Schema2PlatformSpec {\n");
-    sb.append("    architecture: ").append(toIndentedString(architecture)).append("\n");
-    sb.append("    features: ").append(toIndentedString(features)).append("\n");
-    sb.append("    os: ").append(toIndentedString(os)).append("\n");
-    sb.append("    osFeatures: ").append(toIndentedString(osFeatures)).append("\n");
-    sb.append("    osVersion: ").append(toIndentedString(osVersion)).append("\n");
-    sb.append("    variant: ").append(toIndentedString(variant)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ARCHITECTURE)
+    private String architecture;
+    @SerializedName(SERIALIZED_NAME_FEATURES)
+    private List<String> features = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_OS)
+    private String os;
+    @SerializedName(SERIALIZED_NAME_OS_FEATURES)
+    private List<String> osFeatures = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_OS_VERSION)
+    private String osVersion;
+    @SerializedName(SERIALIZED_NAME_VARIANT)
+    private String variant;
 
-    // add `architecture` to the URL query string
-    if (getArchitecture() != null) {
-      joiner.add(String.format("%sarchitecture%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArchitecture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Schema2PlatformSpec() {
     }
 
-    // add `features` to the URL query string
-    if (getFeatures() != null) {
-      for (int i = 0; i < getFeatures().size(); i++) {
-        joiner.add(String.format("%sfeatures%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getFeatures().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Schema2PlatformSpec
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Schema2PlatformSpec.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Schema2PlatformSpec is not found in the empty JSON string", Schema2PlatformSpec.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Schema2PlatformSpec.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Schema2PlatformSpec` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("architecture") != null && !jsonObj.get("architecture").isJsonNull()) && !jsonObj.get("architecture").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `architecture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("architecture").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("features") != null && !jsonObj.get("features").isJsonNull() && !jsonObj.get("features").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `features` to be an array in the JSON string but got `%s`", jsonObj.get("features").toString()));
+        }
+        if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("os.features") != null && !jsonObj.get("os.features").isJsonNull() && !jsonObj.get("os.features").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `os.features` to be an array in the JSON string but got `%s`", jsonObj.get("os.features").toString()));
+        }
+        if ((jsonObj.get("os.version") != null && !jsonObj.get("os.version").isJsonNull()) && !jsonObj.get("os.version").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `os.version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os.version").toString()));
+        }
+        if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
+        }
     }
 
-    // add `os` to the URL query string
-    if (getOs() != null) {
-      joiner.add(String.format("%sos%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Schema2PlatformSpec given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Schema2PlatformSpec
+     * @throws IOException if the JSON string is invalid with respect to Schema2PlatformSpec
+     */
+    public static Schema2PlatformSpec fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Schema2PlatformSpec.class);
     }
 
-    // add `os.features` to the URL query string
-    if (getOsFeatures() != null) {
-      for (int i = 0; i < getOsFeatures().size(); i++) {
-        joiner.add(String.format("%sos.features%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getOsFeatures().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Schema2PlatformSpec architecture(String architecture) {
+        this.architecture = architecture;
+        return this;
     }
 
-    // add `os.version` to the URL query string
-    if (getOsVersion() != null) {
-      joiner.add(String.format("%sos.version%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOsVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get architecture
+     *
+     * @return architecture
+     */
+    @jakarta.annotation.Nullable
+
+    public String getArchitecture() {
+        return architecture;
     }
 
-    // add `variant` to the URL query string
-    if (getVariant() != null) {
-      joiner.add(String.format("%svariant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setArchitecture(String architecture) {
+        this.architecture = architecture;
     }
 
-    return joiner.toString();
-  }
+    public Schema2PlatformSpec features(List<String> features) {
+        this.features = features;
+        return this;
+    }
+
+    public Schema2PlatformSpec addFeaturesItem(String featuresItem) {
+        if (this.features == null) {
+            this.features = new ArrayList<>();
+        }
+        this.features.add(featuresItem);
+        return this;
+    }
+
+    /**
+     * Get features
+     *
+     * @return features
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<String> features) {
+        this.features = features;
+    }
+
+    public Schema2PlatformSpec os(String os) {
+        this.os = os;
+        return this;
+    }
+
+    /**
+     * Get os
+     *
+     * @return os
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public Schema2PlatformSpec osFeatures(List<String> osFeatures) {
+        this.osFeatures = osFeatures;
+        return this;
+    }
+
+    public Schema2PlatformSpec addOsFeaturesItem(String osFeaturesItem) {
+        if (this.osFeatures == null) {
+            this.osFeatures = new ArrayList<>();
+        }
+        this.osFeatures.add(osFeaturesItem);
+        return this;
+    }
+
+    /**
+     * Get osFeatures
+     *
+     * @return osFeatures
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getOsFeatures() {
+        return osFeatures;
+    }
+
+    public void setOsFeatures(List<String> osFeatures) {
+        this.osFeatures = osFeatures;
+    }
+
+    public Schema2PlatformSpec osVersion(String osVersion) {
+        this.osVersion = osVersion;
+        return this;
+    }
+
+    /**
+     * Get osVersion
+     *
+     * @return osVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOsVersion() {
+        return osVersion;
+    }
+
+    public void setOsVersion(String osVersion) {
+        this.osVersion = osVersion;
+    }
+
+    public Schema2PlatformSpec variant(String variant) {
+        this.variant = variant;
+        return this;
+    }
+
+    /**
+     * Get variant
+     *
+     * @return variant
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVariant() {
+        return variant;
+    }
+
+    public void setVariant(String variant) {
+        this.variant = variant;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Schema2PlatformSpec schema2PlatformSpec = (Schema2PlatformSpec) o;
+        return Objects.equals(this.architecture, schema2PlatformSpec.architecture) &&
+                Objects.equals(this.features, schema2PlatformSpec.features) &&
+                Objects.equals(this.os, schema2PlatformSpec.os) &&
+                Objects.equals(this.osFeatures, schema2PlatformSpec.osFeatures) &&
+                Objects.equals(this.osVersion, schema2PlatformSpec.osVersion) &&
+                Objects.equals(this.variant, schema2PlatformSpec.variant);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(architecture, features, os, osFeatures, osVersion, variant);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Schema2PlatformSpec {\n" +
+                "    architecture: " + toIndentedString(architecture) + "\n" +
+                "    features: " + toIndentedString(features) + "\n" +
+                "    os: " + toIndentedString(os) + "\n" +
+                "    osFeatures: " + toIndentedString(osFeatures) + "\n" +
+                "    osVersion: " + toIndentedString(osVersion) + "\n" +
+                "    variant: " + toIndentedString(variant) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Schema2PlatformSpec to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Schema2PlatformSpec.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Schema2PlatformSpec' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Schema2PlatformSpec> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Schema2PlatformSpec.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Schema2PlatformSpec>() {
+                @Override
+                public void write(JsonWriter out, Schema2PlatformSpec value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Schema2PlatformSpec read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

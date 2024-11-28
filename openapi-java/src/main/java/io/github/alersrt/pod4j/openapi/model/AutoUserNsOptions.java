@@ -13,343 +13,359 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * AutoUserNsOptions
  */
-@JsonPropertyOrder({
-  AutoUserNsOptions.JSON_PROPERTY_ADDITIONAL_G_I_D_MAPPINGS,
-  AutoUserNsOptions.JSON_PROPERTY_ADDITIONAL_U_I_D_MAPPINGS,
-  AutoUserNsOptions.JSON_PROPERTY_GROUP_FILE,
-  AutoUserNsOptions.JSON_PROPERTY_INITIAL_SIZE,
-  AutoUserNsOptions.JSON_PROPERTY_PASSWD_FILE,
-  AutoUserNsOptions.JSON_PROPERTY_SIZE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class AutoUserNsOptions {
-  public static final String JSON_PROPERTY_ADDITIONAL_G_I_D_MAPPINGS = "AdditionalGIDMappings";
-  private List<@Valid IDMap> additionalGIDMappings = new ArrayList<>();
+    public static final String SERIALIZED_NAME_ADDITIONAL_G_I_D_MAPPINGS = "AdditionalGIDMappings";
+    public static final String SERIALIZED_NAME_ADDITIONAL_U_I_D_MAPPINGS = "AdditionalUIDMappings";
+    public static final String SERIALIZED_NAME_GROUP_FILE = "GroupFile";
+    public static final String SERIALIZED_NAME_INITIAL_SIZE = "InitialSize";
+    public static final String SERIALIZED_NAME_PASSWD_FILE = "PasswdFile";
+    public static final String SERIALIZED_NAME_SIZE = "Size";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ADDITIONAL_U_I_D_MAPPINGS = "AdditionalUIDMappings";
-  private List<@Valid IDMap> additionalUIDMappings = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("AdditionalGIDMappings");
+        openapiFields.add("AdditionalUIDMappings");
+        openapiFields.add("GroupFile");
+        openapiFields.add("InitialSize");
+        openapiFields.add("PasswdFile");
+        openapiFields.add("Size");
 
-  public static final String JSON_PROPERTY_GROUP_FILE = "GroupFile";
-  private String groupFile;
-
-  public static final String JSON_PROPERTY_INITIAL_SIZE = "InitialSize";
-  private Integer initialSize;
-
-  public static final String JSON_PROPERTY_PASSWD_FILE = "PasswdFile";
-  private String passwdFile;
-
-  public static final String JSON_PROPERTY_SIZE = "Size";
-  private Integer size;
-
-  public AutoUserNsOptions() { 
-  }
-
-  public AutoUserNsOptions additionalGIDMappings(List<@Valid IDMap> additionalGIDMappings) {
-    this.additionalGIDMappings = additionalGIDMappings;
-    return this;
-  }
-
-  public AutoUserNsOptions addAdditionalGIDMappingsItem(IDMap additionalGIDMappingsItem) {
-    if (this.additionalGIDMappings == null) {
-      this.additionalGIDMappings = new ArrayList<>();
-    }
-    this.additionalGIDMappings.add(additionalGIDMappingsItem);
-    return this;
-  }
-
-  /**
-   * AdditionalGIDMappings specified additional GID mappings to include in the generated user namespace.
-   * @return additionalGIDMappings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_G_I_D_MAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid IDMap> getAdditionalGIDMappings() {
-    return additionalGIDMappings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_G_I_D_MAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdditionalGIDMappings(List<@Valid IDMap> additionalGIDMappings) {
-    this.additionalGIDMappings = additionalGIDMappings;
-  }
-
-
-  public AutoUserNsOptions additionalUIDMappings(List<@Valid IDMap> additionalUIDMappings) {
-    this.additionalUIDMappings = additionalUIDMappings;
-    return this;
-  }
-
-  public AutoUserNsOptions addAdditionalUIDMappingsItem(IDMap additionalUIDMappingsItem) {
-    if (this.additionalUIDMappings == null) {
-      this.additionalUIDMappings = new ArrayList<>();
-    }
-    this.additionalUIDMappings.add(additionalUIDMappingsItem);
-    return this;
-  }
-
-  /**
-   * AdditionalUIDMappings specified additional UID mappings to include in the generated user namespace.
-   * @return additionalUIDMappings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_U_I_D_MAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid IDMap> getAdditionalUIDMappings() {
-    return additionalUIDMappings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_U_I_D_MAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdditionalUIDMappings(List<@Valid IDMap> additionalUIDMappings) {
-    this.additionalUIDMappings = additionalUIDMappings;
-  }
-
-
-  public AutoUserNsOptions groupFile(String groupFile) {
-    this.groupFile = groupFile;
-    return this;
-  }
-
-  /**
-   * GroupFile to use if the container uses a volume.
-   * @return groupFile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GROUP_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGroupFile() {
-    return groupFile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GROUP_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroupFile(String groupFile) {
-    this.groupFile = groupFile;
-  }
-
-
-  public AutoUserNsOptions initialSize(Integer initialSize) {
-    this.initialSize = initialSize;
-    return this;
-  }
-
-  /**
-   * InitialSize defines the minimum size for the user namespace. The created user namespace will have at least this size.
-   * @return initialSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INITIAL_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getInitialSize() {
-    return initialSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INITIAL_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInitialSize(Integer initialSize) {
-    this.initialSize = initialSize;
-  }
-
-
-  public AutoUserNsOptions passwdFile(String passwdFile) {
-    this.passwdFile = passwdFile;
-    return this;
-  }
-
-  /**
-   * PasswdFile to use if the container uses a volume.
-   * @return passwdFile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PASSWD_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPasswdFile() {
-    return passwdFile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PASSWD_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswdFile(String passwdFile) {
-    this.passwdFile = passwdFile;
-  }
-
-
-  public AutoUserNsOptions size(Integer size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Size defines the size for the user namespace.  If it is set to a value bigger than 0, the user namespace will have exactly this size. If it is not set, some heuristics will be used to find its size.
-   * @return size
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Integer size) {
-    this.size = size;
-  }
-
-
-  /**
-   * Return true if this AutoUserNsOptions object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    AutoUserNsOptions autoUserNsOptions = (AutoUserNsOptions) o;
-    return Objects.equals(this.additionalGIDMappings, autoUserNsOptions.additionalGIDMappings) &&
-        Objects.equals(this.additionalUIDMappings, autoUserNsOptions.additionalUIDMappings) &&
-        Objects.equals(this.groupFile, autoUserNsOptions.groupFile) &&
-        Objects.equals(this.initialSize, autoUserNsOptions.initialSize) &&
-        Objects.equals(this.passwdFile, autoUserNsOptions.passwdFile) &&
-        Objects.equals(this.size, autoUserNsOptions.size);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(additionalGIDMappings, additionalUIDMappings, groupFile, initialSize, passwdFile, size);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AutoUserNsOptions {\n");
-    sb.append("    additionalGIDMappings: ").append(toIndentedString(additionalGIDMappings)).append("\n");
-    sb.append("    additionalUIDMappings: ").append(toIndentedString(additionalUIDMappings)).append("\n");
-    sb.append("    groupFile: ").append(toIndentedString(groupFile)).append("\n");
-    sb.append("    initialSize: ").append(toIndentedString(initialSize)).append("\n");
-    sb.append("    passwdFile: ").append(toIndentedString(passwdFile)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ADDITIONAL_G_I_D_MAPPINGS)
+    private List<@Valid IDMap> additionalGIDMappings = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ADDITIONAL_U_I_D_MAPPINGS)
+    private List<@Valid IDMap> additionalUIDMappings = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_GROUP_FILE)
+    private String groupFile;
+    @SerializedName(SERIALIZED_NAME_INITIAL_SIZE)
+    private Integer initialSize;
+    @SerializedName(SERIALIZED_NAME_PASSWD_FILE)
+    private String passwdFile;
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Integer size;
 
-    // add `AdditionalGIDMappings` to the URL query string
-    if (getAdditionalGIDMappings() != null) {
-      for (int i = 0; i < getAdditionalGIDMappings().size(); i++) {
-        if (getAdditionalGIDMappings().get(i) != null) {
-          joiner.add(getAdditionalGIDMappings().get(i).toUrlQueryString(String.format("%sAdditionalGIDMappings%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    public AutoUserNsOptions() {
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to AutoUserNsOptions
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!AutoUserNsOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in AutoUserNsOptions is not found in the empty JSON string", AutoUserNsOptions.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `AdditionalUIDMappings` to the URL query string
-    if (getAdditionalUIDMappings() != null) {
-      for (int i = 0; i < getAdditionalUIDMappings().size(); i++) {
-        if (getAdditionalUIDMappings().get(i) != null) {
-          joiner.add(getAdditionalUIDMappings().get(i).toUrlQueryString(String.format("%sAdditionalUIDMappings%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!AutoUserNsOptions.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AutoUserNsOptions` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (jsonObj.get("AdditionalGIDMappings") != null && !jsonObj.get("AdditionalGIDMappings").isJsonNull()) {
+            JsonArray jsonArrayadditionalGIDMappings = jsonObj.getAsJsonArray("AdditionalGIDMappings");
+            if (jsonArrayadditionalGIDMappings != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("AdditionalGIDMappings").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `AdditionalGIDMappings` to be an array in the JSON string but got `%s`", jsonObj.get("AdditionalGIDMappings").toString()));
+                }
+
+                // validate the optional field `AdditionalGIDMappings` (array)
+                for (int i = 0; i < jsonArrayadditionalGIDMappings.size(); i++) {
+                    IDMap.validateJsonElement(jsonArrayadditionalGIDMappings.get(i));
+                }
+            }
+        }
+        if (jsonObj.get("AdditionalUIDMappings") != null && !jsonObj.get("AdditionalUIDMappings").isJsonNull()) {
+            JsonArray jsonArrayadditionalUIDMappings = jsonObj.getAsJsonArray("AdditionalUIDMappings");
+            if (jsonArrayadditionalUIDMappings != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("AdditionalUIDMappings").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `AdditionalUIDMappings` to be an array in the JSON string but got `%s`", jsonObj.get("AdditionalUIDMappings").toString()));
+                }
+
+                // validate the optional field `AdditionalUIDMappings` (array)
+                for (int i = 0; i < jsonArrayadditionalUIDMappings.size(); i++) {
+                    IDMap.validateJsonElement(jsonArrayadditionalUIDMappings.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("GroupFile") != null && !jsonObj.get("GroupFile").isJsonNull()) && !jsonObj.get("GroupFile").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `GroupFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("GroupFile").toString()));
+        }
+        if ((jsonObj.get("PasswdFile") != null && !jsonObj.get("PasswdFile").isJsonNull()) && !jsonObj.get("PasswdFile").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `PasswdFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PasswdFile").toString()));
+        }
     }
 
-    // add `GroupFile` to the URL query string
-    if (getGroupFile() != null) {
-      joiner.add(String.format("%sGroupFile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGroupFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of AutoUserNsOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of AutoUserNsOptions
+     * @throws IOException if the JSON string is invalid with respect to AutoUserNsOptions
+     */
+    public static AutoUserNsOptions fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, AutoUserNsOptions.class);
     }
 
-    // add `InitialSize` to the URL query string
-    if (getInitialSize() != null) {
-      joiner.add(String.format("%sInitialSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInitialSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public AutoUserNsOptions additionalGIDMappings(List<@Valid IDMap> additionalGIDMappings) {
+        this.additionalGIDMappings = additionalGIDMappings;
+        return this;
     }
 
-    // add `PasswdFile` to the URL query string
-    if (getPasswdFile() != null) {
-      joiner.add(String.format("%sPasswdFile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPasswdFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public AutoUserNsOptions addAdditionalGIDMappingsItem(IDMap additionalGIDMappingsItem) {
+        if (this.additionalGIDMappings == null) {
+            this.additionalGIDMappings = new ArrayList<>();
+        }
+        this.additionalGIDMappings.add(additionalGIDMappingsItem);
+        return this;
     }
 
-    // add `Size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * AdditionalGIDMappings specified additional GID mappings to include in the generated user namespace.
+     *
+     * @return additionalGIDMappings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid IDMap> getAdditionalGIDMappings() {
+        return additionalGIDMappings;
     }
 
-    return joiner.toString();
-  }
+    public void setAdditionalGIDMappings(List<@Valid IDMap> additionalGIDMappings) {
+        this.additionalGIDMappings = additionalGIDMappings;
+    }
+
+    public AutoUserNsOptions additionalUIDMappings(List<@Valid IDMap> additionalUIDMappings) {
+        this.additionalUIDMappings = additionalUIDMappings;
+        return this;
+    }
+
+    public AutoUserNsOptions addAdditionalUIDMappingsItem(IDMap additionalUIDMappingsItem) {
+        if (this.additionalUIDMappings == null) {
+            this.additionalUIDMappings = new ArrayList<>();
+        }
+        this.additionalUIDMappings.add(additionalUIDMappingsItem);
+        return this;
+    }
+
+    /**
+     * AdditionalUIDMappings specified additional UID mappings to include in the generated user namespace.
+     *
+     * @return additionalUIDMappings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid IDMap> getAdditionalUIDMappings() {
+        return additionalUIDMappings;
+    }
+
+    public void setAdditionalUIDMappings(List<@Valid IDMap> additionalUIDMappings) {
+        this.additionalUIDMappings = additionalUIDMappings;
+    }
+
+    public AutoUserNsOptions groupFile(String groupFile) {
+        this.groupFile = groupFile;
+        return this;
+    }
+
+    /**
+     * GroupFile to use if the container uses a volume.
+     *
+     * @return groupFile
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGroupFile() {
+        return groupFile;
+    }
+
+    public void setGroupFile(String groupFile) {
+        this.groupFile = groupFile;
+    }
+
+    public AutoUserNsOptions initialSize(Integer initialSize) {
+        this.initialSize = initialSize;
+        return this;
+    }
+
+    /**
+     * InitialSize defines the minimum size for the user namespace. The created user namespace will have at least this size.
+     *
+     * @return initialSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getInitialSize() {
+        return initialSize;
+    }
+
+    public void setInitialSize(Integer initialSize) {
+        this.initialSize = initialSize;
+    }
+
+    public AutoUserNsOptions passwdFile(String passwdFile) {
+        this.passwdFile = passwdFile;
+        return this;
+    }
+
+    /**
+     * PasswdFile to use if the container uses a volume.
+     *
+     * @return passwdFile
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPasswdFile() {
+        return passwdFile;
+    }
+
+    public void setPasswdFile(String passwdFile) {
+        this.passwdFile = passwdFile;
+    }
+
+    public AutoUserNsOptions size(Integer size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Size defines the size for the user namespace.  If it is set to a value bigger than 0, the user namespace will have exactly this size. If it is not set, some heuristics will be used to find its size.
+     *
+     * @return size
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AutoUserNsOptions autoUserNsOptions = (AutoUserNsOptions) o;
+        return Objects.equals(this.additionalGIDMappings, autoUserNsOptions.additionalGIDMappings) &&
+                Objects.equals(this.additionalUIDMappings, autoUserNsOptions.additionalUIDMappings) &&
+                Objects.equals(this.groupFile, autoUserNsOptions.groupFile) &&
+                Objects.equals(this.initialSize, autoUserNsOptions.initialSize) &&
+                Objects.equals(this.passwdFile, autoUserNsOptions.passwdFile) &&
+                Objects.equals(this.size, autoUserNsOptions.size);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(additionalGIDMappings, additionalUIDMappings, groupFile, initialSize, passwdFile, size);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class AutoUserNsOptions {\n" +
+                "    additionalGIDMappings: " + toIndentedString(additionalGIDMappings) + "\n" +
+                "    additionalUIDMappings: " + toIndentedString(additionalUIDMappings) + "\n" +
+                "    groupFile: " + toIndentedString(groupFile) + "\n" +
+                "    initialSize: " + toIndentedString(initialSize) + "\n" +
+                "    passwdFile: " + toIndentedString(passwdFile) + "\n" +
+                "    size: " + toIndentedString(size) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of AutoUserNsOptions to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!AutoUserNsOptions.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'AutoUserNsOptions' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<AutoUserNsOptions> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(AutoUserNsOptions.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<AutoUserNsOptions>() {
+                @Override
+                public void write(JsonWriter out, AutoUserNsOptions value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public AutoUserNsOptions read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

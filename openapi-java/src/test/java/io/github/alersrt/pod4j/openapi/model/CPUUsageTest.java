@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for CPUUsage
  */
-class CPUUsageTest {
+public class CPUUsageTest {
     private final CPUUsage model = new CPUUsage();
 
     /**
      * Model tests for CPUUsage
      */
     @Test
-    void testCPUUsage() {
+    public void testCPUUsage() {
         // TODO: test CPUUsage
     }
 
@@ -42,7 +33,7 @@ class CPUUsageTest {
      * Test the property 'idlePercent'
      */
     @Test
-    void idlePercentTest() {
+    public void idlePercentTest() {
         // TODO: test idlePercent
     }
 
@@ -50,7 +41,7 @@ class CPUUsageTest {
      * Test the property 'systemPercent'
      */
     @Test
-    void systemPercentTest() {
+    public void systemPercentTest() {
         // TODO: test systemPercent
     }
 
@@ -58,7 +49,7 @@ class CPUUsageTest {
      * Test the property 'userPercent'
      */
     @Test
-    void userPercentTest() {
+    public void userPercentTest() {
         // TODO: test userPercent
     }
 

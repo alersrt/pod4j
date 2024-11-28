@@ -13,177 +13,202 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxInterfacePriority for network interfaces
  */
-@JsonPropertyOrder({
-  LinuxInterfacePriority.JSON_PROPERTY_NAME,
-  LinuxInterfacePriority.JSON_PROPERTY_PRIORITY
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxInterfacePriority {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+    public static final String SERIALIZED_NAME_NAME = "name";
+    public static final String SERIALIZED_NAME_PRIORITY = "priority";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_PRIORITY = "priority";
-  private Integer priority;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("name");
+        openapiFields.add("priority");
 
-  public LinuxInterfacePriority() { 
-  }
-
-  public LinuxInterfacePriority name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Name is the name of the network interface
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public LinuxInterfacePriority priority(Integer priority) {
-    this.priority = priority;
-    return this;
-  }
-
-  /**
-   * Priority for the interface
-   * @return priority
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PRIORITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getPriority() {
-    return priority;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PRIORITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPriority(Integer priority) {
-    this.priority = priority;
-  }
-
-
-  /**
-   * Return true if this LinuxInterfacePriority object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxInterfacePriority linuxInterfacePriority = (LinuxInterfacePriority) o;
-    return Objects.equals(this.name, linuxInterfacePriority.name) &&
-        Objects.equals(this.priority, linuxInterfacePriority.priority);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, priority);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxInterfacePriority {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_PRIORITY)
+    private Integer priority;
 
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxInterfacePriority() {
     }
 
-    // add `priority` to the URL query string
-    if (getPriority() != null) {
-      joiner.add(String.format("%spriority%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPriority()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxInterfacePriority
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxInterfacePriority.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxInterfacePriority is not found in the empty JSON string", LinuxInterfacePriority.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxInterfacePriority.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxInterfacePriority` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of LinuxInterfacePriority given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxInterfacePriority
+     * @throws IOException if the JSON string is invalid with respect to LinuxInterfacePriority
+     */
+    public static LinuxInterfacePriority fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxInterfacePriority.class);
+    }
+
+    public LinuxInterfacePriority name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name is the name of the network interface
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LinuxInterfacePriority priority(Integer priority) {
+        this.priority = priority;
+        return this;
+    }
+
+    /**
+     * Priority for the interface
+     *
+     * @return priority
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxInterfacePriority linuxInterfacePriority = (LinuxInterfacePriority) o;
+        return Objects.equals(this.name, linuxInterfacePriority.name) &&
+                Objects.equals(this.priority, linuxInterfacePriority.priority);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, priority);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LinuxInterfacePriority {\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    priority: " + toIndentedString(priority) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LinuxInterfacePriority to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxInterfacePriority.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxInterfacePriority' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxInterfacePriority> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxInterfacePriority.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LinuxInterfacePriority>() {
+                @Override
+                public void write(JsonWriter out, LinuxInterfacePriority value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LinuxInterfacePriority read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

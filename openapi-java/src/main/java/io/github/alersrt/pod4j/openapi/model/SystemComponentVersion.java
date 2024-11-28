@@ -13,556 +13,518 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ComponentVersion;
-import io.github.alersrt.pod4j.openapi.model.SystemComponentVersionPlatform;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SystemComponentVersion is the type used by pkg/domain/entities
  */
-@JsonPropertyOrder({
-  SystemComponentVersion.JSON_PROPERTY_API_VERSION,
-  SystemComponentVersion.JSON_PROPERTY_ARCH,
-  SystemComponentVersion.JSON_PROPERTY_BUILD_TIME,
-  SystemComponentVersion.JSON_PROPERTY_COMPONENTS,
-  SystemComponentVersion.JSON_PROPERTY_EXPERIMENTAL,
-  SystemComponentVersion.JSON_PROPERTY_GIT_COMMIT,
-  SystemComponentVersion.JSON_PROPERTY_GO_VERSION,
-  SystemComponentVersion.JSON_PROPERTY_KERNEL_VERSION,
-  SystemComponentVersion.JSON_PROPERTY_MIN_A_P_I_VERSION,
-  SystemComponentVersion.JSON_PROPERTY_OS,
-  SystemComponentVersion.JSON_PROPERTY_PLATFORM,
-  SystemComponentVersion.JSON_PROPERTY_VERSION
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemComponentVersion {
-  public static final String JSON_PROPERTY_API_VERSION = "ApiVersion";
-  private String apiVersion;
-
-  public static final String JSON_PROPERTY_ARCH = "Arch";
-  private String arch;
-
-  public static final String JSON_PROPERTY_BUILD_TIME = "BuildTime";
-  private String buildTime;
-
-  public static final String JSON_PROPERTY_COMPONENTS = "Components";
-  private List<@Valid ComponentVersion> components = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EXPERIMENTAL = "Experimental";
-  private Boolean experimental;
-
-  public static final String JSON_PROPERTY_GIT_COMMIT = "GitCommit";
-  private String gitCommit;
-
-  public static final String JSON_PROPERTY_GO_VERSION = "GoVersion";
-  private String goVersion;
-
-  public static final String JSON_PROPERTY_KERNEL_VERSION = "KernelVersion";
-  private String kernelVersion;
-
-  public static final String JSON_PROPERTY_MIN_A_P_I_VERSION = "MinAPIVersion";
-  private String minAPIVersion;
-
-  public static final String JSON_PROPERTY_OS = "Os";
-  private String os;
-
-  public static final String JSON_PROPERTY_PLATFORM = "Platform";
-  private SystemComponentVersionPlatform platform;
-
-  public static final String JSON_PROPERTY_VERSION = "Version";
-  private String version;
-
-  public SystemComponentVersion() { 
-  }
-
-  public SystemComponentVersion apiVersion(String apiVersion) {
-    this.apiVersion = apiVersion;
-    return this;
-  }
-
-  /**
-   * Get apiVersion
-   * @return apiVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_API_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getApiVersion() {
-    return apiVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_API_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApiVersion(String apiVersion) {
-    this.apiVersion = apiVersion;
-  }
-
-
-  public SystemComponentVersion arch(String arch) {
-    this.arch = arch;
-    return this;
-  }
-
-  /**
-   * Get arch
-   * @return arch
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getArch() {
-    return arch;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setArch(String arch) {
-    this.arch = arch;
-  }
-
-
-  public SystemComponentVersion buildTime(String buildTime) {
-    this.buildTime = buildTime;
-    return this;
-  }
-
-  /**
-   * Get buildTime
-   * @return buildTime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BUILD_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getBuildTime() {
-    return buildTime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BUILD_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildTime(String buildTime) {
-    this.buildTime = buildTime;
-  }
-
-
-  public SystemComponentVersion components(List<@Valid ComponentVersion> components) {
-    this.components = components;
-    return this;
-  }
-
-  public SystemComponentVersion addComponentsItem(ComponentVersion componentsItem) {
-    if (this.components == null) {
-      this.components = new ArrayList<>();
-    }
-    this.components.add(componentsItem);
-    return this;
-  }
-
-  /**
-   * Get components
-   * @return components
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_COMPONENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ComponentVersion> getComponents() {
-    return components;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMPONENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setComponents(List<@Valid ComponentVersion> components) {
-    this.components = components;
-  }
-
-
-  public SystemComponentVersion experimental(Boolean experimental) {
-    this.experimental = experimental;
-    return this;
-  }
-
-  /**
-   * Get experimental
-   * @return experimental
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXPERIMENTAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getExperimental() {
-    return experimental;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXPERIMENTAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExperimental(Boolean experimental) {
-    this.experimental = experimental;
-  }
-
-
-  public SystemComponentVersion gitCommit(String gitCommit) {
-    this.gitCommit = gitCommit;
-    return this;
-  }
-
-  /**
-   * Get gitCommit
-   * @return gitCommit
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GIT_COMMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGitCommit() {
-    return gitCommit;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GIT_COMMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGitCommit(String gitCommit) {
-    this.gitCommit = gitCommit;
-  }
-
-
-  public SystemComponentVersion goVersion(String goVersion) {
-    this.goVersion = goVersion;
-    return this;
-  }
-
-  /**
-   * Get goVersion
-   * @return goVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GO_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGoVersion() {
-    return goVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GO_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGoVersion(String goVersion) {
-    this.goVersion = goVersion;
-  }
-
-
-  public SystemComponentVersion kernelVersion(String kernelVersion) {
-    this.kernelVersion = kernelVersion;
-    return this;
-  }
-
-  /**
-   * Get kernelVersion
-   * @return kernelVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getKernelVersion() {
-    return kernelVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKernelVersion(String kernelVersion) {
-    this.kernelVersion = kernelVersion;
-  }
-
-
-  public SystemComponentVersion minAPIVersion(String minAPIVersion) {
-    this.minAPIVersion = minAPIVersion;
-    return this;
-  }
-
-  /**
-   * Get minAPIVersion
-   * @return minAPIVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MIN_A_P_I_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMinAPIVersion() {
-    return minAPIVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MIN_A_P_I_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinAPIVersion(String minAPIVersion) {
-    this.minAPIVersion = minAPIVersion;
-  }
-
-
-  public SystemComponentVersion os(String os) {
-    this.os = os;
-    return this;
-  }
-
-  /**
-   * Get os
-   * @return os
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOs() {
-    return os;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOs(String os) {
-    this.os = os;
-  }
-
-
-  public SystemComponentVersion platform(SystemComponentVersionPlatform platform) {
-    this.platform = platform;
-    return this;
-  }
-
-  /**
-   * Get platform
-   * @return platform
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PLATFORM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public SystemComponentVersionPlatform getPlatform() {
-    return platform;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PLATFORM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(SystemComponentVersionPlatform platform) {
-    this.platform = platform;
-  }
-
-
-  public SystemComponentVersion version(String version) {
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * Get version
-   * @return version
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
-  /**
-   * Return true if this SystemComponentVersion object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SystemComponentVersion systemComponentVersion = (SystemComponentVersion) o;
-    return Objects.equals(this.apiVersion, systemComponentVersion.apiVersion) &&
-        Objects.equals(this.arch, systemComponentVersion.arch) &&
-        Objects.equals(this.buildTime, systemComponentVersion.buildTime) &&
-        Objects.equals(this.components, systemComponentVersion.components) &&
-        Objects.equals(this.experimental, systemComponentVersion.experimental) &&
-        Objects.equals(this.gitCommit, systemComponentVersion.gitCommit) &&
-        Objects.equals(this.goVersion, systemComponentVersion.goVersion) &&
-        Objects.equals(this.kernelVersion, systemComponentVersion.kernelVersion) &&
-        Objects.equals(this.minAPIVersion, systemComponentVersion.minAPIVersion) &&
-        Objects.equals(this.os, systemComponentVersion.os) &&
-        Objects.equals(this.platform, systemComponentVersion.platform) &&
-        Objects.equals(this.version, systemComponentVersion.version);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(apiVersion, arch, buildTime, components, experimental, gitCommit, goVersion, kernelVersion, minAPIVersion, os, platform, version);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SystemComponentVersion {\n");
-    sb.append("    apiVersion: ").append(toIndentedString(apiVersion)).append("\n");
-    sb.append("    arch: ").append(toIndentedString(arch)).append("\n");
-    sb.append("    buildTime: ").append(toIndentedString(buildTime)).append("\n");
-    sb.append("    components: ").append(toIndentedString(components)).append("\n");
-    sb.append("    experimental: ").append(toIndentedString(experimental)).append("\n");
-    sb.append("    gitCommit: ").append(toIndentedString(gitCommit)).append("\n");
-    sb.append("    goVersion: ").append(toIndentedString(goVersion)).append("\n");
-    sb.append("    kernelVersion: ").append(toIndentedString(kernelVersion)).append("\n");
-    sb.append("    minAPIVersion: ").append(toIndentedString(minAPIVersion)).append("\n");
-    sb.append("    os: ").append(toIndentedString(os)).append("\n");
-    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_API_VERSION = "ApiVersion";
+    public static final String SERIALIZED_NAME_ARCH = "Arch";
+    public static final String SERIALIZED_NAME_BUILD_TIME = "BuildTime";
+    public static final String SERIALIZED_NAME_COMPONENTS = "Components";
+    public static final String SERIALIZED_NAME_EXPERIMENTAL = "Experimental";
+    public static final String SERIALIZED_NAME_GIT_COMMIT = "GitCommit";
+    public static final String SERIALIZED_NAME_GO_VERSION = "GoVersion";
+    public static final String SERIALIZED_NAME_KERNEL_VERSION = "KernelVersion";
+    public static final String SERIALIZED_NAME_MIN_A_P_I_VERSION = "MinAPIVersion";
+    public static final String SERIALIZED_NAME_OS = "Os";
+    public static final String SERIALIZED_NAME_PLATFORM = "Platform";
+    public static final String SERIALIZED_NAME_VERSION = "Version";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("ApiVersion");
+        openapiFields.add("Arch");
+        openapiFields.add("BuildTime");
+        openapiFields.add("Components");
+        openapiFields.add("Experimental");
+        openapiFields.add("GitCommit");
+        openapiFields.add("GoVersion");
+        openapiFields.add("KernelVersion");
+        openapiFields.add("MinAPIVersion");
+        openapiFields.add("Os");
+        openapiFields.add("Platform");
+        openapiFields.add("Version");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_API_VERSION)
+    private String apiVersion;
+    @SerializedName(SERIALIZED_NAME_ARCH)
+    private String arch;
+    @SerializedName(SERIALIZED_NAME_BUILD_TIME)
+    private String buildTime;
+    @SerializedName(SERIALIZED_NAME_COMPONENTS)
+    private List<@Valid ComponentVersion> components = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_EXPERIMENTAL)
+    private Boolean experimental;
+    @SerializedName(SERIALIZED_NAME_GIT_COMMIT)
+    private String gitCommit;
+    @SerializedName(SERIALIZED_NAME_GO_VERSION)
+    private String goVersion;
+    @SerializedName(SERIALIZED_NAME_KERNEL_VERSION)
+    private String kernelVersion;
+    @SerializedName(SERIALIZED_NAME_MIN_A_P_I_VERSION)
+    private String minAPIVersion;
+    @SerializedName(SERIALIZED_NAME_OS)
+    private String os;
+    @SerializedName(SERIALIZED_NAME_PLATFORM)
+    private SystemComponentVersionPlatform platform;
+    @SerializedName(SERIALIZED_NAME_VERSION)
+    private String version;
 
-    // add `ApiVersion` to the URL query string
-    if (getApiVersion() != null) {
-      joiner.add(String.format("%sApiVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getApiVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemComponentVersion() {
     }
 
-    // add `Arch` to the URL query string
-    if (getArch() != null) {
-      joiner.add(String.format("%sArch%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArch()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `BuildTime` to the URL query string
-    if (getBuildTime() != null) {
-      joiner.add(String.format("%sBuildTime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBuildTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Components` to the URL query string
-    if (getComponents() != null) {
-      for (int i = 0; i < getComponents().size(); i++) {
-        if (getComponents().get(i) != null) {
-          joiner.add(getComponents().get(i).toUrlQueryString(String.format("%sComponents%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to SystemComponentVersion
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!SystemComponentVersion.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SystemComponentVersion is not found in the empty JSON string", SystemComponentVersion.openapiRequiredFields));
+            }
         }
-      }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!SystemComponentVersion.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemComponentVersion` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("ApiVersion") != null && !jsonObj.get("ApiVersion").isJsonNull()) && !jsonObj.get("ApiVersion").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ApiVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ApiVersion").toString()));
+        }
+        if ((jsonObj.get("Arch") != null && !jsonObj.get("Arch").isJsonNull()) && !jsonObj.get("Arch").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Arch").toString()));
+        }
+        if ((jsonObj.get("BuildTime") != null && !jsonObj.get("BuildTime").isJsonNull()) && !jsonObj.get("BuildTime").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `BuildTime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("BuildTime").toString()));
+        }
+        if (jsonObj.get("Components") != null && !jsonObj.get("Components").isJsonNull()) {
+            JsonArray jsonArraycomponents = jsonObj.getAsJsonArray("Components");
+            if (jsonArraycomponents != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Components").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Components` to be an array in the JSON string but got `%s`", jsonObj.get("Components").toString()));
+                }
+
+                // validate the optional field `Components` (array)
+                for (int i = 0; i < jsonArraycomponents.size(); i++) {
+                    ComponentVersion.validateJsonElement(jsonArraycomponents.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("GitCommit") != null && !jsonObj.get("GitCommit").isJsonNull()) && !jsonObj.get("GitCommit").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `GitCommit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("GitCommit").toString()));
+        }
+        if ((jsonObj.get("GoVersion") != null && !jsonObj.get("GoVersion").isJsonNull()) && !jsonObj.get("GoVersion").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `GoVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("GoVersion").toString()));
+        }
+        if ((jsonObj.get("KernelVersion") != null && !jsonObj.get("KernelVersion").isJsonNull()) && !jsonObj.get("KernelVersion").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `KernelVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("KernelVersion").toString()));
+        }
+        if ((jsonObj.get("MinAPIVersion") != null && !jsonObj.get("MinAPIVersion").isJsonNull()) && !jsonObj.get("MinAPIVersion").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `MinAPIVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MinAPIVersion").toString()));
+        }
+        if ((jsonObj.get("Os") != null && !jsonObj.get("Os").isJsonNull()) && !jsonObj.get("Os").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Os").toString()));
+        }
+        // validate the optional field `Platform`
+        if (jsonObj.get("Platform") != null && !jsonObj.get("Platform").isJsonNull()) {
+            SystemComponentVersionPlatform.validateJsonElement(jsonObj.get("Platform"));
+        }
+        if ((jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) && !jsonObj.get("Version").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version").toString()));
+        }
     }
 
-    // add `Experimental` to the URL query string
-    if (getExperimental() != null) {
-      joiner.add(String.format("%sExperimental%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExperimental()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of SystemComponentVersion given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SystemComponentVersion
+     * @throws IOException if the JSON string is invalid with respect to SystemComponentVersion
+     */
+    public static SystemComponentVersion fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SystemComponentVersion.class);
     }
 
-    // add `GitCommit` to the URL query string
-    if (getGitCommit() != null) {
-      joiner.add(String.format("%sGitCommit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGitCommit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemComponentVersion apiVersion(String apiVersion) {
+        this.apiVersion = apiVersion;
+        return this;
     }
 
-    // add `GoVersion` to the URL query string
-    if (getGoVersion() != null) {
-      joiner.add(String.format("%sGoVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGoVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get apiVersion
+     *
+     * @return apiVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getApiVersion() {
+        return apiVersion;
     }
 
-    // add `KernelVersion` to the URL query string
-    if (getKernelVersion() != null) {
-      joiner.add(String.format("%sKernelVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernelVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setApiVersion(String apiVersion) {
+        this.apiVersion = apiVersion;
     }
 
-    // add `MinAPIVersion` to the URL query string
-    if (getMinAPIVersion() != null) {
-      joiner.add(String.format("%sMinAPIVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMinAPIVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemComponentVersion arch(String arch) {
+        this.arch = arch;
+        return this;
     }
 
-    // add `Os` to the URL query string
-    if (getOs() != null) {
-      joiner.add(String.format("%sOs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get arch
+     *
+     * @return arch
+     */
+    @jakarta.annotation.Nullable
+
+    public String getArch() {
+        return arch;
     }
 
-    // add `Platform` to the URL query string
-    if (getPlatform() != null) {
-      joiner.add(getPlatform().toUrlQueryString(prefix + "Platform" + suffix));
+    public void setArch(String arch) {
+        this.arch = arch;
     }
 
-    // add `Version` to the URL query string
-    if (getVersion() != null) {
-      joiner.add(String.format("%sVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemComponentVersion buildTime(String buildTime) {
+        this.buildTime = buildTime;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Get buildTime
+     *
+     * @return buildTime
+     */
+    @jakarta.annotation.Nullable
+
+    public String getBuildTime() {
+        return buildTime;
+    }
+
+    public void setBuildTime(String buildTime) {
+        this.buildTime = buildTime;
+    }
+
+    public SystemComponentVersion components(List<@Valid ComponentVersion> components) {
+        this.components = components;
+        return this;
+    }
+
+    public SystemComponentVersion addComponentsItem(ComponentVersion componentsItem) {
+        if (this.components == null) {
+            this.components = new ArrayList<>();
+        }
+        this.components.add(componentsItem);
+        return this;
+    }
+
+    /**
+     * Get components
+     *
+     * @return components
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ComponentVersion> getComponents() {
+        return components;
+    }
+
+    public void setComponents(List<@Valid ComponentVersion> components) {
+        this.components = components;
+    }
+
+    public SystemComponentVersion experimental(Boolean experimental) {
+        this.experimental = experimental;
+        return this;
+    }
+
+    /**
+     * Get experimental
+     *
+     * @return experimental
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getExperimental() {
+        return experimental;
+    }
+
+    public void setExperimental(Boolean experimental) {
+        this.experimental = experimental;
+    }
+
+    public SystemComponentVersion gitCommit(String gitCommit) {
+        this.gitCommit = gitCommit;
+        return this;
+    }
+
+    /**
+     * Get gitCommit
+     *
+     * @return gitCommit
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGitCommit() {
+        return gitCommit;
+    }
+
+    public void setGitCommit(String gitCommit) {
+        this.gitCommit = gitCommit;
+    }
+
+    public SystemComponentVersion goVersion(String goVersion) {
+        this.goVersion = goVersion;
+        return this;
+    }
+
+    /**
+     * Get goVersion
+     *
+     * @return goVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGoVersion() {
+        return goVersion;
+    }
+
+    public void setGoVersion(String goVersion) {
+        this.goVersion = goVersion;
+    }
+
+    public SystemComponentVersion kernelVersion(String kernelVersion) {
+        this.kernelVersion = kernelVersion;
+        return this;
+    }
+
+    /**
+     * Get kernelVersion
+     *
+     * @return kernelVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getKernelVersion() {
+        return kernelVersion;
+    }
+
+    public void setKernelVersion(String kernelVersion) {
+        this.kernelVersion = kernelVersion;
+    }
+
+    public SystemComponentVersion minAPIVersion(String minAPIVersion) {
+        this.minAPIVersion = minAPIVersion;
+        return this;
+    }
+
+    /**
+     * Get minAPIVersion
+     *
+     * @return minAPIVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMinAPIVersion() {
+        return minAPIVersion;
+    }
+
+    public void setMinAPIVersion(String minAPIVersion) {
+        this.minAPIVersion = minAPIVersion;
+    }
+
+    public SystemComponentVersion os(String os) {
+        this.os = os;
+        return this;
+    }
+
+    /**
+     * Get os
+     *
+     * @return os
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public SystemComponentVersion platform(SystemComponentVersionPlatform platform) {
+        this.platform = platform;
+        return this;
+    }
+
+    /**
+     * Get platform
+     *
+     * @return platform
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public SystemComponentVersionPlatform getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(SystemComponentVersionPlatform platform) {
+        this.platform = platform;
+    }
+
+    public SystemComponentVersion version(String version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return version
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SystemComponentVersion systemComponentVersion = (SystemComponentVersion) o;
+        return Objects.equals(this.apiVersion, systemComponentVersion.apiVersion) &&
+                Objects.equals(this.arch, systemComponentVersion.arch) &&
+                Objects.equals(this.buildTime, systemComponentVersion.buildTime) &&
+                Objects.equals(this.components, systemComponentVersion.components) &&
+                Objects.equals(this.experimental, systemComponentVersion.experimental) &&
+                Objects.equals(this.gitCommit, systemComponentVersion.gitCommit) &&
+                Objects.equals(this.goVersion, systemComponentVersion.goVersion) &&
+                Objects.equals(this.kernelVersion, systemComponentVersion.kernelVersion) &&
+                Objects.equals(this.minAPIVersion, systemComponentVersion.minAPIVersion) &&
+                Objects.equals(this.os, systemComponentVersion.os) &&
+                Objects.equals(this.platform, systemComponentVersion.platform) &&
+                Objects.equals(this.version, systemComponentVersion.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(apiVersion, arch, buildTime, components, experimental, gitCommit, goVersion, kernelVersion, minAPIVersion, os, platform, version);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class SystemComponentVersion {\n" +
+                "    apiVersion: " + toIndentedString(apiVersion) + "\n" +
+                "    arch: " + toIndentedString(arch) + "\n" +
+                "    buildTime: " + toIndentedString(buildTime) + "\n" +
+                "    components: " + toIndentedString(components) + "\n" +
+                "    experimental: " + toIndentedString(experimental) + "\n" +
+                "    gitCommit: " + toIndentedString(gitCommit) + "\n" +
+                "    goVersion: " + toIndentedString(goVersion) + "\n" +
+                "    kernelVersion: " + toIndentedString(kernelVersion) + "\n" +
+                "    minAPIVersion: " + toIndentedString(minAPIVersion) + "\n" +
+                "    os: " + toIndentedString(os) + "\n" +
+                "    platform: " + toIndentedString(platform) + "\n" +
+                "    version: " + toIndentedString(version) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of SystemComponentVersion to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!SystemComponentVersion.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SystemComponentVersion' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<SystemComponentVersion> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(SystemComponentVersion.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<SystemComponentVersion>() {
+                @Override
+                public void write(JsonWriter out, SystemComponentVersion value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public SystemComponentVersion read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

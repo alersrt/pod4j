@@ -13,221 +13,255 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * Health stores information about the container&#39;s healthcheck results
  */
-@JsonPropertyOrder({
-  Health.JSON_PROPERTY_FAILING_STREAK,
-  Health.JSON_PROPERTY_LOG,
-  Health.JSON_PROPERTY_STATUS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Health {
-  public static final String JSON_PROPERTY_FAILING_STREAK = "FailingStreak";
-  private Long failingStreak;
+    public static final String SERIALIZED_NAME_FAILING_STREAK = "FailingStreak";
+    public static final String SERIALIZED_NAME_LOG = "Log";
+    public static final String SERIALIZED_NAME_STATUS = "Status";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_LOG = "Log";
-  private List<@Valid HealthcheckResult> log = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("FailingStreak");
+        openapiFields.add("Log");
+        openapiFields.add("Status");
 
-  public static final String JSON_PROPERTY_STATUS = "Status";
-  private String status;
-
-  public Health() { 
-  }
-
-  public Health failingStreak(Long failingStreak) {
-    this.failingStreak = failingStreak;
-    return this;
-  }
-
-  /**
-   * Get failingStreak
-   * @return failingStreak
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_FAILING_STREAK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getFailingStreak() {
-    return failingStreak;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_FAILING_STREAK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFailingStreak(Long failingStreak) {
-    this.failingStreak = failingStreak;
-  }
-
-
-  public Health log(List<@Valid HealthcheckResult> log) {
-    this.log = log;
-    return this;
-  }
-
-  public Health addLogItem(HealthcheckResult logItem) {
-    if (this.log == null) {
-      this.log = new ArrayList<>();
-    }
-    this.log.add(logItem);
-    return this;
-  }
-
-  /**
-   * Get log
-   * @return log
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_LOG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid HealthcheckResult> getLog() {
-    return log;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLog(List<@Valid HealthcheckResult> log) {
-    this.log = log;
-  }
-
-
-  public Health status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  /**
-   * Return true if this Health object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Health health = (Health) o;
-    return Objects.equals(this.failingStreak, health.failingStreak) &&
-        Objects.equals(this.log, health.log) &&
-        Objects.equals(this.status, health.status);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(failingStreak, log, status);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Health {\n");
-    sb.append("    failingStreak: ").append(toIndentedString(failingStreak)).append("\n");
-    sb.append("    log: ").append(toIndentedString(log)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_FAILING_STREAK)
+    private Long failingStreak;
+    @SerializedName(SERIALIZED_NAME_LOG)
+    private List<@Valid HealthcheckResult> log = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private String status;
 
-    // add `FailingStreak` to the URL query string
-    if (getFailingStreak() != null) {
-      joiner.add(String.format("%sFailingStreak%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFailingStreak()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Health() {
     }
 
-    // add `Log` to the URL query string
-    if (getLog() != null) {
-      for (int i = 0; i < getLog().size(); i++) {
-        if (getLog().get(i) != null) {
-          joiner.add(getLog().get(i).toUrlQueryString(String.format("%sLog%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Health
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Health.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Health is not found in the empty JSON string", Health.openapiRequiredFields));
+            }
         }
-      }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Health.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Health` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (jsonObj.get("Log") != null && !jsonObj.get("Log").isJsonNull()) {
+            JsonArray jsonArraylog = jsonObj.getAsJsonArray("Log");
+            if (jsonArraylog != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Log").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Log` to be an array in the JSON string but got `%s`", jsonObj.get("Log").toString()));
+                }
+
+                // validate the optional field `Log` (array)
+                for (int i = 0; i < jsonArraylog.size(); i++) {
+                    HealthcheckResult.validateJsonElement(jsonArraylog.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
+        }
     }
 
-    // add `Status` to the URL query string
-    if (getStatus() != null) {
-      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Health given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Health
+     * @throws IOException if the JSON string is invalid with respect to Health
+     */
+    public static Health fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Health.class);
     }
 
-    return joiner.toString();
-  }
+    public Health failingStreak(Long failingStreak) {
+        this.failingStreak = failingStreak;
+        return this;
+    }
+
+    /**
+     * Get failingStreak
+     *
+     * @return failingStreak
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getFailingStreak() {
+        return failingStreak;
+    }
+
+    public void setFailingStreak(Long failingStreak) {
+        this.failingStreak = failingStreak;
+    }
+
+    public Health log(List<@Valid HealthcheckResult> log) {
+        this.log = log;
+        return this;
+    }
+
+    public Health addLogItem(HealthcheckResult logItem) {
+        if (this.log == null) {
+            this.log = new ArrayList<>();
+        }
+        this.log.add(logItem);
+        return this;
+    }
+
+    /**
+     * Get log
+     *
+     * @return log
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid HealthcheckResult> getLog() {
+        return log;
+    }
+
+    public void setLog(List<@Valid HealthcheckResult> log) {
+        this.log = log;
+    }
+
+    public Health status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return status
+     */
+    @jakarta.annotation.Nullable
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Health health = (Health) o;
+        return Objects.equals(this.failingStreak, health.failingStreak) &&
+                Objects.equals(this.log, health.log) &&
+                Objects.equals(this.status, health.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(failingStreak, log, status);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Health {\n" +
+                "    failingStreak: " + toIndentedString(failingStreak) + "\n" +
+                "    log: " + toIndentedString(log) + "\n" +
+                "    status: " + toIndentedString(status) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Health to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Health.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Health' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Health> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Health.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Health>() {
+                @Override
+                public void write(JsonWriter out, Health value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Health read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

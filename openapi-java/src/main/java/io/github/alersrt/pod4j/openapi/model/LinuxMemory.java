@@ -13,429 +13,381 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxMemory for Linux cgroup &#39;memory&#39; resource management
  */
-@JsonPropertyOrder({
-  LinuxMemory.JSON_PROPERTY_CHECK_BEFORE_UPDATE,
-  LinuxMemory.JSON_PROPERTY_DISABLE_O_O_M_KILLER,
-  LinuxMemory.JSON_PROPERTY_KERNEL,
-  LinuxMemory.JSON_PROPERTY_KERNEL_T_C_P,
-  LinuxMemory.JSON_PROPERTY_LIMIT,
-  LinuxMemory.JSON_PROPERTY_RESERVATION,
-  LinuxMemory.JSON_PROPERTY_SWAP,
-  LinuxMemory.JSON_PROPERTY_SWAPPINESS,
-  LinuxMemory.JSON_PROPERTY_USE_HIERARCHY
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxMemory {
-  public static final String JSON_PROPERTY_CHECK_BEFORE_UPDATE = "checkBeforeUpdate";
-  private Boolean checkBeforeUpdate;
-
-  public static final String JSON_PROPERTY_DISABLE_O_O_M_KILLER = "disableOOMKiller";
-  private Boolean disableOOMKiller;
-
-  public static final String JSON_PROPERTY_KERNEL = "kernel";
-  private Long kernel;
-
-  public static final String JSON_PROPERTY_KERNEL_T_C_P = "kernelTCP";
-  private Long kernelTCP;
-
-  public static final String JSON_PROPERTY_LIMIT = "limit";
-  private Long limit;
-
-  public static final String JSON_PROPERTY_RESERVATION = "reservation";
-  private Long reservation;
-
-  public static final String JSON_PROPERTY_SWAP = "swap";
-  private Long swap;
-
-  public static final String JSON_PROPERTY_SWAPPINESS = "swappiness";
-  private Integer swappiness;
-
-  public static final String JSON_PROPERTY_USE_HIERARCHY = "useHierarchy";
-  private Boolean useHierarchy;
-
-  public LinuxMemory() { 
-  }
-
-  public LinuxMemory checkBeforeUpdate(Boolean checkBeforeUpdate) {
-    this.checkBeforeUpdate = checkBeforeUpdate;
-    return this;
-  }
-
-  /**
-   * CheckBeforeUpdate enables checking if a new memory limit is lower than the current usage during update, and if so, rejecting the new limit.
-   * @return checkBeforeUpdate
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CHECK_BEFORE_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getCheckBeforeUpdate() {
-    return checkBeforeUpdate;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHECK_BEFORE_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCheckBeforeUpdate(Boolean checkBeforeUpdate) {
-    this.checkBeforeUpdate = checkBeforeUpdate;
-  }
-
-
-  public LinuxMemory disableOOMKiller(Boolean disableOOMKiller) {
-    this.disableOOMKiller = disableOOMKiller;
-    return this;
-  }
-
-  /**
-   * DisableOOMKiller disables the OOM killer for out of memory conditions
-   * @return disableOOMKiller
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DISABLE_O_O_M_KILLER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getDisableOOMKiller() {
-    return disableOOMKiller;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DISABLE_O_O_M_KILLER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDisableOOMKiller(Boolean disableOOMKiller) {
-    this.disableOOMKiller = disableOOMKiller;
-  }
-
-
-  public LinuxMemory kernel(Long kernel) {
-    this.kernel = kernel;
-    return this;
-  }
-
-  /**
-   * Kernel memory limit (in bytes).  Deprecated: kernel-memory limits are not supported in cgroups v2, and were obsoleted in [kernel v5.4]. This field should no longer be used, as it may be ignored by runtimes.  [kernel v5.4]: https://github.com/torvalds/linux/commit/0158115f702b0ba208ab0
-   * @return kernel
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_KERNEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getKernel() {
-    return kernel;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KERNEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKernel(Long kernel) {
-    this.kernel = kernel;
-  }
-
-
-  public LinuxMemory kernelTCP(Long kernelTCP) {
-    this.kernelTCP = kernelTCP;
-    return this;
-  }
-
-  /**
-   * Kernel memory limit for tcp (in bytes)
-   * @return kernelTCP
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_T_C_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getKernelTCP() {
-    return kernelTCP;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_T_C_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKernelTCP(Long kernelTCP) {
-    this.kernelTCP = kernelTCP;
-  }
-
-
-  public LinuxMemory limit(Long limit) {
-    this.limit = limit;
-    return this;
-  }
-
-  /**
-   * Memory limit (in bytes).
-   * @return limit
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getLimit() {
-    return limit;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLimit(Long limit) {
-    this.limit = limit;
-  }
-
-
-  public LinuxMemory reservation(Long reservation) {
-    this.reservation = reservation;
-    return this;
-  }
-
-  /**
-   * Memory reservation or soft_limit (in bytes).
-   * @return reservation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESERVATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getReservation() {
-    return reservation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESERVATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReservation(Long reservation) {
-    this.reservation = reservation;
-  }
-
-
-  public LinuxMemory swap(Long swap) {
-    this.swap = swap;
-    return this;
-  }
-
-  /**
-   * Total memory limit (memory + swap).
-   * @return swap
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SWAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSwap() {
-    return swap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SWAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSwap(Long swap) {
-    this.swap = swap;
-  }
-
-
-  public LinuxMemory swappiness(Integer swappiness) {
-    this.swappiness = swappiness;
-    return this;
-  }
-
-  /**
-   * How aggressive the kernel will swap memory pages.
-   * @return swappiness
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SWAPPINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getSwappiness() {
-    return swappiness;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SWAPPINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSwappiness(Integer swappiness) {
-    this.swappiness = swappiness;
-  }
-
-
-  public LinuxMemory useHierarchy(Boolean useHierarchy) {
-    this.useHierarchy = useHierarchy;
-    return this;
-  }
-
-  /**
-   * Enables hierarchical memory accounting
-   * @return useHierarchy
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USE_HIERARCHY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getUseHierarchy() {
-    return useHierarchy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USE_HIERARCHY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUseHierarchy(Boolean useHierarchy) {
-    this.useHierarchy = useHierarchy;
-  }
-
-
-  /**
-   * Return true if this LinuxMemory object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxMemory linuxMemory = (LinuxMemory) o;
-    return Objects.equals(this.checkBeforeUpdate, linuxMemory.checkBeforeUpdate) &&
-        Objects.equals(this.disableOOMKiller, linuxMemory.disableOOMKiller) &&
-        Objects.equals(this.kernel, linuxMemory.kernel) &&
-        Objects.equals(this.kernelTCP, linuxMemory.kernelTCP) &&
-        Objects.equals(this.limit, linuxMemory.limit) &&
-        Objects.equals(this.reservation, linuxMemory.reservation) &&
-        Objects.equals(this.swap, linuxMemory.swap) &&
-        Objects.equals(this.swappiness, linuxMemory.swappiness) &&
-        Objects.equals(this.useHierarchy, linuxMemory.useHierarchy);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(checkBeforeUpdate, disableOOMKiller, kernel, kernelTCP, limit, reservation, swap, swappiness, useHierarchy);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxMemory {\n");
-    sb.append("    checkBeforeUpdate: ").append(toIndentedString(checkBeforeUpdate)).append("\n");
-    sb.append("    disableOOMKiller: ").append(toIndentedString(disableOOMKiller)).append("\n");
-    sb.append("    kernel: ").append(toIndentedString(kernel)).append("\n");
-    sb.append("    kernelTCP: ").append(toIndentedString(kernelTCP)).append("\n");
-    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
-    sb.append("    reservation: ").append(toIndentedString(reservation)).append("\n");
-    sb.append("    swap: ").append(toIndentedString(swap)).append("\n");
-    sb.append("    swappiness: ").append(toIndentedString(swappiness)).append("\n");
-    sb.append("    useHierarchy: ").append(toIndentedString(useHierarchy)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_CHECK_BEFORE_UPDATE = "checkBeforeUpdate";
+    public static final String SERIALIZED_NAME_DISABLE_O_O_M_KILLER = "disableOOMKiller";
+    public static final String SERIALIZED_NAME_KERNEL = "kernel";
+    public static final String SERIALIZED_NAME_KERNEL_T_C_P = "kernelTCP";
+    public static final String SERIALIZED_NAME_LIMIT = "limit";
+    public static final String SERIALIZED_NAME_RESERVATION = "reservation";
+    public static final String SERIALIZED_NAME_SWAP = "swap";
+    public static final String SERIALIZED_NAME_SWAPPINESS = "swappiness";
+    public static final String SERIALIZED_NAME_USE_HIERARCHY = "useHierarchy";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("checkBeforeUpdate");
+        openapiFields.add("disableOOMKiller");
+        openapiFields.add("kernel");
+        openapiFields.add("kernelTCP");
+        openapiFields.add("limit");
+        openapiFields.add("reservation");
+        openapiFields.add("swap");
+        openapiFields.add("swappiness");
+        openapiFields.add("useHierarchy");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CHECK_BEFORE_UPDATE)
+    private Boolean checkBeforeUpdate;
+    @SerializedName(SERIALIZED_NAME_DISABLE_O_O_M_KILLER)
+    private Boolean disableOOMKiller;
+    @SerializedName(SERIALIZED_NAME_KERNEL)
+    private Long kernel;
+    @SerializedName(SERIALIZED_NAME_KERNEL_T_C_P)
+    private Long kernelTCP;
+    @SerializedName(SERIALIZED_NAME_LIMIT)
+    private Long limit;
+    @SerializedName(SERIALIZED_NAME_RESERVATION)
+    private Long reservation;
+    @SerializedName(SERIALIZED_NAME_SWAP)
+    private Long swap;
+    @SerializedName(SERIALIZED_NAME_SWAPPINESS)
+    private Integer swappiness;
+    @SerializedName(SERIALIZED_NAME_USE_HIERARCHY)
+    private Boolean useHierarchy;
 
-    // add `checkBeforeUpdate` to the URL query string
-    if (getCheckBeforeUpdate() != null) {
-      joiner.add(String.format("%scheckBeforeUpdate%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckBeforeUpdate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxMemory() {
     }
 
-    // add `disableOOMKiller` to the URL query string
-    if (getDisableOOMKiller() != null) {
-      joiner.add(String.format("%sdisableOOMKiller%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDisableOOMKiller()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxMemory
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxMemory.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxMemory is not found in the empty JSON string", LinuxMemory.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxMemory.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxMemory` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
     }
 
-    // add `kernel` to the URL query string
-    if (getKernel() != null) {
-      joiner.add(String.format("%skernel%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernel()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of LinuxMemory given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxMemory
+     * @throws IOException if the JSON string is invalid with respect to LinuxMemory
+     */
+    public static LinuxMemory fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxMemory.class);
     }
 
-    // add `kernelTCP` to the URL query string
-    if (getKernelTCP() != null) {
-      joiner.add(String.format("%skernelTCP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernelTCP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxMemory checkBeforeUpdate(Boolean checkBeforeUpdate) {
+        this.checkBeforeUpdate = checkBeforeUpdate;
+        return this;
     }
 
-    // add `limit` to the URL query string
-    if (getLimit() != null) {
-      joiner.add(String.format("%slimit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * CheckBeforeUpdate enables checking if a new memory limit is lower than the current usage during update, and if so, rejecting the new limit.
+     *
+     * @return checkBeforeUpdate
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getCheckBeforeUpdate() {
+        return checkBeforeUpdate;
     }
 
-    // add `reservation` to the URL query string
-    if (getReservation() != null) {
-      joiner.add(String.format("%sreservation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReservation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCheckBeforeUpdate(Boolean checkBeforeUpdate) {
+        this.checkBeforeUpdate = checkBeforeUpdate;
     }
 
-    // add `swap` to the URL query string
-    if (getSwap() != null) {
-      joiner.add(String.format("%sswap%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSwap()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxMemory disableOOMKiller(Boolean disableOOMKiller) {
+        this.disableOOMKiller = disableOOMKiller;
+        return this;
     }
 
-    // add `swappiness` to the URL query string
-    if (getSwappiness() != null) {
-      joiner.add(String.format("%sswappiness%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSwappiness()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * DisableOOMKiller disables the OOM killer for out of memory conditions
+     *
+     * @return disableOOMKiller
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getDisableOOMKiller() {
+        return disableOOMKiller;
     }
 
-    // add `useHierarchy` to the URL query string
-    if (getUseHierarchy() != null) {
-      joiner.add(String.format("%suseHierarchy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUseHierarchy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setDisableOOMKiller(Boolean disableOOMKiller) {
+        this.disableOOMKiller = disableOOMKiller;
     }
 
-    return joiner.toString();
-  }
+    public LinuxMemory kernel(Long kernel) {
+        this.kernel = kernel;
+        return this;
+    }
+
+    /**
+     * Kernel memory limit (in bytes).  Deprecated: kernel-memory limits are not supported in cgroups v2, and were obsoleted in [kernel v5.4]. This field should no longer be used, as it may be ignored by runtimes.  [kernel v5.4]: https://github.com/torvalds/linux/commit/0158115f702b0ba208ab0
+     *
+     * @return kernel
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getKernel() {
+        return kernel;
+    }
+
+    public void setKernel(Long kernel) {
+        this.kernel = kernel;
+    }
+
+    public LinuxMemory kernelTCP(Long kernelTCP) {
+        this.kernelTCP = kernelTCP;
+        return this;
+    }
+
+    /**
+     * Kernel memory limit for tcp (in bytes)
+     *
+     * @return kernelTCP
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getKernelTCP() {
+        return kernelTCP;
+    }
+
+    public void setKernelTCP(Long kernelTCP) {
+        this.kernelTCP = kernelTCP;
+    }
+
+    public LinuxMemory limit(Long limit) {
+        this.limit = limit;
+        return this;
+    }
+
+    /**
+     * Memory limit (in bytes).
+     *
+     * @return limit
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Long limit) {
+        this.limit = limit;
+    }
+
+    public LinuxMemory reservation(Long reservation) {
+        this.reservation = reservation;
+        return this;
+    }
+
+    /**
+     * Memory reservation or soft_limit (in bytes).
+     *
+     * @return reservation
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Long reservation) {
+        this.reservation = reservation;
+    }
+
+    public LinuxMemory swap(Long swap) {
+        this.swap = swap;
+        return this;
+    }
+
+    /**
+     * Total memory limit (memory + swap).
+     *
+     * @return swap
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSwap() {
+        return swap;
+    }
+
+    public void setSwap(Long swap) {
+        this.swap = swap;
+    }
+
+    public LinuxMemory swappiness(Integer swappiness) {
+        this.swappiness = swappiness;
+        return this;
+    }
+
+    /**
+     * How aggressive the kernel will swap memory pages.
+     *
+     * @return swappiness
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getSwappiness() {
+        return swappiness;
+    }
+
+    public void setSwappiness(Integer swappiness) {
+        this.swappiness = swappiness;
+    }
+
+    public LinuxMemory useHierarchy(Boolean useHierarchy) {
+        this.useHierarchy = useHierarchy;
+        return this;
+    }
+
+    /**
+     * Enables hierarchical memory accounting
+     *
+     * @return useHierarchy
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getUseHierarchy() {
+        return useHierarchy;
+    }
+
+    public void setUseHierarchy(Boolean useHierarchy) {
+        this.useHierarchy = useHierarchy;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxMemory linuxMemory = (LinuxMemory) o;
+        return Objects.equals(this.checkBeforeUpdate, linuxMemory.checkBeforeUpdate) &&
+                Objects.equals(this.disableOOMKiller, linuxMemory.disableOOMKiller) &&
+                Objects.equals(this.kernel, linuxMemory.kernel) &&
+                Objects.equals(this.kernelTCP, linuxMemory.kernelTCP) &&
+                Objects.equals(this.limit, linuxMemory.limit) &&
+                Objects.equals(this.reservation, linuxMemory.reservation) &&
+                Objects.equals(this.swap, linuxMemory.swap) &&
+                Objects.equals(this.swappiness, linuxMemory.swappiness) &&
+                Objects.equals(this.useHierarchy, linuxMemory.useHierarchy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(checkBeforeUpdate, disableOOMKiller, kernel, kernelTCP, limit, reservation, swap, swappiness, useHierarchy);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LinuxMemory {\n" +
+                "    checkBeforeUpdate: " + toIndentedString(checkBeforeUpdate) + "\n" +
+                "    disableOOMKiller: " + toIndentedString(disableOOMKiller) + "\n" +
+                "    kernel: " + toIndentedString(kernel) + "\n" +
+                "    kernelTCP: " + toIndentedString(kernelTCP) + "\n" +
+                "    limit: " + toIndentedString(limit) + "\n" +
+                "    reservation: " + toIndentedString(reservation) + "\n" +
+                "    swap: " + toIndentedString(swap) + "\n" +
+                "    swappiness: " + toIndentedString(swappiness) + "\n" +
+                "    useHierarchy: " + toIndentedString(useHierarchy) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LinuxMemory to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxMemory.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxMemory' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxMemory> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxMemory.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LinuxMemory>() {
+                @Override
+                public void write(JsonWriter out, LinuxMemory value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LinuxMemory read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

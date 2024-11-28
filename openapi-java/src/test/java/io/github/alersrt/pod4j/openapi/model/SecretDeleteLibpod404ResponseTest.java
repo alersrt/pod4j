@@ -13,27 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretDeleteLibpod404Response
  */
-class SecretDeleteLibpod404ResponseTest {
+public class SecretDeleteLibpod404ResponseTest {
     private final SecretDeleteLibpod404Response model = new SecretDeleteLibpod404Response();
 
     /**
      * Model tests for SecretDeleteLibpod404Response
      */
     @Test
-    void testSecretDeleteLibpod404Response() {
+    public void testSecretDeleteLibpod404Response() {
         // TODO: test SecretDeleteLibpod404Response
     }
 
@@ -41,7 +33,7 @@ class SecretDeleteLibpod404ResponseTest {
      * Test the property 'cause'
      */
     @Test
-    void causeTest() {
+    public void causeTest() {
         // TODO: test cause
     }
 
@@ -49,7 +41,7 @@ class SecretDeleteLibpod404ResponseTest {
      * Test the property 'message'
      */
     @Test
-    void messageTest() {
+    public void messageTest() {
         // TODO: test message
     }
 
@@ -57,7 +49,7 @@ class SecretDeleteLibpod404ResponseTest {
      * Test the property 'response'
      */
     @Test
-    void responseTest() {
+    public void responseTest() {
         // TODO: test response
     }
 

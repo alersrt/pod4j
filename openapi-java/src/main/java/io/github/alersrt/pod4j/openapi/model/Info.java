@@ -13,280 +13,290 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Topology;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Info contains information about the Volume as a whole as provided by the CSI storage plugin.
  */
-@JsonPropertyOrder({
-  Info.JSON_PROPERTY_ACCESSIBLE_TOPOLOGY,
-  Info.JSON_PROPERTY_CAPACITY_BYTES,
-  Info.JSON_PROPERTY_VOLUME_CONTEXT,
-  Info.JSON_PROPERTY_VOLUME_I_D
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Info {
-  public static final String JSON_PROPERTY_ACCESSIBLE_TOPOLOGY = "AccessibleTopology";
-  private List<@Valid Topology> accessibleTopology = new ArrayList<>();
+    public static final String SERIALIZED_NAME_ACCESSIBLE_TOPOLOGY = "AccessibleTopology";
+    public static final String SERIALIZED_NAME_CAPACITY_BYTES = "CapacityBytes";
+    public static final String SERIALIZED_NAME_VOLUME_CONTEXT = "VolumeContext";
+    public static final String SERIALIZED_NAME_VOLUME_I_D = "VolumeID";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_CAPACITY_BYTES = "CapacityBytes";
-  private Long capacityBytes;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("AccessibleTopology");
+        openapiFields.add("CapacityBytes");
+        openapiFields.add("VolumeContext");
+        openapiFields.add("VolumeID");
 
-  public static final String JSON_PROPERTY_VOLUME_CONTEXT = "VolumeContext";
-  private Map<String, String> volumeContext = new HashMap<>();
-
-  public static final String JSON_PROPERTY_VOLUME_I_D = "VolumeID";
-  private String volumeID;
-
-  public Info() { 
-  }
-
-  public Info accessibleTopology(List<@Valid Topology> accessibleTopology) {
-    this.accessibleTopology = accessibleTopology;
-    return this;
-  }
-
-  public Info addAccessibleTopologyItem(Topology accessibleTopologyItem) {
-    if (this.accessibleTopology == null) {
-      this.accessibleTopology = new ArrayList<>();
-    }
-    this.accessibleTopology.add(accessibleTopologyItem);
-    return this;
-  }
-
-  /**
-   * AccessibleTopology is the topology this volume is actually accessible from.
-   * @return accessibleTopology
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ACCESSIBLE_TOPOLOGY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Topology> getAccessibleTopology() {
-    return accessibleTopology;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ACCESSIBLE_TOPOLOGY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccessibleTopology(List<@Valid Topology> accessibleTopology) {
-    this.accessibleTopology = accessibleTopology;
-  }
-
-
-  public Info capacityBytes(Long capacityBytes) {
-    this.capacityBytes = capacityBytes;
-    return this;
-  }
-
-  /**
-   * CapacityBytes is the capacity of the volume in bytes. A value of 0 indicates that the capacity is unknown.
-   * @return capacityBytes
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAPACITY_BYTES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCapacityBytes() {
-    return capacityBytes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAPACITY_BYTES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapacityBytes(Long capacityBytes) {
-    this.capacityBytes = capacityBytes;
-  }
-
-
-  public Info volumeContext(Map<String, String> volumeContext) {
-    this.volumeContext = volumeContext;
-    return this;
-  }
-
-  public Info putVolumeContextItem(String key, String volumeContextItem) {
-    if (this.volumeContext == null) {
-      this.volumeContext = new HashMap<>();
-    }
-    this.volumeContext.put(key, volumeContextItem);
-    return this;
-  }
-
-  /**
-   * VolumeContext is the context originating from the CSI storage plugin when the Volume is created.
-   * @return volumeContext
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_CONTEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getVolumeContext() {
-    return volumeContext;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_CONTEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumeContext(Map<String, String> volumeContext) {
-    this.volumeContext = volumeContext;
-  }
-
-
-  public Info volumeID(String volumeID) {
-    this.volumeID = volumeID;
-    return this;
-  }
-
-  /**
-   * VolumeID is the ID of the Volume as seen by the CSI storage plugin. This is distinct from the Volume&#39;s Swarm ID, which is the ID used by all of the Docker Engine to refer to the Volume. If this field is blank, then the Volume has not been successfully created yet.
-   * @return volumeID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVolumeID() {
-    return volumeID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumeID(String volumeID) {
-    this.volumeID = volumeID;
-  }
-
-
-  /**
-   * Return true if this Info object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Info info = (Info) o;
-    return Objects.equals(this.accessibleTopology, info.accessibleTopology) &&
-        Objects.equals(this.capacityBytes, info.capacityBytes) &&
-        Objects.equals(this.volumeContext, info.volumeContext) &&
-        Objects.equals(this.volumeID, info.volumeID);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(accessibleTopology, capacityBytes, volumeContext, volumeID);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Info {\n");
-    sb.append("    accessibleTopology: ").append(toIndentedString(accessibleTopology)).append("\n");
-    sb.append("    capacityBytes: ").append(toIndentedString(capacityBytes)).append("\n");
-    sb.append("    volumeContext: ").append(toIndentedString(volumeContext)).append("\n");
-    sb.append("    volumeID: ").append(toIndentedString(volumeID)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ACCESSIBLE_TOPOLOGY)
+    private List<@Valid Topology> accessibleTopology = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CAPACITY_BYTES)
+    private Long capacityBytes;
+    @SerializedName(SERIALIZED_NAME_VOLUME_CONTEXT)
+    private Map<String, String> volumeContext = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_VOLUME_I_D)
+    private String volumeID;
 
-    // add `AccessibleTopology` to the URL query string
-    if (getAccessibleTopology() != null) {
-      for (int i = 0; i < getAccessibleTopology().size(); i++) {
-        if (getAccessibleTopology().get(i) != null) {
-          joiner.add(getAccessibleTopology().get(i).toUrlQueryString(String.format("%sAccessibleTopology%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    public Info() {
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Info
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Info.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Info is not found in the empty JSON string", Info.openapiRequiredFields));
+            }
         }
-      }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Info.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Info` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (jsonObj.get("AccessibleTopology") != null && !jsonObj.get("AccessibleTopology").isJsonNull()) {
+            JsonArray jsonArrayaccessibleTopology = jsonObj.getAsJsonArray("AccessibleTopology");
+            if (jsonArrayaccessibleTopology != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("AccessibleTopology").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `AccessibleTopology` to be an array in the JSON string but got `%s`", jsonObj.get("AccessibleTopology").toString()));
+                }
+
+                // validate the optional field `AccessibleTopology` (array)
+                for (int i = 0; i < jsonArrayaccessibleTopology.size(); i++) {
+                    Topology.validateJsonElement(jsonArrayaccessibleTopology.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("VolumeID") != null && !jsonObj.get("VolumeID").isJsonNull()) && !jsonObj.get("VolumeID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `VolumeID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("VolumeID").toString()));
+        }
     }
 
-    // add `CapacityBytes` to the URL query string
-    if (getCapacityBytes() != null) {
-      joiner.add(String.format("%sCapacityBytes%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCapacityBytes()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Info given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Info
+     * @throws IOException if the JSON string is invalid with respect to Info
+     */
+    public static Info fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Info.class);
     }
 
-    // add `VolumeContext` to the URL query string
-    if (getVolumeContext() != null) {
-      for (String _key : getVolumeContext().keySet()) {
-        joiner.add(String.format("%sVolumeContext%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getVolumeContext().get(_key), URLEncoder.encode(ApiClient.valueToString(getVolumeContext().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Info accessibleTopology(List<@Valid Topology> accessibleTopology) {
+        this.accessibleTopology = accessibleTopology;
+        return this;
     }
 
-    // add `VolumeID` to the URL query string
-    if (getVolumeID() != null) {
-      joiner.add(String.format("%sVolumeID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVolumeID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Info addAccessibleTopologyItem(Topology accessibleTopologyItem) {
+        if (this.accessibleTopology == null) {
+            this.accessibleTopology = new ArrayList<>();
+        }
+        this.accessibleTopology.add(accessibleTopologyItem);
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * AccessibleTopology is the topology this volume is actually accessible from.
+     *
+     * @return accessibleTopology
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Topology> getAccessibleTopology() {
+        return accessibleTopology;
+    }
+
+    public void setAccessibleTopology(List<@Valid Topology> accessibleTopology) {
+        this.accessibleTopology = accessibleTopology;
+    }
+
+    public Info capacityBytes(Long capacityBytes) {
+        this.capacityBytes = capacityBytes;
+        return this;
+    }
+
+    /**
+     * CapacityBytes is the capacity of the volume in bytes. A value of 0 indicates that the capacity is unknown.
+     *
+     * @return capacityBytes
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCapacityBytes() {
+        return capacityBytes;
+    }
+
+    public void setCapacityBytes(Long capacityBytes) {
+        this.capacityBytes = capacityBytes;
+    }
+
+    public Info volumeContext(Map<String, String> volumeContext) {
+        this.volumeContext = volumeContext;
+        return this;
+    }
+
+    public Info putVolumeContextItem(String key, String volumeContextItem) {
+        if (this.volumeContext == null) {
+            this.volumeContext = new HashMap<>();
+        }
+        this.volumeContext.put(key, volumeContextItem);
+        return this;
+    }
+
+    /**
+     * VolumeContext is the context originating from the CSI storage plugin when the Volume is created.
+     *
+     * @return volumeContext
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getVolumeContext() {
+        return volumeContext;
+    }
+
+    public void setVolumeContext(Map<String, String> volumeContext) {
+        this.volumeContext = volumeContext;
+    }
+
+    public Info volumeID(String volumeID) {
+        this.volumeID = volumeID;
+        return this;
+    }
+
+    /**
+     * VolumeID is the ID of the Volume as seen by the CSI storage plugin. This is distinct from the Volume&#39;s Swarm ID, which is the ID used by all of the Docker Engine to refer to the Volume. If this field is blank, then the Volume has not been successfully created yet.
+     *
+     * @return volumeID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVolumeID() {
+        return volumeID;
+    }
+
+    public void setVolumeID(String volumeID) {
+        this.volumeID = volumeID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Info info = (Info) o;
+        return Objects.equals(this.accessibleTopology, info.accessibleTopology) &&
+                Objects.equals(this.capacityBytes, info.capacityBytes) &&
+                Objects.equals(this.volumeContext, info.volumeContext) &&
+                Objects.equals(this.volumeID, info.volumeID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accessibleTopology, capacityBytes, volumeContext, volumeID);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Info {\n" +
+                "    accessibleTopology: " + toIndentedString(accessibleTopology) + "\n" +
+                "    capacityBytes: " + toIndentedString(capacityBytes) + "\n" +
+                "    volumeContext: " + toIndentedString(volumeContext) + "\n" +
+                "    volumeID: " + toIndentedString(volumeID) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Info to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Info.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Info' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Info> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Info.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Info>() {
+                @Override
+                public void write(JsonWriter out, Info value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Info read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

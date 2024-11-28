@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
 import io.github.alersrt.pod4j.openapi.model.ImageVolume;
 import io.github.alersrt.pod4j.openapi.model.LinuxResources;
@@ -28,27 +28,28 @@ import io.github.alersrt.pod4j.openapi.model.Namespace;
 import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
 import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
 import io.github.alersrt.pod4j.openapi.model.PortMapping;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodSpecGenerator
  */
-class PodSpecGeneratorTest {
+public class PodSpecGeneratorTest {
     private final PodSpecGenerator model = new PodSpecGenerator();
 
     /**
      * Model tests for PodSpecGenerator
      */
     @Test
-    void testPodSpecGenerator() {
+    public void testPodSpecGenerator() {
         // TODO: test PodSpecGenerator
     }
 
@@ -56,7 +57,7 @@ class PodSpecGeneratorTest {
      * Test the property 'networks'
      */
     @Test
-    void networksTest() {
+    public void networksTest() {
         // TODO: test networks
     }
 
@@ -64,7 +65,7 @@ class PodSpecGeneratorTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    void cgroupParentTest() {
+    public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -72,7 +73,7 @@ class PodSpecGeneratorTest {
      * Test the property 'cniNetworks'
      */
     @Test
-    void cniNetworksTest() {
+    public void cniNetworksTest() {
         // TODO: test cniNetworks
     }
 
@@ -80,7 +81,7 @@ class PodSpecGeneratorTest {
      * Test the property 'cpuPeriod'
      */
     @Test
-    void cpuPeriodTest() {
+    public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
@@ -88,7 +89,7 @@ class PodSpecGeneratorTest {
      * Test the property 'cpuQuota'
      */
     @Test
-    void cpuQuotaTest() {
+    public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
@@ -96,7 +97,7 @@ class PodSpecGeneratorTest {
      * Test the property 'dnsOption'
      */
     @Test
-    void dnsOptionTest() {
+    public void dnsOptionTest() {
         // TODO: test dnsOption
     }
 
@@ -104,7 +105,7 @@ class PodSpecGeneratorTest {
      * Test the property 'dnsSearch'
      */
     @Test
-    void dnsSearchTest() {
+    public void dnsSearchTest() {
         // TODO: test dnsSearch
     }
 
@@ -112,7 +113,7 @@ class PodSpecGeneratorTest {
      * Test the property 'dnsServer'
      */
     @Test
-    void dnsServerTest() {
+    public void dnsServerTest() {
         // TODO: test dnsServer
     }
 
@@ -120,7 +121,7 @@ class PodSpecGeneratorTest {
      * Test the property 'exitPolicy'
      */
     @Test
-    void exitPolicyTest() {
+    public void exitPolicyTest() {
         // TODO: test exitPolicy
     }
 
@@ -128,7 +129,7 @@ class PodSpecGeneratorTest {
      * Test the property 'hostadd'
      */
     @Test
-    void hostaddTest() {
+    public void hostaddTest() {
         // TODO: test hostadd
     }
 
@@ -136,7 +137,7 @@ class PodSpecGeneratorTest {
      * Test the property 'hostname'
      */
     @Test
-    void hostnameTest() {
+    public void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -144,7 +145,7 @@ class PodSpecGeneratorTest {
      * Test the property 'idmappings'
      */
     @Test
-    void idmappingsTest() {
+    public void idmappingsTest() {
         // TODO: test idmappings
     }
 
@@ -152,7 +153,7 @@ class PodSpecGeneratorTest {
      * Test the property 'imageVolumes'
      */
     @Test
-    void imageVolumesTest() {
+    public void imageVolumesTest() {
         // TODO: test imageVolumes
     }
 
@@ -160,7 +161,7 @@ class PodSpecGeneratorTest {
      * Test the property 'infraCommand'
      */
     @Test
-    void infraCommandTest() {
+    public void infraCommandTest() {
         // TODO: test infraCommand
     }
 
@@ -168,7 +169,7 @@ class PodSpecGeneratorTest {
      * Test the property 'infraConmonPidFile'
      */
     @Test
-    void infraConmonPidFileTest() {
+    public void infraConmonPidFileTest() {
         // TODO: test infraConmonPidFile
     }
 
@@ -176,7 +177,7 @@ class PodSpecGeneratorTest {
      * Test the property 'infraImage'
      */
     @Test
-    void infraImageTest() {
+    public void infraImageTest() {
         // TODO: test infraImage
     }
 
@@ -184,7 +185,7 @@ class PodSpecGeneratorTest {
      * Test the property 'infraName'
      */
     @Test
-    void infraNameTest() {
+    public void infraNameTest() {
         // TODO: test infraName
     }
 
@@ -192,7 +193,7 @@ class PodSpecGeneratorTest {
      * Test the property 'ipcns'
      */
     @Test
-    void ipcnsTest() {
+    public void ipcnsTest() {
         // TODO: test ipcns
     }
 
@@ -200,7 +201,7 @@ class PodSpecGeneratorTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -208,7 +209,7 @@ class PodSpecGeneratorTest {
      * Test the property 'mounts'
      */
     @Test
-    void mountsTest() {
+    public void mountsTest() {
         // TODO: test mounts
     }
 
@@ -216,7 +217,7 @@ class PodSpecGeneratorTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -224,7 +225,7 @@ class PodSpecGeneratorTest {
      * Test the property 'netns'
      */
     @Test
-    void netnsTest() {
+    public void netnsTest() {
         // TODO: test netns
     }
 
@@ -232,7 +233,7 @@ class PodSpecGeneratorTest {
      * Test the property 'networkOptions'
      */
     @Test
-    void networkOptionsTest() {
+    public void networkOptionsTest() {
         // TODO: test networkOptions
     }
 
@@ -240,7 +241,7 @@ class PodSpecGeneratorTest {
      * Test the property 'noInfra'
      */
     @Test
-    void noInfraTest() {
+    public void noInfraTest() {
         // TODO: test noInfra
     }
 
@@ -248,7 +249,7 @@ class PodSpecGeneratorTest {
      * Test the property 'noManageHosts'
      */
     @Test
-    void noManageHostsTest() {
+    public void noManageHostsTest() {
         // TODO: test noManageHosts
     }
 
@@ -256,7 +257,7 @@ class PodSpecGeneratorTest {
      * Test the property 'noManageResolvConf'
      */
     @Test
-    void noManageResolvConfTest() {
+    public void noManageResolvConfTest() {
         // TODO: test noManageResolvConf
     }
 
@@ -264,7 +265,7 @@ class PodSpecGeneratorTest {
      * Test the property 'overlayVolumes'
      */
     @Test
-    void overlayVolumesTest() {
+    public void overlayVolumesTest() {
         // TODO: test overlayVolumes
     }
 
@@ -272,7 +273,7 @@ class PodSpecGeneratorTest {
      * Test the property 'pidns'
      */
     @Test
-    void pidnsTest() {
+    public void pidnsTest() {
         // TODO: test pidns
     }
 
@@ -280,7 +281,7 @@ class PodSpecGeneratorTest {
      * Test the property 'podCreateCommand'
      */
     @Test
-    void podCreateCommandTest() {
+    public void podCreateCommandTest() {
         // TODO: test podCreateCommand
     }
 
@@ -288,7 +289,7 @@ class PodSpecGeneratorTest {
      * Test the property 'podDevices'
      */
     @Test
-    void podDevicesTest() {
+    public void podDevicesTest() {
         // TODO: test podDevices
     }
 
@@ -296,7 +297,7 @@ class PodSpecGeneratorTest {
      * Test the property 'portmappings'
      */
     @Test
-    void portmappingsTest() {
+    public void portmappingsTest() {
         // TODO: test portmappings
     }
 
@@ -304,7 +305,7 @@ class PodSpecGeneratorTest {
      * Test the property 'resourceLimits'
      */
     @Test
-    void resourceLimitsTest() {
+    public void resourceLimitsTest() {
         // TODO: test resourceLimits
     }
 
@@ -312,7 +313,7 @@ class PodSpecGeneratorTest {
      * Test the property 'restartPolicy'
      */
     @Test
-    void restartPolicyTest() {
+    public void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
@@ -320,7 +321,7 @@ class PodSpecGeneratorTest {
      * Test the property 'restartTries'
      */
     @Test
-    void restartTriesTest() {
+    public void restartTriesTest() {
         // TODO: test restartTries
     }
 
@@ -328,7 +329,7 @@ class PodSpecGeneratorTest {
      * Test the property 'securityOpt'
      */
     @Test
-    void securityOptTest() {
+    public void securityOptTest() {
         // TODO: test securityOpt
     }
 
@@ -336,7 +337,7 @@ class PodSpecGeneratorTest {
      * Test the property 'serviceContainerID'
      */
     @Test
-    void serviceContainerIDTest() {
+    public void serviceContainerIDTest() {
         // TODO: test serviceContainerID
     }
 
@@ -344,7 +345,7 @@ class PodSpecGeneratorTest {
      * Test the property 'shareParent'
      */
     @Test
-    void shareParentTest() {
+    public void shareParentTest() {
         // TODO: test shareParent
     }
 
@@ -352,7 +353,7 @@ class PodSpecGeneratorTest {
      * Test the property 'sharedNamespaces'
      */
     @Test
-    void sharedNamespacesTest() {
+    public void sharedNamespacesTest() {
         // TODO: test sharedNamespaces
     }
 
@@ -360,7 +361,7 @@ class PodSpecGeneratorTest {
      * Test the property 'shmSize'
      */
     @Test
-    void shmSizeTest() {
+    public void shmSizeTest() {
         // TODO: test shmSize
     }
 
@@ -368,7 +369,7 @@ class PodSpecGeneratorTest {
      * Test the property 'shmSizeSystemd'
      */
     @Test
-    void shmSizeSystemdTest() {
+    public void shmSizeSystemdTest() {
         // TODO: test shmSizeSystemd
     }
 
@@ -376,7 +377,7 @@ class PodSpecGeneratorTest {
      * Test the property 'sysctl'
      */
     @Test
-    void sysctlTest() {
+    public void sysctlTest() {
         // TODO: test sysctl
     }
 
@@ -384,7 +385,7 @@ class PodSpecGeneratorTest {
      * Test the property 'throttleReadBpsDevice'
      */
     @Test
-    void throttleReadBpsDeviceTest() {
+    public void throttleReadBpsDeviceTest() {
         // TODO: test throttleReadBpsDevice
     }
 
@@ -392,7 +393,7 @@ class PodSpecGeneratorTest {
      * Test the property 'userns'
      */
     @Test
-    void usernsTest() {
+    public void usernsTest() {
         // TODO: test userns
     }
 
@@ -400,7 +401,7 @@ class PodSpecGeneratorTest {
      * Test the property 'utsns'
      */
     @Test
-    void utsnsTest() {
+    public void utsnsTest() {
         // TODO: test utsns
     }
 
@@ -408,7 +409,7 @@ class PodSpecGeneratorTest {
      * Test the property 'volumes'
      */
     @Test
-    void volumesTest() {
+    public void volumesTest() {
         // TODO: test volumes
     }
 
@@ -416,7 +417,7 @@ class PodSpecGeneratorTest {
      * Test the property 'volumesFrom'
      */
     @Test
-    void volumesFromTest() {
+    public void volumesFromTest() {
         // TODO: test volumesFrom
     }
 

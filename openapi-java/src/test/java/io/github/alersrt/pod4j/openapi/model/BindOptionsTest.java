@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for BindOptions
  */
-class BindOptionsTest {
+public class BindOptionsTest {
     private final BindOptions model = new BindOptions();
 
     /**
      * Model tests for BindOptions
      */
     @Test
-    void testBindOptions() {
+    public void testBindOptions() {
         // TODO: test BindOptions
     }
 
@@ -42,7 +33,7 @@ class BindOptionsTest {
      * Test the property 'createMountpoint'
      */
     @Test
-    void createMountpointTest() {
+    public void createMountpointTest() {
         // TODO: test createMountpoint
     }
 
@@ -50,7 +41,7 @@ class BindOptionsTest {
      * Test the property 'nonRecursive'
      */
     @Test
-    void nonRecursiveTest() {
+    public void nonRecursiveTest() {
         // TODO: test nonRecursive
     }
 
@@ -58,7 +49,7 @@ class BindOptionsTest {
      * Test the property 'propagation'
      */
     @Test
-    void propagationTest() {
+    public void propagationTest() {
         // TODO: test propagation
     }
 
@@ -66,7 +57,7 @@ class BindOptionsTest {
      * Test the property 'readOnlyForceRecursive'
      */
     @Test
-    void readOnlyForceRecursiveTest() {
+    public void readOnlyForceRecursiveTest() {
         // TODO: test readOnlyForceRecursive
     }
 
@@ -74,7 +65,7 @@ class BindOptionsTest {
      * Test the property 'readOnlyNonRecursive'
      */
     @Test
-    void readOnlyNonRecursiveTest() {
+    public void readOnlyNonRecursiveTest() {
         // TODO: test readOnlyNonRecursive
     }
 

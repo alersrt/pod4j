@@ -13,242 +13,263 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * AccessMode
  */
-@JsonPropertyOrder({
-  AccessMode.JSON_PROPERTY_BLOCK_VOLUME,
-  AccessMode.JSON_PROPERTY_MOUNT_VOLUME,
-  AccessMode.JSON_PROPERTY_SCOPE,
-  AccessMode.JSON_PROPERTY_SHARING
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class AccessMode {
-  public static final String JSON_PROPERTY_BLOCK_VOLUME = "BlockVolume";
-  private Object blockVolume;
+    public static final String SERIALIZED_NAME_BLOCK_VOLUME = "BlockVolume";
+    public static final String SERIALIZED_NAME_MOUNT_VOLUME = "MountVolume";
+    public static final String SERIALIZED_NAME_SCOPE = "Scope";
+    public static final String SERIALIZED_NAME_SHARING = "Sharing";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_MOUNT_VOLUME = "MountVolume";
-  private TypeMount mountVolume;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("BlockVolume");
+        openapiFields.add("MountVolume");
+        openapiFields.add("Scope");
+        openapiFields.add("Sharing");
 
-  public static final String JSON_PROPERTY_SCOPE = "Scope";
-  private String scope;
-
-  public static final String JSON_PROPERTY_SHARING = "Sharing";
-  private String sharing;
-
-  public AccessMode() { 
-  }
-
-  public AccessMode blockVolume(Object blockVolume) {
-    this.blockVolume = blockVolume;
-    return this;
-  }
-
-  /**
-   * Intentionally empty.
-   * @return blockVolume
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BLOCK_VOLUME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getBlockVolume() {
-    return blockVolume;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLOCK_VOLUME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlockVolume(Object blockVolume) {
-    this.blockVolume = blockVolume;
-  }
-
-
-  public AccessMode mountVolume(TypeMount mountVolume) {
-    this.mountVolume = mountVolume;
-    return this;
-  }
-
-  /**
-   * Get mountVolume
-   * @return mountVolume
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_MOUNT_VOLUME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public TypeMount getMountVolume() {
-    return mountVolume;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MOUNT_VOLUME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMountVolume(TypeMount mountVolume) {
-    this.mountVolume = mountVolume;
-  }
-
-
-  public AccessMode scope(String scope) {
-    this.scope = scope;
-    return this;
-  }
-
-  /**
-   * Scope defines the Scope of a Cluster Volume. This is how many nodes a Volume can be accessed simultaneously on.
-   * @return scope
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SCOPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getScope() {
-    return scope;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SCOPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setScope(String scope) {
-    this.scope = scope;
-  }
-
-
-  public AccessMode sharing(String sharing) {
-    this.sharing = sharing;
-    return this;
-  }
-
-  /**
-   * SharingMode defines the Sharing of a Cluster Volume. This is how Tasks using a Volume at the same time can use it.
-   * @return sharing
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHARING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSharing() {
-    return sharing;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHARING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSharing(String sharing) {
-    this.sharing = sharing;
-  }
-
-
-  /**
-   * Return true if this AccessMode object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    AccessMode accessMode = (AccessMode) o;
-    return Objects.equals(this.blockVolume, accessMode.blockVolume) &&
-        Objects.equals(this.mountVolume, accessMode.mountVolume) &&
-        Objects.equals(this.scope, accessMode.scope) &&
-        Objects.equals(this.sharing, accessMode.sharing);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(blockVolume, mountVolume, scope, sharing);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AccessMode {\n");
-    sb.append("    blockVolume: ").append(toIndentedString(blockVolume)).append("\n");
-    sb.append("    mountVolume: ").append(toIndentedString(mountVolume)).append("\n");
-    sb.append("    scope: ").append(toIndentedString(scope)).append("\n");
-    sb.append("    sharing: ").append(toIndentedString(sharing)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_BLOCK_VOLUME)
+    private Object blockVolume;
+    @SerializedName(SERIALIZED_NAME_MOUNT_VOLUME)
+    private TypeMount mountVolume;
+    @SerializedName(SERIALIZED_NAME_SCOPE)
+    private String scope;
+    @SerializedName(SERIALIZED_NAME_SHARING)
+    private String sharing;
 
-    // add `BlockVolume` to the URL query string
-    if (getBlockVolume() != null) {
-      joiner.add(String.format("%sBlockVolume%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBlockVolume()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public AccessMode() {
     }
 
-    // add `MountVolume` to the URL query string
-    if (getMountVolume() != null) {
-      joiner.add(getMountVolume().toUrlQueryString(prefix + "MountVolume" + suffix));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to AccessMode
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!AccessMode.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in AccessMode is not found in the empty JSON string", AccessMode.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!AccessMode.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AccessMode` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `MountVolume`
+        if (jsonObj.get("MountVolume") != null && !jsonObj.get("MountVolume").isJsonNull()) {
+            TypeMount.validateJsonElement(jsonObj.get("MountVolume"));
+        }
+        if ((jsonObj.get("Scope") != null && !jsonObj.get("Scope").isJsonNull()) && !jsonObj.get("Scope").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Scope").toString()));
+        }
+        if ((jsonObj.get("Sharing") != null && !jsonObj.get("Sharing").isJsonNull()) && !jsonObj.get("Sharing").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Sharing` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Sharing").toString()));
+        }
     }
 
-    // add `Scope` to the URL query string
-    if (getScope() != null) {
-      joiner.add(String.format("%sScope%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getScope()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of AccessMode given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of AccessMode
+     * @throws IOException if the JSON string is invalid with respect to AccessMode
+     */
+    public static AccessMode fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, AccessMode.class);
     }
 
-    // add `Sharing` to the URL query string
-    if (getSharing() != null) {
-      joiner.add(String.format("%sSharing%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSharing()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public AccessMode blockVolume(Object blockVolume) {
+        this.blockVolume = blockVolume;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Intentionally empty.
+     *
+     * @return blockVolume
+     */
+    @jakarta.annotation.Nullable
+
+    public Object getBlockVolume() {
+        return blockVolume;
+    }
+
+    public void setBlockVolume(Object blockVolume) {
+        this.blockVolume = blockVolume;
+    }
+
+    public AccessMode mountVolume(TypeMount mountVolume) {
+        this.mountVolume = mountVolume;
+        return this;
+    }
+
+    /**
+     * Get mountVolume
+     *
+     * @return mountVolume
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public TypeMount getMountVolume() {
+        return mountVolume;
+    }
+
+    public void setMountVolume(TypeMount mountVolume) {
+        this.mountVolume = mountVolume;
+    }
+
+    public AccessMode scope(String scope) {
+        this.scope = scope;
+        return this;
+    }
+
+    /**
+     * Scope defines the Scope of a Cluster Volume. This is how many nodes a Volume can be accessed simultaneously on.
+     *
+     * @return scope
+     */
+    @jakarta.annotation.Nullable
+
+    public String getScope() {
+        return scope;
+    }
+
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
+
+    public AccessMode sharing(String sharing) {
+        this.sharing = sharing;
+        return this;
+    }
+
+    /**
+     * SharingMode defines the Sharing of a Cluster Volume. This is how Tasks using a Volume at the same time can use it.
+     *
+     * @return sharing
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSharing() {
+        return sharing;
+    }
+
+    public void setSharing(String sharing) {
+        this.sharing = sharing;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AccessMode accessMode = (AccessMode) o;
+        return Objects.equals(this.blockVolume, accessMode.blockVolume) &&
+                Objects.equals(this.mountVolume, accessMode.mountVolume) &&
+                Objects.equals(this.scope, accessMode.scope) &&
+                Objects.equals(this.sharing, accessMode.sharing);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(blockVolume, mountVolume, scope, sharing);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class AccessMode {\n" +
+                "    blockVolume: " + toIndentedString(blockVolume) + "\n" +
+                "    mountVolume: " + toIndentedString(mountVolume) + "\n" +
+                "    scope: " + toIndentedString(scope) + "\n" +
+                "    sharing: " + toIndentedString(sharing) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of AccessMode to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!AccessMode.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'AccessMode' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<AccessMode> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(AccessMode.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<AccessMode>() {
+                @Override
+                public void write(JsonWriter out, AccessMode value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public AccessMode read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

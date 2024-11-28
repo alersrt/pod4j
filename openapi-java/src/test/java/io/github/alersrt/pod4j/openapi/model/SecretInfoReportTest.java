@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.SecretSpec;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretInfoReport
  */
-class SecretInfoReportTest {
+public class SecretInfoReportTest {
     private final SecretInfoReport model = new SecretInfoReport();
 
     /**
      * Model tests for SecretInfoReport
      */
     @Test
-    void testSecretInfoReport() {
+    public void testSecretInfoReport() {
         // TODO: test SecretInfoReport
     }
 
@@ -43,7 +33,7 @@ class SecretInfoReportTest {
      * Test the property 'createdAt'
      */
     @Test
-    void createdAtTest() {
+    public void createdAtTest() {
         // TODO: test createdAt
     }
 
@@ -51,7 +41,7 @@ class SecretInfoReportTest {
      * Test the property 'ID'
      */
     @Test
-    void IDTest() {
+    public void IDTest() {
         // TODO: test ID
     }
 
@@ -59,7 +49,7 @@ class SecretInfoReportTest {
      * Test the property 'secretData'
      */
     @Test
-    void secretDataTest() {
+    public void secretDataTest() {
         // TODO: test secretData
     }
 
@@ -67,7 +57,7 @@ class SecretInfoReportTest {
      * Test the property 'spec'
      */
     @Test
-    void specTest() {
+    public void specTest() {
         // TODO: test spec
     }
 
@@ -75,7 +65,7 @@ class SecretInfoReportTest {
      * Test the property 'updatedAt'
      */
     @Test
-    void updatedAtTest() {
+    public void updatedAtTest() {
         // TODO: test updatedAt
     }
 

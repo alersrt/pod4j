@@ -13,13 +13,15 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.Route;
 import io.github.alersrt.pod4j.openapi.model.Subnet;
+
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,21 +29,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for NetworkCreateLibpod
  */
-class NetworkCreateLibpodTest {
+public class NetworkCreateLibpodTest {
     private final NetworkCreateLibpod model = new NetworkCreateLibpod();
 
     /**
      * Model tests for NetworkCreateLibpod
      */
     @Test
-    void testNetworkCreateLibpod() {
+    public void testNetworkCreateLibpod() {
         // TODO: test NetworkCreateLibpod
     }
 
@@ -49,7 +50,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'created'
      */
     @Test
-    void createdTest() {
+    public void createdTest() {
         // TODO: test created
     }
 
@@ -57,7 +58,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'dnsEnabled'
      */
     @Test
-    void dnsEnabledTest() {
+    public void dnsEnabledTest() {
         // TODO: test dnsEnabled
     }
 
@@ -65,7 +66,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -73,7 +74,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -81,7 +82,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'internal'
      */
     @Test
-    void internalTest() {
+    public void internalTest() {
         // TODO: test internal
     }
 
@@ -89,7 +90,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'ipamOptions'
      */
     @Test
-    void ipamOptionsTest() {
+    public void ipamOptionsTest() {
         // TODO: test ipamOptions
     }
 
@@ -97,7 +98,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'ipv6Enabled'
      */
     @Test
-    void ipv6EnabledTest() {
+    public void ipv6EnabledTest() {
         // TODO: test ipv6Enabled
     }
 
@@ -105,7 +106,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -113,7 +114,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -121,7 +122,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'networkDnsServers'
      */
     @Test
-    void networkDnsServersTest() {
+    public void networkDnsServersTest() {
         // TODO: test networkDnsServers
     }
 
@@ -129,7 +130,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'networkInterface'
      */
     @Test
-    void networkInterfaceTest() {
+    public void networkInterfaceTest() {
         // TODO: test networkInterface
     }
 
@@ -137,7 +138,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'options'
      */
     @Test
-    void optionsTest() {
+    public void optionsTest() {
         // TODO: test options
     }
 
@@ -145,7 +146,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'routes'
      */
     @Test
-    void routesTest() {
+    public void routesTest() {
         // TODO: test routes
     }
 
@@ -153,7 +154,7 @@ class NetworkCreateLibpodTest {
      * Test the property 'subnets'
      */
     @Test
-    void subnetsTest() {
+    public void subnetsTest() {
         // TODO: test subnets
     }
 

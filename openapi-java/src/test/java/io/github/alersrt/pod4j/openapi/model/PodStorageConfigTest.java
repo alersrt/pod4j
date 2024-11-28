@@ -13,34 +13,35 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.ImageVolume;
 import io.github.alersrt.pod4j.openapi.model.Mount;
 import io.github.alersrt.pod4j.openapi.model.NamedVolume;
 import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodStorageConfig
  */
-class PodStorageConfigTest {
+public class PodStorageConfigTest {
     private final PodStorageConfig model = new PodStorageConfig();
 
     /**
      * Model tests for PodStorageConfig
      */
     @Test
-    void testPodStorageConfig() {
+    public void testPodStorageConfig() {
         // TODO: test PodStorageConfig
     }
 
@@ -48,7 +49,7 @@ class PodStorageConfigTest {
      * Test the property 'imageVolumes'
      */
     @Test
-    void imageVolumesTest() {
+    public void imageVolumesTest() {
         // TODO: test imageVolumes
     }
 
@@ -56,7 +57,7 @@ class PodStorageConfigTest {
      * Test the property 'mounts'
      */
     @Test
-    void mountsTest() {
+    public void mountsTest() {
         // TODO: test mounts
     }
 
@@ -64,7 +65,7 @@ class PodStorageConfigTest {
      * Test the property 'overlayVolumes'
      */
     @Test
-    void overlayVolumesTest() {
+    public void overlayVolumesTest() {
         // TODO: test overlayVolumes
     }
 
@@ -72,7 +73,7 @@ class PodStorageConfigTest {
      * Test the property 'shmSize'
      */
     @Test
-    void shmSizeTest() {
+    public void shmSizeTest() {
         // TODO: test shmSize
     }
 
@@ -80,7 +81,7 @@ class PodStorageConfigTest {
      * Test the property 'shmSizeSystemd'
      */
     @Test
-    void shmSizeSystemdTest() {
+    public void shmSizeSystemdTest() {
         // TODO: test shmSizeSystemd
     }
 
@@ -88,7 +89,7 @@ class PodStorageConfigTest {
      * Test the property 'volumes'
      */
     @Test
-    void volumesTest() {
+    public void volumesTest() {
         // TODO: test volumes
     }
 
@@ -96,7 +97,7 @@ class PodStorageConfigTest {
      * Test the property 'volumesFrom'
      */
     @Test
-    void volumesFromTest() {
+    public void volumesFromTest() {
         // TODO: test volumesFrom
     }
 

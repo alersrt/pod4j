@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for DisconnectOptions
  */
-class DisconnectOptionsTest {
+public class DisconnectOptionsTest {
     private final DisconnectOptions model = new DisconnectOptions();
 
     /**
      * Model tests for DisconnectOptions
      */
     @Test
-    void testDisconnectOptions() {
+    public void testDisconnectOptions() {
         // TODO: test DisconnectOptions
     }
 
@@ -42,7 +33,7 @@ class DisconnectOptionsTest {
      * Test the property 'container'
      */
     @Test
-    void containerTest() {
+    public void containerTest() {
         // TODO: test container
     }
 
@@ -50,7 +41,7 @@ class DisconnectOptionsTest {
      * Test the property 'force'
      */
     @Test
-    void forceTest() {
+    public void forceTest() {
         // TODO: test force
     }
 

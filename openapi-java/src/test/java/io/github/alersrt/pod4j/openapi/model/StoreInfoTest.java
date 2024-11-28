@@ -13,32 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ContainerStore;
-import io.github.alersrt.pod4j.openapi.model.ImageStore;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for StoreInfo
  */
-class StoreInfoTest {
+public class StoreInfoTest {
     private final StoreInfo model = new StoreInfo();
 
     /**
      * Model tests for StoreInfo
      */
     @Test
-    void testStoreInfo() {
+    public void testStoreInfo() {
         // TODO: test StoreInfo
     }
 
@@ -46,7 +33,7 @@ class StoreInfoTest {
      * Test the property 'configFile'
      */
     @Test
-    void configFileTest() {
+    public void configFileTest() {
         // TODO: test configFile
     }
 
@@ -54,7 +41,7 @@ class StoreInfoTest {
      * Test the property 'containerStore'
      */
     @Test
-    void containerStoreTest() {
+    public void containerStoreTest() {
         // TODO: test containerStore
     }
 
@@ -62,7 +49,7 @@ class StoreInfoTest {
      * Test the property 'graphDriverName'
      */
     @Test
-    void graphDriverNameTest() {
+    public void graphDriverNameTest() {
         // TODO: test graphDriverName
     }
 
@@ -70,7 +57,7 @@ class StoreInfoTest {
      * Test the property 'graphOptions'
      */
     @Test
-    void graphOptionsTest() {
+    public void graphOptionsTest() {
         // TODO: test graphOptions
     }
 
@@ -78,7 +65,7 @@ class StoreInfoTest {
      * Test the property 'graphRoot'
      */
     @Test
-    void graphRootTest() {
+    public void graphRootTest() {
         // TODO: test graphRoot
     }
 
@@ -86,7 +73,7 @@ class StoreInfoTest {
      * Test the property 'graphRootAllocated'
      */
     @Test
-    void graphRootAllocatedTest() {
+    public void graphRootAllocatedTest() {
         // TODO: test graphRootAllocated
     }
 
@@ -94,7 +81,7 @@ class StoreInfoTest {
      * Test the property 'graphRootUsed'
      */
     @Test
-    void graphRootUsedTest() {
+    public void graphRootUsedTest() {
         // TODO: test graphRootUsed
     }
 
@@ -102,7 +89,7 @@ class StoreInfoTest {
      * Test the property 'graphStatus'
      */
     @Test
-    void graphStatusTest() {
+    public void graphStatusTest() {
         // TODO: test graphStatus
     }
 
@@ -110,7 +97,7 @@ class StoreInfoTest {
      * Test the property 'imageCopyTmpDir'
      */
     @Test
-    void imageCopyTmpDirTest() {
+    public void imageCopyTmpDirTest() {
         // TODO: test imageCopyTmpDir
     }
 
@@ -118,7 +105,7 @@ class StoreInfoTest {
      * Test the property 'imageStore'
      */
     @Test
-    void imageStoreTest() {
+    public void imageStoreTest() {
         // TODO: test imageStore
     }
 
@@ -126,7 +113,7 @@ class StoreInfoTest {
      * Test the property 'runRoot'
      */
     @Test
-    void runRootTest() {
+    public void runRootTest() {
         // TODO: test runRoot
     }
 
@@ -134,7 +121,7 @@ class StoreInfoTest {
      * Test the property 'transientStore'
      */
     @Test
-    void transientStoreTest() {
+    public void transientStoreTest() {
         // TODO: test transientStore
     }
 
@@ -142,7 +129,7 @@ class StoreInfoTest {
      * Test the property 'volumePath'
      */
     @Test
-    void volumePathTest() {
+    public void volumePathTest() {
         // TODO: test volumePath
     }
 

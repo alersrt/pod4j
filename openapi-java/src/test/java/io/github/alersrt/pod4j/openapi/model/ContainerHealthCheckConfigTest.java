@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
-import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerHealthCheckConfig
  */
-class ContainerHealthCheckConfigTest {
+public class ContainerHealthCheckConfigTest {
     private final ContainerHealthCheckConfig model = new ContainerHealthCheckConfig();
 
     /**
      * Model tests for ContainerHealthCheckConfig
      */
     @Test
-    void testContainerHealthCheckConfig() {
+    public void testContainerHealthCheckConfig() {
         // TODO: test ContainerHealthCheckConfig
     }
 
@@ -44,7 +33,7 @@ class ContainerHealthCheckConfigTest {
      * Test the property 'healthCheckOnFailureAction'
      */
     @Test
-    void healthCheckOnFailureActionTest() {
+    public void healthCheckOnFailureActionTest() {
         // TODO: test healthCheckOnFailureAction
     }
 
@@ -52,7 +41,7 @@ class ContainerHealthCheckConfigTest {
      * Test the property 'healthLogDestination'
      */
     @Test
-    void healthLogDestinationTest() {
+    public void healthLogDestinationTest() {
         // TODO: test healthLogDestination
     }
 
@@ -60,7 +49,7 @@ class ContainerHealthCheckConfigTest {
      * Test the property 'healthMaxLogCount'
      */
     @Test
-    void healthMaxLogCountTest() {
+    public void healthMaxLogCountTest() {
         // TODO: test healthMaxLogCount
     }
 
@@ -68,7 +57,7 @@ class ContainerHealthCheckConfigTest {
      * Test the property 'healthMaxLogSize'
      */
     @Test
-    void healthMaxLogSizeTest() {
+    public void healthMaxLogSizeTest() {
         // TODO: test healthMaxLogSize
     }
 
@@ -76,7 +65,7 @@ class ContainerHealthCheckConfigTest {
      * Test the property 'healthconfig'
      */
     @Test
-    void healthconfigTest() {
+    public void healthconfigTest() {
         // TODO: test healthconfig
     }
 
@@ -84,7 +73,7 @@ class ContainerHealthCheckConfigTest {
      * Test the property 'startupHealthConfig'
      */
     @Test
-    void startupHealthConfigTest() {
+    public void startupHealthConfigTest() {
         // TODO: test startupHealthConfig
     }
 

@@ -13,329 +13,335 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.PluginConfig;
-import io.github.alersrt.pod4j.openapi.model.PluginSettings;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Plugin A plugin for the Engine API
  */
-@JsonPropertyOrder({
-  Plugin.JSON_PROPERTY_CONFIG,
-  Plugin.JSON_PROPERTY_ENABLED,
-  Plugin.JSON_PROPERTY_ID,
-  Plugin.JSON_PROPERTY_NAME,
-  Plugin.JSON_PROPERTY_PLUGIN_REFERENCE,
-  Plugin.JSON_PROPERTY_SETTINGS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Plugin {
-  public static final String JSON_PROPERTY_CONFIG = "Config";
-  private PluginConfig config;
+    public static final String SERIALIZED_NAME_CONFIG = "Config";
+    public static final String SERIALIZED_NAME_ENABLED = "Enabled";
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_PLUGIN_REFERENCE = "PluginReference";
+    public static final String SERIALIZED_NAME_SETTINGS = "Settings";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ENABLED = "Enabled";
-  private Boolean enabled;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Config");
+        openapiFields.add("Enabled");
+        openapiFields.add("Id");
+        openapiFields.add("Name");
+        openapiFields.add("PluginReference");
+        openapiFields.add("Settings");
 
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_PLUGIN_REFERENCE = "PluginReference";
-  private String pluginReference;
-
-  public static final String JSON_PROPERTY_SETTINGS = "Settings";
-  private PluginSettings settings;
-
-  public Plugin() { 
-  }
-
-  public Plugin config(PluginConfig config) {
-    this.config = config;
-    return this;
-  }
-
-  /**
-   * Get config
-   * @return config
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public PluginConfig getConfig() {
-    return config;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setConfig(PluginConfig config) {
-    this.config = config;
-  }
-
-
-  public Plugin enabled(Boolean enabled) {
-    this.enabled = enabled;
-    return this;
-  }
-
-  /**
-   * True if the plugin is running. False if the plugin is not running, only installed.
-   * @return enabled
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_ENABLED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Boolean getEnabled() {
-    return enabled;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENABLED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setEnabled(Boolean enabled) {
-    this.enabled = enabled;
-  }
-
-
-  public Plugin id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Id
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Plugin name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * name
-   * @return name
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public Plugin pluginReference(String pluginReference) {
-    this.pluginReference = pluginReference;
-    return this;
-  }
-
-  /**
-   * plugin remote reference used to push/pull the plugin
-   * @return pluginReference
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PLUGIN_REFERENCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPluginReference() {
-    return pluginReference;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PLUGIN_REFERENCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPluginReference(String pluginReference) {
-    this.pluginReference = pluginReference;
-  }
-
-
-  public Plugin settings(PluginSettings settings) {
-    this.settings = settings;
-    return this;
-  }
-
-  /**
-   * Get settings
-   * @return settings
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public PluginSettings getSettings() {
-    return settings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSettings(PluginSettings settings) {
-    this.settings = settings;
-  }
-
-
-  /**
-   * Return true if this Plugin object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Plugin plugin = (Plugin) o;
-    return Objects.equals(this.config, plugin.config) &&
-        Objects.equals(this.enabled, plugin.enabled) &&
-        Objects.equals(this.id, plugin.id) &&
-        Objects.equals(this.name, plugin.name) &&
-        Objects.equals(this.pluginReference, plugin.pluginReference) &&
-        Objects.equals(this.settings, plugin.settings);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(config, enabled, id, name, pluginReference, settings);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Plugin {\n");
-    sb.append("    config: ").append(toIndentedString(config)).append("\n");
-    sb.append("    enabled: ").append(toIndentedString(enabled)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    pluginReference: ").append(toIndentedString(pluginReference)).append("\n");
-    sb.append("    settings: ").append(toIndentedString(settings)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("Config");
+        openapiRequiredFields.add("Enabled");
+        openapiRequiredFields.add("Name");
+        openapiRequiredFields.add("Settings");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CONFIG)
+    private PluginConfig config;
+    @SerializedName(SERIALIZED_NAME_ENABLED)
+    private Boolean enabled;
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_PLUGIN_REFERENCE)
+    private String pluginReference;
+    @SerializedName(SERIALIZED_NAME_SETTINGS)
+    private PluginSettings settings;
 
-    // add `Config` to the URL query string
-    if (getConfig() != null) {
-      joiner.add(getConfig().toUrlQueryString(prefix + "Config" + suffix));
+    public Plugin() {
     }
 
-    // add `Enabled` to the URL query string
-    if (getEnabled() != null) {
-      joiner.add(String.format("%sEnabled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnabled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Plugin
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Plugin.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Plugin is not found in the empty JSON string", Plugin.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Plugin.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Plugin` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : Plugin.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the required field `Config`
+        PluginConfig.validateJsonElement(jsonObj.get("Config"));
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        if (!jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
+        if ((jsonObj.get("PluginReference") != null && !jsonObj.get("PluginReference").isJsonNull()) && !jsonObj.get("PluginReference").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `PluginReference` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PluginReference").toString()));
+        }
+        // validate the required field `Settings`
+        PluginSettings.validateJsonElement(jsonObj.get("Settings"));
     }
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Plugin given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Plugin
+     * @throws IOException if the JSON string is invalid with respect to Plugin
+     */
+    public static Plugin fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Plugin.class);
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Plugin config(PluginConfig config) {
+        this.config = config;
+        return this;
     }
 
-    // add `PluginReference` to the URL query string
-    if (getPluginReference() != null) {
-      joiner.add(String.format("%sPluginReference%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPluginReference()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get config
+     *
+     * @return config
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+
+    public PluginConfig getConfig() {
+        return config;
     }
 
-    // add `Settings` to the URL query string
-    if (getSettings() != null) {
-      joiner.add(getSettings().toUrlQueryString(prefix + "Settings" + suffix));
+    public void setConfig(PluginConfig config) {
+        this.config = config;
     }
 
-    return joiner.toString();
-  }
+    public Plugin enabled(Boolean enabled) {
+        this.enabled = enabled;
+        return this;
+    }
+
+    /**
+     * True if the plugin is running. False if the plugin is not running, only installed.
+     *
+     * @return enabled
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Plugin id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Id
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Plugin name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Plugin pluginReference(String pluginReference) {
+        this.pluginReference = pluginReference;
+        return this;
+    }
+
+    /**
+     * plugin remote reference used to push/pull the plugin
+     *
+     * @return pluginReference
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPluginReference() {
+        return pluginReference;
+    }
+
+    public void setPluginReference(String pluginReference) {
+        this.pluginReference = pluginReference;
+    }
+
+    public Plugin settings(PluginSettings settings) {
+        this.settings = settings;
+        return this;
+    }
+
+    /**
+     * Get settings
+     *
+     * @return settings
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+
+    public PluginSettings getSettings() {
+        return settings;
+    }
+
+    public void setSettings(PluginSettings settings) {
+        this.settings = settings;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Plugin plugin = (Plugin) o;
+        return Objects.equals(this.config, plugin.config) &&
+                Objects.equals(this.enabled, plugin.enabled) &&
+                Objects.equals(this.id, plugin.id) &&
+                Objects.equals(this.name, plugin.name) &&
+                Objects.equals(this.pluginReference, plugin.pluginReference) &&
+                Objects.equals(this.settings, plugin.settings);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(config, enabled, id, name, pluginReference, settings);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Plugin {\n" +
+                "    config: " + toIndentedString(config) + "\n" +
+                "    enabled: " + toIndentedString(enabled) + "\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    pluginReference: " + toIndentedString(pluginReference) + "\n" +
+                "    settings: " + toIndentedString(settings) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Plugin to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Plugin.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Plugin' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Plugin> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Plugin.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Plugin>() {
+                @Override
+                public void write(JsonWriter out, Plugin value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Plugin read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

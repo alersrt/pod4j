@@ -13,559 +13,498 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * ContainerResourceConfig
  */
-@JsonPropertyOrder({
-  ContainerResourceConfig.JSON_PROPERTY_INTEL_RDT,
-  ContainerResourceConfig.JSON_PROPERTY_OOM_SCORE_ADJ,
-  ContainerResourceConfig.JSON_PROPERTY_R_LIMITS,
-  ContainerResourceConfig.JSON_PROPERTY_RESOURCE_LIMITS,
-  ContainerResourceConfig.JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE,
-  ContainerResourceConfig.JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE,
-  ContainerResourceConfig.JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE,
-  ContainerResourceConfig.JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE,
-  ContainerResourceConfig.JSON_PROPERTY_UNIFIED,
-  ContainerResourceConfig.JSON_PROPERTY_WEIGHT_DEVICE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerResourceConfig {
-  public static final String JSON_PROPERTY_INTEL_RDT = "intelRdt";
-  private LinuxIntelRdt intelRdt;
-
-  public static final String JSON_PROPERTY_OOM_SCORE_ADJ = "oom_score_adj";
-  private Long oomScoreAdj;
-
-  public static final String JSON_PROPERTY_R_LIMITS = "r_limits";
-  private List<@Valid POSIXRlimit> rLimits = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_RESOURCE_LIMITS = "resource_limits";
-  private LinuxResources resourceLimits;
-
-  public static final String JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
-  private Map<String, LinuxThrottleDevice> throttleReadBpsDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE = "throttleReadIOPSDevice";
-  private Map<String, LinuxThrottleDevice> throttleReadIOPSDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
-  private Map<String, LinuxThrottleDevice> throttleWriteBpsDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE = "throttleWriteIOPSDevice";
-  private Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_UNIFIED = "unified";
-  private Map<String, String> unified = new HashMap<>();
-
-  public static final String JSON_PROPERTY_WEIGHT_DEVICE = "weightDevice";
-  private Map<String, LinuxWeightDevice> weightDevice = new HashMap<>();
-
-  public ContainerResourceConfig() { 
-  }
-
-  public ContainerResourceConfig intelRdt(LinuxIntelRdt intelRdt) {
-    this.intelRdt = intelRdt;
-    return this;
-  }
-
-  /**
-   * Get intelRdt
-   * @return intelRdt
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_INTEL_RDT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxIntelRdt getIntelRdt() {
-    return intelRdt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INTEL_RDT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIntelRdt(LinuxIntelRdt intelRdt) {
-    this.intelRdt = intelRdt;
-  }
-
-
-  public ContainerResourceConfig oomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
-    return this;
-  }
-
-  /**
-   * OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container&#39;s process. Optional.
-   * @return oomScoreAdj
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getOomScoreAdj() {
-    return oomScoreAdj;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
-  }
-
-
-  public ContainerResourceConfig rLimits(List<@Valid POSIXRlimit> rLimits) {
-    this.rLimits = rLimits;
-    return this;
-  }
-
-  public ContainerResourceConfig addRLimitsItem(POSIXRlimit rLimitsItem) {
-    if (this.rLimits == null) {
-      this.rLimits = new ArrayList<>();
-    }
-    this.rLimits.add(rLimitsItem);
-    return this;
-  }
-
-  /**
-   * Rlimits are POSIX rlimits to apply to the container. Optional.
-   * @return rLimits
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_R_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid POSIXRlimit> getrLimits() {
-    return rLimits;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_R_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setrLimits(List<@Valid POSIXRlimit> rLimits) {
-    this.rLimits = rLimits;
-  }
-
-
-  public ContainerResourceConfig resourceLimits(LinuxResources resourceLimits) {
-    this.resourceLimits = resourceLimits;
-    return this;
-  }
-
-  /**
-   * Get resourceLimits
-   * @return resourceLimits
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxResources getResourceLimits() {
-    return resourceLimits;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceLimits(LinuxResources resourceLimits) {
-    this.resourceLimits = resourceLimits;
-  }
-
-
-  public ContainerResourceConfig throttleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
-    this.throttleReadBpsDevice = throttleReadBpsDevice;
-    return this;
-  }
-
-  public ContainerResourceConfig putThrottleReadBpsDeviceItem(String key, LinuxThrottleDevice throttleReadBpsDeviceItem) {
-    if (this.throttleReadBpsDevice == null) {
-      this.throttleReadBpsDevice = new HashMap<>();
-    }
-    this.throttleReadBpsDevice.put(key, throttleReadBpsDeviceItem);
-    return this;
-  }
-
-  /**
-   * IO read rate limit per cgroup per device, bytes per second
-   * @return throttleReadBpsDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxThrottleDevice> getThrottleReadBpsDevice() {
-    return throttleReadBpsDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThrottleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
-    this.throttleReadBpsDevice = throttleReadBpsDevice;
-  }
-
-
-  public ContainerResourceConfig throttleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
-    this.throttleReadIOPSDevice = throttleReadIOPSDevice;
-    return this;
-  }
-
-  public ContainerResourceConfig putThrottleReadIOPSDeviceItem(String key, LinuxThrottleDevice throttleReadIOPSDeviceItem) {
-    if (this.throttleReadIOPSDevice == null) {
-      this.throttleReadIOPSDevice = new HashMap<>();
-    }
-    this.throttleReadIOPSDevice.put(key, throttleReadIOPSDeviceItem);
-    return this;
-  }
-
-  /**
-   * IO read rate limit per cgroup per device, IO per second
-   * @return throttleReadIOPSDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxThrottleDevice> getThrottleReadIOPSDevice() {
-    return throttleReadIOPSDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThrottleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
-    this.throttleReadIOPSDevice = throttleReadIOPSDevice;
-  }
-
-
-  public ContainerResourceConfig throttleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
-    this.throttleWriteBpsDevice = throttleWriteBpsDevice;
-    return this;
-  }
-
-  public ContainerResourceConfig putThrottleWriteBpsDeviceItem(String key, LinuxThrottleDevice throttleWriteBpsDeviceItem) {
-    if (this.throttleWriteBpsDevice == null) {
-      this.throttleWriteBpsDevice = new HashMap<>();
-    }
-    this.throttleWriteBpsDevice.put(key, throttleWriteBpsDeviceItem);
-    return this;
-  }
-
-  /**
-   * IO write rate limit per cgroup per device, bytes per second
-   * @return throttleWriteBpsDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxThrottleDevice> getThrottleWriteBpsDevice() {
-    return throttleWriteBpsDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThrottleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
-    this.throttleWriteBpsDevice = throttleWriteBpsDevice;
-  }
-
-
-  public ContainerResourceConfig throttleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
-    this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
-    return this;
-  }
-
-  public ContainerResourceConfig putThrottleWriteIOPSDeviceItem(String key, LinuxThrottleDevice throttleWriteIOPSDeviceItem) {
-    if (this.throttleWriteIOPSDevice == null) {
-      this.throttleWriteIOPSDevice = new HashMap<>();
-    }
-    this.throttleWriteIOPSDevice.put(key, throttleWriteIOPSDeviceItem);
-    return this;
-  }
-
-  /**
-   * IO write rate limit per cgroup per device, IO per second
-   * @return throttleWriteIOPSDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
-    return throttleWriteIOPSDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThrottleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
-    this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
-  }
-
-
-  public ContainerResourceConfig unified(Map<String, String> unified) {
-    this.unified = unified;
-    return this;
-  }
-
-  public ContainerResourceConfig putUnifiedItem(String key, String unifiedItem) {
-    if (this.unified == null) {
-      this.unified = new HashMap<>();
-    }
-    this.unified.put(key, unifiedItem);
-    return this;
-  }
-
-  /**
-   * CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.
-   * @return unified
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNIFIED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getUnified() {
-    return unified;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNIFIED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnified(Map<String, String> unified) {
-    this.unified = unified;
-  }
-
-
-  public ContainerResourceConfig weightDevice(Map<String, LinuxWeightDevice> weightDevice) {
-    this.weightDevice = weightDevice;
-    return this;
-  }
-
-  public ContainerResourceConfig putWeightDeviceItem(String key, LinuxWeightDevice weightDeviceItem) {
-    if (this.weightDevice == null) {
-      this.weightDevice = new HashMap<>();
-    }
-    this.weightDevice.put(key, weightDeviceItem);
-    return this;
-  }
-
-  /**
-   * Weight per cgroup per device, can override BlkioWeight
-   * @return weightDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxWeightDevice> getWeightDevice() {
-    return weightDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWeightDevice(Map<String, LinuxWeightDevice> weightDevice) {
-    this.weightDevice = weightDevice;
-  }
-
-
-  /**
-   * Return true if this ContainerResourceConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ContainerResourceConfig containerResourceConfig = (ContainerResourceConfig) o;
-    return Objects.equals(this.intelRdt, containerResourceConfig.intelRdt) &&
-        Objects.equals(this.oomScoreAdj, containerResourceConfig.oomScoreAdj) &&
-        Objects.equals(this.rLimits, containerResourceConfig.rLimits) &&
-        Objects.equals(this.resourceLimits, containerResourceConfig.resourceLimits) &&
-        Objects.equals(this.throttleReadBpsDevice, containerResourceConfig.throttleReadBpsDevice) &&
-        Objects.equals(this.throttleReadIOPSDevice, containerResourceConfig.throttleReadIOPSDevice) &&
-        Objects.equals(this.throttleWriteBpsDevice, containerResourceConfig.throttleWriteBpsDevice) &&
-        Objects.equals(this.throttleWriteIOPSDevice, containerResourceConfig.throttleWriteIOPSDevice) &&
-        Objects.equals(this.unified, containerResourceConfig.unified) &&
-        Objects.equals(this.weightDevice, containerResourceConfig.weightDevice);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(intelRdt, oomScoreAdj, rLimits, resourceLimits, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, unified, weightDevice);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ContainerResourceConfig {\n");
-    sb.append("    intelRdt: ").append(toIndentedString(intelRdt)).append("\n");
-    sb.append("    oomScoreAdj: ").append(toIndentedString(oomScoreAdj)).append("\n");
-    sb.append("    rLimits: ").append(toIndentedString(rLimits)).append("\n");
-    sb.append("    resourceLimits: ").append(toIndentedString(resourceLimits)).append("\n");
-    sb.append("    throttleReadBpsDevice: ").append(toIndentedString(throttleReadBpsDevice)).append("\n");
-    sb.append("    throttleReadIOPSDevice: ").append(toIndentedString(throttleReadIOPSDevice)).append("\n");
-    sb.append("    throttleWriteBpsDevice: ").append(toIndentedString(throttleWriteBpsDevice)).append("\n");
-    sb.append("    throttleWriteIOPSDevice: ").append(toIndentedString(throttleWriteIOPSDevice)).append("\n");
-    sb.append("    unified: ").append(toIndentedString(unified)).append("\n");
-    sb.append("    weightDevice: ").append(toIndentedString(weightDevice)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_INTEL_RDT = "intelRdt";
+    public static final String SERIALIZED_NAME_OOM_SCORE_ADJ = "oom_score_adj";
+    public static final String SERIALIZED_NAME_R_LIMITS = "r_limits";
+    public static final String SERIALIZED_NAME_RESOURCE_LIMITS = "resource_limits";
+    public static final String SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
+    public static final String SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE = "throttleReadIOPSDevice";
+    public static final String SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
+    public static final String SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE = "throttleWriteIOPSDevice";
+    public static final String SERIALIZED_NAME_UNIFIED = "unified";
+    public static final String SERIALIZED_NAME_WEIGHT_DEVICE = "weightDevice";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("intelRdt");
+        openapiFields.add("oom_score_adj");
+        openapiFields.add("r_limits");
+        openapiFields.add("resource_limits");
+        openapiFields.add("throttleReadBpsDevice");
+        openapiFields.add("throttleReadIOPSDevice");
+        openapiFields.add("throttleWriteBpsDevice");
+        openapiFields.add("throttleWriteIOPSDevice");
+        openapiFields.add("unified");
+        openapiFields.add("weightDevice");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_INTEL_RDT)
+    private LinuxIntelRdt intelRdt;
+    @SerializedName(SERIALIZED_NAME_OOM_SCORE_ADJ)
+    private Long oomScoreAdj;
+    @SerializedName(SERIALIZED_NAME_R_LIMITS)
+    private List<@Valid POSIXRlimit> rLimits = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_RESOURCE_LIMITS)
+    private LinuxResources resourceLimits;
+    @SerializedName(SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE)
+    private Map<String, LinuxThrottleDevice> throttleReadBpsDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE)
+    private Map<String, LinuxThrottleDevice> throttleReadIOPSDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE)
+    private Map<String, LinuxThrottleDevice> throttleWriteBpsDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE)
+    private Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_UNIFIED)
+    private Map<String, String> unified = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_WEIGHT_DEVICE)
+    private Map<String, LinuxWeightDevice> weightDevice = new HashMap<>();
 
-    // add `intelRdt` to the URL query string
-    if (getIntelRdt() != null) {
-      joiner.add(getIntelRdt().toUrlQueryString(prefix + "intelRdt" + suffix));
+    public ContainerResourceConfig() {
     }
 
-    // add `oom_score_adj` to the URL query string
-    if (getOomScoreAdj() != null) {
-      joiner.add(String.format("%soom_score_adj%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOomScoreAdj()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `r_limits` to the URL query string
-    if (getrLimits() != null) {
-      for (int i = 0; i < getrLimits().size(); i++) {
-        if (getrLimits().get(i) != null) {
-          joiner.add(getrLimits().get(i).toUrlQueryString(String.format("%sr_limits%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ContainerResourceConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ContainerResourceConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerResourceConfig is not found in the empty JSON string", ContainerResourceConfig.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `resource_limits` to the URL query string
-    if (getResourceLimits() != null) {
-      joiner.add(getResourceLimits().toUrlQueryString(prefix + "resource_limits" + suffix));
-    }
-
-    // add `throttleReadBpsDevice` to the URL query string
-    if (getThrottleReadBpsDevice() != null) {
-      for (String _key : getThrottleReadBpsDevice().keySet()) {
-        if (getThrottleReadBpsDevice().get(_key) != null) {
-          joiner.add(getThrottleReadBpsDevice().get(_key).toUrlQueryString(String.format("%sthrottleReadBpsDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ContainerResourceConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerResourceConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
-    }
-
-    // add `throttleReadIOPSDevice` to the URL query string
-    if (getThrottleReadIOPSDevice() != null) {
-      for (String _key : getThrottleReadIOPSDevice().keySet()) {
-        if (getThrottleReadIOPSDevice().get(_key) != null) {
-          joiner.add(getThrottleReadIOPSDevice().get(_key).toUrlQueryString(String.format("%sthrottleReadIOPSDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `intelRdt`
+        if (jsonObj.get("intelRdt") != null && !jsonObj.get("intelRdt").isJsonNull()) {
+            LinuxIntelRdt.validateJsonElement(jsonObj.get("intelRdt"));
         }
-      }
-    }
+        if (jsonObj.get("r_limits") != null && !jsonObj.get("r_limits").isJsonNull()) {
+            JsonArray jsonArrayrLimits = jsonObj.getAsJsonArray("r_limits");
+            if (jsonArrayrLimits != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("r_limits").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `r_limits` to be an array in the JSON string but got `%s`", jsonObj.get("r_limits").toString()));
+                }
 
-    // add `throttleWriteBpsDevice` to the URL query string
-    if (getThrottleWriteBpsDevice() != null) {
-      for (String _key : getThrottleWriteBpsDevice().keySet()) {
-        if (getThrottleWriteBpsDevice().get(_key) != null) {
-          joiner.add(getThrottleWriteBpsDevice().get(_key).toUrlQueryString(String.format("%sthrottleWriteBpsDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+                // validate the optional field `r_limits` (array)
+                for (int i = 0; i < jsonArrayrLimits.size(); i++) {
+                    POSIXRlimit.validateJsonElement(jsonArrayrLimits.get(i));
+                }
+            }
         }
-      }
-    }
-
-    // add `throttleWriteIOPSDevice` to the URL query string
-    if (getThrottleWriteIOPSDevice() != null) {
-      for (String _key : getThrottleWriteIOPSDevice().keySet()) {
-        if (getThrottleWriteIOPSDevice().get(_key) != null) {
-          joiner.add(getThrottleWriteIOPSDevice().get(_key).toUrlQueryString(String.format("%sthrottleWriteIOPSDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        // validate the optional field `resource_limits`
+        if (jsonObj.get("resource_limits") != null && !jsonObj.get("resource_limits").isJsonNull()) {
+            LinuxResources.validateJsonElement(jsonObj.get("resource_limits"));
         }
-      }
     }
 
-    // add `unified` to the URL query string
-    if (getUnified() != null) {
-      for (String _key : getUnified().keySet()) {
-        joiner.add(String.format("%sunified%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getUnified().get(_key), URLEncoder.encode(ApiClient.valueToString(getUnified().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Create an instance of ContainerResourceConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerResourceConfig
+     * @throws IOException if the JSON string is invalid with respect to ContainerResourceConfig
+     */
+    public static ContainerResourceConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ContainerResourceConfig.class);
     }
 
-    // add `weightDevice` to the URL query string
-    if (getWeightDevice() != null) {
-      for (String _key : getWeightDevice().keySet()) {
-        if (getWeightDevice().get(_key) != null) {
-          joiner.add(getWeightDevice().get(_key).toUrlQueryString(String.format("%sweightDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+    public ContainerResourceConfig intelRdt(LinuxIntelRdt intelRdt) {
+        this.intelRdt = intelRdt;
+        return this;
+    }
+
+    /**
+     * Get intelRdt
+     *
+     * @return intelRdt
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxIntelRdt getIntelRdt() {
+        return intelRdt;
+    }
+
+    public void setIntelRdt(LinuxIntelRdt intelRdt) {
+        this.intelRdt = intelRdt;
+    }
+
+    public ContainerResourceConfig oomScoreAdj(Long oomScoreAdj) {
+        this.oomScoreAdj = oomScoreAdj;
+        return this;
+    }
+
+    /**
+     * OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container&#39;s process. Optional.
+     *
+     * @return oomScoreAdj
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getOomScoreAdj() {
+        return oomScoreAdj;
+    }
+
+    public void setOomScoreAdj(Long oomScoreAdj) {
+        this.oomScoreAdj = oomScoreAdj;
+    }
+
+    public ContainerResourceConfig rLimits(List<@Valid POSIXRlimit> rLimits) {
+        this.rLimits = rLimits;
+        return this;
+    }
+
+    public ContainerResourceConfig addRLimitsItem(POSIXRlimit rLimitsItem) {
+        if (this.rLimits == null) {
+            this.rLimits = new ArrayList<>();
         }
-      }
+        this.rLimits.add(rLimitsItem);
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Rlimits are POSIX rlimits to apply to the container. Optional.
+     *
+     * @return rLimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid POSIXRlimit> getrLimits() {
+        return rLimits;
+    }
+
+    public void setrLimits(List<@Valid POSIXRlimit> rLimits) {
+        this.rLimits = rLimits;
+    }
+
+    public ContainerResourceConfig resourceLimits(LinuxResources resourceLimits) {
+        this.resourceLimits = resourceLimits;
+        return this;
+    }
+
+    /**
+     * Get resourceLimits
+     *
+     * @return resourceLimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxResources getResourceLimits() {
+        return resourceLimits;
+    }
+
+    public void setResourceLimits(LinuxResources resourceLimits) {
+        this.resourceLimits = resourceLimits;
+    }
+
+    public ContainerResourceConfig throttleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
+        this.throttleReadBpsDevice = throttleReadBpsDevice;
+        return this;
+    }
+
+    public ContainerResourceConfig putThrottleReadBpsDeviceItem(String key, LinuxThrottleDevice throttleReadBpsDeviceItem) {
+        if (this.throttleReadBpsDevice == null) {
+            this.throttleReadBpsDevice = new HashMap<>();
+        }
+        this.throttleReadBpsDevice.put(key, throttleReadBpsDeviceItem);
+        return this;
+    }
+
+    /**
+     * IO read rate limit per cgroup per device, bytes per second
+     *
+     * @return throttleReadBpsDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxThrottleDevice> getThrottleReadBpsDevice() {
+        return throttleReadBpsDevice;
+    }
+
+    public void setThrottleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
+        this.throttleReadBpsDevice = throttleReadBpsDevice;
+    }
+
+    public ContainerResourceConfig throttleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
+        this.throttleReadIOPSDevice = throttleReadIOPSDevice;
+        return this;
+    }
+
+    public ContainerResourceConfig putThrottleReadIOPSDeviceItem(String key, LinuxThrottleDevice throttleReadIOPSDeviceItem) {
+        if (this.throttleReadIOPSDevice == null) {
+            this.throttleReadIOPSDevice = new HashMap<>();
+        }
+        this.throttleReadIOPSDevice.put(key, throttleReadIOPSDeviceItem);
+        return this;
+    }
+
+    /**
+     * IO read rate limit per cgroup per device, IO per second
+     *
+     * @return throttleReadIOPSDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxThrottleDevice> getThrottleReadIOPSDevice() {
+        return throttleReadIOPSDevice;
+    }
+
+    public void setThrottleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
+        this.throttleReadIOPSDevice = throttleReadIOPSDevice;
+    }
+
+    public ContainerResourceConfig throttleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
+        this.throttleWriteBpsDevice = throttleWriteBpsDevice;
+        return this;
+    }
+
+    public ContainerResourceConfig putThrottleWriteBpsDeviceItem(String key, LinuxThrottleDevice throttleWriteBpsDeviceItem) {
+        if (this.throttleWriteBpsDevice == null) {
+            this.throttleWriteBpsDevice = new HashMap<>();
+        }
+        this.throttleWriteBpsDevice.put(key, throttleWriteBpsDeviceItem);
+        return this;
+    }
+
+    /**
+     * IO write rate limit per cgroup per device, bytes per second
+     *
+     * @return throttleWriteBpsDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxThrottleDevice> getThrottleWriteBpsDevice() {
+        return throttleWriteBpsDevice;
+    }
+
+    public void setThrottleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
+        this.throttleWriteBpsDevice = throttleWriteBpsDevice;
+    }
+
+    public ContainerResourceConfig throttleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
+        this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
+        return this;
+    }
+
+    public ContainerResourceConfig putThrottleWriteIOPSDeviceItem(String key, LinuxThrottleDevice throttleWriteIOPSDeviceItem) {
+        if (this.throttleWriteIOPSDevice == null) {
+            this.throttleWriteIOPSDevice = new HashMap<>();
+        }
+        this.throttleWriteIOPSDevice.put(key, throttleWriteIOPSDeviceItem);
+        return this;
+    }
+
+    /**
+     * IO write rate limit per cgroup per device, IO per second
+     *
+     * @return throttleWriteIOPSDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
+        return throttleWriteIOPSDevice;
+    }
+
+    public void setThrottleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
+        this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
+    }
+
+    public ContainerResourceConfig unified(Map<String, String> unified) {
+        this.unified = unified;
+        return this;
+    }
+
+    public ContainerResourceConfig putUnifiedItem(String key, String unifiedItem) {
+        if (this.unified == null) {
+            this.unified = new HashMap<>();
+        }
+        this.unified.put(key, unifiedItem);
+        return this;
+    }
+
+    /**
+     * CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.
+     *
+     * @return unified
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getUnified() {
+        return unified;
+    }
+
+    public void setUnified(Map<String, String> unified) {
+        this.unified = unified;
+    }
+
+    public ContainerResourceConfig weightDevice(Map<String, LinuxWeightDevice> weightDevice) {
+        this.weightDevice = weightDevice;
+        return this;
+    }
+
+    public ContainerResourceConfig putWeightDeviceItem(String key, LinuxWeightDevice weightDeviceItem) {
+        if (this.weightDevice == null) {
+            this.weightDevice = new HashMap<>();
+        }
+        this.weightDevice.put(key, weightDeviceItem);
+        return this;
+    }
+
+    /**
+     * Weight per cgroup per device, can override BlkioWeight
+     *
+     * @return weightDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxWeightDevice> getWeightDevice() {
+        return weightDevice;
+    }
+
+    public void setWeightDevice(Map<String, LinuxWeightDevice> weightDevice) {
+        this.weightDevice = weightDevice;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ContainerResourceConfig containerResourceConfig = (ContainerResourceConfig) o;
+        return Objects.equals(this.intelRdt, containerResourceConfig.intelRdt) &&
+                Objects.equals(this.oomScoreAdj, containerResourceConfig.oomScoreAdj) &&
+                Objects.equals(this.rLimits, containerResourceConfig.rLimits) &&
+                Objects.equals(this.resourceLimits, containerResourceConfig.resourceLimits) &&
+                Objects.equals(this.throttleReadBpsDevice, containerResourceConfig.throttleReadBpsDevice) &&
+                Objects.equals(this.throttleReadIOPSDevice, containerResourceConfig.throttleReadIOPSDevice) &&
+                Objects.equals(this.throttleWriteBpsDevice, containerResourceConfig.throttleWriteBpsDevice) &&
+                Objects.equals(this.throttleWriteIOPSDevice, containerResourceConfig.throttleWriteIOPSDevice) &&
+                Objects.equals(this.unified, containerResourceConfig.unified) &&
+                Objects.equals(this.weightDevice, containerResourceConfig.weightDevice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(intelRdt, oomScoreAdj, rLimits, resourceLimits, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, unified, weightDevice);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ContainerResourceConfig {\n" +
+                "    intelRdt: " + toIndentedString(intelRdt) + "\n" +
+                "    oomScoreAdj: " + toIndentedString(oomScoreAdj) + "\n" +
+                "    rLimits: " + toIndentedString(rLimits) + "\n" +
+                "    resourceLimits: " + toIndentedString(resourceLimits) + "\n" +
+                "    throttleReadBpsDevice: " + toIndentedString(throttleReadBpsDevice) + "\n" +
+                "    throttleReadIOPSDevice: " + toIndentedString(throttleReadIOPSDevice) + "\n" +
+                "    throttleWriteBpsDevice: " + toIndentedString(throttleWriteBpsDevice) + "\n" +
+                "    throttleWriteIOPSDevice: " + toIndentedString(throttleWriteIOPSDevice) + "\n" +
+                "    unified: " + toIndentedString(unified) + "\n" +
+                "    weightDevice: " + toIndentedString(weightDevice) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ContainerResourceConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ContainerResourceConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ContainerResourceConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ContainerResourceConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ContainerResourceConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ContainerResourceConfig>() {
+                @Override
+                public void write(JsonWriter out, ContainerResourceConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ContainerResourceConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

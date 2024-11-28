@@ -13,179 +13,208 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.IPNet;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * NetAddress
  */
-@JsonPropertyOrder({
-  NetAddress.JSON_PROPERTY_GATEWAY,
-  NetAddress.JSON_PROPERTY_IPNET
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetAddress {
-  public static final String JSON_PROPERTY_GATEWAY = "gateway";
-  private String gateway;
+    public static final String SERIALIZED_NAME_GATEWAY = "gateway";
+    public static final String SERIALIZED_NAME_IPNET = "ipnet";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_IPNET = "ipnet";
-  private IPNet ipnet;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("gateway");
+        openapiFields.add("ipnet");
 
-  public NetAddress() { 
-  }
-
-  public NetAddress gateway(String gateway) {
-    this.gateway = gateway;
-    return this;
-  }
-
-  /**
-   * Gateway for the network. This can be empty if there is no gateway, e.g. internal network.
-   * @return gateway
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGateway() {
-    return gateway;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGateway(String gateway) {
-    this.gateway = gateway;
-  }
-
-
-  public NetAddress ipnet(IPNet ipnet) {
-    this.ipnet = ipnet;
-    return this;
-  }
-
-  /**
-   * Get ipnet
-   * @return ipnet
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_IPNET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public IPNet getIpnet() {
-    return ipnet;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IPNET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpnet(IPNet ipnet) {
-    this.ipnet = ipnet;
-  }
-
-
-  /**
-   * Return true if this NetAddress object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    NetAddress netAddress = (NetAddress) o;
-    return Objects.equals(this.gateway, netAddress.gateway) &&
-        Objects.equals(this.ipnet, netAddress.ipnet);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(gateway, ipnet);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class NetAddress {\n");
-    sb.append("    gateway: ").append(toIndentedString(gateway)).append("\n");
-    sb.append("    ipnet: ").append(toIndentedString(ipnet)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_GATEWAY)
+    private String gateway;
+    @SerializedName(SERIALIZED_NAME_IPNET)
+    private IPNet ipnet;
 
-    // add `gateway` to the URL query string
-    if (getGateway() != null) {
-      joiner.add(String.format("%sgateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public NetAddress() {
     }
 
-    // add `ipnet` to the URL query string
-    if (getIpnet() != null) {
-      joiner.add(getIpnet().toUrlQueryString(prefix + "ipnet" + suffix));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to NetAddress
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!NetAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in NetAddress is not found in the empty JSON string", NetAddress.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!NetAddress.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetAddress` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("gateway") != null && !jsonObj.get("gateway").isJsonNull()) && !jsonObj.get("gateway").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("gateway").toString()));
+        }
+        // validate the optional field `ipnet`
+        if (jsonObj.get("ipnet") != null && !jsonObj.get("ipnet").isJsonNull()) {
+            IPNet.validateJsonElement(jsonObj.get("ipnet"));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of NetAddress given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetAddress
+     * @throws IOException if the JSON string is invalid with respect to NetAddress
+     */
+    public static NetAddress fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, NetAddress.class);
+    }
+
+    public NetAddress gateway(String gateway) {
+        this.gateway = gateway;
+        return this;
+    }
+
+    /**
+     * Gateway for the network. This can be empty if there is no gateway, e.g. internal network.
+     *
+     * @return gateway
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGateway() {
+        return gateway;
+    }
+
+    public void setGateway(String gateway) {
+        this.gateway = gateway;
+    }
+
+    public NetAddress ipnet(IPNet ipnet) {
+        this.ipnet = ipnet;
+        return this;
+    }
+
+    /**
+     * Get ipnet
+     *
+     * @return ipnet
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public IPNet getIpnet() {
+        return ipnet;
+    }
+
+    public void setIpnet(IPNet ipnet) {
+        this.ipnet = ipnet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        NetAddress netAddress = (NetAddress) o;
+        return Objects.equals(this.gateway, netAddress.gateway) &&
+                Objects.equals(this.ipnet, netAddress.ipnet);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gateway, ipnet);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class NetAddress {\n" +
+                "    gateway: " + toIndentedString(gateway) + "\n" +
+                "    ipnet: " + toIndentedString(ipnet) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of NetAddress to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!NetAddress.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'NetAddress' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<NetAddress> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(NetAddress.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<NetAddress>() {
+                @Override
+                public void write(JsonWriter out, NetAddress value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public NetAddress read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

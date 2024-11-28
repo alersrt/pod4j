@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Task
  */
-class TaskTest {
+public class TaskTest {
     private final Task model = new Task();
 
     /**
      * Model tests for Task
      */
     @Test
-    void testTask() {
+    public void testTask() {
         // TODO: test Task
     }
 
@@ -44,7 +33,7 @@ class TaskTest {
      * Test the property 'endpointID'
      */
     @Test
-    void endpointIDTest() {
+    public void endpointIDTest() {
         // TODO: test endpointID
     }
 
@@ -52,7 +41,7 @@ class TaskTest {
      * Test the property 'endpointIP'
      */
     @Test
-    void endpointIPTest() {
+    public void endpointIPTest() {
         // TODO: test endpointIP
     }
 
@@ -60,7 +49,7 @@ class TaskTest {
      * Test the property 'info'
      */
     @Test
-    void infoTest() {
+    public void infoTest() {
         // TODO: test info
     }
 
@@ -68,7 +57,7 @@ class TaskTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 

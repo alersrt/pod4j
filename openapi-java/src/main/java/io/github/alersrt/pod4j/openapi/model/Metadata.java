@@ -13,143 +13,176 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Metadata
  */
-@JsonPropertyOrder({
-  Metadata.JSON_PROPERTY_LAST_TAG_TIME
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Metadata {
-  public static final String JSON_PROPERTY_LAST_TAG_TIME = "LastTagTime";
-  private OffsetDateTime lastTagTime;
+    public static final String SERIALIZED_NAME_LAST_TAG_TIME = "LastTagTime";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public Metadata() { 
-  }
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("LastTagTime");
 
-  public Metadata lastTagTime(OffsetDateTime lastTagTime) {
-    this.lastTagTime = lastTagTime;
-    return this;
-  }
-
-  /**
-   * LastTagTime is the date and time at which the image was last tagged.
-   * @return lastTagTime
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_LAST_TAG_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getLastTagTime() {
-    return lastTagTime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LAST_TAG_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastTagTime(OffsetDateTime lastTagTime) {
-    this.lastTagTime = lastTagTime;
-  }
-
-
-  /**
-   * Return true if this Metadata object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Metadata metadata = (Metadata) o;
-    return Objects.equals(this.lastTagTime, metadata.lastTagTime);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(lastTagTime);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Metadata {\n");
-    sb.append("    lastTagTime: ").append(toIndentedString(lastTagTime)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_LAST_TAG_TIME)
+    private OffsetDateTime lastTagTime;
 
-    // add `LastTagTime` to the URL query string
-    if (getLastTagTime() != null) {
-      joiner.add(String.format("%sLastTagTime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLastTagTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Metadata() {
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Metadata
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Metadata.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Metadata is not found in the empty JSON string", Metadata.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Metadata.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Metadata` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+    }
+
+    /**
+     * Create an instance of Metadata given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Metadata
+     * @throws IOException if the JSON string is invalid with respect to Metadata
+     */
+    public static Metadata fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Metadata.class);
+    }
+
+    public Metadata lastTagTime(OffsetDateTime lastTagTime) {
+        this.lastTagTime = lastTagTime;
+        return this;
+    }
+
+    /**
+     * LastTagTime is the date and time at which the image was last tagged.
+     *
+     * @return lastTagTime
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getLastTagTime() {
+        return lastTagTime;
+    }
+
+    public void setLastTagTime(OffsetDateTime lastTagTime) {
+        this.lastTagTime = lastTagTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Metadata metadata = (Metadata) o;
+        return Objects.equals(this.lastTagTime, metadata.lastTagTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastTagTime);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Metadata {\n" +
+                "    lastTagTime: " + toIndentedString(lastTagTime) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Metadata to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Metadata.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Metadata' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Metadata> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Metadata.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Metadata>() {
+                @Override
+                public void write(JsonWriter out, Metadata value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Metadata read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

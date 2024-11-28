@@ -13,245 +13,276 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.PluginDevice;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PluginConfigLinux plugin config linux
  */
-@JsonPropertyOrder({
-  PluginConfigLinux.JSON_PROPERTY_ALLOW_ALL_DEVICES,
-  PluginConfigLinux.JSON_PROPERTY_CAPABILITIES,
-  PluginConfigLinux.JSON_PROPERTY_DEVICES
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PluginConfigLinux {
-  public static final String JSON_PROPERTY_ALLOW_ALL_DEVICES = "AllowAllDevices";
-  private Boolean allowAllDevices;
+    public static final String SERIALIZED_NAME_ALLOW_ALL_DEVICES = "AllowAllDevices";
+    public static final String SERIALIZED_NAME_CAPABILITIES = "Capabilities";
+    public static final String SERIALIZED_NAME_DEVICES = "Devices";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_CAPABILITIES = "Capabilities";
-  private List<String> capabilities = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("AllowAllDevices");
+        openapiFields.add("Capabilities");
+        openapiFields.add("Devices");
 
-  public static final String JSON_PROPERTY_DEVICES = "Devices";
-  private List<@Valid PluginDevice> devices = new ArrayList<>();
-
-  public PluginConfigLinux() { 
-  }
-
-  public PluginConfigLinux allowAllDevices(Boolean allowAllDevices) {
-    this.allowAllDevices = allowAllDevices;
-    return this;
-  }
-
-  /**
-   * allow all devices
-   * @return allowAllDevices
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_ALLOW_ALL_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Boolean getAllowAllDevices() {
-    return allowAllDevices;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ALLOW_ALL_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAllowAllDevices(Boolean allowAllDevices) {
-    this.allowAllDevices = allowAllDevices;
-  }
-
-
-  public PluginConfigLinux capabilities(List<String> capabilities) {
-    this.capabilities = capabilities;
-    return this;
-  }
-
-  public PluginConfigLinux addCapabilitiesItem(String capabilitiesItem) {
-    if (this.capabilities == null) {
-      this.capabilities = new ArrayList<>();
-    }
-    this.capabilities.add(capabilitiesItem);
-    return this;
-  }
-
-  /**
-   * capabilities
-   * @return capabilities
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_CAPABILITIES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<String> getCapabilities() {
-    return capabilities;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAPABILITIES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCapabilities(List<String> capabilities) {
-    this.capabilities = capabilities;
-  }
-
-
-  public PluginConfigLinux devices(List<@Valid PluginDevice> devices) {
-    this.devices = devices;
-    return this;
-  }
-
-  public PluginConfigLinux addDevicesItem(PluginDevice devicesItem) {
-    if (this.devices == null) {
-      this.devices = new ArrayList<>();
-    }
-    this.devices.add(devicesItem);
-    return this;
-  }
-
-  /**
-   * devices
-   * @return devices
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<@Valid PluginDevice> getDevices() {
-    return devices;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDevices(List<@Valid PluginDevice> devices) {
-    this.devices = devices;
-  }
-
-
-  /**
-   * Return true if this PluginConfigLinux object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    PluginConfigLinux pluginConfigLinux = (PluginConfigLinux) o;
-    return Objects.equals(this.allowAllDevices, pluginConfigLinux.allowAllDevices) &&
-        Objects.equals(this.capabilities, pluginConfigLinux.capabilities) &&
-        Objects.equals(this.devices, pluginConfigLinux.devices);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(allowAllDevices, capabilities, devices);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PluginConfigLinux {\n");
-    sb.append("    allowAllDevices: ").append(toIndentedString(allowAllDevices)).append("\n");
-    sb.append("    capabilities: ").append(toIndentedString(capabilities)).append("\n");
-    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("AllowAllDevices");
+        openapiRequiredFields.add("Capabilities");
+        openapiRequiredFields.add("Devices");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ALLOW_ALL_DEVICES)
+    private Boolean allowAllDevices;
+    @SerializedName(SERIALIZED_NAME_CAPABILITIES)
+    private List<String> capabilities = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEVICES)
+    private List<@Valid PluginDevice> devices = new ArrayList<>();
 
-    // add `AllowAllDevices` to the URL query string
-    if (getAllowAllDevices() != null) {
-      joiner.add(String.format("%sAllowAllDevices%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAllowAllDevices()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public PluginConfigLinux() {
     }
 
-    // add `Capabilities` to the URL query string
-    if (getCapabilities() != null) {
-      for (int i = 0; i < getCapabilities().size(); i++) {
-        joiner.add(String.format("%sCapabilities%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCapabilities().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Devices` to the URL query string
-    if (getDevices() != null) {
-      for (int i = 0; i < getDevices().size(); i++) {
-        if (getDevices().get(i) != null) {
-          joiner.add(getDevices().get(i).toUrlQueryString(String.format("%sDevices%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to PluginConfigLinux
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!PluginConfigLinux.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in PluginConfigLinux is not found in the empty JSON string", PluginConfigLinux.openapiRequiredFields));
+            }
         }
-      }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!PluginConfigLinux.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginConfigLinux` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : PluginConfigLinux.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the required json array is present
+        if (jsonObj.get("Capabilities") == null) {
+            throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+        } else if (!jsonObj.get("Capabilities").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Capabilities` to be an array in the JSON string but got `%s`", jsonObj.get("Capabilities").toString()));
+        }
+        // ensure the json data is an array
+        if (!jsonObj.get("Devices").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Devices` to be an array in the JSON string but got `%s`", jsonObj.get("Devices").toString()));
+        }
+
+        JsonArray jsonArraydevices = jsonObj.getAsJsonArray("Devices");
+        // validate the required field `Devices` (array)
+        for (int i = 0; i < jsonArraydevices.size(); i++) {
+            PluginDevice.validateJsonElement(jsonArraydevices.get(i));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of PluginConfigLinux given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PluginConfigLinux
+     * @throws IOException if the JSON string is invalid with respect to PluginConfigLinux
+     */
+    public static PluginConfigLinux fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PluginConfigLinux.class);
+    }
+
+    public PluginConfigLinux allowAllDevices(Boolean allowAllDevices) {
+        this.allowAllDevices = allowAllDevices;
+        return this;
+    }
+
+    /**
+     * allow all devices
+     *
+     * @return allowAllDevices
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Boolean getAllowAllDevices() {
+        return allowAllDevices;
+    }
+
+    public void setAllowAllDevices(Boolean allowAllDevices) {
+        this.allowAllDevices = allowAllDevices;
+    }
+
+    public PluginConfigLinux capabilities(List<String> capabilities) {
+        this.capabilities = capabilities;
+        return this;
+    }
+
+    public PluginConfigLinux addCapabilitiesItem(String capabilitiesItem) {
+        if (this.capabilities == null) {
+            this.capabilities = new ArrayList<>();
+        }
+        this.capabilities.add(capabilitiesItem);
+        return this;
+    }
+
+    /**
+     * capabilities
+     *
+     * @return capabilities
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public List<String> getCapabilities() {
+        return capabilities;
+    }
+
+    public void setCapabilities(List<String> capabilities) {
+        this.capabilities = capabilities;
+    }
+
+    public PluginConfigLinux devices(List<@Valid PluginDevice> devices) {
+        this.devices = devices;
+        return this;
+    }
+
+    public PluginConfigLinux addDevicesItem(PluginDevice devicesItem) {
+        if (this.devices == null) {
+            this.devices = new ArrayList<>();
+        }
+        this.devices.add(devicesItem);
+        return this;
+    }
+
+    /**
+     * devices
+     *
+     * @return devices
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+    @Valid
+
+    public List<@Valid PluginDevice> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<@Valid PluginDevice> devices) {
+        this.devices = devices;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PluginConfigLinux pluginConfigLinux = (PluginConfigLinux) o;
+        return Objects.equals(this.allowAllDevices, pluginConfigLinux.allowAllDevices) &&
+                Objects.equals(this.capabilities, pluginConfigLinux.capabilities) &&
+                Objects.equals(this.devices, pluginConfigLinux.devices);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(allowAllDevices, capabilities, devices);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class PluginConfigLinux {\n" +
+                "    allowAllDevices: " + toIndentedString(allowAllDevices) + "\n" +
+                "    capabilities: " + toIndentedString(capabilities) + "\n" +
+                "    devices: " + toIndentedString(devices) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of PluginConfigLinux to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PluginConfigLinux.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PluginConfigLinux' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PluginConfigLinux> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(PluginConfigLinux.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<PluginConfigLinux>() {
+                @Override
+                public void write(JsonWriter out, PluginConfigLinux value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public PluginConfigLinux read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

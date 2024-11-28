@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ImageConfig
  */
-class ImageConfigTest {
+public class ImageConfigTest {
     private final ImageConfig model = new ImageConfig();
 
     /**
      * Model tests for ImageConfig
      */
     @Test
-    void testImageConfig() {
+    public void testImageConfig() {
         // TODO: test ImageConfig
     }
 
@@ -46,7 +47,7 @@ class ImageConfigTest {
      * Test the property 'argsEscaped'
      */
     @Test
-    void argsEscapedTest() {
+    public void argsEscapedTest() {
         // TODO: test argsEscaped
     }
 
@@ -54,7 +55,7 @@ class ImageConfigTest {
      * Test the property 'cmd'
      */
     @Test
-    void cmdTest() {
+    public void cmdTest() {
         // TODO: test cmd
     }
 
@@ -62,7 +63,7 @@ class ImageConfigTest {
      * Test the property 'entrypoint'
      */
     @Test
-    void entrypointTest() {
+    public void entrypointTest() {
         // TODO: test entrypoint
     }
 
@@ -70,7 +71,7 @@ class ImageConfigTest {
      * Test the property 'env'
      */
     @Test
-    void envTest() {
+    public void envTest() {
         // TODO: test env
     }
 
@@ -78,7 +79,7 @@ class ImageConfigTest {
      * Test the property 'exposedPorts'
      */
     @Test
-    void exposedPortsTest() {
+    public void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
@@ -86,7 +87,7 @@ class ImageConfigTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -94,7 +95,7 @@ class ImageConfigTest {
      * Test the property 'stopSignal'
      */
     @Test
-    void stopSignalTest() {
+    public void stopSignalTest() {
         // TODO: test stopSignal
     }
 
@@ -102,7 +103,7 @@ class ImageConfigTest {
      * Test the property 'user'
      */
     @Test
-    void userTest() {
+    public void userTest() {
         // TODO: test user
     }
 
@@ -110,7 +111,7 @@ class ImageConfigTest {
      * Test the property 'volumes'
      */
     @Test
-    void volumesTest() {
+    public void volumesTest() {
         // TODO: test volumes
     }
 
@@ -118,7 +119,7 @@ class ImageConfigTest {
      * Test the property 'workingDir'
      */
     @Test
-    void workingDirTest() {
+    public void workingDirTest() {
         // TODO: test workingDir
     }
 

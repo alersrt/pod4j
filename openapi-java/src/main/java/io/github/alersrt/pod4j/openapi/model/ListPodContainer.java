@@ -13,249 +13,260 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ListPodContainer
  */
-@JsonPropertyOrder({
-  ListPodContainer.JSON_PROPERTY_ID,
-  ListPodContainer.JSON_PROPERTY_NAMES,
-  ListPodContainer.JSON_PROPERTY_RESTART_COUNT,
-  ListPodContainer.JSON_PROPERTY_STATUS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ListPodContainer {
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_NAMES = "Names";
+    public static final String SERIALIZED_NAME_RESTART_COUNT = "RestartCount";
+    public static final String SERIALIZED_NAME_STATUS = "Status";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_NAMES = "Names";
-  private String names;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Id");
+        openapiFields.add("Names");
+        openapiFields.add("RestartCount");
+        openapiFields.add("Status");
 
-  public static final String JSON_PROPERTY_RESTART_COUNT = "RestartCount";
-  private Integer restartCount;
-
-  public static final String JSON_PROPERTY_STATUS = "Status";
-  private String status;
-
-  public ListPodContainer() { 
-  }
-
-  public ListPodContainer id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ListPodContainer names(String names) {
-    this.names = names;
-    return this;
-  }
-
-  /**
-   * Get names
-   * @return names
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNames() {
-    return names;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNames(String names) {
-    this.names = names;
-  }
-
-
-  public ListPodContainer restartCount(Integer restartCount) {
-    this.restartCount = restartCount;
-    return this;
-  }
-
-  /**
-   * Get restartCount
-   * @return restartCount
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESTART_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getRestartCount() {
-    return restartCount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTART_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestartCount(Integer restartCount) {
-    this.restartCount = restartCount;
-  }
-
-
-  public ListPodContainer status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  /**
-   * Return true if this ListPodContainer object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ListPodContainer listPodContainer = (ListPodContainer) o;
-    return Objects.equals(this.id, listPodContainer.id) &&
-        Objects.equals(this.names, listPodContainer.names) &&
-        Objects.equals(this.restartCount, listPodContainer.restartCount) &&
-        Objects.equals(this.status, listPodContainer.status);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, names, restartCount, status);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ListPodContainer {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    names: ").append(toIndentedString(names)).append("\n");
-    sb.append("    restartCount: ").append(toIndentedString(restartCount)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_NAMES)
+    private String names;
+    @SerializedName(SERIALIZED_NAME_RESTART_COUNT)
+    private Integer restartCount;
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private String status;
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ListPodContainer() {
     }
 
-    // add `Names` to the URL query string
-    if (getNames() != null) {
-      joiner.add(String.format("%sNames%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNames()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ListPodContainer
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ListPodContainer.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ListPodContainer is not found in the empty JSON string", ListPodContainer.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ListPodContainer.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListPodContainer` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        if ((jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull()) && !jsonObj.get("Names").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Names` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Names").toString()));
+        }
+        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
+        }
     }
 
-    // add `RestartCount` to the URL query string
-    if (getRestartCount() != null) {
-      joiner.add(String.format("%sRestartCount%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ListPodContainer given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ListPodContainer
+     * @throws IOException if the JSON string is invalid with respect to ListPodContainer
+     */
+    public static ListPodContainer fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ListPodContainer.class);
     }
 
-    // add `Status` to the URL query string
-    if (getStatus() != null) {
-      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ListPodContainer id(String id) {
+        this.id = id;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ListPodContainer names(String names) {
+        this.names = names;
+        return this;
+    }
+
+    /**
+     * Get names
+     *
+     * @return names
+     */
+    @jakarta.annotation.Nullable
+
+    public String getNames() {
+        return names;
+    }
+
+    public void setNames(String names) {
+        this.names = names;
+    }
+
+    public ListPodContainer restartCount(Integer restartCount) {
+        this.restartCount = restartCount;
+        return this;
+    }
+
+    /**
+     * Get restartCount
+     *
+     * @return restartCount
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getRestartCount() {
+        return restartCount;
+    }
+
+    public void setRestartCount(Integer restartCount) {
+        this.restartCount = restartCount;
+    }
+
+    public ListPodContainer status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return status
+     */
+    @jakarta.annotation.Nullable
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ListPodContainer listPodContainer = (ListPodContainer) o;
+        return Objects.equals(this.id, listPodContainer.id) &&
+                Objects.equals(this.names, listPodContainer.names) &&
+                Objects.equals(this.restartCount, listPodContainer.restartCount) &&
+                Objects.equals(this.status, listPodContainer.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, names, restartCount, status);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ListPodContainer {\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    names: " + toIndentedString(names) + "\n" +
+                "    restartCount: " + toIndentedString(restartCount) + "\n" +
+                "    status: " + toIndentedString(status) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ListPodContainer to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ListPodContainer.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ListPodContainer' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ListPodContainer> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ListPodContainer.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ListPodContainer>() {
+                @Override
+                public void write(JsonWriter out, ListPodContainer value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ListPodContainer read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

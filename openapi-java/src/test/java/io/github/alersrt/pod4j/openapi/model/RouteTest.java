@@ -13,27 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Route
  */
-class RouteTest {
+public class RouteTest {
     private final Route model = new Route();
 
     /**
      * Model tests for Route
      */
     @Test
-    void testRoute() {
+    public void testRoute() {
         // TODO: test Route
     }
 
@@ -41,7 +33,7 @@ class RouteTest {
      * Test the property 'destination'
      */
     @Test
-    void destinationTest() {
+    public void destinationTest() {
         // TODO: test destination
     }
 
@@ -49,7 +41,7 @@ class RouteTest {
      * Test the property 'gateway'
      */
     @Test
-    void gatewayTest() {
+    public void gatewayTest() {
         // TODO: test gateway
     }
 
@@ -57,7 +49,7 @@ class RouteTest {
      * Test the property 'metric'
      */
     @Test
-    void metricTest() {
+    public void metricTest() {
         // TODO: test metric
     }
 

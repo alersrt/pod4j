@@ -13,177 +13,205 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * NetworkCreate201Response
  */
-@JsonPropertyOrder({
-  NetworkCreate201Response.JSON_PROPERTY_ID,
-  NetworkCreate201Response.JSON_PROPERTY_WARNING
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkCreate201Response {
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_WARNING = "Warning";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_WARNING = "Warning";
-  private String warning;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Id");
+        openapiFields.add("Warning");
 
-  public NetworkCreate201Response() { 
-  }
-
-  public NetworkCreate201Response id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public NetworkCreate201Response warning(String warning) {
-    this.warning = warning;
-    return this;
-  }
-
-  /**
-   * Get warning
-   * @return warning
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_WARNING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getWarning() {
-    return warning;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WARNING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWarning(String warning) {
-    this.warning = warning;
-  }
-
-
-  /**
-   * Return true if this NetworkCreate_201_response object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    NetworkCreate201Response networkCreate201Response = (NetworkCreate201Response) o;
-    return Objects.equals(this.id, networkCreate201Response.id) &&
-        Objects.equals(this.warning, networkCreate201Response.warning);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, warning);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class NetworkCreate201Response {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    warning: ").append(toIndentedString(warning)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_WARNING)
+    private String warning;
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public NetworkCreate201Response() {
     }
 
-    // add `Warning` to the URL query string
-    if (getWarning() != null) {
-      joiner.add(String.format("%sWarning%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWarning()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to NetworkCreate201Response
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!NetworkCreate201Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkCreate201Response is not found in the empty JSON string", NetworkCreate201Response.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!NetworkCreate201Response.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkCreate201Response` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        if ((jsonObj.get("Warning") != null && !jsonObj.get("Warning").isJsonNull()) && !jsonObj.get("Warning").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Warning` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Warning").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of NetworkCreate201Response given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetworkCreate201Response
+     * @throws IOException if the JSON string is invalid with respect to NetworkCreate201Response
+     */
+    public static NetworkCreate201Response fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, NetworkCreate201Response.class);
+    }
+
+    public NetworkCreate201Response id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public NetworkCreate201Response warning(String warning) {
+        this.warning = warning;
+        return this;
+    }
+
+    /**
+     * Get warning
+     *
+     * @return warning
+     */
+    @jakarta.annotation.Nullable
+
+    public String getWarning() {
+        return warning;
+    }
+
+    public void setWarning(String warning) {
+        this.warning = warning;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        NetworkCreate201Response networkCreate201Response = (NetworkCreate201Response) o;
+        return Objects.equals(this.id, networkCreate201Response.id) &&
+                Objects.equals(this.warning, networkCreate201Response.warning);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, warning);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class NetworkCreate201Response {\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    warning: " + toIndentedString(warning) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of NetworkCreate201Response to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!NetworkCreate201Response.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'NetworkCreate201Response' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<NetworkCreate201Response> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(NetworkCreate201Response.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<NetworkCreate201Response>() {
+                @Override
+                public void write(JsonWriter out, NetworkCreate201Response value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public NetworkCreate201Response read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

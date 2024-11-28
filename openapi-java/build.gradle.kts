@@ -15,12 +15,30 @@ group = "io.github.alersrt"
 version = "5.3.0"
 
 dependencies {
-    implementation("com.google.code.findbugs:jsr305:3.0.2")
+
+//    implementation "com.google.code.findbugs:jsr305:3.0.2"
+//    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+//    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+//    implementation 'com.google.code.gson:gson:2.9.1'
+//    implementation 'io.gsonfire:gson-fire:1.9.0'
+//    implementation 'javax.ws.rs:jsr311-api:1.1.1'
+//    implementation 'javax.ws.rs:javax.ws.rs-api:2.1.1'
+//    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+//    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+//    implementation "jakarta.annotation:jakarta.annotation-api:$jakarta_annotation_version"
+//
+
+//    implementation("io.swagger:swagger-annotations:1.6.6")
+
     implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
-    implementation("com.fasterxml.jackson.core:jackson-core:2.18.1")
-    implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.1")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.18.1")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.1")
+    implementation("com.google.code.findbugs:jsr305:3.0.2")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    implementation("com.google.code.gson:gson:2.10")
+    implementation("io.gsonfire:gson-fire:1.9.0")
+    implementation("javax.ws.rs:jsr311-api:1.1")
+    implementation("javax.ws.rs:javax.ws.rs-api:2.1.1")
+    implementation("org.apache.commons:commons-lang3:3.15.0")
     implementation("org.openapitools:jackson-databind-nullable:0.2.6")
     implementation("jakarta.annotation:jakarta.annotation-api:3.0.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.3")

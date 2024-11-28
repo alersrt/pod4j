@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxDevice
  */
-class LinuxDeviceTest {
+public class LinuxDeviceTest {
     private final LinuxDevice model = new LinuxDevice();
 
     /**
      * Model tests for LinuxDevice
      */
     @Test
-    void testLinuxDevice() {
+    public void testLinuxDevice() {
         // TODO: test LinuxDevice
     }
 
@@ -42,7 +43,7 @@ class LinuxDeviceTest {
      * Test the property 'fileMode'
      */
     @Test
-    void fileModeTest() {
+    public void fileModeTest() {
         // TODO: test fileMode
     }
 
@@ -50,7 +51,7 @@ class LinuxDeviceTest {
      * Test the property 'gid'
      */
     @Test
-    void gidTest() {
+    public void gidTest() {
         // TODO: test gid
     }
 
@@ -58,7 +59,7 @@ class LinuxDeviceTest {
      * Test the property 'major'
      */
     @Test
-    void majorTest() {
+    public void majorTest() {
         // TODO: test major
     }
 
@@ -66,7 +67,7 @@ class LinuxDeviceTest {
      * Test the property 'minor'
      */
     @Test
-    void minorTest() {
+    public void minorTest() {
         // TODO: test minor
     }
 
@@ -74,7 +75,7 @@ class LinuxDeviceTest {
      * Test the property 'path'
      */
     @Test
-    void pathTest() {
+    public void pathTest() {
         // TODO: test path
     }
 
@@ -82,7 +83,7 @@ class LinuxDeviceTest {
      * Test the property 'type'
      */
     @Test
-    void typeTest() {
+    public void typeTest() {
         // TODO: test type
     }
 
@@ -90,7 +91,7 @@ class LinuxDeviceTest {
      * Test the property 'uid'
      */
     @Test
-    void uidTest() {
+    public void uidTest() {
         // TODO: test uid
     }
 

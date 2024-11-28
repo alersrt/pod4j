@@ -13,32 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ComponentVersion;
-import io.github.alersrt.pod4j.openapi.model.SystemComponentVersionPlatform;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemComponentVersion
  */
-class SystemComponentVersionTest {
+public class SystemComponentVersionTest {
     private final SystemComponentVersion model = new SystemComponentVersion();
 
     /**
      * Model tests for SystemComponentVersion
      */
     @Test
-    void testSystemComponentVersion() {
+    public void testSystemComponentVersion() {
         // TODO: test SystemComponentVersion
     }
 
@@ -46,7 +33,7 @@ class SystemComponentVersionTest {
      * Test the property 'apiVersion'
      */
     @Test
-    void apiVersionTest() {
+    public void apiVersionTest() {
         // TODO: test apiVersion
     }
 
@@ -54,7 +41,7 @@ class SystemComponentVersionTest {
      * Test the property 'arch'
      */
     @Test
-    void archTest() {
+    public void archTest() {
         // TODO: test arch
     }
 
@@ -62,7 +49,7 @@ class SystemComponentVersionTest {
      * Test the property 'buildTime'
      */
     @Test
-    void buildTimeTest() {
+    public void buildTimeTest() {
         // TODO: test buildTime
     }
 
@@ -70,7 +57,7 @@ class SystemComponentVersionTest {
      * Test the property 'components'
      */
     @Test
-    void componentsTest() {
+    public void componentsTest() {
         // TODO: test components
     }
 
@@ -78,7 +65,7 @@ class SystemComponentVersionTest {
      * Test the property 'experimental'
      */
     @Test
-    void experimentalTest() {
+    public void experimentalTest() {
         // TODO: test experimental
     }
 
@@ -86,7 +73,7 @@ class SystemComponentVersionTest {
      * Test the property 'gitCommit'
      */
     @Test
-    void gitCommitTest() {
+    public void gitCommitTest() {
         // TODO: test gitCommit
     }
 
@@ -94,7 +81,7 @@ class SystemComponentVersionTest {
      * Test the property 'goVersion'
      */
     @Test
-    void goVersionTest() {
+    public void goVersionTest() {
         // TODO: test goVersion
     }
 
@@ -102,7 +89,7 @@ class SystemComponentVersionTest {
      * Test the property 'kernelVersion'
      */
     @Test
-    void kernelVersionTest() {
+    public void kernelVersionTest() {
         // TODO: test kernelVersion
     }
 
@@ -110,7 +97,7 @@ class SystemComponentVersionTest {
      * Test the property 'minAPIVersion'
      */
     @Test
-    void minAPIVersionTest() {
+    public void minAPIVersionTest() {
         // TODO: test minAPIVersion
     }
 
@@ -118,7 +105,7 @@ class SystemComponentVersionTest {
      * Test the property 'os'
      */
     @Test
-    void osTest() {
+    public void osTest() {
         // TODO: test os
     }
 
@@ -126,7 +113,7 @@ class SystemComponentVersionTest {
      * Test the property 'platform'
      */
     @Test
-    void platformTest() {
+    public void platformTest() {
         // TODO: test platform
     }
 
@@ -134,7 +121,7 @@ class SystemComponentVersionTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

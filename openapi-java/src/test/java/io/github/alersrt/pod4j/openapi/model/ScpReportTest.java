@@ -13,27 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ScpReport
  */
-class ScpReportTest {
+public class ScpReportTest {
     private final ScpReport model = new ScpReport();
 
     /**
      * Model tests for ScpReport
      */
     @Test
-    void testScpReport() {
+    public void testScpReport() {
         // TODO: test ScpReport
     }
 
@@ -41,7 +33,7 @@ class ScpReportTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 

@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LibpodImagesPullReport
  */
-class LibpodImagesPullReportTest {
+public class LibpodImagesPullReportTest {
     private final LibpodImagesPullReport model = new LibpodImagesPullReport();
 
     /**
      * Model tests for LibpodImagesPullReport
      */
     @Test
-    void testLibpodImagesPullReport() {
+    public void testLibpodImagesPullReport() {
         // TODO: test LibpodImagesPullReport
     }
 
@@ -44,7 +45,7 @@ class LibpodImagesPullReportTest {
      * Test the property 'error'
      */
     @Test
-    void errorTest() {
+    public void errorTest() {
         // TODO: test error
     }
 
@@ -52,7 +53,7 @@ class LibpodImagesPullReportTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -60,7 +61,7 @@ class LibpodImagesPullReportTest {
      * Test the property 'images'
      */
     @Test
-    void imagesTest() {
+    public void imagesTest() {
         // TODO: test images
     }
 
@@ -68,7 +69,7 @@ class LibpodImagesPullReportTest {
      * Test the property 'stream'
      */
     @Test
-    void streamTest() {
+    public void streamTest() {
         // TODO: test stream
     }
 

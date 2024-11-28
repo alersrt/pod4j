@@ -13,32 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerSecurityConfig
  */
-class ContainerSecurityConfigTest {
+public class ContainerSecurityConfigTest {
     private final ContainerSecurityConfig model = new ContainerSecurityConfig();
 
     /**
      * Model tests for ContainerSecurityConfig
      */
     @Test
-    void testContainerSecurityConfig() {
+    public void testContainerSecurityConfig() {
         // TODO: test ContainerSecurityConfig
     }
 
@@ -46,7 +33,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'apparmorProfile'
      */
     @Test
-    void apparmorProfileTest() {
+    public void apparmorProfileTest() {
         // TODO: test apparmorProfile
     }
 
@@ -54,7 +41,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'capAdd'
      */
     @Test
-    void capAddTest() {
+    public void capAddTest() {
         // TODO: test capAdd
     }
 
@@ -62,7 +49,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'capDrop'
      */
     @Test
-    void capDropTest() {
+    public void capDropTest() {
         // TODO: test capDrop
     }
 
@@ -70,7 +57,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'groups'
      */
     @Test
-    void groupsTest() {
+    public void groupsTest() {
         // TODO: test groups
     }
 
@@ -78,7 +65,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'idmappings'
      */
     @Test
-    void idmappingsTest() {
+    public void idmappingsTest() {
         // TODO: test idmappings
     }
 
@@ -86,7 +73,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'labelNested'
      */
     @Test
-    void labelNestedTest() {
+    public void labelNestedTest() {
         // TODO: test labelNested
     }
 
@@ -94,7 +81,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'mask'
      */
     @Test
-    void maskTest() {
+    public void maskTest() {
         // TODO: test mask
     }
 
@@ -102,7 +89,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'noNewPrivileges'
      */
     @Test
-    void noNewPrivilegesTest() {
+    public void noNewPrivilegesTest() {
         // TODO: test noNewPrivileges
     }
 
@@ -110,7 +97,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'privileged'
      */
     @Test
-    void privilegedTest() {
+    public void privilegedTest() {
         // TODO: test privileged
     }
 
@@ -118,7 +105,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'procfsOpts'
      */
     @Test
-    void procfsOptsTest() {
+    public void procfsOptsTest() {
         // TODO: test procfsOpts
     }
 
@@ -126,7 +113,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'readOnlyFilesystem'
      */
     @Test
-    void readOnlyFilesystemTest() {
+    public void readOnlyFilesystemTest() {
         // TODO: test readOnlyFilesystem
     }
 
@@ -134,7 +121,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'readWriteTmpfs'
      */
     @Test
-    void readWriteTmpfsTest() {
+    public void readWriteTmpfsTest() {
         // TODO: test readWriteTmpfs
     }
 
@@ -142,7 +129,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'seccompPolicy'
      */
     @Test
-    void seccompPolicyTest() {
+    public void seccompPolicyTest() {
         // TODO: test seccompPolicy
     }
 
@@ -150,7 +137,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'seccompProfilePath'
      */
     @Test
-    void seccompProfilePathTest() {
+    public void seccompProfilePathTest() {
         // TODO: test seccompProfilePath
     }
 
@@ -158,7 +145,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'selinuxOpts'
      */
     @Test
-    void selinuxOptsTest() {
+    public void selinuxOptsTest() {
         // TODO: test selinuxOpts
     }
 
@@ -166,7 +153,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'umask'
      */
     @Test
-    void umaskTest() {
+    public void umaskTest() {
         // TODO: test umask
     }
 
@@ -174,7 +161,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'unmask'
      */
     @Test
-    void unmaskTest() {
+    public void unmaskTest() {
         // TODO: test unmask
     }
 
@@ -182,7 +169,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'user'
      */
     @Test
-    void userTest() {
+    public void userTest() {
         // TODO: test user
     }
 
@@ -190,7 +177,7 @@ class ContainerSecurityConfigTest {
      * Test the property 'userns'
      */
     @Test
-    void usernsTest() {
+    public void usernsTest() {
         // TODO: test userns
     }
 

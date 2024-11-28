@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.PluginDevice;
 import io.github.alersrt.pod4j.openapi.model.PluginMount;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PluginSettings
  */
-class PluginSettingsTest {
+public class PluginSettingsTest {
     private final PluginSettings model = new PluginSettings();
 
     /**
      * Model tests for PluginSettings
      */
     @Test
-    void testPluginSettings() {
+    public void testPluginSettings() {
         // TODO: test PluginSettings
     }
 
@@ -46,7 +47,7 @@ class PluginSettingsTest {
      * Test the property 'args'
      */
     @Test
-    void argsTest() {
+    public void argsTest() {
         // TODO: test args
     }
 
@@ -54,7 +55,7 @@ class PluginSettingsTest {
      * Test the property 'devices'
      */
     @Test
-    void devicesTest() {
+    public void devicesTest() {
         // TODO: test devices
     }
 
@@ -62,7 +63,7 @@ class PluginSettingsTest {
      * Test the property 'env'
      */
     @Test
-    void envTest() {
+    public void envTest() {
         // TODO: test env
     }
 
@@ -70,7 +71,7 @@ class PluginSettingsTest {
      * Test the property 'mounts'
      */
     @Test
-    void mountsTest() {
+    public void mountsTest() {
         // TODO: test mounts
     }
 

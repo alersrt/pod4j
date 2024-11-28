@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Platform
  */
-class PlatformTest {
+public class PlatformTest {
     private final Platform model = new Platform();
 
     /**
      * Model tests for Platform
      */
     @Test
-    void testPlatform() {
+    public void testPlatform() {
         // TODO: test Platform
     }
 
@@ -44,7 +45,7 @@ class PlatformTest {
      * Test the property 'architecture'
      */
     @Test
-    void architectureTest() {
+    public void architectureTest() {
         // TODO: test architecture
     }
 
@@ -52,7 +53,7 @@ class PlatformTest {
      * Test the property 'os'
      */
     @Test
-    void osTest() {
+    public void osTest() {
         // TODO: test os
     }
 
@@ -60,7 +61,7 @@ class PlatformTest {
      * Test the property 'osFeatures'
      */
     @Test
-    void osFeaturesTest() {
+    public void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
@@ -68,7 +69,7 @@ class PlatformTest {
      * Test the property 'osVersion'
      */
     @Test
-    void osVersionTest() {
+    public void osVersionTest() {
         // TODO: test osVersion
     }
 
@@ -76,7 +77,7 @@ class PlatformTest {
      * Test the property 'variant'
      */
     @Test
-    void variantTest() {
+    public void variantTest() {
         // TODO: test variant
     }
 

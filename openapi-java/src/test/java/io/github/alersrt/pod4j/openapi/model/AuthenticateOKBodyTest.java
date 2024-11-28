@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for AuthenticateOKBody
  */
-class AuthenticateOKBodyTest {
+public class AuthenticateOKBodyTest {
     private final AuthenticateOKBody model = new AuthenticateOKBody();
 
     /**
      * Model tests for AuthenticateOKBody
      */
     @Test
-    void testAuthenticateOKBody() {
+    public void testAuthenticateOKBody() {
         // TODO: test AuthenticateOKBody
     }
 
@@ -42,7 +33,7 @@ class AuthenticateOKBodyTest {
      * Test the property 'identityToken'
      */
     @Test
-    void identityTokenTest() {
+    public void identityTokenTest() {
         // TODO: test identityToken
     }
 
@@ -50,7 +41,7 @@ class AuthenticateOKBodyTest {
      * Test the property 'status'
      */
     @Test
-    void statusTest() {
+    public void statusTest() {
         // TODO: test status
     }
 

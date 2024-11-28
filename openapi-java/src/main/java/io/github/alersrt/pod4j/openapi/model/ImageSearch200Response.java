@@ -13,357 +13,347 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ImageSearch200Response
  */
-@JsonPropertyOrder({
-  ImageSearch200Response.JSON_PROPERTY_AUTOMATED,
-  ImageSearch200Response.JSON_PROPERTY_DESCRIPTION,
-  ImageSearch200Response.JSON_PROPERTY_INDEX,
-  ImageSearch200Response.JSON_PROPERTY_NAME,
-  ImageSearch200Response.JSON_PROPERTY_OFFICIAL,
-  ImageSearch200Response.JSON_PROPERTY_STARS,
-  ImageSearch200Response.JSON_PROPERTY_TAG
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageSearch200Response {
-  public static final String JSON_PROPERTY_AUTOMATED = "Automated";
-  private String automated;
+    public static final String SERIALIZED_NAME_AUTOMATED = "Automated";
+    public static final String SERIALIZED_NAME_DESCRIPTION = "Description";
+    public static final String SERIALIZED_NAME_INDEX = "Index";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_OFFICIAL = "Official";
+    public static final String SERIALIZED_NAME_STARS = "Stars";
+    public static final String SERIALIZED_NAME_TAG = "Tag";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_DESCRIPTION = "Description";
-  private String description;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Automated");
+        openapiFields.add("Description");
+        openapiFields.add("Index");
+        openapiFields.add("Name");
+        openapiFields.add("Official");
+        openapiFields.add("Stars");
+        openapiFields.add("Tag");
 
-  public static final String JSON_PROPERTY_INDEX = "Index";
-  private String index;
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_OFFICIAL = "Official";
-  private String official;
-
-  public static final String JSON_PROPERTY_STARS = "Stars";
-  private Long stars;
-
-  public static final String JSON_PROPERTY_TAG = "Tag";
-  private String tag;
-
-  public ImageSearch200Response() { 
-  }
-
-  public ImageSearch200Response automated(String automated) {
-    this.automated = automated;
-    return this;
-  }
-
-  /**
-   * Automated indicates if the image was created by an automated build.
-   * @return automated
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTOMATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getAutomated() {
-    return automated;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTOMATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAutomated(String automated) {
-    this.automated = automated;
-  }
-
-
-  public ImageSearch200Response description(String description) {
-    this.description = description;
-    return this;
-  }
-
-  /**
-   * Description of the image.
-   * @return description
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDescription() {
-    return description;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public ImageSearch200Response index(String index) {
-    this.index = index;
-    return this;
-  }
-
-  /**
-   * Index is the image index
-   * @return index
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INDEX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIndex() {
-    return index;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INDEX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIndex(String index) {
-    this.index = index;
-  }
-
-
-  public ImageSearch200Response name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Name is the canonical name of the image
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ImageSearch200Response official(String official) {
-    this.official = official;
-    return this;
-  }
-
-  /**
-   * Official indicates if it&#39;s an official image.
-   * @return official
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OFFICIAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOfficial() {
-    return official;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OFFICIAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOfficial(String official) {
-    this.official = official;
-  }
-
-
-  public ImageSearch200Response stars(Long stars) {
-    this.stars = stars;
-    return this;
-  }
-
-  /**
-   * Stars is the number of stars of the image.
-   * @return stars
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STARS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getStars() {
-    return stars;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STARS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStars(Long stars) {
-    this.stars = stars;
-  }
-
-
-  public ImageSearch200Response tag(String tag) {
-    this.tag = tag;
-    return this;
-  }
-
-  /**
-   * Tag is the image tag
-   * @return tag
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TAG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getTag() {
-    return tag;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TAG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTag(String tag) {
-    this.tag = tag;
-  }
-
-
-  /**
-   * Return true if this ImageSearch_200_response object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ImageSearch200Response imageSearch200Response = (ImageSearch200Response) o;
-    return Objects.equals(this.automated, imageSearch200Response.automated) &&
-        Objects.equals(this.description, imageSearch200Response.description) &&
-        Objects.equals(this.index, imageSearch200Response.index) &&
-        Objects.equals(this.name, imageSearch200Response.name) &&
-        Objects.equals(this.official, imageSearch200Response.official) &&
-        Objects.equals(this.stars, imageSearch200Response.stars) &&
-        Objects.equals(this.tag, imageSearch200Response.tag);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(automated, description, index, name, official, stars, tag);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImageSearch200Response {\n");
-    sb.append("    automated: ").append(toIndentedString(automated)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    index: ").append(toIndentedString(index)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    official: ").append(toIndentedString(official)).append("\n");
-    sb.append("    stars: ").append(toIndentedString(stars)).append("\n");
-    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_AUTOMATED)
+    private String automated;
+    @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+    private String description;
+    @SerializedName(SERIALIZED_NAME_INDEX)
+    private String index;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_OFFICIAL)
+    private String official;
+    @SerializedName(SERIALIZED_NAME_STARS)
+    private Long stars;
+    @SerializedName(SERIALIZED_NAME_TAG)
+    private String tag;
 
-    // add `Automated` to the URL query string
-    if (getAutomated() != null) {
-      joiner.add(String.format("%sAutomated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAutomated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageSearch200Response() {
     }
 
-    // add `Description` to the URL query string
-    if (getDescription() != null) {
-      joiner.add(String.format("%sDescription%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDescription()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ImageSearch200Response
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ImageSearch200Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ImageSearch200Response is not found in the empty JSON string", ImageSearch200Response.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ImageSearch200Response.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageSearch200Response` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Automated") != null && !jsonObj.get("Automated").isJsonNull()) && !jsonObj.get("Automated").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Automated` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Automated").toString()));
+        }
+        if ((jsonObj.get("Description") != null && !jsonObj.get("Description").isJsonNull()) && !jsonObj.get("Description").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Description` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Description").toString()));
+        }
+        if ((jsonObj.get("Index") != null && !jsonObj.get("Index").isJsonNull()) && !jsonObj.get("Index").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Index` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Index").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
+        if ((jsonObj.get("Official") != null && !jsonObj.get("Official").isJsonNull()) && !jsonObj.get("Official").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Official` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Official").toString()));
+        }
+        if ((jsonObj.get("Tag") != null && !jsonObj.get("Tag").isJsonNull()) && !jsonObj.get("Tag").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Tag").toString()));
+        }
     }
 
-    // add `Index` to the URL query string
-    if (getIndex() != null) {
-      joiner.add(String.format("%sIndex%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIndex()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ImageSearch200Response given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ImageSearch200Response
+     * @throws IOException if the JSON string is invalid with respect to ImageSearch200Response
+     */
+    public static ImageSearch200Response fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ImageSearch200Response.class);
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageSearch200Response automated(String automated) {
+        this.automated = automated;
+        return this;
     }
 
-    // add `Official` to the URL query string
-    if (getOfficial() != null) {
-      joiner.add(String.format("%sOfficial%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOfficial()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Automated indicates if the image was created by an automated build.
+     *
+     * @return automated
+     */
+    @jakarta.annotation.Nullable
+
+    public String getAutomated() {
+        return automated;
     }
 
-    // add `Stars` to the URL query string
-    if (getStars() != null) {
-      joiner.add(String.format("%sStars%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStars()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setAutomated(String automated) {
+        this.automated = automated;
     }
 
-    // add `Tag` to the URL query string
-    if (getTag() != null) {
-      joiner.add(String.format("%sTag%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTag()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageSearch200Response description(String description) {
+        this.description = description;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Description of the image.
+     *
+     * @return description
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ImageSearch200Response index(String index) {
+        this.index = index;
+        return this;
+    }
+
+    /**
+     * Index is the image index
+     *
+     * @return index
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    public ImageSearch200Response name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name is the canonical name of the image
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ImageSearch200Response official(String official) {
+        this.official = official;
+        return this;
+    }
+
+    /**
+     * Official indicates if it&#39;s an official image.
+     *
+     * @return official
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOfficial() {
+        return official;
+    }
+
+    public void setOfficial(String official) {
+        this.official = official;
+    }
+
+    public ImageSearch200Response stars(Long stars) {
+        this.stars = stars;
+        return this;
+    }
+
+    /**
+     * Stars is the number of stars of the image.
+     *
+     * @return stars
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getStars() {
+        return stars;
+    }
+
+    public void setStars(Long stars) {
+        this.stars = stars;
+    }
+
+    public ImageSearch200Response tag(String tag) {
+        this.tag = tag;
+        return this;
+    }
+
+    /**
+     * Tag is the image tag
+     *
+     * @return tag
+     */
+    @jakarta.annotation.Nullable
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ImageSearch200Response imageSearch200Response = (ImageSearch200Response) o;
+        return Objects.equals(this.automated, imageSearch200Response.automated) &&
+                Objects.equals(this.description, imageSearch200Response.description) &&
+                Objects.equals(this.index, imageSearch200Response.index) &&
+                Objects.equals(this.name, imageSearch200Response.name) &&
+                Objects.equals(this.official, imageSearch200Response.official) &&
+                Objects.equals(this.stars, imageSearch200Response.stars) &&
+                Objects.equals(this.tag, imageSearch200Response.tag);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(automated, description, index, name, official, stars, tag);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ImageSearch200Response {\n" +
+                "    automated: " + toIndentedString(automated) + "\n" +
+                "    description: " + toIndentedString(description) + "\n" +
+                "    index: " + toIndentedString(index) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    official: " + toIndentedString(official) + "\n" +
+                "    stars: " + toIndentedString(stars) + "\n" +
+                "    tag: " + toIndentedString(tag) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ImageSearch200Response to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ImageSearch200Response.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ImageSearch200Response' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ImageSearch200Response> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ImageSearch200Response.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ImageSearch200Response>() {
+                @Override
+                public void write(JsonWriter out, ImageSearch200Response value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ImageSearch200Response read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

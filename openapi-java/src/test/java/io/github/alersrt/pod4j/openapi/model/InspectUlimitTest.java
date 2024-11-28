@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectUlimit
  */
-class InspectUlimitTest {
+public class InspectUlimitTest {
     private final InspectUlimit model = new InspectUlimit();
 
     /**
      * Model tests for InspectUlimit
      */
     @Test
-    void testInspectUlimit() {
+    public void testInspectUlimit() {
         // TODO: test InspectUlimit
     }
 
@@ -42,7 +43,7 @@ class InspectUlimitTest {
      * Test the property 'hard'
      */
     @Test
-    void hardTest() {
+    public void hardTest() {
         // TODO: test hard
     }
 
@@ -50,7 +51,7 @@ class InspectUlimitTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -58,7 +59,7 @@ class InspectUlimitTest {
      * Test the property 'soft'
      */
     @Test
-    void softTest() {
+    public void softTest() {
         // TODO: test soft
     }
 

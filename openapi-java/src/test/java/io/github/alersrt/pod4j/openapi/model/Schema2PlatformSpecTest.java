@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Schema2PlatformSpec
  */
-class Schema2PlatformSpecTest {
+public class Schema2PlatformSpecTest {
     private final Schema2PlatformSpec model = new Schema2PlatformSpec();
 
     /**
      * Model tests for Schema2PlatformSpec
      */
     @Test
-    void testSchema2PlatformSpec() {
+    public void testSchema2PlatformSpec() {
         // TODO: test Schema2PlatformSpec
     }
 
@@ -43,7 +33,7 @@ class Schema2PlatformSpecTest {
      * Test the property 'architecture'
      */
     @Test
-    void architectureTest() {
+    public void architectureTest() {
         // TODO: test architecture
     }
 
@@ -51,7 +41,7 @@ class Schema2PlatformSpecTest {
      * Test the property 'features'
      */
     @Test
-    void featuresTest() {
+    public void featuresTest() {
         // TODO: test features
     }
 
@@ -59,7 +49,7 @@ class Schema2PlatformSpecTest {
      * Test the property 'os'
      */
     @Test
-    void osTest() {
+    public void osTest() {
         // TODO: test os
     }
 
@@ -67,7 +57,7 @@ class Schema2PlatformSpecTest {
      * Test the property 'osFeatures'
      */
     @Test
-    void osFeaturesTest() {
+    public void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
@@ -75,7 +65,7 @@ class Schema2PlatformSpecTest {
      * Test the property 'osVersion'
      */
     @Test
-    void osVersionTest() {
+    public void osVersionTest() {
         // TODO: test osVersion
     }
 
@@ -83,7 +73,7 @@ class Schema2PlatformSpecTest {
      * Test the property 'variant'
      */
     @Test
-    void variantTest() {
+    public void variantTest() {
         // TODO: test variant
     }
 

@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.LinuxResources;
 import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodResourceConfig
  */
-class PodResourceConfigTest {
+public class PodResourceConfigTest {
     private final PodResourceConfig model = new PodResourceConfig();
 
     /**
      * Model tests for PodResourceConfig
      */
     @Test
-    void testPodResourceConfig() {
+    public void testPodResourceConfig() {
         // TODO: test PodResourceConfig
     }
 
@@ -46,7 +47,7 @@ class PodResourceConfigTest {
      * Test the property 'cpuPeriod'
      */
     @Test
-    void cpuPeriodTest() {
+    public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
@@ -54,7 +55,7 @@ class PodResourceConfigTest {
      * Test the property 'cpuQuota'
      */
     @Test
-    void cpuQuotaTest() {
+    public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
@@ -62,7 +63,7 @@ class PodResourceConfigTest {
      * Test the property 'resourceLimits'
      */
     @Test
-    void resourceLimitsTest() {
+    public void resourceLimitsTest() {
         // TODO: test resourceLimits
     }
 
@@ -70,7 +71,7 @@ class PodResourceConfigTest {
      * Test the property 'throttleReadBpsDevice'
      */
     @Test
-    void throttleReadBpsDeviceTest() {
+    public void throttleReadBpsDeviceTest() {
         // TODO: test throttleReadBpsDevice
     }
 

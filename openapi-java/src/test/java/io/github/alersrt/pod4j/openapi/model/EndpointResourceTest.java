@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for EndpointResource
  */
-class EndpointResourceTest {
+public class EndpointResourceTest {
     private final EndpointResource model = new EndpointResource();
 
     /**
      * Model tests for EndpointResource
      */
     @Test
-    void testEndpointResource() {
+    public void testEndpointResource() {
         // TODO: test EndpointResource
     }
 
@@ -42,7 +43,7 @@ class EndpointResourceTest {
      * Test the property 'endpointID'
      */
     @Test
-    void endpointIDTest() {
+    public void endpointIDTest() {
         // TODO: test endpointID
     }
 
@@ -50,7 +51,7 @@ class EndpointResourceTest {
      * Test the property 'ipv4Address'
      */
     @Test
-    void ipv4AddressTest() {
+    public void ipv4AddressTest() {
         // TODO: test ipv4Address
     }
 
@@ -58,7 +59,7 @@ class EndpointResourceTest {
      * Test the property 'ipv6Address'
      */
     @Test
-    void ipv6AddressTest() {
+    public void ipv6AddressTest() {
         // TODO: test ipv6Address
     }
 
@@ -66,7 +67,7 @@ class EndpointResourceTest {
      * Test the property 'macAddress'
      */
     @Test
-    void macAddressTest() {
+    public void macAddressTest() {
         // TODO: test macAddress
     }
 
@@ -74,7 +75,7 @@ class EndpointResourceTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 

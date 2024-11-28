@@ -13,27 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecurityInfo
  */
-class SecurityInfoTest {
+public class SecurityInfoTest {
     private final SecurityInfo model = new SecurityInfo();
 
     /**
      * Model tests for SecurityInfo
      */
     @Test
-    void testSecurityInfo() {
+    public void testSecurityInfo() {
         // TODO: test SecurityInfo
     }
 
@@ -41,7 +33,7 @@ class SecurityInfoTest {
      * Test the property 'apparmorEnabled'
      */
     @Test
-    void apparmorEnabledTest() {
+    public void apparmorEnabledTest() {
         // TODO: test apparmorEnabled
     }
 
@@ -49,7 +41,7 @@ class SecurityInfoTest {
      * Test the property 'capabilities'
      */
     @Test
-    void capabilitiesTest() {
+    public void capabilitiesTest() {
         // TODO: test capabilities
     }
 
@@ -57,7 +49,7 @@ class SecurityInfoTest {
      * Test the property 'rootless'
      */
     @Test
-    void rootlessTest() {
+    public void rootlessTest() {
         // TODO: test rootless
     }
 
@@ -65,7 +57,7 @@ class SecurityInfoTest {
      * Test the property 'seccompEnabled'
      */
     @Test
-    void seccompEnabledTest() {
+    public void seccompEnabledTest() {
         // TODO: test seccompEnabled
     }
 
@@ -73,7 +65,7 @@ class SecurityInfoTest {
      * Test the property 'seccompProfilePath'
      */
     @Test
-    void seccompProfilePathTest() {
+    public void seccompProfilePathTest() {
         // TODO: test seccompProfilePath
     }
 
@@ -81,7 +73,7 @@ class SecurityInfoTest {
      * Test the property 'selinuxEnabled'
      */
     @Test
-    void selinuxEnabledTest() {
+    public void selinuxEnabledTest() {
         // TODO: test selinuxEnabled
     }
 

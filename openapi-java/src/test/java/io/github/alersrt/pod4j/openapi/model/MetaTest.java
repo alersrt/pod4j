@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.Version;
+
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Meta
  */
-class MetaTest {
+public class MetaTest {
     private final Meta model = new Meta();
 
     /**
      * Model tests for Meta
      */
     @Test
-    void testMeta() {
+    public void testMeta() {
         // TODO: test Meta
     }
 
@@ -44,7 +45,7 @@ class MetaTest {
      * Test the property 'createdAt'
      */
     @Test
-    void createdAtTest() {
+    public void createdAtTest() {
         // TODO: test createdAt
     }
 
@@ -52,7 +53,7 @@ class MetaTest {
      * Test the property 'updatedAt'
      */
     @Test
-    void updatedAtTest() {
+    public void updatedAtTest() {
         // TODO: test updatedAt
     }
 
@@ -60,7 +61,7 @@ class MetaTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

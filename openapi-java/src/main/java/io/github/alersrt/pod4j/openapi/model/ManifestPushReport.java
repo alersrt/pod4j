@@ -13,213 +13,234 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ManifestPushReport
  */
-@JsonPropertyOrder({
-  ManifestPushReport.JSON_PROPERTY_ID,
-  ManifestPushReport.JSON_PROPERTY_ERROR,
-  ManifestPushReport.JSON_PROPERTY_STREAM
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestPushReport {
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_ERROR = "error";
+    public static final String SERIALIZED_NAME_STREAM = "stream";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ERROR = "error";
-  private String error;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Id");
+        openapiFields.add("error");
+        openapiFields.add("stream");
 
-  public static final String JSON_PROPERTY_STREAM = "stream";
-  private String stream;
-
-  public ManifestPushReport() { 
-  }
-
-  public ManifestPushReport id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * ID of the pushed manifest
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ManifestPushReport error(String error) {
-    this.error = error;
-    return this;
-  }
-
-  /**
-   * Error contains text of errors from pushing
-   * @return error
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getError() {
-    return error;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setError(String error) {
-    this.error = error;
-  }
-
-
-  public ManifestPushReport stream(String stream) {
-    this.stream = stream;
-    return this;
-  }
-
-  /**
-   * Stream used to provide push progress
-   * @return stream
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STREAM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStream() {
-    return stream;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STREAM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStream(String stream) {
-    this.stream = stream;
-  }
-
-
-  /**
-   * Return true if this ManifestPushReport object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ManifestPushReport manifestPushReport = (ManifestPushReport) o;
-    return Objects.equals(this.id, manifestPushReport.id) &&
-        Objects.equals(this.error, manifestPushReport.error) &&
-        Objects.equals(this.stream, manifestPushReport.stream);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, error, stream);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ManifestPushReport {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("    stream: ").append(toIndentedString(stream)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_ERROR)
+    private String error;
+    @SerializedName(SERIALIZED_NAME_STREAM)
+    private String stream;
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ManifestPushReport() {
     }
 
-    // add `error` to the URL query string
-    if (getError() != null) {
-      joiner.add(String.format("%serror%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getError()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ManifestPushReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ManifestPushReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestPushReport is not found in the empty JSON string", ManifestPushReport.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ManifestPushReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestPushReport` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        if ((jsonObj.get("error") != null && !jsonObj.get("error").isJsonNull()) && !jsonObj.get("error").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `error` to be a primitive type in the JSON string but got `%s`", jsonObj.get("error").toString()));
+        }
+        if ((jsonObj.get("stream") != null && !jsonObj.get("stream").isJsonNull()) && !jsonObj.get("stream").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `stream` to be a primitive type in the JSON string but got `%s`", jsonObj.get("stream").toString()));
+        }
     }
 
-    // add `stream` to the URL query string
-    if (getStream() != null) {
-      joiner.add(String.format("%sstream%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStream()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ManifestPushReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ManifestPushReport
+     * @throws IOException if the JSON string is invalid with respect to ManifestPushReport
+     */
+    public static ManifestPushReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ManifestPushReport.class);
     }
 
-    return joiner.toString();
-  }
+    public ManifestPushReport id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * ID of the pushed manifest
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ManifestPushReport error(String error) {
+        this.error = error;
+        return this;
+    }
+
+    /**
+     * Error contains text of errors from pushing
+     *
+     * @return error
+     */
+    @jakarta.annotation.Nullable
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public ManifestPushReport stream(String stream) {
+        this.stream = stream;
+        return this;
+    }
+
+    /**
+     * Stream used to provide push progress
+     *
+     * @return stream
+     */
+    @jakarta.annotation.Nullable
+
+    public String getStream() {
+        return stream;
+    }
+
+    public void setStream(String stream) {
+        this.stream = stream;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ManifestPushReport manifestPushReport = (ManifestPushReport) o;
+        return Objects.equals(this.id, manifestPushReport.id) &&
+                Objects.equals(this.error, manifestPushReport.error) &&
+                Objects.equals(this.stream, manifestPushReport.stream);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, error, stream);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ManifestPushReport {\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    error: " + toIndentedString(error) + "\n" +
+                "    stream: " + toIndentedString(stream) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ManifestPushReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ManifestPushReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ManifestPushReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ManifestPushReport> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ManifestPushReport.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ManifestPushReport>() {
+                @Override
+                public void write(JsonWriter out, ManifestPushReport value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ManifestPushReport read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

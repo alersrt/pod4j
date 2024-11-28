@@ -13,33 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.SystemDfContainerReport;
-import io.github.alersrt.pod4j.openapi.model.SystemDfImageReport;
-import io.github.alersrt.pod4j.openapi.model.SystemDfVolumeReport;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemDfReport
  */
-class SystemDfReportTest {
+public class SystemDfReportTest {
     private final SystemDfReport model = new SystemDfReport();
 
     /**
      * Model tests for SystemDfReport
      */
     @Test
-    void testSystemDfReport() {
+    public void testSystemDfReport() {
         // TODO: test SystemDfReport
     }
 
@@ -47,7 +33,7 @@ class SystemDfReportTest {
      * Test the property 'containers'
      */
     @Test
-    void containersTest() {
+    public void containersTest() {
         // TODO: test containers
     }
 
@@ -55,7 +41,7 @@ class SystemDfReportTest {
      * Test the property 'images'
      */
     @Test
-    void imagesTest() {
+    public void imagesTest() {
         // TODO: test images
     }
 
@@ -63,7 +49,7 @@ class SystemDfReportTest {
      * Test the property 'imagesSize'
      */
     @Test
-    void imagesSizeTest() {
+    public void imagesSizeTest() {
         // TODO: test imagesSize
     }
 
@@ -71,7 +57,7 @@ class SystemDfReportTest {
      * Test the property 'volumes'
      */
     @Test
-    void volumesTest() {
+    public void volumesTest() {
         // TODO: test volumes
     }
 

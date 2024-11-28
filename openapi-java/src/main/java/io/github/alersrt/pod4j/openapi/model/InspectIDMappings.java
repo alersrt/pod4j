@@ -13,203 +13,225 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectIDMappings
  */
-@JsonPropertyOrder({
-  InspectIDMappings.JSON_PROPERTY_GID_MAP,
-  InspectIDMappings.JSON_PROPERTY_UID_MAP
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectIDMappings {
-  public static final String JSON_PROPERTY_GID_MAP = "GidMap";
-  private List<String> gidMap = new ArrayList<>();
+    public static final String SERIALIZED_NAME_GID_MAP = "GidMap";
+    public static final String SERIALIZED_NAME_UID_MAP = "UidMap";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_UID_MAP = "UidMap";
-  private List<String> uidMap = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("GidMap");
+        openapiFields.add("UidMap");
 
-  public InspectIDMappings() { 
-  }
-
-  public InspectIDMappings gidMap(List<String> gidMap) {
-    this.gidMap = gidMap;
-    return this;
-  }
-
-  public InspectIDMappings addGidMapItem(String gidMapItem) {
-    if (this.gidMap == null) {
-      this.gidMap = new ArrayList<>();
-    }
-    this.gidMap.add(gidMapItem);
-    return this;
-  }
-
-  /**
-   * Get gidMap
-   * @return gidMap
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GID_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getGidMap() {
-    return gidMap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GID_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGidMap(List<String> gidMap) {
-    this.gidMap = gidMap;
-  }
-
-
-  public InspectIDMappings uidMap(List<String> uidMap) {
-    this.uidMap = uidMap;
-    return this;
-  }
-
-  public InspectIDMappings addUidMapItem(String uidMapItem) {
-    if (this.uidMap == null) {
-      this.uidMap = new ArrayList<>();
-    }
-    this.uidMap.add(uidMapItem);
-    return this;
-  }
-
-  /**
-   * Get uidMap
-   * @return uidMap
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UID_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getUidMap() {
-    return uidMap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UID_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUidMap(List<String> uidMap) {
-    this.uidMap = uidMap;
-  }
-
-
-  /**
-   * Return true if this InspectIDMappings object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InspectIDMappings inspectIDMappings = (InspectIDMappings) o;
-    return Objects.equals(this.gidMap, inspectIDMappings.gidMap) &&
-        Objects.equals(this.uidMap, inspectIDMappings.uidMap);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(gidMap, uidMap);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InspectIDMappings {\n");
-    sb.append("    gidMap: ").append(toIndentedString(gidMap)).append("\n");
-    sb.append("    uidMap: ").append(toIndentedString(uidMap)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_GID_MAP)
+    private List<String> gidMap = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_UID_MAP)
+    private List<String> uidMap = new ArrayList<>();
 
-    // add `GidMap` to the URL query string
-    if (getGidMap() != null) {
-      for (int i = 0; i < getGidMap().size(); i++) {
-        joiner.add(String.format("%sGidMap%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getGidMap().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public InspectIDMappings() {
     }
 
-    // add `UidMap` to the URL query string
-    if (getUidMap() != null) {
-      for (int i = 0; i < getUidMap().size(); i++) {
-        joiner.add(String.format("%sUidMap%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getUidMap().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to InspectIDMappings
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!InspectIDMappings.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectIDMappings is not found in the empty JSON string", InspectIDMappings.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!InspectIDMappings.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectIDMappings` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("GidMap") != null && !jsonObj.get("GidMap").isJsonNull() && !jsonObj.get("GidMap").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `GidMap` to be an array in the JSON string but got `%s`", jsonObj.get("GidMap").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("UidMap") != null && !jsonObj.get("UidMap").isJsonNull() && !jsonObj.get("UidMap").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `UidMap` to be an array in the JSON string but got `%s`", jsonObj.get("UidMap").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of InspectIDMappings given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectIDMappings
+     * @throws IOException if the JSON string is invalid with respect to InspectIDMappings
+     */
+    public static InspectIDMappings fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, InspectIDMappings.class);
+    }
+
+    public InspectIDMappings gidMap(List<String> gidMap) {
+        this.gidMap = gidMap;
+        return this;
+    }
+
+    public InspectIDMappings addGidMapItem(String gidMapItem) {
+        if (this.gidMap == null) {
+            this.gidMap = new ArrayList<>();
+        }
+        this.gidMap.add(gidMapItem);
+        return this;
+    }
+
+    /**
+     * Get gidMap
+     *
+     * @return gidMap
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getGidMap() {
+        return gidMap;
+    }
+
+    public void setGidMap(List<String> gidMap) {
+        this.gidMap = gidMap;
+    }
+
+    public InspectIDMappings uidMap(List<String> uidMap) {
+        this.uidMap = uidMap;
+        return this;
+    }
+
+    public InspectIDMappings addUidMapItem(String uidMapItem) {
+        if (this.uidMap == null) {
+            this.uidMap = new ArrayList<>();
+        }
+        this.uidMap.add(uidMapItem);
+        return this;
+    }
+
+    /**
+     * Get uidMap
+     *
+     * @return uidMap
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getUidMap() {
+        return uidMap;
+    }
+
+    public void setUidMap(List<String> uidMap) {
+        this.uidMap = uidMap;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectIDMappings inspectIDMappings = (InspectIDMappings) o;
+        return Objects.equals(this.gidMap, inspectIDMappings.gidMap) &&
+                Objects.equals(this.uidMap, inspectIDMappings.uidMap);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(gidMap, uidMap);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class InspectIDMappings {\n" +
+                "    gidMap: " + toIndentedString(gidMap) + "\n" +
+                "    uidMap: " + toIndentedString(uidMap) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of InspectIDMappings to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!InspectIDMappings.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'InspectIDMappings' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<InspectIDMappings> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(InspectIDMappings.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<InspectIDMappings>() {
+                @Override
+                public void write(JsonWriter out, InspectIDMappings value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public InspectIDMappings read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

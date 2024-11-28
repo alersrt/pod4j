@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectExecProcess
  */
-class InspectExecProcessTest {
+public class InspectExecProcessTest {
     private final InspectExecProcess model = new InspectExecProcess();
 
     /**
      * Model tests for InspectExecProcess
      */
     @Test
-    void testInspectExecProcess() {
+    public void testInspectExecProcess() {
         // TODO: test InspectExecProcess
     }
 
@@ -44,7 +45,7 @@ class InspectExecProcessTest {
      * Test the property 'arguments'
      */
     @Test
-    void argumentsTest() {
+    public void argumentsTest() {
         // TODO: test arguments
     }
 
@@ -52,7 +53,7 @@ class InspectExecProcessTest {
      * Test the property 'entrypoint'
      */
     @Test
-    void entrypointTest() {
+    public void entrypointTest() {
         // TODO: test entrypoint
     }
 
@@ -60,7 +61,7 @@ class InspectExecProcessTest {
      * Test the property 'privileged'
      */
     @Test
-    void privilegedTest() {
+    public void privilegedTest() {
         // TODO: test privileged
     }
 
@@ -68,7 +69,7 @@ class InspectExecProcessTest {
      * Test the property 'tty'
      */
     @Test
-    void ttyTest() {
+    public void ttyTest() {
         // TODO: test tty
     }
 
@@ -76,7 +77,7 @@ class InspectExecProcessTest {
      * Test the property 'user'
      */
     @Test
-    void userTest() {
+    public void userTest() {
         // TODO: test user
     }
 

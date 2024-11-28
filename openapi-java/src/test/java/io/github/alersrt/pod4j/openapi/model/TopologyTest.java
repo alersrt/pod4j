@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Topology
  */
-class TopologyTest {
+public class TopologyTest {
     private final Topology model = new Topology();
 
     /**
      * Model tests for Topology
      */
     @Test
-    void testTopology() {
+    public void testTopology() {
         // TODO: test Topology
     }
 
@@ -44,7 +33,7 @@ class TopologyTest {
      * Test the property 'segments'
      */
     @Test
-    void segmentsTest() {
+    public void segmentsTest() {
         // TODO: test segments
     }
 

@@ -13,285 +13,283 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectSecret contains information on secrets mounted inside the container
  */
-@JsonPropertyOrder({
-  InspectSecret.JSON_PROPERTY_G_I_D,
-  InspectSecret.JSON_PROPERTY_I_D,
-  InspectSecret.JSON_PROPERTY_MODE,
-  InspectSecret.JSON_PROPERTY_NAME,
-  InspectSecret.JSON_PROPERTY_U_I_D
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectSecret {
-  public static final String JSON_PROPERTY_G_I_D = "GID";
-  private Integer GID;
+    public static final String SERIALIZED_NAME_G_I_D = "GID";
+    public static final String SERIALIZED_NAME_I_D = "ID";
+    public static final String SERIALIZED_NAME_MODE = "Mode";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_U_I_D = "UID";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_I_D = "ID";
-  private String ID;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("GID");
+        openapiFields.add("ID");
+        openapiFields.add("Mode");
+        openapiFields.add("Name");
+        openapiFields.add("UID");
 
-  public static final String JSON_PROPERTY_MODE = "Mode";
-  private Integer mode;
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_U_I_D = "UID";
-  private Integer UID;
-
-  public InspectSecret() { 
-  }
-
-  public InspectSecret GID(Integer GID) {
-    this.GID = GID;
-    return this;
-  }
-
-  /**
-   * ID is the GID of the mounted secret file
-   * @return GID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_G_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getGID() {
-    return GID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_G_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGID(Integer GID) {
-    this.GID = GID;
-  }
-
-
-  public InspectSecret ID(String ID) {
-    this.ID = ID;
-    return this;
-  }
-
-  /**
-   * ID is the ID of the secret
-   * @return ID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getID() {
-    return ID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setID(String ID) {
-    this.ID = ID;
-  }
-
-
-  public InspectSecret mode(Integer mode) {
-    this.mode = mode;
-    return this;
-  }
-
-  /**
-   * ID is the ID of the mode of the mounted secret file
-   * @return mode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getMode() {
-    return mode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMode(Integer mode) {
-    this.mode = mode;
-  }
-
-
-  public InspectSecret name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Name is the name of the secret
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public InspectSecret UID(Integer UID) {
-    this.UID = UID;
-    return this;
-  }
-
-  /**
-   * ID is the UID of the mounted secret file
-   * @return UID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_U_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getUID() {
-    return UID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_U_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUID(Integer UID) {
-    this.UID = UID;
-  }
-
-
-  /**
-   * Return true if this InspectSecret object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InspectSecret inspectSecret = (InspectSecret) o;
-    return Objects.equals(this.GID, inspectSecret.GID) &&
-        Objects.equals(this.ID, inspectSecret.ID) &&
-        Objects.equals(this.mode, inspectSecret.mode) &&
-        Objects.equals(this.name, inspectSecret.name) &&
-        Objects.equals(this.UID, inspectSecret.UID);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(GID, ID, mode, name, UID);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InspectSecret {\n");
-    sb.append("    GID: ").append(toIndentedString(GID)).append("\n");
-    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
-    sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    UID: ").append(toIndentedString(UID)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_G_I_D)
+    private Integer GID;
+    @SerializedName(SERIALIZED_NAME_I_D)
+    private String ID;
+    @SerializedName(SERIALIZED_NAME_MODE)
+    private Integer mode;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_U_I_D)
+    private Integer UID;
 
-    // add `GID` to the URL query string
-    if (getGID() != null) {
-      joiner.add(String.format("%sGID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectSecret() {
     }
 
-    // add `ID` to the URL query string
-    if (getID() != null) {
-      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to InspectSecret
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!InspectSecret.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectSecret is not found in the empty JSON string", InspectSecret.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!InspectSecret.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectSecret` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
     }
 
-    // add `Mode` to the URL query string
-    if (getMode() != null) {
-      joiner.add(String.format("%sMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of InspectSecret given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectSecret
+     * @throws IOException if the JSON string is invalid with respect to InspectSecret
+     */
+    public static InspectSecret fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, InspectSecret.class);
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectSecret GID(Integer GID) {
+        this.GID = GID;
+        return this;
     }
 
-    // add `UID` to the URL query string
-    if (getUID() != null) {
-      joiner.add(String.format("%sUID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * ID is the GID of the mounted secret file
+     *
+     * @return GID
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getGID() {
+        return GID;
     }
 
-    return joiner.toString();
-  }
+    public void setGID(Integer GID) {
+        this.GID = GID;
+    }
+
+    public InspectSecret ID(String ID) {
+        this.ID = ID;
+        return this;
+    }
+
+    /**
+     * ID is the ID of the secret
+     *
+     * @return ID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public InspectSecret mode(Integer mode) {
+        this.mode = mode;
+        return this;
+    }
+
+    /**
+     * ID is the ID of the mode of the mounted secret file
+     *
+     * @return mode
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getMode() {
+        return mode;
+    }
+
+    public void setMode(Integer mode) {
+        this.mode = mode;
+    }
+
+    public InspectSecret name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name is the name of the secret
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public InspectSecret UID(Integer UID) {
+        this.UID = UID;
+        return this;
+    }
+
+    /**
+     * ID is the UID of the mounted secret file
+     *
+     * @return UID
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getUID() {
+        return UID;
+    }
+
+    public void setUID(Integer UID) {
+        this.UID = UID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectSecret inspectSecret = (InspectSecret) o;
+        return Objects.equals(this.GID, inspectSecret.GID) &&
+                Objects.equals(this.ID, inspectSecret.ID) &&
+                Objects.equals(this.mode, inspectSecret.mode) &&
+                Objects.equals(this.name, inspectSecret.name) &&
+                Objects.equals(this.UID, inspectSecret.UID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(GID, ID, mode, name, UID);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class InspectSecret {\n" +
+                "    GID: " + toIndentedString(GID) + "\n" +
+                "    ID: " + toIndentedString(ID) + "\n" +
+                "    mode: " + toIndentedString(mode) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    UID: " + toIndentedString(UID) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of InspectSecret to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!InspectSecret.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'InspectSecret' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<InspectSecret> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(InspectSecret.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<InspectSecret>() {
+                @Override
+                public void write(JsonWriter out, InspectSecret value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public InspectSecret read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

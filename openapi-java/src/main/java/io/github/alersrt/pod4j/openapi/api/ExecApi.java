@@ -10,404 +10,606 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
+import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
 import io.github.alersrt.pod4j.openapi.model.ContainerExecRequest;
 import io.github.alersrt.pod4j.openapi.model.ExecStartLibpodRequest;
+import jakarta.validation.constraints.NotNull;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.StringJoiner;
-import java.util.function.Consumer;
+import java.util.Map;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ExecApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public ExecApi() {
-    this(new ApiClient());
-  }
-
-  public ExecApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public ExecApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Create an exec instance
-   * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
-   * @param name name of container (required)
-   * @param control Attributes for create (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void containerExecLibpod(String name, ContainerExecRequest control) throws ApiException {
-    containerExecLibpodWithHttpInfo(name, control);
-  }
+    public ExecApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Create an exec instance
-   * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
-   * @param name name of container (required)
-   * @param control Attributes for create (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> containerExecLibpodWithHttpInfo(String name, ContainerExecRequest control) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = containerExecLibpodRequestBuilder(name, control);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("containerExecLibpod", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for containerExecLibpod
+     *
+     * @param name      name of container (required)
+     * @param control   Attributes for create (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call containerExecLibpodCall(String name, ContainerExecRequest control, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = control;
+
+        // create path and map variables
+        String localVarPath = "/libpod/containers/{name}/exec"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder containerExecLibpodRequestBuilder(String name, ContainerExecRequest control) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling containerExecLibpod");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/containers/{name}/exec"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(control);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Inspect an exec instance
-   * Return low-level information about an exec instance.
-   * @param id Exec instance ID (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void execInspectLibpod(String id) throws ApiException {
-    execInspectLibpodWithHttpInfo(id);
-  }
-
-  /**
-   * Inspect an exec instance
-   * Return low-level information about an exec instance.
-   * @param id Exec instance ID (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> execInspectLibpodWithHttpInfo(String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = execInspectLibpodRequestBuilder(id);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("execInspectLibpod", localVarResponse);
+        final String[] localVarContentTypes = {
+                "application/json",
+                "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call containerExecLibpodValidateBeforeCall(String name, ContainerExecRequest control, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling containerExecLibpod(Async)");
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder execInspectLibpodRequestBuilder(String id) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling execInspectLibpod");
+        return containerExecLibpodCall(name, control, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/exec/{id}/json"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Create an exec instance
+     * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
+     *
+     * @param name    name of container (required)
+     * @param control Attributes for create (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void containerExecLibpod(String name, ContainerExecRequest control) throws ApiException {
+        containerExecLibpodWithHttpInfo(name, control);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Create an exec instance
+     * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
+     *
+     * @param name    name of container (required)
+     * @param control Attributes for create (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> containerExecLibpodWithHttpInfo(@NotNull String name, ContainerExecRequest control) throws ApiException {
+        okhttp3.Call localVarCall = containerExecLibpodValidateBeforeCall(name, control, null);
+        return localVarApiClient.execute(localVarCall);
     }
-    return localVarRequestBuilder;
-  }
 
-  /**
-   * Resize an exec instance
-   * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance. 
-   * @param id Exec instance ID (required)
-   * @param h Height of the TTY session in characters (optional)
-   * @param w Width of the TTY session in characters (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void execResizeLibpod(String id, Integer h, Integer w) throws ApiException {
-    execResizeLibpodWithHttpInfo(id, h, w);
-  }
+    /**
+     * Create an exec instance (asynchronously)
+     * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
+     *
+     * @param name      name of container (required)
+     * @param control   Attributes for create (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> container is paused </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call containerExecLibpodAsync(String name, ContainerExecRequest control, final ApiCallback<Void> _callback) throws ApiException {
 
-  /**
-   * Resize an exec instance
-   * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance. 
-   * @param id Exec instance ID (required)
-   * @param h Height of the TTY session in characters (optional)
-   * @param w Width of the TTY session in characters (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> execResizeLibpodWithHttpInfo(String id, Integer h, Integer w) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = execResizeLibpodRequestBuilder(id, h, w);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("execResizeLibpod", localVarResponse);
+        okhttp3.Call localVarCall = containerExecLibpodValidateBeforeCall(name, control, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for execInspectLibpod
+     *
+     * @param id        Exec instance ID (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call execInspectLibpodCall(String id, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/exec/{id}/json"
+                .replace("{" + "id" + "}", localVarApiClient.escapeString(id));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder execResizeLibpodRequestBuilder(String id, Integer h, Integer w) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling execResizeLibpod");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/exec/{id}/resize"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "h";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("h", h));
-    localVarQueryParameterBaseName = "w";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("w", w));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Start an exec instance
-   * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command. The stream format is the same as the attach endpoint. 
-   * @param id Exec instance ID (required)
-   * @param control Attributes for start (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void execStartLibpod(String id, ExecStartLibpodRequest control) throws ApiException {
-    execStartLibpodWithHttpInfo(id, control);
-  }
-
-  /**
-   * Start an exec instance
-   * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command. The stream format is the same as the attach endpoint. 
-   * @param id Exec instance ID (required)
-   * @param control Attributes for start (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> execStartLibpodWithHttpInfo(String id, ExecStartLibpodRequest control) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = execStartLibpodRequestBuilder(id, control);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("execStartLibpod", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call execInspectLibpodValidateBeforeCall(String id, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling execInspectLibpod(Async)");
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder execStartLibpodRequestBuilder(String id, ExecStartLibpodRequest control) throws ApiException {
-    // verify the required parameter 'id' is set
-    if (id == null) {
-      throw new ApiException(400, "Missing the required parameter 'id' when calling execStartLibpod");
+        return execInspectLibpodCall(id, _callback);
+
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/exec/{id}/start"
-        .replace("{id}", ApiClient.urlEncode(id.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(control);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
+    /**
+     * Inspect an exec instance
+     * Return low-level information about an exec instance.
+     *
+     * @param id Exec instance ID (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void execInspectLibpod(String id) throws ApiException {
+        execInspectLibpodWithHttpInfo(id);
     }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
 
+    /**
+     * Inspect an exec instance
+     * Return low-level information about an exec instance.
+     *
+     * @param id Exec instance ID (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> execInspectLibpodWithHttpInfo(@NotNull String id) throws ApiException {
+        okhttp3.Call localVarCall = execInspectLibpodValidateBeforeCall(id, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Inspect an exec instance (asynchronously)
+     * Return low-level information about an exec instance.
+     *
+     * @param id        Exec instance ID (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call execInspectLibpodAsync(String id, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = execInspectLibpodValidateBeforeCall(id, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for execResizeLibpod
+     *
+     * @param id        Exec instance ID (required)
+     * @param h         Height of the TTY session in characters (optional)
+     * @param w         Width of the TTY session in characters (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call execResizeLibpodCall(String id, Integer h, Integer w, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/exec/{id}/resize"
+                .replace("{" + "id" + "}", localVarApiClient.escapeString(id));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (h != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("h", h));
+        }
+
+        if (w != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("w", w));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call execResizeLibpodValidateBeforeCall(String id, Integer h, Integer w, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling execResizeLibpod(Async)");
+        }
+
+        return execResizeLibpodCall(id, h, w, _callback);
+
+    }
+
+    /**
+     * Resize an exec instance
+     * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance.
+     *
+     * @param id Exec instance ID (required)
+     * @param h  Height of the TTY session in characters (optional)
+     * @param w  Width of the TTY session in characters (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void execResizeLibpod(String id, Integer h, Integer w) throws ApiException {
+        execResizeLibpodWithHttpInfo(id, h, w);
+    }
+
+    /**
+     * Resize an exec instance
+     * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance.
+     *
+     * @param id Exec instance ID (required)
+     * @param h  Height of the TTY session in characters (optional)
+     * @param w  Width of the TTY session in characters (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> execResizeLibpodWithHttpInfo(@NotNull String id, Integer h, Integer w) throws ApiException {
+        okhttp3.Call localVarCall = execResizeLibpodValidateBeforeCall(id, h, w, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Resize an exec instance (asynchronously)
+     * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance.
+     *
+     * @param id        Exec instance ID (required)
+     * @param h         Height of the TTY session in characters (optional)
+     * @param w         Width of the TTY session in characters (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call execResizeLibpodAsync(String id, Integer h, Integer w, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = execResizeLibpodValidateBeforeCall(id, h, w, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for execStartLibpod
+     *
+     * @param id        Exec instance ID (required)
+     * @param control   Attributes for start (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> container is not running. </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call execStartLibpodCall(String id, ExecStartLibpodRequest control, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = control;
+
+        // create path and map variables
+        String localVarPath = "/libpod/exec/{id}/start"
+                .replace("{" + "id" + "}", localVarApiClient.escapeString(id));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+                "application/json",
+                "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call execStartLibpodValidateBeforeCall(String id, ExecStartLibpodRequest control, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling execStartLibpod(Async)");
+        }
+
+        return execStartLibpodCall(id, control, _callback);
+
+    }
+
+    /**
+     * Start an exec instance
+     * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command. The stream format is the same as the attach endpoint.
+     *
+     * @param id      Exec instance ID (required)
+     * @param control Attributes for start (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> container is not running. </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void execStartLibpod(String id, ExecStartLibpodRequest control) throws ApiException {
+        execStartLibpodWithHttpInfo(id, control);
+    }
+
+    /**
+     * Start an exec instance
+     * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command. The stream format is the same as the attach endpoint.
+     *
+     * @param id      Exec instance ID (required)
+     * @param control Attributes for start (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> container is not running. </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> execStartLibpodWithHttpInfo(@NotNull String id, ExecStartLibpodRequest control) throws ApiException {
+        okhttp3.Call localVarCall = execStartLibpodValidateBeforeCall(id, control, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Start an exec instance (asynchronously)
+     * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command. The stream format is the same as the attach endpoint.
+     *
+     * @param id        Exec instance ID (required)
+     * @param control   Attributes for start (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such exec instance </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> container is not running. </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call execStartLibpodAsync(String id, ExecStartLibpodRequest control, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = execStartLibpodValidateBeforeCall(id, control, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
 }

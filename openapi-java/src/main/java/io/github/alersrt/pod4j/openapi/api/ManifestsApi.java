@@ -10,13 +10,15 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.reflect.TypeToken;
+import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
+import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
 import io.github.alersrt.pod4j.openapi.model.IdResponse;
 import io.github.alersrt.pod4j.openapi.model.LibpodImagesRemoveReport;
@@ -24,797 +26,1277 @@ import io.github.alersrt.pod4j.openapi.model.ManifestAddOptions;
 import io.github.alersrt.pod4j.openapi.model.ManifestModifyOptions;
 import io.github.alersrt.pod4j.openapi.model.ManifestModifyReport;
 import io.github.alersrt.pod4j.openapi.model.Schema2ListPublic;
+import jakarta.validation.constraints.NotNull;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.StringJoiner;
-import java.util.function.Consumer;
+import java.util.Map;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestsApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public ManifestsApi() {
-    this(new ApiClient());
-  }
-
-  public ManifestsApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public ManifestsApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Add image
-   * Add an image to a manifest list  Deprecated: As of 4.0.0 use ManifestModifyLibpod instead 
-   * @param name the name or ID of the manifest (required)
-   * @param options options for creating a manifest (optional)
-   * @return IdResponse
-   * @throws ApiException if fails to make API call
-   */
-  public IdResponse manifestAddLibpod(String name, ManifestAddOptions options) throws ApiException {
-    ApiResponse<IdResponse> localVarResponse = manifestAddLibpodWithHttpInfo(name, options);
-    return localVarResponse.getData();
-  }
+    public ManifestsApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Add image
-   * Add an image to a manifest list  Deprecated: As of 4.0.0 use ManifestModifyLibpod instead 
-   * @param name the name or ID of the manifest (required)
-   * @param options options for creating a manifest (optional)
-   * @return ApiResponse&lt;IdResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<IdResponse> manifestAddLibpodWithHttpInfo(String name, ManifestAddOptions options) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = manifestAddLibpodRequestBuilder(name, options);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("manifestAddLibpod", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for manifestAddLibpod
+     *
+     * @param name      the name or ID of the manifest (required)
+     * @param options   options for creating a manifest (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestAddLibpodCall(String name, ManifestAddOptions options, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<IdResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<IdResponse>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder manifestAddLibpodRequestBuilder(String name, ManifestAddOptions options) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling manifestAddLibpod");
-    }
+        Object localVarPostBody = options;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/libpod/manifests/{name}/add"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
 
-    String localVarPath = "/libpod/manifests/{name}/add"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(options);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Create
-   * Create a manifest list
-   * @param name manifest list or index name to create (required)
-   * @param images One or more names of an image or a manifest list. Repeat parameter as needed.  Support for multiple images, as of version 4.0.0 Alias of &#x60;image&#x60; is support for compatibility with &lt; 4.0.0 Response status code is 200 with &lt; 4.0.0 for compatibility  (required)
-   * @param all add all contents if given list (optional)
-   * @param amend modify an existing list if one with the desired name already exists (optional)
-   * @param options options for new manifest (optional)
-   * @return IdResponse
-   * @throws ApiException if fails to make API call
-   */
-  public IdResponse manifestCreateLibpod(String name, String images, Boolean all, Boolean amend, ManifestModifyOptions options) throws ApiException {
-    ApiResponse<IdResponse> localVarResponse = manifestCreateLibpodWithHttpInfo(name, images, all, amend, options);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Create
-   * Create a manifest list
-   * @param name manifest list or index name to create (required)
-   * @param images One or more names of an image or a manifest list. Repeat parameter as needed.  Support for multiple images, as of version 4.0.0 Alias of &#x60;image&#x60; is support for compatibility with &lt; 4.0.0 Response status code is 200 with &lt; 4.0.0 for compatibility  (required)
-   * @param all add all contents if given list (optional)
-   * @param amend modify an existing list if one with the desired name already exists (optional)
-   * @param options options for new manifest (optional)
-   * @return ApiResponse&lt;IdResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<IdResponse> manifestCreateLibpodWithHttpInfo(String name, String images, Boolean all, Boolean amend, ManifestModifyOptions options) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = manifestCreateLibpodRequestBuilder(name, images, all, amend, options);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("manifestCreateLibpod", localVarResponse);
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<IdResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<IdResponse>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder manifestCreateLibpodRequestBuilder(String name, String images, Boolean all, Boolean amend, ManifestModifyOptions options) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling manifestCreateLibpod");
-    }
-    // verify the required parameter 'images' is set
-    if (images == null) {
-      throw new ApiException(400, "Missing the required parameter 'images' when calling manifestCreateLibpod");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/manifests/{name}"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "images";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("images", images));
-    localVarQueryParameterBaseName = "all";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("all", all));
-    localVarQueryParameterBaseName = "amend";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("amend", amend));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(options);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Delete manifest list
-   * Delete named manifest list  As of v4.0.0 
-   * @param name The name or ID of the  list to be deleted (required)
-   * @return LibpodImagesRemoveReport
-   * @throws ApiException if fails to make API call
-   */
-  public LibpodImagesRemoveReport manifestDeleteLibpod(String name) throws ApiException {
-    ApiResponse<LibpodImagesRemoveReport> localVarResponse = manifestDeleteLibpodWithHttpInfo(name);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Delete manifest list
-   * Delete named manifest list  As of v4.0.0 
-   * @param name The name or ID of the  list to be deleted (required)
-   * @return ApiResponse&lt;LibpodImagesRemoveReport&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<LibpodImagesRemoveReport> manifestDeleteLibpodWithHttpInfo(String name) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = manifestDeleteLibpodRequestBuilder(name);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("manifestDeleteLibpod", localVarResponse);
+        final String[] localVarContentTypes = {
+                "application/json",
+                "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<LibpodImagesRemoveReport>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<LibpodImagesRemoveReport>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder manifestDeleteLibpodRequestBuilder(String name) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling manifestDeleteLibpod");
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/manifests/{name}"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Exists
-   * Check if manifest list exists  Note: There is no contract that the manifest list will exist for a follow-on operation 
-   * @param name the name or ID of the manifest list (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void manifestExistsLibpod(String name) throws ApiException {
-    manifestExistsLibpodWithHttpInfo(name);
-  }
-
-  /**
-   * Exists
-   * Check if manifest list exists  Note: There is no contract that the manifest list will exist for a follow-on operation 
-   * @param name the name or ID of the manifest list (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> manifestExistsLibpodWithHttpInfo(String name) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = manifestExistsLibpodRequestBuilder(name);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("manifestExistsLibpod", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manifestAddLibpodValidateBeforeCall(String name, ManifestAddOptions options, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling manifestAddLibpod(Async)");
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        return manifestAddLibpodCall(name, options, _callback);
+
+    }
+
+    /**
+     * Add image
+     * Add an image to a manifest list  Deprecated: As of 4.0.0 use ManifestModifyLibpod instead
+     *
+     * @param name    the name or ID of the manifest (required)
+     * @param options options for creating a manifest (optional)
+     * @return IdResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public IdResponse manifestAddLibpod(String name, ManifestAddOptions options) throws ApiException {
+        ApiResponse<IdResponse> localVarResp = manifestAddLibpodWithHttpInfo(name, options);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Add image
+     * Add an image to a manifest list  Deprecated: As of 4.0.0 use ManifestModifyLibpod instead
+     *
+     * @param name    the name or ID of the manifest (required)
+     * @param options options for creating a manifest (optional)
+     * @return ApiResponse&lt;IdResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<IdResponse> manifestAddLibpodWithHttpInfo(@NotNull String name, ManifestAddOptions options) throws ApiException {
+        okhttp3.Call localVarCall = manifestAddLibpodValidateBeforeCall(name, options, null);
+        Type localVarReturnType = new TypeToken<IdResponse>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Add image (asynchronously)
+     * Add an image to a manifest list  Deprecated: As of 4.0.0 use ManifestModifyLibpod instead
+     *
+     * @param name      the name or ID of the manifest (required)
+     * @param options   options for creating a manifest (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestAddLibpodAsync(String name, ManifestAddOptions options, final ApiCallback<IdResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manifestAddLibpodValidateBeforeCall(name, options, _callback);
+        Type localVarReturnType = new TypeToken<IdResponse>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for manifestCreateLibpod
+     *
+     * @param name      manifest list or index name to create (required)
+     * @param images    One or more names of an image or a manifest list. Repeat parameter as needed.  Support for multiple images, as of version 4.0.0 Alias of &#x60;image&#x60; is support for compatibility with &lt; 4.0.0 Response status code is 200 with &lt; 4.0.0 for compatibility  (required)
+     * @param all       add all contents if given list (optional)
+     * @param amend     modify an existing list if one with the desired name already exists (optional)
+     * @param options   options for new manifest (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestCreateLibpodCall(String name, String images, Boolean all, Boolean amend, ManifestModifyOptions options, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder manifestExistsLibpodRequestBuilder(String name) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling manifestExistsLibpod");
-    }
+        Object localVarPostBody = options;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/libpod/manifests/{name}"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
 
-    String localVarPath = "/libpod/manifests/{name}/exists"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Inspect
-   * Display attributes of given manifest list
-   * @param name the name or ID of the manifest list (required)
-   * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-   * @return Schema2ListPublic
-   * @throws ApiException if fails to make API call
-   */
-  public Schema2ListPublic manifestInspectLibpod(String name, Boolean tlsVerify) throws ApiException {
-    ApiResponse<Schema2ListPublic> localVarResponse = manifestInspectLibpodWithHttpInfo(name, tlsVerify);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Inspect
-   * Display attributes of given manifest list
-   * @param name the name or ID of the manifest list (required)
-   * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-   * @return ApiResponse&lt;Schema2ListPublic&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Schema2ListPublic> manifestInspectLibpodWithHttpInfo(String name, Boolean tlsVerify) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = manifestInspectLibpodRequestBuilder(name, tlsVerify);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("manifestInspectLibpod", localVarResponse);
+        if (images != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("images", images));
         }
-        return new ApiResponse<Schema2ListPublic>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Schema2ListPublic>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder manifestInspectLibpodRequestBuilder(String name, Boolean tlsVerify) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling manifestInspectLibpod");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/manifests/{name}/json"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "tlsVerify";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("tlsVerify", tlsVerify));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Modify manifest list
-   * Add/Remove an image(s) to a manifest list  Note: operations are not atomic when multiple Images are provided.  As of v4.0.0 
-   * @param name the name or ID of the manifest (required)
-   * @param options options for mutating a manifest (required)
-   * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-   * @return ManifestModifyReport
-   * @throws ApiException if fails to make API call
-   */
-  public ManifestModifyReport manifestModifyLibpod(String name, ManifestModifyOptions options, Boolean tlsVerify) throws ApiException {
-    ApiResponse<ManifestModifyReport> localVarResponse = manifestModifyLibpodWithHttpInfo(name, options, tlsVerify);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Modify manifest list
-   * Add/Remove an image(s) to a manifest list  Note: operations are not atomic when multiple Images are provided.  As of v4.0.0 
-   * @param name the name or ID of the manifest (required)
-   * @param options options for mutating a manifest (required)
-   * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-   * @return ApiResponse&lt;ManifestModifyReport&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<ManifestModifyReport> manifestModifyLibpodWithHttpInfo(String name, ManifestModifyOptions options, Boolean tlsVerify) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = manifestModifyLibpodRequestBuilder(name, options, tlsVerify);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("manifestModifyLibpod", localVarResponse);
+        if (all != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("all", all));
         }
-        return new ApiResponse<ManifestModifyReport>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<ManifestModifyReport>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder manifestModifyLibpodRequestBuilder(String name, ManifestModifyOptions options, Boolean tlsVerify) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling manifestModifyLibpod");
-    }
-    // verify the required parameter 'options' is set
-    if (options == null) {
-      throw new ApiException(400, "Missing the required parameter 'options' when calling manifestModifyLibpod");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/manifests/{name}"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "tlsVerify";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("tlsVerify", tlsVerify));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(options);
-      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Push manifest list to registry
-   * Push a manifest list or image index to the named registry  As of v4.0.0 
-   * @param name the name or ID of the manifest list (required)
-   * @param destination the registry for the manifest list (required)
-   * @param addCompression add existing instances with requested compression algorithms to manifest list (optional)
-   * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
-   * @param all push all images (optional, default to true)
-   * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-   * @param quiet silences extra stream data on push (optional, default to true)
-   * @return IdResponse
-   * @throws ApiException if fails to make API call
-   */
-  public IdResponse manifestPushLibpod(String name, String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet) throws ApiException {
-    ApiResponse<IdResponse> localVarResponse = manifestPushLibpodWithHttpInfo(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Push manifest list to registry
-   * Push a manifest list or image index to the named registry  As of v4.0.0 
-   * @param name the name or ID of the manifest list (required)
-   * @param destination the registry for the manifest list (required)
-   * @param addCompression add existing instances with requested compression algorithms to manifest list (optional)
-   * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
-   * @param all push all images (optional, default to true)
-   * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-   * @param quiet silences extra stream data on push (optional, default to true)
-   * @return ApiResponse&lt;IdResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<IdResponse> manifestPushLibpodWithHttpInfo(String name, String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = manifestPushLibpodRequestBuilder(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("manifestPushLibpod", localVarResponse);
+        if (amend != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("amend", amend));
         }
-        return new ApiResponse<IdResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<IdResponse>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder manifestPushLibpodRequestBuilder(String name, String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling manifestPushLibpod");
-    }
-    // verify the required parameter 'destination' is set
-    if (destination == null) {
-      throw new ApiException(400, "Missing the required parameter 'destination' when calling manifestPushLibpod");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/manifests/{name}/registry/{destination}"
-        .replace("{name}", ApiClient.urlEncode(name.toString()))
-        .replace("{destination}", ApiClient.urlEncode(destination.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "addCompression";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "addCompression", addCompression));
-    localVarQueryParameterBaseName = "forceCompressionFormat";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("forceCompressionFormat", forceCompressionFormat));
-    localVarQueryParameterBaseName = "all";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("all", all));
-    localVarQueryParameterBaseName = "tlsVerify";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("tlsVerify", tlsVerify));
-    localVarQueryParameterBaseName = "quiet";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("quiet", quiet));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Push manifest to registry
-   * Push a manifest list or image index to a registry  Deprecated: As of 4.0.0 use ManifestPushLibpod instead 
-   * @param name the name or ID of the manifest (required)
-   * @param destination the destination for the manifest (required)
-   * @param all push all images (optional)
-   * @return IdResponse
-   * @throws ApiException if fails to make API call
-   */
-  public IdResponse manifestPushV3Libpod(String name, String destination, Boolean all) throws ApiException {
-    ApiResponse<IdResponse> localVarResponse = manifestPushV3LibpodWithHttpInfo(name, destination, all);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Push manifest to registry
-   * Push a manifest list or image index to a registry  Deprecated: As of 4.0.0 use ManifestPushLibpod instead 
-   * @param name the name or ID of the manifest (required)
-   * @param destination the destination for the manifest (required)
-   * @param all push all images (optional)
-   * @return ApiResponse&lt;IdResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<IdResponse> manifestPushV3LibpodWithHttpInfo(String name, String destination, Boolean all) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = manifestPushV3LibpodRequestBuilder(name, destination, all);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("manifestPushV3Libpod", localVarResponse);
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<IdResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<IdResponse>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder manifestPushV3LibpodRequestBuilder(String name, String destination, Boolean all) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling manifestPushV3Libpod");
-    }
-    // verify the required parameter 'destination' is set
-    if (destination == null) {
-      throw new ApiException(400, "Missing the required parameter 'destination' when calling manifestPushV3Libpod");
+        final String[] localVarContentTypes = {
+                "application/json",
+                "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manifestCreateLibpodValidateBeforeCall(String name, String images, Boolean all, Boolean amend, ManifestModifyOptions options, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling manifestCreateLibpod(Async)");
+        }
 
-    String localVarPath = "/libpod/manifests/{name}/push"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
+        // verify the required parameter 'images' is set
+        if (images == null) {
+            throw new ApiException("Missing the required parameter 'images' when calling manifestCreateLibpod(Async)");
+        }
 
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "destination";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("destination", destination));
-    localVarQueryParameterBaseName = "all";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("all", all));
+        return manifestCreateLibpodCall(name, images, all, amend, options, _callback);
 
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Create
+     * Create a manifest list
+     *
+     * @param name    manifest list or index name to create (required)
+     * @param images  One or more names of an image or a manifest list. Repeat parameter as needed.  Support for multiple images, as of version 4.0.0 Alias of &#x60;image&#x60; is support for compatibility with &lt; 4.0.0 Response status code is 200 with &lt; 4.0.0 for compatibility  (required)
+     * @param all     add all contents if given list (optional)
+     * @param amend   modify an existing list if one with the desired name already exists (optional)
+     * @param options options for new manifest (optional)
+     * @return IdResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public IdResponse manifestCreateLibpod(String name, String images, Boolean all, Boolean amend, ManifestModifyOptions options) throws ApiException {
+        ApiResponse<IdResponse> localVarResp = manifestCreateLibpodWithHttpInfo(name, images, all, amend, options);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
 
+    /**
+     * Create
+     * Create a manifest list
+     *
+     * @param name    manifest list or index name to create (required)
+     * @param images  One or more names of an image or a manifest list. Repeat parameter as needed.  Support for multiple images, as of version 4.0.0 Alias of &#x60;image&#x60; is support for compatibility with &lt; 4.0.0 Response status code is 200 with &lt; 4.0.0 for compatibility  (required)
+     * @param all     add all contents if given list (optional)
+     * @param amend   modify an existing list if one with the desired name already exists (optional)
+     * @param options options for new manifest (optional)
+     * @return ApiResponse&lt;IdResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<IdResponse> manifestCreateLibpodWithHttpInfo(@NotNull String name, @NotNull String images, Boolean all, Boolean amend, ManifestModifyOptions options) throws ApiException {
+        okhttp3.Call localVarCall = manifestCreateLibpodValidateBeforeCall(name, images, all, amend, options, null);
+        Type localVarReturnType = new TypeToken<IdResponse>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Create (asynchronously)
+     * Create a manifest list
+     *
+     * @param name      manifest list or index name to create (required)
+     * @param images    One or more names of an image or a manifest list. Repeat parameter as needed.  Support for multiple images, as of version 4.0.0 Alias of &#x60;image&#x60; is support for compatibility with &lt; 4.0.0 Response status code is 200 with &lt; 4.0.0 for compatibility  (required)
+     * @param all       add all contents if given list (optional)
+     * @param amend     modify an existing list if one with the desired name already exists (optional)
+     * @param options   options for new manifest (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestCreateLibpodAsync(String name, String images, Boolean all, Boolean amend, ManifestModifyOptions options, final ApiCallback<IdResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manifestCreateLibpodValidateBeforeCall(name, images, all, amend, options, _callback);
+        Type localVarReturnType = new TypeToken<IdResponse>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for manifestDeleteLibpod
+     *
+     * @param name      The name or ID of the  list to be deleted (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestDeleteLibpodCall(String name, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/manifests/{name}"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manifestDeleteLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling manifestDeleteLibpod(Async)");
+        }
+
+        return manifestDeleteLibpodCall(name, _callback);
+
+    }
+
+    /**
+     * Delete manifest list
+     * Delete named manifest list  As of v4.0.0
+     *
+     * @param name The name or ID of the  list to be deleted (required)
+     * @return LibpodImagesRemoveReport
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public LibpodImagesRemoveReport manifestDeleteLibpod(String name) throws ApiException {
+        ApiResponse<LibpodImagesRemoveReport> localVarResp = manifestDeleteLibpodWithHttpInfo(name);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Delete manifest list
+     * Delete named manifest list  As of v4.0.0
+     *
+     * @param name The name or ID of the  list to be deleted (required)
+     * @return ApiResponse&lt;LibpodImagesRemoveReport&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<LibpodImagesRemoveReport> manifestDeleteLibpodWithHttpInfo(@NotNull String name) throws ApiException {
+        okhttp3.Call localVarCall = manifestDeleteLibpodValidateBeforeCall(name, null);
+        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Delete manifest list (asynchronously)
+     * Delete named manifest list  As of v4.0.0
+     *
+     * @param name      The name or ID of the  list to be deleted (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestDeleteLibpodAsync(String name, final ApiCallback<LibpodImagesRemoveReport> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manifestDeleteLibpodValidateBeforeCall(name, _callback);
+        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for manifestExistsLibpod
+     *
+     * @param name      the name or ID of the manifest list (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> manifest list exists </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/manifests/{name}/exists"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manifestExistsLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling manifestExistsLibpod(Async)");
+        }
+
+        return manifestExistsLibpodCall(name, _callback);
+
+    }
+
+    /**
+     * Exists
+     * Check if manifest list exists  Note: There is no contract that the manifest list will exist for a follow-on operation
+     *
+     * @param name the name or ID of the manifest list (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> manifest list exists </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void manifestExistsLibpod(String name) throws ApiException {
+        manifestExistsLibpodWithHttpInfo(name);
+    }
+
+    /**
+     * Exists
+     * Check if manifest list exists  Note: There is no contract that the manifest list will exist for a follow-on operation
+     *
+     * @param name the name or ID of the manifest list (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> manifest list exists </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> manifestExistsLibpodWithHttpInfo(@NotNull String name) throws ApiException {
+        okhttp3.Call localVarCall = manifestExistsLibpodValidateBeforeCall(name, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Exists (asynchronously)
+     * Check if manifest list exists  Note: There is no contract that the manifest list will exist for a follow-on operation
+     *
+     * @param name      the name or ID of the manifest list (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> manifest list exists </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manifestExistsLibpodValidateBeforeCall(name, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for manifestInspectLibpod
+     *
+     * @param name      the name or ID of the manifest list (required)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Inspect Manifest </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestInspectLibpodCall(String name, Boolean tlsVerify, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/manifests/{name}/json"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (tlsVerify != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tlsVerify", tlsVerify));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manifestInspectLibpodValidateBeforeCall(String name, Boolean tlsVerify, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling manifestInspectLibpod(Async)");
+        }
+
+        return manifestInspectLibpodCall(name, tlsVerify, _callback);
+
+    }
+
+    /**
+     * Inspect
+     * Display attributes of given manifest list
+     *
+     * @param name      the name or ID of the manifest list (required)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @return Schema2ListPublic
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Inspect Manifest </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public Schema2ListPublic manifestInspectLibpod(String name, Boolean tlsVerify) throws ApiException {
+        ApiResponse<Schema2ListPublic> localVarResp = manifestInspectLibpodWithHttpInfo(name, tlsVerify);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Inspect
+     * Display attributes of given manifest list
+     *
+     * @param name      the name or ID of the manifest list (required)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @return ApiResponse&lt;Schema2ListPublic&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Inspect Manifest </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Schema2ListPublic> manifestInspectLibpodWithHttpInfo(@NotNull String name, Boolean tlsVerify) throws ApiException {
+        okhttp3.Call localVarCall = manifestInspectLibpodValidateBeforeCall(name, tlsVerify, null);
+        Type localVarReturnType = new TypeToken<Schema2ListPublic>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Inspect (asynchronously)
+     * Display attributes of given manifest list
+     *
+     * @param name      the name or ID of the manifest list (required)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Inspect Manifest </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestInspectLibpodAsync(String name, Boolean tlsVerify, final ApiCallback<Schema2ListPublic> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manifestInspectLibpodValidateBeforeCall(name, tlsVerify, _callback);
+        Type localVarReturnType = new TypeToken<Schema2ListPublic>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for manifestModifyLibpod
+     *
+     * @param name      the name or ID of the manifest (required)
+     * @param options   options for mutating a manifest (required)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Operation had partial success, both Images and Errors may have members </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestModifyLibpodCall(String name, ManifestModifyOptions options, Boolean tlsVerify, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = options;
+
+        // create path and map variables
+        String localVarPath = "/libpod/manifests/{name}"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (tlsVerify != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tlsVerify", tlsVerify));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+                "application/json",
+                "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manifestModifyLibpodValidateBeforeCall(String name, ManifestModifyOptions options, Boolean tlsVerify, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling manifestModifyLibpod(Async)");
+        }
+
+        // verify the required parameter 'options' is set
+        if (options == null) {
+            throw new ApiException("Missing the required parameter 'options' when calling manifestModifyLibpod(Async)");
+        }
+
+        return manifestModifyLibpodCall(name, options, tlsVerify, _callback);
+
+    }
+
+    /**
+     * Modify manifest list
+     * Add/Remove an image(s) to a manifest list  Note: operations are not atomic when multiple Images are provided.  As of v4.0.0
+     *
+     * @param name      the name or ID of the manifest (required)
+     * @param options   options for mutating a manifest (required)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @return ManifestModifyReport
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Operation had partial success, both Images and Errors may have members </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ManifestModifyReport manifestModifyLibpod(String name, ManifestModifyOptions options, Boolean tlsVerify) throws ApiException {
+        ApiResponse<ManifestModifyReport> localVarResp = manifestModifyLibpodWithHttpInfo(name, options, tlsVerify);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Modify manifest list
+     * Add/Remove an image(s) to a manifest list  Note: operations are not atomic when multiple Images are provided.  As of v4.0.0
+     *
+     * @param name      the name or ID of the manifest (required)
+     * @param options   options for mutating a manifest (required)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @return ApiResponse&lt;ManifestModifyReport&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Operation had partial success, both Images and Errors may have members </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<ManifestModifyReport> manifestModifyLibpodWithHttpInfo(@NotNull String name, @NotNull ManifestModifyOptions options, Boolean tlsVerify) throws ApiException {
+        okhttp3.Call localVarCall = manifestModifyLibpodValidateBeforeCall(name, options, tlsVerify, null);
+        Type localVarReturnType = new TypeToken<ManifestModifyReport>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Modify manifest list (asynchronously)
+     * Add/Remove an image(s) to a manifest list  Note: operations are not atomic when multiple Images are provided.  As of v4.0.0
+     *
+     * @param name      the name or ID of the manifest (required)
+     * @param options   options for mutating a manifest (required)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Operation had partial success, both Images and Errors may have members </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestModifyLibpodAsync(String name, ManifestModifyOptions options, Boolean tlsVerify, final ApiCallback<ManifestModifyReport> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manifestModifyLibpodValidateBeforeCall(name, options, tlsVerify, _callback);
+        Type localVarReturnType = new TypeToken<ManifestModifyReport>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for manifestPushLibpod
+     *
+     * @param name                   the name or ID of the manifest list (required)
+     * @param destination            the registry for the manifest list (required)
+     * @param addCompression         add existing instances with requested compression algorithms to manifest list (optional)
+     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
+     * @param all                    push all images (optional, default to true)
+     * @param tlsVerify              Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @param quiet                  silences extra stream data on push (optional, default to true)
+     * @param _callback              Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestPushLibpodCall(String name, String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/manifests/{name}/registry/{destination}"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name))
+                .replace("{" + "destination" + "}", localVarApiClient.escapeString(destination));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (addCompression != null) {
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "addCompression", addCompression));
+        }
+
+        if (forceCompressionFormat != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("forceCompressionFormat", forceCompressionFormat));
+        }
+
+        if (all != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("all", all));
+        }
+
+        if (tlsVerify != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tlsVerify", tlsVerify));
+        }
+
+        if (quiet != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("quiet", quiet));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manifestPushLibpodValidateBeforeCall(String name, String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling manifestPushLibpod(Async)");
+        }
+
+        // verify the required parameter 'destination' is set
+        if (destination == null) {
+            throw new ApiException("Missing the required parameter 'destination' when calling manifestPushLibpod(Async)");
+        }
+
+        return manifestPushLibpodCall(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet, _callback);
+
+    }
+
+    /**
+     * Push manifest list to registry
+     * Push a manifest list or image index to the named registry  As of v4.0.0
+     *
+     * @param name                   the name or ID of the manifest list (required)
+     * @param destination            the registry for the manifest list (required)
+     * @param addCompression         add existing instances with requested compression algorithms to manifest list (optional)
+     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
+     * @param all                    push all images (optional, default to true)
+     * @param tlsVerify              Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @param quiet                  silences extra stream data on push (optional, default to true)
+     * @return IdResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public IdResponse manifestPushLibpod(String name, String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet) throws ApiException {
+        ApiResponse<IdResponse> localVarResp = manifestPushLibpodWithHttpInfo(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Push manifest list to registry
+     * Push a manifest list or image index to the named registry  As of v4.0.0
+     *
+     * @param name                   the name or ID of the manifest list (required)
+     * @param destination            the registry for the manifest list (required)
+     * @param addCompression         add existing instances with requested compression algorithms to manifest list (optional)
+     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
+     * @param all                    push all images (optional, default to true)
+     * @param tlsVerify              Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @param quiet                  silences extra stream data on push (optional, default to true)
+     * @return ApiResponse&lt;IdResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<IdResponse> manifestPushLibpodWithHttpInfo(@NotNull String name, @NotNull String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet) throws ApiException {
+        okhttp3.Call localVarCall = manifestPushLibpodValidateBeforeCall(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet, null);
+        Type localVarReturnType = new TypeToken<IdResponse>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Push manifest list to registry (asynchronously)
+     * Push a manifest list or image index to the named registry  As of v4.0.0
+     *
+     * @param name                   the name or ID of the manifest list (required)
+     * @param destination            the registry for the manifest list (required)
+     * @param addCompression         add existing instances with requested compression algorithms to manifest list (optional)
+     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
+     * @param all                    push all images (optional, default to true)
+     * @param tlsVerify              Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+     * @param quiet                  silences extra stream data on push (optional, default to true)
+     * @param _callback              The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestPushLibpodAsync(String name, String destination, List<String> addCompression, Boolean forceCompressionFormat, Boolean all, Boolean tlsVerify, Boolean quiet, final ApiCallback<IdResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manifestPushLibpodValidateBeforeCall(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet, _callback);
+        Type localVarReturnType = new TypeToken<IdResponse>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for manifestPushV3Libpod
+     *
+     * @param name        the name or ID of the manifest (required)
+     * @param destination the destination for the manifest (required)
+     * @param all         push all images (optional)
+     * @param _callback   Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestPushV3LibpodCall(String name, String destination, Boolean all, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/manifests/{name}/push"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (destination != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("destination", destination));
+        }
+
+        if (all != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("all", all));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call manifestPushV3LibpodValidateBeforeCall(String name, String destination, Boolean all, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling manifestPushV3Libpod(Async)");
+        }
+
+        // verify the required parameter 'destination' is set
+        if (destination == null) {
+            throw new ApiException("Missing the required parameter 'destination' when calling manifestPushV3Libpod(Async)");
+        }
+
+        return manifestPushV3LibpodCall(name, destination, all, _callback);
+
+    }
+
+    /**
+     * Push manifest to registry
+     * Push a manifest list or image index to a registry  Deprecated: As of 4.0.0 use ManifestPushLibpod instead
+     *
+     * @param name        the name or ID of the manifest (required)
+     * @param destination the destination for the manifest (required)
+     * @param all         push all images (optional)
+     * @return IdResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public IdResponse manifestPushV3Libpod(String name, String destination, Boolean all) throws ApiException {
+        ApiResponse<IdResponse> localVarResp = manifestPushV3LibpodWithHttpInfo(name, destination, all);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Push manifest to registry
+     * Push a manifest list or image index to a registry  Deprecated: As of 4.0.0 use ManifestPushLibpod instead
+     *
+     * @param name        the name or ID of the manifest (required)
+     * @param destination the destination for the manifest (required)
+     * @param all         push all images (optional)
+     * @return ApiResponse&lt;IdResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<IdResponse> manifestPushV3LibpodWithHttpInfo(@NotNull String name, @NotNull String destination, Boolean all) throws ApiException {
+        okhttp3.Call localVarCall = manifestPushV3LibpodValidateBeforeCall(name, destination, all, null);
+        Type localVarReturnType = new TypeToken<IdResponse>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Push manifest to registry (asynchronously)
+     * Push a manifest list or image index to a registry  Deprecated: As of 4.0.0 use ManifestPushLibpod instead
+     *
+     * @param name        the name or ID of the manifest (required)
+     * @param destination the destination for the manifest (required)
+     * @param all         push all images (optional)
+     * @param _callback   The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td>  </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such manifest </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call manifestPushV3LibpodAsync(String name, String destination, Boolean all, final ApiCallback<IdResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = manifestPushV3LibpodValidateBeforeCall(name, destination, all, _callback);
+        Type localVarReturnType = new TypeToken<IdResponse>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

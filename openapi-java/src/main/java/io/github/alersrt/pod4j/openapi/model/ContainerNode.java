@@ -13,362 +13,350 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * Deprecated: ContainerNode was used for the classic Docker Swarm standalone API. It will be removed in the next release.
  */
-@JsonPropertyOrder({
-  ContainerNode.JSON_PROPERTY_ADDR,
-  ContainerNode.JSON_PROPERTY_CPUS,
-  ContainerNode.JSON_PROPERTY_I_D,
-  ContainerNode.JSON_PROPERTY_I_P,
-  ContainerNode.JSON_PROPERTY_LABELS,
-  ContainerNode.JSON_PROPERTY_MEMORY,
-  ContainerNode.JSON_PROPERTY_NAME
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerNode {
-  public static final String JSON_PROPERTY_ADDR = "Addr";
-  private String addr;
+    public static final String SERIALIZED_NAME_ADDR = "Addr";
+    public static final String SERIALIZED_NAME_CPUS = "Cpus";
+    public static final String SERIALIZED_NAME_I_D = "ID";
+    public static final String SERIALIZED_NAME_I_P = "IP";
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
+    public static final String SERIALIZED_NAME_MEMORY = "Memory";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_CPUS = "Cpus";
-  private Long cpus;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Addr");
+        openapiFields.add("Cpus");
+        openapiFields.add("ID");
+        openapiFields.add("IP");
+        openapiFields.add("Labels");
+        openapiFields.add("Memory");
+        openapiFields.add("Name");
 
-  public static final String JSON_PROPERTY_I_D = "ID";
-  private String ID;
-
-  public static final String JSON_PROPERTY_I_P = "IP";
-  private String IP;
-
-  public static final String JSON_PROPERTY_LABELS = "Labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_MEMORY = "Memory";
-  private Long memory;
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public ContainerNode() { 
-  }
-
-  public ContainerNode addr(String addr) {
-    this.addr = addr;
-    return this;
-  }
-
-  /**
-   * Get addr
-   * @return addr
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ADDR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getAddr() {
-    return addr;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ADDR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAddr(String addr) {
-    this.addr = addr;
-  }
-
-
-  public ContainerNode cpus(Long cpus) {
-    this.cpus = cpus;
-    return this;
-  }
-
-  /**
-   * Get cpus
-   * @return cpus
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpus() {
-    return cpus;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpus(Long cpus) {
-    this.cpus = cpus;
-  }
-
-
-  public ContainerNode ID(String ID) {
-    this.ID = ID;
-    return this;
-  }
-
-  /**
-   * Get ID
-   * @return ID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getID() {
-    return ID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setID(String ID) {
-    this.ID = ID;
-  }
-
-
-  public ContainerNode IP(String IP) {
-    this.IP = IP;
-    return this;
-  }
-
-  /**
-   * Get IP
-   * @return IP
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_I_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIP() {
-    return IP;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_I_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIP(String IP) {
-    this.IP = IP;
-  }
-
-
-  public ContainerNode labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public ContainerNode putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * Get labels
-   * @return labels
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public ContainerNode memory(Long memory) {
-    this.memory = memory;
-    return this;
-  }
-
-  /**
-   * Get memory
-   * @return memory
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemory() {
-    return memory;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemory(Long memory) {
-    this.memory = memory;
-  }
-
-
-  public ContainerNode name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  /**
-   * Return true if this ContainerNode object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ContainerNode containerNode = (ContainerNode) o;
-    return Objects.equals(this.addr, containerNode.addr) &&
-        Objects.equals(this.cpus, containerNode.cpus) &&
-        Objects.equals(this.ID, containerNode.ID) &&
-        Objects.equals(this.IP, containerNode.IP) &&
-        Objects.equals(this.labels, containerNode.labels) &&
-        Objects.equals(this.memory, containerNode.memory) &&
-        Objects.equals(this.name, containerNode.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(addr, cpus, ID, IP, labels, memory, name);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ContainerNode {\n");
-    sb.append("    addr: ").append(toIndentedString(addr)).append("\n");
-    sb.append("    cpus: ").append(toIndentedString(cpus)).append("\n");
-    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
-    sb.append("    IP: ").append(toIndentedString(IP)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ADDR)
+    private String addr;
+    @SerializedName(SERIALIZED_NAME_CPUS)
+    private Long cpus;
+    @SerializedName(SERIALIZED_NAME_I_D)
+    private String ID;
+    @SerializedName(SERIALIZED_NAME_I_P)
+    private String IP;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_MEMORY)
+    private Long memory;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
 
-    // add `Addr` to the URL query string
-    if (getAddr() != null) {
-      joiner.add(String.format("%sAddr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAddr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerNode() {
     }
 
-    // add `Cpus` to the URL query string
-    if (getCpus() != null) {
-      joiner.add(String.format("%sCpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ContainerNode
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ContainerNode.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerNode is not found in the empty JSON string", ContainerNode.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ContainerNode.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerNode` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Addr") != null && !jsonObj.get("Addr").isJsonNull()) && !jsonObj.get("Addr").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Addr` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Addr").toString()));
+        }
+        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+        }
+        if ((jsonObj.get("IP") != null && !jsonObj.get("IP").isJsonNull()) && !jsonObj.get("IP").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IP").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
     }
 
-    // add `ID` to the URL query string
-    if (getID() != null) {
-      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ContainerNode given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerNode
+     * @throws IOException if the JSON string is invalid with respect to ContainerNode
+     */
+    public static ContainerNode fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ContainerNode.class);
     }
 
-    // add `IP` to the URL query string
-    if (getIP() != null) {
-      joiner.add(String.format("%sIP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerNode addr(String addr) {
+        this.addr = addr;
+        return this;
     }
 
-    // add `Labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Get addr
+     *
+     * @return addr
+     */
+    @jakarta.annotation.Nullable
+
+    public String getAddr() {
+        return addr;
     }
 
-    // add `Memory` to the URL query string
-    if (getMemory() != null) {
-      joiner.add(String.format("%sMemory%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemory()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setAddr(String addr) {
+        this.addr = addr;
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerNode cpus(Long cpus) {
+        this.cpus = cpus;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Get cpus
+     *
+     * @return cpus
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpus() {
+        return cpus;
+    }
+
+    public void setCpus(Long cpus) {
+        this.cpus = cpus;
+    }
+
+    public ContainerNode ID(String ID) {
+        this.ID = ID;
+        return this;
+    }
+
+    /**
+     * Get ID
+     *
+     * @return ID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public ContainerNode IP(String IP) {
+        this.IP = IP;
+        return this;
+    }
+
+    /**
+     * Get IP
+     *
+     * @return IP
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIP() {
+        return IP;
+    }
+
+    public void setIP(String IP) {
+        this.IP = IP;
+    }
+
+    public ContainerNode labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public ContainerNode putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * Get labels
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public ContainerNode memory(Long memory) {
+        this.memory = memory;
+        return this;
+    }
+
+    /**
+     * Get memory
+     *
+     * @return memory
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Long memory) {
+        this.memory = memory;
+    }
+
+    public ContainerNode name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ContainerNode containerNode = (ContainerNode) o;
+        return Objects.equals(this.addr, containerNode.addr) &&
+                Objects.equals(this.cpus, containerNode.cpus) &&
+                Objects.equals(this.ID, containerNode.ID) &&
+                Objects.equals(this.IP, containerNode.IP) &&
+                Objects.equals(this.labels, containerNode.labels) &&
+                Objects.equals(this.memory, containerNode.memory) &&
+                Objects.equals(this.name, containerNode.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(addr, cpus, ID, IP, labels, memory, name);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ContainerNode {\n" +
+                "    addr: " + toIndentedString(addr) + "\n" +
+                "    cpus: " + toIndentedString(cpus) + "\n" +
+                "    ID: " + toIndentedString(ID) + "\n" +
+                "    IP: " + toIndentedString(IP) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    memory: " + toIndentedString(memory) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ContainerNode to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ContainerNode.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ContainerNode' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ContainerNode> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ContainerNode.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ContainerNode>() {
+                @Override
+                public void write(JsonWriter out, ContainerNode value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ContainerNode read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PortMapping
  */
-class PortMappingTest {
+public class PortMappingTest {
     private final PortMapping model = new PortMapping();
 
     /**
      * Model tests for PortMapping
      */
     @Test
-    void testPortMapping() {
+    public void testPortMapping() {
         // TODO: test PortMapping
     }
 
@@ -42,7 +43,7 @@ class PortMappingTest {
      * Test the property 'containerPort'
      */
     @Test
-    void containerPortTest() {
+    public void containerPortTest() {
         // TODO: test containerPort
     }
 
@@ -50,7 +51,7 @@ class PortMappingTest {
      * Test the property 'hostIp'
      */
     @Test
-    void hostIpTest() {
+    public void hostIpTest() {
         // TODO: test hostIp
     }
 
@@ -58,7 +59,7 @@ class PortMappingTest {
      * Test the property 'hostPort'
      */
     @Test
-    void hostPortTest() {
+    public void hostPortTest() {
         // TODO: test hostPort
     }
 
@@ -66,7 +67,7 @@ class PortMappingTest {
      * Test the property 'protocol'
      */
     @Test
-    void protocolTest() {
+    public void protocolTest() {
         // TODO: test protocol
     }
 
@@ -74,7 +75,7 @@ class PortMappingTest {
      * Test the property 'range'
      */
     @Test
-    void rangeTest() {
+    public void rangeTest() {
         // TODO: test range
     }
 

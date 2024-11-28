@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Schema2ManifestDescriptor;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Schema2ListPublic
  */
-class Schema2ListPublicTest {
+public class Schema2ListPublicTest {
     private final Schema2ListPublic model = new Schema2ListPublic();
 
     /**
      * Model tests for Schema2ListPublic
      */
     @Test
-    void testSchema2ListPublic() {
+    public void testSchema2ListPublic() {
         // TODO: test Schema2ListPublic
     }
 
@@ -44,7 +33,7 @@ class Schema2ListPublicTest {
      * Test the property 'manifests'
      */
     @Test
-    void manifestsTest() {
+    public void manifestsTest() {
         // TODO: test manifests
     }
 
@@ -52,7 +41,7 @@ class Schema2ListPublicTest {
      * Test the property 'mediaType'
      */
     @Test
-    void mediaTypeTest() {
+    public void mediaTypeTest() {
         // TODO: test mediaType
     }
 
@@ -60,7 +49,7 @@ class Schema2ListPublicTest {
      * Test the property 'schemaVersion'
      */
     @Test
-    void schemaVersionTest() {
+    public void schemaVersionTest() {
         // TODO: test schemaVersion
     }
 

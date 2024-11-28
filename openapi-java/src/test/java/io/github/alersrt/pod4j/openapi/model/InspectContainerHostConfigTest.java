@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.InspectBlkioThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.InspectBlkioWeightDevice;
 import io.github.alersrt.pod4j.openapi.model.InspectDevice;
@@ -26,27 +26,28 @@ import io.github.alersrt.pod4j.openapi.model.InspectIDMappings;
 import io.github.alersrt.pod4j.openapi.model.InspectLogConfig;
 import io.github.alersrt.pod4j.openapi.model.InspectRestartPolicy;
 import io.github.alersrt.pod4j.openapi.model.InspectUlimit;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectContainerHostConfig
  */
-class InspectContainerHostConfigTest {
+public class InspectContainerHostConfigTest {
     private final InspectContainerHostConfig model = new InspectContainerHostConfig();
 
     /**
      * Model tests for InspectContainerHostConfig
      */
     @Test
-    void testInspectContainerHostConfig() {
+    public void testInspectContainerHostConfig() {
         // TODO: test InspectContainerHostConfig
     }
 
@@ -54,7 +55,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'annotations'
      */
     @Test
-    void annotationsTest() {
+    public void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -62,7 +63,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'autoRemove'
      */
     @Test
-    void autoRemoveTest() {
+    public void autoRemoveTest() {
         // TODO: test autoRemove
     }
 
@@ -70,7 +71,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'autoRemoveImage'
      */
     @Test
-    void autoRemoveImageTest() {
+    public void autoRemoveImageTest() {
         // TODO: test autoRemoveImage
     }
 
@@ -78,7 +79,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'binds'
      */
     @Test
-    void bindsTest() {
+    public void bindsTest() {
         // TODO: test binds
     }
 
@@ -86,7 +87,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'blkioDeviceReadBps'
      */
     @Test
-    void blkioDeviceReadBpsTest() {
+    public void blkioDeviceReadBpsTest() {
         // TODO: test blkioDeviceReadBps
     }
 
@@ -94,7 +95,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'blkioDeviceReadIOps'
      */
     @Test
-    void blkioDeviceReadIOpsTest() {
+    public void blkioDeviceReadIOpsTest() {
         // TODO: test blkioDeviceReadIOps
     }
 
@@ -102,7 +103,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'blkioDeviceWriteBps'
      */
     @Test
-    void blkioDeviceWriteBpsTest() {
+    public void blkioDeviceWriteBpsTest() {
         // TODO: test blkioDeviceWriteBps
     }
 
@@ -110,7 +111,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'blkioDeviceWriteIOps'
      */
     @Test
-    void blkioDeviceWriteIOpsTest() {
+    public void blkioDeviceWriteIOpsTest() {
         // TODO: test blkioDeviceWriteIOps
     }
 
@@ -118,7 +119,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'blkioWeight'
      */
     @Test
-    void blkioWeightTest() {
+    public void blkioWeightTest() {
         // TODO: test blkioWeight
     }
 
@@ -126,7 +127,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'blkioWeightDevice'
      */
     @Test
-    void blkioWeightDeviceTest() {
+    public void blkioWeightDeviceTest() {
         // TODO: test blkioWeightDevice
     }
 
@@ -134,7 +135,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'capAdd'
      */
     @Test
-    void capAddTest() {
+    public void capAddTest() {
         // TODO: test capAdd
     }
 
@@ -142,7 +143,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'capDrop'
      */
     @Test
-    void capDropTest() {
+    public void capDropTest() {
         // TODO: test capDrop
     }
 
@@ -150,7 +151,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cgroup'
      */
     @Test
-    void cgroupTest() {
+    public void cgroupTest() {
         // TODO: test cgroup
     }
 
@@ -158,7 +159,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cgroupConf'
      */
     @Test
-    void cgroupConfTest() {
+    public void cgroupConfTest() {
         // TODO: test cgroupConf
     }
 
@@ -166,7 +167,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cgroupManager'
      */
     @Test
-    void cgroupManagerTest() {
+    public void cgroupManagerTest() {
         // TODO: test cgroupManager
     }
 
@@ -174,7 +175,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cgroupMode'
      */
     @Test
-    void cgroupModeTest() {
+    public void cgroupModeTest() {
         // TODO: test cgroupMode
     }
 
@@ -182,7 +183,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    void cgroupParentTest() {
+    public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -190,7 +191,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cgroups'
      */
     @Test
-    void cgroupsTest() {
+    public void cgroupsTest() {
         // TODO: test cgroups
     }
 
@@ -198,7 +199,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'consoleSize'
      */
     @Test
-    void consoleSizeTest() {
+    public void consoleSizeTest() {
         // TODO: test consoleSize
     }
 
@@ -206,7 +207,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'containerIDFile'
      */
     @Test
-    void containerIDFileTest() {
+    public void containerIDFileTest() {
         // TODO: test containerIDFile
     }
 
@@ -214,7 +215,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpuCount'
      */
     @Test
-    void cpuCountTest() {
+    public void cpuCountTest() {
         // TODO: test cpuCount
     }
 
@@ -222,7 +223,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpuPercent'
      */
     @Test
-    void cpuPercentTest() {
+    public void cpuPercentTest() {
         // TODO: test cpuPercent
     }
 
@@ -230,7 +231,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpuPeriod'
      */
     @Test
-    void cpuPeriodTest() {
+    public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
@@ -238,7 +239,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpuQuota'
      */
     @Test
-    void cpuQuotaTest() {
+    public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
@@ -246,7 +247,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpuRealtimePeriod'
      */
     @Test
-    void cpuRealtimePeriodTest() {
+    public void cpuRealtimePeriodTest() {
         // TODO: test cpuRealtimePeriod
     }
 
@@ -254,7 +255,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpuRealtimeRuntime'
      */
     @Test
-    void cpuRealtimeRuntimeTest() {
+    public void cpuRealtimeRuntimeTest() {
         // TODO: test cpuRealtimeRuntime
     }
 
@@ -262,7 +263,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpuShares'
      */
     @Test
-    void cpuSharesTest() {
+    public void cpuSharesTest() {
         // TODO: test cpuShares
     }
 
@@ -270,7 +271,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpusetCpus'
      */
     @Test
-    void cpusetCpusTest() {
+    public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
@@ -278,7 +279,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'cpusetMems'
      */
     @Test
-    void cpusetMemsTest() {
+    public void cpusetMemsTest() {
         // TODO: test cpusetMems
     }
 
@@ -286,7 +287,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'devices'
      */
     @Test
-    void devicesTest() {
+    public void devicesTest() {
         // TODO: test devices
     }
 
@@ -294,7 +295,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'diskQuota'
      */
     @Test
-    void diskQuotaTest() {
+    public void diskQuotaTest() {
         // TODO: test diskQuota
     }
 
@@ -302,7 +303,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'dns'
      */
     @Test
-    void dnsTest() {
+    public void dnsTest() {
         // TODO: test dns
     }
 
@@ -310,7 +311,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'dnsOptions'
      */
     @Test
-    void dnsOptionsTest() {
+    public void dnsOptionsTest() {
         // TODO: test dnsOptions
     }
 
@@ -318,7 +319,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'dnsSearch'
      */
     @Test
-    void dnsSearchTest() {
+    public void dnsSearchTest() {
         // TODO: test dnsSearch
     }
 
@@ -326,7 +327,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'extraHosts'
      */
     @Test
-    void extraHostsTest() {
+    public void extraHostsTest() {
         // TODO: test extraHosts
     }
 
@@ -334,7 +335,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'groupAdd'
      */
     @Test
-    void groupAddTest() {
+    public void groupAddTest() {
         // TODO: test groupAdd
     }
 
@@ -342,7 +343,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'idMappings'
      */
     @Test
-    void idMappingsTest() {
+    public void idMappingsTest() {
         // TODO: test idMappings
     }
 
@@ -350,7 +351,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'ioMaximumBandwidth'
      */
     @Test
-    void ioMaximumBandwidthTest() {
+    public void ioMaximumBandwidthTest() {
         // TODO: test ioMaximumBandwidth
     }
 
@@ -358,7 +359,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'ioMaximumIOps'
      */
     @Test
-    void ioMaximumIOpsTest() {
+    public void ioMaximumIOpsTest() {
         // TODO: test ioMaximumIOps
     }
 
@@ -366,7 +367,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'init'
      */
     @Test
-    void initTest() {
+    public void initTest() {
         // TODO: test init
     }
 
@@ -374,7 +375,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'intelRdtClosID'
      */
     @Test
-    void intelRdtClosIDTest() {
+    public void intelRdtClosIDTest() {
         // TODO: test intelRdtClosID
     }
 
@@ -382,7 +383,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'ipcMode'
      */
     @Test
-    void ipcModeTest() {
+    public void ipcModeTest() {
         // TODO: test ipcMode
     }
 
@@ -390,7 +391,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'isolation'
      */
     @Test
-    void isolationTest() {
+    public void isolationTest() {
         // TODO: test isolation
     }
 
@@ -398,7 +399,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'kernelMemory'
      */
     @Test
-    void kernelMemoryTest() {
+    public void kernelMemoryTest() {
         // TODO: test kernelMemory
     }
 
@@ -406,7 +407,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'links'
      */
     @Test
-    void linksTest() {
+    public void linksTest() {
         // TODO: test links
     }
 
@@ -414,7 +415,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'logConfig'
      */
     @Test
-    void logConfigTest() {
+    public void logConfigTest() {
         // TODO: test logConfig
     }
 
@@ -422,7 +423,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'memory'
      */
     @Test
-    void memoryTest() {
+    public void memoryTest() {
         // TODO: test memory
     }
 
@@ -430,7 +431,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'memoryReservation'
      */
     @Test
-    void memoryReservationTest() {
+    public void memoryReservationTest() {
         // TODO: test memoryReservation
     }
 
@@ -438,7 +439,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'memorySwap'
      */
     @Test
-    void memorySwapTest() {
+    public void memorySwapTest() {
         // TODO: test memorySwap
     }
 
@@ -446,7 +447,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'memorySwappiness'
      */
     @Test
-    void memorySwappinessTest() {
+    public void memorySwappinessTest() {
         // TODO: test memorySwappiness
     }
 
@@ -454,7 +455,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'nanoCpus'
      */
     @Test
-    void nanoCpusTest() {
+    public void nanoCpusTest() {
         // TODO: test nanoCpus
     }
 
@@ -462,7 +463,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'networkMode'
      */
     @Test
-    void networkModeTest() {
+    public void networkModeTest() {
         // TODO: test networkMode
     }
 
@@ -470,7 +471,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'oomKillDisable'
      */
     @Test
-    void oomKillDisableTest() {
+    public void oomKillDisableTest() {
         // TODO: test oomKillDisable
     }
 
@@ -478,7 +479,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'oomScoreAdj'
      */
     @Test
-    void oomScoreAdjTest() {
+    public void oomScoreAdjTest() {
         // TODO: test oomScoreAdj
     }
 
@@ -486,7 +487,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'pidMode'
      */
     @Test
-    void pidModeTest() {
+    public void pidModeTest() {
         // TODO: test pidMode
     }
 
@@ -494,7 +495,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'pidsLimit'
      */
     @Test
-    void pidsLimitTest() {
+    public void pidsLimitTest() {
         // TODO: test pidsLimit
     }
 
@@ -502,7 +503,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'portBindings'
      */
     @Test
-    void portBindingsTest() {
+    public void portBindingsTest() {
         // TODO: test portBindings
     }
 
@@ -510,7 +511,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'privileged'
      */
     @Test
-    void privilegedTest() {
+    public void privilegedTest() {
         // TODO: test privileged
     }
 
@@ -518,7 +519,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'publishAllPorts'
      */
     @Test
-    void publishAllPortsTest() {
+    public void publishAllPortsTest() {
         // TODO: test publishAllPorts
     }
 
@@ -526,7 +527,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'readonlyRootfs'
      */
     @Test
-    void readonlyRootfsTest() {
+    public void readonlyRootfsTest() {
         // TODO: test readonlyRootfs
     }
 
@@ -534,7 +535,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'restartPolicy'
      */
     @Test
-    void restartPolicyTest() {
+    public void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
@@ -542,7 +543,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'runtime'
      */
     @Test
-    void runtimeTest() {
+    public void runtimeTest() {
         // TODO: test runtime
     }
 
@@ -550,7 +551,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'securityOpt'
      */
     @Test
-    void securityOptTest() {
+    public void securityOptTest() {
         // TODO: test securityOpt
     }
 
@@ -558,7 +559,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'shmSize'
      */
     @Test
-    void shmSizeTest() {
+    public void shmSizeTest() {
         // TODO: test shmSize
     }
 
@@ -566,7 +567,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'tmpfs'
      */
     @Test
-    void tmpfsTest() {
+    public void tmpfsTest() {
         // TODO: test tmpfs
     }
 
@@ -574,7 +575,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'utSMode'
      */
     @Test
-    void utSModeTest() {
+    public void utSModeTest() {
         // TODO: test utSMode
     }
 
@@ -582,7 +583,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'ulimits'
      */
     @Test
-    void ulimitsTest() {
+    public void ulimitsTest() {
         // TODO: test ulimits
     }
 
@@ -590,7 +591,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'usernsMode'
      */
     @Test
-    void usernsModeTest() {
+    public void usernsModeTest() {
         // TODO: test usernsMode
     }
 
@@ -598,7 +599,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'volumeDriver'
      */
     @Test
-    void volumeDriverTest() {
+    public void volumeDriverTest() {
         // TODO: test volumeDriver
     }
 
@@ -606,7 +607,7 @@ class InspectContainerHostConfigTest {
      * Test the property 'volumesFrom'
      */
     @Test
-    void volumesFromTest() {
+    public void volumesFromTest() {
         // TODO: test volumesFrom
     }
 

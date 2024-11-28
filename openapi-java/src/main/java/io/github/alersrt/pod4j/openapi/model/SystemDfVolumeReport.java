@@ -13,249 +13,276 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.validation.constraints.*;
 import jakarta.validation.Valid;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
+
 /**
  * SystemDfVolumeReport describes a volume and its size
  */
-@JsonPropertyOrder({
-  SystemDfVolumeReport.JSON_PROPERTY_LINKS,
-  SystemDfVolumeReport.JSON_PROPERTY_RECLAIMABLE_SIZE,
-  SystemDfVolumeReport.JSON_PROPERTY_SIZE,
-  SystemDfVolumeReport.JSON_PROPERTY_VOLUME_NAME
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemDfVolumeReport {
-  public static final String JSON_PROPERTY_LINKS = "Links";
-  private Long links;
+    public static final String SERIALIZED_NAME_LINKS = "Links";
+    public static final String SERIALIZED_NAME_RECLAIMABLE_SIZE = "ReclaimableSize";
+    public static final String SERIALIZED_NAME_SIZE = "Size";
+    public static final String SERIALIZED_NAME_VOLUME_NAME = "VolumeName";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_RECLAIMABLE_SIZE = "ReclaimableSize";
-  private Long reclaimableSize;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Links");
+        openapiFields.add("ReclaimableSize");
+        openapiFields.add("Size");
+        openapiFields.add("VolumeName");
 
-  public static final String JSON_PROPERTY_SIZE = "Size";
-  private Long size;
-
-  public static final String JSON_PROPERTY_VOLUME_NAME = "VolumeName";
-  private String volumeName;
-
-  public SystemDfVolumeReport() { 
-  }
-
-  public SystemDfVolumeReport links(Long links) {
-    this.links = links;
-    return this;
-  }
-
-  /**
-   * Get links
-   * @return links
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getLinks() {
-    return links;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLinks(Long links) {
-    this.links = links;
-  }
-
-
-  public SystemDfVolumeReport reclaimableSize(Long reclaimableSize) {
-    this.reclaimableSize = reclaimableSize;
-    return this;
-  }
-
-  /**
-   * Get reclaimableSize
-   * @return reclaimableSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RECLAIMABLE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getReclaimableSize() {
-    return reclaimableSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RECLAIMABLE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReclaimableSize(Long reclaimableSize) {
-    this.reclaimableSize = reclaimableSize;
-  }
-
-
-  public SystemDfVolumeReport size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Get size
-   * @return size
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public SystemDfVolumeReport volumeName(String volumeName) {
-    this.volumeName = volumeName;
-    return this;
-  }
-
-  /**
-   * Get volumeName
-   * @return volumeName
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVolumeName() {
-    return volumeName;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumeName(String volumeName) {
-    this.volumeName = volumeName;
-  }
-
-
-  /**
-   * Return true if this SystemDfVolumeReport object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SystemDfVolumeReport systemDfVolumeReport = (SystemDfVolumeReport) o;
-    return Objects.equals(this.links, systemDfVolumeReport.links) &&
-        Objects.equals(this.reclaimableSize, systemDfVolumeReport.reclaimableSize) &&
-        Objects.equals(this.size, systemDfVolumeReport.size) &&
-        Objects.equals(this.volumeName, systemDfVolumeReport.volumeName);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(links, reclaimableSize, size, volumeName);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SystemDfVolumeReport {\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
-    sb.append("    reclaimableSize: ").append(toIndentedString(reclaimableSize)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    volumeName: ").append(toIndentedString(volumeName)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_LINKS)
+    private Long links;
+    @SerializedName(SERIALIZED_NAME_RECLAIMABLE_SIZE)
+    private Long reclaimableSize;
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Long size;
+    @SerializedName(SERIALIZED_NAME_VOLUME_NAME)
+    private String volumeName;
 
-    // add `Links` to the URL query string
-    if (getLinks() != null) {
-      joiner.add(String.format("%sLinks%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLinks()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemDfVolumeReport() {
     }
 
-    // add `ReclaimableSize` to the URL query string
-    if (getReclaimableSize() != null) {
-      joiner.add(String.format("%sReclaimableSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReclaimableSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to SystemDfVolumeReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!SystemDfVolumeReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SystemDfVolumeReport is not found in the empty JSON string", SystemDfVolumeReport.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!SystemDfVolumeReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemDfVolumeReport` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("VolumeName") != null && !jsonObj.get("VolumeName").isJsonNull()) && !jsonObj.get("VolumeName").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `VolumeName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("VolumeName").toString()));
+        }
     }
 
-    // add `Size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of SystemDfVolumeReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SystemDfVolumeReport
+     * @throws IOException if the JSON string is invalid with respect to SystemDfVolumeReport
+     */
+    public static SystemDfVolumeReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SystemDfVolumeReport.class);
     }
 
-    // add `VolumeName` to the URL query string
-    if (getVolumeName() != null) {
-      joiner.add(String.format("%sVolumeName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVolumeName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemDfVolumeReport links(Long links) {
+        this.links = links;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Get links
+     *
+     * @return links
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getLinks() {
+        return links;
+    }
+
+    public void setLinks(Long links) {
+        this.links = links;
+    }
+
+    public SystemDfVolumeReport reclaimableSize(Long reclaimableSize) {
+        this.reclaimableSize = reclaimableSize;
+        return this;
+    }
+
+    /**
+     * Get reclaimableSize
+     *
+     * @return reclaimableSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getReclaimableSize() {
+        return reclaimableSize;
+    }
+
+    public void setReclaimableSize(Long reclaimableSize) {
+        this.reclaimableSize = reclaimableSize;
+    }
+
+    public SystemDfVolumeReport size(Long size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return size
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public SystemDfVolumeReport volumeName(String volumeName) {
+        this.volumeName = volumeName;
+        return this;
+    }
+
+    /**
+     * Get volumeName
+     *
+     * @return volumeName
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVolumeName() {
+        return volumeName;
+    }
+
+    public void setVolumeName(String volumeName) {
+        this.volumeName = volumeName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SystemDfVolumeReport systemDfVolumeReport = (SystemDfVolumeReport) o;
+        return Objects.equals(this.links, systemDfVolumeReport.links) &&
+                Objects.equals(this.reclaimableSize, systemDfVolumeReport.reclaimableSize) &&
+                Objects.equals(this.size, systemDfVolumeReport.size) &&
+                Objects.equals(this.volumeName, systemDfVolumeReport.volumeName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(links, reclaimableSize, size, volumeName);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class SystemDfVolumeReport {\n" +
+                "    links: " + toIndentedString(links) + "\n" +
+                "    reclaimableSize: " + toIndentedString(reclaimableSize) + "\n" +
+                "    size: " + toIndentedString(size) + "\n" +
+                "    volumeName: " + toIndentedString(volumeName) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of SystemDfVolumeReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!SystemDfVolumeReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SystemDfVolumeReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<SystemDfVolumeReport> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(SystemDfVolumeReport.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<SystemDfVolumeReport>() {
+                @Override
+                public void write(JsonWriter out, SystemDfVolumeReport value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public SystemDfVolumeReport read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

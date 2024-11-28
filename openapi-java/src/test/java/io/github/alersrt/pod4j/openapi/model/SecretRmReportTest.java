@@ -13,27 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretRmReport
  */
-class SecretRmReportTest {
+public class SecretRmReportTest {
     private final SecretRmReport model = new SecretRmReport();
 
     /**
      * Model tests for SecretRmReport
      */
     @Test
-    void testSecretRmReport() {
+    public void testSecretRmReport() {
         // TODO: test SecretRmReport
     }
 
@@ -41,7 +33,7 @@ class SecretRmReportTest {
      * Test the property 'err'
      */
     @Test
-    void errTest() {
+    public void errTest() {
         // TODO: test err
     }
 
@@ -49,7 +41,7 @@ class SecretRmReportTest {
      * Test the property 'ID'
      */
     @Test
-    void IDTest() {
+    public void IDTest() {
         // TODO: test ID
     }
 

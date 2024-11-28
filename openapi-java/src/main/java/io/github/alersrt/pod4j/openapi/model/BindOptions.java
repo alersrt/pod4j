@@ -13,276 +13,280 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * BindOptions
  */
-@JsonPropertyOrder({
-  BindOptions.JSON_PROPERTY_CREATE_MOUNTPOINT,
-  BindOptions.JSON_PROPERTY_NON_RECURSIVE,
-  BindOptions.JSON_PROPERTY_PROPAGATION,
-  BindOptions.JSON_PROPERTY_READ_ONLY_FORCE_RECURSIVE,
-  BindOptions.JSON_PROPERTY_READ_ONLY_NON_RECURSIVE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class BindOptions {
-  public static final String JSON_PROPERTY_CREATE_MOUNTPOINT = "CreateMountpoint";
-  private Boolean createMountpoint;
+    public static final String SERIALIZED_NAME_CREATE_MOUNTPOINT = "CreateMountpoint";
+    public static final String SERIALIZED_NAME_NON_RECURSIVE = "NonRecursive";
+    public static final String SERIALIZED_NAME_PROPAGATION = "Propagation";
+    public static final String SERIALIZED_NAME_READ_ONLY_FORCE_RECURSIVE = "ReadOnlyForceRecursive";
+    public static final String SERIALIZED_NAME_READ_ONLY_NON_RECURSIVE = "ReadOnlyNonRecursive";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_NON_RECURSIVE = "NonRecursive";
-  private Boolean nonRecursive;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("CreateMountpoint");
+        openapiFields.add("NonRecursive");
+        openapiFields.add("Propagation");
+        openapiFields.add("ReadOnlyForceRecursive");
+        openapiFields.add("ReadOnlyNonRecursive");
 
-  public static final String JSON_PROPERTY_PROPAGATION = "Propagation";
-  private String propagation;
-
-  public static final String JSON_PROPERTY_READ_ONLY_FORCE_RECURSIVE = "ReadOnlyForceRecursive";
-  private Boolean readOnlyForceRecursive;
-
-  public static final String JSON_PROPERTY_READ_ONLY_NON_RECURSIVE = "ReadOnlyNonRecursive";
-  private Boolean readOnlyNonRecursive;
-
-  public BindOptions() { 
-  }
-
-  public BindOptions createMountpoint(Boolean createMountpoint) {
-    this.createMountpoint = createMountpoint;
-    return this;
-  }
-
-  /**
-   * Get createMountpoint
-   * @return createMountpoint
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CREATE_MOUNTPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getCreateMountpoint() {
-    return createMountpoint;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATE_MOUNTPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreateMountpoint(Boolean createMountpoint) {
-    this.createMountpoint = createMountpoint;
-  }
-
-
-  public BindOptions nonRecursive(Boolean nonRecursive) {
-    this.nonRecursive = nonRecursive;
-    return this;
-  }
-
-  /**
-   * Get nonRecursive
-   * @return nonRecursive
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NON_RECURSIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getNonRecursive() {
-    return nonRecursive;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NON_RECURSIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNonRecursive(Boolean nonRecursive) {
-    this.nonRecursive = nonRecursive;
-  }
-
-
-  public BindOptions propagation(String propagation) {
-    this.propagation = propagation;
-    return this;
-  }
-
-  /**
-   * Get propagation
-   * @return propagation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PROPAGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPropagation() {
-    return propagation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PROPAGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPropagation(String propagation) {
-    this.propagation = propagation;
-  }
-
-
-  public BindOptions readOnlyForceRecursive(Boolean readOnlyForceRecursive) {
-    this.readOnlyForceRecursive = readOnlyForceRecursive;
-    return this;
-  }
-
-  /**
-   * ReadOnlyForceRecursive raises an error if the mount cannot be made recursively read-only.
-   * @return readOnlyForceRecursive
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READ_ONLY_FORCE_RECURSIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getReadOnlyForceRecursive() {
-    return readOnlyForceRecursive;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READ_ONLY_FORCE_RECURSIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadOnlyForceRecursive(Boolean readOnlyForceRecursive) {
-    this.readOnlyForceRecursive = readOnlyForceRecursive;
-  }
-
-
-  public BindOptions readOnlyNonRecursive(Boolean readOnlyNonRecursive) {
-    this.readOnlyNonRecursive = readOnlyNonRecursive;
-    return this;
-  }
-
-  /**
-   * ReadOnlyNonRecursive makes the mount non-recursively read-only, but still leaves the mount recursive (unless NonRecursive is set to true in conjunction).
-   * @return readOnlyNonRecursive
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READ_ONLY_NON_RECURSIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getReadOnlyNonRecursive() {
-    return readOnlyNonRecursive;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READ_ONLY_NON_RECURSIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadOnlyNonRecursive(Boolean readOnlyNonRecursive) {
-    this.readOnlyNonRecursive = readOnlyNonRecursive;
-  }
-
-
-  /**
-   * Return true if this BindOptions object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    BindOptions bindOptions = (BindOptions) o;
-    return Objects.equals(this.createMountpoint, bindOptions.createMountpoint) &&
-        Objects.equals(this.nonRecursive, bindOptions.nonRecursive) &&
-        Objects.equals(this.propagation, bindOptions.propagation) &&
-        Objects.equals(this.readOnlyForceRecursive, bindOptions.readOnlyForceRecursive) &&
-        Objects.equals(this.readOnlyNonRecursive, bindOptions.readOnlyNonRecursive);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(createMountpoint, nonRecursive, propagation, readOnlyForceRecursive, readOnlyNonRecursive);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class BindOptions {\n");
-    sb.append("    createMountpoint: ").append(toIndentedString(createMountpoint)).append("\n");
-    sb.append("    nonRecursive: ").append(toIndentedString(nonRecursive)).append("\n");
-    sb.append("    propagation: ").append(toIndentedString(propagation)).append("\n");
-    sb.append("    readOnlyForceRecursive: ").append(toIndentedString(readOnlyForceRecursive)).append("\n");
-    sb.append("    readOnlyNonRecursive: ").append(toIndentedString(readOnlyNonRecursive)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CREATE_MOUNTPOINT)
+    private Boolean createMountpoint;
+    @SerializedName(SERIALIZED_NAME_NON_RECURSIVE)
+    private Boolean nonRecursive;
+    @SerializedName(SERIALIZED_NAME_PROPAGATION)
+    private String propagation;
+    @SerializedName(SERIALIZED_NAME_READ_ONLY_FORCE_RECURSIVE)
+    private Boolean readOnlyForceRecursive;
+    @SerializedName(SERIALIZED_NAME_READ_ONLY_NON_RECURSIVE)
+    private Boolean readOnlyNonRecursive;
 
-    // add `CreateMountpoint` to the URL query string
-    if (getCreateMountpoint() != null) {
-      joiner.add(String.format("%sCreateMountpoint%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreateMountpoint()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public BindOptions() {
     }
 
-    // add `NonRecursive` to the URL query string
-    if (getNonRecursive() != null) {
-      joiner.add(String.format("%sNonRecursive%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNonRecursive()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to BindOptions
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!BindOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in BindOptions is not found in the empty JSON string", BindOptions.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!BindOptions.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `BindOptions` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Propagation") != null && !jsonObj.get("Propagation").isJsonNull()) && !jsonObj.get("Propagation").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Propagation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Propagation").toString()));
+        }
     }
 
-    // add `Propagation` to the URL query string
-    if (getPropagation() != null) {
-      joiner.add(String.format("%sPropagation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPropagation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of BindOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of BindOptions
+     * @throws IOException if the JSON string is invalid with respect to BindOptions
+     */
+    public static BindOptions fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, BindOptions.class);
     }
 
-    // add `ReadOnlyForceRecursive` to the URL query string
-    if (getReadOnlyForceRecursive() != null) {
-      joiner.add(String.format("%sReadOnlyForceRecursive%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadOnlyForceRecursive()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public BindOptions createMountpoint(Boolean createMountpoint) {
+        this.createMountpoint = createMountpoint;
+        return this;
     }
 
-    // add `ReadOnlyNonRecursive` to the URL query string
-    if (getReadOnlyNonRecursive() != null) {
-      joiner.add(String.format("%sReadOnlyNonRecursive%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadOnlyNonRecursive()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get createMountpoint
+     *
+     * @return createMountpoint
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getCreateMountpoint() {
+        return createMountpoint;
     }
 
-    return joiner.toString();
-  }
+    public void setCreateMountpoint(Boolean createMountpoint) {
+        this.createMountpoint = createMountpoint;
+    }
+
+    public BindOptions nonRecursive(Boolean nonRecursive) {
+        this.nonRecursive = nonRecursive;
+        return this;
+    }
+
+    /**
+     * Get nonRecursive
+     *
+     * @return nonRecursive
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getNonRecursive() {
+        return nonRecursive;
+    }
+
+    public void setNonRecursive(Boolean nonRecursive) {
+        this.nonRecursive = nonRecursive;
+    }
+
+    public BindOptions propagation(String propagation) {
+        this.propagation = propagation;
+        return this;
+    }
+
+    /**
+     * Get propagation
+     *
+     * @return propagation
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPropagation() {
+        return propagation;
+    }
+
+    public void setPropagation(String propagation) {
+        this.propagation = propagation;
+    }
+
+    public BindOptions readOnlyForceRecursive(Boolean readOnlyForceRecursive) {
+        this.readOnlyForceRecursive = readOnlyForceRecursive;
+        return this;
+    }
+
+    /**
+     * ReadOnlyForceRecursive raises an error if the mount cannot be made recursively read-only.
+     *
+     * @return readOnlyForceRecursive
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getReadOnlyForceRecursive() {
+        return readOnlyForceRecursive;
+    }
+
+    public void setReadOnlyForceRecursive(Boolean readOnlyForceRecursive) {
+        this.readOnlyForceRecursive = readOnlyForceRecursive;
+    }
+
+    public BindOptions readOnlyNonRecursive(Boolean readOnlyNonRecursive) {
+        this.readOnlyNonRecursive = readOnlyNonRecursive;
+        return this;
+    }
+
+    /**
+     * ReadOnlyNonRecursive makes the mount non-recursively read-only, but still leaves the mount recursive (unless NonRecursive is set to true in conjunction).
+     *
+     * @return readOnlyNonRecursive
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getReadOnlyNonRecursive() {
+        return readOnlyNonRecursive;
+    }
+
+    public void setReadOnlyNonRecursive(Boolean readOnlyNonRecursive) {
+        this.readOnlyNonRecursive = readOnlyNonRecursive;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        BindOptions bindOptions = (BindOptions) o;
+        return Objects.equals(this.createMountpoint, bindOptions.createMountpoint) &&
+                Objects.equals(this.nonRecursive, bindOptions.nonRecursive) &&
+                Objects.equals(this.propagation, bindOptions.propagation) &&
+                Objects.equals(this.readOnlyForceRecursive, bindOptions.readOnlyForceRecursive) &&
+                Objects.equals(this.readOnlyNonRecursive, bindOptions.readOnlyNonRecursive);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(createMountpoint, nonRecursive, propagation, readOnlyForceRecursive, readOnlyNonRecursive);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class BindOptions {\n" +
+                "    createMountpoint: " + toIndentedString(createMountpoint) + "\n" +
+                "    nonRecursive: " + toIndentedString(nonRecursive) + "\n" +
+                "    propagation: " + toIndentedString(propagation) + "\n" +
+                "    readOnlyForceRecursive: " + toIndentedString(readOnlyForceRecursive) + "\n" +
+                "    readOnlyNonRecursive: " + toIndentedString(readOnlyNonRecursive) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of BindOptions to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!BindOptions.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'BindOptions' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<BindOptions> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(BindOptions.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<BindOptions>() {
+                @Override
+                public void write(JsonWriter out, BindOptions value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public BindOptions read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -13,37 +13,38 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.DriverData;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerConfig;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerHostConfig;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerState;
 import io.github.alersrt.pod4j.openapi.model.InspectMount;
 import io.github.alersrt.pod4j.openapi.model.InspectNetworkSettings;
+
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectContainerData
  */
-class InspectContainerDataTest {
+public class InspectContainerDataTest {
     private final InspectContainerData model = new InspectContainerData();
 
     /**
      * Model tests for InspectContainerData
      */
     @Test
-    void testInspectContainerData() {
+    public void testInspectContainerData() {
         // TODO: test InspectContainerData
     }
 
@@ -51,7 +52,7 @@ class InspectContainerDataTest {
      * Test the property 'appArmorProfile'
      */
     @Test
-    void appArmorProfileTest() {
+    public void appArmorProfileTest() {
         // TODO: test appArmorProfile
     }
 
@@ -59,7 +60,7 @@ class InspectContainerDataTest {
      * Test the property 'args'
      */
     @Test
-    void argsTest() {
+    public void argsTest() {
         // TODO: test args
     }
 
@@ -67,7 +68,7 @@ class InspectContainerDataTest {
      * Test the property 'boundingCaps'
      */
     @Test
-    void boundingCapsTest() {
+    public void boundingCapsTest() {
         // TODO: test boundingCaps
     }
 
@@ -75,7 +76,7 @@ class InspectContainerDataTest {
      * Test the property 'config'
      */
     @Test
-    void configTest() {
+    public void configTest() {
         // TODO: test config
     }
 
@@ -83,7 +84,7 @@ class InspectContainerDataTest {
      * Test the property 'conmonPidFile'
      */
     @Test
-    void conmonPidFileTest() {
+    public void conmonPidFileTest() {
         // TODO: test conmonPidFile
     }
 
@@ -91,7 +92,7 @@ class InspectContainerDataTest {
      * Test the property 'created'
      */
     @Test
-    void createdTest() {
+    public void createdTest() {
         // TODO: test created
     }
 
@@ -99,7 +100,7 @@ class InspectContainerDataTest {
      * Test the property 'dependencies'
      */
     @Test
-    void dependenciesTest() {
+    public void dependenciesTest() {
         // TODO: test dependencies
     }
 
@@ -107,7 +108,7 @@ class InspectContainerDataTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -115,7 +116,7 @@ class InspectContainerDataTest {
      * Test the property 'effectiveCaps'
      */
     @Test
-    void effectiveCapsTest() {
+    public void effectiveCapsTest() {
         // TODO: test effectiveCaps
     }
 
@@ -123,7 +124,7 @@ class InspectContainerDataTest {
      * Test the property 'execIDs'
      */
     @Test
-    void execIDsTest() {
+    public void execIDsTest() {
         // TODO: test execIDs
     }
 
@@ -131,7 +132,7 @@ class InspectContainerDataTest {
      * Test the property 'graphDriver'
      */
     @Test
-    void graphDriverTest() {
+    public void graphDriverTest() {
         // TODO: test graphDriver
     }
 
@@ -139,7 +140,7 @@ class InspectContainerDataTest {
      * Test the property 'hostConfig'
      */
     @Test
-    void hostConfigTest() {
+    public void hostConfigTest() {
         // TODO: test hostConfig
     }
 
@@ -147,7 +148,7 @@ class InspectContainerDataTest {
      * Test the property 'hostnamePath'
      */
     @Test
-    void hostnamePathTest() {
+    public void hostnamePathTest() {
         // TODO: test hostnamePath
     }
 
@@ -155,7 +156,7 @@ class InspectContainerDataTest {
      * Test the property 'hostsPath'
      */
     @Test
-    void hostsPathTest() {
+    public void hostsPathTest() {
         // TODO: test hostsPath
     }
 
@@ -163,7 +164,7 @@ class InspectContainerDataTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -171,7 +172,7 @@ class InspectContainerDataTest {
      * Test the property 'image'
      */
     @Test
-    void imageTest() {
+    public void imageTest() {
         // TODO: test image
     }
 
@@ -179,7 +180,7 @@ class InspectContainerDataTest {
      * Test the property 'imageDigest'
      */
     @Test
-    void imageDigestTest() {
+    public void imageDigestTest() {
         // TODO: test imageDigest
     }
 
@@ -187,7 +188,7 @@ class InspectContainerDataTest {
      * Test the property 'imageName'
      */
     @Test
-    void imageNameTest() {
+    public void imageNameTest() {
         // TODO: test imageName
     }
 
@@ -195,7 +196,7 @@ class InspectContainerDataTest {
      * Test the property 'isInfra'
      */
     @Test
-    void isInfraTest() {
+    public void isInfraTest() {
         // TODO: test isInfra
     }
 
@@ -203,7 +204,7 @@ class InspectContainerDataTest {
      * Test the property 'isService'
      */
     @Test
-    void isServiceTest() {
+    public void isServiceTest() {
         // TODO: test isService
     }
 
@@ -211,7 +212,7 @@ class InspectContainerDataTest {
      * Test the property 'kubeExitCodePropagation'
      */
     @Test
-    void kubeExitCodePropagationTest() {
+    public void kubeExitCodePropagationTest() {
         // TODO: test kubeExitCodePropagation
     }
 
@@ -219,7 +220,7 @@ class InspectContainerDataTest {
      * Test the property 'mountLabel'
      */
     @Test
-    void mountLabelTest() {
+    public void mountLabelTest() {
         // TODO: test mountLabel
     }
 
@@ -227,7 +228,7 @@ class InspectContainerDataTest {
      * Test the property 'mounts'
      */
     @Test
-    void mountsTest() {
+    public void mountsTest() {
         // TODO: test mounts
     }
 
@@ -235,7 +236,7 @@ class InspectContainerDataTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -243,7 +244,7 @@ class InspectContainerDataTest {
      * Test the property 'namespace'
      */
     @Test
-    void namespaceTest() {
+    public void namespaceTest() {
         // TODO: test namespace
     }
 
@@ -251,7 +252,7 @@ class InspectContainerDataTest {
      * Test the property 'networkSettings'
      */
     @Test
-    void networkSettingsTest() {
+    public void networkSettingsTest() {
         // TODO: test networkSettings
     }
 
@@ -259,7 +260,7 @@ class InspectContainerDataTest {
      * Test the property 'ocIConfigPath'
      */
     @Test
-    void ocIConfigPathTest() {
+    public void ocIConfigPathTest() {
         // TODO: test ocIConfigPath
     }
 
@@ -267,7 +268,7 @@ class InspectContainerDataTest {
      * Test the property 'ocIRuntime'
      */
     @Test
-    void ocIRuntimeTest() {
+    public void ocIRuntimeTest() {
         // TODO: test ocIRuntime
     }
 
@@ -275,7 +276,7 @@ class InspectContainerDataTest {
      * Test the property 'path'
      */
     @Test
-    void pathTest() {
+    public void pathTest() {
         // TODO: test path
     }
 
@@ -283,7 +284,7 @@ class InspectContainerDataTest {
      * Test the property 'pidFile'
      */
     @Test
-    void pidFileTest() {
+    public void pidFileTest() {
         // TODO: test pidFile
     }
 
@@ -291,7 +292,7 @@ class InspectContainerDataTest {
      * Test the property 'pod'
      */
     @Test
-    void podTest() {
+    public void podTest() {
         // TODO: test pod
     }
 
@@ -299,7 +300,7 @@ class InspectContainerDataTest {
      * Test the property 'processLabel'
      */
     @Test
-    void processLabelTest() {
+    public void processLabelTest() {
         // TODO: test processLabel
     }
 
@@ -307,7 +308,7 @@ class InspectContainerDataTest {
      * Test the property 'resolvConfPath'
      */
     @Test
-    void resolvConfPathTest() {
+    public void resolvConfPathTest() {
         // TODO: test resolvConfPath
     }
 
@@ -315,7 +316,7 @@ class InspectContainerDataTest {
      * Test the property 'restartCount'
      */
     @Test
-    void restartCountTest() {
+    public void restartCountTest() {
         // TODO: test restartCount
     }
 
@@ -323,7 +324,7 @@ class InspectContainerDataTest {
      * Test the property 'rootfs'
      */
     @Test
-    void rootfsTest() {
+    public void rootfsTest() {
         // TODO: test rootfs
     }
 
@@ -331,7 +332,7 @@ class InspectContainerDataTest {
      * Test the property 'sizeRootFs'
      */
     @Test
-    void sizeRootFsTest() {
+    public void sizeRootFsTest() {
         // TODO: test sizeRootFs
     }
 
@@ -339,7 +340,7 @@ class InspectContainerDataTest {
      * Test the property 'sizeRw'
      */
     @Test
-    void sizeRwTest() {
+    public void sizeRwTest() {
         // TODO: test sizeRw
     }
 
@@ -347,7 +348,7 @@ class InspectContainerDataTest {
      * Test the property 'state'
      */
     @Test
-    void stateTest() {
+    public void stateTest() {
         // TODO: test state
     }
 
@@ -355,7 +356,7 @@ class InspectContainerDataTest {
      * Test the property 'staticDir'
      */
     @Test
-    void staticDirTest() {
+    public void staticDirTest() {
         // TODO: test staticDir
     }
 
@@ -363,7 +364,7 @@ class InspectContainerDataTest {
      * Test the property 'lockNumber'
      */
     @Test
-    void lockNumberTest() {
+    public void lockNumberTest() {
         // TODO: test lockNumber
     }
 

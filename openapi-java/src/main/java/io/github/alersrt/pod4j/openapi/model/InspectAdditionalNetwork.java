@@ -13,774 +13,687 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Address;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectAdditionalNetwork holds information about non-default networks the container has been connected to. As with InspectNetworkSettings, many fields are unused and maintained only for compatibility with Docker.
  */
-@JsonPropertyOrder({
-  InspectAdditionalNetwork.JSON_PROPERTY_ADDITIONAL_M_A_C_ADDRESSES,
-  InspectAdditionalNetwork.JSON_PROPERTY_ALIASES,
-  InspectAdditionalNetwork.JSON_PROPERTY_DRIVER_OPTS,
-  InspectAdditionalNetwork.JSON_PROPERTY_ENDPOINT_I_D,
-  InspectAdditionalNetwork.JSON_PROPERTY_GATEWAY,
-  InspectAdditionalNetwork.JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS,
-  InspectAdditionalNetwork.JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN,
-  InspectAdditionalNetwork.JSON_PROPERTY_IP_A_M_CONFIG,
-  InspectAdditionalNetwork.JSON_PROPERTY_IP_ADDRESS,
-  InspectAdditionalNetwork.JSON_PROPERTY_IP_PREFIX_LEN,
-  InspectAdditionalNetwork.JSON_PROPERTY_IPV6_GATEWAY,
-  InspectAdditionalNetwork.JSON_PROPERTY_LINKS,
-  InspectAdditionalNetwork.JSON_PROPERTY_MAC_ADDRESS,
-  InspectAdditionalNetwork.JSON_PROPERTY_NETWORK_I_D,
-  InspectAdditionalNetwork.JSON_PROPERTY_SECONDARY_I_P_ADDRESSES,
-  InspectAdditionalNetwork.JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectAdditionalNetwork {
-  public static final String JSON_PROPERTY_ADDITIONAL_M_A_C_ADDRESSES = "AdditionalMACAddresses";
-  private List<String> additionalMACAddresses = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ALIASES = "Aliases";
-  private List<String> aliases = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DRIVER_OPTS = "DriverOpts";
-  private Map<String, String> driverOpts = new HashMap<>();
-
-  public static final String JSON_PROPERTY_ENDPOINT_I_D = "EndpointID";
-  private String endpointID;
-
-  public static final String JSON_PROPERTY_GATEWAY = "Gateway";
-  private String gateway;
-
-  public static final String JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS = "GlobalIPv6Address";
-  private String globalIPv6Address;
-
-  public static final String JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN = "GlobalIPv6PrefixLen";
-  private Long globalIPv6PrefixLen;
-
-  public static final String JSON_PROPERTY_IP_A_M_CONFIG = "IPAMConfig";
-  private Map<String, String> ipAMConfig = new HashMap<>();
-
-  public static final String JSON_PROPERTY_IP_ADDRESS = "IPAddress";
-  private String ipAddress;
-
-  public static final String JSON_PROPERTY_IP_PREFIX_LEN = "IPPrefixLen";
-  private Long ipPrefixLen;
-
-  public static final String JSON_PROPERTY_IPV6_GATEWAY = "IPv6Gateway";
-  private String ipv6Gateway;
-
-  public static final String JSON_PROPERTY_LINKS = "Links";
-  private List<String> links = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_MAC_ADDRESS = "MacAddress";
-  private String macAddress;
-
-  public static final String JSON_PROPERTY_NETWORK_I_D = "NetworkID";
-  private String networkID;
-
-  public static final String JSON_PROPERTY_SECONDARY_I_P_ADDRESSES = "SecondaryIPAddresses";
-  private List<@Valid Address> secondaryIPAddresses = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES = "SecondaryIPv6Addresses";
-  private List<@Valid Address> secondaryIPv6Addresses = new ArrayList<>();
-
-  public InspectAdditionalNetwork() { 
-  }
-
-  public InspectAdditionalNetwork additionalMACAddresses(List<String> additionalMACAddresses) {
-    this.additionalMACAddresses = additionalMACAddresses;
-    return this;
-  }
-
-  public InspectAdditionalNetwork addAdditionalMACAddressesItem(String additionalMACAddressesItem) {
-    if (this.additionalMACAddresses == null) {
-      this.additionalMACAddresses = new ArrayList<>();
-    }
-    this.additionalMACAddresses.add(additionalMACAddressesItem);
-    return this;
-  }
-
-  /**
-   * AdditionalMacAddresses is a set of additional MAC Addresses beyond the first. CNI may configure more than one interface for a single network, which can cause this.
-   * @return additionalMACAddresses
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_M_A_C_ADDRESSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getAdditionalMACAddresses() {
-    return additionalMACAddresses;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_M_A_C_ADDRESSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdditionalMACAddresses(List<String> additionalMACAddresses) {
-    this.additionalMACAddresses = additionalMACAddresses;
-  }
-
-
-  public InspectAdditionalNetwork aliases(List<String> aliases) {
-    this.aliases = aliases;
-    return this;
-  }
-
-  public InspectAdditionalNetwork addAliasesItem(String aliasesItem) {
-    if (this.aliases == null) {
-      this.aliases = new ArrayList<>();
-    }
-    this.aliases.add(aliasesItem);
-    return this;
-  }
-
-  /**
-   * Aliases are any network aliases the container has in this network.
-   * @return aliases
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ALIASES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getAliases() {
-    return aliases;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ALIASES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAliases(List<String> aliases) {
-    this.aliases = aliases;
-  }
-
-
-  public InspectAdditionalNetwork driverOpts(Map<String, String> driverOpts) {
-    this.driverOpts = driverOpts;
-    return this;
-  }
-
-  public InspectAdditionalNetwork putDriverOptsItem(String key, String driverOptsItem) {
-    if (this.driverOpts == null) {
-      this.driverOpts = new HashMap<>();
-    }
-    this.driverOpts.put(key, driverOptsItem);
-    return this;
-  }
-
-  /**
-   * DriverOpts is presently unused and maintained exclusively for compatibility.
-   * @return driverOpts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getDriverOpts() {
-    return driverOpts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDriverOpts(Map<String, String> driverOpts) {
-    this.driverOpts = driverOpts;
-  }
-
-
-  public InspectAdditionalNetwork endpointID(String endpointID) {
-    this.endpointID = endpointID;
-    return this;
-  }
-
-  /**
-   * EndpointID is unused, maintained exclusively for compatibility.
-   * @return endpointID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getEndpointID() {
-    return endpointID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndpointID(String endpointID) {
-    this.endpointID = endpointID;
-  }
-
-
-  public InspectAdditionalNetwork gateway(String gateway) {
-    this.gateway = gateway;
-    return this;
-  }
-
-  /**
-   * Gateway is the IP address of the gateway this network will use.
-   * @return gateway
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGateway() {
-    return gateway;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGateway(String gateway) {
-    this.gateway = gateway;
-  }
-
-
-  public InspectAdditionalNetwork globalIPv6Address(String globalIPv6Address) {
-    this.globalIPv6Address = globalIPv6Address;
-    return this;
-  }
-
-  /**
-   * GlobalIPv6Address is the global-scope IPv6 Address for this network.
-   * @return globalIPv6Address
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGlobalIPv6Address() {
-    return globalIPv6Address;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGlobalIPv6Address(String globalIPv6Address) {
-    this.globalIPv6Address = globalIPv6Address;
-  }
-
-
-  public InspectAdditionalNetwork globalIPv6PrefixLen(Long globalIPv6PrefixLen) {
-    this.globalIPv6PrefixLen = globalIPv6PrefixLen;
-    return this;
-  }
-
-  /**
-   * GlobalIPv6PrefixLen is the length of the subnet mask of this network.
-   * @return globalIPv6PrefixLen
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getGlobalIPv6PrefixLen() {
-    return globalIPv6PrefixLen;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGlobalIPv6PrefixLen(Long globalIPv6PrefixLen) {
-    this.globalIPv6PrefixLen = globalIPv6PrefixLen;
-  }
-
-
-  public InspectAdditionalNetwork ipAMConfig(Map<String, String> ipAMConfig) {
-    this.ipAMConfig = ipAMConfig;
-    return this;
-  }
-
-  public InspectAdditionalNetwork putIpAMConfigItem(String key, String ipAMConfigItem) {
-    if (this.ipAMConfig == null) {
-      this.ipAMConfig = new HashMap<>();
-    }
-    this.ipAMConfig.put(key, ipAMConfigItem);
-    return this;
-  }
-
-  /**
-   * IPAMConfig is presently unused and maintained exclusively for compatibility.
-   * @return ipAMConfig
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IP_A_M_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getIpAMConfig() {
-    return ipAMConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IP_A_M_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpAMConfig(Map<String, String> ipAMConfig) {
-    this.ipAMConfig = ipAMConfig;
-  }
-
-
-  public InspectAdditionalNetwork ipAddress(String ipAddress) {
-    this.ipAddress = ipAddress;
-    return this;
-  }
-
-  /**
-   * IPAddress is the IP address for this network.
-   * @return ipAddress
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIpAddress() {
-    return ipAddress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpAddress(String ipAddress) {
-    this.ipAddress = ipAddress;
-  }
-
-
-  public InspectAdditionalNetwork ipPrefixLen(Long ipPrefixLen) {
-    this.ipPrefixLen = ipPrefixLen;
-    return this;
-  }
-
-  /**
-   * IPPrefixLen is the length of the subnet mask of this network.
-   * @return ipPrefixLen
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getIpPrefixLen() {
-    return ipPrefixLen;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpPrefixLen(Long ipPrefixLen) {
-    this.ipPrefixLen = ipPrefixLen;
-  }
-
-
-  public InspectAdditionalNetwork ipv6Gateway(String ipv6Gateway) {
-    this.ipv6Gateway = ipv6Gateway;
-    return this;
-  }
-
-  /**
-   * IPv6Gateway is the IPv6 gateway this network will use.
-   * @return ipv6Gateway
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIpv6Gateway() {
-    return ipv6Gateway;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpv6Gateway(String ipv6Gateway) {
-    this.ipv6Gateway = ipv6Gateway;
-  }
-
-
-  public InspectAdditionalNetwork links(List<String> links) {
-    this.links = links;
-    return this;
-  }
-
-  public InspectAdditionalNetwork addLinksItem(String linksItem) {
-    if (this.links == null) {
-      this.links = new ArrayList<>();
-    }
-    this.links.add(linksItem);
-    return this;
-  }
-
-  /**
-   * Links is presently unused and maintained exclusively for compatibility.
-   * @return links
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getLinks() {
-    return links;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLinks(List<String> links) {
-    this.links = links;
-  }
-
-
-  public InspectAdditionalNetwork macAddress(String macAddress) {
-    this.macAddress = macAddress;
-    return this;
-  }
-
-  /**
-   * MacAddress is the MAC address for the interface in this network.
-   * @return macAddress
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMacAddress() {
-    return macAddress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMacAddress(String macAddress) {
-    this.macAddress = macAddress;
-  }
-
-
-  public InspectAdditionalNetwork networkID(String networkID) {
-    this.networkID = networkID;
-    return this;
-  }
-
-  /**
-   * Name of the network we&#39;re connecting to.
-   * @return networkID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNetworkID() {
-    return networkID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkID(String networkID) {
-    this.networkID = networkID;
-  }
-
-
-  public InspectAdditionalNetwork secondaryIPAddresses(List<@Valid Address> secondaryIPAddresses) {
-    this.secondaryIPAddresses = secondaryIPAddresses;
-    return this;
-  }
-
-  public InspectAdditionalNetwork addSecondaryIPAddressesItem(Address secondaryIPAddressesItem) {
-    if (this.secondaryIPAddresses == null) {
-      this.secondaryIPAddresses = new ArrayList<>();
-    }
-    this.secondaryIPAddresses.add(secondaryIPAddressesItem);
-    return this;
-  }
-
-  /**
-   * SecondaryIPAddresses is a list of extra IP Addresses that the container has been assigned in this network.
-   * @return secondaryIPAddresses
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_SECONDARY_I_P_ADDRESSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Address> getSecondaryIPAddresses() {
-    return secondaryIPAddresses;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECONDARY_I_P_ADDRESSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecondaryIPAddresses(List<@Valid Address> secondaryIPAddresses) {
-    this.secondaryIPAddresses = secondaryIPAddresses;
-  }
-
-
-  public InspectAdditionalNetwork secondaryIPv6Addresses(List<@Valid Address> secondaryIPv6Addresses) {
-    this.secondaryIPv6Addresses = secondaryIPv6Addresses;
-    return this;
-  }
-
-  public InspectAdditionalNetwork addSecondaryIPv6AddressesItem(Address secondaryIPv6AddressesItem) {
-    if (this.secondaryIPv6Addresses == null) {
-      this.secondaryIPv6Addresses = new ArrayList<>();
-    }
-    this.secondaryIPv6Addresses.add(secondaryIPv6AddressesItem);
-    return this;
-  }
-
-  /**
-   * SecondaryIPv6Addresses is a list of extra IPv6 Addresses that the container has been assigned in this network.
-   * @return secondaryIPv6Addresses
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Address> getSecondaryIPv6Addresses() {
-    return secondaryIPv6Addresses;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecondaryIPv6Addresses(List<@Valid Address> secondaryIPv6Addresses) {
-    this.secondaryIPv6Addresses = secondaryIPv6Addresses;
-  }
-
-
-  /**
-   * Return true if this InspectAdditionalNetwork object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InspectAdditionalNetwork inspectAdditionalNetwork = (InspectAdditionalNetwork) o;
-    return Objects.equals(this.additionalMACAddresses, inspectAdditionalNetwork.additionalMACAddresses) &&
-        Objects.equals(this.aliases, inspectAdditionalNetwork.aliases) &&
-        Objects.equals(this.driverOpts, inspectAdditionalNetwork.driverOpts) &&
-        Objects.equals(this.endpointID, inspectAdditionalNetwork.endpointID) &&
-        Objects.equals(this.gateway, inspectAdditionalNetwork.gateway) &&
-        Objects.equals(this.globalIPv6Address, inspectAdditionalNetwork.globalIPv6Address) &&
-        Objects.equals(this.globalIPv6PrefixLen, inspectAdditionalNetwork.globalIPv6PrefixLen) &&
-        Objects.equals(this.ipAMConfig, inspectAdditionalNetwork.ipAMConfig) &&
-        Objects.equals(this.ipAddress, inspectAdditionalNetwork.ipAddress) &&
-        Objects.equals(this.ipPrefixLen, inspectAdditionalNetwork.ipPrefixLen) &&
-        Objects.equals(this.ipv6Gateway, inspectAdditionalNetwork.ipv6Gateway) &&
-        Objects.equals(this.links, inspectAdditionalNetwork.links) &&
-        Objects.equals(this.macAddress, inspectAdditionalNetwork.macAddress) &&
-        Objects.equals(this.networkID, inspectAdditionalNetwork.networkID) &&
-        Objects.equals(this.secondaryIPAddresses, inspectAdditionalNetwork.secondaryIPAddresses) &&
-        Objects.equals(this.secondaryIPv6Addresses, inspectAdditionalNetwork.secondaryIPv6Addresses);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(additionalMACAddresses, aliases, driverOpts, endpointID, gateway, globalIPv6Address, globalIPv6PrefixLen, ipAMConfig, ipAddress, ipPrefixLen, ipv6Gateway, links, macAddress, networkID, secondaryIPAddresses, secondaryIPv6Addresses);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InspectAdditionalNetwork {\n");
-    sb.append("    additionalMACAddresses: ").append(toIndentedString(additionalMACAddresses)).append("\n");
-    sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
-    sb.append("    driverOpts: ").append(toIndentedString(driverOpts)).append("\n");
-    sb.append("    endpointID: ").append(toIndentedString(endpointID)).append("\n");
-    sb.append("    gateway: ").append(toIndentedString(gateway)).append("\n");
-    sb.append("    globalIPv6Address: ").append(toIndentedString(globalIPv6Address)).append("\n");
-    sb.append("    globalIPv6PrefixLen: ").append(toIndentedString(globalIPv6PrefixLen)).append("\n");
-    sb.append("    ipAMConfig: ").append(toIndentedString(ipAMConfig)).append("\n");
-    sb.append("    ipAddress: ").append(toIndentedString(ipAddress)).append("\n");
-    sb.append("    ipPrefixLen: ").append(toIndentedString(ipPrefixLen)).append("\n");
-    sb.append("    ipv6Gateway: ").append(toIndentedString(ipv6Gateway)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
-    sb.append("    macAddress: ").append(toIndentedString(macAddress)).append("\n");
-    sb.append("    networkID: ").append(toIndentedString(networkID)).append("\n");
-    sb.append("    secondaryIPAddresses: ").append(toIndentedString(secondaryIPAddresses)).append("\n");
-    sb.append("    secondaryIPv6Addresses: ").append(toIndentedString(secondaryIPv6Addresses)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ADDITIONAL_M_A_C_ADDRESSES = "AdditionalMACAddresses";
+    public static final String SERIALIZED_NAME_ALIASES = "Aliases";
+    public static final String SERIALIZED_NAME_DRIVER_OPTS = "DriverOpts";
+    public static final String SERIALIZED_NAME_ENDPOINT_I_D = "EndpointID";
+    public static final String SERIALIZED_NAME_GATEWAY = "Gateway";
+    public static final String SERIALIZED_NAME_GLOBAL_I_PV6_ADDRESS = "GlobalIPv6Address";
+    public static final String SERIALIZED_NAME_GLOBAL_I_PV6_PREFIX_LEN = "GlobalIPv6PrefixLen";
+    public static final String SERIALIZED_NAME_IP_A_M_CONFIG = "IPAMConfig";
+    public static final String SERIALIZED_NAME_IP_ADDRESS = "IPAddress";
+    public static final String SERIALIZED_NAME_IP_PREFIX_LEN = "IPPrefixLen";
+    public static final String SERIALIZED_NAME_IPV6_GATEWAY = "IPv6Gateway";
+    public static final String SERIALIZED_NAME_LINKS = "Links";
+    public static final String SERIALIZED_NAME_MAC_ADDRESS = "MacAddress";
+    public static final String SERIALIZED_NAME_NETWORK_I_D = "NetworkID";
+    public static final String SERIALIZED_NAME_SECONDARY_I_P_ADDRESSES = "SecondaryIPAddresses";
+    public static final String SERIALIZED_NAME_SECONDARY_I_PV6_ADDRESSES = "SecondaryIPv6Addresses";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("AdditionalMACAddresses");
+        openapiFields.add("Aliases");
+        openapiFields.add("DriverOpts");
+        openapiFields.add("EndpointID");
+        openapiFields.add("Gateway");
+        openapiFields.add("GlobalIPv6Address");
+        openapiFields.add("GlobalIPv6PrefixLen");
+        openapiFields.add("IPAMConfig");
+        openapiFields.add("IPAddress");
+        openapiFields.add("IPPrefixLen");
+        openapiFields.add("IPv6Gateway");
+        openapiFields.add("Links");
+        openapiFields.add("MacAddress");
+        openapiFields.add("NetworkID");
+        openapiFields.add("SecondaryIPAddresses");
+        openapiFields.add("SecondaryIPv6Addresses");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ADDITIONAL_M_A_C_ADDRESSES)
+    private List<String> additionalMACAddresses = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ALIASES)
+    private List<String> aliases = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DRIVER_OPTS)
+    private Map<String, String> driverOpts = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_ENDPOINT_I_D)
+    private String endpointID;
+    @SerializedName(SERIALIZED_NAME_GATEWAY)
+    private String gateway;
+    @SerializedName(SERIALIZED_NAME_GLOBAL_I_PV6_ADDRESS)
+    private String globalIPv6Address;
+    @SerializedName(SERIALIZED_NAME_GLOBAL_I_PV6_PREFIX_LEN)
+    private Long globalIPv6PrefixLen;
+    @SerializedName(SERIALIZED_NAME_IP_A_M_CONFIG)
+    private Map<String, String> ipAMConfig = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_IP_ADDRESS)
+    private String ipAddress;
+    @SerializedName(SERIALIZED_NAME_IP_PREFIX_LEN)
+    private Long ipPrefixLen;
+    @SerializedName(SERIALIZED_NAME_IPV6_GATEWAY)
+    private String ipv6Gateway;
+    @SerializedName(SERIALIZED_NAME_LINKS)
+    private List<String> links = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_MAC_ADDRESS)
+    private String macAddress;
+    @SerializedName(SERIALIZED_NAME_NETWORK_I_D)
+    private String networkID;
+    @SerializedName(SERIALIZED_NAME_SECONDARY_I_P_ADDRESSES)
+    private List<@Valid Address> secondaryIPAddresses = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SECONDARY_I_PV6_ADDRESSES)
+    private List<@Valid Address> secondaryIPv6Addresses = new ArrayList<>();
 
-    // add `AdditionalMACAddresses` to the URL query string
-    if (getAdditionalMACAddresses() != null) {
-      for (int i = 0; i < getAdditionalMACAddresses().size(); i++) {
-        joiner.add(String.format("%sAdditionalMACAddresses%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getAdditionalMACAddresses().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public InspectAdditionalNetwork() {
     }
 
-    // add `Aliases` to the URL query string
-    if (getAliases() != null) {
-      for (int i = 0; i < getAliases().size(); i++) {
-        joiner.add(String.format("%sAliases%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getAliases().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `DriverOpts` to the URL query string
-    if (getDriverOpts() != null) {
-      for (String _key : getDriverOpts().keySet()) {
-        joiner.add(String.format("%sDriverOpts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getDriverOpts().get(_key), URLEncoder.encode(ApiClient.valueToString(getDriverOpts().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `EndpointID` to the URL query string
-    if (getEndpointID() != null) {
-      joiner.add(String.format("%sEndpointID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEndpointID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Gateway` to the URL query string
-    if (getGateway() != null) {
-      joiner.add(String.format("%sGateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `GlobalIPv6Address` to the URL query string
-    if (getGlobalIPv6Address() != null) {
-      joiner.add(String.format("%sGlobalIPv6Address%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGlobalIPv6Address()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `GlobalIPv6PrefixLen` to the URL query string
-    if (getGlobalIPv6PrefixLen() != null) {
-      joiner.add(String.format("%sGlobalIPv6PrefixLen%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGlobalIPv6PrefixLen()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IPAMConfig` to the URL query string
-    if (getIpAMConfig() != null) {
-      for (String _key : getIpAMConfig().keySet()) {
-        joiner.add(String.format("%sIPAMConfig%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getIpAMConfig().get(_key), URLEncoder.encode(ApiClient.valueToString(getIpAMConfig().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `IPAddress` to the URL query string
-    if (getIpAddress() != null) {
-      joiner.add(String.format("%sIPAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IPPrefixLen` to the URL query string
-    if (getIpPrefixLen() != null) {
-      joiner.add(String.format("%sIPPrefixLen%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpPrefixLen()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IPv6Gateway` to the URL query string
-    if (getIpv6Gateway() != null) {
-      joiner.add(String.format("%sIPv6Gateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpv6Gateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Links` to the URL query string
-    if (getLinks() != null) {
-      for (int i = 0; i < getLinks().size(); i++) {
-        joiner.add(String.format("%sLinks%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getLinks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `MacAddress` to the URL query string
-    if (getMacAddress() != null) {
-      joiner.add(String.format("%sMacAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMacAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `NetworkID` to the URL query string
-    if (getNetworkID() != null) {
-      joiner.add(String.format("%sNetworkID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetworkID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `SecondaryIPAddresses` to the URL query string
-    if (getSecondaryIPAddresses() != null) {
-      for (int i = 0; i < getSecondaryIPAddresses().size(); i++) {
-        if (getSecondaryIPAddresses().get(i) != null) {
-          joiner.add(getSecondaryIPAddresses().get(i).toUrlQueryString(String.format("%sSecondaryIPAddresses%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to InspectAdditionalNetwork
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!InspectAdditionalNetwork.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectAdditionalNetwork is not found in the empty JSON string", InspectAdditionalNetwork.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `SecondaryIPv6Addresses` to the URL query string
-    if (getSecondaryIPv6Addresses() != null) {
-      for (int i = 0; i < getSecondaryIPv6Addresses().size(); i++) {
-        if (getSecondaryIPv6Addresses().get(i) != null) {
-          joiner.add(getSecondaryIPv6Addresses().get(i).toUrlQueryString(String.format("%sSecondaryIPv6Addresses%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!InspectAdditionalNetwork.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectAdditionalNetwork` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("AdditionalMACAddresses") != null && !jsonObj.get("AdditionalMACAddresses").isJsonNull() && !jsonObj.get("AdditionalMACAddresses").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `AdditionalMACAddresses` to be an array in the JSON string but got `%s`", jsonObj.get("AdditionalMACAddresses").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Aliases") != null && !jsonObj.get("Aliases").isJsonNull() && !jsonObj.get("Aliases").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Aliases` to be an array in the JSON string but got `%s`", jsonObj.get("Aliases").toString()));
+        }
+        if ((jsonObj.get("EndpointID") != null && !jsonObj.get("EndpointID").isJsonNull()) && !jsonObj.get("EndpointID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `EndpointID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("EndpointID").toString()));
+        }
+        if ((jsonObj.get("Gateway") != null && !jsonObj.get("Gateway").isJsonNull()) && !jsonObj.get("Gateway").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Gateway").toString()));
+        }
+        if ((jsonObj.get("GlobalIPv6Address") != null && !jsonObj.get("GlobalIPv6Address").isJsonNull()) && !jsonObj.get("GlobalIPv6Address").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `GlobalIPv6Address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("GlobalIPv6Address").toString()));
+        }
+        if ((jsonObj.get("IPAddress") != null && !jsonObj.get("IPAddress").isJsonNull()) && !jsonObj.get("IPAddress").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IPAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPAddress").toString()));
+        }
+        if ((jsonObj.get("IPv6Gateway") != null && !jsonObj.get("IPv6Gateway").isJsonNull()) && !jsonObj.get("IPv6Gateway").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IPv6Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPv6Gateway").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull() && !jsonObj.get("Links").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Links` to be an array in the JSON string but got `%s`", jsonObj.get("Links").toString()));
+        }
+        if ((jsonObj.get("MacAddress") != null && !jsonObj.get("MacAddress").isJsonNull()) && !jsonObj.get("MacAddress").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `MacAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MacAddress").toString()));
+        }
+        if ((jsonObj.get("NetworkID") != null && !jsonObj.get("NetworkID").isJsonNull()) && !jsonObj.get("NetworkID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `NetworkID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("NetworkID").toString()));
+        }
+        if (jsonObj.get("SecondaryIPAddresses") != null && !jsonObj.get("SecondaryIPAddresses").isJsonNull()) {
+            JsonArray jsonArraysecondaryIPAddresses = jsonObj.getAsJsonArray("SecondaryIPAddresses");
+            if (jsonArraysecondaryIPAddresses != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("SecondaryIPAddresses").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `SecondaryIPAddresses` to be an array in the JSON string but got `%s`", jsonObj.get("SecondaryIPAddresses").toString()));
+                }
+
+                // validate the optional field `SecondaryIPAddresses` (array)
+                for (int i = 0; i < jsonArraysecondaryIPAddresses.size(); i++) {
+                    Address.validateJsonElement(jsonArraysecondaryIPAddresses.get(i));
+                }
+            }
+        }
+        if (jsonObj.get("SecondaryIPv6Addresses") != null && !jsonObj.get("SecondaryIPv6Addresses").isJsonNull()) {
+            JsonArray jsonArraysecondaryIPv6Addresses = jsonObj.getAsJsonArray("SecondaryIPv6Addresses");
+            if (jsonArraysecondaryIPv6Addresses != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("SecondaryIPv6Addresses").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `SecondaryIPv6Addresses` to be an array in the JSON string but got `%s`", jsonObj.get("SecondaryIPv6Addresses").toString()));
+                }
+
+                // validate the optional field `SecondaryIPv6Addresses` (array)
+                for (int i = 0; i < jsonArraysecondaryIPv6Addresses.size(); i++) {
+                    Address.validateJsonElement(jsonArraysecondaryIPv6Addresses.get(i));
+                }
+            }
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of InspectAdditionalNetwork given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectAdditionalNetwork
+     * @throws IOException if the JSON string is invalid with respect to InspectAdditionalNetwork
+     */
+    public static InspectAdditionalNetwork fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, InspectAdditionalNetwork.class);
+    }
+
+    public InspectAdditionalNetwork additionalMACAddresses(List<String> additionalMACAddresses) {
+        this.additionalMACAddresses = additionalMACAddresses;
+        return this;
+    }
+
+    public InspectAdditionalNetwork addAdditionalMACAddressesItem(String additionalMACAddressesItem) {
+        if (this.additionalMACAddresses == null) {
+            this.additionalMACAddresses = new ArrayList<>();
+        }
+        this.additionalMACAddresses.add(additionalMACAddressesItem);
+        return this;
+    }
+
+    /**
+     * AdditionalMacAddresses is a set of additional MAC Addresses beyond the first. CNI may configure more than one interface for a single network, which can cause this.
+     *
+     * @return additionalMACAddresses
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getAdditionalMACAddresses() {
+        return additionalMACAddresses;
+    }
+
+    public void setAdditionalMACAddresses(List<String> additionalMACAddresses) {
+        this.additionalMACAddresses = additionalMACAddresses;
+    }
+
+    public InspectAdditionalNetwork aliases(List<String> aliases) {
+        this.aliases = aliases;
+        return this;
+    }
+
+    public InspectAdditionalNetwork addAliasesItem(String aliasesItem) {
+        if (this.aliases == null) {
+            this.aliases = new ArrayList<>();
+        }
+        this.aliases.add(aliasesItem);
+        return this;
+    }
+
+    /**
+     * Aliases are any network aliases the container has in this network.
+     *
+     * @return aliases
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getAliases() {
+        return aliases;
+    }
+
+    public void setAliases(List<String> aliases) {
+        this.aliases = aliases;
+    }
+
+    public InspectAdditionalNetwork driverOpts(Map<String, String> driverOpts) {
+        this.driverOpts = driverOpts;
+        return this;
+    }
+
+    public InspectAdditionalNetwork putDriverOptsItem(String key, String driverOptsItem) {
+        if (this.driverOpts == null) {
+            this.driverOpts = new HashMap<>();
+        }
+        this.driverOpts.put(key, driverOptsItem);
+        return this;
+    }
+
+    /**
+     * DriverOpts is presently unused and maintained exclusively for compatibility.
+     *
+     * @return driverOpts
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getDriverOpts() {
+        return driverOpts;
+    }
+
+    public void setDriverOpts(Map<String, String> driverOpts) {
+        this.driverOpts = driverOpts;
+    }
+
+    public InspectAdditionalNetwork endpointID(String endpointID) {
+        this.endpointID = endpointID;
+        return this;
+    }
+
+    /**
+     * EndpointID is unused, maintained exclusively for compatibility.
+     *
+     * @return endpointID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getEndpointID() {
+        return endpointID;
+    }
+
+    public void setEndpointID(String endpointID) {
+        this.endpointID = endpointID;
+    }
+
+    public InspectAdditionalNetwork gateway(String gateway) {
+        this.gateway = gateway;
+        return this;
+    }
+
+    /**
+     * Gateway is the IP address of the gateway this network will use.
+     *
+     * @return gateway
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGateway() {
+        return gateway;
+    }
+
+    public void setGateway(String gateway) {
+        this.gateway = gateway;
+    }
+
+    public InspectAdditionalNetwork globalIPv6Address(String globalIPv6Address) {
+        this.globalIPv6Address = globalIPv6Address;
+        return this;
+    }
+
+    /**
+     * GlobalIPv6Address is the global-scope IPv6 Address for this network.
+     *
+     * @return globalIPv6Address
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGlobalIPv6Address() {
+        return globalIPv6Address;
+    }
+
+    public void setGlobalIPv6Address(String globalIPv6Address) {
+        this.globalIPv6Address = globalIPv6Address;
+    }
+
+    public InspectAdditionalNetwork globalIPv6PrefixLen(Long globalIPv6PrefixLen) {
+        this.globalIPv6PrefixLen = globalIPv6PrefixLen;
+        return this;
+    }
+
+    /**
+     * GlobalIPv6PrefixLen is the length of the subnet mask of this network.
+     *
+     * @return globalIPv6PrefixLen
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getGlobalIPv6PrefixLen() {
+        return globalIPv6PrefixLen;
+    }
+
+    public void setGlobalIPv6PrefixLen(Long globalIPv6PrefixLen) {
+        this.globalIPv6PrefixLen = globalIPv6PrefixLen;
+    }
+
+    public InspectAdditionalNetwork ipAMConfig(Map<String, String> ipAMConfig) {
+        this.ipAMConfig = ipAMConfig;
+        return this;
+    }
+
+    public InspectAdditionalNetwork putIpAMConfigItem(String key, String ipAMConfigItem) {
+        if (this.ipAMConfig == null) {
+            this.ipAMConfig = new HashMap<>();
+        }
+        this.ipAMConfig.put(key, ipAMConfigItem);
+        return this;
+    }
+
+    /**
+     * IPAMConfig is presently unused and maintained exclusively for compatibility.
+     *
+     * @return ipAMConfig
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getIpAMConfig() {
+        return ipAMConfig;
+    }
+
+    public void setIpAMConfig(Map<String, String> ipAMConfig) {
+        this.ipAMConfig = ipAMConfig;
+    }
+
+    public InspectAdditionalNetwork ipAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+        return this;
+    }
+
+    /**
+     * IPAddress is the IP address for this network.
+     *
+     * @return ipAddress
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public InspectAdditionalNetwork ipPrefixLen(Long ipPrefixLen) {
+        this.ipPrefixLen = ipPrefixLen;
+        return this;
+    }
+
+    /**
+     * IPPrefixLen is the length of the subnet mask of this network.
+     *
+     * @return ipPrefixLen
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getIpPrefixLen() {
+        return ipPrefixLen;
+    }
+
+    public void setIpPrefixLen(Long ipPrefixLen) {
+        this.ipPrefixLen = ipPrefixLen;
+    }
+
+    public InspectAdditionalNetwork ipv6Gateway(String ipv6Gateway) {
+        this.ipv6Gateway = ipv6Gateway;
+        return this;
+    }
+
+    /**
+     * IPv6Gateway is the IPv6 gateway this network will use.
+     *
+     * @return ipv6Gateway
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIpv6Gateway() {
+        return ipv6Gateway;
+    }
+
+    public void setIpv6Gateway(String ipv6Gateway) {
+        this.ipv6Gateway = ipv6Gateway;
+    }
+
+    public InspectAdditionalNetwork links(List<String> links) {
+        this.links = links;
+        return this;
+    }
+
+    public InspectAdditionalNetwork addLinksItem(String linksItem) {
+        if (this.links == null) {
+            this.links = new ArrayList<>();
+        }
+        this.links.add(linksItem);
+        return this;
+    }
+
+    /**
+     * Links is presently unused and maintained exclusively for compatibility.
+     *
+     * @return links
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<String> links) {
+        this.links = links;
+    }
+
+    public InspectAdditionalNetwork macAddress(String macAddress) {
+        this.macAddress = macAddress;
+        return this;
+    }
+
+    /**
+     * MacAddress is the MAC address for the interface in this network.
+     *
+     * @return macAddress
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMacAddress() {
+        return macAddress;
+    }
+
+    public void setMacAddress(String macAddress) {
+        this.macAddress = macAddress;
+    }
+
+    public InspectAdditionalNetwork networkID(String networkID) {
+        this.networkID = networkID;
+        return this;
+    }
+
+    /**
+     * Name of the network we&#39;re connecting to.
+     *
+     * @return networkID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getNetworkID() {
+        return networkID;
+    }
+
+    public void setNetworkID(String networkID) {
+        this.networkID = networkID;
+    }
+
+    public InspectAdditionalNetwork secondaryIPAddresses(List<@Valid Address> secondaryIPAddresses) {
+        this.secondaryIPAddresses = secondaryIPAddresses;
+        return this;
+    }
+
+    public InspectAdditionalNetwork addSecondaryIPAddressesItem(Address secondaryIPAddressesItem) {
+        if (this.secondaryIPAddresses == null) {
+            this.secondaryIPAddresses = new ArrayList<>();
+        }
+        this.secondaryIPAddresses.add(secondaryIPAddressesItem);
+        return this;
+    }
+
+    /**
+     * SecondaryIPAddresses is a list of extra IP Addresses that the container has been assigned in this network.
+     *
+     * @return secondaryIPAddresses
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Address> getSecondaryIPAddresses() {
+        return secondaryIPAddresses;
+    }
+
+    public void setSecondaryIPAddresses(List<@Valid Address> secondaryIPAddresses) {
+        this.secondaryIPAddresses = secondaryIPAddresses;
+    }
+
+    public InspectAdditionalNetwork secondaryIPv6Addresses(List<@Valid Address> secondaryIPv6Addresses) {
+        this.secondaryIPv6Addresses = secondaryIPv6Addresses;
+        return this;
+    }
+
+    public InspectAdditionalNetwork addSecondaryIPv6AddressesItem(Address secondaryIPv6AddressesItem) {
+        if (this.secondaryIPv6Addresses == null) {
+            this.secondaryIPv6Addresses = new ArrayList<>();
+        }
+        this.secondaryIPv6Addresses.add(secondaryIPv6AddressesItem);
+        return this;
+    }
+
+    /**
+     * SecondaryIPv6Addresses is a list of extra IPv6 Addresses that the container has been assigned in this network.
+     *
+     * @return secondaryIPv6Addresses
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Address> getSecondaryIPv6Addresses() {
+        return secondaryIPv6Addresses;
+    }
+
+    public void setSecondaryIPv6Addresses(List<@Valid Address> secondaryIPv6Addresses) {
+        this.secondaryIPv6Addresses = secondaryIPv6Addresses;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectAdditionalNetwork inspectAdditionalNetwork = (InspectAdditionalNetwork) o;
+        return Objects.equals(this.additionalMACAddresses, inspectAdditionalNetwork.additionalMACAddresses) &&
+                Objects.equals(this.aliases, inspectAdditionalNetwork.aliases) &&
+                Objects.equals(this.driverOpts, inspectAdditionalNetwork.driverOpts) &&
+                Objects.equals(this.endpointID, inspectAdditionalNetwork.endpointID) &&
+                Objects.equals(this.gateway, inspectAdditionalNetwork.gateway) &&
+                Objects.equals(this.globalIPv6Address, inspectAdditionalNetwork.globalIPv6Address) &&
+                Objects.equals(this.globalIPv6PrefixLen, inspectAdditionalNetwork.globalIPv6PrefixLen) &&
+                Objects.equals(this.ipAMConfig, inspectAdditionalNetwork.ipAMConfig) &&
+                Objects.equals(this.ipAddress, inspectAdditionalNetwork.ipAddress) &&
+                Objects.equals(this.ipPrefixLen, inspectAdditionalNetwork.ipPrefixLen) &&
+                Objects.equals(this.ipv6Gateway, inspectAdditionalNetwork.ipv6Gateway) &&
+                Objects.equals(this.links, inspectAdditionalNetwork.links) &&
+                Objects.equals(this.macAddress, inspectAdditionalNetwork.macAddress) &&
+                Objects.equals(this.networkID, inspectAdditionalNetwork.networkID) &&
+                Objects.equals(this.secondaryIPAddresses, inspectAdditionalNetwork.secondaryIPAddresses) &&
+                Objects.equals(this.secondaryIPv6Addresses, inspectAdditionalNetwork.secondaryIPv6Addresses);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(additionalMACAddresses, aliases, driverOpts, endpointID, gateway, globalIPv6Address, globalIPv6PrefixLen, ipAMConfig, ipAddress, ipPrefixLen, ipv6Gateway, links, macAddress, networkID, secondaryIPAddresses, secondaryIPv6Addresses);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class InspectAdditionalNetwork {\n" +
+                "    additionalMACAddresses: " + toIndentedString(additionalMACAddresses) + "\n" +
+                "    aliases: " + toIndentedString(aliases) + "\n" +
+                "    driverOpts: " + toIndentedString(driverOpts) + "\n" +
+                "    endpointID: " + toIndentedString(endpointID) + "\n" +
+                "    gateway: " + toIndentedString(gateway) + "\n" +
+                "    globalIPv6Address: " + toIndentedString(globalIPv6Address) + "\n" +
+                "    globalIPv6PrefixLen: " + toIndentedString(globalIPv6PrefixLen) + "\n" +
+                "    ipAMConfig: " + toIndentedString(ipAMConfig) + "\n" +
+                "    ipAddress: " + toIndentedString(ipAddress) + "\n" +
+                "    ipPrefixLen: " + toIndentedString(ipPrefixLen) + "\n" +
+                "    ipv6Gateway: " + toIndentedString(ipv6Gateway) + "\n" +
+                "    links: " + toIndentedString(links) + "\n" +
+                "    macAddress: " + toIndentedString(macAddress) + "\n" +
+                "    networkID: " + toIndentedString(networkID) + "\n" +
+                "    secondaryIPAddresses: " + toIndentedString(secondaryIPAddresses) + "\n" +
+                "    secondaryIPv6Addresses: " + toIndentedString(secondaryIPv6Addresses) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of InspectAdditionalNetwork to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!InspectAdditionalNetwork.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'InspectAdditionalNetwork' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<InspectAdditionalNetwork> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(InspectAdditionalNetwork.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<InspectAdditionalNetwork>() {
+                @Override
+                public void write(JsonWriter out, InspectAdditionalNetwork value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public InspectAdditionalNetwork read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -13,1340 +13,1104 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * CreateContainerConfig used when compatible endpoint creates a container
  */
-@JsonPropertyOrder({
-  CreateContainerConfig.JSON_PROPERTY_ARGS_ESCAPED,
-  CreateContainerConfig.JSON_PROPERTY_ATTACH_STDERR,
-  CreateContainerConfig.JSON_PROPERTY_ATTACH_STDIN,
-  CreateContainerConfig.JSON_PROPERTY_ATTACH_STDOUT,
-  CreateContainerConfig.JSON_PROPERTY_CMD,
-  CreateContainerConfig.JSON_PROPERTY_DOMAINNAME,
-  CreateContainerConfig.JSON_PROPERTY_ENTRYPOINT,
-  CreateContainerConfig.JSON_PROPERTY_ENV,
-  CreateContainerConfig.JSON_PROPERTY_ENV_MERGE,
-  CreateContainerConfig.JSON_PROPERTY_EXPOSED_PORTS,
-  CreateContainerConfig.JSON_PROPERTY_HEALTHCHECK,
-  CreateContainerConfig.JSON_PROPERTY_HOST_CONFIG,
-  CreateContainerConfig.JSON_PROPERTY_HOSTNAME,
-  CreateContainerConfig.JSON_PROPERTY_IMAGE,
-  CreateContainerConfig.JSON_PROPERTY_LABELS,
-  CreateContainerConfig.JSON_PROPERTY_MAC_ADDRESS,
-  CreateContainerConfig.JSON_PROPERTY_NAME,
-  CreateContainerConfig.JSON_PROPERTY_NETWORK_DISABLED,
-  CreateContainerConfig.JSON_PROPERTY_NETWORKING_CONFIG,
-  CreateContainerConfig.JSON_PROPERTY_ON_BUILD,
-  CreateContainerConfig.JSON_PROPERTY_OPEN_STDIN,
-  CreateContainerConfig.JSON_PROPERTY_SHELL,
-  CreateContainerConfig.JSON_PROPERTY_STDIN_ONCE,
-  CreateContainerConfig.JSON_PROPERTY_STOP_SIGNAL,
-  CreateContainerConfig.JSON_PROPERTY_STOP_TIMEOUT,
-  CreateContainerConfig.JSON_PROPERTY_TTY,
-  CreateContainerConfig.JSON_PROPERTY_UNSET_ENV,
-  CreateContainerConfig.JSON_PROPERTY_UNSET_ENV_ALL,
-  CreateContainerConfig.JSON_PROPERTY_USER,
-  CreateContainerConfig.JSON_PROPERTY_VOLUMES,
-  CreateContainerConfig.JSON_PROPERTY_WORKING_DIR
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class CreateContainerConfig {
-  public static final String JSON_PROPERTY_ARGS_ESCAPED = "ArgsEscaped";
-  private Boolean argsEscaped;
-
-  public static final String JSON_PROPERTY_ATTACH_STDERR = "AttachStderr";
-  private Boolean attachStderr;
-
-  public static final String JSON_PROPERTY_ATTACH_STDIN = "AttachStdin";
-  private Boolean attachStdin;
-
-  public static final String JSON_PROPERTY_ATTACH_STDOUT = "AttachStdout";
-  private Boolean attachStdout;
-
-  public static final String JSON_PROPERTY_CMD = "Cmd";
-  private List<String> cmd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DOMAINNAME = "Domainname";
-  private String domainname;
-
-  public static final String JSON_PROPERTY_ENTRYPOINT = "Entrypoint";
-  private List<String> entrypoint = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ENV = "Env";
-  private List<String> env = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ENV_MERGE = "EnvMerge";
-  private List<String> envMerge = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EXPOSED_PORTS = "ExposedPorts";
-  private Map<String, Object> exposedPorts = new HashMap<>();
-
-  public static final String JSON_PROPERTY_HEALTHCHECK = "Healthcheck";
-  private HealthcheckConfig healthcheck;
-
-  public static final String JSON_PROPERTY_HOST_CONFIG = "HostConfig";
-  private HostConfig hostConfig;
-
-  public static final String JSON_PROPERTY_HOSTNAME = "Hostname";
-  private String hostname;
-
-  public static final String JSON_PROPERTY_IMAGE = "Image";
-  private String image;
-
-  public static final String JSON_PROPERTY_LABELS = "Labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_MAC_ADDRESS = "MacAddress";
-  private String macAddress;
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_NETWORK_DISABLED = "NetworkDisabled";
-  private Boolean networkDisabled;
-
-  public static final String JSON_PROPERTY_NETWORKING_CONFIG = "NetworkingConfig";
-  private NetworkingConfig networkingConfig;
-
-  public static final String JSON_PROPERTY_ON_BUILD = "OnBuild";
-  private List<String> onBuild = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_OPEN_STDIN = "OpenStdin";
-  private Boolean openStdin;
-
-  public static final String JSON_PROPERTY_SHELL = "Shell";
-  private List<String> shell = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_STDIN_ONCE = "StdinOnce";
-  private Boolean stdinOnce;
-
-  public static final String JSON_PROPERTY_STOP_SIGNAL = "StopSignal";
-  private String stopSignal;
-
-  public static final String JSON_PROPERTY_STOP_TIMEOUT = "StopTimeout";
-  private Long stopTimeout;
-
-  public static final String JSON_PROPERTY_TTY = "Tty";
-  private Boolean tty;
-
-  public static final String JSON_PROPERTY_UNSET_ENV = "UnsetEnv";
-  private List<String> unsetEnv = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_UNSET_ENV_ALL = "UnsetEnvAll";
-  private Boolean unsetEnvAll;
-
-  public static final String JSON_PROPERTY_USER = "User";
-  private String user;
-
-  public static final String JSON_PROPERTY_VOLUMES = "Volumes";
-  private Map<String, Object> volumes = new HashMap<>();
-
-  public static final String JSON_PROPERTY_WORKING_DIR = "WorkingDir";
-  private String workingDir;
-
-  public CreateContainerConfig() { 
-  }
-
-  public CreateContainerConfig argsEscaped(Boolean argsEscaped) {
-    this.argsEscaped = argsEscaped;
-    return this;
-  }
-
-  /**
-   * Get argsEscaped
-   * @return argsEscaped
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ARGS_ESCAPED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getArgsEscaped() {
-    return argsEscaped;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ARGS_ESCAPED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setArgsEscaped(Boolean argsEscaped) {
-    this.argsEscaped = argsEscaped;
-  }
-
-
-  public CreateContainerConfig attachStderr(Boolean attachStderr) {
-    this.attachStderr = attachStderr;
-    return this;
-  }
-
-  /**
-   * Get attachStderr
-   * @return attachStderr
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStderr() {
-    return attachStderr;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStderr(Boolean attachStderr) {
-    this.attachStderr = attachStderr;
-  }
-
-
-  public CreateContainerConfig attachStdin(Boolean attachStdin) {
-    this.attachStdin = attachStdin;
-    return this;
-  }
-
-  /**
-   * Get attachStdin
-   * @return attachStdin
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStdin() {
-    return attachStdin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStdin(Boolean attachStdin) {
-    this.attachStdin = attachStdin;
-  }
-
-
-  public CreateContainerConfig attachStdout(Boolean attachStdout) {
-    this.attachStdout = attachStdout;
-    return this;
-  }
-
-  /**
-   * Get attachStdout
-   * @return attachStdout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStdout() {
-    return attachStdout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStdout(Boolean attachStdout) {
-    this.attachStdout = attachStdout;
-  }
-
-
-  public CreateContainerConfig cmd(List<String> cmd) {
-    this.cmd = cmd;
-    return this;
-  }
-
-  public CreateContainerConfig addCmdItem(String cmdItem) {
-    if (this.cmd == null) {
-      this.cmd = new ArrayList<>();
-    }
-    this.cmd.add(cmdItem);
-    return this;
-  }
-
-  /**
-   * We need to override the json decoder to accept both options.
-   * @return cmd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCmd() {
-    return cmd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCmd(List<String> cmd) {
-    this.cmd = cmd;
-  }
-
-
-  public CreateContainerConfig domainname(String domainname) {
-    this.domainname = domainname;
-    return this;
-  }
-
-  /**
-   * Get domainname
-   * @return domainname
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DOMAINNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDomainname() {
-    return domainname;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DOMAINNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDomainname(String domainname) {
-    this.domainname = domainname;
-  }
-
-
-  public CreateContainerConfig entrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-    return this;
-  }
-
-  public CreateContainerConfig addEntrypointItem(String entrypointItem) {
-    if (this.entrypoint == null) {
-      this.entrypoint = new ArrayList<>();
-    }
-    this.entrypoint.add(entrypointItem);
-    return this;
-  }
-
-  /**
-   * We need to override the json decoder to accept both options.
-   * @return entrypoint
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEntrypoint() {
-    return entrypoint;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-  }
-
-
-  public CreateContainerConfig env(List<String> env) {
-    this.env = env;
-    return this;
-  }
-
-  public CreateContainerConfig addEnvItem(String envItem) {
-    if (this.env == null) {
-      this.env = new ArrayList<>();
-    }
-    this.env.add(envItem);
-    return this;
-  }
-
-  /**
-   * Get env
-   * @return env
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEnv() {
-    return env;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnv(List<String> env) {
-    this.env = env;
-  }
-
-
-  public CreateContainerConfig envMerge(List<String> envMerge) {
-    this.envMerge = envMerge;
-    return this;
-  }
-
-  public CreateContainerConfig addEnvMergeItem(String envMergeItem) {
-    if (this.envMerge == null) {
-      this.envMerge = new ArrayList<>();
-    }
-    this.envMerge.add(envMergeItem);
-    return this;
-  }
-
-  /**
-   * Get envMerge
-   * @return envMerge
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENV_MERGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEnvMerge() {
-    return envMerge;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENV_MERGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnvMerge(List<String> envMerge) {
-    this.envMerge = envMerge;
-  }
-
-
-  public CreateContainerConfig exposedPorts(Map<String, Object> exposedPorts) {
-    this.exposedPorts = exposedPorts;
-    return this;
-  }
-
-  public CreateContainerConfig putExposedPortsItem(String key, Object exposedPortsItem) {
-    if (this.exposedPorts == null) {
-      this.exposedPorts = new HashMap<>();
-    }
-    this.exposedPorts.put(key, exposedPortsItem);
-    return this;
-  }
-
-  /**
-   * PortSet is a collection of structs indexed by Port
-   * @return exposedPorts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, Object> getExposedPorts() {
-    return exposedPorts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExposedPorts(Map<String, Object> exposedPorts) {
-    this.exposedPorts = exposedPorts;
-  }
-
-
-  public CreateContainerConfig healthcheck(HealthcheckConfig healthcheck) {
-    this.healthcheck = healthcheck;
-    return this;
-  }
-
-  /**
-   * Get healthcheck
-   * @return healthcheck
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public HealthcheckConfig getHealthcheck() {
-    return healthcheck;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthcheck(HealthcheckConfig healthcheck) {
-    this.healthcheck = healthcheck;
-  }
-
-
-  public CreateContainerConfig hostConfig(HostConfig hostConfig) {
-    this.hostConfig = hostConfig;
-    return this;
-  }
-
-  /**
-   * Get hostConfig
-   * @return hostConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public HostConfig getHostConfig() {
-    return hostConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostConfig(HostConfig hostConfig) {
-    this.hostConfig = hostConfig;
-  }
-
-
-  public CreateContainerConfig hostname(String hostname) {
-    this.hostname = hostname;
-    return this;
-  }
-
-  /**
-   * Get hostname
-   * @return hostname
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getHostname() {
-    return hostname;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostname(String hostname) {
-    this.hostname = hostname;
-  }
-
-
-  public CreateContainerConfig image(String image) {
-    this.image = image;
-    return this;
-  }
-
-  /**
-   * Get image
-   * @return image
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImage() {
-    return image;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-
-  public CreateContainerConfig labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public CreateContainerConfig putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * Get labels
-   * @return labels
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public CreateContainerConfig macAddress(String macAddress) {
-    this.macAddress = macAddress;
-    return this;
-  }
-
-  /**
-   * Mac Address of the container.  Deprecated: this field is deprecated since API v1.44. Use EndpointSettings.MacAddress instead.
-   * @return macAddress
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMacAddress() {
-    return macAddress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMacAddress(String macAddress) {
-    this.macAddress = macAddress;
-  }
-
-
-  public CreateContainerConfig name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public CreateContainerConfig networkDisabled(Boolean networkDisabled) {
-    this.networkDisabled = networkDisabled;
-    return this;
-  }
-
-  /**
-   * Get networkDisabled
-   * @return networkDisabled
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_DISABLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getNetworkDisabled() {
-    return networkDisabled;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_DISABLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkDisabled(Boolean networkDisabled) {
-    this.networkDisabled = networkDisabled;
-  }
-
-
-  public CreateContainerConfig networkingConfig(NetworkingConfig networkingConfig) {
-    this.networkingConfig = networkingConfig;
-    return this;
-  }
-
-  /**
-   * Get networkingConfig
-   * @return networkingConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_NETWORKING_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public NetworkingConfig getNetworkingConfig() {
-    return networkingConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORKING_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkingConfig(NetworkingConfig networkingConfig) {
-    this.networkingConfig = networkingConfig;
-  }
-
-
-  public CreateContainerConfig onBuild(List<String> onBuild) {
-    this.onBuild = onBuild;
-    return this;
-  }
-
-  public CreateContainerConfig addOnBuildItem(String onBuildItem) {
-    if (this.onBuild == null) {
-      this.onBuild = new ArrayList<>();
-    }
-    this.onBuild.add(onBuildItem);
-    return this;
-  }
-
-  /**
-   * Get onBuild
-   * @return onBuild
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ON_BUILD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getOnBuild() {
-    return onBuild;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ON_BUILD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOnBuild(List<String> onBuild) {
-    this.onBuild = onBuild;
-  }
-
-
-  public CreateContainerConfig openStdin(Boolean openStdin) {
-    this.openStdin = openStdin;
-    return this;
-  }
-
-  /**
-   * Get openStdin
-   * @return openStdin
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOpenStdin() {
-    return openStdin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOpenStdin(Boolean openStdin) {
-    this.openStdin = openStdin;
-  }
-
-
-  public CreateContainerConfig shell(List<String> shell) {
-    this.shell = shell;
-    return this;
-  }
-
-  public CreateContainerConfig addShellItem(String shellItem) {
-    if (this.shell == null) {
-      this.shell = new ArrayList<>();
-    }
-    this.shell.add(shellItem);
-    return this;
-  }
-
-  /**
-   * We need to override the json decoder to accept both options.
-   * @return shell
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHELL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getShell() {
-    return shell;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHELL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setShell(List<String> shell) {
-    this.shell = shell;
-  }
-
-
-  public CreateContainerConfig stdinOnce(Boolean stdinOnce) {
-    this.stdinOnce = stdinOnce;
-    return this;
-  }
-
-  /**
-   * Get stdinOnce
-   * @return stdinOnce
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getStdinOnce() {
-    return stdinOnce;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStdinOnce(Boolean stdinOnce) {
-    this.stdinOnce = stdinOnce;
-  }
-
-
-  public CreateContainerConfig stopSignal(String stopSignal) {
-    this.stopSignal = stopSignal;
-    return this;
-  }
-
-  /**
-   * Get stopSignal
-   * @return stopSignal
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStopSignal() {
-    return stopSignal;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStopSignal(String stopSignal) {
-    this.stopSignal = stopSignal;
-  }
-
-
-  public CreateContainerConfig stopTimeout(Long stopTimeout) {
-    this.stopTimeout = stopTimeout;
-    return this;
-  }
-
-  /**
-   * Get stopTimeout
-   * @return stopTimeout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getStopTimeout() {
-    return stopTimeout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStopTimeout(Long stopTimeout) {
-    this.stopTimeout = stopTimeout;
-  }
-
-
-  public CreateContainerConfig tty(Boolean tty) {
-    this.tty = tty;
-    return this;
-  }
-
-  /**
-   * Get tty
-   * @return tty
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TTY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getTty() {
-    return tty;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TTY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTty(Boolean tty) {
-    this.tty = tty;
-  }
-
-
-  public CreateContainerConfig unsetEnv(List<String> unsetEnv) {
-    this.unsetEnv = unsetEnv;
-    return this;
-  }
-
-  public CreateContainerConfig addUnsetEnvItem(String unsetEnvItem) {
-    if (this.unsetEnv == null) {
-      this.unsetEnv = new ArrayList<>();
-    }
-    this.unsetEnv.add(unsetEnvItem);
-    return this;
-  }
-
-  /**
-   * Get unsetEnv
-   * @return unsetEnv
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNSET_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getUnsetEnv() {
-    return unsetEnv;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNSET_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnsetEnv(List<String> unsetEnv) {
-    this.unsetEnv = unsetEnv;
-  }
-
-
-  public CreateContainerConfig unsetEnvAll(Boolean unsetEnvAll) {
-    this.unsetEnvAll = unsetEnvAll;
-    return this;
-  }
-
-  /**
-   * Get unsetEnvAll
-   * @return unsetEnvAll
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNSET_ENV_ALL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getUnsetEnvAll() {
-    return unsetEnvAll;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNSET_ENV_ALL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnsetEnvAll(Boolean unsetEnvAll) {
-    this.unsetEnvAll = unsetEnvAll;
-  }
-
-
-  public CreateContainerConfig user(String user) {
-    this.user = user;
-    return this;
-  }
-
-  /**
-   * Get user
-   * @return user
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUser() {
-    return user;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-
-  public CreateContainerConfig volumes(Map<String, Object> volumes) {
-    this.volumes = volumes;
-    return this;
-  }
-
-  public CreateContainerConfig putVolumesItem(String key, Object volumesItem) {
-    if (this.volumes == null) {
-      this.volumes = new HashMap<>();
-    }
-    this.volumes.put(key, volumesItem);
-    return this;
-  }
-
-  /**
-   * Get volumes
-   * @return volumes
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, Object> getVolumes() {
-    return volumes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumes(Map<String, Object> volumes) {
-    this.volumes = volumes;
-  }
-
-
-  public CreateContainerConfig workingDir(String workingDir) {
-    this.workingDir = workingDir;
-    return this;
-  }
-
-  /**
-   * Get workingDir
-   * @return workingDir
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getWorkingDir() {
-    return workingDir;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWorkingDir(String workingDir) {
-    this.workingDir = workingDir;
-  }
-
-
-  /**
-   * Return true if this CreateContainerConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    CreateContainerConfig createContainerConfig = (CreateContainerConfig) o;
-    return Objects.equals(this.argsEscaped, createContainerConfig.argsEscaped) &&
-        Objects.equals(this.attachStderr, createContainerConfig.attachStderr) &&
-        Objects.equals(this.attachStdin, createContainerConfig.attachStdin) &&
-        Objects.equals(this.attachStdout, createContainerConfig.attachStdout) &&
-        Objects.equals(this.cmd, createContainerConfig.cmd) &&
-        Objects.equals(this.domainname, createContainerConfig.domainname) &&
-        Objects.equals(this.entrypoint, createContainerConfig.entrypoint) &&
-        Objects.equals(this.env, createContainerConfig.env) &&
-        Objects.equals(this.envMerge, createContainerConfig.envMerge) &&
-        Objects.equals(this.exposedPorts, createContainerConfig.exposedPorts) &&
-        Objects.equals(this.healthcheck, createContainerConfig.healthcheck) &&
-        Objects.equals(this.hostConfig, createContainerConfig.hostConfig) &&
-        Objects.equals(this.hostname, createContainerConfig.hostname) &&
-        Objects.equals(this.image, createContainerConfig.image) &&
-        Objects.equals(this.labels, createContainerConfig.labels) &&
-        Objects.equals(this.macAddress, createContainerConfig.macAddress) &&
-        Objects.equals(this.name, createContainerConfig.name) &&
-        Objects.equals(this.networkDisabled, createContainerConfig.networkDisabled) &&
-        Objects.equals(this.networkingConfig, createContainerConfig.networkingConfig) &&
-        Objects.equals(this.onBuild, createContainerConfig.onBuild) &&
-        Objects.equals(this.openStdin, createContainerConfig.openStdin) &&
-        Objects.equals(this.shell, createContainerConfig.shell) &&
-        Objects.equals(this.stdinOnce, createContainerConfig.stdinOnce) &&
-        Objects.equals(this.stopSignal, createContainerConfig.stopSignal) &&
-        Objects.equals(this.stopTimeout, createContainerConfig.stopTimeout) &&
-        Objects.equals(this.tty, createContainerConfig.tty) &&
-        Objects.equals(this.unsetEnv, createContainerConfig.unsetEnv) &&
-        Objects.equals(this.unsetEnvAll, createContainerConfig.unsetEnvAll) &&
-        Objects.equals(this.user, createContainerConfig.user) &&
-        Objects.equals(this.volumes, createContainerConfig.volumes) &&
-        Objects.equals(this.workingDir, createContainerConfig.workingDir);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(argsEscaped, attachStderr, attachStdin, attachStdout, cmd, domainname, entrypoint, env, envMerge, exposedPorts, healthcheck, hostConfig, hostname, image, labels, macAddress, name, networkDisabled, networkingConfig, onBuild, openStdin, shell, stdinOnce, stopSignal, stopTimeout, tty, unsetEnv, unsetEnvAll, user, volumes, workingDir);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateContainerConfig {\n");
-    sb.append("    argsEscaped: ").append(toIndentedString(argsEscaped)).append("\n");
-    sb.append("    attachStderr: ").append(toIndentedString(attachStderr)).append("\n");
-    sb.append("    attachStdin: ").append(toIndentedString(attachStdin)).append("\n");
-    sb.append("    attachStdout: ").append(toIndentedString(attachStdout)).append("\n");
-    sb.append("    cmd: ").append(toIndentedString(cmd)).append("\n");
-    sb.append("    domainname: ").append(toIndentedString(domainname)).append("\n");
-    sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
-    sb.append("    env: ").append(toIndentedString(env)).append("\n");
-    sb.append("    envMerge: ").append(toIndentedString(envMerge)).append("\n");
-    sb.append("    exposedPorts: ").append(toIndentedString(exposedPorts)).append("\n");
-    sb.append("    healthcheck: ").append(toIndentedString(healthcheck)).append("\n");
-    sb.append("    hostConfig: ").append(toIndentedString(hostConfig)).append("\n");
-    sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    macAddress: ").append(toIndentedString(macAddress)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    networkDisabled: ").append(toIndentedString(networkDisabled)).append("\n");
-    sb.append("    networkingConfig: ").append(toIndentedString(networkingConfig)).append("\n");
-    sb.append("    onBuild: ").append(toIndentedString(onBuild)).append("\n");
-    sb.append("    openStdin: ").append(toIndentedString(openStdin)).append("\n");
-    sb.append("    shell: ").append(toIndentedString(shell)).append("\n");
-    sb.append("    stdinOnce: ").append(toIndentedString(stdinOnce)).append("\n");
-    sb.append("    stopSignal: ").append(toIndentedString(stopSignal)).append("\n");
-    sb.append("    stopTimeout: ").append(toIndentedString(stopTimeout)).append("\n");
-    sb.append("    tty: ").append(toIndentedString(tty)).append("\n");
-    sb.append("    unsetEnv: ").append(toIndentedString(unsetEnv)).append("\n");
-    sb.append("    unsetEnvAll: ").append(toIndentedString(unsetEnvAll)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    volumes: ").append(toIndentedString(volumes)).append("\n");
-    sb.append("    workingDir: ").append(toIndentedString(workingDir)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ARGS_ESCAPED = "ArgsEscaped";
+    public static final String SERIALIZED_NAME_ATTACH_STDERR = "AttachStderr";
+    public static final String SERIALIZED_NAME_ATTACH_STDIN = "AttachStdin";
+    public static final String SERIALIZED_NAME_ATTACH_STDOUT = "AttachStdout";
+    public static final String SERIALIZED_NAME_CMD = "Cmd";
+    public static final String SERIALIZED_NAME_DOMAINNAME = "Domainname";
+    public static final String SERIALIZED_NAME_ENTRYPOINT = "Entrypoint";
+    public static final String SERIALIZED_NAME_ENV = "Env";
+    public static final String SERIALIZED_NAME_ENV_MERGE = "EnvMerge";
+    public static final String SERIALIZED_NAME_EXPOSED_PORTS = "ExposedPorts";
+    public static final String SERIALIZED_NAME_HEALTHCHECK = "Healthcheck";
+    public static final String SERIALIZED_NAME_HOST_CONFIG = "HostConfig";
+    public static final String SERIALIZED_NAME_HOSTNAME = "Hostname";
+    public static final String SERIALIZED_NAME_IMAGE = "Image";
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
+    public static final String SERIALIZED_NAME_MAC_ADDRESS = "MacAddress";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_NETWORK_DISABLED = "NetworkDisabled";
+    public static final String SERIALIZED_NAME_NETWORKING_CONFIG = "NetworkingConfig";
+    public static final String SERIALIZED_NAME_ON_BUILD = "OnBuild";
+    public static final String SERIALIZED_NAME_OPEN_STDIN = "OpenStdin";
+    public static final String SERIALIZED_NAME_SHELL = "Shell";
+    public static final String SERIALIZED_NAME_STDIN_ONCE = "StdinOnce";
+    public static final String SERIALIZED_NAME_STOP_SIGNAL = "StopSignal";
+    public static final String SERIALIZED_NAME_STOP_TIMEOUT = "StopTimeout";
+    public static final String SERIALIZED_NAME_TTY = "Tty";
+    public static final String SERIALIZED_NAME_UNSET_ENV = "UnsetEnv";
+    public static final String SERIALIZED_NAME_UNSET_ENV_ALL = "UnsetEnvAll";
+    public static final String SERIALIZED_NAME_USER = "User";
+    public static final String SERIALIZED_NAME_VOLUMES = "Volumes";
+    public static final String SERIALIZED_NAME_WORKING_DIR = "WorkingDir";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("ArgsEscaped");
+        openapiFields.add("AttachStderr");
+        openapiFields.add("AttachStdin");
+        openapiFields.add("AttachStdout");
+        openapiFields.add("Cmd");
+        openapiFields.add("Domainname");
+        openapiFields.add("Entrypoint");
+        openapiFields.add("Env");
+        openapiFields.add("EnvMerge");
+        openapiFields.add("ExposedPorts");
+        openapiFields.add("Healthcheck");
+        openapiFields.add("HostConfig");
+        openapiFields.add("Hostname");
+        openapiFields.add("Image");
+        openapiFields.add("Labels");
+        openapiFields.add("MacAddress");
+        openapiFields.add("Name");
+        openapiFields.add("NetworkDisabled");
+        openapiFields.add("NetworkingConfig");
+        openapiFields.add("OnBuild");
+        openapiFields.add("OpenStdin");
+        openapiFields.add("Shell");
+        openapiFields.add("StdinOnce");
+        openapiFields.add("StopSignal");
+        openapiFields.add("StopTimeout");
+        openapiFields.add("Tty");
+        openapiFields.add("UnsetEnv");
+        openapiFields.add("UnsetEnvAll");
+        openapiFields.add("User");
+        openapiFields.add("Volumes");
+        openapiFields.add("WorkingDir");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ARGS_ESCAPED)
+    private Boolean argsEscaped;
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDERR)
+    private Boolean attachStderr;
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDIN)
+    private Boolean attachStdin;
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDOUT)
+    private Boolean attachStdout;
+    @SerializedName(SERIALIZED_NAME_CMD)
+    private List<String> cmd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DOMAINNAME)
+    private String domainname;
+    @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
+    private List<String> entrypoint = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENV)
+    private List<String> env = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENV_MERGE)
+    private List<String> envMerge = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_EXPOSED_PORTS)
+    private Map<String, Object> exposedPorts = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_HEALTHCHECK)
+    private HealthcheckConfig healthcheck;
+    @SerializedName(SERIALIZED_NAME_HOST_CONFIG)
+    private HostConfig hostConfig;
+    @SerializedName(SERIALIZED_NAME_HOSTNAME)
+    private String hostname;
+    @SerializedName(SERIALIZED_NAME_IMAGE)
+    private String image;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_MAC_ADDRESS)
+    private String macAddress;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_NETWORK_DISABLED)
+    private Boolean networkDisabled;
+    @SerializedName(SERIALIZED_NAME_NETWORKING_CONFIG)
+    private NetworkingConfig networkingConfig;
+    @SerializedName(SERIALIZED_NAME_ON_BUILD)
+    private List<String> onBuild = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_OPEN_STDIN)
+    private Boolean openStdin;
+    @SerializedName(SERIALIZED_NAME_SHELL)
+    private List<String> shell = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_STDIN_ONCE)
+    private Boolean stdinOnce;
+    @SerializedName(SERIALIZED_NAME_STOP_SIGNAL)
+    private String stopSignal;
+    @SerializedName(SERIALIZED_NAME_STOP_TIMEOUT)
+    private Long stopTimeout;
+    @SerializedName(SERIALIZED_NAME_TTY)
+    private Boolean tty;
+    @SerializedName(SERIALIZED_NAME_UNSET_ENV)
+    private List<String> unsetEnv = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_UNSET_ENV_ALL)
+    private Boolean unsetEnvAll;
+    @SerializedName(SERIALIZED_NAME_USER)
+    private String user;
+    @SerializedName(SERIALIZED_NAME_VOLUMES)
+    private Map<String, Object> volumes = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_WORKING_DIR)
+    private String workingDir;
 
-    // add `ArgsEscaped` to the URL query string
-    if (getArgsEscaped() != null) {
-      joiner.add(String.format("%sArgsEscaped%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArgsEscaped()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig() {
     }
 
-    // add `AttachStderr` to the URL query string
-    if (getAttachStderr() != null) {
-      joiner.add(String.format("%sAttachStderr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStderr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to CreateContainerConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!CreateContainerConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in CreateContainerConfig is not found in the empty JSON string", CreateContainerConfig.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!CreateContainerConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateContainerConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull() && !jsonObj.get("Cmd").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Cmd` to be an array in the JSON string but got `%s`", jsonObj.get("Cmd").toString()));
+        }
+        if ((jsonObj.get("Domainname") != null && !jsonObj.get("Domainname").isJsonNull()) && !jsonObj.get("Domainname").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Domainname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Domainname").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull() && !jsonObj.get("Entrypoint").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("Entrypoint").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull() && !jsonObj.get("Env").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("EnvMerge") != null && !jsonObj.get("EnvMerge").isJsonNull() && !jsonObj.get("EnvMerge").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `EnvMerge` to be an array in the JSON string but got `%s`", jsonObj.get("EnvMerge").toString()));
+        }
+        // validate the optional field `Healthcheck`
+        if (jsonObj.get("Healthcheck") != null && !jsonObj.get("Healthcheck").isJsonNull()) {
+            HealthcheckConfig.validateJsonElement(jsonObj.get("Healthcheck"));
+        }
+        // validate the optional field `HostConfig`
+        if (jsonObj.get("HostConfig") != null && !jsonObj.get("HostConfig").isJsonNull()) {
+            HostConfig.validateJsonElement(jsonObj.get("HostConfig"));
+        }
+        if ((jsonObj.get("Hostname") != null && !jsonObj.get("Hostname").isJsonNull()) && !jsonObj.get("Hostname").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Hostname").toString()));
+        }
+        if ((jsonObj.get("Image") != null && !jsonObj.get("Image").isJsonNull()) && !jsonObj.get("Image").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Image").toString()));
+        }
+        if ((jsonObj.get("MacAddress") != null && !jsonObj.get("MacAddress").isJsonNull()) && !jsonObj.get("MacAddress").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `MacAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MacAddress").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
+        // validate the optional field `NetworkingConfig`
+        if (jsonObj.get("NetworkingConfig") != null && !jsonObj.get("NetworkingConfig").isJsonNull()) {
+            NetworkingConfig.validateJsonElement(jsonObj.get("NetworkingConfig"));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("OnBuild") != null && !jsonObj.get("OnBuild").isJsonNull() && !jsonObj.get("OnBuild").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `OnBuild` to be an array in the JSON string but got `%s`", jsonObj.get("OnBuild").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Shell") != null && !jsonObj.get("Shell").isJsonNull() && !jsonObj.get("Shell").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Shell` to be an array in the JSON string but got `%s`", jsonObj.get("Shell").toString()));
+        }
+        if ((jsonObj.get("StopSignal") != null && !jsonObj.get("StopSignal").isJsonNull()) && !jsonObj.get("StopSignal").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `StopSignal` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StopSignal").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("UnsetEnv") != null && !jsonObj.get("UnsetEnv").isJsonNull() && !jsonObj.get("UnsetEnv").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `UnsetEnv` to be an array in the JSON string but got `%s`", jsonObj.get("UnsetEnv").toString()));
+        }
+        if ((jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) && !jsonObj.get("User").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `User` to be a primitive type in the JSON string but got `%s`", jsonObj.get("User").toString()));
+        }
+        if ((jsonObj.get("WorkingDir") != null && !jsonObj.get("WorkingDir").isJsonNull()) && !jsonObj.get("WorkingDir").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `WorkingDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("WorkingDir").toString()));
+        }
     }
 
-    // add `AttachStdin` to the URL query string
-    if (getAttachStdin() != null) {
-      joiner.add(String.format("%sAttachStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of CreateContainerConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of CreateContainerConfig
+     * @throws IOException if the JSON string is invalid with respect to CreateContainerConfig
+     */
+    public static CreateContainerConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, CreateContainerConfig.class);
     }
 
-    // add `AttachStdout` to the URL query string
-    if (getAttachStdout() != null) {
-      joiner.add(String.format("%sAttachStdout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig argsEscaped(Boolean argsEscaped) {
+        this.argsEscaped = argsEscaped;
+        return this;
     }
 
-    // add `Cmd` to the URL query string
-    if (getCmd() != null) {
-      for (int i = 0; i < getCmd().size(); i++) {
-        joiner.add(String.format("%sCmd%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCmd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Get argsEscaped
+     *
+     * @return argsEscaped
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getArgsEscaped() {
+        return argsEscaped;
     }
 
-    // add `Domainname` to the URL query string
-    if (getDomainname() != null) {
-      joiner.add(String.format("%sDomainname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDomainname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setArgsEscaped(Boolean argsEscaped) {
+        this.argsEscaped = argsEscaped;
     }
 
-    // add `Entrypoint` to the URL query string
-    if (getEntrypoint() != null) {
-      for (int i = 0; i < getEntrypoint().size(); i++) {
-        joiner.add(String.format("%sEntrypoint%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEntrypoint().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public CreateContainerConfig attachStderr(Boolean attachStderr) {
+        this.attachStderr = attachStderr;
+        return this;
     }
 
-    // add `Env` to the URL query string
-    if (getEnv() != null) {
-      for (int i = 0; i < getEnv().size(); i++) {
-        joiner.add(String.format("%sEnv%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEnv().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Get attachStderr
+     *
+     * @return attachStderr
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStderr() {
+        return attachStderr;
     }
 
-    // add `EnvMerge` to the URL query string
-    if (getEnvMerge() != null) {
-      for (int i = 0; i < getEnvMerge().size(); i++) {
-        joiner.add(String.format("%sEnvMerge%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEnvMerge().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setAttachStderr(Boolean attachStderr) {
+        this.attachStderr = attachStderr;
     }
 
-    // add `ExposedPorts` to the URL query string
-    if (getExposedPorts() != null) {
-      for (String _key : getExposedPorts().keySet()) {
-        joiner.add(String.format("%sExposedPorts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getExposedPorts().get(_key), URLEncoder.encode(ApiClient.valueToString(getExposedPorts().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public CreateContainerConfig attachStdin(Boolean attachStdin) {
+        this.attachStdin = attachStdin;
+        return this;
     }
 
-    // add `Healthcheck` to the URL query string
-    if (getHealthcheck() != null) {
-      joiner.add(getHealthcheck().toUrlQueryString(prefix + "Healthcheck" + suffix));
+    /**
+     * Get attachStdin
+     *
+     * @return attachStdin
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStdin() {
+        return attachStdin;
     }
 
-    // add `HostConfig` to the URL query string
-    if (getHostConfig() != null) {
-      joiner.add(getHostConfig().toUrlQueryString(prefix + "HostConfig" + suffix));
+    public void setAttachStdin(Boolean attachStdin) {
+        this.attachStdin = attachStdin;
     }
 
-    // add `Hostname` to the URL query string
-    if (getHostname() != null) {
-      joiner.add(String.format("%sHostname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig attachStdout(Boolean attachStdout) {
+        this.attachStdout = attachStdout;
+        return this;
     }
 
-    // add `Image` to the URL query string
-    if (getImage() != null) {
-      joiner.add(String.format("%sImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get attachStdout
+     *
+     * @return attachStdout
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStdout() {
+        return attachStdout;
     }
 
-    // add `Labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setAttachStdout(Boolean attachStdout) {
+        this.attachStdout = attachStdout;
     }
 
-    // add `MacAddress` to the URL query string
-    if (getMacAddress() != null) {
-      joiner.add(String.format("%sMacAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMacAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig cmd(List<String> cmd) {
+        this.cmd = cmd;
+        return this;
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig addCmdItem(String cmdItem) {
+        if (this.cmd == null) {
+            this.cmd = new ArrayList<>();
+        }
+        this.cmd.add(cmdItem);
+        return this;
     }
 
-    // add `NetworkDisabled` to the URL query string
-    if (getNetworkDisabled() != null) {
-      joiner.add(String.format("%sNetworkDisabled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetworkDisabled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * We need to override the json decoder to accept both options.
+     *
+     * @return cmd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCmd() {
+        return cmd;
     }
 
-    // add `NetworkingConfig` to the URL query string
-    if (getNetworkingConfig() != null) {
-      joiner.add(getNetworkingConfig().toUrlQueryString(prefix + "NetworkingConfig" + suffix));
+    public void setCmd(List<String> cmd) {
+        this.cmd = cmd;
     }
 
-    // add `OnBuild` to the URL query string
-    if (getOnBuild() != null) {
-      for (int i = 0; i < getOnBuild().size(); i++) {
-        joiner.add(String.format("%sOnBuild%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getOnBuild().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public CreateContainerConfig domainname(String domainname) {
+        this.domainname = domainname;
+        return this;
     }
 
-    // add `OpenStdin` to the URL query string
-    if (getOpenStdin() != null) {
-      joiner.add(String.format("%sOpenStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get domainname
+     *
+     * @return domainname
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDomainname() {
+        return domainname;
     }
 
-    // add `Shell` to the URL query string
-    if (getShell() != null) {
-      for (int i = 0; i < getShell().size(); i++) {
-        joiner.add(String.format("%sShell%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getShell().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setDomainname(String domainname) {
+        this.domainname = domainname;
     }
 
-    // add `StdinOnce` to the URL query string
-    if (getStdinOnce() != null) {
-      joiner.add(String.format("%sStdinOnce%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStdinOnce()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig entrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
+        return this;
     }
 
-    // add `StopSignal` to the URL query string
-    if (getStopSignal() != null) {
-      joiner.add(String.format("%sStopSignal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopSignal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig addEntrypointItem(String entrypointItem) {
+        if (this.entrypoint == null) {
+            this.entrypoint = new ArrayList<>();
+        }
+        this.entrypoint.add(entrypointItem);
+        return this;
     }
 
-    // add `StopTimeout` to the URL query string
-    if (getStopTimeout() != null) {
-      joiner.add(String.format("%sStopTimeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * We need to override the json decoder to accept both options.
+     *
+     * @return entrypoint
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEntrypoint() {
+        return entrypoint;
     }
 
-    // add `Tty` to the URL query string
-    if (getTty() != null) {
-      joiner.add(String.format("%sTty%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTty()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setEntrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
     }
 
-    // add `UnsetEnv` to the URL query string
-    if (getUnsetEnv() != null) {
-      for (int i = 0; i < getUnsetEnv().size(); i++) {
-        joiner.add(String.format("%sUnsetEnv%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getUnsetEnv().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public CreateContainerConfig env(List<String> env) {
+        this.env = env;
+        return this;
     }
 
-    // add `UnsetEnvAll` to the URL query string
-    if (getUnsetEnvAll() != null) {
-      joiner.add(String.format("%sUnsetEnvAll%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUnsetEnvAll()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig addEnvItem(String envItem) {
+        if (this.env == null) {
+            this.env = new ArrayList<>();
+        }
+        this.env.add(envItem);
+        return this;
     }
 
-    // add `User` to the URL query string
-    if (getUser() != null) {
-      joiner.add(String.format("%sUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get env
+     *
+     * @return env
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEnv() {
+        return env;
     }
 
-    // add `Volumes` to the URL query string
-    if (getVolumes() != null) {
-      for (String _key : getVolumes().keySet()) {
-        joiner.add(String.format("%sVolumes%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getVolumes().get(_key), URLEncoder.encode(ApiClient.valueToString(getVolumes().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setEnv(List<String> env) {
+        this.env = env;
     }
 
-    // add `WorkingDir` to the URL query string
-    if (getWorkingDir() != null) {
-      joiner.add(String.format("%sWorkingDir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWorkingDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public CreateContainerConfig envMerge(List<String> envMerge) {
+        this.envMerge = envMerge;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    public CreateContainerConfig addEnvMergeItem(String envMergeItem) {
+        if (this.envMerge == null) {
+            this.envMerge = new ArrayList<>();
+        }
+        this.envMerge.add(envMergeItem);
+        return this;
+    }
+
+    /**
+     * Get envMerge
+     *
+     * @return envMerge
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEnvMerge() {
+        return envMerge;
+    }
+
+    public void setEnvMerge(List<String> envMerge) {
+        this.envMerge = envMerge;
+    }
+
+    public CreateContainerConfig exposedPorts(Map<String, Object> exposedPorts) {
+        this.exposedPorts = exposedPorts;
+        return this;
+    }
+
+    public CreateContainerConfig putExposedPortsItem(String key, Object exposedPortsItem) {
+        if (this.exposedPorts == null) {
+            this.exposedPorts = new HashMap<>();
+        }
+        this.exposedPorts.put(key, exposedPortsItem);
+        return this;
+    }
+
+    /**
+     * PortSet is a collection of structs indexed by Port
+     *
+     * @return exposedPorts
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, Object> getExposedPorts() {
+        return exposedPorts;
+    }
+
+    public void setExposedPorts(Map<String, Object> exposedPorts) {
+        this.exposedPorts = exposedPorts;
+    }
+
+    public CreateContainerConfig healthcheck(HealthcheckConfig healthcheck) {
+        this.healthcheck = healthcheck;
+        return this;
+    }
+
+    /**
+     * Get healthcheck
+     *
+     * @return healthcheck
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public HealthcheckConfig getHealthcheck() {
+        return healthcheck;
+    }
+
+    public void setHealthcheck(HealthcheckConfig healthcheck) {
+        this.healthcheck = healthcheck;
+    }
+
+    public CreateContainerConfig hostConfig(HostConfig hostConfig) {
+        this.hostConfig = hostConfig;
+        return this;
+    }
+
+    /**
+     * Get hostConfig
+     *
+     * @return hostConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public HostConfig getHostConfig() {
+        return hostConfig;
+    }
+
+    public void setHostConfig(HostConfig hostConfig) {
+        this.hostConfig = hostConfig;
+    }
+
+    public CreateContainerConfig hostname(String hostname) {
+        this.hostname = hostname;
+        return this;
+    }
+
+    /**
+     * Get hostname
+     *
+     * @return hostname
+     */
+    @jakarta.annotation.Nullable
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public CreateContainerConfig image(String image) {
+        this.image = image;
+        return this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return image
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public CreateContainerConfig labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public CreateContainerConfig putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * Get labels
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public CreateContainerConfig macAddress(String macAddress) {
+        this.macAddress = macAddress;
+        return this;
+    }
+
+    /**
+     * Mac Address of the container.  Deprecated: this field is deprecated since API v1.44. Use EndpointSettings.MacAddress instead.
+     *
+     * @return macAddress
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMacAddress() {
+        return macAddress;
+    }
+
+    public void setMacAddress(String macAddress) {
+        this.macAddress = macAddress;
+    }
+
+    public CreateContainerConfig name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public CreateContainerConfig networkDisabled(Boolean networkDisabled) {
+        this.networkDisabled = networkDisabled;
+        return this;
+    }
+
+    /**
+     * Get networkDisabled
+     *
+     * @return networkDisabled
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getNetworkDisabled() {
+        return networkDisabled;
+    }
+
+    public void setNetworkDisabled(Boolean networkDisabled) {
+        this.networkDisabled = networkDisabled;
+    }
+
+    public CreateContainerConfig networkingConfig(NetworkingConfig networkingConfig) {
+        this.networkingConfig = networkingConfig;
+        return this;
+    }
+
+    /**
+     * Get networkingConfig
+     *
+     * @return networkingConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public NetworkingConfig getNetworkingConfig() {
+        return networkingConfig;
+    }
+
+    public void setNetworkingConfig(NetworkingConfig networkingConfig) {
+        this.networkingConfig = networkingConfig;
+    }
+
+    public CreateContainerConfig onBuild(List<String> onBuild) {
+        this.onBuild = onBuild;
+        return this;
+    }
+
+    public CreateContainerConfig addOnBuildItem(String onBuildItem) {
+        if (this.onBuild == null) {
+            this.onBuild = new ArrayList<>();
+        }
+        this.onBuild.add(onBuildItem);
+        return this;
+    }
+
+    /**
+     * Get onBuild
+     *
+     * @return onBuild
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getOnBuild() {
+        return onBuild;
+    }
+
+    public void setOnBuild(List<String> onBuild) {
+        this.onBuild = onBuild;
+    }
+
+    public CreateContainerConfig openStdin(Boolean openStdin) {
+        this.openStdin = openStdin;
+        return this;
+    }
+
+    /**
+     * Get openStdin
+     *
+     * @return openStdin
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOpenStdin() {
+        return openStdin;
+    }
+
+    public void setOpenStdin(Boolean openStdin) {
+        this.openStdin = openStdin;
+    }
+
+    public CreateContainerConfig shell(List<String> shell) {
+        this.shell = shell;
+        return this;
+    }
+
+    public CreateContainerConfig addShellItem(String shellItem) {
+        if (this.shell == null) {
+            this.shell = new ArrayList<>();
+        }
+        this.shell.add(shellItem);
+        return this;
+    }
+
+    /**
+     * We need to override the json decoder to accept both options.
+     *
+     * @return shell
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getShell() {
+        return shell;
+    }
+
+    public void setShell(List<String> shell) {
+        this.shell = shell;
+    }
+
+    public CreateContainerConfig stdinOnce(Boolean stdinOnce) {
+        this.stdinOnce = stdinOnce;
+        return this;
+    }
+
+    /**
+     * Get stdinOnce
+     *
+     * @return stdinOnce
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getStdinOnce() {
+        return stdinOnce;
+    }
+
+    public void setStdinOnce(Boolean stdinOnce) {
+        this.stdinOnce = stdinOnce;
+    }
+
+    public CreateContainerConfig stopSignal(String stopSignal) {
+        this.stopSignal = stopSignal;
+        return this;
+    }
+
+    /**
+     * Get stopSignal
+     *
+     * @return stopSignal
+     */
+    @jakarta.annotation.Nullable
+
+    public String getStopSignal() {
+        return stopSignal;
+    }
+
+    public void setStopSignal(String stopSignal) {
+        this.stopSignal = stopSignal;
+    }
+
+    public CreateContainerConfig stopTimeout(Long stopTimeout) {
+        this.stopTimeout = stopTimeout;
+        return this;
+    }
+
+    /**
+     * Get stopTimeout
+     *
+     * @return stopTimeout
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getStopTimeout() {
+        return stopTimeout;
+    }
+
+    public void setStopTimeout(Long stopTimeout) {
+        this.stopTimeout = stopTimeout;
+    }
+
+    public CreateContainerConfig tty(Boolean tty) {
+        this.tty = tty;
+        return this;
+    }
+
+    /**
+     * Get tty
+     *
+     * @return tty
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getTty() {
+        return tty;
+    }
+
+    public void setTty(Boolean tty) {
+        this.tty = tty;
+    }
+
+    public CreateContainerConfig unsetEnv(List<String> unsetEnv) {
+        this.unsetEnv = unsetEnv;
+        return this;
+    }
+
+    public CreateContainerConfig addUnsetEnvItem(String unsetEnvItem) {
+        if (this.unsetEnv == null) {
+            this.unsetEnv = new ArrayList<>();
+        }
+        this.unsetEnv.add(unsetEnvItem);
+        return this;
+    }
+
+    /**
+     * Get unsetEnv
+     *
+     * @return unsetEnv
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getUnsetEnv() {
+        return unsetEnv;
+    }
+
+    public void setUnsetEnv(List<String> unsetEnv) {
+        this.unsetEnv = unsetEnv;
+    }
+
+    public CreateContainerConfig unsetEnvAll(Boolean unsetEnvAll) {
+        this.unsetEnvAll = unsetEnvAll;
+        return this;
+    }
+
+    /**
+     * Get unsetEnvAll
+     *
+     * @return unsetEnvAll
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getUnsetEnvAll() {
+        return unsetEnvAll;
+    }
+
+    public void setUnsetEnvAll(Boolean unsetEnvAll) {
+        this.unsetEnvAll = unsetEnvAll;
+    }
+
+    public CreateContainerConfig user(String user) {
+        this.user = user;
+        return this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return user
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public CreateContainerConfig volumes(Map<String, Object> volumes) {
+        this.volumes = volumes;
+        return this;
+    }
+
+    public CreateContainerConfig putVolumesItem(String key, Object volumesItem) {
+        if (this.volumes == null) {
+            this.volumes = new HashMap<>();
+        }
+        this.volumes.put(key, volumesItem);
+        return this;
+    }
+
+    /**
+     * Get volumes
+     *
+     * @return volumes
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, Object> getVolumes() {
+        return volumes;
+    }
+
+    public void setVolumes(Map<String, Object> volumes) {
+        this.volumes = volumes;
+    }
+
+    public CreateContainerConfig workingDir(String workingDir) {
+        this.workingDir = workingDir;
+        return this;
+    }
+
+    /**
+     * Get workingDir
+     *
+     * @return workingDir
+     */
+    @jakarta.annotation.Nullable
+
+    public String getWorkingDir() {
+        return workingDir;
+    }
+
+    public void setWorkingDir(String workingDir) {
+        this.workingDir = workingDir;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        CreateContainerConfig createContainerConfig = (CreateContainerConfig) o;
+        return Objects.equals(this.argsEscaped, createContainerConfig.argsEscaped) &&
+                Objects.equals(this.attachStderr, createContainerConfig.attachStderr) &&
+                Objects.equals(this.attachStdin, createContainerConfig.attachStdin) &&
+                Objects.equals(this.attachStdout, createContainerConfig.attachStdout) &&
+                Objects.equals(this.cmd, createContainerConfig.cmd) &&
+                Objects.equals(this.domainname, createContainerConfig.domainname) &&
+                Objects.equals(this.entrypoint, createContainerConfig.entrypoint) &&
+                Objects.equals(this.env, createContainerConfig.env) &&
+                Objects.equals(this.envMerge, createContainerConfig.envMerge) &&
+                Objects.equals(this.exposedPorts, createContainerConfig.exposedPorts) &&
+                Objects.equals(this.healthcheck, createContainerConfig.healthcheck) &&
+                Objects.equals(this.hostConfig, createContainerConfig.hostConfig) &&
+                Objects.equals(this.hostname, createContainerConfig.hostname) &&
+                Objects.equals(this.image, createContainerConfig.image) &&
+                Objects.equals(this.labels, createContainerConfig.labels) &&
+                Objects.equals(this.macAddress, createContainerConfig.macAddress) &&
+                Objects.equals(this.name, createContainerConfig.name) &&
+                Objects.equals(this.networkDisabled, createContainerConfig.networkDisabled) &&
+                Objects.equals(this.networkingConfig, createContainerConfig.networkingConfig) &&
+                Objects.equals(this.onBuild, createContainerConfig.onBuild) &&
+                Objects.equals(this.openStdin, createContainerConfig.openStdin) &&
+                Objects.equals(this.shell, createContainerConfig.shell) &&
+                Objects.equals(this.stdinOnce, createContainerConfig.stdinOnce) &&
+                Objects.equals(this.stopSignal, createContainerConfig.stopSignal) &&
+                Objects.equals(this.stopTimeout, createContainerConfig.stopTimeout) &&
+                Objects.equals(this.tty, createContainerConfig.tty) &&
+                Objects.equals(this.unsetEnv, createContainerConfig.unsetEnv) &&
+                Objects.equals(this.unsetEnvAll, createContainerConfig.unsetEnvAll) &&
+                Objects.equals(this.user, createContainerConfig.user) &&
+                Objects.equals(this.volumes, createContainerConfig.volumes) &&
+                Objects.equals(this.workingDir, createContainerConfig.workingDir);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(argsEscaped, attachStderr, attachStdin, attachStdout, cmd, domainname, entrypoint, env, envMerge, exposedPorts, healthcheck, hostConfig, hostname, image, labels, macAddress, name, networkDisabled, networkingConfig, onBuild, openStdin, shell, stdinOnce, stopSignal, stopTimeout, tty, unsetEnv, unsetEnvAll, user, volumes, workingDir);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class CreateContainerConfig {\n" +
+                "    argsEscaped: " + toIndentedString(argsEscaped) + "\n" +
+                "    attachStderr: " + toIndentedString(attachStderr) + "\n" +
+                "    attachStdin: " + toIndentedString(attachStdin) + "\n" +
+                "    attachStdout: " + toIndentedString(attachStdout) + "\n" +
+                "    cmd: " + toIndentedString(cmd) + "\n" +
+                "    domainname: " + toIndentedString(domainname) + "\n" +
+                "    entrypoint: " + toIndentedString(entrypoint) + "\n" +
+                "    env: " + toIndentedString(env) + "\n" +
+                "    envMerge: " + toIndentedString(envMerge) + "\n" +
+                "    exposedPorts: " + toIndentedString(exposedPorts) + "\n" +
+                "    healthcheck: " + toIndentedString(healthcheck) + "\n" +
+                "    hostConfig: " + toIndentedString(hostConfig) + "\n" +
+                "    hostname: " + toIndentedString(hostname) + "\n" +
+                "    image: " + toIndentedString(image) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    macAddress: " + toIndentedString(macAddress) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    networkDisabled: " + toIndentedString(networkDisabled) + "\n" +
+                "    networkingConfig: " + toIndentedString(networkingConfig) + "\n" +
+                "    onBuild: " + toIndentedString(onBuild) + "\n" +
+                "    openStdin: " + toIndentedString(openStdin) + "\n" +
+                "    shell: " + toIndentedString(shell) + "\n" +
+                "    stdinOnce: " + toIndentedString(stdinOnce) + "\n" +
+                "    stopSignal: " + toIndentedString(stopSignal) + "\n" +
+                "    stopTimeout: " + toIndentedString(stopTimeout) + "\n" +
+                "    tty: " + toIndentedString(tty) + "\n" +
+                "    unsetEnv: " + toIndentedString(unsetEnv) + "\n" +
+                "    unsetEnvAll: " + toIndentedString(unsetEnvAll) + "\n" +
+                "    user: " + toIndentedString(user) + "\n" +
+                "    volumes: " + toIndentedString(volumes) + "\n" +
+                "    workingDir: " + toIndentedString(workingDir) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of CreateContainerConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!CreateContainerConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'CreateContainerConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<CreateContainerConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(CreateContainerConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<CreateContainerConfig>() {
+                @Override
+                public void write(JsonWriter out, CreateContainerConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public CreateContainerConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

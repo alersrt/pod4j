@@ -13,285 +13,286 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxIntelRdt has container runtime resource constraints for Intel RDT CAT and MBA features and flags enabling Intel RDT CMT and MBM features. Intel RDT features are available in Linux 4.14 and newer kernel versions.
  */
-@JsonPropertyOrder({
-  LinuxIntelRdt.JSON_PROPERTY_CLOS_I_D,
-  LinuxIntelRdt.JSON_PROPERTY_ENABLE_C_M_T,
-  LinuxIntelRdt.JSON_PROPERTY_ENABLE_M_B_M,
-  LinuxIntelRdt.JSON_PROPERTY_L3_CACHE_SCHEMA,
-  LinuxIntelRdt.JSON_PROPERTY_MEM_BW_SCHEMA
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxIntelRdt {
-  public static final String JSON_PROPERTY_CLOS_I_D = "closID";
-  private String closID;
+    public static final String SERIALIZED_NAME_CLOS_I_D = "closID";
+    public static final String SERIALIZED_NAME_ENABLE_C_M_T = "enableCMT";
+    public static final String SERIALIZED_NAME_ENABLE_M_B_M = "enableMBM";
+    public static final String SERIALIZED_NAME_L3_CACHE_SCHEMA = "l3CacheSchema";
+    public static final String SERIALIZED_NAME_MEM_BW_SCHEMA = "memBwSchema";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ENABLE_C_M_T = "enableCMT";
-  private Boolean enableCMT;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("closID");
+        openapiFields.add("enableCMT");
+        openapiFields.add("enableMBM");
+        openapiFields.add("l3CacheSchema");
+        openapiFields.add("memBwSchema");
 
-  public static final String JSON_PROPERTY_ENABLE_M_B_M = "enableMBM";
-  private Boolean enableMBM;
-
-  public static final String JSON_PROPERTY_L3_CACHE_SCHEMA = "l3CacheSchema";
-  private String l3CacheSchema;
-
-  public static final String JSON_PROPERTY_MEM_BW_SCHEMA = "memBwSchema";
-  private String memBwSchema;
-
-  public LinuxIntelRdt() { 
-  }
-
-  public LinuxIntelRdt closID(String closID) {
-    this.closID = closID;
-    return this;
-  }
-
-  /**
-   * The identity for RDT Class of Service
-   * @return closID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CLOS_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getClosID() {
-    return closID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CLOS_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClosID(String closID) {
-    this.closID = closID;
-  }
-
-
-  public LinuxIntelRdt enableCMT(Boolean enableCMT) {
-    this.enableCMT = enableCMT;
-    return this;
-  }
-
-  /**
-   * EnableCMT is the flag to indicate if the Intel RDT CMT is enabled. CMT (Cache Monitoring Technology) supports monitoring of the last-level cache (LLC) occupancy for the container.
-   * @return enableCMT
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENABLE_C_M_T)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getEnableCMT() {
-    return enableCMT;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENABLE_C_M_T)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnableCMT(Boolean enableCMT) {
-    this.enableCMT = enableCMT;
-  }
-
-
-  public LinuxIntelRdt enableMBM(Boolean enableMBM) {
-    this.enableMBM = enableMBM;
-    return this;
-  }
-
-  /**
-   * EnableMBM is the flag to indicate if the Intel RDT MBM is enabled. MBM (Memory Bandwidth Monitoring) supports monitoring of total and local memory bandwidth for the container.
-   * @return enableMBM
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENABLE_M_B_M)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getEnableMBM() {
-    return enableMBM;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENABLE_M_B_M)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnableMBM(Boolean enableMBM) {
-    this.enableMBM = enableMBM;
-  }
-
-
-  public LinuxIntelRdt l3CacheSchema(String l3CacheSchema) {
-    this.l3CacheSchema = l3CacheSchema;
-    return this;
-  }
-
-  /**
-   * The schema for L3 cache id and capacity bitmask (CBM) Format: \&quot;L3:&lt;cache_id0&gt;&#x3D;&lt;cbm0&gt;;&lt;cache_id1&gt;&#x3D;&lt;cbm1&gt;;...\&quot;
-   * @return l3CacheSchema
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_L3_CACHE_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getL3CacheSchema() {
-    return l3CacheSchema;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_L3_CACHE_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setL3CacheSchema(String l3CacheSchema) {
-    this.l3CacheSchema = l3CacheSchema;
-  }
-
-
-  public LinuxIntelRdt memBwSchema(String memBwSchema) {
-    this.memBwSchema = memBwSchema;
-    return this;
-  }
-
-  /**
-   * The schema of memory bandwidth per L3 cache id Format: \&quot;MB:&lt;cache_id0&gt;&#x3D;bandwidth0;&lt;cache_id1&gt;&#x3D;bandwidth1;...\&quot; The unit of memory bandwidth is specified in \&quot;percentages\&quot; by default, and in \&quot;MBps\&quot; if MBA Software Controller is enabled.
-   * @return memBwSchema
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEM_BW_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMemBwSchema() {
-    return memBwSchema;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEM_BW_SCHEMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemBwSchema(String memBwSchema) {
-    this.memBwSchema = memBwSchema;
-  }
-
-
-  /**
-   * Return true if this LinuxIntelRdt object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxIntelRdt linuxIntelRdt = (LinuxIntelRdt) o;
-    return Objects.equals(this.closID, linuxIntelRdt.closID) &&
-        Objects.equals(this.enableCMT, linuxIntelRdt.enableCMT) &&
-        Objects.equals(this.enableMBM, linuxIntelRdt.enableMBM) &&
-        Objects.equals(this.l3CacheSchema, linuxIntelRdt.l3CacheSchema) &&
-        Objects.equals(this.memBwSchema, linuxIntelRdt.memBwSchema);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(closID, enableCMT, enableMBM, l3CacheSchema, memBwSchema);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxIntelRdt {\n");
-    sb.append("    closID: ").append(toIndentedString(closID)).append("\n");
-    sb.append("    enableCMT: ").append(toIndentedString(enableCMT)).append("\n");
-    sb.append("    enableMBM: ").append(toIndentedString(enableMBM)).append("\n");
-    sb.append("    l3CacheSchema: ").append(toIndentedString(l3CacheSchema)).append("\n");
-    sb.append("    memBwSchema: ").append(toIndentedString(memBwSchema)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CLOS_I_D)
+    private String closID;
+    @SerializedName(SERIALIZED_NAME_ENABLE_C_M_T)
+    private Boolean enableCMT;
+    @SerializedName(SERIALIZED_NAME_ENABLE_M_B_M)
+    private Boolean enableMBM;
+    @SerializedName(SERIALIZED_NAME_L3_CACHE_SCHEMA)
+    private String l3CacheSchema;
+    @SerializedName(SERIALIZED_NAME_MEM_BW_SCHEMA)
+    private String memBwSchema;
 
-    // add `closID` to the URL query string
-    if (getClosID() != null) {
-      joiner.add(String.format("%sclosID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getClosID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxIntelRdt() {
     }
 
-    // add `enableCMT` to the URL query string
-    if (getEnableCMT() != null) {
-      joiner.add(String.format("%senableCMT%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnableCMT()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxIntelRdt
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxIntelRdt.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxIntelRdt is not found in the empty JSON string", LinuxIntelRdt.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxIntelRdt.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxIntelRdt` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("closID") != null && !jsonObj.get("closID").isJsonNull()) && !jsonObj.get("closID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `closID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("closID").toString()));
+        }
+        if ((jsonObj.get("l3CacheSchema") != null && !jsonObj.get("l3CacheSchema").isJsonNull()) && !jsonObj.get("l3CacheSchema").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `l3CacheSchema` to be a primitive type in the JSON string but got `%s`", jsonObj.get("l3CacheSchema").toString()));
+        }
+        if ((jsonObj.get("memBwSchema") != null && !jsonObj.get("memBwSchema").isJsonNull()) && !jsonObj.get("memBwSchema").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `memBwSchema` to be a primitive type in the JSON string but got `%s`", jsonObj.get("memBwSchema").toString()));
+        }
     }
 
-    // add `enableMBM` to the URL query string
-    if (getEnableMBM() != null) {
-      joiner.add(String.format("%senableMBM%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnableMBM()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of LinuxIntelRdt given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxIntelRdt
+     * @throws IOException if the JSON string is invalid with respect to LinuxIntelRdt
+     */
+    public static LinuxIntelRdt fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxIntelRdt.class);
     }
 
-    // add `l3CacheSchema` to the URL query string
-    if (getL3CacheSchema() != null) {
-      joiner.add(String.format("%sl3CacheSchema%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getL3CacheSchema()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxIntelRdt closID(String closID) {
+        this.closID = closID;
+        return this;
     }
 
-    // add `memBwSchema` to the URL query string
-    if (getMemBwSchema() != null) {
-      joiner.add(String.format("%smemBwSchema%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemBwSchema()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * The identity for RDT Class of Service
+     *
+     * @return closID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getClosID() {
+        return closID;
     }
 
-    return joiner.toString();
-  }
+    public void setClosID(String closID) {
+        this.closID = closID;
+    }
+
+    public LinuxIntelRdt enableCMT(Boolean enableCMT) {
+        this.enableCMT = enableCMT;
+        return this;
+    }
+
+    /**
+     * EnableCMT is the flag to indicate if the Intel RDT CMT is enabled. CMT (Cache Monitoring Technology) supports monitoring of the last-level cache (LLC) occupancy for the container.
+     *
+     * @return enableCMT
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getEnableCMT() {
+        return enableCMT;
+    }
+
+    public void setEnableCMT(Boolean enableCMT) {
+        this.enableCMT = enableCMT;
+    }
+
+    public LinuxIntelRdt enableMBM(Boolean enableMBM) {
+        this.enableMBM = enableMBM;
+        return this;
+    }
+
+    /**
+     * EnableMBM is the flag to indicate if the Intel RDT MBM is enabled. MBM (Memory Bandwidth Monitoring) supports monitoring of total and local memory bandwidth for the container.
+     *
+     * @return enableMBM
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getEnableMBM() {
+        return enableMBM;
+    }
+
+    public void setEnableMBM(Boolean enableMBM) {
+        this.enableMBM = enableMBM;
+    }
+
+    public LinuxIntelRdt l3CacheSchema(String l3CacheSchema) {
+        this.l3CacheSchema = l3CacheSchema;
+        return this;
+    }
+
+    /**
+     * The schema for L3 cache id and capacity bitmask (CBM) Format: \&quot;L3:&lt;cache_id0&gt;&#x3D;&lt;cbm0&gt;;&lt;cache_id1&gt;&#x3D;&lt;cbm1&gt;;...\&quot;
+     *
+     * @return l3CacheSchema
+     */
+    @jakarta.annotation.Nullable
+
+    public String getL3CacheSchema() {
+        return l3CacheSchema;
+    }
+
+    public void setL3CacheSchema(String l3CacheSchema) {
+        this.l3CacheSchema = l3CacheSchema;
+    }
+
+    public LinuxIntelRdt memBwSchema(String memBwSchema) {
+        this.memBwSchema = memBwSchema;
+        return this;
+    }
+
+    /**
+     * The schema of memory bandwidth per L3 cache id Format: \&quot;MB:&lt;cache_id0&gt;&#x3D;bandwidth0;&lt;cache_id1&gt;&#x3D;bandwidth1;...\&quot; The unit of memory bandwidth is specified in \&quot;percentages\&quot; by default, and in \&quot;MBps\&quot; if MBA Software Controller is enabled.
+     *
+     * @return memBwSchema
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMemBwSchema() {
+        return memBwSchema;
+    }
+
+    public void setMemBwSchema(String memBwSchema) {
+        this.memBwSchema = memBwSchema;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxIntelRdt linuxIntelRdt = (LinuxIntelRdt) o;
+        return Objects.equals(this.closID, linuxIntelRdt.closID) &&
+                Objects.equals(this.enableCMT, linuxIntelRdt.enableCMT) &&
+                Objects.equals(this.enableMBM, linuxIntelRdt.enableMBM) &&
+                Objects.equals(this.l3CacheSchema, linuxIntelRdt.l3CacheSchema) &&
+                Objects.equals(this.memBwSchema, linuxIntelRdt.memBwSchema);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(closID, enableCMT, enableMBM, l3CacheSchema, memBwSchema);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LinuxIntelRdt {\n" +
+                "    closID: " + toIndentedString(closID) + "\n" +
+                "    enableCMT: " + toIndentedString(enableCMT) + "\n" +
+                "    enableMBM: " + toIndentedString(enableMBM) + "\n" +
+                "    l3CacheSchema: " + toIndentedString(l3CacheSchema) + "\n" +
+                "    memBwSchema: " + toIndentedString(memBwSchema) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LinuxIntelRdt to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxIntelRdt.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxIntelRdt' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxIntelRdt> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxIntelRdt.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LinuxIntelRdt>() {
+                @Override
+                public void write(JsonWriter out, LinuxIntelRdt value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LinuxIntelRdt read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

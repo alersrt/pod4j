@@ -13,535 +13,459 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SystemCheckReport provides a report of what a storage consistency check found, and if we removed anything that was damaged, what we removed.
  */
-@JsonPropertyOrder({
-  SystemCheckReport.JSON_PROPERTY_CONTAINERS,
-  SystemCheckReport.JSON_PROPERTY_ERRORS,
-  SystemCheckReport.JSON_PROPERTY_IMAGES,
-  SystemCheckReport.JSON_PROPERTY_LAYERS,
-  SystemCheckReport.JSON_PROPERTY_RO_IMAGES,
-  SystemCheckReport.JSON_PROPERTY_RO_LAYERS,
-  SystemCheckReport.JSON_PROPERTY_REMOVED_CONTAINERS,
-  SystemCheckReport.JSON_PROPERTY_REMOVED_IMAGES,
-  SystemCheckReport.JSON_PROPERTY_REMOVED_LAYERS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemCheckReport {
-  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
-  private Map<String, List<String>> containers = new HashMap<>();
-
-  public static final String JSON_PROPERTY_ERRORS = "Errors";
-  private Boolean errors;
-
-  public static final String JSON_PROPERTY_IMAGES = "Images";
-  private Map<String, List<String>> images = new HashMap<>();
-
-  public static final String JSON_PROPERTY_LAYERS = "Layers";
-  private Map<String, List<String>> layers = new HashMap<>();
-
-  public static final String JSON_PROPERTY_RO_IMAGES = "ROImages";
-  private Map<String, List<String>> roImages = new HashMap<>();
-
-  public static final String JSON_PROPERTY_RO_LAYERS = "ROLayers";
-  private Map<String, List<String>> roLayers = new HashMap<>();
-
-  public static final String JSON_PROPERTY_REMOVED_CONTAINERS = "RemovedContainers";
-  private Map<String, String> removedContainers = new HashMap<>();
-
-  public static final String JSON_PROPERTY_REMOVED_IMAGES = "RemovedImages";
-  private Map<String, List<String>> removedImages = new HashMap<>();
-
-  public static final String JSON_PROPERTY_REMOVED_LAYERS = "RemovedLayers";
-  private List<String> removedLayers = new ArrayList<>();
-
-  public SystemCheckReport() { 
-  }
-
-  public SystemCheckReport containers(Map<String, List<String>> containers) {
-    this.containers = containers;
-    return this;
-  }
-
-  public SystemCheckReport putContainersItem(String key, List<String> containersItem) {
-    if (this.containers == null) {
-      this.containers = new HashMap<>();
-    }
-    this.containers.put(key, containersItem);
-    return this;
-  }
-
-  /**
-   * Get containers
-   * @return containers
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<String>> getContainers() {
-    return containers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainers(Map<String, List<String>> containers) {
-    this.containers = containers;
-  }
-
-
-  public SystemCheckReport errors(Boolean errors) {
-    this.errors = errors;
-    return this;
-  }
-
-  /**
-   * Get errors
-   * @return errors
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ERRORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getErrors() {
-    return errors;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERRORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setErrors(Boolean errors) {
-    this.errors = errors;
-  }
-
-
-  public SystemCheckReport images(Map<String, List<String>> images) {
-    this.images = images;
-    return this;
-  }
-
-  public SystemCheckReport putImagesItem(String key, List<String> imagesItem) {
-    if (this.images == null) {
-      this.images = new HashMap<>();
-    }
-    this.images.put(key, imagesItem);
-    return this;
-  }
-
-  /**
-   * Get images
-   * @return images
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<String>> getImages() {
-    return images;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImages(Map<String, List<String>> images) {
-    this.images = images;
-  }
-
-
-  public SystemCheckReport layers(Map<String, List<String>> layers) {
-    this.layers = layers;
-    return this;
-  }
-
-  public SystemCheckReport putLayersItem(String key, List<String> layersItem) {
-    if (this.layers == null) {
-      this.layers = new HashMap<>();
-    }
-    this.layers.put(key, layersItem);
-    return this;
-  }
-
-  /**
-   * Get layers
-   * @return layers
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_LAYERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<String>> getLayers() {
-    return layers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LAYERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLayers(Map<String, List<String>> layers) {
-    this.layers = layers;
-  }
-
-
-  public SystemCheckReport roImages(Map<String, List<String>> roImages) {
-    this.roImages = roImages;
-    return this;
-  }
-
-  public SystemCheckReport putRoImagesItem(String key, List<String> roImagesItem) {
-    if (this.roImages == null) {
-      this.roImages = new HashMap<>();
-    }
-    this.roImages.put(key, roImagesItem);
-    return this;
-  }
-
-  /**
-   * Get roImages
-   * @return roImages
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_RO_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<String>> getRoImages() {
-    return roImages;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RO_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRoImages(Map<String, List<String>> roImages) {
-    this.roImages = roImages;
-  }
-
-
-  public SystemCheckReport roLayers(Map<String, List<String>> roLayers) {
-    this.roLayers = roLayers;
-    return this;
-  }
-
-  public SystemCheckReport putRoLayersItem(String key, List<String> roLayersItem) {
-    if (this.roLayers == null) {
-      this.roLayers = new HashMap<>();
-    }
-    this.roLayers.put(key, roLayersItem);
-    return this;
-  }
-
-  /**
-   * Get roLayers
-   * @return roLayers
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_RO_LAYERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<String>> getRoLayers() {
-    return roLayers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RO_LAYERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRoLayers(Map<String, List<String>> roLayers) {
-    this.roLayers = roLayers;
-  }
-
-
-  public SystemCheckReport removedContainers(Map<String, String> removedContainers) {
-    this.removedContainers = removedContainers;
-    return this;
-  }
-
-  public SystemCheckReport putRemovedContainersItem(String key, String removedContainersItem) {
-    if (this.removedContainers == null) {
-      this.removedContainers = new HashMap<>();
-    }
-    this.removedContainers.put(key, removedContainersItem);
-    return this;
-  }
-
-  /**
-   * Get removedContainers
-   * @return removedContainers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REMOVED_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getRemovedContainers() {
-    return removedContainers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMOVED_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemovedContainers(Map<String, String> removedContainers) {
-    this.removedContainers = removedContainers;
-  }
-
-
-  public SystemCheckReport removedImages(Map<String, List<String>> removedImages) {
-    this.removedImages = removedImages;
-    return this;
-  }
-
-  public SystemCheckReport putRemovedImagesItem(String key, List<String> removedImagesItem) {
-    if (this.removedImages == null) {
-      this.removedImages = new HashMap<>();
-    }
-    this.removedImages.put(key, removedImagesItem);
-    return this;
-  }
-
-  /**
-   * Get removedImages
-   * @return removedImages
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_REMOVED_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<String>> getRemovedImages() {
-    return removedImages;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMOVED_IMAGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemovedImages(Map<String, List<String>> removedImages) {
-    this.removedImages = removedImages;
-  }
-
-
-  public SystemCheckReport removedLayers(List<String> removedLayers) {
-    this.removedLayers = removedLayers;
-    return this;
-  }
-
-  public SystemCheckReport addRemovedLayersItem(String removedLayersItem) {
-    if (this.removedLayers == null) {
-      this.removedLayers = new ArrayList<>();
-    }
-    this.removedLayers.add(removedLayersItem);
-    return this;
-  }
-
-  /**
-   * Get removedLayers
-   * @return removedLayers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REMOVED_LAYERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getRemovedLayers() {
-    return removedLayers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMOVED_LAYERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemovedLayers(List<String> removedLayers) {
-    this.removedLayers = removedLayers;
-  }
-
-
-  /**
-   * Return true if this SystemCheckReport object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SystemCheckReport systemCheckReport = (SystemCheckReport) o;
-    return Objects.equals(this.containers, systemCheckReport.containers) &&
-        Objects.equals(this.errors, systemCheckReport.errors) &&
-        Objects.equals(this.images, systemCheckReport.images) &&
-        Objects.equals(this.layers, systemCheckReport.layers) &&
-        Objects.equals(this.roImages, systemCheckReport.roImages) &&
-        Objects.equals(this.roLayers, systemCheckReport.roLayers) &&
-        Objects.equals(this.removedContainers, systemCheckReport.removedContainers) &&
-        Objects.equals(this.removedImages, systemCheckReport.removedImages) &&
-        Objects.equals(this.removedLayers, systemCheckReport.removedLayers);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(containers, errors, images, layers, roImages, roLayers, removedContainers, removedImages, removedLayers);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SystemCheckReport {\n");
-    sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
-    sb.append("    errors: ").append(toIndentedString(errors)).append("\n");
-    sb.append("    images: ").append(toIndentedString(images)).append("\n");
-    sb.append("    layers: ").append(toIndentedString(layers)).append("\n");
-    sb.append("    roImages: ").append(toIndentedString(roImages)).append("\n");
-    sb.append("    roLayers: ").append(toIndentedString(roLayers)).append("\n");
-    sb.append("    removedContainers: ").append(toIndentedString(removedContainers)).append("\n");
-    sb.append("    removedImages: ").append(toIndentedString(removedImages)).append("\n");
-    sb.append("    removedLayers: ").append(toIndentedString(removedLayers)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
+    public static final String SERIALIZED_NAME_ERRORS = "Errors";
+    public static final String SERIALIZED_NAME_IMAGES = "Images";
+    public static final String SERIALIZED_NAME_LAYERS = "Layers";
+    public static final String SERIALIZED_NAME_RO_IMAGES = "ROImages";
+    public static final String SERIALIZED_NAME_RO_LAYERS = "ROLayers";
+    public static final String SERIALIZED_NAME_REMOVED_CONTAINERS = "RemovedContainers";
+    public static final String SERIALIZED_NAME_REMOVED_IMAGES = "RemovedImages";
+    public static final String SERIALIZED_NAME_REMOVED_LAYERS = "RemovedLayers";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Containers");
+        openapiFields.add("Errors");
+        openapiFields.add("Images");
+        openapiFields.add("Layers");
+        openapiFields.add("ROImages");
+        openapiFields.add("ROLayers");
+        openapiFields.add("RemovedContainers");
+        openapiFields.add("RemovedImages");
+        openapiFields.add("RemovedLayers");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CONTAINERS)
+    private Map<String, List<String>> containers = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_ERRORS)
+    private Boolean errors;
+    @SerializedName(SERIALIZED_NAME_IMAGES)
+    private Map<String, List<String>> images = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_LAYERS)
+    private Map<String, List<String>> layers = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_RO_IMAGES)
+    private Map<String, List<String>> roImages = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_RO_LAYERS)
+    private Map<String, List<String>> roLayers = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_REMOVED_CONTAINERS)
+    private Map<String, String> removedContainers = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_REMOVED_IMAGES)
+    private Map<String, List<String>> removedImages = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_REMOVED_LAYERS)
+    private List<String> removedLayers = new ArrayList<>();
 
-    // add `Containers` to the URL query string
-    if (getContainers() != null) {
-      for (String _key : getContainers().keySet()) {
-        joiner.add(String.format("%sContainers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getContainers().get(_key), URLEncoder.encode(ApiClient.valueToString(getContainers().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public SystemCheckReport() {
     }
 
-    // add `Errors` to the URL query string
-    if (getErrors() != null) {
-      joiner.add(String.format("%sErrors%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getErrors()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to SystemCheckReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!SystemCheckReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SystemCheckReport is not found in the empty JSON string", SystemCheckReport.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!SystemCheckReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemCheckReport` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("RemovedLayers") != null && !jsonObj.get("RemovedLayers").isJsonNull() && !jsonObj.get("RemovedLayers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `RemovedLayers` to be an array in the JSON string but got `%s`", jsonObj.get("RemovedLayers").toString()));
+        }
     }
 
-    // add `Images` to the URL query string
-    if (getImages() != null) {
-      for (String _key : getImages().keySet()) {
-        joiner.add(String.format("%sImages%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getImages().get(_key), URLEncoder.encode(ApiClient.valueToString(getImages().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Create an instance of SystemCheckReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SystemCheckReport
+     * @throws IOException if the JSON string is invalid with respect to SystemCheckReport
+     */
+    public static SystemCheckReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SystemCheckReport.class);
     }
 
-    // add `Layers` to the URL query string
-    if (getLayers() != null) {
-      for (String _key : getLayers().keySet()) {
-        joiner.add(String.format("%sLayers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLayers().get(_key), URLEncoder.encode(ApiClient.valueToString(getLayers().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public SystemCheckReport containers(Map<String, List<String>> containers) {
+        this.containers = containers;
+        return this;
     }
 
-    // add `ROImages` to the URL query string
-    if (getRoImages() != null) {
-      for (String _key : getRoImages().keySet()) {
-        joiner.add(String.format("%sROImages%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getRoImages().get(_key), URLEncoder.encode(ApiClient.valueToString(getRoImages().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public SystemCheckReport putContainersItem(String key, List<String> containersItem) {
+        if (this.containers == null) {
+            this.containers = new HashMap<>();
+        }
+        this.containers.put(key, containersItem);
+        return this;
     }
 
-    // add `ROLayers` to the URL query string
-    if (getRoLayers() != null) {
-      for (String _key : getRoLayers().keySet()) {
-        joiner.add(String.format("%sROLayers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getRoLayers().get(_key), URLEncoder.encode(ApiClient.valueToString(getRoLayers().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Get containers
+     *
+     * @return containers
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<String>> getContainers() {
+        return containers;
     }
 
-    // add `RemovedContainers` to the URL query string
-    if (getRemovedContainers() != null) {
-      for (String _key : getRemovedContainers().keySet()) {
-        joiner.add(String.format("%sRemovedContainers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getRemovedContainers().get(_key), URLEncoder.encode(ApiClient.valueToString(getRemovedContainers().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setContainers(Map<String, List<String>> containers) {
+        this.containers = containers;
     }
 
-    // add `RemovedImages` to the URL query string
-    if (getRemovedImages() != null) {
-      for (String _key : getRemovedImages().keySet()) {
-        joiner.add(String.format("%sRemovedImages%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getRemovedImages().get(_key), URLEncoder.encode(ApiClient.valueToString(getRemovedImages().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public SystemCheckReport errors(Boolean errors) {
+        this.errors = errors;
+        return this;
     }
 
-    // add `RemovedLayers` to the URL query string
-    if (getRemovedLayers() != null) {
-      for (int i = 0; i < getRemovedLayers().size(); i++) {
-        joiner.add(String.format("%sRemovedLayers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getRemovedLayers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Get errors
+     *
+     * @return errors
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getErrors() {
+        return errors;
     }
 
-    return joiner.toString();
-  }
+    public void setErrors(Boolean errors) {
+        this.errors = errors;
+    }
+
+    public SystemCheckReport images(Map<String, List<String>> images) {
+        this.images = images;
+        return this;
+    }
+
+    public SystemCheckReport putImagesItem(String key, List<String> imagesItem) {
+        if (this.images == null) {
+            this.images = new HashMap<>();
+        }
+        this.images.put(key, imagesItem);
+        return this;
+    }
+
+    /**
+     * Get images
+     *
+     * @return images
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<String>> getImages() {
+        return images;
+    }
+
+    public void setImages(Map<String, List<String>> images) {
+        this.images = images;
+    }
+
+    public SystemCheckReport layers(Map<String, List<String>> layers) {
+        this.layers = layers;
+        return this;
+    }
+
+    public SystemCheckReport putLayersItem(String key, List<String> layersItem) {
+        if (this.layers == null) {
+            this.layers = new HashMap<>();
+        }
+        this.layers.put(key, layersItem);
+        return this;
+    }
+
+    /**
+     * Get layers
+     *
+     * @return layers
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<String>> getLayers() {
+        return layers;
+    }
+
+    public void setLayers(Map<String, List<String>> layers) {
+        this.layers = layers;
+    }
+
+    public SystemCheckReport roImages(Map<String, List<String>> roImages) {
+        this.roImages = roImages;
+        return this;
+    }
+
+    public SystemCheckReport putRoImagesItem(String key, List<String> roImagesItem) {
+        if (this.roImages == null) {
+            this.roImages = new HashMap<>();
+        }
+        this.roImages.put(key, roImagesItem);
+        return this;
+    }
+
+    /**
+     * Get roImages
+     *
+     * @return roImages
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<String>> getRoImages() {
+        return roImages;
+    }
+
+    public void setRoImages(Map<String, List<String>> roImages) {
+        this.roImages = roImages;
+    }
+
+    public SystemCheckReport roLayers(Map<String, List<String>> roLayers) {
+        this.roLayers = roLayers;
+        return this;
+    }
+
+    public SystemCheckReport putRoLayersItem(String key, List<String> roLayersItem) {
+        if (this.roLayers == null) {
+            this.roLayers = new HashMap<>();
+        }
+        this.roLayers.put(key, roLayersItem);
+        return this;
+    }
+
+    /**
+     * Get roLayers
+     *
+     * @return roLayers
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<String>> getRoLayers() {
+        return roLayers;
+    }
+
+    public void setRoLayers(Map<String, List<String>> roLayers) {
+        this.roLayers = roLayers;
+    }
+
+    public SystemCheckReport removedContainers(Map<String, String> removedContainers) {
+        this.removedContainers = removedContainers;
+        return this;
+    }
+
+    public SystemCheckReport putRemovedContainersItem(String key, String removedContainersItem) {
+        if (this.removedContainers == null) {
+            this.removedContainers = new HashMap<>();
+        }
+        this.removedContainers.put(key, removedContainersItem);
+        return this;
+    }
+
+    /**
+     * Get removedContainers
+     *
+     * @return removedContainers
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getRemovedContainers() {
+        return removedContainers;
+    }
+
+    public void setRemovedContainers(Map<String, String> removedContainers) {
+        this.removedContainers = removedContainers;
+    }
+
+    public SystemCheckReport removedImages(Map<String, List<String>> removedImages) {
+        this.removedImages = removedImages;
+        return this;
+    }
+
+    public SystemCheckReport putRemovedImagesItem(String key, List<String> removedImagesItem) {
+        if (this.removedImages == null) {
+            this.removedImages = new HashMap<>();
+        }
+        this.removedImages.put(key, removedImagesItem);
+        return this;
+    }
+
+    /**
+     * Get removedImages
+     *
+     * @return removedImages
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<String>> getRemovedImages() {
+        return removedImages;
+    }
+
+    public void setRemovedImages(Map<String, List<String>> removedImages) {
+        this.removedImages = removedImages;
+    }
+
+    public SystemCheckReport removedLayers(List<String> removedLayers) {
+        this.removedLayers = removedLayers;
+        return this;
+    }
+
+    public SystemCheckReport addRemovedLayersItem(String removedLayersItem) {
+        if (this.removedLayers == null) {
+            this.removedLayers = new ArrayList<>();
+        }
+        this.removedLayers.add(removedLayersItem);
+        return this;
+    }
+
+    /**
+     * Get removedLayers
+     *
+     * @return removedLayers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getRemovedLayers() {
+        return removedLayers;
+    }
+
+    public void setRemovedLayers(List<String> removedLayers) {
+        this.removedLayers = removedLayers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SystemCheckReport systemCheckReport = (SystemCheckReport) o;
+        return Objects.equals(this.containers, systemCheckReport.containers) &&
+                Objects.equals(this.errors, systemCheckReport.errors) &&
+                Objects.equals(this.images, systemCheckReport.images) &&
+                Objects.equals(this.layers, systemCheckReport.layers) &&
+                Objects.equals(this.roImages, systemCheckReport.roImages) &&
+                Objects.equals(this.roLayers, systemCheckReport.roLayers) &&
+                Objects.equals(this.removedContainers, systemCheckReport.removedContainers) &&
+                Objects.equals(this.removedImages, systemCheckReport.removedImages) &&
+                Objects.equals(this.removedLayers, systemCheckReport.removedLayers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(containers, errors, images, layers, roImages, roLayers, removedContainers, removedImages, removedLayers);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class SystemCheckReport {\n" +
+                "    containers: " + toIndentedString(containers) + "\n" +
+                "    errors: " + toIndentedString(errors) + "\n" +
+                "    images: " + toIndentedString(images) + "\n" +
+                "    layers: " + toIndentedString(layers) + "\n" +
+                "    roImages: " + toIndentedString(roImages) + "\n" +
+                "    roLayers: " + toIndentedString(roLayers) + "\n" +
+                "    removedContainers: " + toIndentedString(removedContainers) + "\n" +
+                "    removedImages: " + toIndentedString(removedImages) + "\n" +
+                "    removedLayers: " + toIndentedString(removedLayers) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of SystemCheckReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!SystemCheckReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SystemCheckReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<SystemCheckReport> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(SystemCheckReport.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<SystemCheckReport>() {
+                @Override
+                public void write(JsonWriter out, SystemCheckReport value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public SystemCheckReport read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

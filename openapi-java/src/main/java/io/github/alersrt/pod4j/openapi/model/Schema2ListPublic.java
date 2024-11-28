@@ -13,230 +13,255 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Schema2ManifestDescriptor;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * This is publicly visible as c/image/manifest.Schema2List. Internal users should usually use Schema2List instead.
  */
-@JsonPropertyOrder({
-  Schema2ListPublic.JSON_PROPERTY_MANIFESTS,
-  Schema2ListPublic.JSON_PROPERTY_MEDIA_TYPE,
-  Schema2ListPublic.JSON_PROPERTY_SCHEMA_VERSION
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2ListPublic {
-  public static final String JSON_PROPERTY_MANIFESTS = "manifests";
-  private List<@Valid Schema2ManifestDescriptor> manifests = new ArrayList<>();
+    public static final String SERIALIZED_NAME_MANIFESTS = "manifests";
+    public static final String SERIALIZED_NAME_MEDIA_TYPE = "mediaType";
+    public static final String SERIALIZED_NAME_SCHEMA_VERSION = "schemaVersion";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_MEDIA_TYPE = "mediaType";
-  private String mediaType;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("manifests");
+        openapiFields.add("mediaType");
+        openapiFields.add("schemaVersion");
 
-  public static final String JSON_PROPERTY_SCHEMA_VERSION = "schemaVersion";
-  private Long schemaVersion;
-
-  public Schema2ListPublic() { 
-  }
-
-  public Schema2ListPublic manifests(List<@Valid Schema2ManifestDescriptor> manifests) {
-    this.manifests = manifests;
-    return this;
-  }
-
-  public Schema2ListPublic addManifestsItem(Schema2ManifestDescriptor manifestsItem) {
-    if (this.manifests == null) {
-      this.manifests = new ArrayList<>();
-    }
-    this.manifests.add(manifestsItem);
-    return this;
-  }
-
-  /**
-   * Get manifests
-   * @return manifests
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_MANIFESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Schema2ManifestDescriptor> getManifests() {
-    return manifests;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MANIFESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setManifests(List<@Valid Schema2ManifestDescriptor> manifests) {
-    this.manifests = manifests;
-  }
-
-
-  public Schema2ListPublic mediaType(String mediaType) {
-    this.mediaType = mediaType;
-    return this;
-  }
-
-  /**
-   * Get mediaType
-   * @return mediaType
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMediaType() {
-    return mediaType;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMediaType(String mediaType) {
-    this.mediaType = mediaType;
-  }
-
-
-  public Schema2ListPublic schemaVersion(Long schemaVersion) {
-    this.schemaVersion = schemaVersion;
-    return this;
-  }
-
-  /**
-   * Get schemaVersion
-   * @return schemaVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SCHEMA_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSchemaVersion() {
-    return schemaVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SCHEMA_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSchemaVersion(Long schemaVersion) {
-    this.schemaVersion = schemaVersion;
-  }
-
-
-  /**
-   * Return true if this Schema2ListPublic object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Schema2ListPublic schema2ListPublic = (Schema2ListPublic) o;
-    return Objects.equals(this.manifests, schema2ListPublic.manifests) &&
-        Objects.equals(this.mediaType, schema2ListPublic.mediaType) &&
-        Objects.equals(this.schemaVersion, schema2ListPublic.schemaVersion);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(manifests, mediaType, schemaVersion);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Schema2ListPublic {\n");
-    sb.append("    manifests: ").append(toIndentedString(manifests)).append("\n");
-    sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
-    sb.append("    schemaVersion: ").append(toIndentedString(schemaVersion)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_MANIFESTS)
+    private List<@Valid Schema2ManifestDescriptor> manifests = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_MEDIA_TYPE)
+    private String mediaType;
+    @SerializedName(SERIALIZED_NAME_SCHEMA_VERSION)
+    private Long schemaVersion;
 
-    // add `manifests` to the URL query string
-    if (getManifests() != null) {
-      for (int i = 0; i < getManifests().size(); i++) {
-        if (getManifests().get(i) != null) {
-          joiner.add(getManifests().get(i).toUrlQueryString(String.format("%smanifests%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    public Schema2ListPublic() {
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Schema2ListPublic
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Schema2ListPublic.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Schema2ListPublic is not found in the empty JSON string", Schema2ListPublic.openapiRequiredFields));
+            }
         }
-      }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Schema2ListPublic.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Schema2ListPublic` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (jsonObj.get("manifests") != null && !jsonObj.get("manifests").isJsonNull()) {
+            JsonArray jsonArraymanifests = jsonObj.getAsJsonArray("manifests");
+            if (jsonArraymanifests != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("manifests").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `manifests` to be an array in the JSON string but got `%s`", jsonObj.get("manifests").toString()));
+                }
+
+                // validate the optional field `manifests` (array)
+                for (int i = 0; i < jsonArraymanifests.size(); i++) {
+                    Schema2ManifestDescriptor.validateJsonElement(jsonArraymanifests.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("mediaType") != null && !jsonObj.get("mediaType").isJsonNull()) && !jsonObj.get("mediaType").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `mediaType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mediaType").toString()));
+        }
     }
 
-    // add `mediaType` to the URL query string
-    if (getMediaType() != null) {
-      joiner.add(String.format("%smediaType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMediaType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Schema2ListPublic given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Schema2ListPublic
+     * @throws IOException if the JSON string is invalid with respect to Schema2ListPublic
+     */
+    public static Schema2ListPublic fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Schema2ListPublic.class);
     }
 
-    // add `schemaVersion` to the URL query string
-    if (getSchemaVersion() != null) {
-      joiner.add(String.format("%sschemaVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSchemaVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Schema2ListPublic manifests(List<@Valid Schema2ManifestDescriptor> manifests) {
+        this.manifests = manifests;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    public Schema2ListPublic addManifestsItem(Schema2ManifestDescriptor manifestsItem) {
+        if (this.manifests == null) {
+            this.manifests = new ArrayList<>();
+        }
+        this.manifests.add(manifestsItem);
+        return this;
+    }
+
+    /**
+     * Get manifests
+     *
+     * @return manifests
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Schema2ManifestDescriptor> getManifests() {
+        return manifests;
+    }
+
+    public void setManifests(List<@Valid Schema2ManifestDescriptor> manifests) {
+        this.manifests = manifests;
+    }
+
+    public Schema2ListPublic mediaType(String mediaType) {
+        this.mediaType = mediaType;
+        return this;
+    }
+
+    /**
+     * Get mediaType
+     *
+     * @return mediaType
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
+    }
+
+    public Schema2ListPublic schemaVersion(Long schemaVersion) {
+        this.schemaVersion = schemaVersion;
+        return this;
+    }
+
+    /**
+     * Get schemaVersion
+     *
+     * @return schemaVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSchemaVersion() {
+        return schemaVersion;
+    }
+
+    public void setSchemaVersion(Long schemaVersion) {
+        this.schemaVersion = schemaVersion;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Schema2ListPublic schema2ListPublic = (Schema2ListPublic) o;
+        return Objects.equals(this.manifests, schema2ListPublic.manifests) &&
+                Objects.equals(this.mediaType, schema2ListPublic.mediaType) &&
+                Objects.equals(this.schemaVersion, schema2ListPublic.schemaVersion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(manifests, mediaType, schemaVersion);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Schema2ListPublic {\n" +
+                "    manifests: " + toIndentedString(manifests) + "\n" +
+                "    mediaType: " + toIndentedString(mediaType) + "\n" +
+                "    schemaVersion: " + toIndentedString(schemaVersion) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Schema2ListPublic to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Schema2ListPublic.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Schema2ListPublic' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Schema2ListPublic> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Schema2ListPublic.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Schema2ListPublic>() {
+                @Override
+                public void write(JsonWriter out, Schema2ListPublic value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Schema2ListPublic read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

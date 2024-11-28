@@ -13,299 +13,301 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Plugins
  */
-@JsonPropertyOrder({
-  Plugins.JSON_PROPERTY_AUTHORIZATION,
-  Plugins.JSON_PROPERTY_LOG,
-  Plugins.JSON_PROPERTY_NETWORK,
-  Plugins.JSON_PROPERTY_VOLUME
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Plugins {
-  public static final String JSON_PROPERTY_AUTHORIZATION = "authorization";
-  private List<String> authorization = new ArrayList<>();
+    public static final String SERIALIZED_NAME_AUTHORIZATION = "authorization";
+    public static final String SERIALIZED_NAME_LOG = "log";
+    public static final String SERIALIZED_NAME_NETWORK = "network";
+    public static final String SERIALIZED_NAME_VOLUME = "volume";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_LOG = "log";
-  private List<String> log = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("authorization");
+        openapiFields.add("log");
+        openapiFields.add("network");
+        openapiFields.add("volume");
 
-  public static final String JSON_PROPERTY_NETWORK = "network";
-  private List<String> network = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_VOLUME = "volume";
-  private List<String> volume = new ArrayList<>();
-
-  public Plugins() { 
-  }
-
-  public Plugins authorization(List<String> authorization) {
-    this.authorization = authorization;
-    return this;
-  }
-
-  public Plugins addAuthorizationItem(String authorizationItem) {
-    if (this.authorization == null) {
-      this.authorization = new ArrayList<>();
-    }
-    this.authorization.add(authorizationItem);
-    return this;
-  }
-
-  /**
-   * Authorization is provided for compatibility, will always be nil as Podman has no daemon
-   * @return authorization
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTHORIZATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getAuthorization() {
-    return authorization;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTHORIZATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthorization(List<String> authorization) {
-    this.authorization = authorization;
-  }
-
-
-  public Plugins log(List<String> log) {
-    this.log = log;
-    return this;
-  }
-
-  public Plugins addLogItem(String logItem) {
-    if (this.log == null) {
-      this.log = new ArrayList<>();
-    }
-    this.log.add(logItem);
-    return this;
-  }
-
-  /**
-   * Get log
-   * @return log
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LOG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getLog() {
-    return log;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLog(List<String> log) {
-    this.log = log;
-  }
-
-
-  public Plugins network(List<String> network) {
-    this.network = network;
-    return this;
-  }
-
-  public Plugins addNetworkItem(String networkItem) {
-    if (this.network == null) {
-      this.network = new ArrayList<>();
-    }
-    this.network.add(networkItem);
-    return this;
-  }
-
-  /**
-   * Get network
-   * @return network
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getNetwork() {
-    return network;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetwork(List<String> network) {
-    this.network = network;
-  }
-
-
-  public Plugins volume(List<String> volume) {
-    this.volume = volume;
-    return this;
-  }
-
-  public Plugins addVolumeItem(String volumeItem) {
-    if (this.volume == null) {
-      this.volume = new ArrayList<>();
-    }
-    this.volume.add(volumeItem);
-    return this;
-  }
-
-  /**
-   * Get volume
-   * @return volume
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getVolume() {
-    return volume;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolume(List<String> volume) {
-    this.volume = volume;
-  }
-
-
-  /**
-   * Return true if this Plugins object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Plugins plugins = (Plugins) o;
-    return Objects.equals(this.authorization, plugins.authorization) &&
-        Objects.equals(this.log, plugins.log) &&
-        Objects.equals(this.network, plugins.network) &&
-        Objects.equals(this.volume, plugins.volume);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(authorization, log, network, volume);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Plugins {\n");
-    sb.append("    authorization: ").append(toIndentedString(authorization)).append("\n");
-    sb.append("    log: ").append(toIndentedString(log)).append("\n");
-    sb.append("    network: ").append(toIndentedString(network)).append("\n");
-    sb.append("    volume: ").append(toIndentedString(volume)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_AUTHORIZATION)
+    private List<String> authorization = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_LOG)
+    private List<String> log = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_NETWORK)
+    private List<String> network = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_VOLUME)
+    private List<String> volume = new ArrayList<>();
 
-    // add `authorization` to the URL query string
-    if (getAuthorization() != null) {
-      for (int i = 0; i < getAuthorization().size(); i++) {
-        joiner.add(String.format("%sauthorization%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getAuthorization().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Plugins() {
     }
 
-    // add `log` to the URL query string
-    if (getLog() != null) {
-      for (int i = 0; i < getLog().size(); i++) {
-        joiner.add(String.format("%slog%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getLog().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Plugins
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Plugins.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Plugins is not found in the empty JSON string", Plugins.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Plugins.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Plugins` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("authorization") != null && !jsonObj.get("authorization").isJsonNull() && !jsonObj.get("authorization").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `authorization` to be an array in the JSON string but got `%s`", jsonObj.get("authorization").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("log") != null && !jsonObj.get("log").isJsonNull() && !jsonObj.get("log").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `log` to be an array in the JSON string but got `%s`", jsonObj.get("log").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("network") != null && !jsonObj.get("network").isJsonNull() && !jsonObj.get("network").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `network` to be an array in the JSON string but got `%s`", jsonObj.get("network").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("volume") != null && !jsonObj.get("volume").isJsonNull() && !jsonObj.get("volume").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `volume` to be an array in the JSON string but got `%s`", jsonObj.get("volume").toString()));
+        }
     }
 
-    // add `network` to the URL query string
-    if (getNetwork() != null) {
-      for (int i = 0; i < getNetwork().size(); i++) {
-        joiner.add(String.format("%snetwork%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getNetwork().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Create an instance of Plugins given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Plugins
+     * @throws IOException if the JSON string is invalid with respect to Plugins
+     */
+    public static Plugins fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Plugins.class);
     }
 
-    // add `volume` to the URL query string
-    if (getVolume() != null) {
-      for (int i = 0; i < getVolume().size(); i++) {
-        joiner.add(String.format("%svolume%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getVolume().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Plugins authorization(List<String> authorization) {
+        this.authorization = authorization;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    public Plugins addAuthorizationItem(String authorizationItem) {
+        if (this.authorization == null) {
+            this.authorization = new ArrayList<>();
+        }
+        this.authorization.add(authorizationItem);
+        return this;
+    }
+
+    /**
+     * Authorization is provided for compatibility, will always be nil as Podman has no daemon
+     *
+     * @return authorization
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getAuthorization() {
+        return authorization;
+    }
+
+    public void setAuthorization(List<String> authorization) {
+        this.authorization = authorization;
+    }
+
+    public Plugins log(List<String> log) {
+        this.log = log;
+        return this;
+    }
+
+    public Plugins addLogItem(String logItem) {
+        if (this.log == null) {
+            this.log = new ArrayList<>();
+        }
+        this.log.add(logItem);
+        return this;
+    }
+
+    /**
+     * Get log
+     *
+     * @return log
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getLog() {
+        return log;
+    }
+
+    public void setLog(List<String> log) {
+        this.log = log;
+    }
+
+    public Plugins network(List<String> network) {
+        this.network = network;
+        return this;
+    }
+
+    public Plugins addNetworkItem(String networkItem) {
+        if (this.network == null) {
+            this.network = new ArrayList<>();
+        }
+        this.network.add(networkItem);
+        return this;
+    }
+
+    /**
+     * Get network
+     *
+     * @return network
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(List<String> network) {
+        this.network = network;
+    }
+
+    public Plugins volume(List<String> volume) {
+        this.volume = volume;
+        return this;
+    }
+
+    public Plugins addVolumeItem(String volumeItem) {
+        if (this.volume == null) {
+            this.volume = new ArrayList<>();
+        }
+        this.volume.add(volumeItem);
+        return this;
+    }
+
+    /**
+     * Get volume
+     *
+     * @return volume
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getVolume() {
+        return volume;
+    }
+
+    public void setVolume(List<String> volume) {
+        this.volume = volume;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Plugins plugins = (Plugins) o;
+        return Objects.equals(this.authorization, plugins.authorization) &&
+                Objects.equals(this.log, plugins.log) &&
+                Objects.equals(this.network, plugins.network) &&
+                Objects.equals(this.volume, plugins.volume);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(authorization, log, network, volume);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Plugins {\n" +
+                "    authorization: " + toIndentedString(authorization) + "\n" +
+                "    log: " + toIndentedString(log) + "\n" +
+                "    network: " + toIndentedString(network) + "\n" +
+                "    volume: " + toIndentedString(volume) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Plugins to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Plugins.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Plugins' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Plugins> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Plugins.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Plugins>() {
+                @Override
+                public void write(JsonWriter out, Plugins value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Plugins read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

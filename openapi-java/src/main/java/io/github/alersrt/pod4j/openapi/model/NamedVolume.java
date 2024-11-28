@@ -13,299 +13,300 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * NamedVolume holds information about a named volume that will be mounted into the container.
  */
-@JsonPropertyOrder({
-  NamedVolume.JSON_PROPERTY_DEST,
-  NamedVolume.JSON_PROPERTY_IS_ANONYMOUS,
-  NamedVolume.JSON_PROPERTY_NAME,
-  NamedVolume.JSON_PROPERTY_OPTIONS,
-  NamedVolume.JSON_PROPERTY_SUB_PATH
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NamedVolume {
-  public static final String JSON_PROPERTY_DEST = "Dest";
-  private String dest;
+    public static final String SERIALIZED_NAME_DEST = "Dest";
+    public static final String SERIALIZED_NAME_IS_ANONYMOUS = "IsAnonymous";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_OPTIONS = "Options";
+    public static final String SERIALIZED_NAME_SUB_PATH = "SubPath";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_IS_ANONYMOUS = "IsAnonymous";
-  private Boolean isAnonymous;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Dest");
+        openapiFields.add("IsAnonymous");
+        openapiFields.add("Name");
+        openapiFields.add("Options");
+        openapiFields.add("SubPath");
 
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_OPTIONS = "Options";
-  private List<String> options = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SUB_PATH = "SubPath";
-  private String subPath;
-
-  public NamedVolume() { 
-  }
-
-  public NamedVolume dest(String dest) {
-    this.dest = dest;
-    return this;
-  }
-
-  /**
-   * Destination to mount the named volume within the container. Must be an absolute path. Path will be created if it does not exist.
-   * @return dest
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDest() {
-    return dest;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDest(String dest) {
-    this.dest = dest;
-  }
-
-
-  public NamedVolume isAnonymous(Boolean isAnonymous) {
-    this.isAnonymous = isAnonymous;
-    return this;
-  }
-
-  /**
-   * IsAnonymous sets the named volume as anonymous even if it has a name This is used for emptyDir volumes from a kube yaml
-   * @return isAnonymous
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IS_ANONYMOUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getIsAnonymous() {
-    return isAnonymous;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IS_ANONYMOUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsAnonymous(Boolean isAnonymous) {
-    this.isAnonymous = isAnonymous;
-  }
-
-
-  public NamedVolume name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Name is the name of the named volume to be mounted. May be empty. If empty, a new named volume with a pseudorandomly generated name will be mounted at the given destination.
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public NamedVolume options(List<String> options) {
-    this.options = options;
-    return this;
-  }
-
-  public NamedVolume addOptionsItem(String optionsItem) {
-    if (this.options == null) {
-      this.options = new ArrayList<>();
-    }
-    this.options.add(optionsItem);
-    return this;
-  }
-
-  /**
-   * Options are options that the named volume will be mounted with.
-   * @return options
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getOptions() {
-    return options;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOptions(List<String> options) {
-    this.options = options;
-  }
-
-
-  public NamedVolume subPath(String subPath) {
-    this.subPath = subPath;
-    return this;
-  }
-
-  /**
-   * SubPath stores the sub directory of the named volume to be mounted in the container
-   * @return subPath
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SUB_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSubPath() {
-    return subPath;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SUB_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubPath(String subPath) {
-    this.subPath = subPath;
-  }
-
-
-  /**
-   * Return true if this NamedVolume object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    NamedVolume namedVolume = (NamedVolume) o;
-    return Objects.equals(this.dest, namedVolume.dest) &&
-        Objects.equals(this.isAnonymous, namedVolume.isAnonymous) &&
-        Objects.equals(this.name, namedVolume.name) &&
-        Objects.equals(this.options, namedVolume.options) &&
-        Objects.equals(this.subPath, namedVolume.subPath);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(dest, isAnonymous, name, options, subPath);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class NamedVolume {\n");
-    sb.append("    dest: ").append(toIndentedString(dest)).append("\n");
-    sb.append("    isAnonymous: ").append(toIndentedString(isAnonymous)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    subPath: ").append(toIndentedString(subPath)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_DEST)
+    private String dest;
+    @SerializedName(SERIALIZED_NAME_IS_ANONYMOUS)
+    private Boolean isAnonymous;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_OPTIONS)
+    private List<String> options = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SUB_PATH)
+    private String subPath;
 
-    // add `Dest` to the URL query string
-    if (getDest() != null) {
-      joiner.add(String.format("%sDest%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDest()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public NamedVolume() {
     }
 
-    // add `IsAnonymous` to the URL query string
-    if (getIsAnonymous() != null) {
-      joiner.add(String.format("%sIsAnonymous%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIsAnonymous()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to NamedVolume
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!NamedVolume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in NamedVolume is not found in the empty JSON string", NamedVolume.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!NamedVolume.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NamedVolume` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Dest") != null && !jsonObj.get("Dest").isJsonNull()) && !jsonObj.get("Dest").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Dest` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Dest").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull() && !jsonObj.get("Options").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
+        }
+        if ((jsonObj.get("SubPath") != null && !jsonObj.get("SubPath").isJsonNull()) && !jsonObj.get("SubPath").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `SubPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("SubPath").toString()));
+        }
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of NamedVolume given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NamedVolume
+     * @throws IOException if the JSON string is invalid with respect to NamedVolume
+     */
+    public static NamedVolume fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, NamedVolume.class);
     }
 
-    // add `Options` to the URL query string
-    if (getOptions() != null) {
-      for (int i = 0; i < getOptions().size(); i++) {
-        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getOptions().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public NamedVolume dest(String dest) {
+        this.dest = dest;
+        return this;
     }
 
-    // add `SubPath` to the URL query string
-    if (getSubPath() != null) {
-      joiner.add(String.format("%sSubPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Destination to mount the named volume within the container. Must be an absolute path. Path will be created if it does not exist.
+     *
+     * @return dest
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDest() {
+        return dest;
     }
 
-    return joiner.toString();
-  }
+    public void setDest(String dest) {
+        this.dest = dest;
+    }
+
+    public NamedVolume isAnonymous(Boolean isAnonymous) {
+        this.isAnonymous = isAnonymous;
+        return this;
+    }
+
+    /**
+     * IsAnonymous sets the named volume as anonymous even if it has a name This is used for emptyDir volumes from a kube yaml
+     *
+     * @return isAnonymous
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getIsAnonymous() {
+        return isAnonymous;
+    }
+
+    public void setIsAnonymous(Boolean isAnonymous) {
+        this.isAnonymous = isAnonymous;
+    }
+
+    public NamedVolume name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name is the name of the named volume to be mounted. May be empty. If empty, a new named volume with a pseudorandomly generated name will be mounted at the given destination.
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public NamedVolume options(List<String> options) {
+        this.options = options;
+        return this;
+    }
+
+    public NamedVolume addOptionsItem(String optionsItem) {
+        if (this.options == null) {
+            this.options = new ArrayList<>();
+        }
+        this.options.add(optionsItem);
+        return this;
+    }
+
+    /**
+     * Options are options that the named volume will be mounted with.
+     *
+     * @return options
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+
+    public NamedVolume subPath(String subPath) {
+        this.subPath = subPath;
+        return this;
+    }
+
+    /**
+     * SubPath stores the sub directory of the named volume to be mounted in the container
+     *
+     * @return subPath
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSubPath() {
+        return subPath;
+    }
+
+    public void setSubPath(String subPath) {
+        this.subPath = subPath;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        NamedVolume namedVolume = (NamedVolume) o;
+        return Objects.equals(this.dest, namedVolume.dest) &&
+                Objects.equals(this.isAnonymous, namedVolume.isAnonymous) &&
+                Objects.equals(this.name, namedVolume.name) &&
+                Objects.equals(this.options, namedVolume.options) &&
+                Objects.equals(this.subPath, namedVolume.subPath);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dest, isAnonymous, name, options, subPath);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class NamedVolume {\n" +
+                "    dest: " + toIndentedString(dest) + "\n" +
+                "    isAnonymous: " + toIndentedString(isAnonymous) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    options: " + toIndentedString(options) + "\n" +
+                "    subPath: " + toIndentedString(subPath) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of NamedVolume to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!NamedVolume.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'NamedVolume' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<NamedVolume> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(NamedVolume.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<NamedVolume>() {
+                @Override
+                public void write(JsonWriter out, NamedVolume value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public NamedVolume read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -13,132 +13,176 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * ConfigReference specifies the source which provides a network&#39;s configuration
  */
-@JsonPropertyOrder({
-  ConfigReference.JSON_PROPERTY_NETWORK
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ConfigReference {
-  public static final String JSON_PROPERTY_NETWORK = "Network";
-  private String network;
+    public static final String SERIALIZED_NAME_NETWORK = "Network";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public ConfigReference() { 
-  }
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Network");
 
-  public ConfigReference network(String network) {
-    this.network = network;
-    return this;
-  }
-
-  /**
-   * Get network
-   * @return network
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNetwork() {
-    return network;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetwork(String network) {
-    this.network = network;
-  }
-
-
-  /**
-   * Return true if this ConfigReference object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ConfigReference configReference = (ConfigReference) o;
-    return Objects.equals(this.network, configReference.network);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(network);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ConfigReference {\n");
-    sb.append("    network: ").append(toIndentedString(network)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_NETWORK)
+    private String network;
 
-    // add `Network` to the URL query string
-    if (getNetwork() != null) {
-      joiner.add(String.format("%sNetwork%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetwork()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ConfigReference() {
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ConfigReference
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ConfigReference.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ConfigReference is not found in the empty JSON string", ConfigReference.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ConfigReference.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ConfigReference` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Network") != null && !jsonObj.get("Network").isJsonNull()) && !jsonObj.get("Network").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Network` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Network").toString()));
+        }
+    }
+
+    /**
+     * Create an instance of ConfigReference given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ConfigReference
+     * @throws IOException if the JSON string is invalid with respect to ConfigReference
+     */
+    public static ConfigReference fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ConfigReference.class);
+    }
+
+    public ConfigReference network(String network) {
+        this.network = network;
+        return this;
+    }
+
+    /**
+     * Get network
+     *
+     * @return network
+     */
+    @jakarta.annotation.Nullable
+
+    public String getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(String network) {
+        this.network = network;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ConfigReference configReference = (ConfigReference) o;
+        return Objects.equals(this.network, configReference.network);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(network);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ConfigReference {\n" +
+                "    network: " + toIndentedString(network) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ConfigReference to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ConfigReference.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ConfigReference' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ConfigReference> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ConfigReference.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ConfigReference>() {
+                @Override
+                public void write(JsonWriter out, ConfigReference value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ConfigReference read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

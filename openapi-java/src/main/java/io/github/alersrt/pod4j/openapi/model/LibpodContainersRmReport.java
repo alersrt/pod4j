@@ -13,200 +13,218 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import org.openapitools.jackson.nullable.JsonNullable;
+
+import java.io.IOException;
 import java.util.Arrays;
-import org.openapitools.jackson.nullable.JsonNullable;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.openapitools.jackson.nullable.JsonNullable;
-import java.util.NoSuchElementException;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LibpodContainersRmReport
  */
-@JsonPropertyOrder({
-  LibpodContainersRmReport.JSON_PROPERTY_ERR,
-  LibpodContainersRmReport.JSON_PROPERTY_ID
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LibpodContainersRmReport {
-  public static final String JSON_PROPERTY_ERR = "Err";
-  private JsonNullable<String> err = JsonNullable.<String>undefined();
+    public static final String SERIALIZED_NAME_ERR = "Err";
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Err");
+        openapiFields.add("Id");
 
-  public LibpodContainersRmReport() { 
-  }
-
-  public LibpodContainersRmReport err(String err) {
-    this.err = JsonNullable.<String>of(err);
-    return this;
-  }
-
-  /**
-   * Error which occurred during Rm operation (if any). This field is optional and may be omitted if no error occurred.
-   * @return err
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonIgnore
-  public String getErr() {
-        return err.orElse(null);
-  }
-
-  @JsonProperty(JSON_PROPERTY_ERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getErr_JsonNullable() {
-    return err;
-  }
-  
-  @JsonProperty(JSON_PROPERTY_ERR)
-  public void setErr_JsonNullable(JsonNullable<String> err) {
-    this.err = err;
-  }
-
-  public void setErr(String err) {
-    this.err = JsonNullable.<String>of(err);
-  }
-
-
-  public LibpodContainersRmReport id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  /**
-   * Return true if this LibpodContainersRmReport object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LibpodContainersRmReport libpodContainersRmReport = (LibpodContainersRmReport) o;
-    return equalsNullable(this.err, libpodContainersRmReport.err) &&
-        Objects.equals(this.id, libpodContainersRmReport.id);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(hashCodeNullable(err), id);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LibpodContainersRmReport {\n");
-    sb.append("    err: ").append(toIndentedString(err)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ERR)
+    private String err;
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
 
-    // add `Err` to the URL query string
-    if (getErr() != null) {
-      joiner.add(String.format("%sErr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getErr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LibpodContainersRmReport() {
     }
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+        return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
     }
 
-    return joiner.toString();
-  }
+    private static <T> int hashCodeNullable(JsonNullable<T> a) {
+        if (a == null) {
+            return 1;
+        }
+        return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LibpodContainersRmReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LibpodContainersRmReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LibpodContainersRmReport is not found in the empty JSON string", LibpodContainersRmReport.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LibpodContainersRmReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LibpodContainersRmReport` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Err") != null && !jsonObj.get("Err").isJsonNull()) && !jsonObj.get("Err").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Err` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Err").toString()));
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+    }
+
+    /**
+     * Create an instance of LibpodContainersRmReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LibpodContainersRmReport
+     * @throws IOException if the JSON string is invalid with respect to LibpodContainersRmReport
+     */
+    public static LibpodContainersRmReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LibpodContainersRmReport.class);
+    }
+
+    public LibpodContainersRmReport err(String err) {
+        this.err = err;
+        return this;
+    }
+
+    /**
+     * Error which occurred during Rm operation (if any). This field is optional and may be omitted if no error occurred.
+     *
+     * @return err
+     */
+    @jakarta.annotation.Nullable
+
+    public String getErr() {
+        return err;
+    }
+
+    public void setErr(String err) {
+        this.err = err;
+    }
+
+    public LibpodContainersRmReport id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LibpodContainersRmReport libpodContainersRmReport = (LibpodContainersRmReport) o;
+        return Objects.equals(this.err, libpodContainersRmReport.err) &&
+                Objects.equals(this.id, libpodContainersRmReport.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(err, id);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LibpodContainersRmReport {\n" +
+                "    err: " + toIndentedString(err) + "\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LibpodContainersRmReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LibpodContainersRmReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LibpodContainersRmReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LibpodContainersRmReport> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LibpodContainersRmReport.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LibpodContainersRmReport>() {
+                @Override
+                public void write(JsonWriter out, LibpodContainersRmReport value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LibpodContainersRmReport read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for CapacityRange
  */
-class CapacityRangeTest {
+public class CapacityRangeTest {
     private final CapacityRange model = new CapacityRange();
 
     /**
      * Model tests for CapacityRange
      */
     @Test
-    void testCapacityRange() {
+    public void testCapacityRange() {
         // TODO: test CapacityRange
     }
 
@@ -42,7 +33,7 @@ class CapacityRangeTest {
      * Test the property 'limitBytes'
      */
     @Test
-    void limitBytesTest() {
+    public void limitBytesTest() {
         // TODO: test limitBytes
     }
 
@@ -50,7 +41,7 @@ class CapacityRangeTest {
      * Test the property 'requiredBytes'
      */
     @Test
-    void requiredBytesTest() {
+    public void requiredBytesTest() {
         // TODO: test requiredBytes
     }
 

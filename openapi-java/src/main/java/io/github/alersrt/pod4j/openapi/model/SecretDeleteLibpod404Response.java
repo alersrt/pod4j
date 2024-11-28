@@ -13,214 +13,233 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import jakarta.validation.constraints.Min;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SecretDeleteLibpod404Response
  */
-@JsonPropertyOrder({
-  SecretDeleteLibpod404Response.JSON_PROPERTY_CAUSE,
-  SecretDeleteLibpod404Response.JSON_PROPERTY_MESSAGE,
-  SecretDeleteLibpod404Response.JSON_PROPERTY_RESPONSE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SecretDeleteLibpod404Response {
-  public static final String JSON_PROPERTY_CAUSE = "cause";
-  private String cause;
+    public static final String SERIALIZED_NAME_CAUSE = "cause";
+    public static final String SERIALIZED_NAME_MESSAGE = "message";
+    public static final String SERIALIZED_NAME_RESPONSE = "response";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_MESSAGE = "message";
-  private String message;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("cause");
+        openapiFields.add("message");
+        openapiFields.add("response");
 
-  public static final String JSON_PROPERTY_RESPONSE = "response";
-  private Long response;
-
-  public SecretDeleteLibpod404Response() { 
-  }
-
-  public SecretDeleteLibpod404Response cause(String cause) {
-    this.cause = cause;
-    return this;
-  }
-
-  /**
-   * API root cause formatted for automated parsing
-   * @return cause
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAUSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCause() {
-    return cause;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAUSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCause(String cause) {
-    this.cause = cause;
-  }
-
-
-  public SecretDeleteLibpod404Response message(String message) {
-    this.message = message;
-    return this;
-  }
-
-  /**
-   * human error message, formatted for a human to read
-   * @return message
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMessage() {
-    return message;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-
-  public SecretDeleteLibpod404Response response(Long response) {
-    this.response = response;
-    return this;
-  }
-
-  /**
-   * HTTP response code
-   * minimum: 400
-   * @return response
-   */
-  @jakarta.annotation.Nullable
- @Min(400L)
-  @JsonProperty(JSON_PROPERTY_RESPONSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getResponse() {
-    return response;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESPONSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResponse(Long response) {
-    this.response = response;
-  }
-
-
-  /**
-   * Return true if this SecretDeleteLibpod_404_response object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SecretDeleteLibpod404Response secretDeleteLibpod404Response = (SecretDeleteLibpod404Response) o;
-    return Objects.equals(this.cause, secretDeleteLibpod404Response.cause) &&
-        Objects.equals(this.message, secretDeleteLibpod404Response.message) &&
-        Objects.equals(this.response, secretDeleteLibpod404Response.response);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(cause, message, response);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SecretDeleteLibpod404Response {\n");
-    sb.append("    cause: ").append(toIndentedString(cause)).append("\n");
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
-    sb.append("    response: ").append(toIndentedString(response)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CAUSE)
+    private String cause;
+    @SerializedName(SERIALIZED_NAME_MESSAGE)
+    private String message;
+    @SerializedName(SERIALIZED_NAME_RESPONSE)
+    private Long response;
 
-    // add `cause` to the URL query string
-    if (getCause() != null) {
-      joiner.add(String.format("%scause%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCause()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SecretDeleteLibpod404Response() {
     }
 
-    // add `message` to the URL query string
-    if (getMessage() != null) {
-      joiner.add(String.format("%smessage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMessage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to SecretDeleteLibpod404Response
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!SecretDeleteLibpod404Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SecretDeleteLibpod404Response is not found in the empty JSON string", SecretDeleteLibpod404Response.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!SecretDeleteLibpod404Response.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecretDeleteLibpod404Response` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("cause") != null && !jsonObj.get("cause").isJsonNull()) && !jsonObj.get("cause").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cause` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cause").toString()));
+        }
+        if ((jsonObj.get("message") != null && !jsonObj.get("message").isJsonNull()) && !jsonObj.get("message").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `message` to be a primitive type in the JSON string but got `%s`", jsonObj.get("message").toString()));
+        }
     }
 
-    // add `response` to the URL query string
-    if (getResponse() != null) {
-      joiner.add(String.format("%sresponse%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getResponse()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of SecretDeleteLibpod404Response given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SecretDeleteLibpod404Response
+     * @throws IOException if the JSON string is invalid with respect to SecretDeleteLibpod404Response
+     */
+    public static SecretDeleteLibpod404Response fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SecretDeleteLibpod404Response.class);
     }
 
-    return joiner.toString();
-  }
+    public SecretDeleteLibpod404Response cause(String cause) {
+        this.cause = cause;
+        return this;
+    }
+
+    /**
+     * API root cause formatted for automated parsing
+     *
+     * @return cause
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCause() {
+        return cause;
+    }
+
+    public void setCause(String cause) {
+        this.cause = cause;
+    }
+
+    public SecretDeleteLibpod404Response message(String message) {
+        this.message = message;
+        return this;
+    }
+
+    /**
+     * human error message, formatted for a human to read
+     *
+     * @return message
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public SecretDeleteLibpod404Response response(Long response) {
+        this.response = response;
+        return this;
+    }
+
+    /**
+     * HTTP response code
+     * minimum: 400
+     *
+     * @return response
+     */
+    @jakarta.annotation.Nullable
+    @Min(400L)
+    public Long getResponse() {
+        return response;
+    }
+
+    public void setResponse(Long response) {
+        this.response = response;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SecretDeleteLibpod404Response secretDeleteLibpod404Response = (SecretDeleteLibpod404Response) o;
+        return Objects.equals(this.cause, secretDeleteLibpod404Response.cause) &&
+                Objects.equals(this.message, secretDeleteLibpod404Response.message) &&
+                Objects.equals(this.response, secretDeleteLibpod404Response.response);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cause, message, response);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class SecretDeleteLibpod404Response {\n" +
+                "    cause: " + toIndentedString(cause) + "\n" +
+                "    message: " + toIndentedString(message) + "\n" +
+                "    response: " + toIndentedString(response) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of SecretDeleteLibpod404Response to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!SecretDeleteLibpod404Response.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SecretDeleteLibpod404Response' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<SecretDeleteLibpod404Response> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(SecretDeleteLibpod404Response.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<SecretDeleteLibpod404Response>() {
+                @Override
+                public void write(JsonWriter out, SecretDeleteLibpod404Response value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public SecretDeleteLibpod404Response read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

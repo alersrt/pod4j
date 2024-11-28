@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxMemory
  */
-class LinuxMemoryTest {
+public class LinuxMemoryTest {
     private final LinuxMemory model = new LinuxMemory();
 
     /**
      * Model tests for LinuxMemory
      */
     @Test
-    void testLinuxMemory() {
+    public void testLinuxMemory() {
         // TODO: test LinuxMemory
     }
 
@@ -42,7 +43,7 @@ class LinuxMemoryTest {
      * Test the property 'checkBeforeUpdate'
      */
     @Test
-    void checkBeforeUpdateTest() {
+    public void checkBeforeUpdateTest() {
         // TODO: test checkBeforeUpdate
     }
 
@@ -50,7 +51,7 @@ class LinuxMemoryTest {
      * Test the property 'disableOOMKiller'
      */
     @Test
-    void disableOOMKillerTest() {
+    public void disableOOMKillerTest() {
         // TODO: test disableOOMKiller
     }
 
@@ -58,7 +59,7 @@ class LinuxMemoryTest {
      * Test the property 'kernel'
      */
     @Test
-    void kernelTest() {
+    public void kernelTest() {
         // TODO: test kernel
     }
 
@@ -66,7 +67,7 @@ class LinuxMemoryTest {
      * Test the property 'kernelTCP'
      */
     @Test
-    void kernelTCPTest() {
+    public void kernelTCPTest() {
         // TODO: test kernelTCP
     }
 
@@ -74,7 +75,7 @@ class LinuxMemoryTest {
      * Test the property 'limit'
      */
     @Test
-    void limitTest() {
+    public void limitTest() {
         // TODO: test limit
     }
 
@@ -82,7 +83,7 @@ class LinuxMemoryTest {
      * Test the property 'reservation'
      */
     @Test
-    void reservationTest() {
+    public void reservationTest() {
         // TODO: test reservation
     }
 
@@ -90,7 +91,7 @@ class LinuxMemoryTest {
      * Test the property 'swap'
      */
     @Test
-    void swapTest() {
+    public void swapTest() {
         // TODO: test swap
     }
 
@@ -98,7 +99,7 @@ class LinuxMemoryTest {
      * Test the property 'swappiness'
      */
     @Test
-    void swappinessTest() {
+    public void swappinessTest() {
         // TODO: test swappiness
     }
 
@@ -106,7 +107,7 @@ class LinuxMemoryTest {
      * Test the property 'useHierarchy'
      */
     @Test
-    void useHierarchyTest() {
+    public void useHierarchyTest() {
         // TODO: test useHierarchy
     }
 

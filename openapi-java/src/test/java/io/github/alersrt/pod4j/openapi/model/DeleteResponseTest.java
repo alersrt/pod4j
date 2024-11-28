@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for DeleteResponse
  */
-class DeleteResponseTest {
+public class DeleteResponseTest {
     private final DeleteResponse model = new DeleteResponse();
 
     /**
      * Model tests for DeleteResponse
      */
     @Test
-    void testDeleteResponse() {
+    public void testDeleteResponse() {
         // TODO: test DeleteResponse
     }
 
@@ -42,7 +33,7 @@ class DeleteResponseTest {
      * Test the property 'deleted'
      */
     @Test
-    void deletedTest() {
+    public void deletedTest() {
         // TODO: test deleted
     }
 
@@ -50,7 +41,7 @@ class DeleteResponseTest {
      * Test the property 'untagged'
      */
     @Test
-    void untaggedTest() {
+    public void untaggedTest() {
         // TODO: test untagged
     }
 

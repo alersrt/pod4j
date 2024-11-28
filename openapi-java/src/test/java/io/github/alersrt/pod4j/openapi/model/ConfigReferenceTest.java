@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ConfigReference
  */
-class ConfigReferenceTest {
+public class ConfigReferenceTest {
     private final ConfigReference model = new ConfigReference();
 
     /**
      * Model tests for ConfigReference
      */
     @Test
-    void testConfigReference() {
+    public void testConfigReference() {
         // TODO: test ConfigReference
     }
 
@@ -42,7 +33,7 @@ class ConfigReferenceTest {
      * Test the property 'network'
      */
     @Test
-    void networkTest() {
+    public void networkTest() {
         // TODO: test network
     }
 

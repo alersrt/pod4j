@@ -13,299 +13,303 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Platform
  */
-@JsonPropertyOrder({
-  Platform.JSON_PROPERTY_ARCHITECTURE,
-  Platform.JSON_PROPERTY_OS,
-  Platform.JSON_PROPERTY_OS_FEATURES,
-  Platform.JSON_PROPERTY_OS_VERSION,
-  Platform.JSON_PROPERTY_VARIANT
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Platform {
-  public static final String JSON_PROPERTY_ARCHITECTURE = "architecture";
-  private String architecture;
+    public static final String SERIALIZED_NAME_ARCHITECTURE = "architecture";
+    public static final String SERIALIZED_NAME_OS = "os";
+    public static final String SERIALIZED_NAME_OS_FEATURES = "os.features";
+    public static final String SERIALIZED_NAME_OS_VERSION = "os.version";
+    public static final String SERIALIZED_NAME_VARIANT = "variant";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_OS = "os";
-  private String os;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("architecture");
+        openapiFields.add("os");
+        openapiFields.add("os.features");
+        openapiFields.add("os.version");
+        openapiFields.add("variant");
 
-  public static final String JSON_PROPERTY_OS_FEATURES = "os.features";
-  private List<String> osFeatures = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_OS_VERSION = "os.version";
-  private String osVersion;
-
-  public static final String JSON_PROPERTY_VARIANT = "variant";
-  private String variant;
-
-  public Platform() { 
-  }
-
-  public Platform architecture(String architecture) {
-    this.architecture = architecture;
-    return this;
-  }
-
-  /**
-   * Architecture field specifies the CPU architecture, for example &#x60;amd64&#x60; or &#x60;ppc64le&#x60;.
-   * @return architecture
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getArchitecture() {
-    return architecture;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setArchitecture(String architecture) {
-    this.architecture = architecture;
-  }
-
-
-  public Platform os(String os) {
-    this.os = os;
-    return this;
-  }
-
-  /**
-   * OS specifies the operating system, for example &#x60;linux&#x60; or &#x60;windows&#x60;.
-   * @return os
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOs() {
-    return os;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOs(String os) {
-    this.os = os;
-  }
-
-
-  public Platform osFeatures(List<String> osFeatures) {
-    this.osFeatures = osFeatures;
-    return this;
-  }
-
-  public Platform addOsFeaturesItem(String osFeaturesItem) {
-    if (this.osFeatures == null) {
-      this.osFeatures = new ArrayList<>();
-    }
-    this.osFeatures.add(osFeaturesItem);
-    return this;
-  }
-
-  /**
-   * OSFeatures is an optional field specifying an array of strings, each listing a required OS feature (for example on Windows &#x60;win32k&#x60;).
-   * @return osFeatures
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS_FEATURES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getOsFeatures() {
-    return osFeatures;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS_FEATURES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOsFeatures(List<String> osFeatures) {
-    this.osFeatures = osFeatures;
-  }
-
-
-  public Platform osVersion(String osVersion) {
-    this.osVersion = osVersion;
-    return this;
-  }
-
-  /**
-   * OSVersion is an optional field specifying the operating system version, for example on Windows &#x60;10.0.14393.1066&#x60;.
-   * @return osVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOsVersion() {
-    return osVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOsVersion(String osVersion) {
-    this.osVersion = osVersion;
-  }
-
-
-  public Platform variant(String variant) {
-    this.variant = variant;
-    return this;
-  }
-
-  /**
-   * Variant is an optional field specifying a variant of the CPU, for example &#x60;v7&#x60; to specify ARMv7 when architecture is &#x60;arm&#x60;.
-   * @return variant
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VARIANT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVariant() {
-    return variant;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VARIANT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVariant(String variant) {
-    this.variant = variant;
-  }
-
-
-  /**
-   * Return true if this Platform object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Platform platform = (Platform) o;
-    return Objects.equals(this.architecture, platform.architecture) &&
-        Objects.equals(this.os, platform.os) &&
-        Objects.equals(this.osFeatures, platform.osFeatures) &&
-        Objects.equals(this.osVersion, platform.osVersion) &&
-        Objects.equals(this.variant, platform.variant);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(architecture, os, osFeatures, osVersion, variant);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Platform {\n");
-    sb.append("    architecture: ").append(toIndentedString(architecture)).append("\n");
-    sb.append("    os: ").append(toIndentedString(os)).append("\n");
-    sb.append("    osFeatures: ").append(toIndentedString(osFeatures)).append("\n");
-    sb.append("    osVersion: ").append(toIndentedString(osVersion)).append("\n");
-    sb.append("    variant: ").append(toIndentedString(variant)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ARCHITECTURE)
+    private String architecture;
+    @SerializedName(SERIALIZED_NAME_OS)
+    private String os;
+    @SerializedName(SERIALIZED_NAME_OS_FEATURES)
+    private List<String> osFeatures = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_OS_VERSION)
+    private String osVersion;
+    @SerializedName(SERIALIZED_NAME_VARIANT)
+    private String variant;
 
-    // add `architecture` to the URL query string
-    if (getArchitecture() != null) {
-      joiner.add(String.format("%sarchitecture%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArchitecture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Platform() {
     }
 
-    // add `os` to the URL query string
-    if (getOs() != null) {
-      joiner.add(String.format("%sos%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Platform
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Platform.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Platform is not found in the empty JSON string", Platform.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Platform.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Platform` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("architecture") != null && !jsonObj.get("architecture").isJsonNull()) && !jsonObj.get("architecture").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `architecture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("architecture").toString()));
+        }
+        if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("os.features") != null && !jsonObj.get("os.features").isJsonNull() && !jsonObj.get("os.features").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `os.features` to be an array in the JSON string but got `%s`", jsonObj.get("os.features").toString()));
+        }
+        if ((jsonObj.get("os.version") != null && !jsonObj.get("os.version").isJsonNull()) && !jsonObj.get("os.version").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `os.version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os.version").toString()));
+        }
+        if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
+        }
     }
 
-    // add `os.features` to the URL query string
-    if (getOsFeatures() != null) {
-      for (int i = 0; i < getOsFeatures().size(); i++) {
-        joiner.add(String.format("%sos.features%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getOsFeatures().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Create an instance of Platform given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Platform
+     * @throws IOException if the JSON string is invalid with respect to Platform
+     */
+    public static Platform fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Platform.class);
     }
 
-    // add `os.version` to the URL query string
-    if (getOsVersion() != null) {
-      joiner.add(String.format("%sos.version%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOsVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Platform architecture(String architecture) {
+        this.architecture = architecture;
+        return this;
     }
 
-    // add `variant` to the URL query string
-    if (getVariant() != null) {
-      joiner.add(String.format("%svariant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Architecture field specifies the CPU architecture, for example &#x60;amd64&#x60; or &#x60;ppc64le&#x60;.
+     *
+     * @return architecture
+     */
+    @jakarta.annotation.Nullable
+
+    public String getArchitecture() {
+        return architecture;
     }
 
-    return joiner.toString();
-  }
+    public void setArchitecture(String architecture) {
+        this.architecture = architecture;
+    }
+
+    public Platform os(String os) {
+        this.os = os;
+        return this;
+    }
+
+    /**
+     * OS specifies the operating system, for example &#x60;linux&#x60; or &#x60;windows&#x60;.
+     *
+     * @return os
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public Platform osFeatures(List<String> osFeatures) {
+        this.osFeatures = osFeatures;
+        return this;
+    }
+
+    public Platform addOsFeaturesItem(String osFeaturesItem) {
+        if (this.osFeatures == null) {
+            this.osFeatures = new ArrayList<>();
+        }
+        this.osFeatures.add(osFeaturesItem);
+        return this;
+    }
+
+    /**
+     * OSFeatures is an optional field specifying an array of strings, each listing a required OS feature (for example on Windows &#x60;win32k&#x60;).
+     *
+     * @return osFeatures
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getOsFeatures() {
+        return osFeatures;
+    }
+
+    public void setOsFeatures(List<String> osFeatures) {
+        this.osFeatures = osFeatures;
+    }
+
+    public Platform osVersion(String osVersion) {
+        this.osVersion = osVersion;
+        return this;
+    }
+
+    /**
+     * OSVersion is an optional field specifying the operating system version, for example on Windows &#x60;10.0.14393.1066&#x60;.
+     *
+     * @return osVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOsVersion() {
+        return osVersion;
+    }
+
+    public void setOsVersion(String osVersion) {
+        this.osVersion = osVersion;
+    }
+
+    public Platform variant(String variant) {
+        this.variant = variant;
+        return this;
+    }
+
+    /**
+     * Variant is an optional field specifying a variant of the CPU, for example &#x60;v7&#x60; to specify ARMv7 when architecture is &#x60;arm&#x60;.
+     *
+     * @return variant
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVariant() {
+        return variant;
+    }
+
+    public void setVariant(String variant) {
+        this.variant = variant;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Platform platform = (Platform) o;
+        return Objects.equals(this.architecture, platform.architecture) &&
+                Objects.equals(this.os, platform.os) &&
+                Objects.equals(this.osFeatures, platform.osFeatures) &&
+                Objects.equals(this.osVersion, platform.osVersion) &&
+                Objects.equals(this.variant, platform.variant);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(architecture, os, osFeatures, osVersion, variant);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Platform {\n" +
+                "    architecture: " + toIndentedString(architecture) + "\n" +
+                "    os: " + toIndentedString(os) + "\n" +
+                "    osFeatures: " + toIndentedString(osFeatures) + "\n" +
+                "    osVersion: " + toIndentedString(osVersion) + "\n" +
+                "    variant: " + toIndentedString(variant) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Platform to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Platform.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Platform' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Platform> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Platform.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Platform>() {
+                @Override
+                public void write(JsonWriter out, Platform value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Platform read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

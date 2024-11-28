@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.DeviceMapping;
 import io.github.alersrt.pod4j.openapi.model.DeviceRequest;
 import io.github.alersrt.pod4j.openapi.model.LogConfig;
@@ -27,27 +27,28 @@ import io.github.alersrt.pod4j.openapi.model.RestartPolicy;
 import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.Ulimit;
 import io.github.alersrt.pod4j.openapi.model.WeightDevice;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for HostConfig
  */
-class HostConfigTest {
+public class HostConfigTest {
     private final HostConfig model = new HostConfig();
 
     /**
      * Model tests for HostConfig
      */
     @Test
-    void testHostConfig() {
+    public void testHostConfig() {
         // TODO: test HostConfig
     }
 
@@ -55,7 +56,7 @@ class HostConfigTest {
      * Test the property 'annotations'
      */
     @Test
-    void annotationsTest() {
+    public void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -63,7 +64,7 @@ class HostConfigTest {
      * Test the property 'autoRemove'
      */
     @Test
-    void autoRemoveTest() {
+    public void autoRemoveTest() {
         // TODO: test autoRemove
     }
 
@@ -71,7 +72,7 @@ class HostConfigTest {
      * Test the property 'binds'
      */
     @Test
-    void bindsTest() {
+    public void bindsTest() {
         // TODO: test binds
     }
 
@@ -79,7 +80,7 @@ class HostConfigTest {
      * Test the property 'blkioDeviceReadBps'
      */
     @Test
-    void blkioDeviceReadBpsTest() {
+    public void blkioDeviceReadBpsTest() {
         // TODO: test blkioDeviceReadBps
     }
 
@@ -87,7 +88,7 @@ class HostConfigTest {
      * Test the property 'blkioDeviceReadIOps'
      */
     @Test
-    void blkioDeviceReadIOpsTest() {
+    public void blkioDeviceReadIOpsTest() {
         // TODO: test blkioDeviceReadIOps
     }
 
@@ -95,7 +96,7 @@ class HostConfigTest {
      * Test the property 'blkioDeviceWriteBps'
      */
     @Test
-    void blkioDeviceWriteBpsTest() {
+    public void blkioDeviceWriteBpsTest() {
         // TODO: test blkioDeviceWriteBps
     }
 
@@ -103,7 +104,7 @@ class HostConfigTest {
      * Test the property 'blkioDeviceWriteIOps'
      */
     @Test
-    void blkioDeviceWriteIOpsTest() {
+    public void blkioDeviceWriteIOpsTest() {
         // TODO: test blkioDeviceWriteIOps
     }
 
@@ -111,7 +112,7 @@ class HostConfigTest {
      * Test the property 'blkioWeight'
      */
     @Test
-    void blkioWeightTest() {
+    public void blkioWeightTest() {
         // TODO: test blkioWeight
     }
 
@@ -119,7 +120,7 @@ class HostConfigTest {
      * Test the property 'blkioWeightDevice'
      */
     @Test
-    void blkioWeightDeviceTest() {
+    public void blkioWeightDeviceTest() {
         // TODO: test blkioWeightDevice
     }
 
@@ -127,7 +128,7 @@ class HostConfigTest {
      * Test the property 'capAdd'
      */
     @Test
-    void capAddTest() {
+    public void capAddTest() {
         // TODO: test capAdd
     }
 
@@ -135,7 +136,7 @@ class HostConfigTest {
      * Test the property 'capDrop'
      */
     @Test
-    void capDropTest() {
+    public void capDropTest() {
         // TODO: test capDrop
     }
 
@@ -143,7 +144,7 @@ class HostConfigTest {
      * Test the property 'cgroup'
      */
     @Test
-    void cgroupTest() {
+    public void cgroupTest() {
         // TODO: test cgroup
     }
 
@@ -151,7 +152,7 @@ class HostConfigTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    void cgroupParentTest() {
+    public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -159,7 +160,7 @@ class HostConfigTest {
      * Test the property 'cgroupnsMode'
      */
     @Test
-    void cgroupnsModeTest() {
+    public void cgroupnsModeTest() {
         // TODO: test cgroupnsMode
     }
 
@@ -167,7 +168,7 @@ class HostConfigTest {
      * Test the property 'consoleSize'
      */
     @Test
-    void consoleSizeTest() {
+    public void consoleSizeTest() {
         // TODO: test consoleSize
     }
 
@@ -175,7 +176,7 @@ class HostConfigTest {
      * Test the property 'containerIDFile'
      */
     @Test
-    void containerIDFileTest() {
+    public void containerIDFileTest() {
         // TODO: test containerIDFile
     }
 
@@ -183,7 +184,7 @@ class HostConfigTest {
      * Test the property 'cpuCount'
      */
     @Test
-    void cpuCountTest() {
+    public void cpuCountTest() {
         // TODO: test cpuCount
     }
 
@@ -191,7 +192,7 @@ class HostConfigTest {
      * Test the property 'cpuPercent'
      */
     @Test
-    void cpuPercentTest() {
+    public void cpuPercentTest() {
         // TODO: test cpuPercent
     }
 
@@ -199,7 +200,7 @@ class HostConfigTest {
      * Test the property 'cpuPeriod'
      */
     @Test
-    void cpuPeriodTest() {
+    public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
@@ -207,7 +208,7 @@ class HostConfigTest {
      * Test the property 'cpuQuota'
      */
     @Test
-    void cpuQuotaTest() {
+    public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
@@ -215,7 +216,7 @@ class HostConfigTest {
      * Test the property 'cpuRealtimePeriod'
      */
     @Test
-    void cpuRealtimePeriodTest() {
+    public void cpuRealtimePeriodTest() {
         // TODO: test cpuRealtimePeriod
     }
 
@@ -223,7 +224,7 @@ class HostConfigTest {
      * Test the property 'cpuRealtimeRuntime'
      */
     @Test
-    void cpuRealtimeRuntimeTest() {
+    public void cpuRealtimeRuntimeTest() {
         // TODO: test cpuRealtimeRuntime
     }
 
@@ -231,7 +232,7 @@ class HostConfigTest {
      * Test the property 'cpuShares'
      */
     @Test
-    void cpuSharesTest() {
+    public void cpuSharesTest() {
         // TODO: test cpuShares
     }
 
@@ -239,7 +240,7 @@ class HostConfigTest {
      * Test the property 'cpusetCpus'
      */
     @Test
-    void cpusetCpusTest() {
+    public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
@@ -247,7 +248,7 @@ class HostConfigTest {
      * Test the property 'cpusetMems'
      */
     @Test
-    void cpusetMemsTest() {
+    public void cpusetMemsTest() {
         // TODO: test cpusetMems
     }
 
@@ -255,7 +256,7 @@ class HostConfigTest {
      * Test the property 'deviceCgroupRules'
      */
     @Test
-    void deviceCgroupRulesTest() {
+    public void deviceCgroupRulesTest() {
         // TODO: test deviceCgroupRules
     }
 
@@ -263,7 +264,7 @@ class HostConfigTest {
      * Test the property 'deviceRequests'
      */
     @Test
-    void deviceRequestsTest() {
+    public void deviceRequestsTest() {
         // TODO: test deviceRequests
     }
 
@@ -271,7 +272,7 @@ class HostConfigTest {
      * Test the property 'devices'
      */
     @Test
-    void devicesTest() {
+    public void devicesTest() {
         // TODO: test devices
     }
 
@@ -279,7 +280,7 @@ class HostConfigTest {
      * Test the property 'dns'
      */
     @Test
-    void dnsTest() {
+    public void dnsTest() {
         // TODO: test dns
     }
 
@@ -287,7 +288,7 @@ class HostConfigTest {
      * Test the property 'dnsOptions'
      */
     @Test
-    void dnsOptionsTest() {
+    public void dnsOptionsTest() {
         // TODO: test dnsOptions
     }
 
@@ -295,7 +296,7 @@ class HostConfigTest {
      * Test the property 'dnsSearch'
      */
     @Test
-    void dnsSearchTest() {
+    public void dnsSearchTest() {
         // TODO: test dnsSearch
     }
 
@@ -303,7 +304,7 @@ class HostConfigTest {
      * Test the property 'extraHosts'
      */
     @Test
-    void extraHostsTest() {
+    public void extraHostsTest() {
         // TODO: test extraHosts
     }
 
@@ -311,7 +312,7 @@ class HostConfigTest {
      * Test the property 'groupAdd'
      */
     @Test
-    void groupAddTest() {
+    public void groupAddTest() {
         // TODO: test groupAdd
     }
 
@@ -319,7 +320,7 @@ class HostConfigTest {
      * Test the property 'ioMaximumBandwidth'
      */
     @Test
-    void ioMaximumBandwidthTest() {
+    public void ioMaximumBandwidthTest() {
         // TODO: test ioMaximumBandwidth
     }
 
@@ -327,7 +328,7 @@ class HostConfigTest {
      * Test the property 'ioMaximumIOps'
      */
     @Test
-    void ioMaximumIOpsTest() {
+    public void ioMaximumIOpsTest() {
         // TODO: test ioMaximumIOps
     }
 
@@ -335,7 +336,7 @@ class HostConfigTest {
      * Test the property 'init'
      */
     @Test
-    void initTest() {
+    public void initTest() {
         // TODO: test init
     }
 
@@ -343,7 +344,7 @@ class HostConfigTest {
      * Test the property 'ipcMode'
      */
     @Test
-    void ipcModeTest() {
+    public void ipcModeTest() {
         // TODO: test ipcMode
     }
 
@@ -351,7 +352,7 @@ class HostConfigTest {
      * Test the property 'isolation'
      */
     @Test
-    void isolationTest() {
+    public void isolationTest() {
         // TODO: test isolation
     }
 
@@ -359,7 +360,7 @@ class HostConfigTest {
      * Test the property 'kernelMemory'
      */
     @Test
-    void kernelMemoryTest() {
+    public void kernelMemoryTest() {
         // TODO: test kernelMemory
     }
 
@@ -367,7 +368,7 @@ class HostConfigTest {
      * Test the property 'kernelMemoryTCP'
      */
     @Test
-    void kernelMemoryTCPTest() {
+    public void kernelMemoryTCPTest() {
         // TODO: test kernelMemoryTCP
     }
 
@@ -375,7 +376,7 @@ class HostConfigTest {
      * Test the property 'links'
      */
     @Test
-    void linksTest() {
+    public void linksTest() {
         // TODO: test links
     }
 
@@ -383,7 +384,7 @@ class HostConfigTest {
      * Test the property 'logConfig'
      */
     @Test
-    void logConfigTest() {
+    public void logConfigTest() {
         // TODO: test logConfig
     }
 
@@ -391,7 +392,7 @@ class HostConfigTest {
      * Test the property 'maskedPaths'
      */
     @Test
-    void maskedPathsTest() {
+    public void maskedPathsTest() {
         // TODO: test maskedPaths
     }
 
@@ -399,7 +400,7 @@ class HostConfigTest {
      * Test the property 'memory'
      */
     @Test
-    void memoryTest() {
+    public void memoryTest() {
         // TODO: test memory
     }
 
@@ -407,7 +408,7 @@ class HostConfigTest {
      * Test the property 'memoryReservation'
      */
     @Test
-    void memoryReservationTest() {
+    public void memoryReservationTest() {
         // TODO: test memoryReservation
     }
 
@@ -415,7 +416,7 @@ class HostConfigTest {
      * Test the property 'memorySwap'
      */
     @Test
-    void memorySwapTest() {
+    public void memorySwapTest() {
         // TODO: test memorySwap
     }
 
@@ -423,7 +424,7 @@ class HostConfigTest {
      * Test the property 'memorySwappiness'
      */
     @Test
-    void memorySwappinessTest() {
+    public void memorySwappinessTest() {
         // TODO: test memorySwappiness
     }
 
@@ -431,7 +432,7 @@ class HostConfigTest {
      * Test the property 'mounts'
      */
     @Test
-    void mountsTest() {
+    public void mountsTest() {
         // TODO: test mounts
     }
 
@@ -439,7 +440,7 @@ class HostConfigTest {
      * Test the property 'nanoCpus'
      */
     @Test
-    void nanoCpusTest() {
+    public void nanoCpusTest() {
         // TODO: test nanoCpus
     }
 
@@ -447,7 +448,7 @@ class HostConfigTest {
      * Test the property 'networkMode'
      */
     @Test
-    void networkModeTest() {
+    public void networkModeTest() {
         // TODO: test networkMode
     }
 
@@ -455,7 +456,7 @@ class HostConfigTest {
      * Test the property 'oomKillDisable'
      */
     @Test
-    void oomKillDisableTest() {
+    public void oomKillDisableTest() {
         // TODO: test oomKillDisable
     }
 
@@ -463,7 +464,7 @@ class HostConfigTest {
      * Test the property 'oomScoreAdj'
      */
     @Test
-    void oomScoreAdjTest() {
+    public void oomScoreAdjTest() {
         // TODO: test oomScoreAdj
     }
 
@@ -471,7 +472,7 @@ class HostConfigTest {
      * Test the property 'pidMode'
      */
     @Test
-    void pidModeTest() {
+    public void pidModeTest() {
         // TODO: test pidMode
     }
 
@@ -479,7 +480,7 @@ class HostConfigTest {
      * Test the property 'pidsLimit'
      */
     @Test
-    void pidsLimitTest() {
+    public void pidsLimitTest() {
         // TODO: test pidsLimit
     }
 
@@ -487,7 +488,7 @@ class HostConfigTest {
      * Test the property 'portBindings'
      */
     @Test
-    void portBindingsTest() {
+    public void portBindingsTest() {
         // TODO: test portBindings
     }
 
@@ -495,7 +496,7 @@ class HostConfigTest {
      * Test the property 'privileged'
      */
     @Test
-    void privilegedTest() {
+    public void privilegedTest() {
         // TODO: test privileged
     }
 
@@ -503,7 +504,7 @@ class HostConfigTest {
      * Test the property 'publishAllPorts'
      */
     @Test
-    void publishAllPortsTest() {
+    public void publishAllPortsTest() {
         // TODO: test publishAllPorts
     }
 
@@ -511,7 +512,7 @@ class HostConfigTest {
      * Test the property 'readonlyPaths'
      */
     @Test
-    void readonlyPathsTest() {
+    public void readonlyPathsTest() {
         // TODO: test readonlyPaths
     }
 
@@ -519,7 +520,7 @@ class HostConfigTest {
      * Test the property 'readonlyRootfs'
      */
     @Test
-    void readonlyRootfsTest() {
+    public void readonlyRootfsTest() {
         // TODO: test readonlyRootfs
     }
 
@@ -527,7 +528,7 @@ class HostConfigTest {
      * Test the property 'restartPolicy'
      */
     @Test
-    void restartPolicyTest() {
+    public void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
@@ -535,7 +536,7 @@ class HostConfigTest {
      * Test the property 'runtime'
      */
     @Test
-    void runtimeTest() {
+    public void runtimeTest() {
         // TODO: test runtime
     }
 
@@ -543,7 +544,7 @@ class HostConfigTest {
      * Test the property 'securityOpt'
      */
     @Test
-    void securityOptTest() {
+    public void securityOptTest() {
         // TODO: test securityOpt
     }
 
@@ -551,7 +552,7 @@ class HostConfigTest {
      * Test the property 'shmSize'
      */
     @Test
-    void shmSizeTest() {
+    public void shmSizeTest() {
         // TODO: test shmSize
     }
 
@@ -559,7 +560,7 @@ class HostConfigTest {
      * Test the property 'storageOpt'
      */
     @Test
-    void storageOptTest() {
+    public void storageOptTest() {
         // TODO: test storageOpt
     }
 
@@ -567,7 +568,7 @@ class HostConfigTest {
      * Test the property 'sysctls'
      */
     @Test
-    void sysctlsTest() {
+    public void sysctlsTest() {
         // TODO: test sysctls
     }
 
@@ -575,7 +576,7 @@ class HostConfigTest {
      * Test the property 'tmpfs'
      */
     @Test
-    void tmpfsTest() {
+    public void tmpfsTest() {
         // TODO: test tmpfs
     }
 
@@ -583,7 +584,7 @@ class HostConfigTest {
      * Test the property 'utSMode'
      */
     @Test
-    void utSModeTest() {
+    public void utSModeTest() {
         // TODO: test utSMode
     }
 
@@ -591,7 +592,7 @@ class HostConfigTest {
      * Test the property 'ulimits'
      */
     @Test
-    void ulimitsTest() {
+    public void ulimitsTest() {
         // TODO: test ulimits
     }
 
@@ -599,7 +600,7 @@ class HostConfigTest {
      * Test the property 'usernsMode'
      */
     @Test
-    void usernsModeTest() {
+    public void usernsModeTest() {
         // TODO: test usernsMode
     }
 
@@ -607,7 +608,7 @@ class HostConfigTest {
      * Test the property 'volumeDriver'
      */
     @Test
-    void volumeDriverTest() {
+    public void volumeDriverTest() {
         // TODO: test volumeDriver
     }
 
@@ -615,7 +616,7 @@ class HostConfigTest {
      * Test the property 'volumesFrom'
      */
     @Test
-    void volumesFromTest() {
+    public void volumesFromTest() {
         // TODO: test volumesFrom
     }
 

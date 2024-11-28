@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for AuthConfig
  */
-class AuthConfigTest {
+public class AuthConfigTest {
     private final AuthConfig model = new AuthConfig();
 
     /**
      * Model tests for AuthConfig
      */
     @Test
-    void testAuthConfig() {
+    public void testAuthConfig() {
         // TODO: test AuthConfig
     }
 
@@ -42,7 +33,7 @@ class AuthConfigTest {
      * Test the property 'auth'
      */
     @Test
-    void authTest() {
+    public void authTest() {
         // TODO: test auth
     }
 
@@ -50,7 +41,7 @@ class AuthConfigTest {
      * Test the property 'email'
      */
     @Test
-    void emailTest() {
+    public void emailTest() {
         // TODO: test email
     }
 
@@ -58,7 +49,7 @@ class AuthConfigTest {
      * Test the property 'identitytoken'
      */
     @Test
-    void identitytokenTest() {
+    public void identitytokenTest() {
         // TODO: test identitytoken
     }
 
@@ -66,7 +57,7 @@ class AuthConfigTest {
      * Test the property 'password'
      */
     @Test
-    void passwordTest() {
+    public void passwordTest() {
         // TODO: test password
     }
 
@@ -74,7 +65,7 @@ class AuthConfigTest {
      * Test the property 'registrytoken'
      */
     @Test
-    void registrytokenTest() {
+    public void registrytokenTest() {
         // TODO: test registrytoken
     }
 
@@ -82,7 +73,7 @@ class AuthConfigTest {
      * Test the property 'serveraddress'
      */
     @Test
-    void serveraddressTest() {
+    public void serveraddressTest() {
         // TODO: test serveraddress
     }
 
@@ -90,7 +81,7 @@ class AuthConfigTest {
      * Test the property 'username'
      */
     @Test
-    void usernameTest() {
+    public void usernameTest() {
         // TODO: test username
     }
 

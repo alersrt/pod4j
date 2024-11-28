@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ComponentVersion
  */
-class ComponentVersionTest {
+public class ComponentVersionTest {
     private final ComponentVersion model = new ComponentVersion();
 
     /**
      * Model tests for ComponentVersion
      */
     @Test
-    void testComponentVersion() {
+    public void testComponentVersion() {
         // TODO: test ComponentVersion
     }
 
@@ -44,7 +33,7 @@ class ComponentVersionTest {
      * Test the property 'details'
      */
     @Test
-    void detailsTest() {
+    public void detailsTest() {
         // TODO: test details
     }
 
@@ -52,7 +41,7 @@ class ComponentVersionTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -60,7 +49,7 @@ class ComponentVersionTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

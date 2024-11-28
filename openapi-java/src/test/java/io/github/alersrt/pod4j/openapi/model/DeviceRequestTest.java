@@ -13,32 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for DeviceRequest
  */
-class DeviceRequestTest {
+public class DeviceRequestTest {
     private final DeviceRequest model = new DeviceRequest();
 
     /**
      * Model tests for DeviceRequest
      */
     @Test
-    void testDeviceRequest() {
+    public void testDeviceRequest() {
         // TODO: test DeviceRequest
     }
 
@@ -46,7 +33,7 @@ class DeviceRequestTest {
      * Test the property 'capabilities'
      */
     @Test
-    void capabilitiesTest() {
+    public void capabilitiesTest() {
         // TODO: test capabilities
     }
 
@@ -54,7 +41,7 @@ class DeviceRequestTest {
      * Test the property 'count'
      */
     @Test
-    void countTest() {
+    public void countTest() {
         // TODO: test count
     }
 
@@ -62,7 +49,7 @@ class DeviceRequestTest {
      * Test the property 'deviceIDs'
      */
     @Test
-    void deviceIDsTest() {
+    public void deviceIDsTest() {
         // TODO: test deviceIDs
     }
 
@@ -70,7 +57,7 @@ class DeviceRequestTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -78,7 +65,7 @@ class DeviceRequestTest {
      * Test the property 'options'
      */
     @Test
-    void optionsTest() {
+    public void optionsTest() {
         // TODO: test options
     }
 

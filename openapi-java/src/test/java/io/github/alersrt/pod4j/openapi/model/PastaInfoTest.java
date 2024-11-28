@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PastaInfo
  */
-class PastaInfoTest {
+public class PastaInfoTest {
     private final PastaInfo model = new PastaInfo();
 
     /**
      * Model tests for PastaInfo
      */
     @Test
-    void testPastaInfo() {
+    public void testPastaInfo() {
         // TODO: test PastaInfo
     }
 
@@ -42,7 +43,7 @@ class PastaInfoTest {
      * Test the property 'executable'
      */
     @Test
-    void executableTest() {
+    public void executableTest() {
         // TODO: test executable
     }
 
@@ -50,7 +51,7 @@ class PastaInfoTest {
      * Test the property '_package'
      */
     @Test
-    void _packageTest() {
+    public void _packageTest() {
         // TODO: test _package
     }
 
@@ -58,7 +59,7 @@ class PastaInfoTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

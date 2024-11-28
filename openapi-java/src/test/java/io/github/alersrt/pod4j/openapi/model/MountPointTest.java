@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for MountPoint
  */
-class MountPointTest {
+public class MountPointTest {
     private final MountPoint model = new MountPoint();
 
     /**
      * Model tests for MountPoint
      */
     @Test
-    void testMountPoint() {
+    public void testMountPoint() {
         // TODO: test MountPoint
     }
 
@@ -42,7 +43,7 @@ class MountPointTest {
      * Test the property 'destination'
      */
     @Test
-    void destinationTest() {
+    public void destinationTest() {
         // TODO: test destination
     }
 
@@ -50,7 +51,7 @@ class MountPointTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -58,7 +59,7 @@ class MountPointTest {
      * Test the property 'mode'
      */
     @Test
-    void modeTest() {
+    public void modeTest() {
         // TODO: test mode
     }
 
@@ -66,7 +67,7 @@ class MountPointTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -74,7 +75,7 @@ class MountPointTest {
      * Test the property 'propagation'
      */
     @Test
-    void propagationTest() {
+    public void propagationTest() {
         // TODO: test propagation
     }
 
@@ -82,7 +83,7 @@ class MountPointTest {
      * Test the property 'RW'
      */
     @Test
-    void RWTest() {
+    public void RWTest() {
         // TODO: test RW
     }
 
@@ -90,7 +91,7 @@ class MountPointTest {
      * Test the property 'source'
      */
     @Test
-    void sourceTest() {
+    public void sourceTest() {
         // TODO: test source
     }
 
@@ -98,7 +99,7 @@ class MountPointTest {
      * Test the property 'type'
      */
     @Test
-    void typeTest() {
+    public void typeTest() {
         // TODO: test type
     }
 

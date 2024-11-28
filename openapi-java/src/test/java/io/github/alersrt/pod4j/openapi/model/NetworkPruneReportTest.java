@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for NetworkPruneReport
  */
-class NetworkPruneReportTest {
+public class NetworkPruneReportTest {
     private final NetworkPruneReport model = new NetworkPruneReport();
 
     /**
      * Model tests for NetworkPruneReport
      */
     @Test
-    void testNetworkPruneReport() {
+    public void testNetworkPruneReport() {
         // TODO: test NetworkPruneReport
     }
 
@@ -42,7 +43,7 @@ class NetworkPruneReportTest {
      * Test the property 'error'
      */
     @Test
-    void errorTest() {
+    public void errorTest() {
         // TODO: test error
     }
 
@@ -50,7 +51,7 @@ class NetworkPruneReportTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 

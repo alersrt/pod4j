@@ -13,27 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretVersion
  */
-class SecretVersionTest {
+public class SecretVersionTest {
     private final SecretVersion model = new SecretVersion();
 
     /**
      * Model tests for SecretVersion
      */
     @Test
-    void testSecretVersion() {
+    public void testSecretVersion() {
         // TODO: test SecretVersion
     }
 
@@ -41,7 +33,7 @@ class SecretVersionTest {
      * Test the property 'index'
      */
     @Test
-    void indexTest() {
+    public void indexTest() {
         // TODO: test index
     }
 

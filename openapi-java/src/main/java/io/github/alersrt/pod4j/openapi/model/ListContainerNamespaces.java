@@ -13,357 +13,350 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ListContainerNamespaces contains the identifiers of the container&#39;s Linux namespaces
  */
-@JsonPropertyOrder({
-  ListContainerNamespaces.JSON_PROPERTY_CGROUP,
-  ListContainerNamespaces.JSON_PROPERTY_IPC,
-  ListContainerNamespaces.JSON_PROPERTY_MNT,
-  ListContainerNamespaces.JSON_PROPERTY_NET,
-  ListContainerNamespaces.JSON_PROPERTY_PIDNS,
-  ListContainerNamespaces.JSON_PROPERTY_USER,
-  ListContainerNamespaces.JSON_PROPERTY_UTS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ListContainerNamespaces {
-  public static final String JSON_PROPERTY_CGROUP = "Cgroup";
-  private String cgroup;
+    public static final String SERIALIZED_NAME_CGROUP = "Cgroup";
+    public static final String SERIALIZED_NAME_IPC = "Ipc";
+    public static final String SERIALIZED_NAME_MNT = "Mnt";
+    public static final String SERIALIZED_NAME_NET = "Net";
+    public static final String SERIALIZED_NAME_PIDNS = "Pidns";
+    public static final String SERIALIZED_NAME_USER = "User";
+    public static final String SERIALIZED_NAME_UTS = "Uts";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_IPC = "Ipc";
-  private String ipc;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Cgroup");
+        openapiFields.add("Ipc");
+        openapiFields.add("Mnt");
+        openapiFields.add("Net");
+        openapiFields.add("Pidns");
+        openapiFields.add("User");
+        openapiFields.add("Uts");
 
-  public static final String JSON_PROPERTY_MNT = "Mnt";
-  private String mnt;
-
-  public static final String JSON_PROPERTY_NET = "Net";
-  private String net;
-
-  public static final String JSON_PROPERTY_PIDNS = "Pidns";
-  private String pidns;
-
-  public static final String JSON_PROPERTY_USER = "User";
-  private String user;
-
-  public static final String JSON_PROPERTY_UTS = "Uts";
-  private String uts;
-
-  public ListContainerNamespaces() { 
-  }
-
-  public ListContainerNamespaces cgroup(String cgroup) {
-    this.cgroup = cgroup;
-    return this;
-  }
-
-  /**
-   * Cgroup namespace
-   * @return cgroup
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroup() {
-    return cgroup;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroup(String cgroup) {
-    this.cgroup = cgroup;
-  }
-
-
-  public ListContainerNamespaces ipc(String ipc) {
-    this.ipc = ipc;
-    return this;
-  }
-
-  /**
-   * IPC namespace
-   * @return ipc
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IPC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIpc() {
-    return ipc;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IPC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpc(String ipc) {
-    this.ipc = ipc;
-  }
-
-
-  public ListContainerNamespaces mnt(String mnt) {
-    this.mnt = mnt;
-    return this;
-  }
-
-  /**
-   * Mount namespace
-   * @return mnt
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMnt() {
-    return mnt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMnt(String mnt) {
-    this.mnt = mnt;
-  }
-
-
-  public ListContainerNamespaces net(String net) {
-    this.net = net;
-    return this;
-  }
-
-  /**
-   * Network namespace
-   * @return net
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNet() {
-    return net;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNet(String net) {
-    this.net = net;
-  }
-
-
-  public ListContainerNamespaces pidns(String pidns) {
-    this.pidns = pidns;
-    return this;
-  }
-
-  /**
-   * PID namespace
-   * @return pidns
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PIDNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPidns() {
-    return pidns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PIDNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPidns(String pidns) {
-    this.pidns = pidns;
-  }
-
-
-  public ListContainerNamespaces user(String user) {
-    this.user = user;
-    return this;
-  }
-
-  /**
-   * User namespace
-   * @return user
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUser() {
-    return user;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-
-  public ListContainerNamespaces uts(String uts) {
-    this.uts = uts;
-    return this;
-  }
-
-  /**
-   * UTS namespace
-   * @return uts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUts() {
-    return uts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUts(String uts) {
-    this.uts = uts;
-  }
-
-
-  /**
-   * Return true if this ListContainerNamespaces object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ListContainerNamespaces listContainerNamespaces = (ListContainerNamespaces) o;
-    return Objects.equals(this.cgroup, listContainerNamespaces.cgroup) &&
-        Objects.equals(this.ipc, listContainerNamespaces.ipc) &&
-        Objects.equals(this.mnt, listContainerNamespaces.mnt) &&
-        Objects.equals(this.net, listContainerNamespaces.net) &&
-        Objects.equals(this.pidns, listContainerNamespaces.pidns) &&
-        Objects.equals(this.user, listContainerNamespaces.user) &&
-        Objects.equals(this.uts, listContainerNamespaces.uts);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(cgroup, ipc, mnt, net, pidns, user, uts);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ListContainerNamespaces {\n");
-    sb.append("    cgroup: ").append(toIndentedString(cgroup)).append("\n");
-    sb.append("    ipc: ").append(toIndentedString(ipc)).append("\n");
-    sb.append("    mnt: ").append(toIndentedString(mnt)).append("\n");
-    sb.append("    net: ").append(toIndentedString(net)).append("\n");
-    sb.append("    pidns: ").append(toIndentedString(pidns)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    uts: ").append(toIndentedString(uts)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CGROUP)
+    private String cgroup;
+    @SerializedName(SERIALIZED_NAME_IPC)
+    private String ipc;
+    @SerializedName(SERIALIZED_NAME_MNT)
+    private String mnt;
+    @SerializedName(SERIALIZED_NAME_NET)
+    private String net;
+    @SerializedName(SERIALIZED_NAME_PIDNS)
+    private String pidns;
+    @SerializedName(SERIALIZED_NAME_USER)
+    private String user;
+    @SerializedName(SERIALIZED_NAME_UTS)
+    private String uts;
 
-    // add `Cgroup` to the URL query string
-    if (getCgroup() != null) {
-      joiner.add(String.format("%sCgroup%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroup()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ListContainerNamespaces() {
     }
 
-    // add `Ipc` to the URL query string
-    if (getIpc() != null) {
-      joiner.add(String.format("%sIpc%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpc()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ListContainerNamespaces
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ListContainerNamespaces.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ListContainerNamespaces is not found in the empty JSON string", ListContainerNamespaces.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ListContainerNamespaces.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListContainerNamespaces` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Cgroup") != null && !jsonObj.get("Cgroup").isJsonNull()) && !jsonObj.get("Cgroup").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Cgroup` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Cgroup").toString()));
+        }
+        if ((jsonObj.get("Ipc") != null && !jsonObj.get("Ipc").isJsonNull()) && !jsonObj.get("Ipc").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Ipc` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Ipc").toString()));
+        }
+        if ((jsonObj.get("Mnt") != null && !jsonObj.get("Mnt").isJsonNull()) && !jsonObj.get("Mnt").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Mnt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Mnt").toString()));
+        }
+        if ((jsonObj.get("Net") != null && !jsonObj.get("Net").isJsonNull()) && !jsonObj.get("Net").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Net` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Net").toString()));
+        }
+        if ((jsonObj.get("Pidns") != null && !jsonObj.get("Pidns").isJsonNull()) && !jsonObj.get("Pidns").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Pidns` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Pidns").toString()));
+        }
+        if ((jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) && !jsonObj.get("User").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `User` to be a primitive type in the JSON string but got `%s`", jsonObj.get("User").toString()));
+        }
+        if ((jsonObj.get("Uts") != null && !jsonObj.get("Uts").isJsonNull()) && !jsonObj.get("Uts").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Uts` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Uts").toString()));
+        }
     }
 
-    // add `Mnt` to the URL query string
-    if (getMnt() != null) {
-      joiner.add(String.format("%sMnt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMnt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ListContainerNamespaces given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ListContainerNamespaces
+     * @throws IOException if the JSON string is invalid with respect to ListContainerNamespaces
+     */
+    public static ListContainerNamespaces fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ListContainerNamespaces.class);
     }
 
-    // add `Net` to the URL query string
-    if (getNet() != null) {
-      joiner.add(String.format("%sNet%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ListContainerNamespaces cgroup(String cgroup) {
+        this.cgroup = cgroup;
+        return this;
     }
 
-    // add `Pidns` to the URL query string
-    if (getPidns() != null) {
-      joiner.add(String.format("%sPidns%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPidns()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Cgroup namespace
+     *
+     * @return cgroup
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroup() {
+        return cgroup;
     }
 
-    // add `User` to the URL query string
-    if (getUser() != null) {
-      joiner.add(String.format("%sUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCgroup(String cgroup) {
+        this.cgroup = cgroup;
     }
 
-    // add `Uts` to the URL query string
-    if (getUts() != null) {
-      joiner.add(String.format("%sUts%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ListContainerNamespaces ipc(String ipc) {
+        this.ipc = ipc;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * IPC namespace
+     *
+     * @return ipc
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIpc() {
+        return ipc;
+    }
+
+    public void setIpc(String ipc) {
+        this.ipc = ipc;
+    }
+
+    public ListContainerNamespaces mnt(String mnt) {
+        this.mnt = mnt;
+        return this;
+    }
+
+    /**
+     * Mount namespace
+     *
+     * @return mnt
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMnt() {
+        return mnt;
+    }
+
+    public void setMnt(String mnt) {
+        this.mnt = mnt;
+    }
+
+    public ListContainerNamespaces net(String net) {
+        this.net = net;
+        return this;
+    }
+
+    /**
+     * Network namespace
+     *
+     * @return net
+     */
+    @jakarta.annotation.Nullable
+
+    public String getNet() {
+        return net;
+    }
+
+    public void setNet(String net) {
+        this.net = net;
+    }
+
+    public ListContainerNamespaces pidns(String pidns) {
+        this.pidns = pidns;
+        return this;
+    }
+
+    /**
+     * PID namespace
+     *
+     * @return pidns
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPidns() {
+        return pidns;
+    }
+
+    public void setPidns(String pidns) {
+        this.pidns = pidns;
+    }
+
+    public ListContainerNamespaces user(String user) {
+        this.user = user;
+        return this;
+    }
+
+    /**
+     * User namespace
+     *
+     * @return user
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public ListContainerNamespaces uts(String uts) {
+        this.uts = uts;
+        return this;
+    }
+
+    /**
+     * UTS namespace
+     *
+     * @return uts
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUts() {
+        return uts;
+    }
+
+    public void setUts(String uts) {
+        this.uts = uts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ListContainerNamespaces listContainerNamespaces = (ListContainerNamespaces) o;
+        return Objects.equals(this.cgroup, listContainerNamespaces.cgroup) &&
+                Objects.equals(this.ipc, listContainerNamespaces.ipc) &&
+                Objects.equals(this.mnt, listContainerNamespaces.mnt) &&
+                Objects.equals(this.net, listContainerNamespaces.net) &&
+                Objects.equals(this.pidns, listContainerNamespaces.pidns) &&
+                Objects.equals(this.user, listContainerNamespaces.user) &&
+                Objects.equals(this.uts, listContainerNamespaces.uts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cgroup, ipc, mnt, net, pidns, user, uts);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ListContainerNamespaces {\n" +
+                "    cgroup: " + toIndentedString(cgroup) + "\n" +
+                "    ipc: " + toIndentedString(ipc) + "\n" +
+                "    mnt: " + toIndentedString(mnt) + "\n" +
+                "    net: " + toIndentedString(net) + "\n" +
+                "    pidns: " + toIndentedString(pidns) + "\n" +
+                "    user: " + toIndentedString(user) + "\n" +
+                "    uts: " + toIndentedString(uts) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ListContainerNamespaces to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ListContainerNamespaces.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ListContainerNamespaces' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ListContainerNamespaces> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ListContainerNamespaces.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ListContainerNamespaces>() {
+                @Override
+                public void write(JsonWriter out, ListContainerNamespaces value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ListContainerNamespaces read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

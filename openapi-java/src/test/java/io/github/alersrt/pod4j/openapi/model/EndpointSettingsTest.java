@@ -13,33 +13,34 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.EndpointIPAMConfig;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for EndpointSettings
  */
-class EndpointSettingsTest {
+public class EndpointSettingsTest {
     private final EndpointSettings model = new EndpointSettings();
 
     /**
      * Model tests for EndpointSettings
      */
     @Test
-    void testEndpointSettings() {
+    public void testEndpointSettings() {
         // TODO: test EndpointSettings
     }
 
@@ -47,7 +48,7 @@ class EndpointSettingsTest {
      * Test the property 'aliases'
      */
     @Test
-    void aliasesTest() {
+    public void aliasesTest() {
         // TODO: test aliases
     }
 
@@ -55,7 +56,7 @@ class EndpointSettingsTest {
      * Test the property 'dnSNames'
      */
     @Test
-    void dnSNamesTest() {
+    public void dnSNamesTest() {
         // TODO: test dnSNames
     }
 
@@ -63,7 +64,7 @@ class EndpointSettingsTest {
      * Test the property 'driverOpts'
      */
     @Test
-    void driverOptsTest() {
+    public void driverOptsTest() {
         // TODO: test driverOpts
     }
 
@@ -71,7 +72,7 @@ class EndpointSettingsTest {
      * Test the property 'endpointID'
      */
     @Test
-    void endpointIDTest() {
+    public void endpointIDTest() {
         // TODO: test endpointID
     }
 
@@ -79,7 +80,7 @@ class EndpointSettingsTest {
      * Test the property 'gateway'
      */
     @Test
-    void gatewayTest() {
+    public void gatewayTest() {
         // TODO: test gateway
     }
 
@@ -87,7 +88,7 @@ class EndpointSettingsTest {
      * Test the property 'globalIPv6Address'
      */
     @Test
-    void globalIPv6AddressTest() {
+    public void globalIPv6AddressTest() {
         // TODO: test globalIPv6Address
     }
 
@@ -95,7 +96,7 @@ class EndpointSettingsTest {
      * Test the property 'globalIPv6PrefixLen'
      */
     @Test
-    void globalIPv6PrefixLenTest() {
+    public void globalIPv6PrefixLenTest() {
         // TODO: test globalIPv6PrefixLen
     }
 
@@ -103,7 +104,7 @@ class EndpointSettingsTest {
      * Test the property 'ipAMConfig'
      */
     @Test
-    void ipAMConfigTest() {
+    public void ipAMConfigTest() {
         // TODO: test ipAMConfig
     }
 
@@ -111,7 +112,7 @@ class EndpointSettingsTest {
      * Test the property 'ipAddress'
      */
     @Test
-    void ipAddressTest() {
+    public void ipAddressTest() {
         // TODO: test ipAddress
     }
 
@@ -119,7 +120,7 @@ class EndpointSettingsTest {
      * Test the property 'ipPrefixLen'
      */
     @Test
-    void ipPrefixLenTest() {
+    public void ipPrefixLenTest() {
         // TODO: test ipPrefixLen
     }
 
@@ -127,7 +128,7 @@ class EndpointSettingsTest {
      * Test the property 'ipv6Gateway'
      */
     @Test
-    void ipv6GatewayTest() {
+    public void ipv6GatewayTest() {
         // TODO: test ipv6Gateway
     }
 
@@ -135,7 +136,7 @@ class EndpointSettingsTest {
      * Test the property 'links'
      */
     @Test
-    void linksTest() {
+    public void linksTest() {
         // TODO: test links
     }
 
@@ -143,7 +144,7 @@ class EndpointSettingsTest {
      * Test the property 'macAddress'
      */
     @Test
-    void macAddressTest() {
+    public void macAddressTest() {
         // TODO: test macAddress
     }
 
@@ -151,7 +152,7 @@ class EndpointSettingsTest {
      * Test the property 'networkID'
      */
     @Test
-    void networkIDTest() {
+    public void networkIDTest() {
         // TODO: test networkID
     }
 

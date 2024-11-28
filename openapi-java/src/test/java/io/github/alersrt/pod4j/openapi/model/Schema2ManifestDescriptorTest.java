@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Schema2PlatformSpec;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Schema2ManifestDescriptor
  */
-class Schema2ManifestDescriptorTest {
+public class Schema2ManifestDescriptorTest {
     private final Schema2ManifestDescriptor model = new Schema2ManifestDescriptor();
 
     /**
      * Model tests for Schema2ManifestDescriptor
      */
     @Test
-    void testSchema2ManifestDescriptor() {
+    public void testSchema2ManifestDescriptor() {
         // TODO: test Schema2ManifestDescriptor
     }
 
@@ -44,7 +33,7 @@ class Schema2ManifestDescriptorTest {
      * Test the property 'digest'
      */
     @Test
-    void digestTest() {
+    public void digestTest() {
         // TODO: test digest
     }
 
@@ -52,7 +41,7 @@ class Schema2ManifestDescriptorTest {
      * Test the property 'mediaType'
      */
     @Test
-    void mediaTypeTest() {
+    public void mediaTypeTest() {
         // TODO: test mediaType
     }
 
@@ -60,7 +49,7 @@ class Schema2ManifestDescriptorTest {
      * Test the property 'platform'
      */
     @Test
-    void platformTest() {
+    public void platformTest() {
         // TODO: test platform
     }
 
@@ -68,7 +57,7 @@ class Schema2ManifestDescriptorTest {
      * Test the property 'size'
      */
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         // TODO: test size
     }
 
@@ -76,7 +65,7 @@ class Schema2ManifestDescriptorTest {
      * Test the property 'urls'
      */
     @Test
-    void urlsTest() {
+    public void urlsTest() {
         // TODO: test urls
     }
 

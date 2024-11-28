@@ -13,213 +13,234 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SlirpInfo describes the slirp executable that is being used
  */
-@JsonPropertyOrder({
-  SlirpInfo.JSON_PROPERTY_EXECUTABLE,
-  SlirpInfo.JSON_PROPERTY_PACKAGE,
-  SlirpInfo.JSON_PROPERTY_VERSION
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SlirpInfo {
-  public static final String JSON_PROPERTY_EXECUTABLE = "executable";
-  private String executable;
+    public static final String SERIALIZED_NAME_EXECUTABLE = "executable";
+    public static final String SERIALIZED_NAME_PACKAGE = "package";
+    public static final String SERIALIZED_NAME_VERSION = "version";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_PACKAGE = "package";
-  private String _package;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("executable");
+        openapiFields.add("package");
+        openapiFields.add("version");
 
-  public static final String JSON_PROPERTY_VERSION = "version";
-  private String version;
-
-  public SlirpInfo() { 
-  }
-
-  public SlirpInfo executable(String executable) {
-    this.executable = executable;
-    return this;
-  }
-
-  /**
-   * Get executable
-   * @return executable
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXECUTABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getExecutable() {
-    return executable;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXECUTABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExecutable(String executable) {
-    this.executable = executable;
-  }
-
-
-  public SlirpInfo _package(String _package) {
-    this._package = _package;
-    return this;
-  }
-
-  /**
-   * Get _package
-   * @return _package
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PACKAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPackage() {
-    return _package;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PACKAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPackage(String _package) {
-    this._package = _package;
-  }
-
-
-  public SlirpInfo version(String version) {
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * Get version
-   * @return version
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
-  /**
-   * Return true if this SlirpInfo object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SlirpInfo slirpInfo = (SlirpInfo) o;
-    return Objects.equals(this.executable, slirpInfo.executable) &&
-        Objects.equals(this._package, slirpInfo._package) &&
-        Objects.equals(this.version, slirpInfo.version);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(executable, _package, version);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SlirpInfo {\n");
-    sb.append("    executable: ").append(toIndentedString(executable)).append("\n");
-    sb.append("    _package: ").append(toIndentedString(_package)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_EXECUTABLE)
+    private String executable;
+    @SerializedName(SERIALIZED_NAME_PACKAGE)
+    private String _package;
+    @SerializedName(SERIALIZED_NAME_VERSION)
+    private String version;
 
-    // add `executable` to the URL query string
-    if (getExecutable() != null) {
-      joiner.add(String.format("%sexecutable%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExecutable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SlirpInfo() {
     }
 
-    // add `package` to the URL query string
-    if (getPackage() != null) {
-      joiner.add(String.format("%spackage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPackage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to SlirpInfo
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!SlirpInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SlirpInfo is not found in the empty JSON string", SlirpInfo.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!SlirpInfo.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SlirpInfo` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("executable") != null && !jsonObj.get("executable").isJsonNull()) && !jsonObj.get("executable").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `executable` to be a primitive type in the JSON string but got `%s`", jsonObj.get("executable").toString()));
+        }
+        if ((jsonObj.get("package") != null && !jsonObj.get("package").isJsonNull()) && !jsonObj.get("package").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `package` to be a primitive type in the JSON string but got `%s`", jsonObj.get("package").toString()));
+        }
+        if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
+        }
     }
 
-    // add `version` to the URL query string
-    if (getVersion() != null) {
-      joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of SlirpInfo given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SlirpInfo
+     * @throws IOException if the JSON string is invalid with respect to SlirpInfo
+     */
+    public static SlirpInfo fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SlirpInfo.class);
     }
 
-    return joiner.toString();
-  }
+    public SlirpInfo executable(String executable) {
+        this.executable = executable;
+        return this;
+    }
+
+    /**
+     * Get executable
+     *
+     * @return executable
+     */
+    @jakarta.annotation.Nullable
+
+    public String getExecutable() {
+        return executable;
+    }
+
+    public void setExecutable(String executable) {
+        this.executable = executable;
+    }
+
+    public SlirpInfo _package(String _package) {
+        this._package = _package;
+        return this;
+    }
+
+    /**
+     * Get _package
+     *
+     * @return _package
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPackage() {
+        return _package;
+    }
+
+    public void setPackage(String _package) {
+        this._package = _package;
+    }
+
+    public SlirpInfo version(String version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return version
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SlirpInfo slirpInfo = (SlirpInfo) o;
+        return Objects.equals(this.executable, slirpInfo.executable) &&
+                Objects.equals(this._package, slirpInfo._package) &&
+                Objects.equals(this.version, slirpInfo.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(executable, _package, version);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class SlirpInfo {\n" +
+                "    executable: " + toIndentedString(executable) + "\n" +
+                "    _package: " + toIndentedString(_package) + "\n" +
+                "    version: " + toIndentedString(version) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of SlirpInfo to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!SlirpInfo.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SlirpInfo' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<SlirpInfo> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(SlirpInfo.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<SlirpInfo>() {
+                @Override
+                public void write(JsonWriter out, SlirpInfo value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public SlirpInfo read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

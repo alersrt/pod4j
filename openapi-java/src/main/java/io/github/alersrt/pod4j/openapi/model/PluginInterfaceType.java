@@ -13,216 +13,248 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import jakarta.validation.constraints.NotNull;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PluginInterfaceType plugin interface type
  */
-@JsonPropertyOrder({
-  PluginInterfaceType.JSON_PROPERTY_CAPABILITY,
-  PluginInterfaceType.JSON_PROPERTY_PREFIX,
-  PluginInterfaceType.JSON_PROPERTY_VERSION
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PluginInterfaceType {
-  public static final String JSON_PROPERTY_CAPABILITY = "Capability";
-  private String capability;
+    public static final String SERIALIZED_NAME_CAPABILITY = "Capability";
+    public static final String SERIALIZED_NAME_PREFIX = "Prefix";
+    public static final String SERIALIZED_NAME_VERSION = "Version";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_PREFIX = "Prefix";
-  private String prefix;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Capability");
+        openapiFields.add("Prefix");
+        openapiFields.add("Version");
 
-  public static final String JSON_PROPERTY_VERSION = "Version";
-  private String version;
-
-  public PluginInterfaceType() { 
-  }
-
-  public PluginInterfaceType capability(String capability) {
-    this.capability = capability;
-    return this;
-  }
-
-  /**
-   * capability
-   * @return capability
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_CAPABILITY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getCapability() {
-    return capability;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAPABILITY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCapability(String capability) {
-    this.capability = capability;
-  }
-
-
-  public PluginInterfaceType prefix(String prefix) {
-    this.prefix = prefix;
-    return this;
-  }
-
-  /**
-   * prefix
-   * @return prefix
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_PREFIX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getPrefix() {
-    return prefix;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PREFIX)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPrefix(String prefix) {
-    this.prefix = prefix;
-  }
-
-
-  public PluginInterfaceType version(String version) {
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * version
-   * @return version
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
-  /**
-   * Return true if this PluginInterfaceType object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    PluginInterfaceType pluginInterfaceType = (PluginInterfaceType) o;
-    return Objects.equals(this.capability, pluginInterfaceType.capability) &&
-        Objects.equals(this.prefix, pluginInterfaceType.prefix) &&
-        Objects.equals(this.version, pluginInterfaceType.version);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(capability, prefix, version);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PluginInterfaceType {\n");
-    sb.append("    capability: ").append(toIndentedString(capability)).append("\n");
-    sb.append("    prefix: ").append(toIndentedString(prefix)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("Capability");
+        openapiRequiredFields.add("Prefix");
+        openapiRequiredFields.add("Version");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CAPABILITY)
+    private String capability;
+    @SerializedName(SERIALIZED_NAME_PREFIX)
+    private String prefix;
+    @SerializedName(SERIALIZED_NAME_VERSION)
+    private String version;
 
-    // add `Capability` to the URL query string
-    if (getCapability() != null) {
-      joiner.add(String.format("%sCapability%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCapability()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public PluginInterfaceType() {
     }
 
-    // add `Prefix` to the URL query string
-    if (getPrefix() != null) {
-      joiner.add(String.format("%sPrefix%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrefix()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to PluginInterfaceType
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!PluginInterfaceType.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in PluginInterfaceType is not found in the empty JSON string", PluginInterfaceType.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!PluginInterfaceType.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginInterfaceType` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : PluginInterfaceType.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (!jsonObj.get("Capability").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Capability` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Capability").toString()));
+        }
+        if (!jsonObj.get("Prefix").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Prefix` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Prefix").toString()));
+        }
+        if (!jsonObj.get("Version").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version").toString()));
+        }
     }
 
-    // add `Version` to the URL query string
-    if (getVersion() != null) {
-      joiner.add(String.format("%sVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of PluginInterfaceType given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PluginInterfaceType
+     * @throws IOException if the JSON string is invalid with respect to PluginInterfaceType
+     */
+    public static PluginInterfaceType fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PluginInterfaceType.class);
     }
 
-    return joiner.toString();
-  }
+    public PluginInterfaceType capability(String capability) {
+        this.capability = capability;
+        return this;
+    }
+
+    /**
+     * capability
+     *
+     * @return capability
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getCapability() {
+        return capability;
+    }
+
+    public void setCapability(String capability) {
+        this.capability = capability;
+    }
+
+    public PluginInterfaceType prefix(String prefix) {
+        this.prefix = prefix;
+        return this;
+    }
+
+    /**
+     * prefix
+     *
+     * @return prefix
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public PluginInterfaceType version(String version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * version
+     *
+     * @return version
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PluginInterfaceType pluginInterfaceType = (PluginInterfaceType) o;
+        return Objects.equals(this.capability, pluginInterfaceType.capability) &&
+                Objects.equals(this.prefix, pluginInterfaceType.prefix) &&
+                Objects.equals(this.version, pluginInterfaceType.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(capability, prefix, version);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class PluginInterfaceType {\n" +
+                "    capability: " + toIndentedString(capability) + "\n" +
+                "    prefix: " + toIndentedString(prefix) + "\n" +
+                "    version: " + toIndentedString(version) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of PluginInterfaceType to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PluginInterfaceType.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PluginInterfaceType' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PluginInterfaceType> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(PluginInterfaceType.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<PluginInterfaceType>() {
+                @Override
+                public void write(JsonWriter out, PluginInterfaceType value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public PluginInterfaceType read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

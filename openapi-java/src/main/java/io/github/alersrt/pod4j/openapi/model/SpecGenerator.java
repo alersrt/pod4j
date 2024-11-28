@@ -13,5119 +13,4098 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
-import io.github.alersrt.pod4j.openapi.model.ImageVolume;
-import io.github.alersrt.pod4j.openapi.model.LinuxDevice;
-import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
-import io.github.alersrt.pod4j.openapi.model.LinuxIntelRdt;
-import io.github.alersrt.pod4j.openapi.model.LinuxPersonality;
-import io.github.alersrt.pod4j.openapi.model.LinuxResources;
-import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.LinuxWeightDevice;
-import io.github.alersrt.pod4j.openapi.model.LogConfigLibpod;
-import io.github.alersrt.pod4j.openapi.model.Mount;
-import io.github.alersrt.pod4j.openapi.model.NamedVolume;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
-import io.github.alersrt.pod4j.openapi.model.POSIXRlimit;
-import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
-import io.github.alersrt.pod4j.openapi.model.PortMapping;
-import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
-import io.github.alersrt.pod4j.openapi.model.Secret;
-import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SpecGenerator creates an OCI spec and Libpod configuration options to create a container based on the given configuration.
  */
-@JsonPropertyOrder({
-  SpecGenerator.JSON_PROPERTY_NETWORKS,
-  SpecGenerator.JSON_PROPERTY_ANNOTATIONS,
-  SpecGenerator.JSON_PROPERTY_APPARMOR_PROFILE,
-  SpecGenerator.JSON_PROPERTY_BASE_HOSTS_FILE,
-  SpecGenerator.JSON_PROPERTY_CAP_ADD,
-  SpecGenerator.JSON_PROPERTY_CAP_DROP,
-  SpecGenerator.JSON_PROPERTY_CGROUP_PARENT,
-  SpecGenerator.JSON_PROPERTY_CGROUPNS,
-  SpecGenerator.JSON_PROPERTY_CGROUPS_MODE,
-  SpecGenerator.JSON_PROPERTY_CHROOT_DIRECTORIES,
-  SpecGenerator.JSON_PROPERTY_CNI_NETWORKS,
-  SpecGenerator.JSON_PROPERTY_COMMAND,
-  SpecGenerator.JSON_PROPERTY_CONMON_PID_FILE,
-  SpecGenerator.JSON_PROPERTY_CONTAINER_CREATE_COMMAND,
-  SpecGenerator.JSON_PROPERTY_CREATE_WORKING_DIR,
-  SpecGenerator.JSON_PROPERTY_DEPENDENCY_CONTAINERS,
-  SpecGenerator.JSON_PROPERTY_DEVICE_CGROUP_RULE,
-  SpecGenerator.JSON_PROPERTY_DEVICES,
-  SpecGenerator.JSON_PROPERTY_DEVICES_FROM,
-  SpecGenerator.JSON_PROPERTY_DNS_OPTION,
-  SpecGenerator.JSON_PROPERTY_DNS_SEARCH,
-  SpecGenerator.JSON_PROPERTY_DNS_SERVER,
-  SpecGenerator.JSON_PROPERTY_ENTRYPOINT,
-  SpecGenerator.JSON_PROPERTY_ENV,
-  SpecGenerator.JSON_PROPERTY_ENV_HOST,
-  SpecGenerator.JSON_PROPERTY_ENVMERGE,
-  SpecGenerator.JSON_PROPERTY_EXPOSE,
-  SpecGenerator.JSON_PROPERTY_GROUP_ENTRY,
-  SpecGenerator.JSON_PROPERTY_GROUPS,
-  SpecGenerator.JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION,
-  SpecGenerator.JSON_PROPERTY_HEALTH_LOG_DESTINATION,
-  SpecGenerator.JSON_PROPERTY_HEALTH_MAX_LOG_COUNT,
-  SpecGenerator.JSON_PROPERTY_HEALTH_MAX_LOG_SIZE,
-  SpecGenerator.JSON_PROPERTY_HEALTHCONFIG,
-  SpecGenerator.JSON_PROPERTY_HOST_DEVICE_LIST,
-  SpecGenerator.JSON_PROPERTY_HOSTADD,
-  SpecGenerator.JSON_PROPERTY_HOSTNAME,
-  SpecGenerator.JSON_PROPERTY_HOSTUSERS,
-  SpecGenerator.JSON_PROPERTY_HTTPPROXY,
-  SpecGenerator.JSON_PROPERTY_IDMAPPINGS,
-  SpecGenerator.JSON_PROPERTY_IMAGE,
-  SpecGenerator.JSON_PROPERTY_IMAGE_ARCH,
-  SpecGenerator.JSON_PROPERTY_IMAGE_OS,
-  SpecGenerator.JSON_PROPERTY_IMAGE_VARIANT,
-  SpecGenerator.JSON_PROPERTY_IMAGE_VOLUME_MODE,
-  SpecGenerator.JSON_PROPERTY_IMAGE_VOLUMES,
-  SpecGenerator.JSON_PROPERTY_INIT,
-  SpecGenerator.JSON_PROPERTY_INIT_CONTAINER_TYPE,
-  SpecGenerator.JSON_PROPERTY_INIT_PATH,
-  SpecGenerator.JSON_PROPERTY_INTEL_RDT,
-  SpecGenerator.JSON_PROPERTY_IPCNS,
-  SpecGenerator.JSON_PROPERTY_LABEL_NESTED,
-  SpecGenerator.JSON_PROPERTY_LABELS,
-  SpecGenerator.JSON_PROPERTY_LOG_CONFIGURATION,
-  SpecGenerator.JSON_PROPERTY_MANAGE_PASSWORD,
-  SpecGenerator.JSON_PROPERTY_MASK,
-  SpecGenerator.JSON_PROPERTY_MOUNTS,
-  SpecGenerator.JSON_PROPERTY_NAME,
-  SpecGenerator.JSON_PROPERTY_NETNS,
-  SpecGenerator.JSON_PROPERTY_NETWORK_OPTIONS,
-  SpecGenerator.JSON_PROPERTY_NO_NEW_PRIVILEGES,
-  SpecGenerator.JSON_PROPERTY_OCI_RUNTIME,
-  SpecGenerator.JSON_PROPERTY_OOM_SCORE_ADJ,
-  SpecGenerator.JSON_PROPERTY_OVERLAY_VOLUMES,
-  SpecGenerator.JSON_PROPERTY_PASSWD_ENTRY,
-  SpecGenerator.JSON_PROPERTY_PERSONALITY,
-  SpecGenerator.JSON_PROPERTY_PIDNS,
-  SpecGenerator.JSON_PROPERTY_POD,
-  SpecGenerator.JSON_PROPERTY_PORTMAPPINGS,
-  SpecGenerator.JSON_PROPERTY_PRIVILEGED,
-  SpecGenerator.JSON_PROPERTY_PROCFS_OPTS,
-  SpecGenerator.JSON_PROPERTY_PUBLISH_IMAGE_PORTS,
-  SpecGenerator.JSON_PROPERTY_R_LIMITS,
-  SpecGenerator.JSON_PROPERTY_RAW_IMAGE_NAME,
-  SpecGenerator.JSON_PROPERTY_READ_ONLY_FILESYSTEM,
-  SpecGenerator.JSON_PROPERTY_READ_WRITE_TMPFS,
-  SpecGenerator.JSON_PROPERTY_REMOVE,
-  SpecGenerator.JSON_PROPERTY_REMOVE_IMAGE,
-  SpecGenerator.JSON_PROPERTY_RESOURCE_LIMITS,
-  SpecGenerator.JSON_PROPERTY_RESTART_POLICY,
-  SpecGenerator.JSON_PROPERTY_RESTART_TRIES,
-  SpecGenerator.JSON_PROPERTY_ROOTFS,
-  SpecGenerator.JSON_PROPERTY_ROOTFS_MAPPING,
-  SpecGenerator.JSON_PROPERTY_ROOTFS_OVERLAY,
-  SpecGenerator.JSON_PROPERTY_ROOTFS_PROPAGATION,
-  SpecGenerator.JSON_PROPERTY_SDNOTIFY_MODE,
-  SpecGenerator.JSON_PROPERTY_SECCOMP_POLICY,
-  SpecGenerator.JSON_PROPERTY_SECCOMP_PROFILE_PATH,
-  SpecGenerator.JSON_PROPERTY_SECRET_ENV,
-  SpecGenerator.JSON_PROPERTY_SECRETS,
-  SpecGenerator.JSON_PROPERTY_SELINUX_OPTS,
-  SpecGenerator.JSON_PROPERTY_SHM_SIZE,
-  SpecGenerator.JSON_PROPERTY_SHM_SIZE_SYSTEMD,
-  SpecGenerator.JSON_PROPERTY_STARTUP_HEALTH_CONFIG,
-  SpecGenerator.JSON_PROPERTY_STDIN,
-  SpecGenerator.JSON_PROPERTY_STOP_SIGNAL,
-  SpecGenerator.JSON_PROPERTY_STOP_TIMEOUT,
-  SpecGenerator.JSON_PROPERTY_STORAGE_OPTS,
-  SpecGenerator.JSON_PROPERTY_SYSCTL,
-  SpecGenerator.JSON_PROPERTY_SYSTEMD,
-  SpecGenerator.JSON_PROPERTY_TERMINAL,
-  SpecGenerator.JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE,
-  SpecGenerator.JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE,
-  SpecGenerator.JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE,
-  SpecGenerator.JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE,
-  SpecGenerator.JSON_PROPERTY_TIMEOUT,
-  SpecGenerator.JSON_PROPERTY_TIMEZONE,
-  SpecGenerator.JSON_PROPERTY_UMASK,
-  SpecGenerator.JSON_PROPERTY_UNIFIED,
-  SpecGenerator.JSON_PROPERTY_UNMASK,
-  SpecGenerator.JSON_PROPERTY_UNSETENV,
-  SpecGenerator.JSON_PROPERTY_UNSETENVALL,
-  SpecGenerator.JSON_PROPERTY_USE_IMAGE_HOSTS,
-  SpecGenerator.JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF,
-  SpecGenerator.JSON_PROPERTY_USER,
-  SpecGenerator.JSON_PROPERTY_USERNS,
-  SpecGenerator.JSON_PROPERTY_UTSNS,
-  SpecGenerator.JSON_PROPERTY_VOLATILE,
-  SpecGenerator.JSON_PROPERTY_VOLUMES,
-  SpecGenerator.JSON_PROPERTY_VOLUMES_FROM,
-  SpecGenerator.JSON_PROPERTY_WEIGHT_DEVICE,
-  SpecGenerator.JSON_PROPERTY_WORK_DIR
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SpecGenerator {
-  public static final String JSON_PROPERTY_NETWORKS = "Networks";
-  private Map<String, PerNetworkOptions> networks = new HashMap<>();
-
-  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
-  private Map<String, String> annotations = new HashMap<>();
-
-  public static final String JSON_PROPERTY_APPARMOR_PROFILE = "apparmor_profile";
-  private String apparmorProfile;
-
-  public static final String JSON_PROPERTY_BASE_HOSTS_FILE = "base_hosts_file";
-  private String baseHostsFile;
-
-  public static final String JSON_PROPERTY_CAP_ADD = "cap_add";
-  private List<String> capAdd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CAP_DROP = "cap_drop";
-  private List<String> capDrop = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CGROUP_PARENT = "cgroup_parent";
-  private String cgroupParent;
-
-  public static final String JSON_PROPERTY_CGROUPNS = "cgroupns";
-  private Namespace cgroupns;
-
-  public static final String JSON_PROPERTY_CGROUPS_MODE = "cgroups_mode";
-  private String cgroupsMode;
-
-  public static final String JSON_PROPERTY_CHROOT_DIRECTORIES = "chroot_directories";
-  private List<String> chrootDirectories = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CNI_NETWORKS = "cni_networks";
-  private List<String> cniNetworks = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_COMMAND = "command";
-  private List<String> command = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CONMON_PID_FILE = "conmon_pid_file";
-  private String conmonPidFile;
-
-  public static final String JSON_PROPERTY_CONTAINER_CREATE_COMMAND = "containerCreateCommand";
-  private List<String> containerCreateCommand = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CREATE_WORKING_DIR = "create_working_dir";
-  private Boolean createWorkingDir;
-
-  public static final String JSON_PROPERTY_DEPENDENCY_CONTAINERS = "dependencyContainers";
-  private List<String> dependencyContainers = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DEVICE_CGROUP_RULE = "device_cgroup_rule";
-  private List<@Valid LinuxDeviceCgroup> deviceCgroupRule = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DEVICES = "devices";
-  private List<@Valid LinuxDevice> devices = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DEVICES_FROM = "devices_from";
-  private List<String> devicesFrom = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DNS_OPTION = "dns_option";
-  private List<String> dnsOption = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DNS_SEARCH = "dns_search";
-  private List<String> dnsSearch = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DNS_SERVER = "dns_server";
-  private List<String> dnsServer = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ENTRYPOINT = "entrypoint";
-  private List<String> entrypoint = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ENV = "env";
-  private Map<String, String> env = new HashMap<>();
-
-  public static final String JSON_PROPERTY_ENV_HOST = "env_host";
-  private Boolean envHost;
-
-  public static final String JSON_PROPERTY_ENVMERGE = "envmerge";
-  private List<String> envmerge = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EXPOSE = "expose";
-  private Object expose;
-
-  public static final String JSON_PROPERTY_GROUP_ENTRY = "group_entry";
-  private String groupEntry;
-
-  public static final String JSON_PROPERTY_GROUPS = "groups";
-  private List<String> groups = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION = "health_check_on_failure_action";
-  private Long healthCheckOnFailureAction;
-
-  public static final String JSON_PROPERTY_HEALTH_LOG_DESTINATION = "healthLogDestination";
-  private String healthLogDestination;
-
-  public static final String JSON_PROPERTY_HEALTH_MAX_LOG_COUNT = "healthMaxLogCount";
-  private Integer healthMaxLogCount;
-
-  public static final String JSON_PROPERTY_HEALTH_MAX_LOG_SIZE = "healthMaxLogSize";
-  private Integer healthMaxLogSize;
-
-  public static final String JSON_PROPERTY_HEALTHCONFIG = "healthconfig";
-  private Schema2HealthConfig healthconfig;
-
-  public static final String JSON_PROPERTY_HOST_DEVICE_LIST = "host_device_list";
-  private List<@Valid LinuxDevice> hostDeviceList = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_HOSTADD = "hostadd";
-  private List<String> hostadd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_HOSTNAME = "hostname";
-  private String hostname;
-
-  public static final String JSON_PROPERTY_HOSTUSERS = "hostusers";
-  private List<String> hostusers = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_HTTPPROXY = "httpproxy";
-  private Boolean httpproxy;
-
-  public static final String JSON_PROPERTY_IDMAPPINGS = "idmappings";
-  private IDMappingOptions idmappings;
-
-  public static final String JSON_PROPERTY_IMAGE = "image";
-  private String image;
-
-  public static final String JSON_PROPERTY_IMAGE_ARCH = "image_arch";
-  private String imageArch;
-
-  public static final String JSON_PROPERTY_IMAGE_OS = "image_os";
-  private String imageOs;
-
-  public static final String JSON_PROPERTY_IMAGE_VARIANT = "image_variant";
-  private String imageVariant;
-
-  public static final String JSON_PROPERTY_IMAGE_VOLUME_MODE = "image_volume_mode";
-  private String imageVolumeMode;
-
-  public static final String JSON_PROPERTY_IMAGE_VOLUMES = "image_volumes";
-  private List<@Valid ImageVolume> imageVolumes = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_INIT = "init";
-  private Boolean init;
-
-  public static final String JSON_PROPERTY_INIT_CONTAINER_TYPE = "init_container_type";
-  private String initContainerType;
-
-  public static final String JSON_PROPERTY_INIT_PATH = "init_path";
-  private String initPath;
-
-  public static final String JSON_PROPERTY_INTEL_RDT = "intelRdt";
-  private LinuxIntelRdt intelRdt;
-
-  public static final String JSON_PROPERTY_IPCNS = "ipcns";
-  private Namespace ipcns;
-
-  public static final String JSON_PROPERTY_LABEL_NESTED = "label_nested";
-  private Boolean labelNested;
-
-  public static final String JSON_PROPERTY_LABELS = "labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_LOG_CONFIGURATION = "log_configuration";
-  private LogConfigLibpod logConfiguration;
-
-  public static final String JSON_PROPERTY_MANAGE_PASSWORD = "manage_password";
-  private Boolean managePassword;
-
-  public static final String JSON_PROPERTY_MASK = "mask";
-  private List<String> mask = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_MOUNTS = "mounts";
-  private List<@Valid Mount> mounts = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
-
-  public static final String JSON_PROPERTY_NETNS = "netns";
-  private Namespace netns;
-
-  public static final String JSON_PROPERTY_NETWORK_OPTIONS = "network_options";
-  private Map<String, List<String>> networkOptions = new HashMap<>();
-
-  public static final String JSON_PROPERTY_NO_NEW_PRIVILEGES = "no_new_privileges";
-  private Boolean noNewPrivileges;
-
-  public static final String JSON_PROPERTY_OCI_RUNTIME = "oci_runtime";
-  private String ociRuntime;
-
-  public static final String JSON_PROPERTY_OOM_SCORE_ADJ = "oom_score_adj";
-  private Long oomScoreAdj;
-
-  public static final String JSON_PROPERTY_OVERLAY_VOLUMES = "overlay_volumes";
-  private List<@Valid OverlayVolume> overlayVolumes = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_PASSWD_ENTRY = "passwd_entry";
-  private String passwdEntry;
-
-  public static final String JSON_PROPERTY_PERSONALITY = "personality";
-  private LinuxPersonality personality;
-
-  public static final String JSON_PROPERTY_PIDNS = "pidns";
-  private Namespace pidns;
-
-  public static final String JSON_PROPERTY_POD = "pod";
-  private String pod;
-
-  public static final String JSON_PROPERTY_PORTMAPPINGS = "portmappings";
-  private List<@Valid PortMapping> portmappings = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_PRIVILEGED = "privileged";
-  private Boolean privileged;
-
-  public static final String JSON_PROPERTY_PROCFS_OPTS = "procfs_opts";
-  private List<String> procfsOpts = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_PUBLISH_IMAGE_PORTS = "publish_image_ports";
-  private Boolean publishImagePorts;
-
-  public static final String JSON_PROPERTY_R_LIMITS = "r_limits";
-  private List<@Valid POSIXRlimit> rLimits = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_RAW_IMAGE_NAME = "raw_image_name";
-  private String rawImageName;
-
-  public static final String JSON_PROPERTY_READ_ONLY_FILESYSTEM = "read_only_filesystem";
-  private Boolean readOnlyFilesystem;
-
-  public static final String JSON_PROPERTY_READ_WRITE_TMPFS = "read_write_tmpfs";
-  private Boolean readWriteTmpfs;
-
-  public static final String JSON_PROPERTY_REMOVE = "remove";
-  private Boolean remove;
-
-  public static final String JSON_PROPERTY_REMOVE_IMAGE = "removeImage";
-  private Boolean removeImage;
-
-  public static final String JSON_PROPERTY_RESOURCE_LIMITS = "resource_limits";
-  private LinuxResources resourceLimits;
-
-  public static final String JSON_PROPERTY_RESTART_POLICY = "restart_policy";
-  private String restartPolicy;
-
-  public static final String JSON_PROPERTY_RESTART_TRIES = "restart_tries";
-  private Integer restartTries;
-
-  public static final String JSON_PROPERTY_ROOTFS = "rootfs";
-  private String rootfs;
-
-  public static final String JSON_PROPERTY_ROOTFS_MAPPING = "rootfs_mapping";
-  private String rootfsMapping;
-
-  public static final String JSON_PROPERTY_ROOTFS_OVERLAY = "rootfs_overlay";
-  private Boolean rootfsOverlay;
-
-  public static final String JSON_PROPERTY_ROOTFS_PROPAGATION = "rootfs_propagation";
-  private String rootfsPropagation;
-
-  public static final String JSON_PROPERTY_SDNOTIFY_MODE = "sdnotifyMode";
-  private String sdnotifyMode;
-
-  public static final String JSON_PROPERTY_SECCOMP_POLICY = "seccomp_policy";
-  private String seccompPolicy;
-
-  public static final String JSON_PROPERTY_SECCOMP_PROFILE_PATH = "seccomp_profile_path";
-  private String seccompProfilePath;
-
-  public static final String JSON_PROPERTY_SECRET_ENV = "secret_env";
-  private Map<String, String> secretEnv = new HashMap<>();
-
-  public static final String JSON_PROPERTY_SECRETS = "secrets";
-  private List<@Valid Secret> secrets = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SELINUX_OPTS = "selinux_opts";
-  private List<String> selinuxOpts = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SHM_SIZE = "shm_size";
-  private Long shmSize;
-
-  public static final String JSON_PROPERTY_SHM_SIZE_SYSTEMD = "shm_size_systemd";
-  private Long shmSizeSystemd;
-
-  public static final String JSON_PROPERTY_STARTUP_HEALTH_CONFIG = "startupHealthConfig";
-  private StartupHealthCheck startupHealthConfig;
-
-  public static final String JSON_PROPERTY_STDIN = "stdin";
-  private Boolean stdin;
-
-  public static final String JSON_PROPERTY_STOP_SIGNAL = "stop_signal";
-  private Long stopSignal;
-
-  public static final String JSON_PROPERTY_STOP_TIMEOUT = "stop_timeout";
-  private Integer stopTimeout;
-
-  public static final String JSON_PROPERTY_STORAGE_OPTS = "storage_opts";
-  private Map<String, String> storageOpts = new HashMap<>();
-
-  public static final String JSON_PROPERTY_SYSCTL = "sysctl";
-  private Map<String, String> sysctl = new HashMap<>();
-
-  public static final String JSON_PROPERTY_SYSTEMD = "systemd";
-  private String systemd;
-
-  public static final String JSON_PROPERTY_TERMINAL = "terminal";
-  private Boolean terminal;
-
-  public static final String JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
-  private Map<String, LinuxThrottleDevice> throttleReadBpsDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE = "throttleReadIOPSDevice";
-  private Map<String, LinuxThrottleDevice> throttleReadIOPSDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
-  private Map<String, LinuxThrottleDevice> throttleWriteBpsDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE = "throttleWriteIOPSDevice";
-  private Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_TIMEOUT = "timeout";
-  private Integer timeout;
-
-  public static final String JSON_PROPERTY_TIMEZONE = "timezone";
-  private String timezone;
-
-  public static final String JSON_PROPERTY_UMASK = "umask";
-  private String umask;
-
-  public static final String JSON_PROPERTY_UNIFIED = "unified";
-  private Map<String, String> unified = new HashMap<>();
-
-  public static final String JSON_PROPERTY_UNMASK = "unmask";
-  private List<String> unmask = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_UNSETENV = "unsetenv";
-  private List<String> unsetenv = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_UNSETENVALL = "unsetenvall";
-  private Boolean unsetenvall;
-
-  public static final String JSON_PROPERTY_USE_IMAGE_HOSTS = "use_image_hosts";
-  private Boolean useImageHosts;
-
-  public static final String JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF = "use_image_resolve_conf";
-  private Boolean useImageResolveConf;
-
-  public static final String JSON_PROPERTY_USER = "user";
-  private String user;
-
-  public static final String JSON_PROPERTY_USERNS = "userns";
-  private Namespace userns;
-
-  public static final String JSON_PROPERTY_UTSNS = "utsns";
-  private Namespace utsns;
-
-  public static final String JSON_PROPERTY_VOLATILE = "volatile";
-  private Boolean _volatile;
-
-  public static final String JSON_PROPERTY_VOLUMES = "volumes";
-  private List<@Valid NamedVolume> volumes = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_VOLUMES_FROM = "volumes_from";
-  private List<String> volumesFrom = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_WEIGHT_DEVICE = "weightDevice";
-  private Map<String, LinuxWeightDevice> weightDevice = new HashMap<>();
-
-  public static final String JSON_PROPERTY_WORK_DIR = "work_dir";
-  private String workDir;
-
-  public SpecGenerator() { 
-  }
-
-  public SpecGenerator networks(Map<String, PerNetworkOptions> networks) {
-    this.networks = networks;
-    return this;
-  }
-
-  public SpecGenerator putNetworksItem(String key, PerNetworkOptions networksItem) {
-    if (this.networks == null) {
-      this.networks = new HashMap<>();
-    }
-    this.networks.put(key, networksItem);
-    return this;
-  }
-
-  /**
-   * Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.
-   * @return networks
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_NETWORKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, PerNetworkOptions> getNetworks() {
-    return networks;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworks(Map<String, PerNetworkOptions> networks) {
-    this.networks = networks;
-  }
-
-
-  public SpecGenerator annotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-    return this;
-  }
-
-  public SpecGenerator putAnnotationsItem(String key, String annotationsItem) {
-    if (this.annotations == null) {
-      this.annotations = new HashMap<>();
-    }
-    this.annotations.put(key, annotationsItem);
-    return this;
-  }
-
-  /**
-   * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
-   * @return annotations
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getAnnotations() {
-    return annotations;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAnnotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-  }
-
-
-  public SpecGenerator apparmorProfile(String apparmorProfile) {
-    this.apparmorProfile = apparmorProfile;
-    return this;
-  }
-
-  /**
-   * ApparmorProfile is the name of the Apparmor profile the container will use. Optional.
-   * @return apparmorProfile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_APPARMOR_PROFILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getApparmorProfile() {
-    return apparmorProfile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_APPARMOR_PROFILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setApparmorProfile(String apparmorProfile) {
-    this.apparmorProfile = apparmorProfile;
-  }
-
-
-  public SpecGenerator baseHostsFile(String baseHostsFile) {
-    this.baseHostsFile = baseHostsFile;
-    return this;
-  }
-
-  /**
-   * BaseHostsFile is the path to a hosts file, the entries from this file are added to the containers hosts file. As special value \&quot;image\&quot; is allowed which uses the /etc/hosts file from within the image and \&quot;none\&quot; which uses no base file at all. If it is empty we should default to the base_hosts_file configuration in containers.conf. Optional.
-   * @return baseHostsFile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BASE_HOSTS_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getBaseHostsFile() {
-    return baseHostsFile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BASE_HOSTS_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBaseHostsFile(String baseHostsFile) {
-    this.baseHostsFile = baseHostsFile;
-  }
-
-
-  public SpecGenerator capAdd(List<String> capAdd) {
-    this.capAdd = capAdd;
-    return this;
-  }
-
-  public SpecGenerator addCapAddItem(String capAddItem) {
-    if (this.capAdd == null) {
-      this.capAdd = new ArrayList<>();
-    }
-    this.capAdd.add(capAddItem);
-    return this;
-  }
-
-  /**
-   * CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.
-   * @return capAdd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCapAdd() {
-    return capAdd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapAdd(List<String> capAdd) {
-    this.capAdd = capAdd;
-  }
-
-
-  public SpecGenerator capDrop(List<String> capDrop) {
-    this.capDrop = capDrop;
-    return this;
-  }
-
-  public SpecGenerator addCapDropItem(String capDropItem) {
-    if (this.capDrop == null) {
-      this.capDrop = new ArrayList<>();
-    }
-    this.capDrop.add(capDropItem);
-    return this;
-  }
-
-  /**
-   * CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.
-   * @return capDrop
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAP_DROP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCapDrop() {
-    return capDrop;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAP_DROP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapDrop(List<String> capDrop) {
-    this.capDrop = capDrop;
-  }
-
-
-  public SpecGenerator cgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
-    return this;
-  }
-
-  /**
-   * CgroupParent is the container&#39;s Cgroup parent. If not set, the default for the current cgroup driver will be used. Optional.
-   * @return cgroupParent
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupParent() {
-    return cgroupParent;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
-  }
-
-
-  public SpecGenerator cgroupns(Namespace cgroupns) {
-    this.cgroupns = cgroupns;
-    return this;
-  }
-
-  /**
-   * Get cgroupns
-   * @return cgroupns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CGROUPNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Namespace getCgroupns() {
-    return cgroupns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUPNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupns(Namespace cgroupns) {
-    this.cgroupns = cgroupns;
-  }
-
-
-  public SpecGenerator cgroupsMode(String cgroupsMode) {
-    this.cgroupsMode = cgroupsMode;
-    return this;
-  }
-
-  /**
-   * CgroupsMode sets a policy for how cgroups will be created for the container, including the ability to disable creation entirely. Optional.
-   * @return cgroupsMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUPS_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupsMode() {
-    return cgroupsMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUPS_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupsMode(String cgroupsMode) {
-    this.cgroupsMode = cgroupsMode;
-  }
-
-
-  public SpecGenerator chrootDirectories(List<String> chrootDirectories) {
-    this.chrootDirectories = chrootDirectories;
-    return this;
-  }
-
-  public SpecGenerator addChrootDirectoriesItem(String chrootDirectoriesItem) {
-    if (this.chrootDirectories == null) {
-      this.chrootDirectories = new ArrayList<>();
-    }
-    this.chrootDirectories.add(chrootDirectoriesItem);
-    return this;
-  }
-
-  /**
-   * ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.
-   * @return chrootDirectories
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CHROOT_DIRECTORIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getChrootDirectories() {
-    return chrootDirectories;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CHROOT_DIRECTORIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setChrootDirectories(List<String> chrootDirectories) {
-    this.chrootDirectories = chrootDirectories;
-  }
-
-
-  public SpecGenerator cniNetworks(List<String> cniNetworks) {
-    this.cniNetworks = cniNetworks;
-    return this;
-  }
-
-  public SpecGenerator addCniNetworksItem(String cniNetworksItem) {
-    if (this.cniNetworks == null) {
-      this.cniNetworks = new ArrayList<>();
-    }
-    this.cniNetworks.add(cniNetworksItem);
-    return this;
-  }
-
-  /**
-   * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
-   * @return cniNetworks
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CNI_NETWORKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCniNetworks() {
-    return cniNetworks;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CNI_NETWORKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCniNetworks(List<String> cniNetworks) {
-    this.cniNetworks = cniNetworks;
-  }
-
-
-  public SpecGenerator command(List<String> command) {
-    this.command = command;
-    return this;
-  }
-
-  public SpecGenerator addCommandItem(String commandItem) {
-    if (this.command == null) {
-      this.command = new ArrayList<>();
-    }
-    this.command.add(commandItem);
-    return this;
-  }
-
-  /**
-   * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
-   * @return command
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCommand() {
-    return command;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCommand(List<String> command) {
-    this.command = command;
-  }
-
-
-  public SpecGenerator conmonPidFile(String conmonPidFile) {
-    this.conmonPidFile = conmonPidFile;
-    return this;
-  }
-
-  /**
-   * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
-   * @return conmonPidFile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getConmonPidFile() {
-    return conmonPidFile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConmonPidFile(String conmonPidFile) {
-    this.conmonPidFile = conmonPidFile;
-  }
-
-
-  public SpecGenerator containerCreateCommand(List<String> containerCreateCommand) {
-    this.containerCreateCommand = containerCreateCommand;
-    return this;
-  }
-
-  public SpecGenerator addContainerCreateCommandItem(String containerCreateCommandItem) {
-    if (this.containerCreateCommand == null) {
-      this.containerCreateCommand = new ArrayList<>();
-    }
-    this.containerCreateCommand.add(containerCreateCommandItem);
-    return this;
-  }
-
-  /**
-   * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
-   * @return containerCreateCommand
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_CREATE_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getContainerCreateCommand() {
-    return containerCreateCommand;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_CREATE_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerCreateCommand(List<String> containerCreateCommand) {
-    this.containerCreateCommand = containerCreateCommand;
-  }
-
-
-  public SpecGenerator createWorkingDir(Boolean createWorkingDir) {
-    this.createWorkingDir = createWorkingDir;
-    return this;
-  }
-
-  /**
-   * Create the working directory if it doesn&#39;t exist. If unset, it doesn&#39;t create it. Optional.
-   * @return createWorkingDir
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CREATE_WORKING_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getCreateWorkingDir() {
-    return createWorkingDir;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATE_WORKING_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreateWorkingDir(Boolean createWorkingDir) {
-    this.createWorkingDir = createWorkingDir;
-  }
-
-
-  public SpecGenerator dependencyContainers(List<String> dependencyContainers) {
-    this.dependencyContainers = dependencyContainers;
-    return this;
-  }
-
-  public SpecGenerator addDependencyContainersItem(String dependencyContainersItem) {
-    if (this.dependencyContainers == null) {
-      this.dependencyContainers = new ArrayList<>();
-    }
-    this.dependencyContainers.add(dependencyContainersItem);
-    return this;
-  }
-
-  /**
-   * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
-   * @return dependencyContainers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DEPENDENCY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDependencyContainers() {
-    return dependencyContainers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEPENDENCY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDependencyContainers(List<String> dependencyContainers) {
-    this.dependencyContainers = dependencyContainers;
-  }
-
-
-  public SpecGenerator deviceCgroupRule(List<@Valid LinuxDeviceCgroup> deviceCgroupRule) {
-    this.deviceCgroupRule = deviceCgroupRule;
-    return this;
-  }
-
-  public SpecGenerator addDeviceCgroupRuleItem(LinuxDeviceCgroup deviceCgroupRuleItem) {
-    if (this.deviceCgroupRule == null) {
-      this.deviceCgroupRule = new ArrayList<>();
-    }
-    this.deviceCgroupRule.add(deviceCgroupRuleItem);
-    return this;
-  }
-
-  /**
-   * DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.
-   * @return deviceCgroupRule
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid LinuxDeviceCgroup> getDeviceCgroupRule() {
-    return deviceCgroupRule;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeviceCgroupRule(List<@Valid LinuxDeviceCgroup> deviceCgroupRule) {
-    this.deviceCgroupRule = deviceCgroupRule;
-  }
-
-
-  public SpecGenerator devices(List<@Valid LinuxDevice> devices) {
-    this.devices = devices;
-    return this;
-  }
-
-  public SpecGenerator addDevicesItem(LinuxDevice devicesItem) {
-    if (this.devices == null) {
-      this.devices = new ArrayList<>();
-    }
-    this.devices.add(devicesItem);
-    return this;
-  }
-
-  /**
-   * Devices are devices that will be added to the container. Optional.
-   * @return devices
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid LinuxDevice> getDevices() {
-    return devices;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDevices(List<@Valid LinuxDevice> devices) {
-    this.devices = devices;
-  }
-
-
-  public SpecGenerator devicesFrom(List<String> devicesFrom) {
-    this.devicesFrom = devicesFrom;
-    return this;
-  }
-
-  public SpecGenerator addDevicesFromItem(String devicesFromItem) {
-    if (this.devicesFrom == null) {
-      this.devicesFrom = new ArrayList<>();
-    }
-    this.devicesFrom.add(devicesFromItem);
-    return this;
-  }
-
-  /**
-   * DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.
-   * @return devicesFrom
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DEVICES_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDevicesFrom() {
-    return devicesFrom;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICES_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDevicesFrom(List<String> devicesFrom) {
-    this.devicesFrom = devicesFrom;
-  }
-
-
-  public SpecGenerator dnsOption(List<String> dnsOption) {
-    this.dnsOption = dnsOption;
-    return this;
-  }
-
-  public SpecGenerator addDnsOptionItem(String dnsOptionItem) {
-    if (this.dnsOption == null) {
-      this.dnsOption = new ArrayList<>();
-    }
-    this.dnsOption.add(dnsOptionItem);
-    return this;
-  }
-
-  /**
-   * DNSOptions is a set of DNS options that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.
-   * @return dnsOption
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS_OPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDnsOption() {
-    return dnsOption;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS_OPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDnsOption(List<String> dnsOption) {
-    this.dnsOption = dnsOption;
-  }
-
-
-  public SpecGenerator dnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
-    return this;
-  }
-
-  public SpecGenerator addDnsSearchItem(String dnsSearchItem) {
-    if (this.dnsSearch == null) {
-      this.dnsSearch = new ArrayList<>();
-    }
-    this.dnsSearch.add(dnsSearchItem);
-    return this;
-  }
-
-  /**
-   * DNSSearch is a set of DNS search domains that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.
-   * @return dnsSearch
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDnsSearch() {
-    return dnsSearch;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
-  }
-
-
-  public SpecGenerator dnsServer(List<String> dnsServer) {
-    this.dnsServer = dnsServer;
-    return this;
-  }
-
-  public SpecGenerator addDnsServerItem(String dnsServerItem) {
-    if (this.dnsServer == null) {
-      this.dnsServer = new ArrayList<>();
-    }
-    this.dnsServer.add(dnsServerItem);
-    return this;
-  }
-
-  /**
-   * DNSServers is a set of DNS servers that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.
-   * @return dnsServer
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS_SERVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDnsServer() {
-    return dnsServer;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS_SERVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDnsServer(List<String> dnsServer) {
-    this.dnsServer = dnsServer;
-  }
-
-
-  public SpecGenerator entrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-    return this;
-  }
-
-  public SpecGenerator addEntrypointItem(String entrypointItem) {
-    if (this.entrypoint == null) {
-      this.entrypoint = new ArrayList<>();
-    }
-    this.entrypoint.add(entrypointItem);
-    return this;
-  }
-
-  /**
-   * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
-   * @return entrypoint
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEntrypoint() {
-    return entrypoint;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-  }
-
-
-  public SpecGenerator env(Map<String, String> env) {
-    this.env = env;
-    return this;
-  }
-
-  public SpecGenerator putEnvItem(String key, String envItem) {
-    if (this.env == null) {
-      this.env = new HashMap<>();
-    }
-    this.env.put(key, envItem);
-    return this;
-  }
-
-  /**
-   * Env is a set of environment variables that will be set in the container. Optional.
-   * @return env
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getEnv() {
-    return env;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnv(Map<String, String> env) {
-    this.env = env;
-  }
-
-
-  public SpecGenerator envHost(Boolean envHost) {
-    this.envHost = envHost;
-    return this;
-  }
-
-  /**
-   * EnvHost indicates that the host environment should be added to container Optional.
-   * @return envHost
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENV_HOST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getEnvHost() {
-    return envHost;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENV_HOST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnvHost(Boolean envHost) {
-    this.envHost = envHost;
-  }
-
-
-  public SpecGenerator envmerge(List<String> envmerge) {
-    this.envmerge = envmerge;
-    return this;
-  }
-
-  public SpecGenerator addEnvmergeItem(String envmergeItem) {
-    if (this.envmerge == null) {
-      this.envmerge = new ArrayList<>();
-    }
-    this.envmerge.add(envmergeItem);
-    return this;
-  }
-
-  /**
-   * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
-   * @return envmerge
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENVMERGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEnvmerge() {
-    return envmerge;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENVMERGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnvmerge(List<String> envmerge) {
-    this.envmerge = envmerge;
-  }
-
-
-  public SpecGenerator expose(Object expose) {
-    this.expose = expose;
-    return this;
-  }
-
-  /**
-   * Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \&quot;tcp\&quot;, \&quot;udp\&quot;, and \&quot;sctp\&quot;, or some combination of the three separated by commas. If protocol is set to \&quot;\&quot; we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.
-   * @return expose
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXPOSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getExpose() {
-    return expose;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXPOSE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExpose(Object expose) {
-    this.expose = expose;
-  }
-
-
-  public SpecGenerator groupEntry(String groupEntry) {
-    this.groupEntry = groupEntry;
-    return this;
-  }
-
-  /**
-   * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
-   * @return groupEntry
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GROUP_ENTRY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGroupEntry() {
-    return groupEntry;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GROUP_ENTRY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroupEntry(String groupEntry) {
-    this.groupEntry = groupEntry;
-  }
-
-
-  public SpecGenerator groups(List<String> groups) {
-    this.groups = groups;
-    return this;
-  }
-
-  public SpecGenerator addGroupsItem(String groupsItem) {
-    if (this.groups == null) {
-      this.groups = new ArrayList<>();
-    }
-    this.groups.add(groupsItem);
-    return this;
-  }
-
-  /**
-   * Groups are a list of supplemental groups the container&#39;s user will be granted access to. Optional.
-   * @return groups
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getGroups() {
-    return groups;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroups(List<String> groups) {
-    this.groups = groups;
-  }
-
-
-  public SpecGenerator healthCheckOnFailureAction(Long healthCheckOnFailureAction) {
-    this.healthCheckOnFailureAction = healthCheckOnFailureAction;
-    return this;
-  }
-
-  /**
-   * HealthCheckOnFailureAction defines how Podman reacts when a container&#39;s health status turns unhealthy.
-   * @return healthCheckOnFailureAction
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getHealthCheckOnFailureAction() {
-    return healthCheckOnFailureAction;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthCheckOnFailureAction(Long healthCheckOnFailureAction) {
-    this.healthCheckOnFailureAction = healthCheckOnFailureAction;
-  }
-
-
-  public SpecGenerator healthLogDestination(String healthLogDestination) {
-    this.healthLogDestination = healthLogDestination;
-    return this;
-  }
-
-  /**
-   * HealthLogDestination defines the destination where the log is stored
-   * @return healthLogDestination
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getHealthLogDestination() {
-    return healthLogDestination;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthLogDestination(String healthLogDestination) {
-    this.healthLogDestination = healthLogDestination;
-  }
-
-
-  public SpecGenerator healthMaxLogCount(Integer healthMaxLogCount) {
-    this.healthMaxLogCount = healthMaxLogCount;
-    return this;
-  }
-
-  /**
-   * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
-   * @return healthMaxLogCount
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getHealthMaxLogCount() {
-    return healthMaxLogCount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthMaxLogCount(Integer healthMaxLogCount) {
-    this.healthMaxLogCount = healthMaxLogCount;
-  }
-
-
-  public SpecGenerator healthMaxLogSize(Integer healthMaxLogSize) {
-    this.healthMaxLogSize = healthMaxLogSize;
-    return this;
-  }
-
-  /**
-   * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length)
-   * @return healthMaxLogSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getHealthMaxLogSize() {
-    return healthMaxLogSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthMaxLogSize(Integer healthMaxLogSize) {
-    this.healthMaxLogSize = healthMaxLogSize;
-  }
-
-
-  public SpecGenerator healthconfig(Schema2HealthConfig healthconfig) {
-    this.healthconfig = healthconfig;
-    return this;
-  }
-
-  /**
-   * Get healthconfig
-   * @return healthconfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_HEALTHCONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Schema2HealthConfig getHealthconfig() {
-    return healthconfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HEALTHCONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthconfig(Schema2HealthConfig healthconfig) {
-    this.healthconfig = healthconfig;
-  }
-
-
-  public SpecGenerator hostDeviceList(List<@Valid LinuxDevice> hostDeviceList) {
-    this.hostDeviceList = hostDeviceList;
-    return this;
-  }
-
-  public SpecGenerator addHostDeviceListItem(LinuxDevice hostDeviceListItem) {
-    if (this.hostDeviceList == null) {
-      this.hostDeviceList = new ArrayList<>();
-    }
-    this.hostDeviceList.add(hostDeviceListItem);
-    return this;
-  }
-
-  /**
-   * HostDeviceList is used to recreate the mounted device on inherited containers
-   * @return hostDeviceList
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_HOST_DEVICE_LIST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid LinuxDevice> getHostDeviceList() {
-    return hostDeviceList;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOST_DEVICE_LIST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostDeviceList(List<@Valid LinuxDevice> hostDeviceList) {
-    this.hostDeviceList = hostDeviceList;
-  }
-
-
-  public SpecGenerator hostadd(List<String> hostadd) {
-    this.hostadd = hostadd;
-    return this;
-  }
-
-  public SpecGenerator addHostaddItem(String hostaddItem) {
-    if (this.hostadd == null) {
-      this.hostadd = new ArrayList<>();
-    }
-    this.hostadd.add(hostaddItem);
-    return this;
-  }
-
-  /**
-   * HostAdd is a set of hosts which will be added to the container&#39;s etc/hosts file. Conflicts with UseImageHosts. Optional.
-   * @return hostadd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOSTADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getHostadd() {
-    return hostadd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOSTADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostadd(List<String> hostadd) {
-    this.hostadd = hostadd;
-  }
-
-
-  public SpecGenerator hostname(String hostname) {
-    this.hostname = hostname;
-    return this;
-  }
-
-  /**
-   * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
-   * @return hostname
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getHostname() {
-    return hostname;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostname(String hostname) {
-    this.hostname = hostname;
-  }
-
-
-  public SpecGenerator hostusers(List<String> hostusers) {
-    this.hostusers = hostusers;
-    return this;
-  }
-
-  public SpecGenerator addHostusersItem(String hostusersItem) {
-    if (this.hostusers == null) {
-      this.hostusers = new ArrayList<>();
-    }
-    this.hostusers.add(hostusersItem);
-    return this;
-  }
-
-  /**
-   * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
-   * @return hostusers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOSTUSERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getHostusers() {
-    return hostusers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOSTUSERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostusers(List<String> hostusers) {
-    this.hostusers = hostusers;
-  }
-
-
-  public SpecGenerator httpproxy(Boolean httpproxy) {
-    this.httpproxy = httpproxy;
-    return this;
-  }
-
-  /**
-   * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
-   * @return httpproxy
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HTTPPROXY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getHttpproxy() {
-    return httpproxy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HTTPPROXY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHttpproxy(Boolean httpproxy) {
-    this.httpproxy = httpproxy;
-  }
-
-
-  public SpecGenerator idmappings(IDMappingOptions idmappings) {
-    this.idmappings = idmappings;
-    return this;
-  }
-
-  /**
-   * Get idmappings
-   * @return idmappings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public IDMappingOptions getIdmappings() {
-    return idmappings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdmappings(IDMappingOptions idmappings) {
-    this.idmappings = idmappings;
-  }
-
-
-  public SpecGenerator image(String image) {
-    this.image = image;
-    return this;
-  }
-
-  /**
-   * Image is the image the container will be based on. The image will be used as the container&#39;s root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.
-   * @return image
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImage() {
-    return image;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-
-  public SpecGenerator imageArch(String imageArch) {
-    this.imageArch = imageArch;
-    return this;
-  }
-
-  /**
-   * ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.
-   * @return imageArch
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_ARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImageArch() {
-    return imageArch;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_ARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImageArch(String imageArch) {
-    this.imageArch = imageArch;
-  }
-
-
-  public SpecGenerator imageOs(String imageOs) {
-    this.imageOs = imageOs;
-    return this;
-  }
-
-  /**
-   * ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.
-   * @return imageOs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImageOs() {
-    return imageOs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImageOs(String imageOs) {
-    this.imageOs = imageOs;
-  }
-
-
-  public SpecGenerator imageVariant(String imageVariant) {
-    this.imageVariant = imageVariant;
-    return this;
-  }
-
-  /**
-   * ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.
-   * @return imageVariant
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_VARIANT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImageVariant() {
-    return imageVariant;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_VARIANT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImageVariant(String imageVariant) {
-    this.imageVariant = imageVariant;
-  }
-
-
-  public SpecGenerator imageVolumeMode(String imageVolumeMode) {
-    this.imageVolumeMode = imageVolumeMode;
-    return this;
-  }
-
-  /**
-   * ImageVolumeMode indicates how image volumes will be created. Supported modes are \&quot;ignore\&quot; (do not create), \&quot;tmpfs\&quot; (create as tmpfs), and \&quot;anonymous\&quot; (create as anonymous volumes). The default if unset is anonymous. Optional.
-   * @return imageVolumeMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUME_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImageVolumeMode() {
-    return imageVolumeMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUME_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImageVolumeMode(String imageVolumeMode) {
-    this.imageVolumeMode = imageVolumeMode;
-  }
-
-
-  public SpecGenerator imageVolumes(List<@Valid ImageVolume> imageVolumes) {
-    this.imageVolumes = imageVolumes;
-    return this;
-  }
-
-  public SpecGenerator addImageVolumesItem(ImageVolume imageVolumesItem) {
-    if (this.imageVolumes == null) {
-      this.imageVolumes = new ArrayList<>();
-    }
-    this.imageVolumes.add(imageVolumesItem);
-    return this;
-  }
-
-  /**
-   * Image volumes bind-mount a container-image mount into the container. Optional.
-   * @return imageVolumes
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ImageVolume> getImageVolumes() {
-    return imageVolumes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImageVolumes(List<@Valid ImageVolume> imageVolumes) {
-    this.imageVolumes = imageVolumes;
-  }
-
-
-  public SpecGenerator init(Boolean init) {
-    this.init = init;
-    return this;
-  }
-
-  /**
-   * Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.
-   * @return init
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getInit() {
-    return init;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInit(Boolean init) {
-    this.init = init;
-  }
-
-
-  public SpecGenerator initContainerType(String initContainerType) {
-    this.initContainerType = initContainerType;
-    return this;
-  }
-
-  /**
-   * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
-   * @return initContainerType
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INIT_CONTAINER_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getInitContainerType() {
-    return initContainerType;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INIT_CONTAINER_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInitContainerType(String initContainerType) {
-    this.initContainerType = initContainerType;
-  }
-
-
-  public SpecGenerator initPath(String initPath) {
-    this.initPath = initPath;
-    return this;
-  }
-
-  /**
-   * InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.
-   * @return initPath
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INIT_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getInitPath() {
-    return initPath;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INIT_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInitPath(String initPath) {
-    this.initPath = initPath;
-  }
-
-
-  public SpecGenerator intelRdt(LinuxIntelRdt intelRdt) {
-    this.intelRdt = intelRdt;
-    return this;
-  }
-
-  /**
-   * Get intelRdt
-   * @return intelRdt
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_INTEL_RDT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxIntelRdt getIntelRdt() {
-    return intelRdt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INTEL_RDT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIntelRdt(LinuxIntelRdt intelRdt) {
-    this.intelRdt = intelRdt;
-  }
-
-
-  public SpecGenerator ipcns(Namespace ipcns) {
-    this.ipcns = ipcns;
-    return this;
-  }
-
-  /**
-   * Get ipcns
-   * @return ipcns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_IPCNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Namespace getIpcns() {
-    return ipcns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IPCNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpcns(Namespace ipcns) {
-    this.ipcns = ipcns;
-  }
-
-
-  public SpecGenerator labelNested(Boolean labelNested) {
-    this.labelNested = labelNested;
-    return this;
-  }
-
-  /**
-   * LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.
-   * @return labelNested
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LABEL_NESTED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getLabelNested() {
-    return labelNested;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABEL_NESTED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabelNested(Boolean labelNested) {
-    this.labelNested = labelNested;
-  }
-
-
-  public SpecGenerator labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public SpecGenerator putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * Labels are key-value pairs that are used to add metadata to containers. Optional.
-   * @return labels
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public SpecGenerator logConfiguration(LogConfigLibpod logConfiguration) {
-    this.logConfiguration = logConfiguration;
-    return this;
-  }
-
-  /**
-   * Get logConfiguration
-   * @return logConfiguration
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_LOG_CONFIGURATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LogConfigLibpod getLogConfiguration() {
-    return logConfiguration;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOG_CONFIGURATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLogConfiguration(LogConfigLibpod logConfiguration) {
-    this.logConfiguration = logConfiguration;
-  }
-
-
-  public SpecGenerator managePassword(Boolean managePassword) {
-    this.managePassword = managePassword;
-    return this;
-  }
-
-  /**
-   * Passwd is a container run option that determines if we are validating users/groups before running the container
-   * @return managePassword
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MANAGE_PASSWORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getManagePassword() {
-    return managePassword;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MANAGE_PASSWORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setManagePassword(Boolean managePassword) {
-    this.managePassword = managePassword;
-  }
-
-
-  public SpecGenerator mask(List<String> mask) {
-    this.mask = mask;
-    return this;
-  }
-
-  public SpecGenerator addMaskItem(String maskItem) {
-    if (this.mask == null) {
-      this.mask = new ArrayList<>();
-    }
-    this.mask.add(maskItem);
-    return this;
-  }
-
-  /**
-   * Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional
-   * @return mask
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MASK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getMask() {
-    return mask;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MASK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMask(List<String> mask) {
-    this.mask = mask;
-  }
-
-
-  public SpecGenerator mounts(List<@Valid Mount> mounts) {
-    this.mounts = mounts;
-    return this;
-  }
-
-  public SpecGenerator addMountsItem(Mount mountsItem) {
-    if (this.mounts == null) {
-      this.mounts = new ArrayList<>();
-    }
-    this.mounts.add(mountsItem);
-    return this;
-  }
-
-  /**
-   * Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
-   * @return mounts
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_MOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Mount> getMounts() {
-    return mounts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMounts(List<@Valid Mount> mounts) {
-    this.mounts = mounts;
-  }
-
-
-  public SpecGenerator name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public SpecGenerator netns(Namespace netns) {
-    this.netns = netns;
-    return this;
-  }
-
-  /**
-   * Get netns
-   * @return netns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_NETNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Namespace getNetns() {
-    return netns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetns(Namespace netns) {
-    this.netns = netns;
-  }
-
-
-  public SpecGenerator networkOptions(Map<String, List<String>> networkOptions) {
-    this.networkOptions = networkOptions;
-    return this;
-  }
-
-  public SpecGenerator putNetworkOptionsItem(String key, List<String> networkOptionsItem) {
-    if (this.networkOptions == null) {
-      this.networkOptions = new HashMap<>();
-    }
-    this.networkOptions.put(key, networkOptionsItem);
-    return this;
-  }
-
-  /**
-   * NetworkOptions are additional options for each network Optional.
-   * @return networkOptions
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<String>> getNetworkOptions() {
-    return networkOptions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkOptions(Map<String, List<String>> networkOptions) {
-    this.networkOptions = networkOptions;
-  }
-
-
-  public SpecGenerator noNewPrivileges(Boolean noNewPrivileges) {
-    this.noNewPrivileges = noNewPrivileges;
-    return this;
-  }
-
-  /**
-   * NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.
-   * @return noNewPrivileges
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NO_NEW_PRIVILEGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getNoNewPrivileges() {
-    return noNewPrivileges;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NO_NEW_PRIVILEGES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNoNewPrivileges(Boolean noNewPrivileges) {
-    this.noNewPrivileges = noNewPrivileges;
-  }
-
-
-  public SpecGenerator ociRuntime(String ociRuntime) {
-    this.ociRuntime = ociRuntime;
-    return this;
-  }
-
-  /**
-   * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
-   * @return ociRuntime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOciRuntime() {
-    return ociRuntime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOciRuntime(String ociRuntime) {
-    this.ociRuntime = ociRuntime;
-  }
-
-
-  public SpecGenerator oomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
-    return this;
-  }
-
-  /**
-   * OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container&#39;s process. Optional.
-   * @return oomScoreAdj
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getOomScoreAdj() {
-    return oomScoreAdj;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
-  }
-
-
-  public SpecGenerator overlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
-    this.overlayVolumes = overlayVolumes;
-    return this;
-  }
-
-  public SpecGenerator addOverlayVolumesItem(OverlayVolume overlayVolumesItem) {
-    if (this.overlayVolumes == null) {
-      this.overlayVolumes = new ArrayList<>();
-    }
-    this.overlayVolumes.add(overlayVolumesItem);
-    return this;
-  }
-
-  /**
-   * Overlay volumes are named volumes that will be added to the container. Optional.
-   * @return overlayVolumes
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid OverlayVolume> getOverlayVolumes() {
-    return overlayVolumes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOverlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
-    this.overlayVolumes = overlayVolumes;
-  }
-
-
-  public SpecGenerator passwdEntry(String passwdEntry) {
-    this.passwdEntry = passwdEntry;
-    return this;
-  }
-
-  /**
-   * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
-   * @return passwdEntry
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PASSWD_ENTRY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPasswdEntry() {
-    return passwdEntry;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PASSWD_ENTRY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswdEntry(String passwdEntry) {
-    this.passwdEntry = passwdEntry;
-  }
-
-
-  public SpecGenerator personality(LinuxPersonality personality) {
-    this.personality = personality;
-    return this;
-  }
-
-  /**
-   * Get personality
-   * @return personality
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PERSONALITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxPersonality getPersonality() {
-    return personality;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PERSONALITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPersonality(LinuxPersonality personality) {
-    this.personality = personality;
-  }
-
-
-  public SpecGenerator pidns(Namespace pidns) {
-    this.pidns = pidns;
-    return this;
-  }
-
-  /**
-   * Get pidns
-   * @return pidns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PIDNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Namespace getPidns() {
-    return pidns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PIDNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPidns(Namespace pidns) {
-    this.pidns = pidns;
-  }
-
-
-  public SpecGenerator pod(String pod) {
-    this.pod = pod;
-    return this;
-  }
-
-  /**
-   * Pod is the ID of the pod the container will join. Optional.
-   * @return pod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_POD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPod() {
-    return pod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_POD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPod(String pod) {
-    this.pod = pod;
-  }
-
-
-  public SpecGenerator portmappings(List<@Valid PortMapping> portmappings) {
-    this.portmappings = portmappings;
-    return this;
-  }
-
-  public SpecGenerator addPortmappingsItem(PortMapping portmappingsItem) {
-    if (this.portmappings == null) {
-      this.portmappings = new ArrayList<>();
-    }
-    this.portmappings.add(portmappingsItem);
-    return this;
-  }
-
-  /**
-   * PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.
-   * @return portmappings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PORTMAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid PortMapping> getPortmappings() {
-    return portmappings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PORTMAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPortmappings(List<@Valid PortMapping> portmappings) {
-    this.portmappings = portmappings;
-  }
-
-
-  public SpecGenerator privileged(Boolean privileged) {
-    this.privileged = privileged;
-    return this;
-  }
-
-  /**
-   * Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.
-   * @return privileged
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPrivileged() {
-    return privileged;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPrivileged(Boolean privileged) {
-    this.privileged = privileged;
-  }
-
-
-  public SpecGenerator procfsOpts(List<String> procfsOpts) {
-    this.procfsOpts = procfsOpts;
-    return this;
-  }
-
-  public SpecGenerator addProcfsOptsItem(String procfsOptsItem) {
-    if (this.procfsOpts == null) {
-      this.procfsOpts = new ArrayList<>();
-    }
-    this.procfsOpts.add(procfsOptsItem);
-    return this;
-  }
-
-  /**
-   * ProcOpts are the options used for the proc mount.
-   * @return procfsOpts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PROCFS_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getProcfsOpts() {
-    return procfsOpts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PROCFS_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProcfsOpts(List<String> procfsOpts) {
-    this.procfsOpts = procfsOpts;
-  }
-
-
-  public SpecGenerator publishImagePorts(Boolean publishImagePorts) {
-    this.publishImagePorts = publishImagePorts;
-    return this;
-  }
-
-  /**
-   * PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.
-   * @return publishImagePorts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PUBLISH_IMAGE_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPublishImagePorts() {
-    return publishImagePorts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PUBLISH_IMAGE_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPublishImagePorts(Boolean publishImagePorts) {
-    this.publishImagePorts = publishImagePorts;
-  }
-
-
-  public SpecGenerator rLimits(List<@Valid POSIXRlimit> rLimits) {
-    this.rLimits = rLimits;
-    return this;
-  }
-
-  public SpecGenerator addRLimitsItem(POSIXRlimit rLimitsItem) {
-    if (this.rLimits == null) {
-      this.rLimits = new ArrayList<>();
-    }
-    this.rLimits.add(rLimitsItem);
-    return this;
-  }
-
-  /**
-   * Rlimits are POSIX rlimits to apply to the container. Optional.
-   * @return rLimits
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_R_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid POSIXRlimit> getrLimits() {
-    return rLimits;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_R_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setrLimits(List<@Valid POSIXRlimit> rLimits) {
-    this.rLimits = rLimits;
-  }
-
-
-  public SpecGenerator rawImageName(String rawImageName) {
-    this.rawImageName = rawImageName;
-    return this;
-  }
-
-  /**
-   * RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.
-   * @return rawImageName
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RAW_IMAGE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRawImageName() {
-    return rawImageName;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RAW_IMAGE_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRawImageName(String rawImageName) {
-    this.rawImageName = rawImageName;
-  }
-
-
-  public SpecGenerator readOnlyFilesystem(Boolean readOnlyFilesystem) {
-    this.readOnlyFilesystem = readOnlyFilesystem;
-    return this;
-  }
-
-  /**
-   * ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.
-   * @return readOnlyFilesystem
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READ_ONLY_FILESYSTEM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getReadOnlyFilesystem() {
-    return readOnlyFilesystem;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READ_ONLY_FILESYSTEM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadOnlyFilesystem(Boolean readOnlyFilesystem) {
-    this.readOnlyFilesystem = readOnlyFilesystem;
-  }
-
-
-  public SpecGenerator readWriteTmpfs(Boolean readWriteTmpfs) {
-    this.readWriteTmpfs = readWriteTmpfs;
-    return this;
-  }
-
-  /**
-   * ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.
-   * @return readWriteTmpfs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READ_WRITE_TMPFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getReadWriteTmpfs() {
-    return readWriteTmpfs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READ_WRITE_TMPFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadWriteTmpfs(Boolean readWriteTmpfs) {
-    this.readWriteTmpfs = readWriteTmpfs;
-  }
-
-
-  public SpecGenerator remove(Boolean remove) {
-    this.remove = remove;
-    return this;
-  }
-
-  /**
-   * Remove indicates if the container should be removed once it has been started and exits. Optional.
-   * @return remove
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRemove() {
-    return remove;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemove(Boolean remove) {
-    this.remove = remove;
-  }
-
-
-  public SpecGenerator removeImage(Boolean removeImage) {
-    this.removeImage = removeImage;
-    return this;
-  }
-
-  /**
-   * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
-   * @return removeImage
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REMOVE_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRemoveImage() {
-    return removeImage;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMOVE_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemoveImage(Boolean removeImage) {
-    this.removeImage = removeImage;
-  }
-
-
-  public SpecGenerator resourceLimits(LinuxResources resourceLimits) {
-    this.resourceLimits = resourceLimits;
-    return this;
-  }
-
-  /**
-   * Get resourceLimits
-   * @return resourceLimits
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxResources getResourceLimits() {
-    return resourceLimits;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceLimits(LinuxResources resourceLimits) {
-    this.resourceLimits = resourceLimits;
-  }
-
-
-  public SpecGenerator restartPolicy(String restartPolicy) {
-    this.restartPolicy = restartPolicy;
-    return this;
-  }
-
-  /**
-   * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
-   * @return restartPolicy
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRestartPolicy() {
-    return restartPolicy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestartPolicy(String restartPolicy) {
-    this.restartPolicy = restartPolicy;
-  }
-
-
-  public SpecGenerator restartTries(Integer restartTries) {
-    this.restartTries = restartTries;
-    return this;
-  }
-
-  /**
-   * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
-   * @return restartTries
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getRestartTries() {
-    return restartTries;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestartTries(Integer restartTries) {
-    this.restartTries = restartTries;
-  }
-
-
-  public SpecGenerator rootfs(String rootfs) {
-    this.rootfs = rootfs;
-    return this;
-  }
-
-  /**
-   * Rootfs is the path to a directory that will be used as the container&#39;s root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.
-   * @return rootfs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ROOTFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRootfs() {
-    return rootfs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ROOTFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRootfs(String rootfs) {
-    this.rootfs = rootfs;
-  }
-
-
-  public SpecGenerator rootfsMapping(String rootfsMapping) {
-    this.rootfsMapping = rootfsMapping;
-    return this;
-  }
-
-  /**
-   * RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.
-   * @return rootfsMapping
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ROOTFS_MAPPING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRootfsMapping() {
-    return rootfsMapping;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ROOTFS_MAPPING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRootfsMapping(String rootfsMapping) {
-    this.rootfsMapping = rootfsMapping;
-  }
-
-
-  public SpecGenerator rootfsOverlay(Boolean rootfsOverlay) {
-    this.rootfsOverlay = rootfsOverlay;
-    return this;
-  }
-
-  /**
-   * RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.
-   * @return rootfsOverlay
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ROOTFS_OVERLAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRootfsOverlay() {
-    return rootfsOverlay;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ROOTFS_OVERLAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRootfsOverlay(Boolean rootfsOverlay) {
-    this.rootfsOverlay = rootfsOverlay;
-  }
-
-
-  public SpecGenerator rootfsPropagation(String rootfsPropagation) {
-    this.rootfsPropagation = rootfsPropagation;
-    return this;
-  }
-
-  /**
-   * RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.
-   * @return rootfsPropagation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ROOTFS_PROPAGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRootfsPropagation() {
-    return rootfsPropagation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ROOTFS_PROPAGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRootfsPropagation(String rootfsPropagation) {
-    this.rootfsPropagation = rootfsPropagation;
-  }
-
-
-  public SpecGenerator sdnotifyMode(String sdnotifyMode) {
-    this.sdnotifyMode = sdnotifyMode;
-    return this;
-  }
-
-  /**
-   * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
-   * @return sdnotifyMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SDNOTIFY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSdnotifyMode() {
-    return sdnotifyMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SDNOTIFY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSdnotifyMode(String sdnotifyMode) {
-    this.sdnotifyMode = sdnotifyMode;
-  }
-
-
-  public SpecGenerator seccompPolicy(String seccompPolicy) {
-    this.seccompPolicy = seccompPolicy;
-    return this;
-  }
-
-  /**
-   * SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image
-   * @return seccompPolicy
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SECCOMP_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSeccompPolicy() {
-    return seccompPolicy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECCOMP_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSeccompPolicy(String seccompPolicy) {
-    this.seccompPolicy = seccompPolicy;
-  }
-
-
-  public SpecGenerator seccompProfilePath(String seccompProfilePath) {
-    this.seccompProfilePath = seccompProfilePath;
-    return this;
-  }
-
-  /**
-   * SeccompProfilePath is the path to a JSON file containing the container&#39;s Seccomp profile. If not specified, no Seccomp profile will be used. Optional.
-   * @return seccompProfilePath
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SECCOMP_PROFILE_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSeccompProfilePath() {
-    return seccompProfilePath;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECCOMP_PROFILE_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSeccompProfilePath(String seccompProfilePath) {
-    this.seccompProfilePath = seccompProfilePath;
-  }
-
-
-  public SpecGenerator secretEnv(Map<String, String> secretEnv) {
-    this.secretEnv = secretEnv;
-    return this;
-  }
-
-  public SpecGenerator putSecretEnvItem(String key, String secretEnvItem) {
-    if (this.secretEnv == null) {
-      this.secretEnv = new HashMap<>();
-    }
-    this.secretEnv.put(key, secretEnvItem);
-    return this;
-  }
-
-  /**
-   * EnvSecrets are secrets that will be set as environment variables Optional.
-   * @return secretEnv
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SECRET_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getSecretEnv() {
-    return secretEnv;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECRET_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecretEnv(Map<String, String> secretEnv) {
-    this.secretEnv = secretEnv;
-  }
-
-
-  public SpecGenerator secrets(List<@Valid Secret> secrets) {
-    this.secrets = secrets;
-    return this;
-  }
-
-  public SpecGenerator addSecretsItem(Secret secretsItem) {
-    if (this.secrets == null) {
-      this.secrets = new ArrayList<>();
-    }
-    this.secrets.add(secretsItem);
-    return this;
-  }
-
-  /**
-   * Secrets are the secrets that will be added to the container Optional.
-   * @return secrets
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_SECRETS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Secret> getSecrets() {
-    return secrets;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECRETS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecrets(List<@Valid Secret> secrets) {
-    this.secrets = secrets;
-  }
-
-
-  public SpecGenerator selinuxOpts(List<String> selinuxOpts) {
-    this.selinuxOpts = selinuxOpts;
-    return this;
-  }
-
-  public SpecGenerator addSelinuxOptsItem(String selinuxOptsItem) {
-    if (this.selinuxOpts == null) {
-      this.selinuxOpts = new ArrayList<>();
-    }
-    this.selinuxOpts.add(selinuxOptsItem);
-    return this;
-  }
-
-  /**
-   * SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.
-   * @return selinuxOpts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SELINUX_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getSelinuxOpts() {
-    return selinuxOpts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SELINUX_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSelinuxOpts(List<String> selinuxOpts) {
-    this.selinuxOpts = selinuxOpts;
-  }
-
-
-  public SpecGenerator shmSize(Long shmSize) {
-    this.shmSize = shmSize;
-    return this;
-  }
-
-  /**
-   * ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.
-   * @return shmSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getShmSize() {
-    return shmSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setShmSize(Long shmSize) {
-    this.shmSize = shmSize;
-  }
-
-
-  public SpecGenerator shmSizeSystemd(Long shmSizeSystemd) {
-    this.shmSizeSystemd = shmSizeSystemd;
-    return this;
-  }
-
-  /**
-   * ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional
-   * @return shmSizeSystemd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getShmSizeSystemd() {
-    return shmSizeSystemd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setShmSizeSystemd(Long shmSizeSystemd) {
-    this.shmSizeSystemd = shmSizeSystemd;
-  }
-
-
-  public SpecGenerator startupHealthConfig(StartupHealthCheck startupHealthConfig) {
-    this.startupHealthConfig = startupHealthConfig;
-    return this;
-  }
-
-  /**
-   * Get startupHealthConfig
-   * @return startupHealthConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public StartupHealthCheck getStartupHealthConfig() {
-    return startupHealthConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartupHealthConfig(StartupHealthCheck startupHealthConfig) {
-    this.startupHealthConfig = startupHealthConfig;
-  }
-
-
-  public SpecGenerator stdin(Boolean stdin) {
-    this.stdin = stdin;
-    return this;
-  }
-
-  /**
-   * Stdin is whether the container will keep its STDIN open. Optional.
-   * @return stdin
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getStdin() {
-    return stdin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStdin(Boolean stdin) {
-    this.stdin = stdin;
-  }
-
-
-  public SpecGenerator stopSignal(Long stopSignal) {
-    this.stopSignal = stopSignal;
-    return this;
-  }
-
-  /**
-   * It implements the [os.Signal] interface.
-   * @return stopSignal
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getStopSignal() {
-    return stopSignal;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStopSignal(Long stopSignal) {
-    this.stopSignal = stopSignal;
-  }
-
-
-  public SpecGenerator stopTimeout(Integer stopTimeout) {
-    this.stopTimeout = stopTimeout;
-    return this;
-  }
-
-  /**
-   * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
-   * @return stopTimeout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getStopTimeout() {
-    return stopTimeout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStopTimeout(Integer stopTimeout) {
-    this.stopTimeout = stopTimeout;
-  }
-
-
-  public SpecGenerator storageOpts(Map<String, String> storageOpts) {
-    this.storageOpts = storageOpts;
-    return this;
-  }
-
-  public SpecGenerator putStorageOptsItem(String key, String storageOptsItem) {
-    if (this.storageOpts == null) {
-      this.storageOpts = new HashMap<>();
-    }
-    this.storageOpts.put(key, storageOptsItem);
-    return this;
-  }
-
-  /**
-   * StorageOpts is the container&#39;s storage options Optional.
-   * @return storageOpts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STORAGE_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getStorageOpts() {
-    return storageOpts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STORAGE_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStorageOpts(Map<String, String> storageOpts) {
-    this.storageOpts = storageOpts;
-  }
-
-
-  public SpecGenerator sysctl(Map<String, String> sysctl) {
-    this.sysctl = sysctl;
-    return this;
-  }
-
-  public SpecGenerator putSysctlItem(String key, String sysctlItem) {
-    if (this.sysctl == null) {
-      this.sysctl = new HashMap<>();
-    }
-    this.sysctl.put(key, sysctlItem);
-    return this;
-  }
-
-  /**
-   * Sysctl sets kernel parameters for the container
-   * @return sysctl
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SYSCTL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getSysctl() {
-    return sysctl;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SYSCTL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSysctl(Map<String, String> sysctl) {
-    this.sysctl = sysctl;
-  }
-
-
-  public SpecGenerator systemd(String systemd) {
-    this.systemd = systemd;
-    return this;
-  }
-
-  /**
-   * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
-   * @return systemd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SYSTEMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSystemd() {
-    return systemd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SYSTEMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSystemd(String systemd) {
-    this.systemd = systemd;
-  }
-
-
-  public SpecGenerator terminal(Boolean terminal) {
-    this.terminal = terminal;
-    return this;
-  }
-
-  /**
-   * Terminal is whether the container will create a PTY. Optional.
-   * @return terminal
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TERMINAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getTerminal() {
-    return terminal;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TERMINAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTerminal(Boolean terminal) {
-    this.terminal = terminal;
-  }
-
-
-  public SpecGenerator throttleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
-    this.throttleReadBpsDevice = throttleReadBpsDevice;
-    return this;
-  }
-
-  public SpecGenerator putThrottleReadBpsDeviceItem(String key, LinuxThrottleDevice throttleReadBpsDeviceItem) {
-    if (this.throttleReadBpsDevice == null) {
-      this.throttleReadBpsDevice = new HashMap<>();
-    }
-    this.throttleReadBpsDevice.put(key, throttleReadBpsDeviceItem);
-    return this;
-  }
-
-  /**
-   * IO read rate limit per cgroup per device, bytes per second
-   * @return throttleReadBpsDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxThrottleDevice> getThrottleReadBpsDevice() {
-    return throttleReadBpsDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThrottleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
-    this.throttleReadBpsDevice = throttleReadBpsDevice;
-  }
-
-
-  public SpecGenerator throttleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
-    this.throttleReadIOPSDevice = throttleReadIOPSDevice;
-    return this;
-  }
-
-  public SpecGenerator putThrottleReadIOPSDeviceItem(String key, LinuxThrottleDevice throttleReadIOPSDeviceItem) {
-    if (this.throttleReadIOPSDevice == null) {
-      this.throttleReadIOPSDevice = new HashMap<>();
-    }
-    this.throttleReadIOPSDevice.put(key, throttleReadIOPSDeviceItem);
-    return this;
-  }
-
-  /**
-   * IO read rate limit per cgroup per device, IO per second
-   * @return throttleReadIOPSDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxThrottleDevice> getThrottleReadIOPSDevice() {
-    return throttleReadIOPSDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThrottleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
-    this.throttleReadIOPSDevice = throttleReadIOPSDevice;
-  }
-
-
-  public SpecGenerator throttleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
-    this.throttleWriteBpsDevice = throttleWriteBpsDevice;
-    return this;
-  }
-
-  public SpecGenerator putThrottleWriteBpsDeviceItem(String key, LinuxThrottleDevice throttleWriteBpsDeviceItem) {
-    if (this.throttleWriteBpsDevice == null) {
-      this.throttleWriteBpsDevice = new HashMap<>();
-    }
-    this.throttleWriteBpsDevice.put(key, throttleWriteBpsDeviceItem);
-    return this;
-  }
-
-  /**
-   * IO write rate limit per cgroup per device, bytes per second
-   * @return throttleWriteBpsDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxThrottleDevice> getThrottleWriteBpsDevice() {
-    return throttleWriteBpsDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThrottleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
-    this.throttleWriteBpsDevice = throttleWriteBpsDevice;
-  }
-
-
-  public SpecGenerator throttleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
-    this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
-    return this;
-  }
-
-  public SpecGenerator putThrottleWriteIOPSDeviceItem(String key, LinuxThrottleDevice throttleWriteIOPSDeviceItem) {
-    if (this.throttleWriteIOPSDevice == null) {
-      this.throttleWriteIOPSDevice = new HashMap<>();
-    }
-    this.throttleWriteIOPSDevice.put(key, throttleWriteIOPSDeviceItem);
-    return this;
-  }
-
-  /**
-   * IO write rate limit per cgroup per device, IO per second
-   * @return throttleWriteIOPSDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
-    return throttleWriteIOPSDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setThrottleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
-    this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
-  }
-
-
-  public SpecGenerator timeout(Integer timeout) {
-    this.timeout = timeout;
-    return this;
-  }
-
-  /**
-   * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
-   * @return timeout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getTimeout() {
-    return timeout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimeout(Integer timeout) {
-    this.timeout = timeout;
-  }
-
-
-  public SpecGenerator timezone(String timezone) {
-    this.timezone = timezone;
-    return this;
-  }
-
-  /**
-   * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
-   * @return timezone
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TIMEZONE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getTimezone() {
-    return timezone;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TIMEZONE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimezone(String timezone) {
-    this.timezone = timezone;
-  }
-
-
-  public SpecGenerator umask(String umask) {
-    this.umask = umask;
-    return this;
-  }
-
-  /**
-   * Umask is the umask the init process of the container will be run with.
-   * @return umask
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UMASK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUmask() {
-    return umask;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UMASK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUmask(String umask) {
-    this.umask = umask;
-  }
-
-
-  public SpecGenerator unified(Map<String, String> unified) {
-    this.unified = unified;
-    return this;
-  }
-
-  public SpecGenerator putUnifiedItem(String key, String unifiedItem) {
-    if (this.unified == null) {
-      this.unified = new HashMap<>();
-    }
-    this.unified.put(key, unifiedItem);
-    return this;
-  }
-
-  /**
-   * CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.
-   * @return unified
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNIFIED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getUnified() {
-    return unified;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNIFIED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnified(Map<String, String> unified) {
-    this.unified = unified;
-  }
-
-
-  public SpecGenerator unmask(List<String> unmask) {
-    this.unmask = unmask;
-    return this;
-  }
-
-  public SpecGenerator addUnmaskItem(String unmaskItem) {
-    if (this.unmask == null) {
-      this.unmask = new ArrayList<>();
-    }
-    this.unmask.add(unmaskItem);
-    return this;
-  }
-
-  /**
-   * Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.
-   * @return unmask
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNMASK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getUnmask() {
-    return unmask;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNMASK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnmask(List<String> unmask) {
-    this.unmask = unmask;
-  }
-
-
-  public SpecGenerator unsetenv(List<String> unsetenv) {
-    this.unsetenv = unsetenv;
-    return this;
-  }
-
-  public SpecGenerator addUnsetenvItem(String unsetenvItem) {
-    if (this.unsetenv == null) {
-      this.unsetenv = new ArrayList<>();
-    }
-    this.unsetenv.add(unsetenvItem);
-    return this;
-  }
-
-  /**
-   * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
-   * @return unsetenv
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNSETENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getUnsetenv() {
-    return unsetenv;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNSETENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnsetenv(List<String> unsetenv) {
-    this.unsetenv = unsetenv;
-  }
-
-
-  public SpecGenerator unsetenvall(Boolean unsetenvall) {
-    this.unsetenvall = unsetenvall;
-    return this;
-  }
-
-  /**
-   * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
-   * @return unsetenvall
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNSETENVALL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getUnsetenvall() {
-    return unsetenvall;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNSETENVALL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnsetenvall(Boolean unsetenvall) {
-    this.unsetenvall = unsetenvall;
-  }
-
-
-  public SpecGenerator useImageHosts(Boolean useImageHosts) {
-    this.useImageHosts = useImageHosts;
-    return this;
-  }
-
-  /**
-   * UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.
-   * @return useImageHosts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USE_IMAGE_HOSTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getUseImageHosts() {
-    return useImageHosts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USE_IMAGE_HOSTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUseImageHosts(Boolean useImageHosts) {
-    this.useImageHosts = useImageHosts;
-  }
-
-
-  public SpecGenerator useImageResolveConf(Boolean useImageResolveConf) {
-    this.useImageResolveConf = useImageResolveConf;
-    return this;
-  }
-
-  /**
-   * UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional.
-   * @return useImageResolveConf
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getUseImageResolveConf() {
-    return useImageResolveConf;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUseImageResolveConf(Boolean useImageResolveConf) {
-    this.useImageResolveConf = useImageResolveConf;
-  }
-
-
-  public SpecGenerator user(String user) {
-    this.user = user;
-    return this;
-  }
-
-  /**
-   * User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container&#39;s /etc/passwd. If unset, the container will be run as root. Optional.
-   * @return user
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUser() {
-    return user;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-
-  public SpecGenerator userns(Namespace userns) {
-    this.userns = userns;
-    return this;
-  }
-
-  /**
-   * Get userns
-   * @return userns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_USERNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Namespace getUserns() {
-    return userns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USERNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUserns(Namespace userns) {
-    this.userns = userns;
-  }
-
-
-  public SpecGenerator utsns(Namespace utsns) {
-    this.utsns = utsns;
-    return this;
-  }
-
-  /**
-   * Get utsns
-   * @return utsns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_UTSNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Namespace getUtsns() {
-    return utsns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UTSNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUtsns(Namespace utsns) {
-    this.utsns = utsns;
-  }
-
-
-  public SpecGenerator _volatile(Boolean _volatile) {
-    this._volatile = _volatile;
-    return this;
-  }
-
-  /**
-   * Volatile specifies whether the container storage can be optimized at the cost of not syncing all the dirty files in memory. Optional.
-   * @return _volatile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLATILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getVolatile() {
-    return _volatile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLATILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolatile(Boolean _volatile) {
-    this._volatile = _volatile;
-  }
-
-
-  public SpecGenerator volumes(List<@Valid NamedVolume> volumes) {
-    this.volumes = volumes;
-    return this;
-  }
-
-  public SpecGenerator addVolumesItem(NamedVolume volumesItem) {
-    if (this.volumes == null) {
-      this.volumes = new ArrayList<>();
-    }
-    this.volumes.add(volumesItem);
-    return this;
-  }
-
-  /**
-   * Volumes are named volumes that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
-   * @return volumes
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid NamedVolume> getVolumes() {
-    return volumes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumes(List<@Valid NamedVolume> volumes) {
-    this.volumes = volumes;
-  }
-
-
-  public SpecGenerator volumesFrom(List<String> volumesFrom) {
-    this.volumesFrom = volumesFrom;
-    return this;
-  }
-
-  public SpecGenerator addVolumesFromItem(String volumesFromItem) {
-    if (this.volumesFrom == null) {
-      this.volumesFrom = new ArrayList<>();
-    }
-    this.volumesFrom.add(volumesFromItem);
-    return this;
-  }
-
-  /**
-   * VolumesFrom is a set of containers whose volumes will be added to this container. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are &#39;ro&#39;, &#39;rw&#39;, and &#39;z&#39;. Options will be used for all volumes sourced from the container. Optional.
-   * @return volumesFrom
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getVolumesFrom() {
-    return volumesFrom;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumesFrom(List<String> volumesFrom) {
-    this.volumesFrom = volumesFrom;
-  }
-
-
-  public SpecGenerator weightDevice(Map<String, LinuxWeightDevice> weightDevice) {
-    this.weightDevice = weightDevice;
-    return this;
-  }
-
-  public SpecGenerator putWeightDeviceItem(String key, LinuxWeightDevice weightDeviceItem) {
-    if (this.weightDevice == null) {
-      this.weightDevice = new HashMap<>();
-    }
-    this.weightDevice.put(key, weightDeviceItem);
-    return this;
-  }
-
-  /**
-   * Weight per cgroup per device, can override BlkioWeight
-   * @return weightDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxWeightDevice> getWeightDevice() {
-    return weightDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWeightDevice(Map<String, LinuxWeightDevice> weightDevice) {
-    this.weightDevice = weightDevice;
-  }
-
-
-  public SpecGenerator workDir(String workDir) {
-    this.workDir = workDir;
-    return this;
-  }
-
-  /**
-   * WorkDir is the container&#39;s working directory. If unset, the default, /, will be used. Optional.
-   * @return workDir
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_WORK_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getWorkDir() {
-    return workDir;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WORK_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWorkDir(String workDir) {
-    this.workDir = workDir;
-  }
-
-
-  /**
-   * Return true if this SpecGenerator object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SpecGenerator specGenerator = (SpecGenerator) o;
-    return Objects.equals(this.networks, specGenerator.networks) &&
-        Objects.equals(this.annotations, specGenerator.annotations) &&
-        Objects.equals(this.apparmorProfile, specGenerator.apparmorProfile) &&
-        Objects.equals(this.baseHostsFile, specGenerator.baseHostsFile) &&
-        Objects.equals(this.capAdd, specGenerator.capAdd) &&
-        Objects.equals(this.capDrop, specGenerator.capDrop) &&
-        Objects.equals(this.cgroupParent, specGenerator.cgroupParent) &&
-        Objects.equals(this.cgroupns, specGenerator.cgroupns) &&
-        Objects.equals(this.cgroupsMode, specGenerator.cgroupsMode) &&
-        Objects.equals(this.chrootDirectories, specGenerator.chrootDirectories) &&
-        Objects.equals(this.cniNetworks, specGenerator.cniNetworks) &&
-        Objects.equals(this.command, specGenerator.command) &&
-        Objects.equals(this.conmonPidFile, specGenerator.conmonPidFile) &&
-        Objects.equals(this.containerCreateCommand, specGenerator.containerCreateCommand) &&
-        Objects.equals(this.createWorkingDir, specGenerator.createWorkingDir) &&
-        Objects.equals(this.dependencyContainers, specGenerator.dependencyContainers) &&
-        Objects.equals(this.deviceCgroupRule, specGenerator.deviceCgroupRule) &&
-        Objects.equals(this.devices, specGenerator.devices) &&
-        Objects.equals(this.devicesFrom, specGenerator.devicesFrom) &&
-        Objects.equals(this.dnsOption, specGenerator.dnsOption) &&
-        Objects.equals(this.dnsSearch, specGenerator.dnsSearch) &&
-        Objects.equals(this.dnsServer, specGenerator.dnsServer) &&
-        Objects.equals(this.entrypoint, specGenerator.entrypoint) &&
-        Objects.equals(this.env, specGenerator.env) &&
-        Objects.equals(this.envHost, specGenerator.envHost) &&
-        Objects.equals(this.envmerge, specGenerator.envmerge) &&
-        Objects.equals(this.expose, specGenerator.expose) &&
-        Objects.equals(this.groupEntry, specGenerator.groupEntry) &&
-        Objects.equals(this.groups, specGenerator.groups) &&
-        Objects.equals(this.healthCheckOnFailureAction, specGenerator.healthCheckOnFailureAction) &&
-        Objects.equals(this.healthLogDestination, specGenerator.healthLogDestination) &&
-        Objects.equals(this.healthMaxLogCount, specGenerator.healthMaxLogCount) &&
-        Objects.equals(this.healthMaxLogSize, specGenerator.healthMaxLogSize) &&
-        Objects.equals(this.healthconfig, specGenerator.healthconfig) &&
-        Objects.equals(this.hostDeviceList, specGenerator.hostDeviceList) &&
-        Objects.equals(this.hostadd, specGenerator.hostadd) &&
-        Objects.equals(this.hostname, specGenerator.hostname) &&
-        Objects.equals(this.hostusers, specGenerator.hostusers) &&
-        Objects.equals(this.httpproxy, specGenerator.httpproxy) &&
-        Objects.equals(this.idmappings, specGenerator.idmappings) &&
-        Objects.equals(this.image, specGenerator.image) &&
-        Objects.equals(this.imageArch, specGenerator.imageArch) &&
-        Objects.equals(this.imageOs, specGenerator.imageOs) &&
-        Objects.equals(this.imageVariant, specGenerator.imageVariant) &&
-        Objects.equals(this.imageVolumeMode, specGenerator.imageVolumeMode) &&
-        Objects.equals(this.imageVolumes, specGenerator.imageVolumes) &&
-        Objects.equals(this.init, specGenerator.init) &&
-        Objects.equals(this.initContainerType, specGenerator.initContainerType) &&
-        Objects.equals(this.initPath, specGenerator.initPath) &&
-        Objects.equals(this.intelRdt, specGenerator.intelRdt) &&
-        Objects.equals(this.ipcns, specGenerator.ipcns) &&
-        Objects.equals(this.labelNested, specGenerator.labelNested) &&
-        Objects.equals(this.labels, specGenerator.labels) &&
-        Objects.equals(this.logConfiguration, specGenerator.logConfiguration) &&
-        Objects.equals(this.managePassword, specGenerator.managePassword) &&
-        Objects.equals(this.mask, specGenerator.mask) &&
-        Objects.equals(this.mounts, specGenerator.mounts) &&
-        Objects.equals(this.name, specGenerator.name) &&
-        Objects.equals(this.netns, specGenerator.netns) &&
-        Objects.equals(this.networkOptions, specGenerator.networkOptions) &&
-        Objects.equals(this.noNewPrivileges, specGenerator.noNewPrivileges) &&
-        Objects.equals(this.ociRuntime, specGenerator.ociRuntime) &&
-        Objects.equals(this.oomScoreAdj, specGenerator.oomScoreAdj) &&
-        Objects.equals(this.overlayVolumes, specGenerator.overlayVolumes) &&
-        Objects.equals(this.passwdEntry, specGenerator.passwdEntry) &&
-        Objects.equals(this.personality, specGenerator.personality) &&
-        Objects.equals(this.pidns, specGenerator.pidns) &&
-        Objects.equals(this.pod, specGenerator.pod) &&
-        Objects.equals(this.portmappings, specGenerator.portmappings) &&
-        Objects.equals(this.privileged, specGenerator.privileged) &&
-        Objects.equals(this.procfsOpts, specGenerator.procfsOpts) &&
-        Objects.equals(this.publishImagePorts, specGenerator.publishImagePorts) &&
-        Objects.equals(this.rLimits, specGenerator.rLimits) &&
-        Objects.equals(this.rawImageName, specGenerator.rawImageName) &&
-        Objects.equals(this.readOnlyFilesystem, specGenerator.readOnlyFilesystem) &&
-        Objects.equals(this.readWriteTmpfs, specGenerator.readWriteTmpfs) &&
-        Objects.equals(this.remove, specGenerator.remove) &&
-        Objects.equals(this.removeImage, specGenerator.removeImage) &&
-        Objects.equals(this.resourceLimits, specGenerator.resourceLimits) &&
-        Objects.equals(this.restartPolicy, specGenerator.restartPolicy) &&
-        Objects.equals(this.restartTries, specGenerator.restartTries) &&
-        Objects.equals(this.rootfs, specGenerator.rootfs) &&
-        Objects.equals(this.rootfsMapping, specGenerator.rootfsMapping) &&
-        Objects.equals(this.rootfsOverlay, specGenerator.rootfsOverlay) &&
-        Objects.equals(this.rootfsPropagation, specGenerator.rootfsPropagation) &&
-        Objects.equals(this.sdnotifyMode, specGenerator.sdnotifyMode) &&
-        Objects.equals(this.seccompPolicy, specGenerator.seccompPolicy) &&
-        Objects.equals(this.seccompProfilePath, specGenerator.seccompProfilePath) &&
-        Objects.equals(this.secretEnv, specGenerator.secretEnv) &&
-        Objects.equals(this.secrets, specGenerator.secrets) &&
-        Objects.equals(this.selinuxOpts, specGenerator.selinuxOpts) &&
-        Objects.equals(this.shmSize, specGenerator.shmSize) &&
-        Objects.equals(this.shmSizeSystemd, specGenerator.shmSizeSystemd) &&
-        Objects.equals(this.startupHealthConfig, specGenerator.startupHealthConfig) &&
-        Objects.equals(this.stdin, specGenerator.stdin) &&
-        Objects.equals(this.stopSignal, specGenerator.stopSignal) &&
-        Objects.equals(this.stopTimeout, specGenerator.stopTimeout) &&
-        Objects.equals(this.storageOpts, specGenerator.storageOpts) &&
-        Objects.equals(this.sysctl, specGenerator.sysctl) &&
-        Objects.equals(this.systemd, specGenerator.systemd) &&
-        Objects.equals(this.terminal, specGenerator.terminal) &&
-        Objects.equals(this.throttleReadBpsDevice, specGenerator.throttleReadBpsDevice) &&
-        Objects.equals(this.throttleReadIOPSDevice, specGenerator.throttleReadIOPSDevice) &&
-        Objects.equals(this.throttleWriteBpsDevice, specGenerator.throttleWriteBpsDevice) &&
-        Objects.equals(this.throttleWriteIOPSDevice, specGenerator.throttleWriteIOPSDevice) &&
-        Objects.equals(this.timeout, specGenerator.timeout) &&
-        Objects.equals(this.timezone, specGenerator.timezone) &&
-        Objects.equals(this.umask, specGenerator.umask) &&
-        Objects.equals(this.unified, specGenerator.unified) &&
-        Objects.equals(this.unmask, specGenerator.unmask) &&
-        Objects.equals(this.unsetenv, specGenerator.unsetenv) &&
-        Objects.equals(this.unsetenvall, specGenerator.unsetenvall) &&
-        Objects.equals(this.useImageHosts, specGenerator.useImageHosts) &&
-        Objects.equals(this.useImageResolveConf, specGenerator.useImageResolveConf) &&
-        Objects.equals(this.user, specGenerator.user) &&
-        Objects.equals(this.userns, specGenerator.userns) &&
-        Objects.equals(this.utsns, specGenerator.utsns) &&
-        Objects.equals(this._volatile, specGenerator._volatile) &&
-        Objects.equals(this.volumes, specGenerator.volumes) &&
-        Objects.equals(this.volumesFrom, specGenerator.volumesFrom) &&
-        Objects.equals(this.weightDevice, specGenerator.weightDevice) &&
-        Objects.equals(this.workDir, specGenerator.workDir);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(networks, annotations, apparmorProfile, baseHostsFile, capAdd, capDrop, cgroupParent, cgroupns, cgroupsMode, chrootDirectories, cniNetworks, command, conmonPidFile, containerCreateCommand, createWorkingDir, dependencyContainers, deviceCgroupRule, devices, devicesFrom, dnsOption, dnsSearch, dnsServer, entrypoint, env, envHost, envmerge, expose, groupEntry, groups, healthCheckOnFailureAction, healthLogDestination, healthMaxLogCount, healthMaxLogSize, healthconfig, hostDeviceList, hostadd, hostname, hostusers, httpproxy, idmappings, image, imageArch, imageOs, imageVariant, imageVolumeMode, imageVolumes, init, initContainerType, initPath, intelRdt, ipcns, labelNested, labels, logConfiguration, managePassword, mask, mounts, name, netns, networkOptions, noNewPrivileges, ociRuntime, oomScoreAdj, overlayVolumes, passwdEntry, personality, pidns, pod, portmappings, privileged, procfsOpts, publishImagePorts, rLimits, rawImageName, readOnlyFilesystem, readWriteTmpfs, remove, removeImage, resourceLimits, restartPolicy, restartTries, rootfs, rootfsMapping, rootfsOverlay, rootfsPropagation, sdnotifyMode, seccompPolicy, seccompProfilePath, secretEnv, secrets, selinuxOpts, shmSize, shmSizeSystemd, startupHealthConfig, stdin, stopSignal, stopTimeout, storageOpts, sysctl, systemd, terminal, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, timeout, timezone, umask, unified, unmask, unsetenv, unsetenvall, useImageHosts, useImageResolveConf, user, userns, utsns, _volatile, volumes, volumesFrom, weightDevice, workDir);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SpecGenerator {\n");
-    sb.append("    networks: ").append(toIndentedString(networks)).append("\n");
-    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
-    sb.append("    apparmorProfile: ").append(toIndentedString(apparmorProfile)).append("\n");
-    sb.append("    baseHostsFile: ").append(toIndentedString(baseHostsFile)).append("\n");
-    sb.append("    capAdd: ").append(toIndentedString(capAdd)).append("\n");
-    sb.append("    capDrop: ").append(toIndentedString(capDrop)).append("\n");
-    sb.append("    cgroupParent: ").append(toIndentedString(cgroupParent)).append("\n");
-    sb.append("    cgroupns: ").append(toIndentedString(cgroupns)).append("\n");
-    sb.append("    cgroupsMode: ").append(toIndentedString(cgroupsMode)).append("\n");
-    sb.append("    chrootDirectories: ").append(toIndentedString(chrootDirectories)).append("\n");
-    sb.append("    cniNetworks: ").append(toIndentedString(cniNetworks)).append("\n");
-    sb.append("    command: ").append(toIndentedString(command)).append("\n");
-    sb.append("    conmonPidFile: ").append(toIndentedString(conmonPidFile)).append("\n");
-    sb.append("    containerCreateCommand: ").append(toIndentedString(containerCreateCommand)).append("\n");
-    sb.append("    createWorkingDir: ").append(toIndentedString(createWorkingDir)).append("\n");
-    sb.append("    dependencyContainers: ").append(toIndentedString(dependencyContainers)).append("\n");
-    sb.append("    deviceCgroupRule: ").append(toIndentedString(deviceCgroupRule)).append("\n");
-    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
-    sb.append("    devicesFrom: ").append(toIndentedString(devicesFrom)).append("\n");
-    sb.append("    dnsOption: ").append(toIndentedString(dnsOption)).append("\n");
-    sb.append("    dnsSearch: ").append(toIndentedString(dnsSearch)).append("\n");
-    sb.append("    dnsServer: ").append(toIndentedString(dnsServer)).append("\n");
-    sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
-    sb.append("    env: ").append(toIndentedString(env)).append("\n");
-    sb.append("    envHost: ").append(toIndentedString(envHost)).append("\n");
-    sb.append("    envmerge: ").append(toIndentedString(envmerge)).append("\n");
-    sb.append("    expose: ").append(toIndentedString(expose)).append("\n");
-    sb.append("    groupEntry: ").append(toIndentedString(groupEntry)).append("\n");
-    sb.append("    groups: ").append(toIndentedString(groups)).append("\n");
-    sb.append("    healthCheckOnFailureAction: ").append(toIndentedString(healthCheckOnFailureAction)).append("\n");
-    sb.append("    healthLogDestination: ").append(toIndentedString(healthLogDestination)).append("\n");
-    sb.append("    healthMaxLogCount: ").append(toIndentedString(healthMaxLogCount)).append("\n");
-    sb.append("    healthMaxLogSize: ").append(toIndentedString(healthMaxLogSize)).append("\n");
-    sb.append("    healthconfig: ").append(toIndentedString(healthconfig)).append("\n");
-    sb.append("    hostDeviceList: ").append(toIndentedString(hostDeviceList)).append("\n");
-    sb.append("    hostadd: ").append(toIndentedString(hostadd)).append("\n");
-    sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
-    sb.append("    hostusers: ").append(toIndentedString(hostusers)).append("\n");
-    sb.append("    httpproxy: ").append(toIndentedString(httpproxy)).append("\n");
-    sb.append("    idmappings: ").append(toIndentedString(idmappings)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    imageArch: ").append(toIndentedString(imageArch)).append("\n");
-    sb.append("    imageOs: ").append(toIndentedString(imageOs)).append("\n");
-    sb.append("    imageVariant: ").append(toIndentedString(imageVariant)).append("\n");
-    sb.append("    imageVolumeMode: ").append(toIndentedString(imageVolumeMode)).append("\n");
-    sb.append("    imageVolumes: ").append(toIndentedString(imageVolumes)).append("\n");
-    sb.append("    init: ").append(toIndentedString(init)).append("\n");
-    sb.append("    initContainerType: ").append(toIndentedString(initContainerType)).append("\n");
-    sb.append("    initPath: ").append(toIndentedString(initPath)).append("\n");
-    sb.append("    intelRdt: ").append(toIndentedString(intelRdt)).append("\n");
-    sb.append("    ipcns: ").append(toIndentedString(ipcns)).append("\n");
-    sb.append("    labelNested: ").append(toIndentedString(labelNested)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    logConfiguration: ").append(toIndentedString(logConfiguration)).append("\n");
-    sb.append("    managePassword: ").append(toIndentedString(managePassword)).append("\n");
-    sb.append("    mask: ").append(toIndentedString(mask)).append("\n");
-    sb.append("    mounts: ").append(toIndentedString(mounts)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    netns: ").append(toIndentedString(netns)).append("\n");
-    sb.append("    networkOptions: ").append(toIndentedString(networkOptions)).append("\n");
-    sb.append("    noNewPrivileges: ").append(toIndentedString(noNewPrivileges)).append("\n");
-    sb.append("    ociRuntime: ").append(toIndentedString(ociRuntime)).append("\n");
-    sb.append("    oomScoreAdj: ").append(toIndentedString(oomScoreAdj)).append("\n");
-    sb.append("    overlayVolumes: ").append(toIndentedString(overlayVolumes)).append("\n");
-    sb.append("    passwdEntry: ").append(toIndentedString(passwdEntry)).append("\n");
-    sb.append("    personality: ").append(toIndentedString(personality)).append("\n");
-    sb.append("    pidns: ").append(toIndentedString(pidns)).append("\n");
-    sb.append("    pod: ").append(toIndentedString(pod)).append("\n");
-    sb.append("    portmappings: ").append(toIndentedString(portmappings)).append("\n");
-    sb.append("    privileged: ").append(toIndentedString(privileged)).append("\n");
-    sb.append("    procfsOpts: ").append(toIndentedString(procfsOpts)).append("\n");
-    sb.append("    publishImagePorts: ").append(toIndentedString(publishImagePorts)).append("\n");
-    sb.append("    rLimits: ").append(toIndentedString(rLimits)).append("\n");
-    sb.append("    rawImageName: ").append(toIndentedString(rawImageName)).append("\n");
-    sb.append("    readOnlyFilesystem: ").append(toIndentedString(readOnlyFilesystem)).append("\n");
-    sb.append("    readWriteTmpfs: ").append(toIndentedString(readWriteTmpfs)).append("\n");
-    sb.append("    remove: ").append(toIndentedString(remove)).append("\n");
-    sb.append("    removeImage: ").append(toIndentedString(removeImage)).append("\n");
-    sb.append("    resourceLimits: ").append(toIndentedString(resourceLimits)).append("\n");
-    sb.append("    restartPolicy: ").append(toIndentedString(restartPolicy)).append("\n");
-    sb.append("    restartTries: ").append(toIndentedString(restartTries)).append("\n");
-    sb.append("    rootfs: ").append(toIndentedString(rootfs)).append("\n");
-    sb.append("    rootfsMapping: ").append(toIndentedString(rootfsMapping)).append("\n");
-    sb.append("    rootfsOverlay: ").append(toIndentedString(rootfsOverlay)).append("\n");
-    sb.append("    rootfsPropagation: ").append(toIndentedString(rootfsPropagation)).append("\n");
-    sb.append("    sdnotifyMode: ").append(toIndentedString(sdnotifyMode)).append("\n");
-    sb.append("    seccompPolicy: ").append(toIndentedString(seccompPolicy)).append("\n");
-    sb.append("    seccompProfilePath: ").append(toIndentedString(seccompProfilePath)).append("\n");
-    sb.append("    secretEnv: ").append(toIndentedString(secretEnv)).append("\n");
-    sb.append("    secrets: ").append(toIndentedString(secrets)).append("\n");
-    sb.append("    selinuxOpts: ").append(toIndentedString(selinuxOpts)).append("\n");
-    sb.append("    shmSize: ").append(toIndentedString(shmSize)).append("\n");
-    sb.append("    shmSizeSystemd: ").append(toIndentedString(shmSizeSystemd)).append("\n");
-    sb.append("    startupHealthConfig: ").append(toIndentedString(startupHealthConfig)).append("\n");
-    sb.append("    stdin: ").append(toIndentedString(stdin)).append("\n");
-    sb.append("    stopSignal: ").append(toIndentedString(stopSignal)).append("\n");
-    sb.append("    stopTimeout: ").append(toIndentedString(stopTimeout)).append("\n");
-    sb.append("    storageOpts: ").append(toIndentedString(storageOpts)).append("\n");
-    sb.append("    sysctl: ").append(toIndentedString(sysctl)).append("\n");
-    sb.append("    systemd: ").append(toIndentedString(systemd)).append("\n");
-    sb.append("    terminal: ").append(toIndentedString(terminal)).append("\n");
-    sb.append("    throttleReadBpsDevice: ").append(toIndentedString(throttleReadBpsDevice)).append("\n");
-    sb.append("    throttleReadIOPSDevice: ").append(toIndentedString(throttleReadIOPSDevice)).append("\n");
-    sb.append("    throttleWriteBpsDevice: ").append(toIndentedString(throttleWriteBpsDevice)).append("\n");
-    sb.append("    throttleWriteIOPSDevice: ").append(toIndentedString(throttleWriteIOPSDevice)).append("\n");
-    sb.append("    timeout: ").append(toIndentedString(timeout)).append("\n");
-    sb.append("    timezone: ").append(toIndentedString(timezone)).append("\n");
-    sb.append("    umask: ").append(toIndentedString(umask)).append("\n");
-    sb.append("    unified: ").append(toIndentedString(unified)).append("\n");
-    sb.append("    unmask: ").append(toIndentedString(unmask)).append("\n");
-    sb.append("    unsetenv: ").append(toIndentedString(unsetenv)).append("\n");
-    sb.append("    unsetenvall: ").append(toIndentedString(unsetenvall)).append("\n");
-    sb.append("    useImageHosts: ").append(toIndentedString(useImageHosts)).append("\n");
-    sb.append("    useImageResolveConf: ").append(toIndentedString(useImageResolveConf)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    userns: ").append(toIndentedString(userns)).append("\n");
-    sb.append("    utsns: ").append(toIndentedString(utsns)).append("\n");
-    sb.append("    _volatile: ").append(toIndentedString(_volatile)).append("\n");
-    sb.append("    volumes: ").append(toIndentedString(volumes)).append("\n");
-    sb.append("    volumesFrom: ").append(toIndentedString(volumesFrom)).append("\n");
-    sb.append("    weightDevice: ").append(toIndentedString(weightDevice)).append("\n");
-    sb.append("    workDir: ").append(toIndentedString(workDir)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_NETWORKS = "Networks";
+    public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
+    public static final String SERIALIZED_NAME_APPARMOR_PROFILE = "apparmor_profile";
+    public static final String SERIALIZED_NAME_BASE_HOSTS_FILE = "base_hosts_file";
+    public static final String SERIALIZED_NAME_CAP_ADD = "cap_add";
+    public static final String SERIALIZED_NAME_CAP_DROP = "cap_drop";
+    public static final String SERIALIZED_NAME_CGROUP_PARENT = "cgroup_parent";
+    public static final String SERIALIZED_NAME_CGROUPNS = "cgroupns";
+    public static final String SERIALIZED_NAME_CGROUPS_MODE = "cgroups_mode";
+    public static final String SERIALIZED_NAME_CHROOT_DIRECTORIES = "chroot_directories";
+    public static final String SERIALIZED_NAME_CNI_NETWORKS = "cni_networks";
+    public static final String SERIALIZED_NAME_COMMAND = "command";
+    public static final String SERIALIZED_NAME_CONMON_PID_FILE = "conmon_pid_file";
+    public static final String SERIALIZED_NAME_CONTAINER_CREATE_COMMAND = "containerCreateCommand";
+    public static final String SERIALIZED_NAME_CREATE_WORKING_DIR = "create_working_dir";
+    public static final String SERIALIZED_NAME_DEPENDENCY_CONTAINERS = "dependencyContainers";
+    public static final String SERIALIZED_NAME_DEVICE_CGROUP_RULE = "device_cgroup_rule";
+    public static final String SERIALIZED_NAME_DEVICES = "devices";
+    public static final String SERIALIZED_NAME_DEVICES_FROM = "devices_from";
+    public static final String SERIALIZED_NAME_DNS_OPTION = "dns_option";
+    public static final String SERIALIZED_NAME_DNS_SEARCH = "dns_search";
+    public static final String SERIALIZED_NAME_DNS_SERVER = "dns_server";
+    public static final String SERIALIZED_NAME_ENTRYPOINT = "entrypoint";
+    public static final String SERIALIZED_NAME_ENV = "env";
+    public static final String SERIALIZED_NAME_ENV_HOST = "env_host";
+    public static final String SERIALIZED_NAME_ENVMERGE = "envmerge";
+    public static final String SERIALIZED_NAME_EXPOSE = "expose";
+    public static final String SERIALIZED_NAME_GROUP_ENTRY = "group_entry";
+    public static final String SERIALIZED_NAME_GROUPS = "groups";
+    public static final String SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION = "health_check_on_failure_action";
+    public static final String SERIALIZED_NAME_HEALTH_LOG_DESTINATION = "healthLogDestination";
+    public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT = "healthMaxLogCount";
+    public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE = "healthMaxLogSize";
+    public static final String SERIALIZED_NAME_HEALTHCONFIG = "healthconfig";
+    public static final String SERIALIZED_NAME_HOST_DEVICE_LIST = "host_device_list";
+    public static final String SERIALIZED_NAME_HOSTADD = "hostadd";
+    public static final String SERIALIZED_NAME_HOSTNAME = "hostname";
+    public static final String SERIALIZED_NAME_HOSTUSERS = "hostusers";
+    public static final String SERIALIZED_NAME_HTTPPROXY = "httpproxy";
+    public static final String SERIALIZED_NAME_IDMAPPINGS = "idmappings";
+    public static final String SERIALIZED_NAME_IMAGE = "image";
+    public static final String SERIALIZED_NAME_IMAGE_ARCH = "image_arch";
+    public static final String SERIALIZED_NAME_IMAGE_OS = "image_os";
+    public static final String SERIALIZED_NAME_IMAGE_VARIANT = "image_variant";
+    public static final String SERIALIZED_NAME_IMAGE_VOLUME_MODE = "image_volume_mode";
+    public static final String SERIALIZED_NAME_IMAGE_VOLUMES = "image_volumes";
+    public static final String SERIALIZED_NAME_INIT = "init";
+    public static final String SERIALIZED_NAME_INIT_CONTAINER_TYPE = "init_container_type";
+    public static final String SERIALIZED_NAME_INIT_PATH = "init_path";
+    public static final String SERIALIZED_NAME_INTEL_RDT = "intelRdt";
+    public static final String SERIALIZED_NAME_IPCNS = "ipcns";
+    public static final String SERIALIZED_NAME_LABEL_NESTED = "label_nested";
+    public static final String SERIALIZED_NAME_LABELS = "labels";
+    public static final String SERIALIZED_NAME_LOG_CONFIGURATION = "log_configuration";
+    public static final String SERIALIZED_NAME_MANAGE_PASSWORD = "manage_password";
+    public static final String SERIALIZED_NAME_MASK = "mask";
+    public static final String SERIALIZED_NAME_MOUNTS = "mounts";
+    public static final String SERIALIZED_NAME_NAME = "name";
+    public static final String SERIALIZED_NAME_NETNS = "netns";
+    public static final String SERIALIZED_NAME_NETWORK_OPTIONS = "network_options";
+    public static final String SERIALIZED_NAME_NO_NEW_PRIVILEGES = "no_new_privileges";
+    public static final String SERIALIZED_NAME_OCI_RUNTIME = "oci_runtime";
+    public static final String SERIALIZED_NAME_OOM_SCORE_ADJ = "oom_score_adj";
+    public static final String SERIALIZED_NAME_OVERLAY_VOLUMES = "overlay_volumes";
+    public static final String SERIALIZED_NAME_PASSWD_ENTRY = "passwd_entry";
+    public static final String SERIALIZED_NAME_PERSONALITY = "personality";
+    public static final String SERIALIZED_NAME_PIDNS = "pidns";
+    public static final String SERIALIZED_NAME_POD = "pod";
+    public static final String SERIALIZED_NAME_PORTMAPPINGS = "portmappings";
+    public static final String SERIALIZED_NAME_PRIVILEGED = "privileged";
+    public static final String SERIALIZED_NAME_PROCFS_OPTS = "procfs_opts";
+    public static final String SERIALIZED_NAME_PUBLISH_IMAGE_PORTS = "publish_image_ports";
+    public static final String SERIALIZED_NAME_R_LIMITS = "r_limits";
+    public static final String SERIALIZED_NAME_RAW_IMAGE_NAME = "raw_image_name";
+    public static final String SERIALIZED_NAME_READ_ONLY_FILESYSTEM = "read_only_filesystem";
+    public static final String SERIALIZED_NAME_READ_WRITE_TMPFS = "read_write_tmpfs";
+    public static final String SERIALIZED_NAME_REMOVE = "remove";
+    public static final String SERIALIZED_NAME_REMOVE_IMAGE = "removeImage";
+    public static final String SERIALIZED_NAME_RESOURCE_LIMITS = "resource_limits";
+    public static final String SERIALIZED_NAME_RESTART_POLICY = "restart_policy";
+    public static final String SERIALIZED_NAME_RESTART_TRIES = "restart_tries";
+    public static final String SERIALIZED_NAME_ROOTFS = "rootfs";
+    public static final String SERIALIZED_NAME_ROOTFS_MAPPING = "rootfs_mapping";
+    public static final String SERIALIZED_NAME_ROOTFS_OVERLAY = "rootfs_overlay";
+    public static final String SERIALIZED_NAME_ROOTFS_PROPAGATION = "rootfs_propagation";
+    public static final String SERIALIZED_NAME_SDNOTIFY_MODE = "sdnotifyMode";
+    public static final String SERIALIZED_NAME_SECCOMP_POLICY = "seccomp_policy";
+    public static final String SERIALIZED_NAME_SECCOMP_PROFILE_PATH = "seccomp_profile_path";
+    public static final String SERIALIZED_NAME_SECRET_ENV = "secret_env";
+    public static final String SERIALIZED_NAME_SECRETS = "secrets";
+    public static final String SERIALIZED_NAME_SELINUX_OPTS = "selinux_opts";
+    public static final String SERIALIZED_NAME_SHM_SIZE = "shm_size";
+    public static final String SERIALIZED_NAME_SHM_SIZE_SYSTEMD = "shm_size_systemd";
+    public static final String SERIALIZED_NAME_STARTUP_HEALTH_CONFIG = "startupHealthConfig";
+    public static final String SERIALIZED_NAME_STDIN = "stdin";
+    public static final String SERIALIZED_NAME_STOP_SIGNAL = "stop_signal";
+    public static final String SERIALIZED_NAME_STOP_TIMEOUT = "stop_timeout";
+    public static final String SERIALIZED_NAME_STORAGE_OPTS = "storage_opts";
+    public static final String SERIALIZED_NAME_SYSCTL = "sysctl";
+    public static final String SERIALIZED_NAME_SYSTEMD = "systemd";
+    public static final String SERIALIZED_NAME_TERMINAL = "terminal";
+    public static final String SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
+    public static final String SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE = "throttleReadIOPSDevice";
+    public static final String SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
+    public static final String SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE = "throttleWriteIOPSDevice";
+    public static final String SERIALIZED_NAME_TIMEOUT = "timeout";
+    public static final String SERIALIZED_NAME_TIMEZONE = "timezone";
+    public static final String SERIALIZED_NAME_UMASK = "umask";
+    public static final String SERIALIZED_NAME_UNIFIED = "unified";
+    public static final String SERIALIZED_NAME_UNMASK = "unmask";
+    public static final String SERIALIZED_NAME_UNSETENV = "unsetenv";
+    public static final String SERIALIZED_NAME_UNSETENVALL = "unsetenvall";
+    public static final String SERIALIZED_NAME_USE_IMAGE_HOSTS = "use_image_hosts";
+    public static final String SERIALIZED_NAME_USE_IMAGE_RESOLVE_CONF = "use_image_resolve_conf";
+    public static final String SERIALIZED_NAME_USER = "user";
+    public static final String SERIALIZED_NAME_USERNS = "userns";
+    public static final String SERIALIZED_NAME_UTSNS = "utsns";
+    public static final String SERIALIZED_NAME_VOLATILE = "volatile";
+    public static final String SERIALIZED_NAME_VOLUMES = "volumes";
+    public static final String SERIALIZED_NAME_VOLUMES_FROM = "volumes_from";
+    public static final String SERIALIZED_NAME_WEIGHT_DEVICE = "weightDevice";
+    public static final String SERIALIZED_NAME_WORK_DIR = "work_dir";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Networks");
+        openapiFields.add("annotations");
+        openapiFields.add("apparmor_profile");
+        openapiFields.add("base_hosts_file");
+        openapiFields.add("cap_add");
+        openapiFields.add("cap_drop");
+        openapiFields.add("cgroup_parent");
+        openapiFields.add("cgroupns");
+        openapiFields.add("cgroups_mode");
+        openapiFields.add("chroot_directories");
+        openapiFields.add("cni_networks");
+        openapiFields.add("command");
+        openapiFields.add("conmon_pid_file");
+        openapiFields.add("containerCreateCommand");
+        openapiFields.add("create_working_dir");
+        openapiFields.add("dependencyContainers");
+        openapiFields.add("device_cgroup_rule");
+        openapiFields.add("devices");
+        openapiFields.add("devices_from");
+        openapiFields.add("dns_option");
+        openapiFields.add("dns_search");
+        openapiFields.add("dns_server");
+        openapiFields.add("entrypoint");
+        openapiFields.add("env");
+        openapiFields.add("env_host");
+        openapiFields.add("envmerge");
+        openapiFields.add("expose");
+        openapiFields.add("group_entry");
+        openapiFields.add("groups");
+        openapiFields.add("health_check_on_failure_action");
+        openapiFields.add("healthLogDestination");
+        openapiFields.add("healthMaxLogCount");
+        openapiFields.add("healthMaxLogSize");
+        openapiFields.add("healthconfig");
+        openapiFields.add("host_device_list");
+        openapiFields.add("hostadd");
+        openapiFields.add("hostname");
+        openapiFields.add("hostusers");
+        openapiFields.add("httpproxy");
+        openapiFields.add("idmappings");
+        openapiFields.add("image");
+        openapiFields.add("image_arch");
+        openapiFields.add("image_os");
+        openapiFields.add("image_variant");
+        openapiFields.add("image_volume_mode");
+        openapiFields.add("image_volumes");
+        openapiFields.add("init");
+        openapiFields.add("init_container_type");
+        openapiFields.add("init_path");
+        openapiFields.add("intelRdt");
+        openapiFields.add("ipcns");
+        openapiFields.add("label_nested");
+        openapiFields.add("labels");
+        openapiFields.add("log_configuration");
+        openapiFields.add("manage_password");
+        openapiFields.add("mask");
+        openapiFields.add("mounts");
+        openapiFields.add("name");
+        openapiFields.add("netns");
+        openapiFields.add("network_options");
+        openapiFields.add("no_new_privileges");
+        openapiFields.add("oci_runtime");
+        openapiFields.add("oom_score_adj");
+        openapiFields.add("overlay_volumes");
+        openapiFields.add("passwd_entry");
+        openapiFields.add("personality");
+        openapiFields.add("pidns");
+        openapiFields.add("pod");
+        openapiFields.add("portmappings");
+        openapiFields.add("privileged");
+        openapiFields.add("procfs_opts");
+        openapiFields.add("publish_image_ports");
+        openapiFields.add("r_limits");
+        openapiFields.add("raw_image_name");
+        openapiFields.add("read_only_filesystem");
+        openapiFields.add("read_write_tmpfs");
+        openapiFields.add("remove");
+        openapiFields.add("removeImage");
+        openapiFields.add("resource_limits");
+        openapiFields.add("restart_policy");
+        openapiFields.add("restart_tries");
+        openapiFields.add("rootfs");
+        openapiFields.add("rootfs_mapping");
+        openapiFields.add("rootfs_overlay");
+        openapiFields.add("rootfs_propagation");
+        openapiFields.add("sdnotifyMode");
+        openapiFields.add("seccomp_policy");
+        openapiFields.add("seccomp_profile_path");
+        openapiFields.add("secret_env");
+        openapiFields.add("secrets");
+        openapiFields.add("selinux_opts");
+        openapiFields.add("shm_size");
+        openapiFields.add("shm_size_systemd");
+        openapiFields.add("startupHealthConfig");
+        openapiFields.add("stdin");
+        openapiFields.add("stop_signal");
+        openapiFields.add("stop_timeout");
+        openapiFields.add("storage_opts");
+        openapiFields.add("sysctl");
+        openapiFields.add("systemd");
+        openapiFields.add("terminal");
+        openapiFields.add("throttleReadBpsDevice");
+        openapiFields.add("throttleReadIOPSDevice");
+        openapiFields.add("throttleWriteBpsDevice");
+        openapiFields.add("throttleWriteIOPSDevice");
+        openapiFields.add("timeout");
+        openapiFields.add("timezone");
+        openapiFields.add("umask");
+        openapiFields.add("unified");
+        openapiFields.add("unmask");
+        openapiFields.add("unsetenv");
+        openapiFields.add("unsetenvall");
+        openapiFields.add("use_image_hosts");
+        openapiFields.add("use_image_resolve_conf");
+        openapiFields.add("user");
+        openapiFields.add("userns");
+        openapiFields.add("utsns");
+        openapiFields.add("volatile");
+        openapiFields.add("volumes");
+        openapiFields.add("volumes_from");
+        openapiFields.add("weightDevice");
+        openapiFields.add("work_dir");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_NETWORKS)
+    private Map<String, PerNetworkOptions> networks = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+    private Map<String, String> annotations = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_APPARMOR_PROFILE)
+    private String apparmorProfile;
+    @SerializedName(SERIALIZED_NAME_BASE_HOSTS_FILE)
+    private String baseHostsFile;
+    @SerializedName(SERIALIZED_NAME_CAP_ADD)
+    private List<String> capAdd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CAP_DROP)
+    private List<String> capDrop = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
+    private String cgroupParent;
+    @SerializedName(SERIALIZED_NAME_CGROUPNS)
+    private Namespace cgroupns;
+    @SerializedName(SERIALIZED_NAME_CGROUPS_MODE)
+    private String cgroupsMode;
+    @SerializedName(SERIALIZED_NAME_CHROOT_DIRECTORIES)
+    private List<String> chrootDirectories = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CNI_NETWORKS)
+    private List<String> cniNetworks = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_COMMAND)
+    private List<String> command = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CONMON_PID_FILE)
+    private String conmonPidFile;
+    @SerializedName(SERIALIZED_NAME_CONTAINER_CREATE_COMMAND)
+    private List<String> containerCreateCommand = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CREATE_WORKING_DIR)
+    private Boolean createWorkingDir;
+    @SerializedName(SERIALIZED_NAME_DEPENDENCY_CONTAINERS)
+    private List<String> dependencyContainers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEVICE_CGROUP_RULE)
+    private List<@Valid LinuxDeviceCgroup> deviceCgroupRule = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEVICES)
+    private List<@Valid LinuxDevice> devices = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEVICES_FROM)
+    private List<String> devicesFrom = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DNS_OPTION)
+    private List<String> dnsOption = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DNS_SEARCH)
+    private List<String> dnsSearch = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DNS_SERVER)
+    private List<String> dnsServer = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
+    private List<String> entrypoint = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENV)
+    private Map<String, String> env = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_ENV_HOST)
+    private Boolean envHost;
+    @SerializedName(SERIALIZED_NAME_ENVMERGE)
+    private List<String> envmerge = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_EXPOSE)
+    private Object expose;
+    @SerializedName(SERIALIZED_NAME_GROUP_ENTRY)
+    private String groupEntry;
+    @SerializedName(SERIALIZED_NAME_GROUPS)
+    private List<String> groups = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION)
+    private Long healthCheckOnFailureAction;
+    @SerializedName(SERIALIZED_NAME_HEALTH_LOG_DESTINATION)
+    private String healthLogDestination;
+    @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT)
+    private Integer healthMaxLogCount;
+    @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE)
+    private Integer healthMaxLogSize;
+    @SerializedName(SERIALIZED_NAME_HEALTHCONFIG)
+    private Schema2HealthConfig healthconfig;
+    @SerializedName(SERIALIZED_NAME_HOST_DEVICE_LIST)
+    private List<@Valid LinuxDevice> hostDeviceList = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_HOSTADD)
+    private List<String> hostadd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_HOSTNAME)
+    private String hostname;
+    @SerializedName(SERIALIZED_NAME_HOSTUSERS)
+    private List<String> hostusers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_HTTPPROXY)
+    private Boolean httpproxy;
+    @SerializedName(SERIALIZED_NAME_IDMAPPINGS)
+    private IDMappingOptions idmappings;
+    @SerializedName(SERIALIZED_NAME_IMAGE)
+    private String image;
+    @SerializedName(SERIALIZED_NAME_IMAGE_ARCH)
+    private String imageArch;
+    @SerializedName(SERIALIZED_NAME_IMAGE_OS)
+    private String imageOs;
+    @SerializedName(SERIALIZED_NAME_IMAGE_VARIANT)
+    private String imageVariant;
+    @SerializedName(SERIALIZED_NAME_IMAGE_VOLUME_MODE)
+    private String imageVolumeMode;
+    @SerializedName(SERIALIZED_NAME_IMAGE_VOLUMES)
+    private List<@Valid ImageVolume> imageVolumes = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_INIT)
+    private Boolean init;
+    @SerializedName(SERIALIZED_NAME_INIT_CONTAINER_TYPE)
+    private String initContainerType;
+    @SerializedName(SERIALIZED_NAME_INIT_PATH)
+    private String initPath;
+    @SerializedName(SERIALIZED_NAME_INTEL_RDT)
+    private LinuxIntelRdt intelRdt;
+    @SerializedName(SERIALIZED_NAME_IPCNS)
+    private Namespace ipcns;
+    @SerializedName(SERIALIZED_NAME_LABEL_NESTED)
+    private Boolean labelNested;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_LOG_CONFIGURATION)
+    private LogConfigLibpod logConfiguration;
+    @SerializedName(SERIALIZED_NAME_MANAGE_PASSWORD)
+    private Boolean managePassword;
+    @SerializedName(SERIALIZED_NAME_MASK)
+    private List<String> mask = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_MOUNTS)
+    private List<@Valid Mount> mounts = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_NETNS)
+    private Namespace netns;
+    @SerializedName(SERIALIZED_NAME_NETWORK_OPTIONS)
+    private Map<String, List<String>> networkOptions = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_NO_NEW_PRIVILEGES)
+    private Boolean noNewPrivileges;
+    @SerializedName(SERIALIZED_NAME_OCI_RUNTIME)
+    private String ociRuntime;
+    @SerializedName(SERIALIZED_NAME_OOM_SCORE_ADJ)
+    private Long oomScoreAdj;
+    @SerializedName(SERIALIZED_NAME_OVERLAY_VOLUMES)
+    private List<@Valid OverlayVolume> overlayVolumes = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_PASSWD_ENTRY)
+    private String passwdEntry;
+    @SerializedName(SERIALIZED_NAME_PERSONALITY)
+    private LinuxPersonality personality;
+    @SerializedName(SERIALIZED_NAME_PIDNS)
+    private Namespace pidns;
+    @SerializedName(SERIALIZED_NAME_POD)
+    private String pod;
+    @SerializedName(SERIALIZED_NAME_PORTMAPPINGS)
+    private List<@Valid PortMapping> portmappings = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_PRIVILEGED)
+    private Boolean privileged;
+    @SerializedName(SERIALIZED_NAME_PROCFS_OPTS)
+    private List<String> procfsOpts = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_PUBLISH_IMAGE_PORTS)
+    private Boolean publishImagePorts;
+    @SerializedName(SERIALIZED_NAME_R_LIMITS)
+    private List<@Valid POSIXRlimit> rLimits = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_RAW_IMAGE_NAME)
+    private String rawImageName;
+    @SerializedName(SERIALIZED_NAME_READ_ONLY_FILESYSTEM)
+    private Boolean readOnlyFilesystem;
+    @SerializedName(SERIALIZED_NAME_READ_WRITE_TMPFS)
+    private Boolean readWriteTmpfs;
+    @SerializedName(SERIALIZED_NAME_REMOVE)
+    private Boolean remove;
+    @SerializedName(SERIALIZED_NAME_REMOVE_IMAGE)
+    private Boolean removeImage;
+    @SerializedName(SERIALIZED_NAME_RESOURCE_LIMITS)
+    private LinuxResources resourceLimits;
+    @SerializedName(SERIALIZED_NAME_RESTART_POLICY)
+    private String restartPolicy;
+    @SerializedName(SERIALIZED_NAME_RESTART_TRIES)
+    private Integer restartTries;
+    @SerializedName(SERIALIZED_NAME_ROOTFS)
+    private String rootfs;
+    @SerializedName(SERIALIZED_NAME_ROOTFS_MAPPING)
+    private String rootfsMapping;
+    @SerializedName(SERIALIZED_NAME_ROOTFS_OVERLAY)
+    private Boolean rootfsOverlay;
+    @SerializedName(SERIALIZED_NAME_ROOTFS_PROPAGATION)
+    private String rootfsPropagation;
+    @SerializedName(SERIALIZED_NAME_SDNOTIFY_MODE)
+    private String sdnotifyMode;
+    @SerializedName(SERIALIZED_NAME_SECCOMP_POLICY)
+    private String seccompPolicy;
+    @SerializedName(SERIALIZED_NAME_SECCOMP_PROFILE_PATH)
+    private String seccompProfilePath;
+    @SerializedName(SERIALIZED_NAME_SECRET_ENV)
+    private Map<String, String> secretEnv = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_SECRETS)
+    private List<@Valid Secret> secrets = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SELINUX_OPTS)
+    private List<String> selinuxOpts = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SHM_SIZE)
+    private Long shmSize;
+    @SerializedName(SERIALIZED_NAME_SHM_SIZE_SYSTEMD)
+    private Long shmSizeSystemd;
+    @SerializedName(SERIALIZED_NAME_STARTUP_HEALTH_CONFIG)
+    private StartupHealthCheck startupHealthConfig;
+    @SerializedName(SERIALIZED_NAME_STDIN)
+    private Boolean stdin;
+    @SerializedName(SERIALIZED_NAME_STOP_SIGNAL)
+    private Long stopSignal;
+    @SerializedName(SERIALIZED_NAME_STOP_TIMEOUT)
+    private Integer stopTimeout;
+    @SerializedName(SERIALIZED_NAME_STORAGE_OPTS)
+    private Map<String, String> storageOpts = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_SYSCTL)
+    private Map<String, String> sysctl = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_SYSTEMD)
+    private String systemd;
+    @SerializedName(SERIALIZED_NAME_TERMINAL)
+    private Boolean terminal;
+    @SerializedName(SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE)
+    private Map<String, LinuxThrottleDevice> throttleReadBpsDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE)
+    private Map<String, LinuxThrottleDevice> throttleReadIOPSDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE)
+    private Map<String, LinuxThrottleDevice> throttleWriteBpsDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE)
+    private Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_TIMEOUT)
+    private Integer timeout;
+    @SerializedName(SERIALIZED_NAME_TIMEZONE)
+    private String timezone;
+    @SerializedName(SERIALIZED_NAME_UMASK)
+    private String umask;
+    @SerializedName(SERIALIZED_NAME_UNIFIED)
+    private Map<String, String> unified = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_UNMASK)
+    private List<String> unmask = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_UNSETENV)
+    private List<String> unsetenv = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_UNSETENVALL)
+    private Boolean unsetenvall;
+    @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTS)
+    private Boolean useImageHosts;
+    @SerializedName(SERIALIZED_NAME_USE_IMAGE_RESOLVE_CONF)
+    private Boolean useImageResolveConf;
+    @SerializedName(SERIALIZED_NAME_USER)
+    private String user;
+    @SerializedName(SERIALIZED_NAME_USERNS)
+    private Namespace userns;
+    @SerializedName(SERIALIZED_NAME_UTSNS)
+    private Namespace utsns;
+    @SerializedName(SERIALIZED_NAME_VOLATILE)
+    private Boolean _volatile;
+    @SerializedName(SERIALIZED_NAME_VOLUMES)
+    private List<@Valid NamedVolume> volumes = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
+    private List<String> volumesFrom = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_WEIGHT_DEVICE)
+    private Map<String, LinuxWeightDevice> weightDevice = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_WORK_DIR)
+    private String workDir;
 
-    // add `Networks` to the URL query string
-    if (getNetworks() != null) {
-      for (String _key : getNetworks().keySet()) {
-        if (getNetworks().get(_key) != null) {
-          joiner.add(getNetworks().get(_key).toUrlQueryString(String.format("%sNetworks%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+    public SpecGenerator() {
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to SpecGenerator
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!SpecGenerator.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SpecGenerator is not found in the empty JSON string", SpecGenerator.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `annotations` to the URL query string
-    if (getAnnotations() != null) {
-      for (String _key : getAnnotations().keySet()) {
-        joiner.add(String.format("%sannotations%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `apparmor_profile` to the URL query string
-    if (getApparmorProfile() != null) {
-      joiner.add(String.format("%sapparmor_profile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getApparmorProfile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `base_hosts_file` to the URL query string
-    if (getBaseHostsFile() != null) {
-      joiner.add(String.format("%sbase_hosts_file%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBaseHostsFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `cap_add` to the URL query string
-    if (getCapAdd() != null) {
-      for (int i = 0; i < getCapAdd().size(); i++) {
-        joiner.add(String.format("%scap_add%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCapAdd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `cap_drop` to the URL query string
-    if (getCapDrop() != null) {
-      for (int i = 0; i < getCapDrop().size(); i++) {
-        joiner.add(String.format("%scap_drop%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCapDrop().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `cgroup_parent` to the URL query string
-    if (getCgroupParent() != null) {
-      joiner.add(String.format("%scgroup_parent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `cgroupns` to the URL query string
-    if (getCgroupns() != null) {
-      joiner.add(getCgroupns().toUrlQueryString(prefix + "cgroupns" + suffix));
-    }
-
-    // add `cgroups_mode` to the URL query string
-    if (getCgroupsMode() != null) {
-      joiner.add(String.format("%scgroups_mode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupsMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `chroot_directories` to the URL query string
-    if (getChrootDirectories() != null) {
-      for (int i = 0; i < getChrootDirectories().size(); i++) {
-        joiner.add(String.format("%schroot_directories%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getChrootDirectories().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `cni_networks` to the URL query string
-    if (getCniNetworks() != null) {
-      for (int i = 0; i < getCniNetworks().size(); i++) {
-        joiner.add(String.format("%scni_networks%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCniNetworks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `command` to the URL query string
-    if (getCommand() != null) {
-      for (int i = 0; i < getCommand().size(); i++) {
-        joiner.add(String.format("%scommand%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `conmon_pid_file` to the URL query string
-    if (getConmonPidFile() != null) {
-      joiner.add(String.format("%sconmon_pid_file%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConmonPidFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `containerCreateCommand` to the URL query string
-    if (getContainerCreateCommand() != null) {
-      for (int i = 0; i < getContainerCreateCommand().size(); i++) {
-        joiner.add(String.format("%scontainerCreateCommand%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getContainerCreateCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `create_working_dir` to the URL query string
-    if (getCreateWorkingDir() != null) {
-      joiner.add(String.format("%screate_working_dir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreateWorkingDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `dependencyContainers` to the URL query string
-    if (getDependencyContainers() != null) {
-      for (int i = 0; i < getDependencyContainers().size(); i++) {
-        joiner.add(String.format("%sdependencyContainers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDependencyContainers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `device_cgroup_rule` to the URL query string
-    if (getDeviceCgroupRule() != null) {
-      for (int i = 0; i < getDeviceCgroupRule().size(); i++) {
-        if (getDeviceCgroupRule().get(i) != null) {
-          joiner.add(getDeviceCgroupRule().get(i).toUrlQueryString(String.format("%sdevice_cgroup_rule%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!SpecGenerator.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SpecGenerator` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
-    }
-
-    // add `devices` to the URL query string
-    if (getDevices() != null) {
-      for (int i = 0; i < getDevices().size(); i++) {
-        if (getDevices().get(i) != null) {
-          joiner.add(getDevices().get(i).toUrlQueryString(String.format("%sdevices%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("apparmor_profile") != null && !jsonObj.get("apparmor_profile").isJsonNull()) && !jsonObj.get("apparmor_profile").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `apparmor_profile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("apparmor_profile").toString()));
         }
-      }
-    }
-
-    // add `devices_from` to the URL query string
-    if (getDevicesFrom() != null) {
-      for (int i = 0; i < getDevicesFrom().size(); i++) {
-        joiner.add(String.format("%sdevices_from%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDevicesFrom().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `dns_option` to the URL query string
-    if (getDnsOption() != null) {
-      for (int i = 0; i < getDnsOption().size(); i++) {
-        joiner.add(String.format("%sdns_option%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDnsOption().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `dns_search` to the URL query string
-    if (getDnsSearch() != null) {
-      for (int i = 0; i < getDnsSearch().size(); i++) {
-        joiner.add(String.format("%sdns_search%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDnsSearch().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `dns_server` to the URL query string
-    if (getDnsServer() != null) {
-      for (int i = 0; i < getDnsServer().size(); i++) {
-        joiner.add(String.format("%sdns_server%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDnsServer().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `entrypoint` to the URL query string
-    if (getEntrypoint() != null) {
-      for (int i = 0; i < getEntrypoint().size(); i++) {
-        joiner.add(String.format("%sentrypoint%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEntrypoint().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `env` to the URL query string
-    if (getEnv() != null) {
-      for (String _key : getEnv().keySet()) {
-        joiner.add(String.format("%senv%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getEnv().get(_key), URLEncoder.encode(ApiClient.valueToString(getEnv().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `env_host` to the URL query string
-    if (getEnvHost() != null) {
-      joiner.add(String.format("%senv_host%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnvHost()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `envmerge` to the URL query string
-    if (getEnvmerge() != null) {
-      for (int i = 0; i < getEnvmerge().size(); i++) {
-        joiner.add(String.format("%senvmerge%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEnvmerge().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `expose` to the URL query string
-    if (getExpose() != null) {
-      joiner.add(String.format("%sexpose%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExpose()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `group_entry` to the URL query string
-    if (getGroupEntry() != null) {
-      joiner.add(String.format("%sgroup_entry%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGroupEntry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `groups` to the URL query string
-    if (getGroups() != null) {
-      for (int i = 0; i < getGroups().size(); i++) {
-        joiner.add(String.format("%sgroups%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getGroups().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `health_check_on_failure_action` to the URL query string
-    if (getHealthCheckOnFailureAction() != null) {
-      joiner.add(String.format("%shealth_check_on_failure_action%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthCheckOnFailureAction()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `healthLogDestination` to the URL query string
-    if (getHealthLogDestination() != null) {
-      joiner.add(String.format("%shealthLogDestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthLogDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `healthMaxLogCount` to the URL query string
-    if (getHealthMaxLogCount() != null) {
-      joiner.add(String.format("%shealthMaxLogCount%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthMaxLogCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `healthMaxLogSize` to the URL query string
-    if (getHealthMaxLogSize() != null) {
-      joiner.add(String.format("%shealthMaxLogSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthMaxLogSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `healthconfig` to the URL query string
-    if (getHealthconfig() != null) {
-      joiner.add(getHealthconfig().toUrlQueryString(prefix + "healthconfig" + suffix));
-    }
-
-    // add `host_device_list` to the URL query string
-    if (getHostDeviceList() != null) {
-      for (int i = 0; i < getHostDeviceList().size(); i++) {
-        if (getHostDeviceList().get(i) != null) {
-          joiner.add(getHostDeviceList().get(i).toUrlQueryString(String.format("%shost_device_list%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        if ((jsonObj.get("base_hosts_file") != null && !jsonObj.get("base_hosts_file").isJsonNull()) && !jsonObj.get("base_hosts_file").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `base_hosts_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("base_hosts_file").toString()));
         }
-      }
-    }
-
-    // add `hostadd` to the URL query string
-    if (getHostadd() != null) {
-      for (int i = 0; i < getHostadd().size(); i++) {
-        joiner.add(String.format("%shostadd%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getHostadd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `hostname` to the URL query string
-    if (getHostname() != null) {
-      joiner.add(String.format("%shostname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `hostusers` to the URL query string
-    if (getHostusers() != null) {
-      for (int i = 0; i < getHostusers().size(); i++) {
-        joiner.add(String.format("%shostusers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getHostusers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `httpproxy` to the URL query string
-    if (getHttpproxy() != null) {
-      joiner.add(String.format("%shttpproxy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHttpproxy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `idmappings` to the URL query string
-    if (getIdmappings() != null) {
-      joiner.add(getIdmappings().toUrlQueryString(prefix + "idmappings" + suffix));
-    }
-
-    // add `image` to the URL query string
-    if (getImage() != null) {
-      joiner.add(String.format("%simage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `image_arch` to the URL query string
-    if (getImageArch() != null) {
-      joiner.add(String.format("%simage_arch%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageArch()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `image_os` to the URL query string
-    if (getImageOs() != null) {
-      joiner.add(String.format("%simage_os%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `image_variant` to the URL query string
-    if (getImageVariant() != null) {
-      joiner.add(String.format("%simage_variant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `image_volume_mode` to the URL query string
-    if (getImageVolumeMode() != null) {
-      joiner.add(String.format("%simage_volume_mode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageVolumeMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `image_volumes` to the URL query string
-    if (getImageVolumes() != null) {
-      for (int i = 0; i < getImageVolumes().size(); i++) {
-        if (getImageVolumes().get(i) != null) {
-          joiner.add(getImageVolumes().get(i).toUrlQueryString(String.format("%simage_volumes%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("cap_add") != null && !jsonObj.get("cap_add").isJsonNull() && !jsonObj.get("cap_add").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cap_add` to be an array in the JSON string but got `%s`", jsonObj.get("cap_add").toString()));
         }
-      }
-    }
-
-    // add `init` to the URL query string
-    if (getInit() != null) {
-      joiner.add(String.format("%sinit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `init_container_type` to the URL query string
-    if (getInitContainerType() != null) {
-      joiner.add(String.format("%sinit_container_type%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInitContainerType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `init_path` to the URL query string
-    if (getInitPath() != null) {
-      joiner.add(String.format("%sinit_path%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInitPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `intelRdt` to the URL query string
-    if (getIntelRdt() != null) {
-      joiner.add(getIntelRdt().toUrlQueryString(prefix + "intelRdt" + suffix));
-    }
-
-    // add `ipcns` to the URL query string
-    if (getIpcns() != null) {
-      joiner.add(getIpcns().toUrlQueryString(prefix + "ipcns" + suffix));
-    }
-
-    // add `label_nested` to the URL query string
-    if (getLabelNested() != null) {
-      joiner.add(String.format("%slabel_nested%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLabelNested()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%slabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `log_configuration` to the URL query string
-    if (getLogConfiguration() != null) {
-      joiner.add(getLogConfiguration().toUrlQueryString(prefix + "log_configuration" + suffix));
-    }
-
-    // add `manage_password` to the URL query string
-    if (getManagePassword() != null) {
-      joiner.add(String.format("%smanage_password%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getManagePassword()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `mask` to the URL query string
-    if (getMask() != null) {
-      for (int i = 0; i < getMask().size(); i++) {
-        joiner.add(String.format("%smask%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getMask().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `mounts` to the URL query string
-    if (getMounts() != null) {
-      for (int i = 0; i < getMounts().size(); i++) {
-        if (getMounts().get(i) != null) {
-          joiner.add(getMounts().get(i).toUrlQueryString(String.format("%smounts%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("cap_drop") != null && !jsonObj.get("cap_drop").isJsonNull() && !jsonObj.get("cap_drop").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cap_drop` to be an array in the JSON string but got `%s`", jsonObj.get("cap_drop").toString()));
         }
-      }
-    }
-
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `netns` to the URL query string
-    if (getNetns() != null) {
-      joiner.add(getNetns().toUrlQueryString(prefix + "netns" + suffix));
-    }
-
-    // add `network_options` to the URL query string
-    if (getNetworkOptions() != null) {
-      for (String _key : getNetworkOptions().keySet()) {
-        joiner.add(String.format("%snetwork_options%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getNetworkOptions().get(_key), URLEncoder.encode(ApiClient.valueToString(getNetworkOptions().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `no_new_privileges` to the URL query string
-    if (getNoNewPrivileges() != null) {
-      joiner.add(String.format("%sno_new_privileges%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNoNewPrivileges()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `oci_runtime` to the URL query string
-    if (getOciRuntime() != null) {
-      joiner.add(String.format("%soci_runtime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOciRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `oom_score_adj` to the URL query string
-    if (getOomScoreAdj() != null) {
-      joiner.add(String.format("%soom_score_adj%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOomScoreAdj()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `overlay_volumes` to the URL query string
-    if (getOverlayVolumes() != null) {
-      for (int i = 0; i < getOverlayVolumes().size(); i++) {
-        if (getOverlayVolumes().get(i) != null) {
-          joiner.add(getOverlayVolumes().get(i).toUrlQueryString(String.format("%soverlay_volumes%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        if ((jsonObj.get("cgroup_parent") != null && !jsonObj.get("cgroup_parent").isJsonNull()) && !jsonObj.get("cgroup_parent").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cgroup_parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroup_parent").toString()));
         }
-      }
-    }
-
-    // add `passwd_entry` to the URL query string
-    if (getPasswdEntry() != null) {
-      joiner.add(String.format("%spasswd_entry%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPasswdEntry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `personality` to the URL query string
-    if (getPersonality() != null) {
-      joiner.add(getPersonality().toUrlQueryString(prefix + "personality" + suffix));
-    }
-
-    // add `pidns` to the URL query string
-    if (getPidns() != null) {
-      joiner.add(getPidns().toUrlQueryString(prefix + "pidns" + suffix));
-    }
-
-    // add `pod` to the URL query string
-    if (getPod() != null) {
-      joiner.add(String.format("%spod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `portmappings` to the URL query string
-    if (getPortmappings() != null) {
-      for (int i = 0; i < getPortmappings().size(); i++) {
-        if (getPortmappings().get(i) != null) {
-          joiner.add(getPortmappings().get(i).toUrlQueryString(String.format("%sportmappings%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        // validate the optional field `cgroupns`
+        if (jsonObj.get("cgroupns") != null && !jsonObj.get("cgroupns").isJsonNull()) {
+            Namespace.validateJsonElement(jsonObj.get("cgroupns"));
         }
-      }
-    }
-
-    // add `privileged` to the URL query string
-    if (getPrivileged() != null) {
-      joiner.add(String.format("%sprivileged%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivileged()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `procfs_opts` to the URL query string
-    if (getProcfsOpts() != null) {
-      for (int i = 0; i < getProcfsOpts().size(); i++) {
-        joiner.add(String.format("%sprocfs_opts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getProcfsOpts().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `publish_image_ports` to the URL query string
-    if (getPublishImagePorts() != null) {
-      joiner.add(String.format("%spublish_image_ports%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPublishImagePorts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `r_limits` to the URL query string
-    if (getrLimits() != null) {
-      for (int i = 0; i < getrLimits().size(); i++) {
-        if (getrLimits().get(i) != null) {
-          joiner.add(getrLimits().get(i).toUrlQueryString(String.format("%sr_limits%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        if ((jsonObj.get("cgroups_mode") != null && !jsonObj.get("cgroups_mode").isJsonNull()) && !jsonObj.get("cgroups_mode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cgroups_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroups_mode").toString()));
         }
-      }
-    }
-
-    // add `raw_image_name` to the URL query string
-    if (getRawImageName() != null) {
-      joiner.add(String.format("%sraw_image_name%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRawImageName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `read_only_filesystem` to the URL query string
-    if (getReadOnlyFilesystem() != null) {
-      joiner.add(String.format("%sread_only_filesystem%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadOnlyFilesystem()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `read_write_tmpfs` to the URL query string
-    if (getReadWriteTmpfs() != null) {
-      joiner.add(String.format("%sread_write_tmpfs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadWriteTmpfs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `remove` to the URL query string
-    if (getRemove() != null) {
-      joiner.add(String.format("%sremove%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRemove()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `removeImage` to the URL query string
-    if (getRemoveImage() != null) {
-      joiner.add(String.format("%sremoveImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRemoveImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `resource_limits` to the URL query string
-    if (getResourceLimits() != null) {
-      joiner.add(getResourceLimits().toUrlQueryString(prefix + "resource_limits" + suffix));
-    }
-
-    // add `restart_policy` to the URL query string
-    if (getRestartPolicy() != null) {
-      joiner.add(String.format("%srestart_policy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartPolicy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `restart_tries` to the URL query string
-    if (getRestartTries() != null) {
-      joiner.add(String.format("%srestart_tries%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartTries()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `rootfs` to the URL query string
-    if (getRootfs() != null) {
-      joiner.add(String.format("%srootfs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `rootfs_mapping` to the URL query string
-    if (getRootfsMapping() != null) {
-      joiner.add(String.format("%srootfs_mapping%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfsMapping()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `rootfs_overlay` to the URL query string
-    if (getRootfsOverlay() != null) {
-      joiner.add(String.format("%srootfs_overlay%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfsOverlay()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `rootfs_propagation` to the URL query string
-    if (getRootfsPropagation() != null) {
-      joiner.add(String.format("%srootfs_propagation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfsPropagation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `sdnotifyMode` to the URL query string
-    if (getSdnotifyMode() != null) {
-      joiner.add(String.format("%ssdnotifyMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSdnotifyMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `seccomp_policy` to the URL query string
-    if (getSeccompPolicy() != null) {
-      joiner.add(String.format("%sseccomp_policy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSeccompPolicy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `seccomp_profile_path` to the URL query string
-    if (getSeccompProfilePath() != null) {
-      joiner.add(String.format("%sseccomp_profile_path%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSeccompProfilePath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `secret_env` to the URL query string
-    if (getSecretEnv() != null) {
-      for (String _key : getSecretEnv().keySet()) {
-        joiner.add(String.format("%ssecret_env%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getSecretEnv().get(_key), URLEncoder.encode(ApiClient.valueToString(getSecretEnv().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `secrets` to the URL query string
-    if (getSecrets() != null) {
-      for (int i = 0; i < getSecrets().size(); i++) {
-        if (getSecrets().get(i) != null) {
-          joiner.add(getSecrets().get(i).toUrlQueryString(String.format("%ssecrets%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("chroot_directories") != null && !jsonObj.get("chroot_directories").isJsonNull() && !jsonObj.get("chroot_directories").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `chroot_directories` to be an array in the JSON string but got `%s`", jsonObj.get("chroot_directories").toString()));
         }
-      }
-    }
-
-    // add `selinux_opts` to the URL query string
-    if (getSelinuxOpts() != null) {
-      for (int i = 0; i < getSelinuxOpts().size(); i++) {
-        joiner.add(String.format("%sselinux_opts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getSelinuxOpts().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `shm_size` to the URL query string
-    if (getShmSize() != null) {
-      joiner.add(String.format("%sshm_size%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShmSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `shm_size_systemd` to the URL query string
-    if (getShmSizeSystemd() != null) {
-      joiner.add(String.format("%sshm_size_systemd%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShmSizeSystemd()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `startupHealthConfig` to the URL query string
-    if (getStartupHealthConfig() != null) {
-      joiner.add(getStartupHealthConfig().toUrlQueryString(prefix + "startupHealthConfig" + suffix));
-    }
-
-    // add `stdin` to the URL query string
-    if (getStdin() != null) {
-      joiner.add(String.format("%sstdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `stop_signal` to the URL query string
-    if (getStopSignal() != null) {
-      joiner.add(String.format("%sstop_signal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopSignal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `stop_timeout` to the URL query string
-    if (getStopTimeout() != null) {
-      joiner.add(String.format("%sstop_timeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `storage_opts` to the URL query string
-    if (getStorageOpts() != null) {
-      for (String _key : getStorageOpts().keySet()) {
-        joiner.add(String.format("%sstorage_opts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getStorageOpts().get(_key), URLEncoder.encode(ApiClient.valueToString(getStorageOpts().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `sysctl` to the URL query string
-    if (getSysctl() != null) {
-      for (String _key : getSysctl().keySet()) {
-        joiner.add(String.format("%ssysctl%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getSysctl().get(_key), URLEncoder.encode(ApiClient.valueToString(getSysctl().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `systemd` to the URL query string
-    if (getSystemd() != null) {
-      joiner.add(String.format("%ssystemd%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSystemd()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `terminal` to the URL query string
-    if (getTerminal() != null) {
-      joiner.add(String.format("%sterminal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTerminal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `throttleReadBpsDevice` to the URL query string
-    if (getThrottleReadBpsDevice() != null) {
-      for (String _key : getThrottleReadBpsDevice().keySet()) {
-        if (getThrottleReadBpsDevice().get(_key) != null) {
-          joiner.add(getThrottleReadBpsDevice().get(_key).toUrlQueryString(String.format("%sthrottleReadBpsDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull() && !jsonObj.get("cni_networks").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cni_networks` to be an array in the JSON string but got `%s`", jsonObj.get("cni_networks").toString()));
         }
-      }
-    }
-
-    // add `throttleReadIOPSDevice` to the URL query string
-    if (getThrottleReadIOPSDevice() != null) {
-      for (String _key : getThrottleReadIOPSDevice().keySet()) {
-        if (getThrottleReadIOPSDevice().get(_key) != null) {
-          joiner.add(getThrottleReadIOPSDevice().get(_key).toUrlQueryString(String.format("%sthrottleReadIOPSDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("command") != null && !jsonObj.get("command").isJsonNull() && !jsonObj.get("command").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `command` to be an array in the JSON string but got `%s`", jsonObj.get("command").toString()));
         }
-      }
-    }
-
-    // add `throttleWriteBpsDevice` to the URL query string
-    if (getThrottleWriteBpsDevice() != null) {
-      for (String _key : getThrottleWriteBpsDevice().keySet()) {
-        if (getThrottleWriteBpsDevice().get(_key) != null) {
-          joiner.add(getThrottleWriteBpsDevice().get(_key).toUrlQueryString(String.format("%sthrottleWriteBpsDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        if ((jsonObj.get("conmon_pid_file") != null && !jsonObj.get("conmon_pid_file").isJsonNull()) && !jsonObj.get("conmon_pid_file").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `conmon_pid_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("conmon_pid_file").toString()));
         }
-      }
-    }
-
-    // add `throttleWriteIOPSDevice` to the URL query string
-    if (getThrottleWriteIOPSDevice() != null) {
-      for (String _key : getThrottleWriteIOPSDevice().keySet()) {
-        if (getThrottleWriteIOPSDevice().get(_key) != null) {
-          joiner.add(getThrottleWriteIOPSDevice().get(_key).toUrlQueryString(String.format("%sthrottleWriteIOPSDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("containerCreateCommand") != null && !jsonObj.get("containerCreateCommand").isJsonNull() && !jsonObj.get("containerCreateCommand").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `containerCreateCommand` to be an array in the JSON string but got `%s`", jsonObj.get("containerCreateCommand").toString()));
         }
-      }
-    }
-
-    // add `timeout` to the URL query string
-    if (getTimeout() != null) {
-      joiner.add(String.format("%stimeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `timezone` to the URL query string
-    if (getTimezone() != null) {
-      joiner.add(String.format("%stimezone%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTimezone()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `umask` to the URL query string
-    if (getUmask() != null) {
-      joiner.add(String.format("%sumask%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUmask()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `unified` to the URL query string
-    if (getUnified() != null) {
-      for (String _key : getUnified().keySet()) {
-        joiner.add(String.format("%sunified%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getUnified().get(_key), URLEncoder.encode(ApiClient.valueToString(getUnified().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `unmask` to the URL query string
-    if (getUnmask() != null) {
-      for (int i = 0; i < getUnmask().size(); i++) {
-        joiner.add(String.format("%sunmask%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getUnmask().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `unsetenv` to the URL query string
-    if (getUnsetenv() != null) {
-      for (int i = 0; i < getUnsetenv().size(); i++) {
-        joiner.add(String.format("%sunsetenv%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getUnsetenv().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `unsetenvall` to the URL query string
-    if (getUnsetenvall() != null) {
-      joiner.add(String.format("%sunsetenvall%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUnsetenvall()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `use_image_hosts` to the URL query string
-    if (getUseImageHosts() != null) {
-      joiner.add(String.format("%suse_image_hosts%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUseImageHosts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `use_image_resolve_conf` to the URL query string
-    if (getUseImageResolveConf() != null) {
-      joiner.add(String.format("%suse_image_resolve_conf%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUseImageResolveConf()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `user` to the URL query string
-    if (getUser() != null) {
-      joiner.add(String.format("%suser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `userns` to the URL query string
-    if (getUserns() != null) {
-      joiner.add(getUserns().toUrlQueryString(prefix + "userns" + suffix));
-    }
-
-    // add `utsns` to the URL query string
-    if (getUtsns() != null) {
-      joiner.add(getUtsns().toUrlQueryString(prefix + "utsns" + suffix));
-    }
-
-    // add `volatile` to the URL query string
-    if (getVolatile() != null) {
-      joiner.add(String.format("%svolatile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVolatile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `volumes` to the URL query string
-    if (getVolumes() != null) {
-      for (int i = 0; i < getVolumes().size(); i++) {
-        if (getVolumes().get(i) != null) {
-          joiner.add(getVolumes().get(i).toUrlQueryString(String.format("%svolumes%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("dependencyContainers") != null && !jsonObj.get("dependencyContainers").isJsonNull() && !jsonObj.get("dependencyContainers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `dependencyContainers` to be an array in the JSON string but got `%s`", jsonObj.get("dependencyContainers").toString()));
         }
-      }
-    }
+        if (jsonObj.get("device_cgroup_rule") != null && !jsonObj.get("device_cgroup_rule").isJsonNull()) {
+            JsonArray jsonArraydeviceCgroupRule = jsonObj.getAsJsonArray("device_cgroup_rule");
+            if (jsonArraydeviceCgroupRule != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("device_cgroup_rule").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `device_cgroup_rule` to be an array in the JSON string but got `%s`", jsonObj.get("device_cgroup_rule").toString()));
+                }
 
-    // add `volumes_from` to the URL query string
-    if (getVolumesFrom() != null) {
-      for (int i = 0; i < getVolumesFrom().size(); i++) {
-        joiner.add(String.format("%svolumes_from%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getVolumesFrom().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `weightDevice` to the URL query string
-    if (getWeightDevice() != null) {
-      for (String _key : getWeightDevice().keySet()) {
-        if (getWeightDevice().get(_key) != null) {
-          joiner.add(getWeightDevice().get(_key).toUrlQueryString(String.format("%sweightDevice%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+                // validate the optional field `device_cgroup_rule` (array)
+                for (int i = 0; i < jsonArraydeviceCgroupRule.size(); i++) {
+                    LinuxDeviceCgroup.validateJsonElement(jsonArraydeviceCgroupRule.get(i));
+                }
+            }
         }
-      }
+        if (jsonObj.get("devices") != null && !jsonObj.get("devices").isJsonNull()) {
+            JsonArray jsonArraydevices = jsonObj.getAsJsonArray("devices");
+            if (jsonArraydevices != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("devices").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `devices` to be an array in the JSON string but got `%s`", jsonObj.get("devices").toString()));
+                }
+
+                // validate the optional field `devices` (array)
+                for (int i = 0; i < jsonArraydevices.size(); i++) {
+                    LinuxDevice.validateJsonElement(jsonArraydevices.get(i));
+                }
+            }
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("devices_from") != null && !jsonObj.get("devices_from").isJsonNull() && !jsonObj.get("devices_from").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `devices_from` to be an array in the JSON string but got `%s`", jsonObj.get("devices_from").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull() && !jsonObj.get("dns_option").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `dns_option` to be an array in the JSON string but got `%s`", jsonObj.get("dns_option").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull() && !jsonObj.get("dns_search").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `dns_search` to be an array in the JSON string but got `%s`", jsonObj.get("dns_search").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull() && !jsonObj.get("dns_server").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `dns_server` to be an array in the JSON string but got `%s`", jsonObj.get("dns_server").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull() && !jsonObj.get("entrypoint").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("entrypoint").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("envmerge") != null && !jsonObj.get("envmerge").isJsonNull() && !jsonObj.get("envmerge").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `envmerge` to be an array in the JSON string but got `%s`", jsonObj.get("envmerge").toString()));
+        }
+        if ((jsonObj.get("group_entry") != null && !jsonObj.get("group_entry").isJsonNull()) && !jsonObj.get("group_entry").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `group_entry` to be a primitive type in the JSON string but got `%s`", jsonObj.get("group_entry").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull() && !jsonObj.get("groups").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
+        }
+        if ((jsonObj.get("healthLogDestination") != null && !jsonObj.get("healthLogDestination").isJsonNull()) && !jsonObj.get("healthLogDestination").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `healthLogDestination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("healthLogDestination").toString()));
+        }
+        // validate the optional field `healthconfig`
+        if (jsonObj.get("healthconfig") != null && !jsonObj.get("healthconfig").isJsonNull()) {
+            Schema2HealthConfig.validateJsonElement(jsonObj.get("healthconfig"));
+        }
+        if (jsonObj.get("host_device_list") != null && !jsonObj.get("host_device_list").isJsonNull()) {
+            JsonArray jsonArrayhostDeviceList = jsonObj.getAsJsonArray("host_device_list");
+            if (jsonArrayhostDeviceList != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("host_device_list").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `host_device_list` to be an array in the JSON string but got `%s`", jsonObj.get("host_device_list").toString()));
+                }
+
+                // validate the optional field `host_device_list` (array)
+                for (int i = 0; i < jsonArrayhostDeviceList.size(); i++) {
+                    LinuxDevice.validateJsonElement(jsonArrayhostDeviceList.get(i));
+                }
+            }
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull() && !jsonObj.get("hostadd").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `hostadd` to be an array in the JSON string but got `%s`", jsonObj.get("hostadd").toString()));
+        }
+        if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("hostusers") != null && !jsonObj.get("hostusers").isJsonNull() && !jsonObj.get("hostusers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `hostusers` to be an array in the JSON string but got `%s`", jsonObj.get("hostusers").toString()));
+        }
+        // validate the optional field `idmappings`
+        if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
+            IDMappingOptions.validateJsonElement(jsonObj.get("idmappings"));
+        }
+        if ((jsonObj.get("image") != null && !jsonObj.get("image").isJsonNull()) && !jsonObj.get("image").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image").toString()));
+        }
+        if ((jsonObj.get("image_arch") != null && !jsonObj.get("image_arch").isJsonNull()) && !jsonObj.get("image_arch").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `image_arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image_arch").toString()));
+        }
+        if ((jsonObj.get("image_os") != null && !jsonObj.get("image_os").isJsonNull()) && !jsonObj.get("image_os").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `image_os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image_os").toString()));
+        }
+        if ((jsonObj.get("image_variant") != null && !jsonObj.get("image_variant").isJsonNull()) && !jsonObj.get("image_variant").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `image_variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image_variant").toString()));
+        }
+        if ((jsonObj.get("image_volume_mode") != null && !jsonObj.get("image_volume_mode").isJsonNull()) && !jsonObj.get("image_volume_mode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `image_volume_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image_volume_mode").toString()));
+        }
+        if (jsonObj.get("image_volumes") != null && !jsonObj.get("image_volumes").isJsonNull()) {
+            JsonArray jsonArrayimageVolumes = jsonObj.getAsJsonArray("image_volumes");
+            if (jsonArrayimageVolumes != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("image_volumes").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `image_volumes` to be an array in the JSON string but got `%s`", jsonObj.get("image_volumes").toString()));
+                }
+
+                // validate the optional field `image_volumes` (array)
+                for (int i = 0; i < jsonArrayimageVolumes.size(); i++) {
+                    ImageVolume.validateJsonElement(jsonArrayimageVolumes.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("init_container_type") != null && !jsonObj.get("init_container_type").isJsonNull()) && !jsonObj.get("init_container_type").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `init_container_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("init_container_type").toString()));
+        }
+        if ((jsonObj.get("init_path") != null && !jsonObj.get("init_path").isJsonNull()) && !jsonObj.get("init_path").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `init_path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("init_path").toString()));
+        }
+        // validate the optional field `intelRdt`
+        if (jsonObj.get("intelRdt") != null && !jsonObj.get("intelRdt").isJsonNull()) {
+            LinuxIntelRdt.validateJsonElement(jsonObj.get("intelRdt"));
+        }
+        // validate the optional field `ipcns`
+        if (jsonObj.get("ipcns") != null && !jsonObj.get("ipcns").isJsonNull()) {
+            Namespace.validateJsonElement(jsonObj.get("ipcns"));
+        }
+        // validate the optional field `log_configuration`
+        if (jsonObj.get("log_configuration") != null && !jsonObj.get("log_configuration").isJsonNull()) {
+            LogConfigLibpod.validateJsonElement(jsonObj.get("log_configuration"));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("mask") != null && !jsonObj.get("mask").isJsonNull() && !jsonObj.get("mask").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `mask` to be an array in the JSON string but got `%s`", jsonObj.get("mask").toString()));
+        }
+        if (jsonObj.get("mounts") != null && !jsonObj.get("mounts").isJsonNull()) {
+            JsonArray jsonArraymounts = jsonObj.getAsJsonArray("mounts");
+            if (jsonArraymounts != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("mounts").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `mounts` to be an array in the JSON string but got `%s`", jsonObj.get("mounts").toString()));
+                }
+
+                // validate the optional field `mounts` (array)
+                for (int i = 0; i < jsonArraymounts.size(); i++) {
+                    Mount.validateJsonElement(jsonArraymounts.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+        }
+        // validate the optional field `netns`
+        if (jsonObj.get("netns") != null && !jsonObj.get("netns").isJsonNull()) {
+            Namespace.validateJsonElement(jsonObj.get("netns"));
+        }
+        if ((jsonObj.get("oci_runtime") != null && !jsonObj.get("oci_runtime").isJsonNull()) && !jsonObj.get("oci_runtime").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `oci_runtime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("oci_runtime").toString()));
+        }
+        if (jsonObj.get("overlay_volumes") != null && !jsonObj.get("overlay_volumes").isJsonNull()) {
+            JsonArray jsonArrayoverlayVolumes = jsonObj.getAsJsonArray("overlay_volumes");
+            if (jsonArrayoverlayVolumes != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("overlay_volumes").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `overlay_volumes` to be an array in the JSON string but got `%s`", jsonObj.get("overlay_volumes").toString()));
+                }
+
+                // validate the optional field `overlay_volumes` (array)
+                for (int i = 0; i < jsonArrayoverlayVolumes.size(); i++) {
+                    OverlayVolume.validateJsonElement(jsonArrayoverlayVolumes.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("passwd_entry") != null && !jsonObj.get("passwd_entry").isJsonNull()) && !jsonObj.get("passwd_entry").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `passwd_entry` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passwd_entry").toString()));
+        }
+        // validate the optional field `personality`
+        if (jsonObj.get("personality") != null && !jsonObj.get("personality").isJsonNull()) {
+            LinuxPersonality.validateJsonElement(jsonObj.get("personality"));
+        }
+        // validate the optional field `pidns`
+        if (jsonObj.get("pidns") != null && !jsonObj.get("pidns").isJsonNull()) {
+            Namespace.validateJsonElement(jsonObj.get("pidns"));
+        }
+        if ((jsonObj.get("pod") != null && !jsonObj.get("pod").isJsonNull()) && !jsonObj.get("pod").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `pod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pod").toString()));
+        }
+        if (jsonObj.get("portmappings") != null && !jsonObj.get("portmappings").isJsonNull()) {
+            JsonArray jsonArrayportmappings = jsonObj.getAsJsonArray("portmappings");
+            if (jsonArrayportmappings != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("portmappings").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `portmappings` to be an array in the JSON string but got `%s`", jsonObj.get("portmappings").toString()));
+                }
+
+                // validate the optional field `portmappings` (array)
+                for (int i = 0; i < jsonArrayportmappings.size(); i++) {
+                    PortMapping.validateJsonElement(jsonArrayportmappings.get(i));
+                }
+            }
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("procfs_opts") != null && !jsonObj.get("procfs_opts").isJsonNull() && !jsonObj.get("procfs_opts").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `procfs_opts` to be an array in the JSON string but got `%s`", jsonObj.get("procfs_opts").toString()));
+        }
+        if (jsonObj.get("r_limits") != null && !jsonObj.get("r_limits").isJsonNull()) {
+            JsonArray jsonArrayrLimits = jsonObj.getAsJsonArray("r_limits");
+            if (jsonArrayrLimits != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("r_limits").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `r_limits` to be an array in the JSON string but got `%s`", jsonObj.get("r_limits").toString()));
+                }
+
+                // validate the optional field `r_limits` (array)
+                for (int i = 0; i < jsonArrayrLimits.size(); i++) {
+                    POSIXRlimit.validateJsonElement(jsonArrayrLimits.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("raw_image_name") != null && !jsonObj.get("raw_image_name").isJsonNull()) && !jsonObj.get("raw_image_name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `raw_image_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("raw_image_name").toString()));
+        }
+        // validate the optional field `resource_limits`
+        if (jsonObj.get("resource_limits") != null && !jsonObj.get("resource_limits").isJsonNull()) {
+            LinuxResources.validateJsonElement(jsonObj.get("resource_limits"));
+        }
+        if ((jsonObj.get("restart_policy") != null && !jsonObj.get("restart_policy").isJsonNull()) && !jsonObj.get("restart_policy").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `restart_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("restart_policy").toString()));
+        }
+        if ((jsonObj.get("rootfs") != null && !jsonObj.get("rootfs").isJsonNull()) && !jsonObj.get("rootfs").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `rootfs` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootfs").toString()));
+        }
+        if ((jsonObj.get("rootfs_mapping") != null && !jsonObj.get("rootfs_mapping").isJsonNull()) && !jsonObj.get("rootfs_mapping").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `rootfs_mapping` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootfs_mapping").toString()));
+        }
+        if ((jsonObj.get("rootfs_propagation") != null && !jsonObj.get("rootfs_propagation").isJsonNull()) && !jsonObj.get("rootfs_propagation").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `rootfs_propagation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootfs_propagation").toString()));
+        }
+        if ((jsonObj.get("sdnotifyMode") != null && !jsonObj.get("sdnotifyMode").isJsonNull()) && !jsonObj.get("sdnotifyMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `sdnotifyMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sdnotifyMode").toString()));
+        }
+        if ((jsonObj.get("seccomp_policy") != null && !jsonObj.get("seccomp_policy").isJsonNull()) && !jsonObj.get("seccomp_policy").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `seccomp_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("seccomp_policy").toString()));
+        }
+        if ((jsonObj.get("seccomp_profile_path") != null && !jsonObj.get("seccomp_profile_path").isJsonNull()) && !jsonObj.get("seccomp_profile_path").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `seccomp_profile_path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("seccomp_profile_path").toString()));
+        }
+        if (jsonObj.get("secrets") != null && !jsonObj.get("secrets").isJsonNull()) {
+            JsonArray jsonArraysecrets = jsonObj.getAsJsonArray("secrets");
+            if (jsonArraysecrets != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("secrets").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `secrets` to be an array in the JSON string but got `%s`", jsonObj.get("secrets").toString()));
+                }
+
+                // validate the optional field `secrets` (array)
+                for (int i = 0; i < jsonArraysecrets.size(); i++) {
+                    Secret.validateJsonElement(jsonArraysecrets.get(i));
+                }
+            }
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("selinux_opts") != null && !jsonObj.get("selinux_opts").isJsonNull() && !jsonObj.get("selinux_opts").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `selinux_opts` to be an array in the JSON string but got `%s`", jsonObj.get("selinux_opts").toString()));
+        }
+        // validate the optional field `startupHealthConfig`
+        if (jsonObj.get("startupHealthConfig") != null && !jsonObj.get("startupHealthConfig").isJsonNull()) {
+            StartupHealthCheck.validateJsonElement(jsonObj.get("startupHealthConfig"));
+        }
+        if ((jsonObj.get("systemd") != null && !jsonObj.get("systemd").isJsonNull()) && !jsonObj.get("systemd").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `systemd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("systemd").toString()));
+        }
+        if ((jsonObj.get("timezone") != null && !jsonObj.get("timezone").isJsonNull()) && !jsonObj.get("timezone").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `timezone` to be a primitive type in the JSON string but got `%s`", jsonObj.get("timezone").toString()));
+        }
+        if ((jsonObj.get("umask") != null && !jsonObj.get("umask").isJsonNull()) && !jsonObj.get("umask").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `umask` to be a primitive type in the JSON string but got `%s`", jsonObj.get("umask").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("unmask") != null && !jsonObj.get("unmask").isJsonNull() && !jsonObj.get("unmask").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `unmask` to be an array in the JSON string but got `%s`", jsonObj.get("unmask").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("unsetenv") != null && !jsonObj.get("unsetenv").isJsonNull() && !jsonObj.get("unsetenv").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `unsetenv` to be an array in the JSON string but got `%s`", jsonObj.get("unsetenv").toString()));
+        }
+        if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `user` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user").toString()));
+        }
+        // validate the optional field `userns`
+        if (jsonObj.get("userns") != null && !jsonObj.get("userns").isJsonNull()) {
+            Namespace.validateJsonElement(jsonObj.get("userns"));
+        }
+        // validate the optional field `utsns`
+        if (jsonObj.get("utsns") != null && !jsonObj.get("utsns").isJsonNull()) {
+            Namespace.validateJsonElement(jsonObj.get("utsns"));
+        }
+        if (jsonObj.get("volumes") != null && !jsonObj.get("volumes").isJsonNull()) {
+            JsonArray jsonArrayvolumes = jsonObj.getAsJsonArray("volumes");
+            if (jsonArrayvolumes != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("volumes").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `volumes` to be an array in the JSON string but got `%s`", jsonObj.get("volumes").toString()));
+                }
+
+                // validate the optional field `volumes` (array)
+                for (int i = 0; i < jsonArrayvolumes.size(); i++) {
+                    NamedVolume.validateJsonElement(jsonArrayvolumes.get(i));
+                }
+            }
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull() && !jsonObj.get("volumes_from").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `volumes_from` to be an array in the JSON string but got `%s`", jsonObj.get("volumes_from").toString()));
+        }
+        if ((jsonObj.get("work_dir") != null && !jsonObj.get("work_dir").isJsonNull()) && !jsonObj.get("work_dir").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `work_dir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("work_dir").toString()));
+        }
     }
 
-    // add `work_dir` to the URL query string
-    if (getWorkDir() != null) {
-      joiner.add(String.format("%swork_dir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWorkDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of SpecGenerator given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SpecGenerator
+     * @throws IOException if the JSON string is invalid with respect to SpecGenerator
+     */
+    public static SpecGenerator fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SpecGenerator.class);
     }
 
-    return joiner.toString();
-  }
+    public SpecGenerator networks(Map<String, PerNetworkOptions> networks) {
+        this.networks = networks;
+        return this;
+    }
+
+    public SpecGenerator putNetworksItem(String key, PerNetworkOptions networksItem) {
+        if (this.networks == null) {
+            this.networks = new HashMap<>();
+        }
+        this.networks.put(key, networksItem);
+        return this;
+    }
+
+    /**
+     * Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.
+     *
+     * @return networks
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, PerNetworkOptions> getNetworks() {
+        return networks;
+    }
+
+    public void setNetworks(Map<String, PerNetworkOptions> networks) {
+        this.networks = networks;
+    }
+
+    public SpecGenerator annotations(Map<String, String> annotations) {
+        this.annotations = annotations;
+        return this;
+    }
+
+    public SpecGenerator putAnnotationsItem(String key, String annotationsItem) {
+        if (this.annotations == null) {
+            this.annotations = new HashMap<>();
+        }
+        this.annotations.put(key, annotationsItem);
+        return this;
+    }
+
+    /**
+     * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
+     *
+     * @return annotations
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getAnnotations() {
+        return annotations;
+    }
+
+    public void setAnnotations(Map<String, String> annotations) {
+        this.annotations = annotations;
+    }
+
+    public SpecGenerator apparmorProfile(String apparmorProfile) {
+        this.apparmorProfile = apparmorProfile;
+        return this;
+    }
+
+    /**
+     * ApparmorProfile is the name of the Apparmor profile the container will use. Optional.
+     *
+     * @return apparmorProfile
+     */
+    @jakarta.annotation.Nullable
+
+    public String getApparmorProfile() {
+        return apparmorProfile;
+    }
+
+    public void setApparmorProfile(String apparmorProfile) {
+        this.apparmorProfile = apparmorProfile;
+    }
+
+    public SpecGenerator baseHostsFile(String baseHostsFile) {
+        this.baseHostsFile = baseHostsFile;
+        return this;
+    }
+
+    /**
+     * BaseHostsFile is the path to a hosts file, the entries from this file are added to the containers hosts file. As special value \&quot;image\&quot; is allowed which uses the /etc/hosts file from within the image and \&quot;none\&quot; which uses no base file at all. If it is empty we should default to the base_hosts_file configuration in containers.conf. Optional.
+     *
+     * @return baseHostsFile
+     */
+    @jakarta.annotation.Nullable
+
+    public String getBaseHostsFile() {
+        return baseHostsFile;
+    }
+
+    public void setBaseHostsFile(String baseHostsFile) {
+        this.baseHostsFile = baseHostsFile;
+    }
+
+    public SpecGenerator capAdd(List<String> capAdd) {
+        this.capAdd = capAdd;
+        return this;
+    }
+
+    public SpecGenerator addCapAddItem(String capAddItem) {
+        if (this.capAdd == null) {
+            this.capAdd = new ArrayList<>();
+        }
+        this.capAdd.add(capAddItem);
+        return this;
+    }
+
+    /**
+     * CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.
+     *
+     * @return capAdd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCapAdd() {
+        return capAdd;
+    }
+
+    public void setCapAdd(List<String> capAdd) {
+        this.capAdd = capAdd;
+    }
+
+    public SpecGenerator capDrop(List<String> capDrop) {
+        this.capDrop = capDrop;
+        return this;
+    }
+
+    public SpecGenerator addCapDropItem(String capDropItem) {
+        if (this.capDrop == null) {
+            this.capDrop = new ArrayList<>();
+        }
+        this.capDrop.add(capDropItem);
+        return this;
+    }
+
+    /**
+     * CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.
+     *
+     * @return capDrop
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCapDrop() {
+        return capDrop;
+    }
+
+    public void setCapDrop(List<String> capDrop) {
+        this.capDrop = capDrop;
+    }
+
+    public SpecGenerator cgroupParent(String cgroupParent) {
+        this.cgroupParent = cgroupParent;
+        return this;
+    }
+
+    /**
+     * CgroupParent is the container&#39;s Cgroup parent. If not set, the default for the current cgroup driver will be used. Optional.
+     *
+     * @return cgroupParent
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupParent() {
+        return cgroupParent;
+    }
+
+    public void setCgroupParent(String cgroupParent) {
+        this.cgroupParent = cgroupParent;
+    }
+
+    public SpecGenerator cgroupns(Namespace cgroupns) {
+        this.cgroupns = cgroupns;
+        return this;
+    }
+
+    /**
+     * Get cgroupns
+     *
+     * @return cgroupns
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Namespace getCgroupns() {
+        return cgroupns;
+    }
+
+    public void setCgroupns(Namespace cgroupns) {
+        this.cgroupns = cgroupns;
+    }
+
+    public SpecGenerator cgroupsMode(String cgroupsMode) {
+        this.cgroupsMode = cgroupsMode;
+        return this;
+    }
+
+    /**
+     * CgroupsMode sets a policy for how cgroups will be created for the container, including the ability to disable creation entirely. Optional.
+     *
+     * @return cgroupsMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupsMode() {
+        return cgroupsMode;
+    }
+
+    public void setCgroupsMode(String cgroupsMode) {
+        this.cgroupsMode = cgroupsMode;
+    }
+
+    public SpecGenerator chrootDirectories(List<String> chrootDirectories) {
+        this.chrootDirectories = chrootDirectories;
+        return this;
+    }
+
+    public SpecGenerator addChrootDirectoriesItem(String chrootDirectoriesItem) {
+        if (this.chrootDirectories == null) {
+            this.chrootDirectories = new ArrayList<>();
+        }
+        this.chrootDirectories.add(chrootDirectoriesItem);
+        return this;
+    }
+
+    /**
+     * ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.
+     *
+     * @return chrootDirectories
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getChrootDirectories() {
+        return chrootDirectories;
+    }
+
+    public void setChrootDirectories(List<String> chrootDirectories) {
+        this.chrootDirectories = chrootDirectories;
+    }
+
+    public SpecGenerator cniNetworks(List<String> cniNetworks) {
+        this.cniNetworks = cniNetworks;
+        return this;
+    }
+
+    public SpecGenerator addCniNetworksItem(String cniNetworksItem) {
+        if (this.cniNetworks == null) {
+            this.cniNetworks = new ArrayList<>();
+        }
+        this.cniNetworks.add(cniNetworksItem);
+        return this;
+    }
+
+    /**
+     * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
+     *
+     * @return cniNetworks
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCniNetworks() {
+        return cniNetworks;
+    }
+
+    public void setCniNetworks(List<String> cniNetworks) {
+        this.cniNetworks = cniNetworks;
+    }
+
+    public SpecGenerator command(List<String> command) {
+        this.command = command;
+        return this;
+    }
+
+    public SpecGenerator addCommandItem(String commandItem) {
+        if (this.command == null) {
+            this.command = new ArrayList<>();
+        }
+        this.command.add(commandItem);
+        return this;
+    }
+
+    /**
+     * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
+     *
+     * @return command
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCommand() {
+        return command;
+    }
+
+    public void setCommand(List<String> command) {
+        this.command = command;
+    }
+
+    public SpecGenerator conmonPidFile(String conmonPidFile) {
+        this.conmonPidFile = conmonPidFile;
+        return this;
+    }
+
+    /**
+     * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
+     *
+     * @return conmonPidFile
+     */
+    @jakarta.annotation.Nullable
+
+    public String getConmonPidFile() {
+        return conmonPidFile;
+    }
+
+    public void setConmonPidFile(String conmonPidFile) {
+        this.conmonPidFile = conmonPidFile;
+    }
+
+    public SpecGenerator containerCreateCommand(List<String> containerCreateCommand) {
+        this.containerCreateCommand = containerCreateCommand;
+        return this;
+    }
+
+    public SpecGenerator addContainerCreateCommandItem(String containerCreateCommandItem) {
+        if (this.containerCreateCommand == null) {
+            this.containerCreateCommand = new ArrayList<>();
+        }
+        this.containerCreateCommand.add(containerCreateCommandItem);
+        return this;
+    }
+
+    /**
+     * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
+     *
+     * @return containerCreateCommand
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getContainerCreateCommand() {
+        return containerCreateCommand;
+    }
+
+    public void setContainerCreateCommand(List<String> containerCreateCommand) {
+        this.containerCreateCommand = containerCreateCommand;
+    }
+
+    public SpecGenerator createWorkingDir(Boolean createWorkingDir) {
+        this.createWorkingDir = createWorkingDir;
+        return this;
+    }
+
+    /**
+     * Create the working directory if it doesn&#39;t exist. If unset, it doesn&#39;t create it. Optional.
+     *
+     * @return createWorkingDir
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getCreateWorkingDir() {
+        return createWorkingDir;
+    }
+
+    public void setCreateWorkingDir(Boolean createWorkingDir) {
+        this.createWorkingDir = createWorkingDir;
+    }
+
+    public SpecGenerator dependencyContainers(List<String> dependencyContainers) {
+        this.dependencyContainers = dependencyContainers;
+        return this;
+    }
+
+    public SpecGenerator addDependencyContainersItem(String dependencyContainersItem) {
+        if (this.dependencyContainers == null) {
+            this.dependencyContainers = new ArrayList<>();
+        }
+        this.dependencyContainers.add(dependencyContainersItem);
+        return this;
+    }
+
+    /**
+     * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
+     *
+     * @return dependencyContainers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDependencyContainers() {
+        return dependencyContainers;
+    }
+
+    public void setDependencyContainers(List<String> dependencyContainers) {
+        this.dependencyContainers = dependencyContainers;
+    }
+
+    public SpecGenerator deviceCgroupRule(List<@Valid LinuxDeviceCgroup> deviceCgroupRule) {
+        this.deviceCgroupRule = deviceCgroupRule;
+        return this;
+    }
+
+    public SpecGenerator addDeviceCgroupRuleItem(LinuxDeviceCgroup deviceCgroupRuleItem) {
+        if (this.deviceCgroupRule == null) {
+            this.deviceCgroupRule = new ArrayList<>();
+        }
+        this.deviceCgroupRule.add(deviceCgroupRuleItem);
+        return this;
+    }
+
+    /**
+     * DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.
+     *
+     * @return deviceCgroupRule
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid LinuxDeviceCgroup> getDeviceCgroupRule() {
+        return deviceCgroupRule;
+    }
+
+    public void setDeviceCgroupRule(List<@Valid LinuxDeviceCgroup> deviceCgroupRule) {
+        this.deviceCgroupRule = deviceCgroupRule;
+    }
+
+    public SpecGenerator devices(List<@Valid LinuxDevice> devices) {
+        this.devices = devices;
+        return this;
+    }
+
+    public SpecGenerator addDevicesItem(LinuxDevice devicesItem) {
+        if (this.devices == null) {
+            this.devices = new ArrayList<>();
+        }
+        this.devices.add(devicesItem);
+        return this;
+    }
+
+    /**
+     * Devices are devices that will be added to the container. Optional.
+     *
+     * @return devices
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid LinuxDevice> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<@Valid LinuxDevice> devices) {
+        this.devices = devices;
+    }
+
+    public SpecGenerator devicesFrom(List<String> devicesFrom) {
+        this.devicesFrom = devicesFrom;
+        return this;
+    }
+
+    public SpecGenerator addDevicesFromItem(String devicesFromItem) {
+        if (this.devicesFrom == null) {
+            this.devicesFrom = new ArrayList<>();
+        }
+        this.devicesFrom.add(devicesFromItem);
+        return this;
+    }
+
+    /**
+     * DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.
+     *
+     * @return devicesFrom
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDevicesFrom() {
+        return devicesFrom;
+    }
+
+    public void setDevicesFrom(List<String> devicesFrom) {
+        this.devicesFrom = devicesFrom;
+    }
+
+    public SpecGenerator dnsOption(List<String> dnsOption) {
+        this.dnsOption = dnsOption;
+        return this;
+    }
+
+    public SpecGenerator addDnsOptionItem(String dnsOptionItem) {
+        if (this.dnsOption == null) {
+            this.dnsOption = new ArrayList<>();
+        }
+        this.dnsOption.add(dnsOptionItem);
+        return this;
+    }
+
+    /**
+     * DNSOptions is a set of DNS options that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.
+     *
+     * @return dnsOption
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDnsOption() {
+        return dnsOption;
+    }
+
+    public void setDnsOption(List<String> dnsOption) {
+        this.dnsOption = dnsOption;
+    }
+
+    public SpecGenerator dnsSearch(List<String> dnsSearch) {
+        this.dnsSearch = dnsSearch;
+        return this;
+    }
+
+    public SpecGenerator addDnsSearchItem(String dnsSearchItem) {
+        if (this.dnsSearch == null) {
+            this.dnsSearch = new ArrayList<>();
+        }
+        this.dnsSearch.add(dnsSearchItem);
+        return this;
+    }
+
+    /**
+     * DNSSearch is a set of DNS search domains that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.
+     *
+     * @return dnsSearch
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDnsSearch() {
+        return dnsSearch;
+    }
+
+    public void setDnsSearch(List<String> dnsSearch) {
+        this.dnsSearch = dnsSearch;
+    }
+
+    public SpecGenerator dnsServer(List<String> dnsServer) {
+        this.dnsServer = dnsServer;
+        return this;
+    }
+
+    public SpecGenerator addDnsServerItem(String dnsServerItem) {
+        if (this.dnsServer == null) {
+            this.dnsServer = new ArrayList<>();
+        }
+        this.dnsServer.add(dnsServerItem);
+        return this;
+    }
+
+    /**
+     * DNSServers is a set of DNS servers that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.
+     *
+     * @return dnsServer
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDnsServer() {
+        return dnsServer;
+    }
+
+    public void setDnsServer(List<String> dnsServer) {
+        this.dnsServer = dnsServer;
+    }
+
+    public SpecGenerator entrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
+        return this;
+    }
+
+    public SpecGenerator addEntrypointItem(String entrypointItem) {
+        if (this.entrypoint == null) {
+            this.entrypoint = new ArrayList<>();
+        }
+        this.entrypoint.add(entrypointItem);
+        return this;
+    }
+
+    /**
+     * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
+     *
+     * @return entrypoint
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEntrypoint() {
+        return entrypoint;
+    }
+
+    public void setEntrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
+    }
+
+    public SpecGenerator env(Map<String, String> env) {
+        this.env = env;
+        return this;
+    }
+
+    public SpecGenerator putEnvItem(String key, String envItem) {
+        if (this.env == null) {
+            this.env = new HashMap<>();
+        }
+        this.env.put(key, envItem);
+        return this;
+    }
+
+    /**
+     * Env is a set of environment variables that will be set in the container. Optional.
+     *
+     * @return env
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getEnv() {
+        return env;
+    }
+
+    public void setEnv(Map<String, String> env) {
+        this.env = env;
+    }
+
+    public SpecGenerator envHost(Boolean envHost) {
+        this.envHost = envHost;
+        return this;
+    }
+
+    /**
+     * EnvHost indicates that the host environment should be added to container Optional.
+     *
+     * @return envHost
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getEnvHost() {
+        return envHost;
+    }
+
+    public void setEnvHost(Boolean envHost) {
+        this.envHost = envHost;
+    }
+
+    public SpecGenerator envmerge(List<String> envmerge) {
+        this.envmerge = envmerge;
+        return this;
+    }
+
+    public SpecGenerator addEnvmergeItem(String envmergeItem) {
+        if (this.envmerge == null) {
+            this.envmerge = new ArrayList<>();
+        }
+        this.envmerge.add(envmergeItem);
+        return this;
+    }
+
+    /**
+     * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
+     *
+     * @return envmerge
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEnvmerge() {
+        return envmerge;
+    }
+
+    public void setEnvmerge(List<String> envmerge) {
+        this.envmerge = envmerge;
+    }
+
+    public SpecGenerator expose(Object expose) {
+        this.expose = expose;
+        return this;
+    }
+
+    /**
+     * Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \&quot;tcp\&quot;, \&quot;udp\&quot;, and \&quot;sctp\&quot;, or some combination of the three separated by commas. If protocol is set to \&quot;\&quot; we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.
+     *
+     * @return expose
+     */
+    @jakarta.annotation.Nullable
+
+    public Object getExpose() {
+        return expose;
+    }
+
+    public void setExpose(Object expose) {
+        this.expose = expose;
+    }
+
+    public SpecGenerator groupEntry(String groupEntry) {
+        this.groupEntry = groupEntry;
+        return this;
+    }
+
+    /**
+     * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
+     *
+     * @return groupEntry
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGroupEntry() {
+        return groupEntry;
+    }
+
+    public void setGroupEntry(String groupEntry) {
+        this.groupEntry = groupEntry;
+    }
+
+    public SpecGenerator groups(List<String> groups) {
+        this.groups = groups;
+        return this;
+    }
+
+    public SpecGenerator addGroupsItem(String groupsItem) {
+        if (this.groups == null) {
+            this.groups = new ArrayList<>();
+        }
+        this.groups.add(groupsItem);
+        return this;
+    }
+
+    /**
+     * Groups are a list of supplemental groups the container&#39;s user will be granted access to. Optional.
+     *
+     * @return groups
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<String> groups) {
+        this.groups = groups;
+    }
+
+    public SpecGenerator healthCheckOnFailureAction(Long healthCheckOnFailureAction) {
+        this.healthCheckOnFailureAction = healthCheckOnFailureAction;
+        return this;
+    }
+
+    /**
+     * HealthCheckOnFailureAction defines how Podman reacts when a container&#39;s health status turns unhealthy.
+     *
+     * @return healthCheckOnFailureAction
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getHealthCheckOnFailureAction() {
+        return healthCheckOnFailureAction;
+    }
+
+    public void setHealthCheckOnFailureAction(Long healthCheckOnFailureAction) {
+        this.healthCheckOnFailureAction = healthCheckOnFailureAction;
+    }
+
+    public SpecGenerator healthLogDestination(String healthLogDestination) {
+        this.healthLogDestination = healthLogDestination;
+        return this;
+    }
+
+    /**
+     * HealthLogDestination defines the destination where the log is stored
+     *
+     * @return healthLogDestination
+     */
+    @jakarta.annotation.Nullable
+
+    public String getHealthLogDestination() {
+        return healthLogDestination;
+    }
+
+    public void setHealthLogDestination(String healthLogDestination) {
+        this.healthLogDestination = healthLogDestination;
+    }
+
+    public SpecGenerator healthMaxLogCount(Integer healthMaxLogCount) {
+        this.healthMaxLogCount = healthMaxLogCount;
+        return this;
+    }
+
+    /**
+     * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
+     *
+     * @return healthMaxLogCount
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getHealthMaxLogCount() {
+        return healthMaxLogCount;
+    }
+
+    public void setHealthMaxLogCount(Integer healthMaxLogCount) {
+        this.healthMaxLogCount = healthMaxLogCount;
+    }
+
+    public SpecGenerator healthMaxLogSize(Integer healthMaxLogSize) {
+        this.healthMaxLogSize = healthMaxLogSize;
+        return this;
+    }
+
+    /**
+     * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length)
+     *
+     * @return healthMaxLogSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getHealthMaxLogSize() {
+        return healthMaxLogSize;
+    }
+
+    public void setHealthMaxLogSize(Integer healthMaxLogSize) {
+        this.healthMaxLogSize = healthMaxLogSize;
+    }
+
+    public SpecGenerator healthconfig(Schema2HealthConfig healthconfig) {
+        this.healthconfig = healthconfig;
+        return this;
+    }
+
+    /**
+     * Get healthconfig
+     *
+     * @return healthconfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Schema2HealthConfig getHealthconfig() {
+        return healthconfig;
+    }
+
+    public void setHealthconfig(Schema2HealthConfig healthconfig) {
+        this.healthconfig = healthconfig;
+    }
+
+    public SpecGenerator hostDeviceList(List<@Valid LinuxDevice> hostDeviceList) {
+        this.hostDeviceList = hostDeviceList;
+        return this;
+    }
+
+    public SpecGenerator addHostDeviceListItem(LinuxDevice hostDeviceListItem) {
+        if (this.hostDeviceList == null) {
+            this.hostDeviceList = new ArrayList<>();
+        }
+        this.hostDeviceList.add(hostDeviceListItem);
+        return this;
+    }
+
+    /**
+     * HostDeviceList is used to recreate the mounted device on inherited containers
+     *
+     * @return hostDeviceList
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid LinuxDevice> getHostDeviceList() {
+        return hostDeviceList;
+    }
+
+    public void setHostDeviceList(List<@Valid LinuxDevice> hostDeviceList) {
+        this.hostDeviceList = hostDeviceList;
+    }
+
+    public SpecGenerator hostadd(List<String> hostadd) {
+        this.hostadd = hostadd;
+        return this;
+    }
+
+    public SpecGenerator addHostaddItem(String hostaddItem) {
+        if (this.hostadd == null) {
+            this.hostadd = new ArrayList<>();
+        }
+        this.hostadd.add(hostaddItem);
+        return this;
+    }
+
+    /**
+     * HostAdd is a set of hosts which will be added to the container&#39;s etc/hosts file. Conflicts with UseImageHosts. Optional.
+     *
+     * @return hostadd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getHostadd() {
+        return hostadd;
+    }
+
+    public void setHostadd(List<String> hostadd) {
+        this.hostadd = hostadd;
+    }
+
+    public SpecGenerator hostname(String hostname) {
+        this.hostname = hostname;
+        return this;
+    }
+
+    /**
+     * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
+     *
+     * @return hostname
+     */
+    @jakarta.annotation.Nullable
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public SpecGenerator hostusers(List<String> hostusers) {
+        this.hostusers = hostusers;
+        return this;
+    }
+
+    public SpecGenerator addHostusersItem(String hostusersItem) {
+        if (this.hostusers == null) {
+            this.hostusers = new ArrayList<>();
+        }
+        this.hostusers.add(hostusersItem);
+        return this;
+    }
+
+    /**
+     * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
+     *
+     * @return hostusers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getHostusers() {
+        return hostusers;
+    }
+
+    public void setHostusers(List<String> hostusers) {
+        this.hostusers = hostusers;
+    }
+
+    public SpecGenerator httpproxy(Boolean httpproxy) {
+        this.httpproxy = httpproxy;
+        return this;
+    }
+
+    /**
+     * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
+     *
+     * @return httpproxy
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getHttpproxy() {
+        return httpproxy;
+    }
+
+    public void setHttpproxy(Boolean httpproxy) {
+        this.httpproxy = httpproxy;
+    }
+
+    public SpecGenerator idmappings(IDMappingOptions idmappings) {
+        this.idmappings = idmappings;
+        return this;
+    }
+
+    /**
+     * Get idmappings
+     *
+     * @return idmappings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public IDMappingOptions getIdmappings() {
+        return idmappings;
+    }
+
+    public void setIdmappings(IDMappingOptions idmappings) {
+        this.idmappings = idmappings;
+    }
+
+    public SpecGenerator image(String image) {
+        this.image = image;
+        return this;
+    }
+
+    /**
+     * Image is the image the container will be based on. The image will be used as the container&#39;s root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.
+     *
+     * @return image
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public SpecGenerator imageArch(String imageArch) {
+        this.imageArch = imageArch;
+        return this;
+    }
+
+    /**
+     * ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.
+     *
+     * @return imageArch
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImageArch() {
+        return imageArch;
+    }
+
+    public void setImageArch(String imageArch) {
+        this.imageArch = imageArch;
+    }
+
+    public SpecGenerator imageOs(String imageOs) {
+        this.imageOs = imageOs;
+        return this;
+    }
+
+    /**
+     * ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.
+     *
+     * @return imageOs
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImageOs() {
+        return imageOs;
+    }
+
+    public void setImageOs(String imageOs) {
+        this.imageOs = imageOs;
+    }
+
+    public SpecGenerator imageVariant(String imageVariant) {
+        this.imageVariant = imageVariant;
+        return this;
+    }
+
+    /**
+     * ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.
+     *
+     * @return imageVariant
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImageVariant() {
+        return imageVariant;
+    }
+
+    public void setImageVariant(String imageVariant) {
+        this.imageVariant = imageVariant;
+    }
+
+    public SpecGenerator imageVolumeMode(String imageVolumeMode) {
+        this.imageVolumeMode = imageVolumeMode;
+        return this;
+    }
+
+    /**
+     * ImageVolumeMode indicates how image volumes will be created. Supported modes are \&quot;ignore\&quot; (do not create), \&quot;tmpfs\&quot; (create as tmpfs), and \&quot;anonymous\&quot; (create as anonymous volumes). The default if unset is anonymous. Optional.
+     *
+     * @return imageVolumeMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImageVolumeMode() {
+        return imageVolumeMode;
+    }
+
+    public void setImageVolumeMode(String imageVolumeMode) {
+        this.imageVolumeMode = imageVolumeMode;
+    }
+
+    public SpecGenerator imageVolumes(List<@Valid ImageVolume> imageVolumes) {
+        this.imageVolumes = imageVolumes;
+        return this;
+    }
+
+    public SpecGenerator addImageVolumesItem(ImageVolume imageVolumesItem) {
+        if (this.imageVolumes == null) {
+            this.imageVolumes = new ArrayList<>();
+        }
+        this.imageVolumes.add(imageVolumesItem);
+        return this;
+    }
+
+    /**
+     * Image volumes bind-mount a container-image mount into the container. Optional.
+     *
+     * @return imageVolumes
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ImageVolume> getImageVolumes() {
+        return imageVolumes;
+    }
+
+    public void setImageVolumes(List<@Valid ImageVolume> imageVolumes) {
+        this.imageVolumes = imageVolumes;
+    }
+
+    public SpecGenerator init(Boolean init) {
+        this.init = init;
+        return this;
+    }
+
+    /**
+     * Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.
+     *
+     * @return init
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getInit() {
+        return init;
+    }
+
+    public void setInit(Boolean init) {
+        this.init = init;
+    }
+
+    public SpecGenerator initContainerType(String initContainerType) {
+        this.initContainerType = initContainerType;
+        return this;
+    }
+
+    /**
+     * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
+     *
+     * @return initContainerType
+     */
+    @jakarta.annotation.Nullable
+
+    public String getInitContainerType() {
+        return initContainerType;
+    }
+
+    public void setInitContainerType(String initContainerType) {
+        this.initContainerType = initContainerType;
+    }
+
+    public SpecGenerator initPath(String initPath) {
+        this.initPath = initPath;
+        return this;
+    }
+
+    /**
+     * InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.
+     *
+     * @return initPath
+     */
+    @jakarta.annotation.Nullable
+
+    public String getInitPath() {
+        return initPath;
+    }
+
+    public void setInitPath(String initPath) {
+        this.initPath = initPath;
+    }
+
+    public SpecGenerator intelRdt(LinuxIntelRdt intelRdt) {
+        this.intelRdt = intelRdt;
+        return this;
+    }
+
+    /**
+     * Get intelRdt
+     *
+     * @return intelRdt
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxIntelRdt getIntelRdt() {
+        return intelRdt;
+    }
+
+    public void setIntelRdt(LinuxIntelRdt intelRdt) {
+        this.intelRdt = intelRdt;
+    }
+
+    public SpecGenerator ipcns(Namespace ipcns) {
+        this.ipcns = ipcns;
+        return this;
+    }
+
+    /**
+     * Get ipcns
+     *
+     * @return ipcns
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Namespace getIpcns() {
+        return ipcns;
+    }
+
+    public void setIpcns(Namespace ipcns) {
+        this.ipcns = ipcns;
+    }
+
+    public SpecGenerator labelNested(Boolean labelNested) {
+        this.labelNested = labelNested;
+        return this;
+    }
+
+    /**
+     * LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.
+     *
+     * @return labelNested
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getLabelNested() {
+        return labelNested;
+    }
+
+    public void setLabelNested(Boolean labelNested) {
+        this.labelNested = labelNested;
+    }
+
+    public SpecGenerator labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public SpecGenerator putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * Labels are key-value pairs that are used to add metadata to containers. Optional.
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public SpecGenerator logConfiguration(LogConfigLibpod logConfiguration) {
+        this.logConfiguration = logConfiguration;
+        return this;
+    }
+
+    /**
+     * Get logConfiguration
+     *
+     * @return logConfiguration
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LogConfigLibpod getLogConfiguration() {
+        return logConfiguration;
+    }
+
+    public void setLogConfiguration(LogConfigLibpod logConfiguration) {
+        this.logConfiguration = logConfiguration;
+    }
+
+    public SpecGenerator managePassword(Boolean managePassword) {
+        this.managePassword = managePassword;
+        return this;
+    }
+
+    /**
+     * Passwd is a container run option that determines if we are validating users/groups before running the container
+     *
+     * @return managePassword
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getManagePassword() {
+        return managePassword;
+    }
+
+    public void setManagePassword(Boolean managePassword) {
+        this.managePassword = managePassword;
+    }
+
+    public SpecGenerator mask(List<String> mask) {
+        this.mask = mask;
+        return this;
+    }
+
+    public SpecGenerator addMaskItem(String maskItem) {
+        if (this.mask == null) {
+            this.mask = new ArrayList<>();
+        }
+        this.mask.add(maskItem);
+        return this;
+    }
+
+    /**
+     * Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional
+     *
+     * @return mask
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getMask() {
+        return mask;
+    }
+
+    public void setMask(List<String> mask) {
+        this.mask = mask;
+    }
+
+    public SpecGenerator mounts(List<@Valid Mount> mounts) {
+        this.mounts = mounts;
+        return this;
+    }
+
+    public SpecGenerator addMountsItem(Mount mountsItem) {
+        if (this.mounts == null) {
+            this.mounts = new ArrayList<>();
+        }
+        this.mounts.add(mountsItem);
+        return this;
+    }
+
+    /**
+     * Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
+     *
+     * @return mounts
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Mount> getMounts() {
+        return mounts;
+    }
+
+    public void setMounts(List<@Valid Mount> mounts) {
+        this.mounts = mounts;
+    }
+
+    public SpecGenerator name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public SpecGenerator netns(Namespace netns) {
+        this.netns = netns;
+        return this;
+    }
+
+    /**
+     * Get netns
+     *
+     * @return netns
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Namespace getNetns() {
+        return netns;
+    }
+
+    public void setNetns(Namespace netns) {
+        this.netns = netns;
+    }
+
+    public SpecGenerator networkOptions(Map<String, List<String>> networkOptions) {
+        this.networkOptions = networkOptions;
+        return this;
+    }
+
+    public SpecGenerator putNetworkOptionsItem(String key, List<String> networkOptionsItem) {
+        if (this.networkOptions == null) {
+            this.networkOptions = new HashMap<>();
+        }
+        this.networkOptions.put(key, networkOptionsItem);
+        return this;
+    }
+
+    /**
+     * NetworkOptions are additional options for each network Optional.
+     *
+     * @return networkOptions
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<String>> getNetworkOptions() {
+        return networkOptions;
+    }
+
+    public void setNetworkOptions(Map<String, List<String>> networkOptions) {
+        this.networkOptions = networkOptions;
+    }
+
+    public SpecGenerator noNewPrivileges(Boolean noNewPrivileges) {
+        this.noNewPrivileges = noNewPrivileges;
+        return this;
+    }
+
+    /**
+     * NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.
+     *
+     * @return noNewPrivileges
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getNoNewPrivileges() {
+        return noNewPrivileges;
+    }
+
+    public void setNoNewPrivileges(Boolean noNewPrivileges) {
+        this.noNewPrivileges = noNewPrivileges;
+    }
+
+    public SpecGenerator ociRuntime(String ociRuntime) {
+        this.ociRuntime = ociRuntime;
+        return this;
+    }
+
+    /**
+     * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
+     *
+     * @return ociRuntime
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOciRuntime() {
+        return ociRuntime;
+    }
+
+    public void setOciRuntime(String ociRuntime) {
+        this.ociRuntime = ociRuntime;
+    }
+
+    public SpecGenerator oomScoreAdj(Long oomScoreAdj) {
+        this.oomScoreAdj = oomScoreAdj;
+        return this;
+    }
+
+    /**
+     * OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container&#39;s process. Optional.
+     *
+     * @return oomScoreAdj
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getOomScoreAdj() {
+        return oomScoreAdj;
+    }
+
+    public void setOomScoreAdj(Long oomScoreAdj) {
+        this.oomScoreAdj = oomScoreAdj;
+    }
+
+    public SpecGenerator overlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
+        this.overlayVolumes = overlayVolumes;
+        return this;
+    }
+
+    public SpecGenerator addOverlayVolumesItem(OverlayVolume overlayVolumesItem) {
+        if (this.overlayVolumes == null) {
+            this.overlayVolumes = new ArrayList<>();
+        }
+        this.overlayVolumes.add(overlayVolumesItem);
+        return this;
+    }
+
+    /**
+     * Overlay volumes are named volumes that will be added to the container. Optional.
+     *
+     * @return overlayVolumes
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid OverlayVolume> getOverlayVolumes() {
+        return overlayVolumes;
+    }
+
+    public void setOverlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
+        this.overlayVolumes = overlayVolumes;
+    }
+
+    public SpecGenerator passwdEntry(String passwdEntry) {
+        this.passwdEntry = passwdEntry;
+        return this;
+    }
+
+    /**
+     * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
+     *
+     * @return passwdEntry
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPasswdEntry() {
+        return passwdEntry;
+    }
+
+    public void setPasswdEntry(String passwdEntry) {
+        this.passwdEntry = passwdEntry;
+    }
+
+    public SpecGenerator personality(LinuxPersonality personality) {
+        this.personality = personality;
+        return this;
+    }
+
+    /**
+     * Get personality
+     *
+     * @return personality
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxPersonality getPersonality() {
+        return personality;
+    }
+
+    public void setPersonality(LinuxPersonality personality) {
+        this.personality = personality;
+    }
+
+    public SpecGenerator pidns(Namespace pidns) {
+        this.pidns = pidns;
+        return this;
+    }
+
+    /**
+     * Get pidns
+     *
+     * @return pidns
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Namespace getPidns() {
+        return pidns;
+    }
+
+    public void setPidns(Namespace pidns) {
+        this.pidns = pidns;
+    }
+
+    public SpecGenerator pod(String pod) {
+        this.pod = pod;
+        return this;
+    }
+
+    /**
+     * Pod is the ID of the pod the container will join. Optional.
+     *
+     * @return pod
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPod() {
+        return pod;
+    }
+
+    public void setPod(String pod) {
+        this.pod = pod;
+    }
+
+    public SpecGenerator portmappings(List<@Valid PortMapping> portmappings) {
+        this.portmappings = portmappings;
+        return this;
+    }
+
+    public SpecGenerator addPortmappingsItem(PortMapping portmappingsItem) {
+        if (this.portmappings == null) {
+            this.portmappings = new ArrayList<>();
+        }
+        this.portmappings.add(portmappingsItem);
+        return this;
+    }
+
+    /**
+     * PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.
+     *
+     * @return portmappings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid PortMapping> getPortmappings() {
+        return portmappings;
+    }
+
+    public void setPortmappings(List<@Valid PortMapping> portmappings) {
+        this.portmappings = portmappings;
+    }
+
+    public SpecGenerator privileged(Boolean privileged) {
+        this.privileged = privileged;
+        return this;
+    }
+
+    /**
+     * Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.
+     *
+     * @return privileged
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPrivileged() {
+        return privileged;
+    }
+
+    public void setPrivileged(Boolean privileged) {
+        this.privileged = privileged;
+    }
+
+    public SpecGenerator procfsOpts(List<String> procfsOpts) {
+        this.procfsOpts = procfsOpts;
+        return this;
+    }
+
+    public SpecGenerator addProcfsOptsItem(String procfsOptsItem) {
+        if (this.procfsOpts == null) {
+            this.procfsOpts = new ArrayList<>();
+        }
+        this.procfsOpts.add(procfsOptsItem);
+        return this;
+    }
+
+    /**
+     * ProcOpts are the options used for the proc mount.
+     *
+     * @return procfsOpts
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getProcfsOpts() {
+        return procfsOpts;
+    }
+
+    public void setProcfsOpts(List<String> procfsOpts) {
+        this.procfsOpts = procfsOpts;
+    }
+
+    public SpecGenerator publishImagePorts(Boolean publishImagePorts) {
+        this.publishImagePorts = publishImagePorts;
+        return this;
+    }
+
+    /**
+     * PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.
+     *
+     * @return publishImagePorts
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPublishImagePorts() {
+        return publishImagePorts;
+    }
+
+    public void setPublishImagePorts(Boolean publishImagePorts) {
+        this.publishImagePorts = publishImagePorts;
+    }
+
+    public SpecGenerator rLimits(List<@Valid POSIXRlimit> rLimits) {
+        this.rLimits = rLimits;
+        return this;
+    }
+
+    public SpecGenerator addRLimitsItem(POSIXRlimit rLimitsItem) {
+        if (this.rLimits == null) {
+            this.rLimits = new ArrayList<>();
+        }
+        this.rLimits.add(rLimitsItem);
+        return this;
+    }
+
+    /**
+     * Rlimits are POSIX rlimits to apply to the container. Optional.
+     *
+     * @return rLimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid POSIXRlimit> getrLimits() {
+        return rLimits;
+    }
+
+    public void setrLimits(List<@Valid POSIXRlimit> rLimits) {
+        this.rLimits = rLimits;
+    }
+
+    public SpecGenerator rawImageName(String rawImageName) {
+        this.rawImageName = rawImageName;
+        return this;
+    }
+
+    /**
+     * RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.
+     *
+     * @return rawImageName
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRawImageName() {
+        return rawImageName;
+    }
+
+    public void setRawImageName(String rawImageName) {
+        this.rawImageName = rawImageName;
+    }
+
+    public SpecGenerator readOnlyFilesystem(Boolean readOnlyFilesystem) {
+        this.readOnlyFilesystem = readOnlyFilesystem;
+        return this;
+    }
+
+    /**
+     * ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.
+     *
+     * @return readOnlyFilesystem
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getReadOnlyFilesystem() {
+        return readOnlyFilesystem;
+    }
+
+    public void setReadOnlyFilesystem(Boolean readOnlyFilesystem) {
+        this.readOnlyFilesystem = readOnlyFilesystem;
+    }
+
+    public SpecGenerator readWriteTmpfs(Boolean readWriteTmpfs) {
+        this.readWriteTmpfs = readWriteTmpfs;
+        return this;
+    }
+
+    /**
+     * ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.
+     *
+     * @return readWriteTmpfs
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getReadWriteTmpfs() {
+        return readWriteTmpfs;
+    }
+
+    public void setReadWriteTmpfs(Boolean readWriteTmpfs) {
+        this.readWriteTmpfs = readWriteTmpfs;
+    }
+
+    public SpecGenerator remove(Boolean remove) {
+        this.remove = remove;
+        return this;
+    }
+
+    /**
+     * Remove indicates if the container should be removed once it has been started and exits. Optional.
+     *
+     * @return remove
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRemove() {
+        return remove;
+    }
+
+    public void setRemove(Boolean remove) {
+        this.remove = remove;
+    }
+
+    public SpecGenerator removeImage(Boolean removeImage) {
+        this.removeImage = removeImage;
+        return this;
+    }
+
+    /**
+     * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
+     *
+     * @return removeImage
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRemoveImage() {
+        return removeImage;
+    }
+
+    public void setRemoveImage(Boolean removeImage) {
+        this.removeImage = removeImage;
+    }
+
+    public SpecGenerator resourceLimits(LinuxResources resourceLimits) {
+        this.resourceLimits = resourceLimits;
+        return this;
+    }
+
+    /**
+     * Get resourceLimits
+     *
+     * @return resourceLimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxResources getResourceLimits() {
+        return resourceLimits;
+    }
+
+    public void setResourceLimits(LinuxResources resourceLimits) {
+        this.resourceLimits = resourceLimits;
+    }
+
+    public SpecGenerator restartPolicy(String restartPolicy) {
+        this.restartPolicy = restartPolicy;
+        return this;
+    }
+
+    /**
+     * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
+     *
+     * @return restartPolicy
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRestartPolicy() {
+        return restartPolicy;
+    }
+
+    public void setRestartPolicy(String restartPolicy) {
+        this.restartPolicy = restartPolicy;
+    }
+
+    public SpecGenerator restartTries(Integer restartTries) {
+        this.restartTries = restartTries;
+        return this;
+    }
+
+    /**
+     * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
+     *
+     * @return restartTries
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getRestartTries() {
+        return restartTries;
+    }
+
+    public void setRestartTries(Integer restartTries) {
+        this.restartTries = restartTries;
+    }
+
+    public SpecGenerator rootfs(String rootfs) {
+        this.rootfs = rootfs;
+        return this;
+    }
+
+    /**
+     * Rootfs is the path to a directory that will be used as the container&#39;s root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.
+     *
+     * @return rootfs
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRootfs() {
+        return rootfs;
+    }
+
+    public void setRootfs(String rootfs) {
+        this.rootfs = rootfs;
+    }
+
+    public SpecGenerator rootfsMapping(String rootfsMapping) {
+        this.rootfsMapping = rootfsMapping;
+        return this;
+    }
+
+    /**
+     * RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.
+     *
+     * @return rootfsMapping
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRootfsMapping() {
+        return rootfsMapping;
+    }
+
+    public void setRootfsMapping(String rootfsMapping) {
+        this.rootfsMapping = rootfsMapping;
+    }
+
+    public SpecGenerator rootfsOverlay(Boolean rootfsOverlay) {
+        this.rootfsOverlay = rootfsOverlay;
+        return this;
+    }
+
+    /**
+     * RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.
+     *
+     * @return rootfsOverlay
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRootfsOverlay() {
+        return rootfsOverlay;
+    }
+
+    public void setRootfsOverlay(Boolean rootfsOverlay) {
+        this.rootfsOverlay = rootfsOverlay;
+    }
+
+    public SpecGenerator rootfsPropagation(String rootfsPropagation) {
+        this.rootfsPropagation = rootfsPropagation;
+        return this;
+    }
+
+    /**
+     * RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.
+     *
+     * @return rootfsPropagation
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRootfsPropagation() {
+        return rootfsPropagation;
+    }
+
+    public void setRootfsPropagation(String rootfsPropagation) {
+        this.rootfsPropagation = rootfsPropagation;
+    }
+
+    public SpecGenerator sdnotifyMode(String sdnotifyMode) {
+        this.sdnotifyMode = sdnotifyMode;
+        return this;
+    }
+
+    /**
+     * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
+     *
+     * @return sdnotifyMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSdnotifyMode() {
+        return sdnotifyMode;
+    }
+
+    public void setSdnotifyMode(String sdnotifyMode) {
+        this.sdnotifyMode = sdnotifyMode;
+    }
+
+    public SpecGenerator seccompPolicy(String seccompPolicy) {
+        this.seccompPolicy = seccompPolicy;
+        return this;
+    }
+
+    /**
+     * SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image
+     *
+     * @return seccompPolicy
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSeccompPolicy() {
+        return seccompPolicy;
+    }
+
+    public void setSeccompPolicy(String seccompPolicy) {
+        this.seccompPolicy = seccompPolicy;
+    }
+
+    public SpecGenerator seccompProfilePath(String seccompProfilePath) {
+        this.seccompProfilePath = seccompProfilePath;
+        return this;
+    }
+
+    /**
+     * SeccompProfilePath is the path to a JSON file containing the container&#39;s Seccomp profile. If not specified, no Seccomp profile will be used. Optional.
+     *
+     * @return seccompProfilePath
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSeccompProfilePath() {
+        return seccompProfilePath;
+    }
+
+    public void setSeccompProfilePath(String seccompProfilePath) {
+        this.seccompProfilePath = seccompProfilePath;
+    }
+
+    public SpecGenerator secretEnv(Map<String, String> secretEnv) {
+        this.secretEnv = secretEnv;
+        return this;
+    }
+
+    public SpecGenerator putSecretEnvItem(String key, String secretEnvItem) {
+        if (this.secretEnv == null) {
+            this.secretEnv = new HashMap<>();
+        }
+        this.secretEnv.put(key, secretEnvItem);
+        return this;
+    }
+
+    /**
+     * EnvSecrets are secrets that will be set as environment variables Optional.
+     *
+     * @return secretEnv
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getSecretEnv() {
+        return secretEnv;
+    }
+
+    public void setSecretEnv(Map<String, String> secretEnv) {
+        this.secretEnv = secretEnv;
+    }
+
+    public SpecGenerator secrets(List<@Valid Secret> secrets) {
+        this.secrets = secrets;
+        return this;
+    }
+
+    public SpecGenerator addSecretsItem(Secret secretsItem) {
+        if (this.secrets == null) {
+            this.secrets = new ArrayList<>();
+        }
+        this.secrets.add(secretsItem);
+        return this;
+    }
+
+    /**
+     * Secrets are the secrets that will be added to the container Optional.
+     *
+     * @return secrets
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Secret> getSecrets() {
+        return secrets;
+    }
+
+    public void setSecrets(List<@Valid Secret> secrets) {
+        this.secrets = secrets;
+    }
+
+    public SpecGenerator selinuxOpts(List<String> selinuxOpts) {
+        this.selinuxOpts = selinuxOpts;
+        return this;
+    }
+
+    public SpecGenerator addSelinuxOptsItem(String selinuxOptsItem) {
+        if (this.selinuxOpts == null) {
+            this.selinuxOpts = new ArrayList<>();
+        }
+        this.selinuxOpts.add(selinuxOptsItem);
+        return this;
+    }
+
+    /**
+     * SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.
+     *
+     * @return selinuxOpts
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getSelinuxOpts() {
+        return selinuxOpts;
+    }
+
+    public void setSelinuxOpts(List<String> selinuxOpts) {
+        this.selinuxOpts = selinuxOpts;
+    }
+
+    public SpecGenerator shmSize(Long shmSize) {
+        this.shmSize = shmSize;
+        return this;
+    }
+
+    /**
+     * ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.
+     *
+     * @return shmSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getShmSize() {
+        return shmSize;
+    }
+
+    public void setShmSize(Long shmSize) {
+        this.shmSize = shmSize;
+    }
+
+    public SpecGenerator shmSizeSystemd(Long shmSizeSystemd) {
+        this.shmSizeSystemd = shmSizeSystemd;
+        return this;
+    }
+
+    /**
+     * ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional
+     *
+     * @return shmSizeSystemd
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getShmSizeSystemd() {
+        return shmSizeSystemd;
+    }
+
+    public void setShmSizeSystemd(Long shmSizeSystemd) {
+        this.shmSizeSystemd = shmSizeSystemd;
+    }
+
+    public SpecGenerator startupHealthConfig(StartupHealthCheck startupHealthConfig) {
+        this.startupHealthConfig = startupHealthConfig;
+        return this;
+    }
+
+    /**
+     * Get startupHealthConfig
+     *
+     * @return startupHealthConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public StartupHealthCheck getStartupHealthConfig() {
+        return startupHealthConfig;
+    }
+
+    public void setStartupHealthConfig(StartupHealthCheck startupHealthConfig) {
+        this.startupHealthConfig = startupHealthConfig;
+    }
+
+    public SpecGenerator stdin(Boolean stdin) {
+        this.stdin = stdin;
+        return this;
+    }
+
+    /**
+     * Stdin is whether the container will keep its STDIN open. Optional.
+     *
+     * @return stdin
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getStdin() {
+        return stdin;
+    }
+
+    public void setStdin(Boolean stdin) {
+        this.stdin = stdin;
+    }
+
+    public SpecGenerator stopSignal(Long stopSignal) {
+        this.stopSignal = stopSignal;
+        return this;
+    }
+
+    /**
+     * It implements the [os.Signal] interface.
+     *
+     * @return stopSignal
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getStopSignal() {
+        return stopSignal;
+    }
+
+    public void setStopSignal(Long stopSignal) {
+        this.stopSignal = stopSignal;
+    }
+
+    public SpecGenerator stopTimeout(Integer stopTimeout) {
+        this.stopTimeout = stopTimeout;
+        return this;
+    }
+
+    /**
+     * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
+     *
+     * @return stopTimeout
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getStopTimeout() {
+        return stopTimeout;
+    }
+
+    public void setStopTimeout(Integer stopTimeout) {
+        this.stopTimeout = stopTimeout;
+    }
+
+    public SpecGenerator storageOpts(Map<String, String> storageOpts) {
+        this.storageOpts = storageOpts;
+        return this;
+    }
+
+    public SpecGenerator putStorageOptsItem(String key, String storageOptsItem) {
+        if (this.storageOpts == null) {
+            this.storageOpts = new HashMap<>();
+        }
+        this.storageOpts.put(key, storageOptsItem);
+        return this;
+    }
+
+    /**
+     * StorageOpts is the container&#39;s storage options Optional.
+     *
+     * @return storageOpts
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getStorageOpts() {
+        return storageOpts;
+    }
+
+    public void setStorageOpts(Map<String, String> storageOpts) {
+        this.storageOpts = storageOpts;
+    }
+
+    public SpecGenerator sysctl(Map<String, String> sysctl) {
+        this.sysctl = sysctl;
+        return this;
+    }
+
+    public SpecGenerator putSysctlItem(String key, String sysctlItem) {
+        if (this.sysctl == null) {
+            this.sysctl = new HashMap<>();
+        }
+        this.sysctl.put(key, sysctlItem);
+        return this;
+    }
+
+    /**
+     * Sysctl sets kernel parameters for the container
+     *
+     * @return sysctl
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getSysctl() {
+        return sysctl;
+    }
+
+    public void setSysctl(Map<String, String> sysctl) {
+        this.sysctl = sysctl;
+    }
+
+    public SpecGenerator systemd(String systemd) {
+        this.systemd = systemd;
+        return this;
+    }
+
+    /**
+     * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
+     *
+     * @return systemd
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSystemd() {
+        return systemd;
+    }
+
+    public void setSystemd(String systemd) {
+        this.systemd = systemd;
+    }
+
+    public SpecGenerator terminal(Boolean terminal) {
+        this.terminal = terminal;
+        return this;
+    }
+
+    /**
+     * Terminal is whether the container will create a PTY. Optional.
+     *
+     * @return terminal
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Boolean terminal) {
+        this.terminal = terminal;
+    }
+
+    public SpecGenerator throttleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
+        this.throttleReadBpsDevice = throttleReadBpsDevice;
+        return this;
+    }
+
+    public SpecGenerator putThrottleReadBpsDeviceItem(String key, LinuxThrottleDevice throttleReadBpsDeviceItem) {
+        if (this.throttleReadBpsDevice == null) {
+            this.throttleReadBpsDevice = new HashMap<>();
+        }
+        this.throttleReadBpsDevice.put(key, throttleReadBpsDeviceItem);
+        return this;
+    }
+
+    /**
+     * IO read rate limit per cgroup per device, bytes per second
+     *
+     * @return throttleReadBpsDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxThrottleDevice> getThrottleReadBpsDevice() {
+        return throttleReadBpsDevice;
+    }
+
+    public void setThrottleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
+        this.throttleReadBpsDevice = throttleReadBpsDevice;
+    }
+
+    public SpecGenerator throttleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
+        this.throttleReadIOPSDevice = throttleReadIOPSDevice;
+        return this;
+    }
+
+    public SpecGenerator putThrottleReadIOPSDeviceItem(String key, LinuxThrottleDevice throttleReadIOPSDeviceItem) {
+        if (this.throttleReadIOPSDevice == null) {
+            this.throttleReadIOPSDevice = new HashMap<>();
+        }
+        this.throttleReadIOPSDevice.put(key, throttleReadIOPSDeviceItem);
+        return this;
+    }
+
+    /**
+     * IO read rate limit per cgroup per device, IO per second
+     *
+     * @return throttleReadIOPSDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxThrottleDevice> getThrottleReadIOPSDevice() {
+        return throttleReadIOPSDevice;
+    }
+
+    public void setThrottleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
+        this.throttleReadIOPSDevice = throttleReadIOPSDevice;
+    }
+
+    public SpecGenerator throttleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
+        this.throttleWriteBpsDevice = throttleWriteBpsDevice;
+        return this;
+    }
+
+    public SpecGenerator putThrottleWriteBpsDeviceItem(String key, LinuxThrottleDevice throttleWriteBpsDeviceItem) {
+        if (this.throttleWriteBpsDevice == null) {
+            this.throttleWriteBpsDevice = new HashMap<>();
+        }
+        this.throttleWriteBpsDevice.put(key, throttleWriteBpsDeviceItem);
+        return this;
+    }
+
+    /**
+     * IO write rate limit per cgroup per device, bytes per second
+     *
+     * @return throttleWriteBpsDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxThrottleDevice> getThrottleWriteBpsDevice() {
+        return throttleWriteBpsDevice;
+    }
+
+    public void setThrottleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
+        this.throttleWriteBpsDevice = throttleWriteBpsDevice;
+    }
+
+    public SpecGenerator throttleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
+        this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
+        return this;
+    }
+
+    public SpecGenerator putThrottleWriteIOPSDeviceItem(String key, LinuxThrottleDevice throttleWriteIOPSDeviceItem) {
+        if (this.throttleWriteIOPSDevice == null) {
+            this.throttleWriteIOPSDevice = new HashMap<>();
+        }
+        this.throttleWriteIOPSDevice.put(key, throttleWriteIOPSDeviceItem);
+        return this;
+    }
+
+    /**
+     * IO write rate limit per cgroup per device, IO per second
+     *
+     * @return throttleWriteIOPSDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
+        return throttleWriteIOPSDevice;
+    }
+
+    public void setThrottleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
+        this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
+    }
+
+    public SpecGenerator timeout(Integer timeout) {
+        this.timeout = timeout;
+        return this;
+    }
+
+    /**
+     * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
+     *
+     * @return timeout
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
+    }
+
+    public SpecGenerator timezone(String timezone) {
+        this.timezone = timezone;
+        return this;
+    }
+
+    /**
+     * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
+     *
+     * @return timezone
+     */
+    @jakarta.annotation.Nullable
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public SpecGenerator umask(String umask) {
+        this.umask = umask;
+        return this;
+    }
+
+    /**
+     * Umask is the umask the init process of the container will be run with.
+     *
+     * @return umask
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUmask() {
+        return umask;
+    }
+
+    public void setUmask(String umask) {
+        this.umask = umask;
+    }
+
+    public SpecGenerator unified(Map<String, String> unified) {
+        this.unified = unified;
+        return this;
+    }
+
+    public SpecGenerator putUnifiedItem(String key, String unifiedItem) {
+        if (this.unified == null) {
+            this.unified = new HashMap<>();
+        }
+        this.unified.put(key, unifiedItem);
+        return this;
+    }
+
+    /**
+     * CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.
+     *
+     * @return unified
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getUnified() {
+        return unified;
+    }
+
+    public void setUnified(Map<String, String> unified) {
+        this.unified = unified;
+    }
+
+    public SpecGenerator unmask(List<String> unmask) {
+        this.unmask = unmask;
+        return this;
+    }
+
+    public SpecGenerator addUnmaskItem(String unmaskItem) {
+        if (this.unmask == null) {
+            this.unmask = new ArrayList<>();
+        }
+        this.unmask.add(unmaskItem);
+        return this;
+    }
+
+    /**
+     * Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.
+     *
+     * @return unmask
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getUnmask() {
+        return unmask;
+    }
+
+    public void setUnmask(List<String> unmask) {
+        this.unmask = unmask;
+    }
+
+    public SpecGenerator unsetenv(List<String> unsetenv) {
+        this.unsetenv = unsetenv;
+        return this;
+    }
+
+    public SpecGenerator addUnsetenvItem(String unsetenvItem) {
+        if (this.unsetenv == null) {
+            this.unsetenv = new ArrayList<>();
+        }
+        this.unsetenv.add(unsetenvItem);
+        return this;
+    }
+
+    /**
+     * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
+     *
+     * @return unsetenv
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getUnsetenv() {
+        return unsetenv;
+    }
+
+    public void setUnsetenv(List<String> unsetenv) {
+        this.unsetenv = unsetenv;
+    }
+
+    public SpecGenerator unsetenvall(Boolean unsetenvall) {
+        this.unsetenvall = unsetenvall;
+        return this;
+    }
+
+    /**
+     * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
+     *
+     * @return unsetenvall
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getUnsetenvall() {
+        return unsetenvall;
+    }
+
+    public void setUnsetenvall(Boolean unsetenvall) {
+        this.unsetenvall = unsetenvall;
+    }
+
+    public SpecGenerator useImageHosts(Boolean useImageHosts) {
+        this.useImageHosts = useImageHosts;
+        return this;
+    }
+
+    /**
+     * UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.
+     *
+     * @return useImageHosts
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getUseImageHosts() {
+        return useImageHosts;
+    }
+
+    public void setUseImageHosts(Boolean useImageHosts) {
+        this.useImageHosts = useImageHosts;
+    }
+
+    public SpecGenerator useImageResolveConf(Boolean useImageResolveConf) {
+        this.useImageResolveConf = useImageResolveConf;
+        return this;
+    }
+
+    /**
+     * UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional.
+     *
+     * @return useImageResolveConf
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getUseImageResolveConf() {
+        return useImageResolveConf;
+    }
+
+    public void setUseImageResolveConf(Boolean useImageResolveConf) {
+        this.useImageResolveConf = useImageResolveConf;
+    }
+
+    public SpecGenerator user(String user) {
+        this.user = user;
+        return this;
+    }
+
+    /**
+     * User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container&#39;s /etc/passwd. If unset, the container will be run as root. Optional.
+     *
+     * @return user
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public SpecGenerator userns(Namespace userns) {
+        this.userns = userns;
+        return this;
+    }
+
+    /**
+     * Get userns
+     *
+     * @return userns
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Namespace getUserns() {
+        return userns;
+    }
+
+    public void setUserns(Namespace userns) {
+        this.userns = userns;
+    }
+
+    public SpecGenerator utsns(Namespace utsns) {
+        this.utsns = utsns;
+        return this;
+    }
+
+    /**
+     * Get utsns
+     *
+     * @return utsns
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Namespace getUtsns() {
+        return utsns;
+    }
+
+    public void setUtsns(Namespace utsns) {
+        this.utsns = utsns;
+    }
+
+    public SpecGenerator _volatile(Boolean _volatile) {
+        this._volatile = _volatile;
+        return this;
+    }
+
+    /**
+     * Volatile specifies whether the container storage can be optimized at the cost of not syncing all the dirty files in memory. Optional.
+     *
+     * @return _volatile
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getVolatile() {
+        return _volatile;
+    }
+
+    public void setVolatile(Boolean _volatile) {
+        this._volatile = _volatile;
+    }
+
+    public SpecGenerator volumes(List<@Valid NamedVolume> volumes) {
+        this.volumes = volumes;
+        return this;
+    }
+
+    public SpecGenerator addVolumesItem(NamedVolume volumesItem) {
+        if (this.volumes == null) {
+            this.volumes = new ArrayList<>();
+        }
+        this.volumes.add(volumesItem);
+        return this;
+    }
+
+    /**
+     * Volumes are named volumes that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
+     *
+     * @return volumes
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid NamedVolume> getVolumes() {
+        return volumes;
+    }
+
+    public void setVolumes(List<@Valid NamedVolume> volumes) {
+        this.volumes = volumes;
+    }
+
+    public SpecGenerator volumesFrom(List<String> volumesFrom) {
+        this.volumesFrom = volumesFrom;
+        return this;
+    }
+
+    public SpecGenerator addVolumesFromItem(String volumesFromItem) {
+        if (this.volumesFrom == null) {
+            this.volumesFrom = new ArrayList<>();
+        }
+        this.volumesFrom.add(volumesFromItem);
+        return this;
+    }
+
+    /**
+     * VolumesFrom is a set of containers whose volumes will be added to this container. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are &#39;ro&#39;, &#39;rw&#39;, and &#39;z&#39;. Options will be used for all volumes sourced from the container. Optional.
+     *
+     * @return volumesFrom
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getVolumesFrom() {
+        return volumesFrom;
+    }
+
+    public void setVolumesFrom(List<String> volumesFrom) {
+        this.volumesFrom = volumesFrom;
+    }
+
+    public SpecGenerator weightDevice(Map<String, LinuxWeightDevice> weightDevice) {
+        this.weightDevice = weightDevice;
+        return this;
+    }
+
+    public SpecGenerator putWeightDeviceItem(String key, LinuxWeightDevice weightDeviceItem) {
+        if (this.weightDevice == null) {
+            this.weightDevice = new HashMap<>();
+        }
+        this.weightDevice.put(key, weightDeviceItem);
+        return this;
+    }
+
+    /**
+     * Weight per cgroup per device, can override BlkioWeight
+     *
+     * @return weightDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxWeightDevice> getWeightDevice() {
+        return weightDevice;
+    }
+
+    public void setWeightDevice(Map<String, LinuxWeightDevice> weightDevice) {
+        this.weightDevice = weightDevice;
+    }
+
+    public SpecGenerator workDir(String workDir) {
+        this.workDir = workDir;
+        return this;
+    }
+
+    /**
+     * WorkDir is the container&#39;s working directory. If unset, the default, /, will be used. Optional.
+     *
+     * @return workDir
+     */
+    @jakarta.annotation.Nullable
+
+    public String getWorkDir() {
+        return workDir;
+    }
+
+    public void setWorkDir(String workDir) {
+        this.workDir = workDir;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SpecGenerator specGenerator = (SpecGenerator) o;
+        return Objects.equals(this.networks, specGenerator.networks) &&
+                Objects.equals(this.annotations, specGenerator.annotations) &&
+                Objects.equals(this.apparmorProfile, specGenerator.apparmorProfile) &&
+                Objects.equals(this.baseHostsFile, specGenerator.baseHostsFile) &&
+                Objects.equals(this.capAdd, specGenerator.capAdd) &&
+                Objects.equals(this.capDrop, specGenerator.capDrop) &&
+                Objects.equals(this.cgroupParent, specGenerator.cgroupParent) &&
+                Objects.equals(this.cgroupns, specGenerator.cgroupns) &&
+                Objects.equals(this.cgroupsMode, specGenerator.cgroupsMode) &&
+                Objects.equals(this.chrootDirectories, specGenerator.chrootDirectories) &&
+                Objects.equals(this.cniNetworks, specGenerator.cniNetworks) &&
+                Objects.equals(this.command, specGenerator.command) &&
+                Objects.equals(this.conmonPidFile, specGenerator.conmonPidFile) &&
+                Objects.equals(this.containerCreateCommand, specGenerator.containerCreateCommand) &&
+                Objects.equals(this.createWorkingDir, specGenerator.createWorkingDir) &&
+                Objects.equals(this.dependencyContainers, specGenerator.dependencyContainers) &&
+                Objects.equals(this.deviceCgroupRule, specGenerator.deviceCgroupRule) &&
+                Objects.equals(this.devices, specGenerator.devices) &&
+                Objects.equals(this.devicesFrom, specGenerator.devicesFrom) &&
+                Objects.equals(this.dnsOption, specGenerator.dnsOption) &&
+                Objects.equals(this.dnsSearch, specGenerator.dnsSearch) &&
+                Objects.equals(this.dnsServer, specGenerator.dnsServer) &&
+                Objects.equals(this.entrypoint, specGenerator.entrypoint) &&
+                Objects.equals(this.env, specGenerator.env) &&
+                Objects.equals(this.envHost, specGenerator.envHost) &&
+                Objects.equals(this.envmerge, specGenerator.envmerge) &&
+                Objects.equals(this.expose, specGenerator.expose) &&
+                Objects.equals(this.groupEntry, specGenerator.groupEntry) &&
+                Objects.equals(this.groups, specGenerator.groups) &&
+                Objects.equals(this.healthCheckOnFailureAction, specGenerator.healthCheckOnFailureAction) &&
+                Objects.equals(this.healthLogDestination, specGenerator.healthLogDestination) &&
+                Objects.equals(this.healthMaxLogCount, specGenerator.healthMaxLogCount) &&
+                Objects.equals(this.healthMaxLogSize, specGenerator.healthMaxLogSize) &&
+                Objects.equals(this.healthconfig, specGenerator.healthconfig) &&
+                Objects.equals(this.hostDeviceList, specGenerator.hostDeviceList) &&
+                Objects.equals(this.hostadd, specGenerator.hostadd) &&
+                Objects.equals(this.hostname, specGenerator.hostname) &&
+                Objects.equals(this.hostusers, specGenerator.hostusers) &&
+                Objects.equals(this.httpproxy, specGenerator.httpproxy) &&
+                Objects.equals(this.idmappings, specGenerator.idmappings) &&
+                Objects.equals(this.image, specGenerator.image) &&
+                Objects.equals(this.imageArch, specGenerator.imageArch) &&
+                Objects.equals(this.imageOs, specGenerator.imageOs) &&
+                Objects.equals(this.imageVariant, specGenerator.imageVariant) &&
+                Objects.equals(this.imageVolumeMode, specGenerator.imageVolumeMode) &&
+                Objects.equals(this.imageVolumes, specGenerator.imageVolumes) &&
+                Objects.equals(this.init, specGenerator.init) &&
+                Objects.equals(this.initContainerType, specGenerator.initContainerType) &&
+                Objects.equals(this.initPath, specGenerator.initPath) &&
+                Objects.equals(this.intelRdt, specGenerator.intelRdt) &&
+                Objects.equals(this.ipcns, specGenerator.ipcns) &&
+                Objects.equals(this.labelNested, specGenerator.labelNested) &&
+                Objects.equals(this.labels, specGenerator.labels) &&
+                Objects.equals(this.logConfiguration, specGenerator.logConfiguration) &&
+                Objects.equals(this.managePassword, specGenerator.managePassword) &&
+                Objects.equals(this.mask, specGenerator.mask) &&
+                Objects.equals(this.mounts, specGenerator.mounts) &&
+                Objects.equals(this.name, specGenerator.name) &&
+                Objects.equals(this.netns, specGenerator.netns) &&
+                Objects.equals(this.networkOptions, specGenerator.networkOptions) &&
+                Objects.equals(this.noNewPrivileges, specGenerator.noNewPrivileges) &&
+                Objects.equals(this.ociRuntime, specGenerator.ociRuntime) &&
+                Objects.equals(this.oomScoreAdj, specGenerator.oomScoreAdj) &&
+                Objects.equals(this.overlayVolumes, specGenerator.overlayVolumes) &&
+                Objects.equals(this.passwdEntry, specGenerator.passwdEntry) &&
+                Objects.equals(this.personality, specGenerator.personality) &&
+                Objects.equals(this.pidns, specGenerator.pidns) &&
+                Objects.equals(this.pod, specGenerator.pod) &&
+                Objects.equals(this.portmappings, specGenerator.portmappings) &&
+                Objects.equals(this.privileged, specGenerator.privileged) &&
+                Objects.equals(this.procfsOpts, specGenerator.procfsOpts) &&
+                Objects.equals(this.publishImagePorts, specGenerator.publishImagePorts) &&
+                Objects.equals(this.rLimits, specGenerator.rLimits) &&
+                Objects.equals(this.rawImageName, specGenerator.rawImageName) &&
+                Objects.equals(this.readOnlyFilesystem, specGenerator.readOnlyFilesystem) &&
+                Objects.equals(this.readWriteTmpfs, specGenerator.readWriteTmpfs) &&
+                Objects.equals(this.remove, specGenerator.remove) &&
+                Objects.equals(this.removeImage, specGenerator.removeImage) &&
+                Objects.equals(this.resourceLimits, specGenerator.resourceLimits) &&
+                Objects.equals(this.restartPolicy, specGenerator.restartPolicy) &&
+                Objects.equals(this.restartTries, specGenerator.restartTries) &&
+                Objects.equals(this.rootfs, specGenerator.rootfs) &&
+                Objects.equals(this.rootfsMapping, specGenerator.rootfsMapping) &&
+                Objects.equals(this.rootfsOverlay, specGenerator.rootfsOverlay) &&
+                Objects.equals(this.rootfsPropagation, specGenerator.rootfsPropagation) &&
+                Objects.equals(this.sdnotifyMode, specGenerator.sdnotifyMode) &&
+                Objects.equals(this.seccompPolicy, specGenerator.seccompPolicy) &&
+                Objects.equals(this.seccompProfilePath, specGenerator.seccompProfilePath) &&
+                Objects.equals(this.secretEnv, specGenerator.secretEnv) &&
+                Objects.equals(this.secrets, specGenerator.secrets) &&
+                Objects.equals(this.selinuxOpts, specGenerator.selinuxOpts) &&
+                Objects.equals(this.shmSize, specGenerator.shmSize) &&
+                Objects.equals(this.shmSizeSystemd, specGenerator.shmSizeSystemd) &&
+                Objects.equals(this.startupHealthConfig, specGenerator.startupHealthConfig) &&
+                Objects.equals(this.stdin, specGenerator.stdin) &&
+                Objects.equals(this.stopSignal, specGenerator.stopSignal) &&
+                Objects.equals(this.stopTimeout, specGenerator.stopTimeout) &&
+                Objects.equals(this.storageOpts, specGenerator.storageOpts) &&
+                Objects.equals(this.sysctl, specGenerator.sysctl) &&
+                Objects.equals(this.systemd, specGenerator.systemd) &&
+                Objects.equals(this.terminal, specGenerator.terminal) &&
+                Objects.equals(this.throttleReadBpsDevice, specGenerator.throttleReadBpsDevice) &&
+                Objects.equals(this.throttleReadIOPSDevice, specGenerator.throttleReadIOPSDevice) &&
+                Objects.equals(this.throttleWriteBpsDevice, specGenerator.throttleWriteBpsDevice) &&
+                Objects.equals(this.throttleWriteIOPSDevice, specGenerator.throttleWriteIOPSDevice) &&
+                Objects.equals(this.timeout, specGenerator.timeout) &&
+                Objects.equals(this.timezone, specGenerator.timezone) &&
+                Objects.equals(this.umask, specGenerator.umask) &&
+                Objects.equals(this.unified, specGenerator.unified) &&
+                Objects.equals(this.unmask, specGenerator.unmask) &&
+                Objects.equals(this.unsetenv, specGenerator.unsetenv) &&
+                Objects.equals(this.unsetenvall, specGenerator.unsetenvall) &&
+                Objects.equals(this.useImageHosts, specGenerator.useImageHosts) &&
+                Objects.equals(this.useImageResolveConf, specGenerator.useImageResolveConf) &&
+                Objects.equals(this.user, specGenerator.user) &&
+                Objects.equals(this.userns, specGenerator.userns) &&
+                Objects.equals(this.utsns, specGenerator.utsns) &&
+                Objects.equals(this._volatile, specGenerator._volatile) &&
+                Objects.equals(this.volumes, specGenerator.volumes) &&
+                Objects.equals(this.volumesFrom, specGenerator.volumesFrom) &&
+                Objects.equals(this.weightDevice, specGenerator.weightDevice) &&
+                Objects.equals(this.workDir, specGenerator.workDir);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(networks, annotations, apparmorProfile, baseHostsFile, capAdd, capDrop, cgroupParent, cgroupns, cgroupsMode, chrootDirectories, cniNetworks, command, conmonPidFile, containerCreateCommand, createWorkingDir, dependencyContainers, deviceCgroupRule, devices, devicesFrom, dnsOption, dnsSearch, dnsServer, entrypoint, env, envHost, envmerge, expose, groupEntry, groups, healthCheckOnFailureAction, healthLogDestination, healthMaxLogCount, healthMaxLogSize, healthconfig, hostDeviceList, hostadd, hostname, hostusers, httpproxy, idmappings, image, imageArch, imageOs, imageVariant, imageVolumeMode, imageVolumes, init, initContainerType, initPath, intelRdt, ipcns, labelNested, labels, logConfiguration, managePassword, mask, mounts, name, netns, networkOptions, noNewPrivileges, ociRuntime, oomScoreAdj, overlayVolumes, passwdEntry, personality, pidns, pod, portmappings, privileged, procfsOpts, publishImagePorts, rLimits, rawImageName, readOnlyFilesystem, readWriteTmpfs, remove, removeImage, resourceLimits, restartPolicy, restartTries, rootfs, rootfsMapping, rootfsOverlay, rootfsPropagation, sdnotifyMode, seccompPolicy, seccompProfilePath, secretEnv, secrets, selinuxOpts, shmSize, shmSizeSystemd, startupHealthConfig, stdin, stopSignal, stopTimeout, storageOpts, sysctl, systemd, terminal, throttleReadBpsDevice, throttleReadIOPSDevice, throttleWriteBpsDevice, throttleWriteIOPSDevice, timeout, timezone, umask, unified, unmask, unsetenv, unsetenvall, useImageHosts, useImageResolveConf, user, userns, utsns, _volatile, volumes, volumesFrom, weightDevice, workDir);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class SpecGenerator {\n" +
+                "    networks: " + toIndentedString(networks) + "\n" +
+                "    annotations: " + toIndentedString(annotations) + "\n" +
+                "    apparmorProfile: " + toIndentedString(apparmorProfile) + "\n" +
+                "    baseHostsFile: " + toIndentedString(baseHostsFile) + "\n" +
+                "    capAdd: " + toIndentedString(capAdd) + "\n" +
+                "    capDrop: " + toIndentedString(capDrop) + "\n" +
+                "    cgroupParent: " + toIndentedString(cgroupParent) + "\n" +
+                "    cgroupns: " + toIndentedString(cgroupns) + "\n" +
+                "    cgroupsMode: " + toIndentedString(cgroupsMode) + "\n" +
+                "    chrootDirectories: " + toIndentedString(chrootDirectories) + "\n" +
+                "    cniNetworks: " + toIndentedString(cniNetworks) + "\n" +
+                "    command: " + toIndentedString(command) + "\n" +
+                "    conmonPidFile: " + toIndentedString(conmonPidFile) + "\n" +
+                "    containerCreateCommand: " + toIndentedString(containerCreateCommand) + "\n" +
+                "    createWorkingDir: " + toIndentedString(createWorkingDir) + "\n" +
+                "    dependencyContainers: " + toIndentedString(dependencyContainers) + "\n" +
+                "    deviceCgroupRule: " + toIndentedString(deviceCgroupRule) + "\n" +
+                "    devices: " + toIndentedString(devices) + "\n" +
+                "    devicesFrom: " + toIndentedString(devicesFrom) + "\n" +
+                "    dnsOption: " + toIndentedString(dnsOption) + "\n" +
+                "    dnsSearch: " + toIndentedString(dnsSearch) + "\n" +
+                "    dnsServer: " + toIndentedString(dnsServer) + "\n" +
+                "    entrypoint: " + toIndentedString(entrypoint) + "\n" +
+                "    env: " + toIndentedString(env) + "\n" +
+                "    envHost: " + toIndentedString(envHost) + "\n" +
+                "    envmerge: " + toIndentedString(envmerge) + "\n" +
+                "    expose: " + toIndentedString(expose) + "\n" +
+                "    groupEntry: " + toIndentedString(groupEntry) + "\n" +
+                "    groups: " + toIndentedString(groups) + "\n" +
+                "    healthCheckOnFailureAction: " + toIndentedString(healthCheckOnFailureAction) + "\n" +
+                "    healthLogDestination: " + toIndentedString(healthLogDestination) + "\n" +
+                "    healthMaxLogCount: " + toIndentedString(healthMaxLogCount) + "\n" +
+                "    healthMaxLogSize: " + toIndentedString(healthMaxLogSize) + "\n" +
+                "    healthconfig: " + toIndentedString(healthconfig) + "\n" +
+                "    hostDeviceList: " + toIndentedString(hostDeviceList) + "\n" +
+                "    hostadd: " + toIndentedString(hostadd) + "\n" +
+                "    hostname: " + toIndentedString(hostname) + "\n" +
+                "    hostusers: " + toIndentedString(hostusers) + "\n" +
+                "    httpproxy: " + toIndentedString(httpproxy) + "\n" +
+                "    idmappings: " + toIndentedString(idmappings) + "\n" +
+                "    image: " + toIndentedString(image) + "\n" +
+                "    imageArch: " + toIndentedString(imageArch) + "\n" +
+                "    imageOs: " + toIndentedString(imageOs) + "\n" +
+                "    imageVariant: " + toIndentedString(imageVariant) + "\n" +
+                "    imageVolumeMode: " + toIndentedString(imageVolumeMode) + "\n" +
+                "    imageVolumes: " + toIndentedString(imageVolumes) + "\n" +
+                "    init: " + toIndentedString(init) + "\n" +
+                "    initContainerType: " + toIndentedString(initContainerType) + "\n" +
+                "    initPath: " + toIndentedString(initPath) + "\n" +
+                "    intelRdt: " + toIndentedString(intelRdt) + "\n" +
+                "    ipcns: " + toIndentedString(ipcns) + "\n" +
+                "    labelNested: " + toIndentedString(labelNested) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    logConfiguration: " + toIndentedString(logConfiguration) + "\n" +
+                "    managePassword: " + toIndentedString(managePassword) + "\n" +
+                "    mask: " + toIndentedString(mask) + "\n" +
+                "    mounts: " + toIndentedString(mounts) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    netns: " + toIndentedString(netns) + "\n" +
+                "    networkOptions: " + toIndentedString(networkOptions) + "\n" +
+                "    noNewPrivileges: " + toIndentedString(noNewPrivileges) + "\n" +
+                "    ociRuntime: " + toIndentedString(ociRuntime) + "\n" +
+                "    oomScoreAdj: " + toIndentedString(oomScoreAdj) + "\n" +
+                "    overlayVolumes: " + toIndentedString(overlayVolumes) + "\n" +
+                "    passwdEntry: " + toIndentedString(passwdEntry) + "\n" +
+                "    personality: " + toIndentedString(personality) + "\n" +
+                "    pidns: " + toIndentedString(pidns) + "\n" +
+                "    pod: " + toIndentedString(pod) + "\n" +
+                "    portmappings: " + toIndentedString(portmappings) + "\n" +
+                "    privileged: " + toIndentedString(privileged) + "\n" +
+                "    procfsOpts: " + toIndentedString(procfsOpts) + "\n" +
+                "    publishImagePorts: " + toIndentedString(publishImagePorts) + "\n" +
+                "    rLimits: " + toIndentedString(rLimits) + "\n" +
+                "    rawImageName: " + toIndentedString(rawImageName) + "\n" +
+                "    readOnlyFilesystem: " + toIndentedString(readOnlyFilesystem) + "\n" +
+                "    readWriteTmpfs: " + toIndentedString(readWriteTmpfs) + "\n" +
+                "    remove: " + toIndentedString(remove) + "\n" +
+                "    removeImage: " + toIndentedString(removeImage) + "\n" +
+                "    resourceLimits: " + toIndentedString(resourceLimits) + "\n" +
+                "    restartPolicy: " + toIndentedString(restartPolicy) + "\n" +
+                "    restartTries: " + toIndentedString(restartTries) + "\n" +
+                "    rootfs: " + toIndentedString(rootfs) + "\n" +
+                "    rootfsMapping: " + toIndentedString(rootfsMapping) + "\n" +
+                "    rootfsOverlay: " + toIndentedString(rootfsOverlay) + "\n" +
+                "    rootfsPropagation: " + toIndentedString(rootfsPropagation) + "\n" +
+                "    sdnotifyMode: " + toIndentedString(sdnotifyMode) + "\n" +
+                "    seccompPolicy: " + toIndentedString(seccompPolicy) + "\n" +
+                "    seccompProfilePath: " + toIndentedString(seccompProfilePath) + "\n" +
+                "    secretEnv: " + toIndentedString(secretEnv) + "\n" +
+                "    secrets: " + toIndentedString(secrets) + "\n" +
+                "    selinuxOpts: " + toIndentedString(selinuxOpts) + "\n" +
+                "    shmSize: " + toIndentedString(shmSize) + "\n" +
+                "    shmSizeSystemd: " + toIndentedString(shmSizeSystemd) + "\n" +
+                "    startupHealthConfig: " + toIndentedString(startupHealthConfig) + "\n" +
+                "    stdin: " + toIndentedString(stdin) + "\n" +
+                "    stopSignal: " + toIndentedString(stopSignal) + "\n" +
+                "    stopTimeout: " + toIndentedString(stopTimeout) + "\n" +
+                "    storageOpts: " + toIndentedString(storageOpts) + "\n" +
+                "    sysctl: " + toIndentedString(sysctl) + "\n" +
+                "    systemd: " + toIndentedString(systemd) + "\n" +
+                "    terminal: " + toIndentedString(terminal) + "\n" +
+                "    throttleReadBpsDevice: " + toIndentedString(throttleReadBpsDevice) + "\n" +
+                "    throttleReadIOPSDevice: " + toIndentedString(throttleReadIOPSDevice) + "\n" +
+                "    throttleWriteBpsDevice: " + toIndentedString(throttleWriteBpsDevice) + "\n" +
+                "    throttleWriteIOPSDevice: " + toIndentedString(throttleWriteIOPSDevice) + "\n" +
+                "    timeout: " + toIndentedString(timeout) + "\n" +
+                "    timezone: " + toIndentedString(timezone) + "\n" +
+                "    umask: " + toIndentedString(umask) + "\n" +
+                "    unified: " + toIndentedString(unified) + "\n" +
+                "    unmask: " + toIndentedString(unmask) + "\n" +
+                "    unsetenv: " + toIndentedString(unsetenv) + "\n" +
+                "    unsetenvall: " + toIndentedString(unsetenvall) + "\n" +
+                "    useImageHosts: " + toIndentedString(useImageHosts) + "\n" +
+                "    useImageResolveConf: " + toIndentedString(useImageResolveConf) + "\n" +
+                "    user: " + toIndentedString(user) + "\n" +
+                "    userns: " + toIndentedString(userns) + "\n" +
+                "    utsns: " + toIndentedString(utsns) + "\n" +
+                "    _volatile: " + toIndentedString(_volatile) + "\n" +
+                "    volumes: " + toIndentedString(volumes) + "\n" +
+                "    volumesFrom: " + toIndentedString(volumesFrom) + "\n" +
+                "    weightDevice: " + toIndentedString(weightDevice) + "\n" +
+                "    workDir: " + toIndentedString(workDir) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of SpecGenerator to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!SpecGenerator.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SpecGenerator' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<SpecGenerator> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(SpecGenerator.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<SpecGenerator>() {
+                @Override
+                public void write(JsonWriter out, SpecGenerator value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public SpecGenerator read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

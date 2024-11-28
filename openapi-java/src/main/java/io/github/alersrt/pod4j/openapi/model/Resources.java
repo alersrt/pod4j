@@ -13,1352 +13,1162 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.DeviceMapping;
-import io.github.alersrt.pod4j.openapi.model.DeviceRequest;
-import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.Ulimit;
-import io.github.alersrt.pod4j.openapi.model.WeightDevice;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Resources contains container&#39;s resources (cgroups config, ulimits...)
  */
-@JsonPropertyOrder({
-  Resources.JSON_PROPERTY_BLKIO_DEVICE_READ_BPS,
-  Resources.JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS,
-  Resources.JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS,
-  Resources.JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS,
-  Resources.JSON_PROPERTY_BLKIO_WEIGHT,
-  Resources.JSON_PROPERTY_BLKIO_WEIGHT_DEVICE,
-  Resources.JSON_PROPERTY_CGROUP_PARENT,
-  Resources.JSON_PROPERTY_CPU_COUNT,
-  Resources.JSON_PROPERTY_CPU_PERCENT,
-  Resources.JSON_PROPERTY_CPU_PERIOD,
-  Resources.JSON_PROPERTY_CPU_QUOTA,
-  Resources.JSON_PROPERTY_CPU_REALTIME_PERIOD,
-  Resources.JSON_PROPERTY_CPU_REALTIME_RUNTIME,
-  Resources.JSON_PROPERTY_CPU_SHARES,
-  Resources.JSON_PROPERTY_CPUSET_CPUS,
-  Resources.JSON_PROPERTY_CPUSET_MEMS,
-  Resources.JSON_PROPERTY_DEVICE_CGROUP_RULES,
-  Resources.JSON_PROPERTY_DEVICE_REQUESTS,
-  Resources.JSON_PROPERTY_DEVICES,
-  Resources.JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH,
-  Resources.JSON_PROPERTY_IO_MAXIMUM_I_OPS,
-  Resources.JSON_PROPERTY_KERNEL_MEMORY,
-  Resources.JSON_PROPERTY_KERNEL_MEMORY_T_C_P,
-  Resources.JSON_PROPERTY_MEMORY,
-  Resources.JSON_PROPERTY_MEMORY_RESERVATION,
-  Resources.JSON_PROPERTY_MEMORY_SWAP,
-  Resources.JSON_PROPERTY_MEMORY_SWAPPINESS,
-  Resources.JSON_PROPERTY_NANO_CPUS,
-  Resources.JSON_PROPERTY_OOM_KILL_DISABLE,
-  Resources.JSON_PROPERTY_PIDS_LIMIT,
-  Resources.JSON_PROPERTY_ULIMITS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Resources {
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_READ_BPS = "BlkioDeviceReadBps";
-  private List<@Valid ThrottleDevice> blkioDeviceReadBps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS = "BlkioDeviceReadIOps";
-  private List<@Valid ThrottleDevice> blkioDeviceReadIOps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS = "BlkioDeviceWriteBps";
-  private List<@Valid ThrottleDevice> blkioDeviceWriteBps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS = "BlkioDeviceWriteIOps";
-  private List<@Valid ThrottleDevice> blkioDeviceWriteIOps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_WEIGHT = "BlkioWeight";
-  private Integer blkioWeight;
-
-  public static final String JSON_PROPERTY_BLKIO_WEIGHT_DEVICE = "BlkioWeightDevice";
-  private List<@Valid WeightDevice> blkioWeightDevice = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CGROUP_PARENT = "CgroupParent";
-  private String cgroupParent;
-
-  public static final String JSON_PROPERTY_CPU_COUNT = "CpuCount";
-  private Long cpuCount;
-
-  public static final String JSON_PROPERTY_CPU_PERCENT = "CpuPercent";
-  private Long cpuPercent;
-
-  public static final String JSON_PROPERTY_CPU_PERIOD = "CpuPeriod";
-  private Long cpuPeriod;
-
-  public static final String JSON_PROPERTY_CPU_QUOTA = "CpuQuota";
-  private Long cpuQuota;
-
-  public static final String JSON_PROPERTY_CPU_REALTIME_PERIOD = "CpuRealtimePeriod";
-  private Long cpuRealtimePeriod;
-
-  public static final String JSON_PROPERTY_CPU_REALTIME_RUNTIME = "CpuRealtimeRuntime";
-  private Long cpuRealtimeRuntime;
-
-  public static final String JSON_PROPERTY_CPU_SHARES = "CpuShares";
-  private Long cpuShares;
-
-  public static final String JSON_PROPERTY_CPUSET_CPUS = "CpusetCpus";
-  private String cpusetCpus;
-
-  public static final String JSON_PROPERTY_CPUSET_MEMS = "CpusetMems";
-  private String cpusetMems;
-
-  public static final String JSON_PROPERTY_DEVICE_CGROUP_RULES = "DeviceCgroupRules";
-  private List<String> deviceCgroupRules = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DEVICE_REQUESTS = "DeviceRequests";
-  private List<@Valid DeviceRequest> deviceRequests = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DEVICES = "Devices";
-  private List<@Valid DeviceMapping> devices = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH = "IOMaximumBandwidth";
-  private Integer ioMaximumBandwidth;
-
-  public static final String JSON_PROPERTY_IO_MAXIMUM_I_OPS = "IOMaximumIOps";
-  private Integer ioMaximumIOps;
-
-  public static final String JSON_PROPERTY_KERNEL_MEMORY = "KernelMemory";
-  private Long kernelMemory;
-
-  public static final String JSON_PROPERTY_KERNEL_MEMORY_T_C_P = "KernelMemoryTCP";
-  private Long kernelMemoryTCP;
-
-  public static final String JSON_PROPERTY_MEMORY = "Memory";
-  private Long memory;
-
-  public static final String JSON_PROPERTY_MEMORY_RESERVATION = "MemoryReservation";
-  private Long memoryReservation;
-
-  public static final String JSON_PROPERTY_MEMORY_SWAP = "MemorySwap";
-  private Long memorySwap;
-
-  public static final String JSON_PROPERTY_MEMORY_SWAPPINESS = "MemorySwappiness";
-  private Long memorySwappiness;
-
-  public static final String JSON_PROPERTY_NANO_CPUS = "NanoCpus";
-  private Long nanoCpus;
-
-  public static final String JSON_PROPERTY_OOM_KILL_DISABLE = "OomKillDisable";
-  private Boolean oomKillDisable;
-
-  public static final String JSON_PROPERTY_PIDS_LIMIT = "PidsLimit";
-  private Long pidsLimit;
-
-  public static final String JSON_PROPERTY_ULIMITS = "Ulimits";
-  private List<@Valid Ulimit> ulimits = new ArrayList<>();
-
-  public Resources() { 
-  }
-
-  public Resources blkioDeviceReadBps(List<@Valid ThrottleDevice> blkioDeviceReadBps) {
-    this.blkioDeviceReadBps = blkioDeviceReadBps;
-    return this;
-  }
-
-  public Resources addBlkioDeviceReadBpsItem(ThrottleDevice blkioDeviceReadBpsItem) {
-    if (this.blkioDeviceReadBps == null) {
-      this.blkioDeviceReadBps = new ArrayList<>();
-    }
-    this.blkioDeviceReadBps.add(blkioDeviceReadBpsItem);
-    return this;
-  }
-
-  /**
-   * Get blkioDeviceReadBps
-   * @return blkioDeviceReadBps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ThrottleDevice> getBlkioDeviceReadBps() {
-    return blkioDeviceReadBps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceReadBps(List<@Valid ThrottleDevice> blkioDeviceReadBps) {
-    this.blkioDeviceReadBps = blkioDeviceReadBps;
-  }
-
-
-  public Resources blkioDeviceReadIOps(List<@Valid ThrottleDevice> blkioDeviceReadIOps) {
-    this.blkioDeviceReadIOps = blkioDeviceReadIOps;
-    return this;
-  }
-
-  public Resources addBlkioDeviceReadIOpsItem(ThrottleDevice blkioDeviceReadIOpsItem) {
-    if (this.blkioDeviceReadIOps == null) {
-      this.blkioDeviceReadIOps = new ArrayList<>();
-    }
-    this.blkioDeviceReadIOps.add(blkioDeviceReadIOpsItem);
-    return this;
-  }
-
-  /**
-   * Get blkioDeviceReadIOps
-   * @return blkioDeviceReadIOps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ThrottleDevice> getBlkioDeviceReadIOps() {
-    return blkioDeviceReadIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceReadIOps(List<@Valid ThrottleDevice> blkioDeviceReadIOps) {
-    this.blkioDeviceReadIOps = blkioDeviceReadIOps;
-  }
-
-
-  public Resources blkioDeviceWriteBps(List<@Valid ThrottleDevice> blkioDeviceWriteBps) {
-    this.blkioDeviceWriteBps = blkioDeviceWriteBps;
-    return this;
-  }
-
-  public Resources addBlkioDeviceWriteBpsItem(ThrottleDevice blkioDeviceWriteBpsItem) {
-    if (this.blkioDeviceWriteBps == null) {
-      this.blkioDeviceWriteBps = new ArrayList<>();
-    }
-    this.blkioDeviceWriteBps.add(blkioDeviceWriteBpsItem);
-    return this;
-  }
-
-  /**
-   * Get blkioDeviceWriteBps
-   * @return blkioDeviceWriteBps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ThrottleDevice> getBlkioDeviceWriteBps() {
-    return blkioDeviceWriteBps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceWriteBps(List<@Valid ThrottleDevice> blkioDeviceWriteBps) {
-    this.blkioDeviceWriteBps = blkioDeviceWriteBps;
-  }
-
-
-  public Resources blkioDeviceWriteIOps(List<@Valid ThrottleDevice> blkioDeviceWriteIOps) {
-    this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
-    return this;
-  }
-
-  public Resources addBlkioDeviceWriteIOpsItem(ThrottleDevice blkioDeviceWriteIOpsItem) {
-    if (this.blkioDeviceWriteIOps == null) {
-      this.blkioDeviceWriteIOps = new ArrayList<>();
-    }
-    this.blkioDeviceWriteIOps.add(blkioDeviceWriteIOpsItem);
-    return this;
-  }
-
-  /**
-   * Get blkioDeviceWriteIOps
-   * @return blkioDeviceWriteIOps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ThrottleDevice> getBlkioDeviceWriteIOps() {
-    return blkioDeviceWriteIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceWriteIOps(List<@Valid ThrottleDevice> blkioDeviceWriteIOps) {
-    this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
-  }
-
-
-  public Resources blkioWeight(Integer blkioWeight) {
-    this.blkioWeight = blkioWeight;
-    return this;
-  }
-
-  /**
-   * Get blkioWeight
-   * @return blkioWeight
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getBlkioWeight() {
-    return blkioWeight;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioWeight(Integer blkioWeight) {
-    this.blkioWeight = blkioWeight;
-  }
-
-
-  public Resources blkioWeightDevice(List<@Valid WeightDevice> blkioWeightDevice) {
-    this.blkioWeightDevice = blkioWeightDevice;
-    return this;
-  }
-
-  public Resources addBlkioWeightDeviceItem(WeightDevice blkioWeightDeviceItem) {
-    if (this.blkioWeightDevice == null) {
-      this.blkioWeightDevice = new ArrayList<>();
-    }
-    this.blkioWeightDevice.add(blkioWeightDeviceItem);
-    return this;
-  }
-
-  /**
-   * Get blkioWeightDevice
-   * @return blkioWeightDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid WeightDevice> getBlkioWeightDevice() {
-    return blkioWeightDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioWeightDevice(List<@Valid WeightDevice> blkioWeightDevice) {
-    this.blkioWeightDevice = blkioWeightDevice;
-  }
-
-
-  public Resources cgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
-    return this;
-  }
-
-  /**
-   * Applicable to UNIX platforms
-   * @return cgroupParent
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupParent() {
-    return cgroupParent;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
-  }
-
-
-  public Resources cpuCount(Long cpuCount) {
-    this.cpuCount = cpuCount;
-    return this;
-  }
-
-  /**
-   * Applicable to Windows
-   * @return cpuCount
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuCount() {
-    return cpuCount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuCount(Long cpuCount) {
-    this.cpuCount = cpuCount;
-  }
-
-
-  public Resources cpuPercent(Long cpuPercent) {
-    this.cpuPercent = cpuPercent;
-    return this;
-  }
-
-  /**
-   * Get cpuPercent
-   * @return cpuPercent
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuPercent() {
-    return cpuPercent;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuPercent(Long cpuPercent) {
-    this.cpuPercent = cpuPercent;
-  }
-
-
-  public Resources cpuPeriod(Long cpuPeriod) {
-    this.cpuPeriod = cpuPeriod;
-    return this;
-  }
-
-  /**
-   * Get cpuPeriod
-   * @return cpuPeriod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuPeriod() {
-    return cpuPeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuPeriod(Long cpuPeriod) {
-    this.cpuPeriod = cpuPeriod;
-  }
-
-
-  public Resources cpuQuota(Long cpuQuota) {
-    this.cpuQuota = cpuQuota;
-    return this;
-  }
-
-  /**
-   * Get cpuQuota
-   * @return cpuQuota
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuQuota() {
-    return cpuQuota;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuQuota(Long cpuQuota) {
-    this.cpuQuota = cpuQuota;
-  }
-
-
-  public Resources cpuRealtimePeriod(Long cpuRealtimePeriod) {
-    this.cpuRealtimePeriod = cpuRealtimePeriod;
-    return this;
-  }
-
-  /**
-   * Get cpuRealtimePeriod
-   * @return cpuRealtimePeriod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuRealtimePeriod() {
-    return cpuRealtimePeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuRealtimePeriod(Long cpuRealtimePeriod) {
-    this.cpuRealtimePeriod = cpuRealtimePeriod;
-  }
-
-
-  public Resources cpuRealtimeRuntime(Long cpuRealtimeRuntime) {
-    this.cpuRealtimeRuntime = cpuRealtimeRuntime;
-    return this;
-  }
-
-  /**
-   * Get cpuRealtimeRuntime
-   * @return cpuRealtimeRuntime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuRealtimeRuntime() {
-    return cpuRealtimeRuntime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuRealtimeRuntime(Long cpuRealtimeRuntime) {
-    this.cpuRealtimeRuntime = cpuRealtimeRuntime;
-  }
-
-
-  public Resources cpuShares(Long cpuShares) {
-    this.cpuShares = cpuShares;
-    return this;
-  }
-
-  /**
-   * Applicable to all platforms
-   * @return cpuShares
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_SHARES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuShares() {
-    return cpuShares;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_SHARES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuShares(Long cpuShares) {
-    this.cpuShares = cpuShares;
-  }
-
-
-  public Resources cpusetCpus(String cpusetCpus) {
-    this.cpusetCpus = cpusetCpus;
-    return this;
-  }
-
-  /**
-   * Get cpusetCpus
-   * @return cpusetCpus
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCpusetCpus() {
-    return cpusetCpus;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpusetCpus(String cpusetCpus) {
-    this.cpusetCpus = cpusetCpus;
-  }
-
-
-  public Resources cpusetMems(String cpusetMems) {
-    this.cpusetMems = cpusetMems;
-    return this;
-  }
-
-  /**
-   * Get cpusetMems
-   * @return cpusetMems
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCpusetMems() {
-    return cpusetMems;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpusetMems(String cpusetMems) {
-    this.cpusetMems = cpusetMems;
-  }
-
-
-  public Resources deviceCgroupRules(List<String> deviceCgroupRules) {
-    this.deviceCgroupRules = deviceCgroupRules;
-    return this;
-  }
-
-  public Resources addDeviceCgroupRulesItem(String deviceCgroupRulesItem) {
-    if (this.deviceCgroupRules == null) {
-      this.deviceCgroupRules = new ArrayList<>();
-    }
-    this.deviceCgroupRules.add(deviceCgroupRulesItem);
-    return this;
-  }
-
-  /**
-   * Get deviceCgroupRules
-   * @return deviceCgroupRules
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDeviceCgroupRules() {
-    return deviceCgroupRules;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeviceCgroupRules(List<String> deviceCgroupRules) {
-    this.deviceCgroupRules = deviceCgroupRules;
-  }
-
-
-  public Resources deviceRequests(List<@Valid DeviceRequest> deviceRequests) {
-    this.deviceRequests = deviceRequests;
-    return this;
-  }
-
-  public Resources addDeviceRequestsItem(DeviceRequest deviceRequestsItem) {
-    if (this.deviceRequests == null) {
-      this.deviceRequests = new ArrayList<>();
-    }
-    this.deviceRequests.add(deviceRequestsItem);
-    return this;
-  }
-
-  /**
-   * Get deviceRequests
-   * @return deviceRequests
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_REQUESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid DeviceRequest> getDeviceRequests() {
-    return deviceRequests;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_REQUESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeviceRequests(List<@Valid DeviceRequest> deviceRequests) {
-    this.deviceRequests = deviceRequests;
-  }
-
-
-  public Resources devices(List<@Valid DeviceMapping> devices) {
-    this.devices = devices;
-    return this;
-  }
-
-  public Resources addDevicesItem(DeviceMapping devicesItem) {
-    if (this.devices == null) {
-      this.devices = new ArrayList<>();
-    }
-    this.devices.add(devicesItem);
-    return this;
-  }
-
-  /**
-   * Get devices
-   * @return devices
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid DeviceMapping> getDevices() {
-    return devices;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDevices(List<@Valid DeviceMapping> devices) {
-    this.devices = devices;
-  }
-
-
-  public Resources ioMaximumBandwidth(Integer ioMaximumBandwidth) {
-    this.ioMaximumBandwidth = ioMaximumBandwidth;
-    return this;
-  }
-
-  /**
-   * Get ioMaximumBandwidth
-   * @return ioMaximumBandwidth
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getIoMaximumBandwidth() {
-    return ioMaximumBandwidth;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIoMaximumBandwidth(Integer ioMaximumBandwidth) {
-    this.ioMaximumBandwidth = ioMaximumBandwidth;
-  }
-
-
-  public Resources ioMaximumIOps(Integer ioMaximumIOps) {
-    this.ioMaximumIOps = ioMaximumIOps;
-    return this;
-  }
-
-  /**
-   * Get ioMaximumIOps
-   * @return ioMaximumIOps
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getIoMaximumIOps() {
-    return ioMaximumIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIoMaximumIOps(Integer ioMaximumIOps) {
-    this.ioMaximumIOps = ioMaximumIOps;
-  }
-
-
-  public Resources kernelMemory(Long kernelMemory) {
-    this.kernelMemory = kernelMemory;
-    return this;
-  }
-
-  /**
-   * KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.
-   * @return kernelMemory
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getKernelMemory() {
-    return kernelMemory;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKernelMemory(Long kernelMemory) {
-    this.kernelMemory = kernelMemory;
-  }
-
-
-  public Resources kernelMemoryTCP(Long kernelMemoryTCP) {
-    this.kernelMemoryTCP = kernelMemoryTCP;
-    return this;
-  }
-
-  /**
-   * Get kernelMemoryTCP
-   * @return kernelMemoryTCP
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY_T_C_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getKernelMemoryTCP() {
-    return kernelMemoryTCP;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY_T_C_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKernelMemoryTCP(Long kernelMemoryTCP) {
-    this.kernelMemoryTCP = kernelMemoryTCP;
-  }
-
-
-  public Resources memory(Long memory) {
-    this.memory = memory;
-    return this;
-  }
-
-  /**
-   * Get memory
-   * @return memory
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemory() {
-    return memory;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemory(Long memory) {
-    this.memory = memory;
-  }
-
-
-  public Resources memoryReservation(Long memoryReservation) {
-    this.memoryReservation = memoryReservation;
-    return this;
-  }
-
-  /**
-   * Get memoryReservation
-   * @return memoryReservation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemoryReservation() {
-    return memoryReservation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemoryReservation(Long memoryReservation) {
-    this.memoryReservation = memoryReservation;
-  }
-
-
-  public Resources memorySwap(Long memorySwap) {
-    this.memorySwap = memorySwap;
-    return this;
-  }
-
-  /**
-   * Get memorySwap
-   * @return memorySwap
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemorySwap() {
-    return memorySwap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemorySwap(Long memorySwap) {
-    this.memorySwap = memorySwap;
-  }
-
-
-  public Resources memorySwappiness(Long memorySwappiness) {
-    this.memorySwappiness = memorySwappiness;
-    return this;
-  }
-
-  /**
-   * Get memorySwappiness
-   * @return memorySwappiness
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemorySwappiness() {
-    return memorySwappiness;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemorySwappiness(Long memorySwappiness) {
-    this.memorySwappiness = memorySwappiness;
-  }
-
-
-  public Resources nanoCpus(Long nanoCpus) {
-    this.nanoCpus = nanoCpus;
-    return this;
-  }
-
-  /**
-   * Get nanoCpus
-   * @return nanoCpus
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NANO_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getNanoCpus() {
-    return nanoCpus;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NANO_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNanoCpus(Long nanoCpus) {
-    this.nanoCpus = nanoCpus;
-  }
-
-
-  public Resources oomKillDisable(Boolean oomKillDisable) {
-    this.oomKillDisable = oomKillDisable;
-    return this;
-  }
-
-  /**
-   * Get oomKillDisable
-   * @return oomKillDisable
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOomKillDisable() {
-    return oomKillDisable;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOomKillDisable(Boolean oomKillDisable) {
-    this.oomKillDisable = oomKillDisable;
-  }
-
-
-  public Resources pidsLimit(Long pidsLimit) {
-    this.pidsLimit = pidsLimit;
-    return this;
-  }
-
-  /**
-   * Get pidsLimit
-   * @return pidsLimit
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getPidsLimit() {
-    return pidsLimit;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPidsLimit(Long pidsLimit) {
-    this.pidsLimit = pidsLimit;
-  }
-
-
-  public Resources ulimits(List<@Valid Ulimit> ulimits) {
-    this.ulimits = ulimits;
-    return this;
-  }
-
-  public Resources addUlimitsItem(Ulimit ulimitsItem) {
-    if (this.ulimits == null) {
-      this.ulimits = new ArrayList<>();
-    }
-    this.ulimits.add(ulimitsItem);
-    return this;
-  }
-
-  /**
-   * Get ulimits
-   * @return ulimits
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ULIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Ulimit> getUlimits() {
-    return ulimits;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ULIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUlimits(List<@Valid Ulimit> ulimits) {
-    this.ulimits = ulimits;
-  }
-
-
-  /**
-   * Return true if this Resources object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Resources resources = (Resources) o;
-    return Objects.equals(this.blkioDeviceReadBps, resources.blkioDeviceReadBps) &&
-        Objects.equals(this.blkioDeviceReadIOps, resources.blkioDeviceReadIOps) &&
-        Objects.equals(this.blkioDeviceWriteBps, resources.blkioDeviceWriteBps) &&
-        Objects.equals(this.blkioDeviceWriteIOps, resources.blkioDeviceWriteIOps) &&
-        Objects.equals(this.blkioWeight, resources.blkioWeight) &&
-        Objects.equals(this.blkioWeightDevice, resources.blkioWeightDevice) &&
-        Objects.equals(this.cgroupParent, resources.cgroupParent) &&
-        Objects.equals(this.cpuCount, resources.cpuCount) &&
-        Objects.equals(this.cpuPercent, resources.cpuPercent) &&
-        Objects.equals(this.cpuPeriod, resources.cpuPeriod) &&
-        Objects.equals(this.cpuQuota, resources.cpuQuota) &&
-        Objects.equals(this.cpuRealtimePeriod, resources.cpuRealtimePeriod) &&
-        Objects.equals(this.cpuRealtimeRuntime, resources.cpuRealtimeRuntime) &&
-        Objects.equals(this.cpuShares, resources.cpuShares) &&
-        Objects.equals(this.cpusetCpus, resources.cpusetCpus) &&
-        Objects.equals(this.cpusetMems, resources.cpusetMems) &&
-        Objects.equals(this.deviceCgroupRules, resources.deviceCgroupRules) &&
-        Objects.equals(this.deviceRequests, resources.deviceRequests) &&
-        Objects.equals(this.devices, resources.devices) &&
-        Objects.equals(this.ioMaximumBandwidth, resources.ioMaximumBandwidth) &&
-        Objects.equals(this.ioMaximumIOps, resources.ioMaximumIOps) &&
-        Objects.equals(this.kernelMemory, resources.kernelMemory) &&
-        Objects.equals(this.kernelMemoryTCP, resources.kernelMemoryTCP) &&
-        Objects.equals(this.memory, resources.memory) &&
-        Objects.equals(this.memoryReservation, resources.memoryReservation) &&
-        Objects.equals(this.memorySwap, resources.memorySwap) &&
-        Objects.equals(this.memorySwappiness, resources.memorySwappiness) &&
-        Objects.equals(this.nanoCpus, resources.nanoCpus) &&
-        Objects.equals(this.oomKillDisable, resources.oomKillDisable) &&
-        Objects.equals(this.pidsLimit, resources.pidsLimit) &&
-        Objects.equals(this.ulimits, resources.ulimits);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(blkioDeviceReadBps, blkioDeviceReadIOps, blkioDeviceWriteBps, blkioDeviceWriteIOps, blkioWeight, blkioWeightDevice, cgroupParent, cpuCount, cpuPercent, cpuPeriod, cpuQuota, cpuRealtimePeriod, cpuRealtimeRuntime, cpuShares, cpusetCpus, cpusetMems, deviceCgroupRules, deviceRequests, devices, ioMaximumBandwidth, ioMaximumIOps, kernelMemory, kernelMemoryTCP, memory, memoryReservation, memorySwap, memorySwappiness, nanoCpus, oomKillDisable, pidsLimit, ulimits);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Resources {\n");
-    sb.append("    blkioDeviceReadBps: ").append(toIndentedString(blkioDeviceReadBps)).append("\n");
-    sb.append("    blkioDeviceReadIOps: ").append(toIndentedString(blkioDeviceReadIOps)).append("\n");
-    sb.append("    blkioDeviceWriteBps: ").append(toIndentedString(blkioDeviceWriteBps)).append("\n");
-    sb.append("    blkioDeviceWriteIOps: ").append(toIndentedString(blkioDeviceWriteIOps)).append("\n");
-    sb.append("    blkioWeight: ").append(toIndentedString(blkioWeight)).append("\n");
-    sb.append("    blkioWeightDevice: ").append(toIndentedString(blkioWeightDevice)).append("\n");
-    sb.append("    cgroupParent: ").append(toIndentedString(cgroupParent)).append("\n");
-    sb.append("    cpuCount: ").append(toIndentedString(cpuCount)).append("\n");
-    sb.append("    cpuPercent: ").append(toIndentedString(cpuPercent)).append("\n");
-    sb.append("    cpuPeriod: ").append(toIndentedString(cpuPeriod)).append("\n");
-    sb.append("    cpuQuota: ").append(toIndentedString(cpuQuota)).append("\n");
-    sb.append("    cpuRealtimePeriod: ").append(toIndentedString(cpuRealtimePeriod)).append("\n");
-    sb.append("    cpuRealtimeRuntime: ").append(toIndentedString(cpuRealtimeRuntime)).append("\n");
-    sb.append("    cpuShares: ").append(toIndentedString(cpuShares)).append("\n");
-    sb.append("    cpusetCpus: ").append(toIndentedString(cpusetCpus)).append("\n");
-    sb.append("    cpusetMems: ").append(toIndentedString(cpusetMems)).append("\n");
-    sb.append("    deviceCgroupRules: ").append(toIndentedString(deviceCgroupRules)).append("\n");
-    sb.append("    deviceRequests: ").append(toIndentedString(deviceRequests)).append("\n");
-    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
-    sb.append("    ioMaximumBandwidth: ").append(toIndentedString(ioMaximumBandwidth)).append("\n");
-    sb.append("    ioMaximumIOps: ").append(toIndentedString(ioMaximumIOps)).append("\n");
-    sb.append("    kernelMemory: ").append(toIndentedString(kernelMemory)).append("\n");
-    sb.append("    kernelMemoryTCP: ").append(toIndentedString(kernelMemoryTCP)).append("\n");
-    sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
-    sb.append("    memoryReservation: ").append(toIndentedString(memoryReservation)).append("\n");
-    sb.append("    memorySwap: ").append(toIndentedString(memorySwap)).append("\n");
-    sb.append("    memorySwappiness: ").append(toIndentedString(memorySwappiness)).append("\n");
-    sb.append("    nanoCpus: ").append(toIndentedString(nanoCpus)).append("\n");
-    sb.append("    oomKillDisable: ").append(toIndentedString(oomKillDisable)).append("\n");
-    sb.append("    pidsLimit: ").append(toIndentedString(pidsLimit)).append("\n");
-    sb.append("    ulimits: ").append(toIndentedString(ulimits)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_READ_BPS = "BlkioDeviceReadBps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_READ_I_OPS = "BlkioDeviceReadIOps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_WRITE_BPS = "BlkioDeviceWriteBps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_WRITE_I_OPS = "BlkioDeviceWriteIOps";
+    public static final String SERIALIZED_NAME_BLKIO_WEIGHT = "BlkioWeight";
+    public static final String SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE = "BlkioWeightDevice";
+    public static final String SERIALIZED_NAME_CGROUP_PARENT = "CgroupParent";
+    public static final String SERIALIZED_NAME_CPU_COUNT = "CpuCount";
+    public static final String SERIALIZED_NAME_CPU_PERCENT = "CpuPercent";
+    public static final String SERIALIZED_NAME_CPU_PERIOD = "CpuPeriod";
+    public static final String SERIALIZED_NAME_CPU_QUOTA = "CpuQuota";
+    public static final String SERIALIZED_NAME_CPU_REALTIME_PERIOD = "CpuRealtimePeriod";
+    public static final String SERIALIZED_NAME_CPU_REALTIME_RUNTIME = "CpuRealtimeRuntime";
+    public static final String SERIALIZED_NAME_CPU_SHARES = "CpuShares";
+    public static final String SERIALIZED_NAME_CPUSET_CPUS = "CpusetCpus";
+    public static final String SERIALIZED_NAME_CPUSET_MEMS = "CpusetMems";
+    public static final String SERIALIZED_NAME_DEVICE_CGROUP_RULES = "DeviceCgroupRules";
+    public static final String SERIALIZED_NAME_DEVICE_REQUESTS = "DeviceRequests";
+    public static final String SERIALIZED_NAME_DEVICES = "Devices";
+    public static final String SERIALIZED_NAME_IO_MAXIMUM_BANDWIDTH = "IOMaximumBandwidth";
+    public static final String SERIALIZED_NAME_IO_MAXIMUM_I_OPS = "IOMaximumIOps";
+    public static final String SERIALIZED_NAME_KERNEL_MEMORY = "KernelMemory";
+    public static final String SERIALIZED_NAME_KERNEL_MEMORY_T_C_P = "KernelMemoryTCP";
+    public static final String SERIALIZED_NAME_MEMORY = "Memory";
+    public static final String SERIALIZED_NAME_MEMORY_RESERVATION = "MemoryReservation";
+    public static final String SERIALIZED_NAME_MEMORY_SWAP = "MemorySwap";
+    public static final String SERIALIZED_NAME_MEMORY_SWAPPINESS = "MemorySwappiness";
+    public static final String SERIALIZED_NAME_NANO_CPUS = "NanoCpus";
+    public static final String SERIALIZED_NAME_OOM_KILL_DISABLE = "OomKillDisable";
+    public static final String SERIALIZED_NAME_PIDS_LIMIT = "PidsLimit";
+    public static final String SERIALIZED_NAME_ULIMITS = "Ulimits";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("BlkioDeviceReadBps");
+        openapiFields.add("BlkioDeviceReadIOps");
+        openapiFields.add("BlkioDeviceWriteBps");
+        openapiFields.add("BlkioDeviceWriteIOps");
+        openapiFields.add("BlkioWeight");
+        openapiFields.add("BlkioWeightDevice");
+        openapiFields.add("CgroupParent");
+        openapiFields.add("CpuCount");
+        openapiFields.add("CpuPercent");
+        openapiFields.add("CpuPeriod");
+        openapiFields.add("CpuQuota");
+        openapiFields.add("CpuRealtimePeriod");
+        openapiFields.add("CpuRealtimeRuntime");
+        openapiFields.add("CpuShares");
+        openapiFields.add("CpusetCpus");
+        openapiFields.add("CpusetMems");
+        openapiFields.add("DeviceCgroupRules");
+        openapiFields.add("DeviceRequests");
+        openapiFields.add("Devices");
+        openapiFields.add("IOMaximumBandwidth");
+        openapiFields.add("IOMaximumIOps");
+        openapiFields.add("KernelMemory");
+        openapiFields.add("KernelMemoryTCP");
+        openapiFields.add("Memory");
+        openapiFields.add("MemoryReservation");
+        openapiFields.add("MemorySwap");
+        openapiFields.add("MemorySwappiness");
+        openapiFields.add("NanoCpus");
+        openapiFields.add("OomKillDisable");
+        openapiFields.add("PidsLimit");
+        openapiFields.add("Ulimits");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_READ_BPS)
+    private List<@Valid ThrottleDevice> blkioDeviceReadBps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_READ_I_OPS)
+    private List<@Valid ThrottleDevice> blkioDeviceReadIOps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_WRITE_BPS)
+    private List<@Valid ThrottleDevice> blkioDeviceWriteBps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_WRITE_I_OPS)
+    private List<@Valid ThrottleDevice> blkioDeviceWriteIOps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT)
+    private Integer blkioWeight;
+    @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE)
+    private List<@Valid WeightDevice> blkioWeightDevice = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
+    private String cgroupParent;
+    @SerializedName(SERIALIZED_NAME_CPU_COUNT)
+    private Long cpuCount;
+    @SerializedName(SERIALIZED_NAME_CPU_PERCENT)
+    private Long cpuPercent;
+    @SerializedName(SERIALIZED_NAME_CPU_PERIOD)
+    private Long cpuPeriod;
+    @SerializedName(SERIALIZED_NAME_CPU_QUOTA)
+    private Long cpuQuota;
+    @SerializedName(SERIALIZED_NAME_CPU_REALTIME_PERIOD)
+    private Long cpuRealtimePeriod;
+    @SerializedName(SERIALIZED_NAME_CPU_REALTIME_RUNTIME)
+    private Long cpuRealtimeRuntime;
+    @SerializedName(SERIALIZED_NAME_CPU_SHARES)
+    private Long cpuShares;
+    @SerializedName(SERIALIZED_NAME_CPUSET_CPUS)
+    private String cpusetCpus;
+    @SerializedName(SERIALIZED_NAME_CPUSET_MEMS)
+    private String cpusetMems;
+    @SerializedName(SERIALIZED_NAME_DEVICE_CGROUP_RULES)
+    private List<String> deviceCgroupRules = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEVICE_REQUESTS)
+    private List<@Valid DeviceRequest> deviceRequests = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEVICES)
+    private List<@Valid DeviceMapping> devices = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_IO_MAXIMUM_BANDWIDTH)
+    private Integer ioMaximumBandwidth;
+    @SerializedName(SERIALIZED_NAME_IO_MAXIMUM_I_OPS)
+    private Integer ioMaximumIOps;
+    @SerializedName(SERIALIZED_NAME_KERNEL_MEMORY)
+    private Long kernelMemory;
+    @SerializedName(SERIALIZED_NAME_KERNEL_MEMORY_T_C_P)
+    private Long kernelMemoryTCP;
+    @SerializedName(SERIALIZED_NAME_MEMORY)
+    private Long memory;
+    @SerializedName(SERIALIZED_NAME_MEMORY_RESERVATION)
+    private Long memoryReservation;
+    @SerializedName(SERIALIZED_NAME_MEMORY_SWAP)
+    private Long memorySwap;
+    @SerializedName(SERIALIZED_NAME_MEMORY_SWAPPINESS)
+    private Long memorySwappiness;
+    @SerializedName(SERIALIZED_NAME_NANO_CPUS)
+    private Long nanoCpus;
+    @SerializedName(SERIALIZED_NAME_OOM_KILL_DISABLE)
+    private Boolean oomKillDisable;
+    @SerializedName(SERIALIZED_NAME_PIDS_LIMIT)
+    private Long pidsLimit;
+    @SerializedName(SERIALIZED_NAME_ULIMITS)
+    private List<@Valid Ulimit> ulimits = new ArrayList<>();
 
-    // add `BlkioDeviceReadBps` to the URL query string
-    if (getBlkioDeviceReadBps() != null) {
-      for (int i = 0; i < getBlkioDeviceReadBps().size(); i++) {
-        if (getBlkioDeviceReadBps().get(i) != null) {
-          joiner.add(getBlkioDeviceReadBps().get(i).toUrlQueryString(String.format("%sBlkioDeviceReadBps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    public Resources() {
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Resources
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Resources.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Resources is not found in the empty JSON string", Resources.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `BlkioDeviceReadIOps` to the URL query string
-    if (getBlkioDeviceReadIOps() != null) {
-      for (int i = 0; i < getBlkioDeviceReadIOps().size(); i++) {
-        if (getBlkioDeviceReadIOps().get(i) != null) {
-          joiner.add(getBlkioDeviceReadIOps().get(i).toUrlQueryString(String.format("%sBlkioDeviceReadIOps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Resources.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Resources` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
-    }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (jsonObj.get("BlkioDeviceReadBps") != null && !jsonObj.get("BlkioDeviceReadBps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceReadBps = jsonObj.getAsJsonArray("BlkioDeviceReadBps");
+            if (jsonArrayblkioDeviceReadBps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceReadBps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceReadBps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceReadBps").toString()));
+                }
 
-    // add `BlkioDeviceWriteBps` to the URL query string
-    if (getBlkioDeviceWriteBps() != null) {
-      for (int i = 0; i < getBlkioDeviceWriteBps().size(); i++) {
-        if (getBlkioDeviceWriteBps().get(i) != null) {
-          joiner.add(getBlkioDeviceWriteBps().get(i).toUrlQueryString(String.format("%sBlkioDeviceWriteBps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceReadBps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceReadBps.size(); i++) {
+                    ThrottleDevice.validateJsonElement(jsonArrayblkioDeviceReadBps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceReadIOps") != null && !jsonObj.get("BlkioDeviceReadIOps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceReadIOps = jsonObj.getAsJsonArray("BlkioDeviceReadIOps");
+            if (jsonArrayblkioDeviceReadIOps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceReadIOps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceReadIOps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceReadIOps").toString()));
+                }
 
-    // add `BlkioDeviceWriteIOps` to the URL query string
-    if (getBlkioDeviceWriteIOps() != null) {
-      for (int i = 0; i < getBlkioDeviceWriteIOps().size(); i++) {
-        if (getBlkioDeviceWriteIOps().get(i) != null) {
-          joiner.add(getBlkioDeviceWriteIOps().get(i).toUrlQueryString(String.format("%sBlkioDeviceWriteIOps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceReadIOps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceReadIOps.size(); i++) {
+                    ThrottleDevice.validateJsonElement(jsonArrayblkioDeviceReadIOps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceWriteBps") != null && !jsonObj.get("BlkioDeviceWriteBps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceWriteBps = jsonObj.getAsJsonArray("BlkioDeviceWriteBps");
+            if (jsonArrayblkioDeviceWriteBps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceWriteBps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceWriteBps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceWriteBps").toString()));
+                }
 
-    // add `BlkioWeight` to the URL query string
-    if (getBlkioWeight() != null) {
-      joiner.add(String.format("%sBlkioWeight%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBlkioWeight()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `BlkioWeightDevice` to the URL query string
-    if (getBlkioWeightDevice() != null) {
-      for (int i = 0; i < getBlkioWeightDevice().size(); i++) {
-        if (getBlkioWeightDevice().get(i) != null) {
-          joiner.add(getBlkioWeightDevice().get(i).toUrlQueryString(String.format("%sBlkioWeightDevice%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceWriteBps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceWriteBps.size(); i++) {
+                    ThrottleDevice.validateJsonElement(jsonArrayblkioDeviceWriteBps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceWriteIOps") != null && !jsonObj.get("BlkioDeviceWriteIOps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceWriteIOps = jsonObj.getAsJsonArray("BlkioDeviceWriteIOps");
+            if (jsonArrayblkioDeviceWriteIOps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceWriteIOps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceWriteIOps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceWriteIOps").toString()));
+                }
 
-    // add `CgroupParent` to the URL query string
-    if (getCgroupParent() != null) {
-      joiner.add(String.format("%sCgroupParent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuCount` to the URL query string
-    if (getCpuCount() != null) {
-      joiner.add(String.format("%sCpuCount%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuPercent` to the URL query string
-    if (getCpuPercent() != null) {
-      joiner.add(String.format("%sCpuPercent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuPercent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuPeriod` to the URL query string
-    if (getCpuPeriod() != null) {
-      joiner.add(String.format("%sCpuPeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuQuota` to the URL query string
-    if (getCpuQuota() != null) {
-      joiner.add(String.format("%sCpuQuota%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuQuota()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuRealtimePeriod` to the URL query string
-    if (getCpuRealtimePeriod() != null) {
-      joiner.add(String.format("%sCpuRealtimePeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuRealtimePeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuRealtimeRuntime` to the URL query string
-    if (getCpuRealtimeRuntime() != null) {
-      joiner.add(String.format("%sCpuRealtimeRuntime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuRealtimeRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuShares` to the URL query string
-    if (getCpuShares() != null) {
-      joiner.add(String.format("%sCpuShares%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuShares()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpusetCpus` to the URL query string
-    if (getCpusetCpus() != null) {
-      joiner.add(String.format("%sCpusetCpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpusetMems` to the URL query string
-    if (getCpusetMems() != null) {
-      joiner.add(String.format("%sCpusetMems%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetMems()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `DeviceCgroupRules` to the URL query string
-    if (getDeviceCgroupRules() != null) {
-      for (int i = 0; i < getDeviceCgroupRules().size(); i++) {
-        joiner.add(String.format("%sDeviceCgroupRules%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDeviceCgroupRules().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `DeviceRequests` to the URL query string
-    if (getDeviceRequests() != null) {
-      for (int i = 0; i < getDeviceRequests().size(); i++) {
-        if (getDeviceRequests().get(i) != null) {
-          joiner.add(getDeviceRequests().get(i).toUrlQueryString(String.format("%sDeviceRequests%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceWriteIOps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceWriteIOps.size(); i++) {
+                    ThrottleDevice.validateJsonElement(jsonArrayblkioDeviceWriteIOps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioWeightDevice") != null && !jsonObj.get("BlkioWeightDevice").isJsonNull()) {
+            JsonArray jsonArrayblkioWeightDevice = jsonObj.getAsJsonArray("BlkioWeightDevice");
+            if (jsonArrayblkioWeightDevice != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioWeightDevice").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioWeightDevice` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioWeightDevice").toString()));
+                }
 
-    // add `Devices` to the URL query string
-    if (getDevices() != null) {
-      for (int i = 0; i < getDevices().size(); i++) {
-        if (getDevices().get(i) != null) {
-          joiner.add(getDevices().get(i).toUrlQueryString(String.format("%sDevices%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioWeightDevice` (array)
+                for (int i = 0; i < jsonArrayblkioWeightDevice.size(); i++) {
+                    WeightDevice.validateJsonElement(jsonArrayblkioWeightDevice.get(i));
+                }
+            }
         }
-      }
-    }
-
-    // add `IOMaximumBandwidth` to the URL query string
-    if (getIoMaximumBandwidth() != null) {
-      joiner.add(String.format("%sIOMaximumBandwidth%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIoMaximumBandwidth()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IOMaximumIOps` to the URL query string
-    if (getIoMaximumIOps() != null) {
-      joiner.add(String.format("%sIOMaximumIOps%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIoMaximumIOps()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `KernelMemory` to the URL query string
-    if (getKernelMemory() != null) {
-      joiner.add(String.format("%sKernelMemory%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernelMemory()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `KernelMemoryTCP` to the URL query string
-    if (getKernelMemoryTCP() != null) {
-      joiner.add(String.format("%sKernelMemoryTCP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernelMemoryTCP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Memory` to the URL query string
-    if (getMemory() != null) {
-      joiner.add(String.format("%sMemory%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemory()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemoryReservation` to the URL query string
-    if (getMemoryReservation() != null) {
-      joiner.add(String.format("%sMemoryReservation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemoryReservation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemorySwap` to the URL query string
-    if (getMemorySwap() != null) {
-      joiner.add(String.format("%sMemorySwap%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemorySwap()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemorySwappiness` to the URL query string
-    if (getMemorySwappiness() != null) {
-      joiner.add(String.format("%sMemorySwappiness%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemorySwappiness()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `NanoCpus` to the URL query string
-    if (getNanoCpus() != null) {
-      joiner.add(String.format("%sNanoCpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNanoCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `OomKillDisable` to the URL query string
-    if (getOomKillDisable() != null) {
-      joiner.add(String.format("%sOomKillDisable%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOomKillDisable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PidsLimit` to the URL query string
-    if (getPidsLimit() != null) {
-      joiner.add(String.format("%sPidsLimit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPidsLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Ulimits` to the URL query string
-    if (getUlimits() != null) {
-      for (int i = 0; i < getUlimits().size(); i++) {
-        if (getUlimits().get(i) != null) {
-          joiner.add(getUlimits().get(i).toUrlQueryString(String.format("%sUlimits%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        if ((jsonObj.get("CgroupParent") != null && !jsonObj.get("CgroupParent").isJsonNull()) && !jsonObj.get("CgroupParent").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CgroupParent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupParent").toString()));
         }
-      }
+        if ((jsonObj.get("CpusetCpus") != null && !jsonObj.get("CpusetCpus").isJsonNull()) && !jsonObj.get("CpusetCpus").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CpusetCpus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CpusetCpus").toString()));
+        }
+        if ((jsonObj.get("CpusetMems") != null && !jsonObj.get("CpusetMems").isJsonNull()) && !jsonObj.get("CpusetMems").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CpusetMems` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CpusetMems").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("DeviceCgroupRules") != null && !jsonObj.get("DeviceCgroupRules").isJsonNull() && !jsonObj.get("DeviceCgroupRules").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DeviceCgroupRules` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceCgroupRules").toString()));
+        }
+        if (jsonObj.get("DeviceRequests") != null && !jsonObj.get("DeviceRequests").isJsonNull()) {
+            JsonArray jsonArraydeviceRequests = jsonObj.getAsJsonArray("DeviceRequests");
+            if (jsonArraydeviceRequests != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("DeviceRequests").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `DeviceRequests` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceRequests").toString()));
+                }
+
+                // validate the optional field `DeviceRequests` (array)
+                for (int i = 0; i < jsonArraydeviceRequests.size(); i++) {
+                    DeviceRequest.validateJsonElement(jsonArraydeviceRequests.get(i));
+                }
+            }
+        }
+        if (jsonObj.get("Devices") != null && !jsonObj.get("Devices").isJsonNull()) {
+            JsonArray jsonArraydevices = jsonObj.getAsJsonArray("Devices");
+            if (jsonArraydevices != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Devices").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Devices` to be an array in the JSON string but got `%s`", jsonObj.get("Devices").toString()));
+                }
+
+                // validate the optional field `Devices` (array)
+                for (int i = 0; i < jsonArraydevices.size(); i++) {
+                    DeviceMapping.validateJsonElement(jsonArraydevices.get(i));
+                }
+            }
+        }
+        if (jsonObj.get("Ulimits") != null && !jsonObj.get("Ulimits").isJsonNull()) {
+            JsonArray jsonArrayulimits = jsonObj.getAsJsonArray("Ulimits");
+            if (jsonArrayulimits != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Ulimits").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Ulimits` to be an array in the JSON string but got `%s`", jsonObj.get("Ulimits").toString()));
+                }
+
+                // validate the optional field `Ulimits` (array)
+                for (int i = 0; i < jsonArrayulimits.size(); i++) {
+                    Ulimit.validateJsonElement(jsonArrayulimits.get(i));
+                }
+            }
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of Resources given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Resources
+     * @throws IOException if the JSON string is invalid with respect to Resources
+     */
+    public static Resources fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Resources.class);
+    }
+
+    public Resources blkioDeviceReadBps(List<@Valid ThrottleDevice> blkioDeviceReadBps) {
+        this.blkioDeviceReadBps = blkioDeviceReadBps;
+        return this;
+    }
+
+    public Resources addBlkioDeviceReadBpsItem(ThrottleDevice blkioDeviceReadBpsItem) {
+        if (this.blkioDeviceReadBps == null) {
+            this.blkioDeviceReadBps = new ArrayList<>();
+        }
+        this.blkioDeviceReadBps.add(blkioDeviceReadBpsItem);
+        return this;
+    }
+
+    /**
+     * Get blkioDeviceReadBps
+     *
+     * @return blkioDeviceReadBps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ThrottleDevice> getBlkioDeviceReadBps() {
+        return blkioDeviceReadBps;
+    }
+
+    public void setBlkioDeviceReadBps(List<@Valid ThrottleDevice> blkioDeviceReadBps) {
+        this.blkioDeviceReadBps = blkioDeviceReadBps;
+    }
+
+    public Resources blkioDeviceReadIOps(List<@Valid ThrottleDevice> blkioDeviceReadIOps) {
+        this.blkioDeviceReadIOps = blkioDeviceReadIOps;
+        return this;
+    }
+
+    public Resources addBlkioDeviceReadIOpsItem(ThrottleDevice blkioDeviceReadIOpsItem) {
+        if (this.blkioDeviceReadIOps == null) {
+            this.blkioDeviceReadIOps = new ArrayList<>();
+        }
+        this.blkioDeviceReadIOps.add(blkioDeviceReadIOpsItem);
+        return this;
+    }
+
+    /**
+     * Get blkioDeviceReadIOps
+     *
+     * @return blkioDeviceReadIOps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ThrottleDevice> getBlkioDeviceReadIOps() {
+        return blkioDeviceReadIOps;
+    }
+
+    public void setBlkioDeviceReadIOps(List<@Valid ThrottleDevice> blkioDeviceReadIOps) {
+        this.blkioDeviceReadIOps = blkioDeviceReadIOps;
+    }
+
+    public Resources blkioDeviceWriteBps(List<@Valid ThrottleDevice> blkioDeviceWriteBps) {
+        this.blkioDeviceWriteBps = blkioDeviceWriteBps;
+        return this;
+    }
+
+    public Resources addBlkioDeviceWriteBpsItem(ThrottleDevice blkioDeviceWriteBpsItem) {
+        if (this.blkioDeviceWriteBps == null) {
+            this.blkioDeviceWriteBps = new ArrayList<>();
+        }
+        this.blkioDeviceWriteBps.add(blkioDeviceWriteBpsItem);
+        return this;
+    }
+
+    /**
+     * Get blkioDeviceWriteBps
+     *
+     * @return blkioDeviceWriteBps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ThrottleDevice> getBlkioDeviceWriteBps() {
+        return blkioDeviceWriteBps;
+    }
+
+    public void setBlkioDeviceWriteBps(List<@Valid ThrottleDevice> blkioDeviceWriteBps) {
+        this.blkioDeviceWriteBps = blkioDeviceWriteBps;
+    }
+
+    public Resources blkioDeviceWriteIOps(List<@Valid ThrottleDevice> blkioDeviceWriteIOps) {
+        this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
+        return this;
+    }
+
+    public Resources addBlkioDeviceWriteIOpsItem(ThrottleDevice blkioDeviceWriteIOpsItem) {
+        if (this.blkioDeviceWriteIOps == null) {
+            this.blkioDeviceWriteIOps = new ArrayList<>();
+        }
+        this.blkioDeviceWriteIOps.add(blkioDeviceWriteIOpsItem);
+        return this;
+    }
+
+    /**
+     * Get blkioDeviceWriteIOps
+     *
+     * @return blkioDeviceWriteIOps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ThrottleDevice> getBlkioDeviceWriteIOps() {
+        return blkioDeviceWriteIOps;
+    }
+
+    public void setBlkioDeviceWriteIOps(List<@Valid ThrottleDevice> blkioDeviceWriteIOps) {
+        this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
+    }
+
+    public Resources blkioWeight(Integer blkioWeight) {
+        this.blkioWeight = blkioWeight;
+        return this;
+    }
+
+    /**
+     * Get blkioWeight
+     *
+     * @return blkioWeight
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getBlkioWeight() {
+        return blkioWeight;
+    }
+
+    public void setBlkioWeight(Integer blkioWeight) {
+        this.blkioWeight = blkioWeight;
+    }
+
+    public Resources blkioWeightDevice(List<@Valid WeightDevice> blkioWeightDevice) {
+        this.blkioWeightDevice = blkioWeightDevice;
+        return this;
+    }
+
+    public Resources addBlkioWeightDeviceItem(WeightDevice blkioWeightDeviceItem) {
+        if (this.blkioWeightDevice == null) {
+            this.blkioWeightDevice = new ArrayList<>();
+        }
+        this.blkioWeightDevice.add(blkioWeightDeviceItem);
+        return this;
+    }
+
+    /**
+     * Get blkioWeightDevice
+     *
+     * @return blkioWeightDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid WeightDevice> getBlkioWeightDevice() {
+        return blkioWeightDevice;
+    }
+
+    public void setBlkioWeightDevice(List<@Valid WeightDevice> blkioWeightDevice) {
+        this.blkioWeightDevice = blkioWeightDevice;
+    }
+
+    public Resources cgroupParent(String cgroupParent) {
+        this.cgroupParent = cgroupParent;
+        return this;
+    }
+
+    /**
+     * Applicable to UNIX platforms
+     *
+     * @return cgroupParent
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupParent() {
+        return cgroupParent;
+    }
+
+    public void setCgroupParent(String cgroupParent) {
+        this.cgroupParent = cgroupParent;
+    }
+
+    public Resources cpuCount(Long cpuCount) {
+        this.cpuCount = cpuCount;
+        return this;
+    }
+
+    /**
+     * Applicable to Windows
+     *
+     * @return cpuCount
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuCount() {
+        return cpuCount;
+    }
+
+    public void setCpuCount(Long cpuCount) {
+        this.cpuCount = cpuCount;
+    }
+
+    public Resources cpuPercent(Long cpuPercent) {
+        this.cpuPercent = cpuPercent;
+        return this;
+    }
+
+    /**
+     * Get cpuPercent
+     *
+     * @return cpuPercent
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuPercent() {
+        return cpuPercent;
+    }
+
+    public void setCpuPercent(Long cpuPercent) {
+        this.cpuPercent = cpuPercent;
+    }
+
+    public Resources cpuPeriod(Long cpuPeriod) {
+        this.cpuPeriod = cpuPeriod;
+        return this;
+    }
+
+    /**
+     * Get cpuPeriod
+     *
+     * @return cpuPeriod
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuPeriod() {
+        return cpuPeriod;
+    }
+
+    public void setCpuPeriod(Long cpuPeriod) {
+        this.cpuPeriod = cpuPeriod;
+    }
+
+    public Resources cpuQuota(Long cpuQuota) {
+        this.cpuQuota = cpuQuota;
+        return this;
+    }
+
+    /**
+     * Get cpuQuota
+     *
+     * @return cpuQuota
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuQuota() {
+        return cpuQuota;
+    }
+
+    public void setCpuQuota(Long cpuQuota) {
+        this.cpuQuota = cpuQuota;
+    }
+
+    public Resources cpuRealtimePeriod(Long cpuRealtimePeriod) {
+        this.cpuRealtimePeriod = cpuRealtimePeriod;
+        return this;
+    }
+
+    /**
+     * Get cpuRealtimePeriod
+     *
+     * @return cpuRealtimePeriod
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuRealtimePeriod() {
+        return cpuRealtimePeriod;
+    }
+
+    public void setCpuRealtimePeriod(Long cpuRealtimePeriod) {
+        this.cpuRealtimePeriod = cpuRealtimePeriod;
+    }
+
+    public Resources cpuRealtimeRuntime(Long cpuRealtimeRuntime) {
+        this.cpuRealtimeRuntime = cpuRealtimeRuntime;
+        return this;
+    }
+
+    /**
+     * Get cpuRealtimeRuntime
+     *
+     * @return cpuRealtimeRuntime
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuRealtimeRuntime() {
+        return cpuRealtimeRuntime;
+    }
+
+    public void setCpuRealtimeRuntime(Long cpuRealtimeRuntime) {
+        this.cpuRealtimeRuntime = cpuRealtimeRuntime;
+    }
+
+    public Resources cpuShares(Long cpuShares) {
+        this.cpuShares = cpuShares;
+        return this;
+    }
+
+    /**
+     * Applicable to all platforms
+     *
+     * @return cpuShares
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuShares() {
+        return cpuShares;
+    }
+
+    public void setCpuShares(Long cpuShares) {
+        this.cpuShares = cpuShares;
+    }
+
+    public Resources cpusetCpus(String cpusetCpus) {
+        this.cpusetCpus = cpusetCpus;
+        return this;
+    }
+
+    /**
+     * Get cpusetCpus
+     *
+     * @return cpusetCpus
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCpusetCpus() {
+        return cpusetCpus;
+    }
+
+    public void setCpusetCpus(String cpusetCpus) {
+        this.cpusetCpus = cpusetCpus;
+    }
+
+    public Resources cpusetMems(String cpusetMems) {
+        this.cpusetMems = cpusetMems;
+        return this;
+    }
+
+    /**
+     * Get cpusetMems
+     *
+     * @return cpusetMems
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCpusetMems() {
+        return cpusetMems;
+    }
+
+    public void setCpusetMems(String cpusetMems) {
+        this.cpusetMems = cpusetMems;
+    }
+
+    public Resources deviceCgroupRules(List<String> deviceCgroupRules) {
+        this.deviceCgroupRules = deviceCgroupRules;
+        return this;
+    }
+
+    public Resources addDeviceCgroupRulesItem(String deviceCgroupRulesItem) {
+        if (this.deviceCgroupRules == null) {
+            this.deviceCgroupRules = new ArrayList<>();
+        }
+        this.deviceCgroupRules.add(deviceCgroupRulesItem);
+        return this;
+    }
+
+    /**
+     * Get deviceCgroupRules
+     *
+     * @return deviceCgroupRules
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDeviceCgroupRules() {
+        return deviceCgroupRules;
+    }
+
+    public void setDeviceCgroupRules(List<String> deviceCgroupRules) {
+        this.deviceCgroupRules = deviceCgroupRules;
+    }
+
+    public Resources deviceRequests(List<@Valid DeviceRequest> deviceRequests) {
+        this.deviceRequests = deviceRequests;
+        return this;
+    }
+
+    public Resources addDeviceRequestsItem(DeviceRequest deviceRequestsItem) {
+        if (this.deviceRequests == null) {
+            this.deviceRequests = new ArrayList<>();
+        }
+        this.deviceRequests.add(deviceRequestsItem);
+        return this;
+    }
+
+    /**
+     * Get deviceRequests
+     *
+     * @return deviceRequests
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid DeviceRequest> getDeviceRequests() {
+        return deviceRequests;
+    }
+
+    public void setDeviceRequests(List<@Valid DeviceRequest> deviceRequests) {
+        this.deviceRequests = deviceRequests;
+    }
+
+    public Resources devices(List<@Valid DeviceMapping> devices) {
+        this.devices = devices;
+        return this;
+    }
+
+    public Resources addDevicesItem(DeviceMapping devicesItem) {
+        if (this.devices == null) {
+            this.devices = new ArrayList<>();
+        }
+        this.devices.add(devicesItem);
+        return this;
+    }
+
+    /**
+     * Get devices
+     *
+     * @return devices
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid DeviceMapping> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<@Valid DeviceMapping> devices) {
+        this.devices = devices;
+    }
+
+    public Resources ioMaximumBandwidth(Integer ioMaximumBandwidth) {
+        this.ioMaximumBandwidth = ioMaximumBandwidth;
+        return this;
+    }
+
+    /**
+     * Get ioMaximumBandwidth
+     *
+     * @return ioMaximumBandwidth
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getIoMaximumBandwidth() {
+        return ioMaximumBandwidth;
+    }
+
+    public void setIoMaximumBandwidth(Integer ioMaximumBandwidth) {
+        this.ioMaximumBandwidth = ioMaximumBandwidth;
+    }
+
+    public Resources ioMaximumIOps(Integer ioMaximumIOps) {
+        this.ioMaximumIOps = ioMaximumIOps;
+        return this;
+    }
+
+    /**
+     * Get ioMaximumIOps
+     *
+     * @return ioMaximumIOps
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getIoMaximumIOps() {
+        return ioMaximumIOps;
+    }
+
+    public void setIoMaximumIOps(Integer ioMaximumIOps) {
+        this.ioMaximumIOps = ioMaximumIOps;
+    }
+
+    public Resources kernelMemory(Long kernelMemory) {
+        this.kernelMemory = kernelMemory;
+        return this;
+    }
+
+    /**
+     * KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.
+     *
+     * @return kernelMemory
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getKernelMemory() {
+        return kernelMemory;
+    }
+
+    public void setKernelMemory(Long kernelMemory) {
+        this.kernelMemory = kernelMemory;
+    }
+
+    public Resources kernelMemoryTCP(Long kernelMemoryTCP) {
+        this.kernelMemoryTCP = kernelMemoryTCP;
+        return this;
+    }
+
+    /**
+     * Get kernelMemoryTCP
+     *
+     * @return kernelMemoryTCP
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getKernelMemoryTCP() {
+        return kernelMemoryTCP;
+    }
+
+    public void setKernelMemoryTCP(Long kernelMemoryTCP) {
+        this.kernelMemoryTCP = kernelMemoryTCP;
+    }
+
+    public Resources memory(Long memory) {
+        this.memory = memory;
+        return this;
+    }
+
+    /**
+     * Get memory
+     *
+     * @return memory
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Long memory) {
+        this.memory = memory;
+    }
+
+    public Resources memoryReservation(Long memoryReservation) {
+        this.memoryReservation = memoryReservation;
+        return this;
+    }
+
+    /**
+     * Get memoryReservation
+     *
+     * @return memoryReservation
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemoryReservation() {
+        return memoryReservation;
+    }
+
+    public void setMemoryReservation(Long memoryReservation) {
+        this.memoryReservation = memoryReservation;
+    }
+
+    public Resources memorySwap(Long memorySwap) {
+        this.memorySwap = memorySwap;
+        return this;
+    }
+
+    /**
+     * Get memorySwap
+     *
+     * @return memorySwap
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemorySwap() {
+        return memorySwap;
+    }
+
+    public void setMemorySwap(Long memorySwap) {
+        this.memorySwap = memorySwap;
+    }
+
+    public Resources memorySwappiness(Long memorySwappiness) {
+        this.memorySwappiness = memorySwappiness;
+        return this;
+    }
+
+    /**
+     * Get memorySwappiness
+     *
+     * @return memorySwappiness
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemorySwappiness() {
+        return memorySwappiness;
+    }
+
+    public void setMemorySwappiness(Long memorySwappiness) {
+        this.memorySwappiness = memorySwappiness;
+    }
+
+    public Resources nanoCpus(Long nanoCpus) {
+        this.nanoCpus = nanoCpus;
+        return this;
+    }
+
+    /**
+     * Get nanoCpus
+     *
+     * @return nanoCpus
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getNanoCpus() {
+        return nanoCpus;
+    }
+
+    public void setNanoCpus(Long nanoCpus) {
+        this.nanoCpus = nanoCpus;
+    }
+
+    public Resources oomKillDisable(Boolean oomKillDisable) {
+        this.oomKillDisable = oomKillDisable;
+        return this;
+    }
+
+    /**
+     * Get oomKillDisable
+     *
+     * @return oomKillDisable
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOomKillDisable() {
+        return oomKillDisable;
+    }
+
+    public void setOomKillDisable(Boolean oomKillDisable) {
+        this.oomKillDisable = oomKillDisable;
+    }
+
+    public Resources pidsLimit(Long pidsLimit) {
+        this.pidsLimit = pidsLimit;
+        return this;
+    }
+
+    /**
+     * Get pidsLimit
+     *
+     * @return pidsLimit
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getPidsLimit() {
+        return pidsLimit;
+    }
+
+    public void setPidsLimit(Long pidsLimit) {
+        this.pidsLimit = pidsLimit;
+    }
+
+    public Resources ulimits(List<@Valid Ulimit> ulimits) {
+        this.ulimits = ulimits;
+        return this;
+    }
+
+    public Resources addUlimitsItem(Ulimit ulimitsItem) {
+        if (this.ulimits == null) {
+            this.ulimits = new ArrayList<>();
+        }
+        this.ulimits.add(ulimitsItem);
+        return this;
+    }
+
+    /**
+     * Get ulimits
+     *
+     * @return ulimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Ulimit> getUlimits() {
+        return ulimits;
+    }
+
+    public void setUlimits(List<@Valid Ulimit> ulimits) {
+        this.ulimits = ulimits;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Resources resources = (Resources) o;
+        return Objects.equals(this.blkioDeviceReadBps, resources.blkioDeviceReadBps) &&
+                Objects.equals(this.blkioDeviceReadIOps, resources.blkioDeviceReadIOps) &&
+                Objects.equals(this.blkioDeviceWriteBps, resources.blkioDeviceWriteBps) &&
+                Objects.equals(this.blkioDeviceWriteIOps, resources.blkioDeviceWriteIOps) &&
+                Objects.equals(this.blkioWeight, resources.blkioWeight) &&
+                Objects.equals(this.blkioWeightDevice, resources.blkioWeightDevice) &&
+                Objects.equals(this.cgroupParent, resources.cgroupParent) &&
+                Objects.equals(this.cpuCount, resources.cpuCount) &&
+                Objects.equals(this.cpuPercent, resources.cpuPercent) &&
+                Objects.equals(this.cpuPeriod, resources.cpuPeriod) &&
+                Objects.equals(this.cpuQuota, resources.cpuQuota) &&
+                Objects.equals(this.cpuRealtimePeriod, resources.cpuRealtimePeriod) &&
+                Objects.equals(this.cpuRealtimeRuntime, resources.cpuRealtimeRuntime) &&
+                Objects.equals(this.cpuShares, resources.cpuShares) &&
+                Objects.equals(this.cpusetCpus, resources.cpusetCpus) &&
+                Objects.equals(this.cpusetMems, resources.cpusetMems) &&
+                Objects.equals(this.deviceCgroupRules, resources.deviceCgroupRules) &&
+                Objects.equals(this.deviceRequests, resources.deviceRequests) &&
+                Objects.equals(this.devices, resources.devices) &&
+                Objects.equals(this.ioMaximumBandwidth, resources.ioMaximumBandwidth) &&
+                Objects.equals(this.ioMaximumIOps, resources.ioMaximumIOps) &&
+                Objects.equals(this.kernelMemory, resources.kernelMemory) &&
+                Objects.equals(this.kernelMemoryTCP, resources.kernelMemoryTCP) &&
+                Objects.equals(this.memory, resources.memory) &&
+                Objects.equals(this.memoryReservation, resources.memoryReservation) &&
+                Objects.equals(this.memorySwap, resources.memorySwap) &&
+                Objects.equals(this.memorySwappiness, resources.memorySwappiness) &&
+                Objects.equals(this.nanoCpus, resources.nanoCpus) &&
+                Objects.equals(this.oomKillDisable, resources.oomKillDisable) &&
+                Objects.equals(this.pidsLimit, resources.pidsLimit) &&
+                Objects.equals(this.ulimits, resources.ulimits);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(blkioDeviceReadBps, blkioDeviceReadIOps, blkioDeviceWriteBps, blkioDeviceWriteIOps, blkioWeight, blkioWeightDevice, cgroupParent, cpuCount, cpuPercent, cpuPeriod, cpuQuota, cpuRealtimePeriod, cpuRealtimeRuntime, cpuShares, cpusetCpus, cpusetMems, deviceCgroupRules, deviceRequests, devices, ioMaximumBandwidth, ioMaximumIOps, kernelMemory, kernelMemoryTCP, memory, memoryReservation, memorySwap, memorySwappiness, nanoCpus, oomKillDisable, pidsLimit, ulimits);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Resources {\n" +
+                "    blkioDeviceReadBps: " + toIndentedString(blkioDeviceReadBps) + "\n" +
+                "    blkioDeviceReadIOps: " + toIndentedString(blkioDeviceReadIOps) + "\n" +
+                "    blkioDeviceWriteBps: " + toIndentedString(blkioDeviceWriteBps) + "\n" +
+                "    blkioDeviceWriteIOps: " + toIndentedString(blkioDeviceWriteIOps) + "\n" +
+                "    blkioWeight: " + toIndentedString(blkioWeight) + "\n" +
+                "    blkioWeightDevice: " + toIndentedString(blkioWeightDevice) + "\n" +
+                "    cgroupParent: " + toIndentedString(cgroupParent) + "\n" +
+                "    cpuCount: " + toIndentedString(cpuCount) + "\n" +
+                "    cpuPercent: " + toIndentedString(cpuPercent) + "\n" +
+                "    cpuPeriod: " + toIndentedString(cpuPeriod) + "\n" +
+                "    cpuQuota: " + toIndentedString(cpuQuota) + "\n" +
+                "    cpuRealtimePeriod: " + toIndentedString(cpuRealtimePeriod) + "\n" +
+                "    cpuRealtimeRuntime: " + toIndentedString(cpuRealtimeRuntime) + "\n" +
+                "    cpuShares: " + toIndentedString(cpuShares) + "\n" +
+                "    cpusetCpus: " + toIndentedString(cpusetCpus) + "\n" +
+                "    cpusetMems: " + toIndentedString(cpusetMems) + "\n" +
+                "    deviceCgroupRules: " + toIndentedString(deviceCgroupRules) + "\n" +
+                "    deviceRequests: " + toIndentedString(deviceRequests) + "\n" +
+                "    devices: " + toIndentedString(devices) + "\n" +
+                "    ioMaximumBandwidth: " + toIndentedString(ioMaximumBandwidth) + "\n" +
+                "    ioMaximumIOps: " + toIndentedString(ioMaximumIOps) + "\n" +
+                "    kernelMemory: " + toIndentedString(kernelMemory) + "\n" +
+                "    kernelMemoryTCP: " + toIndentedString(kernelMemoryTCP) + "\n" +
+                "    memory: " + toIndentedString(memory) + "\n" +
+                "    memoryReservation: " + toIndentedString(memoryReservation) + "\n" +
+                "    memorySwap: " + toIndentedString(memorySwap) + "\n" +
+                "    memorySwappiness: " + toIndentedString(memorySwappiness) + "\n" +
+                "    nanoCpus: " + toIndentedString(nanoCpus) + "\n" +
+                "    oomKillDisable: " + toIndentedString(oomKillDisable) + "\n" +
+                "    pidsLimit: " + toIndentedString(pidsLimit) + "\n" +
+                "    ulimits: " + toIndentedString(ulimits) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Resources to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Resources.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Resources' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Resources> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Resources.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Resources>() {
+                @Override
+                public void write(JsonWriter out, Resources value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Resources read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

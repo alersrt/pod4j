@@ -13,878 +13,784 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * Container
  */
-@JsonPropertyOrder({
-  Container.JSON_PROPERTY_COMMAND,
-  Container.JSON_PROPERTY_CONFIG,
-  Container.JSON_PROPERTY_CREATED,
-  Container.JSON_PROPERTY_DEFAULT_READ_ONLY_NON_RECURSIVE,
-  Container.JSON_PROPERTY_HOST_CONFIG,
-  Container.JSON_PROPERTY_ID,
-  Container.JSON_PROPERTY_IMAGE,
-  Container.JSON_PROPERTY_IMAGE_I_D,
-  Container.JSON_PROPERTY_LABELS,
-  Container.JSON_PROPERTY_MOUNTS,
-  Container.JSON_PROPERTY_NAME,
-  Container.JSON_PROPERTY_NAMES,
-  Container.JSON_PROPERTY_NETWORK_SETTINGS,
-  Container.JSON_PROPERTY_NETWORKING_CONFIG,
-  Container.JSON_PROPERTY_PLATFORM,
-  Container.JSON_PROPERTY_PORTS,
-  Container.JSON_PROPERTY_SIZE_ROOT_FS,
-  Container.JSON_PROPERTY_SIZE_RW,
-  Container.JSON_PROPERTY_STATE,
-  Container.JSON_PROPERTY_STATUS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Container {
-  public static final String JSON_PROPERTY_COMMAND = "Command";
-  private String command;
-
-  public static final String JSON_PROPERTY_CONFIG = "Config";
-  private Config config;
-
-  public static final String JSON_PROPERTY_CREATED = "Created";
-  private Long created;
-
-  public static final String JSON_PROPERTY_DEFAULT_READ_ONLY_NON_RECURSIVE = "DefaultReadOnlyNonRecursive";
-  private Boolean defaultReadOnlyNonRecursive;
-
-  public static final String JSON_PROPERTY_HOST_CONFIG = "HostConfig";
-  private HostConfig hostConfig;
-
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
-
-  public static final String JSON_PROPERTY_IMAGE = "Image";
-  private String image;
-
-  public static final String JSON_PROPERTY_IMAGE_I_D = "ImageID";
-  private String imageID;
-
-  public static final String JSON_PROPERTY_LABELS = "Labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_MOUNTS = "Mounts";
-  private List<@Valid MountPoint> mounts = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_NAMES = "Names";
-  private List<String> names = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_NETWORK_SETTINGS = "NetworkSettings";
-  private SummaryNetworkSettings networkSettings;
-
-  public static final String JSON_PROPERTY_NETWORKING_CONFIG = "NetworkingConfig";
-  private NetworkingConfig networkingConfig;
-
-  public static final String JSON_PROPERTY_PLATFORM = "Platform";
-  private Platform platform;
-
-  public static final String JSON_PROPERTY_PORTS = "Ports";
-  private List<@Valid Port> ports = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SIZE_ROOT_FS = "SizeRootFs";
-  private Long sizeRootFs;
-
-  public static final String JSON_PROPERTY_SIZE_RW = "SizeRw";
-  private Long sizeRw;
-
-  public static final String JSON_PROPERTY_STATE = "State";
-  private String state;
-
-  public static final String JSON_PROPERTY_STATUS = "Status";
-  private String status;
-
-  public Container() { 
-  }
-
-  public Container command(String command) {
-    this.command = command;
-    return this;
-  }
-
-  /**
-   * Get command
-   * @return command
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCommand() {
-    return command;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCommand(String command) {
-    this.command = command;
-  }
-
-
-  public Container config(Config config) {
-    this.config = config;
-    return this;
-  }
-
-  /**
-   * Get config
-   * @return config
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Config getConfig() {
-    return config;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConfig(Config config) {
-    this.config = config;
-  }
-
-
-  public Container created(Long created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Get created
-   * @return created
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCreated() {
-    return created;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreated(Long created) {
-    this.created = created;
-  }
-
-
-  public Container defaultReadOnlyNonRecursive(Boolean defaultReadOnlyNonRecursive) {
-    this.defaultReadOnlyNonRecursive = defaultReadOnlyNonRecursive;
-    return this;
-  }
-
-  /**
-   * Get defaultReadOnlyNonRecursive
-   * @return defaultReadOnlyNonRecursive
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DEFAULT_READ_ONLY_NON_RECURSIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getDefaultReadOnlyNonRecursive() {
-    return defaultReadOnlyNonRecursive;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEFAULT_READ_ONLY_NON_RECURSIVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDefaultReadOnlyNonRecursive(Boolean defaultReadOnlyNonRecursive) {
-    this.defaultReadOnlyNonRecursive = defaultReadOnlyNonRecursive;
-  }
-
-
-  public Container hostConfig(HostConfig hostConfig) {
-    this.hostConfig = hostConfig;
-    return this;
-  }
-
-  /**
-   * Get hostConfig
-   * @return hostConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public HostConfig getHostConfig() {
-    return hostConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostConfig(HostConfig hostConfig) {
-    this.hostConfig = hostConfig;
-  }
-
-
-  public Container id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Container image(String image) {
-    this.image = image;
-    return this;
-  }
-
-  /**
-   * Get image
-   * @return image
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImage() {
-    return image;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-
-  public Container imageID(String imageID) {
-    this.imageID = imageID;
-    return this;
-  }
-
-  /**
-   * Get imageID
-   * @return imageID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImageID() {
-    return imageID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImageID(String imageID) {
-    this.imageID = imageID;
-  }
-
-
-  public Container labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public Container putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * Get labels
-   * @return labels
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public Container mounts(List<@Valid MountPoint> mounts) {
-    this.mounts = mounts;
-    return this;
-  }
-
-  public Container addMountsItem(MountPoint mountsItem) {
-    if (this.mounts == null) {
-      this.mounts = new ArrayList<>();
-    }
-    this.mounts.add(mountsItem);
-    return this;
-  }
-
-  /**
-   * Get mounts
-   * @return mounts
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_MOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid MountPoint> getMounts() {
-    return mounts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMounts(List<@Valid MountPoint> mounts) {
-    this.mounts = mounts;
-  }
-
-
-  public Container name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public Container names(List<String> names) {
-    this.names = names;
-    return this;
-  }
-
-  public Container addNamesItem(String namesItem) {
-    if (this.names == null) {
-      this.names = new ArrayList<>();
-    }
-    this.names.add(namesItem);
-    return this;
-  }
-
-  /**
-   * Get names
-   * @return names
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getNames() {
-    return names;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNames(List<String> names) {
-    this.names = names;
-  }
-
-
-  public Container networkSettings(SummaryNetworkSettings networkSettings) {
-    this.networkSettings = networkSettings;
-    return this;
-  }
-
-  /**
-   * Get networkSettings
-   * @return networkSettings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_SETTINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public SummaryNetworkSettings getNetworkSettings() {
-    return networkSettings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_SETTINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkSettings(SummaryNetworkSettings networkSettings) {
-    this.networkSettings = networkSettings;
-  }
-
-
-  public Container networkingConfig(NetworkingConfig networkingConfig) {
-    this.networkingConfig = networkingConfig;
-    return this;
-  }
-
-  /**
-   * Get networkingConfig
-   * @return networkingConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_NETWORKING_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public NetworkingConfig getNetworkingConfig() {
-    return networkingConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORKING_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkingConfig(NetworkingConfig networkingConfig) {
-    this.networkingConfig = networkingConfig;
-  }
-
-
-  public Container platform(Platform platform) {
-    this.platform = platform;
-    return this;
-  }
-
-  /**
-   * Get platform
-   * @return platform
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PLATFORM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Platform getPlatform() {
-    return platform;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PLATFORM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPlatform(Platform platform) {
-    this.platform = platform;
-  }
-
-
-  public Container ports(List<@Valid Port> ports) {
-    this.ports = ports;
-    return this;
-  }
-
-  public Container addPortsItem(Port portsItem) {
-    if (this.ports == null) {
-      this.ports = new ArrayList<>();
-    }
-    this.ports.add(portsItem);
-    return this;
-  }
-
-  /**
-   * Get ports
-   * @return ports
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Port> getPorts() {
-    return ports;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPorts(List<@Valid Port> ports) {
-    this.ports = ports;
-  }
-
-
-  public Container sizeRootFs(Long sizeRootFs) {
-    this.sizeRootFs = sizeRootFs;
-    return this;
-  }
-
-  /**
-   * Get sizeRootFs
-   * @return sizeRootFs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE_ROOT_FS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSizeRootFs() {
-    return sizeRootFs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE_ROOT_FS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSizeRootFs(Long sizeRootFs) {
-    this.sizeRootFs = sizeRootFs;
-  }
-
-
-  public Container sizeRw(Long sizeRw) {
-    this.sizeRw = sizeRw;
-    return this;
-  }
-
-  /**
-   * Get sizeRw
-   * @return sizeRw
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE_RW)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSizeRw() {
-    return sizeRw;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE_RW)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSizeRw(Long sizeRw) {
-    this.sizeRw = sizeRw;
-  }
-
-
-  public Container state(String state) {
-    this.state = state;
-    return this;
-  }
-
-  /**
-   * Get state
-   * @return state
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getState() {
-    return state;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setState(String state) {
-    this.state = state;
-  }
-
-
-  public Container status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  /**
-   * Return true if this Container object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Container container = (Container) o;
-    return Objects.equals(this.command, container.command) &&
-        Objects.equals(this.config, container.config) &&
-        Objects.equals(this.created, container.created) &&
-        Objects.equals(this.defaultReadOnlyNonRecursive, container.defaultReadOnlyNonRecursive) &&
-        Objects.equals(this.hostConfig, container.hostConfig) &&
-        Objects.equals(this.id, container.id) &&
-        Objects.equals(this.image, container.image) &&
-        Objects.equals(this.imageID, container.imageID) &&
-        Objects.equals(this.labels, container.labels) &&
-        Objects.equals(this.mounts, container.mounts) &&
-        Objects.equals(this.name, container.name) &&
-        Objects.equals(this.names, container.names) &&
-        Objects.equals(this.networkSettings, container.networkSettings) &&
-        Objects.equals(this.networkingConfig, container.networkingConfig) &&
-        Objects.equals(this.platform, container.platform) &&
-        Objects.equals(this.ports, container.ports) &&
-        Objects.equals(this.sizeRootFs, container.sizeRootFs) &&
-        Objects.equals(this.sizeRw, container.sizeRw) &&
-        Objects.equals(this.state, container.state) &&
-        Objects.equals(this.status, container.status);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(command, config, created, defaultReadOnlyNonRecursive, hostConfig, id, image, imageID, labels, mounts, name, names, networkSettings, networkingConfig, platform, ports, sizeRootFs, sizeRw, state, status);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Container {\n");
-    sb.append("    command: ").append(toIndentedString(command)).append("\n");
-    sb.append("    config: ").append(toIndentedString(config)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    defaultReadOnlyNonRecursive: ").append(toIndentedString(defaultReadOnlyNonRecursive)).append("\n");
-    sb.append("    hostConfig: ").append(toIndentedString(hostConfig)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    imageID: ").append(toIndentedString(imageID)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    mounts: ").append(toIndentedString(mounts)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    names: ").append(toIndentedString(names)).append("\n");
-    sb.append("    networkSettings: ").append(toIndentedString(networkSettings)).append("\n");
-    sb.append("    networkingConfig: ").append(toIndentedString(networkingConfig)).append("\n");
-    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
-    sb.append("    ports: ").append(toIndentedString(ports)).append("\n");
-    sb.append("    sizeRootFs: ").append(toIndentedString(sizeRootFs)).append("\n");
-    sb.append("    sizeRw: ").append(toIndentedString(sizeRw)).append("\n");
-    sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_COMMAND = "Command";
+    public static final String SERIALIZED_NAME_CONFIG = "Config";
+    public static final String SERIALIZED_NAME_CREATED = "Created";
+    public static final String SERIALIZED_NAME_DEFAULT_READ_ONLY_NON_RECURSIVE = "DefaultReadOnlyNonRecursive";
+    public static final String SERIALIZED_NAME_HOST_CONFIG = "HostConfig";
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_IMAGE = "Image";
+    public static final String SERIALIZED_NAME_IMAGE_I_D = "ImageID";
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
+    public static final String SERIALIZED_NAME_MOUNTS = "Mounts";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_NAMES = "Names";
+    public static final String SERIALIZED_NAME_NETWORK_SETTINGS = "NetworkSettings";
+    public static final String SERIALIZED_NAME_NETWORKING_CONFIG = "NetworkingConfig";
+    public static final String SERIALIZED_NAME_PLATFORM = "Platform";
+    public static final String SERIALIZED_NAME_PORTS = "Ports";
+    public static final String SERIALIZED_NAME_SIZE_ROOT_FS = "SizeRootFs";
+    public static final String SERIALIZED_NAME_SIZE_RW = "SizeRw";
+    public static final String SERIALIZED_NAME_STATE = "State";
+    public static final String SERIALIZED_NAME_STATUS = "Status";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Command");
+        openapiFields.add("Config");
+        openapiFields.add("Created");
+        openapiFields.add("DefaultReadOnlyNonRecursive");
+        openapiFields.add("HostConfig");
+        openapiFields.add("Id");
+        openapiFields.add("Image");
+        openapiFields.add("ImageID");
+        openapiFields.add("Labels");
+        openapiFields.add("Mounts");
+        openapiFields.add("Name");
+        openapiFields.add("Names");
+        openapiFields.add("NetworkSettings");
+        openapiFields.add("NetworkingConfig");
+        openapiFields.add("Platform");
+        openapiFields.add("Ports");
+        openapiFields.add("SizeRootFs");
+        openapiFields.add("SizeRw");
+        openapiFields.add("State");
+        openapiFields.add("Status");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_COMMAND)
+    private String command;
+    @SerializedName(SERIALIZED_NAME_CONFIG)
+    private Config config;
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private Long created;
+    @SerializedName(SERIALIZED_NAME_DEFAULT_READ_ONLY_NON_RECURSIVE)
+    private Boolean defaultReadOnlyNonRecursive;
+    @SerializedName(SERIALIZED_NAME_HOST_CONFIG)
+    private HostConfig hostConfig;
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_IMAGE)
+    private String image;
+    @SerializedName(SERIALIZED_NAME_IMAGE_I_D)
+    private String imageID;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_MOUNTS)
+    private List<@Valid MountPoint> mounts = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_NAMES)
+    private List<String> names = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_NETWORK_SETTINGS)
+    private SummaryNetworkSettings networkSettings;
+    @SerializedName(SERIALIZED_NAME_NETWORKING_CONFIG)
+    private NetworkingConfig networkingConfig;
+    @SerializedName(SERIALIZED_NAME_PLATFORM)
+    private Platform platform;
+    @SerializedName(SERIALIZED_NAME_PORTS)
+    private List<@Valid Port> ports = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SIZE_ROOT_FS)
+    private Long sizeRootFs;
+    @SerializedName(SERIALIZED_NAME_SIZE_RW)
+    private Long sizeRw;
+    @SerializedName(SERIALIZED_NAME_STATE)
+    private String state;
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private String status;
 
-    // add `Command` to the URL query string
-    if (getCommand() != null) {
-      joiner.add(String.format("%sCommand%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCommand()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Container() {
     }
 
-    // add `Config` to the URL query string
-    if (getConfig() != null) {
-      joiner.add(getConfig().toUrlQueryString(prefix + "Config" + suffix));
-    }
-
-    // add `Created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `DefaultReadOnlyNonRecursive` to the URL query string
-    if (getDefaultReadOnlyNonRecursive() != null) {
-      joiner.add(String.format("%sDefaultReadOnlyNonRecursive%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDefaultReadOnlyNonRecursive()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `HostConfig` to the URL query string
-    if (getHostConfig() != null) {
-      joiner.add(getHostConfig().toUrlQueryString(prefix + "HostConfig" + suffix));
-    }
-
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Image` to the URL query string
-    if (getImage() != null) {
-      joiner.add(String.format("%sImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `ImageID` to the URL query string
-    if (getImageID() != null) {
-      joiner.add(String.format("%sImageID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Mounts` to the URL query string
-    if (getMounts() != null) {
-      for (int i = 0; i < getMounts().size(); i++) {
-        if (getMounts().get(i) != null) {
-          joiner.add(getMounts().get(i).toUrlQueryString(String.format("%sMounts%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Container
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Container.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Container is not found in the empty JSON string", Container.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Names` to the URL query string
-    if (getNames() != null) {
-      for (int i = 0; i < getNames().size(); i++) {
-        joiner.add(String.format("%sNames%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getNames().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `NetworkSettings` to the URL query string
-    if (getNetworkSettings() != null) {
-      joiner.add(getNetworkSettings().toUrlQueryString(prefix + "NetworkSettings" + suffix));
-    }
-
-    // add `NetworkingConfig` to the URL query string
-    if (getNetworkingConfig() != null) {
-      joiner.add(getNetworkingConfig().toUrlQueryString(prefix + "NetworkingConfig" + suffix));
-    }
-
-    // add `Platform` to the URL query string
-    if (getPlatform() != null) {
-      joiner.add(getPlatform().toUrlQueryString(prefix + "Platform" + suffix));
-    }
-
-    // add `Ports` to the URL query string
-    if (getPorts() != null) {
-      for (int i = 0; i < getPorts().size(); i++) {
-        if (getPorts().get(i) != null) {
-          joiner.add(getPorts().get(i).toUrlQueryString(String.format("%sPorts%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Container.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Container` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Command") != null && !jsonObj.get("Command").isJsonNull()) && !jsonObj.get("Command").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Command` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Command").toString()));
+        }
+        // validate the optional field `Config`
+        if (jsonObj.get("Config") != null && !jsonObj.get("Config").isJsonNull()) {
+            Config.validateJsonElement(jsonObj.get("Config"));
+        }
+        // validate the optional field `HostConfig`
+        if (jsonObj.get("HostConfig") != null && !jsonObj.get("HostConfig").isJsonNull()) {
+            HostConfig.validateJsonElement(jsonObj.get("HostConfig"));
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        if ((jsonObj.get("Image") != null && !jsonObj.get("Image").isJsonNull()) && !jsonObj.get("Image").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Image").toString()));
+        }
+        if ((jsonObj.get("ImageID") != null && !jsonObj.get("ImageID").isJsonNull()) && !jsonObj.get("ImageID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ImageID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ImageID").toString()));
+        }
+        if (jsonObj.get("Mounts") != null && !jsonObj.get("Mounts").isJsonNull()) {
+            JsonArray jsonArraymounts = jsonObj.getAsJsonArray("Mounts");
+            if (jsonArraymounts != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Mounts").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Mounts` to be an array in the JSON string but got `%s`", jsonObj.get("Mounts").toString()));
+                }
+
+                // validate the optional field `Mounts` (array)
+                for (int i = 0; i < jsonArraymounts.size(); i++) {
+                    MountPoint.validateJsonElement(jsonArraymounts.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull() && !jsonObj.get("Names").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Names` to be an array in the JSON string but got `%s`", jsonObj.get("Names").toString()));
+        }
+        // validate the optional field `NetworkSettings`
+        if (jsonObj.get("NetworkSettings") != null && !jsonObj.get("NetworkSettings").isJsonNull()) {
+            SummaryNetworkSettings.validateJsonElement(jsonObj.get("NetworkSettings"));
+        }
+        // validate the optional field `NetworkingConfig`
+        if (jsonObj.get("NetworkingConfig") != null && !jsonObj.get("NetworkingConfig").isJsonNull()) {
+            NetworkingConfig.validateJsonElement(jsonObj.get("NetworkingConfig"));
+        }
+        // validate the optional field `Platform`
+        if (jsonObj.get("Platform") != null && !jsonObj.get("Platform").isJsonNull()) {
+            Platform.validateJsonElement(jsonObj.get("Platform"));
+        }
+        if (jsonObj.get("Ports") != null && !jsonObj.get("Ports").isJsonNull()) {
+            JsonArray jsonArrayports = jsonObj.getAsJsonArray("Ports");
+            if (jsonArrayports != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Ports").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Ports` to be an array in the JSON string but got `%s`", jsonObj.get("Ports").toString()));
+                }
+
+                // validate the optional field `Ports` (array)
+                for (int i = 0; i < jsonArrayports.size(); i++) {
+                    Port.validateJsonElement(jsonArrayports.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("State") != null && !jsonObj.get("State").isJsonNull()) && !jsonObj.get("State").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `State` to be a primitive type in the JSON string but got `%s`", jsonObj.get("State").toString()));
+        }
+        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
+        }
     }
 
-    // add `SizeRootFs` to the URL query string
-    if (getSizeRootFs() != null) {
-      joiner.add(String.format("%sSizeRootFs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSizeRootFs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Container given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Container
+     * @throws IOException if the JSON string is invalid with respect to Container
+     */
+    public static Container fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Container.class);
     }
 
-    // add `SizeRw` to the URL query string
-    if (getSizeRw() != null) {
-      joiner.add(String.format("%sSizeRw%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSizeRw()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Container command(String command) {
+        this.command = command;
+        return this;
     }
 
-    // add `State` to the URL query string
-    if (getState() != null) {
-      joiner.add(String.format("%sState%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get command
+     *
+     * @return command
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCommand() {
+        return command;
     }
 
-    // add `Status` to the URL query string
-    if (getStatus() != null) {
-      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCommand(String command) {
+        this.command = command;
     }
 
-    return joiner.toString();
-  }
+    public Container config(Config config) {
+        this.config = config;
+        return this;
+    }
+
+    /**
+     * Get config
+     *
+     * @return config
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
+    }
+
+    public Container created(Long created) {
+        this.created = created;
+        return this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return created
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCreated() {
+        return created;
+    }
+
+    public void setCreated(Long created) {
+        this.created = created;
+    }
+
+    public Container defaultReadOnlyNonRecursive(Boolean defaultReadOnlyNonRecursive) {
+        this.defaultReadOnlyNonRecursive = defaultReadOnlyNonRecursive;
+        return this;
+    }
+
+    /**
+     * Get defaultReadOnlyNonRecursive
+     *
+     * @return defaultReadOnlyNonRecursive
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getDefaultReadOnlyNonRecursive() {
+        return defaultReadOnlyNonRecursive;
+    }
+
+    public void setDefaultReadOnlyNonRecursive(Boolean defaultReadOnlyNonRecursive) {
+        this.defaultReadOnlyNonRecursive = defaultReadOnlyNonRecursive;
+    }
+
+    public Container hostConfig(HostConfig hostConfig) {
+        this.hostConfig = hostConfig;
+        return this;
+    }
+
+    /**
+     * Get hostConfig
+     *
+     * @return hostConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public HostConfig getHostConfig() {
+        return hostConfig;
+    }
+
+    public void setHostConfig(HostConfig hostConfig) {
+        this.hostConfig = hostConfig;
+    }
+
+    public Container id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Container image(String image) {
+        this.image = image;
+        return this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return image
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Container imageID(String imageID) {
+        this.imageID = imageID;
+        return this;
+    }
+
+    /**
+     * Get imageID
+     *
+     * @return imageID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(String imageID) {
+        this.imageID = imageID;
+    }
+
+    public Container labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public Container putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * Get labels
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public Container mounts(List<@Valid MountPoint> mounts) {
+        this.mounts = mounts;
+        return this;
+    }
+
+    public Container addMountsItem(MountPoint mountsItem) {
+        if (this.mounts == null) {
+            this.mounts = new ArrayList<>();
+        }
+        this.mounts.add(mountsItem);
+        return this;
+    }
+
+    /**
+     * Get mounts
+     *
+     * @return mounts
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid MountPoint> getMounts() {
+        return mounts;
+    }
+
+    public void setMounts(List<@Valid MountPoint> mounts) {
+        this.mounts = mounts;
+    }
+
+    public Container name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Container names(List<String> names) {
+        this.names = names;
+        return this;
+    }
+
+    public Container addNamesItem(String namesItem) {
+        if (this.names == null) {
+            this.names = new ArrayList<>();
+        }
+        this.names.add(namesItem);
+        return this;
+    }
+
+    /**
+     * Get names
+     *
+     * @return names
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getNames() {
+        return names;
+    }
+
+    public void setNames(List<String> names) {
+        this.names = names;
+    }
+
+    public Container networkSettings(SummaryNetworkSettings networkSettings) {
+        this.networkSettings = networkSettings;
+        return this;
+    }
+
+    /**
+     * Get networkSettings
+     *
+     * @return networkSettings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public SummaryNetworkSettings getNetworkSettings() {
+        return networkSettings;
+    }
+
+    public void setNetworkSettings(SummaryNetworkSettings networkSettings) {
+        this.networkSettings = networkSettings;
+    }
+
+    public Container networkingConfig(NetworkingConfig networkingConfig) {
+        this.networkingConfig = networkingConfig;
+        return this;
+    }
+
+    /**
+     * Get networkingConfig
+     *
+     * @return networkingConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public NetworkingConfig getNetworkingConfig() {
+        return networkingConfig;
+    }
+
+    public void setNetworkingConfig(NetworkingConfig networkingConfig) {
+        this.networkingConfig = networkingConfig;
+    }
+
+    public Container platform(Platform platform) {
+        this.platform = platform;
+        return this;
+    }
+
+    /**
+     * Get platform
+     *
+     * @return platform
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Platform getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
+    }
+
+    public Container ports(List<@Valid Port> ports) {
+        this.ports = ports;
+        return this;
+    }
+
+    public Container addPortsItem(Port portsItem) {
+        if (this.ports == null) {
+            this.ports = new ArrayList<>();
+        }
+        this.ports.add(portsItem);
+        return this;
+    }
+
+    /**
+     * Get ports
+     *
+     * @return ports
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Port> getPorts() {
+        return ports;
+    }
+
+    public void setPorts(List<@Valid Port> ports) {
+        this.ports = ports;
+    }
+
+    public Container sizeRootFs(Long sizeRootFs) {
+        this.sizeRootFs = sizeRootFs;
+        return this;
+    }
+
+    /**
+     * Get sizeRootFs
+     *
+     * @return sizeRootFs
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSizeRootFs() {
+        return sizeRootFs;
+    }
+
+    public void setSizeRootFs(Long sizeRootFs) {
+        this.sizeRootFs = sizeRootFs;
+    }
+
+    public Container sizeRw(Long sizeRw) {
+        this.sizeRw = sizeRw;
+        return this;
+    }
+
+    /**
+     * Get sizeRw
+     *
+     * @return sizeRw
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSizeRw() {
+        return sizeRw;
+    }
+
+    public void setSizeRw(Long sizeRw) {
+        this.sizeRw = sizeRw;
+    }
+
+    public Container state(String state) {
+        this.state = state;
+        return this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return state
+     */
+    @jakarta.annotation.Nullable
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public Container status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return status
+     */
+    @jakarta.annotation.Nullable
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Container container = (Container) o;
+        return Objects.equals(this.command, container.command) &&
+                Objects.equals(this.config, container.config) &&
+                Objects.equals(this.created, container.created) &&
+                Objects.equals(this.defaultReadOnlyNonRecursive, container.defaultReadOnlyNonRecursive) &&
+                Objects.equals(this.hostConfig, container.hostConfig) &&
+                Objects.equals(this.id, container.id) &&
+                Objects.equals(this.image, container.image) &&
+                Objects.equals(this.imageID, container.imageID) &&
+                Objects.equals(this.labels, container.labels) &&
+                Objects.equals(this.mounts, container.mounts) &&
+                Objects.equals(this.name, container.name) &&
+                Objects.equals(this.names, container.names) &&
+                Objects.equals(this.networkSettings, container.networkSettings) &&
+                Objects.equals(this.networkingConfig, container.networkingConfig) &&
+                Objects.equals(this.platform, container.platform) &&
+                Objects.equals(this.ports, container.ports) &&
+                Objects.equals(this.sizeRootFs, container.sizeRootFs) &&
+                Objects.equals(this.sizeRw, container.sizeRw) &&
+                Objects.equals(this.state, container.state) &&
+                Objects.equals(this.status, container.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(command, config, created, defaultReadOnlyNonRecursive, hostConfig, id, image, imageID, labels, mounts, name, names, networkSettings, networkingConfig, platform, ports, sizeRootFs, sizeRw, state, status);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Container {\n" +
+                "    command: " + toIndentedString(command) + "\n" +
+                "    config: " + toIndentedString(config) + "\n" +
+                "    created: " + toIndentedString(created) + "\n" +
+                "    defaultReadOnlyNonRecursive: " + toIndentedString(defaultReadOnlyNonRecursive) + "\n" +
+                "    hostConfig: " + toIndentedString(hostConfig) + "\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    image: " + toIndentedString(image) + "\n" +
+                "    imageID: " + toIndentedString(imageID) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    mounts: " + toIndentedString(mounts) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    names: " + toIndentedString(names) + "\n" +
+                "    networkSettings: " + toIndentedString(networkSettings) + "\n" +
+                "    networkingConfig: " + toIndentedString(networkingConfig) + "\n" +
+                "    platform: " + toIndentedString(platform) + "\n" +
+                "    ports: " + toIndentedString(ports) + "\n" +
+                "    sizeRootFs: " + toIndentedString(sizeRootFs) + "\n" +
+                "    sizeRw: " + toIndentedString(sizeRw) + "\n" +
+                "    state: " + toIndentedString(state) + "\n" +
+                "    status: " + toIndentedString(status) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Container to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Container.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Container' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Container> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Container.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Container>() {
+                @Override
+                public void write(JsonWriter out, Container value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Container read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

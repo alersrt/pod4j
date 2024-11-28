@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.SecretDriverSpec;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretSpec
  */
-class SecretSpecTest {
+public class SecretSpecTest {
     private final SecretSpec model = new SecretSpec();
 
     /**
      * Model tests for SecretSpec
      */
     @Test
-    void testSecretSpec() {
+    public void testSecretSpec() {
         // TODO: test SecretSpec
     }
 
@@ -44,7 +33,7 @@ class SecretSpecTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -52,7 +41,7 @@ class SecretSpecTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -60,7 +49,7 @@ class SecretSpecTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 

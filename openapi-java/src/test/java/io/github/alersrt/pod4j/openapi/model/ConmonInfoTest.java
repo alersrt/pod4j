@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ConmonInfo
  */
-class ConmonInfoTest {
+public class ConmonInfoTest {
     private final ConmonInfo model = new ConmonInfo();
 
     /**
      * Model tests for ConmonInfo
      */
     @Test
-    void testConmonInfo() {
+    public void testConmonInfo() {
         // TODO: test ConmonInfo
     }
 
@@ -42,7 +33,7 @@ class ConmonInfoTest {
      * Test the property '_package'
      */
     @Test
-    void _packageTest() {
+    public void _packageTest() {
         // TODO: test _package
     }
 
@@ -50,7 +41,7 @@ class ConmonInfoTest {
      * Test the property 'path'
      */
     @Test
-    void pathTest() {
+    public void pathTest() {
         // TODO: test path
     }
 
@@ -58,7 +49,7 @@ class ConmonInfoTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

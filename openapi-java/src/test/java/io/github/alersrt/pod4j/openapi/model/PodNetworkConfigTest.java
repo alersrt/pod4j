@@ -13,35 +13,36 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
 import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
 import io.github.alersrt.pod4j.openapi.model.PortMapping;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodNetworkConfig
  */
-class PodNetworkConfigTest {
+public class PodNetworkConfigTest {
     private final PodNetworkConfig model = new PodNetworkConfig();
 
     /**
      * Model tests for PodNetworkConfig
      */
     @Test
-    void testPodNetworkConfig() {
+    public void testPodNetworkConfig() {
         // TODO: test PodNetworkConfig
     }
 
@@ -49,7 +50,7 @@ class PodNetworkConfigTest {
      * Test the property 'networks'
      */
     @Test
-    void networksTest() {
+    public void networksTest() {
         // TODO: test networks
     }
 
@@ -57,7 +58,7 @@ class PodNetworkConfigTest {
      * Test the property 'cniNetworks'
      */
     @Test
-    void cniNetworksTest() {
+    public void cniNetworksTest() {
         // TODO: test cniNetworks
     }
 
@@ -65,7 +66,7 @@ class PodNetworkConfigTest {
      * Test the property 'dnsOption'
      */
     @Test
-    void dnsOptionTest() {
+    public void dnsOptionTest() {
         // TODO: test dnsOption
     }
 
@@ -73,7 +74,7 @@ class PodNetworkConfigTest {
      * Test the property 'dnsSearch'
      */
     @Test
-    void dnsSearchTest() {
+    public void dnsSearchTest() {
         // TODO: test dnsSearch
     }
 
@@ -81,7 +82,7 @@ class PodNetworkConfigTest {
      * Test the property 'dnsServer'
      */
     @Test
-    void dnsServerTest() {
+    public void dnsServerTest() {
         // TODO: test dnsServer
     }
 
@@ -89,7 +90,7 @@ class PodNetworkConfigTest {
      * Test the property 'hostadd'
      */
     @Test
-    void hostaddTest() {
+    public void hostaddTest() {
         // TODO: test hostadd
     }
 
@@ -97,7 +98,7 @@ class PodNetworkConfigTest {
      * Test the property 'netns'
      */
     @Test
-    void netnsTest() {
+    public void netnsTest() {
         // TODO: test netns
     }
 
@@ -105,7 +106,7 @@ class PodNetworkConfigTest {
      * Test the property 'networkOptions'
      */
     @Test
-    void networkOptionsTest() {
+    public void networkOptionsTest() {
         // TODO: test networkOptions
     }
 
@@ -113,7 +114,7 @@ class PodNetworkConfigTest {
      * Test the property 'noManageHosts'
      */
     @Test
-    void noManageHostsTest() {
+    public void noManageHostsTest() {
         // TODO: test noManageHosts
     }
 
@@ -121,7 +122,7 @@ class PodNetworkConfigTest {
      * Test the property 'noManageResolvConf'
      */
     @Test
-    void noManageResolvConfTest() {
+    public void noManageResolvConfTest() {
         // TODO: test noManageResolvConf
     }
 
@@ -129,7 +130,7 @@ class PodNetworkConfigTest {
      * Test the property 'portmappings'
      */
     @Test
-    void portmappingsTest() {
+    public void portmappingsTest() {
         // TODO: test portmappings
     }
 

@@ -13,193 +13,219 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PodSecurityConfig
  */
-@JsonPropertyOrder({
-  PodSecurityConfig.JSON_PROPERTY_IDMAPPINGS,
-  PodSecurityConfig.JSON_PROPERTY_SECURITY_OPT
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodSecurityConfig {
-  public static final String JSON_PROPERTY_IDMAPPINGS = "idmappings";
-  private IDMappingOptions idmappings;
+    public static final String SERIALIZED_NAME_IDMAPPINGS = "idmappings";
+    public static final String SERIALIZED_NAME_SECURITY_OPT = "security_opt";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_SECURITY_OPT = "security_opt";
-  private List<String> securityOpt = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("idmappings");
+        openapiFields.add("security_opt");
 
-  public PodSecurityConfig() { 
-  }
-
-  public PodSecurityConfig idmappings(IDMappingOptions idmappings) {
-    this.idmappings = idmappings;
-    return this;
-  }
-
-  /**
-   * Get idmappings
-   * @return idmappings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public IDMappingOptions getIdmappings() {
-    return idmappings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdmappings(IDMappingOptions idmappings) {
-    this.idmappings = idmappings;
-  }
-
-
-  public PodSecurityConfig securityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
-    return this;
-  }
-
-  public PodSecurityConfig addSecurityOptItem(String securityOptItem) {
-    if (this.securityOpt == null) {
-      this.securityOpt = new ArrayList<>();
-    }
-    this.securityOpt.add(securityOptItem);
-    return this;
-  }
-
-  /**
-   * Get securityOpt
-   * @return securityOpt
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getSecurityOpt() {
-    return securityOpt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecurityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
-  }
-
-
-  /**
-   * Return true if this PodSecurityConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    PodSecurityConfig podSecurityConfig = (PodSecurityConfig) o;
-    return Objects.equals(this.idmappings, podSecurityConfig.idmappings) &&
-        Objects.equals(this.securityOpt, podSecurityConfig.securityOpt);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(idmappings, securityOpt);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PodSecurityConfig {\n");
-    sb.append("    idmappings: ").append(toIndentedString(idmappings)).append("\n");
-    sb.append("    securityOpt: ").append(toIndentedString(securityOpt)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_IDMAPPINGS)
+    private IDMappingOptions idmappings;
+    @SerializedName(SERIALIZED_NAME_SECURITY_OPT)
+    private List<String> securityOpt = new ArrayList<>();
 
-    // add `idmappings` to the URL query string
-    if (getIdmappings() != null) {
-      joiner.add(getIdmappings().toUrlQueryString(prefix + "idmappings" + suffix));
+    public PodSecurityConfig() {
     }
 
-    // add `security_opt` to the URL query string
-    if (getSecurityOpt() != null) {
-      for (int i = 0; i < getSecurityOpt().size(); i++) {
-        joiner.add(String.format("%ssecurity_opt%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getSecurityOpt().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to PodSecurityConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!PodSecurityConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in PodSecurityConfig is not found in the empty JSON string", PodSecurityConfig.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!PodSecurityConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodSecurityConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `idmappings`
+        if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
+            IDMappingOptions.validateJsonElement(jsonObj.get("idmappings"));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("security_opt") != null && !jsonObj.get("security_opt").isJsonNull() && !jsonObj.get("security_opt").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `security_opt` to be an array in the JSON string but got `%s`", jsonObj.get("security_opt").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of PodSecurityConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PodSecurityConfig
+     * @throws IOException if the JSON string is invalid with respect to PodSecurityConfig
+     */
+    public static PodSecurityConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PodSecurityConfig.class);
+    }
+
+    public PodSecurityConfig idmappings(IDMappingOptions idmappings) {
+        this.idmappings = idmappings;
+        return this;
+    }
+
+    /**
+     * Get idmappings
+     *
+     * @return idmappings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public IDMappingOptions getIdmappings() {
+        return idmappings;
+    }
+
+    public void setIdmappings(IDMappingOptions idmappings) {
+        this.idmappings = idmappings;
+    }
+
+    public PodSecurityConfig securityOpt(List<String> securityOpt) {
+        this.securityOpt = securityOpt;
+        return this;
+    }
+
+    public PodSecurityConfig addSecurityOptItem(String securityOptItem) {
+        if (this.securityOpt == null) {
+            this.securityOpt = new ArrayList<>();
+        }
+        this.securityOpt.add(securityOptItem);
+        return this;
+    }
+
+    /**
+     * Get securityOpt
+     *
+     * @return securityOpt
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getSecurityOpt() {
+        return securityOpt;
+    }
+
+    public void setSecurityOpt(List<String> securityOpt) {
+        this.securityOpt = securityOpt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PodSecurityConfig podSecurityConfig = (PodSecurityConfig) o;
+        return Objects.equals(this.idmappings, podSecurityConfig.idmappings) &&
+                Objects.equals(this.securityOpt, podSecurityConfig.securityOpt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idmappings, securityOpt);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class PodSecurityConfig {\n" +
+                "    idmappings: " + toIndentedString(idmappings) + "\n" +
+                "    securityOpt: " + toIndentedString(securityOpt) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of PodSecurityConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PodSecurityConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PodSecurityConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PodSecurityConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(PodSecurityConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<PodSecurityConfig>() {
+                @Override
+                public void write(JsonWriter out, PodSecurityConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public PodSecurityConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

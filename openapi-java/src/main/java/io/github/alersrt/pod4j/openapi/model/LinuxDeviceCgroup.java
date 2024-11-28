@@ -13,285 +13,283 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxDeviceCgroup represents a device rule for the devices specified to the device controller
  */
-@JsonPropertyOrder({
-  LinuxDeviceCgroup.JSON_PROPERTY_ACCESS,
-  LinuxDeviceCgroup.JSON_PROPERTY_ALLOW,
-  LinuxDeviceCgroup.JSON_PROPERTY_MAJOR,
-  LinuxDeviceCgroup.JSON_PROPERTY_MINOR,
-  LinuxDeviceCgroup.JSON_PROPERTY_TYPE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxDeviceCgroup {
-  public static final String JSON_PROPERTY_ACCESS = "access";
-  private String access;
+    public static final String SERIALIZED_NAME_ACCESS = "access";
+    public static final String SERIALIZED_NAME_ALLOW = "allow";
+    public static final String SERIALIZED_NAME_MAJOR = "major";
+    public static final String SERIALIZED_NAME_MINOR = "minor";
+    public static final String SERIALIZED_NAME_TYPE = "type";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ALLOW = "allow";
-  private Boolean allow;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("access");
+        openapiFields.add("allow");
+        openapiFields.add("major");
+        openapiFields.add("minor");
+        openapiFields.add("type");
 
-  public static final String JSON_PROPERTY_MAJOR = "major";
-  private Long major;
-
-  public static final String JSON_PROPERTY_MINOR = "minor";
-  private Long minor;
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
-
-  public LinuxDeviceCgroup() { 
-  }
-
-  public LinuxDeviceCgroup access(String access) {
-    this.access = access;
-    return this;
-  }
-
-  /**
-   * Cgroup access permissions format, rwm.
-   * @return access
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ACCESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getAccess() {
-    return access;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ACCESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccess(String access) {
-    this.access = access;
-  }
-
-
-  public LinuxDeviceCgroup allow(Boolean allow) {
-    this.allow = allow;
-    return this;
-  }
-
-  /**
-   * Allow or deny
-   * @return allow
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ALLOW)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAllow() {
-    return allow;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ALLOW)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAllow(Boolean allow) {
-    this.allow = allow;
-  }
-
-
-  public LinuxDeviceCgroup major(Long major) {
-    this.major = major;
-    return this;
-  }
-
-  /**
-   * Major is the device&#39;s major number.
-   * @return major
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MAJOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMajor() {
-    return major;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MAJOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMajor(Long major) {
-    this.major = major;
-  }
-
-
-  public LinuxDeviceCgroup minor(Long minor) {
-    this.minor = minor;
-    return this;
-  }
-
-  /**
-   * Minor is the device&#39;s minor number.
-   * @return minor
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MINOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMinor() {
-    return minor;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MINOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMinor(Long minor) {
-    this.minor = minor;
-  }
-
-
-  public LinuxDeviceCgroup type(String type) {
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * Device type, block, char, etc.
-   * @return type
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  /**
-   * Return true if this LinuxDeviceCgroup object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxDeviceCgroup linuxDeviceCgroup = (LinuxDeviceCgroup) o;
-    return Objects.equals(this.access, linuxDeviceCgroup.access) &&
-        Objects.equals(this.allow, linuxDeviceCgroup.allow) &&
-        Objects.equals(this.major, linuxDeviceCgroup.major) &&
-        Objects.equals(this.minor, linuxDeviceCgroup.minor) &&
-        Objects.equals(this.type, linuxDeviceCgroup.type);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(access, allow, major, minor, type);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxDeviceCgroup {\n");
-    sb.append("    access: ").append(toIndentedString(access)).append("\n");
-    sb.append("    allow: ").append(toIndentedString(allow)).append("\n");
-    sb.append("    major: ").append(toIndentedString(major)).append("\n");
-    sb.append("    minor: ").append(toIndentedString(minor)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ACCESS)
+    private String access;
+    @SerializedName(SERIALIZED_NAME_ALLOW)
+    private Boolean allow;
+    @SerializedName(SERIALIZED_NAME_MAJOR)
+    private Long major;
+    @SerializedName(SERIALIZED_NAME_MINOR)
+    private Long minor;
+    @SerializedName(SERIALIZED_NAME_TYPE)
+    private String type;
 
-    // add `access` to the URL query string
-    if (getAccess() != null) {
-      joiner.add(String.format("%saccess%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAccess()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxDeviceCgroup() {
     }
 
-    // add `allow` to the URL query string
-    if (getAllow() != null) {
-      joiner.add(String.format("%sallow%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAllow()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxDeviceCgroup
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxDeviceCgroup.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxDeviceCgroup is not found in the empty JSON string", LinuxDeviceCgroup.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxDeviceCgroup.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxDeviceCgroup` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("access") != null && !jsonObj.get("access").isJsonNull()) && !jsonObj.get("access").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `access` to be a primitive type in the JSON string but got `%s`", jsonObj.get("access").toString()));
+        }
+        if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
+        }
     }
 
-    // add `major` to the URL query string
-    if (getMajor() != null) {
-      joiner.add(String.format("%smajor%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMajor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of LinuxDeviceCgroup given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxDeviceCgroup
+     * @throws IOException if the JSON string is invalid with respect to LinuxDeviceCgroup
+     */
+    public static LinuxDeviceCgroup fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxDeviceCgroup.class);
     }
 
-    // add `minor` to the URL query string
-    if (getMinor() != null) {
-      joiner.add(String.format("%sminor%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMinor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxDeviceCgroup access(String access) {
+        this.access = access;
+        return this;
     }
 
-    // add `type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Cgroup access permissions format, rwm.
+     *
+     * @return access
+     */
+    @jakarta.annotation.Nullable
+
+    public String getAccess() {
+        return access;
     }
 
-    return joiner.toString();
-  }
+    public void setAccess(String access) {
+        this.access = access;
+    }
+
+    public LinuxDeviceCgroup allow(Boolean allow) {
+        this.allow = allow;
+        return this;
+    }
+
+    /**
+     * Allow or deny
+     *
+     * @return allow
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAllow() {
+        return allow;
+    }
+
+    public void setAllow(Boolean allow) {
+        this.allow = allow;
+    }
+
+    public LinuxDeviceCgroup major(Long major) {
+        this.major = major;
+        return this;
+    }
+
+    /**
+     * Major is the device&#39;s major number.
+     *
+     * @return major
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMajor() {
+        return major;
+    }
+
+    public void setMajor(Long major) {
+        this.major = major;
+    }
+
+    public LinuxDeviceCgroup minor(Long minor) {
+        this.minor = minor;
+        return this;
+    }
+
+    /**
+     * Minor is the device&#39;s minor number.
+     *
+     * @return minor
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMinor() {
+        return minor;
+    }
+
+    public void setMinor(Long minor) {
+        this.minor = minor;
+    }
+
+    public LinuxDeviceCgroup type(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Device type, block, char, etc.
+     *
+     * @return type
+     */
+    @jakarta.annotation.Nullable
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxDeviceCgroup linuxDeviceCgroup = (LinuxDeviceCgroup) o;
+        return Objects.equals(this.access, linuxDeviceCgroup.access) &&
+                Objects.equals(this.allow, linuxDeviceCgroup.allow) &&
+                Objects.equals(this.major, linuxDeviceCgroup.major) &&
+                Objects.equals(this.minor, linuxDeviceCgroup.minor) &&
+                Objects.equals(this.type, linuxDeviceCgroup.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(access, allow, major, minor, type);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LinuxDeviceCgroup {\n" +
+                "    access: " + toIndentedString(access) + "\n" +
+                "    allow: " + toIndentedString(allow) + "\n" +
+                "    major: " + toIndentedString(major) + "\n" +
+                "    minor: " + toIndentedString(minor) + "\n" +
+                "    type: " + toIndentedString(type) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LinuxDeviceCgroup to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxDeviceCgroup.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxDeviceCgroup' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxDeviceCgroup> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxDeviceCgroup.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LinuxDeviceCgroup>() {
+                @Override
+                public void write(JsonWriter out, LinuxDeviceCgroup value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LinuxDeviceCgroup read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

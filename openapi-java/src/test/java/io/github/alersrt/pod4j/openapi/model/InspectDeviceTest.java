@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectDevice
  */
-class InspectDeviceTest {
+public class InspectDeviceTest {
     private final InspectDevice model = new InspectDevice();
 
     /**
      * Model tests for InspectDevice
      */
     @Test
-    void testInspectDevice() {
+    public void testInspectDevice() {
         // TODO: test InspectDevice
     }
 
@@ -42,7 +43,7 @@ class InspectDeviceTest {
      * Test the property 'cgroupPermissions'
      */
     @Test
-    void cgroupPermissionsTest() {
+    public void cgroupPermissionsTest() {
         // TODO: test cgroupPermissions
     }
 
@@ -50,7 +51,7 @@ class InspectDeviceTest {
      * Test the property 'pathInContainer'
      */
     @Test
-    void pathInContainerTest() {
+    public void pathInContainerTest() {
         // TODO: test pathInContainer
     }
 
@@ -58,7 +59,7 @@ class InspectDeviceTest {
      * Test the property 'pathOnHost'
      */
     @Test
-    void pathOnHostTest() {
+    public void pathOnHostTest() {
         // TODO: test pathOnHost
     }
 

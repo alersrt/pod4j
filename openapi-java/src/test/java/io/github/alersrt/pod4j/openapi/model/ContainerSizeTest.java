@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerSize
  */
-class ContainerSizeTest {
+public class ContainerSizeTest {
     private final ContainerSize model = new ContainerSize();
 
     /**
      * Model tests for ContainerSize
      */
     @Test
-    void testContainerSize() {
+    public void testContainerSize() {
         // TODO: test ContainerSize
     }
 
@@ -42,7 +33,7 @@ class ContainerSizeTest {
      * Test the property 'rootFsSize'
      */
     @Test
-    void rootFsSizeTest() {
+    public void rootFsSizeTest() {
         // TODO: test rootFsSize
     }
 
@@ -50,7 +41,7 @@ class ContainerSizeTest {
      * Test the property 'rwSize'
      */
     @Test
-    void rwSizeTest() {
+    public void rwSizeTest() {
         // TODO: test rwSize
     }
 

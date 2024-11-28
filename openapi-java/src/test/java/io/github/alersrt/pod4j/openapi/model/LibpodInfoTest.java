@@ -13,34 +13,35 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.HostInfo;
 import io.github.alersrt.pod4j.openapi.model.Plugins;
 import io.github.alersrt.pod4j.openapi.model.StoreInfo;
 import io.github.alersrt.pod4j.openapi.model.Version;
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LibpodInfo
  */
-class LibpodInfoTest {
+public class LibpodInfoTest {
     private final LibpodInfo model = new LibpodInfo();
 
     /**
      * Model tests for LibpodInfo
      */
     @Test
-    void testLibpodInfo() {
+    public void testLibpodInfo() {
         // TODO: test LibpodInfo
     }
 
@@ -48,7 +49,7 @@ class LibpodInfoTest {
      * Test the property 'host'
      */
     @Test
-    void hostTest() {
+    public void hostTest() {
         // TODO: test host
     }
 
@@ -56,7 +57,7 @@ class LibpodInfoTest {
      * Test the property 'plugins'
      */
     @Test
-    void pluginsTest() {
+    public void pluginsTest() {
         // TODO: test plugins
     }
 
@@ -64,7 +65,7 @@ class LibpodInfoTest {
      * Test the property 'registries'
      */
     @Test
-    void registriesTest() {
+    public void registriesTest() {
         // TODO: test registries
     }
 
@@ -72,7 +73,7 @@ class LibpodInfoTest {
      * Test the property 'store'
      */
     @Test
-    void storeTest() {
+    public void storeTest() {
         // TODO: test store
     }
 
@@ -80,7 +81,7 @@ class LibpodInfoTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

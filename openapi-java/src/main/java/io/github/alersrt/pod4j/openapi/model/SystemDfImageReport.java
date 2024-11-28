@@ -13,395 +13,367 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SystemDfImageReport describes an image for use with df
  */
-@JsonPropertyOrder({
-  SystemDfImageReport.JSON_PROPERTY_CONTAINERS,
-  SystemDfImageReport.JSON_PROPERTY_CREATED,
-  SystemDfImageReport.JSON_PROPERTY_IMAGE_I_D,
-  SystemDfImageReport.JSON_PROPERTY_REPOSITORY,
-  SystemDfImageReport.JSON_PROPERTY_SHARED_SIZE,
-  SystemDfImageReport.JSON_PROPERTY_SIZE,
-  SystemDfImageReport.JSON_PROPERTY_TAG,
-  SystemDfImageReport.JSON_PROPERTY_UNIQUE_SIZE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemDfImageReport {
-  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
-  private Long containers;
+    public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
+    public static final String SERIALIZED_NAME_CREATED = "Created";
+    public static final String SERIALIZED_NAME_IMAGE_I_D = "ImageID";
+    public static final String SERIALIZED_NAME_REPOSITORY = "Repository";
+    public static final String SERIALIZED_NAME_SHARED_SIZE = "SharedSize";
+    public static final String SERIALIZED_NAME_SIZE = "Size";
+    public static final String SERIALIZED_NAME_TAG = "Tag";
+    public static final String SERIALIZED_NAME_UNIQUE_SIZE = "UniqueSize";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_CREATED = "Created";
-  private OffsetDateTime created;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Containers");
+        openapiFields.add("Created");
+        openapiFields.add("ImageID");
+        openapiFields.add("Repository");
+        openapiFields.add("SharedSize");
+        openapiFields.add("Size");
+        openapiFields.add("Tag");
+        openapiFields.add("UniqueSize");
 
-  public static final String JSON_PROPERTY_IMAGE_I_D = "ImageID";
-  private String imageID;
-
-  public static final String JSON_PROPERTY_REPOSITORY = "Repository";
-  private String repository;
-
-  public static final String JSON_PROPERTY_SHARED_SIZE = "SharedSize";
-  private Long sharedSize;
-
-  public static final String JSON_PROPERTY_SIZE = "Size";
-  private Long size;
-
-  public static final String JSON_PROPERTY_TAG = "Tag";
-  private String tag;
-
-  public static final String JSON_PROPERTY_UNIQUE_SIZE = "UniqueSize";
-  private Long uniqueSize;
-
-  public SystemDfImageReport() { 
-  }
-
-  public SystemDfImageReport containers(Long containers) {
-    this.containers = containers;
-    return this;
-  }
-
-  /**
-   * Get containers
-   * @return containers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getContainers() {
-    return containers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainers(Long containers) {
-    this.containers = containers;
-  }
-
-
-  public SystemDfImageReport created(OffsetDateTime created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Get created
-   * @return created
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getCreated() {
-    return created;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
-  }
-
-
-  public SystemDfImageReport imageID(String imageID) {
-    this.imageID = imageID;
-    return this;
-  }
-
-  /**
-   * Get imageID
-   * @return imageID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImageID() {
-    return imageID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImageID(String imageID) {
-    this.imageID = imageID;
-  }
-
-
-  public SystemDfImageReport repository(String repository) {
-    this.repository = repository;
-    return this;
-  }
-
-  /**
-   * Get repository
-   * @return repository
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REPOSITORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRepository() {
-    return repository;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REPOSITORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRepository(String repository) {
-    this.repository = repository;
-  }
-
-
-  public SystemDfImageReport sharedSize(Long sharedSize) {
-    this.sharedSize = sharedSize;
-    return this;
-  }
-
-  /**
-   * Get sharedSize
-   * @return sharedSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSharedSize() {
-    return sharedSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSharedSize(Long sharedSize) {
-    this.sharedSize = sharedSize;
-  }
-
-
-  public SystemDfImageReport size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Get size
-   * @return size
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public SystemDfImageReport tag(String tag) {
-    this.tag = tag;
-    return this;
-  }
-
-  /**
-   * Get tag
-   * @return tag
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TAG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getTag() {
-    return tag;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TAG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTag(String tag) {
-    this.tag = tag;
-  }
-
-
-  public SystemDfImageReport uniqueSize(Long uniqueSize) {
-    this.uniqueSize = uniqueSize;
-    return this;
-  }
-
-  /**
-   * Get uniqueSize
-   * @return uniqueSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNIQUE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getUniqueSize() {
-    return uniqueSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNIQUE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUniqueSize(Long uniqueSize) {
-    this.uniqueSize = uniqueSize;
-  }
-
-
-  /**
-   * Return true if this SystemDfImageReport object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SystemDfImageReport systemDfImageReport = (SystemDfImageReport) o;
-    return Objects.equals(this.containers, systemDfImageReport.containers) &&
-        Objects.equals(this.created, systemDfImageReport.created) &&
-        Objects.equals(this.imageID, systemDfImageReport.imageID) &&
-        Objects.equals(this.repository, systemDfImageReport.repository) &&
-        Objects.equals(this.sharedSize, systemDfImageReport.sharedSize) &&
-        Objects.equals(this.size, systemDfImageReport.size) &&
-        Objects.equals(this.tag, systemDfImageReport.tag) &&
-        Objects.equals(this.uniqueSize, systemDfImageReport.uniqueSize);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(containers, created, imageID, repository, sharedSize, size, tag, uniqueSize);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SystemDfImageReport {\n");
-    sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    imageID: ").append(toIndentedString(imageID)).append("\n");
-    sb.append("    repository: ").append(toIndentedString(repository)).append("\n");
-    sb.append("    sharedSize: ").append(toIndentedString(sharedSize)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    tag: ").append(toIndentedString(tag)).append("\n");
-    sb.append("    uniqueSize: ").append(toIndentedString(uniqueSize)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CONTAINERS)
+    private Long containers;
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private OffsetDateTime created;
+    @SerializedName(SERIALIZED_NAME_IMAGE_I_D)
+    private String imageID;
+    @SerializedName(SERIALIZED_NAME_REPOSITORY)
+    private String repository;
+    @SerializedName(SERIALIZED_NAME_SHARED_SIZE)
+    private Long sharedSize;
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Long size;
+    @SerializedName(SERIALIZED_NAME_TAG)
+    private String tag;
+    @SerializedName(SERIALIZED_NAME_UNIQUE_SIZE)
+    private Long uniqueSize;
 
-    // add `Containers` to the URL query string
-    if (getContainers() != null) {
-      joiner.add(String.format("%sContainers%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainers()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemDfImageReport() {
     }
 
-    // add `Created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to SystemDfImageReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!SystemDfImageReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SystemDfImageReport is not found in the empty JSON string", SystemDfImageReport.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!SystemDfImageReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemDfImageReport` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("ImageID") != null && !jsonObj.get("ImageID").isJsonNull()) && !jsonObj.get("ImageID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ImageID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ImageID").toString()));
+        }
+        if ((jsonObj.get("Repository") != null && !jsonObj.get("Repository").isJsonNull()) && !jsonObj.get("Repository").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Repository` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Repository").toString()));
+        }
+        if ((jsonObj.get("Tag") != null && !jsonObj.get("Tag").isJsonNull()) && !jsonObj.get("Tag").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Tag` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Tag").toString()));
+        }
     }
 
-    // add `ImageID` to the URL query string
-    if (getImageID() != null) {
-      joiner.add(String.format("%sImageID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of SystemDfImageReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SystemDfImageReport
+     * @throws IOException if the JSON string is invalid with respect to SystemDfImageReport
+     */
+    public static SystemDfImageReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SystemDfImageReport.class);
     }
 
-    // add `Repository` to the URL query string
-    if (getRepository() != null) {
-      joiner.add(String.format("%sRepository%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRepository()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemDfImageReport containers(Long containers) {
+        this.containers = containers;
+        return this;
     }
 
-    // add `SharedSize` to the URL query string
-    if (getSharedSize() != null) {
-      joiner.add(String.format("%sSharedSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSharedSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get containers
+     *
+     * @return containers
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getContainers() {
+        return containers;
     }
 
-    // add `Size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setContainers(Long containers) {
+        this.containers = containers;
     }
 
-    // add `Tag` to the URL query string
-    if (getTag() != null) {
-      joiner.add(String.format("%sTag%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTag()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemDfImageReport created(OffsetDateTime created) {
+        this.created = created;
+        return this;
     }
 
-    // add `UniqueSize` to the URL query string
-    if (getUniqueSize() != null) {
-      joiner.add(String.format("%sUniqueSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUniqueSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get created
+     *
+     * @return created
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getCreated() {
+        return created;
     }
 
-    return joiner.toString();
-  }
+    public void setCreated(OffsetDateTime created) {
+        this.created = created;
+    }
+
+    public SystemDfImageReport imageID(String imageID) {
+        this.imageID = imageID;
+        return this;
+    }
+
+    /**
+     * Get imageID
+     *
+     * @return imageID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(String imageID) {
+        this.imageID = imageID;
+    }
+
+    public SystemDfImageReport repository(String repository) {
+        this.repository = repository;
+        return this;
+    }
+
+    /**
+     * Get repository
+     *
+     * @return repository
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRepository() {
+        return repository;
+    }
+
+    public void setRepository(String repository) {
+        this.repository = repository;
+    }
+
+    public SystemDfImageReport sharedSize(Long sharedSize) {
+        this.sharedSize = sharedSize;
+        return this;
+    }
+
+    /**
+     * Get sharedSize
+     *
+     * @return sharedSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSharedSize() {
+        return sharedSize;
+    }
+
+    public void setSharedSize(Long sharedSize) {
+        this.sharedSize = sharedSize;
+    }
+
+    public SystemDfImageReport size(Long size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return size
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public SystemDfImageReport tag(String tag) {
+        this.tag = tag;
+        return this;
+    }
+
+    /**
+     * Get tag
+     *
+     * @return tag
+     */
+    @jakarta.annotation.Nullable
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public SystemDfImageReport uniqueSize(Long uniqueSize) {
+        this.uniqueSize = uniqueSize;
+        return this;
+    }
+
+    /**
+     * Get uniqueSize
+     *
+     * @return uniqueSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getUniqueSize() {
+        return uniqueSize;
+    }
+
+    public void setUniqueSize(Long uniqueSize) {
+        this.uniqueSize = uniqueSize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SystemDfImageReport systemDfImageReport = (SystemDfImageReport) o;
+        return Objects.equals(this.containers, systemDfImageReport.containers) &&
+                Objects.equals(this.created, systemDfImageReport.created) &&
+                Objects.equals(this.imageID, systemDfImageReport.imageID) &&
+                Objects.equals(this.repository, systemDfImageReport.repository) &&
+                Objects.equals(this.sharedSize, systemDfImageReport.sharedSize) &&
+                Objects.equals(this.size, systemDfImageReport.size) &&
+                Objects.equals(this.tag, systemDfImageReport.tag) &&
+                Objects.equals(this.uniqueSize, systemDfImageReport.uniqueSize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(containers, created, imageID, repository, sharedSize, size, tag, uniqueSize);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class SystemDfImageReport {\n" +
+                "    containers: " + toIndentedString(containers) + "\n" +
+                "    created: " + toIndentedString(created) + "\n" +
+                "    imageID: " + toIndentedString(imageID) + "\n" +
+                "    repository: " + toIndentedString(repository) + "\n" +
+                "    sharedSize: " + toIndentedString(sharedSize) + "\n" +
+                "    size: " + toIndentedString(size) + "\n" +
+                "    tag: " + toIndentedString(tag) + "\n" +
+                "    uniqueSize: " + toIndentedString(uniqueSize) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of SystemDfImageReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!SystemDfImageReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SystemDfImageReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<SystemDfImageReport> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(SystemDfImageReport.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<SystemDfImageReport>() {
+                @Override
+                public void write(JsonWriter out, SystemDfImageReport value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public SystemDfImageReport read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

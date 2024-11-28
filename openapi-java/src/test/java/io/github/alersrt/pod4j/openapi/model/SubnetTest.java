@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.LeaseRange;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Subnet
  */
-class SubnetTest {
+public class SubnetTest {
     private final Subnet model = new Subnet();
 
     /**
      * Model tests for Subnet
      */
     @Test
-    void testSubnet() {
+    public void testSubnet() {
         // TODO: test Subnet
     }
 
@@ -43,7 +33,7 @@ class SubnetTest {
      * Test the property 'gateway'
      */
     @Test
-    void gatewayTest() {
+    public void gatewayTest() {
         // TODO: test gateway
     }
 
@@ -51,7 +41,7 @@ class SubnetTest {
      * Test the property 'leaseRange'
      */
     @Test
-    void leaseRangeTest() {
+    public void leaseRangeTest() {
         // TODO: test leaseRange
     }
 
@@ -59,7 +49,7 @@ class SubnetTest {
      * Test the property 'subnet'
      */
     @Test
-    void subnetTest() {
+    public void subnetTest() {
         // TODO: test subnet
     }
 

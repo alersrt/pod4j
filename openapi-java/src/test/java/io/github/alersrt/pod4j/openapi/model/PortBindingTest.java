@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PortBinding
  */
-class PortBindingTest {
+public class PortBindingTest {
     private final PortBinding model = new PortBinding();
 
     /**
      * Model tests for PortBinding
      */
     @Test
-    void testPortBinding() {
+    public void testPortBinding() {
         // TODO: test PortBinding
     }
 
@@ -42,7 +43,7 @@ class PortBindingTest {
      * Test the property 'hostIp'
      */
     @Test
-    void hostIpTest() {
+    public void hostIpTest() {
         // TODO: test hostIp
     }
 
@@ -50,7 +51,7 @@ class PortBindingTest {
      * Test the property 'hostPort'
      */
     @Test
-    void hostPortTest() {
+    public void hostPortTest() {
         // TODO: test hostPort
     }
 

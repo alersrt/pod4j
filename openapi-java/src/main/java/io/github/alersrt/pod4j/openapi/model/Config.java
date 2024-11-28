@@ -13,1098 +13,911 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * It should hold only portable information about the container. Here, \&quot;portable\&quot; means \&quot;independent from the host we are running on\&quot;. Non-portable information *should* appear in HostConfig. All fields added to this struct must be marked &#x60;omitempty&#x60; to keep getting predictable hashes from the old &#x60;v1Compatibility&#x60; configuration.
  */
-@JsonPropertyOrder({
-  Config.JSON_PROPERTY_ARGS_ESCAPED,
-  Config.JSON_PROPERTY_ATTACH_STDERR,
-  Config.JSON_PROPERTY_ATTACH_STDIN,
-  Config.JSON_PROPERTY_ATTACH_STDOUT,
-  Config.JSON_PROPERTY_CMD,
-  Config.JSON_PROPERTY_DOMAINNAME,
-  Config.JSON_PROPERTY_ENTRYPOINT,
-  Config.JSON_PROPERTY_ENV,
-  Config.JSON_PROPERTY_EXPOSED_PORTS,
-  Config.JSON_PROPERTY_HEALTHCHECK,
-  Config.JSON_PROPERTY_HOSTNAME,
-  Config.JSON_PROPERTY_IMAGE,
-  Config.JSON_PROPERTY_LABELS,
-  Config.JSON_PROPERTY_MAC_ADDRESS,
-  Config.JSON_PROPERTY_NETWORK_DISABLED,
-  Config.JSON_PROPERTY_ON_BUILD,
-  Config.JSON_PROPERTY_OPEN_STDIN,
-  Config.JSON_PROPERTY_SHELL,
-  Config.JSON_PROPERTY_STDIN_ONCE,
-  Config.JSON_PROPERTY_STOP_SIGNAL,
-  Config.JSON_PROPERTY_STOP_TIMEOUT,
-  Config.JSON_PROPERTY_TTY,
-  Config.JSON_PROPERTY_USER,
-  Config.JSON_PROPERTY_VOLUMES,
-  Config.JSON_PROPERTY_WORKING_DIR
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Config {
-  public static final String JSON_PROPERTY_ARGS_ESCAPED = "ArgsEscaped";
-  private Boolean argsEscaped;
-
-  public static final String JSON_PROPERTY_ATTACH_STDERR = "AttachStderr";
-  private Boolean attachStderr;
-
-  public static final String JSON_PROPERTY_ATTACH_STDIN = "AttachStdin";
-  private Boolean attachStdin;
-
-  public static final String JSON_PROPERTY_ATTACH_STDOUT = "AttachStdout";
-  private Boolean attachStdout;
-
-  public static final String JSON_PROPERTY_CMD = "Cmd";
-  private List<String> cmd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DOMAINNAME = "Domainname";
-  private String domainname;
-
-  public static final String JSON_PROPERTY_ENTRYPOINT = "Entrypoint";
-  private List<String> entrypoint = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ENV = "Env";
-  private List<String> env = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EXPOSED_PORTS = "ExposedPorts";
-  private Map<String, Object> exposedPorts = new HashMap<>();
-
-  public static final String JSON_PROPERTY_HEALTHCHECK = "Healthcheck";
-  private HealthcheckConfig healthcheck;
-
-  public static final String JSON_PROPERTY_HOSTNAME = "Hostname";
-  private String hostname;
-
-  public static final String JSON_PROPERTY_IMAGE = "Image";
-  private String image;
-
-  public static final String JSON_PROPERTY_LABELS = "Labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_MAC_ADDRESS = "MacAddress";
-  private String macAddress;
-
-  public static final String JSON_PROPERTY_NETWORK_DISABLED = "NetworkDisabled";
-  private Boolean networkDisabled;
-
-  public static final String JSON_PROPERTY_ON_BUILD = "OnBuild";
-  private List<String> onBuild = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_OPEN_STDIN = "OpenStdin";
-  private Boolean openStdin;
-
-  public static final String JSON_PROPERTY_SHELL = "Shell";
-  private List<String> shell = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_STDIN_ONCE = "StdinOnce";
-  private Boolean stdinOnce;
-
-  public static final String JSON_PROPERTY_STOP_SIGNAL = "StopSignal";
-  private String stopSignal;
-
-  public static final String JSON_PROPERTY_STOP_TIMEOUT = "StopTimeout";
-  private Long stopTimeout;
-
-  public static final String JSON_PROPERTY_TTY = "Tty";
-  private Boolean tty;
-
-  public static final String JSON_PROPERTY_USER = "User";
-  private String user;
-
-  public static final String JSON_PROPERTY_VOLUMES = "Volumes";
-  private Map<String, Object> volumes = new HashMap<>();
-
-  public static final String JSON_PROPERTY_WORKING_DIR = "WorkingDir";
-  private String workingDir;
-
-  public Config() { 
-  }
-
-  public Config argsEscaped(Boolean argsEscaped) {
-    this.argsEscaped = argsEscaped;
-    return this;
-  }
-
-  /**
-   * Get argsEscaped
-   * @return argsEscaped
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ARGS_ESCAPED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getArgsEscaped() {
-    return argsEscaped;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ARGS_ESCAPED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setArgsEscaped(Boolean argsEscaped) {
-    this.argsEscaped = argsEscaped;
-  }
-
-
-  public Config attachStderr(Boolean attachStderr) {
-    this.attachStderr = attachStderr;
-    return this;
-  }
-
-  /**
-   * Get attachStderr
-   * @return attachStderr
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStderr() {
-    return attachStderr;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStderr(Boolean attachStderr) {
-    this.attachStderr = attachStderr;
-  }
-
-
-  public Config attachStdin(Boolean attachStdin) {
-    this.attachStdin = attachStdin;
-    return this;
-  }
-
-  /**
-   * Get attachStdin
-   * @return attachStdin
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStdin() {
-    return attachStdin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStdin(Boolean attachStdin) {
-    this.attachStdin = attachStdin;
-  }
-
-
-  public Config attachStdout(Boolean attachStdout) {
-    this.attachStdout = attachStdout;
-    return this;
-  }
-
-  /**
-   * Get attachStdout
-   * @return attachStdout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAttachStdout() {
-    return attachStdout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttachStdout(Boolean attachStdout) {
-    this.attachStdout = attachStdout;
-  }
-
-
-  public Config cmd(List<String> cmd) {
-    this.cmd = cmd;
-    return this;
-  }
-
-  public Config addCmdItem(String cmdItem) {
-    if (this.cmd == null) {
-      this.cmd = new ArrayList<>();
-    }
-    this.cmd.add(cmdItem);
-    return this;
-  }
-
-  /**
-   * We need to override the json decoder to accept both options.
-   * @return cmd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCmd() {
-    return cmd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCmd(List<String> cmd) {
-    this.cmd = cmd;
-  }
-
-
-  public Config domainname(String domainname) {
-    this.domainname = domainname;
-    return this;
-  }
-
-  /**
-   * Get domainname
-   * @return domainname
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DOMAINNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDomainname() {
-    return domainname;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DOMAINNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDomainname(String domainname) {
-    this.domainname = domainname;
-  }
-
-
-  public Config entrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-    return this;
-  }
-
-  public Config addEntrypointItem(String entrypointItem) {
-    if (this.entrypoint == null) {
-      this.entrypoint = new ArrayList<>();
-    }
-    this.entrypoint.add(entrypointItem);
-    return this;
-  }
-
-  /**
-   * We need to override the json decoder to accept both options.
-   * @return entrypoint
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEntrypoint() {
-    return entrypoint;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-  }
-
-
-  public Config env(List<String> env) {
-    this.env = env;
-    return this;
-  }
-
-  public Config addEnvItem(String envItem) {
-    if (this.env == null) {
-      this.env = new ArrayList<>();
-    }
-    this.env.add(envItem);
-    return this;
-  }
-
-  /**
-   * Get env
-   * @return env
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEnv() {
-    return env;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnv(List<String> env) {
-    this.env = env;
-  }
-
-
-  public Config exposedPorts(Map<String, Object> exposedPorts) {
-    this.exposedPorts = exposedPorts;
-    return this;
-  }
-
-  public Config putExposedPortsItem(String key, Object exposedPortsItem) {
-    if (this.exposedPorts == null) {
-      this.exposedPorts = new HashMap<>();
-    }
-    this.exposedPorts.put(key, exposedPortsItem);
-    return this;
-  }
-
-  /**
-   * PortSet is a collection of structs indexed by Port
-   * @return exposedPorts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, Object> getExposedPorts() {
-    return exposedPorts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExposedPorts(Map<String, Object> exposedPorts) {
-    this.exposedPorts = exposedPorts;
-  }
-
-
-  public Config healthcheck(HealthcheckConfig healthcheck) {
-    this.healthcheck = healthcheck;
-    return this;
-  }
-
-  /**
-   * Get healthcheck
-   * @return healthcheck
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public HealthcheckConfig getHealthcheck() {
-    return healthcheck;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthcheck(HealthcheckConfig healthcheck) {
-    this.healthcheck = healthcheck;
-  }
-
-
-  public Config hostname(String hostname) {
-    this.hostname = hostname;
-    return this;
-  }
-
-  /**
-   * Get hostname
-   * @return hostname
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getHostname() {
-    return hostname;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostname(String hostname) {
-    this.hostname = hostname;
-  }
-
-
-  public Config image(String image) {
-    this.image = image;
-    return this;
-  }
-
-  /**
-   * Get image
-   * @return image
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImage() {
-    return image;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-
-  public Config labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public Config putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * Get labels
-   * @return labels
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public Config macAddress(String macAddress) {
-    this.macAddress = macAddress;
-    return this;
-  }
-
-  /**
-   * Mac Address of the container.  Deprecated: this field is deprecated since API v1.44. Use EndpointSettings.MacAddress instead.
-   * @return macAddress
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMacAddress() {
-    return macAddress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMacAddress(String macAddress) {
-    this.macAddress = macAddress;
-  }
-
-
-  public Config networkDisabled(Boolean networkDisabled) {
-    this.networkDisabled = networkDisabled;
-    return this;
-  }
-
-  /**
-   * Get networkDisabled
-   * @return networkDisabled
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_DISABLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getNetworkDisabled() {
-    return networkDisabled;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_DISABLED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkDisabled(Boolean networkDisabled) {
-    this.networkDisabled = networkDisabled;
-  }
-
-
-  public Config onBuild(List<String> onBuild) {
-    this.onBuild = onBuild;
-    return this;
-  }
-
-  public Config addOnBuildItem(String onBuildItem) {
-    if (this.onBuild == null) {
-      this.onBuild = new ArrayList<>();
-    }
-    this.onBuild.add(onBuildItem);
-    return this;
-  }
-
-  /**
-   * Get onBuild
-   * @return onBuild
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ON_BUILD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getOnBuild() {
-    return onBuild;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ON_BUILD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOnBuild(List<String> onBuild) {
-    this.onBuild = onBuild;
-  }
-
-
-  public Config openStdin(Boolean openStdin) {
-    this.openStdin = openStdin;
-    return this;
-  }
-
-  /**
-   * Get openStdin
-   * @return openStdin
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOpenStdin() {
-    return openStdin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOpenStdin(Boolean openStdin) {
-    this.openStdin = openStdin;
-  }
-
-
-  public Config shell(List<String> shell) {
-    this.shell = shell;
-    return this;
-  }
-
-  public Config addShellItem(String shellItem) {
-    if (this.shell == null) {
-      this.shell = new ArrayList<>();
-    }
-    this.shell.add(shellItem);
-    return this;
-  }
-
-  /**
-   * We need to override the json decoder to accept both options.
-   * @return shell
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHELL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getShell() {
-    return shell;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHELL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setShell(List<String> shell) {
-    this.shell = shell;
-  }
-
-
-  public Config stdinOnce(Boolean stdinOnce) {
-    this.stdinOnce = stdinOnce;
-    return this;
-  }
-
-  /**
-   * Get stdinOnce
-   * @return stdinOnce
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getStdinOnce() {
-    return stdinOnce;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStdinOnce(Boolean stdinOnce) {
-    this.stdinOnce = stdinOnce;
-  }
-
-
-  public Config stopSignal(String stopSignal) {
-    this.stopSignal = stopSignal;
-    return this;
-  }
-
-  /**
-   * Get stopSignal
-   * @return stopSignal
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStopSignal() {
-    return stopSignal;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStopSignal(String stopSignal) {
-    this.stopSignal = stopSignal;
-  }
-
-
-  public Config stopTimeout(Long stopTimeout) {
-    this.stopTimeout = stopTimeout;
-    return this;
-  }
-
-  /**
-   * Get stopTimeout
-   * @return stopTimeout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getStopTimeout() {
-    return stopTimeout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStopTimeout(Long stopTimeout) {
-    this.stopTimeout = stopTimeout;
-  }
-
-
-  public Config tty(Boolean tty) {
-    this.tty = tty;
-    return this;
-  }
-
-  /**
-   * Get tty
-   * @return tty
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TTY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getTty() {
-    return tty;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TTY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTty(Boolean tty) {
-    this.tty = tty;
-  }
-
-
-  public Config user(String user) {
-    this.user = user;
-    return this;
-  }
-
-  /**
-   * Get user
-   * @return user
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUser() {
-    return user;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-
-  public Config volumes(Map<String, Object> volumes) {
-    this.volumes = volumes;
-    return this;
-  }
-
-  public Config putVolumesItem(String key, Object volumesItem) {
-    if (this.volumes == null) {
-      this.volumes = new HashMap<>();
-    }
-    this.volumes.put(key, volumesItem);
-    return this;
-  }
-
-  /**
-   * Get volumes
-   * @return volumes
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, Object> getVolumes() {
-    return volumes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumes(Map<String, Object> volumes) {
-    this.volumes = volumes;
-  }
-
-
-  public Config workingDir(String workingDir) {
-    this.workingDir = workingDir;
-    return this;
-  }
-
-  /**
-   * Get workingDir
-   * @return workingDir
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getWorkingDir() {
-    return workingDir;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWorkingDir(String workingDir) {
-    this.workingDir = workingDir;
-  }
-
-
-  /**
-   * Return true if this Config object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Config config = (Config) o;
-    return Objects.equals(this.argsEscaped, config.argsEscaped) &&
-        Objects.equals(this.attachStderr, config.attachStderr) &&
-        Objects.equals(this.attachStdin, config.attachStdin) &&
-        Objects.equals(this.attachStdout, config.attachStdout) &&
-        Objects.equals(this.cmd, config.cmd) &&
-        Objects.equals(this.domainname, config.domainname) &&
-        Objects.equals(this.entrypoint, config.entrypoint) &&
-        Objects.equals(this.env, config.env) &&
-        Objects.equals(this.exposedPorts, config.exposedPorts) &&
-        Objects.equals(this.healthcheck, config.healthcheck) &&
-        Objects.equals(this.hostname, config.hostname) &&
-        Objects.equals(this.image, config.image) &&
-        Objects.equals(this.labels, config.labels) &&
-        Objects.equals(this.macAddress, config.macAddress) &&
-        Objects.equals(this.networkDisabled, config.networkDisabled) &&
-        Objects.equals(this.onBuild, config.onBuild) &&
-        Objects.equals(this.openStdin, config.openStdin) &&
-        Objects.equals(this.shell, config.shell) &&
-        Objects.equals(this.stdinOnce, config.stdinOnce) &&
-        Objects.equals(this.stopSignal, config.stopSignal) &&
-        Objects.equals(this.stopTimeout, config.stopTimeout) &&
-        Objects.equals(this.tty, config.tty) &&
-        Objects.equals(this.user, config.user) &&
-        Objects.equals(this.volumes, config.volumes) &&
-        Objects.equals(this.workingDir, config.workingDir);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(argsEscaped, attachStderr, attachStdin, attachStdout, cmd, domainname, entrypoint, env, exposedPorts, healthcheck, hostname, image, labels, macAddress, networkDisabled, onBuild, openStdin, shell, stdinOnce, stopSignal, stopTimeout, tty, user, volumes, workingDir);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Config {\n");
-    sb.append("    argsEscaped: ").append(toIndentedString(argsEscaped)).append("\n");
-    sb.append("    attachStderr: ").append(toIndentedString(attachStderr)).append("\n");
-    sb.append("    attachStdin: ").append(toIndentedString(attachStdin)).append("\n");
-    sb.append("    attachStdout: ").append(toIndentedString(attachStdout)).append("\n");
-    sb.append("    cmd: ").append(toIndentedString(cmd)).append("\n");
-    sb.append("    domainname: ").append(toIndentedString(domainname)).append("\n");
-    sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
-    sb.append("    env: ").append(toIndentedString(env)).append("\n");
-    sb.append("    exposedPorts: ").append(toIndentedString(exposedPorts)).append("\n");
-    sb.append("    healthcheck: ").append(toIndentedString(healthcheck)).append("\n");
-    sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    macAddress: ").append(toIndentedString(macAddress)).append("\n");
-    sb.append("    networkDisabled: ").append(toIndentedString(networkDisabled)).append("\n");
-    sb.append("    onBuild: ").append(toIndentedString(onBuild)).append("\n");
-    sb.append("    openStdin: ").append(toIndentedString(openStdin)).append("\n");
-    sb.append("    shell: ").append(toIndentedString(shell)).append("\n");
-    sb.append("    stdinOnce: ").append(toIndentedString(stdinOnce)).append("\n");
-    sb.append("    stopSignal: ").append(toIndentedString(stopSignal)).append("\n");
-    sb.append("    stopTimeout: ").append(toIndentedString(stopTimeout)).append("\n");
-    sb.append("    tty: ").append(toIndentedString(tty)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("    volumes: ").append(toIndentedString(volumes)).append("\n");
-    sb.append("    workingDir: ").append(toIndentedString(workingDir)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ARGS_ESCAPED = "ArgsEscaped";
+    public static final String SERIALIZED_NAME_ATTACH_STDERR = "AttachStderr";
+    public static final String SERIALIZED_NAME_ATTACH_STDIN = "AttachStdin";
+    public static final String SERIALIZED_NAME_ATTACH_STDOUT = "AttachStdout";
+    public static final String SERIALIZED_NAME_CMD = "Cmd";
+    public static final String SERIALIZED_NAME_DOMAINNAME = "Domainname";
+    public static final String SERIALIZED_NAME_ENTRYPOINT = "Entrypoint";
+    public static final String SERIALIZED_NAME_ENV = "Env";
+    public static final String SERIALIZED_NAME_EXPOSED_PORTS = "ExposedPorts";
+    public static final String SERIALIZED_NAME_HEALTHCHECK = "Healthcheck";
+    public static final String SERIALIZED_NAME_HOSTNAME = "Hostname";
+    public static final String SERIALIZED_NAME_IMAGE = "Image";
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
+    public static final String SERIALIZED_NAME_MAC_ADDRESS = "MacAddress";
+    public static final String SERIALIZED_NAME_NETWORK_DISABLED = "NetworkDisabled";
+    public static final String SERIALIZED_NAME_ON_BUILD = "OnBuild";
+    public static final String SERIALIZED_NAME_OPEN_STDIN = "OpenStdin";
+    public static final String SERIALIZED_NAME_SHELL = "Shell";
+    public static final String SERIALIZED_NAME_STDIN_ONCE = "StdinOnce";
+    public static final String SERIALIZED_NAME_STOP_SIGNAL = "StopSignal";
+    public static final String SERIALIZED_NAME_STOP_TIMEOUT = "StopTimeout";
+    public static final String SERIALIZED_NAME_TTY = "Tty";
+    public static final String SERIALIZED_NAME_USER = "User";
+    public static final String SERIALIZED_NAME_VOLUMES = "Volumes";
+    public static final String SERIALIZED_NAME_WORKING_DIR = "WorkingDir";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("ArgsEscaped");
+        openapiFields.add("AttachStderr");
+        openapiFields.add("AttachStdin");
+        openapiFields.add("AttachStdout");
+        openapiFields.add("Cmd");
+        openapiFields.add("Domainname");
+        openapiFields.add("Entrypoint");
+        openapiFields.add("Env");
+        openapiFields.add("ExposedPorts");
+        openapiFields.add("Healthcheck");
+        openapiFields.add("Hostname");
+        openapiFields.add("Image");
+        openapiFields.add("Labels");
+        openapiFields.add("MacAddress");
+        openapiFields.add("NetworkDisabled");
+        openapiFields.add("OnBuild");
+        openapiFields.add("OpenStdin");
+        openapiFields.add("Shell");
+        openapiFields.add("StdinOnce");
+        openapiFields.add("StopSignal");
+        openapiFields.add("StopTimeout");
+        openapiFields.add("Tty");
+        openapiFields.add("User");
+        openapiFields.add("Volumes");
+        openapiFields.add("WorkingDir");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ARGS_ESCAPED)
+    private Boolean argsEscaped;
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDERR)
+    private Boolean attachStderr;
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDIN)
+    private Boolean attachStdin;
+    @SerializedName(SERIALIZED_NAME_ATTACH_STDOUT)
+    private Boolean attachStdout;
+    @SerializedName(SERIALIZED_NAME_CMD)
+    private List<String> cmd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DOMAINNAME)
+    private String domainname;
+    @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
+    private List<String> entrypoint = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENV)
+    private List<String> env = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_EXPOSED_PORTS)
+    private Map<String, Object> exposedPorts = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_HEALTHCHECK)
+    private HealthcheckConfig healthcheck;
+    @SerializedName(SERIALIZED_NAME_HOSTNAME)
+    private String hostname;
+    @SerializedName(SERIALIZED_NAME_IMAGE)
+    private String image;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_MAC_ADDRESS)
+    private String macAddress;
+    @SerializedName(SERIALIZED_NAME_NETWORK_DISABLED)
+    private Boolean networkDisabled;
+    @SerializedName(SERIALIZED_NAME_ON_BUILD)
+    private List<String> onBuild = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_OPEN_STDIN)
+    private Boolean openStdin;
+    @SerializedName(SERIALIZED_NAME_SHELL)
+    private List<String> shell = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_STDIN_ONCE)
+    private Boolean stdinOnce;
+    @SerializedName(SERIALIZED_NAME_STOP_SIGNAL)
+    private String stopSignal;
+    @SerializedName(SERIALIZED_NAME_STOP_TIMEOUT)
+    private Long stopTimeout;
+    @SerializedName(SERIALIZED_NAME_TTY)
+    private Boolean tty;
+    @SerializedName(SERIALIZED_NAME_USER)
+    private String user;
+    @SerializedName(SERIALIZED_NAME_VOLUMES)
+    private Map<String, Object> volumes = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_WORKING_DIR)
+    private String workingDir;
 
-    // add `ArgsEscaped` to the URL query string
-    if (getArgsEscaped() != null) {
-      joiner.add(String.format("%sArgsEscaped%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArgsEscaped()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Config() {
     }
 
-    // add `AttachStderr` to the URL query string
-    if (getAttachStderr() != null) {
-      joiner.add(String.format("%sAttachStderr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStderr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Config
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Config.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Config is not found in the empty JSON string", Config.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Config.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Config` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull() && !jsonObj.get("Cmd").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Cmd` to be an array in the JSON string but got `%s`", jsonObj.get("Cmd").toString()));
+        }
+        if ((jsonObj.get("Domainname") != null && !jsonObj.get("Domainname").isJsonNull()) && !jsonObj.get("Domainname").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Domainname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Domainname").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull() && !jsonObj.get("Entrypoint").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("Entrypoint").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull() && !jsonObj.get("Env").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
+        }
+        // validate the optional field `Healthcheck`
+        if (jsonObj.get("Healthcheck") != null && !jsonObj.get("Healthcheck").isJsonNull()) {
+            HealthcheckConfig.validateJsonElement(jsonObj.get("Healthcheck"));
+        }
+        if ((jsonObj.get("Hostname") != null && !jsonObj.get("Hostname").isJsonNull()) && !jsonObj.get("Hostname").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Hostname").toString()));
+        }
+        if ((jsonObj.get("Image") != null && !jsonObj.get("Image").isJsonNull()) && !jsonObj.get("Image").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Image").toString()));
+        }
+        if ((jsonObj.get("MacAddress") != null && !jsonObj.get("MacAddress").isJsonNull()) && !jsonObj.get("MacAddress").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `MacAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MacAddress").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("OnBuild") != null && !jsonObj.get("OnBuild").isJsonNull() && !jsonObj.get("OnBuild").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `OnBuild` to be an array in the JSON string but got `%s`", jsonObj.get("OnBuild").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Shell") != null && !jsonObj.get("Shell").isJsonNull() && !jsonObj.get("Shell").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Shell` to be an array in the JSON string but got `%s`", jsonObj.get("Shell").toString()));
+        }
+        if ((jsonObj.get("StopSignal") != null && !jsonObj.get("StopSignal").isJsonNull()) && !jsonObj.get("StopSignal").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `StopSignal` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StopSignal").toString()));
+        }
+        if ((jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) && !jsonObj.get("User").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `User` to be a primitive type in the JSON string but got `%s`", jsonObj.get("User").toString()));
+        }
+        if ((jsonObj.get("WorkingDir") != null && !jsonObj.get("WorkingDir").isJsonNull()) && !jsonObj.get("WorkingDir").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `WorkingDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("WorkingDir").toString()));
+        }
     }
 
-    // add `AttachStdin` to the URL query string
-    if (getAttachStdin() != null) {
-      joiner.add(String.format("%sAttachStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Config given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Config
+     * @throws IOException if the JSON string is invalid with respect to Config
+     */
+    public static Config fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Config.class);
     }
 
-    // add `AttachStdout` to the URL query string
-    if (getAttachStdout() != null) {
-      joiner.add(String.format("%sAttachStdout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Config argsEscaped(Boolean argsEscaped) {
+        this.argsEscaped = argsEscaped;
+        return this;
     }
 
-    // add `Cmd` to the URL query string
-    if (getCmd() != null) {
-      for (int i = 0; i < getCmd().size(); i++) {
-        joiner.add(String.format("%sCmd%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCmd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Get argsEscaped
+     *
+     * @return argsEscaped
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getArgsEscaped() {
+        return argsEscaped;
     }
 
-    // add `Domainname` to the URL query string
-    if (getDomainname() != null) {
-      joiner.add(String.format("%sDomainname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDomainname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setArgsEscaped(Boolean argsEscaped) {
+        this.argsEscaped = argsEscaped;
     }
 
-    // add `Entrypoint` to the URL query string
-    if (getEntrypoint() != null) {
-      for (int i = 0; i < getEntrypoint().size(); i++) {
-        joiner.add(String.format("%sEntrypoint%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEntrypoint().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Config attachStderr(Boolean attachStderr) {
+        this.attachStderr = attachStderr;
+        return this;
     }
 
-    // add `Env` to the URL query string
-    if (getEnv() != null) {
-      for (int i = 0; i < getEnv().size(); i++) {
-        joiner.add(String.format("%sEnv%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEnv().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Get attachStderr
+     *
+     * @return attachStderr
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStderr() {
+        return attachStderr;
     }
 
-    // add `ExposedPorts` to the URL query string
-    if (getExposedPorts() != null) {
-      for (String _key : getExposedPorts().keySet()) {
-        joiner.add(String.format("%sExposedPorts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getExposedPorts().get(_key), URLEncoder.encode(ApiClient.valueToString(getExposedPorts().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setAttachStderr(Boolean attachStderr) {
+        this.attachStderr = attachStderr;
     }
 
-    // add `Healthcheck` to the URL query string
-    if (getHealthcheck() != null) {
-      joiner.add(getHealthcheck().toUrlQueryString(prefix + "Healthcheck" + suffix));
+    public Config attachStdin(Boolean attachStdin) {
+        this.attachStdin = attachStdin;
+        return this;
     }
 
-    // add `Hostname` to the URL query string
-    if (getHostname() != null) {
-      joiner.add(String.format("%sHostname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get attachStdin
+     *
+     * @return attachStdin
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStdin() {
+        return attachStdin;
     }
 
-    // add `Image` to the URL query string
-    if (getImage() != null) {
-      joiner.add(String.format("%sImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setAttachStdin(Boolean attachStdin) {
+        this.attachStdin = attachStdin;
     }
 
-    // add `Labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Config attachStdout(Boolean attachStdout) {
+        this.attachStdout = attachStdout;
+        return this;
     }
 
-    // add `MacAddress` to the URL query string
-    if (getMacAddress() != null) {
-      joiner.add(String.format("%sMacAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMacAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get attachStdout
+     *
+     * @return attachStdout
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAttachStdout() {
+        return attachStdout;
     }
 
-    // add `NetworkDisabled` to the URL query string
-    if (getNetworkDisabled() != null) {
-      joiner.add(String.format("%sNetworkDisabled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetworkDisabled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setAttachStdout(Boolean attachStdout) {
+        this.attachStdout = attachStdout;
     }
 
-    // add `OnBuild` to the URL query string
-    if (getOnBuild() != null) {
-      for (int i = 0; i < getOnBuild().size(); i++) {
-        joiner.add(String.format("%sOnBuild%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getOnBuild().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Config cmd(List<String> cmd) {
+        this.cmd = cmd;
+        return this;
     }
 
-    // add `OpenStdin` to the URL query string
-    if (getOpenStdin() != null) {
-      joiner.add(String.format("%sOpenStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Config addCmdItem(String cmdItem) {
+        if (this.cmd == null) {
+            this.cmd = new ArrayList<>();
+        }
+        this.cmd.add(cmdItem);
+        return this;
     }
 
-    // add `Shell` to the URL query string
-    if (getShell() != null) {
-      for (int i = 0; i < getShell().size(); i++) {
-        joiner.add(String.format("%sShell%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getShell().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * We need to override the json decoder to accept both options.
+     *
+     * @return cmd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCmd() {
+        return cmd;
     }
 
-    // add `StdinOnce` to the URL query string
-    if (getStdinOnce() != null) {
-      joiner.add(String.format("%sStdinOnce%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStdinOnce()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCmd(List<String> cmd) {
+        this.cmd = cmd;
     }
 
-    // add `StopSignal` to the URL query string
-    if (getStopSignal() != null) {
-      joiner.add(String.format("%sStopSignal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopSignal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Config domainname(String domainname) {
+        this.domainname = domainname;
+        return this;
     }
 
-    // add `StopTimeout` to the URL query string
-    if (getStopTimeout() != null) {
-      joiner.add(String.format("%sStopTimeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get domainname
+     *
+     * @return domainname
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDomainname() {
+        return domainname;
     }
 
-    // add `Tty` to the URL query string
-    if (getTty() != null) {
-      joiner.add(String.format("%sTty%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTty()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setDomainname(String domainname) {
+        this.domainname = domainname;
     }
 
-    // add `User` to the URL query string
-    if (getUser() != null) {
-      joiner.add(String.format("%sUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Config entrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
+        return this;
     }
 
-    // add `Volumes` to the URL query string
-    if (getVolumes() != null) {
-      for (String _key : getVolumes().keySet()) {
-        joiner.add(String.format("%sVolumes%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getVolumes().get(_key), URLEncoder.encode(ApiClient.valueToString(getVolumes().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Config addEntrypointItem(String entrypointItem) {
+        if (this.entrypoint == null) {
+            this.entrypoint = new ArrayList<>();
+        }
+        this.entrypoint.add(entrypointItem);
+        return this;
     }
 
-    // add `WorkingDir` to the URL query string
-    if (getWorkingDir() != null) {
-      joiner.add(String.format("%sWorkingDir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWorkingDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * We need to override the json decoder to accept both options.
+     *
+     * @return entrypoint
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEntrypoint() {
+        return entrypoint;
     }
 
-    return joiner.toString();
-  }
+    public void setEntrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
+    }
+
+    public Config env(List<String> env) {
+        this.env = env;
+        return this;
+    }
+
+    public Config addEnvItem(String envItem) {
+        if (this.env == null) {
+            this.env = new ArrayList<>();
+        }
+        this.env.add(envItem);
+        return this;
+    }
+
+    /**
+     * Get env
+     *
+     * @return env
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEnv() {
+        return env;
+    }
+
+    public void setEnv(List<String> env) {
+        this.env = env;
+    }
+
+    public Config exposedPorts(Map<String, Object> exposedPorts) {
+        this.exposedPorts = exposedPorts;
+        return this;
+    }
+
+    public Config putExposedPortsItem(String key, Object exposedPortsItem) {
+        if (this.exposedPorts == null) {
+            this.exposedPorts = new HashMap<>();
+        }
+        this.exposedPorts.put(key, exposedPortsItem);
+        return this;
+    }
+
+    /**
+     * PortSet is a collection of structs indexed by Port
+     *
+     * @return exposedPorts
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, Object> getExposedPorts() {
+        return exposedPorts;
+    }
+
+    public void setExposedPorts(Map<String, Object> exposedPorts) {
+        this.exposedPorts = exposedPorts;
+    }
+
+    public Config healthcheck(HealthcheckConfig healthcheck) {
+        this.healthcheck = healthcheck;
+        return this;
+    }
+
+    /**
+     * Get healthcheck
+     *
+     * @return healthcheck
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public HealthcheckConfig getHealthcheck() {
+        return healthcheck;
+    }
+
+    public void setHealthcheck(HealthcheckConfig healthcheck) {
+        this.healthcheck = healthcheck;
+    }
+
+    public Config hostname(String hostname) {
+        this.hostname = hostname;
+        return this;
+    }
+
+    /**
+     * Get hostname
+     *
+     * @return hostname
+     */
+    @jakarta.annotation.Nullable
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public Config image(String image) {
+        this.image = image;
+        return this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return image
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Config labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public Config putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * Get labels
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public Config macAddress(String macAddress) {
+        this.macAddress = macAddress;
+        return this;
+    }
+
+    /**
+     * Mac Address of the container.  Deprecated: this field is deprecated since API v1.44. Use EndpointSettings.MacAddress instead.
+     *
+     * @return macAddress
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMacAddress() {
+        return macAddress;
+    }
+
+    public void setMacAddress(String macAddress) {
+        this.macAddress = macAddress;
+    }
+
+    public Config networkDisabled(Boolean networkDisabled) {
+        this.networkDisabled = networkDisabled;
+        return this;
+    }
+
+    /**
+     * Get networkDisabled
+     *
+     * @return networkDisabled
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getNetworkDisabled() {
+        return networkDisabled;
+    }
+
+    public void setNetworkDisabled(Boolean networkDisabled) {
+        this.networkDisabled = networkDisabled;
+    }
+
+    public Config onBuild(List<String> onBuild) {
+        this.onBuild = onBuild;
+        return this;
+    }
+
+    public Config addOnBuildItem(String onBuildItem) {
+        if (this.onBuild == null) {
+            this.onBuild = new ArrayList<>();
+        }
+        this.onBuild.add(onBuildItem);
+        return this;
+    }
+
+    /**
+     * Get onBuild
+     *
+     * @return onBuild
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getOnBuild() {
+        return onBuild;
+    }
+
+    public void setOnBuild(List<String> onBuild) {
+        this.onBuild = onBuild;
+    }
+
+    public Config openStdin(Boolean openStdin) {
+        this.openStdin = openStdin;
+        return this;
+    }
+
+    /**
+     * Get openStdin
+     *
+     * @return openStdin
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOpenStdin() {
+        return openStdin;
+    }
+
+    public void setOpenStdin(Boolean openStdin) {
+        this.openStdin = openStdin;
+    }
+
+    public Config shell(List<String> shell) {
+        this.shell = shell;
+        return this;
+    }
+
+    public Config addShellItem(String shellItem) {
+        if (this.shell == null) {
+            this.shell = new ArrayList<>();
+        }
+        this.shell.add(shellItem);
+        return this;
+    }
+
+    /**
+     * We need to override the json decoder to accept both options.
+     *
+     * @return shell
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getShell() {
+        return shell;
+    }
+
+    public void setShell(List<String> shell) {
+        this.shell = shell;
+    }
+
+    public Config stdinOnce(Boolean stdinOnce) {
+        this.stdinOnce = stdinOnce;
+        return this;
+    }
+
+    /**
+     * Get stdinOnce
+     *
+     * @return stdinOnce
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getStdinOnce() {
+        return stdinOnce;
+    }
+
+    public void setStdinOnce(Boolean stdinOnce) {
+        this.stdinOnce = stdinOnce;
+    }
+
+    public Config stopSignal(String stopSignal) {
+        this.stopSignal = stopSignal;
+        return this;
+    }
+
+    /**
+     * Get stopSignal
+     *
+     * @return stopSignal
+     */
+    @jakarta.annotation.Nullable
+
+    public String getStopSignal() {
+        return stopSignal;
+    }
+
+    public void setStopSignal(String stopSignal) {
+        this.stopSignal = stopSignal;
+    }
+
+    public Config stopTimeout(Long stopTimeout) {
+        this.stopTimeout = stopTimeout;
+        return this;
+    }
+
+    /**
+     * Get stopTimeout
+     *
+     * @return stopTimeout
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getStopTimeout() {
+        return stopTimeout;
+    }
+
+    public void setStopTimeout(Long stopTimeout) {
+        this.stopTimeout = stopTimeout;
+    }
+
+    public Config tty(Boolean tty) {
+        this.tty = tty;
+        return this;
+    }
+
+    /**
+     * Get tty
+     *
+     * @return tty
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getTty() {
+        return tty;
+    }
+
+    public void setTty(Boolean tty) {
+        this.tty = tty;
+    }
+
+    public Config user(String user) {
+        this.user = user;
+        return this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return user
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public Config volumes(Map<String, Object> volumes) {
+        this.volumes = volumes;
+        return this;
+    }
+
+    public Config putVolumesItem(String key, Object volumesItem) {
+        if (this.volumes == null) {
+            this.volumes = new HashMap<>();
+        }
+        this.volumes.put(key, volumesItem);
+        return this;
+    }
+
+    /**
+     * Get volumes
+     *
+     * @return volumes
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, Object> getVolumes() {
+        return volumes;
+    }
+
+    public void setVolumes(Map<String, Object> volumes) {
+        this.volumes = volumes;
+    }
+
+    public Config workingDir(String workingDir) {
+        this.workingDir = workingDir;
+        return this;
+    }
+
+    /**
+     * Get workingDir
+     *
+     * @return workingDir
+     */
+    @jakarta.annotation.Nullable
+
+    public String getWorkingDir() {
+        return workingDir;
+    }
+
+    public void setWorkingDir(String workingDir) {
+        this.workingDir = workingDir;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Config config = (Config) o;
+        return Objects.equals(this.argsEscaped, config.argsEscaped) &&
+                Objects.equals(this.attachStderr, config.attachStderr) &&
+                Objects.equals(this.attachStdin, config.attachStdin) &&
+                Objects.equals(this.attachStdout, config.attachStdout) &&
+                Objects.equals(this.cmd, config.cmd) &&
+                Objects.equals(this.domainname, config.domainname) &&
+                Objects.equals(this.entrypoint, config.entrypoint) &&
+                Objects.equals(this.env, config.env) &&
+                Objects.equals(this.exposedPorts, config.exposedPorts) &&
+                Objects.equals(this.healthcheck, config.healthcheck) &&
+                Objects.equals(this.hostname, config.hostname) &&
+                Objects.equals(this.image, config.image) &&
+                Objects.equals(this.labels, config.labels) &&
+                Objects.equals(this.macAddress, config.macAddress) &&
+                Objects.equals(this.networkDisabled, config.networkDisabled) &&
+                Objects.equals(this.onBuild, config.onBuild) &&
+                Objects.equals(this.openStdin, config.openStdin) &&
+                Objects.equals(this.shell, config.shell) &&
+                Objects.equals(this.stdinOnce, config.stdinOnce) &&
+                Objects.equals(this.stopSignal, config.stopSignal) &&
+                Objects.equals(this.stopTimeout, config.stopTimeout) &&
+                Objects.equals(this.tty, config.tty) &&
+                Objects.equals(this.user, config.user) &&
+                Objects.equals(this.volumes, config.volumes) &&
+                Objects.equals(this.workingDir, config.workingDir);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(argsEscaped, attachStderr, attachStdin, attachStdout, cmd, domainname, entrypoint, env, exposedPorts, healthcheck, hostname, image, labels, macAddress, networkDisabled, onBuild, openStdin, shell, stdinOnce, stopSignal, stopTimeout, tty, user, volumes, workingDir);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Config {\n" +
+                "    argsEscaped: " + toIndentedString(argsEscaped) + "\n" +
+                "    attachStderr: " + toIndentedString(attachStderr) + "\n" +
+                "    attachStdin: " + toIndentedString(attachStdin) + "\n" +
+                "    attachStdout: " + toIndentedString(attachStdout) + "\n" +
+                "    cmd: " + toIndentedString(cmd) + "\n" +
+                "    domainname: " + toIndentedString(domainname) + "\n" +
+                "    entrypoint: " + toIndentedString(entrypoint) + "\n" +
+                "    env: " + toIndentedString(env) + "\n" +
+                "    exposedPorts: " + toIndentedString(exposedPorts) + "\n" +
+                "    healthcheck: " + toIndentedString(healthcheck) + "\n" +
+                "    hostname: " + toIndentedString(hostname) + "\n" +
+                "    image: " + toIndentedString(image) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    macAddress: " + toIndentedString(macAddress) + "\n" +
+                "    networkDisabled: " + toIndentedString(networkDisabled) + "\n" +
+                "    onBuild: " + toIndentedString(onBuild) + "\n" +
+                "    openStdin: " + toIndentedString(openStdin) + "\n" +
+                "    shell: " + toIndentedString(shell) + "\n" +
+                "    stdinOnce: " + toIndentedString(stdinOnce) + "\n" +
+                "    stopSignal: " + toIndentedString(stopSignal) + "\n" +
+                "    stopTimeout: " + toIndentedString(stopTimeout) + "\n" +
+                "    tty: " + toIndentedString(tty) + "\n" +
+                "    user: " + toIndentedString(user) + "\n" +
+                "    volumes: " + toIndentedString(volumes) + "\n" +
+                "    workingDir: " + toIndentedString(workingDir) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Config to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Config.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Config' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Config> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Config.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Config>() {
+                @Override
+                public void write(JsonWriter out, Config value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Config read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -18,27 +18,28 @@ import java.util.Map;
 
 /**
  * API response returned by API call.
- *
- * @param <T> The type of data that is deserialized from response body
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ApiResponse<T> {
     final private int statusCode;
     final private Map<String, List<String>> headers;
     final private T data;
 
     /**
+     * <p>Constructor for ApiResponse.</p>
+     *
      * @param statusCode The status code of HTTP response
-     * @param headers The headers of HTTP response
+     * @param headers    The headers of HTTP response
      */
     public ApiResponse(int statusCode, Map<String, List<String>> headers) {
         this(statusCode, headers, null);
     }
 
     /**
+     * <p>Constructor for ApiResponse.</p>
+     *
      * @param statusCode The status code of HTTP response
-     * @param headers The headers of HTTP response
-     * @param data The object deserialized from response bod
+     * @param headers    The headers of HTTP response
+     * @param data       The object deserialized from response bod
      */
     public ApiResponse(int statusCode, Map<String, List<String>> headers, T data) {
         this.statusCode = statusCode;
@@ -46,14 +47,29 @@ public class ApiResponse<T> {
         this.data = data;
     }
 
+    /**
+     * <p>Get the <code>status code</code>.</p>
+     *
+     * @return the status code
+     */
     public int getStatusCode() {
         return statusCode;
     }
 
+    /**
+     * <p>Get the <code>headers</code>.</p>
+     *
+     * @return a {@link java.util.Map} of headers
+     */
     public Map<String, List<String>> getHeaders() {
         return headers;
     }
 
+    /**
+     * <p>Get the <code>data</code>.</p>
+     *
+     * @return the data
+     */
     public T getData() {
         return data;
     }

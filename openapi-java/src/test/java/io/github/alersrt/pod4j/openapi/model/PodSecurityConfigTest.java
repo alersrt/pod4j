@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodSecurityConfig
  */
-class PodSecurityConfigTest {
+public class PodSecurityConfigTest {
     private final PodSecurityConfig model = new PodSecurityConfig();
 
     /**
      * Model tests for PodSecurityConfig
      */
     @Test
-    void testPodSecurityConfig() {
+    public void testPodSecurityConfig() {
         // TODO: test PodSecurityConfig
     }
 
@@ -45,7 +46,7 @@ class PodSecurityConfigTest {
      * Test the property 'idmappings'
      */
     @Test
-    void idmappingsTest() {
+    public void idmappingsTest() {
         // TODO: test idmappings
     }
 
@@ -53,7 +54,7 @@ class PodSecurityConfigTest {
      * Test the property 'securityOpt'
      */
     @Test
-    void securityOptTest() {
+    public void securityOptTest() {
         // TODO: test securityOpt
     }
 

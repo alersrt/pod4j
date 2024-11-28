@@ -13,500 +13,474 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.LinuxBlockIO;
-import io.github.alersrt.pod4j.openapi.model.LinuxCPU;
-import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
-import io.github.alersrt.pod4j.openapi.model.LinuxHugepageLimit;
-import io.github.alersrt.pod4j.openapi.model.LinuxMemory;
-import io.github.alersrt.pod4j.openapi.model.LinuxNetwork;
-import io.github.alersrt.pod4j.openapi.model.LinuxPids;
-import io.github.alersrt.pod4j.openapi.model.LinuxRdma;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxResources has container runtime resource constraints
  */
-@JsonPropertyOrder({
-  LinuxResources.JSON_PROPERTY_BLOCK_I_O,
-  LinuxResources.JSON_PROPERTY_CPU,
-  LinuxResources.JSON_PROPERTY_DEVICES,
-  LinuxResources.JSON_PROPERTY_HUGEPAGE_LIMITS,
-  LinuxResources.JSON_PROPERTY_MEMORY,
-  LinuxResources.JSON_PROPERTY_NETWORK,
-  LinuxResources.JSON_PROPERTY_PIDS,
-  LinuxResources.JSON_PROPERTY_RDMA,
-  LinuxResources.JSON_PROPERTY_UNIFIED
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxResources {
-  public static final String JSON_PROPERTY_BLOCK_I_O = "blockIO";
-  private LinuxBlockIO blockIO;
-
-  public static final String JSON_PROPERTY_CPU = "cpu";
-  private LinuxCPU cpu;
-
-  public static final String JSON_PROPERTY_DEVICES = "devices";
-  private List<@Valid LinuxDeviceCgroup> devices = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_HUGEPAGE_LIMITS = "hugepageLimits";
-  private List<@Valid LinuxHugepageLimit> hugepageLimits = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_MEMORY = "memory";
-  private LinuxMemory memory;
-
-  public static final String JSON_PROPERTY_NETWORK = "network";
-  private LinuxNetwork network;
-
-  public static final String JSON_PROPERTY_PIDS = "pids";
-  private LinuxPids pids;
-
-  public static final String JSON_PROPERTY_RDMA = "rdma";
-  private Map<String, LinuxRdma> rdma = new HashMap<>();
-
-  public static final String JSON_PROPERTY_UNIFIED = "unified";
-  private Map<String, String> unified = new HashMap<>();
-
-  public LinuxResources() { 
-  }
-
-  public LinuxResources blockIO(LinuxBlockIO blockIO) {
-    this.blockIO = blockIO;
-    return this;
-  }
-
-  /**
-   * Get blockIO
-   * @return blockIO
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLOCK_I_O)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxBlockIO getBlockIO() {
-    return blockIO;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLOCK_I_O)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlockIO(LinuxBlockIO blockIO) {
-    this.blockIO = blockIO;
-  }
-
-
-  public LinuxResources cpu(LinuxCPU cpu) {
-    this.cpu = cpu;
-    return this;
-  }
-
-  /**
-   * Get cpu
-   * @return cpu
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CPU)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxCPU getCpu() {
-    return cpu;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpu(LinuxCPU cpu) {
-    this.cpu = cpu;
-  }
-
-
-  public LinuxResources devices(List<@Valid LinuxDeviceCgroup> devices) {
-    this.devices = devices;
-    return this;
-  }
-
-  public LinuxResources addDevicesItem(LinuxDeviceCgroup devicesItem) {
-    if (this.devices == null) {
-      this.devices = new ArrayList<>();
-    }
-    this.devices.add(devicesItem);
-    return this;
-  }
-
-  /**
-   * Devices configures the device allowlist.
-   * @return devices
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid LinuxDeviceCgroup> getDevices() {
-    return devices;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDevices(List<@Valid LinuxDeviceCgroup> devices) {
-    this.devices = devices;
-  }
-
-
-  public LinuxResources hugepageLimits(List<@Valid LinuxHugepageLimit> hugepageLimits) {
-    this.hugepageLimits = hugepageLimits;
-    return this;
-  }
-
-  public LinuxResources addHugepageLimitsItem(LinuxHugepageLimit hugepageLimitsItem) {
-    if (this.hugepageLimits == null) {
-      this.hugepageLimits = new ArrayList<>();
-    }
-    this.hugepageLimits.add(hugepageLimitsItem);
-    return this;
-  }
-
-  /**
-   * Hugetlb limits (in bytes). Default to reservation limits if supported.
-   * @return hugepageLimits
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_HUGEPAGE_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid LinuxHugepageLimit> getHugepageLimits() {
-    return hugepageLimits;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HUGEPAGE_LIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHugepageLimits(List<@Valid LinuxHugepageLimit> hugepageLimits) {
-    this.hugepageLimits = hugepageLimits;
-  }
-
-
-  public LinuxResources memory(LinuxMemory memory) {
-    this.memory = memory;
-    return this;
-  }
-
-  /**
-   * Get memory
-   * @return memory
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxMemory getMemory() {
-    return memory;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemory(LinuxMemory memory) {
-    this.memory = memory;
-  }
-
-
-  public LinuxResources network(LinuxNetwork network) {
-    this.network = network;
-    return this;
-  }
-
-  /**
-   * Get network
-   * @return network
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_NETWORK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxNetwork getNetwork() {
-    return network;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetwork(LinuxNetwork network) {
-    this.network = network;
-  }
-
-
-  public LinuxResources pids(LinuxPids pids) {
-    this.pids = pids;
-    return this;
-  }
-
-  /**
-   * Get pids
-   * @return pids
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PIDS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxPids getPids() {
-    return pids;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PIDS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPids(LinuxPids pids) {
-    this.pids = pids;
-  }
-
-
-  public LinuxResources rdma(Map<String, LinuxRdma> rdma) {
-    this.rdma = rdma;
-    return this;
-  }
-
-  public LinuxResources putRdmaItem(String key, LinuxRdma rdmaItem) {
-    if (this.rdma == null) {
-      this.rdma = new HashMap<>();
-    }
-    this.rdma.put(key, rdmaItem);
-    return this;
-  }
-
-  /**
-   * Rdma resource restriction configuration. Limits are a set of key value pairs that define RDMA resource limits, where the key is device name and value is resource limits.
-   * @return rdma
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_RDMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, LinuxRdma> getRdma() {
-    return rdma;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RDMA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRdma(Map<String, LinuxRdma> rdma) {
-    this.rdma = rdma;
-  }
-
-
-  public LinuxResources unified(Map<String, String> unified) {
-    this.unified = unified;
-    return this;
-  }
-
-  public LinuxResources putUnifiedItem(String key, String unifiedItem) {
-    if (this.unified == null) {
-      this.unified = new HashMap<>();
-    }
-    this.unified.put(key, unifiedItem);
-    return this;
-  }
-
-  /**
-   * Unified resources.
-   * @return unified
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNIFIED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getUnified() {
-    return unified;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNIFIED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnified(Map<String, String> unified) {
-    this.unified = unified;
-  }
-
-
-  /**
-   * Return true if this LinuxResources object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxResources linuxResources = (LinuxResources) o;
-    return Objects.equals(this.blockIO, linuxResources.blockIO) &&
-        Objects.equals(this.cpu, linuxResources.cpu) &&
-        Objects.equals(this.devices, linuxResources.devices) &&
-        Objects.equals(this.hugepageLimits, linuxResources.hugepageLimits) &&
-        Objects.equals(this.memory, linuxResources.memory) &&
-        Objects.equals(this.network, linuxResources.network) &&
-        Objects.equals(this.pids, linuxResources.pids) &&
-        Objects.equals(this.rdma, linuxResources.rdma) &&
-        Objects.equals(this.unified, linuxResources.unified);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(blockIO, cpu, devices, hugepageLimits, memory, network, pids, rdma, unified);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxResources {\n");
-    sb.append("    blockIO: ").append(toIndentedString(blockIO)).append("\n");
-    sb.append("    cpu: ").append(toIndentedString(cpu)).append("\n");
-    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
-    sb.append("    hugepageLimits: ").append(toIndentedString(hugepageLimits)).append("\n");
-    sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
-    sb.append("    network: ").append(toIndentedString(network)).append("\n");
-    sb.append("    pids: ").append(toIndentedString(pids)).append("\n");
-    sb.append("    rdma: ").append(toIndentedString(rdma)).append("\n");
-    sb.append("    unified: ").append(toIndentedString(unified)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_BLOCK_I_O = "blockIO";
+    public static final String SERIALIZED_NAME_CPU = "cpu";
+    public static final String SERIALIZED_NAME_DEVICES = "devices";
+    public static final String SERIALIZED_NAME_HUGEPAGE_LIMITS = "hugepageLimits";
+    public static final String SERIALIZED_NAME_MEMORY = "memory";
+    public static final String SERIALIZED_NAME_NETWORK = "network";
+    public static final String SERIALIZED_NAME_PIDS = "pids";
+    public static final String SERIALIZED_NAME_RDMA = "rdma";
+    public static final String SERIALIZED_NAME_UNIFIED = "unified";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("blockIO");
+        openapiFields.add("cpu");
+        openapiFields.add("devices");
+        openapiFields.add("hugepageLimits");
+        openapiFields.add("memory");
+        openapiFields.add("network");
+        openapiFields.add("pids");
+        openapiFields.add("rdma");
+        openapiFields.add("unified");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_BLOCK_I_O)
+    private LinuxBlockIO blockIO;
+    @SerializedName(SERIALIZED_NAME_CPU)
+    private LinuxCPU cpu;
+    @SerializedName(SERIALIZED_NAME_DEVICES)
+    private List<@Valid LinuxDeviceCgroup> devices = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_HUGEPAGE_LIMITS)
+    private List<@Valid LinuxHugepageLimit> hugepageLimits = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_MEMORY)
+    private LinuxMemory memory;
+    @SerializedName(SERIALIZED_NAME_NETWORK)
+    private LinuxNetwork network;
+    @SerializedName(SERIALIZED_NAME_PIDS)
+    private LinuxPids pids;
+    @SerializedName(SERIALIZED_NAME_RDMA)
+    private Map<String, LinuxRdma> rdma = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_UNIFIED)
+    private Map<String, String> unified = new HashMap<>();
 
-    // add `blockIO` to the URL query string
-    if (getBlockIO() != null) {
-      joiner.add(getBlockIO().toUrlQueryString(prefix + "blockIO" + suffix));
+    public LinuxResources() {
     }
 
-    // add `cpu` to the URL query string
-    if (getCpu() != null) {
-      joiner.add(getCpu().toUrlQueryString(prefix + "cpu" + suffix));
-    }
-
-    // add `devices` to the URL query string
-    if (getDevices() != null) {
-      for (int i = 0; i < getDevices().size(); i++) {
-        if (getDevices().get(i) != null) {
-          joiner.add(getDevices().get(i).toUrlQueryString(String.format("%sdevices%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxResources
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxResources.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxResources is not found in the empty JSON string", LinuxResources.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `hugepageLimits` to the URL query string
-    if (getHugepageLimits() != null) {
-      for (int i = 0; i < getHugepageLimits().size(); i++) {
-        if (getHugepageLimits().get(i) != null) {
-          joiner.add(getHugepageLimits().get(i).toUrlQueryString(String.format("%shugepageLimits%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxResources.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxResources` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
-    }
-
-    // add `memory` to the URL query string
-    if (getMemory() != null) {
-      joiner.add(getMemory().toUrlQueryString(prefix + "memory" + suffix));
-    }
-
-    // add `network` to the URL query string
-    if (getNetwork() != null) {
-      joiner.add(getNetwork().toUrlQueryString(prefix + "network" + suffix));
-    }
-
-    // add `pids` to the URL query string
-    if (getPids() != null) {
-      joiner.add(getPids().toUrlQueryString(prefix + "pids" + suffix));
-    }
-
-    // add `rdma` to the URL query string
-    if (getRdma() != null) {
-      for (String _key : getRdma().keySet()) {
-        if (getRdma().get(_key) != null) {
-          joiner.add(getRdma().get(_key).toUrlQueryString(String.format("%srdma%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `blockIO`
+        if (jsonObj.get("blockIO") != null && !jsonObj.get("blockIO").isJsonNull()) {
+            LinuxBlockIO.validateJsonElement(jsonObj.get("blockIO"));
         }
-      }
+        // validate the optional field `cpu`
+        if (jsonObj.get("cpu") != null && !jsonObj.get("cpu").isJsonNull()) {
+            LinuxCPU.validateJsonElement(jsonObj.get("cpu"));
+        }
+        if (jsonObj.get("devices") != null && !jsonObj.get("devices").isJsonNull()) {
+            JsonArray jsonArraydevices = jsonObj.getAsJsonArray("devices");
+            if (jsonArraydevices != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("devices").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `devices` to be an array in the JSON string but got `%s`", jsonObj.get("devices").toString()));
+                }
+
+                // validate the optional field `devices` (array)
+                for (int i = 0; i < jsonArraydevices.size(); i++) {
+                    LinuxDeviceCgroup.validateJsonElement(jsonArraydevices.get(i));
+                }
+            }
+        }
+        if (jsonObj.get("hugepageLimits") != null && !jsonObj.get("hugepageLimits").isJsonNull()) {
+            JsonArray jsonArrayhugepageLimits = jsonObj.getAsJsonArray("hugepageLimits");
+            if (jsonArrayhugepageLimits != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("hugepageLimits").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `hugepageLimits` to be an array in the JSON string but got `%s`", jsonObj.get("hugepageLimits").toString()));
+                }
+
+                // validate the optional field `hugepageLimits` (array)
+                for (int i = 0; i < jsonArrayhugepageLimits.size(); i++) {
+                    LinuxHugepageLimit.validateJsonElement(jsonArrayhugepageLimits.get(i));
+                }
+            }
+        }
+        // validate the optional field `memory`
+        if (jsonObj.get("memory") != null && !jsonObj.get("memory").isJsonNull()) {
+            LinuxMemory.validateJsonElement(jsonObj.get("memory"));
+        }
+        // validate the optional field `network`
+        if (jsonObj.get("network") != null && !jsonObj.get("network").isJsonNull()) {
+            LinuxNetwork.validateJsonElement(jsonObj.get("network"));
+        }
+        // validate the optional field `pids`
+        if (jsonObj.get("pids") != null && !jsonObj.get("pids").isJsonNull()) {
+            LinuxPids.validateJsonElement(jsonObj.get("pids"));
+        }
     }
 
-    // add `unified` to the URL query string
-    if (getUnified() != null) {
-      for (String _key : getUnified().keySet()) {
-        joiner.add(String.format("%sunified%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getUnified().get(_key), URLEncoder.encode(ApiClient.valueToString(getUnified().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Create an instance of LinuxResources given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxResources
+     * @throws IOException if the JSON string is invalid with respect to LinuxResources
+     */
+    public static LinuxResources fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxResources.class);
     }
 
-    return joiner.toString();
-  }
+    public LinuxResources blockIO(LinuxBlockIO blockIO) {
+        this.blockIO = blockIO;
+        return this;
+    }
+
+    /**
+     * Get blockIO
+     *
+     * @return blockIO
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxBlockIO getBlockIO() {
+        return blockIO;
+    }
+
+    public void setBlockIO(LinuxBlockIO blockIO) {
+        this.blockIO = blockIO;
+    }
+
+    public LinuxResources cpu(LinuxCPU cpu) {
+        this.cpu = cpu;
+        return this;
+    }
+
+    /**
+     * Get cpu
+     *
+     * @return cpu
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxCPU getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(LinuxCPU cpu) {
+        this.cpu = cpu;
+    }
+
+    public LinuxResources devices(List<@Valid LinuxDeviceCgroup> devices) {
+        this.devices = devices;
+        return this;
+    }
+
+    public LinuxResources addDevicesItem(LinuxDeviceCgroup devicesItem) {
+        if (this.devices == null) {
+            this.devices = new ArrayList<>();
+        }
+        this.devices.add(devicesItem);
+        return this;
+    }
+
+    /**
+     * Devices configures the device allowlist.
+     *
+     * @return devices
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid LinuxDeviceCgroup> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<@Valid LinuxDeviceCgroup> devices) {
+        this.devices = devices;
+    }
+
+    public LinuxResources hugepageLimits(List<@Valid LinuxHugepageLimit> hugepageLimits) {
+        this.hugepageLimits = hugepageLimits;
+        return this;
+    }
+
+    public LinuxResources addHugepageLimitsItem(LinuxHugepageLimit hugepageLimitsItem) {
+        if (this.hugepageLimits == null) {
+            this.hugepageLimits = new ArrayList<>();
+        }
+        this.hugepageLimits.add(hugepageLimitsItem);
+        return this;
+    }
+
+    /**
+     * Hugetlb limits (in bytes). Default to reservation limits if supported.
+     *
+     * @return hugepageLimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid LinuxHugepageLimit> getHugepageLimits() {
+        return hugepageLimits;
+    }
+
+    public void setHugepageLimits(List<@Valid LinuxHugepageLimit> hugepageLimits) {
+        this.hugepageLimits = hugepageLimits;
+    }
+
+    public LinuxResources memory(LinuxMemory memory) {
+        this.memory = memory;
+        return this;
+    }
+
+    /**
+     * Get memory
+     *
+     * @return memory
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxMemory getMemory() {
+        return memory;
+    }
+
+    public void setMemory(LinuxMemory memory) {
+        this.memory = memory;
+    }
+
+    public LinuxResources network(LinuxNetwork network) {
+        this.network = network;
+        return this;
+    }
+
+    /**
+     * Get network
+     *
+     * @return network
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxNetwork getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(LinuxNetwork network) {
+        this.network = network;
+    }
+
+    public LinuxResources pids(LinuxPids pids) {
+        this.pids = pids;
+        return this;
+    }
+
+    /**
+     * Get pids
+     *
+     * @return pids
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxPids getPids() {
+        return pids;
+    }
+
+    public void setPids(LinuxPids pids) {
+        this.pids = pids;
+    }
+
+    public LinuxResources rdma(Map<String, LinuxRdma> rdma) {
+        this.rdma = rdma;
+        return this;
+    }
+
+    public LinuxResources putRdmaItem(String key, LinuxRdma rdmaItem) {
+        if (this.rdma == null) {
+            this.rdma = new HashMap<>();
+        }
+        this.rdma.put(key, rdmaItem);
+        return this;
+    }
+
+    /**
+     * Rdma resource restriction configuration. Limits are a set of key value pairs that define RDMA resource limits, where the key is device name and value is resource limits.
+     *
+     * @return rdma
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, LinuxRdma> getRdma() {
+        return rdma;
+    }
+
+    public void setRdma(Map<String, LinuxRdma> rdma) {
+        this.rdma = rdma;
+    }
+
+    public LinuxResources unified(Map<String, String> unified) {
+        this.unified = unified;
+        return this;
+    }
+
+    public LinuxResources putUnifiedItem(String key, String unifiedItem) {
+        if (this.unified == null) {
+            this.unified = new HashMap<>();
+        }
+        this.unified.put(key, unifiedItem);
+        return this;
+    }
+
+    /**
+     * Unified resources.
+     *
+     * @return unified
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getUnified() {
+        return unified;
+    }
+
+    public void setUnified(Map<String, String> unified) {
+        this.unified = unified;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxResources linuxResources = (LinuxResources) o;
+        return Objects.equals(this.blockIO, linuxResources.blockIO) &&
+                Objects.equals(this.cpu, linuxResources.cpu) &&
+                Objects.equals(this.devices, linuxResources.devices) &&
+                Objects.equals(this.hugepageLimits, linuxResources.hugepageLimits) &&
+                Objects.equals(this.memory, linuxResources.memory) &&
+                Objects.equals(this.network, linuxResources.network) &&
+                Objects.equals(this.pids, linuxResources.pids) &&
+                Objects.equals(this.rdma, linuxResources.rdma) &&
+                Objects.equals(this.unified, linuxResources.unified);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(blockIO, cpu, devices, hugepageLimits, memory, network, pids, rdma, unified);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LinuxResources {\n" +
+                "    blockIO: " + toIndentedString(blockIO) + "\n" +
+                "    cpu: " + toIndentedString(cpu) + "\n" +
+                "    devices: " + toIndentedString(devices) + "\n" +
+                "    hugepageLimits: " + toIndentedString(hugepageLimits) + "\n" +
+                "    memory: " + toIndentedString(memory) + "\n" +
+                "    network: " + toIndentedString(network) + "\n" +
+                "    pids: " + toIndentedString(pids) + "\n" +
+                "    rdma: " + toIndentedString(rdma) + "\n" +
+                "    unified: " + toIndentedString(unified) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LinuxResources to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxResources.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxResources' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxResources> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxResources.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LinuxResources>() {
+                @Override
+                public void write(JsonWriter out, LinuxResources value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LinuxResources read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

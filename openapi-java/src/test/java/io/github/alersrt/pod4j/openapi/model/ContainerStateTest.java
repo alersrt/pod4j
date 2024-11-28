@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Health;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerState
  */
-class ContainerStateTest {
+public class ContainerStateTest {
     private final ContainerState model = new ContainerState();
 
     /**
      * Model tests for ContainerState
      */
     @Test
-    void testContainerState() {
+    public void testContainerState() {
         // TODO: test ContainerState
     }
 
@@ -43,7 +33,7 @@ class ContainerStateTest {
      * Test the property 'dead'
      */
     @Test
-    void deadTest() {
+    public void deadTest() {
         // TODO: test dead
     }
 
@@ -51,7 +41,7 @@ class ContainerStateTest {
      * Test the property 'error'
      */
     @Test
-    void errorTest() {
+    public void errorTest() {
         // TODO: test error
     }
 
@@ -59,7 +49,7 @@ class ContainerStateTest {
      * Test the property 'exitCode'
      */
     @Test
-    void exitCodeTest() {
+    public void exitCodeTest() {
         // TODO: test exitCode
     }
 
@@ -67,7 +57,7 @@ class ContainerStateTest {
      * Test the property 'finishedAt'
      */
     @Test
-    void finishedAtTest() {
+    public void finishedAtTest() {
         // TODO: test finishedAt
     }
 
@@ -75,7 +65,7 @@ class ContainerStateTest {
      * Test the property 'health'
      */
     @Test
-    void healthTest() {
+    public void healthTest() {
         // TODO: test health
     }
 
@@ -83,7 +73,7 @@ class ContainerStateTest {
      * Test the property 'ooMKilled'
      */
     @Test
-    void ooMKilledTest() {
+    public void ooMKilledTest() {
         // TODO: test ooMKilled
     }
 
@@ -91,7 +81,7 @@ class ContainerStateTest {
      * Test the property 'paused'
      */
     @Test
-    void pausedTest() {
+    public void pausedTest() {
         // TODO: test paused
     }
 
@@ -99,7 +89,7 @@ class ContainerStateTest {
      * Test the property 'pid'
      */
     @Test
-    void pidTest() {
+    public void pidTest() {
         // TODO: test pid
     }
 
@@ -107,7 +97,7 @@ class ContainerStateTest {
      * Test the property 'restarting'
      */
     @Test
-    void restartingTest() {
+    public void restartingTest() {
         // TODO: test restarting
     }
 
@@ -115,7 +105,7 @@ class ContainerStateTest {
      * Test the property 'running'
      */
     @Test
-    void runningTest() {
+    public void runningTest() {
         // TODO: test running
     }
 
@@ -123,7 +113,7 @@ class ContainerStateTest {
      * Test the property 'startedAt'
      */
     @Test
-    void startedAtTest() {
+    public void startedAtTest() {
         // TODO: test startedAt
     }
 
@@ -131,7 +121,7 @@ class ContainerStateTest {
      * Test the property 'status'
      */
     @Test
-    void statusTest() {
+    public void statusTest() {
         // TODO: test status
     }
 

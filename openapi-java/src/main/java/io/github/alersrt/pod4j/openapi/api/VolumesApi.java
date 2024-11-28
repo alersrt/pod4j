@@ -10,547 +10,833 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.reflect.TypeToken;
+import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
+import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
 import io.github.alersrt.pod4j.openapi.model.VolumeConfigResponse;
 import io.github.alersrt.pod4j.openapi.model.VolumeCreateOptions;
+import jakarta.validation.constraints.NotNull;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.StringJoiner;
-import java.util.function.Consumer;
+import java.util.Map;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class VolumesApi {
-  private final HttpClient memberVarHttpClient;
-  private final ObjectMapper memberVarObjectMapper;
-  private final String memberVarBaseUri;
-  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
-  private final Duration memberVarReadTimeout;
-  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+    private ApiClient localVarApiClient;
+    private int localHostIndex;
+    private String localCustomBaseUrl;
 
-  public VolumesApi() {
-    this(new ApiClient());
-  }
-
-  public VolumesApi(ApiClient apiClient) {
-    memberVarHttpClient = apiClient.getHttpClient();
-    memberVarObjectMapper = apiClient.getObjectMapper();
-    memberVarBaseUri = apiClient.getBaseUri();
-    memberVarInterceptor = apiClient.getRequestInterceptor();
-    memberVarReadTimeout = apiClient.getReadTimeout();
-    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
-    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
-  }
-
-  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
-    String message = formatExceptionMessage(operationId, response.statusCode(), body);
-    return new ApiException(response.statusCode(), message, response.headers(), body);
-  }
-
-  private String formatExceptionMessage(String operationId, int statusCode, String body) {
-    if (body == null || body.isEmpty()) {
-      body = "[no body]";
+    public VolumesApi() {
+        this(Configuration.getDefaultApiClient());
     }
-    return operationId + " call failed with: " + statusCode + " - " + body;
-  }
 
-  /**
-   * Create a volume
-   * 
-   * @param create attributes for creating a volume (optional)
-   * @return VolumeConfigResponse
-   * @throws ApiException if fails to make API call
-   */
-  public VolumeConfigResponse volumeCreateLibpod(VolumeCreateOptions create) throws ApiException {
-    ApiResponse<VolumeConfigResponse> localVarResponse = volumeCreateLibpodWithHttpInfo(create);
-    return localVarResponse.getData();
-  }
+    public VolumesApi(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
 
-  /**
-   * Create a volume
-   * 
-   * @param create attributes for creating a volume (optional)
-   * @return ApiResponse&lt;VolumeConfigResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<VolumeConfigResponse> volumeCreateLibpodWithHttpInfo(VolumeCreateOptions create) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = volumeCreateLibpodRequestBuilder(create);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("volumeCreateLibpod", localVarResponse);
+    public ApiClient getApiClient() {
+        return localVarApiClient;
+    }
+
+    public void setApiClient(ApiClient apiClient) {
+        this.localVarApiClient = apiClient;
+    }
+
+    public int getHostIndex() {
+        return localHostIndex;
+    }
+
+    public void setHostIndex(int hostIndex) {
+        this.localHostIndex = hostIndex;
+    }
+
+    public String getCustomBaseUrl() {
+        return localCustomBaseUrl;
+    }
+
+    public void setCustomBaseUrl(String customBaseUrl) {
+        this.localCustomBaseUrl = customBaseUrl;
+    }
+
+    /**
+     * Build call for volumeCreateLibpod
+     *
+     * @param create    attributes for creating a volume (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Volume details </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeCreateLibpodCall(VolumeCreateOptions create, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<VolumeConfigResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<VolumeConfigResponse>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder volumeCreateLibpodRequestBuilder(VolumeCreateOptions create) throws ApiException {
+        Object localVarPostBody = create;
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+        // create path and map variables
+        String localVarPath = "/libpod/volumes/create";
 
-    String localVarPath = "/libpod/volumes/create";
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Content-Type", "application/json");
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    try {
-      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(create);
-      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Remove volume
-   * 
-   * @param name the name or ID of the volume (required)
-   * @param force force removal (optional)
-   * @throws ApiException if fails to make API call
-   */
-  public void volumeDeleteLibpod(String name, Boolean force) throws ApiException {
-    volumeDeleteLibpodWithHttpInfo(name, force);
-  }
-
-  /**
-   * Remove volume
-   * 
-   * @param name the name or ID of the volume (required)
-   * @param force force removal (optional)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> volumeDeleteLibpodWithHttpInfo(String name, Boolean force) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = volumeDeleteLibpodRequestBuilder(name, force);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("volumeDeleteLibpod", localVarResponse);
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        final String[] localVarContentTypes = {
+                "application/json",
+                "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder volumeDeleteLibpodRequestBuilder(String name, Boolean force) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling volumeDeleteLibpod");
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call volumeCreateLibpodValidateBeforeCall(VolumeCreateOptions create, final ApiCallback _callback) throws ApiException {
+        return volumeCreateLibpodCall(create, _callback);
 
-    String localVarPath = "/libpod/volumes/{name}"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "force";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("force", force));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Create a volume
+     *
+     * @param create attributes for creating a volume (optional)
+     * @return VolumeConfigResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Volume details </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public VolumeConfigResponse volumeCreateLibpod(VolumeCreateOptions create) throws ApiException {
+        ApiResponse<VolumeConfigResponse> localVarResp = volumeCreateLibpodWithHttpInfo(create);
+        return localVarResp.getData();
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
+
+    /**
+     * Create a volume
+     *
+     * @param create attributes for creating a volume (optional)
+     * @return ApiResponse&lt;VolumeConfigResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Volume details </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<VolumeConfigResponse> volumeCreateLibpodWithHttpInfo(VolumeCreateOptions create) throws ApiException {
+        okhttp3.Call localVarCall = volumeCreateLibpodValidateBeforeCall(create, null);
+        Type localVarReturnType = new TypeToken<VolumeConfigResponse>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
-    return localVarRequestBuilder;
-  }
 
-  /**
-   * Volume exists
-   * Check if a volume exists
-   * @param name the name of the volume (required)
-   * @throws ApiException if fails to make API call
-   */
-  public void volumeExistsLibpod(String name) throws ApiException {
-    volumeExistsLibpodWithHttpInfo(name);
-  }
+    /**
+     * Create a volume (asynchronously)
+     *
+     * @param create    attributes for creating a volume (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 201 </td><td> Volume details </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeCreateLibpodAsync(VolumeCreateOptions create, final ApiCallback<VolumeConfigResponse> _callback) throws ApiException {
 
-  /**
-   * Volume exists
-   * Check if a volume exists
-   * @param name the name of the volume (required)
-   * @return ApiResponse&lt;Void&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<Void> volumeExistsLibpodWithHttpInfo(String name) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = volumeExistsLibpodRequestBuilder(name);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("volumeExistsLibpod", localVarResponse);
+        okhttp3.Call localVarCall = volumeCreateLibpodValidateBeforeCall(create, _callback);
+        Type localVarReturnType = new TypeToken<VolumeConfigResponse>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for volumeDeleteLibpod
+     *
+     * @param name      the name or ID of the volume (required)
+     * @param force     force removal (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeDeleteLibpodCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
         }
-        return new ApiResponse<Void>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          null
-        );
-      } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-            // Ignore
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/volumes/{name}"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (force != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
         }
-        localVarResponse.body().close();
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder volumeExistsLibpodRequestBuilder(String name) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling volumeExistsLibpod");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/volumes/{name}/exists"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Inspect volume
-   * 
-   * @param name the name or ID of the volume (required)
-   * @return VolumeConfigResponse
-   * @throws ApiException if fails to make API call
-   */
-  public VolumeConfigResponse volumeInspectLibpod(String name) throws ApiException {
-    ApiResponse<VolumeConfigResponse> localVarResponse = volumeInspectLibpodWithHttpInfo(name);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Inspect volume
-   * 
-   * @param name the name or ID of the volume (required)
-   * @return ApiResponse&lt;VolumeConfigResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<VolumeConfigResponse> volumeInspectLibpodWithHttpInfo(String name) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = volumeInspectLibpodRequestBuilder(name);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("volumeInspectLibpod", localVarResponse);
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
         }
-        return new ApiResponse<VolumeConfigResponse>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<VolumeConfigResponse>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder volumeInspectLibpodRequestBuilder(String name) throws ApiException {
-    // verify the required parameter 'name' is set
-    if (name == null) {
-      throw new ApiException(400, "Missing the required parameter 'name' when calling volumeInspectLibpod");
-    }
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/volumes/{name}/json"
-        .replace("{name}", ApiClient.urlEncode(name.toString()));
-
-    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * List volumes
-   * Returns a list of volumes
-   * @param filters JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - opt&#x3D;&lt;driver-option&gt; Matches a storage driver options   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  (optional)
-   * @return List&lt;VolumeConfigResponse&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public List<VolumeConfigResponse> volumeListLibpod(String filters) throws ApiException {
-    ApiResponse<List<VolumeConfigResponse>> localVarResponse = volumeListLibpodWithHttpInfo(filters);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * List volumes
-   * Returns a list of volumes
-   * @param filters JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - opt&#x3D;&lt;driver-option&gt; Matches a storage driver options   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  (optional)
-   * @return ApiResponse&lt;List&lt;VolumeConfigResponse&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<List<VolumeConfigResponse>> volumeListLibpodWithHttpInfo(String filters) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = volumeListLibpodRequestBuilder(filters);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("volumeListLibpod", localVarResponse);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
         }
-        return new ApiResponse<List<VolumeConfigResponse>>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<VolumeConfigResponse>>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder volumeListLibpodRequestBuilder(String filters) throws ApiException {
-
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/volumes/json";
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "filters";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("filters", filters));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
-    }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
-
-  /**
-   * Prune volumes
-   * 
-   * @param filters JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-   * @return List&lt;PruneReport&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public List<PruneReport> volumePruneLibpod(String filters) throws ApiException {
-    ApiResponse<List<PruneReport>> localVarResponse = volumePruneLibpodWithHttpInfo(filters);
-    return localVarResponse.getData();
-  }
-
-  /**
-   * Prune volumes
-   * 
-   * @param filters JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-   * @return ApiResponse&lt;List&lt;PruneReport&gt;&gt;
-   * @throws ApiException if fails to make API call
-   */
-  public ApiResponse<List<PruneReport>> volumePruneLibpodWithHttpInfo(String filters) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = volumePruneLibpodRequestBuilder(filters);
-    try {
-      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
-          localVarRequestBuilder.build(),
-          HttpResponse.BodyHandlers.ofInputStream());
-      if (memberVarResponseInterceptor != null) {
-        memberVarResponseInterceptor.accept(localVarResponse);
-      }
-      try {
-        if (localVarResponse.statusCode()/ 100 != 2) {
-          throw getApiException("volumePruneLibpod", localVarResponse);
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call volumeDeleteLibpodValidateBeforeCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling volumeDeleteLibpod(Async)");
         }
-        return new ApiResponse<List<PruneReport>>(
-          localVarResponse.statusCode(),
-          localVarResponse.headers().map(),
-          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<PruneReport>>() {}) // closes the InputStream
-        );
-      } finally {
-      }
-    } catch (IOException e) {
-      throw new ApiException(e);
-    }
-    catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-      throw new ApiException(e);
-    }
-  }
 
-  private HttpRequest.Builder volumePruneLibpodRequestBuilder(String filters) throws ApiException {
+        return volumeDeleteLibpodCall(name, force, _callback);
 
-    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
-
-    String localVarPath = "/libpod/volumes/prune";
-
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "filters";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("filters", filters));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
 
-    localVarRequestBuilder.header("Accept", "application/json");
-
-    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
-    if (memberVarReadTimeout != null) {
-      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    /**
+     * Remove volume
+     *
+     * @param name  the name or ID of the volume (required)
+     * @param force force removal (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void volumeDeleteLibpod(String name, Boolean force) throws ApiException {
+        volumeDeleteLibpodWithHttpInfo(name, force);
     }
-    if (memberVarInterceptor != null) {
-      memberVarInterceptor.accept(localVarRequestBuilder);
-    }
-    return localVarRequestBuilder;
-  }
 
+    /**
+     * Remove volume
+     *
+     * @param name  the name or ID of the volume (required)
+     * @param force force removal (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> volumeDeleteLibpodWithHttpInfo(@NotNull String name, Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = volumeDeleteLibpodValidateBeforeCall(name, force, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Remove volume (asynchronously)
+     *
+     * @param name      the name or ID of the volume (required)
+     * @param force     force removal (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 409 </td><td> Volume is in use and cannot be removed </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeDeleteLibpodAsync(String name, Boolean force, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = volumeDeleteLibpodValidateBeforeCall(name, force, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for volumeExistsLibpod
+     *
+     * @param name      the name of the volume (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> volume exists </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/volumes/{name}/exists"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call volumeExistsLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling volumeExistsLibpod(Async)");
+        }
+
+        return volumeExistsLibpodCall(name, _callback);
+
+    }
+
+    /**
+     * Volume exists
+     * Check if a volume exists
+     *
+     * @param name the name of the volume (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> volume exists </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public void volumeExistsLibpod(String name) throws ApiException {
+        volumeExistsLibpodWithHttpInfo(name);
+    }
+
+    /**
+     * Volume exists
+     * Check if a volume exists
+     *
+     * @param name the name of the volume (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> volume exists </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<Void> volumeExistsLibpodWithHttpInfo(@NotNull String name) throws ApiException {
+        okhttp3.Call localVarCall = volumeExistsLibpodValidateBeforeCall(name, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Volume exists (asynchronously)
+     * Check if a volume exists
+     *
+     * @param name      the name of the volume (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 204 </td><td> volume exists </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = volumeExistsLibpodValidateBeforeCall(name, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for volumeInspectLibpod
+     *
+     * @param name      the name or ID of the volume (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume details </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeInspectLibpodCall(String name, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/volumes/{name}/json"
+                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call volumeInspectLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling volumeInspectLibpod(Async)");
+        }
+
+        return volumeInspectLibpodCall(name, _callback);
+
+    }
+
+    /**
+     * Inspect volume
+     *
+     * @param name the name or ID of the volume (required)
+     * @return VolumeConfigResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume details </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public VolumeConfigResponse volumeInspectLibpod(String name) throws ApiException {
+        ApiResponse<VolumeConfigResponse> localVarResp = volumeInspectLibpodWithHttpInfo(name);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Inspect volume
+     *
+     * @param name the name or ID of the volume (required)
+     * @return ApiResponse&lt;VolumeConfigResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume details </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<VolumeConfigResponse> volumeInspectLibpodWithHttpInfo(@NotNull String name) throws ApiException {
+        okhttp3.Call localVarCall = volumeInspectLibpodValidateBeforeCall(name, null);
+        Type localVarReturnType = new TypeToken<VolumeConfigResponse>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Inspect volume (asynchronously)
+     *
+     * @param name      the name or ID of the volume (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume details </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> No such volume </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeInspectLibpodAsync(String name, final ApiCallback<VolumeConfigResponse> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = volumeInspectLibpodValidateBeforeCall(name, _callback);
+        Type localVarReturnType = new TypeToken<VolumeConfigResponse>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for volumeListLibpod
+     *
+     * @param filters   JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - opt&#x3D;&lt;driver-option&gt; Matches a storage driver options   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume list </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeListLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/volumes/json";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (filters != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filters", filters));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call volumeListLibpodValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
+        return volumeListLibpodCall(filters, _callback);
+
+    }
+
+    /**
+     * List volumes
+     * Returns a list of volumes
+     *
+     * @param filters JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - opt&#x3D;&lt;driver-option&gt; Matches a storage driver options   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  (optional)
+     * @return List&lt;VolumeConfigResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume list </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public List<VolumeConfigResponse> volumeListLibpod(String filters) throws ApiException {
+        ApiResponse<List<VolumeConfigResponse>> localVarResp = volumeListLibpodWithHttpInfo(filters);
+        return localVarResp.getData();
+    }
+
+    /**
+     * List volumes
+     * Returns a list of volumes
+     *
+     * @param filters JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - opt&#x3D;&lt;driver-option&gt; Matches a storage driver options   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  (optional)
+     * @return ApiResponse&lt;List&lt;VolumeConfigResponse&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume list </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<List<VolumeConfigResponse>> volumeListLibpodWithHttpInfo(String filters) throws ApiException {
+        okhttp3.Call localVarCall = volumeListLibpodValidateBeforeCall(filters, null);
+        Type localVarReturnType = new TypeToken<List<VolumeConfigResponse>>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * List volumes (asynchronously)
+     * Returns a list of volumes
+     *
+     * @param filters   JSON encoded value of the filters (a map[string][]string) to process on the volumes list. Available filters:   - driver&#x3D;&lt;volume-driver-name&gt; Matches volumes based on their driver.   - label&#x3D;&lt;key&gt; or label&#x3D;&lt;key&gt;:&lt;value&gt; Matches volumes based on the presence of a label alone or a label and a value.   - name&#x3D;&lt;volume-name&gt; Matches all of volume name.   - opt&#x3D;&lt;driver-option&gt; Matches a storage driver options   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume list </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumeListLibpodAsync(String filters, final ApiCallback<List<VolumeConfigResponse>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = volumeListLibpodValidateBeforeCall(filters, _callback);
+        Type localVarReturnType = new TypeToken<List<VolumeConfigResponse>>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+
+    /**
+     * Build call for volumePruneLibpod
+     *
+     * @param filters   JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume Prune </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumePruneLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[]{};
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null) {
+            basePath = localCustomBaseUrl;
+        } else if (localBasePaths.length > 0) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/libpod/volumes/prune";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (filters != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filters", filters));
+        }
+
+        final String[] localVarAccepts = {
+                "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[]{};
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call volumePruneLibpodValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
+        return volumePruneLibpodCall(filters, _callback);
+
+    }
+
+    /**
+     * Prune volumes
+     *
+     * @param filters JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
+     * @return List&lt;PruneReport&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume Prune </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public List<PruneReport> volumePruneLibpod(String filters) throws ApiException {
+        ApiResponse<List<PruneReport>> localVarResp = volumePruneLibpodWithHttpInfo(filters);
+        return localVarResp.getData();
+    }
+
+    /**
+     * Prune volumes
+     *
+     * @param filters JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
+     * @return ApiResponse&lt;List&lt;PruneReport&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume Prune </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public ApiResponse<List<PruneReport>> volumePruneLibpodWithHttpInfo(String filters) throws ApiException {
+        okhttp3.Call localVarCall = volumePruneLibpodValidateBeforeCall(filters, null);
+        Type localVarReturnType = new TypeToken<List<PruneReport>>() {
+        }.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * Prune volumes (asynchronously)
+     *
+     * @param filters   JSON encoded value of filters (a map[string][]string) to match volumes against before pruning. Available filters:   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune volumes created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune volumes with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details <table summary="Response Details" border="1">
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Volume Prune </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     * </table>
+     */
+    public okhttp3.Call volumePruneLibpodAsync(String filters, final ApiCallback<List<PruneReport>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = volumePruneLibpodValidateBeforeCall(filters, _callback);
+        Type localVarReturnType = new TypeToken<List<PruneReport>>() {
+        }.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
 }

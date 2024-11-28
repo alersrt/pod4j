@@ -14,8 +14,6 @@
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
-import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.HistoryResponse;
 import io.github.alersrt.pod4j.openapi.model.ImageBuildLibpod200Response;
 import io.github.alersrt.pod4j.openapi.model.ImageData;
@@ -31,15 +29,8 @@ import io.github.alersrt.pod4j.openapi.model.ScpReport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.File;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for ImagesApi
@@ -49,14 +40,12 @@ public class ImagesApiTest {
 
     private final ImagesApi api = new ImagesApi();
 
-
     /**
      * Create image
-     *
+     * <p>
      * Build an image from the given Dockerfile(s)
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageBuildLibpodTest() throws ApiException {
@@ -92,38 +81,32 @@ public class ImagesApiTest {
         List<String> unsetenv = null;
         List<String> unsetlabel = null;
         List<String> volume = null;
-        ImageBuildLibpod200Response response =
-                api.imageBuildLibpod(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume);
-        
+        ImageBuildLibpod200Response response = api.imageBuildLibpod(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume);
         // TODO: test validations
     }
 
     /**
      * Report on changes to images&#39;s filesystem; adds, deletes or modifications.
+     * <p>
+     * Returns which files in an image&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted
      *
-     * Returns which files in an image&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageChangesLibpodTest() throws ApiException {
         String name = null;
         String parent = null;
         String diffType = null;
-
         api.imageChangesLibpod(name, parent, diffType);
-
         // TODO: test validations
     }
 
     /**
      * Remove one or more images from the storage.
-     *
+     * <p>
      * Remove one or more images from the storage.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageDeleteAllLibpodTest() throws ApiException {
@@ -132,54 +115,45 @@ public class ImagesApiTest {
         Boolean force = null;
         Boolean ignore = null;
         Boolean lookupManifest = null;
-        LibpodImagesRemoveReport response =
-                api.imageDeleteAllLibpod(images, all, force, ignore, lookupManifest);
-        
+        LibpodImagesRemoveReport response = api.imageDeleteAllLibpod(images, all, force, ignore, lookupManifest);
         // TODO: test validations
     }
 
     /**
      * Remove an image from the local storage.
-     *
+     * <p>
      * Remove an image from the local storage.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageDeleteLibpodTest() throws ApiException {
         String name = null;
         Boolean force = null;
-        LibpodImagesRemoveReport response =
-                api.imageDeleteLibpod(name, force);
-        
+        LibpodImagesRemoveReport response = api.imageDeleteLibpod(name, force);
         // TODO: test validations
     }
 
     /**
      * Image exists
-     *
+     * <p>
      * Check if image exists in local store
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageExistsLibpodTest() throws ApiException {
         String name = null;
-
         api.imageExistsLibpod(name);
-
         // TODO: test validations
     }
 
     /**
      * Export multiple images
-     *
+     * <p>
      * Export multiple images into a single object. Only &#x60;docker-archive&#x60; is currently supported.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageExportLibpodTest() throws ApiException {
@@ -187,55 +161,46 @@ public class ImagesApiTest {
         List<String> references = null;
         Boolean compress = null;
         Boolean ociAcceptUncompressedLayers = null;
-        File response =
-                api.imageExportLibpod(format, references, compress, ociAcceptUncompressedLayers);
-        
+        File response = api.imageExportLibpod(format, references, compress, ociAcceptUncompressedLayers);
         // TODO: test validations
     }
 
     /**
      * Export an image
-     *
+     * <p>
      * Export an image
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageGetLibpodTest() throws ApiException {
         String name = null;
         String format = null;
         Boolean compress = null;
-        File response =
-                api.imageGetLibpod(name, format, compress);
-        
+        File response = api.imageGetLibpod(name, format, compress);
         // TODO: test validations
     }
 
     /**
      * History of an image
-     *
+     * <p>
      * Return parent layers of an image.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageHistoryLibpodTest() throws ApiException {
         String name = null;
-        HistoryResponse response =
-                api.imageHistoryLibpod(name);
-        
+        HistoryResponse response = api.imageHistoryLibpod(name);
         // TODO: test validations
     }
 
     /**
      * Import image
-     *
+     * <p>
      * Import a previously exported tarball as an image.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageImportLibpodTest() throws ApiException {
@@ -245,71 +210,59 @@ public class ImagesApiTest {
         String message = null;
         String reference = null;
         String url = null;
-        ImageImportReport response =
-                api.imageImportLibpod(upload, contentType, changes, message, reference, url);
-        
+        ImageImportReport response = api.imageImportLibpod(upload, contentType, changes, message, reference, url);
         // TODO: test validations
     }
 
     /**
      * Inspect an image
-     *
+     * <p>
      * Obtain low-level information about an image
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageInspectLibpodTest() throws ApiException {
         String name = null;
-        ImageData response =
-                api.imageInspectLibpod(name);
-        
+        ImageData response = api.imageInspectLibpod(name);
         // TODO: test validations
     }
 
     /**
      * List Images
-     *
+     * <p>
      * Returns a list of images on the server
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageListLibpodTest() throws ApiException {
         Boolean all = null;
         String filters = null;
-        List<LibpodImageSummary> response =
-                api.imageListLibpod(all, filters);
-        
+        List<LibpodImageSummary> response = api.imageListLibpod(all, filters);
         // TODO: test validations
     }
 
     /**
      * Load image
-     *
+     * <p>
      * Load an image (oci-archive or docker-archive) stream.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageLoadLibpodTest() throws ApiException {
         String upload = null;
-        ImageLoadReport response =
-                api.imageLoadLibpod(upload);
-        
+        ImageLoadReport response = api.imageLoadLibpod(upload);
         // TODO: test validations
     }
 
     /**
      * Prune unused images
-     *
+     * <p>
      * Remove images that are not being used by a container
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imagePruneLibpodTest() throws ApiException {
@@ -317,19 +270,16 @@ public class ImagesApiTest {
         Boolean external = null;
         Boolean buildcache = null;
         String filters = null;
-        List<PruneReport> response =
-                api.imagePruneLibpod(all, external, buildcache, filters);
-        
+        List<PruneReport> response = api.imagePruneLibpod(all, external, buildcache, filters);
         // TODO: test validations
     }
 
     /**
      * Pull images
-     *
+     * <p>
      * Pull one or more images from a container registry.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imagePullLibpodTest() throws ApiException {
@@ -343,19 +293,16 @@ public class ImagesApiTest {
         Boolean tlsVerify = null;
         Boolean allTags = null;
         String xRegistryAuth = null;
-        LibpodImagesPullReport response =
-                api.imagePullLibpod(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth);
-        
+        LibpodImagesPullReport response = api.imagePullLibpod(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth);
         // TODO: test validations
     }
 
     /**
      * Push Image
-     *
+     * <p>
      * Push an image to a container registry
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imagePushLibpodTest() throws ApiException {
@@ -372,55 +319,46 @@ public class ImagesApiTest {
         Integer retry = null;
         String retryDelay = null;
         String xRegistryAuth = null;
-        File response =
-                api.imagePushLibpod(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth);
-        
+        File response = api.imagePushLibpod(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth);
         // TODO: test validations
     }
 
     /**
      * Resolve an image (short) name
-     *
+     * <p>
      * Resolve the passed image name to a list of fully-qualified images referring to container registries.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageResolveLibpodTest() throws ApiException {
         String name = null;
-
         api.imageResolveLibpod(name);
-
         // TODO: test validations
     }
 
     /**
      * Copy an image from one host to another
-     *
+     * <p>
      * Copy an image from one host to another
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageScpLibpodTest() throws ApiException {
         String name = null;
         String destination = null;
         Boolean quiet = null;
-        ScpReport response =
-                api.imageScpLibpod(name, destination, quiet);
-        
+        ScpReport response = api.imageScpLibpod(name, destination, quiet);
         // TODO: test validations
     }
 
     /**
      * Search images
-     *
+     * <p>
      * Search registries for images
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageSearchLibpodTest() throws ApiException {
@@ -429,65 +367,54 @@ public class ImagesApiTest {
         String filters = null;
         Boolean tlsVerify = null;
         Boolean listTags = null;
-        ImageSearch200Response response =
-                api.imageSearchLibpod(term, limit, filters, tlsVerify, listTags);
-        
+        ImageSearch200Response response = api.imageSearchLibpod(term, limit, filters, tlsVerify, listTags);
         // TODO: test validations
     }
 
     /**
      * Tag an image
-     *
+     * <p>
      * Tag an image so that it becomes part of a repository.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageTagLibpodTest() throws ApiException {
         String name = null;
         String repo = null;
         String tag = null;
-
         api.imageTagLibpod(name, repo, tag);
-
         // TODO: test validations
     }
 
     /**
      * Image tree
-     *
+     * <p>
      * Retrieve the image tree for the provided image name or ID
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageTreeLibpodTest() throws ApiException {
         String name = null;
         Boolean whatrequires = null;
-        ImageTreeReport response =
-                api.imageTreeLibpod(name, whatrequires);
-        
+        ImageTreeReport response = api.imageTreeLibpod(name, whatrequires);
         // TODO: test validations
     }
 
     /**
      * Untag an image
-     *
+     * <p>
      * Untag an image. If not repo and tag are specified, all tags are removed from the image.
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void imageUntagLibpodTest() throws ApiException {
         String name = null;
         String repo = null;
         String tag = null;
-
         api.imageUntagLibpod(name, repo, tag);
-
         // TODO: test validations
     }
 

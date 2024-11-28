@@ -13,848 +13,752 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * ImageInspect
  */
-@JsonPropertyOrder({
-  ImageInspect.JSON_PROPERTY_ARCHITECTURE,
-  ImageInspect.JSON_PROPERTY_AUTHOR,
-  ImageInspect.JSON_PROPERTY_COMMENT,
-  ImageInspect.JSON_PROPERTY_CONFIG,
-  ImageInspect.JSON_PROPERTY_CONTAINER,
-  ImageInspect.JSON_PROPERTY_CONTAINER_CONFIG,
-  ImageInspect.JSON_PROPERTY_CREATED,
-  ImageInspect.JSON_PROPERTY_DOCKER_VERSION,
-  ImageInspect.JSON_PROPERTY_GRAPH_DRIVER,
-  ImageInspect.JSON_PROPERTY_ID,
-  ImageInspect.JSON_PROPERTY_METADATA,
-  ImageInspect.JSON_PROPERTY_OS,
-  ImageInspect.JSON_PROPERTY_OS_VERSION,
-  ImageInspect.JSON_PROPERTY_PARENT,
-  ImageInspect.JSON_PROPERTY_REPO_DIGESTS,
-  ImageInspect.JSON_PROPERTY_REPO_TAGS,
-  ImageInspect.JSON_PROPERTY_ROOT_F_S,
-  ImageInspect.JSON_PROPERTY_SIZE,
-  ImageInspect.JSON_PROPERTY_VARIANT,
-  ImageInspect.JSON_PROPERTY_VIRTUAL_SIZE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageInspect {
-  public static final String JSON_PROPERTY_ARCHITECTURE = "Architecture";
-  private String architecture;
-
-  public static final String JSON_PROPERTY_AUTHOR = "Author";
-  private String author;
-
-  public static final String JSON_PROPERTY_COMMENT = "Comment";
-  private String comment;
-
-  public static final String JSON_PROPERTY_CONFIG = "Config";
-  private Config config;
-
-  public static final String JSON_PROPERTY_CONTAINER = "Container";
-  private String container;
-
-  public static final String JSON_PROPERTY_CONTAINER_CONFIG = "ContainerConfig";
-  private Config containerConfig;
-
-  public static final String JSON_PROPERTY_CREATED = "Created";
-  private String created;
-
-  public static final String JSON_PROPERTY_DOCKER_VERSION = "DockerVersion";
-  private String dockerVersion;
-
-  public static final String JSON_PROPERTY_GRAPH_DRIVER = "GraphDriver";
-  private GraphDriverData graphDriver;
-
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
-
-  public static final String JSON_PROPERTY_METADATA = "Metadata";
-  private Metadata metadata;
-
-  public static final String JSON_PROPERTY_OS = "Os";
-  private String os;
-
-  public static final String JSON_PROPERTY_OS_VERSION = "OsVersion";
-  private String osVersion;
-
-  public static final String JSON_PROPERTY_PARENT = "Parent";
-  private String parent;
-
-  public static final String JSON_PROPERTY_REPO_DIGESTS = "RepoDigests";
-  private List<String> repoDigests = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_REPO_TAGS = "RepoTags";
-  private List<String> repoTags = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ROOT_F_S = "RootFS";
-  private RootFS rootFS;
-
-  public static final String JSON_PROPERTY_SIZE = "Size";
-  private Long size;
-
-  public static final String JSON_PROPERTY_VARIANT = "Variant";
-  private String variant;
-
-  public static final String JSON_PROPERTY_VIRTUAL_SIZE = "VirtualSize";
-  private Long virtualSize;
-
-  public ImageInspect() { 
-  }
-
-  public ImageInspect architecture(String architecture) {
-    this.architecture = architecture;
-    return this;
-  }
-
-  /**
-   * Architecture is the hardware CPU architecture that the image runs on.
-   * @return architecture
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getArchitecture() {
-    return architecture;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setArchitecture(String architecture) {
-    this.architecture = architecture;
-  }
-
-
-  public ImageInspect author(String author) {
-    this.author = author;
-    return this;
-  }
-
-  /**
-   * Author is the name of the author that was specified when committing the image, or as specified through MAINTAINER (deprecated) in the Dockerfile.
-   * @return author
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getAuthor() {
-    return author;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-
-  public ImageInspect comment(String comment) {
-    this.comment = comment;
-    return this;
-  }
-
-  /**
-   * Comment is an optional message that can be set when committing or importing the image.
-   * @return comment
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_COMMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getComment() {
-    return comment;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
-
-
-  public ImageInspect config(Config config) {
-    this.config = config;
-    return this;
-  }
-
-  /**
-   * Get config
-   * @return config
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Config getConfig() {
-    return config;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConfig(Config config) {
-    this.config = config;
-  }
-
-
-  public ImageInspect container(String container) {
-    this.container = container;
-    return this;
-  }
-
-  /**
-   * Container is for backwards compat but is basically unused
-   * @return container
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getContainer() {
-    return container;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainer(String container) {
-    this.container = container;
-  }
-
-
-  public ImageInspect containerConfig(Config containerConfig) {
-    this.containerConfig = containerConfig;
-    return this;
-  }
-
-  /**
-   * Get containerConfig
-   * @return containerConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Config getContainerConfig() {
-    return containerConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerConfig(Config containerConfig) {
-    this.containerConfig = containerConfig;
-  }
-
-
-  public ImageInspect created(String created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Created is the date and time at which the image was created, formatted in RFC 3339 nano-seconds (time.RFC3339Nano).  This information is only available if present in the image, and omitted otherwise.
-   * @return created
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCreated() {
-    return created;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreated(String created) {
-    this.created = created;
-  }
-
-
-  public ImageInspect dockerVersion(String dockerVersion) {
-    this.dockerVersion = dockerVersion;
-    return this;
-  }
-
-  /**
-   * DockerVersion is the version of Docker that was used to build the image.  Depending on how the image was created, this field may be empty.
-   * @return dockerVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DOCKER_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDockerVersion() {
-    return dockerVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DOCKER_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDockerVersion(String dockerVersion) {
-    this.dockerVersion = dockerVersion;
-  }
-
-
-  public ImageInspect graphDriver(GraphDriverData graphDriver) {
-    this.graphDriver = graphDriver;
-    return this;
-  }
-
-  /**
-   * Get graphDriver
-   * @return graphDriver
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public GraphDriverData getGraphDriver() {
-    return graphDriver;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGraphDriver(GraphDriverData graphDriver) {
-    this.graphDriver = graphDriver;
-  }
-
-
-  public ImageInspect id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image&#39;s configuration (which includes the digests of layers used by the image).  Note that this digest differs from the &#x60;RepoDigests&#x60; below, which holds digests of image manifests that reference the image.
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public ImageInspect metadata(Metadata metadata) {
-    this.metadata = metadata;
-    return this;
-  }
-
-  /**
-   * Get metadata
-   * @return metadata
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Metadata getMetadata() {
-    return metadata;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_METADATA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetadata(Metadata metadata) {
-    this.metadata = metadata;
-  }
-
-
-  public ImageInspect os(String os) {
-    this.os = os;
-    return this;
-  }
-
-  /**
-   * OS is the Operating System the image is built to run on.
-   * @return os
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOs() {
-    return os;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOs(String os) {
-    this.os = os;
-  }
-
-
-  public ImageInspect osVersion(String osVersion) {
-    this.osVersion = osVersion;
-    return this;
-  }
-
-  /**
-   * OsVersion is the version of the Operating System the image is built to run on (especially for Windows).
-   * @return osVersion
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OS_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOsVersion() {
-    return osVersion;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OS_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOsVersion(String osVersion) {
-    this.osVersion = osVersion;
-  }
-
-
-  public ImageInspect parent(String parent) {
-    this.parent = parent;
-    return this;
-  }
-
-  /**
-   * Parent is the ID of the parent image.  Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry.
-   * @return parent
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getParent() {
-    return parent;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setParent(String parent) {
-    this.parent = parent;
-  }
-
-
-  public ImageInspect repoDigests(List<String> repoDigests) {
-    this.repoDigests = repoDigests;
-    return this;
-  }
-
-  public ImageInspect addRepoDigestsItem(String repoDigestsItem) {
-    if (this.repoDigests == null) {
-      this.repoDigests = new ArrayList<>();
-    }
-    this.repoDigests.add(repoDigestsItem);
-    return this;
-  }
-
-  /**
-   * RepoDigests is a list of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image.  These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated.
-   * @return repoDigests
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getRepoDigests() {
-    return repoDigests;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRepoDigests(List<String> repoDigests) {
-    this.repoDigests = repoDigests;
-  }
-
-
-  public ImageInspect repoTags(List<String> repoTags) {
-    this.repoTags = repoTags;
-    return this;
-  }
-
-  public ImageInspect addRepoTagsItem(String repoTagsItem) {
-    if (this.repoTags == null) {
-      this.repoTags = new ArrayList<>();
-    }
-    this.repoTags.add(repoTagsItem);
-    return this;
-  }
-
-  /**
-   * RepoTags is a list of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \&quot;untagged\&quot;, in which case it can still be referenced by its ID.
-   * @return repoTags
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getRepoTags() {
-    return repoTags;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRepoTags(List<String> repoTags) {
-    this.repoTags = repoTags;
-  }
-
-
-  public ImageInspect rootFS(RootFS rootFS) {
-    this.rootFS = rootFS;
-    return this;
-  }
-
-  /**
-   * Get rootFS
-   * @return rootFS
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ROOT_F_S)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public RootFS getRootFS() {
-    return rootFS;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ROOT_F_S)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRootFS(RootFS rootFS) {
-    this.rootFS = rootFS;
-  }
-
-
-  public ImageInspect size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Size is the total size of the image including all layers it is composed of.
-   * @return size
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public ImageInspect variant(String variant) {
-    this.variant = variant;
-    return this;
-  }
-
-  /**
-   * Variant is the CPU architecture variant (presently ARM-only).
-   * @return variant
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VARIANT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVariant() {
-    return variant;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VARIANT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVariant(String variant) {
-    this.variant = variant;
-  }
-
-
-  public ImageInspect virtualSize(Long virtualSize) {
-    this.virtualSize = virtualSize;
-    return this;
-  }
-
-  /**
-   * VirtualSize is the total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead.
-   * @return virtualSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getVirtualSize() {
-    return virtualSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVirtualSize(Long virtualSize) {
-    this.virtualSize = virtualSize;
-  }
-
-
-  /**
-   * Return true if this ImageInspect object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ImageInspect imageInspect = (ImageInspect) o;
-    return Objects.equals(this.architecture, imageInspect.architecture) &&
-        Objects.equals(this.author, imageInspect.author) &&
-        Objects.equals(this.comment, imageInspect.comment) &&
-        Objects.equals(this.config, imageInspect.config) &&
-        Objects.equals(this.container, imageInspect.container) &&
-        Objects.equals(this.containerConfig, imageInspect.containerConfig) &&
-        Objects.equals(this.created, imageInspect.created) &&
-        Objects.equals(this.dockerVersion, imageInspect.dockerVersion) &&
-        Objects.equals(this.graphDriver, imageInspect.graphDriver) &&
-        Objects.equals(this.id, imageInspect.id) &&
-        Objects.equals(this.metadata, imageInspect.metadata) &&
-        Objects.equals(this.os, imageInspect.os) &&
-        Objects.equals(this.osVersion, imageInspect.osVersion) &&
-        Objects.equals(this.parent, imageInspect.parent) &&
-        Objects.equals(this.repoDigests, imageInspect.repoDigests) &&
-        Objects.equals(this.repoTags, imageInspect.repoTags) &&
-        Objects.equals(this.rootFS, imageInspect.rootFS) &&
-        Objects.equals(this.size, imageInspect.size) &&
-        Objects.equals(this.variant, imageInspect.variant) &&
-        Objects.equals(this.virtualSize, imageInspect.virtualSize);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(architecture, author, comment, config, container, containerConfig, created, dockerVersion, graphDriver, id, metadata, os, osVersion, parent, repoDigests, repoTags, rootFS, size, variant, virtualSize);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImageInspect {\n");
-    sb.append("    architecture: ").append(toIndentedString(architecture)).append("\n");
-    sb.append("    author: ").append(toIndentedString(author)).append("\n");
-    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
-    sb.append("    config: ").append(toIndentedString(config)).append("\n");
-    sb.append("    container: ").append(toIndentedString(container)).append("\n");
-    sb.append("    containerConfig: ").append(toIndentedString(containerConfig)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    dockerVersion: ").append(toIndentedString(dockerVersion)).append("\n");
-    sb.append("    graphDriver: ").append(toIndentedString(graphDriver)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
-    sb.append("    os: ").append(toIndentedString(os)).append("\n");
-    sb.append("    osVersion: ").append(toIndentedString(osVersion)).append("\n");
-    sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
-    sb.append("    repoDigests: ").append(toIndentedString(repoDigests)).append("\n");
-    sb.append("    repoTags: ").append(toIndentedString(repoTags)).append("\n");
-    sb.append("    rootFS: ").append(toIndentedString(rootFS)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    variant: ").append(toIndentedString(variant)).append("\n");
-    sb.append("    virtualSize: ").append(toIndentedString(virtualSize)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ARCHITECTURE = "Architecture";
+    public static final String SERIALIZED_NAME_AUTHOR = "Author";
+    public static final String SERIALIZED_NAME_COMMENT = "Comment";
+    public static final String SERIALIZED_NAME_CONFIG = "Config";
+    public static final String SERIALIZED_NAME_CONTAINER = "Container";
+    public static final String SERIALIZED_NAME_CONTAINER_CONFIG = "ContainerConfig";
+    public static final String SERIALIZED_NAME_CREATED = "Created";
+    public static final String SERIALIZED_NAME_DOCKER_VERSION = "DockerVersion";
+    public static final String SERIALIZED_NAME_GRAPH_DRIVER = "GraphDriver";
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_METADATA = "Metadata";
+    public static final String SERIALIZED_NAME_OS = "Os";
+    public static final String SERIALIZED_NAME_OS_VERSION = "OsVersion";
+    public static final String SERIALIZED_NAME_PARENT = "Parent";
+    public static final String SERIALIZED_NAME_REPO_DIGESTS = "RepoDigests";
+    public static final String SERIALIZED_NAME_REPO_TAGS = "RepoTags";
+    public static final String SERIALIZED_NAME_ROOT_F_S = "RootFS";
+    public static final String SERIALIZED_NAME_SIZE = "Size";
+    public static final String SERIALIZED_NAME_VARIANT = "Variant";
+    public static final String SERIALIZED_NAME_VIRTUAL_SIZE = "VirtualSize";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Architecture");
+        openapiFields.add("Author");
+        openapiFields.add("Comment");
+        openapiFields.add("Config");
+        openapiFields.add("Container");
+        openapiFields.add("ContainerConfig");
+        openapiFields.add("Created");
+        openapiFields.add("DockerVersion");
+        openapiFields.add("GraphDriver");
+        openapiFields.add("Id");
+        openapiFields.add("Metadata");
+        openapiFields.add("Os");
+        openapiFields.add("OsVersion");
+        openapiFields.add("Parent");
+        openapiFields.add("RepoDigests");
+        openapiFields.add("RepoTags");
+        openapiFields.add("RootFS");
+        openapiFields.add("Size");
+        openapiFields.add("Variant");
+        openapiFields.add("VirtualSize");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ARCHITECTURE)
+    private String architecture;
+    @SerializedName(SERIALIZED_NAME_AUTHOR)
+    private String author;
+    @SerializedName(SERIALIZED_NAME_COMMENT)
+    private String comment;
+    @SerializedName(SERIALIZED_NAME_CONFIG)
+    private Config config;
+    @SerializedName(SERIALIZED_NAME_CONTAINER)
+    private String container;
+    @SerializedName(SERIALIZED_NAME_CONTAINER_CONFIG)
+    private Config containerConfig;
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private String created;
+    @SerializedName(SERIALIZED_NAME_DOCKER_VERSION)
+    private String dockerVersion;
+    @SerializedName(SERIALIZED_NAME_GRAPH_DRIVER)
+    private GraphDriverData graphDriver;
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_METADATA)
+    private Metadata metadata;
+    @SerializedName(SERIALIZED_NAME_OS)
+    private String os;
+    @SerializedName(SERIALIZED_NAME_OS_VERSION)
+    private String osVersion;
+    @SerializedName(SERIALIZED_NAME_PARENT)
+    private String parent;
+    @SerializedName(SERIALIZED_NAME_REPO_DIGESTS)
+    private List<String> repoDigests = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_REPO_TAGS)
+    private List<String> repoTags = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ROOT_F_S)
+    private RootFS rootFS;
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Long size;
+    @SerializedName(SERIALIZED_NAME_VARIANT)
+    private String variant;
+    @SerializedName(SERIALIZED_NAME_VIRTUAL_SIZE)
+    private Long virtualSize;
 
-    // add `Architecture` to the URL query string
-    if (getArchitecture() != null) {
-      joiner.add(String.format("%sArchitecture%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArchitecture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageInspect() {
     }
 
-    // add `Author` to the URL query string
-    if (getAuthor() != null) {
-      joiner.add(String.format("%sAuthor%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAuthor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ImageInspect
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ImageInspect.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ImageInspect is not found in the empty JSON string", ImageInspect.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ImageInspect.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageInspect` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Architecture") != null && !jsonObj.get("Architecture").isJsonNull()) && !jsonObj.get("Architecture").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Architecture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Architecture").toString()));
+        }
+        if ((jsonObj.get("Author") != null && !jsonObj.get("Author").isJsonNull()) && !jsonObj.get("Author").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Author` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Author").toString()));
+        }
+        if ((jsonObj.get("Comment") != null && !jsonObj.get("Comment").isJsonNull()) && !jsonObj.get("Comment").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Comment` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Comment").toString()));
+        }
+        // validate the optional field `Config`
+        if (jsonObj.get("Config") != null && !jsonObj.get("Config").isJsonNull()) {
+            Config.validateJsonElement(jsonObj.get("Config"));
+        }
+        if ((jsonObj.get("Container") != null && !jsonObj.get("Container").isJsonNull()) && !jsonObj.get("Container").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Container` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Container").toString()));
+        }
+        // validate the optional field `ContainerConfig`
+        if (jsonObj.get("ContainerConfig") != null && !jsonObj.get("ContainerConfig").isJsonNull()) {
+            Config.validateJsonElement(jsonObj.get("ContainerConfig"));
+        }
+        if ((jsonObj.get("Created") != null && !jsonObj.get("Created").isJsonNull()) && !jsonObj.get("Created").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Created` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Created").toString()));
+        }
+        if ((jsonObj.get("DockerVersion") != null && !jsonObj.get("DockerVersion").isJsonNull()) && !jsonObj.get("DockerVersion").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DockerVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("DockerVersion").toString()));
+        }
+        // validate the optional field `GraphDriver`
+        if (jsonObj.get("GraphDriver") != null && !jsonObj.get("GraphDriver").isJsonNull()) {
+            GraphDriverData.validateJsonElement(jsonObj.get("GraphDriver"));
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        // validate the optional field `Metadata`
+        if (jsonObj.get("Metadata") != null && !jsonObj.get("Metadata").isJsonNull()) {
+            Metadata.validateJsonElement(jsonObj.get("Metadata"));
+        }
+        if ((jsonObj.get("Os") != null && !jsonObj.get("Os").isJsonNull()) && !jsonObj.get("Os").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Os").toString()));
+        }
+        if ((jsonObj.get("OsVersion") != null && !jsonObj.get("OsVersion").isJsonNull()) && !jsonObj.get("OsVersion").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `OsVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OsVersion").toString()));
+        }
+        if ((jsonObj.get("Parent") != null && !jsonObj.get("Parent").isJsonNull()) && !jsonObj.get("Parent").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Parent").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("RepoDigests") != null && !jsonObj.get("RepoDigests").isJsonNull() && !jsonObj.get("RepoDigests").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `RepoDigests` to be an array in the JSON string but got `%s`", jsonObj.get("RepoDigests").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("RepoTags") != null && !jsonObj.get("RepoTags").isJsonNull() && !jsonObj.get("RepoTags").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `RepoTags` to be an array in the JSON string but got `%s`", jsonObj.get("RepoTags").toString()));
+        }
+        // validate the optional field `RootFS`
+        if (jsonObj.get("RootFS") != null && !jsonObj.get("RootFS").isJsonNull()) {
+            RootFS.validateJsonElement(jsonObj.get("RootFS"));
+        }
+        if ((jsonObj.get("Variant") != null && !jsonObj.get("Variant").isJsonNull()) && !jsonObj.get("Variant").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Variant").toString()));
+        }
     }
 
-    // add `Comment` to the URL query string
-    if (getComment() != null) {
-      joiner.add(String.format("%sComment%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getComment()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ImageInspect given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ImageInspect
+     * @throws IOException if the JSON string is invalid with respect to ImageInspect
+     */
+    public static ImageInspect fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ImageInspect.class);
     }
 
-    // add `Config` to the URL query string
-    if (getConfig() != null) {
-      joiner.add(getConfig().toUrlQueryString(prefix + "Config" + suffix));
+    public ImageInspect architecture(String architecture) {
+        this.architecture = architecture;
+        return this;
     }
 
-    // add `Container` to the URL query string
-    if (getContainer() != null) {
-      joiner.add(String.format("%sContainer%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainer()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Architecture is the hardware CPU architecture that the image runs on.
+     *
+     * @return architecture
+     */
+    @jakarta.annotation.Nullable
+
+    public String getArchitecture() {
+        return architecture;
     }
 
-    // add `ContainerConfig` to the URL query string
-    if (getContainerConfig() != null) {
-      joiner.add(getContainerConfig().toUrlQueryString(prefix + "ContainerConfig" + suffix));
+    public void setArchitecture(String architecture) {
+        this.architecture = architecture;
     }
 
-    // add `Created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageInspect author(String author) {
+        this.author = author;
+        return this;
     }
 
-    // add `DockerVersion` to the URL query string
-    if (getDockerVersion() != null) {
-      joiner.add(String.format("%sDockerVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDockerVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Author is the name of the author that was specified when committing the image, or as specified through MAINTAINER (deprecated) in the Dockerfile.
+     *
+     * @return author
+     */
+    @jakarta.annotation.Nullable
+
+    public String getAuthor() {
+        return author;
     }
 
-    // add `GraphDriver` to the URL query string
-    if (getGraphDriver() != null) {
-      joiner.add(getGraphDriver().toUrlQueryString(prefix + "GraphDriver" + suffix));
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageInspect comment(String comment) {
+        this.comment = comment;
+        return this;
     }
 
-    // add `Metadata` to the URL query string
-    if (getMetadata() != null) {
-      joiner.add(getMetadata().toUrlQueryString(prefix + "Metadata" + suffix));
+    /**
+     * Comment is an optional message that can be set when committing or importing the image.
+     *
+     * @return comment
+     */
+    @jakarta.annotation.Nullable
+
+    public String getComment() {
+        return comment;
     }
 
-    // add `Os` to the URL query string
-    if (getOs() != null) {
-      joiner.add(String.format("%sOs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    // add `OsVersion` to the URL query string
-    if (getOsVersion() != null) {
-      joiner.add(String.format("%sOsVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOsVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageInspect config(Config config) {
+        this.config = config;
+        return this;
     }
 
-    // add `Parent` to the URL query string
-    if (getParent() != null) {
-      joiner.add(String.format("%sParent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get config
+     *
+     * @return config
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Config getConfig() {
+        return config;
     }
 
-    // add `RepoDigests` to the URL query string
-    if (getRepoDigests() != null) {
-      for (int i = 0; i < getRepoDigests().size(); i++) {
-        joiner.add(String.format("%sRepoDigests%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getRepoDigests().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setConfig(Config config) {
+        this.config = config;
     }
 
-    // add `RepoTags` to the URL query string
-    if (getRepoTags() != null) {
-      for (int i = 0; i < getRepoTags().size(); i++) {
-        joiner.add(String.format("%sRepoTags%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getRepoTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ImageInspect container(String container) {
+        this.container = container;
+        return this;
     }
 
-    // add `RootFS` to the URL query string
-    if (getRootFS() != null) {
-      joiner.add(getRootFS().toUrlQueryString(prefix + "RootFS" + suffix));
+    /**
+     * Container is for backwards compat but is basically unused
+     *
+     * @return container
+     */
+    @jakarta.annotation.Nullable
+
+    public String getContainer() {
+        return container;
     }
 
-    // add `Size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setContainer(String container) {
+        this.container = container;
     }
 
-    // add `Variant` to the URL query string
-    if (getVariant() != null) {
-      joiner.add(String.format("%sVariant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageInspect containerConfig(Config containerConfig) {
+        this.containerConfig = containerConfig;
+        return this;
     }
 
-    // add `VirtualSize` to the URL query string
-    if (getVirtualSize() != null) {
-      joiner.add(String.format("%sVirtualSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVirtualSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get containerConfig
+     *
+     * @return containerConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Config getContainerConfig() {
+        return containerConfig;
     }
 
-    return joiner.toString();
-  }
+    public void setContainerConfig(Config containerConfig) {
+        this.containerConfig = containerConfig;
+    }
+
+    public ImageInspect created(String created) {
+        this.created = created;
+        return this;
+    }
+
+    /**
+     * Created is the date and time at which the image was created, formatted in RFC 3339 nano-seconds (time.RFC3339Nano).  This information is only available if present in the image, and omitted otherwise.
+     *
+     * @return created
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public ImageInspect dockerVersion(String dockerVersion) {
+        this.dockerVersion = dockerVersion;
+        return this;
+    }
+
+    /**
+     * DockerVersion is the version of Docker that was used to build the image.  Depending on how the image was created, this field may be empty.
+     *
+     * @return dockerVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDockerVersion() {
+        return dockerVersion;
+    }
+
+    public void setDockerVersion(String dockerVersion) {
+        this.dockerVersion = dockerVersion;
+    }
+
+    public ImageInspect graphDriver(GraphDriverData graphDriver) {
+        this.graphDriver = graphDriver;
+        return this;
+    }
+
+    /**
+     * Get graphDriver
+     *
+     * @return graphDriver
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public GraphDriverData getGraphDriver() {
+        return graphDriver;
+    }
+
+    public void setGraphDriver(GraphDriverData graphDriver) {
+        this.graphDriver = graphDriver;
+    }
+
+    public ImageInspect id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image&#39;s configuration (which includes the digests of layers used by the image).  Note that this digest differs from the &#x60;RepoDigests&#x60; below, which holds digests of image manifests that reference the image.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public ImageInspect metadata(Metadata metadata) {
+        this.metadata = metadata;
+        return this;
+    }
+
+    /**
+     * Get metadata
+     *
+     * @return metadata
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Metadata getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
+    }
+
+    public ImageInspect os(String os) {
+        this.os = os;
+        return this;
+    }
+
+    /**
+     * OS is the Operating System the image is built to run on.
+     *
+     * @return os
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
+    }
+
+    public ImageInspect osVersion(String osVersion) {
+        this.osVersion = osVersion;
+        return this;
+    }
+
+    /**
+     * OsVersion is the version of the Operating System the image is built to run on (especially for Windows).
+     *
+     * @return osVersion
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOsVersion() {
+        return osVersion;
+    }
+
+    public void setOsVersion(String osVersion) {
+        this.osVersion = osVersion;
+    }
+
+    public ImageInspect parent(String parent) {
+        this.parent = parent;
+        return this;
+    }
+
+    /**
+     * Parent is the ID of the parent image.  Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry.
+     *
+     * @return parent
+     */
+    @jakarta.annotation.Nullable
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
+
+    public ImageInspect repoDigests(List<String> repoDigests) {
+        this.repoDigests = repoDigests;
+        return this;
+    }
+
+    public ImageInspect addRepoDigestsItem(String repoDigestsItem) {
+        if (this.repoDigests == null) {
+            this.repoDigests = new ArrayList<>();
+        }
+        this.repoDigests.add(repoDigestsItem);
+        return this;
+    }
+
+    /**
+     * RepoDigests is a list of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image.  These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated.
+     *
+     * @return repoDigests
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getRepoDigests() {
+        return repoDigests;
+    }
+
+    public void setRepoDigests(List<String> repoDigests) {
+        this.repoDigests = repoDigests;
+    }
+
+    public ImageInspect repoTags(List<String> repoTags) {
+        this.repoTags = repoTags;
+        return this;
+    }
+
+    public ImageInspect addRepoTagsItem(String repoTagsItem) {
+        if (this.repoTags == null) {
+            this.repoTags = new ArrayList<>();
+        }
+        this.repoTags.add(repoTagsItem);
+        return this;
+    }
+
+    /**
+     * RepoTags is a list of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \&quot;untagged\&quot;, in which case it can still be referenced by its ID.
+     *
+     * @return repoTags
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getRepoTags() {
+        return repoTags;
+    }
+
+    public void setRepoTags(List<String> repoTags) {
+        this.repoTags = repoTags;
+    }
+
+    public ImageInspect rootFS(RootFS rootFS) {
+        this.rootFS = rootFS;
+        return this;
+    }
+
+    /**
+     * Get rootFS
+     *
+     * @return rootFS
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public RootFS getRootFS() {
+        return rootFS;
+    }
+
+    public void setRootFS(RootFS rootFS) {
+        this.rootFS = rootFS;
+    }
+
+    public ImageInspect size(Long size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Size is the total size of the image including all layers it is composed of.
+     *
+     * @return size
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public ImageInspect variant(String variant) {
+        this.variant = variant;
+        return this;
+    }
+
+    /**
+     * Variant is the CPU architecture variant (presently ARM-only).
+     *
+     * @return variant
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVariant() {
+        return variant;
+    }
+
+    public void setVariant(String variant) {
+        this.variant = variant;
+    }
+
+    public ImageInspect virtualSize(Long virtualSize) {
+        this.virtualSize = virtualSize;
+        return this;
+    }
+
+    /**
+     * VirtualSize is the total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead.
+     *
+     * @return virtualSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getVirtualSize() {
+        return virtualSize;
+    }
+
+    public void setVirtualSize(Long virtualSize) {
+        this.virtualSize = virtualSize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ImageInspect imageInspect = (ImageInspect) o;
+        return Objects.equals(this.architecture, imageInspect.architecture) &&
+                Objects.equals(this.author, imageInspect.author) &&
+                Objects.equals(this.comment, imageInspect.comment) &&
+                Objects.equals(this.config, imageInspect.config) &&
+                Objects.equals(this.container, imageInspect.container) &&
+                Objects.equals(this.containerConfig, imageInspect.containerConfig) &&
+                Objects.equals(this.created, imageInspect.created) &&
+                Objects.equals(this.dockerVersion, imageInspect.dockerVersion) &&
+                Objects.equals(this.graphDriver, imageInspect.graphDriver) &&
+                Objects.equals(this.id, imageInspect.id) &&
+                Objects.equals(this.metadata, imageInspect.metadata) &&
+                Objects.equals(this.os, imageInspect.os) &&
+                Objects.equals(this.osVersion, imageInspect.osVersion) &&
+                Objects.equals(this.parent, imageInspect.parent) &&
+                Objects.equals(this.repoDigests, imageInspect.repoDigests) &&
+                Objects.equals(this.repoTags, imageInspect.repoTags) &&
+                Objects.equals(this.rootFS, imageInspect.rootFS) &&
+                Objects.equals(this.size, imageInspect.size) &&
+                Objects.equals(this.variant, imageInspect.variant) &&
+                Objects.equals(this.virtualSize, imageInspect.virtualSize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(architecture, author, comment, config, container, containerConfig, created, dockerVersion, graphDriver, id, metadata, os, osVersion, parent, repoDigests, repoTags, rootFS, size, variant, virtualSize);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ImageInspect {\n" +
+                "    architecture: " + toIndentedString(architecture) + "\n" +
+                "    author: " + toIndentedString(author) + "\n" +
+                "    comment: " + toIndentedString(comment) + "\n" +
+                "    config: " + toIndentedString(config) + "\n" +
+                "    container: " + toIndentedString(container) + "\n" +
+                "    containerConfig: " + toIndentedString(containerConfig) + "\n" +
+                "    created: " + toIndentedString(created) + "\n" +
+                "    dockerVersion: " + toIndentedString(dockerVersion) + "\n" +
+                "    graphDriver: " + toIndentedString(graphDriver) + "\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    metadata: " + toIndentedString(metadata) + "\n" +
+                "    os: " + toIndentedString(os) + "\n" +
+                "    osVersion: " + toIndentedString(osVersion) + "\n" +
+                "    parent: " + toIndentedString(parent) + "\n" +
+                "    repoDigests: " + toIndentedString(repoDigests) + "\n" +
+                "    repoTags: " + toIndentedString(repoTags) + "\n" +
+                "    rootFS: " + toIndentedString(rootFS) + "\n" +
+                "    size: " + toIndentedString(size) + "\n" +
+                "    variant: " + toIndentedString(variant) + "\n" +
+                "    virtualSize: " + toIndentedString(virtualSize) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ImageInspect to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ImageInspect.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ImageInspect' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ImageInspect> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ImageInspect.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ImageInspect>() {
+                @Override
+                public void write(JsonWriter out, ImageInspect value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ImageInspect read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

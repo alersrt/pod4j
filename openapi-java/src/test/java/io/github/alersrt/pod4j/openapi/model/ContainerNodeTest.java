@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerNode
  */
-class ContainerNodeTest {
+public class ContainerNodeTest {
     private final ContainerNode model = new ContainerNode();
 
     /**
      * Model tests for ContainerNode
      */
     @Test
-    void testContainerNode() {
+    public void testContainerNode() {
         // TODO: test ContainerNode
     }
 
@@ -44,7 +33,7 @@ class ContainerNodeTest {
      * Test the property 'addr'
      */
     @Test
-    void addrTest() {
+    public void addrTest() {
         // TODO: test addr
     }
 
@@ -52,7 +41,7 @@ class ContainerNodeTest {
      * Test the property 'cpus'
      */
     @Test
-    void cpusTest() {
+    public void cpusTest() {
         // TODO: test cpus
     }
 
@@ -60,7 +49,7 @@ class ContainerNodeTest {
      * Test the property 'ID'
      */
     @Test
-    void IDTest() {
+    public void IDTest() {
         // TODO: test ID
     }
 
@@ -68,7 +57,7 @@ class ContainerNodeTest {
      * Test the property 'IP'
      */
     @Test
-    void IPTest() {
+    public void IPTest() {
         // TODO: test IP
     }
 
@@ -76,7 +65,7 @@ class ContainerNodeTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -84,7 +73,7 @@ class ContainerNodeTest {
      * Test the property 'memory'
      */
     @Test
-    void memoryTest() {
+    public void memoryTest() {
         // TODO: test memory
     }
 
@@ -92,7 +81,7 @@ class ContainerNodeTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 

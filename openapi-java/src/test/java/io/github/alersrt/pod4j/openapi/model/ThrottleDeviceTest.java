@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ThrottleDevice
  */
-class ThrottleDeviceTest {
+public class ThrottleDeviceTest {
     private final ThrottleDevice model = new ThrottleDevice();
 
     /**
      * Model tests for ThrottleDevice
      */
     @Test
-    void testThrottleDevice() {
+    public void testThrottleDevice() {
         // TODO: test ThrottleDevice
     }
 
@@ -42,7 +33,7 @@ class ThrottleDeviceTest {
      * Test the property 'path'
      */
     @Test
-    void pathTest() {
+    public void pathTest() {
         // TODO: test path
     }
 
@@ -50,7 +41,7 @@ class ThrottleDeviceTest {
      * Test the property 'rate'
      */
     @Test
-    void rateTest() {
+    public void rateTest() {
         // TODO: test rate
     }
 

@@ -13,17 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.InspectBlkioThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.InspectBlkioWeightDevice;
 import io.github.alersrt.pod4j.openapi.model.InspectDevice;
 import io.github.alersrt.pod4j.openapi.model.InspectMount;
 import io.github.alersrt.pod4j.openapi.model.InspectPodContainerInfo;
 import io.github.alersrt.pod4j.openapi.model.InspectPodInfraConfig;
+
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,21 +33,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectPodData
  */
-class InspectPodDataTest {
+public class InspectPodDataTest {
     private final InspectPodData model = new InspectPodData();
 
     /**
      * Model tests for InspectPodData
      */
     @Test
-    void testInspectPodData() {
+    public void testInspectPodData() {
         // TODO: test InspectPodData
     }
 
@@ -53,7 +54,7 @@ class InspectPodDataTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    void cgroupParentTest() {
+    public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -61,7 +62,7 @@ class InspectPodDataTest {
      * Test the property 'cgroupPath'
      */
     @Test
-    void cgroupPathTest() {
+    public void cgroupPathTest() {
         // TODO: test cgroupPath
     }
 
@@ -69,7 +70,7 @@ class InspectPodDataTest {
      * Test the property 'containers'
      */
     @Test
-    void containersTest() {
+    public void containersTest() {
         // TODO: test containers
     }
 
@@ -77,7 +78,7 @@ class InspectPodDataTest {
      * Test the property 'createCgroup'
      */
     @Test
-    void createCgroupTest() {
+    public void createCgroupTest() {
         // TODO: test createCgroup
     }
 
@@ -85,7 +86,7 @@ class InspectPodDataTest {
      * Test the property 'createCommand'
      */
     @Test
-    void createCommandTest() {
+    public void createCommandTest() {
         // TODO: test createCommand
     }
 
@@ -93,7 +94,7 @@ class InspectPodDataTest {
      * Test the property 'createInfra'
      */
     @Test
-    void createInfraTest() {
+    public void createInfraTest() {
         // TODO: test createInfra
     }
 
@@ -101,7 +102,7 @@ class InspectPodDataTest {
      * Test the property 'created'
      */
     @Test
-    void createdTest() {
+    public void createdTest() {
         // TODO: test created
     }
 
@@ -109,7 +110,7 @@ class InspectPodDataTest {
      * Test the property 'exitPolicy'
      */
     @Test
-    void exitPolicyTest() {
+    public void exitPolicyTest() {
         // TODO: test exitPolicy
     }
 
@@ -117,7 +118,7 @@ class InspectPodDataTest {
      * Test the property 'hostname'
      */
     @Test
-    void hostnameTest() {
+    public void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -125,7 +126,7 @@ class InspectPodDataTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -133,7 +134,7 @@ class InspectPodDataTest {
      * Test the property 'infraConfig'
      */
     @Test
-    void infraConfigTest() {
+    public void infraConfigTest() {
         // TODO: test infraConfig
     }
 
@@ -141,7 +142,7 @@ class InspectPodDataTest {
      * Test the property 'infraContainerID'
      */
     @Test
-    void infraContainerIDTest() {
+    public void infraContainerIDTest() {
         // TODO: test infraContainerID
     }
 
@@ -149,7 +150,7 @@ class InspectPodDataTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -157,7 +158,7 @@ class InspectPodDataTest {
      * Test the property 'lockNumber'
      */
     @Test
-    void lockNumberTest() {
+    public void lockNumberTest() {
         // TODO: test lockNumber
     }
 
@@ -165,7 +166,7 @@ class InspectPodDataTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -173,7 +174,7 @@ class InspectPodDataTest {
      * Test the property 'namespace'
      */
     @Test
-    void namespaceTest() {
+    public void namespaceTest() {
         // TODO: test namespace
     }
 
@@ -181,7 +182,7 @@ class InspectPodDataTest {
      * Test the property 'numContainers'
      */
     @Test
-    void numContainersTest() {
+    public void numContainersTest() {
         // TODO: test numContainers
     }
 
@@ -189,7 +190,7 @@ class InspectPodDataTest {
      * Test the property 'restartPolicy'
      */
     @Test
-    void restartPolicyTest() {
+    public void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
@@ -197,7 +198,7 @@ class InspectPodDataTest {
      * Test the property 'sharedNamespaces'
      */
     @Test
-    void sharedNamespacesTest() {
+    public void sharedNamespacesTest() {
         // TODO: test sharedNamespaces
     }
 
@@ -205,7 +206,7 @@ class InspectPodDataTest {
      * Test the property 'state'
      */
     @Test
-    void stateTest() {
+    public void stateTest() {
         // TODO: test state
     }
 
@@ -213,7 +214,7 @@ class InspectPodDataTest {
      * Test the property 'blkioWeight'
      */
     @Test
-    void blkioWeightTest() {
+    public void blkioWeightTest() {
         // TODO: test blkioWeight
     }
 
@@ -221,7 +222,7 @@ class InspectPodDataTest {
      * Test the property 'blkioWeightDevice'
      */
     @Test
-    void blkioWeightDeviceTest() {
+    public void blkioWeightDeviceTest() {
         // TODO: test blkioWeightDevice
     }
 
@@ -229,7 +230,7 @@ class InspectPodDataTest {
      * Test the property 'cpuPeriod'
      */
     @Test
-    void cpuPeriodTest() {
+    public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
@@ -237,7 +238,7 @@ class InspectPodDataTest {
      * Test the property 'cpuQuota'
      */
     @Test
-    void cpuQuotaTest() {
+    public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
@@ -245,7 +246,7 @@ class InspectPodDataTest {
      * Test the property 'cpuShares'
      */
     @Test
-    void cpuSharesTest() {
+    public void cpuSharesTest() {
         // TODO: test cpuShares
     }
 
@@ -253,7 +254,7 @@ class InspectPodDataTest {
      * Test the property 'cpusetCpus'
      */
     @Test
-    void cpusetCpusTest() {
+    public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
@@ -261,7 +262,7 @@ class InspectPodDataTest {
      * Test the property 'cpusetMems'
      */
     @Test
-    void cpusetMemsTest() {
+    public void cpusetMemsTest() {
         // TODO: test cpusetMems
     }
 
@@ -269,7 +270,7 @@ class InspectPodDataTest {
      * Test the property 'deviceReadBps'
      */
     @Test
-    void deviceReadBpsTest() {
+    public void deviceReadBpsTest() {
         // TODO: test deviceReadBps
     }
 
@@ -277,7 +278,7 @@ class InspectPodDataTest {
      * Test the property 'deviceWriteBps'
      */
     @Test
-    void deviceWriteBpsTest() {
+    public void deviceWriteBpsTest() {
         // TODO: test deviceWriteBps
     }
 
@@ -285,7 +286,7 @@ class InspectPodDataTest {
      * Test the property 'devices'
      */
     @Test
-    void devicesTest() {
+    public void devicesTest() {
         // TODO: test devices
     }
 
@@ -293,7 +294,7 @@ class InspectPodDataTest {
      * Test the property 'memoryLimit'
      */
     @Test
-    void memoryLimitTest() {
+    public void memoryLimitTest() {
         // TODO: test memoryLimit
     }
 
@@ -301,7 +302,7 @@ class InspectPodDataTest {
      * Test the property 'memorySwap'
      */
     @Test
-    void memorySwapTest() {
+    public void memorySwapTest() {
         // TODO: test memorySwap
     }
 
@@ -309,7 +310,7 @@ class InspectPodDataTest {
      * Test the property 'mounts'
      */
     @Test
-    void mountsTest() {
+    public void mountsTest() {
         // TODO: test mounts
     }
 
@@ -317,7 +318,7 @@ class InspectPodDataTest {
      * Test the property 'securityOpt'
      */
     @Test
-    void securityOptTest() {
+    public void securityOptTest() {
         // TODO: test securityOpt
     }
 
@@ -325,7 +326,7 @@ class InspectPodDataTest {
      * Test the property 'volumesFrom'
      */
     @Test
-    void volumesFromTest() {
+    public void volumesFromTest() {
         // TODO: test volumesFrom
     }
 

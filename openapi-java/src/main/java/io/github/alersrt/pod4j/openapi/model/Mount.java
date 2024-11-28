@@ -13,435 +13,409 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.BindOptions;
-import io.github.alersrt.pod4j.openapi.model.TmpfsOptions;
-import io.github.alersrt.pod4j.openapi.model.VolumeOptions;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Mount
  */
-@JsonPropertyOrder({
-  Mount.JSON_PROPERTY_BIND_OPTIONS,
-  Mount.JSON_PROPERTY_CLUSTER_OPTIONS,
-  Mount.JSON_PROPERTY_CONSISTENCY,
-  Mount.JSON_PROPERTY_READ_ONLY,
-  Mount.JSON_PROPERTY_SOURCE,
-  Mount.JSON_PROPERTY_TARGET,
-  Mount.JSON_PROPERTY_TMPFS_OPTIONS,
-  Mount.JSON_PROPERTY_TYPE,
-  Mount.JSON_PROPERTY_VOLUME_OPTIONS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Mount {
-  public static final String JSON_PROPERTY_BIND_OPTIONS = "BindOptions";
-  private BindOptions bindOptions;
-
-  public static final String JSON_PROPERTY_CLUSTER_OPTIONS = "ClusterOptions";
-  private Object clusterOptions;
-
-  public static final String JSON_PROPERTY_CONSISTENCY = "Consistency";
-  private String consistency;
-
-  public static final String JSON_PROPERTY_READ_ONLY = "ReadOnly";
-  private Boolean readOnly;
-
-  public static final String JSON_PROPERTY_SOURCE = "Source";
-  private String source;
-
-  public static final String JSON_PROPERTY_TARGET = "Target";
-  private String target;
-
-  public static final String JSON_PROPERTY_TMPFS_OPTIONS = "TmpfsOptions";
-  private TmpfsOptions tmpfsOptions;
-
-  public static final String JSON_PROPERTY_TYPE = "Type";
-  private String type;
-
-  public static final String JSON_PROPERTY_VOLUME_OPTIONS = "VolumeOptions";
-  private VolumeOptions volumeOptions;
-
-  public Mount() { 
-  }
-
-  public Mount bindOptions(BindOptions bindOptions) {
-    this.bindOptions = bindOptions;
-    return this;
-  }
-
-  /**
-   * Get bindOptions
-   * @return bindOptions
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BIND_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public BindOptions getBindOptions() {
-    return bindOptions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BIND_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBindOptions(BindOptions bindOptions) {
-    this.bindOptions = bindOptions;
-  }
-
-
-  public Mount clusterOptions(Object clusterOptions) {
-    this.clusterOptions = clusterOptions;
-    return this;
-  }
-
-  /**
-   * Get clusterOptions
-   * @return clusterOptions
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CLUSTER_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Object getClusterOptions() {
-    return clusterOptions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CLUSTER_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setClusterOptions(Object clusterOptions) {
-    this.clusterOptions = clusterOptions;
-  }
-
-
-  public Mount consistency(String consistency) {
-    this.consistency = consistency;
-    return this;
-  }
-
-  /**
-   * Get consistency
-   * @return consistency
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONSISTENCY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getConsistency() {
-    return consistency;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONSISTENCY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConsistency(String consistency) {
-    this.consistency = consistency;
-  }
-
-
-  public Mount readOnly(Boolean readOnly) {
-    this.readOnly = readOnly;
-    return this;
-  }
-
-  /**
-   * Get readOnly
-   * @return readOnly
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getReadOnly() {
-    return readOnly;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadOnly(Boolean readOnly) {
-    this.readOnly = readOnly;
-  }
-
-
-  public Mount source(String source) {
-    this.source = source;
-    return this;
-  }
-
-  /**
-   * Source specifies the name of the mount. Depending on mount type, this may be a volume name or a host path, or even ignored. Source is not supported for tmpfs (must be an empty value)
-   * @return source
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSource() {
-    return source;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSource(String source) {
-    this.source = source;
-  }
-
-
-  public Mount target(String target) {
-    this.target = target;
-    return this;
-  }
-
-  /**
-   * Get target
-   * @return target
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TARGET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getTarget() {
-    return target;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TARGET)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTarget(String target) {
-    this.target = target;
-  }
-
-
-  public Mount tmpfsOptions(TmpfsOptions tmpfsOptions) {
-    this.tmpfsOptions = tmpfsOptions;
-    return this;
-  }
-
-  /**
-   * Get tmpfsOptions
-   * @return tmpfsOptions
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_TMPFS_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public TmpfsOptions getTmpfsOptions() {
-    return tmpfsOptions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TMPFS_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTmpfsOptions(TmpfsOptions tmpfsOptions) {
-    this.tmpfsOptions = tmpfsOptions;
-  }
-
-
-  public Mount type(String type) {
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * Get type
-   * @return type
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  public Mount volumeOptions(VolumeOptions volumeOptions) {
-    this.volumeOptions = volumeOptions;
-    return this;
-  }
-
-  /**
-   * Get volumeOptions
-   * @return volumeOptions
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public VolumeOptions getVolumeOptions() {
-    return volumeOptions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumeOptions(VolumeOptions volumeOptions) {
-    this.volumeOptions = volumeOptions;
-  }
-
-
-  /**
-   * Return true if this Mount object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Mount mount = (Mount) o;
-    return Objects.equals(this.bindOptions, mount.bindOptions) &&
-        Objects.equals(this.clusterOptions, mount.clusterOptions) &&
-        Objects.equals(this.consistency, mount.consistency) &&
-        Objects.equals(this.readOnly, mount.readOnly) &&
-        Objects.equals(this.source, mount.source) &&
-        Objects.equals(this.target, mount.target) &&
-        Objects.equals(this.tmpfsOptions, mount.tmpfsOptions) &&
-        Objects.equals(this.type, mount.type) &&
-        Objects.equals(this.volumeOptions, mount.volumeOptions);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(bindOptions, clusterOptions, consistency, readOnly, source, target, tmpfsOptions, type, volumeOptions);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Mount {\n");
-    sb.append("    bindOptions: ").append(toIndentedString(bindOptions)).append("\n");
-    sb.append("    clusterOptions: ").append(toIndentedString(clusterOptions)).append("\n");
-    sb.append("    consistency: ").append(toIndentedString(consistency)).append("\n");
-    sb.append("    readOnly: ").append(toIndentedString(readOnly)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("    target: ").append(toIndentedString(target)).append("\n");
-    sb.append("    tmpfsOptions: ").append(toIndentedString(tmpfsOptions)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    volumeOptions: ").append(toIndentedString(volumeOptions)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_BIND_OPTIONS = "BindOptions";
+    public static final String SERIALIZED_NAME_CLUSTER_OPTIONS = "ClusterOptions";
+    public static final String SERIALIZED_NAME_CONSISTENCY = "Consistency";
+    public static final String SERIALIZED_NAME_READ_ONLY = "ReadOnly";
+    public static final String SERIALIZED_NAME_SOURCE = "Source";
+    public static final String SERIALIZED_NAME_TARGET = "Target";
+    public static final String SERIALIZED_NAME_TMPFS_OPTIONS = "TmpfsOptions";
+    public static final String SERIALIZED_NAME_TYPE = "Type";
+    public static final String SERIALIZED_NAME_VOLUME_OPTIONS = "VolumeOptions";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("BindOptions");
+        openapiFields.add("ClusterOptions");
+        openapiFields.add("Consistency");
+        openapiFields.add("ReadOnly");
+        openapiFields.add("Source");
+        openapiFields.add("Target");
+        openapiFields.add("TmpfsOptions");
+        openapiFields.add("Type");
+        openapiFields.add("VolumeOptions");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_BIND_OPTIONS)
+    private BindOptions bindOptions;
+    @SerializedName(SERIALIZED_NAME_CLUSTER_OPTIONS)
+    private Object clusterOptions;
+    @SerializedName(SERIALIZED_NAME_CONSISTENCY)
+    private String consistency;
+    @SerializedName(SERIALIZED_NAME_READ_ONLY)
+    private Boolean readOnly;
+    @SerializedName(SERIALIZED_NAME_SOURCE)
+    private String source;
+    @SerializedName(SERIALIZED_NAME_TARGET)
+    private String target;
+    @SerializedName(SERIALIZED_NAME_TMPFS_OPTIONS)
+    private TmpfsOptions tmpfsOptions;
+    @SerializedName(SERIALIZED_NAME_TYPE)
+    private String type;
+    @SerializedName(SERIALIZED_NAME_VOLUME_OPTIONS)
+    private VolumeOptions volumeOptions;
 
-    // add `BindOptions` to the URL query string
-    if (getBindOptions() != null) {
-      joiner.add(getBindOptions().toUrlQueryString(prefix + "BindOptions" + suffix));
+    public Mount() {
     }
 
-    // add `ClusterOptions` to the URL query string
-    if (getClusterOptions() != null) {
-      joiner.add(String.format("%sClusterOptions%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getClusterOptions()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Mount
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Mount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Mount is not found in the empty JSON string", Mount.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Mount.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Mount` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `BindOptions`
+        if (jsonObj.get("BindOptions") != null && !jsonObj.get("BindOptions").isJsonNull()) {
+            BindOptions.validateJsonElement(jsonObj.get("BindOptions"));
+        }
+        if ((jsonObj.get("Consistency") != null && !jsonObj.get("Consistency").isJsonNull()) && !jsonObj.get("Consistency").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Consistency` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Consistency").toString()));
+        }
+        if ((jsonObj.get("Source") != null && !jsonObj.get("Source").isJsonNull()) && !jsonObj.get("Source").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Source").toString()));
+        }
+        if ((jsonObj.get("Target") != null && !jsonObj.get("Target").isJsonNull()) && !jsonObj.get("Target").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Target` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Target").toString()));
+        }
+        // validate the optional field `TmpfsOptions`
+        if (jsonObj.get("TmpfsOptions") != null && !jsonObj.get("TmpfsOptions").isJsonNull()) {
+            TmpfsOptions.validateJsonElement(jsonObj.get("TmpfsOptions"));
+        }
+        if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull()) && !jsonObj.get("Type").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Type").toString()));
+        }
+        // validate the optional field `VolumeOptions`
+        if (jsonObj.get("VolumeOptions") != null && !jsonObj.get("VolumeOptions").isJsonNull()) {
+            VolumeOptions.validateJsonElement(jsonObj.get("VolumeOptions"));
+        }
     }
 
-    // add `Consistency` to the URL query string
-    if (getConsistency() != null) {
-      joiner.add(String.format("%sConsistency%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConsistency()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Mount given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Mount
+     * @throws IOException if the JSON string is invalid with respect to Mount
+     */
+    public static Mount fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Mount.class);
     }
 
-    // add `ReadOnly` to the URL query string
-    if (getReadOnly() != null) {
-      joiner.add(String.format("%sReadOnly%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadOnly()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Mount bindOptions(BindOptions bindOptions) {
+        this.bindOptions = bindOptions;
+        return this;
     }
 
-    // add `Source` to the URL query string
-    if (getSource() != null) {
-      joiner.add(String.format("%sSource%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSource()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get bindOptions
+     *
+     * @return bindOptions
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public BindOptions getBindOptions() {
+        return bindOptions;
     }
 
-    // add `Target` to the URL query string
-    if (getTarget() != null) {
-      joiner.add(String.format("%sTarget%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTarget()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setBindOptions(BindOptions bindOptions) {
+        this.bindOptions = bindOptions;
     }
 
-    // add `TmpfsOptions` to the URL query string
-    if (getTmpfsOptions() != null) {
-      joiner.add(getTmpfsOptions().toUrlQueryString(prefix + "TmpfsOptions" + suffix));
+    public Mount clusterOptions(Object clusterOptions) {
+        this.clusterOptions = clusterOptions;
+        return this;
     }
 
-    // add `Type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format("%sType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get clusterOptions
+     *
+     * @return clusterOptions
+     */
+    @jakarta.annotation.Nullable
+
+    public Object getClusterOptions() {
+        return clusterOptions;
     }
 
-    // add `VolumeOptions` to the URL query string
-    if (getVolumeOptions() != null) {
-      joiner.add(getVolumeOptions().toUrlQueryString(prefix + "VolumeOptions" + suffix));
+    public void setClusterOptions(Object clusterOptions) {
+        this.clusterOptions = clusterOptions;
     }
 
-    return joiner.toString();
-  }
+    public Mount consistency(String consistency) {
+        this.consistency = consistency;
+        return this;
+    }
+
+    /**
+     * Get consistency
+     *
+     * @return consistency
+     */
+    @jakarta.annotation.Nullable
+
+    public String getConsistency() {
+        return consistency;
+    }
+
+    public void setConsistency(String consistency) {
+        this.consistency = consistency;
+    }
+
+    public Mount readOnly(Boolean readOnly) {
+        this.readOnly = readOnly;
+        return this;
+    }
+
+    /**
+     * Get readOnly
+     *
+     * @return readOnly
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getReadOnly() {
+        return readOnly;
+    }
+
+    public void setReadOnly(Boolean readOnly) {
+        this.readOnly = readOnly;
+    }
+
+    public Mount source(String source) {
+        this.source = source;
+        return this;
+    }
+
+    /**
+     * Source specifies the name of the mount. Depending on mount type, this may be a volume name or a host path, or even ignored. Source is not supported for tmpfs (must be an empty value)
+     *
+     * @return source
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public Mount target(String target) {
+        this.target = target;
+        return this;
+    }
+
+    /**
+     * Get target
+     *
+     * @return target
+     */
+    @jakarta.annotation.Nullable
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
+    }
+
+    public Mount tmpfsOptions(TmpfsOptions tmpfsOptions) {
+        this.tmpfsOptions = tmpfsOptions;
+        return this;
+    }
+
+    /**
+     * Get tmpfsOptions
+     *
+     * @return tmpfsOptions
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public TmpfsOptions getTmpfsOptions() {
+        return tmpfsOptions;
+    }
+
+    public void setTmpfsOptions(TmpfsOptions tmpfsOptions) {
+        this.tmpfsOptions = tmpfsOptions;
+    }
+
+    public Mount type(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return type
+     */
+    @jakarta.annotation.Nullable
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Mount volumeOptions(VolumeOptions volumeOptions) {
+        this.volumeOptions = volumeOptions;
+        return this;
+    }
+
+    /**
+     * Get volumeOptions
+     *
+     * @return volumeOptions
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public VolumeOptions getVolumeOptions() {
+        return volumeOptions;
+    }
+
+    public void setVolumeOptions(VolumeOptions volumeOptions) {
+        this.volumeOptions = volumeOptions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Mount mount = (Mount) o;
+        return Objects.equals(this.bindOptions, mount.bindOptions) &&
+                Objects.equals(this.clusterOptions, mount.clusterOptions) &&
+                Objects.equals(this.consistency, mount.consistency) &&
+                Objects.equals(this.readOnly, mount.readOnly) &&
+                Objects.equals(this.source, mount.source) &&
+                Objects.equals(this.target, mount.target) &&
+                Objects.equals(this.tmpfsOptions, mount.tmpfsOptions) &&
+                Objects.equals(this.type, mount.type) &&
+                Objects.equals(this.volumeOptions, mount.volumeOptions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bindOptions, clusterOptions, consistency, readOnly, source, target, tmpfsOptions, type, volumeOptions);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Mount {\n" +
+                "    bindOptions: " + toIndentedString(bindOptions) + "\n" +
+                "    clusterOptions: " + toIndentedString(clusterOptions) + "\n" +
+                "    consistency: " + toIndentedString(consistency) + "\n" +
+                "    readOnly: " + toIndentedString(readOnly) + "\n" +
+                "    source: " + toIndentedString(source) + "\n" +
+                "    target: " + toIndentedString(target) + "\n" +
+                "    tmpfsOptions: " + toIndentedString(tmpfsOptions) + "\n" +
+                "    type: " + toIndentedString(type) + "\n" +
+                "    volumeOptions: " + toIndentedString(volumeOptions) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Mount to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Mount.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Mount' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Mount> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Mount.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Mount>() {
+                @Override
+                public void write(JsonWriter out, Mount value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Mount read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

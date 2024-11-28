@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerStore
  */
-class ContainerStoreTest {
+public class ContainerStoreTest {
     private final ContainerStore model = new ContainerStore();
 
     /**
      * Model tests for ContainerStore
      */
     @Test
-    void testContainerStore() {
+    public void testContainerStore() {
         // TODO: test ContainerStore
     }
 
@@ -42,7 +33,7 @@ class ContainerStoreTest {
      * Test the property 'number'
      */
     @Test
-    void numberTest() {
+    public void numberTest() {
         // TODO: test number
     }
 
@@ -50,7 +41,7 @@ class ContainerStoreTest {
      * Test the property 'paused'
      */
     @Test
-    void pausedTest() {
+    public void pausedTest() {
         // TODO: test paused
     }
 
@@ -58,7 +49,7 @@ class ContainerStoreTest {
      * Test the property 'running'
      */
     @Test
-    void runningTest() {
+    public void runningTest() {
         // TODO: test running
     }
 
@@ -66,7 +57,7 @@ class ContainerStoreTest {
      * Test the property 'stopped'
      */
     @Test
-    void stoppedTest() {
+    public void stoppedTest() {
         // TODO: test stopped
     }
 

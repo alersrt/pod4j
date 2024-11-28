@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.SecretSpec;
-import io.github.alersrt.pod4j.openapi.model.SecretVersion;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretInfoReportCompat
  */
-class SecretInfoReportCompatTest {
+public class SecretInfoReportCompatTest {
     private final SecretInfoReportCompat model = new SecretInfoReportCompat();
 
     /**
      * Model tests for SecretInfoReportCompat
      */
     @Test
-    void testSecretInfoReportCompat() {
+    public void testSecretInfoReportCompat() {
         // TODO: test SecretInfoReportCompat
     }
 
@@ -44,7 +33,7 @@ class SecretInfoReportCompatTest {
      * Test the property 'createdAt'
      */
     @Test
-    void createdAtTest() {
+    public void createdAtTest() {
         // TODO: test createdAt
     }
 
@@ -52,7 +41,7 @@ class SecretInfoReportCompatTest {
      * Test the property 'ID'
      */
     @Test
-    void IDTest() {
+    public void IDTest() {
         // TODO: test ID
     }
 
@@ -60,7 +49,7 @@ class SecretInfoReportCompatTest {
      * Test the property 'secretData'
      */
     @Test
-    void secretDataTest() {
+    public void secretDataTest() {
         // TODO: test secretData
     }
 
@@ -68,7 +57,7 @@ class SecretInfoReportCompatTest {
      * Test the property 'spec'
      */
     @Test
-    void specTest() {
+    public void specTest() {
         // TODO: test spec
     }
 
@@ -76,7 +65,7 @@ class SecretInfoReportCompatTest {
      * Test the property 'updatedAt'
      */
     @Test
-    void updatedAtTest() {
+    public void updatedAtTest() {
         // TODO: test updatedAt
     }
 
@@ -84,7 +73,7 @@ class SecretInfoReportCompatTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

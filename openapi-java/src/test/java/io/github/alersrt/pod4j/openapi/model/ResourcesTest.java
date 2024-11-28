@@ -13,34 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.DeviceMapping;
-import io.github.alersrt.pod4j.openapi.model.DeviceRequest;
-import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.Ulimit;
-import io.github.alersrt.pod4j.openapi.model.WeightDevice;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Resources
  */
-class ResourcesTest {
+public class ResourcesTest {
     private final Resources model = new Resources();
 
     /**
      * Model tests for Resources
      */
     @Test
-    void testResources() {
+    public void testResources() {
         // TODO: test Resources
     }
 
@@ -48,7 +33,7 @@ class ResourcesTest {
      * Test the property 'blkioDeviceReadBps'
      */
     @Test
-    void blkioDeviceReadBpsTest() {
+    public void blkioDeviceReadBpsTest() {
         // TODO: test blkioDeviceReadBps
     }
 
@@ -56,7 +41,7 @@ class ResourcesTest {
      * Test the property 'blkioDeviceReadIOps'
      */
     @Test
-    void blkioDeviceReadIOpsTest() {
+    public void blkioDeviceReadIOpsTest() {
         // TODO: test blkioDeviceReadIOps
     }
 
@@ -64,7 +49,7 @@ class ResourcesTest {
      * Test the property 'blkioDeviceWriteBps'
      */
     @Test
-    void blkioDeviceWriteBpsTest() {
+    public void blkioDeviceWriteBpsTest() {
         // TODO: test blkioDeviceWriteBps
     }
 
@@ -72,7 +57,7 @@ class ResourcesTest {
      * Test the property 'blkioDeviceWriteIOps'
      */
     @Test
-    void blkioDeviceWriteIOpsTest() {
+    public void blkioDeviceWriteIOpsTest() {
         // TODO: test blkioDeviceWriteIOps
     }
 
@@ -80,7 +65,7 @@ class ResourcesTest {
      * Test the property 'blkioWeight'
      */
     @Test
-    void blkioWeightTest() {
+    public void blkioWeightTest() {
         // TODO: test blkioWeight
     }
 
@@ -88,7 +73,7 @@ class ResourcesTest {
      * Test the property 'blkioWeightDevice'
      */
     @Test
-    void blkioWeightDeviceTest() {
+    public void blkioWeightDeviceTest() {
         // TODO: test blkioWeightDevice
     }
 
@@ -96,7 +81,7 @@ class ResourcesTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    void cgroupParentTest() {
+    public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -104,7 +89,7 @@ class ResourcesTest {
      * Test the property 'cpuCount'
      */
     @Test
-    void cpuCountTest() {
+    public void cpuCountTest() {
         // TODO: test cpuCount
     }
 
@@ -112,7 +97,7 @@ class ResourcesTest {
      * Test the property 'cpuPercent'
      */
     @Test
-    void cpuPercentTest() {
+    public void cpuPercentTest() {
         // TODO: test cpuPercent
     }
 
@@ -120,7 +105,7 @@ class ResourcesTest {
      * Test the property 'cpuPeriod'
      */
     @Test
-    void cpuPeriodTest() {
+    public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
@@ -128,7 +113,7 @@ class ResourcesTest {
      * Test the property 'cpuQuota'
      */
     @Test
-    void cpuQuotaTest() {
+    public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
@@ -136,7 +121,7 @@ class ResourcesTest {
      * Test the property 'cpuRealtimePeriod'
      */
     @Test
-    void cpuRealtimePeriodTest() {
+    public void cpuRealtimePeriodTest() {
         // TODO: test cpuRealtimePeriod
     }
 
@@ -144,7 +129,7 @@ class ResourcesTest {
      * Test the property 'cpuRealtimeRuntime'
      */
     @Test
-    void cpuRealtimeRuntimeTest() {
+    public void cpuRealtimeRuntimeTest() {
         // TODO: test cpuRealtimeRuntime
     }
 
@@ -152,7 +137,7 @@ class ResourcesTest {
      * Test the property 'cpuShares'
      */
     @Test
-    void cpuSharesTest() {
+    public void cpuSharesTest() {
         // TODO: test cpuShares
     }
 
@@ -160,7 +145,7 @@ class ResourcesTest {
      * Test the property 'cpusetCpus'
      */
     @Test
-    void cpusetCpusTest() {
+    public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
@@ -168,7 +153,7 @@ class ResourcesTest {
      * Test the property 'cpusetMems'
      */
     @Test
-    void cpusetMemsTest() {
+    public void cpusetMemsTest() {
         // TODO: test cpusetMems
     }
 
@@ -176,7 +161,7 @@ class ResourcesTest {
      * Test the property 'deviceCgroupRules'
      */
     @Test
-    void deviceCgroupRulesTest() {
+    public void deviceCgroupRulesTest() {
         // TODO: test deviceCgroupRules
     }
 
@@ -184,7 +169,7 @@ class ResourcesTest {
      * Test the property 'deviceRequests'
      */
     @Test
-    void deviceRequestsTest() {
+    public void deviceRequestsTest() {
         // TODO: test deviceRequests
     }
 
@@ -192,7 +177,7 @@ class ResourcesTest {
      * Test the property 'devices'
      */
     @Test
-    void devicesTest() {
+    public void devicesTest() {
         // TODO: test devices
     }
 
@@ -200,7 +185,7 @@ class ResourcesTest {
      * Test the property 'ioMaximumBandwidth'
      */
     @Test
-    void ioMaximumBandwidthTest() {
+    public void ioMaximumBandwidthTest() {
         // TODO: test ioMaximumBandwidth
     }
 
@@ -208,7 +193,7 @@ class ResourcesTest {
      * Test the property 'ioMaximumIOps'
      */
     @Test
-    void ioMaximumIOpsTest() {
+    public void ioMaximumIOpsTest() {
         // TODO: test ioMaximumIOps
     }
 
@@ -216,7 +201,7 @@ class ResourcesTest {
      * Test the property 'kernelMemory'
      */
     @Test
-    void kernelMemoryTest() {
+    public void kernelMemoryTest() {
         // TODO: test kernelMemory
     }
 
@@ -224,7 +209,7 @@ class ResourcesTest {
      * Test the property 'kernelMemoryTCP'
      */
     @Test
-    void kernelMemoryTCPTest() {
+    public void kernelMemoryTCPTest() {
         // TODO: test kernelMemoryTCP
     }
 
@@ -232,7 +217,7 @@ class ResourcesTest {
      * Test the property 'memory'
      */
     @Test
-    void memoryTest() {
+    public void memoryTest() {
         // TODO: test memory
     }
 
@@ -240,7 +225,7 @@ class ResourcesTest {
      * Test the property 'memoryReservation'
      */
     @Test
-    void memoryReservationTest() {
+    public void memoryReservationTest() {
         // TODO: test memoryReservation
     }
 
@@ -248,7 +233,7 @@ class ResourcesTest {
      * Test the property 'memorySwap'
      */
     @Test
-    void memorySwapTest() {
+    public void memorySwapTest() {
         // TODO: test memorySwap
     }
 
@@ -256,7 +241,7 @@ class ResourcesTest {
      * Test the property 'memorySwappiness'
      */
     @Test
-    void memorySwappinessTest() {
+    public void memorySwappinessTest() {
         // TODO: test memorySwappiness
     }
 
@@ -264,7 +249,7 @@ class ResourcesTest {
      * Test the property 'nanoCpus'
      */
     @Test
-    void nanoCpusTest() {
+    public void nanoCpusTest() {
         // TODO: test nanoCpus
     }
 
@@ -272,7 +257,7 @@ class ResourcesTest {
      * Test the property 'oomKillDisable'
      */
     @Test
-    void oomKillDisableTest() {
+    public void oomKillDisableTest() {
         // TODO: test oomKillDisable
     }
 
@@ -280,7 +265,7 @@ class ResourcesTest {
      * Test the property 'pidsLimit'
      */
     @Test
-    void pidsLimitTest() {
+    public void pidsLimitTest() {
         // TODO: test pidsLimit
     }
 
@@ -288,7 +273,7 @@ class ResourcesTest {
      * Test the property 'ulimits'
      */
     @Test
-    void ulimitsTest() {
+    public void ulimitsTest() {
         // TODO: test ulimits
     }
 

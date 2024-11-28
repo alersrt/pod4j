@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectPodContainerInfo
  */
-class InspectPodContainerInfoTest {
+public class InspectPodContainerInfoTest {
     private final InspectPodContainerInfo model = new InspectPodContainerInfo();
 
     /**
      * Model tests for InspectPodContainerInfo
      */
     @Test
-    void testInspectPodContainerInfo() {
+    public void testInspectPodContainerInfo() {
         // TODO: test InspectPodContainerInfo
     }
 
@@ -42,7 +43,7 @@ class InspectPodContainerInfoTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -50,7 +51,7 @@ class InspectPodContainerInfoTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -58,7 +59,7 @@ class InspectPodContainerInfoTest {
      * Test the property 'state'
      */
     @Test
-    void stateTest() {
+    public void stateTest() {
         // TODO: test state
     }
 

@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Ulimit
  */
-class UlimitTest {
+public class UlimitTest {
     private final Ulimit model = new Ulimit();
 
     /**
      * Model tests for Ulimit
      */
     @Test
-    void testUlimit() {
+    public void testUlimit() {
         // TODO: test Ulimit
     }
 
@@ -42,7 +33,7 @@ class UlimitTest {
      * Test the property 'hard'
      */
     @Test
-    void hardTest() {
+    public void hardTest() {
         // TODO: test hard
     }
 
@@ -50,7 +41,7 @@ class UlimitTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -58,7 +49,7 @@ class UlimitTest {
      * Test the property 'soft'
      */
     @Test
-    void softTest() {
+    public void softTest() {
         // TODO: test soft
     }
 

@@ -13,1689 +13,1371 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * ContainerBasicConfig
  */
-@JsonPropertyOrder({
-  ContainerBasicConfig.JSON_PROPERTY_ANNOTATIONS,
-  ContainerBasicConfig.JSON_PROPERTY_COMMAND,
-  ContainerBasicConfig.JSON_PROPERTY_CONMON_PID_FILE,
-  ContainerBasicConfig.JSON_PROPERTY_CONTAINER_CREATE_COMMAND,
-  ContainerBasicConfig.JSON_PROPERTY_DEPENDENCY_CONTAINERS,
-  ContainerBasicConfig.JSON_PROPERTY_ENTRYPOINT,
-  ContainerBasicConfig.JSON_PROPERTY_ENV,
-  ContainerBasicConfig.JSON_PROPERTY_ENV_HOST,
-  ContainerBasicConfig.JSON_PROPERTY_ENVMERGE,
-  ContainerBasicConfig.JSON_PROPERTY_GROUP_ENTRY,
-  ContainerBasicConfig.JSON_PROPERTY_HOSTNAME,
-  ContainerBasicConfig.JSON_PROPERTY_HOSTUSERS,
-  ContainerBasicConfig.JSON_PROPERTY_HTTPPROXY,
-  ContainerBasicConfig.JSON_PROPERTY_INIT_CONTAINER_TYPE,
-  ContainerBasicConfig.JSON_PROPERTY_LABELS,
-  ContainerBasicConfig.JSON_PROPERTY_LOG_CONFIGURATION,
-  ContainerBasicConfig.JSON_PROPERTY_MANAGE_PASSWORD,
-  ContainerBasicConfig.JSON_PROPERTY_NAME,
-  ContainerBasicConfig.JSON_PROPERTY_OCI_RUNTIME,
-  ContainerBasicConfig.JSON_PROPERTY_PASSWD_ENTRY,
-  ContainerBasicConfig.JSON_PROPERTY_PERSONALITY,
-  ContainerBasicConfig.JSON_PROPERTY_PIDNS,
-  ContainerBasicConfig.JSON_PROPERTY_POD,
-  ContainerBasicConfig.JSON_PROPERTY_REMOVE,
-  ContainerBasicConfig.JSON_PROPERTY_REMOVE_IMAGE,
-  ContainerBasicConfig.JSON_PROPERTY_RESTART_POLICY,
-  ContainerBasicConfig.JSON_PROPERTY_RESTART_TRIES,
-  ContainerBasicConfig.JSON_PROPERTY_SDNOTIFY_MODE,
-  ContainerBasicConfig.JSON_PROPERTY_SECRET_ENV,
-  ContainerBasicConfig.JSON_PROPERTY_STDIN,
-  ContainerBasicConfig.JSON_PROPERTY_STOP_SIGNAL,
-  ContainerBasicConfig.JSON_PROPERTY_STOP_TIMEOUT,
-  ContainerBasicConfig.JSON_PROPERTY_SYSCTL,
-  ContainerBasicConfig.JSON_PROPERTY_SYSTEMD,
-  ContainerBasicConfig.JSON_PROPERTY_TERMINAL,
-  ContainerBasicConfig.JSON_PROPERTY_TIMEOUT,
-  ContainerBasicConfig.JSON_PROPERTY_TIMEZONE,
-  ContainerBasicConfig.JSON_PROPERTY_UNSETENV,
-  ContainerBasicConfig.JSON_PROPERTY_UNSETENVALL,
-  ContainerBasicConfig.JSON_PROPERTY_UTSNS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerBasicConfig {
-  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
-  private Map<String, String> annotations = new HashMap<>();
-
-  public static final String JSON_PROPERTY_COMMAND = "command";
-  private List<String> command = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CONMON_PID_FILE = "conmon_pid_file";
-  private String conmonPidFile;
-
-  public static final String JSON_PROPERTY_CONTAINER_CREATE_COMMAND = "containerCreateCommand";
-  private List<String> containerCreateCommand = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DEPENDENCY_CONTAINERS = "dependencyContainers";
-  private List<String> dependencyContainers = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ENTRYPOINT = "entrypoint";
-  private List<String> entrypoint = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ENV = "env";
-  private Map<String, String> env = new HashMap<>();
-
-  public static final String JSON_PROPERTY_ENV_HOST = "env_host";
-  private Boolean envHost;
-
-  public static final String JSON_PROPERTY_ENVMERGE = "envmerge";
-  private List<String> envmerge = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_GROUP_ENTRY = "group_entry";
-  private String groupEntry;
-
-  public static final String JSON_PROPERTY_HOSTNAME = "hostname";
-  private String hostname;
-
-  public static final String JSON_PROPERTY_HOSTUSERS = "hostusers";
-  private List<String> hostusers = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_HTTPPROXY = "httpproxy";
-  private Boolean httpproxy;
-
-  public static final String JSON_PROPERTY_INIT_CONTAINER_TYPE = "init_container_type";
-  private String initContainerType;
-
-  public static final String JSON_PROPERTY_LABELS = "labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_LOG_CONFIGURATION = "log_configuration";
-  private LogConfigLibpod logConfiguration;
-
-  public static final String JSON_PROPERTY_MANAGE_PASSWORD = "manage_password";
-  private Boolean managePassword;
-
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
-
-  public static final String JSON_PROPERTY_OCI_RUNTIME = "oci_runtime";
-  private String ociRuntime;
-
-  public static final String JSON_PROPERTY_PASSWD_ENTRY = "passwd_entry";
-  private String passwdEntry;
-
-  public static final String JSON_PROPERTY_PERSONALITY = "personality";
-  private LinuxPersonality personality;
-
-  public static final String JSON_PROPERTY_PIDNS = "pidns";
-  private Namespace pidns;
-
-  public static final String JSON_PROPERTY_POD = "pod";
-  private String pod;
-
-  public static final String JSON_PROPERTY_REMOVE = "remove";
-  private Boolean remove;
-
-  public static final String JSON_PROPERTY_REMOVE_IMAGE = "removeImage";
-  private Boolean removeImage;
-
-  public static final String JSON_PROPERTY_RESTART_POLICY = "restart_policy";
-  private String restartPolicy;
-
-  public static final String JSON_PROPERTY_RESTART_TRIES = "restart_tries";
-  private Integer restartTries;
-
-  public static final String JSON_PROPERTY_SDNOTIFY_MODE = "sdnotifyMode";
-  private String sdnotifyMode;
-
-  public static final String JSON_PROPERTY_SECRET_ENV = "secret_env";
-  private Map<String, String> secretEnv = new HashMap<>();
-
-  public static final String JSON_PROPERTY_STDIN = "stdin";
-  private Boolean stdin;
-
-  public static final String JSON_PROPERTY_STOP_SIGNAL = "stop_signal";
-  private Long stopSignal;
-
-  public static final String JSON_PROPERTY_STOP_TIMEOUT = "stop_timeout";
-  private Integer stopTimeout;
-
-  public static final String JSON_PROPERTY_SYSCTL = "sysctl";
-  private Map<String, String> sysctl = new HashMap<>();
-
-  public static final String JSON_PROPERTY_SYSTEMD = "systemd";
-  private String systemd;
-
-  public static final String JSON_PROPERTY_TERMINAL = "terminal";
-  private Boolean terminal;
-
-  public static final String JSON_PROPERTY_TIMEOUT = "timeout";
-  private Integer timeout;
-
-  public static final String JSON_PROPERTY_TIMEZONE = "timezone";
-  private String timezone;
-
-  public static final String JSON_PROPERTY_UNSETENV = "unsetenv";
-  private List<String> unsetenv = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_UNSETENVALL = "unsetenvall";
-  private Boolean unsetenvall;
-
-  public static final String JSON_PROPERTY_UTSNS = "utsns";
-  private Namespace utsns;
-
-  public ContainerBasicConfig() { 
-  }
-
-  public ContainerBasicConfig annotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-    return this;
-  }
-
-  public ContainerBasicConfig putAnnotationsItem(String key, String annotationsItem) {
-    if (this.annotations == null) {
-      this.annotations = new HashMap<>();
-    }
-    this.annotations.put(key, annotationsItem);
-    return this;
-  }
-
-  /**
-   * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
-   * @return annotations
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getAnnotations() {
-    return annotations;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAnnotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-  }
-
-
-  public ContainerBasicConfig command(List<String> command) {
-    this.command = command;
-    return this;
-  }
-
-  public ContainerBasicConfig addCommandItem(String commandItem) {
-    if (this.command == null) {
-      this.command = new ArrayList<>();
-    }
-    this.command.add(commandItem);
-    return this;
-  }
-
-  /**
-   * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
-   * @return command
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCommand() {
-    return command;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCommand(List<String> command) {
-    this.command = command;
-  }
-
-
-  public ContainerBasicConfig conmonPidFile(String conmonPidFile) {
-    this.conmonPidFile = conmonPidFile;
-    return this;
-  }
-
-  /**
-   * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
-   * @return conmonPidFile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getConmonPidFile() {
-    return conmonPidFile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConmonPidFile(String conmonPidFile) {
-    this.conmonPidFile = conmonPidFile;
-  }
-
-
-  public ContainerBasicConfig containerCreateCommand(List<String> containerCreateCommand) {
-    this.containerCreateCommand = containerCreateCommand;
-    return this;
-  }
-
-  public ContainerBasicConfig addContainerCreateCommandItem(String containerCreateCommandItem) {
-    if (this.containerCreateCommand == null) {
-      this.containerCreateCommand = new ArrayList<>();
-    }
-    this.containerCreateCommand.add(containerCreateCommandItem);
-    return this;
-  }
-
-  /**
-   * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
-   * @return containerCreateCommand
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_CREATE_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getContainerCreateCommand() {
-    return containerCreateCommand;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_CREATE_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerCreateCommand(List<String> containerCreateCommand) {
-    this.containerCreateCommand = containerCreateCommand;
-  }
-
-
-  public ContainerBasicConfig dependencyContainers(List<String> dependencyContainers) {
-    this.dependencyContainers = dependencyContainers;
-    return this;
-  }
-
-  public ContainerBasicConfig addDependencyContainersItem(String dependencyContainersItem) {
-    if (this.dependencyContainers == null) {
-      this.dependencyContainers = new ArrayList<>();
-    }
-    this.dependencyContainers.add(dependencyContainersItem);
-    return this;
-  }
-
-  /**
-   * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
-   * @return dependencyContainers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DEPENDENCY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDependencyContainers() {
-    return dependencyContainers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEPENDENCY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDependencyContainers(List<String> dependencyContainers) {
-    this.dependencyContainers = dependencyContainers;
-  }
-
-
-  public ContainerBasicConfig entrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-    return this;
-  }
-
-  public ContainerBasicConfig addEntrypointItem(String entrypointItem) {
-    if (this.entrypoint == null) {
-      this.entrypoint = new ArrayList<>();
-    }
-    this.entrypoint.add(entrypointItem);
-    return this;
-  }
-
-  /**
-   * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
-   * @return entrypoint
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEntrypoint() {
-    return entrypoint;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntrypoint(List<String> entrypoint) {
-    this.entrypoint = entrypoint;
-  }
-
-
-  public ContainerBasicConfig env(Map<String, String> env) {
-    this.env = env;
-    return this;
-  }
-
-  public ContainerBasicConfig putEnvItem(String key, String envItem) {
-    if (this.env == null) {
-      this.env = new HashMap<>();
-    }
-    this.env.put(key, envItem);
-    return this;
-  }
-
-  /**
-   * Env is a set of environment variables that will be set in the container. Optional.
-   * @return env
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getEnv() {
-    return env;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnv(Map<String, String> env) {
-    this.env = env;
-  }
-
-
-  public ContainerBasicConfig envHost(Boolean envHost) {
-    this.envHost = envHost;
-    return this;
-  }
-
-  /**
-   * EnvHost indicates that the host environment should be added to container Optional.
-   * @return envHost
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENV_HOST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getEnvHost() {
-    return envHost;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENV_HOST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnvHost(Boolean envHost) {
-    this.envHost = envHost;
-  }
-
-
-  public ContainerBasicConfig envmerge(List<String> envmerge) {
-    this.envmerge = envmerge;
-    return this;
-  }
-
-  public ContainerBasicConfig addEnvmergeItem(String envmergeItem) {
-    if (this.envmerge == null) {
-      this.envmerge = new ArrayList<>();
-    }
-    this.envmerge.add(envmergeItem);
-    return this;
-  }
-
-  /**
-   * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
-   * @return envmerge
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENVMERGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getEnvmerge() {
-    return envmerge;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENVMERGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEnvmerge(List<String> envmerge) {
-    this.envmerge = envmerge;
-  }
-
-
-  public ContainerBasicConfig groupEntry(String groupEntry) {
-    this.groupEntry = groupEntry;
-    return this;
-  }
-
-  /**
-   * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
-   * @return groupEntry
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GROUP_ENTRY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGroupEntry() {
-    return groupEntry;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GROUP_ENTRY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroupEntry(String groupEntry) {
-    this.groupEntry = groupEntry;
-  }
-
-
-  public ContainerBasicConfig hostname(String hostname) {
-    this.hostname = hostname;
-    return this;
-  }
-
-  /**
-   * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
-   * @return hostname
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getHostname() {
-    return hostname;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostname(String hostname) {
-    this.hostname = hostname;
-  }
-
-
-  public ContainerBasicConfig hostusers(List<String> hostusers) {
-    this.hostusers = hostusers;
-    return this;
-  }
-
-  public ContainerBasicConfig addHostusersItem(String hostusersItem) {
-    if (this.hostusers == null) {
-      this.hostusers = new ArrayList<>();
-    }
-    this.hostusers.add(hostusersItem);
-    return this;
-  }
-
-  /**
-   * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
-   * @return hostusers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOSTUSERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getHostusers() {
-    return hostusers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOSTUSERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostusers(List<String> hostusers) {
-    this.hostusers = hostusers;
-  }
-
-
-  public ContainerBasicConfig httpproxy(Boolean httpproxy) {
-    this.httpproxy = httpproxy;
-    return this;
-  }
-
-  /**
-   * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
-   * @return httpproxy
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HTTPPROXY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getHttpproxy() {
-    return httpproxy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HTTPPROXY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHttpproxy(Boolean httpproxy) {
-    this.httpproxy = httpproxy;
-  }
-
-
-  public ContainerBasicConfig initContainerType(String initContainerType) {
-    this.initContainerType = initContainerType;
-    return this;
-  }
-
-  /**
-   * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
-   * @return initContainerType
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INIT_CONTAINER_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getInitContainerType() {
-    return initContainerType;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INIT_CONTAINER_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInitContainerType(String initContainerType) {
-    this.initContainerType = initContainerType;
-  }
-
-
-  public ContainerBasicConfig labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public ContainerBasicConfig putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * Labels are key-value pairs that are used to add metadata to containers. Optional.
-   * @return labels
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public ContainerBasicConfig logConfiguration(LogConfigLibpod logConfiguration) {
-    this.logConfiguration = logConfiguration;
-    return this;
-  }
-
-  /**
-   * Get logConfiguration
-   * @return logConfiguration
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_LOG_CONFIGURATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LogConfigLibpod getLogConfiguration() {
-    return logConfiguration;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOG_CONFIGURATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLogConfiguration(LogConfigLibpod logConfiguration) {
-    this.logConfiguration = logConfiguration;
-  }
-
-
-  public ContainerBasicConfig managePassword(Boolean managePassword) {
-    this.managePassword = managePassword;
-    return this;
-  }
-
-  /**
-   * Passwd is a container run option that determines if we are validating users/groups before running the container
-   * @return managePassword
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MANAGE_PASSWORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getManagePassword() {
-    return managePassword;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MANAGE_PASSWORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setManagePassword(Boolean managePassword) {
-    this.managePassword = managePassword;
-  }
-
-
-  public ContainerBasicConfig name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public ContainerBasicConfig ociRuntime(String ociRuntime) {
-    this.ociRuntime = ociRuntime;
-    return this;
-  }
-
-  /**
-   * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
-   * @return ociRuntime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getOciRuntime() {
-    return ociRuntime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOciRuntime(String ociRuntime) {
-    this.ociRuntime = ociRuntime;
-  }
-
-
-  public ContainerBasicConfig passwdEntry(String passwdEntry) {
-    this.passwdEntry = passwdEntry;
-    return this;
-  }
-
-  /**
-   * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
-   * @return passwdEntry
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PASSWD_ENTRY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPasswdEntry() {
-    return passwdEntry;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PASSWD_ENTRY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPasswdEntry(String passwdEntry) {
-    this.passwdEntry = passwdEntry;
-  }
-
-
-  public ContainerBasicConfig personality(LinuxPersonality personality) {
-    this.personality = personality;
-    return this;
-  }
-
-  /**
-   * Get personality
-   * @return personality
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PERSONALITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LinuxPersonality getPersonality() {
-    return personality;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PERSONALITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPersonality(LinuxPersonality personality) {
-    this.personality = personality;
-  }
-
-
-  public ContainerBasicConfig pidns(Namespace pidns) {
-    this.pidns = pidns;
-    return this;
-  }
-
-  /**
-   * Get pidns
-   * @return pidns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PIDNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Namespace getPidns() {
-    return pidns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PIDNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPidns(Namespace pidns) {
-    this.pidns = pidns;
-  }
-
-
-  public ContainerBasicConfig pod(String pod) {
-    this.pod = pod;
-    return this;
-  }
-
-  /**
-   * Pod is the ID of the pod the container will join. Optional.
-   * @return pod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_POD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPod() {
-    return pod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_POD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPod(String pod) {
-    this.pod = pod;
-  }
-
-
-  public ContainerBasicConfig remove(Boolean remove) {
-    this.remove = remove;
-    return this;
-  }
-
-  /**
-   * Remove indicates if the container should be removed once it has been started and exits. Optional.
-   * @return remove
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRemove() {
-    return remove;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemove(Boolean remove) {
-    this.remove = remove;
-  }
-
-
-  public ContainerBasicConfig removeImage(Boolean removeImage) {
-    this.removeImage = removeImage;
-    return this;
-  }
-
-  /**
-   * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
-   * @return removeImage
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REMOVE_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRemoveImage() {
-    return removeImage;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REMOVE_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRemoveImage(Boolean removeImage) {
-    this.removeImage = removeImage;
-  }
-
-
-  public ContainerBasicConfig restartPolicy(String restartPolicy) {
-    this.restartPolicy = restartPolicy;
-    return this;
-  }
-
-  /**
-   * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
-   * @return restartPolicy
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRestartPolicy() {
-    return restartPolicy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestartPolicy(String restartPolicy) {
-    this.restartPolicy = restartPolicy;
-  }
-
-
-  public ContainerBasicConfig restartTries(Integer restartTries) {
-    this.restartTries = restartTries;
-    return this;
-  }
-
-  /**
-   * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
-   * @return restartTries
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getRestartTries() {
-    return restartTries;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestartTries(Integer restartTries) {
-    this.restartTries = restartTries;
-  }
-
-
-  public ContainerBasicConfig sdnotifyMode(String sdnotifyMode) {
-    this.sdnotifyMode = sdnotifyMode;
-    return this;
-  }
-
-  /**
-   * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
-   * @return sdnotifyMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SDNOTIFY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSdnotifyMode() {
-    return sdnotifyMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SDNOTIFY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSdnotifyMode(String sdnotifyMode) {
-    this.sdnotifyMode = sdnotifyMode;
-  }
-
-
-  public ContainerBasicConfig secretEnv(Map<String, String> secretEnv) {
-    this.secretEnv = secretEnv;
-    return this;
-  }
-
-  public ContainerBasicConfig putSecretEnvItem(String key, String secretEnvItem) {
-    if (this.secretEnv == null) {
-      this.secretEnv = new HashMap<>();
-    }
-    this.secretEnv.put(key, secretEnvItem);
-    return this;
-  }
-
-  /**
-   * EnvSecrets are secrets that will be set as environment variables Optional.
-   * @return secretEnv
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SECRET_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getSecretEnv() {
-    return secretEnv;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECRET_ENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecretEnv(Map<String, String> secretEnv) {
-    this.secretEnv = secretEnv;
-  }
-
-
-  public ContainerBasicConfig stdin(Boolean stdin) {
-    this.stdin = stdin;
-    return this;
-  }
-
-  /**
-   * Stdin is whether the container will keep its STDIN open. Optional.
-   * @return stdin
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getStdin() {
-    return stdin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStdin(Boolean stdin) {
-    this.stdin = stdin;
-  }
-
-
-  public ContainerBasicConfig stopSignal(Long stopSignal) {
-    this.stopSignal = stopSignal;
-    return this;
-  }
-
-  /**
-   * It implements the [os.Signal] interface.
-   * @return stopSignal
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getStopSignal() {
-    return stopSignal;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStopSignal(Long stopSignal) {
-    this.stopSignal = stopSignal;
-  }
-
-
-  public ContainerBasicConfig stopTimeout(Integer stopTimeout) {
-    this.stopTimeout = stopTimeout;
-    return this;
-  }
-
-  /**
-   * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
-   * @return stopTimeout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getStopTimeout() {
-    return stopTimeout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStopTimeout(Integer stopTimeout) {
-    this.stopTimeout = stopTimeout;
-  }
-
-
-  public ContainerBasicConfig sysctl(Map<String, String> sysctl) {
-    this.sysctl = sysctl;
-    return this;
-  }
-
-  public ContainerBasicConfig putSysctlItem(String key, String sysctlItem) {
-    if (this.sysctl == null) {
-      this.sysctl = new HashMap<>();
-    }
-    this.sysctl.put(key, sysctlItem);
-    return this;
-  }
-
-  /**
-   * Sysctl sets kernel parameters for the container
-   * @return sysctl
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SYSCTL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getSysctl() {
-    return sysctl;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SYSCTL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSysctl(Map<String, String> sysctl) {
-    this.sysctl = sysctl;
-  }
-
-
-  public ContainerBasicConfig systemd(String systemd) {
-    this.systemd = systemd;
-    return this;
-  }
-
-  /**
-   * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
-   * @return systemd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SYSTEMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSystemd() {
-    return systemd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SYSTEMD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSystemd(String systemd) {
-    this.systemd = systemd;
-  }
-
-
-  public ContainerBasicConfig terminal(Boolean terminal) {
-    this.terminal = terminal;
-    return this;
-  }
-
-  /**
-   * Terminal is whether the container will create a PTY. Optional.
-   * @return terminal
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TERMINAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getTerminal() {
-    return terminal;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TERMINAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTerminal(Boolean terminal) {
-    this.terminal = terminal;
-  }
-
-
-  public ContainerBasicConfig timeout(Integer timeout) {
-    this.timeout = timeout;
-    return this;
-  }
-
-  /**
-   * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
-   * @return timeout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getTimeout() {
-    return timeout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimeout(Integer timeout) {
-    this.timeout = timeout;
-  }
-
-
-  public ContainerBasicConfig timezone(String timezone) {
-    this.timezone = timezone;
-    return this;
-  }
-
-  /**
-   * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
-   * @return timezone
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TIMEZONE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getTimezone() {
-    return timezone;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TIMEZONE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimezone(String timezone) {
-    this.timezone = timezone;
-  }
-
-
-  public ContainerBasicConfig unsetenv(List<String> unsetenv) {
-    this.unsetenv = unsetenv;
-    return this;
-  }
-
-  public ContainerBasicConfig addUnsetenvItem(String unsetenvItem) {
-    if (this.unsetenv == null) {
-      this.unsetenv = new ArrayList<>();
-    }
-    this.unsetenv.add(unsetenvItem);
-    return this;
-  }
-
-  /**
-   * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
-   * @return unsetenv
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNSETENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getUnsetenv() {
-    return unsetenv;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNSETENV)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnsetenv(List<String> unsetenv) {
-    this.unsetenv = unsetenv;
-  }
-
-
-  public ContainerBasicConfig unsetenvall(Boolean unsetenvall) {
-    this.unsetenvall = unsetenvall;
-    return this;
-  }
-
-  /**
-   * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
-   * @return unsetenvall
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UNSETENVALL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getUnsetenvall() {
-    return unsetenvall;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UNSETENVALL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUnsetenvall(Boolean unsetenvall) {
-    this.unsetenvall = unsetenvall;
-  }
-
-
-  public ContainerBasicConfig utsns(Namespace utsns) {
-    this.utsns = utsns;
-    return this;
-  }
-
-  /**
-   * Get utsns
-   * @return utsns
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_UTSNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Namespace getUtsns() {
-    return utsns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UTSNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUtsns(Namespace utsns) {
-    this.utsns = utsns;
-  }
-
-
-  /**
-   * Return true if this ContainerBasicConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ContainerBasicConfig containerBasicConfig = (ContainerBasicConfig) o;
-    return Objects.equals(this.annotations, containerBasicConfig.annotations) &&
-        Objects.equals(this.command, containerBasicConfig.command) &&
-        Objects.equals(this.conmonPidFile, containerBasicConfig.conmonPidFile) &&
-        Objects.equals(this.containerCreateCommand, containerBasicConfig.containerCreateCommand) &&
-        Objects.equals(this.dependencyContainers, containerBasicConfig.dependencyContainers) &&
-        Objects.equals(this.entrypoint, containerBasicConfig.entrypoint) &&
-        Objects.equals(this.env, containerBasicConfig.env) &&
-        Objects.equals(this.envHost, containerBasicConfig.envHost) &&
-        Objects.equals(this.envmerge, containerBasicConfig.envmerge) &&
-        Objects.equals(this.groupEntry, containerBasicConfig.groupEntry) &&
-        Objects.equals(this.hostname, containerBasicConfig.hostname) &&
-        Objects.equals(this.hostusers, containerBasicConfig.hostusers) &&
-        Objects.equals(this.httpproxy, containerBasicConfig.httpproxy) &&
-        Objects.equals(this.initContainerType, containerBasicConfig.initContainerType) &&
-        Objects.equals(this.labels, containerBasicConfig.labels) &&
-        Objects.equals(this.logConfiguration, containerBasicConfig.logConfiguration) &&
-        Objects.equals(this.managePassword, containerBasicConfig.managePassword) &&
-        Objects.equals(this.name, containerBasicConfig.name) &&
-        Objects.equals(this.ociRuntime, containerBasicConfig.ociRuntime) &&
-        Objects.equals(this.passwdEntry, containerBasicConfig.passwdEntry) &&
-        Objects.equals(this.personality, containerBasicConfig.personality) &&
-        Objects.equals(this.pidns, containerBasicConfig.pidns) &&
-        Objects.equals(this.pod, containerBasicConfig.pod) &&
-        Objects.equals(this.remove, containerBasicConfig.remove) &&
-        Objects.equals(this.removeImage, containerBasicConfig.removeImage) &&
-        Objects.equals(this.restartPolicy, containerBasicConfig.restartPolicy) &&
-        Objects.equals(this.restartTries, containerBasicConfig.restartTries) &&
-        Objects.equals(this.sdnotifyMode, containerBasicConfig.sdnotifyMode) &&
-        Objects.equals(this.secretEnv, containerBasicConfig.secretEnv) &&
-        Objects.equals(this.stdin, containerBasicConfig.stdin) &&
-        Objects.equals(this.stopSignal, containerBasicConfig.stopSignal) &&
-        Objects.equals(this.stopTimeout, containerBasicConfig.stopTimeout) &&
-        Objects.equals(this.sysctl, containerBasicConfig.sysctl) &&
-        Objects.equals(this.systemd, containerBasicConfig.systemd) &&
-        Objects.equals(this.terminal, containerBasicConfig.terminal) &&
-        Objects.equals(this.timeout, containerBasicConfig.timeout) &&
-        Objects.equals(this.timezone, containerBasicConfig.timezone) &&
-        Objects.equals(this.unsetenv, containerBasicConfig.unsetenv) &&
-        Objects.equals(this.unsetenvall, containerBasicConfig.unsetenvall) &&
-        Objects.equals(this.utsns, containerBasicConfig.utsns);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(annotations, command, conmonPidFile, containerCreateCommand, dependencyContainers, entrypoint, env, envHost, envmerge, groupEntry, hostname, hostusers, httpproxy, initContainerType, labels, logConfiguration, managePassword, name, ociRuntime, passwdEntry, personality, pidns, pod, remove, removeImage, restartPolicy, restartTries, sdnotifyMode, secretEnv, stdin, stopSignal, stopTimeout, sysctl, systemd, terminal, timeout, timezone, unsetenv, unsetenvall, utsns);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ContainerBasicConfig {\n");
-    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
-    sb.append("    command: ").append(toIndentedString(command)).append("\n");
-    sb.append("    conmonPidFile: ").append(toIndentedString(conmonPidFile)).append("\n");
-    sb.append("    containerCreateCommand: ").append(toIndentedString(containerCreateCommand)).append("\n");
-    sb.append("    dependencyContainers: ").append(toIndentedString(dependencyContainers)).append("\n");
-    sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
-    sb.append("    env: ").append(toIndentedString(env)).append("\n");
-    sb.append("    envHost: ").append(toIndentedString(envHost)).append("\n");
-    sb.append("    envmerge: ").append(toIndentedString(envmerge)).append("\n");
-    sb.append("    groupEntry: ").append(toIndentedString(groupEntry)).append("\n");
-    sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
-    sb.append("    hostusers: ").append(toIndentedString(hostusers)).append("\n");
-    sb.append("    httpproxy: ").append(toIndentedString(httpproxy)).append("\n");
-    sb.append("    initContainerType: ").append(toIndentedString(initContainerType)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    logConfiguration: ").append(toIndentedString(logConfiguration)).append("\n");
-    sb.append("    managePassword: ").append(toIndentedString(managePassword)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    ociRuntime: ").append(toIndentedString(ociRuntime)).append("\n");
-    sb.append("    passwdEntry: ").append(toIndentedString(passwdEntry)).append("\n");
-    sb.append("    personality: ").append(toIndentedString(personality)).append("\n");
-    sb.append("    pidns: ").append(toIndentedString(pidns)).append("\n");
-    sb.append("    pod: ").append(toIndentedString(pod)).append("\n");
-    sb.append("    remove: ").append(toIndentedString(remove)).append("\n");
-    sb.append("    removeImage: ").append(toIndentedString(removeImage)).append("\n");
-    sb.append("    restartPolicy: ").append(toIndentedString(restartPolicy)).append("\n");
-    sb.append("    restartTries: ").append(toIndentedString(restartTries)).append("\n");
-    sb.append("    sdnotifyMode: ").append(toIndentedString(sdnotifyMode)).append("\n");
-    sb.append("    secretEnv: ").append(toIndentedString(secretEnv)).append("\n");
-    sb.append("    stdin: ").append(toIndentedString(stdin)).append("\n");
-    sb.append("    stopSignal: ").append(toIndentedString(stopSignal)).append("\n");
-    sb.append("    stopTimeout: ").append(toIndentedString(stopTimeout)).append("\n");
-    sb.append("    sysctl: ").append(toIndentedString(sysctl)).append("\n");
-    sb.append("    systemd: ").append(toIndentedString(systemd)).append("\n");
-    sb.append("    terminal: ").append(toIndentedString(terminal)).append("\n");
-    sb.append("    timeout: ").append(toIndentedString(timeout)).append("\n");
-    sb.append("    timezone: ").append(toIndentedString(timezone)).append("\n");
-    sb.append("    unsetenv: ").append(toIndentedString(unsetenv)).append("\n");
-    sb.append("    unsetenvall: ").append(toIndentedString(unsetenvall)).append("\n");
-    sb.append("    utsns: ").append(toIndentedString(utsns)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
+    public static final String SERIALIZED_NAME_COMMAND = "command";
+    public static final String SERIALIZED_NAME_CONMON_PID_FILE = "conmon_pid_file";
+    public static final String SERIALIZED_NAME_CONTAINER_CREATE_COMMAND = "containerCreateCommand";
+    public static final String SERIALIZED_NAME_DEPENDENCY_CONTAINERS = "dependencyContainers";
+    public static final String SERIALIZED_NAME_ENTRYPOINT = "entrypoint";
+    public static final String SERIALIZED_NAME_ENV = "env";
+    public static final String SERIALIZED_NAME_ENV_HOST = "env_host";
+    public static final String SERIALIZED_NAME_ENVMERGE = "envmerge";
+    public static final String SERIALIZED_NAME_GROUP_ENTRY = "group_entry";
+    public static final String SERIALIZED_NAME_HOSTNAME = "hostname";
+    public static final String SERIALIZED_NAME_HOSTUSERS = "hostusers";
+    public static final String SERIALIZED_NAME_HTTPPROXY = "httpproxy";
+    public static final String SERIALIZED_NAME_INIT_CONTAINER_TYPE = "init_container_type";
+    public static final String SERIALIZED_NAME_LABELS = "labels";
+    public static final String SERIALIZED_NAME_LOG_CONFIGURATION = "log_configuration";
+    public static final String SERIALIZED_NAME_MANAGE_PASSWORD = "manage_password";
+    public static final String SERIALIZED_NAME_NAME = "name";
+    public static final String SERIALIZED_NAME_OCI_RUNTIME = "oci_runtime";
+    public static final String SERIALIZED_NAME_PASSWD_ENTRY = "passwd_entry";
+    public static final String SERIALIZED_NAME_PERSONALITY = "personality";
+    public static final String SERIALIZED_NAME_PIDNS = "pidns";
+    public static final String SERIALIZED_NAME_POD = "pod";
+    public static final String SERIALIZED_NAME_REMOVE = "remove";
+    public static final String SERIALIZED_NAME_REMOVE_IMAGE = "removeImage";
+    public static final String SERIALIZED_NAME_RESTART_POLICY = "restart_policy";
+    public static final String SERIALIZED_NAME_RESTART_TRIES = "restart_tries";
+    public static final String SERIALIZED_NAME_SDNOTIFY_MODE = "sdnotifyMode";
+    public static final String SERIALIZED_NAME_SECRET_ENV = "secret_env";
+    public static final String SERIALIZED_NAME_STDIN = "stdin";
+    public static final String SERIALIZED_NAME_STOP_SIGNAL = "stop_signal";
+    public static final String SERIALIZED_NAME_STOP_TIMEOUT = "stop_timeout";
+    public static final String SERIALIZED_NAME_SYSCTL = "sysctl";
+    public static final String SERIALIZED_NAME_SYSTEMD = "systemd";
+    public static final String SERIALIZED_NAME_TERMINAL = "terminal";
+    public static final String SERIALIZED_NAME_TIMEOUT = "timeout";
+    public static final String SERIALIZED_NAME_TIMEZONE = "timezone";
+    public static final String SERIALIZED_NAME_UNSETENV = "unsetenv";
+    public static final String SERIALIZED_NAME_UNSETENVALL = "unsetenvall";
+    public static final String SERIALIZED_NAME_UTSNS = "utsns";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("annotations");
+        openapiFields.add("command");
+        openapiFields.add("conmon_pid_file");
+        openapiFields.add("containerCreateCommand");
+        openapiFields.add("dependencyContainers");
+        openapiFields.add("entrypoint");
+        openapiFields.add("env");
+        openapiFields.add("env_host");
+        openapiFields.add("envmerge");
+        openapiFields.add("group_entry");
+        openapiFields.add("hostname");
+        openapiFields.add("hostusers");
+        openapiFields.add("httpproxy");
+        openapiFields.add("init_container_type");
+        openapiFields.add("labels");
+        openapiFields.add("log_configuration");
+        openapiFields.add("manage_password");
+        openapiFields.add("name");
+        openapiFields.add("oci_runtime");
+        openapiFields.add("passwd_entry");
+        openapiFields.add("personality");
+        openapiFields.add("pidns");
+        openapiFields.add("pod");
+        openapiFields.add("remove");
+        openapiFields.add("removeImage");
+        openapiFields.add("restart_policy");
+        openapiFields.add("restart_tries");
+        openapiFields.add("sdnotifyMode");
+        openapiFields.add("secret_env");
+        openapiFields.add("stdin");
+        openapiFields.add("stop_signal");
+        openapiFields.add("stop_timeout");
+        openapiFields.add("sysctl");
+        openapiFields.add("systemd");
+        openapiFields.add("terminal");
+        openapiFields.add("timeout");
+        openapiFields.add("timezone");
+        openapiFields.add("unsetenv");
+        openapiFields.add("unsetenvall");
+        openapiFields.add("utsns");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+    private Map<String, String> annotations = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_COMMAND)
+    private List<String> command = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CONMON_PID_FILE)
+    private String conmonPidFile;
+    @SerializedName(SERIALIZED_NAME_CONTAINER_CREATE_COMMAND)
+    private List<String> containerCreateCommand = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEPENDENCY_CONTAINERS)
+    private List<String> dependencyContainers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
+    private List<String> entrypoint = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENV)
+    private Map<String, String> env = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_ENV_HOST)
+    private Boolean envHost;
+    @SerializedName(SERIALIZED_NAME_ENVMERGE)
+    private List<String> envmerge = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_GROUP_ENTRY)
+    private String groupEntry;
+    @SerializedName(SERIALIZED_NAME_HOSTNAME)
+    private String hostname;
+    @SerializedName(SERIALIZED_NAME_HOSTUSERS)
+    private List<String> hostusers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_HTTPPROXY)
+    private Boolean httpproxy;
+    @SerializedName(SERIALIZED_NAME_INIT_CONTAINER_TYPE)
+    private String initContainerType;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_LOG_CONFIGURATION)
+    private LogConfigLibpod logConfiguration;
+    @SerializedName(SERIALIZED_NAME_MANAGE_PASSWORD)
+    private Boolean managePassword;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_OCI_RUNTIME)
+    private String ociRuntime;
+    @SerializedName(SERIALIZED_NAME_PASSWD_ENTRY)
+    private String passwdEntry;
+    @SerializedName(SERIALIZED_NAME_PERSONALITY)
+    private LinuxPersonality personality;
+    @SerializedName(SERIALIZED_NAME_PIDNS)
+    private Namespace pidns;
+    @SerializedName(SERIALIZED_NAME_POD)
+    private String pod;
+    @SerializedName(SERIALIZED_NAME_REMOVE)
+    private Boolean remove;
+    @SerializedName(SERIALIZED_NAME_REMOVE_IMAGE)
+    private Boolean removeImage;
+    @SerializedName(SERIALIZED_NAME_RESTART_POLICY)
+    private String restartPolicy;
+    @SerializedName(SERIALIZED_NAME_RESTART_TRIES)
+    private Integer restartTries;
+    @SerializedName(SERIALIZED_NAME_SDNOTIFY_MODE)
+    private String sdnotifyMode;
+    @SerializedName(SERIALIZED_NAME_SECRET_ENV)
+    private Map<String, String> secretEnv = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_STDIN)
+    private Boolean stdin;
+    @SerializedName(SERIALIZED_NAME_STOP_SIGNAL)
+    private Long stopSignal;
+    @SerializedName(SERIALIZED_NAME_STOP_TIMEOUT)
+    private Integer stopTimeout;
+    @SerializedName(SERIALIZED_NAME_SYSCTL)
+    private Map<String, String> sysctl = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_SYSTEMD)
+    private String systemd;
+    @SerializedName(SERIALIZED_NAME_TERMINAL)
+    private Boolean terminal;
+    @SerializedName(SERIALIZED_NAME_TIMEOUT)
+    private Integer timeout;
+    @SerializedName(SERIALIZED_NAME_TIMEZONE)
+    private String timezone;
+    @SerializedName(SERIALIZED_NAME_UNSETENV)
+    private List<String> unsetenv = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_UNSETENVALL)
+    private Boolean unsetenvall;
+    @SerializedName(SERIALIZED_NAME_UTSNS)
+    private Namespace utsns;
 
-    // add `annotations` to the URL query string
-    if (getAnnotations() != null) {
-      for (String _key : getAnnotations().keySet()) {
-        joiner.add(String.format("%sannotations%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ContainerBasicConfig() {
     }
 
-    // add `command` to the URL query string
-    if (getCommand() != null) {
-      for (int i = 0; i < getCommand().size(); i++) {
-        joiner.add(String.format("%scommand%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ContainerBasicConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ContainerBasicConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerBasicConfig is not found in the empty JSON string", ContainerBasicConfig.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ContainerBasicConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerBasicConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("command") != null && !jsonObj.get("command").isJsonNull() && !jsonObj.get("command").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `command` to be an array in the JSON string but got `%s`", jsonObj.get("command").toString()));
+        }
+        if ((jsonObj.get("conmon_pid_file") != null && !jsonObj.get("conmon_pid_file").isJsonNull()) && !jsonObj.get("conmon_pid_file").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `conmon_pid_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("conmon_pid_file").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("containerCreateCommand") != null && !jsonObj.get("containerCreateCommand").isJsonNull() && !jsonObj.get("containerCreateCommand").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `containerCreateCommand` to be an array in the JSON string but got `%s`", jsonObj.get("containerCreateCommand").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("dependencyContainers") != null && !jsonObj.get("dependencyContainers").isJsonNull() && !jsonObj.get("dependencyContainers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `dependencyContainers` to be an array in the JSON string but got `%s`", jsonObj.get("dependencyContainers").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull() && !jsonObj.get("entrypoint").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("entrypoint").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("envmerge") != null && !jsonObj.get("envmerge").isJsonNull() && !jsonObj.get("envmerge").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `envmerge` to be an array in the JSON string but got `%s`", jsonObj.get("envmerge").toString()));
+        }
+        if ((jsonObj.get("group_entry") != null && !jsonObj.get("group_entry").isJsonNull()) && !jsonObj.get("group_entry").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `group_entry` to be a primitive type in the JSON string but got `%s`", jsonObj.get("group_entry").toString()));
+        }
+        if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("hostusers") != null && !jsonObj.get("hostusers").isJsonNull() && !jsonObj.get("hostusers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `hostusers` to be an array in the JSON string but got `%s`", jsonObj.get("hostusers").toString()));
+        }
+        if ((jsonObj.get("init_container_type") != null && !jsonObj.get("init_container_type").isJsonNull()) && !jsonObj.get("init_container_type").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `init_container_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("init_container_type").toString()));
+        }
+        // validate the optional field `log_configuration`
+        if (jsonObj.get("log_configuration") != null && !jsonObj.get("log_configuration").isJsonNull()) {
+            LogConfigLibpod.validateJsonElement(jsonObj.get("log_configuration"));
+        }
+        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+        }
+        if ((jsonObj.get("oci_runtime") != null && !jsonObj.get("oci_runtime").isJsonNull()) && !jsonObj.get("oci_runtime").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `oci_runtime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("oci_runtime").toString()));
+        }
+        if ((jsonObj.get("passwd_entry") != null && !jsonObj.get("passwd_entry").isJsonNull()) && !jsonObj.get("passwd_entry").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `passwd_entry` to be a primitive type in the JSON string but got `%s`", jsonObj.get("passwd_entry").toString()));
+        }
+        // validate the optional field `personality`
+        if (jsonObj.get("personality") != null && !jsonObj.get("personality").isJsonNull()) {
+            LinuxPersonality.validateJsonElement(jsonObj.get("personality"));
+        }
+        // validate the optional field `pidns`
+        if (jsonObj.get("pidns") != null && !jsonObj.get("pidns").isJsonNull()) {
+            Namespace.validateJsonElement(jsonObj.get("pidns"));
+        }
+        if ((jsonObj.get("pod") != null && !jsonObj.get("pod").isJsonNull()) && !jsonObj.get("pod").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `pod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pod").toString()));
+        }
+        if ((jsonObj.get("restart_policy") != null && !jsonObj.get("restart_policy").isJsonNull()) && !jsonObj.get("restart_policy").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `restart_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("restart_policy").toString()));
+        }
+        if ((jsonObj.get("sdnotifyMode") != null && !jsonObj.get("sdnotifyMode").isJsonNull()) && !jsonObj.get("sdnotifyMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `sdnotifyMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sdnotifyMode").toString()));
+        }
+        if ((jsonObj.get("systemd") != null && !jsonObj.get("systemd").isJsonNull()) && !jsonObj.get("systemd").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `systemd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("systemd").toString()));
+        }
+        if ((jsonObj.get("timezone") != null && !jsonObj.get("timezone").isJsonNull()) && !jsonObj.get("timezone").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `timezone` to be a primitive type in the JSON string but got `%s`", jsonObj.get("timezone").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("unsetenv") != null && !jsonObj.get("unsetenv").isJsonNull() && !jsonObj.get("unsetenv").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `unsetenv` to be an array in the JSON string but got `%s`", jsonObj.get("unsetenv").toString()));
+        }
+        // validate the optional field `utsns`
+        if (jsonObj.get("utsns") != null && !jsonObj.get("utsns").isJsonNull()) {
+            Namespace.validateJsonElement(jsonObj.get("utsns"));
+        }
     }
 
-    // add `conmon_pid_file` to the URL query string
-    if (getConmonPidFile() != null) {
-      joiner.add(String.format("%sconmon_pid_file%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConmonPidFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ContainerBasicConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ContainerBasicConfig
+     * @throws IOException if the JSON string is invalid with respect to ContainerBasicConfig
+     */
+    public static ContainerBasicConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ContainerBasicConfig.class);
     }
 
-    // add `containerCreateCommand` to the URL query string
-    if (getContainerCreateCommand() != null) {
-      for (int i = 0; i < getContainerCreateCommand().size(); i++) {
-        joiner.add(String.format("%scontainerCreateCommand%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getContainerCreateCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ContainerBasicConfig annotations(Map<String, String> annotations) {
+        this.annotations = annotations;
+        return this;
     }
 
-    // add `dependencyContainers` to the URL query string
-    if (getDependencyContainers() != null) {
-      for (int i = 0; i < getDependencyContainers().size(); i++) {
-        joiner.add(String.format("%sdependencyContainers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDependencyContainers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ContainerBasicConfig putAnnotationsItem(String key, String annotationsItem) {
+        if (this.annotations == null) {
+            this.annotations = new HashMap<>();
+        }
+        this.annotations.put(key, annotationsItem);
+        return this;
     }
 
-    // add `entrypoint` to the URL query string
-    if (getEntrypoint() != null) {
-      for (int i = 0; i < getEntrypoint().size(); i++) {
-        joiner.add(String.format("%sentrypoint%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEntrypoint().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
+     *
+     * @return annotations
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getAnnotations() {
+        return annotations;
     }
 
-    // add `env` to the URL query string
-    if (getEnv() != null) {
-      for (String _key : getEnv().keySet()) {
-        joiner.add(String.format("%senv%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getEnv().get(_key), URLEncoder.encode(ApiClient.valueToString(getEnv().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setAnnotations(Map<String, String> annotations) {
+        this.annotations = annotations;
     }
 
-    // add `env_host` to the URL query string
-    if (getEnvHost() != null) {
-      joiner.add(String.format("%senv_host%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnvHost()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig command(List<String> command) {
+        this.command = command;
+        return this;
     }
 
-    // add `envmerge` to the URL query string
-    if (getEnvmerge() != null) {
-      for (int i = 0; i < getEnvmerge().size(); i++) {
-        joiner.add(String.format("%senvmerge%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getEnvmerge().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ContainerBasicConfig addCommandItem(String commandItem) {
+        if (this.command == null) {
+            this.command = new ArrayList<>();
+        }
+        this.command.add(commandItem);
+        return this;
     }
 
-    // add `group_entry` to the URL query string
-    if (getGroupEntry() != null) {
-      joiner.add(String.format("%sgroup_entry%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGroupEntry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
+     *
+     * @return command
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCommand() {
+        return command;
     }
 
-    // add `hostname` to the URL query string
-    if (getHostname() != null) {
-      joiner.add(String.format("%shostname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCommand(List<String> command) {
+        this.command = command;
     }
 
-    // add `hostusers` to the URL query string
-    if (getHostusers() != null) {
-      for (int i = 0; i < getHostusers().size(); i++) {
-        joiner.add(String.format("%shostusers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getHostusers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ContainerBasicConfig conmonPidFile(String conmonPidFile) {
+        this.conmonPidFile = conmonPidFile;
+        return this;
     }
 
-    // add `httpproxy` to the URL query string
-    if (getHttpproxy() != null) {
-      joiner.add(String.format("%shttpproxy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHttpproxy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
+     *
+     * @return conmonPidFile
+     */
+    @jakarta.annotation.Nullable
+
+    public String getConmonPidFile() {
+        return conmonPidFile;
     }
 
-    // add `init_container_type` to the URL query string
-    if (getInitContainerType() != null) {
-      joiner.add(String.format("%sinit_container_type%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInitContainerType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setConmonPidFile(String conmonPidFile) {
+        this.conmonPidFile = conmonPidFile;
     }
 
-    // add `labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%slabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ContainerBasicConfig containerCreateCommand(List<String> containerCreateCommand) {
+        this.containerCreateCommand = containerCreateCommand;
+        return this;
     }
 
-    // add `log_configuration` to the URL query string
-    if (getLogConfiguration() != null) {
-      joiner.add(getLogConfiguration().toUrlQueryString(prefix + "log_configuration" + suffix));
+    public ContainerBasicConfig addContainerCreateCommandItem(String containerCreateCommandItem) {
+        if (this.containerCreateCommand == null) {
+            this.containerCreateCommand = new ArrayList<>();
+        }
+        this.containerCreateCommand.add(containerCreateCommandItem);
+        return this;
     }
 
-    // add `manage_password` to the URL query string
-    if (getManagePassword() != null) {
-      joiner.add(String.format("%smanage_password%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getManagePassword()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
+     *
+     * @return containerCreateCommand
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getContainerCreateCommand() {
+        return containerCreateCommand;
     }
 
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setContainerCreateCommand(List<String> containerCreateCommand) {
+        this.containerCreateCommand = containerCreateCommand;
     }
 
-    // add `oci_runtime` to the URL query string
-    if (getOciRuntime() != null) {
-      joiner.add(String.format("%soci_runtime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOciRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig dependencyContainers(List<String> dependencyContainers) {
+        this.dependencyContainers = dependencyContainers;
+        return this;
     }
 
-    // add `passwd_entry` to the URL query string
-    if (getPasswdEntry() != null) {
-      joiner.add(String.format("%spasswd_entry%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPasswdEntry()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig addDependencyContainersItem(String dependencyContainersItem) {
+        if (this.dependencyContainers == null) {
+            this.dependencyContainers = new ArrayList<>();
+        }
+        this.dependencyContainers.add(dependencyContainersItem);
+        return this;
     }
 
-    // add `personality` to the URL query string
-    if (getPersonality() != null) {
-      joiner.add(getPersonality().toUrlQueryString(prefix + "personality" + suffix));
+    /**
+     * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
+     *
+     * @return dependencyContainers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDependencyContainers() {
+        return dependencyContainers;
     }
 
-    // add `pidns` to the URL query string
-    if (getPidns() != null) {
-      joiner.add(getPidns().toUrlQueryString(prefix + "pidns" + suffix));
+    public void setDependencyContainers(List<String> dependencyContainers) {
+        this.dependencyContainers = dependencyContainers;
     }
 
-    // add `pod` to the URL query string
-    if (getPod() != null) {
-      joiner.add(String.format("%spod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig entrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
+        return this;
     }
 
-    // add `remove` to the URL query string
-    if (getRemove() != null) {
-      joiner.add(String.format("%sremove%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRemove()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig addEntrypointItem(String entrypointItem) {
+        if (this.entrypoint == null) {
+            this.entrypoint = new ArrayList<>();
+        }
+        this.entrypoint.add(entrypointItem);
+        return this;
     }
 
-    // add `removeImage` to the URL query string
-    if (getRemoveImage() != null) {
-      joiner.add(String.format("%sremoveImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRemoveImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
+     *
+     * @return entrypoint
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEntrypoint() {
+        return entrypoint;
     }
 
-    // add `restart_policy` to the URL query string
-    if (getRestartPolicy() != null) {
-      joiner.add(String.format("%srestart_policy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartPolicy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setEntrypoint(List<String> entrypoint) {
+        this.entrypoint = entrypoint;
     }
 
-    // add `restart_tries` to the URL query string
-    if (getRestartTries() != null) {
-      joiner.add(String.format("%srestart_tries%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartTries()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig env(Map<String, String> env) {
+        this.env = env;
+        return this;
     }
 
-    // add `sdnotifyMode` to the URL query string
-    if (getSdnotifyMode() != null) {
-      joiner.add(String.format("%ssdnotifyMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSdnotifyMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig putEnvItem(String key, String envItem) {
+        if (this.env == null) {
+            this.env = new HashMap<>();
+        }
+        this.env.put(key, envItem);
+        return this;
     }
 
-    // add `secret_env` to the URL query string
-    if (getSecretEnv() != null) {
-      for (String _key : getSecretEnv().keySet()) {
-        joiner.add(String.format("%ssecret_env%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getSecretEnv().get(_key), URLEncoder.encode(ApiClient.valueToString(getSecretEnv().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Env is a set of environment variables that will be set in the container. Optional.
+     *
+     * @return env
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getEnv() {
+        return env;
     }
 
-    // add `stdin` to the URL query string
-    if (getStdin() != null) {
-      joiner.add(String.format("%sstdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setEnv(Map<String, String> env) {
+        this.env = env;
     }
 
-    // add `stop_signal` to the URL query string
-    if (getStopSignal() != null) {
-      joiner.add(String.format("%sstop_signal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopSignal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig envHost(Boolean envHost) {
+        this.envHost = envHost;
+        return this;
     }
 
-    // add `stop_timeout` to the URL query string
-    if (getStopTimeout() != null) {
-      joiner.add(String.format("%sstop_timeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * EnvHost indicates that the host environment should be added to container Optional.
+     *
+     * @return envHost
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getEnvHost() {
+        return envHost;
     }
 
-    // add `sysctl` to the URL query string
-    if (getSysctl() != null) {
-      for (String _key : getSysctl().keySet()) {
-        joiner.add(String.format("%ssysctl%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getSysctl().get(_key), URLEncoder.encode(ApiClient.valueToString(getSysctl().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setEnvHost(Boolean envHost) {
+        this.envHost = envHost;
     }
 
-    // add `systemd` to the URL query string
-    if (getSystemd() != null) {
-      joiner.add(String.format("%ssystemd%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSystemd()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig envmerge(List<String> envmerge) {
+        this.envmerge = envmerge;
+        return this;
     }
 
-    // add `terminal` to the URL query string
-    if (getTerminal() != null) {
-      joiner.add(String.format("%sterminal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTerminal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ContainerBasicConfig addEnvmergeItem(String envmergeItem) {
+        if (this.envmerge == null) {
+            this.envmerge = new ArrayList<>();
+        }
+        this.envmerge.add(envmergeItem);
+        return this;
     }
 
-    // add `timeout` to the URL query string
-    if (getTimeout() != null) {
-      joiner.add(String.format("%stimeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
+     *
+     * @return envmerge
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getEnvmerge() {
+        return envmerge;
     }
 
-    // add `timezone` to the URL query string
-    if (getTimezone() != null) {
-      joiner.add(String.format("%stimezone%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTimezone()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setEnvmerge(List<String> envmerge) {
+        this.envmerge = envmerge;
     }
 
-    // add `unsetenv` to the URL query string
-    if (getUnsetenv() != null) {
-      for (int i = 0; i < getUnsetenv().size(); i++) {
-        joiner.add(String.format("%sunsetenv%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getUnsetenv().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public ContainerBasicConfig groupEntry(String groupEntry) {
+        this.groupEntry = groupEntry;
+        return this;
     }
 
-    // add `unsetenvall` to the URL query string
-    if (getUnsetenvall() != null) {
-      joiner.add(String.format("%sunsetenvall%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUnsetenvall()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
+     *
+     * @return groupEntry
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGroupEntry() {
+        return groupEntry;
     }
 
-    // add `utsns` to the URL query string
-    if (getUtsns() != null) {
-      joiner.add(getUtsns().toUrlQueryString(prefix + "utsns" + suffix));
+    public void setGroupEntry(String groupEntry) {
+        this.groupEntry = groupEntry;
     }
 
-    return joiner.toString();
-  }
+    public ContainerBasicConfig hostname(String hostname) {
+        this.hostname = hostname;
+        return this;
+    }
+
+    /**
+     * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
+     *
+     * @return hostname
+     */
+    @jakarta.annotation.Nullable
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public ContainerBasicConfig hostusers(List<String> hostusers) {
+        this.hostusers = hostusers;
+        return this;
+    }
+
+    public ContainerBasicConfig addHostusersItem(String hostusersItem) {
+        if (this.hostusers == null) {
+            this.hostusers = new ArrayList<>();
+        }
+        this.hostusers.add(hostusersItem);
+        return this;
+    }
+
+    /**
+     * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
+     *
+     * @return hostusers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getHostusers() {
+        return hostusers;
+    }
+
+    public void setHostusers(List<String> hostusers) {
+        this.hostusers = hostusers;
+    }
+
+    public ContainerBasicConfig httpproxy(Boolean httpproxy) {
+        this.httpproxy = httpproxy;
+        return this;
+    }
+
+    /**
+     * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
+     *
+     * @return httpproxy
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getHttpproxy() {
+        return httpproxy;
+    }
+
+    public void setHttpproxy(Boolean httpproxy) {
+        this.httpproxy = httpproxy;
+    }
+
+    public ContainerBasicConfig initContainerType(String initContainerType) {
+        this.initContainerType = initContainerType;
+        return this;
+    }
+
+    /**
+     * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
+     *
+     * @return initContainerType
+     */
+    @jakarta.annotation.Nullable
+
+    public String getInitContainerType() {
+        return initContainerType;
+    }
+
+    public void setInitContainerType(String initContainerType) {
+        this.initContainerType = initContainerType;
+    }
+
+    public ContainerBasicConfig labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public ContainerBasicConfig putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * Labels are key-value pairs that are used to add metadata to containers. Optional.
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public ContainerBasicConfig logConfiguration(LogConfigLibpod logConfiguration) {
+        this.logConfiguration = logConfiguration;
+        return this;
+    }
+
+    /**
+     * Get logConfiguration
+     *
+     * @return logConfiguration
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LogConfigLibpod getLogConfiguration() {
+        return logConfiguration;
+    }
+
+    public void setLogConfiguration(LogConfigLibpod logConfiguration) {
+        this.logConfiguration = logConfiguration;
+    }
+
+    public ContainerBasicConfig managePassword(Boolean managePassword) {
+        this.managePassword = managePassword;
+        return this;
+    }
+
+    /**
+     * Passwd is a container run option that determines if we are validating users/groups before running the container
+     *
+     * @return managePassword
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getManagePassword() {
+        return managePassword;
+    }
+
+    public void setManagePassword(Boolean managePassword) {
+        this.managePassword = managePassword;
+    }
+
+    public ContainerBasicConfig name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ContainerBasicConfig ociRuntime(String ociRuntime) {
+        this.ociRuntime = ociRuntime;
+        return this;
+    }
+
+    /**
+     * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
+     *
+     * @return ociRuntime
+     */
+    @jakarta.annotation.Nullable
+
+    public String getOciRuntime() {
+        return ociRuntime;
+    }
+
+    public void setOciRuntime(String ociRuntime) {
+        this.ociRuntime = ociRuntime;
+    }
+
+    public ContainerBasicConfig passwdEntry(String passwdEntry) {
+        this.passwdEntry = passwdEntry;
+        return this;
+    }
+
+    /**
+     * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
+     *
+     * @return passwdEntry
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPasswdEntry() {
+        return passwdEntry;
+    }
+
+    public void setPasswdEntry(String passwdEntry) {
+        this.passwdEntry = passwdEntry;
+    }
+
+    public ContainerBasicConfig personality(LinuxPersonality personality) {
+        this.personality = personality;
+        return this;
+    }
+
+    /**
+     * Get personality
+     *
+     * @return personality
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LinuxPersonality getPersonality() {
+        return personality;
+    }
+
+    public void setPersonality(LinuxPersonality personality) {
+        this.personality = personality;
+    }
+
+    public ContainerBasicConfig pidns(Namespace pidns) {
+        this.pidns = pidns;
+        return this;
+    }
+
+    /**
+     * Get pidns
+     *
+     * @return pidns
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Namespace getPidns() {
+        return pidns;
+    }
+
+    public void setPidns(Namespace pidns) {
+        this.pidns = pidns;
+    }
+
+    public ContainerBasicConfig pod(String pod) {
+        this.pod = pod;
+        return this;
+    }
+
+    /**
+     * Pod is the ID of the pod the container will join. Optional.
+     *
+     * @return pod
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPod() {
+        return pod;
+    }
+
+    public void setPod(String pod) {
+        this.pod = pod;
+    }
+
+    public ContainerBasicConfig remove(Boolean remove) {
+        this.remove = remove;
+        return this;
+    }
+
+    /**
+     * Remove indicates if the container should be removed once it has been started and exits. Optional.
+     *
+     * @return remove
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRemove() {
+        return remove;
+    }
+
+    public void setRemove(Boolean remove) {
+        this.remove = remove;
+    }
+
+    public ContainerBasicConfig removeImage(Boolean removeImage) {
+        this.removeImage = removeImage;
+        return this;
+    }
+
+    /**
+     * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
+     *
+     * @return removeImage
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRemoveImage() {
+        return removeImage;
+    }
+
+    public void setRemoveImage(Boolean removeImage) {
+        this.removeImage = removeImage;
+    }
+
+    public ContainerBasicConfig restartPolicy(String restartPolicy) {
+        this.restartPolicy = restartPolicy;
+        return this;
+    }
+
+    /**
+     * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
+     *
+     * @return restartPolicy
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRestartPolicy() {
+        return restartPolicy;
+    }
+
+    public void setRestartPolicy(String restartPolicy) {
+        this.restartPolicy = restartPolicy;
+    }
+
+    public ContainerBasicConfig restartTries(Integer restartTries) {
+        this.restartTries = restartTries;
+        return this;
+    }
+
+    /**
+     * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
+     *
+     * @return restartTries
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getRestartTries() {
+        return restartTries;
+    }
+
+    public void setRestartTries(Integer restartTries) {
+        this.restartTries = restartTries;
+    }
+
+    public ContainerBasicConfig sdnotifyMode(String sdnotifyMode) {
+        this.sdnotifyMode = sdnotifyMode;
+        return this;
+    }
+
+    /**
+     * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
+     *
+     * @return sdnotifyMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSdnotifyMode() {
+        return sdnotifyMode;
+    }
+
+    public void setSdnotifyMode(String sdnotifyMode) {
+        this.sdnotifyMode = sdnotifyMode;
+    }
+
+    public ContainerBasicConfig secretEnv(Map<String, String> secretEnv) {
+        this.secretEnv = secretEnv;
+        return this;
+    }
+
+    public ContainerBasicConfig putSecretEnvItem(String key, String secretEnvItem) {
+        if (this.secretEnv == null) {
+            this.secretEnv = new HashMap<>();
+        }
+        this.secretEnv.put(key, secretEnvItem);
+        return this;
+    }
+
+    /**
+     * EnvSecrets are secrets that will be set as environment variables Optional.
+     *
+     * @return secretEnv
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getSecretEnv() {
+        return secretEnv;
+    }
+
+    public void setSecretEnv(Map<String, String> secretEnv) {
+        this.secretEnv = secretEnv;
+    }
+
+    public ContainerBasicConfig stdin(Boolean stdin) {
+        this.stdin = stdin;
+        return this;
+    }
+
+    /**
+     * Stdin is whether the container will keep its STDIN open. Optional.
+     *
+     * @return stdin
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getStdin() {
+        return stdin;
+    }
+
+    public void setStdin(Boolean stdin) {
+        this.stdin = stdin;
+    }
+
+    public ContainerBasicConfig stopSignal(Long stopSignal) {
+        this.stopSignal = stopSignal;
+        return this;
+    }
+
+    /**
+     * It implements the [os.Signal] interface.
+     *
+     * @return stopSignal
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getStopSignal() {
+        return stopSignal;
+    }
+
+    public void setStopSignal(Long stopSignal) {
+        this.stopSignal = stopSignal;
+    }
+
+    public ContainerBasicConfig stopTimeout(Integer stopTimeout) {
+        this.stopTimeout = stopTimeout;
+        return this;
+    }
+
+    /**
+     * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
+     *
+     * @return stopTimeout
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getStopTimeout() {
+        return stopTimeout;
+    }
+
+    public void setStopTimeout(Integer stopTimeout) {
+        this.stopTimeout = stopTimeout;
+    }
+
+    public ContainerBasicConfig sysctl(Map<String, String> sysctl) {
+        this.sysctl = sysctl;
+        return this;
+    }
+
+    public ContainerBasicConfig putSysctlItem(String key, String sysctlItem) {
+        if (this.sysctl == null) {
+            this.sysctl = new HashMap<>();
+        }
+        this.sysctl.put(key, sysctlItem);
+        return this;
+    }
+
+    /**
+     * Sysctl sets kernel parameters for the container
+     *
+     * @return sysctl
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getSysctl() {
+        return sysctl;
+    }
+
+    public void setSysctl(Map<String, String> sysctl) {
+        this.sysctl = sysctl;
+    }
+
+    public ContainerBasicConfig systemd(String systemd) {
+        this.systemd = systemd;
+        return this;
+    }
+
+    /**
+     * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
+     *
+     * @return systemd
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSystemd() {
+        return systemd;
+    }
+
+    public void setSystemd(String systemd) {
+        this.systemd = systemd;
+    }
+
+    public ContainerBasicConfig terminal(Boolean terminal) {
+        this.terminal = terminal;
+        return this;
+    }
+
+    /**
+     * Terminal is whether the container will create a PTY. Optional.
+     *
+     * @return terminal
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Boolean terminal) {
+        this.terminal = terminal;
+    }
+
+    public ContainerBasicConfig timeout(Integer timeout) {
+        this.timeout = timeout;
+        return this;
+    }
+
+    /**
+     * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
+     *
+     * @return timeout
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Integer timeout) {
+        this.timeout = timeout;
+    }
+
+    public ContainerBasicConfig timezone(String timezone) {
+        this.timezone = timezone;
+        return this;
+    }
+
+    /**
+     * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
+     *
+     * @return timezone
+     */
+    @jakarta.annotation.Nullable
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public ContainerBasicConfig unsetenv(List<String> unsetenv) {
+        this.unsetenv = unsetenv;
+        return this;
+    }
+
+    public ContainerBasicConfig addUnsetenvItem(String unsetenvItem) {
+        if (this.unsetenv == null) {
+            this.unsetenv = new ArrayList<>();
+        }
+        this.unsetenv.add(unsetenvItem);
+        return this;
+    }
+
+    /**
+     * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
+     *
+     * @return unsetenv
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getUnsetenv() {
+        return unsetenv;
+    }
+
+    public void setUnsetenv(List<String> unsetenv) {
+        this.unsetenv = unsetenv;
+    }
+
+    public ContainerBasicConfig unsetenvall(Boolean unsetenvall) {
+        this.unsetenvall = unsetenvall;
+        return this;
+    }
+
+    /**
+     * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
+     *
+     * @return unsetenvall
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getUnsetenvall() {
+        return unsetenvall;
+    }
+
+    public void setUnsetenvall(Boolean unsetenvall) {
+        this.unsetenvall = unsetenvall;
+    }
+
+    public ContainerBasicConfig utsns(Namespace utsns) {
+        this.utsns = utsns;
+        return this;
+    }
+
+    /**
+     * Get utsns
+     *
+     * @return utsns
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Namespace getUtsns() {
+        return utsns;
+    }
+
+    public void setUtsns(Namespace utsns) {
+        this.utsns = utsns;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ContainerBasicConfig containerBasicConfig = (ContainerBasicConfig) o;
+        return Objects.equals(this.annotations, containerBasicConfig.annotations) &&
+                Objects.equals(this.command, containerBasicConfig.command) &&
+                Objects.equals(this.conmonPidFile, containerBasicConfig.conmonPidFile) &&
+                Objects.equals(this.containerCreateCommand, containerBasicConfig.containerCreateCommand) &&
+                Objects.equals(this.dependencyContainers, containerBasicConfig.dependencyContainers) &&
+                Objects.equals(this.entrypoint, containerBasicConfig.entrypoint) &&
+                Objects.equals(this.env, containerBasicConfig.env) &&
+                Objects.equals(this.envHost, containerBasicConfig.envHost) &&
+                Objects.equals(this.envmerge, containerBasicConfig.envmerge) &&
+                Objects.equals(this.groupEntry, containerBasicConfig.groupEntry) &&
+                Objects.equals(this.hostname, containerBasicConfig.hostname) &&
+                Objects.equals(this.hostusers, containerBasicConfig.hostusers) &&
+                Objects.equals(this.httpproxy, containerBasicConfig.httpproxy) &&
+                Objects.equals(this.initContainerType, containerBasicConfig.initContainerType) &&
+                Objects.equals(this.labels, containerBasicConfig.labels) &&
+                Objects.equals(this.logConfiguration, containerBasicConfig.logConfiguration) &&
+                Objects.equals(this.managePassword, containerBasicConfig.managePassword) &&
+                Objects.equals(this.name, containerBasicConfig.name) &&
+                Objects.equals(this.ociRuntime, containerBasicConfig.ociRuntime) &&
+                Objects.equals(this.passwdEntry, containerBasicConfig.passwdEntry) &&
+                Objects.equals(this.personality, containerBasicConfig.personality) &&
+                Objects.equals(this.pidns, containerBasicConfig.pidns) &&
+                Objects.equals(this.pod, containerBasicConfig.pod) &&
+                Objects.equals(this.remove, containerBasicConfig.remove) &&
+                Objects.equals(this.removeImage, containerBasicConfig.removeImage) &&
+                Objects.equals(this.restartPolicy, containerBasicConfig.restartPolicy) &&
+                Objects.equals(this.restartTries, containerBasicConfig.restartTries) &&
+                Objects.equals(this.sdnotifyMode, containerBasicConfig.sdnotifyMode) &&
+                Objects.equals(this.secretEnv, containerBasicConfig.secretEnv) &&
+                Objects.equals(this.stdin, containerBasicConfig.stdin) &&
+                Objects.equals(this.stopSignal, containerBasicConfig.stopSignal) &&
+                Objects.equals(this.stopTimeout, containerBasicConfig.stopTimeout) &&
+                Objects.equals(this.sysctl, containerBasicConfig.sysctl) &&
+                Objects.equals(this.systemd, containerBasicConfig.systemd) &&
+                Objects.equals(this.terminal, containerBasicConfig.terminal) &&
+                Objects.equals(this.timeout, containerBasicConfig.timeout) &&
+                Objects.equals(this.timezone, containerBasicConfig.timezone) &&
+                Objects.equals(this.unsetenv, containerBasicConfig.unsetenv) &&
+                Objects.equals(this.unsetenvall, containerBasicConfig.unsetenvall) &&
+                Objects.equals(this.utsns, containerBasicConfig.utsns);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(annotations, command, conmonPidFile, containerCreateCommand, dependencyContainers, entrypoint, env, envHost, envmerge, groupEntry, hostname, hostusers, httpproxy, initContainerType, labels, logConfiguration, managePassword, name, ociRuntime, passwdEntry, personality, pidns, pod, remove, removeImage, restartPolicy, restartTries, sdnotifyMode, secretEnv, stdin, stopSignal, stopTimeout, sysctl, systemd, terminal, timeout, timezone, unsetenv, unsetenvall, utsns);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ContainerBasicConfig {\n" +
+                "    annotations: " + toIndentedString(annotations) + "\n" +
+                "    command: " + toIndentedString(command) + "\n" +
+                "    conmonPidFile: " + toIndentedString(conmonPidFile) + "\n" +
+                "    containerCreateCommand: " + toIndentedString(containerCreateCommand) + "\n" +
+                "    dependencyContainers: " + toIndentedString(dependencyContainers) + "\n" +
+                "    entrypoint: " + toIndentedString(entrypoint) + "\n" +
+                "    env: " + toIndentedString(env) + "\n" +
+                "    envHost: " + toIndentedString(envHost) + "\n" +
+                "    envmerge: " + toIndentedString(envmerge) + "\n" +
+                "    groupEntry: " + toIndentedString(groupEntry) + "\n" +
+                "    hostname: " + toIndentedString(hostname) + "\n" +
+                "    hostusers: " + toIndentedString(hostusers) + "\n" +
+                "    httpproxy: " + toIndentedString(httpproxy) + "\n" +
+                "    initContainerType: " + toIndentedString(initContainerType) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    logConfiguration: " + toIndentedString(logConfiguration) + "\n" +
+                "    managePassword: " + toIndentedString(managePassword) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    ociRuntime: " + toIndentedString(ociRuntime) + "\n" +
+                "    passwdEntry: " + toIndentedString(passwdEntry) + "\n" +
+                "    personality: " + toIndentedString(personality) + "\n" +
+                "    pidns: " + toIndentedString(pidns) + "\n" +
+                "    pod: " + toIndentedString(pod) + "\n" +
+                "    remove: " + toIndentedString(remove) + "\n" +
+                "    removeImage: " + toIndentedString(removeImage) + "\n" +
+                "    restartPolicy: " + toIndentedString(restartPolicy) + "\n" +
+                "    restartTries: " + toIndentedString(restartTries) + "\n" +
+                "    sdnotifyMode: " + toIndentedString(sdnotifyMode) + "\n" +
+                "    secretEnv: " + toIndentedString(secretEnv) + "\n" +
+                "    stdin: " + toIndentedString(stdin) + "\n" +
+                "    stopSignal: " + toIndentedString(stopSignal) + "\n" +
+                "    stopTimeout: " + toIndentedString(stopTimeout) + "\n" +
+                "    sysctl: " + toIndentedString(sysctl) + "\n" +
+                "    systemd: " + toIndentedString(systemd) + "\n" +
+                "    terminal: " + toIndentedString(terminal) + "\n" +
+                "    timeout: " + toIndentedString(timeout) + "\n" +
+                "    timezone: " + toIndentedString(timezone) + "\n" +
+                "    unsetenv: " + toIndentedString(unsetenv) + "\n" +
+                "    unsetenvall: " + toIndentedString(unsetenvall) + "\n" +
+                "    utsns: " + toIndentedString(utsns) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ContainerBasicConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ContainerBasicConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ContainerBasicConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ContainerBasicConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ContainerBasicConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ContainerBasicConfig>() {
+                @Override
+                public void write(JsonWriter out, ContainerBasicConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ContainerBasicConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -13,445 +13,410 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SystemDfContainerReport describes a container for use with df
  */
-@JsonPropertyOrder({
-  SystemDfContainerReport.JSON_PROPERTY_COMMAND,
-  SystemDfContainerReport.JSON_PROPERTY_CONTAINER_I_D,
-  SystemDfContainerReport.JSON_PROPERTY_CREATED,
-  SystemDfContainerReport.JSON_PROPERTY_IMAGE,
-  SystemDfContainerReport.JSON_PROPERTY_LOCAL_VOLUMES,
-  SystemDfContainerReport.JSON_PROPERTY_NAMES,
-  SystemDfContainerReport.JSON_PROPERTY_RW_SIZE,
-  SystemDfContainerReport.JSON_PROPERTY_SIZE,
-  SystemDfContainerReport.JSON_PROPERTY_STATUS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemDfContainerReport {
-  public static final String JSON_PROPERTY_COMMAND = "Command";
-  private List<String> command = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CONTAINER_I_D = "ContainerID";
-  private String containerID;
-
-  public static final String JSON_PROPERTY_CREATED = "Created";
-  private OffsetDateTime created;
-
-  public static final String JSON_PROPERTY_IMAGE = "Image";
-  private String image;
-
-  public static final String JSON_PROPERTY_LOCAL_VOLUMES = "LocalVolumes";
-  private Long localVolumes;
-
-  public static final String JSON_PROPERTY_NAMES = "Names";
-  private String names;
-
-  public static final String JSON_PROPERTY_RW_SIZE = "RWSize";
-  private Long rwSize;
-
-  public static final String JSON_PROPERTY_SIZE = "Size";
-  private Long size;
-
-  public static final String JSON_PROPERTY_STATUS = "Status";
-  private String status;
-
-  public SystemDfContainerReport() { 
-  }
-
-  public SystemDfContainerReport command(List<String> command) {
-    this.command = command;
-    return this;
-  }
-
-  public SystemDfContainerReport addCommandItem(String commandItem) {
-    if (this.command == null) {
-      this.command = new ArrayList<>();
-    }
-    this.command.add(commandItem);
-    return this;
-  }
-
-  /**
-   * Get command
-   * @return command
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCommand() {
-    return command;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMMAND)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCommand(List<String> command) {
-    this.command = command;
-  }
-
-
-  public SystemDfContainerReport containerID(String containerID) {
-    this.containerID = containerID;
-    return this;
-  }
-
-  /**
-   * Get containerID
-   * @return containerID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getContainerID() {
-    return containerID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerID(String containerID) {
-    this.containerID = containerID;
-  }
-
-
-  public SystemDfContainerReport created(OffsetDateTime created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Get created
-   * @return created
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getCreated() {
-    return created;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
-  }
-
-
-  public SystemDfContainerReport image(String image) {
-    this.image = image;
-    return this;
-  }
-
-  /**
-   * Get image
-   * @return image
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getImage() {
-    return image;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setImage(String image) {
-    this.image = image;
-  }
-
-
-  public SystemDfContainerReport localVolumes(Long localVolumes) {
-    this.localVolumes = localVolumes;
-    return this;
-  }
-
-  /**
-   * Get localVolumes
-   * @return localVolumes
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LOCAL_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getLocalVolumes() {
-    return localVolumes;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOCAL_VOLUMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocalVolumes(Long localVolumes) {
-    this.localVolumes = localVolumes;
-  }
-
-
-  public SystemDfContainerReport names(String names) {
-    this.names = names;
-    return this;
-  }
-
-  /**
-   * Get names
-   * @return names
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNames() {
-    return names;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNames(String names) {
-    this.names = names;
-  }
-
-
-  public SystemDfContainerReport rwSize(Long rwSize) {
-    this.rwSize = rwSize;
-    return this;
-  }
-
-  /**
-   * Get rwSize
-   * @return rwSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RW_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getRwSize() {
-    return rwSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RW_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRwSize(Long rwSize) {
-    this.rwSize = rwSize;
-  }
-
-
-  public SystemDfContainerReport size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Get size
-   * @return size
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public SystemDfContainerReport status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * Get status
-   * @return status
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  /**
-   * Return true if this SystemDfContainerReport object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SystemDfContainerReport systemDfContainerReport = (SystemDfContainerReport) o;
-    return Objects.equals(this.command, systemDfContainerReport.command) &&
-        Objects.equals(this.containerID, systemDfContainerReport.containerID) &&
-        Objects.equals(this.created, systemDfContainerReport.created) &&
-        Objects.equals(this.image, systemDfContainerReport.image) &&
-        Objects.equals(this.localVolumes, systemDfContainerReport.localVolumes) &&
-        Objects.equals(this.names, systemDfContainerReport.names) &&
-        Objects.equals(this.rwSize, systemDfContainerReport.rwSize) &&
-        Objects.equals(this.size, systemDfContainerReport.size) &&
-        Objects.equals(this.status, systemDfContainerReport.status);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(command, containerID, created, image, localVolumes, names, rwSize, size, status);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SystemDfContainerReport {\n");
-    sb.append("    command: ").append(toIndentedString(command)).append("\n");
-    sb.append("    containerID: ").append(toIndentedString(containerID)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
-    sb.append("    localVolumes: ").append(toIndentedString(localVolumes)).append("\n");
-    sb.append("    names: ").append(toIndentedString(names)).append("\n");
-    sb.append("    rwSize: ").append(toIndentedString(rwSize)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_COMMAND = "Command";
+    public static final String SERIALIZED_NAME_CONTAINER_I_D = "ContainerID";
+    public static final String SERIALIZED_NAME_CREATED = "Created";
+    public static final String SERIALIZED_NAME_IMAGE = "Image";
+    public static final String SERIALIZED_NAME_LOCAL_VOLUMES = "LocalVolumes";
+    public static final String SERIALIZED_NAME_NAMES = "Names";
+    public static final String SERIALIZED_NAME_RW_SIZE = "RWSize";
+    public static final String SERIALIZED_NAME_SIZE = "Size";
+    public static final String SERIALIZED_NAME_STATUS = "Status";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Command");
+        openapiFields.add("ContainerID");
+        openapiFields.add("Created");
+        openapiFields.add("Image");
+        openapiFields.add("LocalVolumes");
+        openapiFields.add("Names");
+        openapiFields.add("RWSize");
+        openapiFields.add("Size");
+        openapiFields.add("Status");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_COMMAND)
+    private List<String> command = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CONTAINER_I_D)
+    private String containerID;
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private OffsetDateTime created;
+    @SerializedName(SERIALIZED_NAME_IMAGE)
+    private String image;
+    @SerializedName(SERIALIZED_NAME_LOCAL_VOLUMES)
+    private Long localVolumes;
+    @SerializedName(SERIALIZED_NAME_NAMES)
+    private String names;
+    @SerializedName(SERIALIZED_NAME_RW_SIZE)
+    private Long rwSize;
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Long size;
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private String status;
 
-    // add `Command` to the URL query string
-    if (getCommand() != null) {
-      for (int i = 0; i < getCommand().size(); i++) {
-        joiner.add(String.format("%sCommand%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public SystemDfContainerReport() {
     }
 
-    // add `ContainerID` to the URL query string
-    if (getContainerID() != null) {
-      joiner.add(String.format("%sContainerID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainerID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to SystemDfContainerReport
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!SystemDfContainerReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in SystemDfContainerReport is not found in the empty JSON string", SystemDfContainerReport.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!SystemDfContainerReport.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemDfContainerReport` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Command") != null && !jsonObj.get("Command").isJsonNull() && !jsonObj.get("Command").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Command` to be an array in the JSON string but got `%s`", jsonObj.get("Command").toString()));
+        }
+        if ((jsonObj.get("ContainerID") != null && !jsonObj.get("ContainerID").isJsonNull()) && !jsonObj.get("ContainerID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerID").toString()));
+        }
+        if ((jsonObj.get("Image") != null && !jsonObj.get("Image").isJsonNull()) && !jsonObj.get("Image").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Image").toString()));
+        }
+        if ((jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull()) && !jsonObj.get("Names").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Names` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Names").toString()));
+        }
+        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
+        }
     }
 
-    // add `Created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of SystemDfContainerReport given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of SystemDfContainerReport
+     * @throws IOException if the JSON string is invalid with respect to SystemDfContainerReport
+     */
+    public static SystemDfContainerReport fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, SystemDfContainerReport.class);
     }
 
-    // add `Image` to the URL query string
-    if (getImage() != null) {
-      joiner.add(String.format("%sImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemDfContainerReport command(List<String> command) {
+        this.command = command;
+        return this;
     }
 
-    // add `LocalVolumes` to the URL query string
-    if (getLocalVolumes() != null) {
-      joiner.add(String.format("%sLocalVolumes%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLocalVolumes()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemDfContainerReport addCommandItem(String commandItem) {
+        if (this.command == null) {
+            this.command = new ArrayList<>();
+        }
+        this.command.add(commandItem);
+        return this;
     }
 
-    // add `Names` to the URL query string
-    if (getNames() != null) {
-      joiner.add(String.format("%sNames%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNames()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get command
+     *
+     * @return command
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCommand() {
+        return command;
     }
 
-    // add `RWSize` to the URL query string
-    if (getRwSize() != null) {
-      joiner.add(String.format("%sRWSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRwSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCommand(List<String> command) {
+        this.command = command;
     }
 
-    // add `Size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public SystemDfContainerReport containerID(String containerID) {
+        this.containerID = containerID;
+        return this;
     }
 
-    // add `Status` to the URL query string
-    if (getStatus() != null) {
-      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get containerID
+     *
+     * @return containerID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getContainerID() {
+        return containerID;
     }
 
-    return joiner.toString();
-  }
+    public void setContainerID(String containerID) {
+        this.containerID = containerID;
+    }
+
+    public SystemDfContainerReport created(OffsetDateTime created) {
+        this.created = created;
+        return this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return created
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(OffsetDateTime created) {
+        this.created = created;
+    }
+
+    public SystemDfContainerReport image(String image) {
+        this.image = image;
+        return this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return image
+     */
+    @jakarta.annotation.Nullable
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public SystemDfContainerReport localVolumes(Long localVolumes) {
+        this.localVolumes = localVolumes;
+        return this;
+    }
+
+    /**
+     * Get localVolumes
+     *
+     * @return localVolumes
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getLocalVolumes() {
+        return localVolumes;
+    }
+
+    public void setLocalVolumes(Long localVolumes) {
+        this.localVolumes = localVolumes;
+    }
+
+    public SystemDfContainerReport names(String names) {
+        this.names = names;
+        return this;
+    }
+
+    /**
+     * Get names
+     *
+     * @return names
+     */
+    @jakarta.annotation.Nullable
+
+    public String getNames() {
+        return names;
+    }
+
+    public void setNames(String names) {
+        this.names = names;
+    }
+
+    public SystemDfContainerReport rwSize(Long rwSize) {
+        this.rwSize = rwSize;
+        return this;
+    }
+
+    /**
+     * Get rwSize
+     *
+     * @return rwSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getRwSize() {
+        return rwSize;
+    }
+
+    public void setRwSize(Long rwSize) {
+        this.rwSize = rwSize;
+    }
+
+    public SystemDfContainerReport size(Long size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return size
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public SystemDfContainerReport status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return status
+     */
+    @jakarta.annotation.Nullable
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SystemDfContainerReport systemDfContainerReport = (SystemDfContainerReport) o;
+        return Objects.equals(this.command, systemDfContainerReport.command) &&
+                Objects.equals(this.containerID, systemDfContainerReport.containerID) &&
+                Objects.equals(this.created, systemDfContainerReport.created) &&
+                Objects.equals(this.image, systemDfContainerReport.image) &&
+                Objects.equals(this.localVolumes, systemDfContainerReport.localVolumes) &&
+                Objects.equals(this.names, systemDfContainerReport.names) &&
+                Objects.equals(this.rwSize, systemDfContainerReport.rwSize) &&
+                Objects.equals(this.size, systemDfContainerReport.size) &&
+                Objects.equals(this.status, systemDfContainerReport.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(command, containerID, created, image, localVolumes, names, rwSize, size, status);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class SystemDfContainerReport {\n" +
+                "    command: " + toIndentedString(command) + "\n" +
+                "    containerID: " + toIndentedString(containerID) + "\n" +
+                "    created: " + toIndentedString(created) + "\n" +
+                "    image: " + toIndentedString(image) + "\n" +
+                "    localVolumes: " + toIndentedString(localVolumes) + "\n" +
+                "    names: " + toIndentedString(names) + "\n" +
+                "    rwSize: " + toIndentedString(rwSize) + "\n" +
+                "    size: " + toIndentedString(size) + "\n" +
+                "    status: " + toIndentedString(status) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of SystemDfContainerReport to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!SystemDfContainerReport.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'SystemDfContainerReport' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<SystemDfContainerReport> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(SystemDfContainerReport.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<SystemDfContainerReport>() {
+                @Override
+                public void write(JsonWriter out, SystemDfContainerReport value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public SystemDfContainerReport read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

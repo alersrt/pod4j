@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for WeightDevice
  */
-class WeightDeviceTest {
+public class WeightDeviceTest {
     private final WeightDevice model = new WeightDevice();
 
     /**
      * Model tests for WeightDevice
      */
     @Test
-    void testWeightDevice() {
+    public void testWeightDevice() {
         // TODO: test WeightDevice
     }
 
@@ -42,7 +33,7 @@ class WeightDeviceTest {
      * Test the property 'path'
      */
     @Test
-    void pathTest() {
+    public void pathTest() {
         // TODO: test path
     }
 
@@ -50,7 +41,7 @@ class WeightDeviceTest {
      * Test the property 'weight'
      */
     @Test
-    void weightTest() {
+    public void weightTest() {
         // TODO: test weight
     }
 

@@ -13,177 +13,202 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Default to reservation limits if supported. Otherwise fallback to page fault limits.
  */
-@JsonPropertyOrder({
-  LinuxHugepageLimit.JSON_PROPERTY_LIMIT,
-  LinuxHugepageLimit.JSON_PROPERTY_PAGE_SIZE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxHugepageLimit {
-  public static final String JSON_PROPERTY_LIMIT = "limit";
-  private Integer limit;
+    public static final String SERIALIZED_NAME_LIMIT = "limit";
+    public static final String SERIALIZED_NAME_PAGE_SIZE = "pageSize";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_PAGE_SIZE = "pageSize";
-  private String pageSize;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("limit");
+        openapiFields.add("pageSize");
 
-  public LinuxHugepageLimit() { 
-  }
-
-  public LinuxHugepageLimit limit(Integer limit) {
-    this.limit = limit;
-    return this;
-  }
-
-  /**
-   * Limit is the limit of \&quot;hugepagesize\&quot; hugetlb reservations (if supported) or usage.
-   * @return limit
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getLimit() {
-    return limit;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLimit(Integer limit) {
-    this.limit = limit;
-  }
-
-
-  public LinuxHugepageLimit pageSize(String pageSize) {
-    this.pageSize = pageSize;
-    return this;
-  }
-
-  /**
-   * Pagesize is the hugepage size. Format: \&quot;&lt;size&gt;&lt;unit-prefix&gt;B&#39; (e.g. 64KB, 2MB, 1GB, etc.).
-   * @return pageSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PAGE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPageSize() {
-    return pageSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PAGE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPageSize(String pageSize) {
-    this.pageSize = pageSize;
-  }
-
-
-  /**
-   * Return true if this LinuxHugepageLimit object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxHugepageLimit linuxHugepageLimit = (LinuxHugepageLimit) o;
-    return Objects.equals(this.limit, linuxHugepageLimit.limit) &&
-        Objects.equals(this.pageSize, linuxHugepageLimit.pageSize);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(limit, pageSize);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxHugepageLimit {\n");
-    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
-    sb.append("    pageSize: ").append(toIndentedString(pageSize)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_LIMIT)
+    private Integer limit;
+    @SerializedName(SERIALIZED_NAME_PAGE_SIZE)
+    private String pageSize;
 
-    // add `limit` to the URL query string
-    if (getLimit() != null) {
-      joiner.add(String.format("%slimit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxHugepageLimit() {
     }
 
-    // add `pageSize` to the URL query string
-    if (getPageSize() != null) {
-      joiner.add(String.format("%spageSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPageSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxHugepageLimit
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxHugepageLimit.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxHugepageLimit is not found in the empty JSON string", LinuxHugepageLimit.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxHugepageLimit.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxHugepageLimit` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("pageSize") != null && !jsonObj.get("pageSize").isJsonNull()) && !jsonObj.get("pageSize").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `pageSize` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pageSize").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of LinuxHugepageLimit given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxHugepageLimit
+     * @throws IOException if the JSON string is invalid with respect to LinuxHugepageLimit
+     */
+    public static LinuxHugepageLimit fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxHugepageLimit.class);
+    }
+
+    public LinuxHugepageLimit limit(Integer limit) {
+        this.limit = limit;
+        return this;
+    }
+
+    /**
+     * Limit is the limit of \&quot;hugepagesize\&quot; hugetlb reservations (if supported) or usage.
+     *
+     * @return limit
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getLimit() {
+        return limit;
+    }
+
+    public void setLimit(Integer limit) {
+        this.limit = limit;
+    }
+
+    public LinuxHugepageLimit pageSize(String pageSize) {
+        this.pageSize = pageSize;
+        return this;
+    }
+
+    /**
+     * Pagesize is the hugepage size. Format: \&quot;&lt;size&gt;&lt;unit-prefix&gt;B&#39; (e.g. 64KB, 2MB, 1GB, etc.).
+     *
+     * @return pageSize
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(String pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxHugepageLimit linuxHugepageLimit = (LinuxHugepageLimit) o;
+        return Objects.equals(this.limit, linuxHugepageLimit.limit) &&
+                Objects.equals(this.pageSize, linuxHugepageLimit.pageSize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(limit, pageSize);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LinuxHugepageLimit {\n" +
+                "    limit: " + toIndentedString(limit) + "\n" +
+                "    pageSize: " + toIndentedString(pageSize) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LinuxHugepageLimit to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxHugepageLimit.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxHugepageLimit' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxHugepageLimit> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxHugepageLimit.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LinuxHugepageLimit>() {
+                @Override
+                public void write(JsonWriter out, LinuxHugepageLimit value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LinuxHugepageLimit read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

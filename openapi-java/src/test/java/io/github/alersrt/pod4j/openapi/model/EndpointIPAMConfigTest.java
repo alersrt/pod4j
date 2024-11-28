@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for EndpointIPAMConfig
  */
-class EndpointIPAMConfigTest {
+public class EndpointIPAMConfigTest {
     private final EndpointIPAMConfig model = new EndpointIPAMConfig();
 
     /**
      * Model tests for EndpointIPAMConfig
      */
     @Test
-    void testEndpointIPAMConfig() {
+    public void testEndpointIPAMConfig() {
         // TODO: test EndpointIPAMConfig
     }
 
@@ -44,7 +45,7 @@ class EndpointIPAMConfigTest {
      * Test the property 'ipv4Address'
      */
     @Test
-    void ipv4AddressTest() {
+    public void ipv4AddressTest() {
         // TODO: test ipv4Address
     }
 
@@ -52,7 +53,7 @@ class EndpointIPAMConfigTest {
      * Test the property 'ipv6Address'
      */
     @Test
-    void ipv6AddressTest() {
+    public void ipv6AddressTest() {
         // TODO: test ipv6Address
     }
 
@@ -60,7 +61,7 @@ class EndpointIPAMConfigTest {
      * Test the property 'linkLocalIPs'
      */
     @Test
-    void linkLocalIPsTest() {
+    public void linkLocalIPsTest() {
         // TODO: test linkLocalIPs
     }
 

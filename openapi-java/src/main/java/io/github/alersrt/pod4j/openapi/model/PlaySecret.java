@@ -13,143 +13,179 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.SecretCreateReport;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PlaySecret
  */
-@JsonPropertyOrder({
-  PlaySecret.JSON_PROPERTY_CREATE_REPORT
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PlaySecret {
-  public static final String JSON_PROPERTY_CREATE_REPORT = "CreateReport";
-  private SecretCreateReport createReport;
+    public static final String SERIALIZED_NAME_CREATE_REPORT = "CreateReport";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public PlaySecret() { 
-  }
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("CreateReport");
 
-  public PlaySecret createReport(SecretCreateReport createReport) {
-    this.createReport = createReport;
-    return this;
-  }
-
-  /**
-   * Get createReport
-   * @return createReport
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CREATE_REPORT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public SecretCreateReport getCreateReport() {
-    return createReport;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATE_REPORT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreateReport(SecretCreateReport createReport) {
-    this.createReport = createReport;
-  }
-
-
-  /**
-   * Return true if this PlaySecret object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    PlaySecret playSecret = (PlaySecret) o;
-    return Objects.equals(this.createReport, playSecret.createReport);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(createReport);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PlaySecret {\n");
-    sb.append("    createReport: ").append(toIndentedString(createReport)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CREATE_REPORT)
+    private SecretCreateReport createReport;
 
-    // add `CreateReport` to the URL query string
-    if (getCreateReport() != null) {
-      joiner.add(getCreateReport().toUrlQueryString(prefix + "CreateReport" + suffix));
+    public PlaySecret() {
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to PlaySecret
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!PlaySecret.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in PlaySecret is not found in the empty JSON string", PlaySecret.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!PlaySecret.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PlaySecret` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `CreateReport`
+        if (jsonObj.get("CreateReport") != null && !jsonObj.get("CreateReport").isJsonNull()) {
+            SecretCreateReport.validateJsonElement(jsonObj.get("CreateReport"));
+        }
+    }
+
+    /**
+     * Create an instance of PlaySecret given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PlaySecret
+     * @throws IOException if the JSON string is invalid with respect to PlaySecret
+     */
+    public static PlaySecret fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PlaySecret.class);
+    }
+
+    public PlaySecret createReport(SecretCreateReport createReport) {
+        this.createReport = createReport;
+        return this;
+    }
+
+    /**
+     * Get createReport
+     *
+     * @return createReport
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public SecretCreateReport getCreateReport() {
+        return createReport;
+    }
+
+    public void setCreateReport(SecretCreateReport createReport) {
+        this.createReport = createReport;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PlaySecret playSecret = (PlaySecret) o;
+        return Objects.equals(this.createReport, playSecret.createReport);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(createReport);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class PlaySecret {\n" +
+                "    createReport: " + toIndentedString(createReport) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of PlaySecret to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PlaySecret.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PlaySecret' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PlaySecret> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(PlaySecret.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<PlaySecret>() {
+                @Override
+                public void write(JsonWriter out, PlaySecret value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public PlaySecret read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

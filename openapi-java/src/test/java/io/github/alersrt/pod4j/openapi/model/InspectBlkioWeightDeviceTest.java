@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectBlkioWeightDevice
  */
-class InspectBlkioWeightDeviceTest {
+public class InspectBlkioWeightDeviceTest {
     private final InspectBlkioWeightDevice model = new InspectBlkioWeightDevice();
 
     /**
      * Model tests for InspectBlkioWeightDevice
      */
     @Test
-    void testInspectBlkioWeightDevice() {
+    public void testInspectBlkioWeightDevice() {
         // TODO: test InspectBlkioWeightDevice
     }
 
@@ -42,7 +43,7 @@ class InspectBlkioWeightDeviceTest {
      * Test the property 'path'
      */
     @Test
-    void pathTest() {
+    public void pathTest() {
         // TODO: test path
     }
 
@@ -50,7 +51,7 @@ class InspectBlkioWeightDeviceTest {
      * Test the property 'weight'
      */
     @Test
-    void weightTest() {
+    public void weightTest() {
         // TODO: test weight
     }
 

@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectSecret
  */
-class InspectSecretTest {
+public class InspectSecretTest {
     private final InspectSecret model = new InspectSecret();
 
     /**
      * Model tests for InspectSecret
      */
     @Test
-    void testInspectSecret() {
+    public void testInspectSecret() {
         // TODO: test InspectSecret
     }
 
@@ -42,7 +43,7 @@ class InspectSecretTest {
      * Test the property 'GID'
      */
     @Test
-    void GIDTest() {
+    public void GIDTest() {
         // TODO: test GID
     }
 
@@ -50,7 +51,7 @@ class InspectSecretTest {
      * Test the property 'ID'
      */
     @Test
-    void IDTest() {
+    public void IDTest() {
         // TODO: test ID
     }
 
@@ -58,7 +59,7 @@ class InspectSecretTest {
      * Test the property 'mode'
      */
     @Test
-    void modeTest() {
+    public void modeTest() {
         // TODO: test mode
     }
 
@@ -66,7 +67,7 @@ class InspectSecretTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -74,7 +75,7 @@ class InspectSecretTest {
      * Test the property 'UID'
      */
     @Test
-    void UIDTest() {
+    public void UIDTest() {
         // TODO: test UID
     }
 

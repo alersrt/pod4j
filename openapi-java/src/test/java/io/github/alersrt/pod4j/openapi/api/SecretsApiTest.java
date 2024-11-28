@@ -14,22 +14,12 @@
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.SecretCreateLibpod201Response;
-import io.github.alersrt.pod4j.openapi.model.SecretDeleteLibpod404Response;
 import io.github.alersrt.pod4j.openapi.model.SecretInfoReport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for SecretsApi
@@ -39,14 +29,10 @@ public class SecretsApiTest {
 
     private final SecretsApi api = new SecretsApi();
 
-
     /**
      * Create a secret
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretCreateLibpodTest() throws ApiException {
@@ -55,79 +41,59 @@ public class SecretsApiTest {
         String driveropts = null;
         String labels = null;
         String request = null;
-        SecretCreateLibpod201Response response =
-                api.secretCreateLibpod(name, driver, driveropts, labels, request);
-        
+        SecretCreateLibpod201Response response = api.secretCreateLibpod(name, driver, driveropts, labels, request);
         // TODO: test validations
     }
 
     /**
      * Remove secret
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretDeleteLibpodTest() throws ApiException {
         String name = null;
         Boolean all = null;
-
         api.secretDeleteLibpod(name, all);
-
         // TODO: test validations
     }
 
     /**
      * Secret exists
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretExistsLibpodTest() throws ApiException {
         String name = null;
-
         api.secretExistsLibpod(name);
-
         // TODO: test validations
     }
 
     /**
      * Inspect secret
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretInspectLibpodTest() throws ApiException {
         String name = null;
         Boolean showsecret = null;
-        SecretInfoReport response =
-                api.secretInspectLibpod(name, showsecret);
-        
+        SecretInfoReport response = api.secretInspectLibpod(name, showsecret);
         // TODO: test validations
     }
 
     /**
      * List secrets
-     *
+     * <p>
      * Returns a list of secrets
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretListLibpodTest() throws ApiException {
         String filters = null;
-        List<SecretInfoReport> response =
-                api.secretListLibpod(filters);
-        
+        List<SecretInfoReport> response = api.secretListLibpod(filters);
         // TODO: test validations
     }
 

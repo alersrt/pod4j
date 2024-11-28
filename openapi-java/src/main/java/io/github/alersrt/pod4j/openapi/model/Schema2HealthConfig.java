@@ -13,335 +13,317 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Schema2HealthConfig is a HealthConfig, which holds configuration settings for the HEALTHCHECK feature, from docker/docker/api/types/container.
  */
-@JsonPropertyOrder({
-  Schema2HealthConfig.JSON_PROPERTY_INTERVAL,
-  Schema2HealthConfig.JSON_PROPERTY_RETRIES,
-  Schema2HealthConfig.JSON_PROPERTY_START_INTERVAL,
-  Schema2HealthConfig.JSON_PROPERTY_START_PERIOD,
-  Schema2HealthConfig.JSON_PROPERTY_TEST,
-  Schema2HealthConfig.JSON_PROPERTY_TIMEOUT
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2HealthConfig {
-  public static final String JSON_PROPERTY_INTERVAL = "Interval";
-  private Long interval;
+    public static final String SERIALIZED_NAME_INTERVAL = "Interval";
+    public static final String SERIALIZED_NAME_RETRIES = "Retries";
+    public static final String SERIALIZED_NAME_START_INTERVAL = "StartInterval";
+    public static final String SERIALIZED_NAME_START_PERIOD = "StartPeriod";
+    public static final String SERIALIZED_NAME_TEST = "Test";
+    public static final String SERIALIZED_NAME_TIMEOUT = "Timeout";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_RETRIES = "Retries";
-  private Long retries;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Interval");
+        openapiFields.add("Retries");
+        openapiFields.add("StartInterval");
+        openapiFields.add("StartPeriod");
+        openapiFields.add("Test");
+        openapiFields.add("Timeout");
 
-  public static final String JSON_PROPERTY_START_INTERVAL = "StartInterval";
-  private Long startInterval;
-
-  public static final String JSON_PROPERTY_START_PERIOD = "StartPeriod";
-  private Long startPeriod;
-
-  public static final String JSON_PROPERTY_TEST = "Test";
-  private List<String> test = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_TIMEOUT = "Timeout";
-  private Long timeout;
-
-  public Schema2HealthConfig() { 
-  }
-
-  public Schema2HealthConfig interval(Long interval) {
-    this.interval = interval;
-    return this;
-  }
-
-  /**
-   * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
-   * @return interval
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INTERVAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getInterval() {
-    return interval;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INTERVAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInterval(Long interval) {
-    this.interval = interval;
-  }
-
-
-  public Schema2HealthConfig retries(Long retries) {
-    this.retries = retries;
-    return this;
-  }
-
-  /**
-   * Retries is the number of consecutive failures needed to consider a container as unhealthy. Zero means inherit.
-   * @return retries
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RETRIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getRetries() {
-    return retries;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RETRIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRetries(Long retries) {
-    this.retries = retries;
-  }
-
-
-  public Schema2HealthConfig startInterval(Long startInterval) {
-    this.startInterval = startInterval;
-    return this;
-  }
-
-  /**
-   * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
-   * @return startInterval
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_START_INTERVAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getStartInterval() {
-    return startInterval;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_START_INTERVAL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartInterval(Long startInterval) {
-    this.startInterval = startInterval;
-  }
-
-
-  public Schema2HealthConfig startPeriod(Long startPeriod) {
-    this.startPeriod = startPeriod;
-    return this;
-  }
-
-  /**
-   * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
-   * @return startPeriod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_START_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getStartPeriod() {
-    return startPeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_START_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStartPeriod(Long startPeriod) {
-    this.startPeriod = startPeriod;
-  }
-
-
-  public Schema2HealthConfig test(List<String> test) {
-    this.test = test;
-    return this;
-  }
-
-  public Schema2HealthConfig addTestItem(String testItem) {
-    if (this.test == null) {
-      this.test = new ArrayList<>();
-    }
-    this.test.add(testItem);
-    return this;
-  }
-
-  /**
-   * Test is the test to perform to check that the container is healthy. An empty slice means to inherit the default. The options are: {} : inherit healthcheck {\&quot;NONE\&quot;} : disable healthcheck {\&quot;CMD\&quot;, args...} : exec arguments directly {\&quot;CMD-SHELL\&quot;, command} : run command with system&#39;s default shell
-   * @return test
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getTest() {
-    return test;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTest(List<String> test) {
-    this.test = test;
-  }
-
-
-  public Schema2HealthConfig timeout(Long timeout) {
-    this.timeout = timeout;
-    return this;
-  }
-
-  /**
-   * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
-   * @return timeout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getTimeout() {
-    return timeout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TIMEOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTimeout(Long timeout) {
-    this.timeout = timeout;
-  }
-
-
-  /**
-   * Return true if this Schema2HealthConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Schema2HealthConfig schema2HealthConfig = (Schema2HealthConfig) o;
-    return Objects.equals(this.interval, schema2HealthConfig.interval) &&
-        Objects.equals(this.retries, schema2HealthConfig.retries) &&
-        Objects.equals(this.startInterval, schema2HealthConfig.startInterval) &&
-        Objects.equals(this.startPeriod, schema2HealthConfig.startPeriod) &&
-        Objects.equals(this.test, schema2HealthConfig.test) &&
-        Objects.equals(this.timeout, schema2HealthConfig.timeout);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(interval, retries, startInterval, startPeriod, test, timeout);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Schema2HealthConfig {\n");
-    sb.append("    interval: ").append(toIndentedString(interval)).append("\n");
-    sb.append("    retries: ").append(toIndentedString(retries)).append("\n");
-    sb.append("    startInterval: ").append(toIndentedString(startInterval)).append("\n");
-    sb.append("    startPeriod: ").append(toIndentedString(startPeriod)).append("\n");
-    sb.append("    test: ").append(toIndentedString(test)).append("\n");
-    sb.append("    timeout: ").append(toIndentedString(timeout)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_INTERVAL)
+    private Long interval;
+    @SerializedName(SERIALIZED_NAME_RETRIES)
+    private Long retries;
+    @SerializedName(SERIALIZED_NAME_START_INTERVAL)
+    private Long startInterval;
+    @SerializedName(SERIALIZED_NAME_START_PERIOD)
+    private Long startPeriod;
+    @SerializedName(SERIALIZED_NAME_TEST)
+    private List<String> test = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_TIMEOUT)
+    private Long timeout;
 
-    // add `Interval` to the URL query string
-    if (getInterval() != null) {
-      joiner.add(String.format("%sInterval%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInterval()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Schema2HealthConfig() {
     }
 
-    // add `Retries` to the URL query string
-    if (getRetries() != null) {
-      joiner.add(String.format("%sRetries%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRetries()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Schema2HealthConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Schema2HealthConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Schema2HealthConfig is not found in the empty JSON string", Schema2HealthConfig.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Schema2HealthConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Schema2HealthConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Test") != null && !jsonObj.get("Test").isJsonNull() && !jsonObj.get("Test").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Test` to be an array in the JSON string but got `%s`", jsonObj.get("Test").toString()));
+        }
     }
 
-    // add `StartInterval` to the URL query string
-    if (getStartInterval() != null) {
-      joiner.add(String.format("%sStartInterval%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartInterval()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Schema2HealthConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Schema2HealthConfig
+     * @throws IOException if the JSON string is invalid with respect to Schema2HealthConfig
+     */
+    public static Schema2HealthConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Schema2HealthConfig.class);
     }
 
-    // add `StartPeriod` to the URL query string
-    if (getStartPeriod() != null) {
-      joiner.add(String.format("%sStartPeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Schema2HealthConfig interval(Long interval) {
+        this.interval = interval;
+        return this;
     }
 
-    // add `Test` to the URL query string
-    if (getTest() != null) {
-      for (int i = 0; i < getTest().size(); i++) {
-        joiner.add(String.format("%sTest%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getTest().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
+     *
+     * @return interval
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getInterval() {
+        return interval;
     }
 
-    // add `Timeout` to the URL query string
-    if (getTimeout() != null) {
-      joiner.add(String.format("%sTimeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setInterval(Long interval) {
+        this.interval = interval;
     }
 
-    return joiner.toString();
-  }
+    public Schema2HealthConfig retries(Long retries) {
+        this.retries = retries;
+        return this;
+    }
+
+    /**
+     * Retries is the number of consecutive failures needed to consider a container as unhealthy. Zero means inherit.
+     *
+     * @return retries
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getRetries() {
+        return retries;
+    }
+
+    public void setRetries(Long retries) {
+        this.retries = retries;
+    }
+
+    public Schema2HealthConfig startInterval(Long startInterval) {
+        this.startInterval = startInterval;
+        return this;
+    }
+
+    /**
+     * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
+     *
+     * @return startInterval
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getStartInterval() {
+        return startInterval;
+    }
+
+    public void setStartInterval(Long startInterval) {
+        this.startInterval = startInterval;
+    }
+
+    public Schema2HealthConfig startPeriod(Long startPeriod) {
+        this.startPeriod = startPeriod;
+        return this;
+    }
+
+    /**
+     * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
+     *
+     * @return startPeriod
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getStartPeriod() {
+        return startPeriod;
+    }
+
+    public void setStartPeriod(Long startPeriod) {
+        this.startPeriod = startPeriod;
+    }
+
+    public Schema2HealthConfig test(List<String> test) {
+        this.test = test;
+        return this;
+    }
+
+    public Schema2HealthConfig addTestItem(String testItem) {
+        if (this.test == null) {
+            this.test = new ArrayList<>();
+        }
+        this.test.add(testItem);
+        return this;
+    }
+
+    /**
+     * Test is the test to perform to check that the container is healthy. An empty slice means to inherit the default. The options are: {} : inherit healthcheck {\&quot;NONE\&quot;} : disable healthcheck {\&quot;CMD\&quot;, args...} : exec arguments directly {\&quot;CMD-SHELL\&quot;, command} : run command with system&#39;s default shell
+     *
+     * @return test
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getTest() {
+        return test;
+    }
+
+    public void setTest(List<String> test) {
+        this.test = test;
+    }
+
+    public Schema2HealthConfig timeout(Long timeout) {
+        this.timeout = timeout;
+        return this;
+    }
+
+    /**
+     * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
+     *
+     * @return timeout
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(Long timeout) {
+        this.timeout = timeout;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Schema2HealthConfig schema2HealthConfig = (Schema2HealthConfig) o;
+        return Objects.equals(this.interval, schema2HealthConfig.interval) &&
+                Objects.equals(this.retries, schema2HealthConfig.retries) &&
+                Objects.equals(this.startInterval, schema2HealthConfig.startInterval) &&
+                Objects.equals(this.startPeriod, schema2HealthConfig.startPeriod) &&
+                Objects.equals(this.test, schema2HealthConfig.test) &&
+                Objects.equals(this.timeout, schema2HealthConfig.timeout);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(interval, retries, startInterval, startPeriod, test, timeout);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Schema2HealthConfig {\n" +
+                "    interval: " + toIndentedString(interval) + "\n" +
+                "    retries: " + toIndentedString(retries) + "\n" +
+                "    startInterval: " + toIndentedString(startInterval) + "\n" +
+                "    startPeriod: " + toIndentedString(startPeriod) + "\n" +
+                "    test: " + toIndentedString(test) + "\n" +
+                "    timeout: " + toIndentedString(timeout) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Schema2HealthConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Schema2HealthConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Schema2HealthConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Schema2HealthConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Schema2HealthConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Schema2HealthConfig>() {
+                @Override
+                public void write(JsonWriter out, Schema2HealthConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Schema2HealthConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

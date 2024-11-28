@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.PlayKubePod;
 import io.github.alersrt.pod4j.openapi.model.PlayKubeVolume;
 import io.github.alersrt.pod4j.openapi.model.PlaySecret;
@@ -25,25 +25,26 @@ import io.github.alersrt.pod4j.openapi.model.PodRmReport;
 import io.github.alersrt.pod4j.openapi.model.PodStopReport;
 import io.github.alersrt.pod4j.openapi.model.SecretRmReport;
 import io.github.alersrt.pod4j.openapi.model.VolumeRmReport;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PlayKubeReport
  */
-class PlayKubeReportTest {
+public class PlayKubeReportTest {
     private final PlayKubeReport model = new PlayKubeReport();
 
     /**
      * Model tests for PlayKubeReport
      */
     @Test
-    void testPlayKubeReport() {
+    public void testPlayKubeReport() {
         // TODO: test PlayKubeReport
     }
 
@@ -51,7 +52,7 @@ class PlayKubeReportTest {
      * Test the property 'exitCode'
      */
     @Test
-    void exitCodeTest() {
+    public void exitCodeTest() {
         // TODO: test exitCode
     }
 
@@ -59,7 +60,7 @@ class PlayKubeReportTest {
      * Test the property 'pods'
      */
     @Test
-    void podsTest() {
+    public void podsTest() {
         // TODO: test pods
     }
 
@@ -67,7 +68,7 @@ class PlayKubeReportTest {
      * Test the property 'rmReport'
      */
     @Test
-    void rmReportTest() {
+    public void rmReportTest() {
         // TODO: test rmReport
     }
 
@@ -75,7 +76,7 @@ class PlayKubeReportTest {
      * Test the property 'secretRmReport'
      */
     @Test
-    void secretRmReportTest() {
+    public void secretRmReportTest() {
         // TODO: test secretRmReport
     }
 
@@ -83,7 +84,7 @@ class PlayKubeReportTest {
      * Test the property 'secrets'
      */
     @Test
-    void secretsTest() {
+    public void secretsTest() {
         // TODO: test secrets
     }
 
@@ -91,7 +92,7 @@ class PlayKubeReportTest {
      * Test the property 'serviceContainerID'
      */
     @Test
-    void serviceContainerIDTest() {
+    public void serviceContainerIDTest() {
         // TODO: test serviceContainerID
     }
 
@@ -99,7 +100,7 @@ class PlayKubeReportTest {
      * Test the property 'stopReport'
      */
     @Test
-    void stopReportTest() {
+    public void stopReportTest() {
         // TODO: test stopReport
     }
 
@@ -107,7 +108,7 @@ class PlayKubeReportTest {
      * Test the property 'volumeRmReport'
      */
     @Test
-    void volumeRmReportTest() {
+    public void volumeRmReportTest() {
         // TODO: test volumeRmReport
     }
 
@@ -115,7 +116,7 @@ class PlayKubeReportTest {
      * Test the property 'volumes'
      */
     @Test
-    void volumesTest() {
+    public void volumesTest() {
         // TODO: test volumes
     }
 

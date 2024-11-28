@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxWeightDevice
  */
-class LinuxWeightDeviceTest {
+public class LinuxWeightDeviceTest {
     private final LinuxWeightDevice model = new LinuxWeightDevice();
 
     /**
      * Model tests for LinuxWeightDevice
      */
     @Test
-    void testLinuxWeightDevice() {
+    public void testLinuxWeightDevice() {
         // TODO: test LinuxWeightDevice
     }
 
@@ -42,7 +43,7 @@ class LinuxWeightDeviceTest {
      * Test the property 'leafWeight'
      */
     @Test
-    void leafWeightTest() {
+    public void leafWeightTest() {
         // TODO: test leafWeight
     }
 
@@ -50,7 +51,7 @@ class LinuxWeightDeviceTest {
      * Test the property 'major'
      */
     @Test
-    void majorTest() {
+    public void majorTest() {
         // TODO: test major
     }
 
@@ -58,7 +59,7 @@ class LinuxWeightDeviceTest {
      * Test the property 'minor'
      */
     @Test
-    void minorTest() {
+    public void minorTest() {
         // TODO: test minor
     }
 
@@ -66,7 +67,7 @@ class LinuxWeightDeviceTest {
      * Test the property 'weight'
      */
     @Test
-    void weightTest() {
+    public void weightTest() {
         // TODO: test weight
     }
 

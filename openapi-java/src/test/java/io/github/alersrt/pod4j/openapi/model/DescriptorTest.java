@@ -13,33 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Platform;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Descriptor
  */
-class DescriptorTest {
+public class DescriptorTest {
     private final Descriptor model = new Descriptor();
 
     /**
      * Model tests for Descriptor
      */
     @Test
-    void testDescriptor() {
+    public void testDescriptor() {
         // TODO: test Descriptor
     }
 
@@ -47,7 +33,7 @@ class DescriptorTest {
      * Test the property 'annotations'
      */
     @Test
-    void annotationsTest() {
+    public void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -55,7 +41,7 @@ class DescriptorTest {
      * Test the property 'artifactType'
      */
     @Test
-    void artifactTypeTest() {
+    public void artifactTypeTest() {
         // TODO: test artifactType
     }
 
@@ -63,7 +49,7 @@ class DescriptorTest {
      * Test the property 'data'
      */
     @Test
-    void dataTest() {
+    public void dataTest() {
         // TODO: test data
     }
 
@@ -71,7 +57,7 @@ class DescriptorTest {
      * Test the property 'digest'
      */
     @Test
-    void digestTest() {
+    public void digestTest() {
         // TODO: test digest
     }
 
@@ -79,7 +65,7 @@ class DescriptorTest {
      * Test the property 'mediaType'
      */
     @Test
-    void mediaTypeTest() {
+    public void mediaTypeTest() {
         // TODO: test mediaType
     }
 
@@ -87,7 +73,7 @@ class DescriptorTest {
      * Test the property 'platform'
      */
     @Test
-    void platformTest() {
+    public void platformTest() {
         // TODO: test platform
     }
 
@@ -95,7 +81,7 @@ class DescriptorTest {
      * Test the property 'size'
      */
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         // TODO: test size
     }
 
@@ -103,7 +89,7 @@ class DescriptorTest {
      * Test the property 'urls'
      */
     @Test
-    void urlsTest() {
+    public void urlsTest() {
         // TODO: test urls
     }
 

@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PlayKubePod
  */
-class PlayKubePodTest {
+public class PlayKubePodTest {
     private final PlayKubePod model = new PlayKubePod();
 
     /**
      * Model tests for PlayKubePod
      */
     @Test
-    void testPlayKubePod() {
+    public void testPlayKubePod() {
         // TODO: test PlayKubePod
     }
 
@@ -44,7 +45,7 @@ class PlayKubePodTest {
      * Test the property 'containerErrors'
      */
     @Test
-    void containerErrorsTest() {
+    public void containerErrorsTest() {
         // TODO: test containerErrors
     }
 
@@ -52,7 +53,7 @@ class PlayKubePodTest {
      * Test the property 'containers'
      */
     @Test
-    void containersTest() {
+    public void containersTest() {
         // TODO: test containers
     }
 
@@ -60,7 +61,7 @@ class PlayKubePodTest {
      * Test the property 'ID'
      */
     @Test
-    void IDTest() {
+    public void IDTest() {
         // TODO: test ID
     }
 
@@ -68,7 +69,7 @@ class PlayKubePodTest {
      * Test the property 'initContainers'
      */
     @Test
-    void initContainersTest() {
+    public void initContainersTest() {
         // TODO: test initContainers
     }
 
@@ -76,7 +77,7 @@ class PlayKubePodTest {
      * Test the property 'logs'
      */
     @Test
-    void logsTest() {
+    public void logsTest() {
         // TODO: test logs
     }
 

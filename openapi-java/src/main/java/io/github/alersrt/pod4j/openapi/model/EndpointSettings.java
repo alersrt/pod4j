@@ -13,654 +13,585 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * EndpointSettings stores the network endpoint details
  */
-@JsonPropertyOrder({
-  EndpointSettings.JSON_PROPERTY_ALIASES,
-  EndpointSettings.JSON_PROPERTY_DN_S_NAMES,
-  EndpointSettings.JSON_PROPERTY_DRIVER_OPTS,
-  EndpointSettings.JSON_PROPERTY_ENDPOINT_I_D,
-  EndpointSettings.JSON_PROPERTY_GATEWAY,
-  EndpointSettings.JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS,
-  EndpointSettings.JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN,
-  EndpointSettings.JSON_PROPERTY_IP_A_M_CONFIG,
-  EndpointSettings.JSON_PROPERTY_IP_ADDRESS,
-  EndpointSettings.JSON_PROPERTY_IP_PREFIX_LEN,
-  EndpointSettings.JSON_PROPERTY_IPV6_GATEWAY,
-  EndpointSettings.JSON_PROPERTY_LINKS,
-  EndpointSettings.JSON_PROPERTY_MAC_ADDRESS,
-  EndpointSettings.JSON_PROPERTY_NETWORK_I_D
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class EndpointSettings {
-  public static final String JSON_PROPERTY_ALIASES = "Aliases";
-  private List<String> aliases = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DN_S_NAMES = "DNSNames";
-  private List<String> dnSNames = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DRIVER_OPTS = "DriverOpts";
-  private Map<String, String> driverOpts = new HashMap<>();
-
-  public static final String JSON_PROPERTY_ENDPOINT_I_D = "EndpointID";
-  private String endpointID;
-
-  public static final String JSON_PROPERTY_GATEWAY = "Gateway";
-  private String gateway;
-
-  public static final String JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS = "GlobalIPv6Address";
-  private String globalIPv6Address;
-
-  public static final String JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN = "GlobalIPv6PrefixLen";
-  private Long globalIPv6PrefixLen;
-
-  public static final String JSON_PROPERTY_IP_A_M_CONFIG = "IPAMConfig";
-  private EndpointIPAMConfig ipAMConfig;
-
-  public static final String JSON_PROPERTY_IP_ADDRESS = "IPAddress";
-  private String ipAddress;
-
-  public static final String JSON_PROPERTY_IP_PREFIX_LEN = "IPPrefixLen";
-  private Long ipPrefixLen;
-
-  public static final String JSON_PROPERTY_IPV6_GATEWAY = "IPv6Gateway";
-  private String ipv6Gateway;
-
-  public static final String JSON_PROPERTY_LINKS = "Links";
-  private List<String> links = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_MAC_ADDRESS = "MacAddress";
-  private String macAddress;
-
-  public static final String JSON_PROPERTY_NETWORK_I_D = "NetworkID";
-  private String networkID;
-
-  public EndpointSettings() { 
-  }
-
-  public EndpointSettings aliases(List<String> aliases) {
-    this.aliases = aliases;
-    return this;
-  }
-
-  public EndpointSettings addAliasesItem(String aliasesItem) {
-    if (this.aliases == null) {
-      this.aliases = new ArrayList<>();
-    }
-    this.aliases.add(aliasesItem);
-    return this;
-  }
-
-  /**
-   * Get aliases
-   * @return aliases
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ALIASES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getAliases() {
-    return aliases;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ALIASES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAliases(List<String> aliases) {
-    this.aliases = aliases;
-  }
-
-
-  public EndpointSettings dnSNames(List<String> dnSNames) {
-    this.dnSNames = dnSNames;
-    return this;
-  }
-
-  public EndpointSettings addDnSNamesItem(String dnSNamesItem) {
-    if (this.dnSNames == null) {
-      this.dnSNames = new ArrayList<>();
-    }
-    this.dnSNames.add(dnSNamesItem);
-    return this;
-  }
-
-  /**
-   * DNSNames holds all the (non fully qualified) DNS names associated to this endpoint. First entry is used to generate PTR records.
-   * @return dnSNames
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DN_S_NAMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDnSNames() {
-    return dnSNames;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DN_S_NAMES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDnSNames(List<String> dnSNames) {
-    this.dnSNames = dnSNames;
-  }
-
-
-  public EndpointSettings driverOpts(Map<String, String> driverOpts) {
-    this.driverOpts = driverOpts;
-    return this;
-  }
-
-  public EndpointSettings putDriverOptsItem(String key, String driverOptsItem) {
-    if (this.driverOpts == null) {
-      this.driverOpts = new HashMap<>();
-    }
-    this.driverOpts.put(key, driverOptsItem);
-    return this;
-  }
-
-  /**
-   * Get driverOpts
-   * @return driverOpts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getDriverOpts() {
-    return driverOpts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDriverOpts(Map<String, String> driverOpts) {
-    this.driverOpts = driverOpts;
-  }
-
-
-  public EndpointSettings endpointID(String endpointID) {
-    this.endpointID = endpointID;
-    return this;
-  }
-
-  /**
-   * Get endpointID
-   * @return endpointID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getEndpointID() {
-    return endpointID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndpointID(String endpointID) {
-    this.endpointID = endpointID;
-  }
-
-
-  public EndpointSettings gateway(String gateway) {
-    this.gateway = gateway;
-    return this;
-  }
-
-  /**
-   * Get gateway
-   * @return gateway
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGateway() {
-    return gateway;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGateway(String gateway) {
-    this.gateway = gateway;
-  }
-
-
-  public EndpointSettings globalIPv6Address(String globalIPv6Address) {
-    this.globalIPv6Address = globalIPv6Address;
-    return this;
-  }
-
-  /**
-   * Get globalIPv6Address
-   * @return globalIPv6Address
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGlobalIPv6Address() {
-    return globalIPv6Address;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGlobalIPv6Address(String globalIPv6Address) {
-    this.globalIPv6Address = globalIPv6Address;
-  }
-
-
-  public EndpointSettings globalIPv6PrefixLen(Long globalIPv6PrefixLen) {
-    this.globalIPv6PrefixLen = globalIPv6PrefixLen;
-    return this;
-  }
-
-  /**
-   * Get globalIPv6PrefixLen
-   * @return globalIPv6PrefixLen
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getGlobalIPv6PrefixLen() {
-    return globalIPv6PrefixLen;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGlobalIPv6PrefixLen(Long globalIPv6PrefixLen) {
-    this.globalIPv6PrefixLen = globalIPv6PrefixLen;
-  }
-
-
-  public EndpointSettings ipAMConfig(EndpointIPAMConfig ipAMConfig) {
-    this.ipAMConfig = ipAMConfig;
-    return this;
-  }
-
-  /**
-   * Get ipAMConfig
-   * @return ipAMConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_IP_A_M_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public EndpointIPAMConfig getIpAMConfig() {
-    return ipAMConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IP_A_M_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpAMConfig(EndpointIPAMConfig ipAMConfig) {
-    this.ipAMConfig = ipAMConfig;
-  }
-
-
-  public EndpointSettings ipAddress(String ipAddress) {
-    this.ipAddress = ipAddress;
-    return this;
-  }
-
-  /**
-   * Get ipAddress
-   * @return ipAddress
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIpAddress() {
-    return ipAddress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpAddress(String ipAddress) {
-    this.ipAddress = ipAddress;
-  }
-
-
-  public EndpointSettings ipPrefixLen(Long ipPrefixLen) {
-    this.ipPrefixLen = ipPrefixLen;
-    return this;
-  }
-
-  /**
-   * Get ipPrefixLen
-   * @return ipPrefixLen
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getIpPrefixLen() {
-    return ipPrefixLen;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpPrefixLen(Long ipPrefixLen) {
-    this.ipPrefixLen = ipPrefixLen;
-  }
-
-
-  public EndpointSettings ipv6Gateway(String ipv6Gateway) {
-    this.ipv6Gateway = ipv6Gateway;
-    return this;
-  }
-
-  /**
-   * Get ipv6Gateway
-   * @return ipv6Gateway
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIpv6Gateway() {
-    return ipv6Gateway;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpv6Gateway(String ipv6Gateway) {
-    this.ipv6Gateway = ipv6Gateway;
-  }
-
-
-  public EndpointSettings links(List<String> links) {
-    this.links = links;
-    return this;
-  }
-
-  public EndpointSettings addLinksItem(String linksItem) {
-    if (this.links == null) {
-      this.links = new ArrayList<>();
-    }
-    this.links.add(linksItem);
-    return this;
-  }
-
-  /**
-   * Get links
-   * @return links
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getLinks() {
-    return links;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLinks(List<String> links) {
-    this.links = links;
-  }
-
-
-  public EndpointSettings macAddress(String macAddress) {
-    this.macAddress = macAddress;
-    return this;
-  }
-
-  /**
-   * MacAddress may be used to specify a MAC address when the container is created. Once the container is running, it becomes operational data (it may contain a generated address).
-   * @return macAddress
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMacAddress() {
-    return macAddress;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMacAddress(String macAddress) {
-    this.macAddress = macAddress;
-  }
-
-
-  public EndpointSettings networkID(String networkID) {
-    this.networkID = networkID;
-    return this;
-  }
-
-  /**
-   * Operational data
-   * @return networkID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNetworkID() {
-    return networkID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkID(String networkID) {
-    this.networkID = networkID;
-  }
-
-
-  /**
-   * Return true if this EndpointSettings object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    EndpointSettings endpointSettings = (EndpointSettings) o;
-    return Objects.equals(this.aliases, endpointSettings.aliases) &&
-        Objects.equals(this.dnSNames, endpointSettings.dnSNames) &&
-        Objects.equals(this.driverOpts, endpointSettings.driverOpts) &&
-        Objects.equals(this.endpointID, endpointSettings.endpointID) &&
-        Objects.equals(this.gateway, endpointSettings.gateway) &&
-        Objects.equals(this.globalIPv6Address, endpointSettings.globalIPv6Address) &&
-        Objects.equals(this.globalIPv6PrefixLen, endpointSettings.globalIPv6PrefixLen) &&
-        Objects.equals(this.ipAMConfig, endpointSettings.ipAMConfig) &&
-        Objects.equals(this.ipAddress, endpointSettings.ipAddress) &&
-        Objects.equals(this.ipPrefixLen, endpointSettings.ipPrefixLen) &&
-        Objects.equals(this.ipv6Gateway, endpointSettings.ipv6Gateway) &&
-        Objects.equals(this.links, endpointSettings.links) &&
-        Objects.equals(this.macAddress, endpointSettings.macAddress) &&
-        Objects.equals(this.networkID, endpointSettings.networkID);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(aliases, dnSNames, driverOpts, endpointID, gateway, globalIPv6Address, globalIPv6PrefixLen, ipAMConfig, ipAddress, ipPrefixLen, ipv6Gateway, links, macAddress, networkID);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class EndpointSettings {\n");
-    sb.append("    aliases: ").append(toIndentedString(aliases)).append("\n");
-    sb.append("    dnSNames: ").append(toIndentedString(dnSNames)).append("\n");
-    sb.append("    driverOpts: ").append(toIndentedString(driverOpts)).append("\n");
-    sb.append("    endpointID: ").append(toIndentedString(endpointID)).append("\n");
-    sb.append("    gateway: ").append(toIndentedString(gateway)).append("\n");
-    sb.append("    globalIPv6Address: ").append(toIndentedString(globalIPv6Address)).append("\n");
-    sb.append("    globalIPv6PrefixLen: ").append(toIndentedString(globalIPv6PrefixLen)).append("\n");
-    sb.append("    ipAMConfig: ").append(toIndentedString(ipAMConfig)).append("\n");
-    sb.append("    ipAddress: ").append(toIndentedString(ipAddress)).append("\n");
-    sb.append("    ipPrefixLen: ").append(toIndentedString(ipPrefixLen)).append("\n");
-    sb.append("    ipv6Gateway: ").append(toIndentedString(ipv6Gateway)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
-    sb.append("    macAddress: ").append(toIndentedString(macAddress)).append("\n");
-    sb.append("    networkID: ").append(toIndentedString(networkID)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ALIASES = "Aliases";
+    public static final String SERIALIZED_NAME_DN_S_NAMES = "DNSNames";
+    public static final String SERIALIZED_NAME_DRIVER_OPTS = "DriverOpts";
+    public static final String SERIALIZED_NAME_ENDPOINT_I_D = "EndpointID";
+    public static final String SERIALIZED_NAME_GATEWAY = "Gateway";
+    public static final String SERIALIZED_NAME_GLOBAL_I_PV6_ADDRESS = "GlobalIPv6Address";
+    public static final String SERIALIZED_NAME_GLOBAL_I_PV6_PREFIX_LEN = "GlobalIPv6PrefixLen";
+    public static final String SERIALIZED_NAME_IP_A_M_CONFIG = "IPAMConfig";
+    public static final String SERIALIZED_NAME_IP_ADDRESS = "IPAddress";
+    public static final String SERIALIZED_NAME_IP_PREFIX_LEN = "IPPrefixLen";
+    public static final String SERIALIZED_NAME_IPV6_GATEWAY = "IPv6Gateway";
+    public static final String SERIALIZED_NAME_LINKS = "Links";
+    public static final String SERIALIZED_NAME_MAC_ADDRESS = "MacAddress";
+    public static final String SERIALIZED_NAME_NETWORK_I_D = "NetworkID";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Aliases");
+        openapiFields.add("DNSNames");
+        openapiFields.add("DriverOpts");
+        openapiFields.add("EndpointID");
+        openapiFields.add("Gateway");
+        openapiFields.add("GlobalIPv6Address");
+        openapiFields.add("GlobalIPv6PrefixLen");
+        openapiFields.add("IPAMConfig");
+        openapiFields.add("IPAddress");
+        openapiFields.add("IPPrefixLen");
+        openapiFields.add("IPv6Gateway");
+        openapiFields.add("Links");
+        openapiFields.add("MacAddress");
+        openapiFields.add("NetworkID");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ALIASES)
+    private List<String> aliases = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DN_S_NAMES)
+    private List<String> dnSNames = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DRIVER_OPTS)
+    private Map<String, String> driverOpts = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_ENDPOINT_I_D)
+    private String endpointID;
+    @SerializedName(SERIALIZED_NAME_GATEWAY)
+    private String gateway;
+    @SerializedName(SERIALIZED_NAME_GLOBAL_I_PV6_ADDRESS)
+    private String globalIPv6Address;
+    @SerializedName(SERIALIZED_NAME_GLOBAL_I_PV6_PREFIX_LEN)
+    private Long globalIPv6PrefixLen;
+    @SerializedName(SERIALIZED_NAME_IP_A_M_CONFIG)
+    private EndpointIPAMConfig ipAMConfig;
+    @SerializedName(SERIALIZED_NAME_IP_ADDRESS)
+    private String ipAddress;
+    @SerializedName(SERIALIZED_NAME_IP_PREFIX_LEN)
+    private Long ipPrefixLen;
+    @SerializedName(SERIALIZED_NAME_IPV6_GATEWAY)
+    private String ipv6Gateway;
+    @SerializedName(SERIALIZED_NAME_LINKS)
+    private List<String> links = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_MAC_ADDRESS)
+    private String macAddress;
+    @SerializedName(SERIALIZED_NAME_NETWORK_I_D)
+    private String networkID;
 
-    // add `Aliases` to the URL query string
-    if (getAliases() != null) {
-      for (int i = 0; i < getAliases().size(); i++) {
-        joiner.add(String.format("%sAliases%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getAliases().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public EndpointSettings() {
     }
 
-    // add `DNSNames` to the URL query string
-    if (getDnSNames() != null) {
-      for (int i = 0; i < getDnSNames().size(); i++) {
-        joiner.add(String.format("%sDNSNames%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDnSNames().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to EndpointSettings
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!EndpointSettings.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in EndpointSettings is not found in the empty JSON string", EndpointSettings.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!EndpointSettings.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EndpointSettings` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Aliases") != null && !jsonObj.get("Aliases").isJsonNull() && !jsonObj.get("Aliases").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Aliases` to be an array in the JSON string but got `%s`", jsonObj.get("Aliases").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("DNSNames") != null && !jsonObj.get("DNSNames").isJsonNull() && !jsonObj.get("DNSNames").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DNSNames` to be an array in the JSON string but got `%s`", jsonObj.get("DNSNames").toString()));
+        }
+        if ((jsonObj.get("EndpointID") != null && !jsonObj.get("EndpointID").isJsonNull()) && !jsonObj.get("EndpointID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `EndpointID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("EndpointID").toString()));
+        }
+        if ((jsonObj.get("Gateway") != null && !jsonObj.get("Gateway").isJsonNull()) && !jsonObj.get("Gateway").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Gateway").toString()));
+        }
+        if ((jsonObj.get("GlobalIPv6Address") != null && !jsonObj.get("GlobalIPv6Address").isJsonNull()) && !jsonObj.get("GlobalIPv6Address").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `GlobalIPv6Address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("GlobalIPv6Address").toString()));
+        }
+        // validate the optional field `IPAMConfig`
+        if (jsonObj.get("IPAMConfig") != null && !jsonObj.get("IPAMConfig").isJsonNull()) {
+            EndpointIPAMConfig.validateJsonElement(jsonObj.get("IPAMConfig"));
+        }
+        if ((jsonObj.get("IPAddress") != null && !jsonObj.get("IPAddress").isJsonNull()) && !jsonObj.get("IPAddress").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IPAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPAddress").toString()));
+        }
+        if ((jsonObj.get("IPv6Gateway") != null && !jsonObj.get("IPv6Gateway").isJsonNull()) && !jsonObj.get("IPv6Gateway").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IPv6Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPv6Gateway").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull() && !jsonObj.get("Links").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Links` to be an array in the JSON string but got `%s`", jsonObj.get("Links").toString()));
+        }
+        if ((jsonObj.get("MacAddress") != null && !jsonObj.get("MacAddress").isJsonNull()) && !jsonObj.get("MacAddress").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `MacAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MacAddress").toString()));
+        }
+        if ((jsonObj.get("NetworkID") != null && !jsonObj.get("NetworkID").isJsonNull()) && !jsonObj.get("NetworkID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `NetworkID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("NetworkID").toString()));
+        }
     }
 
-    // add `DriverOpts` to the URL query string
-    if (getDriverOpts() != null) {
-      for (String _key : getDriverOpts().keySet()) {
-        joiner.add(String.format("%sDriverOpts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getDriverOpts().get(_key), URLEncoder.encode(ApiClient.valueToString(getDriverOpts().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Create an instance of EndpointSettings given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of EndpointSettings
+     * @throws IOException if the JSON string is invalid with respect to EndpointSettings
+     */
+    public static EndpointSettings fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, EndpointSettings.class);
     }
 
-    // add `EndpointID` to the URL query string
-    if (getEndpointID() != null) {
-      joiner.add(String.format("%sEndpointID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEndpointID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public EndpointSettings aliases(List<String> aliases) {
+        this.aliases = aliases;
+        return this;
     }
 
-    // add `Gateway` to the URL query string
-    if (getGateway() != null) {
-      joiner.add(String.format("%sGateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public EndpointSettings addAliasesItem(String aliasesItem) {
+        if (this.aliases == null) {
+            this.aliases = new ArrayList<>();
+        }
+        this.aliases.add(aliasesItem);
+        return this;
     }
 
-    // add `GlobalIPv6Address` to the URL query string
-    if (getGlobalIPv6Address() != null) {
-      joiner.add(String.format("%sGlobalIPv6Address%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGlobalIPv6Address()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get aliases
+     *
+     * @return aliases
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getAliases() {
+        return aliases;
     }
 
-    // add `GlobalIPv6PrefixLen` to the URL query string
-    if (getGlobalIPv6PrefixLen() != null) {
-      joiner.add(String.format("%sGlobalIPv6PrefixLen%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGlobalIPv6PrefixLen()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setAliases(List<String> aliases) {
+        this.aliases = aliases;
     }
 
-    // add `IPAMConfig` to the URL query string
-    if (getIpAMConfig() != null) {
-      joiner.add(getIpAMConfig().toUrlQueryString(prefix + "IPAMConfig" + suffix));
+    public EndpointSettings dnSNames(List<String> dnSNames) {
+        this.dnSNames = dnSNames;
+        return this;
     }
 
-    // add `IPAddress` to the URL query string
-    if (getIpAddress() != null) {
-      joiner.add(String.format("%sIPAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public EndpointSettings addDnSNamesItem(String dnSNamesItem) {
+        if (this.dnSNames == null) {
+            this.dnSNames = new ArrayList<>();
+        }
+        this.dnSNames.add(dnSNamesItem);
+        return this;
     }
 
-    // add `IPPrefixLen` to the URL query string
-    if (getIpPrefixLen() != null) {
-      joiner.add(String.format("%sIPPrefixLen%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpPrefixLen()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * DNSNames holds all the (non fully qualified) DNS names associated to this endpoint. First entry is used to generate PTR records.
+     *
+     * @return dnSNames
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDnSNames() {
+        return dnSNames;
     }
 
-    // add `IPv6Gateway` to the URL query string
-    if (getIpv6Gateway() != null) {
-      joiner.add(String.format("%sIPv6Gateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpv6Gateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setDnSNames(List<String> dnSNames) {
+        this.dnSNames = dnSNames;
     }
 
-    // add `Links` to the URL query string
-    if (getLinks() != null) {
-      for (int i = 0; i < getLinks().size(); i++) {
-        joiner.add(String.format("%sLinks%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getLinks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public EndpointSettings driverOpts(Map<String, String> driverOpts) {
+        this.driverOpts = driverOpts;
+        return this;
     }
 
-    // add `MacAddress` to the URL query string
-    if (getMacAddress() != null) {
-      joiner.add(String.format("%sMacAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMacAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public EndpointSettings putDriverOptsItem(String key, String driverOptsItem) {
+        if (this.driverOpts == null) {
+            this.driverOpts = new HashMap<>();
+        }
+        this.driverOpts.put(key, driverOptsItem);
+        return this;
     }
 
-    // add `NetworkID` to the URL query string
-    if (getNetworkID() != null) {
-      joiner.add(String.format("%sNetworkID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetworkID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get driverOpts
+     *
+     * @return driverOpts
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getDriverOpts() {
+        return driverOpts;
     }
 
-    return joiner.toString();
-  }
+    public void setDriverOpts(Map<String, String> driverOpts) {
+        this.driverOpts = driverOpts;
+    }
+
+    public EndpointSettings endpointID(String endpointID) {
+        this.endpointID = endpointID;
+        return this;
+    }
+
+    /**
+     * Get endpointID
+     *
+     * @return endpointID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getEndpointID() {
+        return endpointID;
+    }
+
+    public void setEndpointID(String endpointID) {
+        this.endpointID = endpointID;
+    }
+
+    public EndpointSettings gateway(String gateway) {
+        this.gateway = gateway;
+        return this;
+    }
+
+    /**
+     * Get gateway
+     *
+     * @return gateway
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGateway() {
+        return gateway;
+    }
+
+    public void setGateway(String gateway) {
+        this.gateway = gateway;
+    }
+
+    public EndpointSettings globalIPv6Address(String globalIPv6Address) {
+        this.globalIPv6Address = globalIPv6Address;
+        return this;
+    }
+
+    /**
+     * Get globalIPv6Address
+     *
+     * @return globalIPv6Address
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGlobalIPv6Address() {
+        return globalIPv6Address;
+    }
+
+    public void setGlobalIPv6Address(String globalIPv6Address) {
+        this.globalIPv6Address = globalIPv6Address;
+    }
+
+    public EndpointSettings globalIPv6PrefixLen(Long globalIPv6PrefixLen) {
+        this.globalIPv6PrefixLen = globalIPv6PrefixLen;
+        return this;
+    }
+
+    /**
+     * Get globalIPv6PrefixLen
+     *
+     * @return globalIPv6PrefixLen
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getGlobalIPv6PrefixLen() {
+        return globalIPv6PrefixLen;
+    }
+
+    public void setGlobalIPv6PrefixLen(Long globalIPv6PrefixLen) {
+        this.globalIPv6PrefixLen = globalIPv6PrefixLen;
+    }
+
+    public EndpointSettings ipAMConfig(EndpointIPAMConfig ipAMConfig) {
+        this.ipAMConfig = ipAMConfig;
+        return this;
+    }
+
+    /**
+     * Get ipAMConfig
+     *
+     * @return ipAMConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public EndpointIPAMConfig getIpAMConfig() {
+        return ipAMConfig;
+    }
+
+    public void setIpAMConfig(EndpointIPAMConfig ipAMConfig) {
+        this.ipAMConfig = ipAMConfig;
+    }
+
+    public EndpointSettings ipAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+        return this;
+    }
+
+    /**
+     * Get ipAddress
+     *
+     * @return ipAddress
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public EndpointSettings ipPrefixLen(Long ipPrefixLen) {
+        this.ipPrefixLen = ipPrefixLen;
+        return this;
+    }
+
+    /**
+     * Get ipPrefixLen
+     *
+     * @return ipPrefixLen
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getIpPrefixLen() {
+        return ipPrefixLen;
+    }
+
+    public void setIpPrefixLen(Long ipPrefixLen) {
+        this.ipPrefixLen = ipPrefixLen;
+    }
+
+    public EndpointSettings ipv6Gateway(String ipv6Gateway) {
+        this.ipv6Gateway = ipv6Gateway;
+        return this;
+    }
+
+    /**
+     * Get ipv6Gateway
+     *
+     * @return ipv6Gateway
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIpv6Gateway() {
+        return ipv6Gateway;
+    }
+
+    public void setIpv6Gateway(String ipv6Gateway) {
+        this.ipv6Gateway = ipv6Gateway;
+    }
+
+    public EndpointSettings links(List<String> links) {
+        this.links = links;
+        return this;
+    }
+
+    public EndpointSettings addLinksItem(String linksItem) {
+        if (this.links == null) {
+            this.links = new ArrayList<>();
+        }
+        this.links.add(linksItem);
+        return this;
+    }
+
+    /**
+     * Get links
+     *
+     * @return links
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<String> links) {
+        this.links = links;
+    }
+
+    public EndpointSettings macAddress(String macAddress) {
+        this.macAddress = macAddress;
+        return this;
+    }
+
+    /**
+     * MacAddress may be used to specify a MAC address when the container is created. Once the container is running, it becomes operational data (it may contain a generated address).
+     *
+     * @return macAddress
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMacAddress() {
+        return macAddress;
+    }
+
+    public void setMacAddress(String macAddress) {
+        this.macAddress = macAddress;
+    }
+
+    public EndpointSettings networkID(String networkID) {
+        this.networkID = networkID;
+        return this;
+    }
+
+    /**
+     * Operational data
+     *
+     * @return networkID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getNetworkID() {
+        return networkID;
+    }
+
+    public void setNetworkID(String networkID) {
+        this.networkID = networkID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        EndpointSettings endpointSettings = (EndpointSettings) o;
+        return Objects.equals(this.aliases, endpointSettings.aliases) &&
+                Objects.equals(this.dnSNames, endpointSettings.dnSNames) &&
+                Objects.equals(this.driverOpts, endpointSettings.driverOpts) &&
+                Objects.equals(this.endpointID, endpointSettings.endpointID) &&
+                Objects.equals(this.gateway, endpointSettings.gateway) &&
+                Objects.equals(this.globalIPv6Address, endpointSettings.globalIPv6Address) &&
+                Objects.equals(this.globalIPv6PrefixLen, endpointSettings.globalIPv6PrefixLen) &&
+                Objects.equals(this.ipAMConfig, endpointSettings.ipAMConfig) &&
+                Objects.equals(this.ipAddress, endpointSettings.ipAddress) &&
+                Objects.equals(this.ipPrefixLen, endpointSettings.ipPrefixLen) &&
+                Objects.equals(this.ipv6Gateway, endpointSettings.ipv6Gateway) &&
+                Objects.equals(this.links, endpointSettings.links) &&
+                Objects.equals(this.macAddress, endpointSettings.macAddress) &&
+                Objects.equals(this.networkID, endpointSettings.networkID);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(aliases, dnSNames, driverOpts, endpointID, gateway, globalIPv6Address, globalIPv6PrefixLen, ipAMConfig, ipAddress, ipPrefixLen, ipv6Gateway, links, macAddress, networkID);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class EndpointSettings {\n" +
+                "    aliases: " + toIndentedString(aliases) + "\n" +
+                "    dnSNames: " + toIndentedString(dnSNames) + "\n" +
+                "    driverOpts: " + toIndentedString(driverOpts) + "\n" +
+                "    endpointID: " + toIndentedString(endpointID) + "\n" +
+                "    gateway: " + toIndentedString(gateway) + "\n" +
+                "    globalIPv6Address: " + toIndentedString(globalIPv6Address) + "\n" +
+                "    globalIPv6PrefixLen: " + toIndentedString(globalIPv6PrefixLen) + "\n" +
+                "    ipAMConfig: " + toIndentedString(ipAMConfig) + "\n" +
+                "    ipAddress: " + toIndentedString(ipAddress) + "\n" +
+                "    ipPrefixLen: " + toIndentedString(ipPrefixLen) + "\n" +
+                "    ipv6Gateway: " + toIndentedString(ipv6Gateway) + "\n" +
+                "    links: " + toIndentedString(links) + "\n" +
+                "    macAddress: " + toIndentedString(macAddress) + "\n" +
+                "    networkID: " + toIndentedString(networkID) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of EndpointSettings to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!EndpointSettings.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'EndpointSettings' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<EndpointSettings> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(EndpointSettings.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<EndpointSettings>() {
+                @Override
+                public void write(JsonWriter out, EndpointSettings value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public EndpointSettings read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

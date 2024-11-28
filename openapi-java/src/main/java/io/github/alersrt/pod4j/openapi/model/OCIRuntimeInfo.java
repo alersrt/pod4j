@@ -13,249 +13,263 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * OCIRuntimeInfo describes the runtime (crun or runc) being used with podman
  */
-@JsonPropertyOrder({
-  OCIRuntimeInfo.JSON_PROPERTY_NAME,
-  OCIRuntimeInfo.JSON_PROPERTY_PACKAGE,
-  OCIRuntimeInfo.JSON_PROPERTY_PATH,
-  OCIRuntimeInfo.JSON_PROPERTY_VERSION
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class OCIRuntimeInfo {
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+    public static final String SERIALIZED_NAME_NAME = "name";
+    public static final String SERIALIZED_NAME_PACKAGE = "package";
+    public static final String SERIALIZED_NAME_PATH = "path";
+    public static final String SERIALIZED_NAME_VERSION = "version";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_PACKAGE = "package";
-  private String _package;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("name");
+        openapiFields.add("package");
+        openapiFields.add("path");
+        openapiFields.add("version");
 
-  public static final String JSON_PROPERTY_PATH = "path";
-  private String path;
-
-  public static final String JSON_PROPERTY_VERSION = "version";
-  private String version;
-
-  public OCIRuntimeInfo() { 
-  }
-
-  public OCIRuntimeInfo name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public OCIRuntimeInfo _package(String _package) {
-    this._package = _package;
-    return this;
-  }
-
-  /**
-   * Get _package
-   * @return _package
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PACKAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPackage() {
-    return _package;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PACKAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPackage(String _package) {
-    this._package = _package;
-  }
-
-
-  public OCIRuntimeInfo path(String path) {
-    this.path = path;
-    return this;
-  }
-
-  /**
-   * Get path
-   * @return path
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPath() {
-    return path;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-
-  public OCIRuntimeInfo version(String version) {
-    this.version = version;
-    return this;
-  }
-
-  /**
-   * Get version
-   * @return version
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVersion() {
-    return version;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VERSION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVersion(String version) {
-    this.version = version;
-  }
-
-
-  /**
-   * Return true if this OCIRuntimeInfo object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    OCIRuntimeInfo ocIRuntimeInfo = (OCIRuntimeInfo) o;
-    return Objects.equals(this.name, ocIRuntimeInfo.name) &&
-        Objects.equals(this._package, ocIRuntimeInfo._package) &&
-        Objects.equals(this.path, ocIRuntimeInfo.path) &&
-        Objects.equals(this.version, ocIRuntimeInfo.version);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(name, _package, path, version);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class OCIRuntimeInfo {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    _package: ").append(toIndentedString(_package)).append("\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
-    sb.append("    version: ").append(toIndentedString(version)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_PACKAGE)
+    private String _package;
+    @SerializedName(SERIALIZED_NAME_PATH)
+    private String path;
+    @SerializedName(SERIALIZED_NAME_VERSION)
+    private String version;
 
-    // add `name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public OCIRuntimeInfo() {
     }
 
-    // add `package` to the URL query string
-    if (getPackage() != null) {
-      joiner.add(String.format("%spackage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPackage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to OCIRuntimeInfo
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!OCIRuntimeInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in OCIRuntimeInfo is not found in the empty JSON string", OCIRuntimeInfo.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!OCIRuntimeInfo.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OCIRuntimeInfo` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
+        }
+        if ((jsonObj.get("package") != null && !jsonObj.get("package").isJsonNull()) && !jsonObj.get("package").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `package` to be a primitive type in the JSON string but got `%s`", jsonObj.get("package").toString()));
+        }
+        if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
+        }
+        if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
+        }
     }
 
-    // add `path` to the URL query string
-    if (getPath() != null) {
-      joiner.add(String.format("%spath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of OCIRuntimeInfo given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of OCIRuntimeInfo
+     * @throws IOException if the JSON string is invalid with respect to OCIRuntimeInfo
+     */
+    public static OCIRuntimeInfo fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, OCIRuntimeInfo.class);
     }
 
-    // add `version` to the URL query string
-    if (getVersion() != null) {
-      joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public OCIRuntimeInfo name(String name) {
+        this.name = name;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public OCIRuntimeInfo _package(String _package) {
+        this._package = _package;
+        return this;
+    }
+
+    /**
+     * Get _package
+     *
+     * @return _package
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPackage() {
+        return _package;
+    }
+
+    public void setPackage(String _package) {
+        this._package = _package;
+    }
+
+    public OCIRuntimeInfo path(String path) {
+        this.path = path;
+        return this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return path
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public OCIRuntimeInfo version(String version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * Get version
+     *
+     * @return version
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        OCIRuntimeInfo ocIRuntimeInfo = (OCIRuntimeInfo) o;
+        return Objects.equals(this.name, ocIRuntimeInfo.name) &&
+                Objects.equals(this._package, ocIRuntimeInfo._package) &&
+                Objects.equals(this.path, ocIRuntimeInfo.path) &&
+                Objects.equals(this.version, ocIRuntimeInfo.version);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, _package, path, version);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class OCIRuntimeInfo {\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    _package: " + toIndentedString(_package) + "\n" +
+                "    path: " + toIndentedString(path) + "\n" +
+                "    version: " + toIndentedString(version) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of OCIRuntimeInfo to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!OCIRuntimeInfo.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'OCIRuntimeInfo' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<OCIRuntimeInfo> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(OCIRuntimeInfo.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<OCIRuntimeInfo>() {
+                @Override
+                public void write(JsonWriter out, OCIRuntimeInfo value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public OCIRuntimeInfo read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

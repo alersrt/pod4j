@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ManifestAddArtifactOptions
  */
-class ManifestAddArtifactOptionsTest {
+public class ManifestAddArtifactOptionsTest {
     private final ManifestAddArtifactOptions model = new ManifestAddArtifactOptions();
 
     /**
      * Model tests for ManifestAddArtifactOptions
      */
     @Test
-    void testManifestAddArtifactOptions() {
+    public void testManifestAddArtifactOptions() {
         // TODO: test ManifestAddArtifactOptions
     }
 
@@ -46,7 +47,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'annotation'
      */
     @Test
-    void annotationTest() {
+    public void annotationTest() {
         // TODO: test annotation
     }
 
@@ -54,7 +55,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'annotations'
      */
     @Test
-    void annotationsTest() {
+    public void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -62,7 +63,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'arch'
      */
     @Test
-    void archTest() {
+    public void archTest() {
         // TODO: test arch
     }
 
@@ -70,7 +71,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'artifactAnnotations'
      */
     @Test
-    void artifactAnnotationsTest() {
+    public void artifactAnnotationsTest() {
         // TODO: test artifactAnnotations
     }
 
@@ -78,7 +79,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'artifactConfig'
      */
     @Test
-    void artifactConfigTest() {
+    public void artifactConfigTest() {
         // TODO: test artifactConfig
     }
 
@@ -86,7 +87,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'artifactConfigType'
      */
     @Test
-    void artifactConfigTypeTest() {
+    public void artifactConfigTypeTest() {
         // TODO: test artifactConfigType
     }
 
@@ -94,7 +95,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'artifactExcludeTitles'
      */
     @Test
-    void artifactExcludeTitlesTest() {
+    public void artifactExcludeTitlesTest() {
         // TODO: test artifactExcludeTitles
     }
 
@@ -102,7 +103,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'artifactFiles'
      */
     @Test
-    void artifactFilesTest() {
+    public void artifactFilesTest() {
         // TODO: test artifactFiles
     }
 
@@ -110,7 +111,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'artifactLayerType'
      */
     @Test
-    void artifactLayerTypeTest() {
+    public void artifactLayerTypeTest() {
         // TODO: test artifactLayerType
     }
 
@@ -118,7 +119,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'artifactSubject'
      */
     @Test
-    void artifactSubjectTest() {
+    public void artifactSubjectTest() {
         // TODO: test artifactSubject
     }
 
@@ -126,7 +127,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'artifactType'
      */
     @Test
-    void artifactTypeTest() {
+    public void artifactTypeTest() {
         // TODO: test artifactType
     }
 
@@ -134,7 +135,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'features'
      */
     @Test
-    void featuresTest() {
+    public void featuresTest() {
         // TODO: test features
     }
 
@@ -142,7 +143,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'indexAnnotation'
      */
     @Test
-    void indexAnnotationTest() {
+    public void indexAnnotationTest() {
         // TODO: test indexAnnotation
     }
 
@@ -150,7 +151,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'indexAnnotations'
      */
     @Test
-    void indexAnnotationsTest() {
+    public void indexAnnotationsTest() {
         // TODO: test indexAnnotations
     }
 
@@ -158,7 +159,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'os'
      */
     @Test
-    void osTest() {
+    public void osTest() {
         // TODO: test os
     }
 
@@ -166,7 +167,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'osFeatures'
      */
     @Test
-    void osFeaturesTest() {
+    public void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
@@ -174,7 +175,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'osVersion'
      */
     @Test
-    void osVersionTest() {
+    public void osVersionTest() {
         // TODO: test osVersion
     }
 
@@ -182,7 +183,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'subject'
      */
     @Test
-    void subjectTest() {
+    public void subjectTest() {
         // TODO: test subject
     }
 
@@ -190,7 +191,7 @@ class ManifestAddArtifactOptionsTest {
      * Test the property 'variant'
      */
     @Test
-    void variantTest() {
+    public void variantTest() {
         // TODO: test variant
     }
 

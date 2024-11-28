@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Schema2HealthConfig
  */
-class Schema2HealthConfigTest {
+public class Schema2HealthConfigTest {
     private final Schema2HealthConfig model = new Schema2HealthConfig();
 
     /**
      * Model tests for Schema2HealthConfig
      */
     @Test
-    void testSchema2HealthConfig() {
+    public void testSchema2HealthConfig() {
         // TODO: test Schema2HealthConfig
     }
 
@@ -43,7 +33,7 @@ class Schema2HealthConfigTest {
      * Test the property 'interval'
      */
     @Test
-    void intervalTest() {
+    public void intervalTest() {
         // TODO: test interval
     }
 
@@ -51,7 +41,7 @@ class Schema2HealthConfigTest {
      * Test the property 'retries'
      */
     @Test
-    void retriesTest() {
+    public void retriesTest() {
         // TODO: test retries
     }
 
@@ -59,7 +49,7 @@ class Schema2HealthConfigTest {
      * Test the property 'startInterval'
      */
     @Test
-    void startIntervalTest() {
+    public void startIntervalTest() {
         // TODO: test startInterval
     }
 
@@ -67,7 +57,7 @@ class Schema2HealthConfigTest {
      * Test the property 'startPeriod'
      */
     @Test
-    void startPeriodTest() {
+    public void startPeriodTest() {
         // TODO: test startPeriod
     }
 
@@ -75,7 +65,7 @@ class Schema2HealthConfigTest {
      * Test the property 'test'
      */
     @Test
-    void testTest() {
+    public void testTest() {
         // TODO: test test
     }
 
@@ -83,7 +73,7 @@ class Schema2HealthConfigTest {
      * Test the property 'timeout'
      */
     @Test
-    void timeoutTest() {
+    public void timeoutTest() {
         // TODO: test timeout
     }
 

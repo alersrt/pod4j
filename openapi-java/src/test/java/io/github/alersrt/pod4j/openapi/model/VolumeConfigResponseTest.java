@@ -13,31 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.time.OffsetDateTime;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for VolumeConfigResponse
  */
-class VolumeConfigResponseTest {
+public class VolumeConfigResponseTest {
     private final VolumeConfigResponse model = new VolumeConfigResponse();
 
     /**
      * Model tests for VolumeConfigResponse
      */
     @Test
-    void testVolumeConfigResponse() {
+    public void testVolumeConfigResponse() {
         // TODO: test VolumeConfigResponse
     }
 
@@ -45,7 +33,7 @@ class VolumeConfigResponseTest {
      * Test the property 'anonymous'
      */
     @Test
-    void anonymousTest() {
+    public void anonymousTest() {
         // TODO: test anonymous
     }
 
@@ -53,7 +41,7 @@ class VolumeConfigResponseTest {
      * Test the property 'createdAt'
      */
     @Test
-    void createdAtTest() {
+    public void createdAtTest() {
         // TODO: test createdAt
     }
 
@@ -61,7 +49,7 @@ class VolumeConfigResponseTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -69,7 +57,7 @@ class VolumeConfigResponseTest {
      * Test the property 'GID'
      */
     @Test
-    void GIDTest() {
+    public void GIDTest() {
         // TODO: test GID
     }
 
@@ -77,7 +65,7 @@ class VolumeConfigResponseTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -85,7 +73,7 @@ class VolumeConfigResponseTest {
      * Test the property 'lockNumber'
      */
     @Test
-    void lockNumberTest() {
+    public void lockNumberTest() {
         // TODO: test lockNumber
     }
 
@@ -93,7 +81,7 @@ class VolumeConfigResponseTest {
      * Test the property 'mountCount'
      */
     @Test
-    void mountCountTest() {
+    public void mountCountTest() {
         // TODO: test mountCount
     }
 
@@ -101,7 +89,7 @@ class VolumeConfigResponseTest {
      * Test the property 'mountpoint'
      */
     @Test
-    void mountpointTest() {
+    public void mountpointTest() {
         // TODO: test mountpoint
     }
 
@@ -109,7 +97,7 @@ class VolumeConfigResponseTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -117,7 +105,7 @@ class VolumeConfigResponseTest {
      * Test the property 'needsChown'
      */
     @Test
-    void needsChownTest() {
+    public void needsChownTest() {
         // TODO: test needsChown
     }
 
@@ -125,7 +113,7 @@ class VolumeConfigResponseTest {
      * Test the property 'needsCopyUp'
      */
     @Test
-    void needsCopyUpTest() {
+    public void needsCopyUpTest() {
         // TODO: test needsCopyUp
     }
 
@@ -133,7 +121,7 @@ class VolumeConfigResponseTest {
      * Test the property 'options'
      */
     @Test
-    void optionsTest() {
+    public void optionsTest() {
         // TODO: test options
     }
 
@@ -141,7 +129,7 @@ class VolumeConfigResponseTest {
      * Test the property 'scope'
      */
     @Test
-    void scopeTest() {
+    public void scopeTest() {
         // TODO: test scope
     }
 
@@ -149,7 +137,7 @@ class VolumeConfigResponseTest {
      * Test the property 'status'
      */
     @Test
-    void statusTest() {
+    public void statusTest() {
         // TODO: test status
     }
 
@@ -157,7 +145,7 @@ class VolumeConfigResponseTest {
      * Test the property 'storageID'
      */
     @Test
-    void storageIDTest() {
+    public void storageIDTest() {
         // TODO: test storageID
     }
 
@@ -165,7 +153,7 @@ class VolumeConfigResponseTest {
      * Test the property 'timeout'
      */
     @Test
-    void timeoutTest() {
+    public void timeoutTest() {
         // TODO: test timeout
     }
 
@@ -173,7 +161,7 @@ class VolumeConfigResponseTest {
      * Test the property 'UID'
      */
     @Test
-    void UIDTest() {
+    public void UIDTest() {
         // TODO: test UID
     }
 

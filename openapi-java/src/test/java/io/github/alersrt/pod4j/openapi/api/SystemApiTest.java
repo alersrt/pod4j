@@ -14,7 +14,6 @@
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.LibpodInfo;
 import io.github.alersrt.pod4j.openapi.model.SystemCheckReport;
 import io.github.alersrt.pod4j.openapi.model.SystemComponentVersion;
@@ -22,16 +21,6 @@ import io.github.alersrt.pod4j.openapi.model.SystemDfReport;
 import io.github.alersrt.pod4j.openapi.model.SystemPruneReport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for SystemApi
@@ -41,14 +30,10 @@ public class SystemApiTest {
 
     private final SystemApi api = new SystemApi();
 
-
     /**
      * Performs consistency checks on storage, optionally removing items which fail checks
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void systemCheckLibpodTest() throws ApiException {
@@ -56,35 +41,29 @@ public class SystemApiTest {
         Boolean repair = null;
         Boolean repairLossy = null;
         String unreferencedLayerMaxAge = null;
-        SystemCheckReport response =
-                api.systemCheckLibpod(quick, repair, repairLossy, unreferencedLayerMaxAge);
-        
+        SystemCheckReport response = api.systemCheckLibpod(quick, repair, repairLossy, unreferencedLayerMaxAge);
         // TODO: test validations
     }
 
     /**
      * Show disk usage
-     *
+     * <p>
      * Return information about disk usage for containers, images, and volumes
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void systemDataUsageLibpodTest() throws ApiException {
-        SystemDfReport response =
-                api.systemDataUsageLibpod();
-        
+        SystemDfReport response = api.systemDataUsageLibpod();
         // TODO: test validations
     }
 
     /**
      * Get events
-     *
+     * <p>
      * Returns events filtered on query parameters
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void systemEventsLibpodTest() throws ApiException {
@@ -92,73 +71,55 @@ public class SystemApiTest {
         String until = null;
         String filters = null;
         Boolean stream = null;
-
         api.systemEventsLibpod(since, until, filters, stream);
-
         // TODO: test validations
     }
 
     /**
      * Get info
-     *
+     * <p>
      * Returns information on the system and libpod configuration
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void systemInfoLibpodTest() throws ApiException {
-        LibpodInfo response =
-                api.systemInfoLibpod();
-        
+        LibpodInfo response = api.systemInfoLibpod();
         // TODO: test validations
     }
 
     /**
      * Ping service
+     * <p>
+     * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned.
      *
-     * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned. 
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void systemPingTest() throws ApiException {
-        String response =
-                api.systemPing();
-        
+        String response = api.systemPing();
         // TODO: test validations
     }
 
     /**
      * Prune unused data
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void systemPruneLibpodTest() throws ApiException {
-        SystemPruneReport response =
-                api.systemPruneLibpod();
-        
+        SystemPruneReport response = api.systemPruneLibpod();
         // TODO: test validations
     }
 
     /**
      * Component Version information
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void systemVersionLibpodTest() throws ApiException {
-        SystemComponentVersion response =
-                api.systemVersionLibpod();
-        
+        SystemComponentVersion response = api.systemVersionLibpod();
         // TODO: test validations
     }
 

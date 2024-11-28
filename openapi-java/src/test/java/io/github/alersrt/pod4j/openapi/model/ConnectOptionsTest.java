@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ConnectOptions
  */
-class ConnectOptionsTest {
+public class ConnectOptionsTest {
     private final ConnectOptions model = new ConnectOptions();
 
     /**
      * Model tests for ConnectOptions
      */
     @Test
-    void testConnectOptions() {
+    public void testConnectOptions() {
         // TODO: test ConnectOptions
     }
 
@@ -43,7 +33,7 @@ class ConnectOptionsTest {
      * Test the property 'container'
      */
     @Test
-    void containerTest() {
+    public void containerTest() {
         // TODO: test container
     }
 
@@ -51,7 +41,7 @@ class ConnectOptionsTest {
      * Test the property 'endpointConfig'
      */
     @Test
-    void endpointConfigTest() {
+    public void endpointConfigTest() {
         // TODO: test endpointConfig
     }
 

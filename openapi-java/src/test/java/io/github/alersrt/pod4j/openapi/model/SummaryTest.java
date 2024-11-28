@@ -13,33 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ManifestSummary;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Summary
  */
-class SummaryTest {
+public class SummaryTest {
     private final Summary model = new Summary();
 
     /**
      * Model tests for Summary
      */
     @Test
-    void testSummary() {
+    public void testSummary() {
         // TODO: test Summary
     }
 
@@ -47,7 +33,7 @@ class SummaryTest {
      * Test the property 'containers'
      */
     @Test
-    void containersTest() {
+    public void containersTest() {
         // TODO: test containers
     }
 
@@ -55,7 +41,7 @@ class SummaryTest {
      * Test the property 'created'
      */
     @Test
-    void createdTest() {
+    public void createdTest() {
         // TODO: test created
     }
 
@@ -63,7 +49,7 @@ class SummaryTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -71,7 +57,7 @@ class SummaryTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -79,7 +65,7 @@ class SummaryTest {
      * Test the property 'manifests'
      */
     @Test
-    void manifestsTest() {
+    public void manifestsTest() {
         // TODO: test manifests
     }
 
@@ -87,7 +73,7 @@ class SummaryTest {
      * Test the property 'parentId'
      */
     @Test
-    void parentIdTest() {
+    public void parentIdTest() {
         // TODO: test parentId
     }
 
@@ -95,7 +81,7 @@ class SummaryTest {
      * Test the property 'repoDigests'
      */
     @Test
-    void repoDigestsTest() {
+    public void repoDigestsTest() {
         // TODO: test repoDigests
     }
 
@@ -103,7 +89,7 @@ class SummaryTest {
      * Test the property 'repoTags'
      */
     @Test
-    void repoTagsTest() {
+    public void repoTagsTest() {
         // TODO: test repoTags
     }
 
@@ -111,7 +97,7 @@ class SummaryTest {
      * Test the property 'sharedSize'
      */
     @Test
-    void sharedSizeTest() {
+    public void sharedSizeTest() {
         // TODO: test sharedSize
     }
 
@@ -119,7 +105,7 @@ class SummaryTest {
      * Test the property 'size'
      */
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         // TODO: test size
     }
 
@@ -127,7 +113,7 @@ class SummaryTest {
      * Test the property 'virtualSize'
      */
     @Test
-    void virtualSizeTest() {
+    public void virtualSizeTest() {
         // TODO: test virtualSize
     }
 

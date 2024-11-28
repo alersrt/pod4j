@@ -13,35 +13,36 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.InspectSecret;
 import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
 import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectContainerConfig
  */
-class InspectContainerConfigTest {
+public class InspectContainerConfigTest {
     private final InspectContainerConfig model = new InspectContainerConfig();
 
     /**
      * Model tests for InspectContainerConfig
      */
     @Test
-    void testInspectContainerConfig() {
+    public void testInspectContainerConfig() {
         // TODO: test InspectContainerConfig
     }
 
@@ -49,7 +50,7 @@ class InspectContainerConfigTest {
      * Test the property 'annotations'
      */
     @Test
-    void annotationsTest() {
+    public void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -57,7 +58,7 @@ class InspectContainerConfigTest {
      * Test the property 'attachStderr'
      */
     @Test
-    void attachStderrTest() {
+    public void attachStderrTest() {
         // TODO: test attachStderr
     }
 
@@ -65,7 +66,7 @@ class InspectContainerConfigTest {
      * Test the property 'attachStdin'
      */
     @Test
-    void attachStdinTest() {
+    public void attachStdinTest() {
         // TODO: test attachStdin
     }
 
@@ -73,7 +74,7 @@ class InspectContainerConfigTest {
      * Test the property 'attachStdout'
      */
     @Test
-    void attachStdoutTest() {
+    public void attachStdoutTest() {
         // TODO: test attachStdout
     }
 
@@ -81,7 +82,7 @@ class InspectContainerConfigTest {
      * Test the property 'chrootDirs'
      */
     @Test
-    void chrootDirsTest() {
+    public void chrootDirsTest() {
         // TODO: test chrootDirs
     }
 
@@ -89,7 +90,7 @@ class InspectContainerConfigTest {
      * Test the property 'cmd'
      */
     @Test
-    void cmdTest() {
+    public void cmdTest() {
         // TODO: test cmd
     }
 
@@ -97,7 +98,7 @@ class InspectContainerConfigTest {
      * Test the property 'createCommand'
      */
     @Test
-    void createCommandTest() {
+    public void createCommandTest() {
         // TODO: test createCommand
     }
 
@@ -105,7 +106,7 @@ class InspectContainerConfigTest {
      * Test the property 'domainname'
      */
     @Test
-    void domainnameTest() {
+    public void domainnameTest() {
         // TODO: test domainname
     }
 
@@ -113,7 +114,7 @@ class InspectContainerConfigTest {
      * Test the property 'entrypoint'
      */
     @Test
-    void entrypointTest() {
+    public void entrypointTest() {
         // TODO: test entrypoint
     }
 
@@ -121,7 +122,7 @@ class InspectContainerConfigTest {
      * Test the property 'env'
      */
     @Test
-    void envTest() {
+    public void envTest() {
         // TODO: test env
     }
 
@@ -129,7 +130,7 @@ class InspectContainerConfigTest {
      * Test the property 'exposedPorts'
      */
     @Test
-    void exposedPortsTest() {
+    public void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
@@ -137,7 +138,7 @@ class InspectContainerConfigTest {
      * Test the property 'healthLogDestination'
      */
     @Test
-    void healthLogDestinationTest() {
+    public void healthLogDestinationTest() {
         // TODO: test healthLogDestination
     }
 
@@ -145,7 +146,7 @@ class InspectContainerConfigTest {
      * Test the property 'healthcheck'
      */
     @Test
-    void healthcheckTest() {
+    public void healthcheckTest() {
         // TODO: test healthcheck
     }
 
@@ -153,7 +154,7 @@ class InspectContainerConfigTest {
      * Test the property 'healthcheckMaxLogCount'
      */
     @Test
-    void healthcheckMaxLogCountTest() {
+    public void healthcheckMaxLogCountTest() {
         // TODO: test healthcheckMaxLogCount
     }
 
@@ -161,7 +162,7 @@ class InspectContainerConfigTest {
      * Test the property 'healthcheckMaxLogSize'
      */
     @Test
-    void healthcheckMaxLogSizeTest() {
+    public void healthcheckMaxLogSizeTest() {
         // TODO: test healthcheckMaxLogSize
     }
 
@@ -169,7 +170,7 @@ class InspectContainerConfigTest {
      * Test the property 'healthcheckOnFailureAction'
      */
     @Test
-    void healthcheckOnFailureActionTest() {
+    public void healthcheckOnFailureActionTest() {
         // TODO: test healthcheckOnFailureAction
     }
 
@@ -177,7 +178,7 @@ class InspectContainerConfigTest {
      * Test the property 'hostname'
      */
     @Test
-    void hostnameTest() {
+    public void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -185,7 +186,7 @@ class InspectContainerConfigTest {
      * Test the property 'image'
      */
     @Test
-    void imageTest() {
+    public void imageTest() {
         // TODO: test image
     }
 
@@ -193,7 +194,7 @@ class InspectContainerConfigTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -201,7 +202,7 @@ class InspectContainerConfigTest {
      * Test the property 'onBuild'
      */
     @Test
-    void onBuildTest() {
+    public void onBuildTest() {
         // TODO: test onBuild
     }
 
@@ -209,7 +210,7 @@ class InspectContainerConfigTest {
      * Test the property 'openStdin'
      */
     @Test
-    void openStdinTest() {
+    public void openStdinTest() {
         // TODO: test openStdin
     }
 
@@ -217,7 +218,7 @@ class InspectContainerConfigTest {
      * Test the property 'passwd'
      */
     @Test
-    void passwdTest() {
+    public void passwdTest() {
         // TODO: test passwd
     }
 
@@ -225,7 +226,7 @@ class InspectContainerConfigTest {
      * Test the property 'secrets'
      */
     @Test
-    void secretsTest() {
+    public void secretsTest() {
         // TODO: test secrets
     }
 
@@ -233,7 +234,7 @@ class InspectContainerConfigTest {
      * Test the property 'startupHealthCheck'
      */
     @Test
-    void startupHealthCheckTest() {
+    public void startupHealthCheckTest() {
         // TODO: test startupHealthCheck
     }
 
@@ -241,7 +242,7 @@ class InspectContainerConfigTest {
      * Test the property 'stdinOnce'
      */
     @Test
-    void stdinOnceTest() {
+    public void stdinOnceTest() {
         // TODO: test stdinOnce
     }
 
@@ -249,7 +250,7 @@ class InspectContainerConfigTest {
      * Test the property 'stopSignal'
      */
     @Test
-    void stopSignalTest() {
+    public void stopSignalTest() {
         // TODO: test stopSignal
     }
 
@@ -257,7 +258,7 @@ class InspectContainerConfigTest {
      * Test the property 'stopTimeout'
      */
     @Test
-    void stopTimeoutTest() {
+    public void stopTimeoutTest() {
         // TODO: test stopTimeout
     }
 
@@ -265,7 +266,7 @@ class InspectContainerConfigTest {
      * Test the property 'systemdMode'
      */
     @Test
-    void systemdModeTest() {
+    public void systemdModeTest() {
         // TODO: test systemdMode
     }
 
@@ -273,7 +274,7 @@ class InspectContainerConfigTest {
      * Test the property 'timeout'
      */
     @Test
-    void timeoutTest() {
+    public void timeoutTest() {
         // TODO: test timeout
     }
 
@@ -281,7 +282,7 @@ class InspectContainerConfigTest {
      * Test the property 'timezone'
      */
     @Test
-    void timezoneTest() {
+    public void timezoneTest() {
         // TODO: test timezone
     }
 
@@ -289,7 +290,7 @@ class InspectContainerConfigTest {
      * Test the property 'tty'
      */
     @Test
-    void ttyTest() {
+    public void ttyTest() {
         // TODO: test tty
     }
 
@@ -297,7 +298,7 @@ class InspectContainerConfigTest {
      * Test the property 'umask'
      */
     @Test
-    void umaskTest() {
+    public void umaskTest() {
         // TODO: test umask
     }
 
@@ -305,7 +306,7 @@ class InspectContainerConfigTest {
      * Test the property 'user'
      */
     @Test
-    void userTest() {
+    public void userTest() {
         // TODO: test user
     }
 
@@ -313,7 +314,7 @@ class InspectContainerConfigTest {
      * Test the property 'volumes'
      */
     @Test
-    void volumesTest() {
+    public void volumesTest() {
         // TODO: test volumes
     }
 
@@ -321,7 +322,7 @@ class InspectContainerConfigTest {
      * Test the property 'workingDir'
      */
     @Test
-    void workingDirTest() {
+    public void workingDirTest() {
         // TODO: test workingDir
     }
 
@@ -329,7 +330,7 @@ class InspectContainerConfigTest {
      * Test the property 'sdNotifyMode'
      */
     @Test
-    void sdNotifyModeTest() {
+    public void sdNotifyModeTest() {
         // TODO: test sdNotifyMode
     }
 
@@ -337,7 +338,7 @@ class InspectContainerConfigTest {
      * Test the property 'sdNotifySocket'
      */
     @Test
-    void sdNotifySocketTest() {
+    public void sdNotifySocketTest() {
         // TODO: test sdNotifySocket
     }
 

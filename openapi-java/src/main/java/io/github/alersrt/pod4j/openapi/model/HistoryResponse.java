@@ -13,326 +13,326 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * HistoryResponse provides details on image layers
  */
-@JsonPropertyOrder({
-  HistoryResponse.JSON_PROPERTY_COMMENT,
-  HistoryResponse.JSON_PROPERTY_CREATED,
-  HistoryResponse.JSON_PROPERTY_CREATED_BY,
-  HistoryResponse.JSON_PROPERTY_ID,
-  HistoryResponse.JSON_PROPERTY_SIZE,
-  HistoryResponse.JSON_PROPERTY_TAGS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class HistoryResponse {
-  public static final String JSON_PROPERTY_COMMENT = "Comment";
-  private String comment;
+    public static final String SERIALIZED_NAME_COMMENT = "Comment";
+    public static final String SERIALIZED_NAME_CREATED = "Created";
+    public static final String SERIALIZED_NAME_CREATED_BY = "CreatedBy";
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_SIZE = "Size";
+    public static final String SERIALIZED_NAME_TAGS = "Tags";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_CREATED = "Created";
-  private Long created;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Comment");
+        openapiFields.add("Created");
+        openapiFields.add("CreatedBy");
+        openapiFields.add("Id");
+        openapiFields.add("Size");
+        openapiFields.add("Tags");
 
-  public static final String JSON_PROPERTY_CREATED_BY = "CreatedBy";
-  private String createdBy;
-
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
-
-  public static final String JSON_PROPERTY_SIZE = "Size";
-  private Long size;
-
-  public static final String JSON_PROPERTY_TAGS = "Tags";
-  private List<String> tags = new ArrayList<>();
-
-  public HistoryResponse() { 
-  }
-
-  public HistoryResponse comment(String comment) {
-    this.comment = comment;
-    return this;
-  }
-
-  /**
-   * Get comment
-   * @return comment
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_COMMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getComment() {
-    return comment;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
-
-
-  public HistoryResponse created(Long created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Get created
-   * @return created
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCreated() {
-    return created;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreated(Long created) {
-    this.created = created;
-  }
-
-
-  public HistoryResponse createdBy(String createdBy) {
-    this.createdBy = createdBy;
-    return this;
-  }
-
-  /**
-   * Get createdBy
-   * @return createdBy
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CREATED_BY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCreatedBy() {
-    return createdBy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED_BY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedBy(String createdBy) {
-    this.createdBy = createdBy;
-  }
-
-
-  public HistoryResponse id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Get id
-   * @return id
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public HistoryResponse size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Get size
-   * @return size
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public HistoryResponse tags(List<String> tags) {
-    this.tags = tags;
-    return this;
-  }
-
-  public HistoryResponse addTagsItem(String tagsItem) {
-    if (this.tags == null) {
-      this.tags = new ArrayList<>();
-    }
-    this.tags.add(tagsItem);
-    return this;
-  }
-
-  /**
-   * Get tags
-   * @return tags
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getTags() {
-    return tags;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TAGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTags(List<String> tags) {
-    this.tags = tags;
-  }
-
-
-  /**
-   * Return true if this HistoryResponse object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    HistoryResponse historyResponse = (HistoryResponse) o;
-    return Objects.equals(this.comment, historyResponse.comment) &&
-        Objects.equals(this.created, historyResponse.created) &&
-        Objects.equals(this.createdBy, historyResponse.createdBy) &&
-        Objects.equals(this.id, historyResponse.id) &&
-        Objects.equals(this.size, historyResponse.size) &&
-        Objects.equals(this.tags, historyResponse.tags);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(comment, created, createdBy, id, size, tags);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class HistoryResponse {\n");
-    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_COMMENT)
+    private String comment;
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private Long created;
+    @SerializedName(SERIALIZED_NAME_CREATED_BY)
+    private String createdBy;
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Long size;
+    @SerializedName(SERIALIZED_NAME_TAGS)
+    private List<String> tags = new ArrayList<>();
 
-    // add `Comment` to the URL query string
-    if (getComment() != null) {
-      joiner.add(String.format("%sComment%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getComment()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public HistoryResponse() {
     }
 
-    // add `Created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to HistoryResponse
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!HistoryResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in HistoryResponse is not found in the empty JSON string", HistoryResponse.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!HistoryResponse.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HistoryResponse` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Comment") != null && !jsonObj.get("Comment").isJsonNull()) && !jsonObj.get("Comment").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Comment` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Comment").toString()));
+        }
+        if ((jsonObj.get("CreatedBy") != null && !jsonObj.get("CreatedBy").isJsonNull()) && !jsonObj.get("CreatedBy").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CreatedBy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CreatedBy").toString()));
+        }
+        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Tags") != null && !jsonObj.get("Tags").isJsonNull() && !jsonObj.get("Tags").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Tags` to be an array in the JSON string but got `%s`", jsonObj.get("Tags").toString()));
+        }
     }
 
-    // add `CreatedBy` to the URL query string
-    if (getCreatedBy() != null) {
-      joiner.add(String.format("%sCreatedBy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreatedBy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of HistoryResponse given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of HistoryResponse
+     * @throws IOException if the JSON string is invalid with respect to HistoryResponse
+     */
+    public static HistoryResponse fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, HistoryResponse.class);
     }
 
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public HistoryResponse comment(String comment) {
+        this.comment = comment;
+        return this;
     }
 
-    // add `Size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Get comment
+     *
+     * @return comment
+     */
+    @jakarta.annotation.Nullable
+
+    public String getComment() {
+        return comment;
     }
 
-    // add `Tags` to the URL query string
-    if (getTags() != null) {
-      for (int i = 0; i < getTags().size(); i++) {
-        joiner.add(String.format("%sTags%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    return joiner.toString();
-  }
+    public HistoryResponse created(Long created) {
+        this.created = created;
+        return this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return created
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCreated() {
+        return created;
+    }
+
+    public void setCreated(Long created) {
+        this.created = created;
+    }
+
+    public HistoryResponse createdBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return createdBy
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public HistoryResponse id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nullable
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public HistoryResponse size(Long size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return size
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public HistoryResponse tags(List<String> tags) {
+        this.tags = tags;
+        return this;
+    }
+
+    public HistoryResponse addTagsItem(String tagsItem) {
+        if (this.tags == null) {
+            this.tags = new ArrayList<>();
+        }
+        this.tags.add(tagsItem);
+        return this;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return tags
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        HistoryResponse historyResponse = (HistoryResponse) o;
+        return Objects.equals(this.comment, historyResponse.comment) &&
+                Objects.equals(this.created, historyResponse.created) &&
+                Objects.equals(this.createdBy, historyResponse.createdBy) &&
+                Objects.equals(this.id, historyResponse.id) &&
+                Objects.equals(this.size, historyResponse.size) &&
+                Objects.equals(this.tags, historyResponse.tags);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(comment, created, createdBy, id, size, tags);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class HistoryResponse {\n" +
+                "    comment: " + toIndentedString(comment) + "\n" +
+                "    created: " + toIndentedString(created) + "\n" +
+                "    createdBy: " + toIndentedString(createdBy) + "\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    size: " + toIndentedString(size) + "\n" +
+                "    tags: " + toIndentedString(tags) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of HistoryResponse to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!HistoryResponse.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'HistoryResponse' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<HistoryResponse> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(HistoryResponse.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<HistoryResponse>() {
+                @Override
+                public void write(JsonWriter out, HistoryResponse value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public HistoryResponse read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

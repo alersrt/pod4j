@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemDfVolumeReport
  */
-class SystemDfVolumeReportTest {
+public class SystemDfVolumeReportTest {
     private final SystemDfVolumeReport model = new SystemDfVolumeReport();
 
     /**
      * Model tests for SystemDfVolumeReport
      */
     @Test
-    void testSystemDfVolumeReport() {
+    public void testSystemDfVolumeReport() {
         // TODO: test SystemDfVolumeReport
     }
 
@@ -42,7 +33,7 @@ class SystemDfVolumeReportTest {
      * Test the property 'links'
      */
     @Test
-    void linksTest() {
+    public void linksTest() {
         // TODO: test links
     }
 
@@ -50,7 +41,7 @@ class SystemDfVolumeReportTest {
      * Test the property 'reclaimableSize'
      */
     @Test
-    void reclaimableSizeTest() {
+    public void reclaimableSizeTest() {
         // TODO: test reclaimableSize
     }
 
@@ -58,7 +49,7 @@ class SystemDfVolumeReportTest {
      * Test the property 'size'
      */
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         // TODO: test size
     }
 
@@ -66,7 +57,7 @@ class SystemDfVolumeReportTest {
      * Test the property 'volumeName'
      */
     @Test
-    void volumeNameTest() {
+    public void volumeNameTest() {
         // TODO: test volumeName
     }
 

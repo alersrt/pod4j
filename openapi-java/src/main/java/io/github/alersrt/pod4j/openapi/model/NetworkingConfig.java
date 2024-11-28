@@ -13,158 +13,184 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * NetworkingConfig represents the container&#39;s networking configuration for each of its interfaces Carries the networking configs specified in the &#x60;docker run&#x60; and &#x60;docker network connect&#x60; commands
  */
-@JsonPropertyOrder({
-  NetworkingConfig.JSON_PROPERTY_ENDPOINTS_CONFIG
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkingConfig {
-  public static final String JSON_PROPERTY_ENDPOINTS_CONFIG = "EndpointsConfig";
-  private Map<String, EndpointSettings> endpointsConfig = new HashMap<>();
+    public static final String SERIALIZED_NAME_ENDPOINTS_CONFIG = "EndpointsConfig";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public NetworkingConfig() { 
-  }
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("EndpointsConfig");
 
-  public NetworkingConfig endpointsConfig(Map<String, EndpointSettings> endpointsConfig) {
-    this.endpointsConfig = endpointsConfig;
-    return this;
-  }
-
-  public NetworkingConfig putEndpointsConfigItem(String key, EndpointSettings endpointsConfigItem) {
-    if (this.endpointsConfig == null) {
-      this.endpointsConfig = new HashMap<>();
-    }
-    this.endpointsConfig.put(key, endpointsConfigItem);
-    return this;
-  }
-
-  /**
-   * Get endpointsConfig
-   * @return endpointsConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINTS_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, EndpointSettings> getEndpointsConfig() {
-    return endpointsConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINTS_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndpointsConfig(Map<String, EndpointSettings> endpointsConfig) {
-    this.endpointsConfig = endpointsConfig;
-  }
-
-
-  /**
-   * Return true if this NetworkingConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    NetworkingConfig networkingConfig = (NetworkingConfig) o;
-    return Objects.equals(this.endpointsConfig, networkingConfig.endpointsConfig);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(endpointsConfig);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class NetworkingConfig {\n");
-    sb.append("    endpointsConfig: ").append(toIndentedString(endpointsConfig)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ENDPOINTS_CONFIG)
+    private Map<String, EndpointSettings> endpointsConfig = new HashMap<>();
 
-    // add `EndpointsConfig` to the URL query string
-    if (getEndpointsConfig() != null) {
-      for (String _key : getEndpointsConfig().keySet()) {
-        if (getEndpointsConfig().get(_key) != null) {
-          joiner.add(getEndpointsConfig().get(_key).toUrlQueryString(String.format("%sEndpointsConfig%s%s", prefix, suffix,
-              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+    public NetworkingConfig() {
+    }
+
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to NetworkingConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!NetworkingConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkingConfig is not found in the empty JSON string", NetworkingConfig.openapiRequiredFields));
+            }
         }
-      }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!NetworkingConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkingConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of NetworkingConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetworkingConfig
+     * @throws IOException if the JSON string is invalid with respect to NetworkingConfig
+     */
+    public static NetworkingConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, NetworkingConfig.class);
+    }
+
+    public NetworkingConfig endpointsConfig(Map<String, EndpointSettings> endpointsConfig) {
+        this.endpointsConfig = endpointsConfig;
+        return this;
+    }
+
+    public NetworkingConfig putEndpointsConfigItem(String key, EndpointSettings endpointsConfigItem) {
+        if (this.endpointsConfig == null) {
+            this.endpointsConfig = new HashMap<>();
+        }
+        this.endpointsConfig.put(key, endpointsConfigItem);
+        return this;
+    }
+
+    /**
+     * Get endpointsConfig
+     *
+     * @return endpointsConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, EndpointSettings> getEndpointsConfig() {
+        return endpointsConfig;
+    }
+
+    public void setEndpointsConfig(Map<String, EndpointSettings> endpointsConfig) {
+        this.endpointsConfig = endpointsConfig;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        NetworkingConfig networkingConfig = (NetworkingConfig) o;
+        return Objects.equals(this.endpointsConfig, networkingConfig.endpointsConfig);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(endpointsConfig);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class NetworkingConfig {\n" +
+                "    endpointsConfig: " + toIndentedString(endpointsConfig) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of NetworkingConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!NetworkingConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'NetworkingConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<NetworkingConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(NetworkingConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<NetworkingConfig>() {
+                @Override
+                public void write(JsonWriter out, NetworkingConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public NetworkingConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

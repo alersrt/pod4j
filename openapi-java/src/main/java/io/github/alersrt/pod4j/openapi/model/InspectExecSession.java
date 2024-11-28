@@ -13,503 +13,448 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.InspectExecProcess;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectExecSession
  */
-@JsonPropertyOrder({
-  InspectExecSession.JSON_PROPERTY_CAN_REMOVE,
-  InspectExecSession.JSON_PROPERTY_CONTAINER_I_D,
-  InspectExecSession.JSON_PROPERTY_DETACH_KEYS,
-  InspectExecSession.JSON_PROPERTY_EXIT_CODE,
-  InspectExecSession.JSON_PROPERTY_I_D,
-  InspectExecSession.JSON_PROPERTY_OPEN_STDERR,
-  InspectExecSession.JSON_PROPERTY_OPEN_STDIN,
-  InspectExecSession.JSON_PROPERTY_OPEN_STDOUT,
-  InspectExecSession.JSON_PROPERTY_PID,
-  InspectExecSession.JSON_PROPERTY_PROCESS_CONFIG,
-  InspectExecSession.JSON_PROPERTY_RUNNING
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectExecSession {
-  public static final String JSON_PROPERTY_CAN_REMOVE = "CanRemove";
-  private Boolean canRemove;
-
-  public static final String JSON_PROPERTY_CONTAINER_I_D = "ContainerID";
-  private String containerID;
-
-  public static final String JSON_PROPERTY_DETACH_KEYS = "DetachKeys";
-  private String detachKeys;
-
-  public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
-  private Long exitCode;
-
-  public static final String JSON_PROPERTY_I_D = "ID";
-  private String ID;
-
-  public static final String JSON_PROPERTY_OPEN_STDERR = "OpenStderr";
-  private Boolean openStderr;
-
-  public static final String JSON_PROPERTY_OPEN_STDIN = "OpenStdin";
-  private Boolean openStdin;
-
-  public static final String JSON_PROPERTY_OPEN_STDOUT = "OpenStdout";
-  private Boolean openStdout;
-
-  public static final String JSON_PROPERTY_PID = "Pid";
-  private Long pid;
-
-  public static final String JSON_PROPERTY_PROCESS_CONFIG = "ProcessConfig";
-  private InspectExecProcess processConfig;
-
-  public static final String JSON_PROPERTY_RUNNING = "Running";
-  private Boolean running;
-
-  public InspectExecSession() { 
-  }
-
-  public InspectExecSession canRemove(Boolean canRemove) {
-    this.canRemove = canRemove;
-    return this;
-  }
-
-  /**
-   * CanRemove is legacy and used purely for compatibility reasons. Will always be set to true, unless the exec session is running.
-   * @return canRemove
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAN_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getCanRemove() {
-    return canRemove;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAN_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCanRemove(Boolean canRemove) {
-    this.canRemove = canRemove;
-  }
-
-
-  public InspectExecSession containerID(String containerID) {
-    this.containerID = containerID;
-    return this;
-  }
-
-  /**
-   * ContainerID is the ID of the container this exec session is attached to.
-   * @return containerID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getContainerID() {
-    return containerID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerID(String containerID) {
-    this.containerID = containerID;
-  }
-
-
-  public InspectExecSession detachKeys(String detachKeys) {
-    this.detachKeys = detachKeys;
-    return this;
-  }
-
-  /**
-   * DetachKeys are the detach keys used by the exec session. If set to \&quot;\&quot; the default keys are being used. Will show \&quot;&lt;none&gt;\&quot; if no detach keys are set.
-   * @return detachKeys
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDetachKeys() {
-    return detachKeys;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetachKeys(String detachKeys) {
-    this.detachKeys = detachKeys;
-  }
-
-
-  public InspectExecSession exitCode(Long exitCode) {
-    this.exitCode = exitCode;
-    return this;
-  }
-
-  /**
-   * ExitCode is the exit code of the exec session. Will be set to 0 if the exec session has not yet exited.
-   * @return exitCode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getExitCode() {
-    return exitCode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExitCode(Long exitCode) {
-    this.exitCode = exitCode;
-  }
-
-
-  public InspectExecSession ID(String ID) {
-    this.ID = ID;
-    return this;
-  }
-
-  /**
-   * ID is the ID of the exec session.
-   * @return ID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getID() {
-    return ID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setID(String ID) {
-    this.ID = ID;
-  }
-
-
-  public InspectExecSession openStderr(Boolean openStderr) {
-    this.openStderr = openStderr;
-    return this;
-  }
-
-  /**
-   * OpenStderr is whether the container&#39;s STDERR stream will be attached. Always set to true if the exec session created a TTY.
-   * @return openStderr
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOpenStderr() {
-    return openStderr;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDERR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOpenStderr(Boolean openStderr) {
-    this.openStderr = openStderr;
-  }
-
-
-  public InspectExecSession openStdin(Boolean openStdin) {
-    this.openStdin = openStdin;
-    return this;
-  }
-
-  /**
-   * OpenStdin is whether the container&#39;s STDIN stream will be attached to.
-   * @return openStdin
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOpenStdin() {
-    return openStdin;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOpenStdin(Boolean openStdin) {
-    this.openStdin = openStdin;
-  }
-
-
-  public InspectExecSession openStdout(Boolean openStdout) {
-    this.openStdout = openStdout;
-    return this;
-  }
-
-  /**
-   * OpenStdout is whether the container&#39;s STDOUT stream will be attached. Always set to true if the exec session created a TTY.
-   * @return openStdout
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOpenStdout() {
-    return openStdout;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPEN_STDOUT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOpenStdout(Boolean openStdout) {
-    this.openStdout = openStdout;
-  }
-
-
-  public InspectExecSession pid(Long pid) {
-    this.pid = pid;
-    return this;
-  }
-
-  /**
-   * Pid is the PID of the exec session&#39;s process. Will be set to 0 if the exec session is not running.
-   * @return pid
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getPid() {
-    return pid;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPid(Long pid) {
-    this.pid = pid;
-  }
-
-
-  public InspectExecSession processConfig(InspectExecProcess processConfig) {
-    this.processConfig = processConfig;
-    return this;
-  }
-
-  /**
-   * Get processConfig
-   * @return processConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PROCESS_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public InspectExecProcess getProcessConfig() {
-    return processConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PROCESS_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setProcessConfig(InspectExecProcess processConfig) {
-    this.processConfig = processConfig;
-  }
-
-
-  public InspectExecSession running(Boolean running) {
-    this.running = running;
-    return this;
-  }
-
-  /**
-   * Running is whether the exec session is running.
-   * @return running
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RUNNING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRunning() {
-    return running;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RUNNING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRunning(Boolean running) {
-    this.running = running;
-  }
-
-
-  /**
-   * Return true if this InspectExecSession object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InspectExecSession inspectExecSession = (InspectExecSession) o;
-    return Objects.equals(this.canRemove, inspectExecSession.canRemove) &&
-        Objects.equals(this.containerID, inspectExecSession.containerID) &&
-        Objects.equals(this.detachKeys, inspectExecSession.detachKeys) &&
-        Objects.equals(this.exitCode, inspectExecSession.exitCode) &&
-        Objects.equals(this.ID, inspectExecSession.ID) &&
-        Objects.equals(this.openStderr, inspectExecSession.openStderr) &&
-        Objects.equals(this.openStdin, inspectExecSession.openStdin) &&
-        Objects.equals(this.openStdout, inspectExecSession.openStdout) &&
-        Objects.equals(this.pid, inspectExecSession.pid) &&
-        Objects.equals(this.processConfig, inspectExecSession.processConfig) &&
-        Objects.equals(this.running, inspectExecSession.running);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(canRemove, containerID, detachKeys, exitCode, ID, openStderr, openStdin, openStdout, pid, processConfig, running);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InspectExecSession {\n");
-    sb.append("    canRemove: ").append(toIndentedString(canRemove)).append("\n");
-    sb.append("    containerID: ").append(toIndentedString(containerID)).append("\n");
-    sb.append("    detachKeys: ").append(toIndentedString(detachKeys)).append("\n");
-    sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
-    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
-    sb.append("    openStderr: ").append(toIndentedString(openStderr)).append("\n");
-    sb.append("    openStdin: ").append(toIndentedString(openStdin)).append("\n");
-    sb.append("    openStdout: ").append(toIndentedString(openStdout)).append("\n");
-    sb.append("    pid: ").append(toIndentedString(pid)).append("\n");
-    sb.append("    processConfig: ").append(toIndentedString(processConfig)).append("\n");
-    sb.append("    running: ").append(toIndentedString(running)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_CAN_REMOVE = "CanRemove";
+    public static final String SERIALIZED_NAME_CONTAINER_I_D = "ContainerID";
+    public static final String SERIALIZED_NAME_DETACH_KEYS = "DetachKeys";
+    public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
+    public static final String SERIALIZED_NAME_I_D = "ID";
+    public static final String SERIALIZED_NAME_OPEN_STDERR = "OpenStderr";
+    public static final String SERIALIZED_NAME_OPEN_STDIN = "OpenStdin";
+    public static final String SERIALIZED_NAME_OPEN_STDOUT = "OpenStdout";
+    public static final String SERIALIZED_NAME_PID = "Pid";
+    public static final String SERIALIZED_NAME_PROCESS_CONFIG = "ProcessConfig";
+    public static final String SERIALIZED_NAME_RUNNING = "Running";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("CanRemove");
+        openapiFields.add("ContainerID");
+        openapiFields.add("DetachKeys");
+        openapiFields.add("ExitCode");
+        openapiFields.add("ID");
+        openapiFields.add("OpenStderr");
+        openapiFields.add("OpenStdin");
+        openapiFields.add("OpenStdout");
+        openapiFields.add("Pid");
+        openapiFields.add("ProcessConfig");
+        openapiFields.add("Running");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CAN_REMOVE)
+    private Boolean canRemove;
+    @SerializedName(SERIALIZED_NAME_CONTAINER_I_D)
+    private String containerID;
+    @SerializedName(SERIALIZED_NAME_DETACH_KEYS)
+    private String detachKeys;
+    @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+    private Long exitCode;
+    @SerializedName(SERIALIZED_NAME_I_D)
+    private String ID;
+    @SerializedName(SERIALIZED_NAME_OPEN_STDERR)
+    private Boolean openStderr;
+    @SerializedName(SERIALIZED_NAME_OPEN_STDIN)
+    private Boolean openStdin;
+    @SerializedName(SERIALIZED_NAME_OPEN_STDOUT)
+    private Boolean openStdout;
+    @SerializedName(SERIALIZED_NAME_PID)
+    private Long pid;
+    @SerializedName(SERIALIZED_NAME_PROCESS_CONFIG)
+    private InspectExecProcess processConfig;
+    @SerializedName(SERIALIZED_NAME_RUNNING)
+    private Boolean running;
 
-    // add `CanRemove` to the URL query string
-    if (getCanRemove() != null) {
-      joiner.add(String.format("%sCanRemove%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCanRemove()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectExecSession() {
     }
 
-    // add `ContainerID` to the URL query string
-    if (getContainerID() != null) {
-      joiner.add(String.format("%sContainerID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainerID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to InspectExecSession
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!InspectExecSession.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectExecSession is not found in the empty JSON string", InspectExecSession.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!InspectExecSession.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectExecSession` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("ContainerID") != null && !jsonObj.get("ContainerID").isJsonNull()) && !jsonObj.get("ContainerID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerID").toString()));
+        }
+        if ((jsonObj.get("DetachKeys") != null && !jsonObj.get("DetachKeys").isJsonNull()) && !jsonObj.get("DetachKeys").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DetachKeys` to be a primitive type in the JSON string but got `%s`", jsonObj.get("DetachKeys").toString()));
+        }
+        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+        }
+        // validate the optional field `ProcessConfig`
+        if (jsonObj.get("ProcessConfig") != null && !jsonObj.get("ProcessConfig").isJsonNull()) {
+            InspectExecProcess.validateJsonElement(jsonObj.get("ProcessConfig"));
+        }
     }
 
-    // add `DetachKeys` to the URL query string
-    if (getDetachKeys() != null) {
-      joiner.add(String.format("%sDetachKeys%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDetachKeys()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of InspectExecSession given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectExecSession
+     * @throws IOException if the JSON string is invalid with respect to InspectExecSession
+     */
+    public static InspectExecSession fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, InspectExecSession.class);
     }
 
-    // add `ExitCode` to the URL query string
-    if (getExitCode() != null) {
-      joiner.add(String.format("%sExitCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectExecSession canRemove(Boolean canRemove) {
+        this.canRemove = canRemove;
+        return this;
     }
 
-    // add `ID` to the URL query string
-    if (getID() != null) {
-      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * CanRemove is legacy and used purely for compatibility reasons. Will always be set to true, unless the exec session is running.
+     *
+     * @return canRemove
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getCanRemove() {
+        return canRemove;
     }
 
-    // add `OpenStderr` to the URL query string
-    if (getOpenStderr() != null) {
-      joiner.add(String.format("%sOpenStderr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStderr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCanRemove(Boolean canRemove) {
+        this.canRemove = canRemove;
     }
 
-    // add `OpenStdin` to the URL query string
-    if (getOpenStdin() != null) {
-      joiner.add(String.format("%sOpenStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectExecSession containerID(String containerID) {
+        this.containerID = containerID;
+        return this;
     }
 
-    // add `OpenStdout` to the URL query string
-    if (getOpenStdout() != null) {
-      joiner.add(String.format("%sOpenStdout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStdout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * ContainerID is the ID of the container this exec session is attached to.
+     *
+     * @return containerID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getContainerID() {
+        return containerID;
     }
 
-    // add `Pid` to the URL query string
-    if (getPid() != null) {
-      joiner.add(String.format("%sPid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setContainerID(String containerID) {
+        this.containerID = containerID;
     }
 
-    // add `ProcessConfig` to the URL query string
-    if (getProcessConfig() != null) {
-      joiner.add(getProcessConfig().toUrlQueryString(prefix + "ProcessConfig" + suffix));
+    public InspectExecSession detachKeys(String detachKeys) {
+        this.detachKeys = detachKeys;
+        return this;
     }
 
-    // add `Running` to the URL query string
-    if (getRunning() != null) {
-      joiner.add(String.format("%sRunning%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRunning()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * DetachKeys are the detach keys used by the exec session. If set to \&quot;\&quot; the default keys are being used. Will show \&quot;&lt;none&gt;\&quot; if no detach keys are set.
+     *
+     * @return detachKeys
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDetachKeys() {
+        return detachKeys;
     }
 
-    return joiner.toString();
-  }
+    public void setDetachKeys(String detachKeys) {
+        this.detachKeys = detachKeys;
+    }
+
+    public InspectExecSession exitCode(Long exitCode) {
+        this.exitCode = exitCode;
+        return this;
+    }
+
+    /**
+     * ExitCode is the exit code of the exec session. Will be set to 0 if the exec session has not yet exited.
+     *
+     * @return exitCode
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getExitCode() {
+        return exitCode;
+    }
+
+    public void setExitCode(Long exitCode) {
+        this.exitCode = exitCode;
+    }
+
+    public InspectExecSession ID(String ID) {
+        this.ID = ID;
+        return this;
+    }
+
+    /**
+     * ID is the ID of the exec session.
+     *
+     * @return ID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public InspectExecSession openStderr(Boolean openStderr) {
+        this.openStderr = openStderr;
+        return this;
+    }
+
+    /**
+     * OpenStderr is whether the container&#39;s STDERR stream will be attached. Always set to true if the exec session created a TTY.
+     *
+     * @return openStderr
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOpenStderr() {
+        return openStderr;
+    }
+
+    public void setOpenStderr(Boolean openStderr) {
+        this.openStderr = openStderr;
+    }
+
+    public InspectExecSession openStdin(Boolean openStdin) {
+        this.openStdin = openStdin;
+        return this;
+    }
+
+    /**
+     * OpenStdin is whether the container&#39;s STDIN stream will be attached to.
+     *
+     * @return openStdin
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOpenStdin() {
+        return openStdin;
+    }
+
+    public void setOpenStdin(Boolean openStdin) {
+        this.openStdin = openStdin;
+    }
+
+    public InspectExecSession openStdout(Boolean openStdout) {
+        this.openStdout = openStdout;
+        return this;
+    }
+
+    /**
+     * OpenStdout is whether the container&#39;s STDOUT stream will be attached. Always set to true if the exec session created a TTY.
+     *
+     * @return openStdout
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOpenStdout() {
+        return openStdout;
+    }
+
+    public void setOpenStdout(Boolean openStdout) {
+        this.openStdout = openStdout;
+    }
+
+    public InspectExecSession pid(Long pid) {
+        this.pid = pid;
+        return this;
+    }
+
+    /**
+     * Pid is the PID of the exec session&#39;s process. Will be set to 0 if the exec session is not running.
+     *
+     * @return pid
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getPid() {
+        return pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
+    }
+
+    public InspectExecSession processConfig(InspectExecProcess processConfig) {
+        this.processConfig = processConfig;
+        return this;
+    }
+
+    /**
+     * Get processConfig
+     *
+     * @return processConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public InspectExecProcess getProcessConfig() {
+        return processConfig;
+    }
+
+    public void setProcessConfig(InspectExecProcess processConfig) {
+        this.processConfig = processConfig;
+    }
+
+    public InspectExecSession running(Boolean running) {
+        this.running = running;
+        return this;
+    }
+
+    /**
+     * Running is whether the exec session is running.
+     *
+     * @return running
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRunning() {
+        return running;
+    }
+
+    public void setRunning(Boolean running) {
+        this.running = running;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectExecSession inspectExecSession = (InspectExecSession) o;
+        return Objects.equals(this.canRemove, inspectExecSession.canRemove) &&
+                Objects.equals(this.containerID, inspectExecSession.containerID) &&
+                Objects.equals(this.detachKeys, inspectExecSession.detachKeys) &&
+                Objects.equals(this.exitCode, inspectExecSession.exitCode) &&
+                Objects.equals(this.ID, inspectExecSession.ID) &&
+                Objects.equals(this.openStderr, inspectExecSession.openStderr) &&
+                Objects.equals(this.openStdin, inspectExecSession.openStdin) &&
+                Objects.equals(this.openStdout, inspectExecSession.openStdout) &&
+                Objects.equals(this.pid, inspectExecSession.pid) &&
+                Objects.equals(this.processConfig, inspectExecSession.processConfig) &&
+                Objects.equals(this.running, inspectExecSession.running);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(canRemove, containerID, detachKeys, exitCode, ID, openStderr, openStdin, openStdout, pid, processConfig, running);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class InspectExecSession {\n" +
+                "    canRemove: " + toIndentedString(canRemove) + "\n" +
+                "    containerID: " + toIndentedString(containerID) + "\n" +
+                "    detachKeys: " + toIndentedString(detachKeys) + "\n" +
+                "    exitCode: " + toIndentedString(exitCode) + "\n" +
+                "    ID: " + toIndentedString(ID) + "\n" +
+                "    openStderr: " + toIndentedString(openStderr) + "\n" +
+                "    openStdin: " + toIndentedString(openStdin) + "\n" +
+                "    openStdout: " + toIndentedString(openStdout) + "\n" +
+                "    pid: " + toIndentedString(pid) + "\n" +
+                "    processConfig: " + toIndentedString(processConfig) + "\n" +
+                "    running: " + toIndentedString(running) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of InspectExecSession to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!InspectExecSession.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'InspectExecSession' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<InspectExecSession> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(InspectExecSession.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<InspectExecSession>() {
+                @Override
+                public void write(JsonWriter out, InspectExecSession value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public InspectExecSession read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

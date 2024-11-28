@@ -13,263 +13,269 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Task carries the information about one backend task
  */
-@JsonPropertyOrder({
-  Task.JSON_PROPERTY_ENDPOINT_I_D,
-  Task.JSON_PROPERTY_ENDPOINT_I_P,
-  Task.JSON_PROPERTY_INFO,
-  Task.JSON_PROPERTY_NAME
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Task {
-  public static final String JSON_PROPERTY_ENDPOINT_I_D = "EndpointID";
-  private String endpointID;
+    public static final String SERIALIZED_NAME_ENDPOINT_I_D = "EndpointID";
+    public static final String SERIALIZED_NAME_ENDPOINT_I_P = "EndpointIP";
+    public static final String SERIALIZED_NAME_INFO = "Info";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ENDPOINT_I_P = "EndpointIP";
-  private String endpointIP;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("EndpointID");
+        openapiFields.add("EndpointIP");
+        openapiFields.add("Info");
+        openapiFields.add("Name");
 
-  public static final String JSON_PROPERTY_INFO = "Info";
-  private Map<String, String> info = new HashMap<>();
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public Task() { 
-  }
-
-  public Task endpointID(String endpointID) {
-    this.endpointID = endpointID;
-    return this;
-  }
-
-  /**
-   * Get endpointID
-   * @return endpointID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getEndpointID() {
-    return endpointID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndpointID(String endpointID) {
-    this.endpointID = endpointID;
-  }
-
-
-  public Task endpointIP(String endpointIP) {
-    this.endpointIP = endpointIP;
-    return this;
-  }
-
-  /**
-   * Get endpointIP
-   * @return endpointIP
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getEndpointIP() {
-    return endpointIP;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEndpointIP(String endpointIP) {
-    this.endpointIP = endpointIP;
-  }
-
-
-  public Task info(Map<String, String> info) {
-    this.info = info;
-    return this;
-  }
-
-  public Task putInfoItem(String key, String infoItem) {
-    if (this.info == null) {
-      this.info = new HashMap<>();
-    }
-    this.info.put(key, infoItem);
-    return this;
-  }
-
-  /**
-   * Get info
-   * @return info
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getInfo() {
-    return info;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INFO)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInfo(Map<String, String> info) {
-    this.info = info;
-  }
-
-
-  public Task name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Get name
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  /**
-   * Return true if this Task object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Task task = (Task) o;
-    return Objects.equals(this.endpointID, task.endpointID) &&
-        Objects.equals(this.endpointIP, task.endpointIP) &&
-        Objects.equals(this.info, task.info) &&
-        Objects.equals(this.name, task.name);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(endpointID, endpointIP, info, name);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Task {\n");
-    sb.append("    endpointID: ").append(toIndentedString(endpointID)).append("\n");
-    sb.append("    endpointIP: ").append(toIndentedString(endpointIP)).append("\n");
-    sb.append("    info: ").append(toIndentedString(info)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ENDPOINT_I_D)
+    private String endpointID;
+    @SerializedName(SERIALIZED_NAME_ENDPOINT_I_P)
+    private String endpointIP;
+    @SerializedName(SERIALIZED_NAME_INFO)
+    private Map<String, String> info = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
 
-    // add `EndpointID` to the URL query string
-    if (getEndpointID() != null) {
-      joiner.add(String.format("%sEndpointID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEndpointID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Task() {
     }
 
-    // add `EndpointIP` to the URL query string
-    if (getEndpointIP() != null) {
-      joiner.add(String.format("%sEndpointIP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEndpointIP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Task
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Task.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Task is not found in the empty JSON string", Task.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Task.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Task` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("EndpointID") != null && !jsonObj.get("EndpointID").isJsonNull()) && !jsonObj.get("EndpointID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `EndpointID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("EndpointID").toString()));
+        }
+        if ((jsonObj.get("EndpointIP") != null && !jsonObj.get("EndpointIP").isJsonNull()) && !jsonObj.get("EndpointIP").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `EndpointIP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("EndpointIP").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
     }
 
-    // add `Info` to the URL query string
-    if (getInfo() != null) {
-      for (String _key : getInfo().keySet()) {
-        joiner.add(String.format("%sInfo%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getInfo().get(_key), URLEncoder.encode(ApiClient.valueToString(getInfo().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Create an instance of Task given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Task
+     * @throws IOException if the JSON string is invalid with respect to Task
+     */
+    public static Task fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Task.class);
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Task endpointID(String endpointID) {
+        this.endpointID = endpointID;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Get endpointID
+     *
+     * @return endpointID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getEndpointID() {
+        return endpointID;
+    }
+
+    public void setEndpointID(String endpointID) {
+        this.endpointID = endpointID;
+    }
+
+    public Task endpointIP(String endpointIP) {
+        this.endpointIP = endpointIP;
+        return this;
+    }
+
+    /**
+     * Get endpointIP
+     *
+     * @return endpointIP
+     */
+    @jakarta.annotation.Nullable
+
+    public String getEndpointIP() {
+        return endpointIP;
+    }
+
+    public void setEndpointIP(String endpointIP) {
+        this.endpointIP = endpointIP;
+    }
+
+    public Task info(Map<String, String> info) {
+        this.info = info;
+        return this;
+    }
+
+    public Task putInfoItem(String key, String infoItem) {
+        if (this.info == null) {
+            this.info = new HashMap<>();
+        }
+        this.info.put(key, infoItem);
+        return this;
+    }
+
+    /**
+     * Get info
+     *
+     * @return info
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getInfo() {
+        return info;
+    }
+
+    public void setInfo(Map<String, String> info) {
+        this.info = info;
+    }
+
+    public Task name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Task task = (Task) o;
+        return Objects.equals(this.endpointID, task.endpointID) &&
+                Objects.equals(this.endpointIP, task.endpointIP) &&
+                Objects.equals(this.info, task.info) &&
+                Objects.equals(this.name, task.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(endpointID, endpointIP, info, name);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Task {\n" +
+                "    endpointID: " + toIndentedString(endpointID) + "\n" +
+                "    endpointIP: " + toIndentedString(endpointIP) + "\n" +
+                "    info: " + toIndentedString(info) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Task to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Task.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Task' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Task> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Task.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Task>() {
+                @Override
+                public void write(JsonWriter out, Task value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Task read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

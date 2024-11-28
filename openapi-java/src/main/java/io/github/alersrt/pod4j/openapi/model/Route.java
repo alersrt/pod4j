@@ -13,213 +13,231 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Route
  */
-@JsonPropertyOrder({
-  Route.JSON_PROPERTY_DESTINATION,
-  Route.JSON_PROPERTY_GATEWAY,
-  Route.JSON_PROPERTY_METRIC
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Route {
-  public static final String JSON_PROPERTY_DESTINATION = "destination";
-  private String destination;
+    public static final String SERIALIZED_NAME_DESTINATION = "destination";
+    public static final String SERIALIZED_NAME_GATEWAY = "gateway";
+    public static final String SERIALIZED_NAME_METRIC = "metric";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_GATEWAY = "gateway";
-  private String gateway;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("destination");
+        openapiFields.add("gateway");
+        openapiFields.add("metric");
 
-  public static final String JSON_PROPERTY_METRIC = "metric";
-  private Integer metric;
-
-  public Route() { 
-  }
-
-  public Route destination(String destination) {
-    this.destination = destination;
-    return this;
-  }
-
-  /**
-   * Destination for this route in CIDR form.
-   * @return destination
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDestination() {
-    return destination;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestination(String destination) {
-    this.destination = destination;
-  }
-
-
-  public Route gateway(String gateway) {
-    this.gateway = gateway;
-    return this;
-  }
-
-  /**
-   * Gateway IP for this route.
-   * @return gateway
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getGateway() {
-    return gateway;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGateway(String gateway) {
-    this.gateway = gateway;
-  }
-
-
-  public Route metric(Integer metric) {
-    this.metric = metric;
-    return this;
-  }
-
-  /**
-   * Metric for this route. Optional.
-   * @return metric
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_METRIC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getMetric() {
-    return metric;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_METRIC)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetric(Integer metric) {
-    this.metric = metric;
-  }
-
-
-  /**
-   * Return true if this Route object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Route route = (Route) o;
-    return Objects.equals(this.destination, route.destination) &&
-        Objects.equals(this.gateway, route.gateway) &&
-        Objects.equals(this.metric, route.metric);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(destination, gateway, metric);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Route {\n");
-    sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
-    sb.append("    gateway: ").append(toIndentedString(gateway)).append("\n");
-    sb.append("    metric: ").append(toIndentedString(metric)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_DESTINATION)
+    private String destination;
+    @SerializedName(SERIALIZED_NAME_GATEWAY)
+    private String gateway;
+    @SerializedName(SERIALIZED_NAME_METRIC)
+    private Integer metric;
 
-    // add `destination` to the URL query string
-    if (getDestination() != null) {
-      joiner.add(String.format("%sdestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Route() {
     }
 
-    // add `gateway` to the URL query string
-    if (getGateway() != null) {
-      joiner.add(String.format("%sgateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Route
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Route.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Route is not found in the empty JSON string", Route.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Route.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Route` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("destination") != null && !jsonObj.get("destination").isJsonNull()) && !jsonObj.get("destination").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("destination").toString()));
+        }
+        if ((jsonObj.get("gateway") != null && !jsonObj.get("gateway").isJsonNull()) && !jsonObj.get("gateway").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("gateway").toString()));
+        }
     }
 
-    // add `metric` to the URL query string
-    if (getMetric() != null) {
-      joiner.add(String.format("%smetric%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMetric()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Route given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Route
+     * @throws IOException if the JSON string is invalid with respect to Route
+     */
+    public static Route fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Route.class);
     }
 
-    return joiner.toString();
-  }
+    public Route destination(String destination) {
+        this.destination = destination;
+        return this;
+    }
+
+    /**
+     * Destination for this route in CIDR form.
+     *
+     * @return destination
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public Route gateway(String gateway) {
+        this.gateway = gateway;
+        return this;
+    }
+
+    /**
+     * Gateway IP for this route.
+     *
+     * @return gateway
+     */
+    @jakarta.annotation.Nullable
+
+    public String getGateway() {
+        return gateway;
+    }
+
+    public void setGateway(String gateway) {
+        this.gateway = gateway;
+    }
+
+    public Route metric(Integer metric) {
+        this.metric = metric;
+        return this;
+    }
+
+    /**
+     * Metric for this route. Optional.
+     *
+     * @return metric
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getMetric() {
+        return metric;
+    }
+
+    public void setMetric(Integer metric) {
+        this.metric = metric;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Route route = (Route) o;
+        return Objects.equals(this.destination, route.destination) &&
+                Objects.equals(this.gateway, route.gateway) &&
+                Objects.equals(this.metric, route.metric);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(destination, gateway, metric);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Route {\n" +
+                "    destination: " + toIndentedString(destination) + "\n" +
+                "    gateway: " + toIndentedString(gateway) + "\n" +
+                "    metric: " + toIndentedString(metric) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Route to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Route.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Route' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Route> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Route.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Route>() {
+                @Override
+                public void write(JsonWriter out, Route value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Route read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -13,344 +13,358 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * IDMappingOptions are used for specifying how ID mapping should be set up for a layer or container.
  */
-@JsonPropertyOrder({
-  IDMappingOptions.JSON_PROPERTY_AUTO_USER_NS,
-  IDMappingOptions.JSON_PROPERTY_AUTO_USER_NS_OPTS,
-  IDMappingOptions.JSON_PROPERTY_GI_D_MAP,
-  IDMappingOptions.JSON_PROPERTY_HOST_G_I_D_MAPPING,
-  IDMappingOptions.JSON_PROPERTY_HOST_U_I_D_MAPPING,
-  IDMappingOptions.JSON_PROPERTY_UI_D_MAP
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IDMappingOptions {
-  public static final String JSON_PROPERTY_AUTO_USER_NS = "AutoUserNs";
-  private Boolean autoUserNs;
+    public static final String SERIALIZED_NAME_AUTO_USER_NS = "AutoUserNs";
+    public static final String SERIALIZED_NAME_AUTO_USER_NS_OPTS = "AutoUserNsOpts";
+    public static final String SERIALIZED_NAME_GI_D_MAP = "GIDMap";
+    public static final String SERIALIZED_NAME_HOST_G_I_D_MAPPING = "HostGIDMapping";
+    public static final String SERIALIZED_NAME_HOST_U_I_D_MAPPING = "HostUIDMapping";
+    public static final String SERIALIZED_NAME_UI_D_MAP = "UIDMap";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_AUTO_USER_NS_OPTS = "AutoUserNsOpts";
-  private AutoUserNsOptions autoUserNsOpts;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("AutoUserNs");
+        openapiFields.add("AutoUserNsOpts");
+        openapiFields.add("GIDMap");
+        openapiFields.add("HostGIDMapping");
+        openapiFields.add("HostUIDMapping");
+        openapiFields.add("UIDMap");
 
-  public static final String JSON_PROPERTY_GI_D_MAP = "GIDMap";
-  private List<@Valid IDMap> giDMap = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_HOST_G_I_D_MAPPING = "HostGIDMapping";
-  private Boolean hostGIDMapping;
-
-  public static final String JSON_PROPERTY_HOST_U_I_D_MAPPING = "HostUIDMapping";
-  private Boolean hostUIDMapping;
-
-  public static final String JSON_PROPERTY_UI_D_MAP = "UIDMap";
-  private List<@Valid IDMap> uiDMap = new ArrayList<>();
-
-  public IDMappingOptions() { 
-  }
-
-  public IDMappingOptions autoUserNs(Boolean autoUserNs) {
-    this.autoUserNs = autoUserNs;
-    return this;
-  }
-
-  /**
-   * Get autoUserNs
-   * @return autoUserNs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTO_USER_NS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAutoUserNs() {
-    return autoUserNs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTO_USER_NS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAutoUserNs(Boolean autoUserNs) {
-    this.autoUserNs = autoUserNs;
-  }
-
-
-  public IDMappingOptions autoUserNsOpts(AutoUserNsOptions autoUserNsOpts) {
-    this.autoUserNsOpts = autoUserNsOpts;
-    return this;
-  }
-
-  /**
-   * Get autoUserNsOpts
-   * @return autoUserNsOpts
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_AUTO_USER_NS_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public AutoUserNsOptions getAutoUserNsOpts() {
-    return autoUserNsOpts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTO_USER_NS_OPTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAutoUserNsOpts(AutoUserNsOptions autoUserNsOpts) {
-    this.autoUserNsOpts = autoUserNsOpts;
-  }
-
-
-  public IDMappingOptions giDMap(List<@Valid IDMap> giDMap) {
-    this.giDMap = giDMap;
-    return this;
-  }
-
-  public IDMappingOptions addGiDMapItem(IDMap giDMapItem) {
-    if (this.giDMap == null) {
-      this.giDMap = new ArrayList<>();
-    }
-    this.giDMap.add(giDMapItem);
-    return this;
-  }
-
-  /**
-   * Get giDMap
-   * @return giDMap
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_GI_D_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid IDMap> getGiDMap() {
-    return giDMap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GI_D_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGiDMap(List<@Valid IDMap> giDMap) {
-    this.giDMap = giDMap;
-  }
-
-
-  public IDMappingOptions hostGIDMapping(Boolean hostGIDMapping) {
-    this.hostGIDMapping = hostGIDMapping;
-    return this;
-  }
-
-  /**
-   * Get hostGIDMapping
-   * @return hostGIDMapping
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOST_G_I_D_MAPPING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getHostGIDMapping() {
-    return hostGIDMapping;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOST_G_I_D_MAPPING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostGIDMapping(Boolean hostGIDMapping) {
-    this.hostGIDMapping = hostGIDMapping;
-  }
-
-
-  public IDMappingOptions hostUIDMapping(Boolean hostUIDMapping) {
-    this.hostUIDMapping = hostUIDMapping;
-    return this;
-  }
-
-  /**
-   * UIDMap and GIDMap are used for setting up a layer&#39;s root filesystem for use inside of a user namespace where ID mapping is being used. If HostUIDMapping/HostGIDMapping is true, no mapping of the respective type will be used.  Otherwise, if UIDMap and/or GIDMap contain at least one mapping, one or both will be used.  By default, if neither of those conditions apply, if the layer has a parent layer, the parent layer&#39;s mapping will be used, and if it does not have a parent layer, the mapping which was passed to the Store object when it was initialized will be used.
-   * @return hostUIDMapping
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_HOST_U_I_D_MAPPING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getHostUIDMapping() {
-    return hostUIDMapping;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_HOST_U_I_D_MAPPING)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHostUIDMapping(Boolean hostUIDMapping) {
-    this.hostUIDMapping = hostUIDMapping;
-  }
-
-
-  public IDMappingOptions uiDMap(List<@Valid IDMap> uiDMap) {
-    this.uiDMap = uiDMap;
-    return this;
-  }
-
-  public IDMappingOptions addUiDMapItem(IDMap uiDMapItem) {
-    if (this.uiDMap == null) {
-      this.uiDMap = new ArrayList<>();
-    }
-    this.uiDMap.add(uiDMapItem);
-    return this;
-  }
-
-  /**
-   * Get uiDMap
-   * @return uiDMap
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_UI_D_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid IDMap> getUiDMap() {
-    return uiDMap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UI_D_MAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUiDMap(List<@Valid IDMap> uiDMap) {
-    this.uiDMap = uiDMap;
-  }
-
-
-  /**
-   * Return true if this IDMappingOptions object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    IDMappingOptions idMappingOptions = (IDMappingOptions) o;
-    return Objects.equals(this.autoUserNs, idMappingOptions.autoUserNs) &&
-        Objects.equals(this.autoUserNsOpts, idMappingOptions.autoUserNsOpts) &&
-        Objects.equals(this.giDMap, idMappingOptions.giDMap) &&
-        Objects.equals(this.hostGIDMapping, idMappingOptions.hostGIDMapping) &&
-        Objects.equals(this.hostUIDMapping, idMappingOptions.hostUIDMapping) &&
-        Objects.equals(this.uiDMap, idMappingOptions.uiDMap);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(autoUserNs, autoUserNsOpts, giDMap, hostGIDMapping, hostUIDMapping, uiDMap);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class IDMappingOptions {\n");
-    sb.append("    autoUserNs: ").append(toIndentedString(autoUserNs)).append("\n");
-    sb.append("    autoUserNsOpts: ").append(toIndentedString(autoUserNsOpts)).append("\n");
-    sb.append("    giDMap: ").append(toIndentedString(giDMap)).append("\n");
-    sb.append("    hostGIDMapping: ").append(toIndentedString(hostGIDMapping)).append("\n");
-    sb.append("    hostUIDMapping: ").append(toIndentedString(hostUIDMapping)).append("\n");
-    sb.append("    uiDMap: ").append(toIndentedString(uiDMap)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_AUTO_USER_NS)
+    private Boolean autoUserNs;
+    @SerializedName(SERIALIZED_NAME_AUTO_USER_NS_OPTS)
+    private AutoUserNsOptions autoUserNsOpts;
+    @SerializedName(SERIALIZED_NAME_GI_D_MAP)
+    private List<@Valid IDMap> giDMap = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_HOST_G_I_D_MAPPING)
+    private Boolean hostGIDMapping;
+    @SerializedName(SERIALIZED_NAME_HOST_U_I_D_MAPPING)
+    private Boolean hostUIDMapping;
+    @SerializedName(SERIALIZED_NAME_UI_D_MAP)
+    private List<@Valid IDMap> uiDMap = new ArrayList<>();
 
-    // add `AutoUserNs` to the URL query string
-    if (getAutoUserNs() != null) {
-      joiner.add(String.format("%sAutoUserNs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAutoUserNs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public IDMappingOptions() {
     }
 
-    // add `AutoUserNsOpts` to the URL query string
-    if (getAutoUserNsOpts() != null) {
-      joiner.add(getAutoUserNsOpts().toUrlQueryString(prefix + "AutoUserNsOpts" + suffix));
-    }
-
-    // add `GIDMap` to the URL query string
-    if (getGiDMap() != null) {
-      for (int i = 0; i < getGiDMap().size(); i++) {
-        if (getGiDMap().get(i) != null) {
-          joiner.add(getGiDMap().get(i).toUrlQueryString(String.format("%sGIDMap%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to IDMappingOptions
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!IDMappingOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in IDMappingOptions is not found in the empty JSON string", IDMappingOptions.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `HostGIDMapping` to the URL query string
-    if (getHostGIDMapping() != null) {
-      joiner.add(String.format("%sHostGIDMapping%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostGIDMapping()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `HostUIDMapping` to the URL query string
-    if (getHostUIDMapping() != null) {
-      joiner.add(String.format("%sHostUIDMapping%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostUIDMapping()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `UIDMap` to the URL query string
-    if (getUiDMap() != null) {
-      for (int i = 0; i < getUiDMap().size(); i++) {
-        if (getUiDMap().get(i) != null) {
-          joiner.add(getUiDMap().get(i).toUrlQueryString(String.format("%sUIDMap%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!IDMappingOptions.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IDMappingOptions` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `AutoUserNsOpts`
+        if (jsonObj.get("AutoUserNsOpts") != null && !jsonObj.get("AutoUserNsOpts").isJsonNull()) {
+            AutoUserNsOptions.validateJsonElement(jsonObj.get("AutoUserNsOpts"));
+        }
+        if (jsonObj.get("GIDMap") != null && !jsonObj.get("GIDMap").isJsonNull()) {
+            JsonArray jsonArraygiDMap = jsonObj.getAsJsonArray("GIDMap");
+            if (jsonArraygiDMap != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("GIDMap").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `GIDMap` to be an array in the JSON string but got `%s`", jsonObj.get("GIDMap").toString()));
+                }
+
+                // validate the optional field `GIDMap` (array)
+                for (int i = 0; i < jsonArraygiDMap.size(); i++) {
+                    IDMap.validateJsonElement(jsonArraygiDMap.get(i));
+                }
+            }
+        }
+        if (jsonObj.get("UIDMap") != null && !jsonObj.get("UIDMap").isJsonNull()) {
+            JsonArray jsonArrayuiDMap = jsonObj.getAsJsonArray("UIDMap");
+            if (jsonArrayuiDMap != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("UIDMap").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `UIDMap` to be an array in the JSON string but got `%s`", jsonObj.get("UIDMap").toString()));
+                }
+
+                // validate the optional field `UIDMap` (array)
+                for (int i = 0; i < jsonArrayuiDMap.size(); i++) {
+                    IDMap.validateJsonElement(jsonArrayuiDMap.get(i));
+                }
+            }
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of IDMappingOptions given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of IDMappingOptions
+     * @throws IOException if the JSON string is invalid with respect to IDMappingOptions
+     */
+    public static IDMappingOptions fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, IDMappingOptions.class);
+    }
+
+    public IDMappingOptions autoUserNs(Boolean autoUserNs) {
+        this.autoUserNs = autoUserNs;
+        return this;
+    }
+
+    /**
+     * Get autoUserNs
+     *
+     * @return autoUserNs
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAutoUserNs() {
+        return autoUserNs;
+    }
+
+    public void setAutoUserNs(Boolean autoUserNs) {
+        this.autoUserNs = autoUserNs;
+    }
+
+    public IDMappingOptions autoUserNsOpts(AutoUserNsOptions autoUserNsOpts) {
+        this.autoUserNsOpts = autoUserNsOpts;
+        return this;
+    }
+
+    /**
+     * Get autoUserNsOpts
+     *
+     * @return autoUserNsOpts
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public AutoUserNsOptions getAutoUserNsOpts() {
+        return autoUserNsOpts;
+    }
+
+    public void setAutoUserNsOpts(AutoUserNsOptions autoUserNsOpts) {
+        this.autoUserNsOpts = autoUserNsOpts;
+    }
+
+    public IDMappingOptions giDMap(List<@Valid IDMap> giDMap) {
+        this.giDMap = giDMap;
+        return this;
+    }
+
+    public IDMappingOptions addGiDMapItem(IDMap giDMapItem) {
+        if (this.giDMap == null) {
+            this.giDMap = new ArrayList<>();
+        }
+        this.giDMap.add(giDMapItem);
+        return this;
+    }
+
+    /**
+     * Get giDMap
+     *
+     * @return giDMap
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid IDMap> getGiDMap() {
+        return giDMap;
+    }
+
+    public void setGiDMap(List<@Valid IDMap> giDMap) {
+        this.giDMap = giDMap;
+    }
+
+    public IDMappingOptions hostGIDMapping(Boolean hostGIDMapping) {
+        this.hostGIDMapping = hostGIDMapping;
+        return this;
+    }
+
+    /**
+     * Get hostGIDMapping
+     *
+     * @return hostGIDMapping
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getHostGIDMapping() {
+        return hostGIDMapping;
+    }
+
+    public void setHostGIDMapping(Boolean hostGIDMapping) {
+        this.hostGIDMapping = hostGIDMapping;
+    }
+
+    public IDMappingOptions hostUIDMapping(Boolean hostUIDMapping) {
+        this.hostUIDMapping = hostUIDMapping;
+        return this;
+    }
+
+    /**
+     * UIDMap and GIDMap are used for setting up a layer&#39;s root filesystem for use inside of a user namespace where ID mapping is being used. If HostUIDMapping/HostGIDMapping is true, no mapping of the respective type will be used.  Otherwise, if UIDMap and/or GIDMap contain at least one mapping, one or both will be used.  By default, if neither of those conditions apply, if the layer has a parent layer, the parent layer&#39;s mapping will be used, and if it does not have a parent layer, the mapping which was passed to the Store object when it was initialized will be used.
+     *
+     * @return hostUIDMapping
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getHostUIDMapping() {
+        return hostUIDMapping;
+    }
+
+    public void setHostUIDMapping(Boolean hostUIDMapping) {
+        this.hostUIDMapping = hostUIDMapping;
+    }
+
+    public IDMappingOptions uiDMap(List<@Valid IDMap> uiDMap) {
+        this.uiDMap = uiDMap;
+        return this;
+    }
+
+    public IDMappingOptions addUiDMapItem(IDMap uiDMapItem) {
+        if (this.uiDMap == null) {
+            this.uiDMap = new ArrayList<>();
+        }
+        this.uiDMap.add(uiDMapItem);
+        return this;
+    }
+
+    /**
+     * Get uiDMap
+     *
+     * @return uiDMap
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid IDMap> getUiDMap() {
+        return uiDMap;
+    }
+
+    public void setUiDMap(List<@Valid IDMap> uiDMap) {
+        this.uiDMap = uiDMap;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        IDMappingOptions idMappingOptions = (IDMappingOptions) o;
+        return Objects.equals(this.autoUserNs, idMappingOptions.autoUserNs) &&
+                Objects.equals(this.autoUserNsOpts, idMappingOptions.autoUserNsOpts) &&
+                Objects.equals(this.giDMap, idMappingOptions.giDMap) &&
+                Objects.equals(this.hostGIDMapping, idMappingOptions.hostGIDMapping) &&
+                Objects.equals(this.hostUIDMapping, idMappingOptions.hostUIDMapping) &&
+                Objects.equals(this.uiDMap, idMappingOptions.uiDMap);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(autoUserNs, autoUserNsOpts, giDMap, hostGIDMapping, hostUIDMapping, uiDMap);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class IDMappingOptions {\n" +
+                "    autoUserNs: " + toIndentedString(autoUserNs) + "\n" +
+                "    autoUserNsOpts: " + toIndentedString(autoUserNsOpts) + "\n" +
+                "    giDMap: " + toIndentedString(giDMap) + "\n" +
+                "    hostGIDMapping: " + toIndentedString(hostGIDMapping) + "\n" +
+                "    hostUIDMapping: " + toIndentedString(hostUIDMapping) + "\n" +
+                "    uiDMap: " + toIndentedString(uiDMap) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of IDMappingOptions to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!IDMappingOptions.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'IDMappingOptions' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<IDMappingOptions> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(IDMappingOptions.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<IDMappingOptions>() {
+                @Override
+                public void write(JsonWriter out, IDMappingOptions value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public IDMappingOptions read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

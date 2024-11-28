@@ -13,335 +13,330 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PlayKubePod
  */
-@JsonPropertyOrder({
-  PlayKubePod.JSON_PROPERTY_CONTAINER_ERRORS,
-  PlayKubePod.JSON_PROPERTY_CONTAINERS,
-  PlayKubePod.JSON_PROPERTY_I_D,
-  PlayKubePod.JSON_PROPERTY_INIT_CONTAINERS,
-  PlayKubePod.JSON_PROPERTY_LOGS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PlayKubePod {
-  public static final String JSON_PROPERTY_CONTAINER_ERRORS = "ContainerErrors";
-  private List<String> containerErrors = new ArrayList<>();
+    public static final String SERIALIZED_NAME_CONTAINER_ERRORS = "ContainerErrors";
+    public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
+    public static final String SERIALIZED_NAME_I_D = "ID";
+    public static final String SERIALIZED_NAME_INIT_CONTAINERS = "InitContainers";
+    public static final String SERIALIZED_NAME_LOGS = "Logs";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
-  private List<String> containers = new ArrayList<>();
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("ContainerErrors");
+        openapiFields.add("Containers");
+        openapiFields.add("ID");
+        openapiFields.add("InitContainers");
+        openapiFields.add("Logs");
 
-  public static final String JSON_PROPERTY_I_D = "ID";
-  private String ID;
-
-  public static final String JSON_PROPERTY_INIT_CONTAINERS = "InitContainers";
-  private List<String> initContainers = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_LOGS = "Logs";
-  private List<String> logs = new ArrayList<>();
-
-  public PlayKubePod() { 
-  }
-
-  public PlayKubePod containerErrors(List<String> containerErrors) {
-    this.containerErrors = containerErrors;
-    return this;
-  }
-
-  public PlayKubePod addContainerErrorsItem(String containerErrorsItem) {
-    if (this.containerErrors == null) {
-      this.containerErrors = new ArrayList<>();
-    }
-    this.containerErrors.add(containerErrorsItem);
-    return this;
-  }
-
-  /**
-   * ContainerErrors - any errors that occurred while starting containers in the pod.
-   * @return containerErrors
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_ERRORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getContainerErrors() {
-    return containerErrors;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_ERRORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerErrors(List<String> containerErrors) {
-    this.containerErrors = containerErrors;
-  }
-
-
-  public PlayKubePod containers(List<String> containers) {
-    this.containers = containers;
-    return this;
-  }
-
-  public PlayKubePod addContainersItem(String containersItem) {
-    if (this.containers == null) {
-      this.containers = new ArrayList<>();
-    }
-    this.containers.add(containersItem);
-    return this;
-  }
-
-  /**
-   * Containers - the IDs of the containers running in the created pod.
-   * @return containers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getContainers() {
-    return containers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainers(List<String> containers) {
-    this.containers = containers;
-  }
-
-
-  public PlayKubePod ID(String ID) {
-    this.ID = ID;
-    return this;
-  }
-
-  /**
-   * ID - ID of the pod created as a result of play kube.
-   * @return ID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getID() {
-    return ID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setID(String ID) {
-    this.ID = ID;
-  }
-
-
-  public PlayKubePod initContainers(List<String> initContainers) {
-    this.initContainers = initContainers;
-    return this;
-  }
-
-  public PlayKubePod addInitContainersItem(String initContainersItem) {
-    if (this.initContainers == null) {
-      this.initContainers = new ArrayList<>();
-    }
-    this.initContainers.add(initContainersItem);
-    return this;
-  }
-
-  /**
-   * InitContainers - the IDs of the init containers to be run in the created pod.
-   * @return initContainers
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INIT_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getInitContainers() {
-    return initContainers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INIT_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInitContainers(List<String> initContainers) {
-    this.initContainers = initContainers;
-  }
-
-
-  public PlayKubePod logs(List<String> logs) {
-    this.logs = logs;
-    return this;
-  }
-
-  public PlayKubePod addLogsItem(String logsItem) {
-    if (this.logs == null) {
-      this.logs = new ArrayList<>();
-    }
-    this.logs.add(logsItem);
-    return this;
-  }
-
-  /**
-   * Logs - non-fatal errors and log messages while processing.
-   * @return logs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LOGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getLogs() {
-    return logs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLogs(List<String> logs) {
-    this.logs = logs;
-  }
-
-
-  /**
-   * Return true if this PlayKubePod object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    PlayKubePod playKubePod = (PlayKubePod) o;
-    return Objects.equals(this.containerErrors, playKubePod.containerErrors) &&
-        Objects.equals(this.containers, playKubePod.containers) &&
-        Objects.equals(this.ID, playKubePod.ID) &&
-        Objects.equals(this.initContainers, playKubePod.initContainers) &&
-        Objects.equals(this.logs, playKubePod.logs);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(containerErrors, containers, ID, initContainers, logs);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PlayKubePod {\n");
-    sb.append("    containerErrors: ").append(toIndentedString(containerErrors)).append("\n");
-    sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
-    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
-    sb.append("    initContainers: ").append(toIndentedString(initContainers)).append("\n");
-    sb.append("    logs: ").append(toIndentedString(logs)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CONTAINER_ERRORS)
+    private List<String> containerErrors = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CONTAINERS)
+    private List<String> containers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_I_D)
+    private String ID;
+    @SerializedName(SERIALIZED_NAME_INIT_CONTAINERS)
+    private List<String> initContainers = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_LOGS)
+    private List<String> logs = new ArrayList<>();
 
-    // add `ContainerErrors` to the URL query string
-    if (getContainerErrors() != null) {
-      for (int i = 0; i < getContainerErrors().size(); i++) {
-        joiner.add(String.format("%sContainerErrors%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getContainerErrors().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public PlayKubePod() {
     }
 
-    // add `Containers` to the URL query string
-    if (getContainers() != null) {
-      for (int i = 0; i < getContainers().size(); i++) {
-        joiner.add(String.format("%sContainers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getContainers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to PlayKubePod
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!PlayKubePod.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in PlayKubePod is not found in the empty JSON string", PlayKubePod.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!PlayKubePod.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PlayKubePod` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("ContainerErrors") != null && !jsonObj.get("ContainerErrors").isJsonNull() && !jsonObj.get("ContainerErrors").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ContainerErrors` to be an array in the JSON string but got `%s`", jsonObj.get("ContainerErrors").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Containers") != null && !jsonObj.get("Containers").isJsonNull() && !jsonObj.get("Containers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Containers` to be an array in the JSON string but got `%s`", jsonObj.get("Containers").toString()));
+        }
+        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("InitContainers") != null && !jsonObj.get("InitContainers").isJsonNull() && !jsonObj.get("InitContainers").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `InitContainers` to be an array in the JSON string but got `%s`", jsonObj.get("InitContainers").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Logs") != null && !jsonObj.get("Logs").isJsonNull() && !jsonObj.get("Logs").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Logs` to be an array in the JSON string but got `%s`", jsonObj.get("Logs").toString()));
+        }
     }
 
-    // add `ID` to the URL query string
-    if (getID() != null) {
-      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of PlayKubePod given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of PlayKubePod
+     * @throws IOException if the JSON string is invalid with respect to PlayKubePod
+     */
+    public static PlayKubePod fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, PlayKubePod.class);
     }
 
-    // add `InitContainers` to the URL query string
-    if (getInitContainers() != null) {
-      for (int i = 0; i < getInitContainers().size(); i++) {
-        joiner.add(String.format("%sInitContainers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getInitContainers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public PlayKubePod containerErrors(List<String> containerErrors) {
+        this.containerErrors = containerErrors;
+        return this;
     }
 
-    // add `Logs` to the URL query string
-    if (getLogs() != null) {
-      for (int i = 0; i < getLogs().size(); i++) {
-        joiner.add(String.format("%sLogs%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getLogs().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public PlayKubePod addContainerErrorsItem(String containerErrorsItem) {
+        if (this.containerErrors == null) {
+            this.containerErrors = new ArrayList<>();
+        }
+        this.containerErrors.add(containerErrorsItem);
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * ContainerErrors - any errors that occurred while starting containers in the pod.
+     *
+     * @return containerErrors
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getContainerErrors() {
+        return containerErrors;
+    }
+
+    public void setContainerErrors(List<String> containerErrors) {
+        this.containerErrors = containerErrors;
+    }
+
+    public PlayKubePod containers(List<String> containers) {
+        this.containers = containers;
+        return this;
+    }
+
+    public PlayKubePod addContainersItem(String containersItem) {
+        if (this.containers == null) {
+            this.containers = new ArrayList<>();
+        }
+        this.containers.add(containersItem);
+        return this;
+    }
+
+    /**
+     * Containers - the IDs of the containers running in the created pod.
+     *
+     * @return containers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getContainers() {
+        return containers;
+    }
+
+    public void setContainers(List<String> containers) {
+        this.containers = containers;
+    }
+
+    public PlayKubePod ID(String ID) {
+        this.ID = ID;
+        return this;
+    }
+
+    /**
+     * ID - ID of the pod created as a result of play kube.
+     *
+     * @return ID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public PlayKubePod initContainers(List<String> initContainers) {
+        this.initContainers = initContainers;
+        return this;
+    }
+
+    public PlayKubePod addInitContainersItem(String initContainersItem) {
+        if (this.initContainers == null) {
+            this.initContainers = new ArrayList<>();
+        }
+        this.initContainers.add(initContainersItem);
+        return this;
+    }
+
+    /**
+     * InitContainers - the IDs of the init containers to be run in the created pod.
+     *
+     * @return initContainers
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getInitContainers() {
+        return initContainers;
+    }
+
+    public void setInitContainers(List<String> initContainers) {
+        this.initContainers = initContainers;
+    }
+
+    public PlayKubePod logs(List<String> logs) {
+        this.logs = logs;
+        return this;
+    }
+
+    public PlayKubePod addLogsItem(String logsItem) {
+        if (this.logs == null) {
+            this.logs = new ArrayList<>();
+        }
+        this.logs.add(logsItem);
+        return this;
+    }
+
+    /**
+     * Logs - non-fatal errors and log messages while processing.
+     *
+     * @return logs
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getLogs() {
+        return logs;
+    }
+
+    public void setLogs(List<String> logs) {
+        this.logs = logs;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PlayKubePod playKubePod = (PlayKubePod) o;
+        return Objects.equals(this.containerErrors, playKubePod.containerErrors) &&
+                Objects.equals(this.containers, playKubePod.containers) &&
+                Objects.equals(this.ID, playKubePod.ID) &&
+                Objects.equals(this.initContainers, playKubePod.initContainers) &&
+                Objects.equals(this.logs, playKubePod.logs);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(containerErrors, containers, ID, initContainers, logs);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class PlayKubePod {\n" +
+                "    containerErrors: " + toIndentedString(containerErrors) + "\n" +
+                "    containers: " + toIndentedString(containers) + "\n" +
+                "    ID: " + toIndentedString(ID) + "\n" +
+                "    initContainers: " + toIndentedString(initContainers) + "\n" +
+                "    logs: " + toIndentedString(logs) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of PlayKubePod to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!PlayKubePod.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'PlayKubePod' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<PlayKubePod> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(PlayKubePod.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<PlayKubePod>() {
+                @Override
+                public void write(JsonWriter out, PlayKubePod value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public PlayKubePod read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

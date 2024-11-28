@@ -13,249 +13,260 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ImageVolume is a volume based on a container image.  The container image is first mounted on the host and is then bind-mounted into the container.  An ImageVolume is always mounted read-only.
  */
-@JsonPropertyOrder({
-  ImageVolume.JSON_PROPERTY_DESTINATION,
-  ImageVolume.JSON_PROPERTY_READ_WRITE,
-  ImageVolume.JSON_PROPERTY_SOURCE,
-  ImageVolume.JSON_PROPERTY_SUB_PATH
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageVolume {
-  public static final String JSON_PROPERTY_DESTINATION = "Destination";
-  private String destination;
+    public static final String SERIALIZED_NAME_DESTINATION = "Destination";
+    public static final String SERIALIZED_NAME_READ_WRITE = "ReadWrite";
+    public static final String SERIALIZED_NAME_SOURCE = "Source";
+    public static final String SERIALIZED_NAME_SUB_PATH = "subPath";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_READ_WRITE = "ReadWrite";
-  private Boolean readWrite;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Destination");
+        openapiFields.add("ReadWrite");
+        openapiFields.add("Source");
+        openapiFields.add("subPath");
 
-  public static final String JSON_PROPERTY_SOURCE = "Source";
-  private String source;
-
-  public static final String JSON_PROPERTY_SUB_PATH = "subPath";
-  private String subPath;
-
-  public ImageVolume() { 
-  }
-
-  public ImageVolume destination(String destination) {
-    this.destination = destination;
-    return this;
-  }
-
-  /**
-   * Destination is the absolute path of the mount in the container.
-   * @return destination
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDestination() {
-    return destination;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestination(String destination) {
-    this.destination = destination;
-  }
-
-
-  public ImageVolume readWrite(Boolean readWrite) {
-    this.readWrite = readWrite;
-    return this;
-  }
-
-  /**
-   * ReadWrite sets the volume writable.
-   * @return readWrite
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READ_WRITE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getReadWrite() {
-    return readWrite;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READ_WRITE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadWrite(Boolean readWrite) {
-    this.readWrite = readWrite;
-  }
-
-
-  public ImageVolume source(String source) {
-    this.source = source;
-    return this;
-  }
-
-  /**
-   * Source is the source of the image volume.  The image can be referred to by name and by ID.
-   * @return source
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSource() {
-    return source;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSource(String source) {
-    this.source = source;
-  }
-
-
-  public ImageVolume subPath(String subPath) {
-    this.subPath = subPath;
-    return this;
-  }
-
-  /**
-   * SubPath mounts a particular path within the image. If empty, the whole image is mounted.
-   * @return subPath
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SUB_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSubPath() {
-    return subPath;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SUB_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubPath(String subPath) {
-    this.subPath = subPath;
-  }
-
-
-  /**
-   * Return true if this ImageVolume object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    ImageVolume imageVolume = (ImageVolume) o;
-    return Objects.equals(this.destination, imageVolume.destination) &&
-        Objects.equals(this.readWrite, imageVolume.readWrite) &&
-        Objects.equals(this.source, imageVolume.source) &&
-        Objects.equals(this.subPath, imageVolume.subPath);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(destination, readWrite, source, subPath);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ImageVolume {\n");
-    sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
-    sb.append("    readWrite: ").append(toIndentedString(readWrite)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("    subPath: ").append(toIndentedString(subPath)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_DESTINATION)
+    private String destination;
+    @SerializedName(SERIALIZED_NAME_READ_WRITE)
+    private Boolean readWrite;
+    @SerializedName(SERIALIZED_NAME_SOURCE)
+    private String source;
+    @SerializedName(SERIALIZED_NAME_SUB_PATH)
+    private String subPath;
 
-    // add `Destination` to the URL query string
-    if (getDestination() != null) {
-      joiner.add(String.format("%sDestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageVolume() {
     }
 
-    // add `ReadWrite` to the URL query string
-    if (getReadWrite() != null) {
-      joiner.add(String.format("%sReadWrite%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadWrite()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to ImageVolume
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!ImageVolume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in ImageVolume is not found in the empty JSON string", ImageVolume.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!ImageVolume.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageVolume` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Destination") != null && !jsonObj.get("Destination").isJsonNull()) && !jsonObj.get("Destination").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Destination").toString()));
+        }
+        if ((jsonObj.get("Source") != null && !jsonObj.get("Source").isJsonNull()) && !jsonObj.get("Source").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Source").toString()));
+        }
+        if ((jsonObj.get("subPath") != null && !jsonObj.get("subPath").isJsonNull()) && !jsonObj.get("subPath").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `subPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subPath").toString()));
+        }
     }
 
-    // add `Source` to the URL query string
-    if (getSource() != null) {
-      joiner.add(String.format("%sSource%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSource()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of ImageVolume given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of ImageVolume
+     * @throws IOException if the JSON string is invalid with respect to ImageVolume
+     */
+    public static ImageVolume fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, ImageVolume.class);
     }
 
-    // add `subPath` to the URL query string
-    if (getSubPath() != null) {
-      joiner.add(String.format("%ssubPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public ImageVolume destination(String destination) {
+        this.destination = destination;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Destination is the absolute path of the mount in the container.
+     *
+     * @return destination
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public void setDestination(String destination) {
+        this.destination = destination;
+    }
+
+    public ImageVolume readWrite(Boolean readWrite) {
+        this.readWrite = readWrite;
+        return this;
+    }
+
+    /**
+     * ReadWrite sets the volume writable.
+     *
+     * @return readWrite
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getReadWrite() {
+        return readWrite;
+    }
+
+    public void setReadWrite(Boolean readWrite) {
+        this.readWrite = readWrite;
+    }
+
+    public ImageVolume source(String source) {
+        this.source = source;
+        return this;
+    }
+
+    /**
+     * Source is the source of the image volume.  The image can be referred to by name and by ID.
+     *
+     * @return source
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public ImageVolume subPath(String subPath) {
+        this.subPath = subPath;
+        return this;
+    }
+
+    /**
+     * SubPath mounts a particular path within the image. If empty, the whole image is mounted.
+     *
+     * @return subPath
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSubPath() {
+        return subPath;
+    }
+
+    public void setSubPath(String subPath) {
+        this.subPath = subPath;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ImageVolume imageVolume = (ImageVolume) o;
+        return Objects.equals(this.destination, imageVolume.destination) &&
+                Objects.equals(this.readWrite, imageVolume.readWrite) &&
+                Objects.equals(this.source, imageVolume.source) &&
+                Objects.equals(this.subPath, imageVolume.subPath);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(destination, readWrite, source, subPath);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class ImageVolume {\n" +
+                "    destination: " + toIndentedString(destination) + "\n" +
+                "    readWrite: " + toIndentedString(readWrite) + "\n" +
+                "    source: " + toIndentedString(source) + "\n" +
+                "    subPath: " + toIndentedString(subPath) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of ImageVolume to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!ImageVolume.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'ImageVolume' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<ImageVolume> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(ImageVolume.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<ImageVolume>() {
+                @Override
+                public void write(JsonWriter out, ImageVolume value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public ImageVolume read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -14,23 +14,13 @@
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.SecretCreate;
 import io.github.alersrt.pod4j.openapi.model.SecretCreateLibpod201Response;
-import io.github.alersrt.pod4j.openapi.model.SecretDeleteLibpod404Response;
 import io.github.alersrt.pod4j.openapi.model.SecretInfoReportCompat;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for SecretsCompatApi
@@ -40,72 +30,53 @@ public class SecretsCompatApiTest {
 
     private final SecretsCompatApi api = new SecretsCompatApi();
 
-
     /**
      * Create a secret
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretCreateTest() throws ApiException {
         SecretCreate create = null;
-        SecretCreateLibpod201Response response =
-                api.secretCreate(create);
-        
+        SecretCreateLibpod201Response response = api.secretCreate(create);
         // TODO: test validations
     }
 
     /**
      * Remove secret
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretDeleteTest() throws ApiException {
         String name = null;
-
         api.secretDelete(name);
-
         // TODO: test validations
     }
 
     /**
      * Inspect secret
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretInspectTest() throws ApiException {
         String name = null;
-        SecretInfoReportCompat response =
-                api.secretInspect(name);
-        
+        SecretInfoReportCompat response = api.secretInspect(name);
         // TODO: test validations
     }
 
     /**
      * List secrets
-     *
+     * <p>
      * Returns a list of secrets
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void secretListTest() throws ApiException {
         String filters = null;
-        List<SecretInfoReportCompat> response =
-                api.secretList(filters);
-        
+        List<SecretInfoReportCompat> response = api.secretList(filters);
         // TODO: test validations
     }
 

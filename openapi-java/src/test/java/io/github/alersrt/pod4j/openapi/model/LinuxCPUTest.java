@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxCPU
  */
-class LinuxCPUTest {
+public class LinuxCPUTest {
     private final LinuxCPU model = new LinuxCPU();
 
     /**
      * Model tests for LinuxCPU
      */
     @Test
-    void testLinuxCPU() {
+    public void testLinuxCPU() {
         // TODO: test LinuxCPU
     }
 
@@ -42,7 +43,7 @@ class LinuxCPUTest {
      * Test the property 'burst'
      */
     @Test
-    void burstTest() {
+    public void burstTest() {
         // TODO: test burst
     }
 
@@ -50,7 +51,7 @@ class LinuxCPUTest {
      * Test the property 'cpus'
      */
     @Test
-    void cpusTest() {
+    public void cpusTest() {
         // TODO: test cpus
     }
 
@@ -58,7 +59,7 @@ class LinuxCPUTest {
      * Test the property 'idle'
      */
     @Test
-    void idleTest() {
+    public void idleTest() {
         // TODO: test idle
     }
 
@@ -66,7 +67,7 @@ class LinuxCPUTest {
      * Test the property 'mems'
      */
     @Test
-    void memsTest() {
+    public void memsTest() {
         // TODO: test mems
     }
 
@@ -74,7 +75,7 @@ class LinuxCPUTest {
      * Test the property 'period'
      */
     @Test
-    void periodTest() {
+    public void periodTest() {
         // TODO: test period
     }
 
@@ -82,7 +83,7 @@ class LinuxCPUTest {
      * Test the property 'quota'
      */
     @Test
-    void quotaTest() {
+    public void quotaTest() {
         // TODO: test quota
     }
 
@@ -90,7 +91,7 @@ class LinuxCPUTest {
      * Test the property 'realtimePeriod'
      */
     @Test
-    void realtimePeriodTest() {
+    public void realtimePeriodTest() {
         // TODO: test realtimePeriod
     }
 
@@ -98,7 +99,7 @@ class LinuxCPUTest {
      * Test the property 'realtimeRuntime'
      */
     @Test
-    void realtimeRuntimeTest() {
+    public void realtimeRuntimeTest() {
         // TODO: test realtimeRuntime
     }
 
@@ -106,7 +107,7 @@ class LinuxCPUTest {
      * Test the property 'shares'
      */
     @Test
-    void sharesTest() {
+    public void sharesTest() {
         // TODO: test shares
     }
 

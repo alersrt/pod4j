@@ -13,30 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.PluginInterfaceType;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PluginConfigInterface
  */
-class PluginConfigInterfaceTest {
+public class PluginConfigInterfaceTest {
     private final PluginConfigInterface model = new PluginConfigInterface();
 
     /**
      * Model tests for PluginConfigInterface
      */
     @Test
-    void testPluginConfigInterface() {
+    public void testPluginConfigInterface() {
         // TODO: test PluginConfigInterface
     }
 
@@ -44,7 +46,7 @@ class PluginConfigInterfaceTest {
      * Test the property 'protocolScheme'
      */
     @Test
-    void protocolSchemeTest() {
+    public void protocolSchemeTest() {
         // TODO: test protocolScheme
     }
 
@@ -52,7 +54,7 @@ class PluginConfigInterfaceTest {
      * Test the property 'socket'
      */
     @Test
-    void socketTest() {
+    public void socketTest() {
         // TODO: test socket
     }
 
@@ -60,7 +62,7 @@ class PluginConfigInterfaceTest {
      * Test the property 'types'
      */
     @Test
-    void typesTest() {
+    public void typesTest() {
         // TODO: test types
     }
 

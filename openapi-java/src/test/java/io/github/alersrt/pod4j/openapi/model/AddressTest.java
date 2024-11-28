@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Address
  */
-class AddressTest {
+public class AddressTest {
     private final Address model = new Address();
 
     /**
      * Model tests for Address
      */
     @Test
-    void testAddress() {
+    public void testAddress() {
         // TODO: test Address
     }
 
@@ -42,7 +33,7 @@ class AddressTest {
      * Test the property 'addr'
      */
     @Test
-    void addrTest() {
+    public void addrTest() {
         // TODO: test addr
     }
 
@@ -50,7 +41,7 @@ class AddressTest {
      * Test the property 'prefixLength'
      */
     @Test
-    void prefixLengthTest() {
+    public void prefixLengthTest() {
         // TODO: test prefixLength
     }
 

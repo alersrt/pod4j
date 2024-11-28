@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PluginInterfaceType
  */
-class PluginInterfaceTypeTest {
+public class PluginInterfaceTypeTest {
     private final PluginInterfaceType model = new PluginInterfaceType();
 
     /**
      * Model tests for PluginInterfaceType
      */
     @Test
-    void testPluginInterfaceType() {
+    public void testPluginInterfaceType() {
         // TODO: test PluginInterfaceType
     }
 
@@ -42,7 +43,7 @@ class PluginInterfaceTypeTest {
      * Test the property 'capability'
      */
     @Test
-    void capabilityTest() {
+    public void capabilityTest() {
         // TODO: test capability
     }
 
@@ -50,7 +51,7 @@ class PluginInterfaceTypeTest {
      * Test the property 'prefix'
      */
     @Test
-    void prefixTest() {
+    public void prefixTest() {
         // TODO: test prefix
     }
 
@@ -58,7 +59,7 @@ class PluginInterfaceTypeTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 

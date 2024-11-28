@@ -13,429 +13,387 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxCPU for Linux cgroup &#39;cpu&#39; resource management
  */
-@JsonPropertyOrder({
-  LinuxCPU.JSON_PROPERTY_BURST,
-  LinuxCPU.JSON_PROPERTY_CPUS,
-  LinuxCPU.JSON_PROPERTY_IDLE,
-  LinuxCPU.JSON_PROPERTY_MEMS,
-  LinuxCPU.JSON_PROPERTY_PERIOD,
-  LinuxCPU.JSON_PROPERTY_QUOTA,
-  LinuxCPU.JSON_PROPERTY_REALTIME_PERIOD,
-  LinuxCPU.JSON_PROPERTY_REALTIME_RUNTIME,
-  LinuxCPU.JSON_PROPERTY_SHARES
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxCPU {
-  public static final String JSON_PROPERTY_BURST = "burst";
-  private Integer burst;
-
-  public static final String JSON_PROPERTY_CPUS = "cpus";
-  private String cpus;
-
-  public static final String JSON_PROPERTY_IDLE = "idle";
-  private Long idle;
-
-  public static final String JSON_PROPERTY_MEMS = "mems";
-  private String mems;
-
-  public static final String JSON_PROPERTY_PERIOD = "period";
-  private Integer period;
-
-  public static final String JSON_PROPERTY_QUOTA = "quota";
-  private Long quota;
-
-  public static final String JSON_PROPERTY_REALTIME_PERIOD = "realtimePeriod";
-  private Integer realtimePeriod;
-
-  public static final String JSON_PROPERTY_REALTIME_RUNTIME = "realtimeRuntime";
-  private Long realtimeRuntime;
-
-  public static final String JSON_PROPERTY_SHARES = "shares";
-  private Integer shares;
-
-  public LinuxCPU() { 
-  }
-
-  public LinuxCPU burst(Integer burst) {
-    this.burst = burst;
-    return this;
-  }
-
-  /**
-   * CPU hardcap burst limit (in usecs). Allowed accumulated cpu time additionally for burst in a given period.
-   * @return burst
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BURST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getBurst() {
-    return burst;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BURST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBurst(Integer burst) {
-    this.burst = burst;
-  }
-
-
-  public LinuxCPU cpus(String cpus) {
-    this.cpus = cpus;
-    return this;
-  }
-
-  /**
-   * CPUs to use within the cpuset. Default is to use any CPU available.
-   * @return cpus
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCpus() {
-    return cpus;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpus(String cpus) {
-    this.cpus = cpus;
-  }
-
-
-  public LinuxCPU idle(Long idle) {
-    this.idle = idle;
-    return this;
-  }
-
-  /**
-   * cgroups are configured with minimum weight, 0: default behavior, 1: SCHED_IDLE.
-   * @return idle
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IDLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getIdle() {
-    return idle;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IDLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdle(Long idle) {
-    this.idle = idle;
-  }
-
-
-  public LinuxCPU mems(String mems) {
-    this.mems = mems;
-    return this;
-  }
-
-  /**
-   * List of memory nodes in the cpuset. Default is to use any available memory node.
-   * @return mems
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMems() {
-    return mems;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMems(String mems) {
-    this.mems = mems;
-  }
-
-
-  public LinuxCPU period(Integer period) {
-    this.period = period;
-    return this;
-  }
-
-  /**
-   * CPU period to be used for hardcapping (in usecs).
-   * @return period
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getPeriod() {
-    return period;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPeriod(Integer period) {
-    this.period = period;
-  }
-
-
-  public LinuxCPU quota(Long quota) {
-    this.quota = quota;
-    return this;
-  }
-
-  /**
-   * CPU hardcap limit (in usecs). Allowed cpu time in a given period.
-   * @return quota
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getQuota() {
-    return quota;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setQuota(Long quota) {
-    this.quota = quota;
-  }
-
-
-  public LinuxCPU realtimePeriod(Integer realtimePeriod) {
-    this.realtimePeriod = realtimePeriod;
-    return this;
-  }
-
-  /**
-   * CPU period to be used for realtime scheduling (in usecs).
-   * @return realtimePeriod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REALTIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getRealtimePeriod() {
-    return realtimePeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REALTIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRealtimePeriod(Integer realtimePeriod) {
-    this.realtimePeriod = realtimePeriod;
-  }
-
-
-  public LinuxCPU realtimeRuntime(Long realtimeRuntime) {
-    this.realtimeRuntime = realtimeRuntime;
-    return this;
-  }
-
-  /**
-   * How much time realtime scheduling may use (in usecs).
-   * @return realtimeRuntime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_REALTIME_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getRealtimeRuntime() {
-    return realtimeRuntime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REALTIME_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRealtimeRuntime(Long realtimeRuntime) {
-    this.realtimeRuntime = realtimeRuntime;
-  }
-
-
-  public LinuxCPU shares(Integer shares) {
-    this.shares = shares;
-    return this;
-  }
-
-  /**
-   * CPU shares (relative weight (ratio) vs. other cgroups with cpu shares).
-   * @return shares
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHARES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getShares() {
-    return shares;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHARES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setShares(Integer shares) {
-    this.shares = shares;
-  }
-
-
-  /**
-   * Return true if this LinuxCPU object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    LinuxCPU linuxCPU = (LinuxCPU) o;
-    return Objects.equals(this.burst, linuxCPU.burst) &&
-        Objects.equals(this.cpus, linuxCPU.cpus) &&
-        Objects.equals(this.idle, linuxCPU.idle) &&
-        Objects.equals(this.mems, linuxCPU.mems) &&
-        Objects.equals(this.period, linuxCPU.period) &&
-        Objects.equals(this.quota, linuxCPU.quota) &&
-        Objects.equals(this.realtimePeriod, linuxCPU.realtimePeriod) &&
-        Objects.equals(this.realtimeRuntime, linuxCPU.realtimeRuntime) &&
-        Objects.equals(this.shares, linuxCPU.shares);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(burst, cpus, idle, mems, period, quota, realtimePeriod, realtimeRuntime, shares);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LinuxCPU {\n");
-    sb.append("    burst: ").append(toIndentedString(burst)).append("\n");
-    sb.append("    cpus: ").append(toIndentedString(cpus)).append("\n");
-    sb.append("    idle: ").append(toIndentedString(idle)).append("\n");
-    sb.append("    mems: ").append(toIndentedString(mems)).append("\n");
-    sb.append("    period: ").append(toIndentedString(period)).append("\n");
-    sb.append("    quota: ").append(toIndentedString(quota)).append("\n");
-    sb.append("    realtimePeriod: ").append(toIndentedString(realtimePeriod)).append("\n");
-    sb.append("    realtimeRuntime: ").append(toIndentedString(realtimeRuntime)).append("\n");
-    sb.append("    shares: ").append(toIndentedString(shares)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_BURST = "burst";
+    public static final String SERIALIZED_NAME_CPUS = "cpus";
+    public static final String SERIALIZED_NAME_IDLE = "idle";
+    public static final String SERIALIZED_NAME_MEMS = "mems";
+    public static final String SERIALIZED_NAME_PERIOD = "period";
+    public static final String SERIALIZED_NAME_QUOTA = "quota";
+    public static final String SERIALIZED_NAME_REALTIME_PERIOD = "realtimePeriod";
+    public static final String SERIALIZED_NAME_REALTIME_RUNTIME = "realtimeRuntime";
+    public static final String SERIALIZED_NAME_SHARES = "shares";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("burst");
+        openapiFields.add("cpus");
+        openapiFields.add("idle");
+        openapiFields.add("mems");
+        openapiFields.add("period");
+        openapiFields.add("quota");
+        openapiFields.add("realtimePeriod");
+        openapiFields.add("realtimeRuntime");
+        openapiFields.add("shares");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_BURST)
+    private Integer burst;
+    @SerializedName(SERIALIZED_NAME_CPUS)
+    private String cpus;
+    @SerializedName(SERIALIZED_NAME_IDLE)
+    private Long idle;
+    @SerializedName(SERIALIZED_NAME_MEMS)
+    private String mems;
+    @SerializedName(SERIALIZED_NAME_PERIOD)
+    private Integer period;
+    @SerializedName(SERIALIZED_NAME_QUOTA)
+    private Long quota;
+    @SerializedName(SERIALIZED_NAME_REALTIME_PERIOD)
+    private Integer realtimePeriod;
+    @SerializedName(SERIALIZED_NAME_REALTIME_RUNTIME)
+    private Long realtimeRuntime;
+    @SerializedName(SERIALIZED_NAME_SHARES)
+    private Integer shares;
 
-    // add `burst` to the URL query string
-    if (getBurst() != null) {
-      joiner.add(String.format("%sburst%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBurst()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxCPU() {
     }
 
-    // add `cpus` to the URL query string
-    if (getCpus() != null) {
-      joiner.add(String.format("%scpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to LinuxCPU
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!LinuxCPU.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxCPU is not found in the empty JSON string", LinuxCPU.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!LinuxCPU.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxCPU` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("cpus") != null && !jsonObj.get("cpus").isJsonNull()) && !jsonObj.get("cpus").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `cpus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cpus").toString()));
+        }
+        if ((jsonObj.get("mems") != null && !jsonObj.get("mems").isJsonNull()) && !jsonObj.get("mems").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `mems` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mems").toString()));
+        }
     }
 
-    // add `idle` to the URL query string
-    if (getIdle() != null) {
-      joiner.add(String.format("%sidle%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIdle()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of LinuxCPU given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of LinuxCPU
+     * @throws IOException if the JSON string is invalid with respect to LinuxCPU
+     */
+    public static LinuxCPU fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, LinuxCPU.class);
     }
 
-    // add `mems` to the URL query string
-    if (getMems() != null) {
-      joiner.add(String.format("%smems%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMems()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxCPU burst(Integer burst) {
+        this.burst = burst;
+        return this;
     }
 
-    // add `period` to the URL query string
-    if (getPeriod() != null) {
-      joiner.add(String.format("%speriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * CPU hardcap burst limit (in usecs). Allowed accumulated cpu time additionally for burst in a given period.
+     *
+     * @return burst
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getBurst() {
+        return burst;
     }
 
-    // add `quota` to the URL query string
-    if (getQuota() != null) {
-      joiner.add(String.format("%squota%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getQuota()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setBurst(Integer burst) {
+        this.burst = burst;
     }
 
-    // add `realtimePeriod` to the URL query string
-    if (getRealtimePeriod() != null) {
-      joiner.add(String.format("%srealtimePeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRealtimePeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public LinuxCPU cpus(String cpus) {
+        this.cpus = cpus;
+        return this;
     }
 
-    // add `realtimeRuntime` to the URL query string
-    if (getRealtimeRuntime() != null) {
-      joiner.add(String.format("%srealtimeRuntime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRealtimeRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * CPUs to use within the cpuset. Default is to use any CPU available.
+     *
+     * @return cpus
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCpus() {
+        return cpus;
     }
 
-    // add `shares` to the URL query string
-    if (getShares() != null) {
-      joiner.add(String.format("%sshares%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShares()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setCpus(String cpus) {
+        this.cpus = cpus;
     }
 
-    return joiner.toString();
-  }
+    public LinuxCPU idle(Long idle) {
+        this.idle = idle;
+        return this;
+    }
+
+    /**
+     * cgroups are configured with minimum weight, 0: default behavior, 1: SCHED_IDLE.
+     *
+     * @return idle
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getIdle() {
+        return idle;
+    }
+
+    public void setIdle(Long idle) {
+        this.idle = idle;
+    }
+
+    public LinuxCPU mems(String mems) {
+        this.mems = mems;
+        return this;
+    }
+
+    /**
+     * List of memory nodes in the cpuset. Default is to use any available memory node.
+     *
+     * @return mems
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMems() {
+        return mems;
+    }
+
+    public void setMems(String mems) {
+        this.mems = mems;
+    }
+
+    public LinuxCPU period(Integer period) {
+        this.period = period;
+        return this;
+    }
+
+    /**
+     * CPU period to be used for hardcapping (in usecs).
+     *
+     * @return period
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(Integer period) {
+        this.period = period;
+    }
+
+    public LinuxCPU quota(Long quota) {
+        this.quota = quota;
+        return this;
+    }
+
+    /**
+     * CPU hardcap limit (in usecs). Allowed cpu time in a given period.
+     *
+     * @return quota
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getQuota() {
+        return quota;
+    }
+
+    public void setQuota(Long quota) {
+        this.quota = quota;
+    }
+
+    public LinuxCPU realtimePeriod(Integer realtimePeriod) {
+        this.realtimePeriod = realtimePeriod;
+        return this;
+    }
+
+    /**
+     * CPU period to be used for realtime scheduling (in usecs).
+     *
+     * @return realtimePeriod
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getRealtimePeriod() {
+        return realtimePeriod;
+    }
+
+    public void setRealtimePeriod(Integer realtimePeriod) {
+        this.realtimePeriod = realtimePeriod;
+    }
+
+    public LinuxCPU realtimeRuntime(Long realtimeRuntime) {
+        this.realtimeRuntime = realtimeRuntime;
+        return this;
+    }
+
+    /**
+     * How much time realtime scheduling may use (in usecs).
+     *
+     * @return realtimeRuntime
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getRealtimeRuntime() {
+        return realtimeRuntime;
+    }
+
+    public void setRealtimeRuntime(Long realtimeRuntime) {
+        this.realtimeRuntime = realtimeRuntime;
+    }
+
+    public LinuxCPU shares(Integer shares) {
+        this.shares = shares;
+        return this;
+    }
+
+    /**
+     * CPU shares (relative weight (ratio) vs. other cgroups with cpu shares).
+     *
+     * @return shares
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getShares() {
+        return shares;
+    }
+
+    public void setShares(Integer shares) {
+        this.shares = shares;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LinuxCPU linuxCPU = (LinuxCPU) o;
+        return Objects.equals(this.burst, linuxCPU.burst) &&
+                Objects.equals(this.cpus, linuxCPU.cpus) &&
+                Objects.equals(this.idle, linuxCPU.idle) &&
+                Objects.equals(this.mems, linuxCPU.mems) &&
+                Objects.equals(this.period, linuxCPU.period) &&
+                Objects.equals(this.quota, linuxCPU.quota) &&
+                Objects.equals(this.realtimePeriod, linuxCPU.realtimePeriod) &&
+                Objects.equals(this.realtimeRuntime, linuxCPU.realtimeRuntime) &&
+                Objects.equals(this.shares, linuxCPU.shares);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(burst, cpus, idle, mems, period, quota, realtimePeriod, realtimeRuntime, shares);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class LinuxCPU {\n" +
+                "    burst: " + toIndentedString(burst) + "\n" +
+                "    cpus: " + toIndentedString(cpus) + "\n" +
+                "    idle: " + toIndentedString(idle) + "\n" +
+                "    mems: " + toIndentedString(mems) + "\n" +
+                "    period: " + toIndentedString(period) + "\n" +
+                "    quota: " + toIndentedString(quota) + "\n" +
+                "    realtimePeriod: " + toIndentedString(realtimePeriod) + "\n" +
+                "    realtimeRuntime: " + toIndentedString(realtimeRuntime) + "\n" +
+                "    shares: " + toIndentedString(shares) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of LinuxCPU to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!LinuxCPU.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'LinuxCPU' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<LinuxCPU> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(LinuxCPU.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<LinuxCPU>() {
+                @Override
+                public void write(JsonWriter out, LinuxCPU value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public LinuxCPU read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

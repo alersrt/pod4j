@@ -13,27 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretCreateLibpod201Response
  */
-class SecretCreateLibpod201ResponseTest {
+public class SecretCreateLibpod201ResponseTest {
     private final SecretCreateLibpod201Response model = new SecretCreateLibpod201Response();
 
     /**
      * Model tests for SecretCreateLibpod201Response
      */
     @Test
-    void testSecretCreateLibpod201Response() {
+    public void testSecretCreateLibpod201Response() {
         // TODO: test SecretCreateLibpod201Response
     }
 
@@ -41,7 +33,7 @@ class SecretCreateLibpod201ResponseTest {
      * Test the property 'ID'
      */
     @Test
-    void IDTest() {
+    public void IDTest() {
         // TODO: test ID
     }
 

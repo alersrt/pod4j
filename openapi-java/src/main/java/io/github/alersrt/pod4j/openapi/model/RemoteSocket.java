@@ -13,177 +13,202 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * RemoteSocket describes information about the API socket
  */
-@JsonPropertyOrder({
-  RemoteSocket.JSON_PROPERTY_EXISTS,
-  RemoteSocket.JSON_PROPERTY_PATH
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class RemoteSocket {
-  public static final String JSON_PROPERTY_EXISTS = "exists";
-  private Boolean exists;
+    public static final String SERIALIZED_NAME_EXISTS = "exists";
+    public static final String SERIALIZED_NAME_PATH = "path";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_PATH = "path";
-  private String path;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("exists");
+        openapiFields.add("path");
 
-  public RemoteSocket() { 
-  }
-
-  public RemoteSocket exists(Boolean exists) {
-    this.exists = exists;
-    return this;
-  }
-
-  /**
-   * Get exists
-   * @return exists
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXISTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getExists() {
-    return exists;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXISTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExists(Boolean exists) {
-    this.exists = exists;
-  }
-
-
-  public RemoteSocket path(String path) {
-    this.path = path;
-    return this;
-  }
-
-  /**
-   * Get path
-   * @return path
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPath() {
-    return path;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-
-  /**
-   * Return true if this RemoteSocket object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    RemoteSocket remoteSocket = (RemoteSocket) o;
-    return Objects.equals(this.exists, remoteSocket.exists) &&
-        Objects.equals(this.path, remoteSocket.path);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(exists, path);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class RemoteSocket {\n");
-    sb.append("    exists: ").append(toIndentedString(exists)).append("\n");
-    sb.append("    path: ").append(toIndentedString(path)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_EXISTS)
+    private Boolean exists;
+    @SerializedName(SERIALIZED_NAME_PATH)
+    private String path;
 
-    // add `exists` to the URL query string
-    if (getExists() != null) {
-      joiner.add(String.format("%sexists%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExists()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public RemoteSocket() {
     }
 
-    // add `path` to the URL query string
-    if (getPath() != null) {
-      joiner.add(String.format("%spath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to RemoteSocket
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!RemoteSocket.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in RemoteSocket is not found in the empty JSON string", RemoteSocket.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!RemoteSocket.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RemoteSocket` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of RemoteSocket given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of RemoteSocket
+     * @throws IOException if the JSON string is invalid with respect to RemoteSocket
+     */
+    public static RemoteSocket fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, RemoteSocket.class);
+    }
+
+    public RemoteSocket exists(Boolean exists) {
+        this.exists = exists;
+        return this;
+    }
+
+    /**
+     * Get exists
+     *
+     * @return exists
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getExists() {
+        return exists;
+    }
+
+    public void setExists(Boolean exists) {
+        this.exists = exists;
+    }
+
+    public RemoteSocket path(String path) {
+        this.path = path;
+        return this;
+    }
+
+    /**
+     * Get path
+     *
+     * @return path
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        RemoteSocket remoteSocket = (RemoteSocket) o;
+        return Objects.equals(this.exists, remoteSocket.exists) &&
+                Objects.equals(this.path, remoteSocket.path);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(exists, path);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class RemoteSocket {\n" +
+                "    exists: " + toIndentedString(exists) + "\n" +
+                "    path: " + toIndentedString(path) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of RemoteSocket to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!RemoteSocket.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'RemoteSocket' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<RemoteSocket> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(RemoteSocket.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<RemoteSocket>() {
+                @Override
+                public void write(JsonWriter out, RemoteSocket value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public RemoteSocket read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

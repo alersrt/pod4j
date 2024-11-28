@@ -2,62 +2,37 @@
 
 All URIs are relative to *http://podman.io*
 
-| Method | HTTP request | Description |
-|------------- | ------------- | -------------|
-| [**containerArchive**](ContainersCompatApi.md#containerArchive) | **GET** /containers/{name}/archive | Get files from a container |
-| [**containerArchiveWithHttpInfo**](ContainersCompatApi.md#containerArchiveWithHttpInfo) | **GET** /containers/{name}/archive | Get files from a container |
-| [**containerArchiveLibpod**](ContainersCompatApi.md#containerArchiveLibpod) | **GET** /libpod/containers/{name}/archive | Copy files from a container |
-| [**containerArchiveLibpodWithHttpInfo**](ContainersCompatApi.md#containerArchiveLibpodWithHttpInfo) | **GET** /libpod/containers/{name}/archive | Copy files from a container |
-| [**containerAttach**](ContainersCompatApi.md#containerAttach) | **POST** /containers/{name}/attach | Attach to a container |
-| [**containerAttachWithHttpInfo**](ContainersCompatApi.md#containerAttachWithHttpInfo) | **POST** /containers/{name}/attach | Attach to a container |
+| Method                                                                      | HTTP request                              | Description                                                                      |
+|-----------------------------------------------------------------------------|-------------------------------------------|----------------------------------------------------------------------------------|
+| [**containerArchive**](ContainersCompatApi.md#containerArchive)             | **GET** /containers/{name}/archive        | Get files from a container                                                       |
+| [**containerArchiveLibpod**](ContainersCompatApi.md#containerArchiveLibpod) | **GET** /libpod/containers/{name}/archive | Copy files from a container                                                      |
+| [**containerAttach**](ContainersCompatApi.md#containerAttach)               | **POST** /containers/{name}/attach        | Attach to a container                                                            |
 | [**containerChangesLibpod**](ContainersCompatApi.md#containerChangesLibpod) | **GET** /libpod/containers/{name}/changes | Report on changes to container&#39;s filesystem; adds, deletes or modifications. |
-| [**containerChangesLibpodWithHttpInfo**](ContainersCompatApi.md#containerChangesLibpodWithHttpInfo) | **GET** /libpod/containers/{name}/changes | Report on changes to container&#39;s filesystem; adds, deletes or modifications. |
-| [**containerCreate**](ContainersCompatApi.md#containerCreate) | **POST** /containers/create | Create a container |
-| [**containerCreateWithHttpInfo**](ContainersCompatApi.md#containerCreateWithHttpInfo) | **POST** /containers/create | Create a container |
-| [**containerDelete**](ContainersCompatApi.md#containerDelete) | **DELETE** /containers/{name} | Remove a container |
-| [**containerDeleteWithHttpInfo**](ContainersCompatApi.md#containerDeleteWithHttpInfo) | **DELETE** /containers/{name} | Remove a container |
-| [**containerExport**](ContainersCompatApi.md#containerExport) | **GET** /containers/{name}/export | Export a container |
-| [**containerExportWithHttpInfo**](ContainersCompatApi.md#containerExportWithHttpInfo) | **GET** /containers/{name}/export | Export a container |
-| [**containerInspect**](ContainersCompatApi.md#containerInspect) | **GET** /containers/{name}/json | Inspect container |
-| [**containerInspectWithHttpInfo**](ContainersCompatApi.md#containerInspectWithHttpInfo) | **GET** /containers/{name}/json | Inspect container |
-| [**containerKill**](ContainersCompatApi.md#containerKill) | **POST** /containers/{name}/kill | Kill container |
-| [**containerKillWithHttpInfo**](ContainersCompatApi.md#containerKillWithHttpInfo) | **POST** /containers/{name}/kill | Kill container |
-| [**containerList**](ContainersCompatApi.md#containerList) | **GET** /containers/json | List containers |
-| [**containerListWithHttpInfo**](ContainersCompatApi.md#containerListWithHttpInfo) | **GET** /containers/json | List containers |
-| [**containerLogs**](ContainersCompatApi.md#containerLogs) | **GET** /containers/{name}/logs | Get container logs |
-| [**containerLogsWithHttpInfo**](ContainersCompatApi.md#containerLogsWithHttpInfo) | **GET** /containers/{name}/logs | Get container logs |
-| [**containerPause**](ContainersCompatApi.md#containerPause) | **POST** /containers/{name}/pause | Pause container |
-| [**containerPauseWithHttpInfo**](ContainersCompatApi.md#containerPauseWithHttpInfo) | **POST** /containers/{name}/pause | Pause container |
-| [**containerPrune**](ContainersCompatApi.md#containerPrune) | **POST** /containers/prune | Delete stopped containers |
-| [**containerPruneWithHttpInfo**](ContainersCompatApi.md#containerPruneWithHttpInfo) | **POST** /containers/prune | Delete stopped containers |
-| [**containerRename**](ContainersCompatApi.md#containerRename) | **POST** /containers/{name}/rename | Rename an existing container |
-| [**containerRenameWithHttpInfo**](ContainersCompatApi.md#containerRenameWithHttpInfo) | **POST** /containers/{name}/rename | Rename an existing container |
-| [**containerResize**](ContainersCompatApi.md#containerResize) | **POST** /containers/{name}/resize | Resize a container&#39;s TTY |
-| [**containerResizeWithHttpInfo**](ContainersCompatApi.md#containerResizeWithHttpInfo) | **POST** /containers/{name}/resize | Resize a container&#39;s TTY |
-| [**containerRestart**](ContainersCompatApi.md#containerRestart) | **POST** /containers/{name}/restart | Restart container |
-| [**containerRestartWithHttpInfo**](ContainersCompatApi.md#containerRestartWithHttpInfo) | **POST** /containers/{name}/restart | Restart container |
-| [**containerStart**](ContainersCompatApi.md#containerStart) | **POST** /containers/{name}/start | Start a container |
-| [**containerStartWithHttpInfo**](ContainersCompatApi.md#containerStartWithHttpInfo) | **POST** /containers/{name}/start | Start a container |
-| [**containerStats**](ContainersCompatApi.md#containerStats) | **GET** /containers/{name}/stats | Get stats for a container |
-| [**containerStatsWithHttpInfo**](ContainersCompatApi.md#containerStatsWithHttpInfo) | **GET** /containers/{name}/stats | Get stats for a container |
-| [**containerStop**](ContainersCompatApi.md#containerStop) | **POST** /containers/{name}/stop | Stop a container |
-| [**containerStopWithHttpInfo**](ContainersCompatApi.md#containerStopWithHttpInfo) | **POST** /containers/{name}/stop | Stop a container |
-| [**containerTop**](ContainersCompatApi.md#containerTop) | **GET** /containers/{name}/top | List processes running inside a container |
-| [**containerTopWithHttpInfo**](ContainersCompatApi.md#containerTopWithHttpInfo) | **GET** /containers/{name}/top | List processes running inside a container |
-| [**containerUnpause**](ContainersCompatApi.md#containerUnpause) | **POST** /containers/{name}/unpause | Unpause container |
-| [**containerUnpauseWithHttpInfo**](ContainersCompatApi.md#containerUnpauseWithHttpInfo) | **POST** /containers/{name}/unpause | Unpause container |
-| [**containerUpdate**](ContainersCompatApi.md#containerUpdate) | **POST** /containers/{name}/update | Update configuration of an existing container |
-| [**containerUpdateWithHttpInfo**](ContainersCompatApi.md#containerUpdateWithHttpInfo) | **POST** /containers/{name}/update | Update configuration of an existing container |
-| [**containerWait**](ContainersCompatApi.md#containerWait) | **POST** /containers/{name}/wait | Wait on a container |
-| [**containerWaitWithHttpInfo**](ContainersCompatApi.md#containerWaitWithHttpInfo) | **POST** /containers/{name}/wait | Wait on a container |
-| [**imageCommit**](ContainersCompatApi.md#imageCommit) | **POST** /commit | New Image |
-| [**imageCommitWithHttpInfo**](ContainersCompatApi.md#imageCommitWithHttpInfo) | **POST** /commit | New Image |
-| [**putContainerArchive**](ContainersCompatApi.md#putContainerArchive) | **PUT** /containers/{name}/archive | Put files into a container |
-| [**putContainerArchiveWithHttpInfo**](ContainersCompatApi.md#putContainerArchiveWithHttpInfo) | **PUT** /containers/{name}/archive | Put files into a container |
+| [**containerCreate**](ContainersCompatApi.md#containerCreate)               | **POST** /containers/create               | Create a container                                                               |
+| [**containerDelete**](ContainersCompatApi.md#containerDelete)               | **DELETE** /containers/{name}             | Remove a container                                                               |
+| [**containerExport**](ContainersCompatApi.md#containerExport)               | **GET** /containers/{name}/export         | Export a container                                                               |
+| [**containerInspect**](ContainersCompatApi.md#containerInspect)             | **GET** /containers/{name}/json           | Inspect container                                                                |
+| [**containerKill**](ContainersCompatApi.md#containerKill)                   | **POST** /containers/{name}/kill          | Kill container                                                                   |
+| [**containerList**](ContainersCompatApi.md#containerList)                   | **GET** /containers/json                  | List containers                                                                  |
+| [**containerLogs**](ContainersCompatApi.md#containerLogs)                   | **GET** /containers/{name}/logs           | Get container logs                                                               |
+| [**containerPause**](ContainersCompatApi.md#containerPause)                 | **POST** /containers/{name}/pause         | Pause container                                                                  |
+| [**containerPrune**](ContainersCompatApi.md#containerPrune)                 | **POST** /containers/prune                | Delete stopped containers                                                        |
+| [**containerRename**](ContainersCompatApi.md#containerRename)               | **POST** /containers/{name}/rename        | Rename an existing container                                                     |
+| [**containerResize**](ContainersCompatApi.md#containerResize)               | **POST** /containers/{name}/resize        | Resize a container&#39;s TTY                                                     |
+| [**containerRestart**](ContainersCompatApi.md#containerRestart)             | **POST** /containers/{name}/restart       | Restart container                                                                |
+| [**containerStart**](ContainersCompatApi.md#containerStart)                 | **POST** /containers/{name}/start         | Start a container                                                                |
+| [**containerStats**](ContainersCompatApi.md#containerStats)                 | **GET** /containers/{name}/stats          | Get stats for a container                                                        |
+| [**containerStop**](ContainersCompatApi.md#containerStop)                   | **POST** /containers/{name}/stop          | Stop a container                                                                 |
+| [**containerTop**](ContainersCompatApi.md#containerTop)                     | **GET** /containers/{name}/top            | List processes running inside a container                                        |
+| [**containerUnpause**](ContainersCompatApi.md#containerUnpause)             | **POST** /containers/{name}/unpause       | Unpause container                                                                |
+| [**containerUpdate**](ContainersCompatApi.md#containerUpdate)               | **POST** /containers/{name}/update        | Update configuration of an existing container                                    |
+| [**containerWait**](ContainersCompatApi.md#containerWait)                   | **POST** /containers/{name}/wait          | Wait on a container                                                              |
+| [**imageCommit**](ContainersCompatApi.md#imageCommit)                       | **POST** /commit                          | New Image                                                                        |
+| [**putContainerArchive**](ContainersCompatApi.md#putContainerArchive)       | **PUT** /containers/{name}/archive        | Put files into a container                                                       |
 
+<a id="containerArchive"></a>
 
-
-## containerArchive
+# **containerArchive**
 
 > File containerArchive(name, path)
 
@@ -76,40 +51,38 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | container name or id
-        String path = "path_example"; // String | Path to a directory in the container to extract
-        try {
-            File result = apiInstance.containerArchive(name, path);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerArchive");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | container name or id
+    String path = "path_example"; // String | Path to a directory in the container to extract
+    try {
+      File result = apiInstance.containerArchive(name, path);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerArchive");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| container name or id | |
-| **path** | **String**| Path to a directory in the container to extract | |
+| Name     | Type       | Description                                     | Notes |
+|----------|------------|-------------------------------------------------|-------|
+| **name** | **String** | container name or id                            |       |
+| **path** | **String** | Path to a directory in the container to extract |       |
 
 ### Return type
 
 [**File**](File.md)
 
-
 ### Authorization
 
 No authorization required
@@ -120,88 +93,17 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerArchiveWithHttpInfo
+| Status code | Description              | Response headers |
+|-------------|--------------------------|------------------|
+| **200**     | no error                 | -                |
+| **400**     | Bad parameter in request | -                |
+| **404**     | No such container        | -                |
+| **500**     | Internal server error    | -                |
 
-> ApiResponse<File> containerArchive containerArchiveWithHttpInfo(name, path)
+<a id="containerArchiveLibpod"></a>
 
-Get files from a container
-
-Get a tar archive of files from a container
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | container name or id
-        String path = "path_example"; // String | Path to a directory in the container to extract
-        try {
-            ApiResponse<File> response = apiInstance.containerArchiveWithHttpInfo(name, path);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerArchive");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| container name or id | |
-| **path** | **String**| Path to a directory in the container to extract | |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerArchiveLibpod
+# **containerArchiveLibpod**
 
 > File containerArchiveLibpod(name, path, rename)
 
@@ -220,42 +122,40 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | container name or id
-        String path = "path_example"; // String | Path to a directory in the container to extract
-        String rename = "rename_example"; // String | JSON encoded map[string]string to translate paths
-        try {
-            File result = apiInstance.containerArchiveLibpod(name, path, rename);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerArchiveLibpod");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | container name or id
+    String path = "path_example"; // String | Path to a directory in the container to extract
+    String rename = "rename_example"; // String | JSON encoded map[string]string to translate paths
+    try {
+      File result = apiInstance.containerArchiveLibpod(name, path, rename);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerArchiveLibpod");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| container name or id | |
-| **path** | **String**| Path to a directory in the container to extract | |
-| **rename** | **String**| JSON encoded map[string]string to translate paths | [optional] |
+| Name       | Type       | Description                                       | Notes      |
+|------------|------------|---------------------------------------------------|------------|
+| **name**   | **String** | container name or id                              |            |
+| **path**   | **String** | Path to a directory in the container to extract   |            |
+| **rename** | **String** | JSON encoded map[string]string to translate paths | [optional] |
 
 ### Return type
 
 [**File**](File.md)
 
-
 ### Authorization
 
 No authorization required
@@ -266,96 +166,25 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerArchiveLibpodWithHttpInfo
+| Status code | Description              | Response headers |
+|-------------|--------------------------|------------------|
+| **200**     | no error                 | -                |
+| **400**     | Bad parameter in request | -                |
+| **404**     | No such container        | -                |
+| **500**     | Internal server error    | -                |
 
-> ApiResponse<File> containerArchiveLibpod containerArchiveLibpodWithHttpInfo(name, path, rename)
+<a id="containerAttach"></a>
 
-Copy files from a container
+# **containerAttach**
 
-Copy a tar archive of files from a container
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | container name or id
-        String path = "path_example"; // String | Path to a directory in the container to extract
-        String rename = "rename_example"; // String | JSON encoded map[string]string to translate paths
-        try {
-            ApiResponse<File> response = apiInstance.containerArchiveLibpodWithHttpInfo(name, path, rename);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerArchiveLibpod");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| container name or id | |
-| **path** | **String**| Path to a directory in the container to extract | |
-| **rename** | **String**| JSON encoded map[string]string to translate paths | [optional] |
-
-### Return type
-
-ApiResponse<[**File**](File.md)>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerAttach
-
-> void containerAttach(name, detachKeys, logs, stream, stdout, stderr, stdin)
+> containerAttach(name, detachKeys, logs, stream, stdout, stderr, stdin)
 
 Attach to a container
 
-Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  It uses the same stream format as docker, see the libpod attach endpoint for a description of the format. 
+Attach to a container to read its output or send it input. You can attach to the same container multiple times and you
+can reattach to containers that have been detached. It uses the same stream format as docker, see the libpod attach
+endpoint for a description of the format.
 
 ### Example
 
@@ -368,46 +197,44 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        String detachKeys = "detachKeys_example"; // String | keys to use for detaching from the container
-        Boolean logs = true; // Boolean | Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set
-        Boolean stream = true; // Boolean | Attach to the container. If unset, and logs is set, only the container's logs will be sent. At least one of stream or logs must be set
-        Boolean stdout = true; // Boolean | Attach to container STDOUT
-        Boolean stderr = true; // Boolean | Attach to container STDERR
-        Boolean stdin = true; // Boolean | Attach to container STDIN
-        try {
-            apiInstance.containerAttach(name, detachKeys, logs, stream, stdout, stderr, stdin);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerAttach");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    String detachKeys = "detachKeys_example"; // String | keys to use for detaching from the container
+    Boolean logs = true; // Boolean | Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set
+    Boolean stream = true; // Boolean | Attach to the container. If unset, and logs is set, only the container's logs will be sent. At least one of stream or logs must be set
+    Boolean stdout = true; // Boolean | Attach to container STDOUT
+    Boolean stderr = true; // Boolean | Attach to container STDERR
+    Boolean stdin = true; // Boolean | Attach to container STDIN
+    try {
+      apiInstance.containerAttach(name, detachKeys, logs, stream, stdout, stderr, stdin);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerAttach");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **detachKeys** | **String**| keys to use for detaching from the container | [optional] |
-| **logs** | **Boolean**| Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set | [optional] |
-| **stream** | **Boolean**| Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set | [optional] [default to true] |
-| **stdout** | **Boolean**| Attach to container STDOUT | [optional] |
-| **stderr** | **Boolean**| Attach to container STDERR | [optional] |
-| **stdin** | **Boolean**| Attach to container STDIN | [optional] |
+| Name           | Type        | Description                                                                                                                                          | Notes                        |
+|----------------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------|
+| **name**       | **String**  | the name or ID of the container                                                                                                                      |                              |
+| **detachKeys** | **String**  | keys to use for detaching from the container                                                                                                         | [optional]                   |
+| **logs**       | **Boolean** | Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set | [optional]                   |
+| **stream**     | **Boolean** | Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set           | [optional] [default to true] |
+| **stdout**     | **Boolean** | Attach to container STDOUT                                                                                                                           | [optional]                   |
+| **stderr**     | **Boolean** | Attach to container STDERR                                                                                                                           | [optional]                   |
+| **stdin**      | **Boolean** | Attach to container STDIN                                                                                                                            | [optional]                   |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -421,103 +248,24 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **101** | No error, connection has been hijacked for transporting streams. |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerAttachWithHttpInfo
+| Status code | Description                                                      | Response headers |
+|-------------|------------------------------------------------------------------|------------------|
+| **101**     | No error, connection has been hijacked for transporting streams. | -                |
+| **400**     | Bad parameter in request                                         | -                |
+| **404**     | No such container                                                | -                |
+| **500**     | Internal server error                                            | -                |
 
-> ApiResponse<Void> containerAttach containerAttachWithHttpInfo(name, detachKeys, logs, stream, stdout, stderr, stdin)
+<a id="containerChangesLibpod"></a>
 
-Attach to a container
+# **containerChangesLibpod**
 
-Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  It uses the same stream format as docker, see the libpod attach endpoint for a description of the format. 
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        String detachKeys = "detachKeys_example"; // String | keys to use for detaching from the container
-        Boolean logs = true; // Boolean | Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set
-        Boolean stream = true; // Boolean | Attach to the container. If unset, and logs is set, only the container's logs will be sent. At least one of stream or logs must be set
-        Boolean stdout = true; // Boolean | Attach to container STDOUT
-        Boolean stderr = true; // Boolean | Attach to container STDERR
-        Boolean stdin = true; // Boolean | Attach to container STDIN
-        try {
-            ApiResponse<Void> response = apiInstance.containerAttachWithHttpInfo(name, detachKeys, logs, stream, stdout, stderr, stdin);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerAttach");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **detachKeys** | **String**| keys to use for detaching from the container | [optional] |
-| **logs** | **Boolean**| Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set | [optional] |
-| **stream** | **Boolean**| Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set | [optional] [default to true] |
-| **stdout** | **Boolean**| Attach to container STDOUT | [optional] |
-| **stderr** | **Boolean**| Attach to container STDERR | [optional] |
-| **stdin** | **Boolean**| Attach to container STDIN | [optional] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **101** | No error, connection has been hijacked for transporting streams. |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerChangesLibpod
-
-> void containerChangesLibpod(name, parent, diffType)
+> containerChangesLibpod(name, parent, diffType)
 
 Report on changes to container&#39;s filesystem; adds, deletes or modifications.
 
-Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
+Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can
+be one of:  0: Modified 1: Added 2: Deleted
 
 ### Example
 
@@ -530,38 +278,36 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or id of the container
-        String parent = "parent_example"; // String | specify a second layer which is used to compare against it instead of the parent layer
-        String diffType = "all"; // String | select what you want to match, default is all
-        try {
-            apiInstance.containerChangesLibpod(name, parent, diffType);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerChangesLibpod");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or id of the container
+    String parent = "parent_example"; // String | specify a second layer which is used to compare against it instead of the parent layer
+    String diffType = "all"; // String | select what you want to match, default is all
+    try {
+      apiInstance.containerChangesLibpod(name, parent, diffType);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerChangesLibpod");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or id of the container | |
-| **parent** | **String**| specify a second layer which is used to compare against it instead of the parent layer | [optional] |
-| **diffType** | **String**| select what you want to match, default is all | [optional] [enum: all, container, image] |
+| Name         | Type       | Description                                                                            | Notes                                    |
+|--------------|------------|----------------------------------------------------------------------------------------|------------------------------------------|
+| **name**     | **String** | the name or id of the container                                                        |                                          |
+| **parent**   | **String** | specify a second layer which is used to compare against it instead of the parent layer | [optional]                               |
+| **diffType** | **String** | select what you want to match, default is all                                          | [optional] [enum: all, container, image] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -575,87 +321,16 @@ No authorization required
 - **Accept**: application/json, application/octet-stream, text/plain
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Array of Changes |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerChangesLibpodWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **200**     | Array of Changes      | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<Void> containerChangesLibpod containerChangesLibpodWithHttpInfo(name, parent, diffType)
+<a id="containerCreate"></a>
 
-Report on changes to container&#39;s filesystem; adds, deletes or modifications.
-
-Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or id of the container
-        String parent = "parent_example"; // String | specify a second layer which is used to compare against it instead of the parent layer
-        String diffType = "all"; // String | select what you want to match, default is all
-        try {
-            ApiResponse<Void> response = apiInstance.containerChangesLibpodWithHttpInfo(name, parent, diffType);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerChangesLibpod");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or id of the container | |
-| **parent** | **String**| specify a second layer which is used to compare against it instead of the parent layer | [optional] |
-| **diffType** | **String**| select what you want to match, default is all | [optional] [enum: all, container, image] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json, application/octet-stream, text/plain
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Array of Changes |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerCreate
+# **containerCreate**
 
 > ContainerCreateResponse containerCreate(body, name)
 
@@ -672,40 +347,38 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        CreateContainerConfig body = new CreateContainerConfig(); // CreateContainerConfig | Container to create
-        String name = "name_example"; // String | container name
-        try {
-            ContainerCreateResponse result = apiInstance.containerCreate(body, name);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerCreate");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    CreateContainerConfig body = new CreateContainerConfig(); // CreateContainerConfig | Container to create
+    String name = "name_example"; // String | container name
+    try {
+      ContainerCreateResponse result = apiInstance.containerCreate(body, name);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerCreate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | [**CreateContainerConfig**](CreateContainerConfig.md)| Container to create | |
-| **name** | **String**| container name | [optional] |
+| Name     | Type                                                  | Description         | Notes      |
+|----------|-------------------------------------------------------|---------------------|------------|
+| **body** | [**CreateContainerConfig**](CreateContainerConfig.md) | Container to create |            |
+| **name** | **String**                                            | container name      | [optional] |
 
 ### Return type
 
 [**ContainerCreateResponse**](ContainerCreateResponse.md)
 
-
 ### Authorization
 
 No authorization required
@@ -716,90 +389,20 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | Create container |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **409** | Conflict error in operation |  -  |
-| **500** | Internal server error |  -  |
 
-## containerCreateWithHttpInfo
+| Status code | Description                 | Response headers |
+|-------------|-----------------------------|------------------|
+| **201**     | Create container            | -                |
+| **400**     | Bad parameter in request    | -                |
+| **404**     | No such container           | -                |
+| **409**     | Conflict error in operation | -                |
+| **500**     | Internal server error       | -                |
 
-> ApiResponse<ContainerCreateResponse> containerCreate containerCreateWithHttpInfo(body, name)
+<a id="containerDelete"></a>
 
-Create a container
+# **containerDelete**
 
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        CreateContainerConfig body = new CreateContainerConfig(); // CreateContainerConfig | Container to create
-        String name = "name_example"; // String | container name
-        try {
-            ApiResponse<ContainerCreateResponse> response = apiInstance.containerCreateWithHttpInfo(body, name);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerCreate");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **body** | [**CreateContainerConfig**](CreateContainerConfig.md)| Container to create | |
-| **name** | **String**| container name | [optional] |
-
-### Return type
-
-ApiResponse<[**ContainerCreateResponse**](ContainerCreateResponse.md)>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-tar
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | Create container |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **409** | Conflict error in operation |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerDelete
-
-> void containerDelete(name, force, v, link)
+> containerDelete(name, force, v, link)
 
 Remove a container
 
@@ -814,40 +417,38 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Boolean force = false; // Boolean | If the container is running, kill it before removing it.
-        Boolean v = false; // Boolean | Remove the volumes associated with the container.
-        Boolean link = true; // Boolean | not supported
-        try {
-            apiInstance.containerDelete(name, force, v, link);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerDelete");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    Boolean force = false; // Boolean | If the container is running, kill it before removing it.
+    Boolean v = false; // Boolean | Remove the volumes associated with the container.
+    Boolean link = true; // Boolean | not supported
+    try {
+      apiInstance.containerDelete(name, force, v, link);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerDelete");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **force** | **Boolean**| If the container is running, kill it before removing it. | [optional] [default to false] |
-| **v** | **Boolean**| Remove the volumes associated with the container. | [optional] [default to false] |
-| **link** | **Boolean**| not supported | [optional] |
+| Name      | Type        | Description                                              | Notes                         |
+|-----------|-------------|----------------------------------------------------------|-------------------------------|
+| **name**  | **String**  | the name or ID of the container                          |                               |
+| **force** | **Boolean** | If the container is running, kill it before removing it. | [optional] [default to false] |
+| **v**     | **Boolean** | Remove the volumes associated with the container.        | [optional] [default to false] |
+| **link**  | **Boolean** | not supported                                            | [optional]                    |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -861,93 +462,20 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **409** | Conflict error in operation |  -  |
-| **500** | Internal server error |  -  |
 
-## containerDeleteWithHttpInfo
+| Status code | Description                 | Response headers |
+|-------------|-----------------------------|------------------|
+| **204**     | no error                    | -                |
+| **400**     | Bad parameter in request    | -                |
+| **404**     | No such container           | -                |
+| **409**     | Conflict error in operation | -                |
+| **500**     | Internal server error       | -                |
 
-> ApiResponse<Void> containerDelete containerDeleteWithHttpInfo(name, force, v, link)
+<a id="containerExport"></a>
 
-Remove a container
+# **containerExport**
 
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Boolean force = false; // Boolean | If the container is running, kill it before removing it.
-        Boolean v = false; // Boolean | Remove the volumes associated with the container.
-        Boolean link = true; // Boolean | not supported
-        try {
-            ApiResponse<Void> response = apiInstance.containerDeleteWithHttpInfo(name, force, v, link);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerDelete");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **force** | **Boolean**| If the container is running, kill it before removing it. | [optional] [default to false] |
-| **v** | **Boolean**| Remove the volumes associated with the container. | [optional] [default to false] |
-| **link** | **Boolean**| not supported | [optional] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **400** | Bad parameter in request |  -  |
-| **404** | No such container |  -  |
-| **409** | Conflict error in operation |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerExport
-
-> void containerExport(name)
+> containerExport(name)
 
 Export a container
 
@@ -964,34 +492,32 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        try {
-            apiInstance.containerExport(name);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerExport");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    try {
+      apiInstance.containerExport(name);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerExport");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
+| Name     | Type       | Description                     | Notes |
+|----------|------------|---------------------------------|-------|
+| **name** | **String** | the name or ID of the container |       |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -1005,83 +531,16 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | tarball is returned in body |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerExportWithHttpInfo
+| Status code | Description                 | Response headers |
+|-------------|-----------------------------|------------------|
+| **200**     | tarball is returned in body | -                |
+| **404**     | No such container           | -                |
+| **500**     | Internal server error       | -                |
 
-> ApiResponse<Void> containerExport containerExportWithHttpInfo(name)
+<a id="containerInspect"></a>
 
-Export a container
-
-Export the contents of a container as a tarball.
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        try {
-            ApiResponse<Void> response = apiInstance.containerExportWithHttpInfo(name);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerExport");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | tarball is returned in body |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerInspect
+# **containerInspect**
 
 > ContainerJSON containerInspect(name, size)
 
@@ -1100,40 +559,38 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or id of the container
-        Boolean size = false; // Boolean | include the size of the container
-        try {
-            ContainerJSON result = apiInstance.containerInspect(name, size);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerInspect");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or id of the container
+    Boolean size = false; // Boolean | include the size of the container
+    try {
+      ContainerJSON result = apiInstance.containerInspect(name, size);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerInspect");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or id of the container | |
-| **size** | **Boolean**| include the size of the container | [optional] [default to false] |
+| Name     | Type        | Description                       | Notes                         |
+|----------|-------------|-----------------------------------|-------------------------------|
+| **name** | **String**  | the name or id of the container   |                               |
+| **size** | **Boolean** | include the size of the container | [optional] [default to false] |
 
 ### Return type
 
 [**ContainerJSON**](ContainerJSON.md)
 
-
 ### Authorization
 
 No authorization required
@@ -1144,88 +601,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Inspect container |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerInspectWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **200**     | Inspect container     | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<ContainerJSON> containerInspect containerInspectWithHttpInfo(name, size)
+<a id="containerKill"></a>
 
-Inspect container
+# **containerKill**
 
-Return low-level information about a container.
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or id of the container
-        Boolean size = false; // Boolean | include the size of the container
-        try {
-            ApiResponse<ContainerJSON> response = apiInstance.containerInspectWithHttpInfo(name, size);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerInspect");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or id of the container | |
-| **size** | **Boolean**| include the size of the container | [optional] [default to false] |
-
-### Return type
-
-ApiResponse<[**ContainerJSON**](ContainerJSON.md)>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Inspect container |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerKill
-
-> void containerKill(name, all, signal)
+> containerKill(name, all, signal)
 
 Kill container
 
@@ -1242,38 +629,36 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Boolean all = false; // Boolean | Send kill signal to all containers
-        String signal = "SIGKILL"; // String | signal to be sent to container
-        try {
-            apiInstance.containerKill(name, all, signal);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerKill");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    Boolean all = false; // Boolean | Send kill signal to all containers
+    String signal = "SIGKILL"; // String | signal to be sent to container
+    try {
+      apiInstance.containerKill(name, all, signal);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerKill");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **all** | **Boolean**| Send kill signal to all containers | [optional] [default to false] |
-| **signal** | **String**| signal to be sent to container | [optional] [default to SIGKILL] |
+| Name       | Type        | Description                        | Notes                           |
+|------------|-------------|------------------------------------|---------------------------------|
+| **name**   | **String**  | the name or ID of the container    |                                 |
+| **all**    | **Boolean** | Send kill signal to all containers | [optional] [default to false]   |
+| **signal** | **String**  | signal to be sent to container     | [optional] [default to SIGKILL] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -1287,91 +672,19 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **409** | Conflict error in operation |  -  |
-| **500** | Internal server error |  -  |
 
-## containerKillWithHttpInfo
+| Status code | Description                 | Response headers |
+|-------------|-----------------------------|------------------|
+| **204**     | no error                    | -                |
+| **404**     | No such container           | -                |
+| **409**     | Conflict error in operation | -                |
+| **500**     | Internal server error       | -                |
 
-> ApiResponse<Void> containerKill containerKillWithHttpInfo(name, all, signal)
+<a id="containerList"></a>
 
-Kill container
+# **containerList**
 
-Signal to send to the container as an integer or string (e.g. SIGINT)
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Boolean all = false; // Boolean | Send kill signal to all containers
-        String signal = "SIGKILL"; // String | signal to be sent to container
-        try {
-            ApiResponse<Void> response = apiInstance.containerKillWithHttpInfo(name, all, signal);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerKill");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **all** | **Boolean**| Send kill signal to all containers | [optional] [default to false] |
-| **signal** | **String**| signal to be sent to container | [optional] [default to SIGKILL] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **409** | Conflict error in operation |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerList
-
-> List<Container> containerList(all, external, limit, size, filters)
+> List&lt;Container&gt; containerList(all, external, limit, size, filters)
 
 List containers
 
@@ -1388,46 +701,44 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        Boolean all = false; // Boolean | Return all containers. By default, only running containers are shown
-        Boolean external = false; // Boolean | Return containers in storage not controlled by Podman
-        Integer limit = 56; // Integer | Return this number of most recently created containers, including non-running ones.
-        Boolean size = false; // Boolean | Return the size of container as fields SizeRw and SizeRootFs.
-        String filters = "filters_example"; // String | A JSON encoded value of the filters (a `map[string][]string`) to process on the containers list. Available filters: - `ancestor`=(`<image-name>[:<tag>]`, `<image id>`, or `<image@digest>`) - `before`=(`<container id>` or `<container name>`) - `expose`=(`<port>[/<proto>]` or `<startport-endport>/[<proto>]`) - `exited=<int>` containers with exit code of `<int>` - `health`=(`starting`, `healthy`, `unhealthy` or `none`) - `id=<ID>` a container's ID - `is-task`=(`true` or `false`) - `label`=(`key` or `\"key=value\"`) of a container label - `name=<name>` a container's name - `network`=(`<network id>` or `<network name>`) - `publish`=(`<port>[/<proto>]` or `<startport-endport>/[<proto>]`) - `since`=(`<container id>` or `<container name>`) - `status`=(`created`, `restarting`, `running`, `removing`, `paused`, `exited` or `dead`) - `volume`=(`<volume name>` or `<mount point destination>`) 
-        try {
-            List<Container> result = apiInstance.containerList(all, external, limit, size, filters);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerList");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    Boolean all = false; // Boolean | Return all containers. By default, only running containers are shown
+    Boolean external = false; // Boolean | Return containers in storage not controlled by Podman
+    Integer limit = 56; // Integer | Return this number of most recently created containers, including non-running ones.
+    Boolean size = false; // Boolean | Return the size of container as fields SizeRw and SizeRootFs.
+    String filters = "filters_example"; // String | A JSON encoded value of the filters (a `map[string][]string`) to process on the containers list. Available filters: - `ancestor`=(`<image-name>[:<tag>]`, `<image id>`, or `<image@digest>`) - `before`=(`<container id>` or `<container name>`) - `expose`=(`<port>[/<proto>]` or `<startport-endport>/[<proto>]`) - `exited=<int>` containers with exit code of `<int>` - `health`=(`starting`, `healthy`, `unhealthy` or `none`) - `id=<ID>` a container's ID - `is-task`=(`true` or `false`) - `label`=(`key` or `\"key=value\"`) of a container label - `name=<name>` a container's name - `network`=(`<network id>` or `<network name>`) - `publish`=(`<port>[/<proto>]` or `<startport-endport>/[<proto>]`) - `since`=(`<container id>` or `<container name>`) - `status`=(`created`, `restarting`, `running`, `removing`, `paused`, `exited` or `dead`) - `volume`=(`<volume name>` or `<mount point destination>`) 
+    try {
+      List<Container> result = apiInstance.containerList(all, external, limit, size, filters);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerList");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **all** | **Boolean**| Return all containers. By default, only running containers are shown | [optional] [default to false] |
-| **external** | **Boolean**| Return containers in storage not controlled by Podman | [optional] [default to false] |
-| **limit** | **Integer**| Return this number of most recently created containers, including non-running ones. | [optional] |
-| **size** | **Boolean**| Return the size of container as fields SizeRw and SizeRootFs. | [optional] [default to false] |
-| **filters** | **String**| A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  | [optional] |
+| Name         | Type        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Notes                         |
+|--------------|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| **all**      | **Boolean** | Return all containers. By default, only running containers are shown                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | [optional] [default to false] |
+| **external** | **Boolean** | Return containers in storage not controlled by Podman                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | [optional] [default to false] |
+| **limit**    | **Integer** | Return this number of most recently created containers, including non-running ones.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | [optional]                    |
+| **size**     | **Boolean** | Return the size of container as fields SizeRw and SizeRootFs.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | [optional] [default to false] |
+| **filters**  | **String**  | A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;) | [optional]                    |
 
 ### Return type
 
 [**List&lt;Container&gt;**](Container.md)
 
-
 ### Authorization
 
 No authorization required
@@ -1438,94 +749,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | List Containers |  -  |
-| **400** | Bad parameter in request |  -  |
-| **500** | Internal server error |  -  |
 
-## containerListWithHttpInfo
+| Status code | Description              | Response headers |
+|-------------|--------------------------|------------------|
+| **200**     | List Containers          | -                |
+| **400**     | Bad parameter in request | -                |
+| **500**     | Internal server error    | -                |
 
-> ApiResponse<List<Container>> containerList containerListWithHttpInfo(all, external, limit, size, filters)
+<a id="containerLogs"></a>
 
-List containers
+# **containerLogs**
 
-Returns a list of containers
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        Boolean all = false; // Boolean | Return all containers. By default, only running containers are shown
-        Boolean external = false; // Boolean | Return containers in storage not controlled by Podman
-        Integer limit = 56; // Integer | Return this number of most recently created containers, including non-running ones.
-        Boolean size = false; // Boolean | Return the size of container as fields SizeRw and SizeRootFs.
-        String filters = "filters_example"; // String | A JSON encoded value of the filters (a `map[string][]string`) to process on the containers list. Available filters: - `ancestor`=(`<image-name>[:<tag>]`, `<image id>`, or `<image@digest>`) - `before`=(`<container id>` or `<container name>`) - `expose`=(`<port>[/<proto>]` or `<startport-endport>/[<proto>]`) - `exited=<int>` containers with exit code of `<int>` - `health`=(`starting`, `healthy`, `unhealthy` or `none`) - `id=<ID>` a container's ID - `is-task`=(`true` or `false`) - `label`=(`key` or `\"key=value\"`) of a container label - `name=<name>` a container's name - `network`=(`<network id>` or `<network name>`) - `publish`=(`<port>[/<proto>]` or `<startport-endport>/[<proto>]`) - `since`=(`<container id>` or `<container name>`) - `status`=(`created`, `restarting`, `running`, `removing`, `paused`, `exited` or `dead`) - `volume`=(`<volume name>` or `<mount point destination>`) 
-        try {
-            ApiResponse<List<Container>> response = apiInstance.containerListWithHttpInfo(all, external, limit, size, filters);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerList");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **all** | **Boolean**| Return all containers. By default, only running containers are shown | [optional] [default to false] |
-| **external** | **Boolean**| Return containers in storage not controlled by Podman | [optional] [default to false] |
-| **limit** | **Integer**| Return this number of most recently created containers, including non-running ones. | [optional] |
-| **size** | **Boolean**| Return the size of container as fields SizeRw and SizeRootFs. | [optional] [default to false] |
-| **filters** | **String**| A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  | [optional] |
-
-### Return type
-
-ApiResponse<[**List&lt;Container&gt;**](Container.md)>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | List Containers |  -  |
-| **400** | Bad parameter in request |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerLogs
-
-> void containerLogs(name, follow, stdout, stderr, since, until, timestamps, tail)
+> containerLogs(name, follow, stdout, stderr, since, until, timestamps, tail)
 
 Get container logs
 
@@ -1542,48 +777,46 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Boolean follow = true; // Boolean | Keep connection after returning logs.
-        Boolean stdout = true; // Boolean | Return logs from stdout
-        Boolean stderr = true; // Boolean | Return logs from stderr
-        String since = "since_example"; // String | Only return logs since this time, as a UNIX timestamp
-        String until = "until_example"; // String | Only return logs before this time, as a UNIX timestamp
-        Boolean timestamps = false; // Boolean | Add timestamps to every log line
-        String tail = "all"; // String | Only return this number of log lines from the end of the logs
-        try {
-            apiInstance.containerLogs(name, follow, stdout, stderr, since, until, timestamps, tail);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerLogs");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    Boolean follow = true; // Boolean | Keep connection after returning logs.
+    Boolean stdout = true; // Boolean | Return logs from stdout
+    Boolean stderr = true; // Boolean | Return logs from stderr
+    String since = "since_example"; // String | Only return logs since this time, as a UNIX timestamp
+    String until = "until_example"; // String | Only return logs before this time, as a UNIX timestamp
+    Boolean timestamps = false; // Boolean | Add timestamps to every log line
+    String tail = "all"; // String | Only return this number of log lines from the end of the logs
+    try {
+      apiInstance.containerLogs(name, follow, stdout, stderr, since, until, timestamps, tail);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerLogs");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **follow** | **Boolean**| Keep connection after returning logs. | [optional] |
-| **stdout** | **Boolean**| Return logs from stdout | [optional] |
-| **stderr** | **Boolean**| Return logs from stderr | [optional] |
-| **since** | **String**| Only return logs since this time, as a UNIX timestamp | [optional] |
-| **until** | **String**| Only return logs before this time, as a UNIX timestamp | [optional] |
-| **timestamps** | **Boolean**| Add timestamps to every log line | [optional] [default to false] |
-| **tail** | **String**| Only return this number of log lines from the end of the logs | [optional] [default to all] |
+| Name           | Type        | Description                                                   | Notes                         |
+|----------------|-------------|---------------------------------------------------------------|-------------------------------|
+| **name**       | **String**  | the name or ID of the container                               |                               |
+| **follow**     | **Boolean** | Keep connection after returning logs.                         | [optional]                    |
+| **stdout**     | **Boolean** | Return logs from stdout                                       | [optional]                    |
+| **stderr**     | **Boolean** | Return logs from stderr                                       | [optional]                    |
+| **since**      | **String**  | Only return logs since this time, as a UNIX timestamp         | [optional]                    |
+| **until**      | **String**  | Only return logs before this time, as a UNIX timestamp        | [optional]                    |
+| **timestamps** | **Boolean** | Add timestamps to every log line                              | [optional] [default to false] |
+| **tail**       | **String**  | Only return this number of log lines from the end of the logs | [optional] [default to all]   |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -1597,99 +830,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | logs returned as a stream in response body. |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerLogsWithHttpInfo
+| Status code | Description                                 | Response headers |
+|-------------|---------------------------------------------|------------------|
+| **200**     | logs returned as a stream in response body. | -                |
+| **404**     | No such container                           | -                |
+| **500**     | Internal server error                       | -                |
 
-> ApiResponse<Void> containerLogs containerLogsWithHttpInfo(name, follow, stdout, stderr, since, until, timestamps, tail)
+<a id="containerPause"></a>
 
-Get container logs
+# **containerPause**
 
-Get stdout and stderr logs from a container.
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Boolean follow = true; // Boolean | Keep connection after returning logs.
-        Boolean stdout = true; // Boolean | Return logs from stdout
-        Boolean stderr = true; // Boolean | Return logs from stderr
-        String since = "since_example"; // String | Only return logs since this time, as a UNIX timestamp
-        String until = "until_example"; // String | Only return logs before this time, as a UNIX timestamp
-        Boolean timestamps = false; // Boolean | Add timestamps to every log line
-        String tail = "all"; // String | Only return this number of log lines from the end of the logs
-        try {
-            ApiResponse<Void> response = apiInstance.containerLogsWithHttpInfo(name, follow, stdout, stderr, since, until, timestamps, tail);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerLogs");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **follow** | **Boolean**| Keep connection after returning logs. | [optional] |
-| **stdout** | **Boolean**| Return logs from stdout | [optional] |
-| **stderr** | **Boolean**| Return logs from stderr | [optional] |
-| **since** | **String**| Only return logs since this time, as a UNIX timestamp | [optional] |
-| **until** | **String**| Only return logs before this time, as a UNIX timestamp | [optional] |
-| **timestamps** | **Boolean**| Add timestamps to every log line | [optional] [default to false] |
-| **tail** | **String**| Only return this number of log lines from the end of the logs | [optional] [default to all] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | logs returned as a stream in response body. |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerPause
-
-> void containerPause(name)
+> containerPause(name)
 
 Pause container
 
@@ -1706,34 +858,32 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        try {
-            apiInstance.containerPause(name);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerPause");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    try {
+      apiInstance.containerPause(name);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerPause");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
+| Name     | Type       | Description                     | Notes |
+|----------|------------|---------------------------------|-------|
+| **name** | **String** | the name or ID of the container |       |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -1747,85 +897,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerPauseWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **204**     | no error              | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<Void> containerPause containerPauseWithHttpInfo(name)
+<a id="containerPrune"></a>
 
-Pause container
+# **containerPrune**
 
-Use the cgroups freezer to suspend all processes in a container.
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        try {
-            ApiResponse<Void> response = apiInstance.containerPauseWithHttpInfo(name);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerPause");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerPrune
-
-> List<ContainersPruneReport> containerPrune(filters)
+> List&lt;ContainersPruneReport&gt; containerPrune(filters)
 
 Delete stopped containers
 
@@ -1842,38 +925,36 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String filters = "filters_example"; // String | Filters to process on the prune list, encoded as JSON (a `map[string][]string`).  Available filters:  - `until=<timestamp>` Prune containers created before this timestamp. The `<timestamp>` can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. `10m`, `1h30m`) computed relative to the daemon machine’s time.  - `label` (`label=<key>`, `label=<key>=<value>`, `label!=<key>`, or `label!=<key>=<value>`) Prune containers with (or without, in case `label!=...` is used) the specified labels. 
-        try {
-            List<ContainersPruneReport> result = apiInstance.containerPrune(filters);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerPrune");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String filters = "filters_example"; // String | Filters to process on the prune list, encoded as JSON (a `map[string][]string`).  Available filters:  - `until=<timestamp>` Prune containers created before this timestamp. The `<timestamp>` can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. `10m`, `1h30m`) computed relative to the daemon machine’s time.  - `label` (`label=<key>`, `label=<key>=<value>`, `label!=<key>`, or `label!=<key>=<value>`) Prune containers with (or without, in case `label!=...` is used) the specified labels. 
+    try {
+      List<ContainersPruneReport> result = apiInstance.containerPrune(filters);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerPrune");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **filters** | **String**| Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  | [optional] |
+| Name        | Type       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | Notes      |
+|-------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| **filters** | **String** | Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. | [optional] |
 
 ### Return type
 
 [**List&lt;ContainersPruneReport&gt;**](ContainersPruneReport.md)
 
-
 ### Authorization
 
 No authorization required
@@ -1884,84 +965,17 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Prune Containers |  -  |
-| **500** | Internal server error |  -  |
 
-## containerPruneWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **200**     | Prune Containers      | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<List<ContainersPruneReport>> containerPrune containerPruneWithHttpInfo(filters)
+<a id="containerRename"></a>
 
-Delete stopped containers
+# **containerRename**
 
-Remove containers not in use
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String filters = "filters_example"; // String | Filters to process on the prune list, encoded as JSON (a `map[string][]string`).  Available filters:  - `until=<timestamp>` Prune containers created before this timestamp. The `<timestamp>` can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. `10m`, `1h30m`) computed relative to the daemon machine’s time.  - `label` (`label=<key>`, `label=<key>=<value>`, `label!=<key>`, or `label!=<key>=<value>`) Prune containers with (or without, in case `label!=...` is used) the specified labels. 
-        try {
-            ApiResponse<List<ContainersPruneReport>> response = apiInstance.containerPruneWithHttpInfo(filters);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerPrune");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **filters** | **String**| Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  | [optional] |
-
-### Return type
-
-ApiResponse<[**List&lt;ContainersPruneReport&gt;**](ContainersPruneReport.md)>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Prune Containers |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerRename
-
-> void containerRename(name, name2)
+> containerRename(name, name2)
 
 Rename an existing container
 
@@ -1978,36 +992,34 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | Full or partial ID or full name of the container to rename
-        String name2 = "name_example"; // String | New name for the container
-        try {
-            apiInstance.containerRename(name, name2);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerRename");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | Full or partial ID or full name of the container to rename
+    String name2 = "name_example"; // String | New name for the container
+    try {
+      apiInstance.containerRename(name, name2);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerRename");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| Full or partial ID or full name of the container to rename | |
-| **name2** | **String**| New name for the container | |
+| Name      | Type       | Description                                                | Notes |
+|-----------|------------|------------------------------------------------------------|-------|
+| **name**  | **String** | Full or partial ID or full name of the container to rename |       |
+| **name2** | **String** | New name for the container                                 |       |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -2021,87 +1033,17 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **409** | Conflict error in operation |  -  |
-| **500** | Internal server error |  -  |
 
-## containerRenameWithHttpInfo
+| Status code | Description                 | Response headers |
+|-------------|-----------------------------|------------------|
+| **204**     | no error                    | -                |
+| **404**     | No such container           | -                |
+| **409**     | Conflict error in operation | -                |
+| **500**     | Internal server error       | -                |
 
-> ApiResponse<Void> containerRename containerRenameWithHttpInfo(name, name2)
+<a id="containerResize"></a>
 
-Rename an existing container
-
-Change the name of an existing container.
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | Full or partial ID or full name of the container to rename
-        String name2 = "name_example"; // String | New name for the container
-        try {
-            ApiResponse<Void> response = apiInstance.containerRenameWithHttpInfo(name, name2);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerRename");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| Full or partial ID or full name of the container to rename | |
-| **name2** | **String**| New name for the container | |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **409** | Conflict error in operation |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerResize
+# **containerResize**
 
 > Object containerResize(name, h, w, running)
 
@@ -2120,44 +1062,42 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Integer h = 56; // Integer | Height to set for the terminal, in characters
-        Integer w = 56; // Integer | Width to set for the terminal, in characters
-        Boolean running = true; // Boolean | Ignore containers not running errors
-        try {
-            Object result = apiInstance.containerResize(name, h, w, running);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerResize");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    Integer h = 56; // Integer | Height to set for the terminal, in characters
+    Integer w = 56; // Integer | Width to set for the terminal, in characters
+    Boolean running = true; // Boolean | Ignore containers not running errors
+    try {
+      Object result = apiInstance.containerResize(name, h, w, running);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerResize");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **h** | **Integer**| Height to set for the terminal, in characters | [optional] |
-| **w** | **Integer**| Width to set for the terminal, in characters | [optional] |
-| **running** | **Boolean**| Ignore containers not running errors | [optional] |
+| Name        | Type        | Description                                   | Notes      |
+|-------------|-------------|-----------------------------------------------|------------|
+| **name**    | **String**  | the name or ID of the container               |            |
+| **h**       | **Integer** | Height to set for the terminal, in characters | [optional] |
+| **w**       | **Integer** | Width to set for the terminal, in characters  | [optional] |
+| **running** | **Boolean** | Ignore containers not running errors          | [optional] |
 
 ### Return type
 
 **Object**
 
-
 ### Authorization
 
 No authorization required
@@ -2168,92 +1108,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerResizeWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **200**     | Success               | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<Object> containerResize containerResizeWithHttpInfo(name, h, w, running)
+<a id="containerRestart"></a>
 
-Resize a container&#39;s TTY
+# **containerRestart**
 
-Resize the terminal attached to a container (for use with Attach).
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Integer h = 56; // Integer | Height to set for the terminal, in characters
-        Integer w = 56; // Integer | Width to set for the terminal, in characters
-        Boolean running = true; // Boolean | Ignore containers not running errors
-        try {
-            ApiResponse<Object> response = apiInstance.containerResizeWithHttpInfo(name, h, w, running);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerResize");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **h** | **Integer**| Height to set for the terminal, in characters | [optional] |
-| **w** | **Integer**| Width to set for the terminal, in characters | [optional] |
-| **running** | **Boolean**| Ignore containers not running errors | [optional] |
-
-### Return type
-
-ApiResponse<**Object**>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Success |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerRestart
-
-> void containerRestart(name, t)
+> containerRestart(name, t)
 
 Restart container
 
@@ -2268,36 +1134,34 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Integer t = 56; // Integer | timeout before sending kill signal to container
-        try {
-            apiInstance.containerRestart(name, t);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerRestart");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    Integer t = 56; // Integer | timeout before sending kill signal to container
+    try {
+      apiInstance.containerRestart(name, t);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerRestart");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **t** | **Integer**| timeout before sending kill signal to container | [optional] |
+| Name     | Type        | Description                                     | Notes      |
+|----------|-------------|-------------------------------------------------|------------|
+| **name** | **String**  | the name or ID of the container                 |            |
+| **t**    | **Integer** | timeout before sending kill signal to container | [optional] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -2311,85 +1175,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerRestartWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **204**     | no error              | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<Void> containerRestart containerRestartWithHttpInfo(name, t)
+<a id="containerStart"></a>
 
-Restart container
+# **containerStart**
 
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Integer t = 56; // Integer | timeout before sending kill signal to container
-        try {
-            ApiResponse<Void> response = apiInstance.containerRestartWithHttpInfo(name, t);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerRestart");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **t** | **Integer**| timeout before sending kill signal to container | [optional] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerStart
-
-> void containerStart(name, detachKeys)
+> containerStart(name, detachKeys)
 
 Start a container
 
@@ -2404,36 +1201,34 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        String detachKeys = "ctrl-p,ctrl-q"; // String | Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-<value> where <value> is one of: a-z, @, ^, [, , or _.
-        try {
-            apiInstance.containerStart(name, detachKeys);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerStart");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    String detachKeys = "ctrl-p,ctrl-q"; // String | Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-<value> where <value> is one of: a-z, @, ^, [, , or _.
+    try {
+      apiInstance.containerStart(name, detachKeys);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerStart");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **detachKeys** | **String**| Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. | [optional] [default to ctrl-p,ctrl-q] |
+| Name           | Type       | Description                                                                                                                                                        | Notes                                 |
+|----------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------|
+| **name**       | **String** | the name or ID of the container                                                                                                                                    |                                       |
+| **detachKeys** | **String** | Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. | [optional] [default to ctrl-p,ctrl-q] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -2447,85 +1242,17 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **304** | Container already started |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerStartWithHttpInfo
+| Status code | Description               | Response headers |
+|-------------|---------------------------|------------------|
+| **204**     | no error                  | -                |
+| **304**     | Container already started | -                |
+| **404**     | No such container         | -                |
+| **500**     | Internal server error     | -                |
 
-> ApiResponse<Void> containerStart containerStartWithHttpInfo(name, detachKeys)
+<a id="containerStats"></a>
 
-Start a container
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        String detachKeys = "ctrl-p,ctrl-q"; // String | Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-<value> where <value> is one of: a-z, @, ^, [, , or _.
-        try {
-            ApiResponse<Void> response = apiInstance.containerStartWithHttpInfo(name, detachKeys);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerStart");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **detachKeys** | **String**| Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. | [optional] [default to ctrl-p,ctrl-q] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **304** | Container already started |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerStats
+# **containerStats**
 
 > Object containerStats(name, stream, oneShot)
 
@@ -2544,42 +1271,40 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Boolean stream = true; // Boolean | Stream the output
-        Boolean oneShot = false; // Boolean | Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return.
-        try {
-            Object result = apiInstance.containerStats(name, stream, oneShot);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerStats");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    Boolean stream = true; // Boolean | Stream the output
+    Boolean oneShot = false; // Boolean | Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return.
+    try {
+      Object result = apiInstance.containerStats(name, stream, oneShot);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerStats");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **stream** | **Boolean**| Stream the output | [optional] [default to true] |
-| **oneShot** | **Boolean**| Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return. | [optional] [default to false] |
+| Name        | Type        | Description                                                                                      | Notes                         |
+|-------------|-------------|--------------------------------------------------------------------------------------------------|-------------------------------|
+| **name**    | **String**  | the name or ID of the container                                                                  |                               |
+| **stream**  | **Boolean** | Stream the output                                                                                | [optional] [default to true]  |
+| **oneShot** | **Boolean** | Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return. | [optional] [default to false] |
 
 ### Return type
 
 **Object**
 
-
 ### Authorization
 
 No authorization required
@@ -2590,90 +1315,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerStatsWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **200**     | no error              | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<Object> containerStats containerStatsWithHttpInfo(name, stream, oneShot)
+<a id="containerStop"></a>
 
-Get stats for a container
+# **containerStop**
 
-This returns a live stream of a container’s resource usage statistics.
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Boolean stream = true; // Boolean | Stream the output
-        Boolean oneShot = false; // Boolean | Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return.
-        try {
-            ApiResponse<Object> response = apiInstance.containerStatsWithHttpInfo(name, stream, oneShot);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerStats");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **stream** | **Boolean**| Stream the output | [optional] [default to true] |
-| **oneShot** | **Boolean**| Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return. | [optional] [default to false] |
-
-### Return type
-
-ApiResponse<**Object**>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerStop
-
-> void containerStop(name, t)
+> containerStop(name, t)
 
 Stop a container
 
@@ -2690,36 +1343,34 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Integer t = 56; // Integer | number of seconds to wait before killing container
-        try {
-            apiInstance.containerStop(name, t);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerStop");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    Integer t = 56; // Integer | number of seconds to wait before killing container
+    try {
+      apiInstance.containerStop(name, t);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerStop");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **t** | **Integer**| number of seconds to wait before killing container | [optional] |
+| Name     | Type        | Description                                        | Notes      |
+|----------|-------------|----------------------------------------------------|------------|
+| **name** | **String**  | the name or ID of the container                    |            |
+| **t**    | **Integer** | number of seconds to wait before killing container | [optional] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -2733,87 +1384,17 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **304** | Container already stopped |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerStopWithHttpInfo
+| Status code | Description               | Response headers |
+|-------------|---------------------------|------------------|
+| **204**     | no error                  | -                |
+| **304**     | Container already stopped | -                |
+| **404**     | No such container         | -                |
+| **500**     | Internal server error     | -                |
 
-> ApiResponse<Void> containerStop containerStopWithHttpInfo(name, t)
+<a id="containerTop"></a>
 
-Stop a container
-
-Stop a container
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        Integer t = 56; // Integer | number of seconds to wait before killing container
-        try {
-            ApiResponse<Void> response = apiInstance.containerStopWithHttpInfo(name, t);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerStop");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **t** | **Integer**| number of seconds to wait before killing container | [optional] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **304** | Container already stopped |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerTop
+# **containerTop**
 
 > ContainerTopOKBody containerTop(name, psArgs)
 
@@ -2830,40 +1411,38 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        String psArgs = "-ef"; // String | arguments to pass to ps such as aux.
-        try {
-            ContainerTopOKBody result = apiInstance.containerTop(name, psArgs);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerTop");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    String psArgs = "-ef"; // String | arguments to pass to ps such as aux.
+    try {
+      ContainerTopOKBody result = apiInstance.containerTop(name, psArgs);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerTop");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **psArgs** | **String**| arguments to pass to ps such as aux. | [optional] [default to -ef] |
+| Name       | Type       | Description                          | Notes                       |
+|------------|------------|--------------------------------------|-----------------------------|
+| **name**   | **String** | the name or ID of the container      |                             |
+| **psArgs** | **String** | arguments to pass to ps such as aux. | [optional] [default to -ef] |
 
 ### Return type
 
 [**ContainerTopOKBody**](ContainerTopOKBody.md)
 
-
 ### Authorization
 
 No authorization required
@@ -2874,86 +1453,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | List processes in container |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerTopWithHttpInfo
+| Status code | Description                 | Response headers |
+|-------------|-----------------------------|------------------|
+| **200**     | List processes in container | -                |
+| **404**     | No such container           | -                |
+| **500**     | Internal server error       | -                |
 
-> ApiResponse<ContainerTopOKBody> containerTop containerTopWithHttpInfo(name, psArgs)
+<a id="containerUnpause"></a>
 
-List processes running inside a container
+# **containerUnpause**
 
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        String psArgs = "-ef"; // String | arguments to pass to ps such as aux.
-        try {
-            ApiResponse<ContainerTopOKBody> response = apiInstance.containerTopWithHttpInfo(name, psArgs);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerTop");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **psArgs** | **String**| arguments to pass to ps such as aux. | [optional] [default to -ef] |
-
-### Return type
-
-ApiResponse<[**ContainerTopOKBody**](ContainerTopOKBody.md)>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | List processes in container |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerUnpause
-
-> void containerUnpause(name)
+> containerUnpause(name)
 
 Unpause container
 
@@ -2970,34 +1481,32 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        try {
-            apiInstance.containerUnpause(name);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerUnpause");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    try {
+      apiInstance.containerUnpause(name);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerUnpause");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
+| Name     | Type       | Description                     | Notes |
+|----------|------------|---------------------------------|-------|
+| **name** | **String** | the name or ID of the container |       |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -3011,85 +1520,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerUnpauseWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **204**     | no error              | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<Void> containerUnpause containerUnpauseWithHttpInfo(name)
+<a id="containerUpdate"></a>
 
-Unpause container
+# **containerUpdate**
 
-Resume a paused container
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        try {
-            ApiResponse<Void> response = apiInstance.containerUnpauseWithHttpInfo(name);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerUnpause");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **204** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerUpdate
-
-> void containerUpdate(name, resources)
+> containerUpdate(name, resources)
 
 Update configuration of an existing container
 
@@ -3106,36 +1548,34 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | Full or partial ID or full name of the container to rename
-        UpdateConfig resources = new UpdateConfig(); // UpdateConfig | attributes for updating the container
-        try {
-            apiInstance.containerUpdate(name, resources);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerUpdate");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | Full or partial ID or full name of the container to rename
+    UpdateConfig resources = new UpdateConfig(); // UpdateConfig | attributes for updating the container
+    try {
+      apiInstance.containerUpdate(name, resources);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerUpdate");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| Full or partial ID or full name of the container to rename | |
-| **resources** | **UpdateConfig**| attributes for updating the container | [optional] |
+| Name          | Type             | Description                                                | Notes      |
+|---------------|------------------|------------------------------------------------------------|------------|
+| **name**      | **String**       | Full or partial ID or full name of the container to rename |            |
+| **resources** | **UpdateConfig** | attributes for updating the container                      | [optional] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -3149,85 +1589,16 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerUpdateWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **200**     | no error              | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<Void> containerUpdate containerUpdateWithHttpInfo(name, resources)
+<a id="containerWait"></a>
 
-Update configuration of an existing container
-
-Change configuration settings for an existing container without requiring recreation.
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | Full or partial ID or full name of the container to rename
-        UpdateConfig resources = new UpdateConfig(); // UpdateConfig | attributes for updating the container
-        try {
-            ApiResponse<Void> response = apiInstance.containerUpdateWithHttpInfo(name, resources);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerUpdate");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| Full or partial ID or full name of the container to rename | |
-| **resources** | **UpdateConfig**| attributes for updating the container | [optional] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-tar
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## containerWait
+# **containerWait**
 
 > ContainerWait200Response containerWait(name, condition, interval)
 
@@ -3246,42 +1617,40 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        String condition = "condition_example"; // String | wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped 
-        String interval = "250ms"; // String | Time Interval to wait before polling for completion.
-        try {
-            ContainerWait200Response result = apiInstance.containerWait(name, condition, interval);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerWait");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | the name or ID of the container
+    String condition = "condition_example"; // String | wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped 
+    String interval = "250ms"; // String | Time Interval to wait before polling for completion.
+    try {
+      ContainerWait200Response result = apiInstance.containerWait(name, condition, interval);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#containerWait");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **condition** | **String**| wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped  | [optional] |
-| **interval** | **String**| Time Interval to wait before polling for completion. | [optional] [default to 250ms] |
+| Name          | Type       | Description                                                                                                                                                      | Notes                         |
+|---------------|------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| **name**      | **String** | the name or ID of the container                                                                                                                                  |                               |
+| **condition** | **String** | wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped | [optional]                    |
+| **interval**  | **String** | Time Interval to wait before polling for completion.                                                                                                             | [optional] [default to 250ms] |
 
 ### Return type
 
 [**ContainerWait200Response**](ContainerWait200Response.md)
 
-
 ### Authorization
 
 No authorization required
@@ -3292,90 +1661,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Wait container |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## containerWaitWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **200**     | Wait container        | -                |
+| **404**     | No such container     | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<ContainerWait200Response> containerWait containerWaitWithHttpInfo(name, condition, interval)
+<a id="imageCommit"></a>
 
-Wait on a container
+# **imageCommit**
 
-Block until a container stops or given condition is met.
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | the name or ID of the container
-        String condition = "condition_example"; // String | wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped 
-        String interval = "250ms"; // String | Time Interval to wait before polling for completion.
-        try {
-            ApiResponse<ContainerWait200Response> response = apiInstance.containerWaitWithHttpInfo(name, condition, interval);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#containerWait");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| the name or ID of the container | |
-| **condition** | **String**| wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped  | [optional] |
-| **interval** | **String**| Time Interval to wait before polling for completion. | [optional] [default to 250ms] |
-
-### Return type
-
-ApiResponse<[**ContainerWait200Response**](ContainerWait200Response.md)>
-
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Wait container |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
-
-
-## imageCommit
-
-> void imageCommit(container, repo, tag, comment, author, pause, changes, squash)
+> imageCommit(container, repo, tag, comment, author, pause, changes, squash)
 
 New Image
 
@@ -3392,48 +1689,46 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String container = "container_example"; // String | the name or ID of a container
-        String repo = "repo_example"; // String | the repository name for the created image
-        String tag = "tag_example"; // String | tag name for the created image
-        String comment = "comment_example"; // String | commit message
-        String author = "author_example"; // String | author of the image
-        Boolean pause = true; // Boolean | pause the container before committing it
-        String changes = "changes_example"; // String | instructions to apply while committing in Dockerfile format
-        Boolean squash = true; // Boolean | squash newly built layers into a single new layer
-        try {
-            apiInstance.imageCommit(container, repo, tag, comment, author, pause, changes, squash);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#imageCommit");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String container = "container_example"; // String | the name or ID of a container
+    String repo = "repo_example"; // String | the repository name for the created image
+    String tag = "tag_example"; // String | tag name for the created image
+    String comment = "comment_example"; // String | commit message
+    String author = "author_example"; // String | author of the image
+    Boolean pause = true; // Boolean | pause the container before committing it
+    String changes = "changes_example"; // String | instructions to apply while committing in Dockerfile format
+    Boolean squash = true; // Boolean | squash newly built layers into a single new layer
+    try {
+      apiInstance.imageCommit(container, repo, tag, comment, author, pause, changes, squash);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#imageCommit");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **container** | **String**| the name or ID of a container | [optional] |
-| **repo** | **String**| the repository name for the created image | [optional] |
-| **tag** | **String**| tag name for the created image | [optional] |
-| **comment** | **String**| commit message | [optional] |
-| **author** | **String**| author of the image | [optional] |
-| **pause** | **Boolean**| pause the container before committing it | [optional] |
-| **changes** | **String**| instructions to apply while committing in Dockerfile format | [optional] |
-| **squash** | **Boolean**| squash newly built layers into a single new layer | [optional] |
+| Name          | Type        | Description                                                 | Notes      |
+|---------------|-------------|-------------------------------------------------------------|------------|
+| **container** | **String**  | the name or ID of a container                               | [optional] |
+| **repo**      | **String**  | the repository name for the created image                   | [optional] |
+| **tag**       | **String**  | tag name for the created image                              | [optional] |
+| **comment**   | **String**  | commit message                                              | [optional] |
+| **author**    | **String**  | author of the image                                         | [optional] |
+| **pause**     | **Boolean** | pause the container before committing it                    | [optional] |
+| **changes**   | **String**  | instructions to apply while committing in Dockerfile format | [optional] |
+| **squash**    | **Boolean** | squash newly built layers into a single new layer           | [optional] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -3447,99 +1742,18 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | no error |  -  |
-| **404** | No such image |  -  |
-| **500** | Internal server error |  -  |
 
-## imageCommitWithHttpInfo
+| Status code | Description           | Response headers |
+|-------------|-----------------------|------------------|
+| **201**     | no error              | -                |
+| **404**     | No such image         | -                |
+| **500**     | Internal server error | -                |
 
-> ApiResponse<Void> imageCommit imageCommitWithHttpInfo(container, repo, tag, comment, author, pause, changes, squash)
+<a id="putContainerArchive"></a>
 
-New Image
+# **putContainerArchive**
 
-Create a new image from a container
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String container = "container_example"; // String | the name or ID of a container
-        String repo = "repo_example"; // String | the repository name for the created image
-        String tag = "tag_example"; // String | tag name for the created image
-        String comment = "comment_example"; // String | commit message
-        String author = "author_example"; // String | author of the image
-        Boolean pause = true; // Boolean | pause the container before committing it
-        String changes = "changes_example"; // String | instructions to apply while committing in Dockerfile format
-        Boolean squash = true; // Boolean | squash newly built layers into a single new layer
-        try {
-            ApiResponse<Void> response = apiInstance.imageCommitWithHttpInfo(container, repo, tag, comment, author, pause, changes, squash);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#imageCommit");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **container** | **String**| the name or ID of a container | [optional] |
-| **repo** | **String**| the repository name for the created image | [optional] |
-| **tag** | **String**| tag name for the created image | [optional] |
-| **comment** | **String**| commit message | [optional] |
-| **author** | **String**| author of the image | [optional] |
-| **pause** | **Boolean**| pause the container before committing it | [optional] |
-| **changes** | **String**| instructions to apply while committing in Dockerfile format | [optional] |
-| **squash** | **Boolean**| squash newly built layers into a single new layer | [optional] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **201** | no error |  -  |
-| **404** | No such image |  -  |
-| **500** | Internal server error |  -  |
-
-
-## putContainerArchive
-
-> void putContainerArchive(name, path, noOverwriteDirNonDir, copyUIDGID, request)
+> putContainerArchive(name, path, noOverwriteDirNonDir, copyUIDGID, request)
 
 Put files into a container
 
@@ -3556,42 +1770,40 @@ import io.github.alersrt.pod4j.openapi.models.*;
 import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
 
 public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("http://podman.io");
 
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | container name or id
-        String path = "path_example"; // String | Path to a directory in the container to extract
-        String noOverwriteDirNonDir = "noOverwriteDirNonDir_example"; // String | if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true)
-        String copyUIDGID = "copyUIDGID_example"; // String | copy UID/GID maps to the dest file or di (1 or true)
-        String request = "request_example"; // String | tarfile of files to copy into the container
-        try {
-            apiInstance.putContainerArchive(name, path, noOverwriteDirNonDir, copyUIDGID, request);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#putContainerArchive");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
+    ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
+    String name = "name_example"; // String | container name or id
+    String path = "path_example"; // String | Path to a directory in the container to extract
+    String noOverwriteDirNonDir = "noOverwriteDirNonDir_example"; // String | if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true)
+    String copyUIDGID = "copyUIDGID_example"; // String | copy UID/GID maps to the dest file or di (1 or true)
+    String request = "request_example"; // String | tarfile of files to copy into the container
+    try {
+      apiInstance.putContainerArchive(name, path, noOverwriteDirNonDir, copyUIDGID, request);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling ContainersCompatApi#putContainerArchive");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
     }
+  }
 }
 ```
 
 ### Parameters
 
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| container name or id | |
-| **path** | **String**| Path to a directory in the container to extract | |
-| **noOverwriteDirNonDir** | **String**| if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true) | [optional] |
-| **copyUIDGID** | **String**| copy UID/GID maps to the dest file or di (1 or true) | [optional] |
-| **request** | **String**| tarfile of files to copy into the container | [optional] |
+| Name                     | Type       | Description                                                                                                                     | Notes      |
+|--------------------------|------------|---------------------------------------------------------------------------------------------------------------------------------|------------|
+| **name**                 | **String** | container name or id                                                                                                            |            |
+| **path**                 | **String** | Path to a directory in the container to extract                                                                                 |            |
+| **noOverwriteDirNonDir** | **String** | if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true) | [optional] |
+| **copyUIDGID**           | **String** | copy UID/GID maps to the dest file or di (1 or true)                                                                            | [optional] |
+| **request**              | **String** | tarfile of files to copy into the container                                                                                     | [optional] |
 
 ### Return type
-
 
 null (empty response body)
 
@@ -3605,90 +1817,12 @@ No authorization required
 - **Accept**: application/json
 
 ### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **400** | Bad parameter in request |  -  |
-| **403** | the container rootfs is read-only |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
 
-## putContainerArchiveWithHttpInfo
-
-> ApiResponse<Void> putContainerArchive putContainerArchiveWithHttpInfo(name, path, noOverwriteDirNonDir, copyUIDGID, request)
-
-Put files into a container
-
-Put a tar archive of files into a container
-
-### Example
-
-```java
-// Import classes:
-import io.github.alersrt.pod4j.openapi.ApiClient;
-import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
-import io.github.alersrt.pod4j.openapi.models.*;
-import io.github.alersrt.pod4j.openapi.api.ContainersCompatApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://podman.io");
-
-        ContainersCompatApi apiInstance = new ContainersCompatApi(defaultClient);
-        String name = "name_example"; // String | container name or id
-        String path = "path_example"; // String | Path to a directory in the container to extract
-        String noOverwriteDirNonDir = "noOverwriteDirNonDir_example"; // String | if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true)
-        String copyUIDGID = "copyUIDGID_example"; // String | copy UID/GID maps to the dest file or di (1 or true)
-        String request = "request_example"; // String | tarfile of files to copy into the container
-        try {
-            ApiResponse<Void> response = apiInstance.putContainerArchiveWithHttpInfo(name, path, noOverwriteDirNonDir, copyUIDGID, request);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling ContainersCompatApi#putContainerArchive");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **name** | **String**| container name or id | |
-| **path** | **String**| Path to a directory in the container to extract | |
-| **noOverwriteDirNonDir** | **String**| if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true) | [optional] |
-| **copyUIDGID** | **String**| copy UID/GID maps to the dest file or di (1 or true) | [optional] |
-| **request** | **String**| tarfile of files to copy into the container | [optional] |
-
-### Return type
-
-
-ApiResponse<Void>
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json, application/x-tar
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | no error |  -  |
-| **400** | Bad parameter in request |  -  |
-| **403** | the container rootfs is read-only |  -  |
-| **404** | No such container |  -  |
-| **500** | Internal server error |  -  |
+| Status code | Description                       | Response headers |
+|-------------|-----------------------------------|------------------|
+| **200**     | no error                          | -                |
+| **400**     | Bad parameter in request          | -                |
+| **403**     | the container rootfs is read-only | -                |
+| **404**     | No such container                 | -                |
+| **500**     | Internal server error             | -                |
 

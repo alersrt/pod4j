@@ -13,32 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ConfigReference;
-import io.github.alersrt.pod4j.openapi.model.IPAM;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for CreateRequest
  */
-class CreateRequestTest {
+public class CreateRequestTest {
     private final CreateRequest model = new CreateRequest();
 
     /**
      * Model tests for CreateRequest
      */
     @Test
-    void testCreateRequest() {
+    public void testCreateRequest() {
         // TODO: test CreateRequest
     }
 
@@ -46,7 +33,7 @@ class CreateRequestTest {
      * Test the property 'attachable'
      */
     @Test
-    void attachableTest() {
+    public void attachableTest() {
         // TODO: test attachable
     }
 
@@ -54,7 +41,7 @@ class CreateRequestTest {
      * Test the property 'checkDuplicate'
      */
     @Test
-    void checkDuplicateTest() {
+    public void checkDuplicateTest() {
         // TODO: test checkDuplicate
     }
 
@@ -62,7 +49,7 @@ class CreateRequestTest {
      * Test the property 'configFrom'
      */
     @Test
-    void configFromTest() {
+    public void configFromTest() {
         // TODO: test configFrom
     }
 
@@ -70,7 +57,7 @@ class CreateRequestTest {
      * Test the property 'configOnly'
      */
     @Test
-    void configOnlyTest() {
+    public void configOnlyTest() {
         // TODO: test configOnly
     }
 
@@ -78,7 +65,7 @@ class CreateRequestTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -86,7 +73,7 @@ class CreateRequestTest {
      * Test the property 'enableIPv6'
      */
     @Test
-    void enableIPv6Test() {
+    public void enableIPv6Test() {
         // TODO: test enableIPv6
     }
 
@@ -94,7 +81,7 @@ class CreateRequestTest {
      * Test the property 'ipam'
      */
     @Test
-    void ipamTest() {
+    public void ipamTest() {
         // TODO: test ipam
     }
 
@@ -102,7 +89,7 @@ class CreateRequestTest {
      * Test the property 'ingress'
      */
     @Test
-    void ingressTest() {
+    public void ingressTest() {
         // TODO: test ingress
     }
 
@@ -110,7 +97,7 @@ class CreateRequestTest {
      * Test the property 'internal'
      */
     @Test
-    void internalTest() {
+    public void internalTest() {
         // TODO: test internal
     }
 
@@ -118,7 +105,7 @@ class CreateRequestTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -126,7 +113,7 @@ class CreateRequestTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -134,7 +121,7 @@ class CreateRequestTest {
      * Test the property 'options'
      */
     @Test
-    void optionsTest() {
+    public void optionsTest() {
         // TODO: test options
     }
 
@@ -142,7 +129,7 @@ class CreateRequestTest {
      * Test the property 'scope'
      */
     @Test
-    void scopeTest() {
+    public void scopeTest() {
         // TODO: test scope
     }
 

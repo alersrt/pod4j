@@ -13,479 +13,445 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectMount provides a record of a single mount in a container. It contains fields for both named and normal volumes. Only user-specified volumes will be included, and tmpfs volumes are not included even if the user specified them.
  */
-@JsonPropertyOrder({
-  InspectMount.JSON_PROPERTY_DESTINATION,
-  InspectMount.JSON_PROPERTY_DRIVER,
-  InspectMount.JSON_PROPERTY_MODE,
-  InspectMount.JSON_PROPERTY_NAME,
-  InspectMount.JSON_PROPERTY_OPTIONS,
-  InspectMount.JSON_PROPERTY_PROPAGATION,
-  InspectMount.JSON_PROPERTY_R_W,
-  InspectMount.JSON_PROPERTY_SOURCE,
-  InspectMount.JSON_PROPERTY_SUB_PATH,
-  InspectMount.JSON_PROPERTY_TYPE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectMount {
-  public static final String JSON_PROPERTY_DESTINATION = "Destination";
-  private String destination;
-
-  public static final String JSON_PROPERTY_DRIVER = "Driver";
-  private String driver;
-
-  public static final String JSON_PROPERTY_MODE = "Mode";
-  private String mode;
-
-  public static final String JSON_PROPERTY_NAME = "Name";
-  private String name;
-
-  public static final String JSON_PROPERTY_OPTIONS = "Options";
-  private List<String> options = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_PROPAGATION = "Propagation";
-  private String propagation;
-
-  public static final String JSON_PROPERTY_R_W = "RW";
-  private Boolean RW;
-
-  public static final String JSON_PROPERTY_SOURCE = "Source";
-  private String source;
-
-  public static final String JSON_PROPERTY_SUB_PATH = "SubPath";
-  private String subPath;
-
-  public static final String JSON_PROPERTY_TYPE = "Type";
-  private String type;
-
-  public InspectMount() { 
-  }
-
-  public InspectMount destination(String destination) {
-    this.destination = destination;
-    return this;
-  }
-
-  /**
-   * The destination directory for the volume. Specified as a path within the container, as it would be passed into the OCI runtime.
-   * @return destination
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDestination() {
-    return destination;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestination(String destination) {
-    this.destination = destination;
-  }
-
-
-  public InspectMount driver(String driver) {
-    this.driver = driver;
-    return this;
-  }
-
-  /**
-   * The driver used for the named volume. Empty for bind mounts.
-   * @return driver
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getDriver() {
-    return driver;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDriver(String driver) {
-    this.driver = driver;
-  }
-
-
-  public InspectMount mode(String mode) {
-    this.mode = mode;
-    return this;
-  }
-
-  /**
-   * Contains SELinux :z/:Z mount options. Unclear what, if anything, else goes in here.
-   * @return mode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getMode() {
-    return mode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMode(String mode) {
-    this.mode = mode;
-  }
-
-
-  public InspectMount name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * The name of the volume. Empty for bind mounts.
-   * @return name
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getName() {
-    return name;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public InspectMount options(List<String> options) {
-    this.options = options;
-    return this;
-  }
-
-  public InspectMount addOptionsItem(String optionsItem) {
-    if (this.options == null) {
-      this.options = new ArrayList<>();
-    }
-    this.options.add(optionsItem);
-    return this;
-  }
-
-  /**
-   * All remaining mount options. Additional data, not present in the original output.
-   * @return options
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getOptions() {
-    return options;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOptions(List<String> options) {
-    this.options = options;
-  }
-
-
-  public InspectMount propagation(String propagation) {
-    this.propagation = propagation;
-    return this;
-  }
-
-  /**
-   * Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty.
-   * @return propagation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PROPAGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPropagation() {
-    return propagation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PROPAGATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPropagation(String propagation) {
-    this.propagation = propagation;
-  }
-
-
-  public InspectMount RW(Boolean RW) {
-    this.RW = RW;
-    return this;
-  }
-
-  /**
-   * Whether the volume is read-write
-   * @return RW
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_R_W)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getRW() {
-    return RW;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_R_W)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRW(Boolean RW) {
-    this.RW = RW;
-  }
-
-
-  public InspectMount source(String source) {
-    this.source = source;
-    return this;
-  }
-
-  /**
-   * The source directory for the volume.
-   * @return source
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSource() {
-    return source;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSource(String source) {
-    this.source = source;
-  }
-
-
-  public InspectMount subPath(String subPath) {
-    this.subPath = subPath;
-    return this;
-  }
-
-  /**
-   * SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination.
-   * @return subPath
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SUB_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getSubPath() {
-    return subPath;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SUB_PATH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSubPath(String subPath) {
-    this.subPath = subPath;
-  }
-
-
-  public InspectMount type(String type) {
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * Whether the mount is a volume or bind mount. Allowed values are \&quot;volume\&quot; and \&quot;bind\&quot;.
-   * @return type
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getType() {
-    return type;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
-    this.type = type;
-  }
-
-
-  /**
-   * Return true if this InspectMount object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InspectMount inspectMount = (InspectMount) o;
-    return Objects.equals(this.destination, inspectMount.destination) &&
-        Objects.equals(this.driver, inspectMount.driver) &&
-        Objects.equals(this.mode, inspectMount.mode) &&
-        Objects.equals(this.name, inspectMount.name) &&
-        Objects.equals(this.options, inspectMount.options) &&
-        Objects.equals(this.propagation, inspectMount.propagation) &&
-        Objects.equals(this.RW, inspectMount.RW) &&
-        Objects.equals(this.source, inspectMount.source) &&
-        Objects.equals(this.subPath, inspectMount.subPath) &&
-        Objects.equals(this.type, inspectMount.type);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(destination, driver, mode, name, options, propagation, RW, source, subPath, type);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InspectMount {\n");
-    sb.append("    destination: ").append(toIndentedString(destination)).append("\n");
-    sb.append("    driver: ").append(toIndentedString(driver)).append("\n");
-    sb.append("    mode: ").append(toIndentedString(mode)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    options: ").append(toIndentedString(options)).append("\n");
-    sb.append("    propagation: ").append(toIndentedString(propagation)).append("\n");
-    sb.append("    RW: ").append(toIndentedString(RW)).append("\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("    subPath: ").append(toIndentedString(subPath)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_DESTINATION = "Destination";
+    public static final String SERIALIZED_NAME_DRIVER = "Driver";
+    public static final String SERIALIZED_NAME_MODE = "Mode";
+    public static final String SERIALIZED_NAME_NAME = "Name";
+    public static final String SERIALIZED_NAME_OPTIONS = "Options";
+    public static final String SERIALIZED_NAME_PROPAGATION = "Propagation";
+    public static final String SERIALIZED_NAME_R_W = "RW";
+    public static final String SERIALIZED_NAME_SOURCE = "Source";
+    public static final String SERIALIZED_NAME_SUB_PATH = "SubPath";
+    public static final String SERIALIZED_NAME_TYPE = "Type";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Destination");
+        openapiFields.add("Driver");
+        openapiFields.add("Mode");
+        openapiFields.add("Name");
+        openapiFields.add("Options");
+        openapiFields.add("Propagation");
+        openapiFields.add("RW");
+        openapiFields.add("Source");
+        openapiFields.add("SubPath");
+        openapiFields.add("Type");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_DESTINATION)
+    private String destination;
+    @SerializedName(SERIALIZED_NAME_DRIVER)
+    private String driver;
+    @SerializedName(SERIALIZED_NAME_MODE)
+    private String mode;
+    @SerializedName(SERIALIZED_NAME_NAME)
+    private String name;
+    @SerializedName(SERIALIZED_NAME_OPTIONS)
+    private List<String> options = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_PROPAGATION)
+    private String propagation;
+    @SerializedName(SERIALIZED_NAME_R_W)
+    private Boolean RW;
+    @SerializedName(SERIALIZED_NAME_SOURCE)
+    private String source;
+    @SerializedName(SERIALIZED_NAME_SUB_PATH)
+    private String subPath;
+    @SerializedName(SERIALIZED_NAME_TYPE)
+    private String type;
 
-    // add `Destination` to the URL query string
-    if (getDestination() != null) {
-      joiner.add(String.format("%sDestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectMount() {
     }
 
-    // add `Driver` to the URL query string
-    if (getDriver() != null) {
-      joiner.add(String.format("%sDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to InspectMount
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!InspectMount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectMount is not found in the empty JSON string", InspectMount.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!InspectMount.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectMount` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("Destination") != null && !jsonObj.get("Destination").isJsonNull()) && !jsonObj.get("Destination").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Destination").toString()));
+        }
+        if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
+        }
+        if ((jsonObj.get("Mode") != null && !jsonObj.get("Mode").isJsonNull()) && !jsonObj.get("Mode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Mode").toString()));
+        }
+        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull() && !jsonObj.get("Options").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
+        }
+        if ((jsonObj.get("Propagation") != null && !jsonObj.get("Propagation").isJsonNull()) && !jsonObj.get("Propagation").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Propagation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Propagation").toString()));
+        }
+        if ((jsonObj.get("Source") != null && !jsonObj.get("Source").isJsonNull()) && !jsonObj.get("Source").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Source").toString()));
+        }
+        if ((jsonObj.get("SubPath") != null && !jsonObj.get("SubPath").isJsonNull()) && !jsonObj.get("SubPath").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `SubPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("SubPath").toString()));
+        }
+        if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull()) && !jsonObj.get("Type").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Type").toString()));
+        }
     }
 
-    // add `Mode` to the URL query string
-    if (getMode() != null) {
-      joiner.add(String.format("%sMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of InspectMount given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectMount
+     * @throws IOException if the JSON string is invalid with respect to InspectMount
+     */
+    public static InspectMount fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, InspectMount.class);
     }
 
-    // add `Name` to the URL query string
-    if (getName() != null) {
-      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectMount destination(String destination) {
+        this.destination = destination;
+        return this;
     }
 
-    // add `Options` to the URL query string
-    if (getOptions() != null) {
-      for (int i = 0; i < getOptions().size(); i++) {
-        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getOptions().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * The destination directory for the volume. Specified as a path within the container, as it would be passed into the OCI runtime.
+     *
+     * @return destination
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDestination() {
+        return destination;
     }
 
-    // add `Propagation` to the URL query string
-    if (getPropagation() != null) {
-      joiner.add(String.format("%sPropagation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPropagation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
 
-    // add `RW` to the URL query string
-    if (getRW() != null) {
-      joiner.add(String.format("%sRW%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRW()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectMount driver(String driver) {
+        this.driver = driver;
+        return this;
     }
 
-    // add `Source` to the URL query string
-    if (getSource() != null) {
-      joiner.add(String.format("%sSource%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSource()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * The driver used for the named volume. Empty for bind mounts.
+     *
+     * @return driver
+     */
+    @jakarta.annotation.Nullable
+
+    public String getDriver() {
+        return driver;
     }
 
-    // add `SubPath` to the URL query string
-    if (getSubPath() != null) {
-      joiner.add(String.format("%sSubPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setDriver(String driver) {
+        this.driver = driver;
     }
 
-    // add `Type` to the URL query string
-    if (getType() != null) {
-      joiner.add(String.format("%sType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectMount mode(String mode) {
+        this.mode = mode;
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Contains SELinux :z/:Z mount options. Unclear what, if anything, else goes in here.
+     *
+     * @return mode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getMode() {
+        return mode;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public InspectMount name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * The name of the volume. Empty for bind mounts.
+     *
+     * @return name
+     */
+    @jakarta.annotation.Nullable
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public InspectMount options(List<String> options) {
+        this.options = options;
+        return this;
+    }
+
+    public InspectMount addOptionsItem(String optionsItem) {
+        if (this.options == null) {
+            this.options = new ArrayList<>();
+        }
+        this.options.add(optionsItem);
+        return this;
+    }
+
+    /**
+     * All remaining mount options. Additional data, not present in the original output.
+     *
+     * @return options
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<String> options) {
+        this.options = options;
+    }
+
+    public InspectMount propagation(String propagation) {
+        this.propagation = propagation;
+        return this;
+    }
+
+    /**
+     * Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty.
+     *
+     * @return propagation
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPropagation() {
+        return propagation;
+    }
+
+    public void setPropagation(String propagation) {
+        this.propagation = propagation;
+    }
+
+    public InspectMount RW(Boolean RW) {
+        this.RW = RW;
+        return this;
+    }
+
+    /**
+     * Whether the volume is read-write
+     *
+     * @return RW
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getRW() {
+        return RW;
+    }
+
+    public void setRW(Boolean RW) {
+        this.RW = RW;
+    }
+
+    public InspectMount source(String source) {
+        this.source = source;
+        return this;
+    }
+
+    /**
+     * The source directory for the volume.
+     *
+     * @return source
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
+    }
+
+    public InspectMount subPath(String subPath) {
+        this.subPath = subPath;
+        return this;
+    }
+
+    /**
+     * SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination.
+     *
+     * @return subPath
+     */
+    @jakarta.annotation.Nullable
+
+    public String getSubPath() {
+        return subPath;
+    }
+
+    public void setSubPath(String subPath) {
+        this.subPath = subPath;
+    }
+
+    public InspectMount type(String type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Whether the mount is a volume or bind mount. Allowed values are \&quot;volume\&quot; and \&quot;bind\&quot;.
+     *
+     * @return type
+     */
+    @jakarta.annotation.Nullable
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectMount inspectMount = (InspectMount) o;
+        return Objects.equals(this.destination, inspectMount.destination) &&
+                Objects.equals(this.driver, inspectMount.driver) &&
+                Objects.equals(this.mode, inspectMount.mode) &&
+                Objects.equals(this.name, inspectMount.name) &&
+                Objects.equals(this.options, inspectMount.options) &&
+                Objects.equals(this.propagation, inspectMount.propagation) &&
+                Objects.equals(this.RW, inspectMount.RW) &&
+                Objects.equals(this.source, inspectMount.source) &&
+                Objects.equals(this.subPath, inspectMount.subPath) &&
+                Objects.equals(this.type, inspectMount.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(destination, driver, mode, name, options, propagation, RW, source, subPath, type);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class InspectMount {\n" +
+                "    destination: " + toIndentedString(destination) + "\n" +
+                "    driver: " + toIndentedString(driver) + "\n" +
+                "    mode: " + toIndentedString(mode) + "\n" +
+                "    name: " + toIndentedString(name) + "\n" +
+                "    options: " + toIndentedString(options) + "\n" +
+                "    propagation: " + toIndentedString(propagation) + "\n" +
+                "    RW: " + toIndentedString(RW) + "\n" +
+                "    source: " + toIndentedString(source) + "\n" +
+                "    subPath: " + toIndentedString(subPath) + "\n" +
+                "    type: " + toIndentedString(type) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of InspectMount to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!InspectMount.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'InspectMount' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<InspectMount> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(InspectMount.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<InspectMount>() {
+                @Override
+                public void write(JsonWriter out, InspectMount value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public InspectMount read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

@@ -10,49 +10,45 @@
  * Do not edit the class manually.
  */
 
-package io.github.alersrt.pod4j.openapi;
 
-import com.fasterxml.jackson.databind.util.StdDateFormat;
+package io.github.alersrt.pod4j.openapi.auth;
 
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.util.Date;
-import java.text.DecimalFormat;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
+import io.github.alersrt.pod4j.openapi.ApiException;
+import io.github.alersrt.pod4j.openapi.Pair;
+import okhttp3.Credentials;
 
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class RFC3339DateFormat extends DateFormat {
-  private static final long serialVersionUID = 1L;
-  private static final TimeZone TIMEZONE_Z = TimeZone.getTimeZone("UTC");
+import java.net.URI;
+import java.util.List;
+import java.util.Map;
 
-  private final StdDateFormat fmt = new StdDateFormat()
-          .withTimeZone(TIMEZONE_Z)
-          .withColonInTimeZone(true);
+public class HttpBasicAuth implements Authentication {
+    private String username;
+    private String password;
 
-  public RFC3339DateFormat() {
-    this.calendar = new GregorianCalendar();
-    this.numberFormat = new DecimalFormat();
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  @Override
-  public Date parse(String source) {
-    return parse(source, new ParsePosition(0));
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  @Override
-  public Date parse(String source, ParsePosition pos) {
-    return fmt.parse(source, pos);
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  @Override
-  public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition fieldPosition) {
-    return fmt.format(date, toAppendTo, fieldPosition);
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  @Override
-  public Object clone() {
-    return super.clone();
-  }
+    @Override
+    public void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams,
+                              String payload, String method, URI uri) throws ApiException {
+        if (username == null && password == null) {
+            return;
+        }
+        headerParams.put("Authorization", Credentials.basic(
+                username == null ? "" : username,
+                password == null ? "" : password));
+    }
 }

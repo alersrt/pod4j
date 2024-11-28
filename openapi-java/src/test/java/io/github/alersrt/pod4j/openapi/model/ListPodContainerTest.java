@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ListPodContainer
  */
-class ListPodContainerTest {
+public class ListPodContainerTest {
     private final ListPodContainer model = new ListPodContainer();
 
     /**
      * Model tests for ListPodContainer
      */
     @Test
-    void testListPodContainer() {
+    public void testListPodContainer() {
         // TODO: test ListPodContainer
     }
 
@@ -42,7 +43,7 @@ class ListPodContainerTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -50,7 +51,7 @@ class ListPodContainerTest {
      * Test the property 'names'
      */
     @Test
-    void namesTest() {
+    public void namesTest() {
         // TODO: test names
     }
 
@@ -58,7 +59,7 @@ class ListPodContainerTest {
      * Test the property 'restartCount'
      */
     @Test
-    void restartCountTest() {
+    public void restartCountTest() {
         // TODO: test restartCount
     }
 
@@ -66,7 +67,7 @@ class ListPodContainerTest {
      * Test the property 'status'
      */
     @Test
-    void statusTest() {
+    public void statusTest() {
         // TODO: test status
     }
 

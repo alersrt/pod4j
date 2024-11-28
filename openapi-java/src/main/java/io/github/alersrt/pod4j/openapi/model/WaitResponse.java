@@ -13,180 +13,215 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.WaitExitError;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * OK response to ContainerWait operation
  */
-@JsonPropertyOrder({
-  WaitResponse.JSON_PROPERTY_ERROR,
-  WaitResponse.JSON_PROPERTY_STATUS_CODE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class WaitResponse {
-  public static final String JSON_PROPERTY_ERROR = "Error";
-  private WaitExitError error;
+    public static final String SERIALIZED_NAME_ERROR = "Error";
+    public static final String SERIALIZED_NAME_STATUS_CODE = "StatusCode";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_STATUS_CODE = "StatusCode";
-  private Long statusCode;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Error");
+        openapiFields.add("StatusCode");
 
-  public WaitResponse() { 
-  }
-
-  public WaitResponse error(WaitExitError error) {
-    this.error = error;
-    return this;
-  }
-
-  /**
-   * Get error
-   * @return error
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public WaitExitError getError() {
-    return error;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setError(WaitExitError error) {
-    this.error = error;
-  }
-
-
-  public WaitResponse statusCode(Long statusCode) {
-    this.statusCode = statusCode;
-    return this;
-  }
-
-  /**
-   * Exit code of the container
-   * @return statusCode
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_STATUS_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Long getStatusCode() {
-    return statusCode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS_CODE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatusCode(Long statusCode) {
-    this.statusCode = statusCode;
-  }
-
-
-  /**
-   * Return true if this WaitResponse object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    WaitResponse waitResponse = (WaitResponse) o;
-    return Objects.equals(this.error, waitResponse.error) &&
-        Objects.equals(this.statusCode, waitResponse.statusCode);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(error, statusCode);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class WaitResponse {\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("StatusCode");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ERROR)
+    private WaitExitError error;
+    @SerializedName(SERIALIZED_NAME_STATUS_CODE)
+    private Long statusCode;
 
-    // add `Error` to the URL query string
-    if (getError() != null) {
-      joiner.add(getError().toUrlQueryString(prefix + "Error" + suffix));
+    public WaitResponse() {
     }
 
-    // add `StatusCode` to the URL query string
-    if (getStatusCode() != null) {
-      joiner.add(String.format("%sStatusCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatusCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to WaitResponse
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!WaitResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in WaitResponse is not found in the empty JSON string", WaitResponse.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!WaitResponse.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `WaitResponse` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : WaitResponse.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // validate the optional field `Error`
+        if (jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull()) {
+            WaitExitError.validateJsonElement(jsonObj.get("Error"));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of WaitResponse given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of WaitResponse
+     * @throws IOException if the JSON string is invalid with respect to WaitResponse
+     */
+    public static WaitResponse fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, WaitResponse.class);
+    }
+
+    public WaitResponse error(WaitExitError error) {
+        this.error = error;
+        return this;
+    }
+
+    /**
+     * Get error
+     *
+     * @return error
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public WaitExitError getError() {
+        return error;
+    }
+
+    public void setError(WaitExitError error) {
+        this.error = error;
+    }
+
+    public WaitResponse statusCode(Long statusCode) {
+        this.statusCode = statusCode;
+        return this;
+    }
+
+    /**
+     * Exit code of the container
+     *
+     * @return statusCode
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Long getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(Long statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        WaitResponse waitResponse = (WaitResponse) o;
+        return Objects.equals(this.error, waitResponse.error) &&
+                Objects.equals(this.statusCode, waitResponse.statusCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(error, statusCode);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class WaitResponse {\n" +
+                "    error: " + toIndentedString(error) + "\n" +
+                "    statusCode: " + toIndentedString(statusCode) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of WaitResponse to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!WaitResponse.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'WaitResponse' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<WaitResponse> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(WaitResponse.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<WaitResponse>() {
+                @Override
+                public void write(JsonWriter out, WaitResponse value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public WaitResponse read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

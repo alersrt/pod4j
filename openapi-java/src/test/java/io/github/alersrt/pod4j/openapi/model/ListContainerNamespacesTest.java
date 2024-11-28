@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ListContainerNamespaces
  */
-class ListContainerNamespacesTest {
+public class ListContainerNamespacesTest {
     private final ListContainerNamespaces model = new ListContainerNamespaces();
 
     /**
      * Model tests for ListContainerNamespaces
      */
     @Test
-    void testListContainerNamespaces() {
+    public void testListContainerNamespaces() {
         // TODO: test ListContainerNamespaces
     }
 
@@ -42,7 +43,7 @@ class ListContainerNamespacesTest {
      * Test the property 'cgroup'
      */
     @Test
-    void cgroupTest() {
+    public void cgroupTest() {
         // TODO: test cgroup
     }
 
@@ -50,7 +51,7 @@ class ListContainerNamespacesTest {
      * Test the property 'ipc'
      */
     @Test
-    void ipcTest() {
+    public void ipcTest() {
         // TODO: test ipc
     }
 
@@ -58,7 +59,7 @@ class ListContainerNamespacesTest {
      * Test the property 'mnt'
      */
     @Test
-    void mntTest() {
+    public void mntTest() {
         // TODO: test mnt
     }
 
@@ -66,7 +67,7 @@ class ListContainerNamespacesTest {
      * Test the property 'net'
      */
     @Test
-    void netTest() {
+    public void netTest() {
         // TODO: test net
     }
 
@@ -74,7 +75,7 @@ class ListContainerNamespacesTest {
      * Test the property 'pidns'
      */
     @Test
-    void pidnsTest() {
+    public void pidnsTest() {
         // TODO: test pidns
     }
 
@@ -82,7 +83,7 @@ class ListContainerNamespacesTest {
      * Test the property 'user'
      */
     @Test
-    void userTest() {
+    public void userTest() {
         // TODO: test user
     }
 
@@ -90,7 +91,7 @@ class ListContainerNamespacesTest {
      * Test the property 'uts'
      */
     @Test
-    void utsTest() {
+    public void utsTest() {
         // TODO: test uts
     }
 

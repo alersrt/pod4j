@@ -13,299 +13,297 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectExecProcess contains information about the process in a given exec session.
  */
-@JsonPropertyOrder({
-  InspectExecProcess.JSON_PROPERTY_ARGUMENTS,
-  InspectExecProcess.JSON_PROPERTY_ENTRYPOINT,
-  InspectExecProcess.JSON_PROPERTY_PRIVILEGED,
-  InspectExecProcess.JSON_PROPERTY_TTY,
-  InspectExecProcess.JSON_PROPERTY_USER
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectExecProcess {
-  public static final String JSON_PROPERTY_ARGUMENTS = "arguments";
-  private List<String> arguments = new ArrayList<>();
+    public static final String SERIALIZED_NAME_ARGUMENTS = "arguments";
+    public static final String SERIALIZED_NAME_ENTRYPOINT = "entrypoint";
+    public static final String SERIALIZED_NAME_PRIVILEGED = "privileged";
+    public static final String SERIALIZED_NAME_TTY = "tty";
+    public static final String SERIALIZED_NAME_USER = "user";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_ENTRYPOINT = "entrypoint";
-  private String entrypoint;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("arguments");
+        openapiFields.add("entrypoint");
+        openapiFields.add("privileged");
+        openapiFields.add("tty");
+        openapiFields.add("user");
 
-  public static final String JSON_PROPERTY_PRIVILEGED = "privileged";
-  private Boolean privileged;
-
-  public static final String JSON_PROPERTY_TTY = "tty";
-  private Boolean tty;
-
-  public static final String JSON_PROPERTY_USER = "user";
-  private String user;
-
-  public InspectExecProcess() { 
-  }
-
-  public InspectExecProcess arguments(List<String> arguments) {
-    this.arguments = arguments;
-    return this;
-  }
-
-  public InspectExecProcess addArgumentsItem(String argumentsItem) {
-    if (this.arguments == null) {
-      this.arguments = new ArrayList<>();
-    }
-    this.arguments.add(argumentsItem);
-    return this;
-  }
-
-  /**
-   * Arguments are the arguments to the entrypoint command of the exec session.
-   * @return arguments
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ARGUMENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getArguments() {
-    return arguments;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ARGUMENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setArguments(List<String> arguments) {
-    this.arguments = arguments;
-  }
-
-
-  public InspectExecProcess entrypoint(String entrypoint) {
-    this.entrypoint = entrypoint;
-    return this;
-  }
-
-  /**
-   * Entrypoint is the entrypoint for the exec session (the command that will be executed in the container).
-   * @return entrypoint
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getEntrypoint() {
-    return entrypoint;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntrypoint(String entrypoint) {
-    this.entrypoint = entrypoint;
-  }
-
-
-  public InspectExecProcess privileged(Boolean privileged) {
-    this.privileged = privileged;
-    return this;
-  }
-
-  /**
-   * Privileged is whether the exec session will be started with elevated privileges.
-   * @return privileged
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPrivileged() {
-    return privileged;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPrivileged(Boolean privileged) {
-    this.privileged = privileged;
-  }
-
-
-  public InspectExecProcess tty(Boolean tty) {
-    this.tty = tty;
-    return this;
-  }
-
-  /**
-   * Tty is whether the exec session created a terminal.
-   * @return tty
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TTY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getTty() {
-    return tty;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TTY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTty(Boolean tty) {
-    this.tty = tty;
-  }
-
-
-  public InspectExecProcess user(String user) {
-    this.user = user;
-    return this;
-  }
-
-  /**
-   * User is the user the exec session was started as.
-   * @return user
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUser() {
-    return user;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUser(String user) {
-    this.user = user;
-  }
-
-
-  /**
-   * Return true if this InspectExecProcess object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InspectExecProcess inspectExecProcess = (InspectExecProcess) o;
-    return Objects.equals(this.arguments, inspectExecProcess.arguments) &&
-        Objects.equals(this.entrypoint, inspectExecProcess.entrypoint) &&
-        Objects.equals(this.privileged, inspectExecProcess.privileged) &&
-        Objects.equals(this.tty, inspectExecProcess.tty) &&
-        Objects.equals(this.user, inspectExecProcess.user);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(arguments, entrypoint, privileged, tty, user);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InspectExecProcess {\n");
-    sb.append("    arguments: ").append(toIndentedString(arguments)).append("\n");
-    sb.append("    entrypoint: ").append(toIndentedString(entrypoint)).append("\n");
-    sb.append("    privileged: ").append(toIndentedString(privileged)).append("\n");
-    sb.append("    tty: ").append(toIndentedString(tty)).append("\n");
-    sb.append("    user: ").append(toIndentedString(user)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ARGUMENTS)
+    private List<String> arguments = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
+    private String entrypoint;
+    @SerializedName(SERIALIZED_NAME_PRIVILEGED)
+    private Boolean privileged;
+    @SerializedName(SERIALIZED_NAME_TTY)
+    private Boolean tty;
+    @SerializedName(SERIALIZED_NAME_USER)
+    private String user;
 
-    // add `arguments` to the URL query string
-    if (getArguments() != null) {
-      for (int i = 0; i < getArguments().size(); i++) {
-        joiner.add(String.format("%sarguments%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getArguments().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public InspectExecProcess() {
     }
 
-    // add `entrypoint` to the URL query string
-    if (getEntrypoint() != null) {
-      joiner.add(String.format("%sentrypoint%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEntrypoint()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to InspectExecProcess
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!InspectExecProcess.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectExecProcess is not found in the empty JSON string", InspectExecProcess.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!InspectExecProcess.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectExecProcess` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("arguments") != null && !jsonObj.get("arguments").isJsonNull() && !jsonObj.get("arguments").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `arguments` to be an array in the JSON string but got `%s`", jsonObj.get("arguments").toString()));
+        }
+        if ((jsonObj.get("entrypoint") != null && !jsonObj.get("entrypoint").isJsonNull()) && !jsonObj.get("entrypoint").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `entrypoint` to be a primitive type in the JSON string but got `%s`", jsonObj.get("entrypoint").toString()));
+        }
+        if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `user` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user").toString()));
+        }
     }
 
-    // add `privileged` to the URL query string
-    if (getPrivileged() != null) {
-      joiner.add(String.format("%sprivileged%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivileged()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of InspectExecProcess given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectExecProcess
+     * @throws IOException if the JSON string is invalid with respect to InspectExecProcess
+     */
+    public static InspectExecProcess fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, InspectExecProcess.class);
     }
 
-    // add `tty` to the URL query string
-    if (getTty() != null) {
-      joiner.add(String.format("%stty%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTty()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectExecProcess arguments(List<String> arguments) {
+        this.arguments = arguments;
+        return this;
     }
 
-    // add `user` to the URL query string
-    if (getUser() != null) {
-      joiner.add(String.format("%suser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectExecProcess addArgumentsItem(String argumentsItem) {
+        if (this.arguments == null) {
+            this.arguments = new ArrayList<>();
+        }
+        this.arguments.add(argumentsItem);
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Arguments are the arguments to the entrypoint command of the exec session.
+     *
+     * @return arguments
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(List<String> arguments) {
+        this.arguments = arguments;
+    }
+
+    public InspectExecProcess entrypoint(String entrypoint) {
+        this.entrypoint = entrypoint;
+        return this;
+    }
+
+    /**
+     * Entrypoint is the entrypoint for the exec session (the command that will be executed in the container).
+     *
+     * @return entrypoint
+     */
+    @jakarta.annotation.Nullable
+
+    public String getEntrypoint() {
+        return entrypoint;
+    }
+
+    public void setEntrypoint(String entrypoint) {
+        this.entrypoint = entrypoint;
+    }
+
+    public InspectExecProcess privileged(Boolean privileged) {
+        this.privileged = privileged;
+        return this;
+    }
+
+    /**
+     * Privileged is whether the exec session will be started with elevated privileges.
+     *
+     * @return privileged
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPrivileged() {
+        return privileged;
+    }
+
+    public void setPrivileged(Boolean privileged) {
+        this.privileged = privileged;
+    }
+
+    public InspectExecProcess tty(Boolean tty) {
+        this.tty = tty;
+        return this;
+    }
+
+    /**
+     * Tty is whether the exec session created a terminal.
+     *
+     * @return tty
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getTty() {
+        return tty;
+    }
+
+    public void setTty(Boolean tty) {
+        this.tty = tty;
+    }
+
+    public InspectExecProcess user(String user) {
+        this.user = user;
+        return this;
+    }
+
+    /**
+     * User is the user the exec session was started as.
+     *
+     * @return user
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectExecProcess inspectExecProcess = (InspectExecProcess) o;
+        return Objects.equals(this.arguments, inspectExecProcess.arguments) &&
+                Objects.equals(this.entrypoint, inspectExecProcess.entrypoint) &&
+                Objects.equals(this.privileged, inspectExecProcess.privileged) &&
+                Objects.equals(this.tty, inspectExecProcess.tty) &&
+                Objects.equals(this.user, inspectExecProcess.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(arguments, entrypoint, privileged, tty, user);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class InspectExecProcess {\n" +
+                "    arguments: " + toIndentedString(arguments) + "\n" +
+                "    entrypoint: " + toIndentedString(entrypoint) + "\n" +
+                "    privileged: " + toIndentedString(privileged) + "\n" +
+                "    tty: " + toIndentedString(tty) + "\n" +
+                "    user: " + toIndentedString(user) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of InspectExecProcess to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!InspectExecProcess.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'InspectExecProcess' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<InspectExecProcess> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(InspectExecProcess.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<InspectExecProcess>() {
+                @Override
+                public void write(JsonWriter out, InspectExecProcess value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public InspectExecProcess read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

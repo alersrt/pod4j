@@ -13,279 +13,289 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * History
  */
-@JsonPropertyOrder({
-  History.JSON_PROPERTY_AUTHOR,
-  History.JSON_PROPERTY_COMMENT,
-  History.JSON_PROPERTY_CREATED,
-  History.JSON_PROPERTY_CREATED_BY,
-  History.JSON_PROPERTY_EMPTY_LAYER
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class History {
-  public static final String JSON_PROPERTY_AUTHOR = "author";
-  private String author;
+    public static final String SERIALIZED_NAME_AUTHOR = "author";
+    public static final String SERIALIZED_NAME_COMMENT = "comment";
+    public static final String SERIALIZED_NAME_CREATED = "created";
+    public static final String SERIALIZED_NAME_CREATED_BY = "created_by";
+    public static final String SERIALIZED_NAME_EMPTY_LAYER = "empty_layer";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_COMMENT = "comment";
-  private String comment;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("author");
+        openapiFields.add("comment");
+        openapiFields.add("created");
+        openapiFields.add("created_by");
+        openapiFields.add("empty_layer");
 
-  public static final String JSON_PROPERTY_CREATED = "created";
-  private OffsetDateTime created;
-
-  public static final String JSON_PROPERTY_CREATED_BY = "created_by";
-  private String createdBy;
-
-  public static final String JSON_PROPERTY_EMPTY_LAYER = "empty_layer";
-  private Boolean emptyLayer;
-
-  public History() { 
-  }
-
-  public History author(String author) {
-    this.author = author;
-    return this;
-  }
-
-  /**
-   * Author is the author of the build point.
-   * @return author
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getAuthor() {
-    return author;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAuthor(String author) {
-    this.author = author;
-  }
-
-
-  public History comment(String comment) {
-    this.comment = comment;
-    return this;
-  }
-
-  /**
-   * Comment is a custom message set when creating the layer.
-   * @return comment
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_COMMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getComment() {
-    return comment;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_COMMENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
-
-
-  public History created(OffsetDateTime created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Created is the combined date and time at which the layer was created, formatted as defined by RFC 3339, section 5.6.
-   * @return created
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public OffsetDateTime getCreated() {
-    return created;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
-  }
-
-
-  public History createdBy(String createdBy) {
-    this.createdBy = createdBy;
-    return this;
-  }
-
-  /**
-   * CreatedBy is the command which created the layer.
-   * @return createdBy
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CREATED_BY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCreatedBy() {
-    return createdBy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED_BY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCreatedBy(String createdBy) {
-    this.createdBy = createdBy;
-  }
-
-
-  public History emptyLayer(Boolean emptyLayer) {
-    this.emptyLayer = emptyLayer;
-    return this;
-  }
-
-  /**
-   * EmptyLayer is used to mark if the history item created a filesystem diff.
-   * @return emptyLayer
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EMPTY_LAYER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getEmptyLayer() {
-    return emptyLayer;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EMPTY_LAYER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEmptyLayer(Boolean emptyLayer) {
-    this.emptyLayer = emptyLayer;
-  }
-
-
-  /**
-   * Return true if this History object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    History history = (History) o;
-    return Objects.equals(this.author, history.author) &&
-        Objects.equals(this.comment, history.comment) &&
-        Objects.equals(this.created, history.created) &&
-        Objects.equals(this.createdBy, history.createdBy) &&
-        Objects.equals(this.emptyLayer, history.emptyLayer);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(author, comment, created, createdBy, emptyLayer);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class History {\n");
-    sb.append("    author: ").append(toIndentedString(author)).append("\n");
-    sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    createdBy: ").append(toIndentedString(createdBy)).append("\n");
-    sb.append("    emptyLayer: ").append(toIndentedString(emptyLayer)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_AUTHOR)
+    private String author;
+    @SerializedName(SERIALIZED_NAME_COMMENT)
+    private String comment;
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private OffsetDateTime created;
+    @SerializedName(SERIALIZED_NAME_CREATED_BY)
+    private String createdBy;
+    @SerializedName(SERIALIZED_NAME_EMPTY_LAYER)
+    private Boolean emptyLayer;
 
-    // add `author` to the URL query string
-    if (getAuthor() != null) {
-      joiner.add(String.format("%sauthor%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAuthor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public History() {
     }
 
-    // add `comment` to the URL query string
-    if (getComment() != null) {
-      joiner.add(String.format("%scomment%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getComment()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to History
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!History.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in History is not found in the empty JSON string", History.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!History.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `History` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if ((jsonObj.get("author") != null && !jsonObj.get("author").isJsonNull()) && !jsonObj.get("author").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `author` to be a primitive type in the JSON string but got `%s`", jsonObj.get("author").toString()));
+        }
+        if ((jsonObj.get("comment") != null && !jsonObj.get("comment").isJsonNull()) && !jsonObj.get("comment").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `comment` to be a primitive type in the JSON string but got `%s`", jsonObj.get("comment").toString()));
+        }
+        if ((jsonObj.get("created_by") != null && !jsonObj.get("created_by").isJsonNull()) && !jsonObj.get("created_by").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `created_by` to be a primitive type in the JSON string but got `%s`", jsonObj.get("created_by").toString()));
+        }
     }
 
-    // add `created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%screated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of History given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of History
+     * @throws IOException if the JSON string is invalid with respect to History
+     */
+    public static History fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, History.class);
     }
 
-    // add `created_by` to the URL query string
-    if (getCreatedBy() != null) {
-      joiner.add(String.format("%screated_by%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreatedBy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public History author(String author) {
+        this.author = author;
+        return this;
     }
 
-    // add `empty_layer` to the URL query string
-    if (getEmptyLayer() != null) {
-      joiner.add(String.format("%sempty_layer%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEmptyLayer()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Author is the author of the build point.
+     *
+     * @return author
+     */
+    @jakarta.annotation.Nullable
+
+    public String getAuthor() {
+        return author;
     }
 
-    return joiner.toString();
-  }
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public History comment(String comment) {
+        this.comment = comment;
+        return this;
+    }
+
+    /**
+     * Comment is a custom message set when creating the layer.
+     *
+     * @return comment
+     */
+    @jakarta.annotation.Nullable
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public History created(OffsetDateTime created) {
+        this.created = created;
+        return this;
+    }
+
+    /**
+     * Created is the combined date and time at which the layer was created, formatted as defined by RFC 3339, section 5.6.
+     *
+     * @return created
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public OffsetDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(OffsetDateTime created) {
+        this.created = created;
+    }
+
+    public History createdBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
+     * CreatedBy is the command which created the layer.
+     *
+     * @return createdBy
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public History emptyLayer(Boolean emptyLayer) {
+        this.emptyLayer = emptyLayer;
+        return this;
+    }
+
+    /**
+     * EmptyLayer is used to mark if the history item created a filesystem diff.
+     *
+     * @return emptyLayer
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getEmptyLayer() {
+        return emptyLayer;
+    }
+
+    public void setEmptyLayer(Boolean emptyLayer) {
+        this.emptyLayer = emptyLayer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        History history = (History) o;
+        return Objects.equals(this.author, history.author) &&
+                Objects.equals(this.comment, history.comment) &&
+                Objects.equals(this.created, history.created) &&
+                Objects.equals(this.createdBy, history.createdBy) &&
+                Objects.equals(this.emptyLayer, history.emptyLayer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(author, comment, created, createdBy, emptyLayer);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class History {\n" +
+                "    author: " + toIndentedString(author) + "\n" +
+                "    comment: " + toIndentedString(comment) + "\n" +
+                "    created: " + toIndentedString(created) + "\n" +
+                "    createdBy: " + toIndentedString(createdBy) + "\n" +
+                "    emptyLayer: " + toIndentedString(emptyLayer) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of History to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!History.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'History' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<History> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(History.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<History>() {
+                @Override
+                public void write(JsonWriter out, History value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public History read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

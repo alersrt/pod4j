@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for UsageData
  */
-class UsageDataTest {
+public class UsageDataTest {
     private final UsageData model = new UsageData();
 
     /**
      * Model tests for UsageData
      */
     @Test
-    void testUsageData() {
+    public void testUsageData() {
         // TODO: test UsageData
     }
 
@@ -42,7 +33,7 @@ class UsageDataTest {
      * Test the property 'refCount'
      */
     @Test
-    void refCountTest() {
+    public void refCountTest() {
         // TODO: test refCount
     }
 
@@ -50,7 +41,7 @@ class UsageDataTest {
      * Test the property 'size'
      */
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         // TODO: test size
     }
 

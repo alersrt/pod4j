@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxDeviceCgroup
  */
-class LinuxDeviceCgroupTest {
+public class LinuxDeviceCgroupTest {
     private final LinuxDeviceCgroup model = new LinuxDeviceCgroup();
 
     /**
      * Model tests for LinuxDeviceCgroup
      */
     @Test
-    void testLinuxDeviceCgroup() {
+    public void testLinuxDeviceCgroup() {
         // TODO: test LinuxDeviceCgroup
     }
 
@@ -42,7 +43,7 @@ class LinuxDeviceCgroupTest {
      * Test the property 'access'
      */
     @Test
-    void accessTest() {
+    public void accessTest() {
         // TODO: test access
     }
 
@@ -50,7 +51,7 @@ class LinuxDeviceCgroupTest {
      * Test the property 'allow'
      */
     @Test
-    void allowTest() {
+    public void allowTest() {
         // TODO: test allow
     }
 
@@ -58,7 +59,7 @@ class LinuxDeviceCgroupTest {
      * Test the property 'major'
      */
     @Test
-    void majorTest() {
+    public void majorTest() {
         // TODO: test major
     }
 
@@ -66,7 +67,7 @@ class LinuxDeviceCgroupTest {
      * Test the property 'minor'
      */
     @Test
-    void minorTest() {
+    public void minorTest() {
         // TODO: test minor
     }
 
@@ -74,7 +75,7 @@ class LinuxDeviceCgroupTest {
      * Test the property 'type'
      */
     @Test
-    void typeTest() {
+    public void typeTest() {
         // TODO: test type
     }
 

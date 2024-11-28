@@ -13,171 +13,217 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.constraints.NotNull;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * AuthenticateOKBody authenticate o k body
  */
-@JsonPropertyOrder({
-  AuthenticateOKBody.JSON_PROPERTY_IDENTITY_TOKEN,
-  AuthenticateOKBody.JSON_PROPERTY_STATUS
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class AuthenticateOKBody {
-  public static final String JSON_PROPERTY_IDENTITY_TOKEN = "IdentityToken";
-  private String identityToken;
+    public static final String SERIALIZED_NAME_IDENTITY_TOKEN = "IdentityToken";
+    public static final String SERIALIZED_NAME_STATUS = "Status";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public static final String JSON_PROPERTY_STATUS = "Status";
-  private String status;
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("IdentityToken");
+        openapiFields.add("Status");
 
-  public AuthenticateOKBody() { 
-  }
-
-  public AuthenticateOKBody identityToken(String identityToken) {
-    this.identityToken = identityToken;
-    return this;
-  }
-
-  /**
-   * An opaque token used to authenticate a user after a successful login
-   * @return identityToken
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_IDENTITY_TOKEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getIdentityToken() {
-    return identityToken;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IDENTITY_TOKEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setIdentityToken(String identityToken) {
-    this.identityToken = identityToken;
-  }
-
-
-  public AuthenticateOKBody status(String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * The status of the authentication
-   * @return status
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  /**
-   * Return true if this AuthenticateOKBody object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    AuthenticateOKBody authenticateOKBody = (AuthenticateOKBody) o;
-    return Objects.equals(this.identityToken, authenticateOKBody.identityToken) &&
-        Objects.equals(this.status, authenticateOKBody.status);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(identityToken, status);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AuthenticateOKBody {\n");
-    sb.append("    identityToken: ").append(toIndentedString(identityToken)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("IdentityToken");
+        openapiRequiredFields.add("Status");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_IDENTITY_TOKEN)
+    private String identityToken;
+    @SerializedName(SERIALIZED_NAME_STATUS)
+    private String status;
 
-    // add `IdentityToken` to the URL query string
-    if (getIdentityToken() != null) {
-      joiner.add(String.format("%sIdentityToken%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIdentityToken()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public AuthenticateOKBody() {
     }
 
-    // add `Status` to the URL query string
-    if (getStatus() != null) {
-      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to AuthenticateOKBody
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!AuthenticateOKBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in AuthenticateOKBody is not found in the empty JSON string", AuthenticateOKBody.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!AuthenticateOKBody.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthenticateOKBody` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : AuthenticateOKBody.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (!jsonObj.get("IdentityToken").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IdentityToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IdentityToken").toString()));
+        }
+        if (!jsonObj.get("Status").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
+        }
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Create an instance of AuthenticateOKBody given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of AuthenticateOKBody
+     * @throws IOException if the JSON string is invalid with respect to AuthenticateOKBody
+     */
+    public static AuthenticateOKBody fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, AuthenticateOKBody.class);
+    }
+
+    public AuthenticateOKBody identityToken(String identityToken) {
+        this.identityToken = identityToken;
+        return this;
+    }
+
+    /**
+     * An opaque token used to authenticate a user after a successful login
+     *
+     * @return identityToken
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getIdentityToken() {
+        return identityToken;
+    }
+
+    public void setIdentityToken(String identityToken) {
+        this.identityToken = identityToken;
+    }
+
+    public AuthenticateOKBody status(String status) {
+        this.status = status;
+        return this;
+    }
+
+    /**
+     * The status of the authentication
+     *
+     * @return status
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AuthenticateOKBody authenticateOKBody = (AuthenticateOKBody) o;
+        return Objects.equals(this.identityToken, authenticateOKBody.identityToken) &&
+                Objects.equals(this.status, authenticateOKBody.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(identityToken, status);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class AuthenticateOKBody {\n" +
+                "    identityToken: " + toIndentedString(identityToken) + "\n" +
+                "    status: " + toIndentedString(status) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of AuthenticateOKBody to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!AuthenticateOKBody.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'AuthenticateOKBody' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<AuthenticateOKBody> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(AuthenticateOKBody.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<AuthenticateOKBody>() {
+                @Override
+                public void write(JsonWriter out, AuthenticateOKBody value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public AuthenticateOKBody read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

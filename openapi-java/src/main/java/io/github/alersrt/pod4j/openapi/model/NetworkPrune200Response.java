@@ -13,155 +13,187 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * NetworkPrune200Response
  */
-@JsonPropertyOrder({
-  NetworkPrune200Response.JSON_PROPERTY_NETWORKS_DELETED
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkPrune200Response {
-  public static final String JSON_PROPERTY_NETWORKS_DELETED = "NetworksDeleted";
-  private List<String> networksDeleted = new ArrayList<>();
+    public static final String SERIALIZED_NAME_NETWORKS_DELETED = "NetworksDeleted";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
 
-  public NetworkPrune200Response() { 
-  }
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("NetworksDeleted");
 
-  public NetworkPrune200Response networksDeleted(List<String> networksDeleted) {
-    this.networksDeleted = networksDeleted;
-    return this;
-  }
-
-  public NetworkPrune200Response addNetworksDeletedItem(String networksDeletedItem) {
-    if (this.networksDeleted == null) {
-      this.networksDeleted = new ArrayList<>();
-    }
-    this.networksDeleted.add(networksDeletedItem);
-    return this;
-  }
-
-  /**
-   * Get networksDeleted
-   * @return networksDeleted
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORKS_DELETED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getNetworksDeleted() {
-    return networksDeleted;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORKS_DELETED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworksDeleted(List<String> networksDeleted) {
-    this.networksDeleted = networksDeleted;
-  }
-
-
-  /**
-   * Return true if this NetworkPrune_200_response object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    NetworkPrune200Response networkPrune200Response = (NetworkPrune200Response) o;
-    return Objects.equals(this.networksDeleted, networkPrune200Response.networksDeleted);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(networksDeleted);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class NetworkPrune200Response {\n");
-    sb.append("    networksDeleted: ").append(toIndentedString(networksDeleted)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_NETWORKS_DELETED)
+    private List<String> networksDeleted = new ArrayList<>();
 
-    // add `NetworksDeleted` to the URL query string
-    if (getNetworksDeleted() != null) {
-      for (int i = 0; i < getNetworksDeleted().size(); i++) {
-        joiner.add(String.format("%sNetworksDeleted%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getNetworksDeleted().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public NetworkPrune200Response() {
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to NetworkPrune200Response
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!NetworkPrune200Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkPrune200Response is not found in the empty JSON string", NetworkPrune200Response.openapiRequiredFields));
+            }
+        }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!NetworkPrune200Response.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkPrune200Response` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("NetworksDeleted") != null && !jsonObj.get("NetworksDeleted").isJsonNull() && !jsonObj.get("NetworksDeleted").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `NetworksDeleted` to be an array in the JSON string but got `%s`", jsonObj.get("NetworksDeleted").toString()));
+        }
+    }
+
+    /**
+     * Create an instance of NetworkPrune200Response given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of NetworkPrune200Response
+     * @throws IOException if the JSON string is invalid with respect to NetworkPrune200Response
+     */
+    public static NetworkPrune200Response fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, NetworkPrune200Response.class);
+    }
+
+    public NetworkPrune200Response networksDeleted(List<String> networksDeleted) {
+        this.networksDeleted = networksDeleted;
+        return this;
+    }
+
+    public NetworkPrune200Response addNetworksDeletedItem(String networksDeletedItem) {
+        if (this.networksDeleted == null) {
+            this.networksDeleted = new ArrayList<>();
+        }
+        this.networksDeleted.add(networksDeletedItem);
+        return this;
+    }
+
+    /**
+     * Get networksDeleted
+     *
+     * @return networksDeleted
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getNetworksDeleted() {
+        return networksDeleted;
+    }
+
+    public void setNetworksDeleted(List<String> networksDeleted) {
+        this.networksDeleted = networksDeleted;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        NetworkPrune200Response networkPrune200Response = (NetworkPrune200Response) o;
+        return Objects.equals(this.networksDeleted, networkPrune200Response.networksDeleted);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(networksDeleted);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class NetworkPrune200Response {\n" +
+                "    networksDeleted: " + toIndentedString(networksDeleted) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of NetworkPrune200Response to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!NetworkPrune200Response.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'NetworkPrune200Response' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<NetworkPrune200Response> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(NetworkPrune200Response.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<NetworkPrune200Response>() {
+                @Override
+                public void write(JsonWriter out, NetworkPrune200Response value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public NetworkPrune200Response read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

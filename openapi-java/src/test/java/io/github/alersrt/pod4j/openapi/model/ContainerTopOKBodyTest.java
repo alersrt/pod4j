@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerTopOKBody
  */
-class ContainerTopOKBodyTest {
+public class ContainerTopOKBodyTest {
     private final ContainerTopOKBody model = new ContainerTopOKBody();
 
     /**
      * Model tests for ContainerTopOKBody
      */
     @Test
-    void testContainerTopOKBody() {
+    public void testContainerTopOKBody() {
         // TODO: test ContainerTopOKBody
     }
 
@@ -44,7 +33,7 @@ class ContainerTopOKBodyTest {
      * Test the property 'processes'
      */
     @Test
-    void processesTest() {
+    public void processesTest() {
         // TODO: test processes
     }
 
@@ -52,7 +41,7 @@ class ContainerTopOKBodyTest {
      * Test the property 'titles'
      */
     @Test
-    void titlesTest() {
+    public void titlesTest() {
         // TODO: test titles
     }
 

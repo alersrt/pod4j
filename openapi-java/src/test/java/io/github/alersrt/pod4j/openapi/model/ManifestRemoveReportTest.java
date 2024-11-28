@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ManifestRemoveReport
  */
-class ManifestRemoveReportTest {
+public class ManifestRemoveReportTest {
     private final ManifestRemoveReport model = new ManifestRemoveReport();
 
     /**
      * Model tests for ManifestRemoveReport
      */
     @Test
-    void testManifestRemoveReport() {
+    public void testManifestRemoveReport() {
         // TODO: test ManifestRemoveReport
     }
 
@@ -44,7 +45,7 @@ class ManifestRemoveReportTest {
      * Test the property 'deleted'
      */
     @Test
-    void deletedTest() {
+    public void deletedTest() {
         // TODO: test deleted
     }
 
@@ -52,7 +53,7 @@ class ManifestRemoveReportTest {
      * Test the property 'errors'
      */
     @Test
-    void errorsTest() {
+    public void errorsTest() {
         // TODO: test errors
     }
 
@@ -60,7 +61,7 @@ class ManifestRemoveReportTest {
      * Test the property 'exitCode'
      */
     @Test
-    void exitCodeTest() {
+    public void exitCodeTest() {
         // TODO: test exitCode
     }
 
@@ -68,7 +69,7 @@ class ManifestRemoveReportTest {
      * Test the property 'untagged'
      */
     @Test
-    void untaggedTest() {
+    public void untaggedTest() {
         // TODO: test untagged
     }
 

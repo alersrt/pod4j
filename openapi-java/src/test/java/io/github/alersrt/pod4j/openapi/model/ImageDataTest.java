@@ -13,16 +13,18 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import io.github.alersrt.pod4j.openapi.model.DriverData;
 import io.github.alersrt.pod4j.openapi.model.History;
 import io.github.alersrt.pod4j.openapi.model.ImageConfig;
 import io.github.alersrt.pod4j.openapi.model.RootFS;
 import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
+
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,21 +32,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ImageData
  */
-class ImageDataTest {
+public class ImageDataTest {
     private final ImageData model = new ImageData();
 
     /**
      * Model tests for ImageData
      */
     @Test
-    void testImageData() {
+    public void testImageData() {
         // TODO: test ImageData
     }
 
@@ -52,7 +53,7 @@ class ImageDataTest {
      * Test the property 'annotations'
      */
     @Test
-    void annotationsTest() {
+    public void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -60,7 +61,7 @@ class ImageDataTest {
      * Test the property 'architecture'
      */
     @Test
-    void architectureTest() {
+    public void architectureTest() {
         // TODO: test architecture
     }
 
@@ -68,7 +69,7 @@ class ImageDataTest {
      * Test the property 'author'
      */
     @Test
-    void authorTest() {
+    public void authorTest() {
         // TODO: test author
     }
 
@@ -76,7 +77,7 @@ class ImageDataTest {
      * Test the property 'comment'
      */
     @Test
-    void commentTest() {
+    public void commentTest() {
         // TODO: test comment
     }
 
@@ -84,7 +85,7 @@ class ImageDataTest {
      * Test the property 'config'
      */
     @Test
-    void configTest() {
+    public void configTest() {
         // TODO: test config
     }
 
@@ -92,7 +93,7 @@ class ImageDataTest {
      * Test the property 'created'
      */
     @Test
-    void createdTest() {
+    public void createdTest() {
         // TODO: test created
     }
 
@@ -100,7 +101,7 @@ class ImageDataTest {
      * Test the property 'digest'
      */
     @Test
-    void digestTest() {
+    public void digestTest() {
         // TODO: test digest
     }
 
@@ -108,7 +109,7 @@ class ImageDataTest {
      * Test the property 'graphDriver'
      */
     @Test
-    void graphDriverTest() {
+    public void graphDriverTest() {
         // TODO: test graphDriver
     }
 
@@ -116,7 +117,7 @@ class ImageDataTest {
      * Test the property 'healthcheck'
      */
     @Test
-    void healthcheckTest() {
+    public void healthcheckTest() {
         // TODO: test healthcheck
     }
 
@@ -124,7 +125,7 @@ class ImageDataTest {
      * Test the property 'history'
      */
     @Test
-    void historyTest() {
+    public void historyTest() {
         // TODO: test history
     }
 
@@ -132,7 +133,7 @@ class ImageDataTest {
      * Test the property 'id'
      */
     @Test
-    void idTest() {
+    public void idTest() {
         // TODO: test id
     }
 
@@ -140,7 +141,7 @@ class ImageDataTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -148,7 +149,7 @@ class ImageDataTest {
      * Test the property 'manifestType'
      */
     @Test
-    void manifestTypeTest() {
+    public void manifestTypeTest() {
         // TODO: test manifestType
     }
 
@@ -156,7 +157,7 @@ class ImageDataTest {
      * Test the property 'namesHistory'
      */
     @Test
-    void namesHistoryTest() {
+    public void namesHistoryTest() {
         // TODO: test namesHistory
     }
 
@@ -164,7 +165,7 @@ class ImageDataTest {
      * Test the property 'os'
      */
     @Test
-    void osTest() {
+    public void osTest() {
         // TODO: test os
     }
 
@@ -172,7 +173,7 @@ class ImageDataTest {
      * Test the property 'parent'
      */
     @Test
-    void parentTest() {
+    public void parentTest() {
         // TODO: test parent
     }
 
@@ -180,7 +181,7 @@ class ImageDataTest {
      * Test the property 'repoDigests'
      */
     @Test
-    void repoDigestsTest() {
+    public void repoDigestsTest() {
         // TODO: test repoDigests
     }
 
@@ -188,7 +189,7 @@ class ImageDataTest {
      * Test the property 'repoTags'
      */
     @Test
-    void repoTagsTest() {
+    public void repoTagsTest() {
         // TODO: test repoTags
     }
 
@@ -196,7 +197,7 @@ class ImageDataTest {
      * Test the property 'rootFS'
      */
     @Test
-    void rootFSTest() {
+    public void rootFSTest() {
         // TODO: test rootFS
     }
 
@@ -204,7 +205,7 @@ class ImageDataTest {
      * Test the property 'size'
      */
     @Test
-    void sizeTest() {
+    public void sizeTest() {
         // TODO: test size
     }
 
@@ -212,7 +213,7 @@ class ImageDataTest {
      * Test the property 'user'
      */
     @Test
-    void userTest() {
+    public void userTest() {
         // TODO: test user
     }
 
@@ -220,7 +221,7 @@ class ImageDataTest {
      * Test the property 'version'
      */
     @Test
-    void versionTest() {
+    public void versionTest() {
         // TODO: test version
     }
 
@@ -228,7 +229,7 @@ class ImageDataTest {
      * Test the property 'virtualSize'
      */
     @Test
-    void virtualSizeTest() {
+    public void virtualSizeTest() {
         // TODO: test virtualSize
     }
 

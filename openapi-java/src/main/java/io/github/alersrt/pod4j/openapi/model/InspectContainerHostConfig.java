@@ -13,2931 +13,2376 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.InspectBlkioThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.InspectBlkioWeightDevice;
-import io.github.alersrt.pod4j.openapi.model.InspectDevice;
-import io.github.alersrt.pod4j.openapi.model.InspectHostPort;
-import io.github.alersrt.pod4j.openapi.model.InspectIDMappings;
-import io.github.alersrt.pod4j.openapi.model.InspectLogConfig;
-import io.github.alersrt.pod4j.openapi.model.InspectRestartPolicy;
-import io.github.alersrt.pod4j.openapi.model.InspectUlimit;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * nolint:revive,stylecheck // Field names are fixed for compatibility and cannot be changed.
  */
-@JsonPropertyOrder({
-  InspectContainerHostConfig.JSON_PROPERTY_ANNOTATIONS,
-  InspectContainerHostConfig.JSON_PROPERTY_AUTO_REMOVE,
-  InspectContainerHostConfig.JSON_PROPERTY_AUTO_REMOVE_IMAGE,
-  InspectContainerHostConfig.JSON_PROPERTY_BINDS,
-  InspectContainerHostConfig.JSON_PROPERTY_BLKIO_DEVICE_READ_BPS,
-  InspectContainerHostConfig.JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS,
-  InspectContainerHostConfig.JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS,
-  InspectContainerHostConfig.JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS,
-  InspectContainerHostConfig.JSON_PROPERTY_BLKIO_WEIGHT,
-  InspectContainerHostConfig.JSON_PROPERTY_BLKIO_WEIGHT_DEVICE,
-  InspectContainerHostConfig.JSON_PROPERTY_CAP_ADD,
-  InspectContainerHostConfig.JSON_PROPERTY_CAP_DROP,
-  InspectContainerHostConfig.JSON_PROPERTY_CGROUP,
-  InspectContainerHostConfig.JSON_PROPERTY_CGROUP_CONF,
-  InspectContainerHostConfig.JSON_PROPERTY_CGROUP_MANAGER,
-  InspectContainerHostConfig.JSON_PROPERTY_CGROUP_MODE,
-  InspectContainerHostConfig.JSON_PROPERTY_CGROUP_PARENT,
-  InspectContainerHostConfig.JSON_PROPERTY_CGROUPS,
-  InspectContainerHostConfig.JSON_PROPERTY_CONSOLE_SIZE,
-  InspectContainerHostConfig.JSON_PROPERTY_CONTAINER_I_D_FILE,
-  InspectContainerHostConfig.JSON_PROPERTY_CPU_COUNT,
-  InspectContainerHostConfig.JSON_PROPERTY_CPU_PERCENT,
-  InspectContainerHostConfig.JSON_PROPERTY_CPU_PERIOD,
-  InspectContainerHostConfig.JSON_PROPERTY_CPU_QUOTA,
-  InspectContainerHostConfig.JSON_PROPERTY_CPU_REALTIME_PERIOD,
-  InspectContainerHostConfig.JSON_PROPERTY_CPU_REALTIME_RUNTIME,
-  InspectContainerHostConfig.JSON_PROPERTY_CPU_SHARES,
-  InspectContainerHostConfig.JSON_PROPERTY_CPUSET_CPUS,
-  InspectContainerHostConfig.JSON_PROPERTY_CPUSET_MEMS,
-  InspectContainerHostConfig.JSON_PROPERTY_DEVICES,
-  InspectContainerHostConfig.JSON_PROPERTY_DISK_QUOTA,
-  InspectContainerHostConfig.JSON_PROPERTY_DNS,
-  InspectContainerHostConfig.JSON_PROPERTY_DNS_OPTIONS,
-  InspectContainerHostConfig.JSON_PROPERTY_DNS_SEARCH,
-  InspectContainerHostConfig.JSON_PROPERTY_EXTRA_HOSTS,
-  InspectContainerHostConfig.JSON_PROPERTY_GROUP_ADD,
-  InspectContainerHostConfig.JSON_PROPERTY_ID_MAPPINGS,
-  InspectContainerHostConfig.JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH,
-  InspectContainerHostConfig.JSON_PROPERTY_IO_MAXIMUM_I_OPS,
-  InspectContainerHostConfig.JSON_PROPERTY_INIT,
-  InspectContainerHostConfig.JSON_PROPERTY_INTEL_RDT_CLOS_I_D,
-  InspectContainerHostConfig.JSON_PROPERTY_IPC_MODE,
-  InspectContainerHostConfig.JSON_PROPERTY_ISOLATION,
-  InspectContainerHostConfig.JSON_PROPERTY_KERNEL_MEMORY,
-  InspectContainerHostConfig.JSON_PROPERTY_LINKS,
-  InspectContainerHostConfig.JSON_PROPERTY_LOG_CONFIG,
-  InspectContainerHostConfig.JSON_PROPERTY_MEMORY,
-  InspectContainerHostConfig.JSON_PROPERTY_MEMORY_RESERVATION,
-  InspectContainerHostConfig.JSON_PROPERTY_MEMORY_SWAP,
-  InspectContainerHostConfig.JSON_PROPERTY_MEMORY_SWAPPINESS,
-  InspectContainerHostConfig.JSON_PROPERTY_NANO_CPUS,
-  InspectContainerHostConfig.JSON_PROPERTY_NETWORK_MODE,
-  InspectContainerHostConfig.JSON_PROPERTY_OOM_KILL_DISABLE,
-  InspectContainerHostConfig.JSON_PROPERTY_OOM_SCORE_ADJ,
-  InspectContainerHostConfig.JSON_PROPERTY_PID_MODE,
-  InspectContainerHostConfig.JSON_PROPERTY_PIDS_LIMIT,
-  InspectContainerHostConfig.JSON_PROPERTY_PORT_BINDINGS,
-  InspectContainerHostConfig.JSON_PROPERTY_PRIVILEGED,
-  InspectContainerHostConfig.JSON_PROPERTY_PUBLISH_ALL_PORTS,
-  InspectContainerHostConfig.JSON_PROPERTY_READONLY_ROOTFS,
-  InspectContainerHostConfig.JSON_PROPERTY_RESTART_POLICY,
-  InspectContainerHostConfig.JSON_PROPERTY_RUNTIME,
-  InspectContainerHostConfig.JSON_PROPERTY_SECURITY_OPT,
-  InspectContainerHostConfig.JSON_PROPERTY_SHM_SIZE,
-  InspectContainerHostConfig.JSON_PROPERTY_TMPFS,
-  InspectContainerHostConfig.JSON_PROPERTY_UT_S_MODE,
-  InspectContainerHostConfig.JSON_PROPERTY_ULIMITS,
-  InspectContainerHostConfig.JSON_PROPERTY_USERNS_MODE,
-  InspectContainerHostConfig.JSON_PROPERTY_VOLUME_DRIVER,
-  InspectContainerHostConfig.JSON_PROPERTY_VOLUMES_FROM
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerHostConfig {
-  public static final String JSON_PROPERTY_ANNOTATIONS = "Annotations";
-  private Map<String, String> annotations = new HashMap<>();
-
-  public static final String JSON_PROPERTY_AUTO_REMOVE = "AutoRemove";
-  private Boolean autoRemove;
-
-  public static final String JSON_PROPERTY_AUTO_REMOVE_IMAGE = "AutoRemoveImage";
-  private Boolean autoRemoveImage;
-
-  public static final String JSON_PROPERTY_BINDS = "Binds";
-  private List<String> binds = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_READ_BPS = "BlkioDeviceReadBps";
-  private List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS = "BlkioDeviceReadIOps";
-  private List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS = "BlkioDeviceWriteBps";
-  private List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS = "BlkioDeviceWriteIOps";
-  private List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_WEIGHT = "BlkioWeight";
-  private Integer blkioWeight;
-
-  public static final String JSON_PROPERTY_BLKIO_WEIGHT_DEVICE = "BlkioWeightDevice";
-  private List<@Valid InspectBlkioWeightDevice> blkioWeightDevice = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CAP_ADD = "CapAdd";
-  private List<String> capAdd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CAP_DROP = "CapDrop";
-  private List<String> capDrop = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CGROUP = "Cgroup";
-  private String cgroup;
-
-  public static final String JSON_PROPERTY_CGROUP_CONF = "CgroupConf";
-  private Map<String, String> cgroupConf = new HashMap<>();
-
-  public static final String JSON_PROPERTY_CGROUP_MANAGER = "CgroupManager";
-  private String cgroupManager;
-
-  public static final String JSON_PROPERTY_CGROUP_MODE = "CgroupMode";
-  private String cgroupMode;
-
-  public static final String JSON_PROPERTY_CGROUP_PARENT = "CgroupParent";
-  private String cgroupParent;
-
-  public static final String JSON_PROPERTY_CGROUPS = "Cgroups";
-  private String cgroups;
-
-  public static final String JSON_PROPERTY_CONSOLE_SIZE = "ConsoleSize";
-  private List<Integer> consoleSize = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CONTAINER_I_D_FILE = "ContainerIDFile";
-  private String containerIDFile;
-
-  public static final String JSON_PROPERTY_CPU_COUNT = "CpuCount";
-  private Integer cpuCount;
-
-  public static final String JSON_PROPERTY_CPU_PERCENT = "CpuPercent";
-  private Integer cpuPercent;
-
-  public static final String JSON_PROPERTY_CPU_PERIOD = "CpuPeriod";
-  private Integer cpuPeriod;
-
-  public static final String JSON_PROPERTY_CPU_QUOTA = "CpuQuota";
-  private Long cpuQuota;
-
-  public static final String JSON_PROPERTY_CPU_REALTIME_PERIOD = "CpuRealtimePeriod";
-  private Integer cpuRealtimePeriod;
-
-  public static final String JSON_PROPERTY_CPU_REALTIME_RUNTIME = "CpuRealtimeRuntime";
-  private Long cpuRealtimeRuntime;
-
-  public static final String JSON_PROPERTY_CPU_SHARES = "CpuShares";
-  private Integer cpuShares;
-
-  public static final String JSON_PROPERTY_CPUSET_CPUS = "CpusetCpus";
-  private String cpusetCpus;
-
-  public static final String JSON_PROPERTY_CPUSET_MEMS = "CpusetMems";
-  private String cpusetMems;
-
-  public static final String JSON_PROPERTY_DEVICES = "Devices";
-  private List<@Valid InspectDevice> devices = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DISK_QUOTA = "DiskQuota";
-  private Integer diskQuota;
-
-  public static final String JSON_PROPERTY_DNS = "Dns";
-  private List<String> dns = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DNS_OPTIONS = "DnsOptions";
-  private List<String> dnsOptions = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DNS_SEARCH = "DnsSearch";
-  private List<String> dnsSearch = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EXTRA_HOSTS = "ExtraHosts";
-  private List<String> extraHosts = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_GROUP_ADD = "GroupAdd";
-  private List<String> groupAdd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_ID_MAPPINGS = "IDMappings";
-  private InspectIDMappings idMappings;
-
-  public static final String JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH = "IOMaximumBandwidth";
-  private Integer ioMaximumBandwidth;
-
-  public static final String JSON_PROPERTY_IO_MAXIMUM_I_OPS = "IOMaximumIOps";
-  private Integer ioMaximumIOps;
-
-  public static final String JSON_PROPERTY_INIT = "Init";
-  private Boolean init;
-
-  public static final String JSON_PROPERTY_INTEL_RDT_CLOS_I_D = "IntelRdtClosID";
-  private String intelRdtClosID;
-
-  public static final String JSON_PROPERTY_IPC_MODE = "IpcMode";
-  private String ipcMode;
-
-  public static final String JSON_PROPERTY_ISOLATION = "Isolation";
-  private String isolation;
-
-  public static final String JSON_PROPERTY_KERNEL_MEMORY = "KernelMemory";
-  private Long kernelMemory;
-
-  public static final String JSON_PROPERTY_LINKS = "Links";
-  private List<String> links = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_LOG_CONFIG = "LogConfig";
-  private InspectLogConfig logConfig;
-
-  public static final String JSON_PROPERTY_MEMORY = "Memory";
-  private Long memory;
-
-  public static final String JSON_PROPERTY_MEMORY_RESERVATION = "MemoryReservation";
-  private Long memoryReservation;
-
-  public static final String JSON_PROPERTY_MEMORY_SWAP = "MemorySwap";
-  private Long memorySwap;
-
-  public static final String JSON_PROPERTY_MEMORY_SWAPPINESS = "MemorySwappiness";
-  private Long memorySwappiness;
-
-  public static final String JSON_PROPERTY_NANO_CPUS = "NanoCpus";
-  private Long nanoCpus;
-
-  public static final String JSON_PROPERTY_NETWORK_MODE = "NetworkMode";
-  private String networkMode;
-
-  public static final String JSON_PROPERTY_OOM_KILL_DISABLE = "OomKillDisable";
-  private Boolean oomKillDisable;
-
-  public static final String JSON_PROPERTY_OOM_SCORE_ADJ = "OomScoreAdj";
-  private Long oomScoreAdj;
-
-  public static final String JSON_PROPERTY_PID_MODE = "PidMode";
-  private String pidMode;
-
-  public static final String JSON_PROPERTY_PIDS_LIMIT = "PidsLimit";
-  private Long pidsLimit;
-
-  public static final String JSON_PROPERTY_PORT_BINDINGS = "PortBindings";
-  private Map<String, List<@Valid InspectHostPort>> portBindings = new HashMap<>();
-
-  public static final String JSON_PROPERTY_PRIVILEGED = "Privileged";
-  private Boolean privileged;
-
-  public static final String JSON_PROPERTY_PUBLISH_ALL_PORTS = "PublishAllPorts";
-  private Boolean publishAllPorts;
-
-  public static final String JSON_PROPERTY_READONLY_ROOTFS = "ReadonlyRootfs";
-  private Boolean readonlyRootfs;
-
-  public static final String JSON_PROPERTY_RESTART_POLICY = "RestartPolicy";
-  private InspectRestartPolicy restartPolicy;
-
-  public static final String JSON_PROPERTY_RUNTIME = "Runtime";
-  private String runtime;
-
-  public static final String JSON_PROPERTY_SECURITY_OPT = "SecurityOpt";
-  private List<String> securityOpt = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SHM_SIZE = "ShmSize";
-  private Long shmSize;
-
-  public static final String JSON_PROPERTY_TMPFS = "Tmpfs";
-  private Map<String, String> tmpfs = new HashMap<>();
-
-  public static final String JSON_PROPERTY_UT_S_MODE = "UTSMode";
-  private String utSMode;
-
-  public static final String JSON_PROPERTY_ULIMITS = "Ulimits";
-  private List<@Valid InspectUlimit> ulimits = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_USERNS_MODE = "UsernsMode";
-  private String usernsMode;
-
-  public static final String JSON_PROPERTY_VOLUME_DRIVER = "VolumeDriver";
-  private String volumeDriver;
-
-  public static final String JSON_PROPERTY_VOLUMES_FROM = "VolumesFrom";
-  private List<String> volumesFrom = new ArrayList<>();
-
-  public InspectContainerHostConfig() { 
-  }
-
-  public InspectContainerHostConfig annotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-    return this;
-  }
-
-  public InspectContainerHostConfig putAnnotationsItem(String key, String annotationsItem) {
-    if (this.annotations == null) {
-      this.annotations = new HashMap<>();
-    }
-    this.annotations.put(key, annotationsItem);
-    return this;
-  }
-
-  /**
-   * Annotations are provided to the runtime when the container is started.
-   * @return annotations
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getAnnotations() {
-    return annotations;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAnnotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-  }
-
-
-  public InspectContainerHostConfig autoRemove(Boolean autoRemove) {
-    this.autoRemove = autoRemove;
-    return this;
-  }
-
-  /**
-   * AutoRemove is whether the container will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.
-   * @return autoRemove
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAutoRemove() {
-    return autoRemove;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAutoRemove(Boolean autoRemove) {
-    this.autoRemove = autoRemove;
-  }
-
-
-  public InspectContainerHostConfig autoRemoveImage(Boolean autoRemoveImage) {
-    this.autoRemoveImage = autoRemoveImage;
-    return this;
-  }
-
-  /**
-   * AutoRemoveImage is whether the container&#39;s image will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.
-   * @return autoRemoveImage
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTO_REMOVE_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAutoRemoveImage() {
-    return autoRemoveImage;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTO_REMOVE_IMAGE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAutoRemoveImage(Boolean autoRemoveImage) {
-    this.autoRemoveImage = autoRemoveImage;
-  }
-
-
-  public InspectContainerHostConfig binds(List<String> binds) {
-    this.binds = binds;
-    return this;
-  }
-
-  public InspectContainerHostConfig addBindsItem(String bindsItem) {
-    if (this.binds == null) {
-      this.binds = new ArrayList<>();
-    }
-    this.binds.add(bindsItem);
-    return this;
-  }
-
-  /**
-   * Binds contains an array of user-added mounts. Both volume mounts and named volumes are included. Tmpfs mounts are NOT included. In &#39;docker inspect&#39; this is separated into &#39;Binds&#39; and &#39;Mounts&#39; based on how a mount was added. We do not make this distinction and do not include a Mounts field in inspect. Format: &lt;src&gt;:&lt;destination&gt;[:&lt;comma-separated options&gt;]
-   * @return binds
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BINDS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getBinds() {
-    return binds;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BINDS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBinds(List<String> binds) {
-    this.binds = binds;
-  }
-
-
-  public InspectContainerHostConfig blkioDeviceReadBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps) {
-    this.blkioDeviceReadBps = blkioDeviceReadBps;
-    return this;
-  }
-
-  public InspectContainerHostConfig addBlkioDeviceReadBpsItem(InspectBlkioThrottleDevice blkioDeviceReadBpsItem) {
-    if (this.blkioDeviceReadBps == null) {
-      this.blkioDeviceReadBps = new ArrayList<>();
-    }
-    this.blkioDeviceReadBps.add(blkioDeviceReadBpsItem);
-    return this;
-  }
-
-  /**
-   * BlkioDeviceReadBps is an array of I/O throttle parameters for individual device nodes. This specifically sets read rate cap in bytes per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
-   * @return blkioDeviceReadBps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceReadBps() {
-    return blkioDeviceReadBps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceReadBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps) {
-    this.blkioDeviceReadBps = blkioDeviceReadBps;
-  }
-
-
-  public InspectContainerHostConfig blkioDeviceReadIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps) {
-    this.blkioDeviceReadIOps = blkioDeviceReadIOps;
-    return this;
-  }
-
-  public InspectContainerHostConfig addBlkioDeviceReadIOpsItem(InspectBlkioThrottleDevice blkioDeviceReadIOpsItem) {
-    if (this.blkioDeviceReadIOps == null) {
-      this.blkioDeviceReadIOps = new ArrayList<>();
-    }
-    this.blkioDeviceReadIOps.add(blkioDeviceReadIOpsItem);
-    return this;
-  }
-
-  /**
-   * BlkioDeviceReadIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the read rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
-   * @return blkioDeviceReadIOps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceReadIOps() {
-    return blkioDeviceReadIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceReadIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps) {
-    this.blkioDeviceReadIOps = blkioDeviceReadIOps;
-  }
-
-
-  public InspectContainerHostConfig blkioDeviceWriteBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps) {
-    this.blkioDeviceWriteBps = blkioDeviceWriteBps;
-    return this;
-  }
-
-  public InspectContainerHostConfig addBlkioDeviceWriteBpsItem(InspectBlkioThrottleDevice blkioDeviceWriteBpsItem) {
-    if (this.blkioDeviceWriteBps == null) {
-      this.blkioDeviceWriteBps = new ArrayList<>();
-    }
-    this.blkioDeviceWriteBps.add(blkioDeviceWriteBpsItem);
-    return this;
-  }
-
-  /**
-   * BlkioDeviceWriteBps is an array of I/O throttle parameters for individual device nodes. this specifically sets write rate cap in bytes per second for device nodes. as with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
-   * @return blkioDeviceWriteBps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceWriteBps() {
-    return blkioDeviceWriteBps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceWriteBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps) {
-    this.blkioDeviceWriteBps = blkioDeviceWriteBps;
-  }
-
-
-  public InspectContainerHostConfig blkioDeviceWriteIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps) {
-    this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
-    return this;
-  }
-
-  public InspectContainerHostConfig addBlkioDeviceWriteIOpsItem(InspectBlkioThrottleDevice blkioDeviceWriteIOpsItem) {
-    if (this.blkioDeviceWriteIOps == null) {
-      this.blkioDeviceWriteIOps = new ArrayList<>();
-    }
-    this.blkioDeviceWriteIOps.add(blkioDeviceWriteIOpsItem);
-    return this;
-  }
-
-  /**
-   * BlkioDeviceWriteIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the write rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
-   * @return blkioDeviceWriteIOps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceWriteIOps() {
-    return blkioDeviceWriteIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceWriteIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps) {
-    this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
-  }
-
-
-  public InspectContainerHostConfig blkioWeight(Integer blkioWeight) {
-    this.blkioWeight = blkioWeight;
-    return this;
-  }
-
-  /**
-   * BlkioWeight indicates the I/O resources allocated to the container. It is a relative weight in the scheduler for assigning I/O time versus other Cgroups.
-   * @return blkioWeight
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getBlkioWeight() {
-    return blkioWeight;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioWeight(Integer blkioWeight) {
-    this.blkioWeight = blkioWeight;
-  }
-
-
-  public InspectContainerHostConfig blkioWeightDevice(List<@Valid InspectBlkioWeightDevice> blkioWeightDevice) {
-    this.blkioWeightDevice = blkioWeightDevice;
-    return this;
-  }
-
-  public InspectContainerHostConfig addBlkioWeightDeviceItem(InspectBlkioWeightDevice blkioWeightDeviceItem) {
-    if (this.blkioWeightDevice == null) {
-      this.blkioWeightDevice = new ArrayList<>();
-    }
-    this.blkioWeightDevice.add(blkioWeightDeviceItem);
-    return this;
-  }
-
-  /**
-   * BlkioWeightDevice is an array of I/O resource priorities for individual device nodes. Unfortunately, the spec only stores the device&#39;s Major/Minor numbers and not the path, which is used here. Fortunately, the kernel provides an interface for retrieving the path of a given node by major:minor at /sys/dev/. However, the exact path in use may not be what was used in the original CLI invocation - though it is guaranteed that the device node will be the same, and using the given path will be functionally identical.
-   * @return blkioWeightDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid InspectBlkioWeightDevice> getBlkioWeightDevice() {
-    return blkioWeightDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioWeightDevice(List<@Valid InspectBlkioWeightDevice> blkioWeightDevice) {
-    this.blkioWeightDevice = blkioWeightDevice;
-  }
-
-
-  public InspectContainerHostConfig capAdd(List<String> capAdd) {
-    this.capAdd = capAdd;
-    return this;
-  }
-
-  public InspectContainerHostConfig addCapAddItem(String capAddItem) {
-    if (this.capAdd == null) {
-      this.capAdd = new ArrayList<>();
-    }
-    this.capAdd.add(capAddItem);
-    return this;
-  }
-
-  /**
-   * CapAdd is a list of capabilities added to the container. It is not directly stored by Libpod, and instead computed from the capabilities listed in the container&#39;s spec, compared against a set of default capabilities.
-   * @return capAdd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCapAdd() {
-    return capAdd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapAdd(List<String> capAdd) {
-    this.capAdd = capAdd;
-  }
-
-
-  public InspectContainerHostConfig capDrop(List<String> capDrop) {
-    this.capDrop = capDrop;
-    return this;
-  }
-
-  public InspectContainerHostConfig addCapDropItem(String capDropItem) {
-    if (this.capDrop == null) {
-      this.capDrop = new ArrayList<>();
-    }
-    this.capDrop.add(capDropItem);
-    return this;
-  }
-
-  /**
-   * CapDrop is a list of capabilities removed from the container. It is not directly stored by libpod, and instead computed from the capabilities listed in the container&#39;s spec, compared against a set of default capabilities.
-   * @return capDrop
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAP_DROP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCapDrop() {
-    return capDrop;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAP_DROP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapDrop(List<String> capDrop) {
-    this.capDrop = capDrop;
-  }
-
-
-  public InspectContainerHostConfig cgroup(String cgroup) {
-    this.cgroup = cgroup;
-    return this;
-  }
-
-  /**
-   * Cgroup contains the container&#39;s cgroup. It is presently not populated. TODO.
-   * @return cgroup
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroup() {
-    return cgroup;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroup(String cgroup) {
-    this.cgroup = cgroup;
-  }
-
-
-  public InspectContainerHostConfig cgroupConf(Map<String, String> cgroupConf) {
-    this.cgroupConf = cgroupConf;
-    return this;
-  }
-
-  public InspectContainerHostConfig putCgroupConfItem(String key, String cgroupConfItem) {
-    if (this.cgroupConf == null) {
-      this.cgroupConf = new HashMap<>();
-    }
-    this.cgroupConf.put(key, cgroupConfItem);
-    return this;
-  }
-
-  /**
-   * CgroupConf is the configuration for cgroup v2.
-   * @return cgroupConf
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_CONF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getCgroupConf() {
-    return cgroupConf;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_CONF)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupConf(Map<String, String> cgroupConf) {
-    this.cgroupConf = cgroupConf;
-  }
-
-
-  public InspectContainerHostConfig cgroupManager(String cgroupManager) {
-    this.cgroupManager = cgroupManager;
-    return this;
-  }
-
-  /**
-   * CgroupManager is the cgroup manager used by the container. At present, allowed values are either \&quot;cgroupfs\&quot; or \&quot;systemd\&quot;.
-   * @return cgroupManager
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_MANAGER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupManager() {
-    return cgroupManager;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_MANAGER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupManager(String cgroupManager) {
-    this.cgroupManager = cgroupManager;
-  }
-
-
-  public InspectContainerHostConfig cgroupMode(String cgroupMode) {
-    this.cgroupMode = cgroupMode;
-    return this;
-  }
-
-  /**
-   * CgroupMode is the configuration of the container&#39;s cgroup namespace. Populated as follows: private - a cgroup namespace has been created host - No cgroup namespace created container:&lt;id&gt; - Using another container&#39;s cgroup namespace ns:&lt;path&gt; - A path to a cgroup namespace has been specified
-   * @return cgroupMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupMode() {
-    return cgroupMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupMode(String cgroupMode) {
-    this.cgroupMode = cgroupMode;
-  }
-
-
-  public InspectContainerHostConfig cgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
-    return this;
-  }
-
-  /**
-   * CgroupParent is the Cgroup parent of the container. Only set if not default.
-   * @return cgroupParent
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupParent() {
-    return cgroupParent;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
-  }
-
-
-  public InspectContainerHostConfig cgroups(String cgroups) {
-    this.cgroups = cgroups;
-    return this;
-  }
-
-  /**
-   * Cgroups contains the container&#39;s Cgroup mode. Allowed values are \&quot;default\&quot; (container is creating Cgroups) and \&quot;disabled\&quot; (container is not creating Cgroups). This is Libpod-specific and not included in &#x60;docker inspect&#x60;.
-   * @return cgroups
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroups() {
-    return cgroups;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroups(String cgroups) {
-    this.cgroups = cgroups;
-  }
-
-
-  public InspectContainerHostConfig consoleSize(List<Integer> consoleSize) {
-    this.consoleSize = consoleSize;
-    return this;
-  }
-
-  public InspectContainerHostConfig addConsoleSizeItem(Integer consoleSizeItem) {
-    if (this.consoleSize == null) {
-      this.consoleSize = new ArrayList<>();
-    }
-    this.consoleSize.add(consoleSizeItem);
-    return this;
-  }
-
-  /**
-   * ConsoleSize is an array of 2 integers showing the size of the container&#39;s console. It is only set if the container is creating a terminal. TODO.
-   * @return consoleSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONSOLE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<Integer> getConsoleSize() {
-    return consoleSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONSOLE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConsoleSize(List<Integer> consoleSize) {
-    this.consoleSize = consoleSize;
-  }
-
-
-  public InspectContainerHostConfig containerIDFile(String containerIDFile) {
-    this.containerIDFile = containerIDFile;
-    return this;
-  }
-
-  /**
-   * ContainerIDFile is a file created during container creation to hold the ID of the created container. This is not handled within libpod and is stored in an annotation.
-   * @return containerIDFile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getContainerIDFile() {
-    return containerIDFile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerIDFile(String containerIDFile) {
-    this.containerIDFile = containerIDFile;
-  }
-
-
-  public InspectContainerHostConfig cpuCount(Integer cpuCount) {
-    this.cpuCount = cpuCount;
-    return this;
-  }
-
-  /**
-   * CpuCount is Windows-only and not presently implemented.
-   * @return cpuCount
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getCpuCount() {
-    return cpuCount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuCount(Integer cpuCount) {
-    this.cpuCount = cpuCount;
-  }
-
-
-  public InspectContainerHostConfig cpuPercent(Integer cpuPercent) {
-    this.cpuPercent = cpuPercent;
-    return this;
-  }
-
-  /**
-   * CpuPercent is Windows-only and not presently implemented.
-   * @return cpuPercent
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getCpuPercent() {
-    return cpuPercent;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuPercent(Integer cpuPercent) {
-    this.cpuPercent = cpuPercent;
-  }
-
-
-  public InspectContainerHostConfig cpuPeriod(Integer cpuPeriod) {
-    this.cpuPeriod = cpuPeriod;
-    return this;
-  }
-
-  /**
-   * CpuPeriod is the length of a CPU period in microseconds. It relates directly to CpuQuota.
-   * @return cpuPeriod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getCpuPeriod() {
-    return cpuPeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuPeriod(Integer cpuPeriod) {
-    this.cpuPeriod = cpuPeriod;
-  }
-
-
-  public InspectContainerHostConfig cpuQuota(Long cpuQuota) {
-    this.cpuQuota = cpuQuota;
-    return this;
-  }
-
-  /**
-   * CpuPeriod is the amount of time (in microseconds) that a container can use the CPU in every CpuPeriod.
-   * @return cpuQuota
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuQuota() {
-    return cpuQuota;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuQuota(Long cpuQuota) {
-    this.cpuQuota = cpuQuota;
-  }
-
-
-  public InspectContainerHostConfig cpuRealtimePeriod(Integer cpuRealtimePeriod) {
-    this.cpuRealtimePeriod = cpuRealtimePeriod;
-    return this;
-  }
-
-  /**
-   * CpuRealtimePeriod is the length of time (in microseconds) of the CPU realtime period. If set to 0, no time will be allocated to realtime tasks.
-   * @return cpuRealtimePeriod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getCpuRealtimePeriod() {
-    return cpuRealtimePeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuRealtimePeriod(Integer cpuRealtimePeriod) {
-    this.cpuRealtimePeriod = cpuRealtimePeriod;
-  }
-
-
-  public InspectContainerHostConfig cpuRealtimeRuntime(Long cpuRealtimeRuntime) {
-    this.cpuRealtimeRuntime = cpuRealtimeRuntime;
-    return this;
-  }
-
-  /**
-   * CpuRealtimeRuntime is the length of time (in microseconds) allocated for realtime tasks within every CpuRealtimePeriod.
-   * @return cpuRealtimeRuntime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuRealtimeRuntime() {
-    return cpuRealtimeRuntime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuRealtimeRuntime(Long cpuRealtimeRuntime) {
-    this.cpuRealtimeRuntime = cpuRealtimeRuntime;
-  }
-
-
-  public InspectContainerHostConfig cpuShares(Integer cpuShares) {
-    this.cpuShares = cpuShares;
-    return this;
-  }
-
-  /**
-   * CpuShares indicates the CPU resources allocated to the container. It is a relative weight in the scheduler for assigning CPU time versus other Cgroups.
-   * @return cpuShares
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_SHARES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getCpuShares() {
-    return cpuShares;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_SHARES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuShares(Integer cpuShares) {
-    this.cpuShares = cpuShares;
-  }
-
-
-  public InspectContainerHostConfig cpusetCpus(String cpusetCpus) {
-    this.cpusetCpus = cpusetCpus;
-    return this;
-  }
-
-  /**
-   * CpusetCpus is the set of CPUs that the container will execute on. Formatted as &#x60;0-3&#x60; or &#x60;0,2&#x60;. Default (if unset) is all CPUs.
-   * @return cpusetCpus
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCpusetCpus() {
-    return cpusetCpus;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpusetCpus(String cpusetCpus) {
-    this.cpusetCpus = cpusetCpus;
-  }
-
-
-  public InspectContainerHostConfig cpusetMems(String cpusetMems) {
-    this.cpusetMems = cpusetMems;
-    return this;
-  }
-
-  /**
-   * CpusetMems is the set of memory nodes the container will use. Formatted as &#x60;0-3&#x60; or &#x60;0,2&#x60;. Default (if unset) is all memory nodes.
-   * @return cpusetMems
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCpusetMems() {
-    return cpusetMems;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpusetMems(String cpusetMems) {
-    this.cpusetMems = cpusetMems;
-  }
-
-
-  public InspectContainerHostConfig devices(List<@Valid InspectDevice> devices) {
-    this.devices = devices;
-    return this;
-  }
-
-  public InspectContainerHostConfig addDevicesItem(InspectDevice devicesItem) {
-    if (this.devices == null) {
-      this.devices = new ArrayList<>();
-    }
-    this.devices.add(devicesItem);
-    return this;
-  }
-
-  /**
-   * Devices is a list of device nodes that will be added to the container. These are stored in the OCI spec only as type, major, minor while we display the host path. We convert this with /sys/dev, but we cannot guarantee that the host path will be identical - only that the actual device will be.
-   * @return devices
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid InspectDevice> getDevices() {
-    return devices;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDevices(List<@Valid InspectDevice> devices) {
-    this.devices = devices;
-  }
-
-
-  public InspectContainerHostConfig diskQuota(Integer diskQuota) {
-    this.diskQuota = diskQuota;
-    return this;
-  }
-
-  /**
-   * DiskQuota is the maximum amount of disk space the container may use (in bytes). Presently not populated. TODO.
-   * @return diskQuota
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DISK_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getDiskQuota() {
-    return diskQuota;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DISK_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDiskQuota(Integer diskQuota) {
-    this.diskQuota = diskQuota;
-  }
-
-
-  public InspectContainerHostConfig dns(List<String> dns) {
-    this.dns = dns;
-    return this;
-  }
-
-  public InspectContainerHostConfig addDnsItem(String dnsItem) {
-    if (this.dns == null) {
-      this.dns = new ArrayList<>();
-    }
-    this.dns.add(dnsItem);
-    return this;
-  }
-
-  /**
-   * Dns is a list of DNS nameservers that will be added to the container&#39;s resolv.conf
-   * @return dns
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDns() {
-    return dns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDns(List<String> dns) {
-    this.dns = dns;
-  }
-
-
-  public InspectContainerHostConfig dnsOptions(List<String> dnsOptions) {
-    this.dnsOptions = dnsOptions;
-    return this;
-  }
-
-  public InspectContainerHostConfig addDnsOptionsItem(String dnsOptionsItem) {
-    if (this.dnsOptions == null) {
-      this.dnsOptions = new ArrayList<>();
-    }
-    this.dnsOptions.add(dnsOptionsItem);
-    return this;
-  }
-
-  /**
-   * DnsOptions is a list of DNS options that will be set in the container&#39;s resolv.conf
-   * @return dnsOptions
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDnsOptions() {
-    return dnsOptions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDnsOptions(List<String> dnsOptions) {
-    this.dnsOptions = dnsOptions;
-  }
-
-
-  public InspectContainerHostConfig dnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
-    return this;
-  }
-
-  public InspectContainerHostConfig addDnsSearchItem(String dnsSearchItem) {
-    if (this.dnsSearch == null) {
-      this.dnsSearch = new ArrayList<>();
-    }
-    this.dnsSearch.add(dnsSearchItem);
-    return this;
-  }
-
-  /**
-   * DnsSearch is a list of DNS search domains that will be set in the container&#39;s resolv.conf
-   * @return dnsSearch
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDnsSearch() {
-    return dnsSearch;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
-  }
-
-
-  public InspectContainerHostConfig extraHosts(List<String> extraHosts) {
-    this.extraHosts = extraHosts;
-    return this;
-  }
-
-  public InspectContainerHostConfig addExtraHostsItem(String extraHostsItem) {
-    if (this.extraHosts == null) {
-      this.extraHosts = new ArrayList<>();
-    }
-    this.extraHosts.add(extraHostsItem);
-    return this;
-  }
-
-  /**
-   * ExtraHosts contains hosts that will be added to the container&#39;s etc/hosts.
-   * @return extraHosts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXTRA_HOSTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getExtraHosts() {
-    return extraHosts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXTRA_HOSTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExtraHosts(List<String> extraHosts) {
-    this.extraHosts = extraHosts;
-  }
-
-
-  public InspectContainerHostConfig groupAdd(List<String> groupAdd) {
-    this.groupAdd = groupAdd;
-    return this;
-  }
-
-  public InspectContainerHostConfig addGroupAddItem(String groupAddItem) {
-    if (this.groupAdd == null) {
-      this.groupAdd = new ArrayList<>();
-    }
-    this.groupAdd.add(groupAddItem);
-    return this;
-  }
-
-  /**
-   * GroupAdd contains groups that the user inside the container will be added to.
-   * @return groupAdd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GROUP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getGroupAdd() {
-    return groupAdd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GROUP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroupAdd(List<String> groupAdd) {
-    this.groupAdd = groupAdd;
-  }
-
-
-  public InspectContainerHostConfig idMappings(InspectIDMappings idMappings) {
-    this.idMappings = idMappings;
-    return this;
-  }
-
-  /**
-   * Get idMappings
-   * @return idMappings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ID_MAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public InspectIDMappings getIdMappings() {
-    return idMappings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID_MAPPINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdMappings(InspectIDMappings idMappings) {
-    this.idMappings = idMappings;
-  }
-
-
-  public InspectContainerHostConfig ioMaximumBandwidth(Integer ioMaximumBandwidth) {
-    this.ioMaximumBandwidth = ioMaximumBandwidth;
-    return this;
-  }
-
-  /**
-   * IOMaximumBandwidth is Windows-only and not presently implemented.
-   * @return ioMaximumBandwidth
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getIoMaximumBandwidth() {
-    return ioMaximumBandwidth;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIoMaximumBandwidth(Integer ioMaximumBandwidth) {
-    this.ioMaximumBandwidth = ioMaximumBandwidth;
-  }
-
-
-  public InspectContainerHostConfig ioMaximumIOps(Integer ioMaximumIOps) {
-    this.ioMaximumIOps = ioMaximumIOps;
-    return this;
-  }
-
-  /**
-   * IOMaximumIOps is Windows-only and not presently implemented.
-   * @return ioMaximumIOps
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getIoMaximumIOps() {
-    return ioMaximumIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIoMaximumIOps(Integer ioMaximumIOps) {
-    this.ioMaximumIOps = ioMaximumIOps;
-  }
-
-
-  public InspectContainerHostConfig init(Boolean init) {
-    this.init = init;
-    return this;
-  }
-
-  /**
-   * Init indicates whether the container has an init mounted into it.
-   * @return init
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getInit() {
-    return init;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInit(Boolean init) {
-    this.init = init;
-  }
-
-
-  public InspectContainerHostConfig intelRdtClosID(String intelRdtClosID) {
-    this.intelRdtClosID = intelRdtClosID;
-    return this;
-  }
-
-  /**
-   * IntelRdtClosID defines the Intel RDT CAT Class Of Service (COS) that all processes of the container should run in.
-   * @return intelRdtClosID
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INTEL_RDT_CLOS_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIntelRdtClosID() {
-    return intelRdtClosID;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INTEL_RDT_CLOS_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIntelRdtClosID(String intelRdtClosID) {
-    this.intelRdtClosID = intelRdtClosID;
-  }
-
-
-  public InspectContainerHostConfig ipcMode(String ipcMode) {
-    this.ipcMode = ipcMode;
-    return this;
-  }
-
-  /**
-   * IpcMode represents the configuration of the container&#39;s IPC namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, an IPC namespace will be created host - No IPC namespace created container:&lt;id&gt; - Using another container&#39;s IPC namespace ns:&lt;path&gt; - A path to an IPC namespace has been specified
-   * @return ipcMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IPC_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIpcMode() {
-    return ipcMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IPC_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpcMode(String ipcMode) {
-    this.ipcMode = ipcMode;
-  }
-
-
-  public InspectContainerHostConfig isolation(String isolation) {
-    this.isolation = isolation;
-    return this;
-  }
-
-  /**
-   * Isolation is presently unused and provided solely for Docker compatibility.
-   * @return isolation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ISOLATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIsolation() {
-    return isolation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ISOLATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsolation(String isolation) {
-    this.isolation = isolation;
-  }
-
-
-  public InspectContainerHostConfig kernelMemory(Long kernelMemory) {
-    this.kernelMemory = kernelMemory;
-    return this;
-  }
-
-  /**
-   * KernelMemory is the maximum amount of memory the kernel will devote to the container.
-   * @return kernelMemory
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getKernelMemory() {
-    return kernelMemory;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKernelMemory(Long kernelMemory) {
-    this.kernelMemory = kernelMemory;
-  }
-
-
-  public InspectContainerHostConfig links(List<String> links) {
-    this.links = links;
-    return this;
-  }
-
-  public InspectContainerHostConfig addLinksItem(String linksItem) {
-    if (this.links == null) {
-      this.links = new ArrayList<>();
-    }
-    this.links.add(linksItem);
-    return this;
-  }
-
-  /**
-   * Links is unused, and provided purely for Docker compatibility.
-   * @return links
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getLinks() {
-    return links;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLinks(List<String> links) {
-    this.links = links;
-  }
-
-
-  public InspectContainerHostConfig logConfig(InspectLogConfig logConfig) {
-    this.logConfig = logConfig;
-    return this;
-  }
-
-  /**
-   * Get logConfig
-   * @return logConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_LOG_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public InspectLogConfig getLogConfig() {
-    return logConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOG_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLogConfig(InspectLogConfig logConfig) {
-    this.logConfig = logConfig;
-  }
-
-
-  public InspectContainerHostConfig memory(Long memory) {
-    this.memory = memory;
-    return this;
-  }
-
-  /**
-   * Memory indicates the memory resources allocated to the container. This is the limit (in bytes) of RAM the container may use.
-   * @return memory
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemory() {
-    return memory;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemory(Long memory) {
-    this.memory = memory;
-  }
-
-
-  public InspectContainerHostConfig memoryReservation(Long memoryReservation) {
-    this.memoryReservation = memoryReservation;
-    return this;
-  }
-
-  /**
-   * MemoryReservation is the reservation (soft limit) of memory available to the container. Soft limits are warnings only and can be exceeded.
-   * @return memoryReservation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemoryReservation() {
-    return memoryReservation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemoryReservation(Long memoryReservation) {
-    this.memoryReservation = memoryReservation;
-  }
-
-
-  public InspectContainerHostConfig memorySwap(Long memorySwap) {
-    this.memorySwap = memorySwap;
-    return this;
-  }
-
-  /**
-   * MemorySwap is the total limit for all memory available to the container, including swap. 0 indicates that there is no limit to the amount of memory available.
-   * @return memorySwap
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemorySwap() {
-    return memorySwap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemorySwap(Long memorySwap) {
-    this.memorySwap = memorySwap;
-  }
-
-
-  public InspectContainerHostConfig memorySwappiness(Long memorySwappiness) {
-    this.memorySwappiness = memorySwappiness;
-    return this;
-  }
-
-  /**
-   * MemorySwappiness is the willingness of the kernel to page container memory to swap. It is an integer from 0 to 100, with low numbers being more likely to be put into swap. 1, the default, will not set swappiness and use the system defaults.
-   * @return memorySwappiness
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemorySwappiness() {
-    return memorySwappiness;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemorySwappiness(Long memorySwappiness) {
-    this.memorySwappiness = memorySwappiness;
-  }
-
-
-  public InspectContainerHostConfig nanoCpus(Long nanoCpus) {
-    this.nanoCpus = nanoCpus;
-    return this;
-  }
-
-  /**
-   * NanoCpus indicates number of CPUs allocated to the container. It is an integer where one full CPU is indicated by 1000000000 (one billion). Thus, 2.5 CPUs (fractional portions of CPUs are allowed) would be 2500000000 (2.5 billion). In &#39;docker inspect&#39; this is set exclusively of two further options in the output (CpuPeriod and CpuQuota) which are both used to implement this functionality. We can&#39;t distinguish here, so if CpuQuota is set to the default of 100000, we will set both CpuQuota, CpuPeriod, and NanoCpus. If CpuQuota is not the default, we will not set NanoCpus.
-   * @return nanoCpus
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NANO_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getNanoCpus() {
-    return nanoCpus;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NANO_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNanoCpus(Long nanoCpus) {
-    this.nanoCpus = nanoCpus;
-  }
-
-
-  public InspectContainerHostConfig networkMode(String networkMode) {
-    this.networkMode = networkMode;
-    return this;
-  }
-
-  /**
-   * NetworkMode is the configuration of the container&#39;s network namespace. Populated as follows: default - A network namespace is being created and configured via CNI none - A network namespace is being created, not configured via CNI host - No network namespace created container:&lt;id&gt; - Using another container&#39;s network namespace ns:&lt;path&gt; - A path to a network namespace has been specified
-   * @return networkMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNetworkMode() {
-    return networkMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkMode(String networkMode) {
-    this.networkMode = networkMode;
-  }
-
-
-  public InspectContainerHostConfig oomKillDisable(Boolean oomKillDisable) {
-    this.oomKillDisable = oomKillDisable;
-    return this;
-  }
-
-  /**
-   * OomKillDisable indicates whether the kernel OOM killer is disabled for the container.
-   * @return oomKillDisable
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOomKillDisable() {
-    return oomKillDisable;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOomKillDisable(Boolean oomKillDisable) {
-    this.oomKillDisable = oomKillDisable;
-  }
-
-
-  public InspectContainerHostConfig oomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
-    return this;
-  }
-
-  /**
-   * OOMScoreAdj is an adjustment that will be made to the container&#39;s OOM score.
-   * @return oomScoreAdj
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getOomScoreAdj() {
-    return oomScoreAdj;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
-  }
-
-
-  public InspectContainerHostConfig pidMode(String pidMode) {
-    this.pidMode = pidMode;
-    return this;
-  }
-
-  /**
-   * PidMode represents the configuration of the container&#39;s PID namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, a PID namespace will be created host - No PID namespace created container:&lt;id&gt; - Using another container&#39;s PID namespace ns:&lt;path&gt; - A path to a PID namespace has been specified
-   * @return pidMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PID_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPidMode() {
-    return pidMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PID_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPidMode(String pidMode) {
-    this.pidMode = pidMode;
-  }
-
-
-  public InspectContainerHostConfig pidsLimit(Long pidsLimit) {
-    this.pidsLimit = pidsLimit;
-    return this;
-  }
-
-  /**
-   * PidsLimit is the maximum number of PIDs that may be created within the container. 0, the default, indicates no limit.
-   * @return pidsLimit
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getPidsLimit() {
-    return pidsLimit;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPidsLimit(Long pidsLimit) {
-    this.pidsLimit = pidsLimit;
-  }
-
-
-  public InspectContainerHostConfig portBindings(Map<String, List<@Valid InspectHostPort>> portBindings) {
-    this.portBindings = portBindings;
-    return this;
-  }
-
-  public InspectContainerHostConfig putPortBindingsItem(String key, List<@Valid InspectHostPort> portBindingsItem) {
-    if (this.portBindings == null) {
-      this.portBindings = new HashMap<>();
-    }
-    this.portBindings.put(key, portBindingsItem);
-    return this;
-  }
-
-  /**
-   * PortBindings contains the container&#39;s port bindings. It is formatted as map[string][]InspectHostPort. The string key here is formatted as &lt;integer port number&gt;/&lt;protocol&gt; and represents the container port. A single container port may be bound to multiple host ports (on different IPs).
-   * @return portBindings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<@Valid InspectHostPort>> getPortBindings() {
-    return portBindings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPortBindings(Map<String, List<@Valid InspectHostPort>> portBindings) {
-    this.portBindings = portBindings;
-  }
-
-
-  public InspectContainerHostConfig privileged(Boolean privileged) {
-    this.privileged = privileged;
-    return this;
-  }
-
-  /**
-   * Privileged indicates whether the container is running with elevated privileges. This has a very specific meaning in the Docker sense, so it&#39;s very difficult to decode from the spec and config, and so is stored as an annotation.
-   * @return privileged
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPrivileged() {
-    return privileged;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPrivileged(Boolean privileged) {
-    this.privileged = privileged;
-  }
-
-
-  public InspectContainerHostConfig publishAllPorts(Boolean publishAllPorts) {
-    this.publishAllPorts = publishAllPorts;
-    return this;
-  }
-
-  /**
-   * PublishAllPorts indicates whether image ports are being published. This is not directly stored in libpod and is saved as an annotation.
-   * @return publishAllPorts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PUBLISH_ALL_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPublishAllPorts() {
-    return publishAllPorts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PUBLISH_ALL_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPublishAllPorts(Boolean publishAllPorts) {
-    this.publishAllPorts = publishAllPorts;
-  }
-
-
-  public InspectContainerHostConfig readonlyRootfs(Boolean readonlyRootfs) {
-    this.readonlyRootfs = readonlyRootfs;
-    return this;
-  }
-
-  /**
-   * ReadonlyRootfs is whether the container will be mounted read-only.
-   * @return readonlyRootfs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READONLY_ROOTFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getReadonlyRootfs() {
-    return readonlyRootfs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READONLY_ROOTFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadonlyRootfs(Boolean readonlyRootfs) {
-    this.readonlyRootfs = readonlyRootfs;
-  }
-
-
-  public InspectContainerHostConfig restartPolicy(InspectRestartPolicy restartPolicy) {
-    this.restartPolicy = restartPolicy;
-    return this;
-  }
-
-  /**
-   * Get restartPolicy
-   * @return restartPolicy
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public InspectRestartPolicy getRestartPolicy() {
-    return restartPolicy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestartPolicy(InspectRestartPolicy restartPolicy) {
-    this.restartPolicy = restartPolicy;
-  }
-
-
-  public InspectContainerHostConfig runtime(String runtime) {
-    this.runtime = runtime;
-    return this;
-  }
-
-  /**
-   * Runtime is provided purely for Docker compatibility. It is set unconditionally to \&quot;oci\&quot; as Podman does not presently support non-OCI runtimes.
-   * @return runtime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRuntime() {
-    return runtime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRuntime(String runtime) {
-    this.runtime = runtime;
-  }
-
-
-  public InspectContainerHostConfig securityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
-    return this;
-  }
-
-  public InspectContainerHostConfig addSecurityOptItem(String securityOptItem) {
-    if (this.securityOpt == null) {
-      this.securityOpt = new ArrayList<>();
-    }
-    this.securityOpt.add(securityOptItem);
-    return this;
-  }
-
-  /**
-   * SecurityOpt is a list of security-related options that are set in the container.
-   * @return securityOpt
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getSecurityOpt() {
-    return securityOpt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecurityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
-  }
-
-
-  public InspectContainerHostConfig shmSize(Long shmSize) {
-    this.shmSize = shmSize;
-    return this;
-  }
-
-  /**
-   * Get shmSize
-   * @return shmSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getShmSize() {
-    return shmSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setShmSize(Long shmSize) {
-    this.shmSize = shmSize;
-  }
-
-
-  public InspectContainerHostConfig tmpfs(Map<String, String> tmpfs) {
-    this.tmpfs = tmpfs;
-    return this;
-  }
-
-  public InspectContainerHostConfig putTmpfsItem(String key, String tmpfsItem) {
-    if (this.tmpfs == null) {
-      this.tmpfs = new HashMap<>();
-    }
-    this.tmpfs.put(key, tmpfsItem);
-    return this;
-  }
-
-  /**
-   * Tmpfs is a list of tmpfs filesystems that will be mounted into the container. It is a map of destination path to options for the mount.
-   * @return tmpfs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TMPFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getTmpfs() {
-    return tmpfs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TMPFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTmpfs(Map<String, String> tmpfs) {
-    this.tmpfs = tmpfs;
-  }
-
-
-  public InspectContainerHostConfig utSMode(String utSMode) {
-    this.utSMode = utSMode;
-    return this;
-  }
-
-  /**
-   * UTSMode represents the configuration of the container&#39;s UID namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, a UTS namespace will be created host - no UTS namespace created container:&lt;id&gt; - Using another container&#39;s UTS namespace ns:&lt;path&gt; - A path to a UTS namespace has been specified
-   * @return utSMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UT_S_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUtSMode() {
-    return utSMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UT_S_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUtSMode(String utSMode) {
-    this.utSMode = utSMode;
-  }
-
-
-  public InspectContainerHostConfig ulimits(List<@Valid InspectUlimit> ulimits) {
-    this.ulimits = ulimits;
-    return this;
-  }
-
-  public InspectContainerHostConfig addUlimitsItem(InspectUlimit ulimitsItem) {
-    if (this.ulimits == null) {
-      this.ulimits = new ArrayList<>();
-    }
-    this.ulimits.add(ulimitsItem);
-    return this;
-  }
-
-  /**
-   * Ulimits is a set of ulimits that will be set within the container.
-   * @return ulimits
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ULIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid InspectUlimit> getUlimits() {
-    return ulimits;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ULIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUlimits(List<@Valid InspectUlimit> ulimits) {
-    this.ulimits = ulimits;
-  }
-
-
-  public InspectContainerHostConfig usernsMode(String usernsMode) {
-    this.usernsMode = usernsMode;
-    return this;
-  }
-
-  /**
-   * UsernsMode represents the configuration of the container&#39;s user namespace. When running rootless, a user namespace is created outside of libpod to allow some privileged operations. This will not be reflected here. Populated as follows: \&quot;\&quot; (empty string) - No user namespace will be created private - The container will be run in a user namespace container:&lt;id&gt; - Using another container&#39;s user namespace ns:&lt;path&gt; - A path to a user namespace has been specified TODO Rootless has an additional &#39;keep-id&#39; option, presently not reflected here.
-   * @return usernsMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USERNS_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUsernsMode() {
-    return usernsMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USERNS_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsernsMode(String usernsMode) {
-    this.usernsMode = usernsMode;
-  }
-
-
-  public InspectContainerHostConfig volumeDriver(String volumeDriver) {
-    this.volumeDriver = volumeDriver;
-    return this;
-  }
-
-  /**
-   * VolumeDriver is presently unused and is retained for Docker compatibility.
-   * @return volumeDriver
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVolumeDriver() {
-    return volumeDriver;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumeDriver(String volumeDriver) {
-    this.volumeDriver = volumeDriver;
-  }
-
-
-  public InspectContainerHostConfig volumesFrom(List<String> volumesFrom) {
-    this.volumesFrom = volumesFrom;
-    return this;
-  }
-
-  public InspectContainerHostConfig addVolumesFromItem(String volumesFromItem) {
-    if (this.volumesFrom == null) {
-      this.volumesFrom = new ArrayList<>();
-    }
-    this.volumesFrom.add(volumesFromItem);
-    return this;
-  }
-
-  /**
-   * VolumesFrom is a list of containers which this container uses volumes from. This is not handled directly within libpod and is stored in an annotation. It is formatted as an array of container names and IDs.
-   * @return volumesFrom
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getVolumesFrom() {
-    return volumesFrom;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumesFrom(List<String> volumesFrom) {
-    this.volumesFrom = volumesFrom;
-  }
-
-
-  /**
-   * Return true if this InspectContainerHostConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    InspectContainerHostConfig inspectContainerHostConfig = (InspectContainerHostConfig) o;
-    return Objects.equals(this.annotations, inspectContainerHostConfig.annotations) &&
-        Objects.equals(this.autoRemove, inspectContainerHostConfig.autoRemove) &&
-        Objects.equals(this.autoRemoveImage, inspectContainerHostConfig.autoRemoveImage) &&
-        Objects.equals(this.binds, inspectContainerHostConfig.binds) &&
-        Objects.equals(this.blkioDeviceReadBps, inspectContainerHostConfig.blkioDeviceReadBps) &&
-        Objects.equals(this.blkioDeviceReadIOps, inspectContainerHostConfig.blkioDeviceReadIOps) &&
-        Objects.equals(this.blkioDeviceWriteBps, inspectContainerHostConfig.blkioDeviceWriteBps) &&
-        Objects.equals(this.blkioDeviceWriteIOps, inspectContainerHostConfig.blkioDeviceWriteIOps) &&
-        Objects.equals(this.blkioWeight, inspectContainerHostConfig.blkioWeight) &&
-        Objects.equals(this.blkioWeightDevice, inspectContainerHostConfig.blkioWeightDevice) &&
-        Objects.equals(this.capAdd, inspectContainerHostConfig.capAdd) &&
-        Objects.equals(this.capDrop, inspectContainerHostConfig.capDrop) &&
-        Objects.equals(this.cgroup, inspectContainerHostConfig.cgroup) &&
-        Objects.equals(this.cgroupConf, inspectContainerHostConfig.cgroupConf) &&
-        Objects.equals(this.cgroupManager, inspectContainerHostConfig.cgroupManager) &&
-        Objects.equals(this.cgroupMode, inspectContainerHostConfig.cgroupMode) &&
-        Objects.equals(this.cgroupParent, inspectContainerHostConfig.cgroupParent) &&
-        Objects.equals(this.cgroups, inspectContainerHostConfig.cgroups) &&
-        Objects.equals(this.consoleSize, inspectContainerHostConfig.consoleSize) &&
-        Objects.equals(this.containerIDFile, inspectContainerHostConfig.containerIDFile) &&
-        Objects.equals(this.cpuCount, inspectContainerHostConfig.cpuCount) &&
-        Objects.equals(this.cpuPercent, inspectContainerHostConfig.cpuPercent) &&
-        Objects.equals(this.cpuPeriod, inspectContainerHostConfig.cpuPeriod) &&
-        Objects.equals(this.cpuQuota, inspectContainerHostConfig.cpuQuota) &&
-        Objects.equals(this.cpuRealtimePeriod, inspectContainerHostConfig.cpuRealtimePeriod) &&
-        Objects.equals(this.cpuRealtimeRuntime, inspectContainerHostConfig.cpuRealtimeRuntime) &&
-        Objects.equals(this.cpuShares, inspectContainerHostConfig.cpuShares) &&
-        Objects.equals(this.cpusetCpus, inspectContainerHostConfig.cpusetCpus) &&
-        Objects.equals(this.cpusetMems, inspectContainerHostConfig.cpusetMems) &&
-        Objects.equals(this.devices, inspectContainerHostConfig.devices) &&
-        Objects.equals(this.diskQuota, inspectContainerHostConfig.diskQuota) &&
-        Objects.equals(this.dns, inspectContainerHostConfig.dns) &&
-        Objects.equals(this.dnsOptions, inspectContainerHostConfig.dnsOptions) &&
-        Objects.equals(this.dnsSearch, inspectContainerHostConfig.dnsSearch) &&
-        Objects.equals(this.extraHosts, inspectContainerHostConfig.extraHosts) &&
-        Objects.equals(this.groupAdd, inspectContainerHostConfig.groupAdd) &&
-        Objects.equals(this.idMappings, inspectContainerHostConfig.idMappings) &&
-        Objects.equals(this.ioMaximumBandwidth, inspectContainerHostConfig.ioMaximumBandwidth) &&
-        Objects.equals(this.ioMaximumIOps, inspectContainerHostConfig.ioMaximumIOps) &&
-        Objects.equals(this.init, inspectContainerHostConfig.init) &&
-        Objects.equals(this.intelRdtClosID, inspectContainerHostConfig.intelRdtClosID) &&
-        Objects.equals(this.ipcMode, inspectContainerHostConfig.ipcMode) &&
-        Objects.equals(this.isolation, inspectContainerHostConfig.isolation) &&
-        Objects.equals(this.kernelMemory, inspectContainerHostConfig.kernelMemory) &&
-        Objects.equals(this.links, inspectContainerHostConfig.links) &&
-        Objects.equals(this.logConfig, inspectContainerHostConfig.logConfig) &&
-        Objects.equals(this.memory, inspectContainerHostConfig.memory) &&
-        Objects.equals(this.memoryReservation, inspectContainerHostConfig.memoryReservation) &&
-        Objects.equals(this.memorySwap, inspectContainerHostConfig.memorySwap) &&
-        Objects.equals(this.memorySwappiness, inspectContainerHostConfig.memorySwappiness) &&
-        Objects.equals(this.nanoCpus, inspectContainerHostConfig.nanoCpus) &&
-        Objects.equals(this.networkMode, inspectContainerHostConfig.networkMode) &&
-        Objects.equals(this.oomKillDisable, inspectContainerHostConfig.oomKillDisable) &&
-        Objects.equals(this.oomScoreAdj, inspectContainerHostConfig.oomScoreAdj) &&
-        Objects.equals(this.pidMode, inspectContainerHostConfig.pidMode) &&
-        Objects.equals(this.pidsLimit, inspectContainerHostConfig.pidsLimit) &&
-        Objects.equals(this.portBindings, inspectContainerHostConfig.portBindings) &&
-        Objects.equals(this.privileged, inspectContainerHostConfig.privileged) &&
-        Objects.equals(this.publishAllPorts, inspectContainerHostConfig.publishAllPorts) &&
-        Objects.equals(this.readonlyRootfs, inspectContainerHostConfig.readonlyRootfs) &&
-        Objects.equals(this.restartPolicy, inspectContainerHostConfig.restartPolicy) &&
-        Objects.equals(this.runtime, inspectContainerHostConfig.runtime) &&
-        Objects.equals(this.securityOpt, inspectContainerHostConfig.securityOpt) &&
-        Objects.equals(this.shmSize, inspectContainerHostConfig.shmSize) &&
-        Objects.equals(this.tmpfs, inspectContainerHostConfig.tmpfs) &&
-        Objects.equals(this.utSMode, inspectContainerHostConfig.utSMode) &&
-        Objects.equals(this.ulimits, inspectContainerHostConfig.ulimits) &&
-        Objects.equals(this.usernsMode, inspectContainerHostConfig.usernsMode) &&
-        Objects.equals(this.volumeDriver, inspectContainerHostConfig.volumeDriver) &&
-        Objects.equals(this.volumesFrom, inspectContainerHostConfig.volumesFrom);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(annotations, autoRemove, autoRemoveImage, binds, blkioDeviceReadBps, blkioDeviceReadIOps, blkioDeviceWriteBps, blkioDeviceWriteIOps, blkioWeight, blkioWeightDevice, capAdd, capDrop, cgroup, cgroupConf, cgroupManager, cgroupMode, cgroupParent, cgroups, consoleSize, containerIDFile, cpuCount, cpuPercent, cpuPeriod, cpuQuota, cpuRealtimePeriod, cpuRealtimeRuntime, cpuShares, cpusetCpus, cpusetMems, devices, diskQuota, dns, dnsOptions, dnsSearch, extraHosts, groupAdd, idMappings, ioMaximumBandwidth, ioMaximumIOps, init, intelRdtClosID, ipcMode, isolation, kernelMemory, links, logConfig, memory, memoryReservation, memorySwap, memorySwappiness, nanoCpus, networkMode, oomKillDisable, oomScoreAdj, pidMode, pidsLimit, portBindings, privileged, publishAllPorts, readonlyRootfs, restartPolicy, runtime, securityOpt, shmSize, tmpfs, utSMode, ulimits, usernsMode, volumeDriver, volumesFrom);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class InspectContainerHostConfig {\n");
-    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
-    sb.append("    autoRemove: ").append(toIndentedString(autoRemove)).append("\n");
-    sb.append("    autoRemoveImage: ").append(toIndentedString(autoRemoveImage)).append("\n");
-    sb.append("    binds: ").append(toIndentedString(binds)).append("\n");
-    sb.append("    blkioDeviceReadBps: ").append(toIndentedString(blkioDeviceReadBps)).append("\n");
-    sb.append("    blkioDeviceReadIOps: ").append(toIndentedString(blkioDeviceReadIOps)).append("\n");
-    sb.append("    blkioDeviceWriteBps: ").append(toIndentedString(blkioDeviceWriteBps)).append("\n");
-    sb.append("    blkioDeviceWriteIOps: ").append(toIndentedString(blkioDeviceWriteIOps)).append("\n");
-    sb.append("    blkioWeight: ").append(toIndentedString(blkioWeight)).append("\n");
-    sb.append("    blkioWeightDevice: ").append(toIndentedString(blkioWeightDevice)).append("\n");
-    sb.append("    capAdd: ").append(toIndentedString(capAdd)).append("\n");
-    sb.append("    capDrop: ").append(toIndentedString(capDrop)).append("\n");
-    sb.append("    cgroup: ").append(toIndentedString(cgroup)).append("\n");
-    sb.append("    cgroupConf: ").append(toIndentedString(cgroupConf)).append("\n");
-    sb.append("    cgroupManager: ").append(toIndentedString(cgroupManager)).append("\n");
-    sb.append("    cgroupMode: ").append(toIndentedString(cgroupMode)).append("\n");
-    sb.append("    cgroupParent: ").append(toIndentedString(cgroupParent)).append("\n");
-    sb.append("    cgroups: ").append(toIndentedString(cgroups)).append("\n");
-    sb.append("    consoleSize: ").append(toIndentedString(consoleSize)).append("\n");
-    sb.append("    containerIDFile: ").append(toIndentedString(containerIDFile)).append("\n");
-    sb.append("    cpuCount: ").append(toIndentedString(cpuCount)).append("\n");
-    sb.append("    cpuPercent: ").append(toIndentedString(cpuPercent)).append("\n");
-    sb.append("    cpuPeriod: ").append(toIndentedString(cpuPeriod)).append("\n");
-    sb.append("    cpuQuota: ").append(toIndentedString(cpuQuota)).append("\n");
-    sb.append("    cpuRealtimePeriod: ").append(toIndentedString(cpuRealtimePeriod)).append("\n");
-    sb.append("    cpuRealtimeRuntime: ").append(toIndentedString(cpuRealtimeRuntime)).append("\n");
-    sb.append("    cpuShares: ").append(toIndentedString(cpuShares)).append("\n");
-    sb.append("    cpusetCpus: ").append(toIndentedString(cpusetCpus)).append("\n");
-    sb.append("    cpusetMems: ").append(toIndentedString(cpusetMems)).append("\n");
-    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
-    sb.append("    diskQuota: ").append(toIndentedString(diskQuota)).append("\n");
-    sb.append("    dns: ").append(toIndentedString(dns)).append("\n");
-    sb.append("    dnsOptions: ").append(toIndentedString(dnsOptions)).append("\n");
-    sb.append("    dnsSearch: ").append(toIndentedString(dnsSearch)).append("\n");
-    sb.append("    extraHosts: ").append(toIndentedString(extraHosts)).append("\n");
-    sb.append("    groupAdd: ").append(toIndentedString(groupAdd)).append("\n");
-    sb.append("    idMappings: ").append(toIndentedString(idMappings)).append("\n");
-    sb.append("    ioMaximumBandwidth: ").append(toIndentedString(ioMaximumBandwidth)).append("\n");
-    sb.append("    ioMaximumIOps: ").append(toIndentedString(ioMaximumIOps)).append("\n");
-    sb.append("    init: ").append(toIndentedString(init)).append("\n");
-    sb.append("    intelRdtClosID: ").append(toIndentedString(intelRdtClosID)).append("\n");
-    sb.append("    ipcMode: ").append(toIndentedString(ipcMode)).append("\n");
-    sb.append("    isolation: ").append(toIndentedString(isolation)).append("\n");
-    sb.append("    kernelMemory: ").append(toIndentedString(kernelMemory)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
-    sb.append("    logConfig: ").append(toIndentedString(logConfig)).append("\n");
-    sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
-    sb.append("    memoryReservation: ").append(toIndentedString(memoryReservation)).append("\n");
-    sb.append("    memorySwap: ").append(toIndentedString(memorySwap)).append("\n");
-    sb.append("    memorySwappiness: ").append(toIndentedString(memorySwappiness)).append("\n");
-    sb.append("    nanoCpus: ").append(toIndentedString(nanoCpus)).append("\n");
-    sb.append("    networkMode: ").append(toIndentedString(networkMode)).append("\n");
-    sb.append("    oomKillDisable: ").append(toIndentedString(oomKillDisable)).append("\n");
-    sb.append("    oomScoreAdj: ").append(toIndentedString(oomScoreAdj)).append("\n");
-    sb.append("    pidMode: ").append(toIndentedString(pidMode)).append("\n");
-    sb.append("    pidsLimit: ").append(toIndentedString(pidsLimit)).append("\n");
-    sb.append("    portBindings: ").append(toIndentedString(portBindings)).append("\n");
-    sb.append("    privileged: ").append(toIndentedString(privileged)).append("\n");
-    sb.append("    publishAllPorts: ").append(toIndentedString(publishAllPorts)).append("\n");
-    sb.append("    readonlyRootfs: ").append(toIndentedString(readonlyRootfs)).append("\n");
-    sb.append("    restartPolicy: ").append(toIndentedString(restartPolicy)).append("\n");
-    sb.append("    runtime: ").append(toIndentedString(runtime)).append("\n");
-    sb.append("    securityOpt: ").append(toIndentedString(securityOpt)).append("\n");
-    sb.append("    shmSize: ").append(toIndentedString(shmSize)).append("\n");
-    sb.append("    tmpfs: ").append(toIndentedString(tmpfs)).append("\n");
-    sb.append("    utSMode: ").append(toIndentedString(utSMode)).append("\n");
-    sb.append("    ulimits: ").append(toIndentedString(ulimits)).append("\n");
-    sb.append("    usernsMode: ").append(toIndentedString(usernsMode)).append("\n");
-    sb.append("    volumeDriver: ").append(toIndentedString(volumeDriver)).append("\n");
-    sb.append("    volumesFrom: ").append(toIndentedString(volumesFrom)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ANNOTATIONS = "Annotations";
+    public static final String SERIALIZED_NAME_AUTO_REMOVE = "AutoRemove";
+    public static final String SERIALIZED_NAME_AUTO_REMOVE_IMAGE = "AutoRemoveImage";
+    public static final String SERIALIZED_NAME_BINDS = "Binds";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_READ_BPS = "BlkioDeviceReadBps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_READ_I_OPS = "BlkioDeviceReadIOps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_WRITE_BPS = "BlkioDeviceWriteBps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_WRITE_I_OPS = "BlkioDeviceWriteIOps";
+    public static final String SERIALIZED_NAME_BLKIO_WEIGHT = "BlkioWeight";
+    public static final String SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE = "BlkioWeightDevice";
+    public static final String SERIALIZED_NAME_CAP_ADD = "CapAdd";
+    public static final String SERIALIZED_NAME_CAP_DROP = "CapDrop";
+    public static final String SERIALIZED_NAME_CGROUP = "Cgroup";
+    public static final String SERIALIZED_NAME_CGROUP_CONF = "CgroupConf";
+    public static final String SERIALIZED_NAME_CGROUP_MANAGER = "CgroupManager";
+    public static final String SERIALIZED_NAME_CGROUP_MODE = "CgroupMode";
+    public static final String SERIALIZED_NAME_CGROUP_PARENT = "CgroupParent";
+    public static final String SERIALIZED_NAME_CGROUPS = "Cgroups";
+    public static final String SERIALIZED_NAME_CONSOLE_SIZE = "ConsoleSize";
+    public static final String SERIALIZED_NAME_CONTAINER_I_D_FILE = "ContainerIDFile";
+    public static final String SERIALIZED_NAME_CPU_COUNT = "CpuCount";
+    public static final String SERIALIZED_NAME_CPU_PERCENT = "CpuPercent";
+    public static final String SERIALIZED_NAME_CPU_PERIOD = "CpuPeriod";
+    public static final String SERIALIZED_NAME_CPU_QUOTA = "CpuQuota";
+    public static final String SERIALIZED_NAME_CPU_REALTIME_PERIOD = "CpuRealtimePeriod";
+    public static final String SERIALIZED_NAME_CPU_REALTIME_RUNTIME = "CpuRealtimeRuntime";
+    public static final String SERIALIZED_NAME_CPU_SHARES = "CpuShares";
+    public static final String SERIALIZED_NAME_CPUSET_CPUS = "CpusetCpus";
+    public static final String SERIALIZED_NAME_CPUSET_MEMS = "CpusetMems";
+    public static final String SERIALIZED_NAME_DEVICES = "Devices";
+    public static final String SERIALIZED_NAME_DISK_QUOTA = "DiskQuota";
+    public static final String SERIALIZED_NAME_DNS = "Dns";
+    public static final String SERIALIZED_NAME_DNS_OPTIONS = "DnsOptions";
+    public static final String SERIALIZED_NAME_DNS_SEARCH = "DnsSearch";
+    public static final String SERIALIZED_NAME_EXTRA_HOSTS = "ExtraHosts";
+    public static final String SERIALIZED_NAME_GROUP_ADD = "GroupAdd";
+    public static final String SERIALIZED_NAME_ID_MAPPINGS = "IDMappings";
+    public static final String SERIALIZED_NAME_IO_MAXIMUM_BANDWIDTH = "IOMaximumBandwidth";
+    public static final String SERIALIZED_NAME_IO_MAXIMUM_I_OPS = "IOMaximumIOps";
+    public static final String SERIALIZED_NAME_INIT = "Init";
+    public static final String SERIALIZED_NAME_INTEL_RDT_CLOS_I_D = "IntelRdtClosID";
+    public static final String SERIALIZED_NAME_IPC_MODE = "IpcMode";
+    public static final String SERIALIZED_NAME_ISOLATION = "Isolation";
+    public static final String SERIALIZED_NAME_KERNEL_MEMORY = "KernelMemory";
+    public static final String SERIALIZED_NAME_LINKS = "Links";
+    public static final String SERIALIZED_NAME_LOG_CONFIG = "LogConfig";
+    public static final String SERIALIZED_NAME_MEMORY = "Memory";
+    public static final String SERIALIZED_NAME_MEMORY_RESERVATION = "MemoryReservation";
+    public static final String SERIALIZED_NAME_MEMORY_SWAP = "MemorySwap";
+    public static final String SERIALIZED_NAME_MEMORY_SWAPPINESS = "MemorySwappiness";
+    public static final String SERIALIZED_NAME_NANO_CPUS = "NanoCpus";
+    public static final String SERIALIZED_NAME_NETWORK_MODE = "NetworkMode";
+    public static final String SERIALIZED_NAME_OOM_KILL_DISABLE = "OomKillDisable";
+    public static final String SERIALIZED_NAME_OOM_SCORE_ADJ = "OomScoreAdj";
+    public static final String SERIALIZED_NAME_PID_MODE = "PidMode";
+    public static final String SERIALIZED_NAME_PIDS_LIMIT = "PidsLimit";
+    public static final String SERIALIZED_NAME_PORT_BINDINGS = "PortBindings";
+    public static final String SERIALIZED_NAME_PRIVILEGED = "Privileged";
+    public static final String SERIALIZED_NAME_PUBLISH_ALL_PORTS = "PublishAllPorts";
+    public static final String SERIALIZED_NAME_READONLY_ROOTFS = "ReadonlyRootfs";
+    public static final String SERIALIZED_NAME_RESTART_POLICY = "RestartPolicy";
+    public static final String SERIALIZED_NAME_RUNTIME = "Runtime";
+    public static final String SERIALIZED_NAME_SECURITY_OPT = "SecurityOpt";
+    public static final String SERIALIZED_NAME_SHM_SIZE = "ShmSize";
+    public static final String SERIALIZED_NAME_TMPFS = "Tmpfs";
+    public static final String SERIALIZED_NAME_UT_S_MODE = "UTSMode";
+    public static final String SERIALIZED_NAME_ULIMITS = "Ulimits";
+    public static final String SERIALIZED_NAME_USERNS_MODE = "UsernsMode";
+    public static final String SERIALIZED_NAME_VOLUME_DRIVER = "VolumeDriver";
+    public static final String SERIALIZED_NAME_VOLUMES_FROM = "VolumesFrom";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Annotations");
+        openapiFields.add("AutoRemove");
+        openapiFields.add("AutoRemoveImage");
+        openapiFields.add("Binds");
+        openapiFields.add("BlkioDeviceReadBps");
+        openapiFields.add("BlkioDeviceReadIOps");
+        openapiFields.add("BlkioDeviceWriteBps");
+        openapiFields.add("BlkioDeviceWriteIOps");
+        openapiFields.add("BlkioWeight");
+        openapiFields.add("BlkioWeightDevice");
+        openapiFields.add("CapAdd");
+        openapiFields.add("CapDrop");
+        openapiFields.add("Cgroup");
+        openapiFields.add("CgroupConf");
+        openapiFields.add("CgroupManager");
+        openapiFields.add("CgroupMode");
+        openapiFields.add("CgroupParent");
+        openapiFields.add("Cgroups");
+        openapiFields.add("ConsoleSize");
+        openapiFields.add("ContainerIDFile");
+        openapiFields.add("CpuCount");
+        openapiFields.add("CpuPercent");
+        openapiFields.add("CpuPeriod");
+        openapiFields.add("CpuQuota");
+        openapiFields.add("CpuRealtimePeriod");
+        openapiFields.add("CpuRealtimeRuntime");
+        openapiFields.add("CpuShares");
+        openapiFields.add("CpusetCpus");
+        openapiFields.add("CpusetMems");
+        openapiFields.add("Devices");
+        openapiFields.add("DiskQuota");
+        openapiFields.add("Dns");
+        openapiFields.add("DnsOptions");
+        openapiFields.add("DnsSearch");
+        openapiFields.add("ExtraHosts");
+        openapiFields.add("GroupAdd");
+        openapiFields.add("IDMappings");
+        openapiFields.add("IOMaximumBandwidth");
+        openapiFields.add("IOMaximumIOps");
+        openapiFields.add("Init");
+        openapiFields.add("IntelRdtClosID");
+        openapiFields.add("IpcMode");
+        openapiFields.add("Isolation");
+        openapiFields.add("KernelMemory");
+        openapiFields.add("Links");
+        openapiFields.add("LogConfig");
+        openapiFields.add("Memory");
+        openapiFields.add("MemoryReservation");
+        openapiFields.add("MemorySwap");
+        openapiFields.add("MemorySwappiness");
+        openapiFields.add("NanoCpus");
+        openapiFields.add("NetworkMode");
+        openapiFields.add("OomKillDisable");
+        openapiFields.add("OomScoreAdj");
+        openapiFields.add("PidMode");
+        openapiFields.add("PidsLimit");
+        openapiFields.add("PortBindings");
+        openapiFields.add("Privileged");
+        openapiFields.add("PublishAllPorts");
+        openapiFields.add("ReadonlyRootfs");
+        openapiFields.add("RestartPolicy");
+        openapiFields.add("Runtime");
+        openapiFields.add("SecurityOpt");
+        openapiFields.add("ShmSize");
+        openapiFields.add("Tmpfs");
+        openapiFields.add("UTSMode");
+        openapiFields.add("Ulimits");
+        openapiFields.add("UsernsMode");
+        openapiFields.add("VolumeDriver");
+        openapiFields.add("VolumesFrom");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+    private Map<String, String> annotations = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_AUTO_REMOVE)
+    private Boolean autoRemove;
+    @SerializedName(SERIALIZED_NAME_AUTO_REMOVE_IMAGE)
+    private Boolean autoRemoveImage;
+    @SerializedName(SERIALIZED_NAME_BINDS)
+    private List<String> binds = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_READ_BPS)
+    private List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_READ_I_OPS)
+    private List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_WRITE_BPS)
+    private List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_WRITE_I_OPS)
+    private List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT)
+    private Integer blkioWeight;
+    @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE)
+    private List<@Valid InspectBlkioWeightDevice> blkioWeightDevice = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CAP_ADD)
+    private List<String> capAdd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CAP_DROP)
+    private List<String> capDrop = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CGROUP)
+    private String cgroup;
+    @SerializedName(SERIALIZED_NAME_CGROUP_CONF)
+    private Map<String, String> cgroupConf = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_CGROUP_MANAGER)
+    private String cgroupManager;
+    @SerializedName(SERIALIZED_NAME_CGROUP_MODE)
+    private String cgroupMode;
+    @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
+    private String cgroupParent;
+    @SerializedName(SERIALIZED_NAME_CGROUPS)
+    private String cgroups;
+    @SerializedName(SERIALIZED_NAME_CONSOLE_SIZE)
+    private List<Integer> consoleSize = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CONTAINER_I_D_FILE)
+    private String containerIDFile;
+    @SerializedName(SERIALIZED_NAME_CPU_COUNT)
+    private Integer cpuCount;
+    @SerializedName(SERIALIZED_NAME_CPU_PERCENT)
+    private Integer cpuPercent;
+    @SerializedName(SERIALIZED_NAME_CPU_PERIOD)
+    private Integer cpuPeriod;
+    @SerializedName(SERIALIZED_NAME_CPU_QUOTA)
+    private Long cpuQuota;
+    @SerializedName(SERIALIZED_NAME_CPU_REALTIME_PERIOD)
+    private Integer cpuRealtimePeriod;
+    @SerializedName(SERIALIZED_NAME_CPU_REALTIME_RUNTIME)
+    private Long cpuRealtimeRuntime;
+    @SerializedName(SERIALIZED_NAME_CPU_SHARES)
+    private Integer cpuShares;
+    @SerializedName(SERIALIZED_NAME_CPUSET_CPUS)
+    private String cpusetCpus;
+    @SerializedName(SERIALIZED_NAME_CPUSET_MEMS)
+    private String cpusetMems;
+    @SerializedName(SERIALIZED_NAME_DEVICES)
+    private List<@Valid InspectDevice> devices = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DISK_QUOTA)
+    private Integer diskQuota;
+    @SerializedName(SERIALIZED_NAME_DNS)
+    private List<String> dns = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DNS_OPTIONS)
+    private List<String> dnsOptions = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DNS_SEARCH)
+    private List<String> dnsSearch = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_EXTRA_HOSTS)
+    private List<String> extraHosts = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_GROUP_ADD)
+    private List<String> groupAdd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_ID_MAPPINGS)
+    private InspectIDMappings idMappings;
+    @SerializedName(SERIALIZED_NAME_IO_MAXIMUM_BANDWIDTH)
+    private Integer ioMaximumBandwidth;
+    @SerializedName(SERIALIZED_NAME_IO_MAXIMUM_I_OPS)
+    private Integer ioMaximumIOps;
+    @SerializedName(SERIALIZED_NAME_INIT)
+    private Boolean init;
+    @SerializedName(SERIALIZED_NAME_INTEL_RDT_CLOS_I_D)
+    private String intelRdtClosID;
+    @SerializedName(SERIALIZED_NAME_IPC_MODE)
+    private String ipcMode;
+    @SerializedName(SERIALIZED_NAME_ISOLATION)
+    private String isolation;
+    @SerializedName(SERIALIZED_NAME_KERNEL_MEMORY)
+    private Long kernelMemory;
+    @SerializedName(SERIALIZED_NAME_LINKS)
+    private List<String> links = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_LOG_CONFIG)
+    private InspectLogConfig logConfig;
+    @SerializedName(SERIALIZED_NAME_MEMORY)
+    private Long memory;
+    @SerializedName(SERIALIZED_NAME_MEMORY_RESERVATION)
+    private Long memoryReservation;
+    @SerializedName(SERIALIZED_NAME_MEMORY_SWAP)
+    private Long memorySwap;
+    @SerializedName(SERIALIZED_NAME_MEMORY_SWAPPINESS)
+    private Long memorySwappiness;
+    @SerializedName(SERIALIZED_NAME_NANO_CPUS)
+    private Long nanoCpus;
+    @SerializedName(SERIALIZED_NAME_NETWORK_MODE)
+    private String networkMode;
+    @SerializedName(SERIALIZED_NAME_OOM_KILL_DISABLE)
+    private Boolean oomKillDisable;
+    @SerializedName(SERIALIZED_NAME_OOM_SCORE_ADJ)
+    private Long oomScoreAdj;
+    @SerializedName(SERIALIZED_NAME_PID_MODE)
+    private String pidMode;
+    @SerializedName(SERIALIZED_NAME_PIDS_LIMIT)
+    private Long pidsLimit;
+    @SerializedName(SERIALIZED_NAME_PORT_BINDINGS)
+    private Map<String, List<@Valid InspectHostPort>> portBindings = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_PRIVILEGED)
+    private Boolean privileged;
+    @SerializedName(SERIALIZED_NAME_PUBLISH_ALL_PORTS)
+    private Boolean publishAllPorts;
+    @SerializedName(SERIALIZED_NAME_READONLY_ROOTFS)
+    private Boolean readonlyRootfs;
+    @SerializedName(SERIALIZED_NAME_RESTART_POLICY)
+    private InspectRestartPolicy restartPolicy;
+    @SerializedName(SERIALIZED_NAME_RUNTIME)
+    private String runtime;
+    @SerializedName(SERIALIZED_NAME_SECURITY_OPT)
+    private List<String> securityOpt = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SHM_SIZE)
+    private Long shmSize;
+    @SerializedName(SERIALIZED_NAME_TMPFS)
+    private Map<String, String> tmpfs = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_UT_S_MODE)
+    private String utSMode;
+    @SerializedName(SERIALIZED_NAME_ULIMITS)
+    private List<@Valid InspectUlimit> ulimits = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_USERNS_MODE)
+    private String usernsMode;
+    @SerializedName(SERIALIZED_NAME_VOLUME_DRIVER)
+    private String volumeDriver;
+    @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
+    private List<String> volumesFrom = new ArrayList<>();
 
-    // add `Annotations` to the URL query string
-    if (getAnnotations() != null) {
-      for (String _key : getAnnotations().keySet()) {
-        joiner.add(String.format("%sAnnotations%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public InspectContainerHostConfig() {
     }
 
-    // add `AutoRemove` to the URL query string
-    if (getAutoRemove() != null) {
-      joiner.add(String.format("%sAutoRemove%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAutoRemove()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `AutoRemoveImage` to the URL query string
-    if (getAutoRemoveImage() != null) {
-      joiner.add(String.format("%sAutoRemoveImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAutoRemoveImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Binds` to the URL query string
-    if (getBinds() != null) {
-      for (int i = 0; i < getBinds().size(); i++) {
-        joiner.add(String.format("%sBinds%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getBinds().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `BlkioDeviceReadBps` to the URL query string
-    if (getBlkioDeviceReadBps() != null) {
-      for (int i = 0; i < getBlkioDeviceReadBps().size(); i++) {
-        if (getBlkioDeviceReadBps().get(i) != null) {
-          joiner.add(getBlkioDeviceReadBps().get(i).toUrlQueryString(String.format("%sBlkioDeviceReadBps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to InspectContainerHostConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!InspectContainerHostConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerHostConfig is not found in the empty JSON string", InspectContainerHostConfig.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `BlkioDeviceReadIOps` to the URL query string
-    if (getBlkioDeviceReadIOps() != null) {
-      for (int i = 0; i < getBlkioDeviceReadIOps().size(); i++) {
-        if (getBlkioDeviceReadIOps().get(i) != null) {
-          joiner.add(getBlkioDeviceReadIOps().get(i).toUrlQueryString(String.format("%sBlkioDeviceReadIOps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!InspectContainerHostConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerHostConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
-    }
-
-    // add `BlkioDeviceWriteBps` to the URL query string
-    if (getBlkioDeviceWriteBps() != null) {
-      for (int i = 0; i < getBlkioDeviceWriteBps().size(); i++) {
-        if (getBlkioDeviceWriteBps().get(i) != null) {
-          joiner.add(getBlkioDeviceWriteBps().get(i).toUrlQueryString(String.format("%sBlkioDeviceWriteBps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Binds") != null && !jsonObj.get("Binds").isJsonNull() && !jsonObj.get("Binds").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Binds` to be an array in the JSON string but got `%s`", jsonObj.get("Binds").toString()));
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceReadBps") != null && !jsonObj.get("BlkioDeviceReadBps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceReadBps = jsonObj.getAsJsonArray("BlkioDeviceReadBps");
+            if (jsonArrayblkioDeviceReadBps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceReadBps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceReadBps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceReadBps").toString()));
+                }
 
-    // add `BlkioDeviceWriteIOps` to the URL query string
-    if (getBlkioDeviceWriteIOps() != null) {
-      for (int i = 0; i < getBlkioDeviceWriteIOps().size(); i++) {
-        if (getBlkioDeviceWriteIOps().get(i) != null) {
-          joiner.add(getBlkioDeviceWriteIOps().get(i).toUrlQueryString(String.format("%sBlkioDeviceWriteIOps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceReadBps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceReadBps.size(); i++) {
+                    InspectBlkioThrottleDevice.validateJsonElement(jsonArrayblkioDeviceReadBps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceReadIOps") != null && !jsonObj.get("BlkioDeviceReadIOps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceReadIOps = jsonObj.getAsJsonArray("BlkioDeviceReadIOps");
+            if (jsonArrayblkioDeviceReadIOps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceReadIOps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceReadIOps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceReadIOps").toString()));
+                }
 
-    // add `BlkioWeight` to the URL query string
-    if (getBlkioWeight() != null) {
-      joiner.add(String.format("%sBlkioWeight%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBlkioWeight()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `BlkioWeightDevice` to the URL query string
-    if (getBlkioWeightDevice() != null) {
-      for (int i = 0; i < getBlkioWeightDevice().size(); i++) {
-        if (getBlkioWeightDevice().get(i) != null) {
-          joiner.add(getBlkioWeightDevice().get(i).toUrlQueryString(String.format("%sBlkioWeightDevice%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceReadIOps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceReadIOps.size(); i++) {
+                    InspectBlkioThrottleDevice.validateJsonElement(jsonArrayblkioDeviceReadIOps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceWriteBps") != null && !jsonObj.get("BlkioDeviceWriteBps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceWriteBps = jsonObj.getAsJsonArray("BlkioDeviceWriteBps");
+            if (jsonArrayblkioDeviceWriteBps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceWriteBps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceWriteBps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceWriteBps").toString()));
+                }
 
-    // add `CapAdd` to the URL query string
-    if (getCapAdd() != null) {
-      for (int i = 0; i < getCapAdd().size(); i++) {
-        joiner.add(String.format("%sCapAdd%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCapAdd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `CapDrop` to the URL query string
-    if (getCapDrop() != null) {
-      for (int i = 0; i < getCapDrop().size(); i++) {
-        joiner.add(String.format("%sCapDrop%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCapDrop().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Cgroup` to the URL query string
-    if (getCgroup() != null) {
-      joiner.add(String.format("%sCgroup%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroup()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CgroupConf` to the URL query string
-    if (getCgroupConf() != null) {
-      for (String _key : getCgroupConf().keySet()) {
-        joiner.add(String.format("%sCgroupConf%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getCgroupConf().get(_key), URLEncoder.encode(ApiClient.valueToString(getCgroupConf().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `CgroupManager` to the URL query string
-    if (getCgroupManager() != null) {
-      joiner.add(String.format("%sCgroupManager%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupManager()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CgroupMode` to the URL query string
-    if (getCgroupMode() != null) {
-      joiner.add(String.format("%sCgroupMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CgroupParent` to the URL query string
-    if (getCgroupParent() != null) {
-      joiner.add(String.format("%sCgroupParent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Cgroups` to the URL query string
-    if (getCgroups() != null) {
-      joiner.add(String.format("%sCgroups%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroups()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `ConsoleSize` to the URL query string
-    if (getConsoleSize() != null) {
-      for (int i = 0; i < getConsoleSize().size(); i++) {
-        joiner.add(String.format("%sConsoleSize%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getConsoleSize().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `ContainerIDFile` to the URL query string
-    if (getContainerIDFile() != null) {
-      joiner.add(String.format("%sContainerIDFile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainerIDFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuCount` to the URL query string
-    if (getCpuCount() != null) {
-      joiner.add(String.format("%sCpuCount%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuPercent` to the URL query string
-    if (getCpuPercent() != null) {
-      joiner.add(String.format("%sCpuPercent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuPercent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuPeriod` to the URL query string
-    if (getCpuPeriod() != null) {
-      joiner.add(String.format("%sCpuPeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuQuota` to the URL query string
-    if (getCpuQuota() != null) {
-      joiner.add(String.format("%sCpuQuota%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuQuota()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuRealtimePeriod` to the URL query string
-    if (getCpuRealtimePeriod() != null) {
-      joiner.add(String.format("%sCpuRealtimePeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuRealtimePeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuRealtimeRuntime` to the URL query string
-    if (getCpuRealtimeRuntime() != null) {
-      joiner.add(String.format("%sCpuRealtimeRuntime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuRealtimeRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuShares` to the URL query string
-    if (getCpuShares() != null) {
-      joiner.add(String.format("%sCpuShares%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuShares()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpusetCpus` to the URL query string
-    if (getCpusetCpus() != null) {
-      joiner.add(String.format("%sCpusetCpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpusetMems` to the URL query string
-    if (getCpusetMems() != null) {
-      joiner.add(String.format("%sCpusetMems%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetMems()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Devices` to the URL query string
-    if (getDevices() != null) {
-      for (int i = 0; i < getDevices().size(); i++) {
-        if (getDevices().get(i) != null) {
-          joiner.add(getDevices().get(i).toUrlQueryString(String.format("%sDevices%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceWriteBps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceWriteBps.size(); i++) {
+                    InspectBlkioThrottleDevice.validateJsonElement(jsonArrayblkioDeviceWriteBps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceWriteIOps") != null && !jsonObj.get("BlkioDeviceWriteIOps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceWriteIOps = jsonObj.getAsJsonArray("BlkioDeviceWriteIOps");
+            if (jsonArrayblkioDeviceWriteIOps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceWriteIOps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceWriteIOps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceWriteIOps").toString()));
+                }
 
-    // add `DiskQuota` to the URL query string
-    if (getDiskQuota() != null) {
-      joiner.add(String.format("%sDiskQuota%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDiskQuota()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Dns` to the URL query string
-    if (getDns() != null) {
-      for (int i = 0; i < getDns().size(); i++) {
-        joiner.add(String.format("%sDns%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDns().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `DnsOptions` to the URL query string
-    if (getDnsOptions() != null) {
-      for (int i = 0; i < getDnsOptions().size(); i++) {
-        joiner.add(String.format("%sDnsOptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDnsOptions().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `DnsSearch` to the URL query string
-    if (getDnsSearch() != null) {
-      for (int i = 0; i < getDnsSearch().size(); i++) {
-        joiner.add(String.format("%sDnsSearch%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDnsSearch().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `ExtraHosts` to the URL query string
-    if (getExtraHosts() != null) {
-      for (int i = 0; i < getExtraHosts().size(); i++) {
-        joiner.add(String.format("%sExtraHosts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getExtraHosts().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `GroupAdd` to the URL query string
-    if (getGroupAdd() != null) {
-      for (int i = 0; i < getGroupAdd().size(); i++) {
-        joiner.add(String.format("%sGroupAdd%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getGroupAdd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `IDMappings` to the URL query string
-    if (getIdMappings() != null) {
-      joiner.add(getIdMappings().toUrlQueryString(prefix + "IDMappings" + suffix));
-    }
-
-    // add `IOMaximumBandwidth` to the URL query string
-    if (getIoMaximumBandwidth() != null) {
-      joiner.add(String.format("%sIOMaximumBandwidth%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIoMaximumBandwidth()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IOMaximumIOps` to the URL query string
-    if (getIoMaximumIOps() != null) {
-      joiner.add(String.format("%sIOMaximumIOps%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIoMaximumIOps()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Init` to the URL query string
-    if (getInit() != null) {
-      joiner.add(String.format("%sInit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IntelRdtClosID` to the URL query string
-    if (getIntelRdtClosID() != null) {
-      joiner.add(String.format("%sIntelRdtClosID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIntelRdtClosID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IpcMode` to the URL query string
-    if (getIpcMode() != null) {
-      joiner.add(String.format("%sIpcMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpcMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Isolation` to the URL query string
-    if (getIsolation() != null) {
-      joiner.add(String.format("%sIsolation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIsolation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `KernelMemory` to the URL query string
-    if (getKernelMemory() != null) {
-      joiner.add(String.format("%sKernelMemory%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernelMemory()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Links` to the URL query string
-    if (getLinks() != null) {
-      for (int i = 0; i < getLinks().size(); i++) {
-        joiner.add(String.format("%sLinks%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getLinks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `LogConfig` to the URL query string
-    if (getLogConfig() != null) {
-      joiner.add(getLogConfig().toUrlQueryString(prefix + "LogConfig" + suffix));
-    }
-
-    // add `Memory` to the URL query string
-    if (getMemory() != null) {
-      joiner.add(String.format("%sMemory%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemory()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemoryReservation` to the URL query string
-    if (getMemoryReservation() != null) {
-      joiner.add(String.format("%sMemoryReservation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemoryReservation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemorySwap` to the URL query string
-    if (getMemorySwap() != null) {
-      joiner.add(String.format("%sMemorySwap%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemorySwap()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemorySwappiness` to the URL query string
-    if (getMemorySwappiness() != null) {
-      joiner.add(String.format("%sMemorySwappiness%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemorySwappiness()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `NanoCpus` to the URL query string
-    if (getNanoCpus() != null) {
-      joiner.add(String.format("%sNanoCpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNanoCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `NetworkMode` to the URL query string
-    if (getNetworkMode() != null) {
-      joiner.add(String.format("%sNetworkMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetworkMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `OomKillDisable` to the URL query string
-    if (getOomKillDisable() != null) {
-      joiner.add(String.format("%sOomKillDisable%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOomKillDisable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `OomScoreAdj` to the URL query string
-    if (getOomScoreAdj() != null) {
-      joiner.add(String.format("%sOomScoreAdj%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOomScoreAdj()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PidMode` to the URL query string
-    if (getPidMode() != null) {
-      joiner.add(String.format("%sPidMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPidMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PidsLimit` to the URL query string
-    if (getPidsLimit() != null) {
-      joiner.add(String.format("%sPidsLimit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPidsLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PortBindings` to the URL query string
-    if (getPortBindings() != null) {
-      for (String _key : getPortBindings().keySet()) {
-        joiner.add(String.format("%sPortBindings%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getPortBindings().get(_key), URLEncoder.encode(ApiClient.valueToString(getPortBindings().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Privileged` to the URL query string
-    if (getPrivileged() != null) {
-      joiner.add(String.format("%sPrivileged%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivileged()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PublishAllPorts` to the URL query string
-    if (getPublishAllPorts() != null) {
-      joiner.add(String.format("%sPublishAllPorts%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPublishAllPorts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `ReadonlyRootfs` to the URL query string
-    if (getReadonlyRootfs() != null) {
-      joiner.add(String.format("%sReadonlyRootfs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadonlyRootfs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `RestartPolicy` to the URL query string
-    if (getRestartPolicy() != null) {
-      joiner.add(getRestartPolicy().toUrlQueryString(prefix + "RestartPolicy" + suffix));
-    }
-
-    // add `Runtime` to the URL query string
-    if (getRuntime() != null) {
-      joiner.add(String.format("%sRuntime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `SecurityOpt` to the URL query string
-    if (getSecurityOpt() != null) {
-      for (int i = 0; i < getSecurityOpt().size(); i++) {
-        joiner.add(String.format("%sSecurityOpt%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getSecurityOpt().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `ShmSize` to the URL query string
-    if (getShmSize() != null) {
-      joiner.add(String.format("%sShmSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShmSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Tmpfs` to the URL query string
-    if (getTmpfs() != null) {
-      for (String _key : getTmpfs().keySet()) {
-        joiner.add(String.format("%sTmpfs%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getTmpfs().get(_key), URLEncoder.encode(ApiClient.valueToString(getTmpfs().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `UTSMode` to the URL query string
-    if (getUtSMode() != null) {
-      joiner.add(String.format("%sUTSMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUtSMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Ulimits` to the URL query string
-    if (getUlimits() != null) {
-      for (int i = 0; i < getUlimits().size(); i++) {
-        if (getUlimits().get(i) != null) {
-          joiner.add(getUlimits().get(i).toUrlQueryString(String.format("%sUlimits%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceWriteIOps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceWriteIOps.size(); i++) {
+                    InspectBlkioThrottleDevice.validateJsonElement(jsonArrayblkioDeviceWriteIOps.get(i));
+                }
+            }
         }
-      }
+        if (jsonObj.get("BlkioWeightDevice") != null && !jsonObj.get("BlkioWeightDevice").isJsonNull()) {
+            JsonArray jsonArrayblkioWeightDevice = jsonObj.getAsJsonArray("BlkioWeightDevice");
+            if (jsonArrayblkioWeightDevice != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioWeightDevice").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioWeightDevice` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioWeightDevice").toString()));
+                }
+
+                // validate the optional field `BlkioWeightDevice` (array)
+                for (int i = 0; i < jsonArrayblkioWeightDevice.size(); i++) {
+                    InspectBlkioWeightDevice.validateJsonElement(jsonArrayblkioWeightDevice.get(i));
+                }
+            }
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("CapAdd") != null && !jsonObj.get("CapAdd").isJsonNull() && !jsonObj.get("CapAdd").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CapAdd` to be an array in the JSON string but got `%s`", jsonObj.get("CapAdd").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("CapDrop") != null && !jsonObj.get("CapDrop").isJsonNull() && !jsonObj.get("CapDrop").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CapDrop` to be an array in the JSON string but got `%s`", jsonObj.get("CapDrop").toString()));
+        }
+        if ((jsonObj.get("Cgroup") != null && !jsonObj.get("Cgroup").isJsonNull()) && !jsonObj.get("Cgroup").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Cgroup` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Cgroup").toString()));
+        }
+        if ((jsonObj.get("CgroupManager") != null && !jsonObj.get("CgroupManager").isJsonNull()) && !jsonObj.get("CgroupManager").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CgroupManager` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupManager").toString()));
+        }
+        if ((jsonObj.get("CgroupMode") != null && !jsonObj.get("CgroupMode").isJsonNull()) && !jsonObj.get("CgroupMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CgroupMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupMode").toString()));
+        }
+        if ((jsonObj.get("CgroupParent") != null && !jsonObj.get("CgroupParent").isJsonNull()) && !jsonObj.get("CgroupParent").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CgroupParent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupParent").toString()));
+        }
+        if ((jsonObj.get("Cgroups") != null && !jsonObj.get("Cgroups").isJsonNull()) && !jsonObj.get("Cgroups").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Cgroups` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Cgroups").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("ConsoleSize") != null && !jsonObj.get("ConsoleSize").isJsonNull() && !jsonObj.get("ConsoleSize").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ConsoleSize` to be an array in the JSON string but got `%s`", jsonObj.get("ConsoleSize").toString()));
+        }
+        if ((jsonObj.get("ContainerIDFile") != null && !jsonObj.get("ContainerIDFile").isJsonNull()) && !jsonObj.get("ContainerIDFile").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ContainerIDFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerIDFile").toString()));
+        }
+        if ((jsonObj.get("CpusetCpus") != null && !jsonObj.get("CpusetCpus").isJsonNull()) && !jsonObj.get("CpusetCpus").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CpusetCpus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CpusetCpus").toString()));
+        }
+        if ((jsonObj.get("CpusetMems") != null && !jsonObj.get("CpusetMems").isJsonNull()) && !jsonObj.get("CpusetMems").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CpusetMems` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CpusetMems").toString()));
+        }
+        if (jsonObj.get("Devices") != null && !jsonObj.get("Devices").isJsonNull()) {
+            JsonArray jsonArraydevices = jsonObj.getAsJsonArray("Devices");
+            if (jsonArraydevices != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Devices").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Devices` to be an array in the JSON string but got `%s`", jsonObj.get("Devices").toString()));
+                }
+
+                // validate the optional field `Devices` (array)
+                for (int i = 0; i < jsonArraydevices.size(); i++) {
+                    InspectDevice.validateJsonElement(jsonArraydevices.get(i));
+                }
+            }
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Dns") != null && !jsonObj.get("Dns").isJsonNull() && !jsonObj.get("Dns").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Dns` to be an array in the JSON string but got `%s`", jsonObj.get("Dns").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("DnsOptions") != null && !jsonObj.get("DnsOptions").isJsonNull() && !jsonObj.get("DnsOptions").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DnsOptions` to be an array in the JSON string but got `%s`", jsonObj.get("DnsOptions").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("DnsSearch") != null && !jsonObj.get("DnsSearch").isJsonNull() && !jsonObj.get("DnsSearch").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DnsSearch` to be an array in the JSON string but got `%s`", jsonObj.get("DnsSearch").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("ExtraHosts") != null && !jsonObj.get("ExtraHosts").isJsonNull() && !jsonObj.get("ExtraHosts").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ExtraHosts` to be an array in the JSON string but got `%s`", jsonObj.get("ExtraHosts").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("GroupAdd") != null && !jsonObj.get("GroupAdd").isJsonNull() && !jsonObj.get("GroupAdd").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `GroupAdd` to be an array in the JSON string but got `%s`", jsonObj.get("GroupAdd").toString()));
+        }
+        // validate the optional field `IDMappings`
+        if (jsonObj.get("IDMappings") != null && !jsonObj.get("IDMappings").isJsonNull()) {
+            InspectIDMappings.validateJsonElement(jsonObj.get("IDMappings"));
+        }
+        if ((jsonObj.get("IntelRdtClosID") != null && !jsonObj.get("IntelRdtClosID").isJsonNull()) && !jsonObj.get("IntelRdtClosID").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IntelRdtClosID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IntelRdtClosID").toString()));
+        }
+        if ((jsonObj.get("IpcMode") != null && !jsonObj.get("IpcMode").isJsonNull()) && !jsonObj.get("IpcMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IpcMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IpcMode").toString()));
+        }
+        if ((jsonObj.get("Isolation") != null && !jsonObj.get("Isolation").isJsonNull()) && !jsonObj.get("Isolation").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Isolation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Isolation").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull() && !jsonObj.get("Links").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Links` to be an array in the JSON string but got `%s`", jsonObj.get("Links").toString()));
+        }
+        // validate the optional field `LogConfig`
+        if (jsonObj.get("LogConfig") != null && !jsonObj.get("LogConfig").isJsonNull()) {
+            InspectLogConfig.validateJsonElement(jsonObj.get("LogConfig"));
+        }
+        if ((jsonObj.get("NetworkMode") != null && !jsonObj.get("NetworkMode").isJsonNull()) && !jsonObj.get("NetworkMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `NetworkMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("NetworkMode").toString()));
+        }
+        if ((jsonObj.get("PidMode") != null && !jsonObj.get("PidMode").isJsonNull()) && !jsonObj.get("PidMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `PidMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PidMode").toString()));
+        }
+        // validate the optional field `RestartPolicy`
+        if (jsonObj.get("RestartPolicy") != null && !jsonObj.get("RestartPolicy").isJsonNull()) {
+            InspectRestartPolicy.validateJsonElement(jsonObj.get("RestartPolicy"));
+        }
+        if ((jsonObj.get("Runtime") != null && !jsonObj.get("Runtime").isJsonNull()) && !jsonObj.get("Runtime").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Runtime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Runtime").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("SecurityOpt") != null && !jsonObj.get("SecurityOpt").isJsonNull() && !jsonObj.get("SecurityOpt").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `SecurityOpt` to be an array in the JSON string but got `%s`", jsonObj.get("SecurityOpt").toString()));
+        }
+        if ((jsonObj.get("UTSMode") != null && !jsonObj.get("UTSMode").isJsonNull()) && !jsonObj.get("UTSMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `UTSMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("UTSMode").toString()));
+        }
+        if (jsonObj.get("Ulimits") != null && !jsonObj.get("Ulimits").isJsonNull()) {
+            JsonArray jsonArrayulimits = jsonObj.getAsJsonArray("Ulimits");
+            if (jsonArrayulimits != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Ulimits").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Ulimits` to be an array in the JSON string but got `%s`", jsonObj.get("Ulimits").toString()));
+                }
+
+                // validate the optional field `Ulimits` (array)
+                for (int i = 0; i < jsonArrayulimits.size(); i++) {
+                    InspectUlimit.validateJsonElement(jsonArrayulimits.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("UsernsMode") != null && !jsonObj.get("UsernsMode").isJsonNull()) && !jsonObj.get("UsernsMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `UsernsMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("UsernsMode").toString()));
+        }
+        if ((jsonObj.get("VolumeDriver") != null && !jsonObj.get("VolumeDriver").isJsonNull()) && !jsonObj.get("VolumeDriver").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `VolumeDriver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("VolumeDriver").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("VolumesFrom") != null && !jsonObj.get("VolumesFrom").isJsonNull() && !jsonObj.get("VolumesFrom").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `VolumesFrom` to be an array in the JSON string but got `%s`", jsonObj.get("VolumesFrom").toString()));
+        }
     }
 
-    // add `UsernsMode` to the URL query string
-    if (getUsernsMode() != null) {
-      joiner.add(String.format("%sUsernsMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUsernsMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of InspectContainerHostConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of InspectContainerHostConfig
+     * @throws IOException if the JSON string is invalid with respect to InspectContainerHostConfig
+     */
+    public static InspectContainerHostConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, InspectContainerHostConfig.class);
     }
 
-    // add `VolumeDriver` to the URL query string
-    if (getVolumeDriver() != null) {
-      joiner.add(String.format("%sVolumeDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVolumeDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public InspectContainerHostConfig annotations(Map<String, String> annotations) {
+        this.annotations = annotations;
+        return this;
     }
 
-    // add `VolumesFrom` to the URL query string
-    if (getVolumesFrom() != null) {
-      for (int i = 0; i < getVolumesFrom().size(); i++) {
-        joiner.add(String.format("%sVolumesFrom%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getVolumesFrom().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public InspectContainerHostConfig putAnnotationsItem(String key, String annotationsItem) {
+        if (this.annotations == null) {
+            this.annotations = new HashMap<>();
+        }
+        this.annotations.put(key, annotationsItem);
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Annotations are provided to the runtime when the container is started.
+     *
+     * @return annotations
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getAnnotations() {
+        return annotations;
+    }
+
+    public void setAnnotations(Map<String, String> annotations) {
+        this.annotations = annotations;
+    }
+
+    public InspectContainerHostConfig autoRemove(Boolean autoRemove) {
+        this.autoRemove = autoRemove;
+        return this;
+    }
+
+    /**
+     * AutoRemove is whether the container will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.
+     *
+     * @return autoRemove
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAutoRemove() {
+        return autoRemove;
+    }
+
+    public void setAutoRemove(Boolean autoRemove) {
+        this.autoRemove = autoRemove;
+    }
+
+    public InspectContainerHostConfig autoRemoveImage(Boolean autoRemoveImage) {
+        this.autoRemoveImage = autoRemoveImage;
+        return this;
+    }
+
+    /**
+     * AutoRemoveImage is whether the container&#39;s image will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.
+     *
+     * @return autoRemoveImage
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAutoRemoveImage() {
+        return autoRemoveImage;
+    }
+
+    public void setAutoRemoveImage(Boolean autoRemoveImage) {
+        this.autoRemoveImage = autoRemoveImage;
+    }
+
+    public InspectContainerHostConfig binds(List<String> binds) {
+        this.binds = binds;
+        return this;
+    }
+
+    public InspectContainerHostConfig addBindsItem(String bindsItem) {
+        if (this.binds == null) {
+            this.binds = new ArrayList<>();
+        }
+        this.binds.add(bindsItem);
+        return this;
+    }
+
+    /**
+     * Binds contains an array of user-added mounts. Both volume mounts and named volumes are included. Tmpfs mounts are NOT included. In &#39;docker inspect&#39; this is separated into &#39;Binds&#39; and &#39;Mounts&#39; based on how a mount was added. We do not make this distinction and do not include a Mounts field in inspect. Format: &lt;src&gt;:&lt;destination&gt;[:&lt;comma-separated options&gt;]
+     *
+     * @return binds
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getBinds() {
+        return binds;
+    }
+
+    public void setBinds(List<String> binds) {
+        this.binds = binds;
+    }
+
+    public InspectContainerHostConfig blkioDeviceReadBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps) {
+        this.blkioDeviceReadBps = blkioDeviceReadBps;
+        return this;
+    }
+
+    public InspectContainerHostConfig addBlkioDeviceReadBpsItem(InspectBlkioThrottleDevice blkioDeviceReadBpsItem) {
+        if (this.blkioDeviceReadBps == null) {
+            this.blkioDeviceReadBps = new ArrayList<>();
+        }
+        this.blkioDeviceReadBps.add(blkioDeviceReadBpsItem);
+        return this;
+    }
+
+    /**
+     * BlkioDeviceReadBps is an array of I/O throttle parameters for individual device nodes. This specifically sets read rate cap in bytes per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
+     *
+     * @return blkioDeviceReadBps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceReadBps() {
+        return blkioDeviceReadBps;
+    }
+
+    public void setBlkioDeviceReadBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadBps) {
+        this.blkioDeviceReadBps = blkioDeviceReadBps;
+    }
+
+    public InspectContainerHostConfig blkioDeviceReadIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps) {
+        this.blkioDeviceReadIOps = blkioDeviceReadIOps;
+        return this;
+    }
+
+    public InspectContainerHostConfig addBlkioDeviceReadIOpsItem(InspectBlkioThrottleDevice blkioDeviceReadIOpsItem) {
+        if (this.blkioDeviceReadIOps == null) {
+            this.blkioDeviceReadIOps = new ArrayList<>();
+        }
+        this.blkioDeviceReadIOps.add(blkioDeviceReadIOpsItem);
+        return this;
+    }
+
+    /**
+     * BlkioDeviceReadIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the read rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
+     *
+     * @return blkioDeviceReadIOps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceReadIOps() {
+        return blkioDeviceReadIOps;
+    }
+
+    public void setBlkioDeviceReadIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceReadIOps) {
+        this.blkioDeviceReadIOps = blkioDeviceReadIOps;
+    }
+
+    public InspectContainerHostConfig blkioDeviceWriteBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps) {
+        this.blkioDeviceWriteBps = blkioDeviceWriteBps;
+        return this;
+    }
+
+    public InspectContainerHostConfig addBlkioDeviceWriteBpsItem(InspectBlkioThrottleDevice blkioDeviceWriteBpsItem) {
+        if (this.blkioDeviceWriteBps == null) {
+            this.blkioDeviceWriteBps = new ArrayList<>();
+        }
+        this.blkioDeviceWriteBps.add(blkioDeviceWriteBpsItem);
+        return this;
+    }
+
+    /**
+     * BlkioDeviceWriteBps is an array of I/O throttle parameters for individual device nodes. this specifically sets write rate cap in bytes per second for device nodes. as with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
+     *
+     * @return blkioDeviceWriteBps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceWriteBps() {
+        return blkioDeviceWriteBps;
+    }
+
+    public void setBlkioDeviceWriteBps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteBps) {
+        this.blkioDeviceWriteBps = blkioDeviceWriteBps;
+    }
+
+    public InspectContainerHostConfig blkioDeviceWriteIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps) {
+        this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
+        return this;
+    }
+
+    public InspectContainerHostConfig addBlkioDeviceWriteIOpsItem(InspectBlkioThrottleDevice blkioDeviceWriteIOpsItem) {
+        if (this.blkioDeviceWriteIOps == null) {
+            this.blkioDeviceWriteIOps = new ArrayList<>();
+        }
+        this.blkioDeviceWriteIOps.add(blkioDeviceWriteIOpsItem);
+        return this;
+    }
+
+    /**
+     * BlkioDeviceWriteIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the write rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
+     *
+     * @return blkioDeviceWriteIOps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid InspectBlkioThrottleDevice> getBlkioDeviceWriteIOps() {
+        return blkioDeviceWriteIOps;
+    }
+
+    public void setBlkioDeviceWriteIOps(List<@Valid InspectBlkioThrottleDevice> blkioDeviceWriteIOps) {
+        this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
+    }
+
+    public InspectContainerHostConfig blkioWeight(Integer blkioWeight) {
+        this.blkioWeight = blkioWeight;
+        return this;
+    }
+
+    /**
+     * BlkioWeight indicates the I/O resources allocated to the container. It is a relative weight in the scheduler for assigning I/O time versus other Cgroups.
+     *
+     * @return blkioWeight
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getBlkioWeight() {
+        return blkioWeight;
+    }
+
+    public void setBlkioWeight(Integer blkioWeight) {
+        this.blkioWeight = blkioWeight;
+    }
+
+    public InspectContainerHostConfig blkioWeightDevice(List<@Valid InspectBlkioWeightDevice> blkioWeightDevice) {
+        this.blkioWeightDevice = blkioWeightDevice;
+        return this;
+    }
+
+    public InspectContainerHostConfig addBlkioWeightDeviceItem(InspectBlkioWeightDevice blkioWeightDeviceItem) {
+        if (this.blkioWeightDevice == null) {
+            this.blkioWeightDevice = new ArrayList<>();
+        }
+        this.blkioWeightDevice.add(blkioWeightDeviceItem);
+        return this;
+    }
+
+    /**
+     * BlkioWeightDevice is an array of I/O resource priorities for individual device nodes. Unfortunately, the spec only stores the device&#39;s Major/Minor numbers and not the path, which is used here. Fortunately, the kernel provides an interface for retrieving the path of a given node by major:minor at /sys/dev/. However, the exact path in use may not be what was used in the original CLI invocation - though it is guaranteed that the device node will be the same, and using the given path will be functionally identical.
+     *
+     * @return blkioWeightDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid InspectBlkioWeightDevice> getBlkioWeightDevice() {
+        return blkioWeightDevice;
+    }
+
+    public void setBlkioWeightDevice(List<@Valid InspectBlkioWeightDevice> blkioWeightDevice) {
+        this.blkioWeightDevice = blkioWeightDevice;
+    }
+
+    public InspectContainerHostConfig capAdd(List<String> capAdd) {
+        this.capAdd = capAdd;
+        return this;
+    }
+
+    public InspectContainerHostConfig addCapAddItem(String capAddItem) {
+        if (this.capAdd == null) {
+            this.capAdd = new ArrayList<>();
+        }
+        this.capAdd.add(capAddItem);
+        return this;
+    }
+
+    /**
+     * CapAdd is a list of capabilities added to the container. It is not directly stored by Libpod, and instead computed from the capabilities listed in the container&#39;s spec, compared against a set of default capabilities.
+     *
+     * @return capAdd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCapAdd() {
+        return capAdd;
+    }
+
+    public void setCapAdd(List<String> capAdd) {
+        this.capAdd = capAdd;
+    }
+
+    public InspectContainerHostConfig capDrop(List<String> capDrop) {
+        this.capDrop = capDrop;
+        return this;
+    }
+
+    public InspectContainerHostConfig addCapDropItem(String capDropItem) {
+        if (this.capDrop == null) {
+            this.capDrop = new ArrayList<>();
+        }
+        this.capDrop.add(capDropItem);
+        return this;
+    }
+
+    /**
+     * CapDrop is a list of capabilities removed from the container. It is not directly stored by libpod, and instead computed from the capabilities listed in the container&#39;s spec, compared against a set of default capabilities.
+     *
+     * @return capDrop
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCapDrop() {
+        return capDrop;
+    }
+
+    public void setCapDrop(List<String> capDrop) {
+        this.capDrop = capDrop;
+    }
+
+    public InspectContainerHostConfig cgroup(String cgroup) {
+        this.cgroup = cgroup;
+        return this;
+    }
+
+    /**
+     * Cgroup contains the container&#39;s cgroup. It is presently not populated. TODO.
+     *
+     * @return cgroup
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroup() {
+        return cgroup;
+    }
+
+    public void setCgroup(String cgroup) {
+        this.cgroup = cgroup;
+    }
+
+    public InspectContainerHostConfig cgroupConf(Map<String, String> cgroupConf) {
+        this.cgroupConf = cgroupConf;
+        return this;
+    }
+
+    public InspectContainerHostConfig putCgroupConfItem(String key, String cgroupConfItem) {
+        if (this.cgroupConf == null) {
+            this.cgroupConf = new HashMap<>();
+        }
+        this.cgroupConf.put(key, cgroupConfItem);
+        return this;
+    }
+
+    /**
+     * CgroupConf is the configuration for cgroup v2.
+     *
+     * @return cgroupConf
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getCgroupConf() {
+        return cgroupConf;
+    }
+
+    public void setCgroupConf(Map<String, String> cgroupConf) {
+        this.cgroupConf = cgroupConf;
+    }
+
+    public InspectContainerHostConfig cgroupManager(String cgroupManager) {
+        this.cgroupManager = cgroupManager;
+        return this;
+    }
+
+    /**
+     * CgroupManager is the cgroup manager used by the container. At present, allowed values are either \&quot;cgroupfs\&quot; or \&quot;systemd\&quot;.
+     *
+     * @return cgroupManager
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupManager() {
+        return cgroupManager;
+    }
+
+    public void setCgroupManager(String cgroupManager) {
+        this.cgroupManager = cgroupManager;
+    }
+
+    public InspectContainerHostConfig cgroupMode(String cgroupMode) {
+        this.cgroupMode = cgroupMode;
+        return this;
+    }
+
+    /**
+     * CgroupMode is the configuration of the container&#39;s cgroup namespace. Populated as follows: private - a cgroup namespace has been created host - No cgroup namespace created container:&lt;id&gt; - Using another container&#39;s cgroup namespace ns:&lt;path&gt; - A path to a cgroup namespace has been specified
+     *
+     * @return cgroupMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupMode() {
+        return cgroupMode;
+    }
+
+    public void setCgroupMode(String cgroupMode) {
+        this.cgroupMode = cgroupMode;
+    }
+
+    public InspectContainerHostConfig cgroupParent(String cgroupParent) {
+        this.cgroupParent = cgroupParent;
+        return this;
+    }
+
+    /**
+     * CgroupParent is the Cgroup parent of the container. Only set if not default.
+     *
+     * @return cgroupParent
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupParent() {
+        return cgroupParent;
+    }
+
+    public void setCgroupParent(String cgroupParent) {
+        this.cgroupParent = cgroupParent;
+    }
+
+    public InspectContainerHostConfig cgroups(String cgroups) {
+        this.cgroups = cgroups;
+        return this;
+    }
+
+    /**
+     * Cgroups contains the container&#39;s Cgroup mode. Allowed values are \&quot;default\&quot; (container is creating Cgroups) and \&quot;disabled\&quot; (container is not creating Cgroups). This is Libpod-specific and not included in &#x60;docker inspect&#x60;.
+     *
+     * @return cgroups
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroups() {
+        return cgroups;
+    }
+
+    public void setCgroups(String cgroups) {
+        this.cgroups = cgroups;
+    }
+
+    public InspectContainerHostConfig consoleSize(List<Integer> consoleSize) {
+        this.consoleSize = consoleSize;
+        return this;
+    }
+
+    public InspectContainerHostConfig addConsoleSizeItem(Integer consoleSizeItem) {
+        if (this.consoleSize == null) {
+            this.consoleSize = new ArrayList<>();
+        }
+        this.consoleSize.add(consoleSizeItem);
+        return this;
+    }
+
+    /**
+     * ConsoleSize is an array of 2 integers showing the size of the container&#39;s console. It is only set if the container is creating a terminal. TODO.
+     *
+     * @return consoleSize
+     */
+    @jakarta.annotation.Nullable
+
+    public List<Integer> getConsoleSize() {
+        return consoleSize;
+    }
+
+    public void setConsoleSize(List<Integer> consoleSize) {
+        this.consoleSize = consoleSize;
+    }
+
+    public InspectContainerHostConfig containerIDFile(String containerIDFile) {
+        this.containerIDFile = containerIDFile;
+        return this;
+    }
+
+    /**
+     * ContainerIDFile is a file created during container creation to hold the ID of the created container. This is not handled within libpod and is stored in an annotation.
+     *
+     * @return containerIDFile
+     */
+    @jakarta.annotation.Nullable
+
+    public String getContainerIDFile() {
+        return containerIDFile;
+    }
+
+    public void setContainerIDFile(String containerIDFile) {
+        this.containerIDFile = containerIDFile;
+    }
+
+    public InspectContainerHostConfig cpuCount(Integer cpuCount) {
+        this.cpuCount = cpuCount;
+        return this;
+    }
+
+    /**
+     * CpuCount is Windows-only and not presently implemented.
+     *
+     * @return cpuCount
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getCpuCount() {
+        return cpuCount;
+    }
+
+    public void setCpuCount(Integer cpuCount) {
+        this.cpuCount = cpuCount;
+    }
+
+    public InspectContainerHostConfig cpuPercent(Integer cpuPercent) {
+        this.cpuPercent = cpuPercent;
+        return this;
+    }
+
+    /**
+     * CpuPercent is Windows-only and not presently implemented.
+     *
+     * @return cpuPercent
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getCpuPercent() {
+        return cpuPercent;
+    }
+
+    public void setCpuPercent(Integer cpuPercent) {
+        this.cpuPercent = cpuPercent;
+    }
+
+    public InspectContainerHostConfig cpuPeriod(Integer cpuPeriod) {
+        this.cpuPeriod = cpuPeriod;
+        return this;
+    }
+
+    /**
+     * CpuPeriod is the length of a CPU period in microseconds. It relates directly to CpuQuota.
+     *
+     * @return cpuPeriod
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getCpuPeriod() {
+        return cpuPeriod;
+    }
+
+    public void setCpuPeriod(Integer cpuPeriod) {
+        this.cpuPeriod = cpuPeriod;
+    }
+
+    public InspectContainerHostConfig cpuQuota(Long cpuQuota) {
+        this.cpuQuota = cpuQuota;
+        return this;
+    }
+
+    /**
+     * CpuPeriod is the amount of time (in microseconds) that a container can use the CPU in every CpuPeriod.
+     *
+     * @return cpuQuota
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuQuota() {
+        return cpuQuota;
+    }
+
+    public void setCpuQuota(Long cpuQuota) {
+        this.cpuQuota = cpuQuota;
+    }
+
+    public InspectContainerHostConfig cpuRealtimePeriod(Integer cpuRealtimePeriod) {
+        this.cpuRealtimePeriod = cpuRealtimePeriod;
+        return this;
+    }
+
+    /**
+     * CpuRealtimePeriod is the length of time (in microseconds) of the CPU realtime period. If set to 0, no time will be allocated to realtime tasks.
+     *
+     * @return cpuRealtimePeriod
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getCpuRealtimePeriod() {
+        return cpuRealtimePeriod;
+    }
+
+    public void setCpuRealtimePeriod(Integer cpuRealtimePeriod) {
+        this.cpuRealtimePeriod = cpuRealtimePeriod;
+    }
+
+    public InspectContainerHostConfig cpuRealtimeRuntime(Long cpuRealtimeRuntime) {
+        this.cpuRealtimeRuntime = cpuRealtimeRuntime;
+        return this;
+    }
+
+    /**
+     * CpuRealtimeRuntime is the length of time (in microseconds) allocated for realtime tasks within every CpuRealtimePeriod.
+     *
+     * @return cpuRealtimeRuntime
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuRealtimeRuntime() {
+        return cpuRealtimeRuntime;
+    }
+
+    public void setCpuRealtimeRuntime(Long cpuRealtimeRuntime) {
+        this.cpuRealtimeRuntime = cpuRealtimeRuntime;
+    }
+
+    public InspectContainerHostConfig cpuShares(Integer cpuShares) {
+        this.cpuShares = cpuShares;
+        return this;
+    }
+
+    /**
+     * CpuShares indicates the CPU resources allocated to the container. It is a relative weight in the scheduler for assigning CPU time versus other Cgroups.
+     *
+     * @return cpuShares
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getCpuShares() {
+        return cpuShares;
+    }
+
+    public void setCpuShares(Integer cpuShares) {
+        this.cpuShares = cpuShares;
+    }
+
+    public InspectContainerHostConfig cpusetCpus(String cpusetCpus) {
+        this.cpusetCpus = cpusetCpus;
+        return this;
+    }
+
+    /**
+     * CpusetCpus is the set of CPUs that the container will execute on. Formatted as &#x60;0-3&#x60; or &#x60;0,2&#x60;. Default (if unset) is all CPUs.
+     *
+     * @return cpusetCpus
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCpusetCpus() {
+        return cpusetCpus;
+    }
+
+    public void setCpusetCpus(String cpusetCpus) {
+        this.cpusetCpus = cpusetCpus;
+    }
+
+    public InspectContainerHostConfig cpusetMems(String cpusetMems) {
+        this.cpusetMems = cpusetMems;
+        return this;
+    }
+
+    /**
+     * CpusetMems is the set of memory nodes the container will use. Formatted as &#x60;0-3&#x60; or &#x60;0,2&#x60;. Default (if unset) is all memory nodes.
+     *
+     * @return cpusetMems
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCpusetMems() {
+        return cpusetMems;
+    }
+
+    public void setCpusetMems(String cpusetMems) {
+        this.cpusetMems = cpusetMems;
+    }
+
+    public InspectContainerHostConfig devices(List<@Valid InspectDevice> devices) {
+        this.devices = devices;
+        return this;
+    }
+
+    public InspectContainerHostConfig addDevicesItem(InspectDevice devicesItem) {
+        if (this.devices == null) {
+            this.devices = new ArrayList<>();
+        }
+        this.devices.add(devicesItem);
+        return this;
+    }
+
+    /**
+     * Devices is a list of device nodes that will be added to the container. These are stored in the OCI spec only as type, major, minor while we display the host path. We convert this with /sys/dev, but we cannot guarantee that the host path will be identical - only that the actual device will be.
+     *
+     * @return devices
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid InspectDevice> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<@Valid InspectDevice> devices) {
+        this.devices = devices;
+    }
+
+    public InspectContainerHostConfig diskQuota(Integer diskQuota) {
+        this.diskQuota = diskQuota;
+        return this;
+    }
+
+    /**
+     * DiskQuota is the maximum amount of disk space the container may use (in bytes). Presently not populated. TODO.
+     *
+     * @return diskQuota
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getDiskQuota() {
+        return diskQuota;
+    }
+
+    public void setDiskQuota(Integer diskQuota) {
+        this.diskQuota = diskQuota;
+    }
+
+    public InspectContainerHostConfig dns(List<String> dns) {
+        this.dns = dns;
+        return this;
+    }
+
+    public InspectContainerHostConfig addDnsItem(String dnsItem) {
+        if (this.dns == null) {
+            this.dns = new ArrayList<>();
+        }
+        this.dns.add(dnsItem);
+        return this;
+    }
+
+    /**
+     * Dns is a list of DNS nameservers that will be added to the container&#39;s resolv.conf
+     *
+     * @return dns
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDns() {
+        return dns;
+    }
+
+    public void setDns(List<String> dns) {
+        this.dns = dns;
+    }
+
+    public InspectContainerHostConfig dnsOptions(List<String> dnsOptions) {
+        this.dnsOptions = dnsOptions;
+        return this;
+    }
+
+    public InspectContainerHostConfig addDnsOptionsItem(String dnsOptionsItem) {
+        if (this.dnsOptions == null) {
+            this.dnsOptions = new ArrayList<>();
+        }
+        this.dnsOptions.add(dnsOptionsItem);
+        return this;
+    }
+
+    /**
+     * DnsOptions is a list of DNS options that will be set in the container&#39;s resolv.conf
+     *
+     * @return dnsOptions
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDnsOptions() {
+        return dnsOptions;
+    }
+
+    public void setDnsOptions(List<String> dnsOptions) {
+        this.dnsOptions = dnsOptions;
+    }
+
+    public InspectContainerHostConfig dnsSearch(List<String> dnsSearch) {
+        this.dnsSearch = dnsSearch;
+        return this;
+    }
+
+    public InspectContainerHostConfig addDnsSearchItem(String dnsSearchItem) {
+        if (this.dnsSearch == null) {
+            this.dnsSearch = new ArrayList<>();
+        }
+        this.dnsSearch.add(dnsSearchItem);
+        return this;
+    }
+
+    /**
+     * DnsSearch is a list of DNS search domains that will be set in the container&#39;s resolv.conf
+     *
+     * @return dnsSearch
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDnsSearch() {
+        return dnsSearch;
+    }
+
+    public void setDnsSearch(List<String> dnsSearch) {
+        this.dnsSearch = dnsSearch;
+    }
+
+    public InspectContainerHostConfig extraHosts(List<String> extraHosts) {
+        this.extraHosts = extraHosts;
+        return this;
+    }
+
+    public InspectContainerHostConfig addExtraHostsItem(String extraHostsItem) {
+        if (this.extraHosts == null) {
+            this.extraHosts = new ArrayList<>();
+        }
+        this.extraHosts.add(extraHostsItem);
+        return this;
+    }
+
+    /**
+     * ExtraHosts contains hosts that will be added to the container&#39;s etc/hosts.
+     *
+     * @return extraHosts
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getExtraHosts() {
+        return extraHosts;
+    }
+
+    public void setExtraHosts(List<String> extraHosts) {
+        this.extraHosts = extraHosts;
+    }
+
+    public InspectContainerHostConfig groupAdd(List<String> groupAdd) {
+        this.groupAdd = groupAdd;
+        return this;
+    }
+
+    public InspectContainerHostConfig addGroupAddItem(String groupAddItem) {
+        if (this.groupAdd == null) {
+            this.groupAdd = new ArrayList<>();
+        }
+        this.groupAdd.add(groupAddItem);
+        return this;
+    }
+
+    /**
+     * GroupAdd contains groups that the user inside the container will be added to.
+     *
+     * @return groupAdd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getGroupAdd() {
+        return groupAdd;
+    }
+
+    public void setGroupAdd(List<String> groupAdd) {
+        this.groupAdd = groupAdd;
+    }
+
+    public InspectContainerHostConfig idMappings(InspectIDMappings idMappings) {
+        this.idMappings = idMappings;
+        return this;
+    }
+
+    /**
+     * Get idMappings
+     *
+     * @return idMappings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public InspectIDMappings getIdMappings() {
+        return idMappings;
+    }
+
+    public void setIdMappings(InspectIDMappings idMappings) {
+        this.idMappings = idMappings;
+    }
+
+    public InspectContainerHostConfig ioMaximumBandwidth(Integer ioMaximumBandwidth) {
+        this.ioMaximumBandwidth = ioMaximumBandwidth;
+        return this;
+    }
+
+    /**
+     * IOMaximumBandwidth is Windows-only and not presently implemented.
+     *
+     * @return ioMaximumBandwidth
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getIoMaximumBandwidth() {
+        return ioMaximumBandwidth;
+    }
+
+    public void setIoMaximumBandwidth(Integer ioMaximumBandwidth) {
+        this.ioMaximumBandwidth = ioMaximumBandwidth;
+    }
+
+    public InspectContainerHostConfig ioMaximumIOps(Integer ioMaximumIOps) {
+        this.ioMaximumIOps = ioMaximumIOps;
+        return this;
+    }
+
+    /**
+     * IOMaximumIOps is Windows-only and not presently implemented.
+     *
+     * @return ioMaximumIOps
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getIoMaximumIOps() {
+        return ioMaximumIOps;
+    }
+
+    public void setIoMaximumIOps(Integer ioMaximumIOps) {
+        this.ioMaximumIOps = ioMaximumIOps;
+    }
+
+    public InspectContainerHostConfig init(Boolean init) {
+        this.init = init;
+        return this;
+    }
+
+    /**
+     * Init indicates whether the container has an init mounted into it.
+     *
+     * @return init
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getInit() {
+        return init;
+    }
+
+    public void setInit(Boolean init) {
+        this.init = init;
+    }
+
+    public InspectContainerHostConfig intelRdtClosID(String intelRdtClosID) {
+        this.intelRdtClosID = intelRdtClosID;
+        return this;
+    }
+
+    /**
+     * IntelRdtClosID defines the Intel RDT CAT Class Of Service (COS) that all processes of the container should run in.
+     *
+     * @return intelRdtClosID
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIntelRdtClosID() {
+        return intelRdtClosID;
+    }
+
+    public void setIntelRdtClosID(String intelRdtClosID) {
+        this.intelRdtClosID = intelRdtClosID;
+    }
+
+    public InspectContainerHostConfig ipcMode(String ipcMode) {
+        this.ipcMode = ipcMode;
+        return this;
+    }
+
+    /**
+     * IpcMode represents the configuration of the container&#39;s IPC namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, an IPC namespace will be created host - No IPC namespace created container:&lt;id&gt; - Using another container&#39;s IPC namespace ns:&lt;path&gt; - A path to an IPC namespace has been specified
+     *
+     * @return ipcMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIpcMode() {
+        return ipcMode;
+    }
+
+    public void setIpcMode(String ipcMode) {
+        this.ipcMode = ipcMode;
+    }
+
+    public InspectContainerHostConfig isolation(String isolation) {
+        this.isolation = isolation;
+        return this;
+    }
+
+    /**
+     * Isolation is presently unused and provided solely for Docker compatibility.
+     *
+     * @return isolation
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIsolation() {
+        return isolation;
+    }
+
+    public void setIsolation(String isolation) {
+        this.isolation = isolation;
+    }
+
+    public InspectContainerHostConfig kernelMemory(Long kernelMemory) {
+        this.kernelMemory = kernelMemory;
+        return this;
+    }
+
+    /**
+     * KernelMemory is the maximum amount of memory the kernel will devote to the container.
+     *
+     * @return kernelMemory
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getKernelMemory() {
+        return kernelMemory;
+    }
+
+    public void setKernelMemory(Long kernelMemory) {
+        this.kernelMemory = kernelMemory;
+    }
+
+    public InspectContainerHostConfig links(List<String> links) {
+        this.links = links;
+        return this;
+    }
+
+    public InspectContainerHostConfig addLinksItem(String linksItem) {
+        if (this.links == null) {
+            this.links = new ArrayList<>();
+        }
+        this.links.add(linksItem);
+        return this;
+    }
+
+    /**
+     * Links is unused, and provided purely for Docker compatibility.
+     *
+     * @return links
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<String> links) {
+        this.links = links;
+    }
+
+    public InspectContainerHostConfig logConfig(InspectLogConfig logConfig) {
+        this.logConfig = logConfig;
+        return this;
+    }
+
+    /**
+     * Get logConfig
+     *
+     * @return logConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public InspectLogConfig getLogConfig() {
+        return logConfig;
+    }
+
+    public void setLogConfig(InspectLogConfig logConfig) {
+        this.logConfig = logConfig;
+    }
+
+    public InspectContainerHostConfig memory(Long memory) {
+        this.memory = memory;
+        return this;
+    }
+
+    /**
+     * Memory indicates the memory resources allocated to the container. This is the limit (in bytes) of RAM the container may use.
+     *
+     * @return memory
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Long memory) {
+        this.memory = memory;
+    }
+
+    public InspectContainerHostConfig memoryReservation(Long memoryReservation) {
+        this.memoryReservation = memoryReservation;
+        return this;
+    }
+
+    /**
+     * MemoryReservation is the reservation (soft limit) of memory available to the container. Soft limits are warnings only and can be exceeded.
+     *
+     * @return memoryReservation
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemoryReservation() {
+        return memoryReservation;
+    }
+
+    public void setMemoryReservation(Long memoryReservation) {
+        this.memoryReservation = memoryReservation;
+    }
+
+    public InspectContainerHostConfig memorySwap(Long memorySwap) {
+        this.memorySwap = memorySwap;
+        return this;
+    }
+
+    /**
+     * MemorySwap is the total limit for all memory available to the container, including swap. 0 indicates that there is no limit to the amount of memory available.
+     *
+     * @return memorySwap
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemorySwap() {
+        return memorySwap;
+    }
+
+    public void setMemorySwap(Long memorySwap) {
+        this.memorySwap = memorySwap;
+    }
+
+    public InspectContainerHostConfig memorySwappiness(Long memorySwappiness) {
+        this.memorySwappiness = memorySwappiness;
+        return this;
+    }
+
+    /**
+     * MemorySwappiness is the willingness of the kernel to page container memory to swap. It is an integer from 0 to 100, with low numbers being more likely to be put into swap. 1, the default, will not set swappiness and use the system defaults.
+     *
+     * @return memorySwappiness
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemorySwappiness() {
+        return memorySwappiness;
+    }
+
+    public void setMemorySwappiness(Long memorySwappiness) {
+        this.memorySwappiness = memorySwappiness;
+    }
+
+    public InspectContainerHostConfig nanoCpus(Long nanoCpus) {
+        this.nanoCpus = nanoCpus;
+        return this;
+    }
+
+    /**
+     * NanoCpus indicates number of CPUs allocated to the container. It is an integer where one full CPU is indicated by 1000000000 (one billion). Thus, 2.5 CPUs (fractional portions of CPUs are allowed) would be 2500000000 (2.5 billion). In &#39;docker inspect&#39; this is set exclusively of two further options in the output (CpuPeriod and CpuQuota) which are both used to implement this functionality. We can&#39;t distinguish here, so if CpuQuota is set to the default of 100000, we will set both CpuQuota, CpuPeriod, and NanoCpus. If CpuQuota is not the default, we will not set NanoCpus.
+     *
+     * @return nanoCpus
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getNanoCpus() {
+        return nanoCpus;
+    }
+
+    public void setNanoCpus(Long nanoCpus) {
+        this.nanoCpus = nanoCpus;
+    }
+
+    public InspectContainerHostConfig networkMode(String networkMode) {
+        this.networkMode = networkMode;
+        return this;
+    }
+
+    /**
+     * NetworkMode is the configuration of the container&#39;s network namespace. Populated as follows: default - A network namespace is being created and configured via CNI none - A network namespace is being created, not configured via CNI host - No network namespace created container:&lt;id&gt; - Using another container&#39;s network namespace ns:&lt;path&gt; - A path to a network namespace has been specified
+     *
+     * @return networkMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getNetworkMode() {
+        return networkMode;
+    }
+
+    public void setNetworkMode(String networkMode) {
+        this.networkMode = networkMode;
+    }
+
+    public InspectContainerHostConfig oomKillDisable(Boolean oomKillDisable) {
+        this.oomKillDisable = oomKillDisable;
+        return this;
+    }
+
+    /**
+     * OomKillDisable indicates whether the kernel OOM killer is disabled for the container.
+     *
+     * @return oomKillDisable
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOomKillDisable() {
+        return oomKillDisable;
+    }
+
+    public void setOomKillDisable(Boolean oomKillDisable) {
+        this.oomKillDisable = oomKillDisable;
+    }
+
+    public InspectContainerHostConfig oomScoreAdj(Long oomScoreAdj) {
+        this.oomScoreAdj = oomScoreAdj;
+        return this;
+    }
+
+    /**
+     * OOMScoreAdj is an adjustment that will be made to the container&#39;s OOM score.
+     *
+     * @return oomScoreAdj
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getOomScoreAdj() {
+        return oomScoreAdj;
+    }
+
+    public void setOomScoreAdj(Long oomScoreAdj) {
+        this.oomScoreAdj = oomScoreAdj;
+    }
+
+    public InspectContainerHostConfig pidMode(String pidMode) {
+        this.pidMode = pidMode;
+        return this;
+    }
+
+    /**
+     * PidMode represents the configuration of the container&#39;s PID namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, a PID namespace will be created host - No PID namespace created container:&lt;id&gt; - Using another container&#39;s PID namespace ns:&lt;path&gt; - A path to a PID namespace has been specified
+     *
+     * @return pidMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPidMode() {
+        return pidMode;
+    }
+
+    public void setPidMode(String pidMode) {
+        this.pidMode = pidMode;
+    }
+
+    public InspectContainerHostConfig pidsLimit(Long pidsLimit) {
+        this.pidsLimit = pidsLimit;
+        return this;
+    }
+
+    /**
+     * PidsLimit is the maximum number of PIDs that may be created within the container. 0, the default, indicates no limit.
+     *
+     * @return pidsLimit
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getPidsLimit() {
+        return pidsLimit;
+    }
+
+    public void setPidsLimit(Long pidsLimit) {
+        this.pidsLimit = pidsLimit;
+    }
+
+    public InspectContainerHostConfig portBindings(Map<String, List<@Valid InspectHostPort>> portBindings) {
+        this.portBindings = portBindings;
+        return this;
+    }
+
+    public InspectContainerHostConfig putPortBindingsItem(String key, List<@Valid InspectHostPort> portBindingsItem) {
+        if (this.portBindings == null) {
+            this.portBindings = new HashMap<>();
+        }
+        this.portBindings.put(key, portBindingsItem);
+        return this;
+    }
+
+    /**
+     * PortBindings contains the container&#39;s port bindings. It is formatted as map[string][]InspectHostPort. The string key here is formatted as &lt;integer port number&gt;/&lt;protocol&gt; and represents the container port. A single container port may be bound to multiple host ports (on different IPs).
+     *
+     * @return portBindings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<@Valid InspectHostPort>> getPortBindings() {
+        return portBindings;
+    }
+
+    public void setPortBindings(Map<String, List<@Valid InspectHostPort>> portBindings) {
+        this.portBindings = portBindings;
+    }
+
+    public InspectContainerHostConfig privileged(Boolean privileged) {
+        this.privileged = privileged;
+        return this;
+    }
+
+    /**
+     * Privileged indicates whether the container is running with elevated privileges. This has a very specific meaning in the Docker sense, so it&#39;s very difficult to decode from the spec and config, and so is stored as an annotation.
+     *
+     * @return privileged
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPrivileged() {
+        return privileged;
+    }
+
+    public void setPrivileged(Boolean privileged) {
+        this.privileged = privileged;
+    }
+
+    public InspectContainerHostConfig publishAllPorts(Boolean publishAllPorts) {
+        this.publishAllPorts = publishAllPorts;
+        return this;
+    }
+
+    /**
+     * PublishAllPorts indicates whether image ports are being published. This is not directly stored in libpod and is saved as an annotation.
+     *
+     * @return publishAllPorts
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPublishAllPorts() {
+        return publishAllPorts;
+    }
+
+    public void setPublishAllPorts(Boolean publishAllPorts) {
+        this.publishAllPorts = publishAllPorts;
+    }
+
+    public InspectContainerHostConfig readonlyRootfs(Boolean readonlyRootfs) {
+        this.readonlyRootfs = readonlyRootfs;
+        return this;
+    }
+
+    /**
+     * ReadonlyRootfs is whether the container will be mounted read-only.
+     *
+     * @return readonlyRootfs
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getReadonlyRootfs() {
+        return readonlyRootfs;
+    }
+
+    public void setReadonlyRootfs(Boolean readonlyRootfs) {
+        this.readonlyRootfs = readonlyRootfs;
+    }
+
+    public InspectContainerHostConfig restartPolicy(InspectRestartPolicy restartPolicy) {
+        this.restartPolicy = restartPolicy;
+        return this;
+    }
+
+    /**
+     * Get restartPolicy
+     *
+     * @return restartPolicy
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public InspectRestartPolicy getRestartPolicy() {
+        return restartPolicy;
+    }
+
+    public void setRestartPolicy(InspectRestartPolicy restartPolicy) {
+        this.restartPolicy = restartPolicy;
+    }
+
+    public InspectContainerHostConfig runtime(String runtime) {
+        this.runtime = runtime;
+        return this;
+    }
+
+    /**
+     * Runtime is provided purely for Docker compatibility. It is set unconditionally to \&quot;oci\&quot; as Podman does not presently support non-OCI runtimes.
+     *
+     * @return runtime
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
+
+    public InspectContainerHostConfig securityOpt(List<String> securityOpt) {
+        this.securityOpt = securityOpt;
+        return this;
+    }
+
+    public InspectContainerHostConfig addSecurityOptItem(String securityOptItem) {
+        if (this.securityOpt == null) {
+            this.securityOpt = new ArrayList<>();
+        }
+        this.securityOpt.add(securityOptItem);
+        return this;
+    }
+
+    /**
+     * SecurityOpt is a list of security-related options that are set in the container.
+     *
+     * @return securityOpt
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getSecurityOpt() {
+        return securityOpt;
+    }
+
+    public void setSecurityOpt(List<String> securityOpt) {
+        this.securityOpt = securityOpt;
+    }
+
+    public InspectContainerHostConfig shmSize(Long shmSize) {
+        this.shmSize = shmSize;
+        return this;
+    }
+
+    /**
+     * Get shmSize
+     *
+     * @return shmSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getShmSize() {
+        return shmSize;
+    }
+
+    public void setShmSize(Long shmSize) {
+        this.shmSize = shmSize;
+    }
+
+    public InspectContainerHostConfig tmpfs(Map<String, String> tmpfs) {
+        this.tmpfs = tmpfs;
+        return this;
+    }
+
+    public InspectContainerHostConfig putTmpfsItem(String key, String tmpfsItem) {
+        if (this.tmpfs == null) {
+            this.tmpfs = new HashMap<>();
+        }
+        this.tmpfs.put(key, tmpfsItem);
+        return this;
+    }
+
+    /**
+     * Tmpfs is a list of tmpfs filesystems that will be mounted into the container. It is a map of destination path to options for the mount.
+     *
+     * @return tmpfs
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getTmpfs() {
+        return tmpfs;
+    }
+
+    public void setTmpfs(Map<String, String> tmpfs) {
+        this.tmpfs = tmpfs;
+    }
+
+    public InspectContainerHostConfig utSMode(String utSMode) {
+        this.utSMode = utSMode;
+        return this;
+    }
+
+    /**
+     * UTSMode represents the configuration of the container&#39;s UID namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, a UTS namespace will be created host - no UTS namespace created container:&lt;id&gt; - Using another container&#39;s UTS namespace ns:&lt;path&gt; - A path to a UTS namespace has been specified
+     *
+     * @return utSMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUtSMode() {
+        return utSMode;
+    }
+
+    public void setUtSMode(String utSMode) {
+        this.utSMode = utSMode;
+    }
+
+    public InspectContainerHostConfig ulimits(List<@Valid InspectUlimit> ulimits) {
+        this.ulimits = ulimits;
+        return this;
+    }
+
+    public InspectContainerHostConfig addUlimitsItem(InspectUlimit ulimitsItem) {
+        if (this.ulimits == null) {
+            this.ulimits = new ArrayList<>();
+        }
+        this.ulimits.add(ulimitsItem);
+        return this;
+    }
+
+    /**
+     * Ulimits is a set of ulimits that will be set within the container.
+     *
+     * @return ulimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid InspectUlimit> getUlimits() {
+        return ulimits;
+    }
+
+    public void setUlimits(List<@Valid InspectUlimit> ulimits) {
+        this.ulimits = ulimits;
+    }
+
+    public InspectContainerHostConfig usernsMode(String usernsMode) {
+        this.usernsMode = usernsMode;
+        return this;
+    }
+
+    /**
+     * UsernsMode represents the configuration of the container&#39;s user namespace. When running rootless, a user namespace is created outside of libpod to allow some privileged operations. This will not be reflected here. Populated as follows: \&quot;\&quot; (empty string) - No user namespace will be created private - The container will be run in a user namespace container:&lt;id&gt; - Using another container&#39;s user namespace ns:&lt;path&gt; - A path to a user namespace has been specified TODO Rootless has an additional &#39;keep-id&#39; option, presently not reflected here.
+     *
+     * @return usernsMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUsernsMode() {
+        return usernsMode;
+    }
+
+    public void setUsernsMode(String usernsMode) {
+        this.usernsMode = usernsMode;
+    }
+
+    public InspectContainerHostConfig volumeDriver(String volumeDriver) {
+        this.volumeDriver = volumeDriver;
+        return this;
+    }
+
+    /**
+     * VolumeDriver is presently unused and is retained for Docker compatibility.
+     *
+     * @return volumeDriver
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVolumeDriver() {
+        return volumeDriver;
+    }
+
+    public void setVolumeDriver(String volumeDriver) {
+        this.volumeDriver = volumeDriver;
+    }
+
+    public InspectContainerHostConfig volumesFrom(List<String> volumesFrom) {
+        this.volumesFrom = volumesFrom;
+        return this;
+    }
+
+    public InspectContainerHostConfig addVolumesFromItem(String volumesFromItem) {
+        if (this.volumesFrom == null) {
+            this.volumesFrom = new ArrayList<>();
+        }
+        this.volumesFrom.add(volumesFromItem);
+        return this;
+    }
+
+    /**
+     * VolumesFrom is a list of containers which this container uses volumes from. This is not handled directly within libpod and is stored in an annotation. It is formatted as an array of container names and IDs.
+     *
+     * @return volumesFrom
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getVolumesFrom() {
+        return volumesFrom;
+    }
+
+    public void setVolumesFrom(List<String> volumesFrom) {
+        this.volumesFrom = volumesFrom;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        InspectContainerHostConfig inspectContainerHostConfig = (InspectContainerHostConfig) o;
+        return Objects.equals(this.annotations, inspectContainerHostConfig.annotations) &&
+                Objects.equals(this.autoRemove, inspectContainerHostConfig.autoRemove) &&
+                Objects.equals(this.autoRemoveImage, inspectContainerHostConfig.autoRemoveImage) &&
+                Objects.equals(this.binds, inspectContainerHostConfig.binds) &&
+                Objects.equals(this.blkioDeviceReadBps, inspectContainerHostConfig.blkioDeviceReadBps) &&
+                Objects.equals(this.blkioDeviceReadIOps, inspectContainerHostConfig.blkioDeviceReadIOps) &&
+                Objects.equals(this.blkioDeviceWriteBps, inspectContainerHostConfig.blkioDeviceWriteBps) &&
+                Objects.equals(this.blkioDeviceWriteIOps, inspectContainerHostConfig.blkioDeviceWriteIOps) &&
+                Objects.equals(this.blkioWeight, inspectContainerHostConfig.blkioWeight) &&
+                Objects.equals(this.blkioWeightDevice, inspectContainerHostConfig.blkioWeightDevice) &&
+                Objects.equals(this.capAdd, inspectContainerHostConfig.capAdd) &&
+                Objects.equals(this.capDrop, inspectContainerHostConfig.capDrop) &&
+                Objects.equals(this.cgroup, inspectContainerHostConfig.cgroup) &&
+                Objects.equals(this.cgroupConf, inspectContainerHostConfig.cgroupConf) &&
+                Objects.equals(this.cgroupManager, inspectContainerHostConfig.cgroupManager) &&
+                Objects.equals(this.cgroupMode, inspectContainerHostConfig.cgroupMode) &&
+                Objects.equals(this.cgroupParent, inspectContainerHostConfig.cgroupParent) &&
+                Objects.equals(this.cgroups, inspectContainerHostConfig.cgroups) &&
+                Objects.equals(this.consoleSize, inspectContainerHostConfig.consoleSize) &&
+                Objects.equals(this.containerIDFile, inspectContainerHostConfig.containerIDFile) &&
+                Objects.equals(this.cpuCount, inspectContainerHostConfig.cpuCount) &&
+                Objects.equals(this.cpuPercent, inspectContainerHostConfig.cpuPercent) &&
+                Objects.equals(this.cpuPeriod, inspectContainerHostConfig.cpuPeriod) &&
+                Objects.equals(this.cpuQuota, inspectContainerHostConfig.cpuQuota) &&
+                Objects.equals(this.cpuRealtimePeriod, inspectContainerHostConfig.cpuRealtimePeriod) &&
+                Objects.equals(this.cpuRealtimeRuntime, inspectContainerHostConfig.cpuRealtimeRuntime) &&
+                Objects.equals(this.cpuShares, inspectContainerHostConfig.cpuShares) &&
+                Objects.equals(this.cpusetCpus, inspectContainerHostConfig.cpusetCpus) &&
+                Objects.equals(this.cpusetMems, inspectContainerHostConfig.cpusetMems) &&
+                Objects.equals(this.devices, inspectContainerHostConfig.devices) &&
+                Objects.equals(this.diskQuota, inspectContainerHostConfig.diskQuota) &&
+                Objects.equals(this.dns, inspectContainerHostConfig.dns) &&
+                Objects.equals(this.dnsOptions, inspectContainerHostConfig.dnsOptions) &&
+                Objects.equals(this.dnsSearch, inspectContainerHostConfig.dnsSearch) &&
+                Objects.equals(this.extraHosts, inspectContainerHostConfig.extraHosts) &&
+                Objects.equals(this.groupAdd, inspectContainerHostConfig.groupAdd) &&
+                Objects.equals(this.idMappings, inspectContainerHostConfig.idMappings) &&
+                Objects.equals(this.ioMaximumBandwidth, inspectContainerHostConfig.ioMaximumBandwidth) &&
+                Objects.equals(this.ioMaximumIOps, inspectContainerHostConfig.ioMaximumIOps) &&
+                Objects.equals(this.init, inspectContainerHostConfig.init) &&
+                Objects.equals(this.intelRdtClosID, inspectContainerHostConfig.intelRdtClosID) &&
+                Objects.equals(this.ipcMode, inspectContainerHostConfig.ipcMode) &&
+                Objects.equals(this.isolation, inspectContainerHostConfig.isolation) &&
+                Objects.equals(this.kernelMemory, inspectContainerHostConfig.kernelMemory) &&
+                Objects.equals(this.links, inspectContainerHostConfig.links) &&
+                Objects.equals(this.logConfig, inspectContainerHostConfig.logConfig) &&
+                Objects.equals(this.memory, inspectContainerHostConfig.memory) &&
+                Objects.equals(this.memoryReservation, inspectContainerHostConfig.memoryReservation) &&
+                Objects.equals(this.memorySwap, inspectContainerHostConfig.memorySwap) &&
+                Objects.equals(this.memorySwappiness, inspectContainerHostConfig.memorySwappiness) &&
+                Objects.equals(this.nanoCpus, inspectContainerHostConfig.nanoCpus) &&
+                Objects.equals(this.networkMode, inspectContainerHostConfig.networkMode) &&
+                Objects.equals(this.oomKillDisable, inspectContainerHostConfig.oomKillDisable) &&
+                Objects.equals(this.oomScoreAdj, inspectContainerHostConfig.oomScoreAdj) &&
+                Objects.equals(this.pidMode, inspectContainerHostConfig.pidMode) &&
+                Objects.equals(this.pidsLimit, inspectContainerHostConfig.pidsLimit) &&
+                Objects.equals(this.portBindings, inspectContainerHostConfig.portBindings) &&
+                Objects.equals(this.privileged, inspectContainerHostConfig.privileged) &&
+                Objects.equals(this.publishAllPorts, inspectContainerHostConfig.publishAllPorts) &&
+                Objects.equals(this.readonlyRootfs, inspectContainerHostConfig.readonlyRootfs) &&
+                Objects.equals(this.restartPolicy, inspectContainerHostConfig.restartPolicy) &&
+                Objects.equals(this.runtime, inspectContainerHostConfig.runtime) &&
+                Objects.equals(this.securityOpt, inspectContainerHostConfig.securityOpt) &&
+                Objects.equals(this.shmSize, inspectContainerHostConfig.shmSize) &&
+                Objects.equals(this.tmpfs, inspectContainerHostConfig.tmpfs) &&
+                Objects.equals(this.utSMode, inspectContainerHostConfig.utSMode) &&
+                Objects.equals(this.ulimits, inspectContainerHostConfig.ulimits) &&
+                Objects.equals(this.usernsMode, inspectContainerHostConfig.usernsMode) &&
+                Objects.equals(this.volumeDriver, inspectContainerHostConfig.volumeDriver) &&
+                Objects.equals(this.volumesFrom, inspectContainerHostConfig.volumesFrom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(annotations, autoRemove, autoRemoveImage, binds, blkioDeviceReadBps, blkioDeviceReadIOps, blkioDeviceWriteBps, blkioDeviceWriteIOps, blkioWeight, blkioWeightDevice, capAdd, capDrop, cgroup, cgroupConf, cgroupManager, cgroupMode, cgroupParent, cgroups, consoleSize, containerIDFile, cpuCount, cpuPercent, cpuPeriod, cpuQuota, cpuRealtimePeriod, cpuRealtimeRuntime, cpuShares, cpusetCpus, cpusetMems, devices, diskQuota, dns, dnsOptions, dnsSearch, extraHosts, groupAdd, idMappings, ioMaximumBandwidth, ioMaximumIOps, init, intelRdtClosID, ipcMode, isolation, kernelMemory, links, logConfig, memory, memoryReservation, memorySwap, memorySwappiness, nanoCpus, networkMode, oomKillDisable, oomScoreAdj, pidMode, pidsLimit, portBindings, privileged, publishAllPorts, readonlyRootfs, restartPolicy, runtime, securityOpt, shmSize, tmpfs, utSMode, ulimits, usernsMode, volumeDriver, volumesFrom);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class InspectContainerHostConfig {\n" +
+                "    annotations: " + toIndentedString(annotations) + "\n" +
+                "    autoRemove: " + toIndentedString(autoRemove) + "\n" +
+                "    autoRemoveImage: " + toIndentedString(autoRemoveImage) + "\n" +
+                "    binds: " + toIndentedString(binds) + "\n" +
+                "    blkioDeviceReadBps: " + toIndentedString(blkioDeviceReadBps) + "\n" +
+                "    blkioDeviceReadIOps: " + toIndentedString(blkioDeviceReadIOps) + "\n" +
+                "    blkioDeviceWriteBps: " + toIndentedString(blkioDeviceWriteBps) + "\n" +
+                "    blkioDeviceWriteIOps: " + toIndentedString(blkioDeviceWriteIOps) + "\n" +
+                "    blkioWeight: " + toIndentedString(blkioWeight) + "\n" +
+                "    blkioWeightDevice: " + toIndentedString(blkioWeightDevice) + "\n" +
+                "    capAdd: " + toIndentedString(capAdd) + "\n" +
+                "    capDrop: " + toIndentedString(capDrop) + "\n" +
+                "    cgroup: " + toIndentedString(cgroup) + "\n" +
+                "    cgroupConf: " + toIndentedString(cgroupConf) + "\n" +
+                "    cgroupManager: " + toIndentedString(cgroupManager) + "\n" +
+                "    cgroupMode: " + toIndentedString(cgroupMode) + "\n" +
+                "    cgroupParent: " + toIndentedString(cgroupParent) + "\n" +
+                "    cgroups: " + toIndentedString(cgroups) + "\n" +
+                "    consoleSize: " + toIndentedString(consoleSize) + "\n" +
+                "    containerIDFile: " + toIndentedString(containerIDFile) + "\n" +
+                "    cpuCount: " + toIndentedString(cpuCount) + "\n" +
+                "    cpuPercent: " + toIndentedString(cpuPercent) + "\n" +
+                "    cpuPeriod: " + toIndentedString(cpuPeriod) + "\n" +
+                "    cpuQuota: " + toIndentedString(cpuQuota) + "\n" +
+                "    cpuRealtimePeriod: " + toIndentedString(cpuRealtimePeriod) + "\n" +
+                "    cpuRealtimeRuntime: " + toIndentedString(cpuRealtimeRuntime) + "\n" +
+                "    cpuShares: " + toIndentedString(cpuShares) + "\n" +
+                "    cpusetCpus: " + toIndentedString(cpusetCpus) + "\n" +
+                "    cpusetMems: " + toIndentedString(cpusetMems) + "\n" +
+                "    devices: " + toIndentedString(devices) + "\n" +
+                "    diskQuota: " + toIndentedString(diskQuota) + "\n" +
+                "    dns: " + toIndentedString(dns) + "\n" +
+                "    dnsOptions: " + toIndentedString(dnsOptions) + "\n" +
+                "    dnsSearch: " + toIndentedString(dnsSearch) + "\n" +
+                "    extraHosts: " + toIndentedString(extraHosts) + "\n" +
+                "    groupAdd: " + toIndentedString(groupAdd) + "\n" +
+                "    idMappings: " + toIndentedString(idMappings) + "\n" +
+                "    ioMaximumBandwidth: " + toIndentedString(ioMaximumBandwidth) + "\n" +
+                "    ioMaximumIOps: " + toIndentedString(ioMaximumIOps) + "\n" +
+                "    init: " + toIndentedString(init) + "\n" +
+                "    intelRdtClosID: " + toIndentedString(intelRdtClosID) + "\n" +
+                "    ipcMode: " + toIndentedString(ipcMode) + "\n" +
+                "    isolation: " + toIndentedString(isolation) + "\n" +
+                "    kernelMemory: " + toIndentedString(kernelMemory) + "\n" +
+                "    links: " + toIndentedString(links) + "\n" +
+                "    logConfig: " + toIndentedString(logConfig) + "\n" +
+                "    memory: " + toIndentedString(memory) + "\n" +
+                "    memoryReservation: " + toIndentedString(memoryReservation) + "\n" +
+                "    memorySwap: " + toIndentedString(memorySwap) + "\n" +
+                "    memorySwappiness: " + toIndentedString(memorySwappiness) + "\n" +
+                "    nanoCpus: " + toIndentedString(nanoCpus) + "\n" +
+                "    networkMode: " + toIndentedString(networkMode) + "\n" +
+                "    oomKillDisable: " + toIndentedString(oomKillDisable) + "\n" +
+                "    oomScoreAdj: " + toIndentedString(oomScoreAdj) + "\n" +
+                "    pidMode: " + toIndentedString(pidMode) + "\n" +
+                "    pidsLimit: " + toIndentedString(pidsLimit) + "\n" +
+                "    portBindings: " + toIndentedString(portBindings) + "\n" +
+                "    privileged: " + toIndentedString(privileged) + "\n" +
+                "    publishAllPorts: " + toIndentedString(publishAllPorts) + "\n" +
+                "    readonlyRootfs: " + toIndentedString(readonlyRootfs) + "\n" +
+                "    restartPolicy: " + toIndentedString(restartPolicy) + "\n" +
+                "    runtime: " + toIndentedString(runtime) + "\n" +
+                "    securityOpt: " + toIndentedString(securityOpt) + "\n" +
+                "    shmSize: " + toIndentedString(shmSize) + "\n" +
+                "    tmpfs: " + toIndentedString(tmpfs) + "\n" +
+                "    utSMode: " + toIndentedString(utSMode) + "\n" +
+                "    ulimits: " + toIndentedString(ulimits) + "\n" +
+                "    usernsMode: " + toIndentedString(usernsMode) + "\n" +
+                "    volumeDriver: " + toIndentedString(volumeDriver) + "\n" +
+                "    volumesFrom: " + toIndentedString(volumesFrom) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of InspectContainerHostConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!InspectContainerHostConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'InspectContainerHostConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<InspectContainerHostConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(InspectContainerHostConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<InspectContainerHostConfig>() {
+                @Override
+                public void write(JsonWriter out, InspectContainerHostConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public InspectContainerHostConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

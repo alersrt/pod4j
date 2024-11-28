@@ -14,23 +14,12 @@
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.ListResponse;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
 import io.github.alersrt.pod4j.openapi.model.Volume;
 import io.github.alersrt.pod4j.openapi.model.VolumeCreate;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
 
 /**
  * API tests for VolumesCompatApi
@@ -40,90 +29,66 @@ public class VolumesCompatApiTest {
 
     private final VolumesCompatApi api = new VolumesCompatApi();
 
-
     /**
      * Create a volume
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void volumeCreateTest() throws ApiException {
         VolumeCreate create = null;
-        Volume response =
-                api.volumeCreate(create);
-        
+        Volume response = api.volumeCreate(create);
         // TODO: test validations
     }
 
     /**
      * Remove volume
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void volumeDeleteTest() throws ApiException {
         String name = null;
         Boolean force = null;
-
         api.volumeDelete(name, force);
-
         // TODO: test validations
     }
 
     /**
      * Inspect volume
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void volumeInspectTest() throws ApiException {
         String name = null;
-        Volume response =
-                api.volumeInspect(name);
-        
+        Volume response = api.volumeInspect(name);
         // TODO: test validations
     }
 
     /**
      * List volumes
-     *
+     * <p>
      * Returns a list of volume
      *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void volumeListTest() throws ApiException {
         String filters = null;
-        ListResponse response =
-                api.volumeList(filters);
-        
+        ListResponse response = api.volumeList(filters);
         // TODO: test validations
     }
 
     /**
      * Prune volumes
      *
-     *
-     *
-     * @throws ApiException
-     *          if the Api call fails
+     * @throws ApiException if the Api call fails
      */
     @Test
     public void volumePruneTest() throws ApiException {
         String filters = null;
-        PruneReport response =
-                api.volumePrune(filters);
-        
+        PruneReport response = api.volumePrune(filters);
         // TODO: test validations
     }
 

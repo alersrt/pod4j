@@ -13,30 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for VolumeCreateOptions
  */
-class VolumeCreateOptionsTest {
+public class VolumeCreateOptionsTest {
     private final VolumeCreateOptions model = new VolumeCreateOptions();
 
     /**
      * Model tests for VolumeCreateOptions
      */
     @Test
-    void testVolumeCreateOptions() {
+    public void testVolumeCreateOptions() {
         // TODO: test VolumeCreateOptions
     }
 
@@ -44,7 +33,7 @@ class VolumeCreateOptionsTest {
      * Test the property 'driver'
      */
     @Test
-    void driverTest() {
+    public void driverTest() {
         // TODO: test driver
     }
 
@@ -52,7 +41,7 @@ class VolumeCreateOptionsTest {
      * Test the property 'ignoreIfExists'
      */
     @Test
-    void ignoreIfExistsTest() {
+    public void ignoreIfExistsTest() {
         // TODO: test ignoreIfExists
     }
 
@@ -60,7 +49,7 @@ class VolumeCreateOptionsTest {
      * Test the property 'label'
      */
     @Test
-    void labelTest() {
+    public void labelTest() {
         // TODO: test label
     }
 
@@ -68,7 +57,7 @@ class VolumeCreateOptionsTest {
      * Test the property 'labels'
      */
     @Test
-    void labelsTest() {
+    public void labelsTest() {
         // TODO: test labels
     }
 
@@ -76,7 +65,7 @@ class VolumeCreateOptionsTest {
      * Test the property 'name'
      */
     @Test
-    void nameTest() {
+    public void nameTest() {
         // TODO: test name
     }
 
@@ -84,7 +73,7 @@ class VolumeCreateOptionsTest {
      * Test the property 'options'
      */
     @Test
-    void optionsTest() {
+    public void optionsTest() {
         // TODO: test options
     }
 

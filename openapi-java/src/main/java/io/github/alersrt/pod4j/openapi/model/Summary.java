@@ -13,565 +13,529 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ManifestSummary;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
+import java.util.Objects;
+import java.util.Set;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Summary
  */
-@JsonPropertyOrder({
-  Summary.JSON_PROPERTY_CONTAINERS,
-  Summary.JSON_PROPERTY_CREATED,
-  Summary.JSON_PROPERTY_ID,
-  Summary.JSON_PROPERTY_LABELS,
-  Summary.JSON_PROPERTY_MANIFESTS,
-  Summary.JSON_PROPERTY_PARENT_ID,
-  Summary.JSON_PROPERTY_REPO_DIGESTS,
-  Summary.JSON_PROPERTY_REPO_TAGS,
-  Summary.JSON_PROPERTY_SHARED_SIZE,
-  Summary.JSON_PROPERTY_SIZE,
-  Summary.JSON_PROPERTY_VIRTUAL_SIZE
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Summary {
-  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
-  private Long containers;
-
-  public static final String JSON_PROPERTY_CREATED = "Created";
-  private Long created;
-
-  public static final String JSON_PROPERTY_ID = "Id";
-  private String id;
-
-  public static final String JSON_PROPERTY_LABELS = "Labels";
-  private Map<String, String> labels = new HashMap<>();
-
-  public static final String JSON_PROPERTY_MANIFESTS = "Manifests";
-  private List<@Valid ManifestSummary> manifests = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_PARENT_ID = "ParentId";
-  private String parentId;
-
-  public static final String JSON_PROPERTY_REPO_DIGESTS = "RepoDigests";
-  private List<String> repoDigests = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_REPO_TAGS = "RepoTags";
-  private List<String> repoTags = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SHARED_SIZE = "SharedSize";
-  private Long sharedSize;
-
-  public static final String JSON_PROPERTY_SIZE = "Size";
-  private Long size;
-
-  public static final String JSON_PROPERTY_VIRTUAL_SIZE = "VirtualSize";
-  private Long virtualSize;
-
-  public Summary() { 
-  }
-
-  public Summary containers(Long containers) {
-    this.containers = containers;
-    return this;
-  }
-
-  /**
-   * Number of containers using this image. Includes both stopped and running containers.  This size is not calculated by default, and depends on which API endpoint is used. &#x60;-1&#x60; indicates that the value has not been set / calculated.
-   * @return containers
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Long getContainers() {
-    return containers;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setContainers(Long containers) {
-    this.containers = containers;
-  }
-
-
-  public Summary created(Long created) {
-    this.created = created;
-    return this;
-  }
-
-  /**
-   * Date and time at which the image was created as a Unix timestamp (number of seconds since EPOCH).
-   * @return created
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Long getCreated() {
-    return created;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CREATED)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreated(Long created) {
-    this.created = created;
-  }
-
-
-  public Summary id(String id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image&#39;s configuration (which includes the digests of layers used by the image).  Note that this digest differs from the &#x60;RepoDigests&#x60; below, which holds digests of image manifests that reference the image.
-   * @return id
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getId() {
-    return id;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-
-  public Summary labels(Map<String, String> labels) {
-    this.labels = labels;
-    return this;
-  }
-
-  public Summary putLabelsItem(String key, String labelsItem) {
-    if (this.labels == null) {
-      this.labels = new HashMap<>();
-    }
-    this.labels.put(key, labelsItem);
-    return this;
-  }
-
-  /**
-   * User-defined key/value metadata.
-   * @return labels
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Map<String, String> getLabels() {
-    return labels;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LABELS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLabels(Map<String, String> labels) {
-    this.labels = labels;
-  }
-
-
-  public Summary manifests(List<@Valid ManifestSummary> manifests) {
-    this.manifests = manifests;
-    return this;
-  }
-
-  public Summary addManifestsItem(ManifestSummary manifestsItem) {
-    if (this.manifests == null) {
-      this.manifests = new ArrayList<>();
-    }
-    this.manifests.add(manifestsItem);
-    return this;
-  }
-
-  /**
-   * Manifests is a list of image manifests available in this image.  It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations.  WARNING: This is experimental and may change at any time without any backward compatibility.
-   * @return manifests
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_MANIFESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ManifestSummary> getManifests() {
-    return manifests;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MANIFESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setManifests(List<@Valid ManifestSummary> manifests) {
-    this.manifests = manifests;
-  }
-
-
-  public Summary parentId(String parentId) {
-    this.parentId = parentId;
-    return this;
-  }
-
-  /**
-   * ID of the parent image.  Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry.
-   * @return parentId
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_PARENT_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getParentId() {
-    return parentId;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PARENT_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setParentId(String parentId) {
-    this.parentId = parentId;
-  }
-
-
-  public Summary repoDigests(List<String> repoDigests) {
-    this.repoDigests = repoDigests;
-    return this;
-  }
-
-  public Summary addRepoDigestsItem(String repoDigestsItem) {
-    if (this.repoDigests == null) {
-      this.repoDigests = new ArrayList<>();
-    }
-    this.repoDigests.add(repoDigestsItem);
-    return this;
-  }
-
-  /**
-   * List of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image.  These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated.
-   * @return repoDigests
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<String> getRepoDigests() {
-    return repoDigests;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRepoDigests(List<String> repoDigests) {
-    this.repoDigests = repoDigests;
-  }
-
-
-  public Summary repoTags(List<String> repoTags) {
-    this.repoTags = repoTags;
-    return this;
-  }
-
-  public Summary addRepoTagsItem(String repoTagsItem) {
-    if (this.repoTags == null) {
-      this.repoTags = new ArrayList<>();
-    }
-    this.repoTags.add(repoTagsItem);
-    return this;
-  }
-
-  /**
-   * List of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \&quot;untagged\&quot;, in which case it can still be referenced by its ID.
-   * @return repoTags
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<String> getRepoTags() {
-    return repoTags;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRepoTags(List<String> repoTags) {
-    this.repoTags = repoTags;
-  }
-
-
-  public Summary sharedSize(Long sharedSize) {
-    this.sharedSize = sharedSize;
-    return this;
-  }
-
-  /**
-   * Total size of image layers that are shared between this image and other images.  This size is not calculated by default. &#x60;-1&#x60; indicates that the value has not been set / calculated.
-   * @return sharedSize
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Long getSharedSize() {
-    return sharedSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSharedSize(Long sharedSize) {
-    this.sharedSize = sharedSize;
-  }
-
-
-  public Summary size(Long size) {
-    this.size = size;
-    return this;
-  }
-
-  /**
-   * Total size of the image including all layers it is composed of.
-   * @return size
-   */
-  @jakarta.annotation.Nonnull
-  @NotNull
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Long getSize() {
-    return size;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SIZE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSize(Long size) {
-    this.size = size;
-  }
-
-
-  public Summary virtualSize(Long virtualSize) {
-    this.virtualSize = virtualSize;
-    return this;
-  }
-
-  /**
-   * Total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead.
-   * @return virtualSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getVirtualSize() {
-    return virtualSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVirtualSize(Long virtualSize) {
-    this.virtualSize = virtualSize;
-  }
-
-
-  /**
-   * Return true if this Summary object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Summary summary = (Summary) o;
-    return Objects.equals(this.containers, summary.containers) &&
-        Objects.equals(this.created, summary.created) &&
-        Objects.equals(this.id, summary.id) &&
-        Objects.equals(this.labels, summary.labels) &&
-        Objects.equals(this.manifests, summary.manifests) &&
-        Objects.equals(this.parentId, summary.parentId) &&
-        Objects.equals(this.repoDigests, summary.repoDigests) &&
-        Objects.equals(this.repoTags, summary.repoTags) &&
-        Objects.equals(this.sharedSize, summary.sharedSize) &&
-        Objects.equals(this.size, summary.size) &&
-        Objects.equals(this.virtualSize, summary.virtualSize);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(containers, created, id, labels, manifests, parentId, repoDigests, repoTags, sharedSize, size, virtualSize);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class Summary {\n");
-    sb.append("    containers: ").append(toIndentedString(containers)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
-    sb.append("    manifests: ").append(toIndentedString(manifests)).append("\n");
-    sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
-    sb.append("    repoDigests: ").append(toIndentedString(repoDigests)).append("\n");
-    sb.append("    repoTags: ").append(toIndentedString(repoTags)).append("\n");
-    sb.append("    sharedSize: ").append(toIndentedString(sharedSize)).append("\n");
-    sb.append("    size: ").append(toIndentedString(size)).append("\n");
-    sb.append("    virtualSize: ").append(toIndentedString(virtualSize)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
+    public static final String SERIALIZED_NAME_CREATED = "Created";
+    public static final String SERIALIZED_NAME_ID = "Id";
+    public static final String SERIALIZED_NAME_LABELS = "Labels";
+    public static final String SERIALIZED_NAME_MANIFESTS = "Manifests";
+    public static final String SERIALIZED_NAME_PARENT_ID = "ParentId";
+    public static final String SERIALIZED_NAME_REPO_DIGESTS = "RepoDigests";
+    public static final String SERIALIZED_NAME_REPO_TAGS = "RepoTags";
+    public static final String SERIALIZED_NAME_SHARED_SIZE = "SharedSize";
+    public static final String SERIALIZED_NAME_SIZE = "Size";
+    public static final String SERIALIZED_NAME_VIRTUAL_SIZE = "VirtualSize";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Containers");
+        openapiFields.add("Created");
+        openapiFields.add("Id");
+        openapiFields.add("Labels");
+        openapiFields.add("Manifests");
+        openapiFields.add("ParentId");
+        openapiFields.add("RepoDigests");
+        openapiFields.add("RepoTags");
+        openapiFields.add("SharedSize");
+        openapiFields.add("Size");
+        openapiFields.add("VirtualSize");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
+        openapiRequiredFields.add("Containers");
+        openapiRequiredFields.add("Created");
+        openapiRequiredFields.add("Id");
+        openapiRequiredFields.add("Labels");
+        openapiRequiredFields.add("ParentId");
+        openapiRequiredFields.add("RepoDigests");
+        openapiRequiredFields.add("RepoTags");
+        openapiRequiredFields.add("SharedSize");
+        openapiRequiredFields.add("Size");
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_CONTAINERS)
+    private Long containers;
+    @SerializedName(SERIALIZED_NAME_CREATED)
+    private Long created;
+    @SerializedName(SERIALIZED_NAME_ID)
+    private String id;
+    @SerializedName(SERIALIZED_NAME_LABELS)
+    private Map<String, String> labels = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_MANIFESTS)
+    private List<@Valid ManifestSummary> manifests = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_PARENT_ID)
+    private String parentId;
+    @SerializedName(SERIALIZED_NAME_REPO_DIGESTS)
+    private List<String> repoDigests = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_REPO_TAGS)
+    private List<String> repoTags = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SHARED_SIZE)
+    private Long sharedSize;
+    @SerializedName(SERIALIZED_NAME_SIZE)
+    private Long size;
+    @SerializedName(SERIALIZED_NAME_VIRTUAL_SIZE)
+    private Long virtualSize;
 
-    // add `Containers` to the URL query string
-    if (getContainers() != null) {
-      joiner.add(String.format("%sContainers%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainers()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Summary() {
     }
 
-    // add `Created` to the URL query string
-    if (getCreated() != null) {
-      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Id` to the URL query string
-    if (getId() != null) {
-      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Labels` to the URL query string
-    if (getLabels() != null) {
-      for (String _key : getLabels().keySet()) {
-        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Manifests` to the URL query string
-    if (getManifests() != null) {
-      for (int i = 0; i < getManifests().size(); i++) {
-        if (getManifests().get(i) != null) {
-          joiner.add(getManifests().get(i).toUrlQueryString(String.format("%sManifests%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to Summary
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!Summary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in Summary is not found in the empty JSON string", Summary.openapiRequiredFields));
+            }
         }
-      }
+
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!Summary.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Summary` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
+        }
+
+        // check to make sure all required properties/fields are present in the JSON string
+        for (String requiredField : Summary.openapiRequiredFields) {
+            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
+            }
+        }
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        if (!jsonObj.get("Id").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+        }
+        if (jsonObj.get("Manifests") != null && !jsonObj.get("Manifests").isJsonNull()) {
+            JsonArray jsonArraymanifests = jsonObj.getAsJsonArray("Manifests");
+            if (jsonArraymanifests != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Manifests").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Manifests` to be an array in the JSON string but got `%s`", jsonObj.get("Manifests").toString()));
+                }
+
+                // validate the optional field `Manifests` (array)
+                for (int i = 0; i < jsonArraymanifests.size(); i++) {
+                    ManifestSummary.validateJsonElement(jsonArraymanifests.get(i));
+                }
+            }
+        }
+        if (!jsonObj.get("ParentId").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ParentId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ParentId").toString()));
+        }
+        // ensure the required json array is present
+        if (jsonObj.get("RepoDigests") == null) {
+            throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+        } else if (!jsonObj.get("RepoDigests").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `RepoDigests` to be an array in the JSON string but got `%s`", jsonObj.get("RepoDigests").toString()));
+        }
+        // ensure the required json array is present
+        if (jsonObj.get("RepoTags") == null) {
+            throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+        } else if (!jsonObj.get("RepoTags").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `RepoTags` to be an array in the JSON string but got `%s`", jsonObj.get("RepoTags").toString()));
+        }
     }
 
-    // add `ParentId` to the URL query string
-    if (getParentId() != null) {
-      joiner.add(String.format("%sParentId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getParentId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of Summary given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of Summary
+     * @throws IOException if the JSON string is invalid with respect to Summary
+     */
+    public static Summary fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, Summary.class);
     }
 
-    // add `RepoDigests` to the URL query string
-    if (getRepoDigests() != null) {
-      for (int i = 0; i < getRepoDigests().size(); i++) {
-        joiner.add(String.format("%sRepoDigests%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getRepoDigests().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public Summary containers(Long containers) {
+        this.containers = containers;
+        return this;
     }
 
-    // add `RepoTags` to the URL query string
-    if (getRepoTags() != null) {
-      for (int i = 0; i < getRepoTags().size(); i++) {
-        joiner.add(String.format("%sRepoTags%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getRepoTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    /**
+     * Number of containers using this image. Includes both stopped and running containers.  This size is not calculated by default, and depends on which API endpoint is used. &#x60;-1&#x60; indicates that the value has not been set / calculated.
+     *
+     * @return containers
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Long getContainers() {
+        return containers;
     }
 
-    // add `SharedSize` to the URL query string
-    if (getSharedSize() != null) {
-      joiner.add(String.format("%sSharedSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSharedSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public void setContainers(Long containers) {
+        this.containers = containers;
     }
 
-    // add `Size` to the URL query string
-    if (getSize() != null) {
-      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public Summary created(Long created) {
+        this.created = created;
+        return this;
     }
 
-    // add `VirtualSize` to the URL query string
-    if (getVirtualSize() != null) {
-      joiner.add(String.format("%sVirtualSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVirtualSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Date and time at which the image was created as a Unix timestamp (number of seconds since EPOCH).
+     *
+     * @return created
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Long getCreated() {
+        return created;
     }
 
-    return joiner.toString();
-  }
+    public void setCreated(Long created) {
+        this.created = created;
+    }
+
+    public Summary id(String id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image&#39;s configuration (which includes the digests of layers used by the image).  Note that this digest differs from the &#x60;RepoDigests&#x60; below, which holds digests of image manifests that reference the image.
+     *
+     * @return id
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Summary labels(Map<String, String> labels) {
+        this.labels = labels;
+        return this;
+    }
+
+    public Summary putLabelsItem(String key, String labelsItem) {
+        if (this.labels == null) {
+            this.labels = new HashMap<>();
+        }
+        this.labels.put(key, labelsItem);
+        return this;
+    }
+
+    /**
+     * User-defined key/value metadata.
+     *
+     * @return labels
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Map<String, String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(Map<String, String> labels) {
+        this.labels = labels;
+    }
+
+    public Summary manifests(List<@Valid ManifestSummary> manifests) {
+        this.manifests = manifests;
+        return this;
+    }
+
+    public Summary addManifestsItem(ManifestSummary manifestsItem) {
+        if (this.manifests == null) {
+            this.manifests = new ArrayList<>();
+        }
+        this.manifests.add(manifestsItem);
+        return this;
+    }
+
+    /**
+     * Manifests is a list of image manifests available in this image.  It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations.  WARNING: This is experimental and may change at any time without any backward compatibility.
+     *
+     * @return manifests
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ManifestSummary> getManifests() {
+        return manifests;
+    }
+
+    public void setManifests(List<@Valid ManifestSummary> manifests) {
+        this.manifests = manifests;
+    }
+
+    public Summary parentId(String parentId) {
+        this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * ID of the parent image.  Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry.
+     *
+     * @return parentId
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public String getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(String parentId) {
+        this.parentId = parentId;
+    }
+
+    public Summary repoDigests(List<String> repoDigests) {
+        this.repoDigests = repoDigests;
+        return this;
+    }
+
+    public Summary addRepoDigestsItem(String repoDigestsItem) {
+        if (this.repoDigests == null) {
+            this.repoDigests = new ArrayList<>();
+        }
+        this.repoDigests.add(repoDigestsItem);
+        return this;
+    }
+
+    /**
+     * List of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image.  These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated.
+     *
+     * @return repoDigests
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public List<String> getRepoDigests() {
+        return repoDigests;
+    }
+
+    public void setRepoDigests(List<String> repoDigests) {
+        this.repoDigests = repoDigests;
+    }
+
+    public Summary repoTags(List<String> repoTags) {
+        this.repoTags = repoTags;
+        return this;
+    }
+
+    public Summary addRepoTagsItem(String repoTagsItem) {
+        if (this.repoTags == null) {
+            this.repoTags = new ArrayList<>();
+        }
+        this.repoTags.add(repoTagsItem);
+        return this;
+    }
+
+    /**
+     * List of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \&quot;untagged\&quot;, in which case it can still be referenced by its ID.
+     *
+     * @return repoTags
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public List<String> getRepoTags() {
+        return repoTags;
+    }
+
+    public void setRepoTags(List<String> repoTags) {
+        this.repoTags = repoTags;
+    }
+
+    public Summary sharedSize(Long sharedSize) {
+        this.sharedSize = sharedSize;
+        return this;
+    }
+
+    /**
+     * Total size of image layers that are shared between this image and other images.  This size is not calculated by default. &#x60;-1&#x60; indicates that the value has not been set / calculated.
+     *
+     * @return sharedSize
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Long getSharedSize() {
+        return sharedSize;
+    }
+
+    public void setSharedSize(Long sharedSize) {
+        this.sharedSize = sharedSize;
+    }
+
+    public Summary size(Long size) {
+        this.size = size;
+        return this;
+    }
+
+    /**
+     * Total size of the image including all layers it is composed of.
+     *
+     * @return size
+     */
+    @jakarta.annotation.Nonnull
+    @NotNull
+
+    public Long getSize() {
+        return size;
+    }
+
+    public void setSize(Long size) {
+        this.size = size;
+    }
+
+    public Summary virtualSize(Long virtualSize) {
+        this.virtualSize = virtualSize;
+        return this;
+    }
+
+    /**
+     * Total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead.
+     *
+     * @return virtualSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getVirtualSize() {
+        return virtualSize;
+    }
+
+    public void setVirtualSize(Long virtualSize) {
+        this.virtualSize = virtualSize;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Summary summary = (Summary) o;
+        return Objects.equals(this.containers, summary.containers) &&
+                Objects.equals(this.created, summary.created) &&
+                Objects.equals(this.id, summary.id) &&
+                Objects.equals(this.labels, summary.labels) &&
+                Objects.equals(this.manifests, summary.manifests) &&
+                Objects.equals(this.parentId, summary.parentId) &&
+                Objects.equals(this.repoDigests, summary.repoDigests) &&
+                Objects.equals(this.repoTags, summary.repoTags) &&
+                Objects.equals(this.sharedSize, summary.sharedSize) &&
+                Objects.equals(this.size, summary.size) &&
+                Objects.equals(this.virtualSize, summary.virtualSize);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(containers, created, id, labels, manifests, parentId, repoDigests, repoTags, sharedSize, size, virtualSize);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class Summary {\n" +
+                "    containers: " + toIndentedString(containers) + "\n" +
+                "    created: " + toIndentedString(created) + "\n" +
+                "    id: " + toIndentedString(id) + "\n" +
+                "    labels: " + toIndentedString(labels) + "\n" +
+                "    manifests: " + toIndentedString(manifests) + "\n" +
+                "    parentId: " + toIndentedString(parentId) + "\n" +
+                "    repoDigests: " + toIndentedString(repoDigests) + "\n" +
+                "    repoTags: " + toIndentedString(repoTags) + "\n" +
+                "    sharedSize: " + toIndentedString(sharedSize) + "\n" +
+                "    size: " + toIndentedString(size) + "\n" +
+                "    virtualSize: " + toIndentedString(virtualSize) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of Summary to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!Summary.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'Summary' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<Summary> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(Summary.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<Summary>() {
+                @Override
+                public void write(JsonWriter out, Summary value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public Summary read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 

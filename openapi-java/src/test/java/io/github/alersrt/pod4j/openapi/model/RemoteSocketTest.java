@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for RemoteSocket
  */
-class RemoteSocketTest {
+public class RemoteSocketTest {
     private final RemoteSocket model = new RemoteSocket();
 
     /**
      * Model tests for RemoteSocket
      */
     @Test
-    void testRemoteSocket() {
+    public void testRemoteSocket() {
         // TODO: test RemoteSocket
     }
 
@@ -42,7 +33,7 @@ class RemoteSocketTest {
      * Test the property 'exists'
      */
     @Test
-    void existsTest() {
+    public void existsTest() {
         // TODO: test exists
     }
 
@@ -50,7 +41,7 @@ class RemoteSocketTest {
      * Test the property 'path'
      */
     @Test
-    void pathTest() {
+    public void pathTest() {
         // TODO: test path
     }
 

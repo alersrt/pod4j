@@ -13,29 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.util.Arrays;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerCgroupConfig
  */
-class ContainerCgroupConfigTest {
+public class ContainerCgroupConfigTest {
     private final ContainerCgroupConfig model = new ContainerCgroupConfig();
 
     /**
      * Model tests for ContainerCgroupConfig
      */
     @Test
-    void testContainerCgroupConfig() {
+    public void testContainerCgroupConfig() {
         // TODO: test ContainerCgroupConfig
     }
 
@@ -43,7 +33,7 @@ class ContainerCgroupConfigTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    void cgroupParentTest() {
+    public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -51,7 +41,7 @@ class ContainerCgroupConfigTest {
      * Test the property 'cgroupns'
      */
     @Test
-    void cgroupnsTest() {
+    public void cgroupnsTest() {
         // TODO: test cgroupns
     }
 
@@ -59,7 +49,7 @@ class ContainerCgroupConfigTest {
      * Test the property 'cgroupsMode'
      */
     @Test
-    void cgroupsModeTest() {
+    public void cgroupsModeTest() {
         // TODO: test cgroupsMode
     }
 

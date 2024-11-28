@@ -13,3026 +13,2478 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.TypeAdapter;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.JSON;
 import jakarta.validation.Valid;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.Set;
+
 /**
  * Here, \&quot;non-portable\&quot; means \&quot;dependent of the host we are running on\&quot;. Portable information *should* appear in Config.
  */
-@JsonPropertyOrder({
-  HostConfig.JSON_PROPERTY_ANNOTATIONS,
-  HostConfig.JSON_PROPERTY_AUTO_REMOVE,
-  HostConfig.JSON_PROPERTY_BINDS,
-  HostConfig.JSON_PROPERTY_BLKIO_DEVICE_READ_BPS,
-  HostConfig.JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS,
-  HostConfig.JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS,
-  HostConfig.JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS,
-  HostConfig.JSON_PROPERTY_BLKIO_WEIGHT,
-  HostConfig.JSON_PROPERTY_BLKIO_WEIGHT_DEVICE,
-  HostConfig.JSON_PROPERTY_CAP_ADD,
-  HostConfig.JSON_PROPERTY_CAP_DROP,
-  HostConfig.JSON_PROPERTY_CGROUP,
-  HostConfig.JSON_PROPERTY_CGROUP_PARENT,
-  HostConfig.JSON_PROPERTY_CGROUPNS_MODE,
-  HostConfig.JSON_PROPERTY_CONSOLE_SIZE,
-  HostConfig.JSON_PROPERTY_CONTAINER_I_D_FILE,
-  HostConfig.JSON_PROPERTY_CPU_COUNT,
-  HostConfig.JSON_PROPERTY_CPU_PERCENT,
-  HostConfig.JSON_PROPERTY_CPU_PERIOD,
-  HostConfig.JSON_PROPERTY_CPU_QUOTA,
-  HostConfig.JSON_PROPERTY_CPU_REALTIME_PERIOD,
-  HostConfig.JSON_PROPERTY_CPU_REALTIME_RUNTIME,
-  HostConfig.JSON_PROPERTY_CPU_SHARES,
-  HostConfig.JSON_PROPERTY_CPUSET_CPUS,
-  HostConfig.JSON_PROPERTY_CPUSET_MEMS,
-  HostConfig.JSON_PROPERTY_DEVICE_CGROUP_RULES,
-  HostConfig.JSON_PROPERTY_DEVICE_REQUESTS,
-  HostConfig.JSON_PROPERTY_DEVICES,
-  HostConfig.JSON_PROPERTY_DNS,
-  HostConfig.JSON_PROPERTY_DNS_OPTIONS,
-  HostConfig.JSON_PROPERTY_DNS_SEARCH,
-  HostConfig.JSON_PROPERTY_EXTRA_HOSTS,
-  HostConfig.JSON_PROPERTY_GROUP_ADD,
-  HostConfig.JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH,
-  HostConfig.JSON_PROPERTY_IO_MAXIMUM_I_OPS,
-  HostConfig.JSON_PROPERTY_INIT,
-  HostConfig.JSON_PROPERTY_IPC_MODE,
-  HostConfig.JSON_PROPERTY_ISOLATION,
-  HostConfig.JSON_PROPERTY_KERNEL_MEMORY,
-  HostConfig.JSON_PROPERTY_KERNEL_MEMORY_T_C_P,
-  HostConfig.JSON_PROPERTY_LINKS,
-  HostConfig.JSON_PROPERTY_LOG_CONFIG,
-  HostConfig.JSON_PROPERTY_MASKED_PATHS,
-  HostConfig.JSON_PROPERTY_MEMORY,
-  HostConfig.JSON_PROPERTY_MEMORY_RESERVATION,
-  HostConfig.JSON_PROPERTY_MEMORY_SWAP,
-  HostConfig.JSON_PROPERTY_MEMORY_SWAPPINESS,
-  HostConfig.JSON_PROPERTY_MOUNTS,
-  HostConfig.JSON_PROPERTY_NANO_CPUS,
-  HostConfig.JSON_PROPERTY_NETWORK_MODE,
-  HostConfig.JSON_PROPERTY_OOM_KILL_DISABLE,
-  HostConfig.JSON_PROPERTY_OOM_SCORE_ADJ,
-  HostConfig.JSON_PROPERTY_PID_MODE,
-  HostConfig.JSON_PROPERTY_PIDS_LIMIT,
-  HostConfig.JSON_PROPERTY_PORT_BINDINGS,
-  HostConfig.JSON_PROPERTY_PRIVILEGED,
-  HostConfig.JSON_PROPERTY_PUBLISH_ALL_PORTS,
-  HostConfig.JSON_PROPERTY_READONLY_PATHS,
-  HostConfig.JSON_PROPERTY_READONLY_ROOTFS,
-  HostConfig.JSON_PROPERTY_RESTART_POLICY,
-  HostConfig.JSON_PROPERTY_RUNTIME,
-  HostConfig.JSON_PROPERTY_SECURITY_OPT,
-  HostConfig.JSON_PROPERTY_SHM_SIZE,
-  HostConfig.JSON_PROPERTY_STORAGE_OPT,
-  HostConfig.JSON_PROPERTY_SYSCTLS,
-  HostConfig.JSON_PROPERTY_TMPFS,
-  HostConfig.JSON_PROPERTY_UT_S_MODE,
-  HostConfig.JSON_PROPERTY_ULIMITS,
-  HostConfig.JSON_PROPERTY_USERNS_MODE,
-  HostConfig.JSON_PROPERTY_VOLUME_DRIVER,
-  HostConfig.JSON_PROPERTY_VOLUMES_FROM
-})
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class HostConfig {
-  public static final String JSON_PROPERTY_ANNOTATIONS = "Annotations";
-  private Map<String, String> annotations = new HashMap<>();
-
-  public static final String JSON_PROPERTY_AUTO_REMOVE = "AutoRemove";
-  private Boolean autoRemove;
-
-  public static final String JSON_PROPERTY_BINDS = "Binds";
-  private List<String> binds = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_READ_BPS = "BlkioDeviceReadBps";
-  private List<@Valid ThrottleDevice> blkioDeviceReadBps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS = "BlkioDeviceReadIOps";
-  private List<@Valid ThrottleDevice> blkioDeviceReadIOps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS = "BlkioDeviceWriteBps";
-  private List<@Valid ThrottleDevice> blkioDeviceWriteBps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS = "BlkioDeviceWriteIOps";
-  private List<@Valid ThrottleDevice> blkioDeviceWriteIOps = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_BLKIO_WEIGHT = "BlkioWeight";
-  private Integer blkioWeight;
-
-  public static final String JSON_PROPERTY_BLKIO_WEIGHT_DEVICE = "BlkioWeightDevice";
-  private List<@Valid WeightDevice> blkioWeightDevice = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CAP_ADD = "CapAdd";
-  private List<String> capAdd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CAP_DROP = "CapDrop";
-  private List<String> capDrop = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CGROUP = "Cgroup";
-  private String cgroup;
-
-  public static final String JSON_PROPERTY_CGROUP_PARENT = "CgroupParent";
-  private String cgroupParent;
-
-  public static final String JSON_PROPERTY_CGROUPNS_MODE = "CgroupnsMode";
-  private String cgroupnsMode;
-
-  public static final String JSON_PROPERTY_CONSOLE_SIZE = "ConsoleSize";
-  private List<Integer> consoleSize = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_CONTAINER_I_D_FILE = "ContainerIDFile";
-  private String containerIDFile;
-
-  public static final String JSON_PROPERTY_CPU_COUNT = "CpuCount";
-  private Long cpuCount;
-
-  public static final String JSON_PROPERTY_CPU_PERCENT = "CpuPercent";
-  private Long cpuPercent;
-
-  public static final String JSON_PROPERTY_CPU_PERIOD = "CpuPeriod";
-  private Long cpuPeriod;
-
-  public static final String JSON_PROPERTY_CPU_QUOTA = "CpuQuota";
-  private Long cpuQuota;
-
-  public static final String JSON_PROPERTY_CPU_REALTIME_PERIOD = "CpuRealtimePeriod";
-  private Long cpuRealtimePeriod;
-
-  public static final String JSON_PROPERTY_CPU_REALTIME_RUNTIME = "CpuRealtimeRuntime";
-  private Long cpuRealtimeRuntime;
-
-  public static final String JSON_PROPERTY_CPU_SHARES = "CpuShares";
-  private Long cpuShares;
-
-  public static final String JSON_PROPERTY_CPUSET_CPUS = "CpusetCpus";
-  private String cpusetCpus;
-
-  public static final String JSON_PROPERTY_CPUSET_MEMS = "CpusetMems";
-  private String cpusetMems;
-
-  public static final String JSON_PROPERTY_DEVICE_CGROUP_RULES = "DeviceCgroupRules";
-  private List<String> deviceCgroupRules = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DEVICE_REQUESTS = "DeviceRequests";
-  private List<@Valid DeviceRequest> deviceRequests = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DEVICES = "Devices";
-  private List<@Valid DeviceMapping> devices = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DNS = "Dns";
-  private List<String> dns = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DNS_OPTIONS = "DnsOptions";
-  private List<String> dnsOptions = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_DNS_SEARCH = "DnsSearch";
-  private List<String> dnsSearch = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_EXTRA_HOSTS = "ExtraHosts";
-  private List<String> extraHosts = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_GROUP_ADD = "GroupAdd";
-  private List<String> groupAdd = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH = "IOMaximumBandwidth";
-  private Integer ioMaximumBandwidth;
-
-  public static final String JSON_PROPERTY_IO_MAXIMUM_I_OPS = "IOMaximumIOps";
-  private Integer ioMaximumIOps;
-
-  public static final String JSON_PROPERTY_INIT = "Init";
-  private Boolean init;
-
-  public static final String JSON_PROPERTY_IPC_MODE = "IpcMode";
-  private String ipcMode;
-
-  public static final String JSON_PROPERTY_ISOLATION = "Isolation";
-  private String isolation;
-
-  public static final String JSON_PROPERTY_KERNEL_MEMORY = "KernelMemory";
-  private Long kernelMemory;
-
-  public static final String JSON_PROPERTY_KERNEL_MEMORY_T_C_P = "KernelMemoryTCP";
-  private Long kernelMemoryTCP;
-
-  public static final String JSON_PROPERTY_LINKS = "Links";
-  private List<String> links = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_LOG_CONFIG = "LogConfig";
-  private LogConfig logConfig;
-
-  public static final String JSON_PROPERTY_MASKED_PATHS = "MaskedPaths";
-  private List<String> maskedPaths = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_MEMORY = "Memory";
-  private Long memory;
-
-  public static final String JSON_PROPERTY_MEMORY_RESERVATION = "MemoryReservation";
-  private Long memoryReservation;
-
-  public static final String JSON_PROPERTY_MEMORY_SWAP = "MemorySwap";
-  private Long memorySwap;
-
-  public static final String JSON_PROPERTY_MEMORY_SWAPPINESS = "MemorySwappiness";
-  private Long memorySwappiness;
-
-  public static final String JSON_PROPERTY_MOUNTS = "Mounts";
-  private List<@Valid Mount> mounts = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_NANO_CPUS = "NanoCpus";
-  private Long nanoCpus;
-
-  public static final String JSON_PROPERTY_NETWORK_MODE = "NetworkMode";
-  private String networkMode;
-
-  public static final String JSON_PROPERTY_OOM_KILL_DISABLE = "OomKillDisable";
-  private Boolean oomKillDisable;
-
-  public static final String JSON_PROPERTY_OOM_SCORE_ADJ = "OomScoreAdj";
-  private Long oomScoreAdj;
-
-  public static final String JSON_PROPERTY_PID_MODE = "PidMode";
-  private String pidMode;
-
-  public static final String JSON_PROPERTY_PIDS_LIMIT = "PidsLimit";
-  private Long pidsLimit;
-
-  public static final String JSON_PROPERTY_PORT_BINDINGS = "PortBindings";
-  private Map<String, List<@Valid PortBinding>> portBindings = new HashMap<>();
-
-  public static final String JSON_PROPERTY_PRIVILEGED = "Privileged";
-  private Boolean privileged;
-
-  public static final String JSON_PROPERTY_PUBLISH_ALL_PORTS = "PublishAllPorts";
-  private Boolean publishAllPorts;
-
-  public static final String JSON_PROPERTY_READONLY_PATHS = "ReadonlyPaths";
-  private List<String> readonlyPaths = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_READONLY_ROOTFS = "ReadonlyRootfs";
-  private Boolean readonlyRootfs;
-
-  public static final String JSON_PROPERTY_RESTART_POLICY = "RestartPolicy";
-  private RestartPolicy restartPolicy;
-
-  public static final String JSON_PROPERTY_RUNTIME = "Runtime";
-  private String runtime;
-
-  public static final String JSON_PROPERTY_SECURITY_OPT = "SecurityOpt";
-  private List<String> securityOpt = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_SHM_SIZE = "ShmSize";
-  private Long shmSize;
-
-  public static final String JSON_PROPERTY_STORAGE_OPT = "StorageOpt";
-  private Map<String, String> storageOpt = new HashMap<>();
-
-  public static final String JSON_PROPERTY_SYSCTLS = "Sysctls";
-  private Map<String, String> sysctls = new HashMap<>();
-
-  public static final String JSON_PROPERTY_TMPFS = "Tmpfs";
-  private Map<String, String> tmpfs = new HashMap<>();
-
-  public static final String JSON_PROPERTY_UT_S_MODE = "UTSMode";
-  private String utSMode;
-
-  public static final String JSON_PROPERTY_ULIMITS = "Ulimits";
-  private List<@Valid Ulimit> ulimits = new ArrayList<>();
-
-  public static final String JSON_PROPERTY_USERNS_MODE = "UsernsMode";
-  private String usernsMode;
-
-  public static final String JSON_PROPERTY_VOLUME_DRIVER = "VolumeDriver";
-  private String volumeDriver;
-
-  public static final String JSON_PROPERTY_VOLUMES_FROM = "VolumesFrom";
-  private List<String> volumesFrom = new ArrayList<>();
-
-  public HostConfig() { 
-  }
-
-  public HostConfig annotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-    return this;
-  }
-
-  public HostConfig putAnnotationsItem(String key, String annotationsItem) {
-    if (this.annotations == null) {
-      this.annotations = new HashMap<>();
-    }
-    this.annotations.put(key, annotationsItem);
-    return this;
-  }
-
-  /**
-   * Get annotations
-   * @return annotations
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getAnnotations() {
-    return annotations;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAnnotations(Map<String, String> annotations) {
-    this.annotations = annotations;
-  }
-
-
-  public HostConfig autoRemove(Boolean autoRemove) {
-    this.autoRemove = autoRemove;
-    return this;
-  }
-
-  /**
-   * Get autoRemove
-   * @return autoRemove
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getAutoRemove() {
-    return autoRemove;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAutoRemove(Boolean autoRemove) {
-    this.autoRemove = autoRemove;
-  }
-
-
-  public HostConfig binds(List<String> binds) {
-    this.binds = binds;
-    return this;
-  }
-
-  public HostConfig addBindsItem(String bindsItem) {
-    if (this.binds == null) {
-      this.binds = new ArrayList<>();
-    }
-    this.binds.add(bindsItem);
-    return this;
-  }
-
-  /**
-   * Applicable to all platforms
-   * @return binds
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BINDS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getBinds() {
-    return binds;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BINDS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBinds(List<String> binds) {
-    this.binds = binds;
-  }
-
-
-  public HostConfig blkioDeviceReadBps(List<@Valid ThrottleDevice> blkioDeviceReadBps) {
-    this.blkioDeviceReadBps = blkioDeviceReadBps;
-    return this;
-  }
-
-  public HostConfig addBlkioDeviceReadBpsItem(ThrottleDevice blkioDeviceReadBpsItem) {
-    if (this.blkioDeviceReadBps == null) {
-      this.blkioDeviceReadBps = new ArrayList<>();
-    }
-    this.blkioDeviceReadBps.add(blkioDeviceReadBpsItem);
-    return this;
-  }
-
-  /**
-   * Get blkioDeviceReadBps
-   * @return blkioDeviceReadBps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ThrottleDevice> getBlkioDeviceReadBps() {
-    return blkioDeviceReadBps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceReadBps(List<@Valid ThrottleDevice> blkioDeviceReadBps) {
-    this.blkioDeviceReadBps = blkioDeviceReadBps;
-  }
-
-
-  public HostConfig blkioDeviceReadIOps(List<@Valid ThrottleDevice> blkioDeviceReadIOps) {
-    this.blkioDeviceReadIOps = blkioDeviceReadIOps;
-    return this;
-  }
-
-  public HostConfig addBlkioDeviceReadIOpsItem(ThrottleDevice blkioDeviceReadIOpsItem) {
-    if (this.blkioDeviceReadIOps == null) {
-      this.blkioDeviceReadIOps = new ArrayList<>();
-    }
-    this.blkioDeviceReadIOps.add(blkioDeviceReadIOpsItem);
-    return this;
-  }
-
-  /**
-   * Get blkioDeviceReadIOps
-   * @return blkioDeviceReadIOps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ThrottleDevice> getBlkioDeviceReadIOps() {
-    return blkioDeviceReadIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceReadIOps(List<@Valid ThrottleDevice> blkioDeviceReadIOps) {
-    this.blkioDeviceReadIOps = blkioDeviceReadIOps;
-  }
-
-
-  public HostConfig blkioDeviceWriteBps(List<@Valid ThrottleDevice> blkioDeviceWriteBps) {
-    this.blkioDeviceWriteBps = blkioDeviceWriteBps;
-    return this;
-  }
-
-  public HostConfig addBlkioDeviceWriteBpsItem(ThrottleDevice blkioDeviceWriteBpsItem) {
-    if (this.blkioDeviceWriteBps == null) {
-      this.blkioDeviceWriteBps = new ArrayList<>();
-    }
-    this.blkioDeviceWriteBps.add(blkioDeviceWriteBpsItem);
-    return this;
-  }
-
-  /**
-   * Get blkioDeviceWriteBps
-   * @return blkioDeviceWriteBps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ThrottleDevice> getBlkioDeviceWriteBps() {
-    return blkioDeviceWriteBps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceWriteBps(List<@Valid ThrottleDevice> blkioDeviceWriteBps) {
-    this.blkioDeviceWriteBps = blkioDeviceWriteBps;
-  }
-
-
-  public HostConfig blkioDeviceWriteIOps(List<@Valid ThrottleDevice> blkioDeviceWriteIOps) {
-    this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
-    return this;
-  }
-
-  public HostConfig addBlkioDeviceWriteIOpsItem(ThrottleDevice blkioDeviceWriteIOpsItem) {
-    if (this.blkioDeviceWriteIOps == null) {
-      this.blkioDeviceWriteIOps = new ArrayList<>();
-    }
-    this.blkioDeviceWriteIOps.add(blkioDeviceWriteIOpsItem);
-    return this;
-  }
-
-  /**
-   * Get blkioDeviceWriteIOps
-   * @return blkioDeviceWriteIOps
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid ThrottleDevice> getBlkioDeviceWriteIOps() {
-    return blkioDeviceWriteIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioDeviceWriteIOps(List<@Valid ThrottleDevice> blkioDeviceWriteIOps) {
-    this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
-  }
-
-
-  public HostConfig blkioWeight(Integer blkioWeight) {
-    this.blkioWeight = blkioWeight;
-    return this;
-  }
-
-  /**
-   * Get blkioWeight
-   * @return blkioWeight
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getBlkioWeight() {
-    return blkioWeight;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioWeight(Integer blkioWeight) {
-    this.blkioWeight = blkioWeight;
-  }
-
-
-  public HostConfig blkioWeightDevice(List<@Valid WeightDevice> blkioWeightDevice) {
-    this.blkioWeightDevice = blkioWeightDevice;
-    return this;
-  }
-
-  public HostConfig addBlkioWeightDeviceItem(WeightDevice blkioWeightDeviceItem) {
-    if (this.blkioWeightDevice == null) {
-      this.blkioWeightDevice = new ArrayList<>();
-    }
-    this.blkioWeightDevice.add(blkioWeightDeviceItem);
-    return this;
-  }
-
-  /**
-   * Get blkioWeightDevice
-   * @return blkioWeightDevice
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid WeightDevice> getBlkioWeightDevice() {
-    return blkioWeightDevice;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBlkioWeightDevice(List<@Valid WeightDevice> blkioWeightDevice) {
-    this.blkioWeightDevice = blkioWeightDevice;
-  }
-
-
-  public HostConfig capAdd(List<String> capAdd) {
-    this.capAdd = capAdd;
-    return this;
-  }
-
-  public HostConfig addCapAddItem(String capAddItem) {
-    if (this.capAdd == null) {
-      this.capAdd = new ArrayList<>();
-    }
-    this.capAdd.add(capAddItem);
-    return this;
-  }
-
-  /**
-   * We need to override the json decoder to accept both options.
-   * @return capAdd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCapAdd() {
-    return capAdd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapAdd(List<String> capAdd) {
-    this.capAdd = capAdd;
-  }
-
-
-  public HostConfig capDrop(List<String> capDrop) {
-    this.capDrop = capDrop;
-    return this;
-  }
-
-  public HostConfig addCapDropItem(String capDropItem) {
-    if (this.capDrop == null) {
-      this.capDrop = new ArrayList<>();
-    }
-    this.capDrop.add(capDropItem);
-    return this;
-  }
-
-  /**
-   * We need to override the json decoder to accept both options.
-   * @return capDrop
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CAP_DROP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getCapDrop() {
-    return capDrop;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CAP_DROP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCapDrop(List<String> capDrop) {
-    this.capDrop = capDrop;
-  }
-
-
-  public HostConfig cgroup(String cgroup) {
-    this.cgroup = cgroup;
-    return this;
-  }
-
-  /**
-   * Get cgroup
-   * @return cgroup
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroup() {
-    return cgroup;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroup(String cgroup) {
-    this.cgroup = cgroup;
-  }
-
-
-  public HostConfig cgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
-    return this;
-  }
-
-  /**
-   * Applicable to UNIX platforms
-   * @return cgroupParent
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupParent() {
-    return cgroupParent;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupParent(String cgroupParent) {
-    this.cgroupParent = cgroupParent;
-  }
-
-
-  public HostConfig cgroupnsMode(String cgroupnsMode) {
-    this.cgroupnsMode = cgroupnsMode;
-    return this;
-  }
-
-  /**
-   * CgroupnsMode represents the cgroup namespace mode of the container
-   * @return cgroupnsMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CGROUPNS_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCgroupnsMode() {
-    return cgroupnsMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CGROUPNS_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCgroupnsMode(String cgroupnsMode) {
-    this.cgroupnsMode = cgroupnsMode;
-  }
-
-
-  public HostConfig consoleSize(List<Integer> consoleSize) {
-    this.consoleSize = consoleSize;
-    return this;
-  }
-
-  public HostConfig addConsoleSizeItem(Integer consoleSizeItem) {
-    if (this.consoleSize == null) {
-      this.consoleSize = new ArrayList<>();
-    }
-    this.consoleSize.add(consoleSizeItem);
-    return this;
-  }
-
-  /**
-   * Get consoleSize
-   * @return consoleSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONSOLE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<Integer> getConsoleSize() {
-    return consoleSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONSOLE_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConsoleSize(List<Integer> consoleSize) {
-    this.consoleSize = consoleSize;
-  }
-
-
-  public HostConfig containerIDFile(String containerIDFile) {
-    this.containerIDFile = containerIDFile;
-    return this;
-  }
-
-  /**
-   * Get containerIDFile
-   * @return containerIDFile
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getContainerIDFile() {
-    return containerIDFile;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D_FILE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContainerIDFile(String containerIDFile) {
-    this.containerIDFile = containerIDFile;
-  }
-
-
-  public HostConfig cpuCount(Long cpuCount) {
-    this.cpuCount = cpuCount;
-    return this;
-  }
-
-  /**
-   * Applicable to Windows
-   * @return cpuCount
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuCount() {
-    return cpuCount;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_COUNT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuCount(Long cpuCount) {
-    this.cpuCount = cpuCount;
-  }
-
-
-  public HostConfig cpuPercent(Long cpuPercent) {
-    this.cpuPercent = cpuPercent;
-    return this;
-  }
-
-  /**
-   * Get cpuPercent
-   * @return cpuPercent
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuPercent() {
-    return cpuPercent;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuPercent(Long cpuPercent) {
-    this.cpuPercent = cpuPercent;
-  }
-
-
-  public HostConfig cpuPeriod(Long cpuPeriod) {
-    this.cpuPeriod = cpuPeriod;
-    return this;
-  }
-
-  /**
-   * Get cpuPeriod
-   * @return cpuPeriod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuPeriod() {
-    return cpuPeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuPeriod(Long cpuPeriod) {
-    this.cpuPeriod = cpuPeriod;
-  }
-
-
-  public HostConfig cpuQuota(Long cpuQuota) {
-    this.cpuQuota = cpuQuota;
-    return this;
-  }
-
-  /**
-   * Get cpuQuota
-   * @return cpuQuota
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuQuota() {
-    return cpuQuota;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuQuota(Long cpuQuota) {
-    this.cpuQuota = cpuQuota;
-  }
-
-
-  public HostConfig cpuRealtimePeriod(Long cpuRealtimePeriod) {
-    this.cpuRealtimePeriod = cpuRealtimePeriod;
-    return this;
-  }
-
-  /**
-   * Get cpuRealtimePeriod
-   * @return cpuRealtimePeriod
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuRealtimePeriod() {
-    return cpuRealtimePeriod;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuRealtimePeriod(Long cpuRealtimePeriod) {
-    this.cpuRealtimePeriod = cpuRealtimePeriod;
-  }
-
-
-  public HostConfig cpuRealtimeRuntime(Long cpuRealtimeRuntime) {
-    this.cpuRealtimeRuntime = cpuRealtimeRuntime;
-    return this;
-  }
-
-  /**
-   * Get cpuRealtimeRuntime
-   * @return cpuRealtimeRuntime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuRealtimeRuntime() {
-    return cpuRealtimeRuntime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuRealtimeRuntime(Long cpuRealtimeRuntime) {
-    this.cpuRealtimeRuntime = cpuRealtimeRuntime;
-  }
-
-
-  public HostConfig cpuShares(Long cpuShares) {
-    this.cpuShares = cpuShares;
-    return this;
-  }
-
-  /**
-   * Applicable to all platforms
-   * @return cpuShares
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPU_SHARES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getCpuShares() {
-    return cpuShares;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPU_SHARES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpuShares(Long cpuShares) {
-    this.cpuShares = cpuShares;
-  }
-
-
-  public HostConfig cpusetCpus(String cpusetCpus) {
-    this.cpusetCpus = cpusetCpus;
-    return this;
-  }
-
-  /**
-   * Get cpusetCpus
-   * @return cpusetCpus
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCpusetCpus() {
-    return cpusetCpus;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpusetCpus(String cpusetCpus) {
-    this.cpusetCpus = cpusetCpus;
-  }
-
-
-  public HostConfig cpusetMems(String cpusetMems) {
-    this.cpusetMems = cpusetMems;
-    return this;
-  }
-
-  /**
-   * Get cpusetMems
-   * @return cpusetMems
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getCpusetMems() {
-    return cpusetMems;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCpusetMems(String cpusetMems) {
-    this.cpusetMems = cpusetMems;
-  }
-
-
-  public HostConfig deviceCgroupRules(List<String> deviceCgroupRules) {
-    this.deviceCgroupRules = deviceCgroupRules;
-    return this;
-  }
-
-  public HostConfig addDeviceCgroupRulesItem(String deviceCgroupRulesItem) {
-    if (this.deviceCgroupRules == null) {
-      this.deviceCgroupRules = new ArrayList<>();
-    }
-    this.deviceCgroupRules.add(deviceCgroupRulesItem);
-    return this;
-  }
-
-  /**
-   * Get deviceCgroupRules
-   * @return deviceCgroupRules
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDeviceCgroupRules() {
-    return deviceCgroupRules;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeviceCgroupRules(List<String> deviceCgroupRules) {
-    this.deviceCgroupRules = deviceCgroupRules;
-  }
-
-
-  public HostConfig deviceRequests(List<@Valid DeviceRequest> deviceRequests) {
-    this.deviceRequests = deviceRequests;
-    return this;
-  }
-
-  public HostConfig addDeviceRequestsItem(DeviceRequest deviceRequestsItem) {
-    if (this.deviceRequests == null) {
-      this.deviceRequests = new ArrayList<>();
-    }
-    this.deviceRequests.add(deviceRequestsItem);
-    return this;
-  }
-
-  /**
-   * Get deviceRequests
-   * @return deviceRequests
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_REQUESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid DeviceRequest> getDeviceRequests() {
-    return deviceRequests;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICE_REQUESTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeviceRequests(List<@Valid DeviceRequest> deviceRequests) {
-    this.deviceRequests = deviceRequests;
-  }
-
-
-  public HostConfig devices(List<@Valid DeviceMapping> devices) {
-    this.devices = devices;
-    return this;
-  }
-
-  public HostConfig addDevicesItem(DeviceMapping devicesItem) {
-    if (this.devices == null) {
-      this.devices = new ArrayList<>();
-    }
-    this.devices.add(devicesItem);
-    return this;
-  }
-
-  /**
-   * Get devices
-   * @return devices
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid DeviceMapping> getDevices() {
-    return devices;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DEVICES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDevices(List<@Valid DeviceMapping> devices) {
-    this.devices = devices;
-  }
-
-
-  public HostConfig dns(List<String> dns) {
-    this.dns = dns;
-    return this;
-  }
-
-  public HostConfig addDnsItem(String dnsItem) {
-    if (this.dns == null) {
-      this.dns = new ArrayList<>();
-    }
-    this.dns.add(dnsItem);
-    return this;
-  }
-
-  /**
-   * Get dns
-   * @return dns
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDns() {
-    return dns;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDns(List<String> dns) {
-    this.dns = dns;
-  }
-
-
-  public HostConfig dnsOptions(List<String> dnsOptions) {
-    this.dnsOptions = dnsOptions;
-    return this;
-  }
-
-  public HostConfig addDnsOptionsItem(String dnsOptionsItem) {
-    if (this.dnsOptions == null) {
-      this.dnsOptions = new ArrayList<>();
-    }
-    this.dnsOptions.add(dnsOptionsItem);
-    return this;
-  }
-
-  /**
-   * Get dnsOptions
-   * @return dnsOptions
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDnsOptions() {
-    return dnsOptions;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS_OPTIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDnsOptions(List<String> dnsOptions) {
-    this.dnsOptions = dnsOptions;
-  }
-
-
-  public HostConfig dnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
-    return this;
-  }
-
-  public HostConfig addDnsSearchItem(String dnsSearchItem) {
-    if (this.dnsSearch == null) {
-      this.dnsSearch = new ArrayList<>();
-    }
-    this.dnsSearch.add(dnsSearchItem);
-    return this;
-  }
-
-  /**
-   * Get dnsSearch
-   * @return dnsSearch
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getDnsSearch() {
-    return dnsSearch;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDnsSearch(List<String> dnsSearch) {
-    this.dnsSearch = dnsSearch;
-  }
-
-
-  public HostConfig extraHosts(List<String> extraHosts) {
-    this.extraHosts = extraHosts;
-    return this;
-  }
-
-  public HostConfig addExtraHostsItem(String extraHostsItem) {
-    if (this.extraHosts == null) {
-      this.extraHosts = new ArrayList<>();
-    }
-    this.extraHosts.add(extraHostsItem);
-    return this;
-  }
-
-  /**
-   * Get extraHosts
-   * @return extraHosts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_EXTRA_HOSTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getExtraHosts() {
-    return extraHosts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_EXTRA_HOSTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExtraHosts(List<String> extraHosts) {
-    this.extraHosts = extraHosts;
-  }
-
-
-  public HostConfig groupAdd(List<String> groupAdd) {
-    this.groupAdd = groupAdd;
-    return this;
-  }
-
-  public HostConfig addGroupAddItem(String groupAddItem) {
-    if (this.groupAdd == null) {
-      this.groupAdd = new ArrayList<>();
-    }
-    this.groupAdd.add(groupAddItem);
-    return this;
-  }
-
-  /**
-   * Get groupAdd
-   * @return groupAdd
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_GROUP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getGroupAdd() {
-    return groupAdd;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_GROUP_ADD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGroupAdd(List<String> groupAdd) {
-    this.groupAdd = groupAdd;
-  }
-
-
-  public HostConfig ioMaximumBandwidth(Integer ioMaximumBandwidth) {
-    this.ioMaximumBandwidth = ioMaximumBandwidth;
-    return this;
-  }
-
-  /**
-   * Get ioMaximumBandwidth
-   * @return ioMaximumBandwidth
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getIoMaximumBandwidth() {
-    return ioMaximumBandwidth;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIoMaximumBandwidth(Integer ioMaximumBandwidth) {
-    this.ioMaximumBandwidth = ioMaximumBandwidth;
-  }
-
-
-  public HostConfig ioMaximumIOps(Integer ioMaximumIOps) {
-    this.ioMaximumIOps = ioMaximumIOps;
-    return this;
-  }
-
-  /**
-   * Get ioMaximumIOps
-   * @return ioMaximumIOps
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Integer getIoMaximumIOps() {
-    return ioMaximumIOps;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIoMaximumIOps(Integer ioMaximumIOps) {
-    this.ioMaximumIOps = ioMaximumIOps;
-  }
-
-
-  public HostConfig init(Boolean init) {
-    this.init = init;
-    return this;
-  }
-
-  /**
-   * Run a custom init inside the container, if null, use the daemon&#39;s configured settings
-   * @return init
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_INIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getInit() {
-    return init;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_INIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInit(Boolean init) {
-    this.init = init;
-  }
-
-
-  public HostConfig ipcMode(String ipcMode) {
-    this.ipcMode = ipcMode;
-    return this;
-  }
-
-  /**
-   * Get ipcMode
-   * @return ipcMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_IPC_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIpcMode() {
-    return ipcMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_IPC_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIpcMode(String ipcMode) {
-    this.ipcMode = ipcMode;
-  }
-
-
-  public HostConfig isolation(String isolation) {
-    this.isolation = isolation;
-    return this;
-  }
-
-  /**
-   * Isolation represents the isolation technology of a container. The supported values are platform specific
-   * @return isolation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_ISOLATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getIsolation() {
-    return isolation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ISOLATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIsolation(String isolation) {
-    this.isolation = isolation;
-  }
-
-
-  public HostConfig kernelMemory(Long kernelMemory) {
-    this.kernelMemory = kernelMemory;
-    return this;
-  }
-
-  /**
-   * KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.
-   * @return kernelMemory
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getKernelMemory() {
-    return kernelMemory;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKernelMemory(Long kernelMemory) {
-    this.kernelMemory = kernelMemory;
-  }
-
-
-  public HostConfig kernelMemoryTCP(Long kernelMemoryTCP) {
-    this.kernelMemoryTCP = kernelMemoryTCP;
-    return this;
-  }
-
-  /**
-   * Get kernelMemoryTCP
-   * @return kernelMemoryTCP
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY_T_C_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getKernelMemoryTCP() {
-    return kernelMemoryTCP;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY_T_C_P)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setKernelMemoryTCP(Long kernelMemoryTCP) {
-    this.kernelMemoryTCP = kernelMemoryTCP;
-  }
-
-
-  public HostConfig links(List<String> links) {
-    this.links = links;
-    return this;
-  }
-
-  public HostConfig addLinksItem(String linksItem) {
-    if (this.links == null) {
-      this.links = new ArrayList<>();
-    }
-    this.links.add(linksItem);
-    return this;
-  }
-
-  /**
-   * Get links
-   * @return links
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getLinks() {
-    return links;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LINKS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLinks(List<String> links) {
-    this.links = links;
-  }
-
-
-  public HostConfig logConfig(LogConfig logConfig) {
-    this.logConfig = logConfig;
-    return this;
-  }
-
-  /**
-   * Get logConfig
-   * @return logConfig
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_LOG_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public LogConfig getLogConfig() {
-    return logConfig;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_LOG_CONFIG)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLogConfig(LogConfig logConfig) {
-    this.logConfig = logConfig;
-  }
-
-
-  public HostConfig maskedPaths(List<String> maskedPaths) {
-    this.maskedPaths = maskedPaths;
-    return this;
-  }
-
-  public HostConfig addMaskedPathsItem(String maskedPathsItem) {
-    if (this.maskedPaths == null) {
-      this.maskedPaths = new ArrayList<>();
-    }
-    this.maskedPaths.add(maskedPathsItem);
-    return this;
-  }
-
-  /**
-   * MaskedPaths is the list of paths to be masked inside the container (this overrides the default set of paths)
-   * @return maskedPaths
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MASKED_PATHS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getMaskedPaths() {
-    return maskedPaths;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MASKED_PATHS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaskedPaths(List<String> maskedPaths) {
-    this.maskedPaths = maskedPaths;
-  }
-
-
-  public HostConfig memory(Long memory) {
-    this.memory = memory;
-    return this;
-  }
-
-  /**
-   * Get memory
-   * @return memory
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemory() {
-    return memory;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemory(Long memory) {
-    this.memory = memory;
-  }
-
-
-  public HostConfig memoryReservation(Long memoryReservation) {
-    this.memoryReservation = memoryReservation;
-    return this;
-  }
-
-  /**
-   * Get memoryReservation
-   * @return memoryReservation
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemoryReservation() {
-    return memoryReservation;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemoryReservation(Long memoryReservation) {
-    this.memoryReservation = memoryReservation;
-  }
-
-
-  public HostConfig memorySwap(Long memorySwap) {
-    this.memorySwap = memorySwap;
-    return this;
-  }
-
-  /**
-   * Get memorySwap
-   * @return memorySwap
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemorySwap() {
-    return memorySwap;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemorySwap(Long memorySwap) {
-    this.memorySwap = memorySwap;
-  }
-
-
-  public HostConfig memorySwappiness(Long memorySwappiness) {
-    this.memorySwappiness = memorySwappiness;
-    return this;
-  }
-
-  /**
-   * Get memorySwappiness
-   * @return memorySwappiness
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getMemorySwappiness() {
-    return memorySwappiness;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMemorySwappiness(Long memorySwappiness) {
-    this.memorySwappiness = memorySwappiness;
-  }
-
-
-  public HostConfig mounts(List<@Valid Mount> mounts) {
-    this.mounts = mounts;
-    return this;
-  }
-
-  public HostConfig addMountsItem(Mount mountsItem) {
-    if (this.mounts == null) {
-      this.mounts = new ArrayList<>();
-    }
-    this.mounts.add(mountsItem);
-    return this;
-  }
-
-  /**
-   * Mounts specs used by the container
-   * @return mounts
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_MOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Mount> getMounts() {
-    return mounts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_MOUNTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMounts(List<@Valid Mount> mounts) {
-    this.mounts = mounts;
-  }
-
-
-  public HostConfig nanoCpus(Long nanoCpus) {
-    this.nanoCpus = nanoCpus;
-    return this;
-  }
-
-  /**
-   * Get nanoCpus
-   * @return nanoCpus
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NANO_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getNanoCpus() {
-    return nanoCpus;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NANO_CPUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNanoCpus(Long nanoCpus) {
-    this.nanoCpus = nanoCpus;
-  }
-
-
-  public HostConfig networkMode(String networkMode) {
-    this.networkMode = networkMode;
-    return this;
-  }
-
-  /**
-   * Get networkMode
-   * @return networkMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getNetworkMode() {
-    return networkMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_NETWORK_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNetworkMode(String networkMode) {
-    this.networkMode = networkMode;
-  }
-
-
-  public HostConfig oomKillDisable(Boolean oomKillDisable) {
-    this.oomKillDisable = oomKillDisable;
-    return this;
-  }
-
-  /**
-   * Get oomKillDisable
-   * @return oomKillDisable
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getOomKillDisable() {
-    return oomKillDisable;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOomKillDisable(Boolean oomKillDisable) {
-    this.oomKillDisable = oomKillDisable;
-  }
-
-
-  public HostConfig oomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
-    return this;
-  }
-
-  /**
-   * Get oomScoreAdj
-   * @return oomScoreAdj
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getOomScoreAdj() {
-    return oomScoreAdj;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOomScoreAdj(Long oomScoreAdj) {
-    this.oomScoreAdj = oomScoreAdj;
-  }
-
-
-  public HostConfig pidMode(String pidMode) {
-    this.pidMode = pidMode;
-    return this;
-  }
-
-  /**
-   * Get pidMode
-   * @return pidMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PID_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getPidMode() {
-    return pidMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PID_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPidMode(String pidMode) {
-    this.pidMode = pidMode;
-  }
-
-
-  public HostConfig pidsLimit(Long pidsLimit) {
-    this.pidsLimit = pidsLimit;
-    return this;
-  }
-
-  /**
-   * Get pidsLimit
-   * @return pidsLimit
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getPidsLimit() {
-    return pidsLimit;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPidsLimit(Long pidsLimit) {
-    this.pidsLimit = pidsLimit;
-  }
-
-
-  public HostConfig portBindings(Map<String, List<@Valid PortBinding>> portBindings) {
-    this.portBindings = portBindings;
-    return this;
-  }
-
-  public HostConfig putPortBindingsItem(String key, List<@Valid PortBinding> portBindingsItem) {
-    if (this.portBindings == null) {
-      this.portBindings = new HashMap<>();
-    }
-    this.portBindings.put(key, portBindingsItem);
-    return this;
-  }
-
-  /**
-   * PortMap is a collection of PortBinding indexed by Port
-   * @return portBindings
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, List<@Valid PortBinding>> getPortBindings() {
-    return portBindings;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPortBindings(Map<String, List<@Valid PortBinding>> portBindings) {
-    this.portBindings = portBindings;
-  }
-
-
-  public HostConfig privileged(Boolean privileged) {
-    this.privileged = privileged;
-    return this;
-  }
-
-  /**
-   * Get privileged
-   * @return privileged
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPrivileged() {
-    return privileged;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPrivileged(Boolean privileged) {
-    this.privileged = privileged;
-  }
-
-
-  public HostConfig publishAllPorts(Boolean publishAllPorts) {
-    this.publishAllPorts = publishAllPorts;
-    return this;
-  }
-
-  /**
-   * Get publishAllPorts
-   * @return publishAllPorts
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_PUBLISH_ALL_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getPublishAllPorts() {
-    return publishAllPorts;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_PUBLISH_ALL_PORTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPublishAllPorts(Boolean publishAllPorts) {
-    this.publishAllPorts = publishAllPorts;
-  }
-
-
-  public HostConfig readonlyPaths(List<String> readonlyPaths) {
-    this.readonlyPaths = readonlyPaths;
-    return this;
-  }
-
-  public HostConfig addReadonlyPathsItem(String readonlyPathsItem) {
-    if (this.readonlyPaths == null) {
-      this.readonlyPaths = new ArrayList<>();
-    }
-    this.readonlyPaths.add(readonlyPathsItem);
-    return this;
-  }
-
-  /**
-   * ReadonlyPaths is the list of paths to be set as read-only inside the container (this overrides the default set of paths)
-   * @return readonlyPaths
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READONLY_PATHS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getReadonlyPaths() {
-    return readonlyPaths;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READONLY_PATHS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadonlyPaths(List<String> readonlyPaths) {
-    this.readonlyPaths = readonlyPaths;
-  }
-
-
-  public HostConfig readonlyRootfs(Boolean readonlyRootfs) {
-    this.readonlyRootfs = readonlyRootfs;
-    return this;
-  }
-
-  /**
-   * Get readonlyRootfs
-   * @return readonlyRootfs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_READONLY_ROOTFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Boolean getReadonlyRootfs() {
-    return readonlyRootfs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_READONLY_ROOTFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReadonlyRootfs(Boolean readonlyRootfs) {
-    this.readonlyRootfs = readonlyRootfs;
-  }
-
-
-  public HostConfig restartPolicy(RestartPolicy restartPolicy) {
-    this.restartPolicy = restartPolicy;
-    return this;
-  }
-
-  /**
-   * Get restartPolicy
-   * @return restartPolicy
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public RestartPolicy getRestartPolicy() {
-    return restartPolicy;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRestartPolicy(RestartPolicy restartPolicy) {
-    this.restartPolicy = restartPolicy;
-  }
-
-
-  public HostConfig runtime(String runtime) {
-    this.runtime = runtime;
-    return this;
-  }
-
-  /**
-   * Get runtime
-   * @return runtime
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getRuntime() {
-    return runtime;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_RUNTIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRuntime(String runtime) {
-    this.runtime = runtime;
-  }
-
-
-  public HostConfig securityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
-    return this;
-  }
-
-  public HostConfig addSecurityOptItem(String securityOptItem) {
-    if (this.securityOpt == null) {
-      this.securityOpt = new ArrayList<>();
-    }
-    this.securityOpt.add(securityOptItem);
-    return this;
-  }
-
-  /**
-   * Get securityOpt
-   * @return securityOpt
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getSecurityOpt() {
-    return securityOpt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSecurityOpt(List<String> securityOpt) {
-    this.securityOpt = securityOpt;
-  }
-
-
-  public HostConfig shmSize(Long shmSize) {
-    this.shmSize = shmSize;
-    return this;
-  }
-
-  /**
-   * Get shmSize
-   * @return shmSize
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Long getShmSize() {
-    return shmSize;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setShmSize(Long shmSize) {
-    this.shmSize = shmSize;
-  }
-
-
-  public HostConfig storageOpt(Map<String, String> storageOpt) {
-    this.storageOpt = storageOpt;
-    return this;
-  }
-
-  public HostConfig putStorageOptItem(String key, String storageOptItem) {
-    if (this.storageOpt == null) {
-      this.storageOpt = new HashMap<>();
-    }
-    this.storageOpt.put(key, storageOptItem);
-    return this;
-  }
-
-  /**
-   * Get storageOpt
-   * @return storageOpt
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_STORAGE_OPT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getStorageOpt() {
-    return storageOpt;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_STORAGE_OPT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStorageOpt(Map<String, String> storageOpt) {
-    this.storageOpt = storageOpt;
-  }
-
-
-  public HostConfig sysctls(Map<String, String> sysctls) {
-    this.sysctls = sysctls;
-    return this;
-  }
-
-  public HostConfig putSysctlsItem(String key, String sysctlsItem) {
-    if (this.sysctls == null) {
-      this.sysctls = new HashMap<>();
-    }
-    this.sysctls.put(key, sysctlsItem);
-    return this;
-  }
-
-  /**
-   * Get sysctls
-   * @return sysctls
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_SYSCTLS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getSysctls() {
-    return sysctls;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_SYSCTLS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSysctls(Map<String, String> sysctls) {
-    this.sysctls = sysctls;
-  }
-
-
-  public HostConfig tmpfs(Map<String, String> tmpfs) {
-    this.tmpfs = tmpfs;
-    return this;
-  }
-
-  public HostConfig putTmpfsItem(String key, String tmpfsItem) {
-    if (this.tmpfs == null) {
-      this.tmpfs = new HashMap<>();
-    }
-    this.tmpfs.put(key, tmpfsItem);
-    return this;
-  }
-
-  /**
-   * Get tmpfs
-   * @return tmpfs
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_TMPFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, String> getTmpfs() {
-    return tmpfs;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_TMPFS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTmpfs(Map<String, String> tmpfs) {
-    this.tmpfs = tmpfs;
-  }
-
-
-  public HostConfig utSMode(String utSMode) {
-    this.utSMode = utSMode;
-    return this;
-  }
-
-  /**
-   * Get utSMode
-   * @return utSMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_UT_S_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUtSMode() {
-    return utSMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_UT_S_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUtSMode(String utSMode) {
-    this.utSMode = utSMode;
-  }
-
-
-  public HostConfig ulimits(List<@Valid Ulimit> ulimits) {
-    this.ulimits = ulimits;
-    return this;
-  }
-
-  public HostConfig addUlimitsItem(Ulimit ulimitsItem) {
-    if (this.ulimits == null) {
-      this.ulimits = new ArrayList<>();
-    }
-    this.ulimits.add(ulimitsItem);
-    return this;
-  }
-
-  /**
-   * Get ulimits
-   * @return ulimits
-   */
-  @jakarta.annotation.Nullable
-  @Valid
-
-  @JsonProperty(JSON_PROPERTY_ULIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<@Valid Ulimit> getUlimits() {
-    return ulimits;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_ULIMITS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUlimits(List<@Valid Ulimit> ulimits) {
-    this.ulimits = ulimits;
-  }
-
-
-  public HostConfig usernsMode(String usernsMode) {
-    this.usernsMode = usernsMode;
-    return this;
-  }
-
-  /**
-   * Get usernsMode
-   * @return usernsMode
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_USERNS_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getUsernsMode() {
-    return usernsMode;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_USERNS_MODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUsernsMode(String usernsMode) {
-    this.usernsMode = usernsMode;
-  }
-
-
-  public HostConfig volumeDriver(String volumeDriver) {
-    this.volumeDriver = volumeDriver;
-    return this;
-  }
-
-  /**
-   * Get volumeDriver
-   * @return volumeDriver
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getVolumeDriver() {
-    return volumeDriver;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUME_DRIVER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumeDriver(String volumeDriver) {
-    this.volumeDriver = volumeDriver;
-  }
-
-
-  public HostConfig volumesFrom(List<String> volumesFrom) {
-    this.volumesFrom = volumesFrom;
-    return this;
-  }
-
-  public HostConfig addVolumesFromItem(String volumesFromItem) {
-    if (this.volumesFrom == null) {
-      this.volumesFrom = new ArrayList<>();
-    }
-    this.volumesFrom.add(volumesFromItem);
-    return this;
-  }
-
-  /**
-   * Get volumesFrom
-   * @return volumesFrom
-   */
-  @jakarta.annotation.Nullable
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getVolumesFrom() {
-    return volumesFrom;
-  }
-
-
-  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVolumesFrom(List<String> volumesFrom) {
-    this.volumesFrom = volumesFrom;
-  }
-
-
-  /**
-   * Return true if this HostConfig object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    HostConfig hostConfig = (HostConfig) o;
-    return Objects.equals(this.annotations, hostConfig.annotations) &&
-        Objects.equals(this.autoRemove, hostConfig.autoRemove) &&
-        Objects.equals(this.binds, hostConfig.binds) &&
-        Objects.equals(this.blkioDeviceReadBps, hostConfig.blkioDeviceReadBps) &&
-        Objects.equals(this.blkioDeviceReadIOps, hostConfig.blkioDeviceReadIOps) &&
-        Objects.equals(this.blkioDeviceWriteBps, hostConfig.blkioDeviceWriteBps) &&
-        Objects.equals(this.blkioDeviceWriteIOps, hostConfig.blkioDeviceWriteIOps) &&
-        Objects.equals(this.blkioWeight, hostConfig.blkioWeight) &&
-        Objects.equals(this.blkioWeightDevice, hostConfig.blkioWeightDevice) &&
-        Objects.equals(this.capAdd, hostConfig.capAdd) &&
-        Objects.equals(this.capDrop, hostConfig.capDrop) &&
-        Objects.equals(this.cgroup, hostConfig.cgroup) &&
-        Objects.equals(this.cgroupParent, hostConfig.cgroupParent) &&
-        Objects.equals(this.cgroupnsMode, hostConfig.cgroupnsMode) &&
-        Objects.equals(this.consoleSize, hostConfig.consoleSize) &&
-        Objects.equals(this.containerIDFile, hostConfig.containerIDFile) &&
-        Objects.equals(this.cpuCount, hostConfig.cpuCount) &&
-        Objects.equals(this.cpuPercent, hostConfig.cpuPercent) &&
-        Objects.equals(this.cpuPeriod, hostConfig.cpuPeriod) &&
-        Objects.equals(this.cpuQuota, hostConfig.cpuQuota) &&
-        Objects.equals(this.cpuRealtimePeriod, hostConfig.cpuRealtimePeriod) &&
-        Objects.equals(this.cpuRealtimeRuntime, hostConfig.cpuRealtimeRuntime) &&
-        Objects.equals(this.cpuShares, hostConfig.cpuShares) &&
-        Objects.equals(this.cpusetCpus, hostConfig.cpusetCpus) &&
-        Objects.equals(this.cpusetMems, hostConfig.cpusetMems) &&
-        Objects.equals(this.deviceCgroupRules, hostConfig.deviceCgroupRules) &&
-        Objects.equals(this.deviceRequests, hostConfig.deviceRequests) &&
-        Objects.equals(this.devices, hostConfig.devices) &&
-        Objects.equals(this.dns, hostConfig.dns) &&
-        Objects.equals(this.dnsOptions, hostConfig.dnsOptions) &&
-        Objects.equals(this.dnsSearch, hostConfig.dnsSearch) &&
-        Objects.equals(this.extraHosts, hostConfig.extraHosts) &&
-        Objects.equals(this.groupAdd, hostConfig.groupAdd) &&
-        Objects.equals(this.ioMaximumBandwidth, hostConfig.ioMaximumBandwidth) &&
-        Objects.equals(this.ioMaximumIOps, hostConfig.ioMaximumIOps) &&
-        Objects.equals(this.init, hostConfig.init) &&
-        Objects.equals(this.ipcMode, hostConfig.ipcMode) &&
-        Objects.equals(this.isolation, hostConfig.isolation) &&
-        Objects.equals(this.kernelMemory, hostConfig.kernelMemory) &&
-        Objects.equals(this.kernelMemoryTCP, hostConfig.kernelMemoryTCP) &&
-        Objects.equals(this.links, hostConfig.links) &&
-        Objects.equals(this.logConfig, hostConfig.logConfig) &&
-        Objects.equals(this.maskedPaths, hostConfig.maskedPaths) &&
-        Objects.equals(this.memory, hostConfig.memory) &&
-        Objects.equals(this.memoryReservation, hostConfig.memoryReservation) &&
-        Objects.equals(this.memorySwap, hostConfig.memorySwap) &&
-        Objects.equals(this.memorySwappiness, hostConfig.memorySwappiness) &&
-        Objects.equals(this.mounts, hostConfig.mounts) &&
-        Objects.equals(this.nanoCpus, hostConfig.nanoCpus) &&
-        Objects.equals(this.networkMode, hostConfig.networkMode) &&
-        Objects.equals(this.oomKillDisable, hostConfig.oomKillDisable) &&
-        Objects.equals(this.oomScoreAdj, hostConfig.oomScoreAdj) &&
-        Objects.equals(this.pidMode, hostConfig.pidMode) &&
-        Objects.equals(this.pidsLimit, hostConfig.pidsLimit) &&
-        Objects.equals(this.portBindings, hostConfig.portBindings) &&
-        Objects.equals(this.privileged, hostConfig.privileged) &&
-        Objects.equals(this.publishAllPorts, hostConfig.publishAllPorts) &&
-        Objects.equals(this.readonlyPaths, hostConfig.readonlyPaths) &&
-        Objects.equals(this.readonlyRootfs, hostConfig.readonlyRootfs) &&
-        Objects.equals(this.restartPolicy, hostConfig.restartPolicy) &&
-        Objects.equals(this.runtime, hostConfig.runtime) &&
-        Objects.equals(this.securityOpt, hostConfig.securityOpt) &&
-        Objects.equals(this.shmSize, hostConfig.shmSize) &&
-        Objects.equals(this.storageOpt, hostConfig.storageOpt) &&
-        Objects.equals(this.sysctls, hostConfig.sysctls) &&
-        Objects.equals(this.tmpfs, hostConfig.tmpfs) &&
-        Objects.equals(this.utSMode, hostConfig.utSMode) &&
-        Objects.equals(this.ulimits, hostConfig.ulimits) &&
-        Objects.equals(this.usernsMode, hostConfig.usernsMode) &&
-        Objects.equals(this.volumeDriver, hostConfig.volumeDriver) &&
-        Objects.equals(this.volumesFrom, hostConfig.volumesFrom);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(annotations, autoRemove, binds, blkioDeviceReadBps, blkioDeviceReadIOps, blkioDeviceWriteBps, blkioDeviceWriteIOps, blkioWeight, blkioWeightDevice, capAdd, capDrop, cgroup, cgroupParent, cgroupnsMode, consoleSize, containerIDFile, cpuCount, cpuPercent, cpuPeriod, cpuQuota, cpuRealtimePeriod, cpuRealtimeRuntime, cpuShares, cpusetCpus, cpusetMems, deviceCgroupRules, deviceRequests, devices, dns, dnsOptions, dnsSearch, extraHosts, groupAdd, ioMaximumBandwidth, ioMaximumIOps, init, ipcMode, isolation, kernelMemory, kernelMemoryTCP, links, logConfig, maskedPaths, memory, memoryReservation, memorySwap, memorySwappiness, mounts, nanoCpus, networkMode, oomKillDisable, oomScoreAdj, pidMode, pidsLimit, portBindings, privileged, publishAllPorts, readonlyPaths, readonlyRootfs, restartPolicy, runtime, securityOpt, shmSize, storageOpt, sysctls, tmpfs, utSMode, ulimits, usernsMode, volumeDriver, volumesFrom);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class HostConfig {\n");
-    sb.append("    annotations: ").append(toIndentedString(annotations)).append("\n");
-    sb.append("    autoRemove: ").append(toIndentedString(autoRemove)).append("\n");
-    sb.append("    binds: ").append(toIndentedString(binds)).append("\n");
-    sb.append("    blkioDeviceReadBps: ").append(toIndentedString(blkioDeviceReadBps)).append("\n");
-    sb.append("    blkioDeviceReadIOps: ").append(toIndentedString(blkioDeviceReadIOps)).append("\n");
-    sb.append("    blkioDeviceWriteBps: ").append(toIndentedString(blkioDeviceWriteBps)).append("\n");
-    sb.append("    blkioDeviceWriteIOps: ").append(toIndentedString(blkioDeviceWriteIOps)).append("\n");
-    sb.append("    blkioWeight: ").append(toIndentedString(blkioWeight)).append("\n");
-    sb.append("    blkioWeightDevice: ").append(toIndentedString(blkioWeightDevice)).append("\n");
-    sb.append("    capAdd: ").append(toIndentedString(capAdd)).append("\n");
-    sb.append("    capDrop: ").append(toIndentedString(capDrop)).append("\n");
-    sb.append("    cgroup: ").append(toIndentedString(cgroup)).append("\n");
-    sb.append("    cgroupParent: ").append(toIndentedString(cgroupParent)).append("\n");
-    sb.append("    cgroupnsMode: ").append(toIndentedString(cgroupnsMode)).append("\n");
-    sb.append("    consoleSize: ").append(toIndentedString(consoleSize)).append("\n");
-    sb.append("    containerIDFile: ").append(toIndentedString(containerIDFile)).append("\n");
-    sb.append("    cpuCount: ").append(toIndentedString(cpuCount)).append("\n");
-    sb.append("    cpuPercent: ").append(toIndentedString(cpuPercent)).append("\n");
-    sb.append("    cpuPeriod: ").append(toIndentedString(cpuPeriod)).append("\n");
-    sb.append("    cpuQuota: ").append(toIndentedString(cpuQuota)).append("\n");
-    sb.append("    cpuRealtimePeriod: ").append(toIndentedString(cpuRealtimePeriod)).append("\n");
-    sb.append("    cpuRealtimeRuntime: ").append(toIndentedString(cpuRealtimeRuntime)).append("\n");
-    sb.append("    cpuShares: ").append(toIndentedString(cpuShares)).append("\n");
-    sb.append("    cpusetCpus: ").append(toIndentedString(cpusetCpus)).append("\n");
-    sb.append("    cpusetMems: ").append(toIndentedString(cpusetMems)).append("\n");
-    sb.append("    deviceCgroupRules: ").append(toIndentedString(deviceCgroupRules)).append("\n");
-    sb.append("    deviceRequests: ").append(toIndentedString(deviceRequests)).append("\n");
-    sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
-    sb.append("    dns: ").append(toIndentedString(dns)).append("\n");
-    sb.append("    dnsOptions: ").append(toIndentedString(dnsOptions)).append("\n");
-    sb.append("    dnsSearch: ").append(toIndentedString(dnsSearch)).append("\n");
-    sb.append("    extraHosts: ").append(toIndentedString(extraHosts)).append("\n");
-    sb.append("    groupAdd: ").append(toIndentedString(groupAdd)).append("\n");
-    sb.append("    ioMaximumBandwidth: ").append(toIndentedString(ioMaximumBandwidth)).append("\n");
-    sb.append("    ioMaximumIOps: ").append(toIndentedString(ioMaximumIOps)).append("\n");
-    sb.append("    init: ").append(toIndentedString(init)).append("\n");
-    sb.append("    ipcMode: ").append(toIndentedString(ipcMode)).append("\n");
-    sb.append("    isolation: ").append(toIndentedString(isolation)).append("\n");
-    sb.append("    kernelMemory: ").append(toIndentedString(kernelMemory)).append("\n");
-    sb.append("    kernelMemoryTCP: ").append(toIndentedString(kernelMemoryTCP)).append("\n");
-    sb.append("    links: ").append(toIndentedString(links)).append("\n");
-    sb.append("    logConfig: ").append(toIndentedString(logConfig)).append("\n");
-    sb.append("    maskedPaths: ").append(toIndentedString(maskedPaths)).append("\n");
-    sb.append("    memory: ").append(toIndentedString(memory)).append("\n");
-    sb.append("    memoryReservation: ").append(toIndentedString(memoryReservation)).append("\n");
-    sb.append("    memorySwap: ").append(toIndentedString(memorySwap)).append("\n");
-    sb.append("    memorySwappiness: ").append(toIndentedString(memorySwappiness)).append("\n");
-    sb.append("    mounts: ").append(toIndentedString(mounts)).append("\n");
-    sb.append("    nanoCpus: ").append(toIndentedString(nanoCpus)).append("\n");
-    sb.append("    networkMode: ").append(toIndentedString(networkMode)).append("\n");
-    sb.append("    oomKillDisable: ").append(toIndentedString(oomKillDisable)).append("\n");
-    sb.append("    oomScoreAdj: ").append(toIndentedString(oomScoreAdj)).append("\n");
-    sb.append("    pidMode: ").append(toIndentedString(pidMode)).append("\n");
-    sb.append("    pidsLimit: ").append(toIndentedString(pidsLimit)).append("\n");
-    sb.append("    portBindings: ").append(toIndentedString(portBindings)).append("\n");
-    sb.append("    privileged: ").append(toIndentedString(privileged)).append("\n");
-    sb.append("    publishAllPorts: ").append(toIndentedString(publishAllPorts)).append("\n");
-    sb.append("    readonlyPaths: ").append(toIndentedString(readonlyPaths)).append("\n");
-    sb.append("    readonlyRootfs: ").append(toIndentedString(readonlyRootfs)).append("\n");
-    sb.append("    restartPolicy: ").append(toIndentedString(restartPolicy)).append("\n");
-    sb.append("    runtime: ").append(toIndentedString(runtime)).append("\n");
-    sb.append("    securityOpt: ").append(toIndentedString(securityOpt)).append("\n");
-    sb.append("    shmSize: ").append(toIndentedString(shmSize)).append("\n");
-    sb.append("    storageOpt: ").append(toIndentedString(storageOpt)).append("\n");
-    sb.append("    sysctls: ").append(toIndentedString(sysctls)).append("\n");
-    sb.append("    tmpfs: ").append(toIndentedString(tmpfs)).append("\n");
-    sb.append("    utSMode: ").append(toIndentedString(utSMode)).append("\n");
-    sb.append("    ulimits: ").append(toIndentedString(ulimits)).append("\n");
-    sb.append("    usernsMode: ").append(toIndentedString(usernsMode)).append("\n");
-    sb.append("    volumeDriver: ").append(toIndentedString(volumeDriver)).append("\n");
-    sb.append("    volumesFrom: ").append(toIndentedString(volumesFrom)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @return URL query string
-   */
-  public String toUrlQueryString() {
-    return toUrlQueryString(null);
-  }
-
-  /**
-   * Convert the instance into URL query string.
-   *
-   * @param prefix prefix of the query string
-   * @return URL query string
-   */
-  public String toUrlQueryString(String prefix) {
-    String suffix = "";
-    String containerSuffix = "";
-    String containerPrefix = "";
-    if (prefix == null) {
-      // style=form, explode=true, e.g. /pet?name=cat&type=manx
-      prefix = "";
-    } else {
-      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
-      prefix = prefix + "[";
-      suffix = "]";
-      containerSuffix = "]";
-      containerPrefix = "[";
+    public static final String SERIALIZED_NAME_ANNOTATIONS = "Annotations";
+    public static final String SERIALIZED_NAME_AUTO_REMOVE = "AutoRemove";
+    public static final String SERIALIZED_NAME_BINDS = "Binds";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_READ_BPS = "BlkioDeviceReadBps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_READ_I_OPS = "BlkioDeviceReadIOps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_WRITE_BPS = "BlkioDeviceWriteBps";
+    public static final String SERIALIZED_NAME_BLKIO_DEVICE_WRITE_I_OPS = "BlkioDeviceWriteIOps";
+    public static final String SERIALIZED_NAME_BLKIO_WEIGHT = "BlkioWeight";
+    public static final String SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE = "BlkioWeightDevice";
+    public static final String SERIALIZED_NAME_CAP_ADD = "CapAdd";
+    public static final String SERIALIZED_NAME_CAP_DROP = "CapDrop";
+    public static final String SERIALIZED_NAME_CGROUP = "Cgroup";
+    public static final String SERIALIZED_NAME_CGROUP_PARENT = "CgroupParent";
+    public static final String SERIALIZED_NAME_CGROUPNS_MODE = "CgroupnsMode";
+    public static final String SERIALIZED_NAME_CONSOLE_SIZE = "ConsoleSize";
+    public static final String SERIALIZED_NAME_CONTAINER_I_D_FILE = "ContainerIDFile";
+    public static final String SERIALIZED_NAME_CPU_COUNT = "CpuCount";
+    public static final String SERIALIZED_NAME_CPU_PERCENT = "CpuPercent";
+    public static final String SERIALIZED_NAME_CPU_PERIOD = "CpuPeriod";
+    public static final String SERIALIZED_NAME_CPU_QUOTA = "CpuQuota";
+    public static final String SERIALIZED_NAME_CPU_REALTIME_PERIOD = "CpuRealtimePeriod";
+    public static final String SERIALIZED_NAME_CPU_REALTIME_RUNTIME = "CpuRealtimeRuntime";
+    public static final String SERIALIZED_NAME_CPU_SHARES = "CpuShares";
+    public static final String SERIALIZED_NAME_CPUSET_CPUS = "CpusetCpus";
+    public static final String SERIALIZED_NAME_CPUSET_MEMS = "CpusetMems";
+    public static final String SERIALIZED_NAME_DEVICE_CGROUP_RULES = "DeviceCgroupRules";
+    public static final String SERIALIZED_NAME_DEVICE_REQUESTS = "DeviceRequests";
+    public static final String SERIALIZED_NAME_DEVICES = "Devices";
+    public static final String SERIALIZED_NAME_DNS = "Dns";
+    public static final String SERIALIZED_NAME_DNS_OPTIONS = "DnsOptions";
+    public static final String SERIALIZED_NAME_DNS_SEARCH = "DnsSearch";
+    public static final String SERIALIZED_NAME_EXTRA_HOSTS = "ExtraHosts";
+    public static final String SERIALIZED_NAME_GROUP_ADD = "GroupAdd";
+    public static final String SERIALIZED_NAME_IO_MAXIMUM_BANDWIDTH = "IOMaximumBandwidth";
+    public static final String SERIALIZED_NAME_IO_MAXIMUM_I_OPS = "IOMaximumIOps";
+    public static final String SERIALIZED_NAME_INIT = "Init";
+    public static final String SERIALIZED_NAME_IPC_MODE = "IpcMode";
+    public static final String SERIALIZED_NAME_ISOLATION = "Isolation";
+    public static final String SERIALIZED_NAME_KERNEL_MEMORY = "KernelMemory";
+    public static final String SERIALIZED_NAME_KERNEL_MEMORY_T_C_P = "KernelMemoryTCP";
+    public static final String SERIALIZED_NAME_LINKS = "Links";
+    public static final String SERIALIZED_NAME_LOG_CONFIG = "LogConfig";
+    public static final String SERIALIZED_NAME_MASKED_PATHS = "MaskedPaths";
+    public static final String SERIALIZED_NAME_MEMORY = "Memory";
+    public static final String SERIALIZED_NAME_MEMORY_RESERVATION = "MemoryReservation";
+    public static final String SERIALIZED_NAME_MEMORY_SWAP = "MemorySwap";
+    public static final String SERIALIZED_NAME_MEMORY_SWAPPINESS = "MemorySwappiness";
+    public static final String SERIALIZED_NAME_MOUNTS = "Mounts";
+    public static final String SERIALIZED_NAME_NANO_CPUS = "NanoCpus";
+    public static final String SERIALIZED_NAME_NETWORK_MODE = "NetworkMode";
+    public static final String SERIALIZED_NAME_OOM_KILL_DISABLE = "OomKillDisable";
+    public static final String SERIALIZED_NAME_OOM_SCORE_ADJ = "OomScoreAdj";
+    public static final String SERIALIZED_NAME_PID_MODE = "PidMode";
+    public static final String SERIALIZED_NAME_PIDS_LIMIT = "PidsLimit";
+    public static final String SERIALIZED_NAME_PORT_BINDINGS = "PortBindings";
+    public static final String SERIALIZED_NAME_PRIVILEGED = "Privileged";
+    public static final String SERIALIZED_NAME_PUBLISH_ALL_PORTS = "PublishAllPorts";
+    public static final String SERIALIZED_NAME_READONLY_PATHS = "ReadonlyPaths";
+    public static final String SERIALIZED_NAME_READONLY_ROOTFS = "ReadonlyRootfs";
+    public static final String SERIALIZED_NAME_RESTART_POLICY = "RestartPolicy";
+    public static final String SERIALIZED_NAME_RUNTIME = "Runtime";
+    public static final String SERIALIZED_NAME_SECURITY_OPT = "SecurityOpt";
+    public static final String SERIALIZED_NAME_SHM_SIZE = "ShmSize";
+    public static final String SERIALIZED_NAME_STORAGE_OPT = "StorageOpt";
+    public static final String SERIALIZED_NAME_SYSCTLS = "Sysctls";
+    public static final String SERIALIZED_NAME_TMPFS = "Tmpfs";
+    public static final String SERIALIZED_NAME_UT_S_MODE = "UTSMode";
+    public static final String SERIALIZED_NAME_ULIMITS = "Ulimits";
+    public static final String SERIALIZED_NAME_USERNS_MODE = "UsernsMode";
+    public static final String SERIALIZED_NAME_VOLUME_DRIVER = "VolumeDriver";
+    public static final String SERIALIZED_NAME_VOLUMES_FROM = "VolumesFrom";
+    public static HashSet<String> openapiFields;
+    public static HashSet<String> openapiRequiredFields;
+
+    static {
+        // a set of all properties/fields (JSON key names)
+        openapiFields = new HashSet<String>();
+        openapiFields.add("Annotations");
+        openapiFields.add("AutoRemove");
+        openapiFields.add("Binds");
+        openapiFields.add("BlkioDeviceReadBps");
+        openapiFields.add("BlkioDeviceReadIOps");
+        openapiFields.add("BlkioDeviceWriteBps");
+        openapiFields.add("BlkioDeviceWriteIOps");
+        openapiFields.add("BlkioWeight");
+        openapiFields.add("BlkioWeightDevice");
+        openapiFields.add("CapAdd");
+        openapiFields.add("CapDrop");
+        openapiFields.add("Cgroup");
+        openapiFields.add("CgroupParent");
+        openapiFields.add("CgroupnsMode");
+        openapiFields.add("ConsoleSize");
+        openapiFields.add("ContainerIDFile");
+        openapiFields.add("CpuCount");
+        openapiFields.add("CpuPercent");
+        openapiFields.add("CpuPeriod");
+        openapiFields.add("CpuQuota");
+        openapiFields.add("CpuRealtimePeriod");
+        openapiFields.add("CpuRealtimeRuntime");
+        openapiFields.add("CpuShares");
+        openapiFields.add("CpusetCpus");
+        openapiFields.add("CpusetMems");
+        openapiFields.add("DeviceCgroupRules");
+        openapiFields.add("DeviceRequests");
+        openapiFields.add("Devices");
+        openapiFields.add("Dns");
+        openapiFields.add("DnsOptions");
+        openapiFields.add("DnsSearch");
+        openapiFields.add("ExtraHosts");
+        openapiFields.add("GroupAdd");
+        openapiFields.add("IOMaximumBandwidth");
+        openapiFields.add("IOMaximumIOps");
+        openapiFields.add("Init");
+        openapiFields.add("IpcMode");
+        openapiFields.add("Isolation");
+        openapiFields.add("KernelMemory");
+        openapiFields.add("KernelMemoryTCP");
+        openapiFields.add("Links");
+        openapiFields.add("LogConfig");
+        openapiFields.add("MaskedPaths");
+        openapiFields.add("Memory");
+        openapiFields.add("MemoryReservation");
+        openapiFields.add("MemorySwap");
+        openapiFields.add("MemorySwappiness");
+        openapiFields.add("Mounts");
+        openapiFields.add("NanoCpus");
+        openapiFields.add("NetworkMode");
+        openapiFields.add("OomKillDisable");
+        openapiFields.add("OomScoreAdj");
+        openapiFields.add("PidMode");
+        openapiFields.add("PidsLimit");
+        openapiFields.add("PortBindings");
+        openapiFields.add("Privileged");
+        openapiFields.add("PublishAllPorts");
+        openapiFields.add("ReadonlyPaths");
+        openapiFields.add("ReadonlyRootfs");
+        openapiFields.add("RestartPolicy");
+        openapiFields.add("Runtime");
+        openapiFields.add("SecurityOpt");
+        openapiFields.add("ShmSize");
+        openapiFields.add("StorageOpt");
+        openapiFields.add("Sysctls");
+        openapiFields.add("Tmpfs");
+        openapiFields.add("UTSMode");
+        openapiFields.add("Ulimits");
+        openapiFields.add("UsernsMode");
+        openapiFields.add("VolumeDriver");
+        openapiFields.add("VolumesFrom");
+
+        // a set of required properties/fields (JSON key names)
+        openapiRequiredFields = new HashSet<String>();
     }
 
-    StringJoiner joiner = new StringJoiner("&");
+    @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+    private Map<String, String> annotations = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_AUTO_REMOVE)
+    private Boolean autoRemove;
+    @SerializedName(SERIALIZED_NAME_BINDS)
+    private List<String> binds = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_READ_BPS)
+    private List<@Valid ThrottleDevice> blkioDeviceReadBps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_READ_I_OPS)
+    private List<@Valid ThrottleDevice> blkioDeviceReadIOps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_WRITE_BPS)
+    private List<@Valid ThrottleDevice> blkioDeviceWriteBps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_DEVICE_WRITE_I_OPS)
+    private List<@Valid ThrottleDevice> blkioDeviceWriteIOps = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT)
+    private Integer blkioWeight;
+    @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE)
+    private List<@Valid WeightDevice> blkioWeightDevice = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CAP_ADD)
+    private List<String> capAdd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CAP_DROP)
+    private List<String> capDrop = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CGROUP)
+    private String cgroup;
+    @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
+    private String cgroupParent;
+    @SerializedName(SERIALIZED_NAME_CGROUPNS_MODE)
+    private String cgroupnsMode;
+    @SerializedName(SERIALIZED_NAME_CONSOLE_SIZE)
+    private List<Integer> consoleSize = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_CONTAINER_I_D_FILE)
+    private String containerIDFile;
+    @SerializedName(SERIALIZED_NAME_CPU_COUNT)
+    private Long cpuCount;
+    @SerializedName(SERIALIZED_NAME_CPU_PERCENT)
+    private Long cpuPercent;
+    @SerializedName(SERIALIZED_NAME_CPU_PERIOD)
+    private Long cpuPeriod;
+    @SerializedName(SERIALIZED_NAME_CPU_QUOTA)
+    private Long cpuQuota;
+    @SerializedName(SERIALIZED_NAME_CPU_REALTIME_PERIOD)
+    private Long cpuRealtimePeriod;
+    @SerializedName(SERIALIZED_NAME_CPU_REALTIME_RUNTIME)
+    private Long cpuRealtimeRuntime;
+    @SerializedName(SERIALIZED_NAME_CPU_SHARES)
+    private Long cpuShares;
+    @SerializedName(SERIALIZED_NAME_CPUSET_CPUS)
+    private String cpusetCpus;
+    @SerializedName(SERIALIZED_NAME_CPUSET_MEMS)
+    private String cpusetMems;
+    @SerializedName(SERIALIZED_NAME_DEVICE_CGROUP_RULES)
+    private List<String> deviceCgroupRules = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEVICE_REQUESTS)
+    private List<@Valid DeviceRequest> deviceRequests = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DEVICES)
+    private List<@Valid DeviceMapping> devices = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DNS)
+    private List<String> dns = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DNS_OPTIONS)
+    private List<String> dnsOptions = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_DNS_SEARCH)
+    private List<String> dnsSearch = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_EXTRA_HOSTS)
+    private List<String> extraHosts = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_GROUP_ADD)
+    private List<String> groupAdd = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_IO_MAXIMUM_BANDWIDTH)
+    private Integer ioMaximumBandwidth;
+    @SerializedName(SERIALIZED_NAME_IO_MAXIMUM_I_OPS)
+    private Integer ioMaximumIOps;
+    @SerializedName(SERIALIZED_NAME_INIT)
+    private Boolean init;
+    @SerializedName(SERIALIZED_NAME_IPC_MODE)
+    private String ipcMode;
+    @SerializedName(SERIALIZED_NAME_ISOLATION)
+    private String isolation;
+    @SerializedName(SERIALIZED_NAME_KERNEL_MEMORY)
+    private Long kernelMemory;
+    @SerializedName(SERIALIZED_NAME_KERNEL_MEMORY_T_C_P)
+    private Long kernelMemoryTCP;
+    @SerializedName(SERIALIZED_NAME_LINKS)
+    private List<String> links = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_LOG_CONFIG)
+    private LogConfig logConfig;
+    @SerializedName(SERIALIZED_NAME_MASKED_PATHS)
+    private List<String> maskedPaths = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_MEMORY)
+    private Long memory;
+    @SerializedName(SERIALIZED_NAME_MEMORY_RESERVATION)
+    private Long memoryReservation;
+    @SerializedName(SERIALIZED_NAME_MEMORY_SWAP)
+    private Long memorySwap;
+    @SerializedName(SERIALIZED_NAME_MEMORY_SWAPPINESS)
+    private Long memorySwappiness;
+    @SerializedName(SERIALIZED_NAME_MOUNTS)
+    private List<@Valid Mount> mounts = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_NANO_CPUS)
+    private Long nanoCpus;
+    @SerializedName(SERIALIZED_NAME_NETWORK_MODE)
+    private String networkMode;
+    @SerializedName(SERIALIZED_NAME_OOM_KILL_DISABLE)
+    private Boolean oomKillDisable;
+    @SerializedName(SERIALIZED_NAME_OOM_SCORE_ADJ)
+    private Long oomScoreAdj;
+    @SerializedName(SERIALIZED_NAME_PID_MODE)
+    private String pidMode;
+    @SerializedName(SERIALIZED_NAME_PIDS_LIMIT)
+    private Long pidsLimit;
+    @SerializedName(SERIALIZED_NAME_PORT_BINDINGS)
+    private Map<String, List<@Valid PortBinding>> portBindings = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_PRIVILEGED)
+    private Boolean privileged;
+    @SerializedName(SERIALIZED_NAME_PUBLISH_ALL_PORTS)
+    private Boolean publishAllPorts;
+    @SerializedName(SERIALIZED_NAME_READONLY_PATHS)
+    private List<String> readonlyPaths = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_READONLY_ROOTFS)
+    private Boolean readonlyRootfs;
+    @SerializedName(SERIALIZED_NAME_RESTART_POLICY)
+    private RestartPolicy restartPolicy;
+    @SerializedName(SERIALIZED_NAME_RUNTIME)
+    private String runtime;
+    @SerializedName(SERIALIZED_NAME_SECURITY_OPT)
+    private List<String> securityOpt = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_SHM_SIZE)
+    private Long shmSize;
+    @SerializedName(SERIALIZED_NAME_STORAGE_OPT)
+    private Map<String, String> storageOpt = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_SYSCTLS)
+    private Map<String, String> sysctls = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_TMPFS)
+    private Map<String, String> tmpfs = new HashMap<>();
+    @SerializedName(SERIALIZED_NAME_UT_S_MODE)
+    private String utSMode;
+    @SerializedName(SERIALIZED_NAME_ULIMITS)
+    private List<@Valid Ulimit> ulimits = new ArrayList<>();
+    @SerializedName(SERIALIZED_NAME_USERNS_MODE)
+    private String usernsMode;
+    @SerializedName(SERIALIZED_NAME_VOLUME_DRIVER)
+    private String volumeDriver;
+    @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
+    private List<String> volumesFrom = new ArrayList<>();
 
-    // add `Annotations` to the URL query string
-    if (getAnnotations() != null) {
-      for (String _key : getAnnotations().keySet()) {
-        joiner.add(String.format("%sAnnotations%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public HostConfig() {
     }
 
-    // add `AutoRemove` to the URL query string
-    if (getAutoRemove() != null) {
-      joiner.add(String.format("%sAutoRemove%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAutoRemove()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Binds` to the URL query string
-    if (getBinds() != null) {
-      for (int i = 0; i < getBinds().size(); i++) {
-        joiner.add(String.format("%sBinds%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getBinds().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `BlkioDeviceReadBps` to the URL query string
-    if (getBlkioDeviceReadBps() != null) {
-      for (int i = 0; i < getBlkioDeviceReadBps().size(); i++) {
-        if (getBlkioDeviceReadBps().get(i) != null) {
-          joiner.add(getBlkioDeviceReadBps().get(i).toUrlQueryString(String.format("%sBlkioDeviceReadBps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+    /**
+     * Validates the JSON Element and throws an exception if issues found
+     *
+     * @param jsonElement JSON Element
+     * @throws IOException if the JSON Element is invalid with respect to HostConfig
+     */
+    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+        if (jsonElement == null) {
+            if (!HostConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+                throw new IllegalArgumentException(String.format("The required field(s) %s in HostConfig is not found in the empty JSON string", HostConfig.openapiRequiredFields));
+            }
         }
-      }
-    }
 
-    // add `BlkioDeviceReadIOps` to the URL query string
-    if (getBlkioDeviceReadIOps() != null) {
-      for (int i = 0; i < getBlkioDeviceReadIOps().size(); i++) {
-        if (getBlkioDeviceReadIOps().get(i) != null) {
-          joiner.add(getBlkioDeviceReadIOps().get(i).toUrlQueryString(String.format("%sBlkioDeviceReadIOps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+        // check to see if the JSON string contains additional fields
+        for (Map.Entry<String, JsonElement> entry : entries) {
+            if (!HostConfig.openapiFields.contains(entry.getKey())) {
+                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HostConfig` properties. JSON: %s", entry.getKey(), jsonElement));
+            }
         }
-      }
-    }
-
-    // add `BlkioDeviceWriteBps` to the URL query string
-    if (getBlkioDeviceWriteBps() != null) {
-      for (int i = 0; i < getBlkioDeviceWriteBps().size(); i++) {
-        if (getBlkioDeviceWriteBps().get(i) != null) {
-          joiner.add(getBlkioDeviceWriteBps().get(i).toUrlQueryString(String.format("%sBlkioDeviceWriteBps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        JsonObject jsonObj = jsonElement.getAsJsonObject();
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Binds") != null && !jsonObj.get("Binds").isJsonNull() && !jsonObj.get("Binds").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Binds` to be an array in the JSON string but got `%s`", jsonObj.get("Binds").toString()));
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceReadBps") != null && !jsonObj.get("BlkioDeviceReadBps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceReadBps = jsonObj.getAsJsonArray("BlkioDeviceReadBps");
+            if (jsonArrayblkioDeviceReadBps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceReadBps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceReadBps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceReadBps").toString()));
+                }
 
-    // add `BlkioDeviceWriteIOps` to the URL query string
-    if (getBlkioDeviceWriteIOps() != null) {
-      for (int i = 0; i < getBlkioDeviceWriteIOps().size(); i++) {
-        if (getBlkioDeviceWriteIOps().get(i) != null) {
-          joiner.add(getBlkioDeviceWriteIOps().get(i).toUrlQueryString(String.format("%sBlkioDeviceWriteIOps%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceReadBps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceReadBps.size(); i++) {
+                    ThrottleDevice.validateJsonElement(jsonArrayblkioDeviceReadBps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceReadIOps") != null && !jsonObj.get("BlkioDeviceReadIOps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceReadIOps = jsonObj.getAsJsonArray("BlkioDeviceReadIOps");
+            if (jsonArrayblkioDeviceReadIOps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceReadIOps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceReadIOps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceReadIOps").toString()));
+                }
 
-    // add `BlkioWeight` to the URL query string
-    if (getBlkioWeight() != null) {
-      joiner.add(String.format("%sBlkioWeight%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBlkioWeight()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `BlkioWeightDevice` to the URL query string
-    if (getBlkioWeightDevice() != null) {
-      for (int i = 0; i < getBlkioWeightDevice().size(); i++) {
-        if (getBlkioWeightDevice().get(i) != null) {
-          joiner.add(getBlkioWeightDevice().get(i).toUrlQueryString(String.format("%sBlkioWeightDevice%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceReadIOps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceReadIOps.size(); i++) {
+                    ThrottleDevice.validateJsonElement(jsonArrayblkioDeviceReadIOps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceWriteBps") != null && !jsonObj.get("BlkioDeviceWriteBps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceWriteBps = jsonObj.getAsJsonArray("BlkioDeviceWriteBps");
+            if (jsonArrayblkioDeviceWriteBps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceWriteBps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceWriteBps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceWriteBps").toString()));
+                }
 
-    // add `CapAdd` to the URL query string
-    if (getCapAdd() != null) {
-      for (int i = 0; i < getCapAdd().size(); i++) {
-        joiner.add(String.format("%sCapAdd%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCapAdd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `CapDrop` to the URL query string
-    if (getCapDrop() != null) {
-      for (int i = 0; i < getCapDrop().size(); i++) {
-        joiner.add(String.format("%sCapDrop%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getCapDrop().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Cgroup` to the URL query string
-    if (getCgroup() != null) {
-      joiner.add(String.format("%sCgroup%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroup()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CgroupParent` to the URL query string
-    if (getCgroupParent() != null) {
-      joiner.add(String.format("%sCgroupParent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CgroupnsMode` to the URL query string
-    if (getCgroupnsMode() != null) {
-      joiner.add(String.format("%sCgroupnsMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupnsMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `ConsoleSize` to the URL query string
-    if (getConsoleSize() != null) {
-      for (int i = 0; i < getConsoleSize().size(); i++) {
-        joiner.add(String.format("%sConsoleSize%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getConsoleSize().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `ContainerIDFile` to the URL query string
-    if (getContainerIDFile() != null) {
-      joiner.add(String.format("%sContainerIDFile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainerIDFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuCount` to the URL query string
-    if (getCpuCount() != null) {
-      joiner.add(String.format("%sCpuCount%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuPercent` to the URL query string
-    if (getCpuPercent() != null) {
-      joiner.add(String.format("%sCpuPercent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuPercent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuPeriod` to the URL query string
-    if (getCpuPeriod() != null) {
-      joiner.add(String.format("%sCpuPeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuQuota` to the URL query string
-    if (getCpuQuota() != null) {
-      joiner.add(String.format("%sCpuQuota%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuQuota()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuRealtimePeriod` to the URL query string
-    if (getCpuRealtimePeriod() != null) {
-      joiner.add(String.format("%sCpuRealtimePeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuRealtimePeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuRealtimeRuntime` to the URL query string
-    if (getCpuRealtimeRuntime() != null) {
-      joiner.add(String.format("%sCpuRealtimeRuntime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuRealtimeRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpuShares` to the URL query string
-    if (getCpuShares() != null) {
-      joiner.add(String.format("%sCpuShares%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuShares()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpusetCpus` to the URL query string
-    if (getCpusetCpus() != null) {
-      joiner.add(String.format("%sCpusetCpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `CpusetMems` to the URL query string
-    if (getCpusetMems() != null) {
-      joiner.add(String.format("%sCpusetMems%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetMems()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `DeviceCgroupRules` to the URL query string
-    if (getDeviceCgroupRules() != null) {
-      for (int i = 0; i < getDeviceCgroupRules().size(); i++) {
-        joiner.add(String.format("%sDeviceCgroupRules%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDeviceCgroupRules().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `DeviceRequests` to the URL query string
-    if (getDeviceRequests() != null) {
-      for (int i = 0; i < getDeviceRequests().size(); i++) {
-        if (getDeviceRequests().get(i) != null) {
-          joiner.add(getDeviceRequests().get(i).toUrlQueryString(String.format("%sDeviceRequests%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceWriteBps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceWriteBps.size(); i++) {
+                    ThrottleDevice.validateJsonElement(jsonArrayblkioDeviceWriteBps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioDeviceWriteIOps") != null && !jsonObj.get("BlkioDeviceWriteIOps").isJsonNull()) {
+            JsonArray jsonArrayblkioDeviceWriteIOps = jsonObj.getAsJsonArray("BlkioDeviceWriteIOps");
+            if (jsonArrayblkioDeviceWriteIOps != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioDeviceWriteIOps").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioDeviceWriteIOps` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioDeviceWriteIOps").toString()));
+                }
 
-    // add `Devices` to the URL query string
-    if (getDevices() != null) {
-      for (int i = 0; i < getDevices().size(); i++) {
-        if (getDevices().get(i) != null) {
-          joiner.add(getDevices().get(i).toUrlQueryString(String.format("%sDevices%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioDeviceWriteIOps` (array)
+                for (int i = 0; i < jsonArrayblkioDeviceWriteIOps.size(); i++) {
+                    ThrottleDevice.validateJsonElement(jsonArrayblkioDeviceWriteIOps.get(i));
+                }
+            }
         }
-      }
-    }
+        if (jsonObj.get("BlkioWeightDevice") != null && !jsonObj.get("BlkioWeightDevice").isJsonNull()) {
+            JsonArray jsonArrayblkioWeightDevice = jsonObj.getAsJsonArray("BlkioWeightDevice");
+            if (jsonArrayblkioWeightDevice != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("BlkioWeightDevice").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `BlkioWeightDevice` to be an array in the JSON string but got `%s`", jsonObj.get("BlkioWeightDevice").toString()));
+                }
 
-    // add `Dns` to the URL query string
-    if (getDns() != null) {
-      for (int i = 0; i < getDns().size(); i++) {
-        joiner.add(String.format("%sDns%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDns().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `DnsOptions` to the URL query string
-    if (getDnsOptions() != null) {
-      for (int i = 0; i < getDnsOptions().size(); i++) {
-        joiner.add(String.format("%sDnsOptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDnsOptions().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `DnsSearch` to the URL query string
-    if (getDnsSearch() != null) {
-      for (int i = 0; i < getDnsSearch().size(); i++) {
-        joiner.add(String.format("%sDnsSearch%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getDnsSearch().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `ExtraHosts` to the URL query string
-    if (getExtraHosts() != null) {
-      for (int i = 0; i < getExtraHosts().size(); i++) {
-        joiner.add(String.format("%sExtraHosts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getExtraHosts().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `GroupAdd` to the URL query string
-    if (getGroupAdd() != null) {
-      for (int i = 0; i < getGroupAdd().size(); i++) {
-        joiner.add(String.format("%sGroupAdd%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getGroupAdd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `IOMaximumBandwidth` to the URL query string
-    if (getIoMaximumBandwidth() != null) {
-      joiner.add(String.format("%sIOMaximumBandwidth%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIoMaximumBandwidth()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IOMaximumIOps` to the URL query string
-    if (getIoMaximumIOps() != null) {
-      joiner.add(String.format("%sIOMaximumIOps%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIoMaximumIOps()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Init` to the URL query string
-    if (getInit() != null) {
-      joiner.add(String.format("%sInit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `IpcMode` to the URL query string
-    if (getIpcMode() != null) {
-      joiner.add(String.format("%sIpcMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpcMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Isolation` to the URL query string
-    if (getIsolation() != null) {
-      joiner.add(String.format("%sIsolation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIsolation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `KernelMemory` to the URL query string
-    if (getKernelMemory() != null) {
-      joiner.add(String.format("%sKernelMemory%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernelMemory()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `KernelMemoryTCP` to the URL query string
-    if (getKernelMemoryTCP() != null) {
-      joiner.add(String.format("%sKernelMemoryTCP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernelMemoryTCP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Links` to the URL query string
-    if (getLinks() != null) {
-      for (int i = 0; i < getLinks().size(); i++) {
-        joiner.add(String.format("%sLinks%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getLinks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `LogConfig` to the URL query string
-    if (getLogConfig() != null) {
-      joiner.add(getLogConfig().toUrlQueryString(prefix + "LogConfig" + suffix));
-    }
-
-    // add `MaskedPaths` to the URL query string
-    if (getMaskedPaths() != null) {
-      for (int i = 0; i < getMaskedPaths().size(); i++) {
-        joiner.add(String.format("%sMaskedPaths%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getMaskedPaths().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Memory` to the URL query string
-    if (getMemory() != null) {
-      joiner.add(String.format("%sMemory%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemory()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemoryReservation` to the URL query string
-    if (getMemoryReservation() != null) {
-      joiner.add(String.format("%sMemoryReservation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemoryReservation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemorySwap` to the URL query string
-    if (getMemorySwap() != null) {
-      joiner.add(String.format("%sMemorySwap%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemorySwap()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `MemorySwappiness` to the URL query string
-    if (getMemorySwappiness() != null) {
-      joiner.add(String.format("%sMemorySwappiness%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemorySwappiness()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Mounts` to the URL query string
-    if (getMounts() != null) {
-      for (int i = 0; i < getMounts().size(); i++) {
-        if (getMounts().get(i) != null) {
-          joiner.add(getMounts().get(i).toUrlQueryString(String.format("%sMounts%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+                // validate the optional field `BlkioWeightDevice` (array)
+                for (int i = 0; i < jsonArrayblkioWeightDevice.size(); i++) {
+                    WeightDevice.validateJsonElement(jsonArrayblkioWeightDevice.get(i));
+                }
+            }
         }
-      }
-    }
-
-    // add `NanoCpus` to the URL query string
-    if (getNanoCpus() != null) {
-      joiner.add(String.format("%sNanoCpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNanoCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `NetworkMode` to the URL query string
-    if (getNetworkMode() != null) {
-      joiner.add(String.format("%sNetworkMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetworkMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `OomKillDisable` to the URL query string
-    if (getOomKillDisable() != null) {
-      joiner.add(String.format("%sOomKillDisable%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOomKillDisable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `OomScoreAdj` to the URL query string
-    if (getOomScoreAdj() != null) {
-      joiner.add(String.format("%sOomScoreAdj%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOomScoreAdj()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PidMode` to the URL query string
-    if (getPidMode() != null) {
-      joiner.add(String.format("%sPidMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPidMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PidsLimit` to the URL query string
-    if (getPidsLimit() != null) {
-      joiner.add(String.format("%sPidsLimit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPidsLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PortBindings` to the URL query string
-    if (getPortBindings() != null) {
-      for (String _key : getPortBindings().keySet()) {
-        joiner.add(String.format("%sPortBindings%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getPortBindings().get(_key), URLEncoder.encode(ApiClient.valueToString(getPortBindings().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Privileged` to the URL query string
-    if (getPrivileged() != null) {
-      joiner.add(String.format("%sPrivileged%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivileged()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `PublishAllPorts` to the URL query string
-    if (getPublishAllPorts() != null) {
-      joiner.add(String.format("%sPublishAllPorts%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPublishAllPorts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `ReadonlyPaths` to the URL query string
-    if (getReadonlyPaths() != null) {
-      for (int i = 0; i < getReadonlyPaths().size(); i++) {
-        joiner.add(String.format("%sReadonlyPaths%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getReadonlyPaths().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `ReadonlyRootfs` to the URL query string
-    if (getReadonlyRootfs() != null) {
-      joiner.add(String.format("%sReadonlyRootfs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadonlyRootfs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `RestartPolicy` to the URL query string
-    if (getRestartPolicy() != null) {
-      joiner.add(getRestartPolicy().toUrlQueryString(prefix + "RestartPolicy" + suffix));
-    }
-
-    // add `Runtime` to the URL query string
-    if (getRuntime() != null) {
-      joiner.add(String.format("%sRuntime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `SecurityOpt` to the URL query string
-    if (getSecurityOpt() != null) {
-      for (int i = 0; i < getSecurityOpt().size(); i++) {
-        joiner.add(String.format("%sSecurityOpt%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getSecurityOpt().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `ShmSize` to the URL query string
-    if (getShmSize() != null) {
-      joiner.add(String.format("%sShmSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShmSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `StorageOpt` to the URL query string
-    if (getStorageOpt() != null) {
-      for (String _key : getStorageOpt().keySet()) {
-        joiner.add(String.format("%sStorageOpt%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getStorageOpt().get(_key), URLEncoder.encode(ApiClient.valueToString(getStorageOpt().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Sysctls` to the URL query string
-    if (getSysctls() != null) {
-      for (String _key : getSysctls().keySet()) {
-        joiner.add(String.format("%sSysctls%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getSysctls().get(_key), URLEncoder.encode(ApiClient.valueToString(getSysctls().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `Tmpfs` to the URL query string
-    if (getTmpfs() != null) {
-      for (String _key : getTmpfs().keySet()) {
-        joiner.add(String.format("%sTmpfs%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
-            getTmpfs().get(_key), URLEncoder.encode(ApiClient.valueToString(getTmpfs().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
-    }
-
-    // add `UTSMode` to the URL query string
-    if (getUtSMode() != null) {
-      joiner.add(String.format("%sUTSMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUtSMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-    }
-
-    // add `Ulimits` to the URL query string
-    if (getUlimits() != null) {
-      for (int i = 0; i < getUlimits().size(); i++) {
-        if (getUlimits().get(i) != null) {
-          joiner.add(getUlimits().get(i).toUrlQueryString(String.format("%sUlimits%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("CapAdd") != null && !jsonObj.get("CapAdd").isJsonNull() && !jsonObj.get("CapAdd").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CapAdd` to be an array in the JSON string but got `%s`", jsonObj.get("CapAdd").toString()));
         }
-      }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("CapDrop") != null && !jsonObj.get("CapDrop").isJsonNull() && !jsonObj.get("CapDrop").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CapDrop` to be an array in the JSON string but got `%s`", jsonObj.get("CapDrop").toString()));
+        }
+        if ((jsonObj.get("Cgroup") != null && !jsonObj.get("Cgroup").isJsonNull()) && !jsonObj.get("Cgroup").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Cgroup` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Cgroup").toString()));
+        }
+        if ((jsonObj.get("CgroupParent") != null && !jsonObj.get("CgroupParent").isJsonNull()) && !jsonObj.get("CgroupParent").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CgroupParent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupParent").toString()));
+        }
+        if ((jsonObj.get("CgroupnsMode") != null && !jsonObj.get("CgroupnsMode").isJsonNull()) && !jsonObj.get("CgroupnsMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CgroupnsMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupnsMode").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("ConsoleSize") != null && !jsonObj.get("ConsoleSize").isJsonNull() && !jsonObj.get("ConsoleSize").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ConsoleSize` to be an array in the JSON string but got `%s`", jsonObj.get("ConsoleSize").toString()));
+        }
+        if ((jsonObj.get("ContainerIDFile") != null && !jsonObj.get("ContainerIDFile").isJsonNull()) && !jsonObj.get("ContainerIDFile").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ContainerIDFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerIDFile").toString()));
+        }
+        if ((jsonObj.get("CpusetCpus") != null && !jsonObj.get("CpusetCpus").isJsonNull()) && !jsonObj.get("CpusetCpus").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CpusetCpus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CpusetCpus").toString()));
+        }
+        if ((jsonObj.get("CpusetMems") != null && !jsonObj.get("CpusetMems").isJsonNull()) && !jsonObj.get("CpusetMems").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `CpusetMems` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CpusetMems").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("DeviceCgroupRules") != null && !jsonObj.get("DeviceCgroupRules").isJsonNull() && !jsonObj.get("DeviceCgroupRules").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DeviceCgroupRules` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceCgroupRules").toString()));
+        }
+        if (jsonObj.get("DeviceRequests") != null && !jsonObj.get("DeviceRequests").isJsonNull()) {
+            JsonArray jsonArraydeviceRequests = jsonObj.getAsJsonArray("DeviceRequests");
+            if (jsonArraydeviceRequests != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("DeviceRequests").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `DeviceRequests` to be an array in the JSON string but got `%s`", jsonObj.get("DeviceRequests").toString()));
+                }
+
+                // validate the optional field `DeviceRequests` (array)
+                for (int i = 0; i < jsonArraydeviceRequests.size(); i++) {
+                    DeviceRequest.validateJsonElement(jsonArraydeviceRequests.get(i));
+                }
+            }
+        }
+        if (jsonObj.get("Devices") != null && !jsonObj.get("Devices").isJsonNull()) {
+            JsonArray jsonArraydevices = jsonObj.getAsJsonArray("Devices");
+            if (jsonArraydevices != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Devices").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Devices` to be an array in the JSON string but got `%s`", jsonObj.get("Devices").toString()));
+                }
+
+                // validate the optional field `Devices` (array)
+                for (int i = 0; i < jsonArraydevices.size(); i++) {
+                    DeviceMapping.validateJsonElement(jsonArraydevices.get(i));
+                }
+            }
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Dns") != null && !jsonObj.get("Dns").isJsonNull() && !jsonObj.get("Dns").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Dns` to be an array in the JSON string but got `%s`", jsonObj.get("Dns").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("DnsOptions") != null && !jsonObj.get("DnsOptions").isJsonNull() && !jsonObj.get("DnsOptions").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DnsOptions` to be an array in the JSON string but got `%s`", jsonObj.get("DnsOptions").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("DnsSearch") != null && !jsonObj.get("DnsSearch").isJsonNull() && !jsonObj.get("DnsSearch").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `DnsSearch` to be an array in the JSON string but got `%s`", jsonObj.get("DnsSearch").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("ExtraHosts") != null && !jsonObj.get("ExtraHosts").isJsonNull() && !jsonObj.get("ExtraHosts").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ExtraHosts` to be an array in the JSON string but got `%s`", jsonObj.get("ExtraHosts").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("GroupAdd") != null && !jsonObj.get("GroupAdd").isJsonNull() && !jsonObj.get("GroupAdd").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `GroupAdd` to be an array in the JSON string but got `%s`", jsonObj.get("GroupAdd").toString()));
+        }
+        if ((jsonObj.get("IpcMode") != null && !jsonObj.get("IpcMode").isJsonNull()) && !jsonObj.get("IpcMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `IpcMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IpcMode").toString()));
+        }
+        if ((jsonObj.get("Isolation") != null && !jsonObj.get("Isolation").isJsonNull()) && !jsonObj.get("Isolation").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Isolation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Isolation").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull() && !jsonObj.get("Links").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Links` to be an array in the JSON string but got `%s`", jsonObj.get("Links").toString()));
+        }
+        // validate the optional field `LogConfig`
+        if (jsonObj.get("LogConfig") != null && !jsonObj.get("LogConfig").isJsonNull()) {
+            LogConfig.validateJsonElement(jsonObj.get("LogConfig"));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("MaskedPaths") != null && !jsonObj.get("MaskedPaths").isJsonNull() && !jsonObj.get("MaskedPaths").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `MaskedPaths` to be an array in the JSON string but got `%s`", jsonObj.get("MaskedPaths").toString()));
+        }
+        if (jsonObj.get("Mounts") != null && !jsonObj.get("Mounts").isJsonNull()) {
+            JsonArray jsonArraymounts = jsonObj.getAsJsonArray("Mounts");
+            if (jsonArraymounts != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Mounts").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Mounts` to be an array in the JSON string but got `%s`", jsonObj.get("Mounts").toString()));
+                }
+
+                // validate the optional field `Mounts` (array)
+                for (int i = 0; i < jsonArraymounts.size(); i++) {
+                    Mount.validateJsonElement(jsonArraymounts.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("NetworkMode") != null && !jsonObj.get("NetworkMode").isJsonNull()) && !jsonObj.get("NetworkMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `NetworkMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("NetworkMode").toString()));
+        }
+        if ((jsonObj.get("PidMode") != null && !jsonObj.get("PidMode").isJsonNull()) && !jsonObj.get("PidMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `PidMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PidMode").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("ReadonlyPaths") != null && !jsonObj.get("ReadonlyPaths").isJsonNull() && !jsonObj.get("ReadonlyPaths").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `ReadonlyPaths` to be an array in the JSON string but got `%s`", jsonObj.get("ReadonlyPaths").toString()));
+        }
+        // validate the optional field `RestartPolicy`
+        if (jsonObj.get("RestartPolicy") != null && !jsonObj.get("RestartPolicy").isJsonNull()) {
+            RestartPolicy.validateJsonElement(jsonObj.get("RestartPolicy"));
+        }
+        if ((jsonObj.get("Runtime") != null && !jsonObj.get("Runtime").isJsonNull()) && !jsonObj.get("Runtime").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `Runtime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Runtime").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("SecurityOpt") != null && !jsonObj.get("SecurityOpt").isJsonNull() && !jsonObj.get("SecurityOpt").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `SecurityOpt` to be an array in the JSON string but got `%s`", jsonObj.get("SecurityOpt").toString()));
+        }
+        if ((jsonObj.get("UTSMode") != null && !jsonObj.get("UTSMode").isJsonNull()) && !jsonObj.get("UTSMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `UTSMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("UTSMode").toString()));
+        }
+        if (jsonObj.get("Ulimits") != null && !jsonObj.get("Ulimits").isJsonNull()) {
+            JsonArray jsonArrayulimits = jsonObj.getAsJsonArray("Ulimits");
+            if (jsonArrayulimits != null) {
+                // ensure the json data is an array
+                if (!jsonObj.get("Ulimits").isJsonArray()) {
+                    throw new IllegalArgumentException(String.format("Expected the field `Ulimits` to be an array in the JSON string but got `%s`", jsonObj.get("Ulimits").toString()));
+                }
+
+                // validate the optional field `Ulimits` (array)
+                for (int i = 0; i < jsonArrayulimits.size(); i++) {
+                    Ulimit.validateJsonElement(jsonArrayulimits.get(i));
+                }
+            }
+        }
+        if ((jsonObj.get("UsernsMode") != null && !jsonObj.get("UsernsMode").isJsonNull()) && !jsonObj.get("UsernsMode").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `UsernsMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("UsernsMode").toString()));
+        }
+        if ((jsonObj.get("VolumeDriver") != null && !jsonObj.get("VolumeDriver").isJsonNull()) && !jsonObj.get("VolumeDriver").isJsonPrimitive()) {
+            throw new IllegalArgumentException(String.format("Expected the field `VolumeDriver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("VolumeDriver").toString()));
+        }
+        // ensure the optional json data is an array if present
+        if (jsonObj.get("VolumesFrom") != null && !jsonObj.get("VolumesFrom").isJsonNull() && !jsonObj.get("VolumesFrom").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `VolumesFrom` to be an array in the JSON string but got `%s`", jsonObj.get("VolumesFrom").toString()));
+        }
     }
 
-    // add `UsernsMode` to the URL query string
-    if (getUsernsMode() != null) {
-      joiner.add(String.format("%sUsernsMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUsernsMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    /**
+     * Create an instance of HostConfig given an JSON string
+     *
+     * @param jsonString JSON string
+     * @return An instance of HostConfig
+     * @throws IOException if the JSON string is invalid with respect to HostConfig
+     */
+    public static HostConfig fromJson(String jsonString) throws IOException {
+        return JSON.getGson().fromJson(jsonString, HostConfig.class);
     }
 
-    // add `VolumeDriver` to the URL query string
-    if (getVolumeDriver() != null) {
-      joiner.add(String.format("%sVolumeDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVolumeDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    public HostConfig annotations(Map<String, String> annotations) {
+        this.annotations = annotations;
+        return this;
     }
 
-    // add `VolumesFrom` to the URL query string
-    if (getVolumesFrom() != null) {
-      for (int i = 0; i < getVolumesFrom().size(); i++) {
-        joiner.add(String.format("%sVolumesFrom%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
-            URLEncoder.encode(ApiClient.valueToString(getVolumesFrom().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
-      }
+    public HostConfig putAnnotationsItem(String key, String annotationsItem) {
+        if (this.annotations == null) {
+            this.annotations = new HashMap<>();
+        }
+        this.annotations.put(key, annotationsItem);
+        return this;
     }
 
-    return joiner.toString();
-  }
+    /**
+     * Get annotations
+     *
+     * @return annotations
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getAnnotations() {
+        return annotations;
+    }
+
+    public void setAnnotations(Map<String, String> annotations) {
+        this.annotations = annotations;
+    }
+
+    public HostConfig autoRemove(Boolean autoRemove) {
+        this.autoRemove = autoRemove;
+        return this;
+    }
+
+    /**
+     * Get autoRemove
+     *
+     * @return autoRemove
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getAutoRemove() {
+        return autoRemove;
+    }
+
+    public void setAutoRemove(Boolean autoRemove) {
+        this.autoRemove = autoRemove;
+    }
+
+    public HostConfig binds(List<String> binds) {
+        this.binds = binds;
+        return this;
+    }
+
+    public HostConfig addBindsItem(String bindsItem) {
+        if (this.binds == null) {
+            this.binds = new ArrayList<>();
+        }
+        this.binds.add(bindsItem);
+        return this;
+    }
+
+    /**
+     * Applicable to all platforms
+     *
+     * @return binds
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getBinds() {
+        return binds;
+    }
+
+    public void setBinds(List<String> binds) {
+        this.binds = binds;
+    }
+
+    public HostConfig blkioDeviceReadBps(List<@Valid ThrottleDevice> blkioDeviceReadBps) {
+        this.blkioDeviceReadBps = blkioDeviceReadBps;
+        return this;
+    }
+
+    public HostConfig addBlkioDeviceReadBpsItem(ThrottleDevice blkioDeviceReadBpsItem) {
+        if (this.blkioDeviceReadBps == null) {
+            this.blkioDeviceReadBps = new ArrayList<>();
+        }
+        this.blkioDeviceReadBps.add(blkioDeviceReadBpsItem);
+        return this;
+    }
+
+    /**
+     * Get blkioDeviceReadBps
+     *
+     * @return blkioDeviceReadBps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ThrottleDevice> getBlkioDeviceReadBps() {
+        return blkioDeviceReadBps;
+    }
+
+    public void setBlkioDeviceReadBps(List<@Valid ThrottleDevice> blkioDeviceReadBps) {
+        this.blkioDeviceReadBps = blkioDeviceReadBps;
+    }
+
+    public HostConfig blkioDeviceReadIOps(List<@Valid ThrottleDevice> blkioDeviceReadIOps) {
+        this.blkioDeviceReadIOps = blkioDeviceReadIOps;
+        return this;
+    }
+
+    public HostConfig addBlkioDeviceReadIOpsItem(ThrottleDevice blkioDeviceReadIOpsItem) {
+        if (this.blkioDeviceReadIOps == null) {
+            this.blkioDeviceReadIOps = new ArrayList<>();
+        }
+        this.blkioDeviceReadIOps.add(blkioDeviceReadIOpsItem);
+        return this;
+    }
+
+    /**
+     * Get blkioDeviceReadIOps
+     *
+     * @return blkioDeviceReadIOps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ThrottleDevice> getBlkioDeviceReadIOps() {
+        return blkioDeviceReadIOps;
+    }
+
+    public void setBlkioDeviceReadIOps(List<@Valid ThrottleDevice> blkioDeviceReadIOps) {
+        this.blkioDeviceReadIOps = blkioDeviceReadIOps;
+    }
+
+    public HostConfig blkioDeviceWriteBps(List<@Valid ThrottleDevice> blkioDeviceWriteBps) {
+        this.blkioDeviceWriteBps = blkioDeviceWriteBps;
+        return this;
+    }
+
+    public HostConfig addBlkioDeviceWriteBpsItem(ThrottleDevice blkioDeviceWriteBpsItem) {
+        if (this.blkioDeviceWriteBps == null) {
+            this.blkioDeviceWriteBps = new ArrayList<>();
+        }
+        this.blkioDeviceWriteBps.add(blkioDeviceWriteBpsItem);
+        return this;
+    }
+
+    /**
+     * Get blkioDeviceWriteBps
+     *
+     * @return blkioDeviceWriteBps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ThrottleDevice> getBlkioDeviceWriteBps() {
+        return blkioDeviceWriteBps;
+    }
+
+    public void setBlkioDeviceWriteBps(List<@Valid ThrottleDevice> blkioDeviceWriteBps) {
+        this.blkioDeviceWriteBps = blkioDeviceWriteBps;
+    }
+
+    public HostConfig blkioDeviceWriteIOps(List<@Valid ThrottleDevice> blkioDeviceWriteIOps) {
+        this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
+        return this;
+    }
+
+    public HostConfig addBlkioDeviceWriteIOpsItem(ThrottleDevice blkioDeviceWriteIOpsItem) {
+        if (this.blkioDeviceWriteIOps == null) {
+            this.blkioDeviceWriteIOps = new ArrayList<>();
+        }
+        this.blkioDeviceWriteIOps.add(blkioDeviceWriteIOpsItem);
+        return this;
+    }
+
+    /**
+     * Get blkioDeviceWriteIOps
+     *
+     * @return blkioDeviceWriteIOps
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid ThrottleDevice> getBlkioDeviceWriteIOps() {
+        return blkioDeviceWriteIOps;
+    }
+
+    public void setBlkioDeviceWriteIOps(List<@Valid ThrottleDevice> blkioDeviceWriteIOps) {
+        this.blkioDeviceWriteIOps = blkioDeviceWriteIOps;
+    }
+
+    public HostConfig blkioWeight(Integer blkioWeight) {
+        this.blkioWeight = blkioWeight;
+        return this;
+    }
+
+    /**
+     * Get blkioWeight
+     *
+     * @return blkioWeight
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getBlkioWeight() {
+        return blkioWeight;
+    }
+
+    public void setBlkioWeight(Integer blkioWeight) {
+        this.blkioWeight = blkioWeight;
+    }
+
+    public HostConfig blkioWeightDevice(List<@Valid WeightDevice> blkioWeightDevice) {
+        this.blkioWeightDevice = blkioWeightDevice;
+        return this;
+    }
+
+    public HostConfig addBlkioWeightDeviceItem(WeightDevice blkioWeightDeviceItem) {
+        if (this.blkioWeightDevice == null) {
+            this.blkioWeightDevice = new ArrayList<>();
+        }
+        this.blkioWeightDevice.add(blkioWeightDeviceItem);
+        return this;
+    }
+
+    /**
+     * Get blkioWeightDevice
+     *
+     * @return blkioWeightDevice
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid WeightDevice> getBlkioWeightDevice() {
+        return blkioWeightDevice;
+    }
+
+    public void setBlkioWeightDevice(List<@Valid WeightDevice> blkioWeightDevice) {
+        this.blkioWeightDevice = blkioWeightDevice;
+    }
+
+    public HostConfig capAdd(List<String> capAdd) {
+        this.capAdd = capAdd;
+        return this;
+    }
+
+    public HostConfig addCapAddItem(String capAddItem) {
+        if (this.capAdd == null) {
+            this.capAdd = new ArrayList<>();
+        }
+        this.capAdd.add(capAddItem);
+        return this;
+    }
+
+    /**
+     * We need to override the json decoder to accept both options.
+     *
+     * @return capAdd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCapAdd() {
+        return capAdd;
+    }
+
+    public void setCapAdd(List<String> capAdd) {
+        this.capAdd = capAdd;
+    }
+
+    public HostConfig capDrop(List<String> capDrop) {
+        this.capDrop = capDrop;
+        return this;
+    }
+
+    public HostConfig addCapDropItem(String capDropItem) {
+        if (this.capDrop == null) {
+            this.capDrop = new ArrayList<>();
+        }
+        this.capDrop.add(capDropItem);
+        return this;
+    }
+
+    /**
+     * We need to override the json decoder to accept both options.
+     *
+     * @return capDrop
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getCapDrop() {
+        return capDrop;
+    }
+
+    public void setCapDrop(List<String> capDrop) {
+        this.capDrop = capDrop;
+    }
+
+    public HostConfig cgroup(String cgroup) {
+        this.cgroup = cgroup;
+        return this;
+    }
+
+    /**
+     * Get cgroup
+     *
+     * @return cgroup
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroup() {
+        return cgroup;
+    }
+
+    public void setCgroup(String cgroup) {
+        this.cgroup = cgroup;
+    }
+
+    public HostConfig cgroupParent(String cgroupParent) {
+        this.cgroupParent = cgroupParent;
+        return this;
+    }
+
+    /**
+     * Applicable to UNIX platforms
+     *
+     * @return cgroupParent
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupParent() {
+        return cgroupParent;
+    }
+
+    public void setCgroupParent(String cgroupParent) {
+        this.cgroupParent = cgroupParent;
+    }
+
+    public HostConfig cgroupnsMode(String cgroupnsMode) {
+        this.cgroupnsMode = cgroupnsMode;
+        return this;
+    }
+
+    /**
+     * CgroupnsMode represents the cgroup namespace mode of the container
+     *
+     * @return cgroupnsMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCgroupnsMode() {
+        return cgroupnsMode;
+    }
+
+    public void setCgroupnsMode(String cgroupnsMode) {
+        this.cgroupnsMode = cgroupnsMode;
+    }
+
+    public HostConfig consoleSize(List<Integer> consoleSize) {
+        this.consoleSize = consoleSize;
+        return this;
+    }
+
+    public HostConfig addConsoleSizeItem(Integer consoleSizeItem) {
+        if (this.consoleSize == null) {
+            this.consoleSize = new ArrayList<>();
+        }
+        this.consoleSize.add(consoleSizeItem);
+        return this;
+    }
+
+    /**
+     * Get consoleSize
+     *
+     * @return consoleSize
+     */
+    @jakarta.annotation.Nullable
+
+    public List<Integer> getConsoleSize() {
+        return consoleSize;
+    }
+
+    public void setConsoleSize(List<Integer> consoleSize) {
+        this.consoleSize = consoleSize;
+    }
+
+    public HostConfig containerIDFile(String containerIDFile) {
+        this.containerIDFile = containerIDFile;
+        return this;
+    }
+
+    /**
+     * Get containerIDFile
+     *
+     * @return containerIDFile
+     */
+    @jakarta.annotation.Nullable
+
+    public String getContainerIDFile() {
+        return containerIDFile;
+    }
+
+    public void setContainerIDFile(String containerIDFile) {
+        this.containerIDFile = containerIDFile;
+    }
+
+    public HostConfig cpuCount(Long cpuCount) {
+        this.cpuCount = cpuCount;
+        return this;
+    }
+
+    /**
+     * Applicable to Windows
+     *
+     * @return cpuCount
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuCount() {
+        return cpuCount;
+    }
+
+    public void setCpuCount(Long cpuCount) {
+        this.cpuCount = cpuCount;
+    }
+
+    public HostConfig cpuPercent(Long cpuPercent) {
+        this.cpuPercent = cpuPercent;
+        return this;
+    }
+
+    /**
+     * Get cpuPercent
+     *
+     * @return cpuPercent
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuPercent() {
+        return cpuPercent;
+    }
+
+    public void setCpuPercent(Long cpuPercent) {
+        this.cpuPercent = cpuPercent;
+    }
+
+    public HostConfig cpuPeriod(Long cpuPeriod) {
+        this.cpuPeriod = cpuPeriod;
+        return this;
+    }
+
+    /**
+     * Get cpuPeriod
+     *
+     * @return cpuPeriod
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuPeriod() {
+        return cpuPeriod;
+    }
+
+    public void setCpuPeriod(Long cpuPeriod) {
+        this.cpuPeriod = cpuPeriod;
+    }
+
+    public HostConfig cpuQuota(Long cpuQuota) {
+        this.cpuQuota = cpuQuota;
+        return this;
+    }
+
+    /**
+     * Get cpuQuota
+     *
+     * @return cpuQuota
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuQuota() {
+        return cpuQuota;
+    }
+
+    public void setCpuQuota(Long cpuQuota) {
+        this.cpuQuota = cpuQuota;
+    }
+
+    public HostConfig cpuRealtimePeriod(Long cpuRealtimePeriod) {
+        this.cpuRealtimePeriod = cpuRealtimePeriod;
+        return this;
+    }
+
+    /**
+     * Get cpuRealtimePeriod
+     *
+     * @return cpuRealtimePeriod
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuRealtimePeriod() {
+        return cpuRealtimePeriod;
+    }
+
+    public void setCpuRealtimePeriod(Long cpuRealtimePeriod) {
+        this.cpuRealtimePeriod = cpuRealtimePeriod;
+    }
+
+    public HostConfig cpuRealtimeRuntime(Long cpuRealtimeRuntime) {
+        this.cpuRealtimeRuntime = cpuRealtimeRuntime;
+        return this;
+    }
+
+    /**
+     * Get cpuRealtimeRuntime
+     *
+     * @return cpuRealtimeRuntime
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuRealtimeRuntime() {
+        return cpuRealtimeRuntime;
+    }
+
+    public void setCpuRealtimeRuntime(Long cpuRealtimeRuntime) {
+        this.cpuRealtimeRuntime = cpuRealtimeRuntime;
+    }
+
+    public HostConfig cpuShares(Long cpuShares) {
+        this.cpuShares = cpuShares;
+        return this;
+    }
+
+    /**
+     * Applicable to all platforms
+     *
+     * @return cpuShares
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getCpuShares() {
+        return cpuShares;
+    }
+
+    public void setCpuShares(Long cpuShares) {
+        this.cpuShares = cpuShares;
+    }
+
+    public HostConfig cpusetCpus(String cpusetCpus) {
+        this.cpusetCpus = cpusetCpus;
+        return this;
+    }
+
+    /**
+     * Get cpusetCpus
+     *
+     * @return cpusetCpus
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCpusetCpus() {
+        return cpusetCpus;
+    }
+
+    public void setCpusetCpus(String cpusetCpus) {
+        this.cpusetCpus = cpusetCpus;
+    }
+
+    public HostConfig cpusetMems(String cpusetMems) {
+        this.cpusetMems = cpusetMems;
+        return this;
+    }
+
+    /**
+     * Get cpusetMems
+     *
+     * @return cpusetMems
+     */
+    @jakarta.annotation.Nullable
+
+    public String getCpusetMems() {
+        return cpusetMems;
+    }
+
+    public void setCpusetMems(String cpusetMems) {
+        this.cpusetMems = cpusetMems;
+    }
+
+    public HostConfig deviceCgroupRules(List<String> deviceCgroupRules) {
+        this.deviceCgroupRules = deviceCgroupRules;
+        return this;
+    }
+
+    public HostConfig addDeviceCgroupRulesItem(String deviceCgroupRulesItem) {
+        if (this.deviceCgroupRules == null) {
+            this.deviceCgroupRules = new ArrayList<>();
+        }
+        this.deviceCgroupRules.add(deviceCgroupRulesItem);
+        return this;
+    }
+
+    /**
+     * Get deviceCgroupRules
+     *
+     * @return deviceCgroupRules
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDeviceCgroupRules() {
+        return deviceCgroupRules;
+    }
+
+    public void setDeviceCgroupRules(List<String> deviceCgroupRules) {
+        this.deviceCgroupRules = deviceCgroupRules;
+    }
+
+    public HostConfig deviceRequests(List<@Valid DeviceRequest> deviceRequests) {
+        this.deviceRequests = deviceRequests;
+        return this;
+    }
+
+    public HostConfig addDeviceRequestsItem(DeviceRequest deviceRequestsItem) {
+        if (this.deviceRequests == null) {
+            this.deviceRequests = new ArrayList<>();
+        }
+        this.deviceRequests.add(deviceRequestsItem);
+        return this;
+    }
+
+    /**
+     * Get deviceRequests
+     *
+     * @return deviceRequests
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid DeviceRequest> getDeviceRequests() {
+        return deviceRequests;
+    }
+
+    public void setDeviceRequests(List<@Valid DeviceRequest> deviceRequests) {
+        this.deviceRequests = deviceRequests;
+    }
+
+    public HostConfig devices(List<@Valid DeviceMapping> devices) {
+        this.devices = devices;
+        return this;
+    }
+
+    public HostConfig addDevicesItem(DeviceMapping devicesItem) {
+        if (this.devices == null) {
+            this.devices = new ArrayList<>();
+        }
+        this.devices.add(devicesItem);
+        return this;
+    }
+
+    /**
+     * Get devices
+     *
+     * @return devices
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid DeviceMapping> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<@Valid DeviceMapping> devices) {
+        this.devices = devices;
+    }
+
+    public HostConfig dns(List<String> dns) {
+        this.dns = dns;
+        return this;
+    }
+
+    public HostConfig addDnsItem(String dnsItem) {
+        if (this.dns == null) {
+            this.dns = new ArrayList<>();
+        }
+        this.dns.add(dnsItem);
+        return this;
+    }
+
+    /**
+     * Get dns
+     *
+     * @return dns
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDns() {
+        return dns;
+    }
+
+    public void setDns(List<String> dns) {
+        this.dns = dns;
+    }
+
+    public HostConfig dnsOptions(List<String> dnsOptions) {
+        this.dnsOptions = dnsOptions;
+        return this;
+    }
+
+    public HostConfig addDnsOptionsItem(String dnsOptionsItem) {
+        if (this.dnsOptions == null) {
+            this.dnsOptions = new ArrayList<>();
+        }
+        this.dnsOptions.add(dnsOptionsItem);
+        return this;
+    }
+
+    /**
+     * Get dnsOptions
+     *
+     * @return dnsOptions
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDnsOptions() {
+        return dnsOptions;
+    }
+
+    public void setDnsOptions(List<String> dnsOptions) {
+        this.dnsOptions = dnsOptions;
+    }
+
+    public HostConfig dnsSearch(List<String> dnsSearch) {
+        this.dnsSearch = dnsSearch;
+        return this;
+    }
+
+    public HostConfig addDnsSearchItem(String dnsSearchItem) {
+        if (this.dnsSearch == null) {
+            this.dnsSearch = new ArrayList<>();
+        }
+        this.dnsSearch.add(dnsSearchItem);
+        return this;
+    }
+
+    /**
+     * Get dnsSearch
+     *
+     * @return dnsSearch
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getDnsSearch() {
+        return dnsSearch;
+    }
+
+    public void setDnsSearch(List<String> dnsSearch) {
+        this.dnsSearch = dnsSearch;
+    }
+
+    public HostConfig extraHosts(List<String> extraHosts) {
+        this.extraHosts = extraHosts;
+        return this;
+    }
+
+    public HostConfig addExtraHostsItem(String extraHostsItem) {
+        if (this.extraHosts == null) {
+            this.extraHosts = new ArrayList<>();
+        }
+        this.extraHosts.add(extraHostsItem);
+        return this;
+    }
+
+    /**
+     * Get extraHosts
+     *
+     * @return extraHosts
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getExtraHosts() {
+        return extraHosts;
+    }
+
+    public void setExtraHosts(List<String> extraHosts) {
+        this.extraHosts = extraHosts;
+    }
+
+    public HostConfig groupAdd(List<String> groupAdd) {
+        this.groupAdd = groupAdd;
+        return this;
+    }
+
+    public HostConfig addGroupAddItem(String groupAddItem) {
+        if (this.groupAdd == null) {
+            this.groupAdd = new ArrayList<>();
+        }
+        this.groupAdd.add(groupAddItem);
+        return this;
+    }
+
+    /**
+     * Get groupAdd
+     *
+     * @return groupAdd
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getGroupAdd() {
+        return groupAdd;
+    }
+
+    public void setGroupAdd(List<String> groupAdd) {
+        this.groupAdd = groupAdd;
+    }
+
+    public HostConfig ioMaximumBandwidth(Integer ioMaximumBandwidth) {
+        this.ioMaximumBandwidth = ioMaximumBandwidth;
+        return this;
+    }
+
+    /**
+     * Get ioMaximumBandwidth
+     *
+     * @return ioMaximumBandwidth
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getIoMaximumBandwidth() {
+        return ioMaximumBandwidth;
+    }
+
+    public void setIoMaximumBandwidth(Integer ioMaximumBandwidth) {
+        this.ioMaximumBandwidth = ioMaximumBandwidth;
+    }
+
+    public HostConfig ioMaximumIOps(Integer ioMaximumIOps) {
+        this.ioMaximumIOps = ioMaximumIOps;
+        return this;
+    }
+
+    /**
+     * Get ioMaximumIOps
+     *
+     * @return ioMaximumIOps
+     */
+    @jakarta.annotation.Nullable
+
+    public Integer getIoMaximumIOps() {
+        return ioMaximumIOps;
+    }
+
+    public void setIoMaximumIOps(Integer ioMaximumIOps) {
+        this.ioMaximumIOps = ioMaximumIOps;
+    }
+
+    public HostConfig init(Boolean init) {
+        this.init = init;
+        return this;
+    }
+
+    /**
+     * Run a custom init inside the container, if null, use the daemon&#39;s configured settings
+     *
+     * @return init
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getInit() {
+        return init;
+    }
+
+    public void setInit(Boolean init) {
+        this.init = init;
+    }
+
+    public HostConfig ipcMode(String ipcMode) {
+        this.ipcMode = ipcMode;
+        return this;
+    }
+
+    /**
+     * Get ipcMode
+     *
+     * @return ipcMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIpcMode() {
+        return ipcMode;
+    }
+
+    public void setIpcMode(String ipcMode) {
+        this.ipcMode = ipcMode;
+    }
+
+    public HostConfig isolation(String isolation) {
+        this.isolation = isolation;
+        return this;
+    }
+
+    /**
+     * Isolation represents the isolation technology of a container. The supported values are platform specific
+     *
+     * @return isolation
+     */
+    @jakarta.annotation.Nullable
+
+    public String getIsolation() {
+        return isolation;
+    }
+
+    public void setIsolation(String isolation) {
+        this.isolation = isolation;
+    }
+
+    public HostConfig kernelMemory(Long kernelMemory) {
+        this.kernelMemory = kernelMemory;
+        return this;
+    }
+
+    /**
+     * KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.
+     *
+     * @return kernelMemory
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getKernelMemory() {
+        return kernelMemory;
+    }
+
+    public void setKernelMemory(Long kernelMemory) {
+        this.kernelMemory = kernelMemory;
+    }
+
+    public HostConfig kernelMemoryTCP(Long kernelMemoryTCP) {
+        this.kernelMemoryTCP = kernelMemoryTCP;
+        return this;
+    }
+
+    /**
+     * Get kernelMemoryTCP
+     *
+     * @return kernelMemoryTCP
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getKernelMemoryTCP() {
+        return kernelMemoryTCP;
+    }
+
+    public void setKernelMemoryTCP(Long kernelMemoryTCP) {
+        this.kernelMemoryTCP = kernelMemoryTCP;
+    }
+
+    public HostConfig links(List<String> links) {
+        this.links = links;
+        return this;
+    }
+
+    public HostConfig addLinksItem(String linksItem) {
+        if (this.links == null) {
+            this.links = new ArrayList<>();
+        }
+        this.links.add(linksItem);
+        return this;
+    }
+
+    /**
+     * Get links
+     *
+     * @return links
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getLinks() {
+        return links;
+    }
+
+    public void setLinks(List<String> links) {
+        this.links = links;
+    }
+
+    public HostConfig logConfig(LogConfig logConfig) {
+        this.logConfig = logConfig;
+        return this;
+    }
+
+    /**
+     * Get logConfig
+     *
+     * @return logConfig
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public LogConfig getLogConfig() {
+        return logConfig;
+    }
+
+    public void setLogConfig(LogConfig logConfig) {
+        this.logConfig = logConfig;
+    }
+
+    public HostConfig maskedPaths(List<String> maskedPaths) {
+        this.maskedPaths = maskedPaths;
+        return this;
+    }
+
+    public HostConfig addMaskedPathsItem(String maskedPathsItem) {
+        if (this.maskedPaths == null) {
+            this.maskedPaths = new ArrayList<>();
+        }
+        this.maskedPaths.add(maskedPathsItem);
+        return this;
+    }
+
+    /**
+     * MaskedPaths is the list of paths to be masked inside the container (this overrides the default set of paths)
+     *
+     * @return maskedPaths
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getMaskedPaths() {
+        return maskedPaths;
+    }
+
+    public void setMaskedPaths(List<String> maskedPaths) {
+        this.maskedPaths = maskedPaths;
+    }
+
+    public HostConfig memory(Long memory) {
+        this.memory = memory;
+        return this;
+    }
+
+    /**
+     * Get memory
+     *
+     * @return memory
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Long memory) {
+        this.memory = memory;
+    }
+
+    public HostConfig memoryReservation(Long memoryReservation) {
+        this.memoryReservation = memoryReservation;
+        return this;
+    }
+
+    /**
+     * Get memoryReservation
+     *
+     * @return memoryReservation
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemoryReservation() {
+        return memoryReservation;
+    }
+
+    public void setMemoryReservation(Long memoryReservation) {
+        this.memoryReservation = memoryReservation;
+    }
+
+    public HostConfig memorySwap(Long memorySwap) {
+        this.memorySwap = memorySwap;
+        return this;
+    }
+
+    /**
+     * Get memorySwap
+     *
+     * @return memorySwap
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemorySwap() {
+        return memorySwap;
+    }
+
+    public void setMemorySwap(Long memorySwap) {
+        this.memorySwap = memorySwap;
+    }
+
+    public HostConfig memorySwappiness(Long memorySwappiness) {
+        this.memorySwappiness = memorySwappiness;
+        return this;
+    }
+
+    /**
+     * Get memorySwappiness
+     *
+     * @return memorySwappiness
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getMemorySwappiness() {
+        return memorySwappiness;
+    }
+
+    public void setMemorySwappiness(Long memorySwappiness) {
+        this.memorySwappiness = memorySwappiness;
+    }
+
+    public HostConfig mounts(List<@Valid Mount> mounts) {
+        this.mounts = mounts;
+        return this;
+    }
+
+    public HostConfig addMountsItem(Mount mountsItem) {
+        if (this.mounts == null) {
+            this.mounts = new ArrayList<>();
+        }
+        this.mounts.add(mountsItem);
+        return this;
+    }
+
+    /**
+     * Mounts specs used by the container
+     *
+     * @return mounts
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Mount> getMounts() {
+        return mounts;
+    }
+
+    public void setMounts(List<@Valid Mount> mounts) {
+        this.mounts = mounts;
+    }
+
+    public HostConfig nanoCpus(Long nanoCpus) {
+        this.nanoCpus = nanoCpus;
+        return this;
+    }
+
+    /**
+     * Get nanoCpus
+     *
+     * @return nanoCpus
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getNanoCpus() {
+        return nanoCpus;
+    }
+
+    public void setNanoCpus(Long nanoCpus) {
+        this.nanoCpus = nanoCpus;
+    }
+
+    public HostConfig networkMode(String networkMode) {
+        this.networkMode = networkMode;
+        return this;
+    }
+
+    /**
+     * Get networkMode
+     *
+     * @return networkMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getNetworkMode() {
+        return networkMode;
+    }
+
+    public void setNetworkMode(String networkMode) {
+        this.networkMode = networkMode;
+    }
+
+    public HostConfig oomKillDisable(Boolean oomKillDisable) {
+        this.oomKillDisable = oomKillDisable;
+        return this;
+    }
+
+    /**
+     * Get oomKillDisable
+     *
+     * @return oomKillDisable
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getOomKillDisable() {
+        return oomKillDisable;
+    }
+
+    public void setOomKillDisable(Boolean oomKillDisable) {
+        this.oomKillDisable = oomKillDisable;
+    }
+
+    public HostConfig oomScoreAdj(Long oomScoreAdj) {
+        this.oomScoreAdj = oomScoreAdj;
+        return this;
+    }
+
+    /**
+     * Get oomScoreAdj
+     *
+     * @return oomScoreAdj
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getOomScoreAdj() {
+        return oomScoreAdj;
+    }
+
+    public void setOomScoreAdj(Long oomScoreAdj) {
+        this.oomScoreAdj = oomScoreAdj;
+    }
+
+    public HostConfig pidMode(String pidMode) {
+        this.pidMode = pidMode;
+        return this;
+    }
+
+    /**
+     * Get pidMode
+     *
+     * @return pidMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getPidMode() {
+        return pidMode;
+    }
+
+    public void setPidMode(String pidMode) {
+        this.pidMode = pidMode;
+    }
+
+    public HostConfig pidsLimit(Long pidsLimit) {
+        this.pidsLimit = pidsLimit;
+        return this;
+    }
+
+    /**
+     * Get pidsLimit
+     *
+     * @return pidsLimit
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getPidsLimit() {
+        return pidsLimit;
+    }
+
+    public void setPidsLimit(Long pidsLimit) {
+        this.pidsLimit = pidsLimit;
+    }
+
+    public HostConfig portBindings(Map<String, List<@Valid PortBinding>> portBindings) {
+        this.portBindings = portBindings;
+        return this;
+    }
+
+    public HostConfig putPortBindingsItem(String key, List<@Valid PortBinding> portBindingsItem) {
+        if (this.portBindings == null) {
+            this.portBindings = new HashMap<>();
+        }
+        this.portBindings.put(key, portBindingsItem);
+        return this;
+    }
+
+    /**
+     * PortMap is a collection of PortBinding indexed by Port
+     *
+     * @return portBindings
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public Map<String, List<@Valid PortBinding>> getPortBindings() {
+        return portBindings;
+    }
+
+    public void setPortBindings(Map<String, List<@Valid PortBinding>> portBindings) {
+        this.portBindings = portBindings;
+    }
+
+    public HostConfig privileged(Boolean privileged) {
+        this.privileged = privileged;
+        return this;
+    }
+
+    /**
+     * Get privileged
+     *
+     * @return privileged
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPrivileged() {
+        return privileged;
+    }
+
+    public void setPrivileged(Boolean privileged) {
+        this.privileged = privileged;
+    }
+
+    public HostConfig publishAllPorts(Boolean publishAllPorts) {
+        this.publishAllPorts = publishAllPorts;
+        return this;
+    }
+
+    /**
+     * Get publishAllPorts
+     *
+     * @return publishAllPorts
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getPublishAllPorts() {
+        return publishAllPorts;
+    }
+
+    public void setPublishAllPorts(Boolean publishAllPorts) {
+        this.publishAllPorts = publishAllPorts;
+    }
+
+    public HostConfig readonlyPaths(List<String> readonlyPaths) {
+        this.readonlyPaths = readonlyPaths;
+        return this;
+    }
+
+    public HostConfig addReadonlyPathsItem(String readonlyPathsItem) {
+        if (this.readonlyPaths == null) {
+            this.readonlyPaths = new ArrayList<>();
+        }
+        this.readonlyPaths.add(readonlyPathsItem);
+        return this;
+    }
+
+    /**
+     * ReadonlyPaths is the list of paths to be set as read-only inside the container (this overrides the default set of paths)
+     *
+     * @return readonlyPaths
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getReadonlyPaths() {
+        return readonlyPaths;
+    }
+
+    public void setReadonlyPaths(List<String> readonlyPaths) {
+        this.readonlyPaths = readonlyPaths;
+    }
+
+    public HostConfig readonlyRootfs(Boolean readonlyRootfs) {
+        this.readonlyRootfs = readonlyRootfs;
+        return this;
+    }
+
+    /**
+     * Get readonlyRootfs
+     *
+     * @return readonlyRootfs
+     */
+    @jakarta.annotation.Nullable
+
+    public Boolean getReadonlyRootfs() {
+        return readonlyRootfs;
+    }
+
+    public void setReadonlyRootfs(Boolean readonlyRootfs) {
+        this.readonlyRootfs = readonlyRootfs;
+    }
+
+    public HostConfig restartPolicy(RestartPolicy restartPolicy) {
+        this.restartPolicy = restartPolicy;
+        return this;
+    }
+
+    /**
+     * Get restartPolicy
+     *
+     * @return restartPolicy
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public RestartPolicy getRestartPolicy() {
+        return restartPolicy;
+    }
+
+    public void setRestartPolicy(RestartPolicy restartPolicy) {
+        this.restartPolicy = restartPolicy;
+    }
+
+    public HostConfig runtime(String runtime) {
+        this.runtime = runtime;
+        return this;
+    }
+
+    /**
+     * Get runtime
+     *
+     * @return runtime
+     */
+    @jakarta.annotation.Nullable
+
+    public String getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(String runtime) {
+        this.runtime = runtime;
+    }
+
+    public HostConfig securityOpt(List<String> securityOpt) {
+        this.securityOpt = securityOpt;
+        return this;
+    }
+
+    public HostConfig addSecurityOptItem(String securityOptItem) {
+        if (this.securityOpt == null) {
+            this.securityOpt = new ArrayList<>();
+        }
+        this.securityOpt.add(securityOptItem);
+        return this;
+    }
+
+    /**
+     * Get securityOpt
+     *
+     * @return securityOpt
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getSecurityOpt() {
+        return securityOpt;
+    }
+
+    public void setSecurityOpt(List<String> securityOpt) {
+        this.securityOpt = securityOpt;
+    }
+
+    public HostConfig shmSize(Long shmSize) {
+        this.shmSize = shmSize;
+        return this;
+    }
+
+    /**
+     * Get shmSize
+     *
+     * @return shmSize
+     */
+    @jakarta.annotation.Nullable
+
+    public Long getShmSize() {
+        return shmSize;
+    }
+
+    public void setShmSize(Long shmSize) {
+        this.shmSize = shmSize;
+    }
+
+    public HostConfig storageOpt(Map<String, String> storageOpt) {
+        this.storageOpt = storageOpt;
+        return this;
+    }
+
+    public HostConfig putStorageOptItem(String key, String storageOptItem) {
+        if (this.storageOpt == null) {
+            this.storageOpt = new HashMap<>();
+        }
+        this.storageOpt.put(key, storageOptItem);
+        return this;
+    }
+
+    /**
+     * Get storageOpt
+     *
+     * @return storageOpt
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getStorageOpt() {
+        return storageOpt;
+    }
+
+    public void setStorageOpt(Map<String, String> storageOpt) {
+        this.storageOpt = storageOpt;
+    }
+
+    public HostConfig sysctls(Map<String, String> sysctls) {
+        this.sysctls = sysctls;
+        return this;
+    }
+
+    public HostConfig putSysctlsItem(String key, String sysctlsItem) {
+        if (this.sysctls == null) {
+            this.sysctls = new HashMap<>();
+        }
+        this.sysctls.put(key, sysctlsItem);
+        return this;
+    }
+
+    /**
+     * Get sysctls
+     *
+     * @return sysctls
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getSysctls() {
+        return sysctls;
+    }
+
+    public void setSysctls(Map<String, String> sysctls) {
+        this.sysctls = sysctls;
+    }
+
+    public HostConfig tmpfs(Map<String, String> tmpfs) {
+        this.tmpfs = tmpfs;
+        return this;
+    }
+
+    public HostConfig putTmpfsItem(String key, String tmpfsItem) {
+        if (this.tmpfs == null) {
+            this.tmpfs = new HashMap<>();
+        }
+        this.tmpfs.put(key, tmpfsItem);
+        return this;
+    }
+
+    /**
+     * Get tmpfs
+     *
+     * @return tmpfs
+     */
+    @jakarta.annotation.Nullable
+
+    public Map<String, String> getTmpfs() {
+        return tmpfs;
+    }
+
+    public void setTmpfs(Map<String, String> tmpfs) {
+        this.tmpfs = tmpfs;
+    }
+
+    public HostConfig utSMode(String utSMode) {
+        this.utSMode = utSMode;
+        return this;
+    }
+
+    /**
+     * Get utSMode
+     *
+     * @return utSMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUtSMode() {
+        return utSMode;
+    }
+
+    public void setUtSMode(String utSMode) {
+        this.utSMode = utSMode;
+    }
+
+    public HostConfig ulimits(List<@Valid Ulimit> ulimits) {
+        this.ulimits = ulimits;
+        return this;
+    }
+
+    public HostConfig addUlimitsItem(Ulimit ulimitsItem) {
+        if (this.ulimits == null) {
+            this.ulimits = new ArrayList<>();
+        }
+        this.ulimits.add(ulimitsItem);
+        return this;
+    }
+
+    /**
+     * Get ulimits
+     *
+     * @return ulimits
+     */
+    @jakarta.annotation.Nullable
+    @Valid
+
+    public List<@Valid Ulimit> getUlimits() {
+        return ulimits;
+    }
+
+    public void setUlimits(List<@Valid Ulimit> ulimits) {
+        this.ulimits = ulimits;
+    }
+
+    public HostConfig usernsMode(String usernsMode) {
+        this.usernsMode = usernsMode;
+        return this;
+    }
+
+    /**
+     * Get usernsMode
+     *
+     * @return usernsMode
+     */
+    @jakarta.annotation.Nullable
+
+    public String getUsernsMode() {
+        return usernsMode;
+    }
+
+    public void setUsernsMode(String usernsMode) {
+        this.usernsMode = usernsMode;
+    }
+
+    public HostConfig volumeDriver(String volumeDriver) {
+        this.volumeDriver = volumeDriver;
+        return this;
+    }
+
+    /**
+     * Get volumeDriver
+     *
+     * @return volumeDriver
+     */
+    @jakarta.annotation.Nullable
+
+    public String getVolumeDriver() {
+        return volumeDriver;
+    }
+
+    public void setVolumeDriver(String volumeDriver) {
+        this.volumeDriver = volumeDriver;
+    }
+
+    public HostConfig volumesFrom(List<String> volumesFrom) {
+        this.volumesFrom = volumesFrom;
+        return this;
+    }
+
+    public HostConfig addVolumesFromItem(String volumesFromItem) {
+        if (this.volumesFrom == null) {
+            this.volumesFrom = new ArrayList<>();
+        }
+        this.volumesFrom.add(volumesFromItem);
+        return this;
+    }
+
+    /**
+     * Get volumesFrom
+     *
+     * @return volumesFrom
+     */
+    @jakarta.annotation.Nullable
+
+    public List<String> getVolumesFrom() {
+        return volumesFrom;
+    }
+
+    public void setVolumesFrom(List<String> volumesFrom) {
+        this.volumesFrom = volumesFrom;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        HostConfig hostConfig = (HostConfig) o;
+        return Objects.equals(this.annotations, hostConfig.annotations) &&
+                Objects.equals(this.autoRemove, hostConfig.autoRemove) &&
+                Objects.equals(this.binds, hostConfig.binds) &&
+                Objects.equals(this.blkioDeviceReadBps, hostConfig.blkioDeviceReadBps) &&
+                Objects.equals(this.blkioDeviceReadIOps, hostConfig.blkioDeviceReadIOps) &&
+                Objects.equals(this.blkioDeviceWriteBps, hostConfig.blkioDeviceWriteBps) &&
+                Objects.equals(this.blkioDeviceWriteIOps, hostConfig.blkioDeviceWriteIOps) &&
+                Objects.equals(this.blkioWeight, hostConfig.blkioWeight) &&
+                Objects.equals(this.blkioWeightDevice, hostConfig.blkioWeightDevice) &&
+                Objects.equals(this.capAdd, hostConfig.capAdd) &&
+                Objects.equals(this.capDrop, hostConfig.capDrop) &&
+                Objects.equals(this.cgroup, hostConfig.cgroup) &&
+                Objects.equals(this.cgroupParent, hostConfig.cgroupParent) &&
+                Objects.equals(this.cgroupnsMode, hostConfig.cgroupnsMode) &&
+                Objects.equals(this.consoleSize, hostConfig.consoleSize) &&
+                Objects.equals(this.containerIDFile, hostConfig.containerIDFile) &&
+                Objects.equals(this.cpuCount, hostConfig.cpuCount) &&
+                Objects.equals(this.cpuPercent, hostConfig.cpuPercent) &&
+                Objects.equals(this.cpuPeriod, hostConfig.cpuPeriod) &&
+                Objects.equals(this.cpuQuota, hostConfig.cpuQuota) &&
+                Objects.equals(this.cpuRealtimePeriod, hostConfig.cpuRealtimePeriod) &&
+                Objects.equals(this.cpuRealtimeRuntime, hostConfig.cpuRealtimeRuntime) &&
+                Objects.equals(this.cpuShares, hostConfig.cpuShares) &&
+                Objects.equals(this.cpusetCpus, hostConfig.cpusetCpus) &&
+                Objects.equals(this.cpusetMems, hostConfig.cpusetMems) &&
+                Objects.equals(this.deviceCgroupRules, hostConfig.deviceCgroupRules) &&
+                Objects.equals(this.deviceRequests, hostConfig.deviceRequests) &&
+                Objects.equals(this.devices, hostConfig.devices) &&
+                Objects.equals(this.dns, hostConfig.dns) &&
+                Objects.equals(this.dnsOptions, hostConfig.dnsOptions) &&
+                Objects.equals(this.dnsSearch, hostConfig.dnsSearch) &&
+                Objects.equals(this.extraHosts, hostConfig.extraHosts) &&
+                Objects.equals(this.groupAdd, hostConfig.groupAdd) &&
+                Objects.equals(this.ioMaximumBandwidth, hostConfig.ioMaximumBandwidth) &&
+                Objects.equals(this.ioMaximumIOps, hostConfig.ioMaximumIOps) &&
+                Objects.equals(this.init, hostConfig.init) &&
+                Objects.equals(this.ipcMode, hostConfig.ipcMode) &&
+                Objects.equals(this.isolation, hostConfig.isolation) &&
+                Objects.equals(this.kernelMemory, hostConfig.kernelMemory) &&
+                Objects.equals(this.kernelMemoryTCP, hostConfig.kernelMemoryTCP) &&
+                Objects.equals(this.links, hostConfig.links) &&
+                Objects.equals(this.logConfig, hostConfig.logConfig) &&
+                Objects.equals(this.maskedPaths, hostConfig.maskedPaths) &&
+                Objects.equals(this.memory, hostConfig.memory) &&
+                Objects.equals(this.memoryReservation, hostConfig.memoryReservation) &&
+                Objects.equals(this.memorySwap, hostConfig.memorySwap) &&
+                Objects.equals(this.memorySwappiness, hostConfig.memorySwappiness) &&
+                Objects.equals(this.mounts, hostConfig.mounts) &&
+                Objects.equals(this.nanoCpus, hostConfig.nanoCpus) &&
+                Objects.equals(this.networkMode, hostConfig.networkMode) &&
+                Objects.equals(this.oomKillDisable, hostConfig.oomKillDisable) &&
+                Objects.equals(this.oomScoreAdj, hostConfig.oomScoreAdj) &&
+                Objects.equals(this.pidMode, hostConfig.pidMode) &&
+                Objects.equals(this.pidsLimit, hostConfig.pidsLimit) &&
+                Objects.equals(this.portBindings, hostConfig.portBindings) &&
+                Objects.equals(this.privileged, hostConfig.privileged) &&
+                Objects.equals(this.publishAllPorts, hostConfig.publishAllPorts) &&
+                Objects.equals(this.readonlyPaths, hostConfig.readonlyPaths) &&
+                Objects.equals(this.readonlyRootfs, hostConfig.readonlyRootfs) &&
+                Objects.equals(this.restartPolicy, hostConfig.restartPolicy) &&
+                Objects.equals(this.runtime, hostConfig.runtime) &&
+                Objects.equals(this.securityOpt, hostConfig.securityOpt) &&
+                Objects.equals(this.shmSize, hostConfig.shmSize) &&
+                Objects.equals(this.storageOpt, hostConfig.storageOpt) &&
+                Objects.equals(this.sysctls, hostConfig.sysctls) &&
+                Objects.equals(this.tmpfs, hostConfig.tmpfs) &&
+                Objects.equals(this.utSMode, hostConfig.utSMode) &&
+                Objects.equals(this.ulimits, hostConfig.ulimits) &&
+                Objects.equals(this.usernsMode, hostConfig.usernsMode) &&
+                Objects.equals(this.volumeDriver, hostConfig.volumeDriver) &&
+                Objects.equals(this.volumesFrom, hostConfig.volumesFrom);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(annotations, autoRemove, binds, blkioDeviceReadBps, blkioDeviceReadIOps, blkioDeviceWriteBps, blkioDeviceWriteIOps, blkioWeight, blkioWeightDevice, capAdd, capDrop, cgroup, cgroupParent, cgroupnsMode, consoleSize, containerIDFile, cpuCount, cpuPercent, cpuPeriod, cpuQuota, cpuRealtimePeriod, cpuRealtimeRuntime, cpuShares, cpusetCpus, cpusetMems, deviceCgroupRules, deviceRequests, devices, dns, dnsOptions, dnsSearch, extraHosts, groupAdd, ioMaximumBandwidth, ioMaximumIOps, init, ipcMode, isolation, kernelMemory, kernelMemoryTCP, links, logConfig, maskedPaths, memory, memoryReservation, memorySwap, memorySwappiness, mounts, nanoCpus, networkMode, oomKillDisable, oomScoreAdj, pidMode, pidsLimit, portBindings, privileged, publishAllPorts, readonlyPaths, readonlyRootfs, restartPolicy, runtime, securityOpt, shmSize, storageOpt, sysctls, tmpfs, utSMode, ulimits, usernsMode, volumeDriver, volumesFrom);
+    }
+
+    @Override
+    public String toString() {
+        String sb = "class HostConfig {\n" +
+                "    annotations: " + toIndentedString(annotations) + "\n" +
+                "    autoRemove: " + toIndentedString(autoRemove) + "\n" +
+                "    binds: " + toIndentedString(binds) + "\n" +
+                "    blkioDeviceReadBps: " + toIndentedString(blkioDeviceReadBps) + "\n" +
+                "    blkioDeviceReadIOps: " + toIndentedString(blkioDeviceReadIOps) + "\n" +
+                "    blkioDeviceWriteBps: " + toIndentedString(blkioDeviceWriteBps) + "\n" +
+                "    blkioDeviceWriteIOps: " + toIndentedString(blkioDeviceWriteIOps) + "\n" +
+                "    blkioWeight: " + toIndentedString(blkioWeight) + "\n" +
+                "    blkioWeightDevice: " + toIndentedString(blkioWeightDevice) + "\n" +
+                "    capAdd: " + toIndentedString(capAdd) + "\n" +
+                "    capDrop: " + toIndentedString(capDrop) + "\n" +
+                "    cgroup: " + toIndentedString(cgroup) + "\n" +
+                "    cgroupParent: " + toIndentedString(cgroupParent) + "\n" +
+                "    cgroupnsMode: " + toIndentedString(cgroupnsMode) + "\n" +
+                "    consoleSize: " + toIndentedString(consoleSize) + "\n" +
+                "    containerIDFile: " + toIndentedString(containerIDFile) + "\n" +
+                "    cpuCount: " + toIndentedString(cpuCount) + "\n" +
+                "    cpuPercent: " + toIndentedString(cpuPercent) + "\n" +
+                "    cpuPeriod: " + toIndentedString(cpuPeriod) + "\n" +
+                "    cpuQuota: " + toIndentedString(cpuQuota) + "\n" +
+                "    cpuRealtimePeriod: " + toIndentedString(cpuRealtimePeriod) + "\n" +
+                "    cpuRealtimeRuntime: " + toIndentedString(cpuRealtimeRuntime) + "\n" +
+                "    cpuShares: " + toIndentedString(cpuShares) + "\n" +
+                "    cpusetCpus: " + toIndentedString(cpusetCpus) + "\n" +
+                "    cpusetMems: " + toIndentedString(cpusetMems) + "\n" +
+                "    deviceCgroupRules: " + toIndentedString(deviceCgroupRules) + "\n" +
+                "    deviceRequests: " + toIndentedString(deviceRequests) + "\n" +
+                "    devices: " + toIndentedString(devices) + "\n" +
+                "    dns: " + toIndentedString(dns) + "\n" +
+                "    dnsOptions: " + toIndentedString(dnsOptions) + "\n" +
+                "    dnsSearch: " + toIndentedString(dnsSearch) + "\n" +
+                "    extraHosts: " + toIndentedString(extraHosts) + "\n" +
+                "    groupAdd: " + toIndentedString(groupAdd) + "\n" +
+                "    ioMaximumBandwidth: " + toIndentedString(ioMaximumBandwidth) + "\n" +
+                "    ioMaximumIOps: " + toIndentedString(ioMaximumIOps) + "\n" +
+                "    init: " + toIndentedString(init) + "\n" +
+                "    ipcMode: " + toIndentedString(ipcMode) + "\n" +
+                "    isolation: " + toIndentedString(isolation) + "\n" +
+                "    kernelMemory: " + toIndentedString(kernelMemory) + "\n" +
+                "    kernelMemoryTCP: " + toIndentedString(kernelMemoryTCP) + "\n" +
+                "    links: " + toIndentedString(links) + "\n" +
+                "    logConfig: " + toIndentedString(logConfig) + "\n" +
+                "    maskedPaths: " + toIndentedString(maskedPaths) + "\n" +
+                "    memory: " + toIndentedString(memory) + "\n" +
+                "    memoryReservation: " + toIndentedString(memoryReservation) + "\n" +
+                "    memorySwap: " + toIndentedString(memorySwap) + "\n" +
+                "    memorySwappiness: " + toIndentedString(memorySwappiness) + "\n" +
+                "    mounts: " + toIndentedString(mounts) + "\n" +
+                "    nanoCpus: " + toIndentedString(nanoCpus) + "\n" +
+                "    networkMode: " + toIndentedString(networkMode) + "\n" +
+                "    oomKillDisable: " + toIndentedString(oomKillDisable) + "\n" +
+                "    oomScoreAdj: " + toIndentedString(oomScoreAdj) + "\n" +
+                "    pidMode: " + toIndentedString(pidMode) + "\n" +
+                "    pidsLimit: " + toIndentedString(pidsLimit) + "\n" +
+                "    portBindings: " + toIndentedString(portBindings) + "\n" +
+                "    privileged: " + toIndentedString(privileged) + "\n" +
+                "    publishAllPorts: " + toIndentedString(publishAllPorts) + "\n" +
+                "    readonlyPaths: " + toIndentedString(readonlyPaths) + "\n" +
+                "    readonlyRootfs: " + toIndentedString(readonlyRootfs) + "\n" +
+                "    restartPolicy: " + toIndentedString(restartPolicy) + "\n" +
+                "    runtime: " + toIndentedString(runtime) + "\n" +
+                "    securityOpt: " + toIndentedString(securityOpt) + "\n" +
+                "    shmSize: " + toIndentedString(shmSize) + "\n" +
+                "    storageOpt: " + toIndentedString(storageOpt) + "\n" +
+                "    sysctls: " + toIndentedString(sysctls) + "\n" +
+                "    tmpfs: " + toIndentedString(tmpfs) + "\n" +
+                "    utSMode: " + toIndentedString(utSMode) + "\n" +
+                "    ulimits: " + toIndentedString(ulimits) + "\n" +
+                "    usernsMode: " + toIndentedString(usernsMode) + "\n" +
+                "    volumeDriver: " + toIndentedString(volumeDriver) + "\n" +
+                "    volumesFrom: " + toIndentedString(volumesFrom) + "\n" +
+                "}";
+        return sb;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
+
+    /**
+     * Convert an instance of HostConfig to an JSON string
+     *
+     * @return JSON string
+     */
+    public String toJson() {
+        return JSON.getGson().toJson(this);
+    }
+
+    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+        @SuppressWarnings("unchecked")
+        @Override
+        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+            if (!HostConfig.class.isAssignableFrom(type.getRawType())) {
+                return null; // this class only serializes 'HostConfig' and its subtypes
+            }
+            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+            final TypeAdapter<HostConfig> thisAdapter
+                    = gson.getDelegateAdapter(this, TypeToken.get(HostConfig.class));
+
+            return (TypeAdapter<T>) new TypeAdapter<HostConfig>() {
+                @Override
+                public void write(JsonWriter out, HostConfig value) throws IOException {
+                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+                    elementAdapter.write(out, obj);
+                }
+
+                @Override
+                public HostConfig read(JsonReader in) throws IOException {
+                    JsonElement jsonElement = elementAdapter.read(in);
+                    validateJsonElement(jsonElement);
+                    return thisAdapter.fromJsonTree(jsonElement);
+                }
+
+            }.nullSafe();
+        }
+    }
 }
 
