@@ -922,13 +922,8 @@ public class PodsApi {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", contentType);
         }
 
         String[] localVarAuthNames = new String[] {  };
