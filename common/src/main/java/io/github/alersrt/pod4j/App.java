@@ -8,9 +8,10 @@ import java.nio.file.Paths;
 
 public class App {
 
-    public static void main(String[] args) throws ApiException, IOException {
+    public static void main(String[] args) throws ApiException, IOException, InterruptedException {
         var podman = new Podman("/var/run/user/1000/podman/podman.sock");
         podman.start(Paths.get("common/src/main/resources/nginx.yaml").toAbsolutePath().toString());
+        Thread.sleep(10 * 1000);
         podman.stop(Paths.get("common/src/main/resources/nginx.yaml").toAbsolutePath().toString());
     }
 }

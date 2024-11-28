@@ -37,7 +37,6 @@ import okio.Okio;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URLConnection;
@@ -81,6 +80,8 @@ import javax.net.ssl.X509TrustManager;
  */
 public class ApiClient {
 
+    private final Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+    private final Map<String, String> defaultCookieMap = new HashMap<String, String>();
     protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
             new ServerConfiguration(
                     "http://podman.io",
@@ -97,8 +98,6 @@ public class ApiClient {
     protected Map<String, String> serverVariables = null;
     private String basePath = "http://podman.io";
     private boolean debugging = false;
-    private final Map<String, String> defaultHeaderMap = new HashMap<String, String>();
-    private final Map<String, String> defaultCookieMap = new HashMap<String, String>();
     private String tempFolderPath = null;
 
     private Map<String, Authentication> authentications;
@@ -967,7 +966,7 @@ public class ApiClient {
             }
             return RequestBody.create(content, MediaType.parse(contentType));
         } else if (obj instanceof String) {
-            return RequestBody.create((String) obj, MediaType.parse(contentType));
+            return RequestBody.create((String) obj, contentType == null ? null : MediaType.parse(contentType));
         } else {
             throw new ApiException("Content type \"" + contentType + "\" is not supported");
         }

@@ -55,7 +55,7 @@ public class Podman {
     public void stop(String yamlPath) throws ApiException, IOException {
         final var pods = new PodsApi(api);
         String yaml = readFile(yamlPath);
-        pods.playKubeDownLibpod(true, yaml);
+        pods.playKubeDownLibpod(null, true, yaml);
     }
 
     private String readFile(String filename) throws IOException {
