@@ -10,47 +10,73 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for NamedVolume */
+/**
+ * Model tests for NamedVolume
+ */
 public class NamedVolumeTest {
     private final NamedVolume model = new NamedVolume();
 
-    /** Model tests for NamedVolume */
+    /**
+     * Model tests for NamedVolume
+     */
     @Test
     public void testNamedVolume() {
         // TODO: test NamedVolume
     }
 
-    /** Test the property 'dest' */
+    /**
+     * Test the property 'dest'
+     */
     @Test
     public void destTest() {
         // TODO: test dest
     }
 
-    /** Test the property 'isAnonymous' */
+    /**
+     * Test the property 'isAnonymous'
+     */
     @Test
     public void isAnonymousTest() {
         // TODO: test isAnonymous
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'options' */
+    /**
+     * Test the property 'options'
+     */
     @Test
     public void optionsTest() {
         // TODO: test options
     }
 
-    /** Test the property 'subPath' */
+    /**
+     * Test the property 'subPath'
+     */
     @Test
     public void subPathTest() {
         // TODO: test subPath
     }
+
 }

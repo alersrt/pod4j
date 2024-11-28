@@ -13,7 +13,7 @@ repositories {
 }
 
 group = "io.github.alersrt"
-version = "5.2.5"
+version = "5.3.0"
 
 dependencies {
     implementation("io.swagger:swagger-annotations:1.6.14")

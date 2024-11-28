@@ -10,59 +10,87 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for AuthConfig */
+/**
+ * Model tests for AuthConfig
+ */
 public class AuthConfigTest {
     private final AuthConfig model = new AuthConfig();
 
-    /** Model tests for AuthConfig */
+    /**
+     * Model tests for AuthConfig
+     */
     @Test
     public void testAuthConfig() {
         // TODO: test AuthConfig
     }
 
-    /** Test the property 'auth' */
+    /**
+     * Test the property 'auth'
+     */
     @Test
     public void authTest() {
         // TODO: test auth
     }
 
-    /** Test the property 'email' */
+    /**
+     * Test the property 'email'
+     */
     @Test
     public void emailTest() {
         // TODO: test email
     }
 
-    /** Test the property 'identitytoken' */
+    /**
+     * Test the property 'identitytoken'
+     */
     @Test
     public void identitytokenTest() {
         // TODO: test identitytoken
     }
 
-    /** Test the property 'password' */
+    /**
+     * Test the property 'password'
+     */
     @Test
     public void passwordTest() {
         // TODO: test password
     }
 
-    /** Test the property 'registrytoken' */
+    /**
+     * Test the property 'registrytoken'
+     */
     @Test
     public void registrytokenTest() {
         // TODO: test registrytoken
     }
 
-    /** Test the property 'serveraddress' */
+    /**
+     * Test the property 'serveraddress'
+     */
     @Test
     public void serveraddressTest() {
         // TODO: test serveraddress
     }
 
-    /** Test the property 'username' */
+    /**
+     * Test the property 'username'
+     */
     @Test
     public void usernameTest() {
         // TODO: test username
     }
+
 }

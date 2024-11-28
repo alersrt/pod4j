@@ -10,35 +10,55 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for DNSNetworkInfo */
+/**
+ * Model tests for DNSNetworkInfo
+ */
 public class DNSNetworkInfoTest {
     private final DNSNetworkInfo model = new DNSNetworkInfo();
 
-    /** Model tests for DNSNetworkInfo */
+    /**
+     * Model tests for DNSNetworkInfo
+     */
     @Test
     public void testDNSNetworkInfo() {
         // TODO: test DNSNetworkInfo
     }
 
-    /** Test the property '_package' */
+    /**
+     * Test the property '_package'
+     */
     @Test
     public void _packageTest() {
         // TODO: test _package
     }
 
-    /** Test the property 'path' */
+    /**
+     * Test the property 'path'
+     */
     @Test
     public void pathTest() {
         // TODO: test path
     }
 
-    /** Test the property 'version' */
+    /**
+     * Test the property 'version'
+     */
     @Test
     public void versionTest() {
         // TODO: test version
     }
+
 }

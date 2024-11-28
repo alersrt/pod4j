@@ -10,47 +10,71 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for BindOptions */
+/**
+ * Model tests for BindOptions
+ */
 public class BindOptionsTest {
     private final BindOptions model = new BindOptions();
 
-    /** Model tests for BindOptions */
+    /**
+     * Model tests for BindOptions
+     */
     @Test
     public void testBindOptions() {
         // TODO: test BindOptions
     }
 
-    /** Test the property 'createMountpoint' */
+    /**
+     * Test the property 'createMountpoint'
+     */
     @Test
     public void createMountpointTest() {
         // TODO: test createMountpoint
     }
 
-    /** Test the property 'nonRecursive' */
+    /**
+     * Test the property 'nonRecursive'
+     */
     @Test
     public void nonRecursiveTest() {
         // TODO: test nonRecursive
     }
 
-    /** Test the property 'propagation' */
+    /**
+     * Test the property 'propagation'
+     */
     @Test
     public void propagationTest() {
         // TODO: test propagation
     }
 
-    /** Test the property 'readOnlyForceRecursive' */
+    /**
+     * Test the property 'readOnlyForceRecursive'
+     */
     @Test
     public void readOnlyForceRecursiveTest() {
         // TODO: test readOnlyForceRecursive
     }
 
-    /** Test the property 'readOnlyNonRecursive' */
+    /**
+     * Test the property 'readOnlyNonRecursive'
+     */
     @Test
     public void readOnlyNonRecursiveTest() {
         // TODO: test readOnlyNonRecursive
     }
+
 }

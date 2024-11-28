@@ -10,41 +10,63 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainerStore */
+/**
+ * Model tests for ContainerStore
+ */
 public class ContainerStoreTest {
     private final ContainerStore model = new ContainerStore();
 
-    /** Model tests for ContainerStore */
+    /**
+     * Model tests for ContainerStore
+     */
     @Test
     public void testContainerStore() {
         // TODO: test ContainerStore
     }
 
-    /** Test the property 'number' */
+    /**
+     * Test the property 'number'
+     */
     @Test
     public void numberTest() {
         // TODO: test number
     }
 
-    /** Test the property 'paused' */
+    /**
+     * Test the property 'paused'
+     */
     @Test
     public void pausedTest() {
         // TODO: test paused
     }
 
-    /** Test the property 'running' */
+    /**
+     * Test the property 'running'
+     */
     @Test
     public void runningTest() {
         // TODO: test running
     }
 
-    /** Test the property 'stopped' */
+    /**
+     * Test the property 'stopped'
+     */
     @Test
     public void stoppedTest() {
         // TODO: test stopped
     }
+
 }

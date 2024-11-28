@@ -10,47 +10,73 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PlayKubePod */
+/**
+ * Model tests for PlayKubePod
+ */
 public class PlayKubePodTest {
     private final PlayKubePod model = new PlayKubePod();
 
-    /** Model tests for PlayKubePod */
+    /**
+     * Model tests for PlayKubePod
+     */
     @Test
     public void testPlayKubePod() {
         // TODO: test PlayKubePod
     }
 
-    /** Test the property 'containerErrors' */
+    /**
+     * Test the property 'containerErrors'
+     */
     @Test
     public void containerErrorsTest() {
         // TODO: test containerErrors
     }
 
-    /** Test the property 'containers' */
+    /**
+     * Test the property 'containers'
+     */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /** Test the property 'ID' */
+    /**
+     * Test the property 'ID'
+     */
     @Test
     public void IDTest() {
         // TODO: test ID
     }
 
-    /** Test the property 'initContainers' */
+    /**
+     * Test the property 'initContainers'
+     */
     @Test
     public void initContainersTest() {
         // TODO: test initContainers
     }
 
-    /** Test the property 'logs' */
+    /**
+     * Test the property 'logs'
+     */
     @Test
     public void logsTest() {
         // TODO: test logs
     }
+
 }

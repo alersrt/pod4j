@@ -10,47 +10,71 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for LinuxIntelRdt */
+/**
+ * Model tests for LinuxIntelRdt
+ */
 public class LinuxIntelRdtTest {
     private final LinuxIntelRdt model = new LinuxIntelRdt();
 
-    /** Model tests for LinuxIntelRdt */
+    /**
+     * Model tests for LinuxIntelRdt
+     */
     @Test
     public void testLinuxIntelRdt() {
         // TODO: test LinuxIntelRdt
     }
 
-    /** Test the property 'closID' */
+    /**
+     * Test the property 'closID'
+     */
     @Test
     public void closIDTest() {
         // TODO: test closID
     }
 
-    /** Test the property 'enableCMT' */
+    /**
+     * Test the property 'enableCMT'
+     */
     @Test
     public void enableCMTTest() {
         // TODO: test enableCMT
     }
 
-    /** Test the property 'enableMBM' */
+    /**
+     * Test the property 'enableMBM'
+     */
     @Test
     public void enableMBMTest() {
         // TODO: test enableMBM
     }
 
-    /** Test the property 'l3CacheSchema' */
+    /**
+     * Test the property 'l3CacheSchema'
+     */
     @Test
     public void l3CacheSchemaTest() {
         // TODO: test l3CacheSchema
     }
 
-    /** Test the property 'memBwSchema' */
+    /**
+     * Test the property 'memBwSchema'
+     */
     @Test
     public void memBwSchemaTest() {
         // TODO: test memBwSchema
     }
+
 }

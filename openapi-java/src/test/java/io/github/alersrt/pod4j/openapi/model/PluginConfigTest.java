@@ -10,113 +10,169 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.PluginConfigArgs;
+import io.github.alersrt.pod4j.openapi.model.PluginConfigInterface;
+import io.github.alersrt.pod4j.openapi.model.PluginConfigLinux;
+import io.github.alersrt.pod4j.openapi.model.PluginConfigNetwork;
+import io.github.alersrt.pod4j.openapi.model.PluginConfigRootfs;
+import io.github.alersrt.pod4j.openapi.model.PluginConfigUser;
+import io.github.alersrt.pod4j.openapi.model.PluginEnv;
+import io.github.alersrt.pod4j.openapi.model.PluginMount;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PluginConfig */
+/**
+ * Model tests for PluginConfig
+ */
 public class PluginConfigTest {
     private final PluginConfig model = new PluginConfig();
 
-    /** Model tests for PluginConfig */
+    /**
+     * Model tests for PluginConfig
+     */
     @Test
     public void testPluginConfig() {
         // TODO: test PluginConfig
     }
 
-    /** Test the property 'args' */
+    /**
+     * Test the property 'args'
+     */
     @Test
     public void argsTest() {
         // TODO: test args
     }
 
-    /** Test the property 'description' */
+    /**
+     * Test the property 'description'
+     */
     @Test
     public void descriptionTest() {
         // TODO: test description
     }
 
-    /** Test the property 'dockerVersion' */
+    /**
+     * Test the property 'dockerVersion'
+     */
     @Test
     public void dockerVersionTest() {
         // TODO: test dockerVersion
     }
 
-    /** Test the property 'documentation' */
+    /**
+     * Test the property 'documentation'
+     */
     @Test
     public void documentationTest() {
         // TODO: test documentation
     }
 
-    /** Test the property 'entrypoint' */
+    /**
+     * Test the property 'entrypoint'
+     */
     @Test
     public void entrypointTest() {
         // TODO: test entrypoint
     }
 
-    /** Test the property 'env' */
+    /**
+     * Test the property 'env'
+     */
     @Test
     public void envTest() {
         // TODO: test env
     }
 
-    /** Test the property '_interface' */
+    /**
+     * Test the property '_interface'
+     */
     @Test
     public void _interfaceTest() {
         // TODO: test _interface
     }
 
-    /** Test the property 'ipcHost' */
+    /**
+     * Test the property 'ipcHost'
+     */
     @Test
     public void ipcHostTest() {
         // TODO: test ipcHost
     }
 
-    /** Test the property 'linux' */
+    /**
+     * Test the property 'linux'
+     */
     @Test
     public void linuxTest() {
         // TODO: test linux
     }
 
-    /** Test the property 'mounts' */
+    /**
+     * Test the property 'mounts'
+     */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /** Test the property 'network' */
+    /**
+     * Test the property 'network'
+     */
     @Test
     public void networkTest() {
         // TODO: test network
     }
 
-    /** Test the property 'pidHost' */
+    /**
+     * Test the property 'pidHost'
+     */
     @Test
     public void pidHostTest() {
         // TODO: test pidHost
     }
 
-    /** Test the property 'propagatedMount' */
+    /**
+     * Test the property 'propagatedMount'
+     */
     @Test
     public void propagatedMountTest() {
         // TODO: test propagatedMount
     }
 
-    /** Test the property 'user' */
+    /**
+     * Test the property 'user'
+     */
     @Test
     public void userTest() {
         // TODO: test user
     }
 
-    /** Test the property 'workDir' */
+    /**
+     * Test the property 'workDir'
+     */
     @Test
     public void workDirTest() {
         // TODO: test workDir
     }
 
-    /** Test the property 'rootfs' */
+    /**
+     * Test the property 'rootfs'
+     */
     @Test
     public void rootfsTest() {
         // TODO: test rootfs
     }
+
 }

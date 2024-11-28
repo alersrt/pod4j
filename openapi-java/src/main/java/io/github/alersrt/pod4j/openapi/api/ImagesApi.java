@@ -10,15 +10,25 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
+import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.HistoryResponse;
 import io.github.alersrt.pod4j.openapi.model.ImageBuildLibpod200Response;
 import io.github.alersrt.pod4j.openapi.model.ImageData;
@@ -31,7 +41,7 @@ import io.github.alersrt.pod4j.openapi.model.LibpodImagesPullReport;
 import io.github.alersrt.pod4j.openapi.model.LibpodImagesRemoveReport;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
 import io.github.alersrt.pod4j.openapi.model.ScpReport;
-import java.io.File;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,136 +87,58 @@ public class ImagesApi {
 
     /**
      * Build call for imageBuildLibpod
-     *
-     * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is
-     *     ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.
-     *     (optional, default to Dockerfile)
-     * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If
-     *     you omit the tag, the default latest value is assumed. You can provide several t
-     *     parameters. (optional, default to latest)
-     * @param allplatforms Instead of building for a set of platforms specified using the platform
-     *     option, inspect the build&#39;s base images, and build for all of the platforms that are
-     *     available. Stages that use *scratch* as a starting point can not be inspected, so at
-     *     least one non-*scratch* stage must be present for detection to work usefully. (optional,
-     *     default to false)
-     * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx) (optional)
-     * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single
-     *     text file, the file’s contents are placed into a file called Dockerfile and the image is
-     *     built from that file. If the URI points to a tarball, the file is downloaded by the
-     *     daemon and the contents therein used as the context for the build. If the URI points to a
-     *     tarball and the dockerfile parameter is also specified, there must be a file with the
-     *     corresponding path inside the tarball. (As of version 1.xx) (optional)
-     * @param q Suppress verbose build output (optional, default to false)
-     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
-     *     version v5.2) (optional, default to false)
-     * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
-     *     default to false)
-     * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
-     *     (optional)
-     * @param pull Attempt to pull the image even if an older image exists locally (As of version
-     *     1.xx) (optional, default to false)
-     * @param rm Remove intermediate containers after a successful build (As of version 1.xx)
-     *     (optional, default to true)
-     * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)
-     *     (optional, default to false)
-     * @param memory Memory is the upper limit (in bytes) on how much memory running containers can
-     *     use (As of version 1.xx) (optional)
-     * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)
-     *     (optional)
-     * @param cpushares CPUShares (relative weight (As of version 1.xx) (optional)
-     * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)
-     *     (optional)
-     * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of
-     *     version 1.xx) (optional)
-     * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version
-     *     1.xx) (optional)
-     * @param buildargs JSON map of string pairs denoting build-time variables. For example, the
-     *     build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON
-     *     as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;. For example,
-     *     buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}. Note(s): * This should not be used
-     *     to pass secrets. * The value of buildargs should be URI component encoded before being
-     *     passed to the API. (As of version 1.xx) (optional)
-     * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the
-     *     container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx) (optional,
-     *     default to 67108864)
-     * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of
-     *     version 1.xx) (optional, default to false)
-     * @param labels JSON map of key, value pairs to set as labels on the new image (As of version
-     *     1.xx) (optional)
-     * @param layerLabel Add an intermediate image *label* (e.g. label&#x3D;*value*) to the
-     *     intermediate image metadata. (optional)
-     * @param layers Cache intermediate layers during build. (As of version 1.xx) (optional, default
-     *     to true)
-     * @param networkmode Sets the networking mode for the run commands during build. Supported
-     *     standard values are: * &#x60;bridge&#x60; limited to containers within a single host,
-     *     port mapping required for external access * &#x60;host&#x60; no isolation between host
-     *     and containers on this network * &#x60;none&#x60; disable all networking for this
-     *     container * container:&lt;nameOrID&gt; share networking with given container ---All other
-     *     values are assumed to be a custom network&#39;s name (As of version 1.xx) (optional,
-     *     default to bridge)
-     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx) (optional)
-     * @param target Target build stage (As of version 1.xx) (optional)
-     * @param outputs output configuration TBD (As of version 1.xx) (optional)
-     * @param httpproxy Inject http proxy environment variables into container (As of version 2.0.0)
-     *     (optional)
+     * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
+     * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format.  If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
+     * @param allplatforms Instead of building for a set of platforms specified using the platform option, inspect the build&#39;s base images, and build for all of the platforms that are available.  Stages that use *scratch* as a starting point can not be inspected, so at least one non-*scratch* stage must be present for detection to work usefully.  (optional, default to false)
+     * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
+     * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
+     * @param q Suppress verbose build output  (optional, default to false)
+     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
+     * @param nocache Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
+     * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
+     * @param pull Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
+     * @param rm Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
+     * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
+     * @param memory Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
+     * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
+     * @param cpushares CPUShares (relative weight (As of version 1.xx)  (optional)
+     * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
+     * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
+     * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
+     * @param buildargs JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
+     * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
+     * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
+     * @param labels JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
+     * @param layerLabel Add an intermediate image *label* (e.g. label&#x3D;*value*) to the intermediate image metadata. (optional)
+     * @param layers Cache intermediate layers during build. (As of version 1.xx)  (optional, default to true)
+     * @param networkmode Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
+     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx)  (optional)
+     * @param target Target build stage (As of version 1.xx)  (optional)
+     * @param outputs output configuration TBD (As of version 1.xx)  (optional)
+     * @param httpproxy Inject http proxy environment variables into container (As of version 2.0.0)  (optional)
      * @param unsetenv Unset environment variables from the final image. (optional)
-     * @param unsetlabel Unset the image label, causing the label not to be inherited from the base
-     *     image. (optional)
+     * @param unsetlabel Unset the image label, causing the label not to be inherited from the base image. (optional)
      * @param volume Extra volumes that should be mounted in the build container. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageBuildLibpodCall(
-            String dockerfile,
-            String t,
-            Boolean allplatforms,
-            String extrahosts,
-            String remote,
-            Boolean q,
-            Boolean compatvolumes,
-            Boolean nocache,
-            String cachefrom,
-            Boolean pull,
-            Boolean rm,
-            Boolean forcerm,
-            Integer memory,
-            Integer memswap,
-            Integer cpushares,
-            String cpusetcpus,
-            Integer cpuperiod,
-            Integer cpuquota,
-            String buildargs,
-            Integer shmsize,
-            Boolean squash,
-            String labels,
-            List<String> layerLabel,
-            Boolean layers,
-            String networkmode,
-            String platform,
-            String target,
-            String outputs,
-            Boolean httpproxy,
-            List<String> unsetenv,
-            List<String> unsetlabel,
-            List<String> volume,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageBuildLibpodCall(String dockerfile, String t, Boolean allplatforms, String extrahosts, String remote, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, List<String> layerLabel, Boolean layers, String networkmode, String platform, String target, String outputs, Boolean httpproxy, List<String> unsetenv, List<String> unsetlabel, List<String> volume, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -232,8 +164,7 @@ public class ImagesApi {
         }
 
         if (allplatforms != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("allplatforms", allplatforms));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("allplatforms", allplatforms));
         }
 
         if (extrahosts != null) {
@@ -249,8 +180,7 @@ public class ImagesApi {
         }
 
         if (compatvolumes != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("compatvolumes", compatvolumes));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("compatvolumes", compatvolumes));
         }
 
         if (nocache != null) {
@@ -314,8 +244,7 @@ public class ImagesApi {
         }
 
         if (layerLabel != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "layerLabel", layerLabel));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "layerLabel", layerLabel));
         }
 
         if (layers != null) {
@@ -323,8 +252,7 @@ public class ImagesApi {
         }
 
         if (networkmode != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("networkmode", networkmode));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("networkmode", networkmode));
         }
 
         if (platform != null) {
@@ -344,637 +272,221 @@ public class ImagesApi {
         }
 
         if (unsetenv != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "unsetenv", unsetenv));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "unsetenv", unsetenv));
         }
 
         if (unsetlabel != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "unsetlabel", unsetlabel));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "unsetlabel", unsetlabel));
         }
 
         if (volume != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "volume", volume));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "volume", volume));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageBuildLibpodValidateBeforeCall(
-            String dockerfile,
-            String t,
-            Boolean allplatforms,
-            String extrahosts,
-            String remote,
-            Boolean q,
-            Boolean compatvolumes,
-            Boolean nocache,
-            String cachefrom,
-            Boolean pull,
-            Boolean rm,
-            Boolean forcerm,
-            Integer memory,
-            Integer memswap,
-            Integer cpushares,
-            String cpusetcpus,
-            Integer cpuperiod,
-            Integer cpuquota,
-            String buildargs,
-            Integer shmsize,
-            Boolean squash,
-            String labels,
-            List<String> layerLabel,
-            Boolean layers,
-            String networkmode,
-            String platform,
-            String target,
-            String outputs,
-            Boolean httpproxy,
-            List<String> unsetenv,
-            List<String> unsetlabel,
-            List<String> volume,
-            final ApiCallback _callback)
-            throws ApiException {
-        return imageBuildLibpodCall(
-                dockerfile,
-                t,
-                allplatforms,
-                extrahosts,
-                remote,
-                q,
-                compatvolumes,
-                nocache,
-                cachefrom,
-                pull,
-                rm,
-                forcerm,
-                memory,
-                memswap,
-                cpushares,
-                cpusetcpus,
-                cpuperiod,
-                cpuquota,
-                buildargs,
-                shmsize,
-                squash,
-                labels,
-                layerLabel,
-                layers,
-                networkmode,
-                platform,
-                target,
-                outputs,
-                httpproxy,
-                unsetenv,
-                unsetlabel,
-                volume,
-                _callback);
+    private okhttp3.Call imageBuildLibpodValidateBeforeCall(String dockerfile, String t, Boolean allplatforms, String extrahosts, String remote, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, List<String> layerLabel, Boolean layers, String networkmode, String platform, String target, String outputs, Boolean httpproxy, List<String> unsetenv, List<String> unsetlabel, List<String> volume, final ApiCallback _callback) throws ApiException {
+        return imageBuildLibpodCall(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume, _callback);
+
     }
 
     /**
-     * Create image Build an image from the given Dockerfile(s)
-     *
-     * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is
-     *     ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.
-     *     (optional, default to Dockerfile)
-     * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If
-     *     you omit the tag, the default latest value is assumed. You can provide several t
-     *     parameters. (optional, default to latest)
-     * @param allplatforms Instead of building for a set of platforms specified using the platform
-     *     option, inspect the build&#39;s base images, and build for all of the platforms that are
-     *     available. Stages that use *scratch* as a starting point can not be inspected, so at
-     *     least one non-*scratch* stage must be present for detection to work usefully. (optional,
-     *     default to false)
-     * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx) (optional)
-     * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single
-     *     text file, the file’s contents are placed into a file called Dockerfile and the image is
-     *     built from that file. If the URI points to a tarball, the file is downloaded by the
-     *     daemon and the contents therein used as the context for the build. If the URI points to a
-     *     tarball and the dockerfile parameter is also specified, there must be a file with the
-     *     corresponding path inside the tarball. (As of version 1.xx) (optional)
-     * @param q Suppress verbose build output (optional, default to false)
-     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
-     *     version v5.2) (optional, default to false)
-     * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
-     *     default to false)
-     * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
-     *     (optional)
-     * @param pull Attempt to pull the image even if an older image exists locally (As of version
-     *     1.xx) (optional, default to false)
-     * @param rm Remove intermediate containers after a successful build (As of version 1.xx)
-     *     (optional, default to true)
-     * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)
-     *     (optional, default to false)
-     * @param memory Memory is the upper limit (in bytes) on how much memory running containers can
-     *     use (As of version 1.xx) (optional)
-     * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)
-     *     (optional)
-     * @param cpushares CPUShares (relative weight (As of version 1.xx) (optional)
-     * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)
-     *     (optional)
-     * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of
-     *     version 1.xx) (optional)
-     * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version
-     *     1.xx) (optional)
-     * @param buildargs JSON map of string pairs denoting build-time variables. For example, the
-     *     build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON
-     *     as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;. For example,
-     *     buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}. Note(s): * This should not be used
-     *     to pass secrets. * The value of buildargs should be URI component encoded before being
-     *     passed to the API. (As of version 1.xx) (optional)
-     * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the
-     *     container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx) (optional,
-     *     default to 67108864)
-     * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of
-     *     version 1.xx) (optional, default to false)
-     * @param labels JSON map of key, value pairs to set as labels on the new image (As of version
-     *     1.xx) (optional)
-     * @param layerLabel Add an intermediate image *label* (e.g. label&#x3D;*value*) to the
-     *     intermediate image metadata. (optional)
-     * @param layers Cache intermediate layers during build. (As of version 1.xx) (optional, default
-     *     to true)
-     * @param networkmode Sets the networking mode for the run commands during build. Supported
-     *     standard values are: * &#x60;bridge&#x60; limited to containers within a single host,
-     *     port mapping required for external access * &#x60;host&#x60; no isolation between host
-     *     and containers on this network * &#x60;none&#x60; disable all networking for this
-     *     container * container:&lt;nameOrID&gt; share networking with given container ---All other
-     *     values are assumed to be a custom network&#39;s name (As of version 1.xx) (optional,
-     *     default to bridge)
-     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx) (optional)
-     * @param target Target build stage (As of version 1.xx) (optional)
-     * @param outputs output configuration TBD (As of version 1.xx) (optional)
-     * @param httpproxy Inject http proxy environment variables into container (As of version 2.0.0)
-     *     (optional)
+     * Create image
+     * Build an image from the given Dockerfile(s)
+     * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
+     * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format.  If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
+     * @param allplatforms Instead of building for a set of platforms specified using the platform option, inspect the build&#39;s base images, and build for all of the platforms that are available.  Stages that use *scratch* as a starting point can not be inspected, so at least one non-*scratch* stage must be present for detection to work usefully.  (optional, default to false)
+     * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
+     * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
+     * @param q Suppress verbose build output  (optional, default to false)
+     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
+     * @param nocache Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
+     * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
+     * @param pull Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
+     * @param rm Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
+     * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
+     * @param memory Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
+     * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
+     * @param cpushares CPUShares (relative weight (As of version 1.xx)  (optional)
+     * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
+     * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
+     * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
+     * @param buildargs JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
+     * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
+     * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
+     * @param labels JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
+     * @param layerLabel Add an intermediate image *label* (e.g. label&#x3D;*value*) to the intermediate image metadata. (optional)
+     * @param layers Cache intermediate layers during build. (As of version 1.xx)  (optional, default to true)
+     * @param networkmode Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
+     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx)  (optional)
+     * @param target Target build stage (As of version 1.xx)  (optional)
+     * @param outputs output configuration TBD (As of version 1.xx)  (optional)
+     * @param httpproxy Inject http proxy environment variables into container (As of version 2.0.0)  (optional)
      * @param unsetenv Unset environment variables from the final image. (optional)
-     * @param unsetlabel Unset the image label, causing the label not to be inherited from the base
-     *     image. (optional)
+     * @param unsetlabel Unset the image label, causing the label not to be inherited from the base image. (optional)
      * @param volume Extra volumes that should be mounted in the build container. (optional)
      * @return ImageBuildLibpod200Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ImageBuildLibpod200Response imageBuildLibpod(
-            String dockerfile,
-            String t,
-            Boolean allplatforms,
-            String extrahosts,
-            String remote,
-            Boolean q,
-            Boolean compatvolumes,
-            Boolean nocache,
-            String cachefrom,
-            Boolean pull,
-            Boolean rm,
-            Boolean forcerm,
-            Integer memory,
-            Integer memswap,
-            Integer cpushares,
-            String cpusetcpus,
-            Integer cpuperiod,
-            Integer cpuquota,
-            String buildargs,
-            Integer shmsize,
-            Boolean squash,
-            String labels,
-            List<String> layerLabel,
-            Boolean layers,
-            String networkmode,
-            String platform,
-            String target,
-            String outputs,
-            Boolean httpproxy,
-            List<String> unsetenv,
-            List<String> unsetlabel,
-            List<String> volume)
-            throws ApiException {
-        ApiResponse<ImageBuildLibpod200Response> localVarResp =
-                imageBuildLibpodWithHttpInfo(
-                        dockerfile,
-                        t,
-                        allplatforms,
-                        extrahosts,
-                        remote,
-                        q,
-                        compatvolumes,
-                        nocache,
-                        cachefrom,
-                        pull,
-                        rm,
-                        forcerm,
-                        memory,
-                        memswap,
-                        cpushares,
-                        cpusetcpus,
-                        cpuperiod,
-                        cpuquota,
-                        buildargs,
-                        shmsize,
-                        squash,
-                        labels,
-                        layerLabel,
-                        layers,
-                        networkmode,
-                        platform,
-                        target,
-                        outputs,
-                        httpproxy,
-                        unsetenv,
-                        unsetlabel,
-                        volume);
+    public ImageBuildLibpod200Response imageBuildLibpod(String dockerfile, String t, Boolean allplatforms, String extrahosts, String remote, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, List<String> layerLabel, Boolean layers, String networkmode, String platform, String target, String outputs, Boolean httpproxy, List<String> unsetenv, List<String> unsetlabel, List<String> volume) throws ApiException {
+        ApiResponse<ImageBuildLibpod200Response> localVarResp = imageBuildLibpodWithHttpInfo(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume);
         return localVarResp.getData();
     }
 
     /**
-     * Create image Build an image from the given Dockerfile(s)
-     *
-     * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is
-     *     ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.
-     *     (optional, default to Dockerfile)
-     * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If
-     *     you omit the tag, the default latest value is assumed. You can provide several t
-     *     parameters. (optional, default to latest)
-     * @param allplatforms Instead of building for a set of platforms specified using the platform
-     *     option, inspect the build&#39;s base images, and build for all of the platforms that are
-     *     available. Stages that use *scratch* as a starting point can not be inspected, so at
-     *     least one non-*scratch* stage must be present for detection to work usefully. (optional,
-     *     default to false)
-     * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx) (optional)
-     * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single
-     *     text file, the file’s contents are placed into a file called Dockerfile and the image is
-     *     built from that file. If the URI points to a tarball, the file is downloaded by the
-     *     daemon and the contents therein used as the context for the build. If the URI points to a
-     *     tarball and the dockerfile parameter is also specified, there must be a file with the
-     *     corresponding path inside the tarball. (As of version 1.xx) (optional)
-     * @param q Suppress verbose build output (optional, default to false)
-     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
-     *     version v5.2) (optional, default to false)
-     * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
-     *     default to false)
-     * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
-     *     (optional)
-     * @param pull Attempt to pull the image even if an older image exists locally (As of version
-     *     1.xx) (optional, default to false)
-     * @param rm Remove intermediate containers after a successful build (As of version 1.xx)
-     *     (optional, default to true)
-     * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)
-     *     (optional, default to false)
-     * @param memory Memory is the upper limit (in bytes) on how much memory running containers can
-     *     use (As of version 1.xx) (optional)
-     * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)
-     *     (optional)
-     * @param cpushares CPUShares (relative weight (As of version 1.xx) (optional)
-     * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)
-     *     (optional)
-     * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of
-     *     version 1.xx) (optional)
-     * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version
-     *     1.xx) (optional)
-     * @param buildargs JSON map of string pairs denoting build-time variables. For example, the
-     *     build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON
-     *     as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;. For example,
-     *     buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}. Note(s): * This should not be used
-     *     to pass secrets. * The value of buildargs should be URI component encoded before being
-     *     passed to the API. (As of version 1.xx) (optional)
-     * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the
-     *     container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx) (optional,
-     *     default to 67108864)
-     * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of
-     *     version 1.xx) (optional, default to false)
-     * @param labels JSON map of key, value pairs to set as labels on the new image (As of version
-     *     1.xx) (optional)
-     * @param layerLabel Add an intermediate image *label* (e.g. label&#x3D;*value*) to the
-     *     intermediate image metadata. (optional)
-     * @param layers Cache intermediate layers during build. (As of version 1.xx) (optional, default
-     *     to true)
-     * @param networkmode Sets the networking mode for the run commands during build. Supported
-     *     standard values are: * &#x60;bridge&#x60; limited to containers within a single host,
-     *     port mapping required for external access * &#x60;host&#x60; no isolation between host
-     *     and containers on this network * &#x60;none&#x60; disable all networking for this
-     *     container * container:&lt;nameOrID&gt; share networking with given container ---All other
-     *     values are assumed to be a custom network&#39;s name (As of version 1.xx) (optional,
-     *     default to bridge)
-     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx) (optional)
-     * @param target Target build stage (As of version 1.xx) (optional)
-     * @param outputs output configuration TBD (As of version 1.xx) (optional)
-     * @param httpproxy Inject http proxy environment variables into container (As of version 2.0.0)
-     *     (optional)
+     * Create image
+     * Build an image from the given Dockerfile(s)
+     * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
+     * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format.  If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
+     * @param allplatforms Instead of building for a set of platforms specified using the platform option, inspect the build&#39;s base images, and build for all of the platforms that are available.  Stages that use *scratch* as a starting point can not be inspected, so at least one non-*scratch* stage must be present for detection to work usefully.  (optional, default to false)
+     * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
+     * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
+     * @param q Suppress verbose build output  (optional, default to false)
+     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
+     * @param nocache Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
+     * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
+     * @param pull Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
+     * @param rm Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
+     * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
+     * @param memory Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
+     * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
+     * @param cpushares CPUShares (relative weight (As of version 1.xx)  (optional)
+     * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
+     * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
+     * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
+     * @param buildargs JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
+     * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
+     * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
+     * @param labels JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
+     * @param layerLabel Add an intermediate image *label* (e.g. label&#x3D;*value*) to the intermediate image metadata. (optional)
+     * @param layers Cache intermediate layers during build. (As of version 1.xx)  (optional, default to true)
+     * @param networkmode Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
+     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx)  (optional)
+     * @param target Target build stage (As of version 1.xx)  (optional)
+     * @param outputs output configuration TBD (As of version 1.xx)  (optional)
+     * @param httpproxy Inject http proxy environment variables into container (As of version 2.0.0)  (optional)
      * @param unsetenv Unset environment variables from the final image. (optional)
-     * @param unsetlabel Unset the image label, causing the label not to be inherited from the base
-     *     image. (optional)
+     * @param unsetlabel Unset the image label, causing the label not to be inherited from the base image. (optional)
      * @param volume Extra volumes that should be mounted in the build container. (optional)
      * @return ApiResponse&lt;ImageBuildLibpod200Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ImageBuildLibpod200Response> imageBuildLibpodWithHttpInfo(
-            String dockerfile,
-            String t,
-            Boolean allplatforms,
-            String extrahosts,
-            String remote,
-            Boolean q,
-            Boolean compatvolumes,
-            Boolean nocache,
-            String cachefrom,
-            Boolean pull,
-            Boolean rm,
-            Boolean forcerm,
-            Integer memory,
-            Integer memswap,
-            Integer cpushares,
-            String cpusetcpus,
-            Integer cpuperiod,
-            Integer cpuquota,
-            String buildargs,
-            Integer shmsize,
-            Boolean squash,
-            String labels,
-            List<String> layerLabel,
-            Boolean layers,
-            String networkmode,
-            String platform,
-            String target,
-            String outputs,
-            Boolean httpproxy,
-            List<String> unsetenv,
-            List<String> unsetlabel,
-            List<String> volume)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                imageBuildLibpodValidateBeforeCall(
-                        dockerfile,
-                        t,
-                        allplatforms,
-                        extrahosts,
-                        remote,
-                        q,
-                        compatvolumes,
-                        nocache,
-                        cachefrom,
-                        pull,
-                        rm,
-                        forcerm,
-                        memory,
-                        memswap,
-                        cpushares,
-                        cpusetcpus,
-                        cpuperiod,
-                        cpuquota,
-                        buildargs,
-                        shmsize,
-                        squash,
-                        labels,
-                        layerLabel,
-                        layers,
-                        networkmode,
-                        platform,
-                        target,
-                        outputs,
-                        httpproxy,
-                        unsetenv,
-                        unsetlabel,
-                        volume,
-                        null);
-        Type localVarReturnType = new TypeToken<ImageBuildLibpod200Response>() {}.getType();
+    public ApiResponse<ImageBuildLibpod200Response> imageBuildLibpodWithHttpInfo(String dockerfile, String t, Boolean allplatforms, String extrahosts, String remote, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, List<String> layerLabel, Boolean layers, String networkmode, String platform, String target, String outputs, Boolean httpproxy, List<String> unsetenv, List<String> unsetlabel, List<String> volume) throws ApiException {
+        okhttp3.Call localVarCall = imageBuildLibpodValidateBeforeCall(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume, null);
+        Type localVarReturnType = new TypeToken<ImageBuildLibpod200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Create image (asynchronously) Build an image from the given Dockerfile(s)
-     *
-     * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is
-     *     ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.
-     *     (optional, default to Dockerfile)
-     * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If
-     *     you omit the tag, the default latest value is assumed. You can provide several t
-     *     parameters. (optional, default to latest)
-     * @param allplatforms Instead of building for a set of platforms specified using the platform
-     *     option, inspect the build&#39;s base images, and build for all of the platforms that are
-     *     available. Stages that use *scratch* as a starting point can not be inspected, so at
-     *     least one non-*scratch* stage must be present for detection to work usefully. (optional,
-     *     default to false)
-     * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx) (optional)
-     * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single
-     *     text file, the file’s contents are placed into a file called Dockerfile and the image is
-     *     built from that file. If the URI points to a tarball, the file is downloaded by the
-     *     daemon and the contents therein used as the context for the build. If the URI points to a
-     *     tarball and the dockerfile parameter is also specified, there must be a file with the
-     *     corresponding path inside the tarball. (As of version 1.xx) (optional)
-     * @param q Suppress verbose build output (optional, default to false)
-     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman
-     *     version v5.2) (optional, default to false)
-     * @param nocache Do not use the cache when building the image (As of version 1.xx) (optional,
-     *     default to false)
-     * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)
-     *     (optional)
-     * @param pull Attempt to pull the image even if an older image exists locally (As of version
-     *     1.xx) (optional, default to false)
-     * @param rm Remove intermediate containers after a successful build (As of version 1.xx)
-     *     (optional, default to true)
-     * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)
-     *     (optional, default to false)
-     * @param memory Memory is the upper limit (in bytes) on how much memory running containers can
-     *     use (As of version 1.xx) (optional)
-     * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)
-     *     (optional)
-     * @param cpushares CPUShares (relative weight (As of version 1.xx) (optional)
-     * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)
-     *     (optional)
-     * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of
-     *     version 1.xx) (optional)
-     * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version
-     *     1.xx) (optional)
-     * @param buildargs JSON map of string pairs denoting build-time variables. For example, the
-     *     build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON
-     *     as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;. For example,
-     *     buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}. Note(s): * This should not be used
-     *     to pass secrets. * The value of buildargs should be URI component encoded before being
-     *     passed to the API. (As of version 1.xx) (optional)
-     * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the
-     *     container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx) (optional,
-     *     default to 67108864)
-     * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of
-     *     version 1.xx) (optional, default to false)
-     * @param labels JSON map of key, value pairs to set as labels on the new image (As of version
-     *     1.xx) (optional)
-     * @param layerLabel Add an intermediate image *label* (e.g. label&#x3D;*value*) to the
-     *     intermediate image metadata. (optional)
-     * @param layers Cache intermediate layers during build. (As of version 1.xx) (optional, default
-     *     to true)
-     * @param networkmode Sets the networking mode for the run commands during build. Supported
-     *     standard values are: * &#x60;bridge&#x60; limited to containers within a single host,
-     *     port mapping required for external access * &#x60;host&#x60; no isolation between host
-     *     and containers on this network * &#x60;none&#x60; disable all networking for this
-     *     container * container:&lt;nameOrID&gt; share networking with given container ---All other
-     *     values are assumed to be a custom network&#39;s name (As of version 1.xx) (optional,
-     *     default to bridge)
-     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx) (optional)
-     * @param target Target build stage (As of version 1.xx) (optional)
-     * @param outputs output configuration TBD (As of version 1.xx) (optional)
-     * @param httpproxy Inject http proxy environment variables into container (As of version 2.0.0)
-     *     (optional)
+     * Create image (asynchronously)
+     * Build an image from the given Dockerfile(s)
+     * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
+     * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format.  If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
+     * @param allplatforms Instead of building for a set of platforms specified using the platform option, inspect the build&#39;s base images, and build for all of the platforms that are available.  Stages that use *scratch* as a starting point can not be inspected, so at least one non-*scratch* stage must be present for detection to work usefully.  (optional, default to false)
+     * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
+     * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
+     * @param q Suppress verbose build output  (optional, default to false)
+     * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
+     * @param nocache Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
+     * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
+     * @param pull Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
+     * @param rm Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
+     * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
+     * @param memory Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
+     * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
+     * @param cpushares CPUShares (relative weight (As of version 1.xx)  (optional)
+     * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
+     * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
+     * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
+     * @param buildargs JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
+     * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
+     * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
+     * @param labels JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
+     * @param layerLabel Add an intermediate image *label* (e.g. label&#x3D;*value*) to the intermediate image metadata. (optional)
+     * @param layers Cache intermediate layers during build. (As of version 1.xx)  (optional, default to true)
+     * @param networkmode Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
+     * @param platform Platform format os[/arch[/variant]] (As of version 1.xx)  (optional)
+     * @param target Target build stage (As of version 1.xx)  (optional)
+     * @param outputs output configuration TBD (As of version 1.xx)  (optional)
+     * @param httpproxy Inject http proxy environment variables into container (As of version 2.0.0)  (optional)
      * @param unsetenv Unset environment variables from the final image. (optional)
-     * @param unsetlabel Unset the image label, causing the label not to be inherited from the base
-     *     image. (optional)
+     * @param unsetlabel Unset the image label, causing the label not to be inherited from the base image. (optional)
      * @param volume Extra volumes that should be mounted in the build container. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageBuildLibpodAsync(
-            String dockerfile,
-            String t,
-            Boolean allplatforms,
-            String extrahosts,
-            String remote,
-            Boolean q,
-            Boolean compatvolumes,
-            Boolean nocache,
-            String cachefrom,
-            Boolean pull,
-            Boolean rm,
-            Boolean forcerm,
-            Integer memory,
-            Integer memswap,
-            Integer cpushares,
-            String cpusetcpus,
-            Integer cpuperiod,
-            Integer cpuquota,
-            String buildargs,
-            Integer shmsize,
-            Boolean squash,
-            String labels,
-            List<String> layerLabel,
-            Boolean layers,
-            String networkmode,
-            String platform,
-            String target,
-            String outputs,
-            Boolean httpproxy,
-            List<String> unsetenv,
-            List<String> unsetlabel,
-            List<String> volume,
-            final ApiCallback<ImageBuildLibpod200Response> _callback)
-            throws ApiException {
+    public okhttp3.Call imageBuildLibpodAsync(String dockerfile, String t, Boolean allplatforms, String extrahosts, String remote, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, List<String> layerLabel, Boolean layers, String networkmode, String platform, String target, String outputs, Boolean httpproxy, List<String> unsetenv, List<String> unsetlabel, List<String> volume, final ApiCallback<ImageBuildLibpod200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageBuildLibpodValidateBeforeCall(
-                        dockerfile,
-                        t,
-                        allplatforms,
-                        extrahosts,
-                        remote,
-                        q,
-                        compatvolumes,
-                        nocache,
-                        cachefrom,
-                        pull,
-                        rm,
-                        forcerm,
-                        memory,
-                        memswap,
-                        cpushares,
-                        cpusetcpus,
-                        cpuperiod,
-                        cpuquota,
-                        buildargs,
-                        shmsize,
-                        squash,
-                        labels,
-                        layerLabel,
-                        layers,
-                        networkmode,
-                        platform,
-                        target,
-                        outputs,
-                        httpproxy,
-                        unsetenv,
-                        unsetlabel,
-                        volume,
-                        _callback);
-        Type localVarReturnType = new TypeToken<ImageBuildLibpod200Response>() {}.getType();
+        okhttp3.Call localVarCall = imageBuildLibpodValidateBeforeCall(dockerfile, t, allplatforms, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, layerLabel, layers, networkmode, platform, target, outputs, httpproxy, unsetenv, unsetlabel, volume, _callback);
+        Type localVarReturnType = new TypeToken<ImageBuildLibpod200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageChangesLibpod
-     *
      * @param name the name or id of the image (required)
-     * @param parent specify a second layer which is used to compare against it instead of the
-     *     parent layer (optional)
+     * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
      * @param diffType select what you want to match, default is all (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageChangesLibpodCall(
-            String name, String parent, String diffType, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageChangesLibpodCall(String name, String parent, String diffType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -983,11 +495,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/changes"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/changes"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1004,166 +513,127 @@ public class ImagesApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json", "application/octet-stream", "text/plain"
+            "application/json",
+            "application/octet-stream",
+            "text/plain"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageChangesLibpodValidateBeforeCall(
-            String name, String parent, String diffType, final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call imageChangesLibpodValidateBeforeCall(String name, String parent, String diffType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageChangesLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageChangesLibpod(Async)");
         }
 
         return imageChangesLibpodCall(name, parent, diffType, _callback);
-    }
 
-    /**
-     * Report on changes to images&#39;s filesystem; adds, deletes or modifications. Returns which
-     * files in an image&#39;s filesystem have been added, deleted, or modified. The Kind of
-     * modification can be one of: 0: Modified 1: Added 2: Deleted
-     *
-     * @param name the name or id of the image (required)
-     * @param parent specify a second layer which is used to compare against it instead of the
-     *     parent layer (optional)
-     * @param diffType select what you want to match, default is all (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void imageChangesLibpod(String name, String parent, String diffType)
-            throws ApiException {
-        imageChangesLibpodWithHttpInfo(name, parent, diffType);
-    }
-
-    /**
-     * Report on changes to images&#39;s filesystem; adds, deletes or modifications. Returns which
-     * files in an image&#39;s filesystem have been added, deleted, or modified. The Kind of
-     * modification can be one of: 0: Modified 1: Added 2: Deleted
-     *
-     * @param name the name or id of the image (required)
-     * @param parent specify a second layer which is used to compare against it instead of the
-     *     parent layer (optional)
-     * @param diffType select what you want to match, default is all (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> imageChangesLibpodWithHttpInfo(
-            String name, String parent, String diffType) throws ApiException {
-        okhttp3.Call localVarCall =
-                imageChangesLibpodValidateBeforeCall(name, parent, diffType, null);
-        return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * Report on changes to images&#39;s filesystem; adds, deletes or modifications.
-     * (asynchronously) Returns which files in an image&#39;s filesystem have been added, deleted,
-     * or modified. The Kind of modification can be one of: 0: Modified 1: Added 2: Deleted
-     *
+     * Returns which files in an image&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
      * @param name the name or id of the image (required)
-     * @param parent specify a second layer which is used to compare against it instead of the
-     *     parent layer (optional)
+     * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
      * @param diffType select what you want to match, default is all (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageChangesLibpodAsync(
-            String name, String parent, String diffType, final ApiCallback<Void> _callback)
-            throws ApiException {
-
-        okhttp3.Call localVarCall =
-                imageChangesLibpodValidateBeforeCall(name, parent, diffType, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
-        return localVarCall;
+    public void imageChangesLibpod(String name, String parent, String diffType) throws ApiException {
+        imageChangesLibpodWithHttpInfo(name, parent, diffType);
     }
 
     /**
+     * Report on changes to images&#39;s filesystem; adds, deletes or modifications.
+     * Returns which files in an image&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
+     * @param name the name or id of the image (required)
+     * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
+     * @param diffType select what you want to match, default is all (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> imageChangesLibpodWithHttpInfo(String name, String parent, String diffType) throws ApiException {
+        okhttp3.Call localVarCall = imageChangesLibpodValidateBeforeCall(name, parent, diffType, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Report on changes to images&#39;s filesystem; adds, deletes or modifications. (asynchronously)
+     * Returns which files in an image&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
+     * @param name the name or id of the image (required)
+     * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
+     * @param diffType select what you want to match, default is all (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call imageChangesLibpodAsync(String name, String parent, String diffType, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = imageChangesLibpodValidateBeforeCall(name, parent, diffType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for imageDeleteAllLibpod
-     *
      * @param images Images IDs or names to remove. (optional)
      * @param all Remove all images. (optional, default to true)
      * @param force Force image removal (including containers using the images). (optional)
-     * @param ignore Ignore if a specified image does not exist and do not throw an error.
-     *     (optional)
+     * @param ignore Ignore if a specified image does not exist and do not throw an error. (optional)
      * @param lookupManifest Resolves to manifest list instead of image. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageDeleteAllLibpodCall(
-            List<String> images,
-            Boolean all,
-            Boolean force,
-            Boolean ignore,
-            Boolean lookupManifest,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageDeleteAllLibpodCall(List<String> images, Boolean all, Boolean force, Boolean ignore, Boolean lookupManifest, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1181,8 +651,7 @@ public class ImagesApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (images != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "images", images));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "images", images));
         }
 
         if (all != null) {
@@ -1198,175 +667,133 @@ public class ImagesApi {
         }
 
         if (lookupManifest != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("lookupManifest", lookupManifest));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("lookupManifest", lookupManifest));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "DELETE",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageDeleteAllLibpodValidateBeforeCall(
-            List<String> images,
-            Boolean all,
-            Boolean force,
-            Boolean ignore,
-            Boolean lookupManifest,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call imageDeleteAllLibpodValidateBeforeCall(List<String> images, Boolean all, Boolean force, Boolean ignore, Boolean lookupManifest, final ApiCallback _callback) throws ApiException {
         return imageDeleteAllLibpodCall(images, all, force, ignore, lookupManifest, _callback);
+
     }
 
     /**
-     * Remove one or more images from the storage. Remove one or more images from the storage.
-     *
+     * Remove one or more images from the storage.
+     * Remove one or more images from the storage.
      * @param images Images IDs or names to remove. (optional)
      * @param all Remove all images. (optional, default to true)
      * @param force Force image removal (including containers using the images). (optional)
-     * @param ignore Ignore if a specified image does not exist and do not throw an error.
-     *     (optional)
+     * @param ignore Ignore if a specified image does not exist and do not throw an error. (optional)
      * @param lookupManifest Resolves to manifest list instead of image. (optional)
      * @return LibpodImagesRemoveReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public LibpodImagesRemoveReport imageDeleteAllLibpod(
-            List<String> images, Boolean all, Boolean force, Boolean ignore, Boolean lookupManifest)
-            throws ApiException {
-        ApiResponse<LibpodImagesRemoveReport> localVarResp =
-                imageDeleteAllLibpodWithHttpInfo(images, all, force, ignore, lookupManifest);
+    public LibpodImagesRemoveReport imageDeleteAllLibpod(List<String> images, Boolean all, Boolean force, Boolean ignore, Boolean lookupManifest) throws ApiException {
+        ApiResponse<LibpodImagesRemoveReport> localVarResp = imageDeleteAllLibpodWithHttpInfo(images, all, force, ignore, lookupManifest);
         return localVarResp.getData();
     }
 
     /**
-     * Remove one or more images from the storage. Remove one or more images from the storage.
-     *
+     * Remove one or more images from the storage.
+     * Remove one or more images from the storage.
      * @param images Images IDs or names to remove. (optional)
      * @param all Remove all images. (optional, default to true)
      * @param force Force image removal (including containers using the images). (optional)
-     * @param ignore Ignore if a specified image does not exist and do not throw an error.
-     *     (optional)
+     * @param ignore Ignore if a specified image does not exist and do not throw an error. (optional)
      * @param lookupManifest Resolves to manifest list instead of image. (optional)
      * @return ApiResponse&lt;LibpodImagesRemoveReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<LibpodImagesRemoveReport> imageDeleteAllLibpodWithHttpInfo(
-            List<String> images, Boolean all, Boolean force, Boolean ignore, Boolean lookupManifest)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                imageDeleteAllLibpodValidateBeforeCall(
-                        images, all, force, ignore, lookupManifest, null);
-        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>() {}.getType();
+    public ApiResponse<LibpodImagesRemoveReport> imageDeleteAllLibpodWithHttpInfo(List<String> images, Boolean all, Boolean force, Boolean ignore, Boolean lookupManifest) throws ApiException {
+        okhttp3.Call localVarCall = imageDeleteAllLibpodValidateBeforeCall(images, all, force, ignore, lookupManifest, null);
+        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Remove one or more images from the storage. (asynchronously) Remove one or more images from
-     * the storage.
-     *
+     * Remove one or more images from the storage. (asynchronously)
+     * Remove one or more images from the storage.
      * @param images Images IDs or names to remove. (optional)
      * @param all Remove all images. (optional, default to true)
      * @param force Force image removal (including containers using the images). (optional)
-     * @param ignore Ignore if a specified image does not exist and do not throw an error.
-     *     (optional)
+     * @param ignore Ignore if a specified image does not exist and do not throw an error. (optional)
      * @param lookupManifest Resolves to manifest list instead of image. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageDeleteAllLibpodAsync(
-            List<String> images,
-            Boolean all,
-            Boolean force,
-            Boolean ignore,
-            Boolean lookupManifest,
-            final ApiCallback<LibpodImagesRemoveReport> _callback)
-            throws ApiException {
+    public okhttp3.Call imageDeleteAllLibpodAsync(List<String> images, Boolean all, Boolean force, Boolean ignore, Boolean lookupManifest, final ApiCallback<LibpodImagesRemoveReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageDeleteAllLibpodValidateBeforeCall(
-                        images, all, force, ignore, lookupManifest, _callback);
-        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>() {}.getType();
+        okhttp3.Call localVarCall = imageDeleteAllLibpodValidateBeforeCall(images, all, force, ignore, lookupManifest, _callback);
+        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageDeleteLibpod
-     *
      * @param name name or ID of image to remove (required)
      * @param force remove the image even if used by containers or has other tags (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageDeleteLibpodCall(
-            String name, Boolean force, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call imageDeleteLibpodCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1375,11 +802,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1391,151 +815,129 @@ public class ImagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "DELETE",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageDeleteLibpodValidateBeforeCall(
-            String name, Boolean force, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageDeleteLibpodValidateBeforeCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageDeleteLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageDeleteLibpod(Async)");
         }
 
         return imageDeleteLibpodCall(name, force, _callback);
+
     }
 
     /**
-     * Remove an image from the local storage. Remove an image from the local storage.
-     *
+     * Remove an image from the local storage.
+     * Remove an image from the local storage.
      * @param name name or ID of image to remove (required)
      * @param force remove the image even if used by containers or has other tags (optional)
      * @return LibpodImagesRemoveReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public LibpodImagesRemoveReport imageDeleteLibpod(String name, Boolean force)
-            throws ApiException {
-        ApiResponse<LibpodImagesRemoveReport> localVarResp =
-                imageDeleteLibpodWithHttpInfo(name, force);
+    public LibpodImagesRemoveReport imageDeleteLibpod(String name, Boolean force) throws ApiException {
+        ApiResponse<LibpodImagesRemoveReport> localVarResp = imageDeleteLibpodWithHttpInfo(name, force);
         return localVarResp.getData();
     }
 
     /**
-     * Remove an image from the local storage. Remove an image from the local storage.
-     *
+     * Remove an image from the local storage.
+     * Remove an image from the local storage.
      * @param name name or ID of image to remove (required)
      * @param force remove the image even if used by containers or has other tags (optional)
      * @return ApiResponse&lt;LibpodImagesRemoveReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<LibpodImagesRemoveReport> imageDeleteLibpodWithHttpInfo(
-            String name, Boolean force) throws ApiException {
+    public ApiResponse<LibpodImagesRemoveReport> imageDeleteLibpodWithHttpInfo(String name, Boolean force) throws ApiException {
         okhttp3.Call localVarCall = imageDeleteLibpodValidateBeforeCall(name, force, null);
-        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Remove an image from the local storage. (asynchronously) Remove an image from the local
-     * storage.
-     *
+     * Remove an image from the local storage. (asynchronously)
+     * Remove an image from the local storage.
      * @param name name or ID of image to remove (required)
      * @param force remove the image even if used by containers or has other tags (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Remove </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageDeleteLibpodAsync(
-            String name, Boolean force, final ApiCallback<LibpodImagesRemoveReport> _callback)
-            throws ApiException {
+    public okhttp3.Call imageDeleteLibpodAsync(String name, Boolean force, final ApiCallback<LibpodImagesRemoveReport> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageDeleteLibpodValidateBeforeCall(name, force, _callback);
-        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<LibpodImagesRemoveReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageExistsLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> image exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> image exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageExistsLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1544,11 +946,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/exists"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/exists"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1556,78 +955,66 @@ public class ImagesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageExistsLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageExistsLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageExistsLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageExistsLibpod(Async)");
         }
 
         return imageExistsLibpodCall(name, _callback);
+
     }
 
     /**
-     * Image exists Check if image exists in local store
-     *
+     * Image exists
+     * Check if image exists in local store
      * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> image exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> image exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void imageExistsLibpod(String name) throws ApiException {
         imageExistsLibpodWithHttpInfo(name);
     }
 
     /**
-     * Image exists Check if image exists in local store
-     *
+     * Image exists
+     * Check if image exists in local store
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> image exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> image exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<Void> imageExistsLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = imageExistsLibpodValidateBeforeCall(name, null);
@@ -1635,63 +1022,52 @@ public class ImagesApi {
     }
 
     /**
-     * Image exists (asynchronously) Check if image exists in local store
-     *
+     * Image exists (asynchronously)
+     * Check if image exists in local store
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> image exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> image exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageExistsLibpodAsync(String name, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call imageExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageExistsLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageExportLibpod
-     *
      * @param format format for exported image (only docker-archive is supported) (optional)
      * @param references references to images to export (optional)
      * @param compress use compression on image (optional)
-     * @param ociAcceptUncompressedLayers accept uncompressed layers when copying OCI images
-     *     (optional)
+     * @param ociAcceptUncompressedLayers accept uncompressed layers when copying OCI images (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageExportLibpodCall(
-            String format,
-            List<String> references,
-            Boolean compress,
-            Boolean ociAcceptUncompressedLayers,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageExportLibpodCall(String format, List<String> references, Boolean compress, Boolean ociAcceptUncompressedLayers, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1713,8 +1089,7 @@ public class ImagesApi {
         }
 
         if (references != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "references", references));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "references", references));
         }
 
         if (compress != null) {
@@ -1722,156 +1097,106 @@ public class ImagesApi {
         }
 
         if (ociAcceptUncompressedLayers != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair(
-                            "ociAcceptUncompressedLayers", ociAcceptUncompressedLayers));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ociAcceptUncompressedLayers", ociAcceptUncompressedLayers));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageExportLibpodValidateBeforeCall(
-            String format,
-            List<String> references,
-            Boolean compress,
-            Boolean ociAcceptUncompressedLayers,
-            final ApiCallback _callback)
-            throws ApiException {
-        return imageExportLibpodCall(
-                format, references, compress, ociAcceptUncompressedLayers, _callback);
+    private okhttp3.Call imageExportLibpodValidateBeforeCall(String format, List<String> references, Boolean compress, Boolean ociAcceptUncompressedLayers, final ApiCallback _callback) throws ApiException {
+        return imageExportLibpodCall(format, references, compress, ociAcceptUncompressedLayers, _callback);
+
     }
 
     /**
-     * Export multiple images Export multiple images into a single object. Only
-     * &#x60;docker-archive&#x60; is currently supported.
-     *
+     * Export multiple images
+     * Export multiple images into a single object. Only &#x60;docker-archive&#x60; is currently supported.
      * @param format format for exported image (only docker-archive is supported) (optional)
      * @param references references to images to export (optional)
      * @param compress use compression on image (optional)
-     * @param ociAcceptUncompressedLayers accept uncompressed layers when copying OCI images
-     *     (optional)
+     * @param ociAcceptUncompressedLayers accept uncompressed layers when copying OCI images (optional)
      * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public File imageExportLibpod(
-            String format,
-            List<String> references,
-            Boolean compress,
-            Boolean ociAcceptUncompressedLayers)
-            throws ApiException {
-        ApiResponse<File> localVarResp =
-                imageExportLibpodWithHttpInfo(
-                        format, references, compress, ociAcceptUncompressedLayers);
+    public File imageExportLibpod(String format, List<String> references, Boolean compress, Boolean ociAcceptUncompressedLayers) throws ApiException {
+        ApiResponse<File> localVarResp = imageExportLibpodWithHttpInfo(format, references, compress, ociAcceptUncompressedLayers);
         return localVarResp.getData();
     }
 
     /**
-     * Export multiple images Export multiple images into a single object. Only
-     * &#x60;docker-archive&#x60; is currently supported.
-     *
+     * Export multiple images
+     * Export multiple images into a single object. Only &#x60;docker-archive&#x60; is currently supported.
      * @param format format for exported image (only docker-archive is supported) (optional)
      * @param references references to images to export (optional)
      * @param compress use compression on image (optional)
-     * @param ociAcceptUncompressedLayers accept uncompressed layers when copying OCI images
-     *     (optional)
+     * @param ociAcceptUncompressedLayers accept uncompressed layers when copying OCI images (optional)
      * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<File> imageExportLibpodWithHttpInfo(
-            String format,
-            List<String> references,
-            Boolean compress,
-            Boolean ociAcceptUncompressedLayers)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                imageExportLibpodValidateBeforeCall(
-                        format, references, compress, ociAcceptUncompressedLayers, null);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+    public ApiResponse<File> imageExportLibpodWithHttpInfo(String format, List<String> references, Boolean compress, Boolean ociAcceptUncompressedLayers) throws ApiException {
+        okhttp3.Call localVarCall = imageExportLibpodValidateBeforeCall(format, references, compress, ociAcceptUncompressedLayers, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Export multiple images (asynchronously) Export multiple images into a single object. Only
-     * &#x60;docker-archive&#x60; is currently supported.
-     *
+     * Export multiple images (asynchronously)
+     * Export multiple images into a single object. Only &#x60;docker-archive&#x60; is currently supported.
      * @param format format for exported image (only docker-archive is supported) (optional)
      * @param references references to images to export (optional)
      * @param compress use compression on image (optional)
-     * @param ociAcceptUncompressedLayers accept uncompressed layers when copying OCI images
-     *     (optional)
+     * @param ociAcceptUncompressedLayers accept uncompressed layers when copying OCI images (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageExportLibpodAsync(
-            String format,
-            List<String> references,
-            Boolean compress,
-            Boolean ociAcceptUncompressedLayers,
-            final ApiCallback<File> _callback)
-            throws ApiException {
+    public okhttp3.Call imageExportLibpodAsync(String format, List<String> references, Boolean compress, Boolean ociAcceptUncompressedLayers, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageExportLibpodValidateBeforeCall(
-                        format, references, compress, ociAcceptUncompressedLayers, _callback);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+        okhttp3.Call localVarCall = imageExportLibpodValidateBeforeCall(format, references, compress, ociAcceptUncompressedLayers, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageGetLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param format format for exported image (optional)
      * @param compress use compression on image (optional)
@@ -1879,24 +1204,22 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageGetLibpodCall(
-            String name, String format, Boolean compress, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageGetLibpodCall(String name, String format, Boolean compress, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1905,11 +1228,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/get"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/get"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1925,63 +1245,51 @@ public class ImagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("compress", compress));
         }
 
-        final String[] localVarAccepts = {"application/x-tar"};
+        final String[] localVarAccepts = {
+            "application/x-tar"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageGetLibpodValidateBeforeCall(
-            String name, String format, Boolean compress, final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call imageGetLibpodValidateBeforeCall(String name, String format, Boolean compress, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageGetLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageGetLibpod(Async)");
         }
 
         return imageGetLibpodCall(name, format, compress, _callback);
+
     }
 
     /**
-     * Export an image Export an image
-     *
+     * Export an image
+     * Export an image
      * @param name the name or ID of the container (required)
      * @param format format for exported image (optional)
      * @param compress use compression on image (optional)
      * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public File imageGetLibpod(String name, String format, Boolean compress) throws ApiException {
         ApiResponse<File> localVarResp = imageGetLibpodWithHttpInfo(name, format, compress);
@@ -1989,83 +1297,74 @@ public class ImagesApi {
     }
 
     /**
-     * Export an image Export an image
-     *
+     * Export an image
+     * Export an image
      * @param name the name or ID of the container (required)
      * @param format format for exported image (optional)
      * @param compress use compression on image (optional)
      * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<File> imageGetLibpodWithHttpInfo(
-            String name, String format, Boolean compress) throws ApiException {
+    public ApiResponse<File> imageGetLibpodWithHttpInfo(String name, String format, Boolean compress) throws ApiException {
         okhttp3.Call localVarCall = imageGetLibpodValidateBeforeCall(name, format, compress, null);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Export an image (asynchronously) Export an image
-     *
+     * Export an image (asynchronously)
+     * Export an image
      * @param name the name or ID of the container (required)
      * @param format format for exported image (optional)
      * @param compress use compression on image (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageGetLibpodAsync(
-            String name, String format, Boolean compress, final ApiCallback<File> _callback)
-            throws ApiException {
+    public okhttp3.Call imageGetLibpodAsync(String name, String format, Boolean compress, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageGetLibpodValidateBeforeCall(name, format, compress, _callback);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+        okhttp3.Call localVarCall = imageGetLibpodValidateBeforeCall(name, format, compress, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageHistoryLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageHistoryLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageHistoryLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2074,11 +1373,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/history"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/history"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2086,60 +1382,49 @@ public class ImagesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageHistoryLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageHistoryLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageHistoryLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageHistoryLibpod(Async)");
         }
 
         return imageHistoryLibpodCall(name, _callback);
+
     }
 
     /**
-     * History of an image Return parent layers of an image.
-     *
+     * History of an image
+     * Return parent layers of an image.
      * @param name the name or ID of the container (required)
      * @return HistoryResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public HistoryResponse imageHistoryLibpod(String name) throws ApiException {
         ApiResponse<HistoryResponse> localVarResp = imageHistoryLibpodWithHttpInfo(name);
@@ -2147,60 +1432,52 @@ public class ImagesApi {
     }
 
     /**
-     * History of an image Return parent layers of an image.
-     *
+     * History of an image
+     * Return parent layers of an image.
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;HistoryResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<HistoryResponse> imageHistoryLibpodWithHttpInfo(String name)
-            throws ApiException {
+    public ApiResponse<HistoryResponse> imageHistoryLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = imageHistoryLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<HistoryResponse>() {}.getType();
+        Type localVarReturnType = new TypeToken<HistoryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * History of an image (asynchronously) Return parent layers of an image.
-     *
+     * History of an image (asynchronously)
+     * Return parent layers of an image.
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageHistoryLibpodAsync(
-            String name, final ApiCallback<HistoryResponse> _callback) throws ApiException {
+    public okhttp3.Call imageHistoryLibpodAsync(String name, final ApiCallback<HistoryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageHistoryLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<HistoryResponse>() {}.getType();
+        Type localVarReturnType = new TypeToken<HistoryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageImportLibpod
-     *
      * @param upload tarball for imported image (required)
-     * @param contentType (optional, default to application/x-tar)
-     * @param changes Apply the following possible instructions to the created image: CMD |
-     *     ENTRYPOINT | ENV | EXPOSE | LABEL | STOPSIGNAL | USER | VOLUME | WORKDIR. JSON encoded
-     *     string (optional)
+     * @param contentType  (optional, default to application/x-tar)
+     * @param changes Apply the following possible instructions to the created image: CMD | ENTRYPOINT | ENV | EXPOSE | LABEL | STOPSIGNAL | USER | VOLUME | WORKDIR.  JSON encoded string (optional)
      * @param message Set commit message for imported image (optional)
      * @param reference Optional Name[:TAG] for the image (optional)
      * @param url Load image from the specified URL (optional)
@@ -2208,30 +1485,22 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Import </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Import </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageImportLibpodCall(
-            File upload,
-            String contentType,
-            List<String> changes,
-            String message,
-            String reference,
-            String url,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageImportLibpodCall(File upload, String contentType, List<String> changes, String message, String reference, String url, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2249,8 +1518,7 @@ public class ImagesApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (changes != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "changes", changes));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "changes", changes));
         }
 
         if (message != null) {
@@ -2266,198 +1534,139 @@ public class ImagesApi {
         }
 
         if (contentType != null) {
-            localVarHeaderParams.put(
-                    "Content-Type", localVarApiClient.parameterToString(contentType));
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {"application/x-tar"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+            "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageImportLibpodValidateBeforeCall(
-            File upload,
-            String contentType,
-            List<String> changes,
-            String message,
-            String reference,
-            String url,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call imageImportLibpodValidateBeforeCall(File upload, String contentType, List<String> changes, String message, String reference, String url, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'upload' is set
         if (upload == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'upload' when calling"
-                            + " imageImportLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'upload' when calling imageImportLibpod(Async)");
         }
 
-        return imageImportLibpodCall(
-                upload, contentType, changes, message, reference, url, _callback);
+        return imageImportLibpodCall(upload, contentType, changes, message, reference, url, _callback);
+
     }
 
     /**
-     * Import image Import a previously exported tarball as an image.
-     *
+     * Import image
+     * Import a previously exported tarball as an image.
      * @param upload tarball for imported image (required)
-     * @param contentType (optional, default to application/x-tar)
-     * @param changes Apply the following possible instructions to the created image: CMD |
-     *     ENTRYPOINT | ENV | EXPOSE | LABEL | STOPSIGNAL | USER | VOLUME | WORKDIR. JSON encoded
-     *     string (optional)
+     * @param contentType  (optional, default to application/x-tar)
+     * @param changes Apply the following possible instructions to the created image: CMD | ENTRYPOINT | ENV | EXPOSE | LABEL | STOPSIGNAL | USER | VOLUME | WORKDIR.  JSON encoded string (optional)
      * @param message Set commit message for imported image (optional)
      * @param reference Optional Name[:TAG] for the image (optional)
      * @param url Load image from the specified URL (optional)
      * @return ImageImportReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Import </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Import </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ImageImportReport imageImportLibpod(
-            File upload,
-            String contentType,
-            List<String> changes,
-            String message,
-            String reference,
-            String url)
-            throws ApiException {
-        ApiResponse<ImageImportReport> localVarResp =
-                imageImportLibpodWithHttpInfo(
-                        upload, contentType, changes, message, reference, url);
+    public ImageImportReport imageImportLibpod(File upload, String contentType, List<String> changes, String message, String reference, String url) throws ApiException {
+        ApiResponse<ImageImportReport> localVarResp = imageImportLibpodWithHttpInfo(upload, contentType, changes, message, reference, url);
         return localVarResp.getData();
     }
 
     /**
-     * Import image Import a previously exported tarball as an image.
-     *
+     * Import image
+     * Import a previously exported tarball as an image.
      * @param upload tarball for imported image (required)
-     * @param contentType (optional, default to application/x-tar)
-     * @param changes Apply the following possible instructions to the created image: CMD |
-     *     ENTRYPOINT | ENV | EXPOSE | LABEL | STOPSIGNAL | USER | VOLUME | WORKDIR. JSON encoded
-     *     string (optional)
+     * @param contentType  (optional, default to application/x-tar)
+     * @param changes Apply the following possible instructions to the created image: CMD | ENTRYPOINT | ENV | EXPOSE | LABEL | STOPSIGNAL | USER | VOLUME | WORKDIR.  JSON encoded string (optional)
      * @param message Set commit message for imported image (optional)
      * @param reference Optional Name[:TAG] for the image (optional)
      * @param url Load image from the specified URL (optional)
      * @return ApiResponse&lt;ImageImportReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Import </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Import </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ImageImportReport> imageImportLibpodWithHttpInfo(
-            File upload,
-            String contentType,
-            List<String> changes,
-            String message,
-            String reference,
-            String url)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                imageImportLibpodValidateBeforeCall(
-                        upload, contentType, changes, message, reference, url, null);
-        Type localVarReturnType = new TypeToken<ImageImportReport>() {}.getType();
+    public ApiResponse<ImageImportReport> imageImportLibpodWithHttpInfo(File upload, String contentType, List<String> changes, String message, String reference, String url) throws ApiException {
+        okhttp3.Call localVarCall = imageImportLibpodValidateBeforeCall(upload, contentType, changes, message, reference, url, null);
+        Type localVarReturnType = new TypeToken<ImageImportReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Import image (asynchronously) Import a previously exported tarball as an image.
-     *
+     * Import image (asynchronously)
+     * Import a previously exported tarball as an image.
      * @param upload tarball for imported image (required)
-     * @param contentType (optional, default to application/x-tar)
-     * @param changes Apply the following possible instructions to the created image: CMD |
-     *     ENTRYPOINT | ENV | EXPOSE | LABEL | STOPSIGNAL | USER | VOLUME | WORKDIR. JSON encoded
-     *     string (optional)
+     * @param contentType  (optional, default to application/x-tar)
+     * @param changes Apply the following possible instructions to the created image: CMD | ENTRYPOINT | ENV | EXPOSE | LABEL | STOPSIGNAL | USER | VOLUME | WORKDIR.  JSON encoded string (optional)
      * @param message Set commit message for imported image (optional)
      * @param reference Optional Name[:TAG] for the image (optional)
      * @param url Load image from the specified URL (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Import </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Import </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageImportLibpodAsync(
-            File upload,
-            String contentType,
-            List<String> changes,
-            String message,
-            String reference,
-            String url,
-            final ApiCallback<ImageImportReport> _callback)
-            throws ApiException {
+    public okhttp3.Call imageImportLibpodAsync(File upload, String contentType, List<String> changes, String message, String reference, String url, final ApiCallback<ImageImportReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageImportLibpodValidateBeforeCall(
-                        upload, contentType, changes, message, reference, url, _callback);
-        Type localVarReturnType = new TypeToken<ImageImportReport>() {}.getType();
+        okhttp3.Call localVarCall = imageImportLibpodValidateBeforeCall(upload, contentType, changes, message, reference, url, _callback);
+        Type localVarReturnType = new TypeToken<ImageImportReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageInspectLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect Image </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect Image </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageInspectLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageInspectLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2466,11 +1675,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/json"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/json"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2478,60 +1684,49 @@ public class ImagesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageInspectLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageInspectLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageInspectLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageInspectLibpod(Async)");
         }
 
         return imageInspectLibpodCall(name, _callback);
+
     }
 
     /**
-     * Inspect an image Obtain low-level information about an image
-     *
+     * Inspect an image
+     * Obtain low-level information about an image
      * @param name the name or ID of the container (required)
      * @return ImageData
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect Image </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect Image </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ImageData imageInspectLibpod(String name) throws ApiException {
         ApiResponse<ImageData> localVarResp = imageInspectLibpodWithHttpInfo(name);
@@ -2539,85 +1734,70 @@ public class ImagesApi {
     }
 
     /**
-     * Inspect an image Obtain low-level information about an image
-     *
+     * Inspect an image
+     * Obtain low-level information about an image
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;ImageData&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect Image </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect Image </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<ImageData> imageInspectLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = imageInspectLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<ImageData>() {}.getType();
+        Type localVarReturnType = new TypeToken<ImageData>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Inspect an image (asynchronously) Obtain low-level information about an image
-     *
+     * Inspect an image (asynchronously)
+     * Obtain low-level information about an image
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect Image </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect Image </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageInspectLibpodAsync(String name, final ApiCallback<ImageData> _callback)
-            throws ApiException {
+    public okhttp3.Call imageInspectLibpodAsync(String name, final ApiCallback<ImageData> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageInspectLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<ImageData>() {}.getType();
+        Type localVarReturnType = new TypeToken<ImageData>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageListLibpod
-     *
-     * @param all Show all images. Only images from a final layer (no children) are shown by
-     *     default. (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the images list. Available filters: -
-     *     &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; -
-     *     &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an
-     *     image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) -
-     *     &#x60;id&#x60;&#x3D;(&#x60;&lt;image-id&gt;&#x60;) -
-     *     &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) (optional)
+     * @param all Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;id&#x60;&#x3D;(&#x60;&lt;image-id&gt;&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image summary for libpod API </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image summary for libpod API </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageListLibpodCall(
-            Boolean all, String filters, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call imageListLibpodCall(Boolean all, String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2642,162 +1822,115 @@ public class ImagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filters", filters));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageListLibpodValidateBeforeCall(
-            Boolean all, String filters, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageListLibpodValidateBeforeCall(Boolean all, String filters, final ApiCallback _callback) throws ApiException {
         return imageListLibpodCall(all, filters, _callback);
+
     }
 
     /**
-     * List Images Returns a list of images on the server
-     *
-     * @param all Show all images. Only images from a final layer (no children) are shown by
-     *     default. (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the images list. Available filters: -
-     *     &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; -
-     *     &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an
-     *     image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) -
-     *     &#x60;id&#x60;&#x3D;(&#x60;&lt;image-id&gt;&#x60;) -
-     *     &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) (optional)
+     * List Images
+     * Returns a list of images on the server
+     * @param all Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;id&#x60;&#x3D;(&#x60;&lt;image-id&gt;&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
      * @return List&lt;LibpodImageSummary&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image summary for libpod API </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image summary for libpod API </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public List<LibpodImageSummary> imageListLibpod(Boolean all, String filters)
-            throws ApiException {
-        ApiResponse<List<LibpodImageSummary>> localVarResp =
-                imageListLibpodWithHttpInfo(all, filters);
+    public List<LibpodImageSummary> imageListLibpod(Boolean all, String filters) throws ApiException {
+        ApiResponse<List<LibpodImageSummary>> localVarResp = imageListLibpodWithHttpInfo(all, filters);
         return localVarResp.getData();
     }
 
     /**
-     * List Images Returns a list of images on the server
-     *
-     * @param all Show all images. Only images from a final layer (no children) are shown by
-     *     default. (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the images list. Available filters: -
-     *     &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; -
-     *     &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an
-     *     image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) -
-     *     &#x60;id&#x60;&#x3D;(&#x60;&lt;image-id&gt;&#x60;) -
-     *     &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) (optional)
+     * List Images
+     * Returns a list of images on the server
+     * @param all Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;id&#x60;&#x3D;(&#x60;&lt;image-id&gt;&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
      * @return ApiResponse&lt;List&lt;LibpodImageSummary&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image summary for libpod API </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image summary for libpod API </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<List<LibpodImageSummary>> imageListLibpodWithHttpInfo(
-            Boolean all, String filters) throws ApiException {
+    public ApiResponse<List<LibpodImageSummary>> imageListLibpodWithHttpInfo(Boolean all, String filters) throws ApiException {
         okhttp3.Call localVarCall = imageListLibpodValidateBeforeCall(all, filters, null);
-        Type localVarReturnType = new TypeToken<List<LibpodImageSummary>>() {}.getType();
+        Type localVarReturnType = new TypeToken<List<LibpodImageSummary>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * List Images (asynchronously) Returns a list of images on the server
-     *
-     * @param all Show all images. Only images from a final layer (no children) are shown by
-     *     default. (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the images list. Available filters: -
-     *     &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; -
-     *     &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an
-     *     image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) -
-     *     &#x60;id&#x60;&#x3D;(&#x60;&lt;image-id&gt;&#x60;) -
-     *     &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) (optional)
+     * List Images (asynchronously)
+     * Returns a list of images on the server
+     * @param all Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;id&#x60;&#x3D;(&#x60;&lt;image-id&gt;&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image summary for libpod API </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image summary for libpod API </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageListLibpodAsync(
-            Boolean all, String filters, final ApiCallback<List<LibpodImageSummary>> _callback)
-            throws ApiException {
+    public okhttp3.Call imageListLibpodAsync(Boolean all, String filters, final ApiCallback<List<LibpodImageSummary>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageListLibpodValidateBeforeCall(all, filters, _callback);
-        Type localVarReturnType = new TypeToken<List<LibpodImageSummary>>() {}.getType();
+        Type localVarReturnType = new TypeToken<List<LibpodImageSummary>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageLoadLibpod
-     *
      * @param upload tarball of container image (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Load </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Load </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageLoadLibpodCall(String upload, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageLoadLibpodCall(String upload, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2814,60 +1947,50 @@ public class ImagesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {"application/x-tar"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+            "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageLoadLibpodValidateBeforeCall(
-            String upload, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageLoadLibpodValidateBeforeCall(String upload, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'upload' is set
         if (upload == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'upload' when calling imageLoadLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'upload' when calling imageLoadLibpod(Async)");
         }
 
         return imageLoadLibpodCall(upload, _callback);
+
     }
 
     /**
-     * Load image Load an image (oci-archive or docker-archive) stream.
-     *
+     * Load image
+     * Load an image (oci-archive or docker-archive) stream.
      * @param upload tarball of container image (required)
      * @return ImageLoadReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Load </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Load </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ImageLoadReport imageLoadLibpod(String upload) throws ApiException {
         ApiResponse<ImageLoadReport> localVarResp = imageLoadLibpodWithHttpInfo(upload);
@@ -2875,92 +1998,72 @@ public class ImagesApi {
     }
 
     /**
-     * Load image Load an image (oci-archive or docker-archive) stream.
-     *
+     * Load image
+     * Load an image (oci-archive or docker-archive) stream.
      * @param upload tarball of container image (required)
      * @return ApiResponse&lt;ImageLoadReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Load </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Load </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ImageLoadReport> imageLoadLibpodWithHttpInfo(String upload)
-            throws ApiException {
+    public ApiResponse<ImageLoadReport> imageLoadLibpodWithHttpInfo(String upload) throws ApiException {
         okhttp3.Call localVarCall = imageLoadLibpodValidateBeforeCall(upload, null);
-        Type localVarReturnType = new TypeToken<ImageLoadReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<ImageLoadReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Load image (asynchronously) Load an image (oci-archive or docker-archive) stream.
-     *
+     * Load image (asynchronously)
+     * Load an image (oci-archive or docker-archive) stream.
      * @param upload tarball of container image (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Load </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Load </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageLoadLibpodAsync(
-            String upload, final ApiCallback<ImageLoadReport> _callback) throws ApiException {
+    public okhttp3.Call imageLoadLibpodAsync(String upload, final ApiCallback<ImageLoadReport> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageLoadLibpodValidateBeforeCall(upload, _callback);
-        Type localVarReturnType = new TypeToken<ImageLoadReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<ImageLoadReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imagePruneLibpod
-     *
-     * @param all Remove all images not in use by containers, not just dangling ones (optional,
-     *     default to false)
-     * @param external Remove images even when they are used by external containers (e.g, by build
-     *     containers) (optional, default to false)
-     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string).
-     *     Available filters: - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to
-     *     &#x60;true&#x60; (or &#x60;1&#x60;), prune only unused *and* untagged images. When set to
-     *     &#x60;false&#x60; (or &#x60;0&#x60;), all unused images are pruned. -
-     *     &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The
-     *     &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go
-     *     duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the
-     *     daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;,
-     *     &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;,
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in
-     *     case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
+     * @param all Remove all images not in use by containers, not just dangling ones  (optional, default to false)
+     * @param external Remove images even when they are used by external containers (e.g, by build containers)  (optional, default to false)
+     * @param buildcache Remove persistent build cache created by build instructions such as &#x60;--mount&#x3D;type&#x3D;cache&#x60;.  (optional, default to false)
+     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Prune </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imagePruneLibpodCall(
-            Boolean all, Boolean external, String filters, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imagePruneLibpodCall(Boolean all, Boolean external, Boolean buildcache, String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2985,210 +2088,138 @@ public class ImagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("external", external));
         }
 
+        if (buildcache != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("buildcache", buildcache));
+        }
+
         if (filters != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filters", filters));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imagePruneLibpodValidateBeforeCall(
-            Boolean all, Boolean external, String filters, final ApiCallback _callback)
-            throws ApiException {
-        return imagePruneLibpodCall(all, external, filters, _callback);
+    private okhttp3.Call imagePruneLibpodValidateBeforeCall(Boolean all, Boolean external, Boolean buildcache, String filters, final ApiCallback _callback) throws ApiException {
+        return imagePruneLibpodCall(all, external, buildcache, filters, _callback);
+
     }
 
     /**
-     * Prune unused images Remove images that are not being used by a container
-     *
-     * @param all Remove all images not in use by containers, not just dangling ones (optional,
-     *     default to false)
-     * @param external Remove images even when they are used by external containers (e.g, by build
-     *     containers) (optional, default to false)
-     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string).
-     *     Available filters: - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to
-     *     &#x60;true&#x60; (or &#x60;1&#x60;), prune only unused *and* untagged images. When set to
-     *     &#x60;false&#x60; (or &#x60;0&#x60;), all unused images are pruned. -
-     *     &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The
-     *     &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go
-     *     duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the
-     *     daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;,
-     *     &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;,
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in
-     *     case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
+     * Prune unused images
+     * Remove images that are not being used by a container
+     * @param all Remove all images not in use by containers, not just dangling ones  (optional, default to false)
+     * @param external Remove images even when they are used by external containers (e.g, by build containers)  (optional, default to false)
+     * @param buildcache Remove persistent build cache created by build instructions such as &#x60;--mount&#x3D;type&#x3D;cache&#x60;.  (optional, default to false)
+     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
      * @return List&lt;PruneReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Prune </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public List<PruneReport> imagePruneLibpod(Boolean all, Boolean external, String filters)
-            throws ApiException {
-        ApiResponse<List<PruneReport>> localVarResp =
-                imagePruneLibpodWithHttpInfo(all, external, filters);
+    public List<PruneReport> imagePruneLibpod(Boolean all, Boolean external, Boolean buildcache, String filters) throws ApiException {
+        ApiResponse<List<PruneReport>> localVarResp = imagePruneLibpodWithHttpInfo(all, external, buildcache, filters);
         return localVarResp.getData();
     }
 
     /**
-     * Prune unused images Remove images that are not being used by a container
-     *
-     * @param all Remove all images not in use by containers, not just dangling ones (optional,
-     *     default to false)
-     * @param external Remove images even when they are used by external containers (e.g, by build
-     *     containers) (optional, default to false)
-     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string).
-     *     Available filters: - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to
-     *     &#x60;true&#x60; (or &#x60;1&#x60;), prune only unused *and* untagged images. When set to
-     *     &#x60;false&#x60; (or &#x60;0&#x60;), all unused images are pruned. -
-     *     &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The
-     *     &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go
-     *     duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the
-     *     daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;,
-     *     &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;,
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in
-     *     case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
+     * Prune unused images
+     * Remove images that are not being used by a container
+     * @param all Remove all images not in use by containers, not just dangling ones  (optional, default to false)
+     * @param external Remove images even when they are used by external containers (e.g, by build containers)  (optional, default to false)
+     * @param buildcache Remove persistent build cache created by build instructions such as &#x60;--mount&#x3D;type&#x3D;cache&#x60;.  (optional, default to false)
+     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
      * @return ApiResponse&lt;List&lt;PruneReport&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Prune </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<List<PruneReport>> imagePruneLibpodWithHttpInfo(
-            Boolean all, Boolean external, String filters) throws ApiException {
-        okhttp3.Call localVarCall =
-                imagePruneLibpodValidateBeforeCall(all, external, filters, null);
-        Type localVarReturnType = new TypeToken<List<PruneReport>>() {}.getType();
+    public ApiResponse<List<PruneReport>> imagePruneLibpodWithHttpInfo(Boolean all, Boolean external, Boolean buildcache, String filters) throws ApiException {
+        okhttp3.Call localVarCall = imagePruneLibpodValidateBeforeCall(all, external, buildcache, filters, null);
+        Type localVarReturnType = new TypeToken<List<PruneReport>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Prune unused images (asynchronously) Remove images that are not being used by a container
-     *
-     * @param all Remove all images not in use by containers, not just dangling ones (optional,
-     *     default to false)
-     * @param external Remove images even when they are used by external containers (e.g, by build
-     *     containers) (optional, default to false)
-     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string).
-     *     Available filters: - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to
-     *     &#x60;true&#x60; (or &#x60;1&#x60;), prune only unused *and* untagged images. When set to
-     *     &#x60;false&#x60; (or &#x60;0&#x60;), all unused images are pruned. -
-     *     &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The
-     *     &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go
-     *     duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the
-     *     daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;,
-     *     &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;,
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in
-     *     case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
+     * Prune unused images (asynchronously)
+     * Remove images that are not being used by a container
+     * @param all Remove all images not in use by containers, not just dangling ones  (optional, default to false)
+     * @param external Remove images even when they are used by external containers (e.g, by build containers)  (optional, default to false)
+     * @param buildcache Remove persistent build cache created by build instructions such as &#x60;--mount&#x3D;type&#x3D;cache&#x60;.  (optional, default to false)
+     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Prune </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Prune </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imagePruneLibpodAsync(
-            Boolean all,
-            Boolean external,
-            String filters,
-            final ApiCallback<List<PruneReport>> _callback)
-            throws ApiException {
+    public okhttp3.Call imagePruneLibpodAsync(Boolean all, Boolean external, Boolean buildcache, String filters, final ApiCallback<List<PruneReport>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imagePruneLibpodValidateBeforeCall(all, external, filters, _callback);
-        Type localVarReturnType = new TypeToken<List<PruneReport>>() {}.getType();
+        okhttp3.Call localVarCall = imagePruneLibpodValidateBeforeCall(all, external, buildcache, filters, _callback);
+        Type localVarReturnType = new TypeToken<List<PruneReport>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imagePullLibpod
-     *
      * @param reference Mandatory reference to the image (e.g., quay.io/image/name:tag) (optional)
      * @param quiet silences extra stream data on pull (optional, default to false)
-     * @param compatMode Return the same JSON payload as the Docker-compat endpoint. (optional,
-     *     default to false)
+     * @param compatMode Return the same JSON payload as the Docker-compat endpoint. (optional, default to false)
      * @param arch Pull image for the specified architecture. (optional)
      * @param OS Pull image for the specified operating system. (optional)
      * @param variant Pull image for the specified variant. (optional)
-     * @param policy Pull policy, \&quot;always\&quot; (default), \&quot;missing\&quot;,
-     *     \&quot;newer\&quot;, \&quot;never\&quot;. (optional)
+     * @param policy Pull policy, \&quot;always\&quot; (default), \&quot;missing\&quot;, \&quot;newer\&quot;, \&quot;never\&quot;. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param allTags Pull all tagged images in the repository. (optional)
-     * @param xRegistryAuth base-64 encoded auth config. Must include the following four values:
-     *     username, password, email and server address OR simply just an identity token. (optional)
+     * @param xRegistryAuth base-64 encoded auth config. Must include the following four values: username, password, email and server address OR simply just an identity token. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Pull </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Pull </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imagePullLibpodCall(
-            String reference,
-            Boolean quiet,
-            Boolean compatMode,
-            String arch,
-            String OS,
-            String variant,
-            String policy,
-            Boolean tlsVerify,
-            Boolean allTags,
-            String xRegistryAuth,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imagePullLibpodCall(String reference, Boolean quiet, Boolean compatMode, String arch, String OS, String variant, String policy, Boolean tlsVerify, Boolean allTags, String xRegistryAuth, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3242,292 +2273,157 @@ public class ImagesApi {
         }
 
         if (xRegistryAuth != null) {
-            localVarHeaderParams.put(
-                    "X-Registry-Auth", localVarApiClient.parameterToString(xRegistryAuth));
+            localVarHeaderParams.put("X-Registry-Auth", localVarApiClient.parameterToString(xRegistryAuth));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imagePullLibpodValidateBeforeCall(
-            String reference,
-            Boolean quiet,
-            Boolean compatMode,
-            String arch,
-            String OS,
-            String variant,
-            String policy,
-            Boolean tlsVerify,
-            Boolean allTags,
-            String xRegistryAuth,
-            final ApiCallback _callback)
-            throws ApiException {
-        return imagePullLibpodCall(
-                reference,
-                quiet,
-                compatMode,
-                arch,
-                OS,
-                variant,
-                policy,
-                tlsVerify,
-                allTags,
-                xRegistryAuth,
-                _callback);
+    private okhttp3.Call imagePullLibpodValidateBeforeCall(String reference, Boolean quiet, Boolean compatMode, String arch, String OS, String variant, String policy, Boolean tlsVerify, Boolean allTags, String xRegistryAuth, final ApiCallback _callback) throws ApiException {
+        return imagePullLibpodCall(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth, _callback);
+
     }
 
     /**
-     * Pull images Pull one or more images from a container registry.
-     *
+     * Pull images
+     * Pull one or more images from a container registry.
      * @param reference Mandatory reference to the image (e.g., quay.io/image/name:tag) (optional)
      * @param quiet silences extra stream data on pull (optional, default to false)
-     * @param compatMode Return the same JSON payload as the Docker-compat endpoint. (optional,
-     *     default to false)
+     * @param compatMode Return the same JSON payload as the Docker-compat endpoint. (optional, default to false)
      * @param arch Pull image for the specified architecture. (optional)
      * @param OS Pull image for the specified operating system. (optional)
      * @param variant Pull image for the specified variant. (optional)
-     * @param policy Pull policy, \&quot;always\&quot; (default), \&quot;missing\&quot;,
-     *     \&quot;newer\&quot;, \&quot;never\&quot;. (optional)
+     * @param policy Pull policy, \&quot;always\&quot; (default), \&quot;missing\&quot;, \&quot;newer\&quot;, \&quot;never\&quot;. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param allTags Pull all tagged images in the repository. (optional)
-     * @param xRegistryAuth base-64 encoded auth config. Must include the following four values:
-     *     username, password, email and server address OR simply just an identity token. (optional)
+     * @param xRegistryAuth base-64 encoded auth config. Must include the following four values: username, password, email and server address OR simply just an identity token. (optional)
      * @return LibpodImagesPullReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Pull </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Pull </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public LibpodImagesPullReport imagePullLibpod(
-            String reference,
-            Boolean quiet,
-            Boolean compatMode,
-            String arch,
-            String OS,
-            String variant,
-            String policy,
-            Boolean tlsVerify,
-            Boolean allTags,
-            String xRegistryAuth)
-            throws ApiException {
-        ApiResponse<LibpodImagesPullReport> localVarResp =
-                imagePullLibpodWithHttpInfo(
-                        reference,
-                        quiet,
-                        compatMode,
-                        arch,
-                        OS,
-                        variant,
-                        policy,
-                        tlsVerify,
-                        allTags,
-                        xRegistryAuth);
+    public LibpodImagesPullReport imagePullLibpod(String reference, Boolean quiet, Boolean compatMode, String arch, String OS, String variant, String policy, Boolean tlsVerify, Boolean allTags, String xRegistryAuth) throws ApiException {
+        ApiResponse<LibpodImagesPullReport> localVarResp = imagePullLibpodWithHttpInfo(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth);
         return localVarResp.getData();
     }
 
     /**
-     * Pull images Pull one or more images from a container registry.
-     *
+     * Pull images
+     * Pull one or more images from a container registry.
      * @param reference Mandatory reference to the image (e.g., quay.io/image/name:tag) (optional)
      * @param quiet silences extra stream data on pull (optional, default to false)
-     * @param compatMode Return the same JSON payload as the Docker-compat endpoint. (optional,
-     *     default to false)
+     * @param compatMode Return the same JSON payload as the Docker-compat endpoint. (optional, default to false)
      * @param arch Pull image for the specified architecture. (optional)
      * @param OS Pull image for the specified operating system. (optional)
      * @param variant Pull image for the specified variant. (optional)
-     * @param policy Pull policy, \&quot;always\&quot; (default), \&quot;missing\&quot;,
-     *     \&quot;newer\&quot;, \&quot;never\&quot;. (optional)
+     * @param policy Pull policy, \&quot;always\&quot; (default), \&quot;missing\&quot;, \&quot;newer\&quot;, \&quot;never\&quot;. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param allTags Pull all tagged images in the repository. (optional)
-     * @param xRegistryAuth base-64 encoded auth config. Must include the following four values:
-     *     username, password, email and server address OR simply just an identity token. (optional)
+     * @param xRegistryAuth base-64 encoded auth config. Must include the following four values: username, password, email and server address OR simply just an identity token. (optional)
      * @return ApiResponse&lt;LibpodImagesPullReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Pull </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Pull </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<LibpodImagesPullReport> imagePullLibpodWithHttpInfo(
-            String reference,
-            Boolean quiet,
-            Boolean compatMode,
-            String arch,
-            String OS,
-            String variant,
-            String policy,
-            Boolean tlsVerify,
-            Boolean allTags,
-            String xRegistryAuth)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                imagePullLibpodValidateBeforeCall(
-                        reference,
-                        quiet,
-                        compatMode,
-                        arch,
-                        OS,
-                        variant,
-                        policy,
-                        tlsVerify,
-                        allTags,
-                        xRegistryAuth,
-                        null);
-        Type localVarReturnType = new TypeToken<LibpodImagesPullReport>() {}.getType();
+    public ApiResponse<LibpodImagesPullReport> imagePullLibpodWithHttpInfo(String reference, Boolean quiet, Boolean compatMode, String arch, String OS, String variant, String policy, Boolean tlsVerify, Boolean allTags, String xRegistryAuth) throws ApiException {
+        okhttp3.Call localVarCall = imagePullLibpodValidateBeforeCall(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth, null);
+        Type localVarReturnType = new TypeToken<LibpodImagesPullReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Pull images (asynchronously) Pull one or more images from a container registry.
-     *
+     * Pull images (asynchronously)
+     * Pull one or more images from a container registry.
      * @param reference Mandatory reference to the image (e.g., quay.io/image/name:tag) (optional)
      * @param quiet silences extra stream data on pull (optional, default to false)
-     * @param compatMode Return the same JSON payload as the Docker-compat endpoint. (optional,
-     *     default to false)
+     * @param compatMode Return the same JSON payload as the Docker-compat endpoint. (optional, default to false)
      * @param arch Pull image for the specified architecture. (optional)
      * @param OS Pull image for the specified operating system. (optional)
      * @param variant Pull image for the specified variant. (optional)
-     * @param policy Pull policy, \&quot;always\&quot; (default), \&quot;missing\&quot;,
-     *     \&quot;newer\&quot;, \&quot;never\&quot;. (optional)
+     * @param policy Pull policy, \&quot;always\&quot; (default), \&quot;missing\&quot;, \&quot;newer\&quot;, \&quot;never\&quot;. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param allTags Pull all tagged images in the repository. (optional)
-     * @param xRegistryAuth base-64 encoded auth config. Must include the following four values:
-     *     username, password, email and server address OR simply just an identity token. (optional)
+     * @param xRegistryAuth base-64 encoded auth config. Must include the following four values: username, password, email and server address OR simply just an identity token. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Pull </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Pull </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imagePullLibpodAsync(
-            String reference,
-            Boolean quiet,
-            Boolean compatMode,
-            String arch,
-            String OS,
-            String variant,
-            String policy,
-            Boolean tlsVerify,
-            Boolean allTags,
-            String xRegistryAuth,
-            final ApiCallback<LibpodImagesPullReport> _callback)
-            throws ApiException {
+    public okhttp3.Call imagePullLibpodAsync(String reference, Boolean quiet, Boolean compatMode, String arch, String OS, String variant, String policy, Boolean tlsVerify, Boolean allTags, String xRegistryAuth, final ApiCallback<LibpodImagesPullReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imagePullLibpodValidateBeforeCall(
-                        reference,
-                        quiet,
-                        compatMode,
-                        arch,
-                        OS,
-                        variant,
-                        policy,
-                        tlsVerify,
-                        allTags,
-                        xRegistryAuth,
-                        _callback);
-        Type localVarReturnType = new TypeToken<LibpodImagesPullReport>() {}.getType();
+        okhttp3.Call localVarCall = imagePullLibpodValidateBeforeCall(reference, quiet, compatMode, arch, OS, variant, policy, tlsVerify, allTags, xRegistryAuth, _callback);
+        Type localVarReturnType = new TypeToken<LibpodImagesPullReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imagePushLibpod
-     *
      * @param name Name of image to push. (required)
-     * @param destination Allows for pushing the image to a different destination than the image
-     *     refers to. (optional)
-     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression
-     *     and do not reuse differently compressed blobs on the registry. (optional, default to
-     *     false)
+     * @param destination Allows for pushing the image to a different destination than the image refers to. (optional)
+     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
      * @param compressionFormat Compression format used to compress image layers. (optional)
      * @param compressionLevel Compression level used to compress image layers. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param quiet Silences extra stream data on push. (optional, default to true)
-     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
-     *     manifest type of source, with fallbacks. (optional)
+     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
      * @param all All indicates whether to push all images related to the image list. (optional)
      * @param removeSignatures Discard any pre-existing signatures in the image. (optional)
      * @param retry Number of times to retry push in case of failure. (optional)
-     * @param retryDelay Delay between retries in case of push failures. Duration format such as
-     *     \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
+     * @param retryDelay Delay between retries in case of push failures. Duration format such as \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imagePushLibpodCall(
-            String name,
-            String destination,
-            Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
-            Boolean tlsVerify,
-            Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
-            String xRegistryAuth,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imagePushLibpodCall(String name, String destination, Boolean forceCompressionFormat, String compressionFormat, Integer compressionLevel, Boolean tlsVerify, Boolean quiet, String format, Boolean all, Boolean removeSignatures, Integer retry, String retryDelay, String xRegistryAuth, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3536,11 +2432,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/push"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/push"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3549,24 +2442,19 @@ public class ImagesApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (destination != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("destination", destination));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("destination", destination));
         }
 
         if (forceCompressionFormat != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair(
-                            "forceCompressionFormat", forceCompressionFormat));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("forceCompressionFormat", forceCompressionFormat));
         }
 
         if (compressionFormat != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("compressionFormat", compressionFormat));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("compressionFormat", compressionFormat));
         }
 
         if (compressionLevel != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("compressionLevel", compressionLevel));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("compressionLevel", compressionLevel));
         }
 
         if (tlsVerify != null) {
@@ -3586,8 +2474,7 @@ public class ImagesApi {
         }
 
         if (removeSignatures != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("removeSignatures", removeSignatures));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("removeSignatures", removeSignatures));
         }
 
         if (retry != null) {
@@ -3599,306 +2486,159 @@ public class ImagesApi {
         }
 
         if (xRegistryAuth != null) {
-            localVarHeaderParams.put(
-                    "X-Registry-Auth", localVarApiClient.parameterToString(xRegistryAuth));
+            localVarHeaderParams.put("X-Registry-Auth", localVarApiClient.parameterToString(xRegistryAuth));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imagePushLibpodValidateBeforeCall(
-            String name,
-            String destination,
-            Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
-            Boolean tlsVerify,
-            Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
-            String xRegistryAuth,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call imagePushLibpodValidateBeforeCall(String name, String destination, Boolean forceCompressionFormat, String compressionFormat, Integer compressionLevel, Boolean tlsVerify, Boolean quiet, String format, Boolean all, Boolean removeSignatures, Integer retry, String retryDelay, String xRegistryAuth, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imagePushLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imagePushLibpod(Async)");
         }
 
-        return imagePushLibpodCall(
-                name,
-                destination,
-                forceCompressionFormat,
-                compressionFormat,
-                compressionLevel,
-                tlsVerify,
-                quiet,
-                format,
-                all,
-                removeSignatures,
-                retry,
-                retryDelay,
-                xRegistryAuth,
-                _callback);
+        return imagePushLibpodCall(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth, _callback);
+
     }
 
     /**
-     * Push Image Push an image to a container registry
-     *
+     * Push Image
+     * Push an image to a container registry
      * @param name Name of image to push. (required)
-     * @param destination Allows for pushing the image to a different destination than the image
-     *     refers to. (optional)
-     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression
-     *     and do not reuse differently compressed blobs on the registry. (optional, default to
-     *     false)
+     * @param destination Allows for pushing the image to a different destination than the image refers to. (optional)
+     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
      * @param compressionFormat Compression format used to compress image layers. (optional)
      * @param compressionLevel Compression level used to compress image layers. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param quiet Silences extra stream data on push. (optional, default to true)
-     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
-     *     manifest type of source, with fallbacks. (optional)
+     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
      * @param all All indicates whether to push all images related to the image list. (optional)
      * @param removeSignatures Discard any pre-existing signatures in the image. (optional)
      * @param retry Number of times to retry push in case of failure. (optional)
-     * @param retryDelay Delay between retries in case of push failures. Duration format such as
-     *     \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
+     * @param retryDelay Delay between retries in case of push failures. Duration format such as \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public File imagePushLibpod(
-            String name,
-            String destination,
-            Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
-            Boolean tlsVerify,
-            Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
-            String xRegistryAuth)
-            throws ApiException {
-        ApiResponse<File> localVarResp =
-                imagePushLibpodWithHttpInfo(
-                        name,
-                        destination,
-                        forceCompressionFormat,
-                        compressionFormat,
-                        compressionLevel,
-                        tlsVerify,
-                        quiet,
-                        format,
-                        all,
-                        removeSignatures,
-                        retry,
-                        retryDelay,
-                        xRegistryAuth);
+    public File imagePushLibpod(String name, String destination, Boolean forceCompressionFormat, String compressionFormat, Integer compressionLevel, Boolean tlsVerify, Boolean quiet, String format, Boolean all, Boolean removeSignatures, Integer retry, String retryDelay, String xRegistryAuth) throws ApiException {
+        ApiResponse<File> localVarResp = imagePushLibpodWithHttpInfo(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth);
         return localVarResp.getData();
     }
 
     /**
-     * Push Image Push an image to a container registry
-     *
+     * Push Image
+     * Push an image to a container registry
      * @param name Name of image to push. (required)
-     * @param destination Allows for pushing the image to a different destination than the image
-     *     refers to. (optional)
-     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression
-     *     and do not reuse differently compressed blobs on the registry. (optional, default to
-     *     false)
+     * @param destination Allows for pushing the image to a different destination than the image refers to. (optional)
+     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
      * @param compressionFormat Compression format used to compress image layers. (optional)
      * @param compressionLevel Compression level used to compress image layers. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param quiet Silences extra stream data on push. (optional, default to true)
-     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
-     *     manifest type of source, with fallbacks. (optional)
+     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
      * @param all All indicates whether to push all images related to the image list. (optional)
      * @param removeSignatures Discard any pre-existing signatures in the image. (optional)
      * @param retry Number of times to retry push in case of failure. (optional)
-     * @param retryDelay Delay between retries in case of push failures. Duration format such as
-     *     \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
+     * @param retryDelay Delay between retries in case of push failures. Duration format such as \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<File> imagePushLibpodWithHttpInfo(
-            String name,
-            String destination,
-            Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
-            Boolean tlsVerify,
-            Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
-            String xRegistryAuth)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                imagePushLibpodValidateBeforeCall(
-                        name,
-                        destination,
-                        forceCompressionFormat,
-                        compressionFormat,
-                        compressionLevel,
-                        tlsVerify,
-                        quiet,
-                        format,
-                        all,
-                        removeSignatures,
-                        retry,
-                        retryDelay,
-                        xRegistryAuth,
-                        null);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+    public ApiResponse<File> imagePushLibpodWithHttpInfo(String name, String destination, Boolean forceCompressionFormat, String compressionFormat, Integer compressionLevel, Boolean tlsVerify, Boolean quiet, String format, Boolean all, Boolean removeSignatures, Integer retry, String retryDelay, String xRegistryAuth) throws ApiException {
+        okhttp3.Call localVarCall = imagePushLibpodValidateBeforeCall(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Push Image (asynchronously) Push an image to a container registry
-     *
+     * Push Image (asynchronously)
+     * Push an image to a container registry
      * @param name Name of image to push. (required)
-     * @param destination Allows for pushing the image to a different destination than the image
-     *     refers to. (optional)
-     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression
-     *     and do not reuse differently compressed blobs on the registry. (optional, default to
-     *     false)
+     * @param destination Allows for pushing the image to a different destination than the image refers to. (optional)
+     * @param forceCompressionFormat Enforce compressing the layers with the specified --compression and do not reuse differently compressed blobs on the registry. (optional, default to false)
      * @param compressionFormat Compression format used to compress image layers. (optional)
      * @param compressionLevel Compression level used to compress image layers. (optional)
      * @param tlsVerify Require TLS verification. (optional, default to true)
      * @param quiet Silences extra stream data on push. (optional, default to true)
-     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is
-     *     manifest type of source, with fallbacks. (optional)
+     * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
      * @param all All indicates whether to push all images related to the image list. (optional)
      * @param removeSignatures Discard any pre-existing signatures in the image. (optional)
      * @param retry Number of times to retry push in case of failure. (optional)
-     * @param retryDelay Delay between retries in case of push failures. Duration format such as
-     *     \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
+     * @param retryDelay Delay between retries in case of push failures. Duration format such as \&quot;412ms\&quot;, or \&quot;3.5h\&quot;. (optional)
      * @param xRegistryAuth A base64-encoded auth configuration. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imagePushLibpodAsync(
-            String name,
-            String destination,
-            Boolean forceCompressionFormat,
-            String compressionFormat,
-            Integer compressionLevel,
-            Boolean tlsVerify,
-            Boolean quiet,
-            String format,
-            Boolean all,
-            Boolean removeSignatures,
-            Integer retry,
-            String retryDelay,
-            String xRegistryAuth,
-            final ApiCallback<File> _callback)
-            throws ApiException {
+    public okhttp3.Call imagePushLibpodAsync(String name, String destination, Boolean forceCompressionFormat, String compressionFormat, Integer compressionLevel, Boolean tlsVerify, Boolean quiet, String format, Boolean all, Boolean removeSignatures, Integer retry, String retryDelay, String xRegistryAuth, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imagePushLibpodValidateBeforeCall(
-                        name,
-                        destination,
-                        forceCompressionFormat,
-                        compressionFormat,
-                        compressionLevel,
-                        tlsVerify,
-                        quiet,
-                        format,
-                        all,
-                        removeSignatures,
-                        retry,
-                        retryDelay,
-                        xRegistryAuth,
-                        _callback);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+        okhttp3.Call localVarCall = imagePushLibpodValidateBeforeCall(name, destination, forceCompressionFormat, compressionFormat, compressionLevel, tlsVerify, quiet, format, all, removeSignatures, retry, retryDelay, xRegistryAuth, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageResolveLibpod
-     *
      * @param name the (short) name to resolve (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> resolved image names </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> resolved image names </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageResolveLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageResolveLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3907,11 +2647,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/resolve"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/resolve"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3919,80 +2656,66 @@ public class ImagesApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageResolveLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageResolveLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageResolveLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageResolveLibpod(Async)");
         }
 
         return imageResolveLibpodCall(name, _callback);
+
     }
 
     /**
-     * Resolve an image (short) name Resolve the passed image name to a list of fully-qualified
-     * images referring to container registries.
-     *
+     * Resolve an image (short) name
+     * Resolve the passed image name to a list of fully-qualified images referring to container registries.
      * @param name the (short) name to resolve (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> resolved image names </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> resolved image names </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void imageResolveLibpod(String name) throws ApiException {
         imageResolveLibpodWithHttpInfo(name);
     }
 
     /**
-     * Resolve an image (short) name Resolve the passed image name to a list of fully-qualified
-     * images referring to container registries.
-     *
+     * Resolve an image (short) name
+     * Resolve the passed image name to a list of fully-qualified images referring to container registries.
      * @param name the (short) name to resolve (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> resolved image names </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> resolved image names </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<Void> imageResolveLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = imageResolveLibpodValidateBeforeCall(name, null);
@@ -4000,33 +2723,28 @@ public class ImagesApi {
     }
 
     /**
-     * Resolve an image (short) name (asynchronously) Resolve the passed image name to a list of
-     * fully-qualified images referring to container registries.
-     *
+     * Resolve an image (short) name (asynchronously)
+     * Resolve the passed image name to a list of fully-qualified images referring to container registries.
      * @param name the (short) name to resolve (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> resolved image names </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> resolved image names </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageResolveLibpodAsync(String name, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call imageResolveLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageResolveLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageScpLibpod
-     *
      * @param name source connection/image (required)
      * @param destination dest connection/image (optional)
      * @param quiet quiet output (optional, default to false)
@@ -4034,24 +2752,22 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Scp </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Scp </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageScpLibpodCall(
-            String name, String destination, Boolean quiet, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageScpLibpodCall(String name, String destination, Boolean quiet, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4060,11 +2776,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/scp/{name}"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/scp/{name}"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4073,172 +2786,136 @@ public class ImagesApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (destination != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("destination", destination));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("destination", destination));
         }
 
         if (quiet != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("quiet", quiet));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageScpLibpodValidateBeforeCall(
-            String name, String destination, Boolean quiet, final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call imageScpLibpodValidateBeforeCall(String name, String destination, Boolean quiet, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageScpLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageScpLibpod(Async)");
         }
 
         return imageScpLibpodCall(name, destination, quiet, _callback);
+
     }
 
     /**
-     * Copy an image from one host to another Copy an image from one host to another
-     *
+     * Copy an image from one host to another
+     * Copy an image from one host to another
      * @param name source connection/image (required)
      * @param destination dest connection/image (optional)
      * @param quiet quiet output (optional, default to false)
      * @return ScpReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Scp </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Scp </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ScpReport imageScpLibpod(String name, String destination, Boolean quiet)
-            throws ApiException {
+    public ScpReport imageScpLibpod(String name, String destination, Boolean quiet) throws ApiException {
         ApiResponse<ScpReport> localVarResp = imageScpLibpodWithHttpInfo(name, destination, quiet);
         return localVarResp.getData();
     }
 
     /**
-     * Copy an image from one host to another Copy an image from one host to another
-     *
+     * Copy an image from one host to another
+     * Copy an image from one host to another
      * @param name source connection/image (required)
      * @param destination dest connection/image (optional)
      * @param quiet quiet output (optional, default to false)
      * @return ApiResponse&lt;ScpReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Scp </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Scp </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ScpReport> imageScpLibpodWithHttpInfo(
-            String name, String destination, Boolean quiet) throws ApiException {
-        okhttp3.Call localVarCall =
-                imageScpLibpodValidateBeforeCall(name, destination, quiet, null);
-        Type localVarReturnType = new TypeToken<ScpReport>() {}.getType();
+    public ApiResponse<ScpReport> imageScpLibpodWithHttpInfo(String name, String destination, Boolean quiet) throws ApiException {
+        okhttp3.Call localVarCall = imageScpLibpodValidateBeforeCall(name, destination, quiet, null);
+        Type localVarReturnType = new TypeToken<ScpReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Copy an image from one host to another (asynchronously) Copy an image from one host to
-     * another
-     *
+     * Copy an image from one host to another (asynchronously)
+     * Copy an image from one host to another
      * @param name source connection/image (required)
      * @param destination dest connection/image (optional)
      * @param quiet quiet output (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Scp </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Scp </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageScpLibpodAsync(
-            String name, String destination, Boolean quiet, final ApiCallback<ScpReport> _callback)
-            throws ApiException {
+    public okhttp3.Call imageScpLibpodAsync(String name, String destination, Boolean quiet, final ApiCallback<ScpReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageScpLibpodValidateBeforeCall(name, destination, quiet, _callback);
-        Type localVarReturnType = new TypeToken<ScpReport>() {}.getType();
+        okhttp3.Call localVarCall = imageScpLibpodValidateBeforeCall(name, destination, quiet, _callback);
+        Type localVarReturnType = new TypeToken<ScpReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageSearchLibpod
-     *
      * @param term term to search (optional)
      * @param limit maximum number of results (optional, default to 25)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the images list. Available filters: -
-     *     &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; -
-     *     &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39;
-     *     stars. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional,
-     *     default to true)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
      * @param listTags list the available tags in the repository (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageSearchLibpodCall(
-            String term,
-            Integer limit,
-            String filters,
-            Boolean tlsVerify,
-            Boolean listTags,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageSearchLibpodCall(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4275,154 +2952,103 @@ public class ImagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("listTags", listTags));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageSearchLibpodValidateBeforeCall(
-            String term,
-            Integer limit,
-            String filters,
-            Boolean tlsVerify,
-            Boolean listTags,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call imageSearchLibpodValidateBeforeCall(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags, final ApiCallback _callback) throws ApiException {
         return imageSearchLibpodCall(term, limit, filters, tlsVerify, listTags, _callback);
+
     }
 
     /**
-     * Search images Search registries for images
-     *
+     * Search images
+     * Search registries for images
      * @param term term to search (optional)
      * @param limit maximum number of results (optional, default to 25)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the images list. Available filters: -
-     *     &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; -
-     *     &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39;
-     *     stars. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional,
-     *     default to true)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
      * @param listTags list the available tags in the repository (optional, default to false)
      * @return ImageSearch200Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ImageSearch200Response imageSearchLibpod(
-            String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags)
-            throws ApiException {
-        ApiResponse<ImageSearch200Response> localVarResp =
-                imageSearchLibpodWithHttpInfo(term, limit, filters, tlsVerify, listTags);
+    public ImageSearch200Response imageSearchLibpod(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags) throws ApiException {
+        ApiResponse<ImageSearch200Response> localVarResp = imageSearchLibpodWithHttpInfo(term, limit, filters, tlsVerify, listTags);
         return localVarResp.getData();
     }
 
     /**
-     * Search images Search registries for images
-     *
+     * Search images
+     * Search registries for images
      * @param term term to search (optional)
      * @param limit maximum number of results (optional, default to 25)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the images list. Available filters: -
-     *     &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; -
-     *     &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39;
-     *     stars. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional,
-     *     default to true)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
      * @param listTags list the available tags in the repository (optional, default to false)
      * @return ApiResponse&lt;ImageSearch200Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ImageSearch200Response> imageSearchLibpodWithHttpInfo(
-            String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                imageSearchLibpodValidateBeforeCall(
-                        term, limit, filters, tlsVerify, listTags, null);
-        Type localVarReturnType = new TypeToken<ImageSearch200Response>() {}.getType();
+    public ApiResponse<ImageSearch200Response> imageSearchLibpodWithHttpInfo(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags) throws ApiException {
+        okhttp3.Call localVarCall = imageSearchLibpodValidateBeforeCall(term, limit, filters, tlsVerify, listTags, null);
+        Type localVarReturnType = new TypeToken<ImageSearch200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Search images (asynchronously) Search registries for images
-     *
+     * Search images (asynchronously)
+     * Search registries for images
      * @param term term to search (optional)
      * @param limit maximum number of results (optional, default to 25)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the images list. Available filters: -
-     *     &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; -
-     *     &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39;
-     *     stars. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional,
-     *     default to true)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
      * @param listTags list the available tags in the repository (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageSearchLibpodAsync(
-            String term,
-            Integer limit,
-            String filters,
-            Boolean tlsVerify,
-            Boolean listTags,
-            final ApiCallback<ImageSearch200Response> _callback)
-            throws ApiException {
+    public okhttp3.Call imageSearchLibpodAsync(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags, final ApiCallback<ImageSearch200Response> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageSearchLibpodValidateBeforeCall(
-                        term, limit, filters, tlsVerify, listTags, _callback);
-        Type localVarReturnType = new TypeToken<ImageSearch200Response>() {}.getType();
+        okhttp3.Call localVarCall = imageSearchLibpodValidateBeforeCall(term, limit, filters, tlsVerify, listTags, _callback);
+        Type localVarReturnType = new TypeToken<ImageSearch200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageTagLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param repo the repository to tag in (optional)
      * @param tag the name of the new tag (optional)
@@ -4430,25 +3056,24 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageTagLibpodCall(
-            String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call imageTagLibpodCall(String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4457,11 +3082,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/tag"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/tag"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4477,148 +3099,129 @@ public class ImagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("tag", tag));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageTagLibpodValidateBeforeCall(
-            String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageTagLibpodValidateBeforeCall(String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageTagLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageTagLibpod(Async)");
         }
 
         return imageTagLibpodCall(name, repo, tag, _callback);
+
     }
 
     /**
-     * Tag an image Tag an image so that it becomes part of a repository.
-     *
+     * Tag an image
+     * Tag an image so that it becomes part of a repository.
      * @param name the name or ID of the container (required)
      * @param repo the repository to tag in (optional)
      * @param tag the name of the new tag (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void imageTagLibpod(String name, String repo, String tag) throws ApiException {
         imageTagLibpodWithHttpInfo(name, repo, tag);
     }
 
     /**
-     * Tag an image Tag an image so that it becomes part of a repository.
-     *
+     * Tag an image
+     * Tag an image so that it becomes part of a repository.
      * @param name the name or ID of the container (required)
      * @param repo the repository to tag in (optional)
      * @param tag the name of the new tag (optional)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> imageTagLibpodWithHttpInfo(String name, String repo, String tag)
-            throws ApiException {
+    public ApiResponse<Void> imageTagLibpodWithHttpInfo(String name, String repo, String tag) throws ApiException {
         okhttp3.Call localVarCall = imageTagLibpodValidateBeforeCall(name, repo, tag, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Tag an image (asynchronously) Tag an image so that it becomes part of a repository.
-     *
+     * Tag an image (asynchronously)
+     * Tag an image so that it becomes part of a repository.
      * @param name the name or ID of the container (required)
      * @param repo the repository to tag in (optional)
      * @param tag the name of the new tag (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageTagLibpodAsync(
-            String name, String repo, String tag, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call imageTagLibpodAsync(String name, String repo, String tag, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageTagLibpodValidateBeforeCall(name, repo, tag, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageTreeLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param whatrequires show all child images and layers of the specified image (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Tree </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Tree </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageTreeLibpodCall(
-            String name, Boolean whatrequires, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call imageTreeLibpodCall(String name, Boolean whatrequires, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4627,11 +3230,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/tree"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/tree"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4640,65 +3240,53 @@ public class ImagesApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (whatrequires != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("whatrequires", whatrequires));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("whatrequires", whatrequires));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageTreeLibpodValidateBeforeCall(
-            String name, Boolean whatrequires, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageTreeLibpodValidateBeforeCall(String name, Boolean whatrequires, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageTreeLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageTreeLibpod(Async)");
         }
 
         return imageTreeLibpodCall(name, whatrequires, _callback);
+
     }
 
     /**
-     * Image tree Retrieve the image tree for the provided image name or ID
-     *
+     * Image tree
+     * Retrieve the image tree for the provided image name or ID
      * @param name the name or ID of the container (required)
      * @param whatrequires show all child images and layers of the specified image (optional)
      * @return ImageTreeReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Tree </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Tree </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ImageTreeReport imageTreeLibpod(String name, Boolean whatrequires) throws ApiException {
         ApiResponse<ImageTreeReport> localVarResp = imageTreeLibpodWithHttpInfo(name, whatrequires);
@@ -4706,59 +3294,51 @@ public class ImagesApi {
     }
 
     /**
-     * Image tree Retrieve the image tree for the provided image name or ID
-     *
+     * Image tree
+     * Retrieve the image tree for the provided image name or ID
      * @param name the name or ID of the container (required)
      * @param whatrequires show all child images and layers of the specified image (optional)
      * @return ApiResponse&lt;ImageTreeReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Tree </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Tree </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ImageTreeReport> imageTreeLibpodWithHttpInfo(
-            String name, Boolean whatrequires) throws ApiException {
+    public ApiResponse<ImageTreeReport> imageTreeLibpodWithHttpInfo(String name, Boolean whatrequires) throws ApiException {
         okhttp3.Call localVarCall = imageTreeLibpodValidateBeforeCall(name, whatrequires, null);
-        Type localVarReturnType = new TypeToken<ImageTreeReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<ImageTreeReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Image tree (asynchronously) Retrieve the image tree for the provided image name or ID
-     *
+     * Image tree (asynchronously)
+     * Retrieve the image tree for the provided image name or ID
      * @param name the name or ID of the container (required)
      * @param whatrequires show all child images and layers of the specified image (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Tree </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Tree </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageTreeLibpodAsync(
-            String name, Boolean whatrequires, final ApiCallback<ImageTreeReport> _callback)
-            throws ApiException {
+    public okhttp3.Call imageTreeLibpodAsync(String name, Boolean whatrequires, final ApiCallback<ImageTreeReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageTreeLibpodValidateBeforeCall(name, whatrequires, _callback);
-        Type localVarReturnType = new TypeToken<ImageTreeReport>() {}.getType();
+        okhttp3.Call localVarCall = imageTreeLibpodValidateBeforeCall(name, whatrequires, _callback);
+        Type localVarReturnType = new TypeToken<ImageTreeReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageUntagLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param repo the repository to untag (optional)
      * @param tag the name of the tag to untag (optional)
@@ -4766,25 +3346,24 @@ public class ImagesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageUntagLibpodCall(
-            String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call imageUntagLibpodCall(String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4793,11 +3372,8 @@ public class ImagesApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/images/{name}/untag"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/images/{name}/untag"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4813,119 +3389,100 @@ public class ImagesApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("tag", tag));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageUntagLibpodValidateBeforeCall(
-            String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageUntagLibpodValidateBeforeCall(String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling imageUntagLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling imageUntagLibpod(Async)");
         }
 
         return imageUntagLibpodCall(name, repo, tag, _callback);
+
     }
 
     /**
-     * Untag an image Untag an image. If not repo and tag are specified, all tags are removed from
-     * the image.
-     *
+     * Untag an image
+     * Untag an image. If not repo and tag are specified, all tags are removed from the image.
      * @param name the name or ID of the container (required)
      * @param repo the repository to untag (optional)
      * @param tag the name of the tag to untag (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void imageUntagLibpod(String name, String repo, String tag) throws ApiException {
         imageUntagLibpodWithHttpInfo(name, repo, tag);
     }
 
     /**
-     * Untag an image Untag an image. If not repo and tag are specified, all tags are removed from
-     * the image.
-     *
+     * Untag an image
+     * Untag an image. If not repo and tag are specified, all tags are removed from the image.
      * @param name the name or ID of the container (required)
      * @param repo the repository to untag (optional)
      * @param tag the name of the tag to untag (optional)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> imageUntagLibpodWithHttpInfo(String name, String repo, String tag)
-            throws ApiException {
+    public ApiResponse<Void> imageUntagLibpodWithHttpInfo(String name, String repo, String tag) throws ApiException {
         okhttp3.Call localVarCall = imageUntagLibpodValidateBeforeCall(name, repo, tag, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Untag an image (asynchronously) Untag an image. If not repo and tag are specified, all tags
-     * are removed from the image.
-     *
+     * Untag an image (asynchronously)
+     * Untag an image. If not repo and tag are specified, all tags are removed from the image.
      * @param name the name or ID of the container (required)
      * @param repo the repository to untag (optional)
      * @param tag the name of the tag to untag (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageUntagLibpodAsync(
-            String name, String repo, String tag, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call imageUntagLibpodAsync(String name, String repo, String tag, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageUntagLibpodValidateBeforeCall(name, repo, tag, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);

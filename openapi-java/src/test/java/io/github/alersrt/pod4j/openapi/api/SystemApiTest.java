@@ -10,9 +10,11 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.LibpodInfo;
 import io.github.alersrt.pod4j.openapi.model.SystemCheckReport;
 import io.github.alersrt.pod4j.openapi.model.SystemComponentVersion;
@@ -21,7 +23,14 @@ import io.github.alersrt.pod4j.openapi.model.SystemPruneReport;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** API tests for SystemApi */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for SystemApi
+ */
 @Disabled
 public class SystemApiTest {
 
@@ -38,15 +47,14 @@ public class SystemApiTest {
         Boolean repair = null;
         Boolean repairLossy = null;
         String unreferencedLayerMaxAge = null;
-        SystemCheckReport response =
-                api.systemCheckLibpod(quick, repair, repairLossy, unreferencedLayerMaxAge);
+        SystemCheckReport response = api.systemCheckLibpod(quick, repair, repairLossy, unreferencedLayerMaxAge);
         // TODO: test validations
     }
 
     /**
      * Show disk usage
      *
-     * <p>Return information about disk usage for containers, images, and volumes
+     * Return information about disk usage for containers, images, and volumes
      *
      * @throws ApiException if the Api call fails
      */
@@ -59,7 +67,7 @@ public class SystemApiTest {
     /**
      * Get events
      *
-     * <p>Returns events filtered on query parameters
+     * Returns events filtered on query parameters
      *
      * @throws ApiException if the Api call fails
      */
@@ -76,7 +84,7 @@ public class SystemApiTest {
     /**
      * Get info
      *
-     * <p>Returns information on the system and libpod configuration
+     * Returns information on the system and libpod configuration
      *
      * @throws ApiException if the Api call fails
      */
@@ -89,9 +97,7 @@ public class SystemApiTest {
     /**
      * Ping service
      *
-     * <p>Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also
-     * supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The
-     * &#39;_ping&#39; endpoints are not versioned.
+     * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned. 
      *
      * @throws ApiException if the Api call fails
      */
@@ -122,4 +128,5 @@ public class SystemApiTest {
         SystemComponentVersion response = api.systemVersionLibpod();
         // TODO: test validations
     }
+
 }

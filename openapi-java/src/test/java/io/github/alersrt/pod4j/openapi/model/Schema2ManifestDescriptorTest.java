@@ -10,47 +10,74 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.Schema2PlatformSpec;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for Schema2ManifestDescriptor */
+/**
+ * Model tests for Schema2ManifestDescriptor
+ */
 public class Schema2ManifestDescriptorTest {
     private final Schema2ManifestDescriptor model = new Schema2ManifestDescriptor();
 
-    /** Model tests for Schema2ManifestDescriptor */
+    /**
+     * Model tests for Schema2ManifestDescriptor
+     */
     @Test
     public void testSchema2ManifestDescriptor() {
         // TODO: test Schema2ManifestDescriptor
     }
 
-    /** Test the property 'digest' */
+    /**
+     * Test the property 'digest'
+     */
     @Test
     public void digestTest() {
         // TODO: test digest
     }
 
-    /** Test the property 'mediaType' */
+    /**
+     * Test the property 'mediaType'
+     */
     @Test
     public void mediaTypeTest() {
         // TODO: test mediaType
     }
 
-    /** Test the property 'platform' */
+    /**
+     * Test the property 'platform'
+     */
     @Test
     public void platformTest() {
         // TODO: test platform
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /** Test the property 'urls' */
+    /**
+     * Test the property 'urls'
+     */
     @Test
     public void urlsTest() {
         // TODO: test urls
     }
+
 }

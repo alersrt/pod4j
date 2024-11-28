@@ -10,71 +10,103 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for LinuxMemory */
+/**
+ * Model tests for LinuxMemory
+ */
 public class LinuxMemoryTest {
     private final LinuxMemory model = new LinuxMemory();
 
-    /** Model tests for LinuxMemory */
+    /**
+     * Model tests for LinuxMemory
+     */
     @Test
     public void testLinuxMemory() {
         // TODO: test LinuxMemory
     }
 
-    /** Test the property 'checkBeforeUpdate' */
+    /**
+     * Test the property 'checkBeforeUpdate'
+     */
     @Test
     public void checkBeforeUpdateTest() {
         // TODO: test checkBeforeUpdate
     }
 
-    /** Test the property 'disableOOMKiller' */
+    /**
+     * Test the property 'disableOOMKiller'
+     */
     @Test
     public void disableOOMKillerTest() {
         // TODO: test disableOOMKiller
     }
 
-    /** Test the property 'kernel' */
+    /**
+     * Test the property 'kernel'
+     */
     @Test
     public void kernelTest() {
         // TODO: test kernel
     }
 
-    /** Test the property 'kernelTCP' */
+    /**
+     * Test the property 'kernelTCP'
+     */
     @Test
     public void kernelTCPTest() {
         // TODO: test kernelTCP
     }
 
-    /** Test the property 'limit' */
+    /**
+     * Test the property 'limit'
+     */
     @Test
     public void limitTest() {
         // TODO: test limit
     }
 
-    /** Test the property 'reservation' */
+    /**
+     * Test the property 'reservation'
+     */
     @Test
     public void reservationTest() {
         // TODO: test reservation
     }
 
-    /** Test the property 'swap' */
+    /**
+     * Test the property 'swap'
+     */
     @Test
     public void swapTest() {
         // TODO: test swap
     }
 
-    /** Test the property 'swappiness' */
+    /**
+     * Test the property 'swappiness'
+     */
     @Test
     public void swappinessTest() {
         // TODO: test swappiness
     }
 
-    /** Test the property 'useHierarchy' */
+    /**
+     * Test the property 'useHierarchy'
+     */
     @Test
     public void useHierarchyTest() {
         // TODO: test useHierarchy
     }
+
 }

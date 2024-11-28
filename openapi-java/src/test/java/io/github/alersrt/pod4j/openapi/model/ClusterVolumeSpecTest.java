@@ -10,53 +10,85 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.AccessMode;
+import io.github.alersrt.pod4j.openapi.model.CapacityRange;
+import io.github.alersrt.pod4j.openapi.model.Secret;
+import io.github.alersrt.pod4j.openapi.model.TopologyRequirement;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ClusterVolumeSpec */
+/**
+ * Model tests for ClusterVolumeSpec
+ */
 public class ClusterVolumeSpecTest {
     private final ClusterVolumeSpec model = new ClusterVolumeSpec();
 
-    /** Model tests for ClusterVolumeSpec */
+    /**
+     * Model tests for ClusterVolumeSpec
+     */
     @Test
     public void testClusterVolumeSpec() {
         // TODO: test ClusterVolumeSpec
     }
 
-    /** Test the property 'accessMode' */
+    /**
+     * Test the property 'accessMode'
+     */
     @Test
     public void accessModeTest() {
         // TODO: test accessMode
     }
 
-    /** Test the property 'accessibilityRequirements' */
+    /**
+     * Test the property 'accessibilityRequirements'
+     */
     @Test
     public void accessibilityRequirementsTest() {
         // TODO: test accessibilityRequirements
     }
 
-    /** Test the property 'availability' */
+    /**
+     * Test the property 'availability'
+     */
     @Test
     public void availabilityTest() {
         // TODO: test availability
     }
 
-    /** Test the property 'capacityRange' */
+    /**
+     * Test the property 'capacityRange'
+     */
     @Test
     public void capacityRangeTest() {
         // TODO: test capacityRange
     }
 
-    /** Test the property 'group' */
+    /**
+     * Test the property 'group'
+     */
     @Test
     public void groupTest() {
         // TODO: test group
     }
 
-    /** Test the property 'secrets' */
+    /**
+     * Test the property 'secrets'
+     */
     @Test
     public void secretsTest() {
         // TODO: test secrets
     }
+
 }

@@ -10,41 +10,64 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.TypeMount;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for AccessMode */
+/**
+ * Model tests for AccessMode
+ */
 public class AccessModeTest {
     private final AccessMode model = new AccessMode();
 
-    /** Model tests for AccessMode */
+    /**
+     * Model tests for AccessMode
+     */
     @Test
     public void testAccessMode() {
         // TODO: test AccessMode
     }
 
-    /** Test the property 'blockVolume' */
+    /**
+     * Test the property 'blockVolume'
+     */
     @Test
     public void blockVolumeTest() {
         // TODO: test blockVolume
     }
 
-    /** Test the property 'mountVolume' */
+    /**
+     * Test the property 'mountVolume'
+     */
     @Test
     public void mountVolumeTest() {
         // TODO: test mountVolume
     }
 
-    /** Test the property 'scope' */
+    /**
+     * Test the property 'scope'
+     */
     @Test
     public void scopeTest() {
         // TODO: test scope
     }
 
-    /** Test the property 'sharing' */
+    /**
+     * Test the property 'sharing'
+     */
     @Test
     public void sharingTest() {
         // TODO: test sharing
     }
+
 }

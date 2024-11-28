@@ -10,89 +10,128 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.Health;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainerState */
+/**
+ * Model tests for ContainerState
+ */
 public class ContainerStateTest {
     private final ContainerState model = new ContainerState();
 
-    /** Model tests for ContainerState */
+    /**
+     * Model tests for ContainerState
+     */
     @Test
     public void testContainerState() {
         // TODO: test ContainerState
     }
 
-    /** Test the property 'dead' */
+    /**
+     * Test the property 'dead'
+     */
     @Test
     public void deadTest() {
         // TODO: test dead
     }
 
-    /** Test the property 'error' */
+    /**
+     * Test the property 'error'
+     */
     @Test
     public void errorTest() {
         // TODO: test error
     }
 
-    /** Test the property 'exitCode' */
+    /**
+     * Test the property 'exitCode'
+     */
     @Test
     public void exitCodeTest() {
         // TODO: test exitCode
     }
 
-    /** Test the property 'finishedAt' */
+    /**
+     * Test the property 'finishedAt'
+     */
     @Test
     public void finishedAtTest() {
         // TODO: test finishedAt
     }
 
-    /** Test the property 'health' */
+    /**
+     * Test the property 'health'
+     */
     @Test
     public void healthTest() {
         // TODO: test health
     }
 
-    /** Test the property 'ooMKilled' */
+    /**
+     * Test the property 'ooMKilled'
+     */
     @Test
     public void ooMKilledTest() {
         // TODO: test ooMKilled
     }
 
-    /** Test the property 'paused' */
+    /**
+     * Test the property 'paused'
+     */
     @Test
     public void pausedTest() {
         // TODO: test paused
     }
 
-    /** Test the property 'pid' */
+    /**
+     * Test the property 'pid'
+     */
     @Test
     public void pidTest() {
         // TODO: test pid
     }
 
-    /** Test the property 'restarting' */
+    /**
+     * Test the property 'restarting'
+     */
     @Test
     public void restartingTest() {
         // TODO: test restarting
     }
 
-    /** Test the property 'running' */
+    /**
+     * Test the property 'running'
+     */
     @Test
     public void runningTest() {
         // TODO: test running
     }
 
-    /** Test the property 'startedAt' */
+    /**
+     * Test the property 'startedAt'
+     */
     @Test
     public void startedAtTest() {
         // TODO: test startedAt
     }
 
-    /** Test the property 'status' */
+    /**
+     * Test the property 'status'
+     */
     @Test
     public void statusTest() {
         // TODO: test status
     }
+
 }

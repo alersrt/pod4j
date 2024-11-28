@@ -10,53 +10,73 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for NetworkConnectOptions */
+/**
+ * Model tests for NetworkConnectOptions
+ */
 public class NetworkConnectOptionsTest {
     private final NetworkConnectOptions model = new NetworkConnectOptions();
 
-    /** Model tests for NetworkConnectOptions */
+    /**
+     * Model tests for NetworkConnectOptions
+     */
     @Test
     public void testNetworkConnectOptions() {
         // TODO: test NetworkConnectOptions
     }
 
-    /** Test the property 'aliases' */
+    /**
+     * Test the property 'aliases'
+     */
     @Test
     public void aliasesTest() {
         // TODO: test aliases
     }
 
-    /** Test the property 'container' */
+    /**
+     * Test the property 'container'
+     */
     @Test
     public void containerTest() {
         // TODO: test container
     }
 
-    /** Test the property 'interfaceName' */
+    /**
+     * Test the property 'interfaceName'
+     */
     @Test
     public void interfaceNameTest() {
         // TODO: test interfaceName
     }
 
-    /** Test the property 'options' */
-    @Test
-    public void optionsTest() {
-        // TODO: test options
-    }
-
-    /** Test the property 'staticIps' */
+    /**
+     * Test the property 'staticIps'
+     */
     @Test
     public void staticIpsTest() {
         // TODO: test staticIps
     }
 
-    /** Test the property 'staticMac' */
+    /**
+     * Test the property 'staticMac'
+     */
     @Test
     public void staticMacTest() {
         // TODO: test staticMac
     }
+
 }

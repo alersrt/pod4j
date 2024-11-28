@@ -10,20 +10,18 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi;
 
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Configuration {
     public static final String VERSION = "5.0.0";
 
     private static ApiClient defaultApiClient = new ApiClient();
 
     /**
-     * Get the default API client, which would be used when creating API instances without providing
-     * an API client.
+     * Get the default API client, which would be used when creating API
+     * instances without providing an API client.
      *
      * @return Default API client
      */
@@ -32,8 +30,8 @@ public class Configuration {
     }
 
     /**
-     * Set the default API client, which would be used when creating API instances without providing
-     * an API client.
+     * Set the default API client, which would be used when creating API
+     * instances without providing an API client.
      *
      * @param apiClient API client
      */

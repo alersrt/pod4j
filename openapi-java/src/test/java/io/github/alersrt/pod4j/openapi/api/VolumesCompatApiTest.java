@@ -10,9 +10,11 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.ListResponse;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
 import io.github.alersrt.pod4j.openapi.model.Volume;
@@ -20,7 +22,14 @@ import io.github.alersrt.pod4j.openapi.model.VolumeCreate;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** API tests for VolumesCompatApi */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for VolumesCompatApi
+ */
 @Disabled
 public class VolumesCompatApiTest {
 
@@ -66,7 +75,7 @@ public class VolumesCompatApiTest {
     /**
      * List volumes
      *
-     * <p>Returns a list of volume
+     * Returns a list of volume
      *
      * @throws ApiException if the Api call fails
      */
@@ -88,4 +97,5 @@ public class VolumesCompatApiTest {
         PruneReport response = api.volumePrune(filters);
         // TODO: test validations
     }
+
 }

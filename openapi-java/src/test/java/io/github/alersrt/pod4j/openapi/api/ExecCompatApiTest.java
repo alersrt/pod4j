@@ -10,16 +10,25 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.model.ContainerExecRequest;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.ExecStartRequest;
 import io.github.alersrt.pod4j.openapi.model.InspectExecSession;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** API tests for ExecCompatApi */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for ExecCompatApi
+ */
 @Disabled
 public class ExecCompatApiTest {
 
@@ -28,8 +37,7 @@ public class ExecCompatApiTest {
     /**
      * Create an exec instance
      *
-     * <p>Create an exec session to run a command inside a running container. Exec sessions will be
-     * automatically removed 5 minutes after they exit.
+     * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
      *
      * @throws ApiException if the Api call fails
      */
@@ -44,7 +52,7 @@ public class ExecCompatApiTest {
     /**
      * Inspect an exec instance
      *
-     * <p>Return low-level information about an exec instance.
+     * Return low-level information about an exec instance.
      *
      * @throws ApiException if the Api call fails
      */
@@ -58,8 +66,7 @@ public class ExecCompatApiTest {
     /**
      * Resize an exec instance
      *
-     * <p>Resize the TTY session used by an exec instance. This endpoint only works if tty was
-     * specified as part of creating and starting the exec instance.
+     * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance. 
      *
      * @throws ApiException if the Api call fails
      */
@@ -76,9 +83,7 @@ public class ExecCompatApiTest {
     /**
      * Start an exec instance
      *
-     * <p>Starts a previously set up exec instance. If detach is true, this endpoint returns
-     * immediately after starting the command. Otherwise, it sets up an interactive session with the
-     * command.
+     * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command.
      *
      * @throws ApiException if the Api call fails
      */
@@ -89,4 +94,5 @@ public class ExecCompatApiTest {
         api.execStart(id, control);
         // TODO: test validations
     }
+
 }

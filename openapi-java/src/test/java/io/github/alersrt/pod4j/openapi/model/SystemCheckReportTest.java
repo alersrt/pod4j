@@ -10,71 +10,107 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for SystemCheckReport */
+/**
+ * Model tests for SystemCheckReport
+ */
 public class SystemCheckReportTest {
     private final SystemCheckReport model = new SystemCheckReport();
 
-    /** Model tests for SystemCheckReport */
+    /**
+     * Model tests for SystemCheckReport
+     */
     @Test
     public void testSystemCheckReport() {
         // TODO: test SystemCheckReport
     }
 
-    /** Test the property 'containers' */
+    /**
+     * Test the property 'containers'
+     */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /** Test the property 'errors' */
+    /**
+     * Test the property 'errors'
+     */
     @Test
     public void errorsTest() {
         // TODO: test errors
     }
 
-    /** Test the property 'images' */
+    /**
+     * Test the property 'images'
+     */
     @Test
     public void imagesTest() {
         // TODO: test images
     }
 
-    /** Test the property 'layers' */
+    /**
+     * Test the property 'layers'
+     */
     @Test
     public void layersTest() {
         // TODO: test layers
     }
 
-    /** Test the property 'roImages' */
+    /**
+     * Test the property 'roImages'
+     */
     @Test
     public void roImagesTest() {
         // TODO: test roImages
     }
 
-    /** Test the property 'roLayers' */
+    /**
+     * Test the property 'roLayers'
+     */
     @Test
     public void roLayersTest() {
         // TODO: test roLayers
     }
 
-    /** Test the property 'removedContainers' */
+    /**
+     * Test the property 'removedContainers'
+     */
     @Test
     public void removedContainersTest() {
         // TODO: test removedContainers
     }
 
-    /** Test the property 'removedImages' */
+    /**
+     * Test the property 'removedImages'
+     */
     @Test
     public void removedImagesTest() {
         // TODO: test removedImages
     }
 
-    /** Test the property 'removedLayers' */
+    /**
+     * Test the property 'removedLayers'
+     */
     @Test
     public void removedLayersTest() {
         // TODO: test removedLayers
     }
+
 }

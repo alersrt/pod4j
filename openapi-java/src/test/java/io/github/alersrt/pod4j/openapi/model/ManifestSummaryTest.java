@@ -10,59 +10,91 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.AttestationProperties;
+import io.github.alersrt.pod4j.openapi.model.Descriptor;
+import io.github.alersrt.pod4j.openapi.model.ImageProperties;
+import io.github.alersrt.pod4j.openapi.model.ManifestSummarySize;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ManifestSummary */
+/**
+ * Model tests for ManifestSummary
+ */
 public class ManifestSummaryTest {
     private final ManifestSummary model = new ManifestSummary();
 
-    /** Model tests for ManifestSummary */
+    /**
+     * Model tests for ManifestSummary
+     */
     @Test
     public void testManifestSummary() {
         // TODO: test ManifestSummary
     }
 
-    /** Test the property 'attestationData' */
+    /**
+     * Test the property 'attestationData'
+     */
     @Test
     public void attestationDataTest() {
         // TODO: test attestationData
     }
 
-    /** Test the property 'available' */
+    /**
+     * Test the property 'available'
+     */
     @Test
     public void availableTest() {
         // TODO: test available
     }
 
-    /** Test the property 'descriptor' */
+    /**
+     * Test the property 'descriptor'
+     */
     @Test
     public void descriptorTest() {
         // TODO: test descriptor
     }
 
-    /** Test the property 'ID' */
+    /**
+     * Test the property 'ID'
+     */
     @Test
     public void IDTest() {
         // TODO: test ID
     }
 
-    /** Test the property 'imageData' */
+    /**
+     * Test the property 'imageData'
+     */
     @Test
     public void imageDataTest() {
         // TODO: test imageData
     }
 
-    /** Test the property 'kind' */
+    /**
+     * Test the property 'kind'
+     */
     @Test
     public void kindTest() {
         // TODO: test kind
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
+
 }

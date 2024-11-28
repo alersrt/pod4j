@@ -10,211 +10,220 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** LinuxBlockIODevice holds major:minor format supported in blkio cgroup */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * LinuxBlockIODevice holds major:minor format supported in blkio cgroup
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxBlockIODevice {
-    public static final String SERIALIZED_NAME_MAJOR = "major";
+  public static final String SERIALIZED_NAME_MAJOR = "major";
+  @SerializedName(SERIALIZED_NAME_MAJOR)
+  private Long major;
 
-    @SerializedName(SERIALIZED_NAME_MAJOR)
-    private Long major;
+  public static final String SERIALIZED_NAME_MINOR = "minor";
+  @SerializedName(SERIALIZED_NAME_MINOR)
+  private Long minor;
 
-    public static final String SERIALIZED_NAME_MINOR = "minor";
+  public LinuxBlockIODevice() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_MINOR)
-    private Long minor;
+  public LinuxBlockIODevice major(Long major) {
+    this.major = major;
+    return this;
+  }
 
-    public LinuxBlockIODevice() {}
+  /**
+   * Major is the device&#39;s major number.
+   * @return major
+   */
+  @javax.annotation.Nullable
+  public Long getMajor() {
+    return major;
+  }
 
-    public LinuxBlockIODevice major(Long major) {
-        this.major = major;
-        return this;
+  public void setMajor(Long major) {
+    this.major = major;
+  }
+
+
+  public LinuxBlockIODevice minor(Long minor) {
+    this.minor = minor;
+    return this;
+  }
+
+  /**
+   * Minor is the device&#39;s minor number.
+   * @return minor
+   */
+  @javax.annotation.Nullable
+  public Long getMinor() {
+    return minor;
+  }
+
+  public void setMinor(Long minor) {
+    this.minor = minor;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Major is the device&#39;s major number.
-     *
-     * @return major
-     */
-    @javax.annotation.Nullable
-    public Long getMajor() {
-        return major;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    LinuxBlockIODevice linuxBlockIODevice = (LinuxBlockIODevice) o;
+    return Objects.equals(this.major, linuxBlockIODevice.major) &&
+        Objects.equals(this.minor, linuxBlockIODevice.minor);
+  }
 
-    public void setMajor(Long major) {
-        this.major = major;
+  @Override
+  public int hashCode() {
+    return Objects.hash(major, minor);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class LinuxBlockIODevice {\n");
+    sb.append("    major: ").append(toIndentedString(major)).append("\n");
+    sb.append("    minor: ").append(toIndentedString(minor)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public LinuxBlockIODevice minor(Long minor) {
-        this.minor = minor;
-        return this;
-    }
 
-    /**
-     * Minor is the device&#39;s minor number.
-     *
-     * @return minor
-     */
-    @javax.annotation.Nullable
-    public Long getMinor() {
-        return minor;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setMinor(Long minor) {
-        this.minor = minor;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("major");
+    openapiFields.add("minor");
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to LinuxBlockIODevice
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!LinuxBlockIODevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxBlockIODevice is not found in the empty JSON string", LinuxBlockIODevice.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!LinuxBlockIODevice.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxBlockIODevice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        LinuxBlockIODevice linuxBlockIODevice = (LinuxBlockIODevice) o;
-        return Objects.equals(this.major, linuxBlockIODevice.major)
-                && Objects.equals(this.minor, linuxBlockIODevice.minor);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(major, minor);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class LinuxBlockIODevice {\n");
-        sb.append("    major: ").append(toIndentedString(major)).append("\n");
-        sb.append("    minor: ").append(toIndentedString(minor)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("major");
-        openapiFields.add("minor");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to LinuxBlockIODevice
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!LinuxBlockIODevice.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in LinuxBlockIODevice is not found in the"
-                                        + " empty JSON string",
-                                LinuxBlockIODevice.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!LinuxBlockIODevice.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `LinuxBlockIODevice` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!LinuxBlockIODevice.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'LinuxBlockIODevice' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<LinuxBlockIODevice> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxBlockIODevice.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<LinuxBlockIODevice>() {
+           @Override
+           public void write(JsonWriter out, LinuxBlockIODevice value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public LinuxBlockIODevice read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!LinuxBlockIODevice.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'LinuxBlockIODevice' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<LinuxBlockIODevice> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(LinuxBlockIODevice.class));
+  /**
+   * Create an instance of LinuxBlockIODevice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of LinuxBlockIODevice
+   * @throws IOException if the JSON string is invalid with respect to LinuxBlockIODevice
+   */
+  public static LinuxBlockIODevice fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, LinuxBlockIODevice.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<LinuxBlockIODevice>() {
-                        @Override
-                        public void write(JsonWriter out, LinuxBlockIODevice value)
-                                throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public LinuxBlockIODevice read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of LinuxBlockIODevice given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of LinuxBlockIODevice
-     * @throws IOException if the JSON string is invalid with respect to LinuxBlockIODevice
-     */
-    public static LinuxBlockIODevice fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, LinuxBlockIODevice.class);
-    }
-
-    /**
-     * Convert an instance of LinuxBlockIODevice to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of LinuxBlockIODevice to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

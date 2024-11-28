@@ -10,35 +10,55 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PluginInterfaceType */
+/**
+ * Model tests for PluginInterfaceType
+ */
 public class PluginInterfaceTypeTest {
     private final PluginInterfaceType model = new PluginInterfaceType();
 
-    /** Model tests for PluginInterfaceType */
+    /**
+     * Model tests for PluginInterfaceType
+     */
     @Test
     public void testPluginInterfaceType() {
         // TODO: test PluginInterfaceType
     }
 
-    /** Test the property 'capability' */
+    /**
+     * Test the property 'capability'
+     */
     @Test
     public void capabilityTest() {
         // TODO: test capability
     }
 
-    /** Test the property 'prefix' */
+    /**
+     * Test the property 'prefix'
+     */
     @Test
     public void prefixTest() {
         // TODO: test prefix
     }
 
-    /** Test the property 'version' */
+    /**
+     * Test the property 'version'
+     */
     @Test
     public void versionTest() {
         // TODO: test version
     }
+
 }

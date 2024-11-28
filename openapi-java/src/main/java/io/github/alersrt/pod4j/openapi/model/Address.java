@@ -10,218 +10,223 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** Address */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * Address
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Address {
-    public static final String SERIALIZED_NAME_ADDR = "Addr";
+  public static final String SERIALIZED_NAME_ADDR = "Addr";
+  @SerializedName(SERIALIZED_NAME_ADDR)
+  private String addr;
 
-    @SerializedName(SERIALIZED_NAME_ADDR)
-    private String addr;
+  public static final String SERIALIZED_NAME_PREFIX_LENGTH = "PrefixLength";
+  @SerializedName(SERIALIZED_NAME_PREFIX_LENGTH)
+  private Long prefixLength;
 
-    public static final String SERIALIZED_NAME_PREFIX_LENGTH = "PrefixLength";
+  public Address() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_PREFIX_LENGTH)
-    private Long prefixLength;
+  public Address addr(String addr) {
+    this.addr = addr;
+    return this;
+  }
 
-    public Address() {}
+  /**
+   * Get addr
+   * @return addr
+   */
+  @javax.annotation.Nullable
+  public String getAddr() {
+    return addr;
+  }
 
-    public Address addr(String addr) {
-        this.addr = addr;
-        return this;
+  public void setAddr(String addr) {
+    this.addr = addr;
+  }
+
+
+  public Address prefixLength(Long prefixLength) {
+    this.prefixLength = prefixLength;
+    return this;
+  }
+
+  /**
+   * Get prefixLength
+   * @return prefixLength
+   */
+  @javax.annotation.Nullable
+  public Long getPrefixLength() {
+    return prefixLength;
+  }
+
+  public void setPrefixLength(Long prefixLength) {
+    this.prefixLength = prefixLength;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Get addr
-     *
-     * @return addr
-     */
-    @javax.annotation.Nullable
-    public String getAddr() {
-        return addr;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    Address address = (Address) o;
+    return Objects.equals(this.addr, address.addr) &&
+        Objects.equals(this.prefixLength, address.prefixLength);
+  }
 
-    public void setAddr(String addr) {
-        this.addr = addr;
+  @Override
+  public int hashCode() {
+    return Objects.hash(addr, prefixLength);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Address {\n");
+    sb.append("    addr: ").append(toIndentedString(addr)).append("\n");
+    sb.append("    prefixLength: ").append(toIndentedString(prefixLength)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public Address prefixLength(Long prefixLength) {
-        this.prefixLength = prefixLength;
-        return this;
-    }
 
-    /**
-     * Get prefixLength
-     *
-     * @return prefixLength
-     */
-    @javax.annotation.Nullable
-    public Long getPrefixLength() {
-        return prefixLength;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setPrefixLength(Long prefixLength) {
-        this.prefixLength = prefixLength;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Addr");
+    openapiFields.add("PrefixLength");
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Address
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Address.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Address is not found in the empty JSON string", Address.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!Address.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Address` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        Address address = (Address) o;
-        return Objects.equals(this.addr, address.addr)
-                && Objects.equals(this.prefixLength, address.prefixLength);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(addr, prefixLength);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class Address {\n");
-        sb.append("    addr: ").append(toIndentedString(addr)).append("\n");
-        sb.append("    prefixLength: ").append(toIndentedString(prefixLength)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Addr");
-        openapiFields.add("PrefixLength");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Address
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!Address.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in Address is not found in the empty JSON"
-                                        + " string",
-                                Address.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!Address.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the `Address`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("Addr") != null && !jsonObj.get("Addr").isJsonNull())
-                && !jsonObj.get("Addr").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Addr` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("Addr").toString()));
-        }
+      if ((jsonObj.get("Addr") != null && !jsonObj.get("Addr").isJsonNull()) && !jsonObj.get("Addr").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Addr` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Addr").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Address.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Address' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Address> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Address.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Address>() {
+           @Override
+           public void write(JsonWriter out, Address value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Address read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!Address.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'Address' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<Address> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(Address.class));
+  /**
+   * Create an instance of Address given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Address
+   * @throws IOException if the JSON string is invalid with respect to Address
+   */
+  public static Address fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Address.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<Address>() {
-                        @Override
-                        public void write(JsonWriter out, Address value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public Address read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of Address given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of Address
-     * @throws IOException if the JSON string is invalid with respect to Address
-     */
-    public static Address fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, Address.class);
-    }
-
-    /**
-     * Convert an instance of Address to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of Address to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

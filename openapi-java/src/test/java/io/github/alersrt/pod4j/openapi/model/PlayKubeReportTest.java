@@ -10,71 +10,112 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.PlayKubePod;
+import io.github.alersrt.pod4j.openapi.model.PlayKubeVolume;
+import io.github.alersrt.pod4j.openapi.model.PlaySecret;
+import io.github.alersrt.pod4j.openapi.model.PodRmReport;
+import io.github.alersrt.pod4j.openapi.model.PodStopReport;
+import io.github.alersrt.pod4j.openapi.model.SecretRmReport;
+import io.github.alersrt.pod4j.openapi.model.VolumeRmReport;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PlayKubeReport */
+/**
+ * Model tests for PlayKubeReport
+ */
 public class PlayKubeReportTest {
     private final PlayKubeReport model = new PlayKubeReport();
 
-    /** Model tests for PlayKubeReport */
+    /**
+     * Model tests for PlayKubeReport
+     */
     @Test
     public void testPlayKubeReport() {
         // TODO: test PlayKubeReport
     }
 
-    /** Test the property 'exitCode' */
+    /**
+     * Test the property 'exitCode'
+     */
     @Test
     public void exitCodeTest() {
         // TODO: test exitCode
     }
 
-    /** Test the property 'pods' */
+    /**
+     * Test the property 'pods'
+     */
     @Test
     public void podsTest() {
         // TODO: test pods
     }
 
-    /** Test the property 'rmReport' */
+    /**
+     * Test the property 'rmReport'
+     */
     @Test
     public void rmReportTest() {
         // TODO: test rmReport
     }
 
-    /** Test the property 'secretRmReport' */
+    /**
+     * Test the property 'secretRmReport'
+     */
     @Test
     public void secretRmReportTest() {
         // TODO: test secretRmReport
     }
 
-    /** Test the property 'secrets' */
+    /**
+     * Test the property 'secrets'
+     */
     @Test
     public void secretsTest() {
         // TODO: test secrets
     }
 
-    /** Test the property 'serviceContainerID' */
+    /**
+     * Test the property 'serviceContainerID'
+     */
     @Test
     public void serviceContainerIDTest() {
         // TODO: test serviceContainerID
     }
 
-    /** Test the property 'stopReport' */
+    /**
+     * Test the property 'stopReport'
+     */
     @Test
     public void stopReportTest() {
         // TODO: test stopReport
     }
 
-    /** Test the property 'volumeRmReport' */
+    /**
+     * Test the property 'volumeRmReport'
+     */
     @Test
     public void volumeRmReportTest() {
         // TODO: test volumeRmReport
     }
 
-    /** Test the property 'volumes' */
+    /**
+     * Test the property 'volumes'
+     */
     @Test
     public void volumesTest() {
         // TODO: test volumes
     }
+
 }

@@ -10,41 +10,67 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.LinuxResources;
+import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PodResourceConfig */
+/**
+ * Model tests for PodResourceConfig
+ */
 public class PodResourceConfigTest {
     private final PodResourceConfig model = new PodResourceConfig();
 
-    /** Model tests for PodResourceConfig */
+    /**
+     * Model tests for PodResourceConfig
+     */
     @Test
     public void testPodResourceConfig() {
         // TODO: test PodResourceConfig
     }
 
-    /** Test the property 'cpuPeriod' */
+    /**
+     * Test the property 'cpuPeriod'
+     */
     @Test
     public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
-    /** Test the property 'cpuQuota' */
+    /**
+     * Test the property 'cpuQuota'
+     */
     @Test
     public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
-    /** Test the property 'resourceLimits' */
+    /**
+     * Test the property 'resourceLimits'
+     */
     @Test
     public void resourceLimitsTest() {
         // TODO: test resourceLimits
     }
 
-    /** Test the property 'throttleReadBpsDevice' */
+    /**
+     * Test the property 'throttleReadBpsDevice'
+     */
     @Test
     public void throttleReadBpsDeviceTest() {
         // TODO: test throttleReadBpsDevice
     }
+
 }

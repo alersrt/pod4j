@@ -10,23 +10,39 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ImageBuild200Response */
+/**
+ * Model tests for ImageBuild200Response
+ */
 public class ImageBuild200ResponseTest {
     private final ImageBuild200Response model = new ImageBuild200Response();
 
-    /** Model tests for ImageBuild200Response */
+    /**
+     * Model tests for ImageBuild200Response
+     */
     @Test
     public void testImageBuild200Response() {
         // TODO: test ImageBuild200Response
     }
 
-    /** Test the property 'stream' */
+    /**
+     * Test the property 'stream'
+     */
     @Test
     public void streamTest() {
         // TODO: test stream
     }
+
 }

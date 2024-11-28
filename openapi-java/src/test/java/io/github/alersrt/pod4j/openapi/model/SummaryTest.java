@@ -10,83 +10,124 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.ManifestSummary;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for Summary */
+/**
+ * Model tests for Summary
+ */
 public class SummaryTest {
     private final Summary model = new Summary();
 
-    /** Model tests for Summary */
+    /**
+     * Model tests for Summary
+     */
     @Test
     public void testSummary() {
         // TODO: test Summary
     }
 
-    /** Test the property 'containers' */
+    /**
+     * Test the property 'containers'
+     */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /** Test the property 'created' */
+    /**
+     * Test the property 'created'
+     */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'labels' */
+    /**
+     * Test the property 'labels'
+     */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /** Test the property 'manifests' */
+    /**
+     * Test the property 'manifests'
+     */
     @Test
     public void manifestsTest() {
         // TODO: test manifests
     }
 
-    /** Test the property 'parentId' */
+    /**
+     * Test the property 'parentId'
+     */
     @Test
     public void parentIdTest() {
         // TODO: test parentId
     }
 
-    /** Test the property 'repoDigests' */
+    /**
+     * Test the property 'repoDigests'
+     */
     @Test
     public void repoDigestsTest() {
         // TODO: test repoDigests
     }
 
-    /** Test the property 'repoTags' */
+    /**
+     * Test the property 'repoTags'
+     */
     @Test
     public void repoTagsTest() {
         // TODO: test repoTags
     }
 
-    /** Test the property 'sharedSize' */
+    /**
+     * Test the property 'sharedSize'
+     */
     @Test
     public void sharedSizeTest() {
         // TODO: test sharedSize
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /** Test the property 'virtualSize' */
+    /**
+     * Test the property 'virtualSize'
+     */
     @Test
     public void virtualSizeTest() {
         // TODO: test virtualSize
     }
+
 }

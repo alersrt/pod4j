@@ -10,227 +10,322 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.InspectBlkioThrottleDevice;
+import io.github.alersrt.pod4j.openapi.model.InspectBlkioWeightDevice;
+import io.github.alersrt.pod4j.openapi.model.InspectDevice;
+import io.github.alersrt.pod4j.openapi.model.InspectMount;
+import io.github.alersrt.pod4j.openapi.model.InspectPodContainerInfo;
+import io.github.alersrt.pod4j.openapi.model.InspectPodInfraConfig;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for InspectPodData */
+/**
+ * Model tests for InspectPodData
+ */
 public class InspectPodDataTest {
     private final InspectPodData model = new InspectPodData();
 
-    /** Model tests for InspectPodData */
+    /**
+     * Model tests for InspectPodData
+     */
     @Test
     public void testInspectPodData() {
         // TODO: test InspectPodData
     }
 
-    /** Test the property 'cgroupParent' */
+    /**
+     * Test the property 'cgroupParent'
+     */
     @Test
     public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
-    /** Test the property 'cgroupPath' */
+    /**
+     * Test the property 'cgroupPath'
+     */
     @Test
     public void cgroupPathTest() {
         // TODO: test cgroupPath
     }
 
-    /** Test the property 'containers' */
+    /**
+     * Test the property 'containers'
+     */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /** Test the property 'createCgroup' */
+    /**
+     * Test the property 'createCgroup'
+     */
     @Test
     public void createCgroupTest() {
         // TODO: test createCgroup
     }
 
-    /** Test the property 'createCommand' */
+    /**
+     * Test the property 'createCommand'
+     */
     @Test
     public void createCommandTest() {
         // TODO: test createCommand
     }
 
-    /** Test the property 'createInfra' */
+    /**
+     * Test the property 'createInfra'
+     */
     @Test
     public void createInfraTest() {
         // TODO: test createInfra
     }
 
-    /** Test the property 'created' */
+    /**
+     * Test the property 'created'
+     */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /** Test the property 'exitPolicy' */
+    /**
+     * Test the property 'exitPolicy'
+     */
     @Test
     public void exitPolicyTest() {
         // TODO: test exitPolicy
     }
 
-    /** Test the property 'hostname' */
+    /**
+     * Test the property 'hostname'
+     */
     @Test
     public void hostnameTest() {
         // TODO: test hostname
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'infraConfig' */
+    /**
+     * Test the property 'infraConfig'
+     */
     @Test
     public void infraConfigTest() {
         // TODO: test infraConfig
     }
 
-    /** Test the property 'infraContainerID' */
+    /**
+     * Test the property 'infraContainerID'
+     */
     @Test
     public void infraContainerIDTest() {
         // TODO: test infraContainerID
     }
 
-    /** Test the property 'labels' */
+    /**
+     * Test the property 'labels'
+     */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /** Test the property 'lockNumber' */
+    /**
+     * Test the property 'lockNumber'
+     */
     @Test
     public void lockNumberTest() {
         // TODO: test lockNumber
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'namespace' */
+    /**
+     * Test the property 'namespace'
+     */
     @Test
     public void namespaceTest() {
         // TODO: test namespace
     }
 
-    /** Test the property 'numContainers' */
+    /**
+     * Test the property 'numContainers'
+     */
     @Test
     public void numContainersTest() {
         // TODO: test numContainers
     }
 
-    /** Test the property 'restartPolicy' */
+    /**
+     * Test the property 'restartPolicy'
+     */
     @Test
     public void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
-    /** Test the property 'sharedNamespaces' */
+    /**
+     * Test the property 'sharedNamespaces'
+     */
     @Test
     public void sharedNamespacesTest() {
         // TODO: test sharedNamespaces
     }
 
-    /** Test the property 'state' */
+    /**
+     * Test the property 'state'
+     */
     @Test
     public void stateTest() {
         // TODO: test state
     }
 
-    /** Test the property 'blkioWeight' */
+    /**
+     * Test the property 'blkioWeight'
+     */
     @Test
     public void blkioWeightTest() {
         // TODO: test blkioWeight
     }
 
-    /** Test the property 'blkioWeightDevice' */
+    /**
+     * Test the property 'blkioWeightDevice'
+     */
     @Test
     public void blkioWeightDeviceTest() {
         // TODO: test blkioWeightDevice
     }
 
-    /** Test the property 'cpuPeriod' */
+    /**
+     * Test the property 'cpuPeriod'
+     */
     @Test
     public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
-    /** Test the property 'cpuQuota' */
+    /**
+     * Test the property 'cpuQuota'
+     */
     @Test
     public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
-    /** Test the property 'cpuShares' */
+    /**
+     * Test the property 'cpuShares'
+     */
     @Test
     public void cpuSharesTest() {
         // TODO: test cpuShares
     }
 
-    /** Test the property 'cpusetCpus' */
+    /**
+     * Test the property 'cpusetCpus'
+     */
     @Test
     public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
-    /** Test the property 'cpusetMems' */
+    /**
+     * Test the property 'cpusetMems'
+     */
     @Test
     public void cpusetMemsTest() {
         // TODO: test cpusetMems
     }
 
-    /** Test the property 'deviceReadBps' */
+    /**
+     * Test the property 'deviceReadBps'
+     */
     @Test
     public void deviceReadBpsTest() {
         // TODO: test deviceReadBps
     }
 
-    /** Test the property 'deviceWriteBps' */
+    /**
+     * Test the property 'deviceWriteBps'
+     */
     @Test
     public void deviceWriteBpsTest() {
         // TODO: test deviceWriteBps
     }
 
-    /** Test the property 'devices' */
+    /**
+     * Test the property 'devices'
+     */
     @Test
     public void devicesTest() {
         // TODO: test devices
     }
 
-    /** Test the property 'memoryLimit' */
+    /**
+     * Test the property 'memoryLimit'
+     */
     @Test
     public void memoryLimitTest() {
         // TODO: test memoryLimit
     }
 
-    /** Test the property 'memorySwap' */
+    /**
+     * Test the property 'memorySwap'
+     */
     @Test
     public void memorySwapTest() {
         // TODO: test memorySwap
     }
 
-    /** Test the property 'mounts' */
+    /**
+     * Test the property 'mounts'
+     */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /** Test the property 'securityOpt' */
+    /**
+     * Test the property 'securityOpt'
+     */
     @Test
     public void securityOptTest() {
         // TODO: test securityOpt
     }
 
-    /** Test the property 'volumesFrom' */
+    /**
+     * Test the property 'volumesFrom'
+     */
     @Test
     public void volumesFromTest() {
         // TODO: test volumesFrom
     }
+
 }

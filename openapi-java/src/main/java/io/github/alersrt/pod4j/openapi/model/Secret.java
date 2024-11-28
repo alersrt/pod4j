@@ -10,230 +10,226 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
+import io.github.alersrt.pod4j.openapi.JSON;
+
 /**
- * Secret represents a Swarm Secret value that must be passed to the CSI storage plugin when
- * operating on this Volume. It represents one key-value pair of possibly many.
+ * Secret represents a Swarm Secret value that must be passed to the CSI storage plugin when operating on this Volume. It represents one key-value pair of possibly many.
  */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Secret {
-    public static final String SERIALIZED_NAME_KEY = "Key";
+  public static final String SERIALIZED_NAME_KEY = "Key";
+  @SerializedName(SERIALIZED_NAME_KEY)
+  private String key;
 
-    @SerializedName(SERIALIZED_NAME_KEY)
-    private String key;
+  public static final String SERIALIZED_NAME_SECRET = "Secret";
+  @SerializedName(SERIALIZED_NAME_SECRET)
+  private String secret;
 
-    public static final String SERIALIZED_NAME_SECRET = "Secret";
+  public Secret() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_SECRET)
-    private String secret;
+  public Secret key(String key) {
+    this.key = key;
+    return this;
+  }
 
-    public Secret() {}
+  /**
+   * Key is the name of the key of the key-value pair passed to the plugin.
+   * @return key
+   */
+  @javax.annotation.Nullable
+  public String getKey() {
+    return key;
+  }
 
-    public Secret key(String key) {
-        this.key = key;
-        return this;
+  public void setKey(String key) {
+    this.key = key;
+  }
+
+
+  public Secret secret(String secret) {
+    this.secret = secret;
+    return this;
+  }
+
+  /**
+   * Secret is the swarm Secret object from which to read data. This can be a Secret name or ID. The Secret data is retrieved by Swarm and used as the value of the key-value pair passed to the plugin.
+   * @return secret
+   */
+  @javax.annotation.Nullable
+  public String getSecret() {
+    return secret;
+  }
+
+  public void setSecret(String secret) {
+    this.secret = secret;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Key is the name of the key of the key-value pair passed to the plugin.
-     *
-     * @return key
-     */
-    @javax.annotation.Nullable
-    public String getKey() {
-        return key;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    Secret secret = (Secret) o;
+    return Objects.equals(this.key, secret.key) &&
+        Objects.equals(this.secret, secret.secret);
+  }
 
-    public void setKey(String key) {
-        this.key = key;
+  @Override
+  public int hashCode() {
+    return Objects.hash(key, secret);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Secret {\n");
+    sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public Secret secret(String secret) {
-        this.secret = secret;
-        return this;
-    }
 
-    /**
-     * Secret is the swarm Secret object from which to read data. This can be a Secret name or ID.
-     * The Secret data is retrieved by Swarm and used as the value of the key-value pair passed to
-     * the plugin.
-     *
-     * @return secret
-     */
-    @javax.annotation.Nullable
-    public String getSecret() {
-        return secret;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Key");
+    openapiFields.add("Secret");
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Secret
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Secret.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Secret is not found in the empty JSON string", Secret.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!Secret.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Secret` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        Secret secret = (Secret) o;
-        return Objects.equals(this.key, secret.key) && Objects.equals(this.secret, secret.secret);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(key, secret);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class Secret {\n");
-        sb.append("    key: ").append(toIndentedString(key)).append("\n");
-        sb.append("    secret: ").append(toIndentedString(secret)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Key");
-        openapiFields.add("Secret");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Secret
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!Secret.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in Secret is not found in the empty JSON"
-                                        + " string",
-                                Secret.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!Secret.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the `Secret`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("Key") != null && !jsonObj.get("Key").isJsonNull())
-                && !jsonObj.get("Key").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Key` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("Key").toString()));
-        }
-        if ((jsonObj.get("Secret") != null && !jsonObj.get("Secret").isJsonNull())
-                && !jsonObj.get("Secret").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Secret` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("Secret").toString()));
-        }
+      if ((jsonObj.get("Key") != null && !jsonObj.get("Key").isJsonNull()) && !jsonObj.get("Key").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Key` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Key").toString()));
+      }
+      if ((jsonObj.get("Secret") != null && !jsonObj.get("Secret").isJsonNull()) && !jsonObj.get("Secret").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Secret` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Secret").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Secret.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Secret' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Secret> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Secret.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Secret>() {
+           @Override
+           public void write(JsonWriter out, Secret value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Secret read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!Secret.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'Secret' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<Secret> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(Secret.class));
+  /**
+   * Create an instance of Secret given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Secret
+   * @throws IOException if the JSON string is invalid with respect to Secret
+   */
+  public static Secret fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Secret.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<Secret>() {
-                        @Override
-                        public void write(JsonWriter out, Secret value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public Secret read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of Secret given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of Secret
-     * @throws IOException if the JSON string is invalid with respect to Secret
-     */
-    public static Secret fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, Secret.class);
-    }
-
-    /**
-     * Convert an instance of Secret to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of Secret to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

@@ -10,678 +10,641 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
+import io.github.alersrt.pod4j.openapi.model.ContainerNetworkStats;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** ContainerStats contains the statistics information for a running container */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * ContainerStats contains the statistics information for a running container
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerStats {
-    public static final String SERIALIZED_NAME_AVG_C_P_U = "AvgCPU";
+  public static final String SERIALIZED_NAME_AVG_C_P_U = "AvgCPU";
+  @SerializedName(SERIALIZED_NAME_AVG_C_P_U)
+  private Double avgCPU;
 
-    @SerializedName(SERIALIZED_NAME_AVG_C_P_U)
-    private Double avgCPU;
+  public static final String SERIALIZED_NAME_BLOCK_INPUT = "BlockInput";
+  @SerializedName(SERIALIZED_NAME_BLOCK_INPUT)
+  private Integer blockInput;
 
-    public static final String SERIALIZED_NAME_BLOCK_INPUT = "BlockInput";
+  public static final String SERIALIZED_NAME_BLOCK_OUTPUT = "BlockOutput";
+  @SerializedName(SERIALIZED_NAME_BLOCK_OUTPUT)
+  private Integer blockOutput;
 
-    @SerializedName(SERIALIZED_NAME_BLOCK_INPUT)
-    private Integer blockInput;
+  public static final String SERIALIZED_NAME_C_P_U = "CPU";
+  @SerializedName(SERIALIZED_NAME_C_P_U)
+  private Double CPU;
 
-    public static final String SERIALIZED_NAME_BLOCK_OUTPUT = "BlockOutput";
+  public static final String SERIALIZED_NAME_CP_U_NANO = "CPUNano";
+  @SerializedName(SERIALIZED_NAME_CP_U_NANO)
+  private Integer cpUNano;
 
-    @SerializedName(SERIALIZED_NAME_BLOCK_OUTPUT)
-    private Integer blockOutput;
+  public static final String SERIALIZED_NAME_CP_U_SYSTEM_NANO = "CPUSystemNano";
+  @SerializedName(SERIALIZED_NAME_CP_U_SYSTEM_NANO)
+  private Integer cpUSystemNano;
 
-    public static final String SERIALIZED_NAME_C_P_U = "CPU";
+  public static final String SERIALIZED_NAME_CONTAINER_I_D = "ContainerID";
+  @SerializedName(SERIALIZED_NAME_CONTAINER_I_D)
+  private String containerID;
 
-    @SerializedName(SERIALIZED_NAME_C_P_U)
-    private Double CPU;
+  public static final String SERIALIZED_NAME_DURATION = "Duration";
+  @SerializedName(SERIALIZED_NAME_DURATION)
+  private Integer duration;
 
-    public static final String SERIALIZED_NAME_CP_U_NANO = "CPUNano";
+  public static final String SERIALIZED_NAME_MEM_LIMIT = "MemLimit";
+  @SerializedName(SERIALIZED_NAME_MEM_LIMIT)
+  private Integer memLimit;
 
-    @SerializedName(SERIALIZED_NAME_CP_U_NANO)
-    private Integer cpUNano;
+  public static final String SERIALIZED_NAME_MEM_PERC = "MemPerc";
+  @SerializedName(SERIALIZED_NAME_MEM_PERC)
+  private Double memPerc;
 
-    public static final String SERIALIZED_NAME_CP_U_SYSTEM_NANO = "CPUSystemNano";
+  public static final String SERIALIZED_NAME_MEM_USAGE = "MemUsage";
+  @SerializedName(SERIALIZED_NAME_MEM_USAGE)
+  private Integer memUsage;
 
-    @SerializedName(SERIALIZED_NAME_CP_U_SYSTEM_NANO)
-    private Integer cpUSystemNano;
+  public static final String SERIALIZED_NAME_NAME = "Name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
-    public static final String SERIALIZED_NAME_CONTAINER_I_D = "ContainerID";
+  public static final String SERIALIZED_NAME_NETWORK = "Network";
+  @SerializedName(SERIALIZED_NAME_NETWORK)
+  private Map<String, ContainerNetworkStats> network = new HashMap<>();
 
-    @SerializedName(SERIALIZED_NAME_CONTAINER_I_D)
-    private String containerID;
+  public static final String SERIALIZED_NAME_PI_DS = "PIDs";
+  @SerializedName(SERIALIZED_NAME_PI_DS)
+  private Integer piDs;
 
-    public static final String SERIALIZED_NAME_DURATION = "Duration";
+  public static final String SERIALIZED_NAME_PER_C_P_U = "PerCPU";
+  @SerializedName(SERIALIZED_NAME_PER_C_P_U)
+  private List<Integer> perCPU = new ArrayList<>();
 
-    @SerializedName(SERIALIZED_NAME_DURATION)
-    private Integer duration;
+  public static final String SERIALIZED_NAME_SYSTEM_NANO = "SystemNano";
+  @SerializedName(SERIALIZED_NAME_SYSTEM_NANO)
+  private Integer systemNano;
 
-    public static final String SERIALIZED_NAME_MEM_LIMIT = "MemLimit";
+  public static final String SERIALIZED_NAME_UP_TIME = "UpTime";
+  @SerializedName(SERIALIZED_NAME_UP_TIME)
+  private Long upTime;
 
-    @SerializedName(SERIALIZED_NAME_MEM_LIMIT)
-    private Integer memLimit;
+  public ContainerStats() {
+  }
 
-    public static final String SERIALIZED_NAME_MEM_PERC = "MemPerc";
+  public ContainerStats avgCPU(Double avgCPU) {
+    this.avgCPU = avgCPU;
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_MEM_PERC)
-    private Double memPerc;
+  /**
+   * Get avgCPU
+   * @return avgCPU
+   */
+  @javax.annotation.Nullable
+  public Double getAvgCPU() {
+    return avgCPU;
+  }
 
-    public static final String SERIALIZED_NAME_MEM_USAGE = "MemUsage";
+  public void setAvgCPU(Double avgCPU) {
+    this.avgCPU = avgCPU;
+  }
 
-    @SerializedName(SERIALIZED_NAME_MEM_USAGE)
-    private Integer memUsage;
 
-    public static final String SERIALIZED_NAME_NAME = "Name";
+  public ContainerStats blockInput(Integer blockInput) {
+    this.blockInput = blockInput;
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_NAME)
-    private String name;
+  /**
+   * Get blockInput
+   * @return blockInput
+   */
+  @javax.annotation.Nullable
+  public Integer getBlockInput() {
+    return blockInput;
+  }
 
-    public static final String SERIALIZED_NAME_NETWORK = "Network";
+  public void setBlockInput(Integer blockInput) {
+    this.blockInput = blockInput;
+  }
 
-    @SerializedName(SERIALIZED_NAME_NETWORK)
-    private Map<String, ContainerNetworkStats> network = new HashMap<>();
 
-    public static final String SERIALIZED_NAME_PI_DS = "PIDs";
+  public ContainerStats blockOutput(Integer blockOutput) {
+    this.blockOutput = blockOutput;
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_PI_DS)
-    private Integer piDs;
+  /**
+   * Get blockOutput
+   * @return blockOutput
+   */
+  @javax.annotation.Nullable
+  public Integer getBlockOutput() {
+    return blockOutput;
+  }
 
-    public static final String SERIALIZED_NAME_PER_C_P_U = "PerCPU";
+  public void setBlockOutput(Integer blockOutput) {
+    this.blockOutput = blockOutput;
+  }
 
-    @SerializedName(SERIALIZED_NAME_PER_C_P_U)
-    private List<Integer> perCPU = new ArrayList<>();
 
-    public static final String SERIALIZED_NAME_SYSTEM_NANO = "SystemNano";
+  public ContainerStats CPU(Double CPU) {
+    this.CPU = CPU;
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_SYSTEM_NANO)
-    private Integer systemNano;
+  /**
+   * Get CPU
+   * @return CPU
+   */
+  @javax.annotation.Nullable
+  public Double getCPU() {
+    return CPU;
+  }
 
-    public static final String SERIALIZED_NAME_UP_TIME = "UpTime";
+  public void setCPU(Double CPU) {
+    this.CPU = CPU;
+  }
 
-    @SerializedName(SERIALIZED_NAME_UP_TIME)
-    private Long upTime;
 
-    public ContainerStats() {}
+  public ContainerStats cpUNano(Integer cpUNano) {
+    this.cpUNano = cpUNano;
+    return this;
+  }
 
-    public ContainerStats avgCPU(Double avgCPU) {
-        this.avgCPU = avgCPU;
-        return this;
+  /**
+   * Get cpUNano
+   * @return cpUNano
+   */
+  @javax.annotation.Nullable
+  public Integer getCpUNano() {
+    return cpUNano;
+  }
+
+  public void setCpUNano(Integer cpUNano) {
+    this.cpUNano = cpUNano;
+  }
+
+
+  public ContainerStats cpUSystemNano(Integer cpUSystemNano) {
+    this.cpUSystemNano = cpUSystemNano;
+    return this;
+  }
+
+  /**
+   * Get cpUSystemNano
+   * @return cpUSystemNano
+   */
+  @javax.annotation.Nullable
+  public Integer getCpUSystemNano() {
+    return cpUSystemNano;
+  }
+
+  public void setCpUSystemNano(Integer cpUSystemNano) {
+    this.cpUSystemNano = cpUSystemNano;
+  }
+
+
+  public ContainerStats containerID(String containerID) {
+    this.containerID = containerID;
+    return this;
+  }
+
+  /**
+   * Get containerID
+   * @return containerID
+   */
+  @javax.annotation.Nullable
+  public String getContainerID() {
+    return containerID;
+  }
+
+  public void setContainerID(String containerID) {
+    this.containerID = containerID;
+  }
+
+
+  public ContainerStats duration(Integer duration) {
+    this.duration = duration;
+    return this;
+  }
+
+  /**
+   * Get duration
+   * @return duration
+   */
+  @javax.annotation.Nullable
+  public Integer getDuration() {
+    return duration;
+  }
+
+  public void setDuration(Integer duration) {
+    this.duration = duration;
+  }
+
+
+  public ContainerStats memLimit(Integer memLimit) {
+    this.memLimit = memLimit;
+    return this;
+  }
+
+  /**
+   * Get memLimit
+   * @return memLimit
+   */
+  @javax.annotation.Nullable
+  public Integer getMemLimit() {
+    return memLimit;
+  }
+
+  public void setMemLimit(Integer memLimit) {
+    this.memLimit = memLimit;
+  }
+
+
+  public ContainerStats memPerc(Double memPerc) {
+    this.memPerc = memPerc;
+    return this;
+  }
+
+  /**
+   * Get memPerc
+   * @return memPerc
+   */
+  @javax.annotation.Nullable
+  public Double getMemPerc() {
+    return memPerc;
+  }
+
+  public void setMemPerc(Double memPerc) {
+    this.memPerc = memPerc;
+  }
+
+
+  public ContainerStats memUsage(Integer memUsage) {
+    this.memUsage = memUsage;
+    return this;
+  }
+
+  /**
+   * Get memUsage
+   * @return memUsage
+   */
+  @javax.annotation.Nullable
+  public Integer getMemUsage() {
+    return memUsage;
+  }
+
+  public void setMemUsage(Integer memUsage) {
+    this.memUsage = memUsage;
+  }
+
+
+  public ContainerStats name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Get name
+   * @return name
+   */
+  @javax.annotation.Nullable
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+
+  public ContainerStats network(Map<String, ContainerNetworkStats> network) {
+    this.network = network;
+    return this;
+  }
+
+  public ContainerStats putNetworkItem(String key, ContainerNetworkStats networkItem) {
+    if (this.network == null) {
+      this.network = new HashMap<>();
     }
+    this.network.put(key, networkItem);
+    return this;
+  }
 
-    /**
-     * Get avgCPU
-     *
-     * @return avgCPU
-     */
-    @javax.annotation.Nullable
-    public Double getAvgCPU() {
-        return avgCPU;
+  /**
+   * Map of interface name to network statistics for that interface.
+   * @return network
+   */
+  @javax.annotation.Nullable
+  public Map<String, ContainerNetworkStats> getNetwork() {
+    return network;
+  }
+
+  public void setNetwork(Map<String, ContainerNetworkStats> network) {
+    this.network = network;
+  }
+
+
+  public ContainerStats piDs(Integer piDs) {
+    this.piDs = piDs;
+    return this;
+  }
+
+  /**
+   * Get piDs
+   * @return piDs
+   */
+  @javax.annotation.Nullable
+  public Integer getPiDs() {
+    return piDs;
+  }
+
+  public void setPiDs(Integer piDs) {
+    this.piDs = piDs;
+  }
+
+
+  public ContainerStats perCPU(List<Integer> perCPU) {
+    this.perCPU = perCPU;
+    return this;
+  }
+
+  public ContainerStats addPerCPUItem(Integer perCPUItem) {
+    if (this.perCPU == null) {
+      this.perCPU = new ArrayList<>();
     }
+    this.perCPU.add(perCPUItem);
+    return this;
+  }
 
-    public void setAvgCPU(Double avgCPU) {
-        this.avgCPU = avgCPU;
+  /**
+   * Get perCPU
+   * @return perCPU
+   */
+  @javax.annotation.Nullable
+  public List<Integer> getPerCPU() {
+    return perCPU;
+  }
+
+  public void setPerCPU(List<Integer> perCPU) {
+    this.perCPU = perCPU;
+  }
+
+
+  public ContainerStats systemNano(Integer systemNano) {
+    this.systemNano = systemNano;
+    return this;
+  }
+
+  /**
+   * Get systemNano
+   * @return systemNano
+   */
+  @javax.annotation.Nullable
+  public Integer getSystemNano() {
+    return systemNano;
+  }
+
+  public void setSystemNano(Integer systemNano) {
+    this.systemNano = systemNano;
+  }
+
+
+  public ContainerStats upTime(Long upTime) {
+    this.upTime = upTime;
+    return this;
+  }
+
+  /**
+   * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
+   * @return upTime
+   */
+  @javax.annotation.Nullable
+  public Long getUpTime() {
+    return upTime;
+  }
+
+  public void setUpTime(Long upTime) {
+    this.upTime = upTime;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    public ContainerStats blockInput(Integer blockInput) {
-        this.blockInput = blockInput;
-        return this;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    ContainerStats containerStats = (ContainerStats) o;
+    return Objects.equals(this.avgCPU, containerStats.avgCPU) &&
+        Objects.equals(this.blockInput, containerStats.blockInput) &&
+        Objects.equals(this.blockOutput, containerStats.blockOutput) &&
+        Objects.equals(this.CPU, containerStats.CPU) &&
+        Objects.equals(this.cpUNano, containerStats.cpUNano) &&
+        Objects.equals(this.cpUSystemNano, containerStats.cpUSystemNano) &&
+        Objects.equals(this.containerID, containerStats.containerID) &&
+        Objects.equals(this.duration, containerStats.duration) &&
+        Objects.equals(this.memLimit, containerStats.memLimit) &&
+        Objects.equals(this.memPerc, containerStats.memPerc) &&
+        Objects.equals(this.memUsage, containerStats.memUsage) &&
+        Objects.equals(this.name, containerStats.name) &&
+        Objects.equals(this.network, containerStats.network) &&
+        Objects.equals(this.piDs, containerStats.piDs) &&
+        Objects.equals(this.perCPU, containerStats.perCPU) &&
+        Objects.equals(this.systemNano, containerStats.systemNano) &&
+        Objects.equals(this.upTime, containerStats.upTime);
+  }
 
-    /**
-     * Get blockInput
-     *
-     * @return blockInput
-     */
-    @javax.annotation.Nullable
-    public Integer getBlockInput() {
-        return blockInput;
+  @Override
+  public int hashCode() {
+    return Objects.hash(avgCPU, blockInput, blockOutput, CPU, cpUNano, cpUSystemNano, containerID, duration, memLimit, memPerc, memUsage, name, network, piDs, perCPU, systemNano, upTime);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ContainerStats {\n");
+    sb.append("    avgCPU: ").append(toIndentedString(avgCPU)).append("\n");
+    sb.append("    blockInput: ").append(toIndentedString(blockInput)).append("\n");
+    sb.append("    blockOutput: ").append(toIndentedString(blockOutput)).append("\n");
+    sb.append("    CPU: ").append(toIndentedString(CPU)).append("\n");
+    sb.append("    cpUNano: ").append(toIndentedString(cpUNano)).append("\n");
+    sb.append("    cpUSystemNano: ").append(toIndentedString(cpUSystemNano)).append("\n");
+    sb.append("    containerID: ").append(toIndentedString(containerID)).append("\n");
+    sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
+    sb.append("    memLimit: ").append(toIndentedString(memLimit)).append("\n");
+    sb.append("    memPerc: ").append(toIndentedString(memPerc)).append("\n");
+    sb.append("    memUsage: ").append(toIndentedString(memUsage)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    network: ").append(toIndentedString(network)).append("\n");
+    sb.append("    piDs: ").append(toIndentedString(piDs)).append("\n");
+    sb.append("    perCPU: ").append(toIndentedString(perCPU)).append("\n");
+    sb.append("    systemNano: ").append(toIndentedString(systemNano)).append("\n");
+    sb.append("    upTime: ").append(toIndentedString(upTime)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public void setBlockInput(Integer blockInput) {
-        this.blockInput = blockInput;
-    }
 
-    public ContainerStats blockOutput(Integer blockOutput) {
-        this.blockOutput = blockOutput;
-        return this;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    /**
-     * Get blockOutput
-     *
-     * @return blockOutput
-     */
-    @javax.annotation.Nullable
-    public Integer getBlockOutput() {
-        return blockOutput;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("AvgCPU");
+    openapiFields.add("BlockInput");
+    openapiFields.add("BlockOutput");
+    openapiFields.add("CPU");
+    openapiFields.add("CPUNano");
+    openapiFields.add("CPUSystemNano");
+    openapiFields.add("ContainerID");
+    openapiFields.add("Duration");
+    openapiFields.add("MemLimit");
+    openapiFields.add("MemPerc");
+    openapiFields.add("MemUsage");
+    openapiFields.add("Name");
+    openapiFields.add("Network");
+    openapiFields.add("PIDs");
+    openapiFields.add("PerCPU");
+    openapiFields.add("SystemNano");
+    openapiFields.add("UpTime");
 
-    public void setBlockOutput(Integer blockOutput) {
-        this.blockOutput = blockOutput;
-    }
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
 
-    public ContainerStats CPU(Double CPU) {
-        this.CPU = CPU;
-        return this;
-    }
-
-    /**
-     * Get CPU
-     *
-     * @return CPU
-     */
-    @javax.annotation.Nullable
-    public Double getCPU() {
-        return CPU;
-    }
-
-    public void setCPU(Double CPU) {
-        this.CPU = CPU;
-    }
-
-    public ContainerStats cpUNano(Integer cpUNano) {
-        this.cpUNano = cpUNano;
-        return this;
-    }
-
-    /**
-     * Get cpUNano
-     *
-     * @return cpUNano
-     */
-    @javax.annotation.Nullable
-    public Integer getCpUNano() {
-        return cpUNano;
-    }
-
-    public void setCpUNano(Integer cpUNano) {
-        this.cpUNano = cpUNano;
-    }
-
-    public ContainerStats cpUSystemNano(Integer cpUSystemNano) {
-        this.cpUSystemNano = cpUSystemNano;
-        return this;
-    }
-
-    /**
-     * Get cpUSystemNano
-     *
-     * @return cpUSystemNano
-     */
-    @javax.annotation.Nullable
-    public Integer getCpUSystemNano() {
-        return cpUSystemNano;
-    }
-
-    public void setCpUSystemNano(Integer cpUSystemNano) {
-        this.cpUSystemNano = cpUSystemNano;
-    }
-
-    public ContainerStats containerID(String containerID) {
-        this.containerID = containerID;
-        return this;
-    }
-
-    /**
-     * Get containerID
-     *
-     * @return containerID
-     */
-    @javax.annotation.Nullable
-    public String getContainerID() {
-        return containerID;
-    }
-
-    public void setContainerID(String containerID) {
-        this.containerID = containerID;
-    }
-
-    public ContainerStats duration(Integer duration) {
-        this.duration = duration;
-        return this;
-    }
-
-    /**
-     * Get duration
-     *
-     * @return duration
-     */
-    @javax.annotation.Nullable
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    public ContainerStats memLimit(Integer memLimit) {
-        this.memLimit = memLimit;
-        return this;
-    }
-
-    /**
-     * Get memLimit
-     *
-     * @return memLimit
-     */
-    @javax.annotation.Nullable
-    public Integer getMemLimit() {
-        return memLimit;
-    }
-
-    public void setMemLimit(Integer memLimit) {
-        this.memLimit = memLimit;
-    }
-
-    public ContainerStats memPerc(Double memPerc) {
-        this.memPerc = memPerc;
-        return this;
-    }
-
-    /**
-     * Get memPerc
-     *
-     * @return memPerc
-     */
-    @javax.annotation.Nullable
-    public Double getMemPerc() {
-        return memPerc;
-    }
-
-    public void setMemPerc(Double memPerc) {
-        this.memPerc = memPerc;
-    }
-
-    public ContainerStats memUsage(Integer memUsage) {
-        this.memUsage = memUsage;
-        return this;
-    }
-
-    /**
-     * Get memUsage
-     *
-     * @return memUsage
-     */
-    @javax.annotation.Nullable
-    public Integer getMemUsage() {
-        return memUsage;
-    }
-
-    public void setMemUsage(Integer memUsage) {
-        this.memUsage = memUsage;
-    }
-
-    public ContainerStats name(String name) {
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return name
-     */
-    @javax.annotation.Nullable
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public ContainerStats network(Map<String, ContainerNetworkStats> network) {
-        this.network = network;
-        return this;
-    }
-
-    public ContainerStats putNetworkItem(String key, ContainerNetworkStats networkItem) {
-        if (this.network == null) {
-            this.network = new HashMap<>();
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ContainerStats
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ContainerStats.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerStats is not found in the empty JSON string", ContainerStats.openapiRequiredFields.toString()));
         }
-        this.network.put(key, networkItem);
-        return this;
-    }
+      }
 
-    /**
-     * Map of interface name to network statistics for that interface.
-     *
-     * @return network
-     */
-    @javax.annotation.Nullable
-    public Map<String, ContainerNetworkStats> getNetwork() {
-        return network;
-    }
-
-    public void setNetwork(Map<String, ContainerNetworkStats> network) {
-        this.network = network;
-    }
-
-    public ContainerStats piDs(Integer piDs) {
-        this.piDs = piDs;
-        return this;
-    }
-
-    /**
-     * Get piDs
-     *
-     * @return piDs
-     */
-    @javax.annotation.Nullable
-    public Integer getPiDs() {
-        return piDs;
-    }
-
-    public void setPiDs(Integer piDs) {
-        this.piDs = piDs;
-    }
-
-    public ContainerStats perCPU(List<Integer> perCPU) {
-        this.perCPU = perCPU;
-        return this;
-    }
-
-    public ContainerStats addPerCPUItem(Integer perCPUItem) {
-        if (this.perCPU == null) {
-            this.perCPU = new ArrayList<>();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ContainerStats.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerStats` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        this.perCPU.add(perCPUItem);
-        return this;
-    }
-
-    /**
-     * Get perCPU
-     *
-     * @return perCPU
-     */
-    @javax.annotation.Nullable
-    public List<Integer> getPerCPU() {
-        return perCPU;
-    }
-
-    public void setPerCPU(List<Integer> perCPU) {
-        this.perCPU = perCPU;
-    }
-
-    public ContainerStats systemNano(Integer systemNano) {
-        this.systemNano = systemNano;
-        return this;
-    }
-
-    /**
-     * Get systemNano
-     *
-     * @return systemNano
-     */
-    @javax.annotation.Nullable
-    public Integer getSystemNano() {
-        return systemNano;
-    }
-
-    public void setSystemNano(Integer systemNano) {
-        this.systemNano = systemNano;
-    }
-
-    public ContainerStats upTime(Long upTime) {
-        this.upTime = upTime;
-        return this;
-    }
-
-    /**
-     * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The
-     * representation limits the largest representable duration to approximately 290 years.
-     *
-     * @return upTime
-     */
-    @javax.annotation.Nullable
-    public Long getUpTime() {
-        return upTime;
-    }
-
-    public void setUpTime(Long upTime) {
-        this.upTime = upTime;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ContainerStats containerStats = (ContainerStats) o;
-        return Objects.equals(this.avgCPU, containerStats.avgCPU)
-                && Objects.equals(this.blockInput, containerStats.blockInput)
-                && Objects.equals(this.blockOutput, containerStats.blockOutput)
-                && Objects.equals(this.CPU, containerStats.CPU)
-                && Objects.equals(this.cpUNano, containerStats.cpUNano)
-                && Objects.equals(this.cpUSystemNano, containerStats.cpUSystemNano)
-                && Objects.equals(this.containerID, containerStats.containerID)
-                && Objects.equals(this.duration, containerStats.duration)
-                && Objects.equals(this.memLimit, containerStats.memLimit)
-                && Objects.equals(this.memPerc, containerStats.memPerc)
-                && Objects.equals(this.memUsage, containerStats.memUsage)
-                && Objects.equals(this.name, containerStats.name)
-                && Objects.equals(this.network, containerStats.network)
-                && Objects.equals(this.piDs, containerStats.piDs)
-                && Objects.equals(this.perCPU, containerStats.perCPU)
-                && Objects.equals(this.systemNano, containerStats.systemNano)
-                && Objects.equals(this.upTime, containerStats.upTime);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(
-                avgCPU,
-                blockInput,
-                blockOutput,
-                CPU,
-                cpUNano,
-                cpUSystemNano,
-                containerID,
-                duration,
-                memLimit,
-                memPerc,
-                memUsage,
-                name,
-                network,
-                piDs,
-                perCPU,
-                systemNano,
-                upTime);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class ContainerStats {\n");
-        sb.append("    avgCPU: ").append(toIndentedString(avgCPU)).append("\n");
-        sb.append("    blockInput: ").append(toIndentedString(blockInput)).append("\n");
-        sb.append("    blockOutput: ").append(toIndentedString(blockOutput)).append("\n");
-        sb.append("    CPU: ").append(toIndentedString(CPU)).append("\n");
-        sb.append("    cpUNano: ").append(toIndentedString(cpUNano)).append("\n");
-        sb.append("    cpUSystemNano: ").append(toIndentedString(cpUSystemNano)).append("\n");
-        sb.append("    containerID: ").append(toIndentedString(containerID)).append("\n");
-        sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
-        sb.append("    memLimit: ").append(toIndentedString(memLimit)).append("\n");
-        sb.append("    memPerc: ").append(toIndentedString(memPerc)).append("\n");
-        sb.append("    memUsage: ").append(toIndentedString(memUsage)).append("\n");
-        sb.append("    name: ").append(toIndentedString(name)).append("\n");
-        sb.append("    network: ").append(toIndentedString(network)).append("\n");
-        sb.append("    piDs: ").append(toIndentedString(piDs)).append("\n");
-        sb.append("    perCPU: ").append(toIndentedString(perCPU)).append("\n");
-        sb.append("    systemNano: ").append(toIndentedString(systemNano)).append("\n");
-        sb.append("    upTime: ").append(toIndentedString(upTime)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("AvgCPU");
-        openapiFields.add("BlockInput");
-        openapiFields.add("BlockOutput");
-        openapiFields.add("CPU");
-        openapiFields.add("CPUNano");
-        openapiFields.add("CPUSystemNano");
-        openapiFields.add("ContainerID");
-        openapiFields.add("Duration");
-        openapiFields.add("MemLimit");
-        openapiFields.add("MemPerc");
-        openapiFields.add("MemUsage");
-        openapiFields.add("Name");
-        openapiFields.add("Network");
-        openapiFields.add("PIDs");
-        openapiFields.add("PerCPU");
-        openapiFields.add("SystemNano");
-        openapiFields.add("UpTime");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ContainerStats
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ContainerStats.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in ContainerStats is not found in the"
-                                        + " empty JSON string",
-                                ContainerStats.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ContainerStats.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ContainerStats` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("ContainerID") != null && !jsonObj.get("ContainerID").isJsonNull())
-                && !jsonObj.get("ContainerID").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ContainerID` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("ContainerID").toString()));
-        }
-        if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull())
-                && !jsonObj.get("Name").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Name` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("Name").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("PerCPU") != null
-                && !jsonObj.get("PerCPU").isJsonNull()
-                && !jsonObj.get("PerCPU").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `PerCPU` to be an array in the JSON string but got"
-                                    + " `%s`",
-                            jsonObj.get("PerCPU").toString()));
-        }
+      if ((jsonObj.get("ContainerID") != null && !jsonObj.get("ContainerID").isJsonNull()) && !jsonObj.get("ContainerID").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerID").toString()));
+      }
+      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("PerCPU") != null && !jsonObj.get("PerCPU").isJsonNull() && !jsonObj.get("PerCPU").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `PerCPU` to be an array in the JSON string but got `%s`", jsonObj.get("PerCPU").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ContainerStats.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ContainerStats' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ContainerStats> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerStats.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ContainerStats>() {
+           @Override
+           public void write(JsonWriter out, ContainerStats value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ContainerStats read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!ContainerStats.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'ContainerStats' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ContainerStats> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(ContainerStats.class));
+  /**
+   * Create an instance of ContainerStats given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ContainerStats
+   * @throws IOException if the JSON string is invalid with respect to ContainerStats
+   */
+  public static ContainerStats fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ContainerStats.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<ContainerStats>() {
-                        @Override
-                        public void write(JsonWriter out, ContainerStats value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public ContainerStats read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of ContainerStats given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ContainerStats
-     * @throws IOException if the JSON string is invalid with respect to ContainerStats
-     */
-    public static ContainerStats fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, ContainerStats.class);
-    }
-
-    /**
-     * Convert an instance of ContainerStats to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of ContainerStats to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

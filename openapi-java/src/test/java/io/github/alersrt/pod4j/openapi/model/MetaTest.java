@@ -10,35 +10,57 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.Version;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for Meta */
+/**
+ * Model tests for Meta
+ */
 public class MetaTest {
     private final Meta model = new Meta();
 
-    /** Model tests for Meta */
+    /**
+     * Model tests for Meta
+     */
     @Test
     public void testMeta() {
         // TODO: test Meta
     }
 
-    /** Test the property 'createdAt' */
+    /**
+     * Test the property 'createdAt'
+     */
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
     }
 
-    /** Test the property 'updatedAt' */
+    /**
+     * Test the property 'updatedAt'
+     */
     @Test
     public void updatedAtTest() {
         // TODO: test updatedAt
     }
 
-    /** Test the property 'version' */
+    /**
+     * Test the property 'version'
+     */
     @Test
     public void versionTest() {
         // TODO: test version
     }
+
 }

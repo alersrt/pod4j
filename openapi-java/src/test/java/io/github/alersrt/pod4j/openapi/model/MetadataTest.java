@@ -10,23 +10,40 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for Metadata */
+/**
+ * Model tests for Metadata
+ */
 public class MetadataTest {
     private final Metadata model = new Metadata();
 
-    /** Model tests for Metadata */
+    /**
+     * Model tests for Metadata
+     */
     @Test
     public void testMetadata() {
         // TODO: test Metadata
     }
 
-    /** Test the property 'lastTagTime' */
+    /**
+     * Test the property 'lastTagTime'
+     */
     @Test
     public void lastTagTimeTest() {
         // TODO: test lastTagTime
     }
+
 }

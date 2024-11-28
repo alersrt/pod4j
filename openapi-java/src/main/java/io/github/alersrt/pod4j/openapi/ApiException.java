@@ -10,17 +10,18 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi;
 
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 
-/** ApiException class. */
+
+/**
+ * <p>ApiException class.</p>
+ */
 @SuppressWarnings("serial")
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ApiException extends Exception {
     private static final long serialVersionUID = 1L;
 
@@ -28,11 +29,13 @@ public class ApiException extends Exception {
     private Map<String, List<String>> responseHeaders = null;
     private String responseBody = null;
 
-    /** Constructor for ApiException. */
+    /**
+     * <p>Constructor for ApiException.</p>
+     */
     public ApiException() {}
 
     /**
-     * Constructor for ApiException.
+     * <p>Constructor for ApiException.</p>
      *
      * @param throwable a {@link java.lang.Throwable} object
      */
@@ -41,7 +44,7 @@ public class ApiException extends Exception {
     }
 
     /**
-     * Constructor for ApiException.
+     * <p>Constructor for ApiException.</p>
      *
      * @param message the error message
      */
@@ -50,7 +53,7 @@ public class ApiException extends Exception {
     }
 
     /**
-     * Constructor for ApiException.
+     * <p>Constructor for ApiException.</p>
      *
      * @param message the error message
      * @param throwable a {@link java.lang.Throwable} object
@@ -58,12 +61,7 @@ public class ApiException extends Exception {
      * @param responseHeaders a {@link java.util.Map} of HTTP response headers
      * @param responseBody the response body
      */
-    public ApiException(
-            String message,
-            Throwable throwable,
-            int code,
-            Map<String, List<String>> responseHeaders,
-            String responseBody) {
+    public ApiException(String message, Throwable throwable, int code, Map<String, List<String>> responseHeaders, String responseBody) {
         super(message, throwable);
         this.code = code;
         this.responseHeaders = responseHeaders;
@@ -71,55 +69,42 @@ public class ApiException extends Exception {
     }
 
     /**
-     * Constructor for ApiException.
+     * <p>Constructor for ApiException.</p>
      *
      * @param message the error message
      * @param code HTTP status code
      * @param responseHeaders a {@link java.util.Map} of HTTP response headers
      * @param responseBody the response body
      */
-    public ApiException(
-            String message,
-            int code,
-            Map<String, List<String>> responseHeaders,
-            String responseBody) {
+    public ApiException(String message, int code, Map<String, List<String>> responseHeaders, String responseBody) {
         this(message, (Throwable) null, code, responseHeaders, responseBody);
     }
 
     /**
-     * Constructor for ApiException.
+     * <p>Constructor for ApiException.</p>
      *
      * @param message the error message
      * @param throwable a {@link java.lang.Throwable} object
      * @param code HTTP status code
      * @param responseHeaders a {@link java.util.Map} of HTTP response headers
      */
-    public ApiException(
-            String message,
-            Throwable throwable,
-            int code,
-            Map<String, List<String>> responseHeaders) {
+    public ApiException(String message, Throwable throwable, int code, Map<String, List<String>> responseHeaders) {
         this(message, throwable, code, responseHeaders, null);
     }
 
     /**
-     * Constructor for ApiException.
+     * <p>Constructor for ApiException.</p>
      *
      * @param code HTTP status code
      * @param responseHeaders a {@link java.util.Map} of HTTP response headers
      * @param responseBody the response body
      */
     public ApiException(int code, Map<String, List<String>> responseHeaders, String responseBody) {
-        this(
-                "Response Code: " + code + " Response Body: " + responseBody,
-                (Throwable) null,
-                code,
-                responseHeaders,
-                responseBody);
+        this("Response Code: " + code + " Response Body: " + responseBody, (Throwable) null, code, responseHeaders, responseBody);
     }
 
     /**
-     * Constructor for ApiException.
+     * <p>Constructor for ApiException.</p>
      *
      * @param code HTTP status code
      * @param message a {@link java.lang.String} object
@@ -130,18 +115,14 @@ public class ApiException extends Exception {
     }
 
     /**
-     * Constructor for ApiException.
+     * <p>Constructor for ApiException.</p>
      *
      * @param code HTTP status code
      * @param message the error message
      * @param responseHeaders a {@link java.util.Map} of HTTP response headers
      * @param responseBody the response body
      */
-    public ApiException(
-            int code,
-            String message,
-            Map<String, List<String>> responseHeaders,
-            String responseBody) {
+    public ApiException(int code, String message, Map<String, List<String>> responseHeaders, String responseBody) {
         this(code, message);
         this.responseHeaders = responseHeaders;
         this.responseBody = responseBody;
@@ -180,12 +161,7 @@ public class ApiException extends Exception {
      * @return The exception message
      */
     public String getMessage() {
-        return String.format(
-                "Message: %s%nHTTP response code: %s%nHTTP response body: %s%nHTTP response"
-                        + " headers: %s",
-                super.getMessage(),
-                this.getCode(),
-                this.getResponseBody(),
-                this.getResponseHeaders());
+        return String.format("Message: %s%nHTTP response code: %s%nHTTP response body: %s%nHTTP response headers: %s",
+                super.getMessage(), this.getCode(), this.getResponseBody(), this.getResponseHeaders());
     }
 }

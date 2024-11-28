@@ -10,35 +10,59 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.ImagePropertiesSize;
+import io.github.alersrt.pod4j.openapi.model.Platform;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ImageProperties */
+/**
+ * Model tests for ImageProperties
+ */
 public class ImagePropertiesTest {
     private final ImageProperties model = new ImageProperties();
 
-    /** Model tests for ImageProperties */
+    /**
+     * Model tests for ImageProperties
+     */
     @Test
     public void testImageProperties() {
         // TODO: test ImageProperties
     }
 
-    /** Test the property 'containers' */
+    /**
+     * Test the property 'containers'
+     */
     @Test
     public void containersTest() {
         // TODO: test containers
     }
 
-    /** Test the property 'platform' */
+    /**
+     * Test the property 'platform'
+     */
     @Test
     public void platformTest() {
         // TODO: test platform
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
+
 }

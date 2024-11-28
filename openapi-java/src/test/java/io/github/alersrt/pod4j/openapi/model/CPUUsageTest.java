@@ -10,35 +10,55 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for CPUUsage */
+/**
+ * Model tests for CPUUsage
+ */
 public class CPUUsageTest {
     private final CPUUsage model = new CPUUsage();
 
-    /** Model tests for CPUUsage */
+    /**
+     * Model tests for CPUUsage
+     */
     @Test
     public void testCPUUsage() {
         // TODO: test CPUUsage
     }
 
-    /** Test the property 'idlePercent' */
+    /**
+     * Test the property 'idlePercent'
+     */
     @Test
     public void idlePercentTest() {
         // TODO: test idlePercent
     }
 
-    /** Test the property 'systemPercent' */
+    /**
+     * Test the property 'systemPercent'
+     */
     @Test
     public void systemPercentTest() {
         // TODO: test systemPercent
     }
 
-    /** Test the property 'userPercent' */
+    /**
+     * Test the property 'userPercent'
+     */
     @Test
     public void userPercentTest() {
         // TODO: test userPercent
     }
+
 }

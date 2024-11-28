@@ -10,266 +10,272 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** LinuxWeightDevice struct holds a &#x60;major:minor weight&#x60; pair for weightDevice */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * LinuxWeightDevice struct holds a &#x60;major:minor weight&#x60; pair for weightDevice
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxWeightDevice {
-    public static final String SERIALIZED_NAME_LEAF_WEIGHT = "leafWeight";
+  public static final String SERIALIZED_NAME_LEAF_WEIGHT = "leafWeight";
+  @SerializedName(SERIALIZED_NAME_LEAF_WEIGHT)
+  private Integer leafWeight;
 
-    @SerializedName(SERIALIZED_NAME_LEAF_WEIGHT)
-    private Integer leafWeight;
+  public static final String SERIALIZED_NAME_MAJOR = "major";
+  @SerializedName(SERIALIZED_NAME_MAJOR)
+  private Long major;
 
-    public static final String SERIALIZED_NAME_MAJOR = "major";
+  public static final String SERIALIZED_NAME_MINOR = "minor";
+  @SerializedName(SERIALIZED_NAME_MINOR)
+  private Long minor;
 
-    @SerializedName(SERIALIZED_NAME_MAJOR)
-    private Long major;
+  public static final String SERIALIZED_NAME_WEIGHT = "weight";
+  @SerializedName(SERIALIZED_NAME_WEIGHT)
+  private Integer weight;
 
-    public static final String SERIALIZED_NAME_MINOR = "minor";
+  public LinuxWeightDevice() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_MINOR)
-    private Long minor;
+  public LinuxWeightDevice leafWeight(Integer leafWeight) {
+    this.leafWeight = leafWeight;
+    return this;
+  }
 
-    public static final String SERIALIZED_NAME_WEIGHT = "weight";
+  /**
+   * LeafWeight is the bandwidth rate for the device while competing with the cgroup&#39;s child cgroups, CFQ scheduler only
+   * @return leafWeight
+   */
+  @javax.annotation.Nullable
+  public Integer getLeafWeight() {
+    return leafWeight;
+  }
 
-    @SerializedName(SERIALIZED_NAME_WEIGHT)
-    private Integer weight;
+  public void setLeafWeight(Integer leafWeight) {
+    this.leafWeight = leafWeight;
+  }
 
-    public LinuxWeightDevice() {}
 
-    public LinuxWeightDevice leafWeight(Integer leafWeight) {
-        this.leafWeight = leafWeight;
-        return this;
+  public LinuxWeightDevice major(Long major) {
+    this.major = major;
+    return this;
+  }
+
+  /**
+   * Major is the device&#39;s major number.
+   * @return major
+   */
+  @javax.annotation.Nullable
+  public Long getMajor() {
+    return major;
+  }
+
+  public void setMajor(Long major) {
+    this.major = major;
+  }
+
+
+  public LinuxWeightDevice minor(Long minor) {
+    this.minor = minor;
+    return this;
+  }
+
+  /**
+   * Minor is the device&#39;s minor number.
+   * @return minor
+   */
+  @javax.annotation.Nullable
+  public Long getMinor() {
+    return minor;
+  }
+
+  public void setMinor(Long minor) {
+    this.minor = minor;
+  }
+
+
+  public LinuxWeightDevice weight(Integer weight) {
+    this.weight = weight;
+    return this;
+  }
+
+  /**
+   * Weight is the bandwidth rate for the device.
+   * @return weight
+   */
+  @javax.annotation.Nullable
+  public Integer getWeight() {
+    return weight;
+  }
+
+  public void setWeight(Integer weight) {
+    this.weight = weight;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * LeafWeight is the bandwidth rate for the device while competing with the cgroup&#39;s child
-     * cgroups, CFQ scheduler only
-     *
-     * @return leafWeight
-     */
-    @javax.annotation.Nullable
-    public Integer getLeafWeight() {
-        return leafWeight;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    LinuxWeightDevice linuxWeightDevice = (LinuxWeightDevice) o;
+    return Objects.equals(this.leafWeight, linuxWeightDevice.leafWeight) &&
+        Objects.equals(this.major, linuxWeightDevice.major) &&
+        Objects.equals(this.minor, linuxWeightDevice.minor) &&
+        Objects.equals(this.weight, linuxWeightDevice.weight);
+  }
 
-    public void setLeafWeight(Integer leafWeight) {
-        this.leafWeight = leafWeight;
+  @Override
+  public int hashCode() {
+    return Objects.hash(leafWeight, major, minor, weight);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class LinuxWeightDevice {\n");
+    sb.append("    leafWeight: ").append(toIndentedString(leafWeight)).append("\n");
+    sb.append("    major: ").append(toIndentedString(major)).append("\n");
+    sb.append("    minor: ").append(toIndentedString(minor)).append("\n");
+    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public LinuxWeightDevice major(Long major) {
-        this.major = major;
-        return this;
-    }
 
-    /**
-     * Major is the device&#39;s major number.
-     *
-     * @return major
-     */
-    @javax.annotation.Nullable
-    public Long getMajor() {
-        return major;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setMajor(Long major) {
-        this.major = major;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("leafWeight");
+    openapiFields.add("major");
+    openapiFields.add("minor");
+    openapiFields.add("weight");
 
-    public LinuxWeightDevice minor(Long minor) {
-        this.minor = minor;
-        return this;
-    }
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
 
-    /**
-     * Minor is the device&#39;s minor number.
-     *
-     * @return minor
-     */
-    @javax.annotation.Nullable
-    public Long getMinor() {
-        return minor;
-    }
-
-    public void setMinor(Long minor) {
-        this.minor = minor;
-    }
-
-    public LinuxWeightDevice weight(Integer weight) {
-        this.weight = weight;
-        return this;
-    }
-
-    /**
-     * Weight is the bandwidth rate for the device.
-     *
-     * @return weight
-     */
-    @javax.annotation.Nullable
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to LinuxWeightDevice
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!LinuxWeightDevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxWeightDevice is not found in the empty JSON string", LinuxWeightDevice.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!LinuxWeightDevice.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxWeightDevice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        LinuxWeightDevice linuxWeightDevice = (LinuxWeightDevice) o;
-        return Objects.equals(this.leafWeight, linuxWeightDevice.leafWeight)
-                && Objects.equals(this.major, linuxWeightDevice.major)
-                && Objects.equals(this.minor, linuxWeightDevice.minor)
-                && Objects.equals(this.weight, linuxWeightDevice.weight);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(leafWeight, major, minor, weight);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class LinuxWeightDevice {\n");
-        sb.append("    leafWeight: ").append(toIndentedString(leafWeight)).append("\n");
-        sb.append("    major: ").append(toIndentedString(major)).append("\n");
-        sb.append("    minor: ").append(toIndentedString(minor)).append("\n");
-        sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("leafWeight");
-        openapiFields.add("major");
-        openapiFields.add("minor");
-        openapiFields.add("weight");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to LinuxWeightDevice
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!LinuxWeightDevice.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in LinuxWeightDevice is not found in the"
-                                        + " empty JSON string",
-                                LinuxWeightDevice.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!LinuxWeightDevice.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `LinuxWeightDevice` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!LinuxWeightDevice.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'LinuxWeightDevice' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<LinuxWeightDevice> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxWeightDevice.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<LinuxWeightDevice>() {
+           @Override
+           public void write(JsonWriter out, LinuxWeightDevice value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public LinuxWeightDevice read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!LinuxWeightDevice.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'LinuxWeightDevice' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<LinuxWeightDevice> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(LinuxWeightDevice.class));
+  /**
+   * Create an instance of LinuxWeightDevice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of LinuxWeightDevice
+   * @throws IOException if the JSON string is invalid with respect to LinuxWeightDevice
+   */
+  public static LinuxWeightDevice fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, LinuxWeightDevice.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<LinuxWeightDevice>() {
-                        @Override
-                        public void write(JsonWriter out, LinuxWeightDevice value)
-                                throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public LinuxWeightDevice read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of LinuxWeightDevice given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of LinuxWeightDevice
-     * @throws IOException if the JSON string is invalid with respect to LinuxWeightDevice
-     */
-    public static LinuxWeightDevice fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, LinuxWeightDevice.class);
-    }
-
-    /**
-     * Convert an instance of LinuxWeightDevice to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of LinuxWeightDevice to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

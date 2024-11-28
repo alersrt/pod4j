@@ -10,47 +10,73 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.SecretSpec;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for SecretInfoReport */
+/**
+ * Model tests for SecretInfoReport
+ */
 public class SecretInfoReportTest {
     private final SecretInfoReport model = new SecretInfoReport();
 
-    /** Model tests for SecretInfoReport */
+    /**
+     * Model tests for SecretInfoReport
+     */
     @Test
     public void testSecretInfoReport() {
         // TODO: test SecretInfoReport
     }
 
-    /** Test the property 'createdAt' */
+    /**
+     * Test the property 'createdAt'
+     */
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
     }
 
-    /** Test the property 'ID' */
+    /**
+     * Test the property 'ID'
+     */
     @Test
     public void IDTest() {
         // TODO: test ID
     }
 
-    /** Test the property 'secretData' */
+    /**
+     * Test the property 'secretData'
+     */
     @Test
     public void secretDataTest() {
         // TODO: test secretData
     }
 
-    /** Test the property 'spec' */
+    /**
+     * Test the property 'spec'
+     */
     @Test
     public void specTest() {
         // TODO: test spec
     }
 
-    /** Test the property 'updatedAt' */
+    /**
+     * Test the property 'updatedAt'
+     */
     @Test
     public void updatedAtTest() {
         // TODO: test updatedAt
     }
+
 }

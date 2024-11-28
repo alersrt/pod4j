@@ -10,131 +10,187 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ManifestAddArtifactOptions */
+/**
+ * Model tests for ManifestAddArtifactOptions
+ */
 public class ManifestAddArtifactOptionsTest {
     private final ManifestAddArtifactOptions model = new ManifestAddArtifactOptions();
 
-    /** Model tests for ManifestAddArtifactOptions */
+    /**
+     * Model tests for ManifestAddArtifactOptions
+     */
     @Test
     public void testManifestAddArtifactOptions() {
         // TODO: test ManifestAddArtifactOptions
     }
 
-    /** Test the property 'annotation' */
+    /**
+     * Test the property 'annotation'
+     */
     @Test
     public void annotationTest() {
         // TODO: test annotation
     }
 
-    /** Test the property 'annotations' */
+    /**
+     * Test the property 'annotations'
+     */
     @Test
     public void annotationsTest() {
         // TODO: test annotations
     }
 
-    /** Test the property 'arch' */
+    /**
+     * Test the property 'arch'
+     */
     @Test
     public void archTest() {
         // TODO: test arch
     }
 
-    /** Test the property 'artifactAnnotations' */
+    /**
+     * Test the property 'artifactAnnotations'
+     */
     @Test
     public void artifactAnnotationsTest() {
         // TODO: test artifactAnnotations
     }
 
-    /** Test the property 'artifactConfig' */
+    /**
+     * Test the property 'artifactConfig'
+     */
     @Test
     public void artifactConfigTest() {
         // TODO: test artifactConfig
     }
 
-    /** Test the property 'artifactConfigType' */
+    /**
+     * Test the property 'artifactConfigType'
+     */
     @Test
     public void artifactConfigTypeTest() {
         // TODO: test artifactConfigType
     }
 
-    /** Test the property 'artifactExcludeTitles' */
+    /**
+     * Test the property 'artifactExcludeTitles'
+     */
     @Test
     public void artifactExcludeTitlesTest() {
         // TODO: test artifactExcludeTitles
     }
 
-    /** Test the property 'artifactFiles' */
+    /**
+     * Test the property 'artifactFiles'
+     */
     @Test
     public void artifactFilesTest() {
         // TODO: test artifactFiles
     }
 
-    /** Test the property 'artifactLayerType' */
+    /**
+     * Test the property 'artifactLayerType'
+     */
     @Test
     public void artifactLayerTypeTest() {
         // TODO: test artifactLayerType
     }
 
-    /** Test the property 'artifactSubject' */
+    /**
+     * Test the property 'artifactSubject'
+     */
     @Test
     public void artifactSubjectTest() {
         // TODO: test artifactSubject
     }
 
-    /** Test the property 'artifactType' */
+    /**
+     * Test the property 'artifactType'
+     */
     @Test
     public void artifactTypeTest() {
         // TODO: test artifactType
     }
 
-    /** Test the property 'features' */
+    /**
+     * Test the property 'features'
+     */
     @Test
     public void featuresTest() {
         // TODO: test features
     }
 
-    /** Test the property 'indexAnnotation' */
+    /**
+     * Test the property 'indexAnnotation'
+     */
     @Test
     public void indexAnnotationTest() {
         // TODO: test indexAnnotation
     }
 
-    /** Test the property 'indexAnnotations' */
+    /**
+     * Test the property 'indexAnnotations'
+     */
     @Test
     public void indexAnnotationsTest() {
         // TODO: test indexAnnotations
     }
 
-    /** Test the property 'os' */
+    /**
+     * Test the property 'os'
+     */
     @Test
     public void osTest() {
         // TODO: test os
     }
 
-    /** Test the property 'osFeatures' */
+    /**
+     * Test the property 'osFeatures'
+     */
     @Test
     public void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
-    /** Test the property 'osVersion' */
+    /**
+     * Test the property 'osVersion'
+     */
     @Test
     public void osVersionTest() {
         // TODO: test osVersion
     }
 
-    /** Test the property 'subject' */
+    /**
+     * Test the property 'subject'
+     */
     @Test
     public void subjectTest() {
         // TODO: test subject
     }
 
-    /** Test the property 'variant' */
+    /**
+     * Test the property 'variant'
+     */
     @Test
     public void variantTest() {
         // TODO: test variant
     }
+
 }

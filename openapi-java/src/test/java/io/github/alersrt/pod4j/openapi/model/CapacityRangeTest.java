@@ -10,29 +10,47 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for CapacityRange */
+/**
+ * Model tests for CapacityRange
+ */
 public class CapacityRangeTest {
     private final CapacityRange model = new CapacityRange();
 
-    /** Model tests for CapacityRange */
+    /**
+     * Model tests for CapacityRange
+     */
     @Test
     public void testCapacityRange() {
         // TODO: test CapacityRange
     }
 
-    /** Test the property 'limitBytes' */
+    /**
+     * Test the property 'limitBytes'
+     */
     @Test
     public void limitBytesTest() {
         // TODO: test limitBytes
     }
 
-    /** Test the property 'requiredBytes' */
+    /**
+     * Test the property 'requiredBytes'
+     */
     @Test
     public void requiredBytesTest() {
         // TODO: test requiredBytes
     }
+
 }

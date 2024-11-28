@@ -10,47 +10,71 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for LinuxDeviceCgroup */
+/**
+ * Model tests for LinuxDeviceCgroup
+ */
 public class LinuxDeviceCgroupTest {
     private final LinuxDeviceCgroup model = new LinuxDeviceCgroup();
 
-    /** Model tests for LinuxDeviceCgroup */
+    /**
+     * Model tests for LinuxDeviceCgroup
+     */
     @Test
     public void testLinuxDeviceCgroup() {
         // TODO: test LinuxDeviceCgroup
     }
 
-    /** Test the property 'access' */
+    /**
+     * Test the property 'access'
+     */
     @Test
     public void accessTest() {
         // TODO: test access
     }
 
-    /** Test the property 'allow' */
+    /**
+     * Test the property 'allow'
+     */
     @Test
     public void allowTest() {
         // TODO: test allow
     }
 
-    /** Test the property 'major' */
+    /**
+     * Test the property 'major'
+     */
     @Test
     public void majorTest() {
         // TODO: test major
     }
 
-    /** Test the property 'minor' */
+    /**
+     * Test the property 'minor'
+     */
     @Test
     public void minorTest() {
         // TODO: test minor
     }
 
-    /** Test the property 'type' */
+    /**
+     * Test the property 'type'
+     */
     @Test
     public void typeTest() {
         // TODO: test type
     }
+
 }

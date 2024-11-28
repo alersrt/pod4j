@@ -10,226 +10,226 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** PortBinding represents a binding between a Host IP address and a Host Port */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * PortBinding represents a binding between a Host IP address and a Host Port
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PortBinding {
-    public static final String SERIALIZED_NAME_HOST_IP = "HostIp";
+  public static final String SERIALIZED_NAME_HOST_IP = "HostIp";
+  @SerializedName(SERIALIZED_NAME_HOST_IP)
+  private String hostIp;
 
-    @SerializedName(SERIALIZED_NAME_HOST_IP)
-    private String hostIp;
+  public static final String SERIALIZED_NAME_HOST_PORT = "HostPort";
+  @SerializedName(SERIALIZED_NAME_HOST_PORT)
+  private String hostPort;
 
-    public static final String SERIALIZED_NAME_HOST_PORT = "HostPort";
+  public PortBinding() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_HOST_PORT)
-    private String hostPort;
+  public PortBinding hostIp(String hostIp) {
+    this.hostIp = hostIp;
+    return this;
+  }
 
-    public PortBinding() {}
+  /**
+   * HostIP is the host IP Address
+   * @return hostIp
+   */
+  @javax.annotation.Nullable
+  public String getHostIp() {
+    return hostIp;
+  }
 
-    public PortBinding hostIp(String hostIp) {
-        this.hostIp = hostIp;
-        return this;
+  public void setHostIp(String hostIp) {
+    this.hostIp = hostIp;
+  }
+
+
+  public PortBinding hostPort(String hostPort) {
+    this.hostPort = hostPort;
+    return this;
+  }
+
+  /**
+   * HostPort is the host port number
+   * @return hostPort
+   */
+  @javax.annotation.Nullable
+  public String getHostPort() {
+    return hostPort;
+  }
+
+  public void setHostPort(String hostPort) {
+    this.hostPort = hostPort;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * HostIP is the host IP Address
-     *
-     * @return hostIp
-     */
-    @javax.annotation.Nullable
-    public String getHostIp() {
-        return hostIp;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    PortBinding portBinding = (PortBinding) o;
+    return Objects.equals(this.hostIp, portBinding.hostIp) &&
+        Objects.equals(this.hostPort, portBinding.hostPort);
+  }
 
-    public void setHostIp(String hostIp) {
-        this.hostIp = hostIp;
+  @Override
+  public int hashCode() {
+    return Objects.hash(hostIp, hostPort);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class PortBinding {\n");
+    sb.append("    hostIp: ").append(toIndentedString(hostIp)).append("\n");
+    sb.append("    hostPort: ").append(toIndentedString(hostPort)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public PortBinding hostPort(String hostPort) {
-        this.hostPort = hostPort;
-        return this;
-    }
 
-    /**
-     * HostPort is the host port number
-     *
-     * @return hostPort
-     */
-    @javax.annotation.Nullable
-    public String getHostPort() {
-        return hostPort;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setHostPort(String hostPort) {
-        this.hostPort = hostPort;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("HostIp");
+    openapiFields.add("HostPort");
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PortBinding
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PortBinding.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PortBinding is not found in the empty JSON string", PortBinding.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PortBinding.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PortBinding` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        PortBinding portBinding = (PortBinding) o;
-        return Objects.equals(this.hostIp, portBinding.hostIp)
-                && Objects.equals(this.hostPort, portBinding.hostPort);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(hostIp, hostPort);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class PortBinding {\n");
-        sb.append("    hostIp: ").append(toIndentedString(hostIp)).append("\n");
-        sb.append("    hostPort: ").append(toIndentedString(hostPort)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("HostIp");
-        openapiFields.add("HostPort");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to PortBinding
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!PortBinding.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in PortBinding is not found in the empty"
-                                        + " JSON string",
-                                PortBinding.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!PortBinding.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `PortBinding` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("HostIp") != null && !jsonObj.get("HostIp").isJsonNull())
-                && !jsonObj.get("HostIp").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `HostIp` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("HostIp").toString()));
-        }
-        if ((jsonObj.get("HostPort") != null && !jsonObj.get("HostPort").isJsonNull())
-                && !jsonObj.get("HostPort").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `HostPort` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("HostPort").toString()));
-        }
+      if ((jsonObj.get("HostIp") != null && !jsonObj.get("HostIp").isJsonNull()) && !jsonObj.get("HostIp").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `HostIp` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HostIp").toString()));
+      }
+      if ((jsonObj.get("HostPort") != null && !jsonObj.get("HostPort").isJsonNull()) && !jsonObj.get("HostPort").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `HostPort` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HostPort").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PortBinding.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PortBinding' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PortBinding> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PortBinding.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PortBinding>() {
+           @Override
+           public void write(JsonWriter out, PortBinding value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PortBinding read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!PortBinding.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'PortBinding' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<PortBinding> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(PortBinding.class));
+  /**
+   * Create an instance of PortBinding given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PortBinding
+   * @throws IOException if the JSON string is invalid with respect to PortBinding
+   */
+  public static PortBinding fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PortBinding.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<PortBinding>() {
-                        @Override
-                        public void write(JsonWriter out, PortBinding value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public PortBinding read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of PortBinding given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PortBinding
-     * @throws IOException if the JSON string is invalid with respect to PortBinding
-     */
-    public static PortBinding fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, PortBinding.class);
-    }
-
-    /**
-     * Convert an instance of PortBinding to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of PortBinding to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

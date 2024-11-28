@@ -10,29 +10,47 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for Address */
+/**
+ * Model tests for Address
+ */
 public class AddressTest {
     private final Address model = new Address();
 
-    /** Model tests for Address */
+    /**
+     * Model tests for Address
+     */
     @Test
     public void testAddress() {
         // TODO: test Address
     }
 
-    /** Test the property 'addr' */
+    /**
+     * Test the property 'addr'
+     */
     @Test
     public void addrTest() {
         // TODO: test addr
     }
 
-    /** Test the property 'prefixLength' */
+    /**
+     * Test the property 'prefixLength'
+     */
     @Test
     public void prefixLengthTest() {
         // TODO: test prefixLength
     }
+
 }

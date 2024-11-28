@@ -10,226 +10,226 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** AuthReport describes the response for authentication check */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * AuthReport describes the response for authentication check
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class AuthReport {
-    public static final String SERIALIZED_NAME_IDENTITY_TOKEN = "IdentityToken";
+  public static final String SERIALIZED_NAME_IDENTITY_TOKEN = "IdentityToken";
+  @SerializedName(SERIALIZED_NAME_IDENTITY_TOKEN)
+  private String identityToken;
 
-    @SerializedName(SERIALIZED_NAME_IDENTITY_TOKEN)
-    private String identityToken;
+  public static final String SERIALIZED_NAME_STATUS = "Status";
+  @SerializedName(SERIALIZED_NAME_STATUS)
+  private String status;
 
-    public static final String SERIALIZED_NAME_STATUS = "Status";
+  public AuthReport() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_STATUS)
-    private String status;
+  public AuthReport identityToken(String identityToken) {
+    this.identityToken = identityToken;
+    return this;
+  }
 
-    public AuthReport() {}
+  /**
+   * Get identityToken
+   * @return identityToken
+   */
+  @javax.annotation.Nullable
+  public String getIdentityToken() {
+    return identityToken;
+  }
 
-    public AuthReport identityToken(String identityToken) {
-        this.identityToken = identityToken;
-        return this;
+  public void setIdentityToken(String identityToken) {
+    this.identityToken = identityToken;
+  }
+
+
+  public AuthReport status(String status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nullable
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Get identityToken
-     *
-     * @return identityToken
-     */
-    @javax.annotation.Nullable
-    public String getIdentityToken() {
-        return identityToken;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    AuthReport authReport = (AuthReport) o;
+    return Objects.equals(this.identityToken, authReport.identityToken) &&
+        Objects.equals(this.status, authReport.status);
+  }
 
-    public void setIdentityToken(String identityToken) {
-        this.identityToken = identityToken;
+  @Override
+  public int hashCode() {
+    return Objects.hash(identityToken, status);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class AuthReport {\n");
+    sb.append("    identityToken: ").append(toIndentedString(identityToken)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public AuthReport status(String status) {
-        this.status = status;
-        return this;
-    }
 
-    /**
-     * Get status
-     *
-     * @return status
-     */
-    @javax.annotation.Nullable
-    public String getStatus() {
-        return status;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("IdentityToken");
+    openapiFields.add("Status");
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to AuthReport
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!AuthReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in AuthReport is not found in the empty JSON string", AuthReport.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!AuthReport.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        AuthReport authReport = (AuthReport) o;
-        return Objects.equals(this.identityToken, authReport.identityToken)
-                && Objects.equals(this.status, authReport.status);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(identityToken, status);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class AuthReport {\n");
-        sb.append("    identityToken: ").append(toIndentedString(identityToken)).append("\n");
-        sb.append("    status: ").append(toIndentedString(status)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("IdentityToken");
-        openapiFields.add("Status");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to AuthReport
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!AuthReport.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in AuthReport is not found in the empty"
-                                        + " JSON string",
-                                AuthReport.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!AuthReport.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `AuthReport` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("IdentityToken") != null && !jsonObj.get("IdentityToken").isJsonNull())
-                && !jsonObj.get("IdentityToken").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `IdentityToken` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("IdentityToken").toString()));
-        }
-        if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull())
-                && !jsonObj.get("Status").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Status` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("Status").toString()));
-        }
+      if ((jsonObj.get("IdentityToken") != null && !jsonObj.get("IdentityToken").isJsonNull()) && !jsonObj.get("IdentityToken").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `IdentityToken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IdentityToken").toString()));
+      }
+      if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!AuthReport.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'AuthReport' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<AuthReport> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(AuthReport.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<AuthReport>() {
+           @Override
+           public void write(JsonWriter out, AuthReport value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public AuthReport read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!AuthReport.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'AuthReport' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<AuthReport> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(AuthReport.class));
+  /**
+   * Create an instance of AuthReport given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of AuthReport
+   * @throws IOException if the JSON string is invalid with respect to AuthReport
+   */
+  public static AuthReport fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, AuthReport.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<AuthReport>() {
-                        @Override
-                        public void write(JsonWriter out, AuthReport value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public AuthReport read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of AuthReport given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of AuthReport
-     * @throws IOException if the JSON string is invalid with respect to AuthReport
-     */
-    public static AuthReport fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, AuthReport.class);
-    }
-
-    /**
-     * Convert an instance of AuthReport to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of AuthReport to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

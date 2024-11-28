@@ -21,7 +21,9 @@ public class Podman {
         var httpClient = new OkHttpClient.Builder()
                 .socketFactory(new UnixDomainSocketFactory(socketFile))
                 .build();
-        this.api = new ApiClient(httpClient).setBasePath("http://localhost/v5.0.0");
+        this.api = new ApiClient()
+                .setHttpClient(httpClient)
+                .setBasePath("http://localhost/v5.0.0");
     }
 
     public void start(String yamlPath) throws ApiException, IOException {
@@ -36,14 +38,14 @@ public class Podman {
                 false,
                 false,
                 null,
-                true,
                 false,
                 true,
                 true,
+                true,
                 null,
                 null,
                 false,
-                null,
+                "podman-test",
                 true,
                 false,
                 yaml

@@ -10,47 +10,75 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for DeviceRequest */
+/**
+ * Model tests for DeviceRequest
+ */
 public class DeviceRequestTest {
     private final DeviceRequest model = new DeviceRequest();
 
-    /** Model tests for DeviceRequest */
+    /**
+     * Model tests for DeviceRequest
+     */
     @Test
     public void testDeviceRequest() {
         // TODO: test DeviceRequest
     }
 
-    /** Test the property 'capabilities' */
+    /**
+     * Test the property 'capabilities'
+     */
     @Test
     public void capabilitiesTest() {
         // TODO: test capabilities
     }
 
-    /** Test the property 'count' */
+    /**
+     * Test the property 'count'
+     */
     @Test
     public void countTest() {
         // TODO: test count
     }
 
-    /** Test the property 'deviceIDs' */
+    /**
+     * Test the property 'deviceIDs'
+     */
     @Test
     public void deviceIDsTest() {
         // TODO: test deviceIDs
     }
 
-    /** Test the property 'driver' */
+    /**
+     * Test the property 'driver'
+     */
     @Test
     public void driverTest() {
         // TODO: test driver
     }
 
-    /** Test the property 'options' */
+    /**
+     * Test the property 'options'
+     */
     @Test
     public void optionsTest() {
         // TODO: test options
     }
+
 }

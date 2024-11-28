@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
@@ -17,6 +18,8 @@ import io.github.alersrt.pod4j.openapi.model.ContainerCreateResponse;
 import io.github.alersrt.pod4j.openapi.model.ContainerStats;
 import io.github.alersrt.pod4j.openapi.model.ContainerTopOKBody;
 import io.github.alersrt.pod4j.openapi.model.ContainersPruneReportLibpod;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
+import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.HealthCheckResults;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerData;
 import io.github.alersrt.pod4j.openapi.model.LibpodContainersRmReport;
@@ -24,13 +27,17 @@ import io.github.alersrt.pod4j.openapi.model.ListContainer;
 import io.github.alersrt.pod4j.openapi.model.PlayKubeReport;
 import io.github.alersrt.pod4j.openapi.model.SpecGenerator;
 import io.github.alersrt.pod4j.openapi.model.UpdateEntities;
-import java.io.File;
-import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** API tests for ContainersApi */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for ContainersApi
+ */
 @Disabled
 public class ContainersApiTest {
 
@@ -39,39 +46,7 @@ public class ContainersApiTest {
     /**
      * Attach to a container
      *
-     * <p>Attach to a container to read its output or send it input. You can attach to the same
-     * container multiple times and you can reattach to containers that have been detached. ###
-     * Hijacking This endpoint hijacks the HTTP connection to transport &#x60;stdin&#x60;,
-     * &#x60;stdout&#x60;, and &#x60;stderr&#x60; on the same socket. This is the response from the
-     * service for an attach request: &#x60;&#x60;&#x60; HTTP/1.1 200 OK Content-Type:
-     * application/vnd.docker.raw-stream [STREAM] &#x60;&#x60;&#x60; After the headers and two new
-     * lines, the TCP connection can now be used for raw, bidirectional communication between the
-     * client and server. To inform potential proxies about connection hijacking, the client can
-     * also optionally send connection upgrade headers. For example, the client sends this request
-     * to upgrade the connection: &#x60;&#x60;&#x60; POST
-     * /v4.6.0/libpod/containers/16253994b7c4/attach?stream&#x3D;1&amp;stdout&#x3D;1 HTTP/1.1
-     * Upgrade: tcp Connection: Upgrade &#x60;&#x60;&#x60; The service will respond with a &#x60;101
-     * UPGRADED&#x60; response, and will similarly follow with the raw stream: &#x60;&#x60;&#x60;
-     * HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade
-     * Upgrade: tcp [STREAM] &#x60;&#x60;&#x60; ### Stream format When the TTY setting is disabled
-     * for the container, the HTTP Content-Type header is set to
-     * application/vnd.docker.multiplexed-stream (starting with v4.7.0, previously
-     * application/vnd.docker.raw-stream was always used) and the stream over the hijacked connected
-     * is multiplexed to separate out &#x60;stdout&#x60; and &#x60;stderr&#x60;. The stream consists
-     * of a series of frames, each containing a header and a payload. The header contains the
-     * information about the output stream type and the size of the payload. It is encoded on the
-     * first eight bytes like this: &#x60;&#x60;&#x60;go header :&#x3D; [8]byte{STREAM_TYPE, 0, 0,
-     * 0, SIZE1, SIZE2, SIZE3, SIZE4} &#x60;&#x60;&#x60; &#x60;STREAM_TYPE&#x60; can be: - 0:
-     * &#x60;stdin&#x60; (is written on &#x60;stdout&#x60;) - 1: &#x60;stdout&#x60; - 2:
-     * &#x60;stderr&#x60; &#x60;SIZE1, SIZE2, SIZE3, SIZE4&#x60; are the four bytes of the
-     * &#x60;uint32&#x60; size encoded as big endian. Following the header is the payload, which
-     * contains the specified number of bytes as written in the size. The simplest way to implement
-     * this protocol is the following: 1. Read 8 bytes. 2. Choose &#x60;stdout&#x60; or
-     * &#x60;stderr&#x60; depending on the first byte. 3. Extract the frame size from the last four
-     * bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1. ### Stream
-     * format when using a TTY When the TTY setting is enabled for the container, the stream is not
-     * multiplexed. The data exchanged over the hijacked connection is simply the raw data from the
-     * process PTY and client&#39;s &#x60;stdin&#x60;.
+     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  ### Hijacking  This endpoint hijacks the HTTP connection to transport &#x60;stdin&#x60;, &#x60;stdout&#x60;, and &#x60;stderr&#x60; on the same socket.  This is the response from the service for an attach request:  &#x60;&#x60;&#x60; HTTP/1.1 200 OK Content-Type: application/vnd.docker.raw-stream  [STREAM] &#x60;&#x60;&#x60;  After the headers and two new lines, the TCP connection can now be used for raw, bidirectional communication between the client and server.  To inform potential proxies about connection hijacking, the client can also optionally send connection upgrade headers.  For example, the client sends this request to upgrade the connection:  &#x60;&#x60;&#x60; POST /v4.6.0/libpod/containers/16253994b7c4/attach?stream&#x3D;1&amp;stdout&#x3D;1 HTTP/1.1 Upgrade: tcp Connection: Upgrade &#x60;&#x60;&#x60;  The service will respond with a &#x60;101 UPGRADED&#x60; response, and will similarly follow with the raw stream:  &#x60;&#x60;&#x60; HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade Upgrade: tcp  [STREAM] &#x60;&#x60;&#x60;  ### Stream format  When the TTY setting is disabled for the container, the HTTP Content-Type header is set to application/vnd.docker.multiplexed-stream (starting with v4.7.0, previously application/vnd.docker.raw-stream was always used) and the stream over the hijacked connected is multiplexed to separate out &#x60;stdout&#x60; and &#x60;stderr&#x60;. The stream consists of a series of frames, each containing a header and a payload.  The header contains the information about the output stream type and the size of the payload. It is encoded on the first eight bytes like this:  &#x60;&#x60;&#x60;go header :&#x3D; [8]byte{STREAM_TYPE, 0, 0, 0, SIZE1, SIZE2, SIZE3, SIZE4} &#x60;&#x60;&#x60;  &#x60;STREAM_TYPE&#x60; can be:  - 0: &#x60;stdin&#x60; (is written on &#x60;stdout&#x60;) - 1: &#x60;stdout&#x60; - 2: &#x60;stderr&#x60;  &#x60;SIZE1, SIZE2, SIZE3, SIZE4&#x60; are the four bytes of the &#x60;uint32&#x60; size encoded as big endian.  Following the header is the payload, which contains the specified number of bytes as written in the size.  The simplest way to implement this protocol is the following:  1. Read 8 bytes. 2. Choose &#x60;stdout&#x60; or &#x60;stderr&#x60; depending on the first byte. 3. Extract the frame size from the last four bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1.  ### Stream format when using a TTY  When the TTY setting is enabled for the container, the stream is not multiplexed. The data exchanged over the hijacked connection is simply the raw data from the process PTY and client&#39;s &#x60;stdin&#x60;. 
      *
      * @throws ApiException if the Api call fails
      */
@@ -91,8 +66,7 @@ public class ContainersApiTest {
     /**
      * Report on changes to container&#39;s filesystem; adds, deletes or modifications.
      *
-     * <p>Returns which files in a container&#39;s filesystem have been added, deleted, or modified.
-     * The Kind of modification can be one of: 0: Modified 1: Added 2: Deleted
+     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
      *
      * @throws ApiException if the Api call fails
      */
@@ -123,18 +97,7 @@ public class ContainersApiTest {
         Boolean withPrevious = null;
         Boolean fileLocks = null;
         Boolean printStats = null;
-        api.containerCheckpointLibpod(
-                name,
-                keep,
-                leaveRunning,
-                tcpEstablished,
-                export,
-                ignoreRootFS,
-                ignoreVolumes,
-                preCheckpoint,
-                withPrevious,
-                fileLocks,
-                printStats);
+        api.containerCheckpointLibpod(name, keep, leaveRunning, tcpEstablished, export, ignoreRootFS, ignoreVolumes, preCheckpoint, withPrevious, fileLocks, printStats);
         // TODO: test validations
     }
 
@@ -153,7 +116,7 @@ public class ContainersApiTest {
     /**
      * Delete container
      *
-     * <p>Delete container
+     * Delete container
      *
      * @throws ApiException if the Api call fails
      */
@@ -165,15 +128,14 @@ public class ContainersApiTest {
         Boolean ignore = null;
         Integer timeout = null;
         Boolean v = null;
-        List<LibpodContainersRmReport> response =
-                api.containerDeleteLibpod(name, depend, force, ignore, timeout, v);
+        List<LibpodContainersRmReport> response = api.containerDeleteLibpod(name, depend, force, ignore, timeout, v);
         // TODO: test validations
     }
 
     /**
      * Check if container exists
      *
-     * <p>Quick way to determine if a container exists by name or ID
+     * Quick way to determine if a container exists by name or ID
      *
      * @throws ApiException if the Api call fails
      */
@@ -187,7 +149,7 @@ public class ContainersApiTest {
     /**
      * Export a container
      *
-     * <p>Export the contents of a container as a tarball.
+     * Export the contents of a container as a tarball.
      *
      * @throws ApiException if the Api call fails
      */
@@ -201,7 +163,7 @@ public class ContainersApiTest {
     /**
      * Run a container&#39;s healthcheck
      *
-     * <p>Execute the defined healthcheck and return information about the results
+     * Execute the defined healthcheck and return information about the results
      *
      * @throws ApiException if the Api call fails
      */
@@ -215,8 +177,7 @@ public class ContainersApiTest {
     /**
      * Initialize a container
      *
-     * <p>Performs all tasks necessary for initializing the container but does not start the
-     * container.
+     * Performs all tasks necessary for initializing the container but does not start the container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -230,7 +191,7 @@ public class ContainersApiTest {
     /**
      * Inspect container
      *
-     * <p>Return low-level information about a container.
+     * Return low-level information about a container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -245,7 +206,7 @@ public class ContainersApiTest {
     /**
      * Kill container
      *
-     * <p>send a signal to a container, defaults to killing the container
+     * send a signal to a container, defaults to killing the container
      *
      * @throws ApiException if the Api call fails
      */
@@ -260,7 +221,7 @@ public class ContainersApiTest {
     /**
      * List containers
      *
-     * <p>Returns a list of containers
+     * Returns a list of containers
      *
      * @throws ApiException if the Api call fails
      */
@@ -273,16 +234,14 @@ public class ContainersApiTest {
         Boolean size = null;
         Boolean sync = null;
         String filters = null;
-        List<ListContainer> response =
-                api.containerListLibpod(all, limit, namespace, pod, size, sync, filters);
+        List<ListContainer> response = api.containerListLibpod(all, limit, namespace, pod, size, sync, filters);
         // TODO: test validations
     }
 
     /**
      * Get container logs
      *
-     * <p>Get stdout and stderr logs from a container. The stream format is the same as described in
-     * the attach endpoint.
+     * Get stdout and stderr logs from a container.  The stream format is the same as described in the attach endpoint. 
      *
      * @throws ApiException if the Api call fails
      */
@@ -303,7 +262,7 @@ public class ContainersApiTest {
     /**
      * Mount a container
      *
-     * <p>Mount a container to the filesystem
+     * Mount a container to the filesystem
      *
      * @throws ApiException if the Api call fails
      */
@@ -317,7 +276,7 @@ public class ContainersApiTest {
     /**
      * Pause a container
      *
-     * <p>Use the cgroups freezer to suspend all processes in a container.
+     * Use the cgroups freezer to suspend all processes in a container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -331,7 +290,7 @@ public class ContainersApiTest {
     /**
      * Delete stopped containers
      *
-     * <p>Remove containers not in use
+     * Remove containers not in use
      *
      * @throws ApiException if the Api call fails
      */
@@ -345,7 +304,7 @@ public class ContainersApiTest {
     /**
      * Rename an existing container
      *
-     * <p>Change the name of an existing container.
+     * Change the name of an existing container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -360,7 +319,7 @@ public class ContainersApiTest {
     /**
      * Resize a container&#39;s TTY
      *
-     * <p>Resize the terminal attached to a container (for use with Attach).
+     * Resize the terminal attached to a container (for use with Attach).
      *
      * @throws ApiException if the Api call fails
      */
@@ -389,7 +348,7 @@ public class ContainersApiTest {
     /**
      * Restore a container
      *
-     * <p>Restore a container from a checkpoint.
+     * Restore a container from a checkpoint.
      *
      * @throws ApiException if the Api call fails
      */
@@ -407,26 +366,14 @@ public class ContainersApiTest {
         Boolean fileLocks = null;
         Boolean printStats = null;
         String pod = null;
-        api.containerRestoreLibpod(
-                name,
-                name2,
-                keep,
-                tcpEstablished,
-                _import,
-                ignoreRootFS,
-                ignoreVolumes,
-                ignoreStaticIP,
-                ignoreStaticMAC,
-                fileLocks,
-                printStats,
-                pod);
+        api.containerRestoreLibpod(name, name2, keep, tcpEstablished, _import, ignoreRootFS, ignoreVolumes, ignoreStaticIP, ignoreStaticMAC, fileLocks, printStats, pod);
         // TODO: test validations
     }
 
     /**
      * Show mounted containers
      *
-     * <p>Lists all mounted containers mount points
+     * Lists all mounted containers mount points
      *
      * @throws ApiException if the Api call fails
      */
@@ -452,8 +399,7 @@ public class ContainersApiTest {
     /**
      * Get stats for a container
      *
-     * <p>DEPRECATED. This endpoint will be removed with the next major release. Please use
-     * /libpod/containers/stats instead.
+     * DEPRECATED. This endpoint will be removed with the next major release. Please use /libpod/containers/stats instead.
      *
      * @throws ApiException if the Api call fails
      */
@@ -482,7 +428,7 @@ public class ContainersApiTest {
     /**
      * List processes
      *
-     * <p>List processes running inside a container
+     * List processes running inside a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -499,7 +445,7 @@ public class ContainersApiTest {
     /**
      * Unmount a container
      *
-     * <p>Unmount a container from the filesystem
+     * Unmount a container from the filesystem
      *
      * @throws ApiException if the Api call fails
      */
@@ -525,7 +471,7 @@ public class ContainersApiTest {
     /**
      * Update an existing containers cgroup configuration
      *
-     * <p>Update an existing containers cgroup configuration.
+     * Update an existing containers cgroup configuration.
      *
      * @throws ApiException if the Api call fails
      */
@@ -542,7 +488,7 @@ public class ContainersApiTest {
     /**
      * Wait on a container
      *
-     * <p>Wait on a container to meet a given condition
+     * Wait on a container to meet a given condition
      *
      * @throws ApiException if the Api call fails
      */
@@ -558,8 +504,7 @@ public class ContainersApiTest {
     /**
      * Get stats for one or more containers
      *
-     * <p>Return a live stream of resource usage statistics of one or more container. If no
-     * container is specified, the statistics of all containers are returned.
+     * Return a live stream of resource usage statistics of one or more container. If no container is specified, the statistics of all containers are returned.
      *
      * @throws ApiException if the Api call fails
      */
@@ -575,7 +520,7 @@ public class ContainersApiTest {
     /**
      * Generate a Kubernetes YAML file.
      *
-     * <p>Generate Kubernetes YAML based on a pod or container.
+     * Generate Kubernetes YAML based on a pod or container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -594,7 +539,7 @@ public class ContainersApiTest {
     /**
      * Generate Systemd Units
      *
-     * <p>Generate Systemd Units based on a pod or container.
+     * Generate Systemd Units based on a pod or container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -615,30 +560,14 @@ public class ContainersApiTest {
         List<String> after = null;
         List<String> requires = null;
         List<String> additionalEnvVariables = null;
-        Map<String, String> response =
-                api.generateSystemdLibpod(
-                        name,
-                        useName,
-                        _new,
-                        noHeader,
-                        startTimeout,
-                        stopTimeout,
-                        restartPolicy,
-                        containerPrefix,
-                        podPrefix,
-                        separator,
-                        restartSec,
-                        wants,
-                        after,
-                        requires,
-                        additionalEnvVariables);
+        Map<String, String> response = api.generateSystemdLibpod(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
         // TODO: test validations
     }
 
     /**
      * Commit
      *
-     * <p>Create a new image from a container
+     * Create a new image from a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -654,15 +583,14 @@ public class ContainersApiTest {
         String repo = null;
         Boolean stream = null;
         String tag = null;
-        api.imageCommitLibpod(
-                container, author, changes, comment, format, pause, squash, repo, stream, tag);
+        api.imageCommitLibpod(container, author, changes, comment, format, pause, squash, repo, stream, tag);
         // TODO: test validations
     }
 
     /**
      * Apply a podman workload or Kubernetes YAML file.
      *
-     * <p>Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
+     * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
      *
      * @throws ApiException if the Api call fails
      */
@@ -674,15 +602,14 @@ public class ContainersApiTest {
         Boolean service = null;
         String _file = null;
         String request = null;
-        File response =
-                api.kubeApplyLibpod(caCertFile, kubeConfig, namespace, service, _file, request);
+        File response = api.kubeApplyLibpod(caCertFile, kubeConfig, namespace, service, _file, request);
         // TODO: test validations
     }
 
     /**
      * Remove resources created from kube play
      *
-     * <p>Tears down pods, secrets, and volumes defined in a YAML file
+     * Tears down pods, secrets, and volumes defined in a YAML file
      *
      * @throws ApiException if the Api call fails
      */
@@ -696,17 +623,7 @@ public class ContainersApiTest {
     /**
      * Play a Kubernetes YAML file.
      *
-     * <p>Create and run pods based on a Kubernetes YAML file. ### Content-Type Then endpoint
-     * support two Content-Type - &#x60;plain/text&#x60; for yaml format -
-     * &#x60;application/x-tar&#x60; for sending context(s) required for building images #### Tar
-     * format The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be
-     * used. If the file format requires context to build an image, it uses the image name and check
-     * for corresponding folder. For example, the client sends a tar file with the following
-     * structure: &#x60;&#x60;&#x60; └── content.tar ├── play.yaml └── foobar/ └── Containerfile
-     * &#x60;&#x60;&#x60; The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image
-     * means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind:
-     * Pod metadata: name: demo-build-remote spec: containers: - name: container image: foobar
-     * &#x60;&#x60;&#x60;
+     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
      *
      * @throws ApiException if the Api call fails
      */
@@ -731,34 +648,14 @@ public class ContainersApiTest {
         Boolean wait = null;
         Boolean build = null;
         String request = null;
-        PlayKubeReport response =
-                api.playKubeLibpod(
-                        contentType,
-                        annotations,
-                        logDriver,
-                        logOptions,
-                        network,
-                        noHosts,
-                        noTrunc,
-                        publishPorts,
-                        publishAllPorts,
-                        replace,
-                        serviceContainer,
-                        start,
-                        staticIPs,
-                        staticMACs,
-                        tlsVerify,
-                        userns,
-                        wait,
-                        build,
-                        request);
+        PlayKubeReport response = api.playKubeLibpod(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
         // TODO: test validations
     }
 
     /**
      * Copy files into a container
      *
-     * <p>Copy a tar archive of files into a container
+     * Copy a tar archive of files into a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -771,4 +668,5 @@ public class ContainersApiTest {
         api.putContainerArchiveLibpod(name, path, pause, request);
         // TODO: test validations
     }
+
 }

@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
@@ -20,13 +21,20 @@ import io.github.alersrt.pod4j.openapi.model.ContainerTopOKBody;
 import io.github.alersrt.pod4j.openapi.model.ContainerWait200Response;
 import io.github.alersrt.pod4j.openapi.model.ContainersPruneReport;
 import io.github.alersrt.pod4j.openapi.model.CreateContainerConfig;
-import io.github.alersrt.pod4j.openapi.model.UpdateConfig;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import java.io.File;
-import java.util.List;
+import io.github.alersrt.pod4j.openapi.model.UpdateConfig;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** API tests for ContainersCompatApi */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for ContainersCompatApi
+ */
 @Disabled
 public class ContainersCompatApiTest {
 
@@ -35,7 +43,7 @@ public class ContainersCompatApiTest {
     /**
      * Get files from a container
      *
-     * <p>Get a tar archive of files from a container
+     * Get a tar archive of files from a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -50,7 +58,7 @@ public class ContainersCompatApiTest {
     /**
      * Copy files from a container
      *
-     * <p>Copy a tar archive of files from a container
+     * Copy a tar archive of files from a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -66,10 +74,7 @@ public class ContainersCompatApiTest {
     /**
      * Attach to a container
      *
-     * <p>Attach to a container to read its output or send it input. You can attach to the same
-     * container multiple times and you can reattach to containers that have been detached. It uses
-     * the same stream format as docker, see the libpod attach endpoint for a description of the
-     * format.
+     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  It uses the same stream format as docker, see the libpod attach endpoint for a description of the format. 
      *
      * @throws ApiException if the Api call fails
      */
@@ -89,8 +94,7 @@ public class ContainersCompatApiTest {
     /**
      * Report on changes to container&#39;s filesystem; adds, deletes or modifications.
      *
-     * <p>Returns which files in a container&#39;s filesystem have been added, deleted, or modified.
-     * The Kind of modification can be one of: 0: Modified 1: Added 2: Deleted
+     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
      *
      * @throws ApiException if the Api call fails
      */
@@ -134,7 +138,7 @@ public class ContainersCompatApiTest {
     /**
      * Export a container
      *
-     * <p>Export the contents of a container as a tarball.
+     * Export the contents of a container as a tarball.
      *
      * @throws ApiException if the Api call fails
      */
@@ -148,7 +152,7 @@ public class ContainersCompatApiTest {
     /**
      * Inspect container
      *
-     * <p>Return low-level information about a container.
+     * Return low-level information about a container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -163,7 +167,7 @@ public class ContainersCompatApiTest {
     /**
      * Kill container
      *
-     * <p>Signal to send to the container as an integer or string (e.g. SIGINT)
+     * Signal to send to the container as an integer or string (e.g. SIGINT)
      *
      * @throws ApiException if the Api call fails
      */
@@ -179,7 +183,7 @@ public class ContainersCompatApiTest {
     /**
      * List containers
      *
-     * <p>Returns a list of containers
+     * Returns a list of containers
      *
      * @throws ApiException if the Api call fails
      */
@@ -197,7 +201,7 @@ public class ContainersCompatApiTest {
     /**
      * Get container logs
      *
-     * <p>Get stdout and stderr logs from a container.
+     * Get stdout and stderr logs from a container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -218,7 +222,7 @@ public class ContainersCompatApiTest {
     /**
      * Pause container
      *
-     * <p>Use the cgroups freezer to suspend all processes in a container.
+     * Use the cgroups freezer to suspend all processes in a container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -232,7 +236,7 @@ public class ContainersCompatApiTest {
     /**
      * Delete stopped containers
      *
-     * <p>Remove containers not in use
+     * Remove containers not in use
      *
      * @throws ApiException if the Api call fails
      */
@@ -246,7 +250,7 @@ public class ContainersCompatApiTest {
     /**
      * Rename an existing container
      *
-     * <p>Change the name of an existing container.
+     * Change the name of an existing container.
      *
      * @throws ApiException if the Api call fails
      */
@@ -261,7 +265,7 @@ public class ContainersCompatApiTest {
     /**
      * Resize a container&#39;s TTY
      *
-     * <p>Resize the terminal attached to a container (for use with Attach).
+     * Resize the terminal attached to a container (for use with Attach).
      *
      * @throws ApiException if the Api call fails
      */
@@ -304,7 +308,7 @@ public class ContainersCompatApiTest {
     /**
      * Get stats for a container
      *
-     * <p>This returns a live stream of a container’s resource usage statistics.
+     * This returns a live stream of a container’s resource usage statistics.
      *
      * @throws ApiException if the Api call fails
      */
@@ -320,7 +324,7 @@ public class ContainersCompatApiTest {
     /**
      * Stop a container
      *
-     * <p>Stop a container
+     * Stop a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -348,7 +352,7 @@ public class ContainersCompatApiTest {
     /**
      * Unpause container
      *
-     * <p>Resume a paused container
+     * Resume a paused container
      *
      * @throws ApiException if the Api call fails
      */
@@ -362,7 +366,7 @@ public class ContainersCompatApiTest {
     /**
      * Update configuration of an existing container
      *
-     * <p>Change configuration settings for an existing container without requiring recreation.
+     * Change configuration settings for an existing container without requiring recreation.
      *
      * @throws ApiException if the Api call fails
      */
@@ -377,7 +381,7 @@ public class ContainersCompatApiTest {
     /**
      * Wait on a container
      *
-     * <p>Block until a container stops or given condition is met.
+     * Block until a container stops or given condition is met.
      *
      * @throws ApiException if the Api call fails
      */
@@ -393,7 +397,7 @@ public class ContainersCompatApiTest {
     /**
      * New Image
      *
-     * <p>Create a new image from a container
+     * Create a new image from a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -414,7 +418,7 @@ public class ContainersCompatApiTest {
     /**
      * Put files into a container
      *
-     * <p>Put a tar archive of files into a container
+     * Put a tar archive of files into a container
      *
      * @throws ApiException if the Api call fails
      */
@@ -428,4 +432,5 @@ public class ContainersCompatApiTest {
         api.putContainerArchive(name, path, noOverwriteDirNonDir, copyUIDGID, request);
         // TODO: test validations
     }
+
 }

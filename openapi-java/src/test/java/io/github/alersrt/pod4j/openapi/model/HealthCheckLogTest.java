@@ -10,41 +10,63 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for HealthCheckLog */
+/**
+ * Model tests for HealthCheckLog
+ */
 public class HealthCheckLogTest {
     private final HealthCheckLog model = new HealthCheckLog();
 
-    /** Model tests for HealthCheckLog */
+    /**
+     * Model tests for HealthCheckLog
+     */
     @Test
     public void testHealthCheckLog() {
         // TODO: test HealthCheckLog
     }
 
-    /** Test the property 'end' */
+    /**
+     * Test the property 'end'
+     */
     @Test
     public void endTest() {
         // TODO: test end
     }
 
-    /** Test the property 'exitCode' */
+    /**
+     * Test the property 'exitCode'
+     */
     @Test
     public void exitCodeTest() {
         // TODO: test exitCode
     }
 
-    /** Test the property 'output' */
+    /**
+     * Test the property 'output'
+     */
     @Test
     public void outputTest() {
         // TODO: test output
     }
 
-    /** Test the property 'start' */
+    /**
+     * Test the property 'start'
+     */
     @Test
     public void startTest() {
         // TODO: test start
     }
+
 }

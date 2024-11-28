@@ -10,41 +10,65 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ManifestModifyReport */
+/**
+ * Model tests for ManifestModifyReport
+ */
 public class ManifestModifyReportTest {
     private final ManifestModifyReport model = new ManifestModifyReport();
 
-    /** Model tests for ManifestModifyReport */
+    /**
+     * Model tests for ManifestModifyReport
+     */
     @Test
     public void testManifestModifyReport() {
         // TODO: test ManifestModifyReport
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'errors' */
+    /**
+     * Test the property 'errors'
+     */
     @Test
     public void errorsTest() {
         // TODO: test errors
     }
 
-    /** Test the property 'files' */
+    /**
+     * Test the property 'files'
+     */
     @Test
     public void filesTest() {
         // TODO: test files
     }
 
-    /** Test the property 'images' */
+    /**
+     * Test the property 'images'
+     */
     @Test
     public void imagesTest() {
         // TODO: test images
     }
+
 }

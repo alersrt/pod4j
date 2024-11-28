@@ -10,41 +10,65 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for LibpodImagesPullReport */
+/**
+ * Model tests for LibpodImagesPullReport
+ */
 public class LibpodImagesPullReportTest {
     private final LibpodImagesPullReport model = new LibpodImagesPullReport();
 
-    /** Model tests for LibpodImagesPullReport */
+    /**
+     * Model tests for LibpodImagesPullReport
+     */
     @Test
     public void testLibpodImagesPullReport() {
         // TODO: test LibpodImagesPullReport
     }
 
-    /** Test the property 'error' */
+    /**
+     * Test the property 'error'
+     */
     @Test
     public void errorTest() {
         // TODO: test error
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'images' */
+    /**
+     * Test the property 'images'
+     */
     @Test
     public void imagesTest() {
         // TODO: test images
     }
 
-    /** Test the property 'stream' */
+    /**
+     * Test the property 'stream'
+     */
     @Test
     public void streamTest() {
         // TODO: test stream
     }
+
 }

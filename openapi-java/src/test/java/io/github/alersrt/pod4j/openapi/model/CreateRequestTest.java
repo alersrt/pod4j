@@ -10,95 +10,139 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.ConfigReference;
+import io.github.alersrt.pod4j.openapi.model.IPAM;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for CreateRequest */
+/**
+ * Model tests for CreateRequest
+ */
 public class CreateRequestTest {
     private final CreateRequest model = new CreateRequest();
 
-    /** Model tests for CreateRequest */
+    /**
+     * Model tests for CreateRequest
+     */
     @Test
     public void testCreateRequest() {
         // TODO: test CreateRequest
     }
 
-    /** Test the property 'attachable' */
+    /**
+     * Test the property 'attachable'
+     */
     @Test
     public void attachableTest() {
         // TODO: test attachable
     }
 
-    /** Test the property 'checkDuplicate' */
+    /**
+     * Test the property 'checkDuplicate'
+     */
     @Test
     public void checkDuplicateTest() {
         // TODO: test checkDuplicate
     }
 
-    /** Test the property 'configFrom' */
+    /**
+     * Test the property 'configFrom'
+     */
     @Test
     public void configFromTest() {
         // TODO: test configFrom
     }
 
-    /** Test the property 'configOnly' */
+    /**
+     * Test the property 'configOnly'
+     */
     @Test
     public void configOnlyTest() {
         // TODO: test configOnly
     }
 
-    /** Test the property 'driver' */
+    /**
+     * Test the property 'driver'
+     */
     @Test
     public void driverTest() {
         // TODO: test driver
     }
 
-    /** Test the property 'enableIPv6' */
+    /**
+     * Test the property 'enableIPv6'
+     */
     @Test
     public void enableIPv6Test() {
         // TODO: test enableIPv6
     }
 
-    /** Test the property 'ipam' */
+    /**
+     * Test the property 'ipam'
+     */
     @Test
     public void ipamTest() {
         // TODO: test ipam
     }
 
-    /** Test the property 'ingress' */
+    /**
+     * Test the property 'ingress'
+     */
     @Test
     public void ingressTest() {
         // TODO: test ingress
     }
 
-    /** Test the property 'internal' */
+    /**
+     * Test the property 'internal'
+     */
     @Test
     public void internalTest() {
         // TODO: test internal
     }
 
-    /** Test the property 'labels' */
+    /**
+     * Test the property 'labels'
+     */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'options' */
+    /**
+     * Test the property 'options'
+     */
     @Test
     public void optionsTest() {
         // TODO: test options
     }
 
-    /** Test the property 'scope' */
+    /**
+     * Test the property 'scope'
+     */
     @Test
     public void scopeTest() {
         // TODO: test scope
     }
+
 }

@@ -10,218 +10,223 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** ThrottleDevice is a structure that holds device:rate_per_second pair */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * ThrottleDevice is a structure that holds device:rate_per_second pair
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ThrottleDevice {
-    public static final String SERIALIZED_NAME_PATH = "Path";
+  public static final String SERIALIZED_NAME_PATH = "Path";
+  @SerializedName(SERIALIZED_NAME_PATH)
+  private String path;
 
-    @SerializedName(SERIALIZED_NAME_PATH)
-    private String path;
+  public static final String SERIALIZED_NAME_RATE = "Rate";
+  @SerializedName(SERIALIZED_NAME_RATE)
+  private Integer rate;
 
-    public static final String SERIALIZED_NAME_RATE = "Rate";
+  public ThrottleDevice() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_RATE)
-    private Integer rate;
+  public ThrottleDevice path(String path) {
+    this.path = path;
+    return this;
+  }
 
-    public ThrottleDevice() {}
+  /**
+   * Get path
+   * @return path
+   */
+  @javax.annotation.Nullable
+  public String getPath() {
+    return path;
+  }
 
-    public ThrottleDevice path(String path) {
-        this.path = path;
-        return this;
+  public void setPath(String path) {
+    this.path = path;
+  }
+
+
+  public ThrottleDevice rate(Integer rate) {
+    this.rate = rate;
+    return this;
+  }
+
+  /**
+   * Get rate
+   * @return rate
+   */
+  @javax.annotation.Nullable
+  public Integer getRate() {
+    return rate;
+  }
+
+  public void setRate(Integer rate) {
+    this.rate = rate;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Get path
-     *
-     * @return path
-     */
-    @javax.annotation.Nullable
-    public String getPath() {
-        return path;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    ThrottleDevice throttleDevice = (ThrottleDevice) o;
+    return Objects.equals(this.path, throttleDevice.path) &&
+        Objects.equals(this.rate, throttleDevice.rate);
+  }
 
-    public void setPath(String path) {
-        this.path = path;
+  @Override
+  public int hashCode() {
+    return Objects.hash(path, rate);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ThrottleDevice {\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public ThrottleDevice rate(Integer rate) {
-        this.rate = rate;
-        return this;
-    }
 
-    /**
-     * Get rate
-     *
-     * @return rate
-     */
-    @javax.annotation.Nullable
-    public Integer getRate() {
-        return rate;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setRate(Integer rate) {
-        this.rate = rate;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Path");
+    openapiFields.add("Rate");
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ThrottleDevice
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ThrottleDevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ThrottleDevice is not found in the empty JSON string", ThrottleDevice.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ThrottleDevice.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ThrottleDevice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        ThrottleDevice throttleDevice = (ThrottleDevice) o;
-        return Objects.equals(this.path, throttleDevice.path)
-                && Objects.equals(this.rate, throttleDevice.rate);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(path, rate);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class ThrottleDevice {\n");
-        sb.append("    path: ").append(toIndentedString(path)).append("\n");
-        sb.append("    rate: ").append(toIndentedString(rate)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Path");
-        openapiFields.add("Rate");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ThrottleDevice
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ThrottleDevice.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in ThrottleDevice is not found in the"
-                                        + " empty JSON string",
-                                ThrottleDevice.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ThrottleDevice.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ThrottleDevice` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("Path") != null && !jsonObj.get("Path").isJsonNull())
-                && !jsonObj.get("Path").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Path` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("Path").toString()));
-        }
+      if ((jsonObj.get("Path") != null && !jsonObj.get("Path").isJsonNull()) && !jsonObj.get("Path").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Path").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ThrottleDevice.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ThrottleDevice' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ThrottleDevice> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ThrottleDevice.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ThrottleDevice>() {
+           @Override
+           public void write(JsonWriter out, ThrottleDevice value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ThrottleDevice read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!ThrottleDevice.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'ThrottleDevice' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ThrottleDevice> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(ThrottleDevice.class));
+  /**
+   * Create an instance of ThrottleDevice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ThrottleDevice
+   * @throws IOException if the JSON string is invalid with respect to ThrottleDevice
+   */
+  public static ThrottleDevice fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ThrottleDevice.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<ThrottleDevice>() {
-                        @Override
-                        public void write(JsonWriter out, ThrottleDevice value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public ThrottleDevice read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of ThrottleDevice given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ThrottleDevice
-     * @throws IOException if the JSON string is invalid with respect to ThrottleDevice
-     */
-    public static ThrottleDevice fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, ThrottleDevice.class);
-    }
-
-    /**
-     * Convert an instance of ThrottleDevice to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of ThrottleDevice to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

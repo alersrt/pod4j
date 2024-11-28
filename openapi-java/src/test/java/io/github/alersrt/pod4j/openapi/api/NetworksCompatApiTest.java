@@ -10,20 +10,28 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.model.ConnectOptions;
 import io.github.alersrt.pod4j.openapi.model.CreateRequest;
 import io.github.alersrt.pod4j.openapi.model.DisconnectOptions;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.Inspect;
 import io.github.alersrt.pod4j.openapi.model.NetworkCreate201Response;
 import io.github.alersrt.pod4j.openapi.model.NetworkPrune200Response;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** API tests for NetworksCompatApi */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for NetworksCompatApi
+ */
 @Disabled
 public class NetworksCompatApiTest {
 
@@ -32,7 +40,7 @@ public class NetworksCompatApiTest {
     /**
      * Connect container to network
      *
-     * <p>Connect a container to a network
+     * Connect a container to a network
      *
      * @throws ApiException if the Api call fails
      */
@@ -47,7 +55,7 @@ public class NetworksCompatApiTest {
     /**
      * Create network
      *
-     * <p>Create a network configuration
+     * Create a network configuration
      *
      * @throws ApiException if the Api call fails
      */
@@ -61,7 +69,7 @@ public class NetworksCompatApiTest {
     /**
      * Remove a network
      *
-     * <p>Remove a network
+     * Remove a network
      *
      * @throws ApiException if the Api call fails
      */
@@ -75,7 +83,7 @@ public class NetworksCompatApiTest {
     /**
      * Disconnect container from network
      *
-     * <p>Disconnect a container from a network
+     * Disconnect a container from a network
      *
      * @throws ApiException if the Api call fails
      */
@@ -90,7 +98,7 @@ public class NetworksCompatApiTest {
     /**
      * Inspect a network
      *
-     * <p>Display low level configuration network
+     * Display low level configuration network
      *
      * @throws ApiException if the Api call fails
      */
@@ -106,7 +114,7 @@ public class NetworksCompatApiTest {
     /**
      * List networks
      *
-     * <p>Display summary of network configurations
+     * Display summary of network configurations
      *
      * @throws ApiException if the Api call fails
      */
@@ -120,7 +128,7 @@ public class NetworksCompatApiTest {
     /**
      * Delete unused networks
      *
-     * <p>Remove networks that do not have containers
+     * Remove networks that do not have containers
      *
      * @throws ApiException if the Api call fails
      */
@@ -130,4 +138,5 @@ public class NetworksCompatApiTest {
         NetworkPrune200Response response = api.networkPrune(filters);
         // TODO: test validations
     }
+
 }

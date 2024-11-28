@@ -10,41 +10,63 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ImageVolume */
+/**
+ * Model tests for ImageVolume
+ */
 public class ImageVolumeTest {
     private final ImageVolume model = new ImageVolume();
 
-    /** Model tests for ImageVolume */
+    /**
+     * Model tests for ImageVolume
+     */
     @Test
     public void testImageVolume() {
         // TODO: test ImageVolume
     }
 
-    /** Test the property 'destination' */
+    /**
+     * Test the property 'destination'
+     */
     @Test
     public void destinationTest() {
         // TODO: test destination
     }
 
-    /** Test the property 'readWrite' */
+    /**
+     * Test the property 'readWrite'
+     */
     @Test
     public void readWriteTest() {
         // TODO: test readWrite
     }
 
-    /** Test the property 'source' */
+    /**
+     * Test the property 'source'
+     */
     @Test
     public void sourceTest() {
         // TODO: test source
     }
 
-    /** Test the property 'subPath' */
+    /**
+     * Test the property 'subPath'
+     */
     @Test
     public void subPathTest() {
         // TODO: test subPath
     }
+
 }

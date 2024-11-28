@@ -10,198 +10,197 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** SecretCreateLibpod201Response */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * SecretCreateLibpod201Response
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SecretCreateLibpod201Response {
-    public static final String SERIALIZED_NAME_I_D = "ID";
+  public static final String SERIALIZED_NAME_I_D = "ID";
+  @SerializedName(SERIALIZED_NAME_I_D)
+  private String ID;
 
-    @SerializedName(SERIALIZED_NAME_I_D)
-    private String ID;
+  public SecretCreateLibpod201Response() {
+  }
 
-    public SecretCreateLibpod201Response() {}
+  public SecretCreateLibpod201Response ID(String ID) {
+    this.ID = ID;
+    return this;
+  }
 
-    public SecretCreateLibpod201Response ID(String ID) {
-        this.ID = ID;
-        return this;
+  /**
+   * Get ID
+   * @return ID
+   */
+  @javax.annotation.Nullable
+  public String getID() {
+    return ID;
+  }
+
+  public void setID(String ID) {
+    this.ID = ID;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Get ID
-     *
-     * @return ID
-     */
-    @javax.annotation.Nullable
-    public String getID() {
-        return ID;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    SecretCreateLibpod201Response secretCreateLibpod201Response = (SecretCreateLibpod201Response) o;
+    return Objects.equals(this.ID, secretCreateLibpod201Response.ID);
+  }
 
-    public void setID(String ID) {
-        this.ID = ID;
+  @Override
+  public int hashCode() {
+    return Objects.hash(ID);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class SecretCreateLibpod201Response {\n");
+    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("ID");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SecretCreateLibpod201Response
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SecretCreateLibpod201Response.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SecretCreateLibpod201Response is not found in the empty JSON string", SecretCreateLibpod201Response.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SecretCreateLibpod201Response.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecretCreateLibpod201Response` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        SecretCreateLibpod201Response secretCreateLibpod201Response =
-                (SecretCreateLibpod201Response) o;
-        return Objects.equals(this.ID, secretCreateLibpod201Response.ID);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class SecretCreateLibpod201Response {\n");
-        sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("ID");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to
-     *     SecretCreateLibpod201Response
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!SecretCreateLibpod201Response.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in SecretCreateLibpod201Response is not"
-                                        + " found in the empty JSON string",
-                                SecretCreateLibpod201Response.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SecretCreateLibpod201Response.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SecretCreateLibpod201Response` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull())
-                && !jsonObj.get("ID").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ID` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("ID").toString()));
-        }
+      if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SecretCreateLibpod201Response.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SecretCreateLibpod201Response' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SecretCreateLibpod201Response> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SecretCreateLibpod201Response.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SecretCreateLibpod201Response>() {
+           @Override
+           public void write(JsonWriter out, SecretCreateLibpod201Response value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SecretCreateLibpod201Response read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!SecretCreateLibpod201Response.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'SecretCreateLibpod201Response' and its
-                // subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<SecretCreateLibpod201Response> thisAdapter =
-                    gson.getDelegateAdapter(
-                            this, TypeToken.get(SecretCreateLibpod201Response.class));
+  /**
+   * Create an instance of SecretCreateLibpod201Response given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SecretCreateLibpod201Response
+   * @throws IOException if the JSON string is invalid with respect to SecretCreateLibpod201Response
+   */
+  public static SecretCreateLibpod201Response fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SecretCreateLibpod201Response.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<SecretCreateLibpod201Response>() {
-                        @Override
-                        public void write(JsonWriter out, SecretCreateLibpod201Response value)
-                                throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public SecretCreateLibpod201Response read(JsonReader in)
-                                throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of SecretCreateLibpod201Response given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of SecretCreateLibpod201Response
-     * @throws IOException if the JSON string is invalid with respect to
-     *     SecretCreateLibpod201Response
-     */
-    public static SecretCreateLibpod201Response fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, SecretCreateLibpod201Response.class);
-    }
-
-    /**
-     * Convert an instance of SecretCreateLibpod201Response to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of SecretCreateLibpod201Response to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

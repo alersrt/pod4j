@@ -10,443 +10,612 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.DeviceMapping;
+import io.github.alersrt.pod4j.openapi.model.DeviceRequest;
+import io.github.alersrt.pod4j.openapi.model.LogConfig;
+import io.github.alersrt.pod4j.openapi.model.Mount;
+import io.github.alersrt.pod4j.openapi.model.PortBinding;
+import io.github.alersrt.pod4j.openapi.model.RestartPolicy;
+import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
+import io.github.alersrt.pod4j.openapi.model.Ulimit;
+import io.github.alersrt.pod4j.openapi.model.WeightDevice;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for HostConfig */
+/**
+ * Model tests for HostConfig
+ */
 public class HostConfigTest {
     private final HostConfig model = new HostConfig();
 
-    /** Model tests for HostConfig */
+    /**
+     * Model tests for HostConfig
+     */
     @Test
     public void testHostConfig() {
         // TODO: test HostConfig
     }
 
-    /** Test the property 'annotations' */
+    /**
+     * Test the property 'annotations'
+     */
     @Test
     public void annotationsTest() {
         // TODO: test annotations
     }
 
-    /** Test the property 'autoRemove' */
+    /**
+     * Test the property 'autoRemove'
+     */
     @Test
     public void autoRemoveTest() {
         // TODO: test autoRemove
     }
 
-    /** Test the property 'binds' */
+    /**
+     * Test the property 'binds'
+     */
     @Test
     public void bindsTest() {
         // TODO: test binds
     }
 
-    /** Test the property 'blkioDeviceReadBps' */
+    /**
+     * Test the property 'blkioDeviceReadBps'
+     */
     @Test
     public void blkioDeviceReadBpsTest() {
         // TODO: test blkioDeviceReadBps
     }
 
-    /** Test the property 'blkioDeviceReadIOps' */
+    /**
+     * Test the property 'blkioDeviceReadIOps'
+     */
     @Test
     public void blkioDeviceReadIOpsTest() {
         // TODO: test blkioDeviceReadIOps
     }
 
-    /** Test the property 'blkioDeviceWriteBps' */
+    /**
+     * Test the property 'blkioDeviceWriteBps'
+     */
     @Test
     public void blkioDeviceWriteBpsTest() {
         // TODO: test blkioDeviceWriteBps
     }
 
-    /** Test the property 'blkioDeviceWriteIOps' */
+    /**
+     * Test the property 'blkioDeviceWriteIOps'
+     */
     @Test
     public void blkioDeviceWriteIOpsTest() {
         // TODO: test blkioDeviceWriteIOps
     }
 
-    /** Test the property 'blkioWeight' */
+    /**
+     * Test the property 'blkioWeight'
+     */
     @Test
     public void blkioWeightTest() {
         // TODO: test blkioWeight
     }
 
-    /** Test the property 'blkioWeightDevice' */
+    /**
+     * Test the property 'blkioWeightDevice'
+     */
     @Test
     public void blkioWeightDeviceTest() {
         // TODO: test blkioWeightDevice
     }
 
-    /** Test the property 'capAdd' */
+    /**
+     * Test the property 'capAdd'
+     */
     @Test
     public void capAddTest() {
         // TODO: test capAdd
     }
 
-    /** Test the property 'capDrop' */
+    /**
+     * Test the property 'capDrop'
+     */
     @Test
     public void capDropTest() {
         // TODO: test capDrop
     }
 
-    /** Test the property 'cgroup' */
+    /**
+     * Test the property 'cgroup'
+     */
     @Test
     public void cgroupTest() {
         // TODO: test cgroup
     }
 
-    /** Test the property 'cgroupParent' */
+    /**
+     * Test the property 'cgroupParent'
+     */
     @Test
     public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
-    /** Test the property 'cgroupnsMode' */
+    /**
+     * Test the property 'cgroupnsMode'
+     */
     @Test
     public void cgroupnsModeTest() {
         // TODO: test cgroupnsMode
     }
 
-    /** Test the property 'consoleSize' */
+    /**
+     * Test the property 'consoleSize'
+     */
     @Test
     public void consoleSizeTest() {
         // TODO: test consoleSize
     }
 
-    /** Test the property 'containerIDFile' */
+    /**
+     * Test the property 'containerIDFile'
+     */
     @Test
     public void containerIDFileTest() {
         // TODO: test containerIDFile
     }
 
-    /** Test the property 'cpuCount' */
+    /**
+     * Test the property 'cpuCount'
+     */
     @Test
     public void cpuCountTest() {
         // TODO: test cpuCount
     }
 
-    /** Test the property 'cpuPercent' */
+    /**
+     * Test the property 'cpuPercent'
+     */
     @Test
     public void cpuPercentTest() {
         // TODO: test cpuPercent
     }
 
-    /** Test the property 'cpuPeriod' */
+    /**
+     * Test the property 'cpuPeriod'
+     */
     @Test
     public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
-    /** Test the property 'cpuQuota' */
+    /**
+     * Test the property 'cpuQuota'
+     */
     @Test
     public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
-    /** Test the property 'cpuRealtimePeriod' */
+    /**
+     * Test the property 'cpuRealtimePeriod'
+     */
     @Test
     public void cpuRealtimePeriodTest() {
         // TODO: test cpuRealtimePeriod
     }
 
-    /** Test the property 'cpuRealtimeRuntime' */
+    /**
+     * Test the property 'cpuRealtimeRuntime'
+     */
     @Test
     public void cpuRealtimeRuntimeTest() {
         // TODO: test cpuRealtimeRuntime
     }
 
-    /** Test the property 'cpuShares' */
+    /**
+     * Test the property 'cpuShares'
+     */
     @Test
     public void cpuSharesTest() {
         // TODO: test cpuShares
     }
 
-    /** Test the property 'cpusetCpus' */
+    /**
+     * Test the property 'cpusetCpus'
+     */
     @Test
     public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
-    /** Test the property 'cpusetMems' */
+    /**
+     * Test the property 'cpusetMems'
+     */
     @Test
     public void cpusetMemsTest() {
         // TODO: test cpusetMems
     }
 
-    /** Test the property 'deviceCgroupRules' */
+    /**
+     * Test the property 'deviceCgroupRules'
+     */
     @Test
     public void deviceCgroupRulesTest() {
         // TODO: test deviceCgroupRules
     }
 
-    /** Test the property 'deviceRequests' */
+    /**
+     * Test the property 'deviceRequests'
+     */
     @Test
     public void deviceRequestsTest() {
         // TODO: test deviceRequests
     }
 
-    /** Test the property 'devices' */
+    /**
+     * Test the property 'devices'
+     */
     @Test
     public void devicesTest() {
         // TODO: test devices
     }
 
-    /** Test the property 'dns' */
+    /**
+     * Test the property 'dns'
+     */
     @Test
     public void dnsTest() {
         // TODO: test dns
     }
 
-    /** Test the property 'dnsOptions' */
+    /**
+     * Test the property 'dnsOptions'
+     */
     @Test
     public void dnsOptionsTest() {
         // TODO: test dnsOptions
     }
 
-    /** Test the property 'dnsSearch' */
+    /**
+     * Test the property 'dnsSearch'
+     */
     @Test
     public void dnsSearchTest() {
         // TODO: test dnsSearch
     }
 
-    /** Test the property 'extraHosts' */
+    /**
+     * Test the property 'extraHosts'
+     */
     @Test
     public void extraHostsTest() {
         // TODO: test extraHosts
     }
 
-    /** Test the property 'groupAdd' */
+    /**
+     * Test the property 'groupAdd'
+     */
     @Test
     public void groupAddTest() {
         // TODO: test groupAdd
     }
 
-    /** Test the property 'ioMaximumBandwidth' */
+    /**
+     * Test the property 'ioMaximumBandwidth'
+     */
     @Test
     public void ioMaximumBandwidthTest() {
         // TODO: test ioMaximumBandwidth
     }
 
-    /** Test the property 'ioMaximumIOps' */
+    /**
+     * Test the property 'ioMaximumIOps'
+     */
     @Test
     public void ioMaximumIOpsTest() {
         // TODO: test ioMaximumIOps
     }
 
-    /** Test the property 'init' */
+    /**
+     * Test the property 'init'
+     */
     @Test
     public void initTest() {
         // TODO: test init
     }
 
-    /** Test the property 'ipcMode' */
+    /**
+     * Test the property 'ipcMode'
+     */
     @Test
     public void ipcModeTest() {
         // TODO: test ipcMode
     }
 
-    /** Test the property 'isolation' */
+    /**
+     * Test the property 'isolation'
+     */
     @Test
     public void isolationTest() {
         // TODO: test isolation
     }
 
-    /** Test the property 'kernelMemory' */
+    /**
+     * Test the property 'kernelMemory'
+     */
     @Test
     public void kernelMemoryTest() {
         // TODO: test kernelMemory
     }
 
-    /** Test the property 'kernelMemoryTCP' */
+    /**
+     * Test the property 'kernelMemoryTCP'
+     */
     @Test
     public void kernelMemoryTCPTest() {
         // TODO: test kernelMemoryTCP
     }
 
-    /** Test the property 'links' */
+    /**
+     * Test the property 'links'
+     */
     @Test
     public void linksTest() {
         // TODO: test links
     }
 
-    /** Test the property 'logConfig' */
+    /**
+     * Test the property 'logConfig'
+     */
     @Test
     public void logConfigTest() {
         // TODO: test logConfig
     }
 
-    /** Test the property 'maskedPaths' */
+    /**
+     * Test the property 'maskedPaths'
+     */
     @Test
     public void maskedPathsTest() {
         // TODO: test maskedPaths
     }
 
-    /** Test the property 'memory' */
+    /**
+     * Test the property 'memory'
+     */
     @Test
     public void memoryTest() {
         // TODO: test memory
     }
 
-    /** Test the property 'memoryReservation' */
+    /**
+     * Test the property 'memoryReservation'
+     */
     @Test
     public void memoryReservationTest() {
         // TODO: test memoryReservation
     }
 
-    /** Test the property 'memorySwap' */
+    /**
+     * Test the property 'memorySwap'
+     */
     @Test
     public void memorySwapTest() {
         // TODO: test memorySwap
     }
 
-    /** Test the property 'memorySwappiness' */
+    /**
+     * Test the property 'memorySwappiness'
+     */
     @Test
     public void memorySwappinessTest() {
         // TODO: test memorySwappiness
     }
 
-    /** Test the property 'mounts' */
+    /**
+     * Test the property 'mounts'
+     */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /** Test the property 'nanoCpus' */
+    /**
+     * Test the property 'nanoCpus'
+     */
     @Test
     public void nanoCpusTest() {
         // TODO: test nanoCpus
     }
 
-    /** Test the property 'networkMode' */
+    /**
+     * Test the property 'networkMode'
+     */
     @Test
     public void networkModeTest() {
         // TODO: test networkMode
     }
 
-    /** Test the property 'oomKillDisable' */
+    /**
+     * Test the property 'oomKillDisable'
+     */
     @Test
     public void oomKillDisableTest() {
         // TODO: test oomKillDisable
     }
 
-    /** Test the property 'oomScoreAdj' */
+    /**
+     * Test the property 'oomScoreAdj'
+     */
     @Test
     public void oomScoreAdjTest() {
         // TODO: test oomScoreAdj
     }
 
-    /** Test the property 'pidMode' */
+    /**
+     * Test the property 'pidMode'
+     */
     @Test
     public void pidModeTest() {
         // TODO: test pidMode
     }
 
-    /** Test the property 'pidsLimit' */
+    /**
+     * Test the property 'pidsLimit'
+     */
     @Test
     public void pidsLimitTest() {
         // TODO: test pidsLimit
     }
 
-    /** Test the property 'portBindings' */
+    /**
+     * Test the property 'portBindings'
+     */
     @Test
     public void portBindingsTest() {
         // TODO: test portBindings
     }
 
-    /** Test the property 'privileged' */
+    /**
+     * Test the property 'privileged'
+     */
     @Test
     public void privilegedTest() {
         // TODO: test privileged
     }
 
-    /** Test the property 'publishAllPorts' */
+    /**
+     * Test the property 'publishAllPorts'
+     */
     @Test
     public void publishAllPortsTest() {
         // TODO: test publishAllPorts
     }
 
-    /** Test the property 'readonlyPaths' */
+    /**
+     * Test the property 'readonlyPaths'
+     */
     @Test
     public void readonlyPathsTest() {
         // TODO: test readonlyPaths
     }
 
-    /** Test the property 'readonlyRootfs' */
+    /**
+     * Test the property 'readonlyRootfs'
+     */
     @Test
     public void readonlyRootfsTest() {
         // TODO: test readonlyRootfs
     }
 
-    /** Test the property 'restartPolicy' */
+    /**
+     * Test the property 'restartPolicy'
+     */
     @Test
     public void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
-    /** Test the property 'runtime' */
+    /**
+     * Test the property 'runtime'
+     */
     @Test
     public void runtimeTest() {
         // TODO: test runtime
     }
 
-    /** Test the property 'securityOpt' */
+    /**
+     * Test the property 'securityOpt'
+     */
     @Test
     public void securityOptTest() {
         // TODO: test securityOpt
     }
 
-    /** Test the property 'shmSize' */
+    /**
+     * Test the property 'shmSize'
+     */
     @Test
     public void shmSizeTest() {
         // TODO: test shmSize
     }
 
-    /** Test the property 'storageOpt' */
+    /**
+     * Test the property 'storageOpt'
+     */
     @Test
     public void storageOptTest() {
         // TODO: test storageOpt
     }
 
-    /** Test the property 'sysctls' */
+    /**
+     * Test the property 'sysctls'
+     */
     @Test
     public void sysctlsTest() {
         // TODO: test sysctls
     }
 
-    /** Test the property 'tmpfs' */
+    /**
+     * Test the property 'tmpfs'
+     */
     @Test
     public void tmpfsTest() {
         // TODO: test tmpfs
     }
 
-    /** Test the property 'utSMode' */
+    /**
+     * Test the property 'utSMode'
+     */
     @Test
     public void utSModeTest() {
         // TODO: test utSMode
     }
 
-    /** Test the property 'ulimits' */
+    /**
+     * Test the property 'ulimits'
+     */
     @Test
     public void ulimitsTest() {
         // TODO: test ulimits
     }
 
-    /** Test the property 'usernsMode' */
+    /**
+     * Test the property 'usernsMode'
+     */
     @Test
     public void usernsModeTest() {
         // TODO: test usernsMode
     }
 
-    /** Test the property 'volumeDriver' */
+    /**
+     * Test the property 'volumeDriver'
+     */
     @Test
     public void volumeDriverTest() {
         // TODO: test volumeDriver
     }
 
-    /** Test the property 'volumesFrom' */
+    /**
+     * Test the property 'volumesFrom'
+     */
     @Test
     public void volumesFromTest() {
         // TODO: test volumesFrom
     }
+
 }

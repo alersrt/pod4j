@@ -10,264 +10,255 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** InspectDevice */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * InspectDevice
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectDevice {
-    public static final String SERIALIZED_NAME_CGROUP_PERMISSIONS = "CgroupPermissions";
+  public static final String SERIALIZED_NAME_CGROUP_PERMISSIONS = "CgroupPermissions";
+  @SerializedName(SERIALIZED_NAME_CGROUP_PERMISSIONS)
+  private String cgroupPermissions;
 
-    @SerializedName(SERIALIZED_NAME_CGROUP_PERMISSIONS)
-    private String cgroupPermissions;
+  public static final String SERIALIZED_NAME_PATH_IN_CONTAINER = "PathInContainer";
+  @SerializedName(SERIALIZED_NAME_PATH_IN_CONTAINER)
+  private String pathInContainer;
 
-    public static final String SERIALIZED_NAME_PATH_IN_CONTAINER = "PathInContainer";
+  public static final String SERIALIZED_NAME_PATH_ON_HOST = "PathOnHost";
+  @SerializedName(SERIALIZED_NAME_PATH_ON_HOST)
+  private String pathOnHost;
 
-    @SerializedName(SERIALIZED_NAME_PATH_IN_CONTAINER)
-    private String pathInContainer;
+  public InspectDevice() {
+  }
 
-    public static final String SERIALIZED_NAME_PATH_ON_HOST = "PathOnHost";
+  public InspectDevice cgroupPermissions(String cgroupPermissions) {
+    this.cgroupPermissions = cgroupPermissions;
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_PATH_ON_HOST)
-    private String pathOnHost;
+  /**
+   * CgroupPermissions is the permissions of the mounted device. Presently not populated. TODO.
+   * @return cgroupPermissions
+   */
+  @javax.annotation.Nullable
+  public String getCgroupPermissions() {
+    return cgroupPermissions;
+  }
 
-    public InspectDevice() {}
+  public void setCgroupPermissions(String cgroupPermissions) {
+    this.cgroupPermissions = cgroupPermissions;
+  }
 
-    public InspectDevice cgroupPermissions(String cgroupPermissions) {
-        this.cgroupPermissions = cgroupPermissions;
-        return this;
+
+  public InspectDevice pathInContainer(String pathInContainer) {
+    this.pathInContainer = pathInContainer;
+    return this;
+  }
+
+  /**
+   * PathInContainer is the path of the device within the container.
+   * @return pathInContainer
+   */
+  @javax.annotation.Nullable
+  public String getPathInContainer() {
+    return pathInContainer;
+  }
+
+  public void setPathInContainer(String pathInContainer) {
+    this.pathInContainer = pathInContainer;
+  }
+
+
+  public InspectDevice pathOnHost(String pathOnHost) {
+    this.pathOnHost = pathOnHost;
+    return this;
+  }
+
+  /**
+   * PathOnHost is the path of the device on the host.
+   * @return pathOnHost
+   */
+  @javax.annotation.Nullable
+  public String getPathOnHost() {
+    return pathOnHost;
+  }
+
+  public void setPathOnHost(String pathOnHost) {
+    this.pathOnHost = pathOnHost;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * CgroupPermissions is the permissions of the mounted device. Presently not populated. TODO.
-     *
-     * @return cgroupPermissions
-     */
-    @javax.annotation.Nullable
-    public String getCgroupPermissions() {
-        return cgroupPermissions;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    InspectDevice inspectDevice = (InspectDevice) o;
+    return Objects.equals(this.cgroupPermissions, inspectDevice.cgroupPermissions) &&
+        Objects.equals(this.pathInContainer, inspectDevice.pathInContainer) &&
+        Objects.equals(this.pathOnHost, inspectDevice.pathOnHost);
+  }
 
-    public void setCgroupPermissions(String cgroupPermissions) {
-        this.cgroupPermissions = cgroupPermissions;
+  @Override
+  public int hashCode() {
+    return Objects.hash(cgroupPermissions, pathInContainer, pathOnHost);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class InspectDevice {\n");
+    sb.append("    cgroupPermissions: ").append(toIndentedString(cgroupPermissions)).append("\n");
+    sb.append("    pathInContainer: ").append(toIndentedString(pathInContainer)).append("\n");
+    sb.append("    pathOnHost: ").append(toIndentedString(pathOnHost)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public InspectDevice pathInContainer(String pathInContainer) {
-        this.pathInContainer = pathInContainer;
-        return this;
-    }
 
-    /**
-     * PathInContainer is the path of the device within the container.
-     *
-     * @return pathInContainer
-     */
-    @javax.annotation.Nullable
-    public String getPathInContainer() {
-        return pathInContainer;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setPathInContainer(String pathInContainer) {
-        this.pathInContainer = pathInContainer;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("CgroupPermissions");
+    openapiFields.add("PathInContainer");
+    openapiFields.add("PathOnHost");
 
-    public InspectDevice pathOnHost(String pathOnHost) {
-        this.pathOnHost = pathOnHost;
-        return this;
-    }
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
 
-    /**
-     * PathOnHost is the path of the device on the host.
-     *
-     * @return pathOnHost
-     */
-    @javax.annotation.Nullable
-    public String getPathOnHost() {
-        return pathOnHost;
-    }
-
-    public void setPathOnHost(String pathOnHost) {
-        this.pathOnHost = pathOnHost;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InspectDevice
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!InspectDevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectDevice is not found in the empty JSON string", InspectDevice.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!InspectDevice.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectDevice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        InspectDevice inspectDevice = (InspectDevice) o;
-        return Objects.equals(this.cgroupPermissions, inspectDevice.cgroupPermissions)
-                && Objects.equals(this.pathInContainer, inspectDevice.pathInContainer)
-                && Objects.equals(this.pathOnHost, inspectDevice.pathOnHost);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(cgroupPermissions, pathInContainer, pathOnHost);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class InspectDevice {\n");
-        sb.append("    cgroupPermissions: ")
-                .append(toIndentedString(cgroupPermissions))
-                .append("\n");
-        sb.append("    pathInContainer: ").append(toIndentedString(pathInContainer)).append("\n");
-        sb.append("    pathOnHost: ").append(toIndentedString(pathOnHost)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("CgroupPermissions");
-        openapiFields.add("PathInContainer");
-        openapiFields.add("PathOnHost");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to InspectDevice
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!InspectDevice.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in InspectDevice is not found in the"
-                                        + " empty JSON string",
-                                InspectDevice.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!InspectDevice.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `InspectDevice` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("CgroupPermissions") != null
-                        && !jsonObj.get("CgroupPermissions").isJsonNull())
-                && !jsonObj.get("CgroupPermissions").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `CgroupPermissions` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("CgroupPermissions").toString()));
-        }
-        if ((jsonObj.get("PathInContainer") != null && !jsonObj.get("PathInContainer").isJsonNull())
-                && !jsonObj.get("PathInContainer").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `PathInContainer` to be a primitive type in the"
-                                    + " JSON string but got `%s`",
-                            jsonObj.get("PathInContainer").toString()));
-        }
-        if ((jsonObj.get("PathOnHost") != null && !jsonObj.get("PathOnHost").isJsonNull())
-                && !jsonObj.get("PathOnHost").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `PathOnHost` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("PathOnHost").toString()));
-        }
+      if ((jsonObj.get("CgroupPermissions") != null && !jsonObj.get("CgroupPermissions").isJsonNull()) && !jsonObj.get("CgroupPermissions").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `CgroupPermissions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupPermissions").toString()));
+      }
+      if ((jsonObj.get("PathInContainer") != null && !jsonObj.get("PathInContainer").isJsonNull()) && !jsonObj.get("PathInContainer").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `PathInContainer` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PathInContainer").toString()));
+      }
+      if ((jsonObj.get("PathOnHost") != null && !jsonObj.get("PathOnHost").isJsonNull()) && !jsonObj.get("PathOnHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `PathOnHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PathOnHost").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!InspectDevice.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'InspectDevice' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<InspectDevice> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(InspectDevice.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<InspectDevice>() {
+           @Override
+           public void write(JsonWriter out, InspectDevice value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public InspectDevice read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!InspectDevice.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'InspectDevice' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<InspectDevice> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(InspectDevice.class));
+  /**
+   * Create an instance of InspectDevice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InspectDevice
+   * @throws IOException if the JSON string is invalid with respect to InspectDevice
+   */
+  public static InspectDevice fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, InspectDevice.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<InspectDevice>() {
-                        @Override
-                        public void write(JsonWriter out, InspectDevice value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public InspectDevice read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of InspectDevice given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of InspectDevice
-     * @throws IOException if the JSON string is invalid with respect to InspectDevice
-     */
-    public static InspectDevice fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, InspectDevice.class);
-    }
-
-    /**
-     * Convert an instance of InspectDevice to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of InspectDevice to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

@@ -10,335 +10,323 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
+import io.github.alersrt.pod4j.openapi.model.Schema2PlatformSpec;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** This is publicly visible as c/image/manifest.Schema2ManifestDescriptor. */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * This is publicly visible as c/image/manifest.Schema2ManifestDescriptor.
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2ManifestDescriptor {
-    public static final String SERIALIZED_NAME_DIGEST = "digest";
+  public static final String SERIALIZED_NAME_DIGEST = "digest";
+  @SerializedName(SERIALIZED_NAME_DIGEST)
+  private String digest;
 
-    @SerializedName(SERIALIZED_NAME_DIGEST)
-    private String digest;
+  public static final String SERIALIZED_NAME_MEDIA_TYPE = "mediaType";
+  @SerializedName(SERIALIZED_NAME_MEDIA_TYPE)
+  private String mediaType;
 
-    public static final String SERIALIZED_NAME_MEDIA_TYPE = "mediaType";
+  public static final String SERIALIZED_NAME_PLATFORM = "platform";
+  @SerializedName(SERIALIZED_NAME_PLATFORM)
+  private Schema2PlatformSpec platform;
 
-    @SerializedName(SERIALIZED_NAME_MEDIA_TYPE)
-    private String mediaType;
+  public static final String SERIALIZED_NAME_SIZE = "size";
+  @SerializedName(SERIALIZED_NAME_SIZE)
+  private Long size;
 
-    public static final String SERIALIZED_NAME_PLATFORM = "platform";
+  public static final String SERIALIZED_NAME_URLS = "urls";
+  @SerializedName(SERIALIZED_NAME_URLS)
+  private List<String> urls = new ArrayList<>();
 
-    @SerializedName(SERIALIZED_NAME_PLATFORM)
-    private Schema2PlatformSpec platform;
+  public Schema2ManifestDescriptor() {
+  }
 
-    public static final String SERIALIZED_NAME_SIZE = "size";
+  public Schema2ManifestDescriptor digest(String digest) {
+    this.digest = digest;
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_SIZE)
-    private Long size;
+  /**
+   * The following is an example of the contents of Digest types:  sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc  This allows to abstract the digest behind this type and work only in those terms.
+   * @return digest
+   */
+  @javax.annotation.Nullable
+  public String getDigest() {
+    return digest;
+  }
 
-    public static final String SERIALIZED_NAME_URLS = "urls";
+  public void setDigest(String digest) {
+    this.digest = digest;
+  }
 
-    @SerializedName(SERIALIZED_NAME_URLS)
-    private List<String> urls = new ArrayList<>();
 
-    public Schema2ManifestDescriptor() {}
+  public Schema2ManifestDescriptor mediaType(String mediaType) {
+    this.mediaType = mediaType;
+    return this;
+  }
 
-    public Schema2ManifestDescriptor digest(String digest) {
-        this.digest = digest;
-        return this;
+  /**
+   * Get mediaType
+   * @return mediaType
+   */
+  @javax.annotation.Nullable
+  public String getMediaType() {
+    return mediaType;
+  }
+
+  public void setMediaType(String mediaType) {
+    this.mediaType = mediaType;
+  }
+
+
+  public Schema2ManifestDescriptor platform(Schema2PlatformSpec platform) {
+    this.platform = platform;
+    return this;
+  }
+
+  /**
+   * Get platform
+   * @return platform
+   */
+  @javax.annotation.Nullable
+  public Schema2PlatformSpec getPlatform() {
+    return platform;
+  }
+
+  public void setPlatform(Schema2PlatformSpec platform) {
+    this.platform = platform;
+  }
+
+
+  public Schema2ManifestDescriptor size(Long size) {
+    this.size = size;
+    return this;
+  }
+
+  /**
+   * Get size
+   * @return size
+   */
+  @javax.annotation.Nullable
+  public Long getSize() {
+    return size;
+  }
+
+  public void setSize(Long size) {
+    this.size = size;
+  }
+
+
+  public Schema2ManifestDescriptor urls(List<String> urls) {
+    this.urls = urls;
+    return this;
+  }
+
+  public Schema2ManifestDescriptor addUrlsItem(String urlsItem) {
+    if (this.urls == null) {
+      this.urls = new ArrayList<>();
     }
+    this.urls.add(urlsItem);
+    return this;
+  }
 
-    /**
-     * The following is an example of the contents of Digest types:
-     * sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc This allows to
-     * abstract the digest behind this type and work only in those terms.
-     *
-     * @return digest
-     */
-    @javax.annotation.Nullable
-    public String getDigest() {
-        return digest;
+  /**
+   * Get urls
+   * @return urls
+   */
+  @javax.annotation.Nullable
+  public List<String> getUrls() {
+    return urls;
+  }
+
+  public void setUrls(List<String> urls) {
+    this.urls = urls;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    public void setDigest(String digest) {
-        this.digest = digest;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    Schema2ManifestDescriptor schema2ManifestDescriptor = (Schema2ManifestDescriptor) o;
+    return Objects.equals(this.digest, schema2ManifestDescriptor.digest) &&
+        Objects.equals(this.mediaType, schema2ManifestDescriptor.mediaType) &&
+        Objects.equals(this.platform, schema2ManifestDescriptor.platform) &&
+        Objects.equals(this.size, schema2ManifestDescriptor.size) &&
+        Objects.equals(this.urls, schema2ManifestDescriptor.urls);
+  }
 
-    public Schema2ManifestDescriptor mediaType(String mediaType) {
-        this.mediaType = mediaType;
-        return this;
+  @Override
+  public int hashCode() {
+    return Objects.hash(digest, mediaType, platform, size, urls);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class Schema2ManifestDescriptor {\n");
+    sb.append("    digest: ").append(toIndentedString(digest)).append("\n");
+    sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
+    sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    /**
-     * Get mediaType
-     *
-     * @return mediaType
-     */
-    @javax.annotation.Nullable
-    public String getMediaType() {
-        return mediaType;
-    }
 
-    public void setMediaType(String mediaType) {
-        this.mediaType = mediaType;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public Schema2ManifestDescriptor platform(Schema2PlatformSpec platform) {
-        this.platform = platform;
-        return this;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("digest");
+    openapiFields.add("mediaType");
+    openapiFields.add("platform");
+    openapiFields.add("size");
+    openapiFields.add("urls");
 
-    /**
-     * Get platform
-     *
-     * @return platform
-     */
-    @javax.annotation.Nullable
-    public Schema2PlatformSpec getPlatform() {
-        return platform;
-    }
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
 
-    public void setPlatform(Schema2PlatformSpec platform) {
-        this.platform = platform;
-    }
-
-    public Schema2ManifestDescriptor size(Long size) {
-        this.size = size;
-        return this;
-    }
-
-    /**
-     * Get size
-     *
-     * @return size
-     */
-    @javax.annotation.Nullable
-    public Long getSize() {
-        return size;
-    }
-
-    public void setSize(Long size) {
-        this.size = size;
-    }
-
-    public Schema2ManifestDescriptor urls(List<String> urls) {
-        this.urls = urls;
-        return this;
-    }
-
-    public Schema2ManifestDescriptor addUrlsItem(String urlsItem) {
-        if (this.urls == null) {
-            this.urls = new ArrayList<>();
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to Schema2ManifestDescriptor
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!Schema2ManifestDescriptor.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in Schema2ManifestDescriptor is not found in the empty JSON string", Schema2ManifestDescriptor.openapiRequiredFields.toString()));
         }
-        this.urls.add(urlsItem);
-        return this;
-    }
+      }
 
-    /**
-     * Get urls
-     *
-     * @return urls
-     */
-    @javax.annotation.Nullable
-    public List<String> getUrls() {
-        return urls;
-    }
-
-    public void setUrls(List<String> urls) {
-        this.urls = urls;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!Schema2ManifestDescriptor.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Schema2ManifestDescriptor` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Schema2ManifestDescriptor schema2ManifestDescriptor = (Schema2ManifestDescriptor) o;
-        return Objects.equals(this.digest, schema2ManifestDescriptor.digest)
-                && Objects.equals(this.mediaType, schema2ManifestDescriptor.mediaType)
-                && Objects.equals(this.platform, schema2ManifestDescriptor.platform)
-                && Objects.equals(this.size, schema2ManifestDescriptor.size)
-                && Objects.equals(this.urls, schema2ManifestDescriptor.urls);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(digest, mediaType, platform, size, urls);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class Schema2ManifestDescriptor {\n");
-        sb.append("    digest: ").append(toIndentedString(digest)).append("\n");
-        sb.append("    mediaType: ").append(toIndentedString(mediaType)).append("\n");
-        sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
-        sb.append("    size: ").append(toIndentedString(size)).append("\n");
-        sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("digest");
-        openapiFields.add("mediaType");
-        openapiFields.add("platform");
-        openapiFields.add("size");
-        openapiFields.add("urls");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to Schema2ManifestDescriptor
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!Schema2ManifestDescriptor.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in Schema2ManifestDescriptor is not found"
-                                        + " in the empty JSON string",
-                                Schema2ManifestDescriptor.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!Schema2ManifestDescriptor.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `Schema2ManifestDescriptor` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("digest") != null && !jsonObj.get("digest").isJsonNull())
-                && !jsonObj.get("digest").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `digest` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("digest").toString()));
-        }
-        if ((jsonObj.get("mediaType") != null && !jsonObj.get("mediaType").isJsonNull())
-                && !jsonObj.get("mediaType").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `mediaType` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("mediaType").toString()));
-        }
-        // validate the optional field `platform`
-        if (jsonObj.get("platform") != null && !jsonObj.get("platform").isJsonNull()) {
-            Schema2PlatformSpec.validateJsonElement(jsonObj.get("platform"));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("urls") != null
-                && !jsonObj.get("urls").isJsonNull()
-                && !jsonObj.get("urls").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `urls` to be an array in the JSON string but got"
-                                    + " `%s`",
-                            jsonObj.get("urls").toString()));
-        }
+      if ((jsonObj.get("digest") != null && !jsonObj.get("digest").isJsonNull()) && !jsonObj.get("digest").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `digest` to be a primitive type in the JSON string but got `%s`", jsonObj.get("digest").toString()));
+      }
+      if ((jsonObj.get("mediaType") != null && !jsonObj.get("mediaType").isJsonNull()) && !jsonObj.get("mediaType").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `mediaType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mediaType").toString()));
+      }
+      // validate the optional field `platform`
+      if (jsonObj.get("platform") != null && !jsonObj.get("platform").isJsonNull()) {
+        Schema2PlatformSpec.validateJsonElement(jsonObj.get("platform"));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("urls") != null && !jsonObj.get("urls").isJsonNull() && !jsonObj.get("urls").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `urls` to be an array in the JSON string but got `%s`", jsonObj.get("urls").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!Schema2ManifestDescriptor.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'Schema2ManifestDescriptor' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<Schema2ManifestDescriptor> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(Schema2ManifestDescriptor.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<Schema2ManifestDescriptor>() {
+           @Override
+           public void write(JsonWriter out, Schema2ManifestDescriptor value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public Schema2ManifestDescriptor read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!Schema2ManifestDescriptor.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'Schema2ManifestDescriptor' and its
-                // subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<Schema2ManifestDescriptor> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(Schema2ManifestDescriptor.class));
+  /**
+   * Create an instance of Schema2ManifestDescriptor given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of Schema2ManifestDescriptor
+   * @throws IOException if the JSON string is invalid with respect to Schema2ManifestDescriptor
+   */
+  public static Schema2ManifestDescriptor fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, Schema2ManifestDescriptor.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<Schema2ManifestDescriptor>() {
-                        @Override
-                        public void write(JsonWriter out, Schema2ManifestDescriptor value)
-                                throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public Schema2ManifestDescriptor read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of Schema2ManifestDescriptor given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of Schema2ManifestDescriptor
-     * @throws IOException if the JSON string is invalid with respect to Schema2ManifestDescriptor
-     */
-    public static Schema2ManifestDescriptor fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, Schema2ManifestDescriptor.class);
-    }
-
-    /**
-     * Convert an instance of Schema2ManifestDescriptor to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of Schema2ManifestDescriptor to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

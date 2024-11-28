@@ -10,119 +10,172 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.ContainerNetworkStats;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainerStats */
+/**
+ * Model tests for ContainerStats
+ */
 public class ContainerStatsTest {
     private final ContainerStats model = new ContainerStats();
 
-    /** Model tests for ContainerStats */
+    /**
+     * Model tests for ContainerStats
+     */
     @Test
     public void testContainerStats() {
         // TODO: test ContainerStats
     }
 
-    /** Test the property 'avgCPU' */
+    /**
+     * Test the property 'avgCPU'
+     */
     @Test
     public void avgCPUTest() {
         // TODO: test avgCPU
     }
 
-    /** Test the property 'blockInput' */
+    /**
+     * Test the property 'blockInput'
+     */
     @Test
     public void blockInputTest() {
         // TODO: test blockInput
     }
 
-    /** Test the property 'blockOutput' */
+    /**
+     * Test the property 'blockOutput'
+     */
     @Test
     public void blockOutputTest() {
         // TODO: test blockOutput
     }
 
-    /** Test the property 'CPU' */
+    /**
+     * Test the property 'CPU'
+     */
     @Test
     public void CPUTest() {
         // TODO: test CPU
     }
 
-    /** Test the property 'cpUNano' */
+    /**
+     * Test the property 'cpUNano'
+     */
     @Test
     public void cpUNanoTest() {
         // TODO: test cpUNano
     }
 
-    /** Test the property 'cpUSystemNano' */
+    /**
+     * Test the property 'cpUSystemNano'
+     */
     @Test
     public void cpUSystemNanoTest() {
         // TODO: test cpUSystemNano
     }
 
-    /** Test the property 'containerID' */
+    /**
+     * Test the property 'containerID'
+     */
     @Test
     public void containerIDTest() {
         // TODO: test containerID
     }
 
-    /** Test the property 'duration' */
+    /**
+     * Test the property 'duration'
+     */
     @Test
     public void durationTest() {
         // TODO: test duration
     }
 
-    /** Test the property 'memLimit' */
+    /**
+     * Test the property 'memLimit'
+     */
     @Test
     public void memLimitTest() {
         // TODO: test memLimit
     }
 
-    /** Test the property 'memPerc' */
+    /**
+     * Test the property 'memPerc'
+     */
     @Test
     public void memPercTest() {
         // TODO: test memPerc
     }
 
-    /** Test the property 'memUsage' */
+    /**
+     * Test the property 'memUsage'
+     */
     @Test
     public void memUsageTest() {
         // TODO: test memUsage
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'network' */
+    /**
+     * Test the property 'network'
+     */
     @Test
     public void networkTest() {
         // TODO: test network
     }
 
-    /** Test the property 'piDs' */
+    /**
+     * Test the property 'piDs'
+     */
     @Test
     public void piDsTest() {
         // TODO: test piDs
     }
 
-    /** Test the property 'perCPU' */
+    /**
+     * Test the property 'perCPU'
+     */
     @Test
     public void perCPUTest() {
         // TODO: test perCPU
     }
 
-    /** Test the property 'systemNano' */
+    /**
+     * Test the property 'systemNano'
+     */
     @Test
     public void systemNanoTest() {
         // TODO: test systemNano
     }
 
-    /** Test the property 'upTime' */
+    /**
+     * Test the property 'upTime'
+     */
     @Test
     public void upTimeTest() {
         // TODO: test upTime
     }
+
 }

@@ -10,293 +10,413 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
+import io.github.alersrt.pod4j.openapi.model.ImageVolume;
+import io.github.alersrt.pod4j.openapi.model.LinuxResources;
+import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
+import io.github.alersrt.pod4j.openapi.model.Mount;
+import io.github.alersrt.pod4j.openapi.model.NamedVolume;
+import io.github.alersrt.pod4j.openapi.model.Namespace;
+import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
+import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
+import io.github.alersrt.pod4j.openapi.model.PortMapping;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PodSpecGenerator */
+/**
+ * Model tests for PodSpecGenerator
+ */
 public class PodSpecGeneratorTest {
     private final PodSpecGenerator model = new PodSpecGenerator();
 
-    /** Model tests for PodSpecGenerator */
+    /**
+     * Model tests for PodSpecGenerator
+     */
     @Test
     public void testPodSpecGenerator() {
         // TODO: test PodSpecGenerator
     }
 
-    /** Test the property 'networks' */
+    /**
+     * Test the property 'networks'
+     */
     @Test
     public void networksTest() {
         // TODO: test networks
     }
 
-    /** Test the property 'cgroupParent' */
+    /**
+     * Test the property 'cgroupParent'
+     */
     @Test
     public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
-    /** Test the property 'cniNetworks' */
+    /**
+     * Test the property 'cniNetworks'
+     */
     @Test
     public void cniNetworksTest() {
         // TODO: test cniNetworks
     }
 
-    /** Test the property 'cpuPeriod' */
+    /**
+     * Test the property 'cpuPeriod'
+     */
     @Test
     public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
-    /** Test the property 'cpuQuota' */
+    /**
+     * Test the property 'cpuQuota'
+     */
     @Test
     public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
-    /** Test the property 'dnsOption' */
+    /**
+     * Test the property 'dnsOption'
+     */
     @Test
     public void dnsOptionTest() {
         // TODO: test dnsOption
     }
 
-    /** Test the property 'dnsSearch' */
+    /**
+     * Test the property 'dnsSearch'
+     */
     @Test
     public void dnsSearchTest() {
         // TODO: test dnsSearch
     }
 
-    /** Test the property 'dnsServer' */
+    /**
+     * Test the property 'dnsServer'
+     */
     @Test
     public void dnsServerTest() {
         // TODO: test dnsServer
     }
 
-    /** Test the property 'exitPolicy' */
+    /**
+     * Test the property 'exitPolicy'
+     */
     @Test
     public void exitPolicyTest() {
         // TODO: test exitPolicy
     }
 
-    /** Test the property 'hostadd' */
+    /**
+     * Test the property 'hostadd'
+     */
     @Test
     public void hostaddTest() {
         // TODO: test hostadd
     }
 
-    /** Test the property 'hostname' */
+    /**
+     * Test the property 'hostname'
+     */
     @Test
     public void hostnameTest() {
         // TODO: test hostname
     }
 
-    /** Test the property 'idmappings' */
+    /**
+     * Test the property 'idmappings'
+     */
     @Test
     public void idmappingsTest() {
         // TODO: test idmappings
     }
 
-    /** Test the property 'imageVolumes' */
+    /**
+     * Test the property 'imageVolumes'
+     */
     @Test
     public void imageVolumesTest() {
         // TODO: test imageVolumes
     }
 
-    /** Test the property 'infraCommand' */
+    /**
+     * Test the property 'infraCommand'
+     */
     @Test
     public void infraCommandTest() {
         // TODO: test infraCommand
     }
 
-    /** Test the property 'infraConmonPidFile' */
+    /**
+     * Test the property 'infraConmonPidFile'
+     */
     @Test
     public void infraConmonPidFileTest() {
         // TODO: test infraConmonPidFile
     }
 
-    /** Test the property 'infraImage' */
+    /**
+     * Test the property 'infraImage'
+     */
     @Test
     public void infraImageTest() {
         // TODO: test infraImage
     }
 
-    /** Test the property 'infraName' */
+    /**
+     * Test the property 'infraName'
+     */
     @Test
     public void infraNameTest() {
         // TODO: test infraName
     }
 
-    /** Test the property 'ipcns' */
+    /**
+     * Test the property 'ipcns'
+     */
     @Test
     public void ipcnsTest() {
         // TODO: test ipcns
     }
 
-    /** Test the property 'labels' */
+    /**
+     * Test the property 'labels'
+     */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /** Test the property 'mounts' */
+    /**
+     * Test the property 'mounts'
+     */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'netns' */
+    /**
+     * Test the property 'netns'
+     */
     @Test
     public void netnsTest() {
         // TODO: test netns
     }
 
-    /** Test the property 'networkOptions' */
+    /**
+     * Test the property 'networkOptions'
+     */
     @Test
     public void networkOptionsTest() {
         // TODO: test networkOptions
     }
 
-    /** Test the property 'noInfra' */
+    /**
+     * Test the property 'noInfra'
+     */
     @Test
     public void noInfraTest() {
         // TODO: test noInfra
     }
 
-    /** Test the property 'noManageHosts' */
+    /**
+     * Test the property 'noManageHosts'
+     */
     @Test
     public void noManageHostsTest() {
         // TODO: test noManageHosts
     }
 
-    /** Test the property 'noManageResolvConf' */
+    /**
+     * Test the property 'noManageResolvConf'
+     */
     @Test
     public void noManageResolvConfTest() {
         // TODO: test noManageResolvConf
     }
 
-    /** Test the property 'overlayVolumes' */
+    /**
+     * Test the property 'overlayVolumes'
+     */
     @Test
     public void overlayVolumesTest() {
         // TODO: test overlayVolumes
     }
 
-    /** Test the property 'pidns' */
+    /**
+     * Test the property 'pidns'
+     */
     @Test
     public void pidnsTest() {
         // TODO: test pidns
     }
 
-    /** Test the property 'podCreateCommand' */
+    /**
+     * Test the property 'podCreateCommand'
+     */
     @Test
     public void podCreateCommandTest() {
         // TODO: test podCreateCommand
     }
 
-    /** Test the property 'podDevices' */
+    /**
+     * Test the property 'podDevices'
+     */
     @Test
     public void podDevicesTest() {
         // TODO: test podDevices
     }
 
-    /** Test the property 'portmappings' */
+    /**
+     * Test the property 'portmappings'
+     */
     @Test
     public void portmappingsTest() {
         // TODO: test portmappings
     }
 
-    /** Test the property 'resourceLimits' */
+    /**
+     * Test the property 'resourceLimits'
+     */
     @Test
     public void resourceLimitsTest() {
         // TODO: test resourceLimits
     }
 
-    /** Test the property 'restartPolicy' */
+    /**
+     * Test the property 'restartPolicy'
+     */
     @Test
     public void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
-    /** Test the property 'restartTries' */
+    /**
+     * Test the property 'restartTries'
+     */
     @Test
     public void restartTriesTest() {
         // TODO: test restartTries
     }
 
-    /** Test the property 'securityOpt' */
+    /**
+     * Test the property 'securityOpt'
+     */
     @Test
     public void securityOptTest() {
         // TODO: test securityOpt
     }
 
-    /** Test the property 'serviceContainerID' */
+    /**
+     * Test the property 'serviceContainerID'
+     */
     @Test
     public void serviceContainerIDTest() {
         // TODO: test serviceContainerID
     }
 
-    /** Test the property 'shareParent' */
+    /**
+     * Test the property 'shareParent'
+     */
     @Test
     public void shareParentTest() {
         // TODO: test shareParent
     }
 
-    /** Test the property 'sharedNamespaces' */
+    /**
+     * Test the property 'sharedNamespaces'
+     */
     @Test
     public void sharedNamespacesTest() {
         // TODO: test sharedNamespaces
     }
 
-    /** Test the property 'shmSize' */
+    /**
+     * Test the property 'shmSize'
+     */
     @Test
     public void shmSizeTest() {
         // TODO: test shmSize
     }
 
-    /** Test the property 'shmSizeSystemd' */
+    /**
+     * Test the property 'shmSizeSystemd'
+     */
     @Test
     public void shmSizeSystemdTest() {
         // TODO: test shmSizeSystemd
     }
 
-    /** Test the property 'sysctl' */
+    /**
+     * Test the property 'sysctl'
+     */
     @Test
     public void sysctlTest() {
         // TODO: test sysctl
     }
 
-    /** Test the property 'throttleReadBpsDevice' */
+    /**
+     * Test the property 'throttleReadBpsDevice'
+     */
     @Test
     public void throttleReadBpsDeviceTest() {
         // TODO: test throttleReadBpsDevice
     }
 
-    /** Test the property 'userns' */
+    /**
+     * Test the property 'userns'
+     */
     @Test
     public void usernsTest() {
         // TODO: test userns
     }
 
-    /** Test the property 'utsns' */
+    /**
+     * Test the property 'utsns'
+     */
     @Test
     public void utsnsTest() {
         // TODO: test utsns
     }
 
-    /** Test the property 'volumes' */
+    /**
+     * Test the property 'volumes'
+     */
     @Test
     public void volumesTest() {
         // TODO: test volumes
     }
 
-    /** Test the property 'volumesFrom' */
+    /**
+     * Test the property 'volumesFrom'
+     */
     @Test
     public void volumesFromTest() {
         // TODO: test volumesFrom
     }
+
 }

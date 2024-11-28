@@ -2,7 +2,7 @@
 
 supports a RESTful API for the Libpod library
 - API version: 5.0.0
-  - Build date: 2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]
+  - Build date: 2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]
   - Generator version: 7.7.0
 
 This documentation describes the Podman v2.x+ RESTful API. It consists of a Docker-compatible
@@ -342,6 +342,7 @@ Class | Method | HTTP request | Description
 
  - [AccessMode](docs/AccessMode.md)
  - [Address](docs/Address.md)
+ - [AttestationProperties](docs/AttestationProperties.md)
  - [AuthConfig](docs/AuthConfig.md)
  - [AuthReport](docs/AuthReport.md)
  - [AuthenticateOKBody](docs/AuthenticateOKBody.md)
@@ -385,6 +386,7 @@ Class | Method | HTTP request | Description
  - [CreateResponse](docs/CreateResponse.md)
  - [DNSNetworkInfo](docs/DNSNetworkInfo.md)
  - [DeleteResponse](docs/DeleteResponse.md)
+ - [Descriptor](docs/Descriptor.md)
  - [DeviceMapping](docs/DeviceMapping.md)
  - [DeviceRequest](docs/DeviceRequest.md)
  - [DisconnectOptions](docs/DisconnectOptions.md)
@@ -425,6 +427,8 @@ Class | Method | HTTP request | Description
  - [ImageImportReport](docs/ImageImportReport.md)
  - [ImageInspect](docs/ImageInspect.md)
  - [ImageLoadReport](docs/ImageLoadReport.md)
+ - [ImageProperties](docs/ImageProperties.md)
+ - [ImagePropertiesSize](docs/ImagePropertiesSize.md)
  - [ImageSearch200Response](docs/ImageSearch200Response.md)
  - [ImageStore](docs/ImageStore.md)
  - [ImageTreeReport](docs/ImageTreeReport.md)
@@ -489,6 +493,8 @@ Class | Method | HTTP request | Description
  - [ManifestModifyReport](docs/ManifestModifyReport.md)
  - [ManifestPushReport](docs/ManifestPushReport.md)
  - [ManifestRemoveReport](docs/ManifestRemoveReport.md)
+ - [ManifestSummary](docs/ManifestSummary.md)
+ - [ManifestSummarySize](docs/ManifestSummarySize.md)
  - [Meta](docs/Meta.md)
  - [Metadata](docs/Metadata.md)
  - [Mount](docs/Mount.md)

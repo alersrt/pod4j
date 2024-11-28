@@ -10,35 +10,56 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainersPruneReportLibpod */
+/**
+ * Model tests for ContainersPruneReportLibpod
+ */
 public class ContainersPruneReportLibpodTest {
     private final ContainersPruneReportLibpod model = new ContainersPruneReportLibpod();
 
-    /** Model tests for ContainersPruneReportLibpod */
+    /**
+     * Model tests for ContainersPruneReportLibpod
+     */
     @Test
     public void testContainersPruneReportLibpod() {
         // TODO: test ContainersPruneReportLibpod
     }
 
-    /** Test the property 'err' */
+    /**
+     * Test the property 'err'
+     */
     @Test
     public void errTest() {
         // TODO: test err
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
+
 }

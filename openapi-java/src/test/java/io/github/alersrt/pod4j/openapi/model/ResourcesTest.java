@@ -10,203 +10,286 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.DeviceMapping;
+import io.github.alersrt.pod4j.openapi.model.DeviceRequest;
+import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
+import io.github.alersrt.pod4j.openapi.model.Ulimit;
+import io.github.alersrt.pod4j.openapi.model.WeightDevice;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for Resources */
+/**
+ * Model tests for Resources
+ */
 public class ResourcesTest {
     private final Resources model = new Resources();
 
-    /** Model tests for Resources */
+    /**
+     * Model tests for Resources
+     */
     @Test
     public void testResources() {
         // TODO: test Resources
     }
 
-    /** Test the property 'blkioDeviceReadBps' */
+    /**
+     * Test the property 'blkioDeviceReadBps'
+     */
     @Test
     public void blkioDeviceReadBpsTest() {
         // TODO: test blkioDeviceReadBps
     }
 
-    /** Test the property 'blkioDeviceReadIOps' */
+    /**
+     * Test the property 'blkioDeviceReadIOps'
+     */
     @Test
     public void blkioDeviceReadIOpsTest() {
         // TODO: test blkioDeviceReadIOps
     }
 
-    /** Test the property 'blkioDeviceWriteBps' */
+    /**
+     * Test the property 'blkioDeviceWriteBps'
+     */
     @Test
     public void blkioDeviceWriteBpsTest() {
         // TODO: test blkioDeviceWriteBps
     }
 
-    /** Test the property 'blkioDeviceWriteIOps' */
+    /**
+     * Test the property 'blkioDeviceWriteIOps'
+     */
     @Test
     public void blkioDeviceWriteIOpsTest() {
         // TODO: test blkioDeviceWriteIOps
     }
 
-    /** Test the property 'blkioWeight' */
+    /**
+     * Test the property 'blkioWeight'
+     */
     @Test
     public void blkioWeightTest() {
         // TODO: test blkioWeight
     }
 
-    /** Test the property 'blkioWeightDevice' */
+    /**
+     * Test the property 'blkioWeightDevice'
+     */
     @Test
     public void blkioWeightDeviceTest() {
         // TODO: test blkioWeightDevice
     }
 
-    /** Test the property 'cgroupParent' */
+    /**
+     * Test the property 'cgroupParent'
+     */
     @Test
     public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
-    /** Test the property 'cpuCount' */
+    /**
+     * Test the property 'cpuCount'
+     */
     @Test
     public void cpuCountTest() {
         // TODO: test cpuCount
     }
 
-    /** Test the property 'cpuPercent' */
+    /**
+     * Test the property 'cpuPercent'
+     */
     @Test
     public void cpuPercentTest() {
         // TODO: test cpuPercent
     }
 
-    /** Test the property 'cpuPeriod' */
+    /**
+     * Test the property 'cpuPeriod'
+     */
     @Test
     public void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
-    /** Test the property 'cpuQuota' */
+    /**
+     * Test the property 'cpuQuota'
+     */
     @Test
     public void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
-    /** Test the property 'cpuRealtimePeriod' */
+    /**
+     * Test the property 'cpuRealtimePeriod'
+     */
     @Test
     public void cpuRealtimePeriodTest() {
         // TODO: test cpuRealtimePeriod
     }
 
-    /** Test the property 'cpuRealtimeRuntime' */
+    /**
+     * Test the property 'cpuRealtimeRuntime'
+     */
     @Test
     public void cpuRealtimeRuntimeTest() {
         // TODO: test cpuRealtimeRuntime
     }
 
-    /** Test the property 'cpuShares' */
+    /**
+     * Test the property 'cpuShares'
+     */
     @Test
     public void cpuSharesTest() {
         // TODO: test cpuShares
     }
 
-    /** Test the property 'cpusetCpus' */
+    /**
+     * Test the property 'cpusetCpus'
+     */
     @Test
     public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
-    /** Test the property 'cpusetMems' */
+    /**
+     * Test the property 'cpusetMems'
+     */
     @Test
     public void cpusetMemsTest() {
         // TODO: test cpusetMems
     }
 
-    /** Test the property 'deviceCgroupRules' */
+    /**
+     * Test the property 'deviceCgroupRules'
+     */
     @Test
     public void deviceCgroupRulesTest() {
         // TODO: test deviceCgroupRules
     }
 
-    /** Test the property 'deviceRequests' */
+    /**
+     * Test the property 'deviceRequests'
+     */
     @Test
     public void deviceRequestsTest() {
         // TODO: test deviceRequests
     }
 
-    /** Test the property 'devices' */
+    /**
+     * Test the property 'devices'
+     */
     @Test
     public void devicesTest() {
         // TODO: test devices
     }
 
-    /** Test the property 'ioMaximumBandwidth' */
+    /**
+     * Test the property 'ioMaximumBandwidth'
+     */
     @Test
     public void ioMaximumBandwidthTest() {
         // TODO: test ioMaximumBandwidth
     }
 
-    /** Test the property 'ioMaximumIOps' */
+    /**
+     * Test the property 'ioMaximumIOps'
+     */
     @Test
     public void ioMaximumIOpsTest() {
         // TODO: test ioMaximumIOps
     }
 
-    /** Test the property 'kernelMemory' */
+    /**
+     * Test the property 'kernelMemory'
+     */
     @Test
     public void kernelMemoryTest() {
         // TODO: test kernelMemory
     }
 
-    /** Test the property 'kernelMemoryTCP' */
+    /**
+     * Test the property 'kernelMemoryTCP'
+     */
     @Test
     public void kernelMemoryTCPTest() {
         // TODO: test kernelMemoryTCP
     }
 
-    /** Test the property 'memory' */
+    /**
+     * Test the property 'memory'
+     */
     @Test
     public void memoryTest() {
         // TODO: test memory
     }
 
-    /** Test the property 'memoryReservation' */
+    /**
+     * Test the property 'memoryReservation'
+     */
     @Test
     public void memoryReservationTest() {
         // TODO: test memoryReservation
     }
 
-    /** Test the property 'memorySwap' */
+    /**
+     * Test the property 'memorySwap'
+     */
     @Test
     public void memorySwapTest() {
         // TODO: test memorySwap
     }
 
-    /** Test the property 'memorySwappiness' */
+    /**
+     * Test the property 'memorySwappiness'
+     */
     @Test
     public void memorySwappinessTest() {
         // TODO: test memorySwappiness
     }
 
-    /** Test the property 'nanoCpus' */
+    /**
+     * Test the property 'nanoCpus'
+     */
     @Test
     public void nanoCpusTest() {
         // TODO: test nanoCpus
     }
 
-    /** Test the property 'oomKillDisable' */
+    /**
+     * Test the property 'oomKillDisable'
+     */
     @Test
     public void oomKillDisableTest() {
         // TODO: test oomKillDisable
     }
 
-    /** Test the property 'pidsLimit' */
+    /**
+     * Test the property 'pidsLimit'
+     */
     @Test
     public void pidsLimitTest() {
         // TODO: test pidsLimit
     }
 
-    /** Test the property 'ulimits' */
+    /**
+     * Test the property 'ulimits'
+     */
     @Test
     public void ulimitsTest() {
         // TODO: test ulimits
     }
+
 }

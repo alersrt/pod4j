@@ -894,7 +894,7 @@ No authorization required
 
 <a id="imagePruneLibpod"></a>
 # **imagePruneLibpod**
-> List&lt;PruneReport&gt; imagePruneLibpod(all, external, filters)
+> List&lt;PruneReport&gt; imagePruneLibpod(all, external, buildcache, filters)
 
 Prune unused images
 
@@ -917,9 +917,10 @@ public class Example {
     ImagesApi apiInstance = new ImagesApi(defaultClient);
     Boolean all = false; // Boolean | Remove all images not in use by containers, not just dangling ones 
     Boolean external = false; // Boolean | Remove images even when they are used by external containers (e.g, by build containers) 
+    Boolean buildcache = false; // Boolean | Remove persistent build cache created by build instructions such as `--mount=type=cache`. 
     String filters = "filters_example"; // String | filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - `dangling=<boolean>` When set to `true` (or `1`), prune only      unused *and* untagged images. When set to `false`      (or `0`), all unused images are pruned.   - `until=<string>` Prune images created before this timestamp. The `<timestamp>` can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. `10m`, `1h30m`) computed relative to the daemon machine’s time.   - `label` (`label=<key>`, `label=<key>=<value>`, `label!=<key>`, or `label!=<key>=<value>`) Prune images with (or without, in case `label!=...` is used) the specified labels. 
     try {
-      List<PruneReport> result = apiInstance.imagePruneLibpod(all, external, filters);
+      List<PruneReport> result = apiInstance.imagePruneLibpod(all, external, buildcache, filters);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ImagesApi#imagePruneLibpod");
@@ -938,6 +939,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **all** | **Boolean**| Remove all images not in use by containers, not just dangling ones  | [optional] [default to false] |
 | **external** | **Boolean**| Remove images even when they are used by external containers (e.g, by build containers)  | [optional] [default to false] |
+| **buildcache** | **Boolean**| Remove persistent build cache created by build instructions such as &#x60;--mount&#x3D;type&#x3D;cache&#x60;.  | [optional] [default to false] |
 | **filters** | **String**| filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  | [optional] |
 
 ### Return type

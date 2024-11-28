@@ -10,29 +10,47 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for LinuxRdma */
+/**
+ * Model tests for LinuxRdma
+ */
 public class LinuxRdmaTest {
     private final LinuxRdma model = new LinuxRdma();
 
-    /** Model tests for LinuxRdma */
+    /**
+     * Model tests for LinuxRdma
+     */
     @Test
     public void testLinuxRdma() {
         // TODO: test LinuxRdma
     }
 
-    /** Test the property 'hcaHandles' */
+    /**
+     * Test the property 'hcaHandles'
+     */
     @Test
     public void hcaHandlesTest() {
         // TODO: test hcaHandles
     }
 
-    /** Test the property 'hcaObjects' */
+    /**
+     * Test the property 'hcaObjects'
+     */
     @Test
     public void hcaObjectsTest() {
         // TODO: test hcaObjects
     }
+
 }

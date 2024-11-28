@@ -10,23 +10,40 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.LinuxResources;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for UpdateEntities */
+/**
+ * Model tests for UpdateEntities
+ */
 public class UpdateEntitiesTest {
     private final UpdateEntities model = new UpdateEntities();
 
-    /** Model tests for UpdateEntities */
+    /**
+     * Model tests for UpdateEntities
+     */
     @Test
     public void testUpdateEntities() {
         // TODO: test UpdateEntities
     }
 
-    /** Test the property 'resources' */
+    /**
+     * Test the property 'resources'
+     */
     @Test
     public void resourcesTest() {
         // TODO: test resources
     }
+
 }

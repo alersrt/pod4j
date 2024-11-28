@@ -10,179 +10,255 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.ContainerSize;
+import io.github.alersrt.pod4j.openapi.model.ListContainerNamespaces;
+import io.github.alersrt.pod4j.openapi.model.PortMapping;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ListContainer */
+/**
+ * Model tests for ListContainer
+ */
 public class ListContainerTest {
     private final ListContainer model = new ListContainer();
 
-    /** Model tests for ListContainer */
+    /**
+     * Model tests for ListContainer
+     */
     @Test
     public void testListContainer() {
         // TODO: test ListContainer
     }
 
-    /** Test the property 'autoRemove' */
+    /**
+     * Test the property 'autoRemove'
+     */
     @Test
     public void autoRemoveTest() {
         // TODO: test autoRemove
     }
 
-    /** Test the property 'ciDFile' */
+    /**
+     * Test the property 'ciDFile'
+     */
     @Test
     public void ciDFileTest() {
         // TODO: test ciDFile
     }
 
-    /** Test the property 'command' */
+    /**
+     * Test the property 'command'
+     */
     @Test
     public void commandTest() {
         // TODO: test command
     }
 
-    /** Test the property 'created' */
+    /**
+     * Test the property 'created'
+     */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /** Test the property 'createdAt' */
+    /**
+     * Test the property 'createdAt'
+     */
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
     }
 
-    /** Test the property 'exitCode' */
+    /**
+     * Test the property 'exitCode'
+     */
     @Test
     public void exitCodeTest() {
         // TODO: test exitCode
     }
 
-    /** Test the property 'exited' */
+    /**
+     * Test the property 'exited'
+     */
     @Test
     public void exitedTest() {
         // TODO: test exited
     }
 
-    /** Test the property 'exitedAt' */
+    /**
+     * Test the property 'exitedAt'
+     */
     @Test
     public void exitedAtTest() {
         // TODO: test exitedAt
     }
 
-    /** Test the property 'exposedPorts' */
+    /**
+     * Test the property 'exposedPorts'
+     */
     @Test
     public void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'image' */
+    /**
+     * Test the property 'image'
+     */
     @Test
     public void imageTest() {
         // TODO: test image
     }
 
-    /** Test the property 'imageID' */
+    /**
+     * Test the property 'imageID'
+     */
     @Test
     public void imageIDTest() {
         // TODO: test imageID
     }
 
-    /** Test the property 'isInfra' */
+    /**
+     * Test the property 'isInfra'
+     */
     @Test
     public void isInfraTest() {
         // TODO: test isInfra
     }
 
-    /** Test the property 'labels' */
+    /**
+     * Test the property 'labels'
+     */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /** Test the property 'mounts' */
+    /**
+     * Test the property 'mounts'
+     */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /** Test the property 'names' */
+    /**
+     * Test the property 'names'
+     */
     @Test
     public void namesTest() {
         // TODO: test names
     }
 
-    /** Test the property 'namespaces' */
+    /**
+     * Test the property 'namespaces'
+     */
     @Test
     public void namespacesTest() {
         // TODO: test namespaces
     }
 
-    /** Test the property 'networks' */
+    /**
+     * Test the property 'networks'
+     */
     @Test
     public void networksTest() {
         // TODO: test networks
     }
 
-    /** Test the property 'pid' */
+    /**
+     * Test the property 'pid'
+     */
     @Test
     public void pidTest() {
         // TODO: test pid
     }
 
-    /** Test the property 'pod' */
+    /**
+     * Test the property 'pod'
+     */
     @Test
     public void podTest() {
         // TODO: test pod
     }
 
-    /** Test the property 'podName' */
+    /**
+     * Test the property 'podName'
+     */
     @Test
     public void podNameTest() {
         // TODO: test podName
     }
 
-    /** Test the property 'ports' */
+    /**
+     * Test the property 'ports'
+     */
     @Test
     public void portsTest() {
         // TODO: test ports
     }
 
-    /** Test the property 'restarts' */
+    /**
+     * Test the property 'restarts'
+     */
     @Test
     public void restartsTest() {
         // TODO: test restarts
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /** Test the property 'startedAt' */
+    /**
+     * Test the property 'startedAt'
+     */
     @Test
     public void startedAtTest() {
         // TODO: test startedAt
     }
 
-    /** Test the property 'state' */
+    /**
+     * Test the property 'state'
+     */
     @Test
     public void stateTest() {
         // TODO: test state
     }
 
-    /** Test the property 'status' */
+    /**
+     * Test the property 'status'
+     */
     @Test
     public void statusTest() {
         // TODO: test status
     }
+
 }

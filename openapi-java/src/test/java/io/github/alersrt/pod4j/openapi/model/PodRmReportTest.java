@@ -10,35 +10,57 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PodRmReport */
+/**
+ * Model tests for PodRmReport
+ */
 public class PodRmReportTest {
     private final PodRmReport model = new PodRmReport();
 
-    /** Model tests for PodRmReport */
+    /**
+     * Model tests for PodRmReport
+     */
     @Test
     public void testPodRmReport() {
         // TODO: test PodRmReport
     }
 
-    /** Test the property 'err' */
+    /**
+     * Test the property 'err'
+     */
     @Test
     public void errTest() {
         // TODO: test err
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'removedCtrs' */
+    /**
+     * Test the property 'removedCtrs'
+     */
     @Test
     public void removedCtrsTest() {
         // TODO: test removedCtrs
     }
+
 }

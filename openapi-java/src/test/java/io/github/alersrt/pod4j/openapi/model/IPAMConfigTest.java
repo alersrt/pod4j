@@ -10,41 +10,65 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for IPAMConfig */
+/**
+ * Model tests for IPAMConfig
+ */
 public class IPAMConfigTest {
     private final IPAMConfig model = new IPAMConfig();
 
-    /** Model tests for IPAMConfig */
+    /**
+     * Model tests for IPAMConfig
+     */
     @Test
     public void testIPAMConfig() {
         // TODO: test IPAMConfig
     }
 
-    /** Test the property 'auxiliaryAddresses' */
+    /**
+     * Test the property 'auxiliaryAddresses'
+     */
     @Test
     public void auxiliaryAddressesTest() {
         // TODO: test auxiliaryAddresses
     }
 
-    /** Test the property 'gateway' */
+    /**
+     * Test the property 'gateway'
+     */
     @Test
     public void gatewayTest() {
         // TODO: test gateway
     }
 
-    /** Test the property 'ipRange' */
+    /**
+     * Test the property 'ipRange'
+     */
     @Test
     public void ipRangeTest() {
         // TODO: test ipRange
     }
 
-    /** Test the property 'subnet' */
+    /**
+     * Test the property 'subnet'
+     */
     @Test
     public void subnetTest() {
         // TODO: test subnet
     }
+
 }

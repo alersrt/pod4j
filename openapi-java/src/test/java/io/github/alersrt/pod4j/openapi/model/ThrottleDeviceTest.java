@@ -10,29 +10,47 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ThrottleDevice */
+/**
+ * Model tests for ThrottleDevice
+ */
 public class ThrottleDeviceTest {
     private final ThrottleDevice model = new ThrottleDevice();
 
-    /** Model tests for ThrottleDevice */
+    /**
+     * Model tests for ThrottleDevice
+     */
     @Test
     public void testThrottleDevice() {
         // TODO: test ThrottleDevice
     }
 
-    /** Test the property 'path' */
+    /**
+     * Test the property 'path'
+     */
     @Test
     public void pathTest() {
         // TODO: test path
     }
 
-    /** Test the property 'rate' */
+    /**
+     * Test the property 'rate'
+     */
     @Test
     public void rateTest() {
         // TODO: test rate
     }
+
 }

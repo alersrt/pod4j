@@ -26,6 +26,12 @@ definitions:
         title: Address represents an IP address.
         type: object
         x-go-package: github.com/containers/podman/v5/libpod/define
+    AttestationProperties:
+        properties:
+            For:
+                $ref: '#/definitions/Digest'
+        type: object
+        x-go-package: github.com/docker/docker/api/types/image
     AuthConfig:
         description: AuthConfig contains authorization information for connecting to a Registry
         properties:
@@ -618,6 +624,15 @@ definitions:
                     Optional.
                 type: boolean
                 x-go-name: Remove
+            removeImage:
+                description: |-
+                    RemoveImage indicates that the container should remove the image it
+                    was created from after it exits.
+                    Only allowed if Remove is set to true and Image, not Rootfs, is in
+                    use.
+                    Optional.
+                type: boolean
+                x-go-name: RemoveImage
             restart_policy:
                 description: |-
                     RestartPolicy is the container's restart policy - an action which
@@ -716,7 +731,7 @@ definitions:
                 x-go-name: Timezone
             unsetenv:
                 description: |-
-                    UnsetEnv unsets the specified default environment variables from the image or from buildin or containers.conf
+                    UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf
                     Optional.
                 items:
                     type: string
@@ -724,8 +739,8 @@ definitions:
                 x-go-name: UnsetEnv
             unsetenvall:
                 description: |-
-                    UnsetEnvAll unsetall default environment variables from the image or from buildin or containers.conf
-                    UnsetEnvAll unsets all default environment variables from the image or from buildin
+                    UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf
+                    UnsetEnvAll unsets all default environment variables from the image or from built-in
                     Optional.
                 type: boolean
                 x-go-name: UnsetEnvAll
@@ -781,6 +796,24 @@ definitions:
         properties:
             health_check_on_failure_action:
                 $ref: '#/definitions/HealthCheckOnFailureAction'
+            healthLogDestination:
+                description: HealthLogDestination defines the destination where the log is stored
+                type: string
+                x-go-name: HealthLogDestination
+            healthMaxLogCount:
+                description: |-
+                    HealthMaxLogCount is maximum number of attempts in the HealthCheck log file.
+                    ('0' value means an infinite number of attempts in the log file)
+                format: uint64
+                type: integer
+                x-go-name: HealthMaxLogCount
+            healthMaxLogSize:
+                description: |-
+                    HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
+                    ("0" value means an infinite log length)
+                format: uint64
+                type: integer
+                x-go-name: HealthMaxLogSize
             healthconfig:
                 $ref: '#/definitions/Schema2HealthConfig'
             startupHealthConfig:
@@ -1896,6 +1929,53 @@ definitions:
                 type: string
         type: object
         x-go-package: github.com/docker/docker/api/types/image
+    Descriptor:
+        description: |-
+            This structure provides `application/vnd.oci.descriptor.v1+json` mediatype
+            when marshalled to JSON.
+        properties:
+            annotations:
+                additionalProperties:
+                    type: string
+                description: Annotations contains arbitrary metadata relating to the targeted content.
+                type: object
+                x-go-name: Annotations
+            artifactType:
+                description: ArtifactType is the IANA media type of this artifact.
+                type: string
+                x-go-name: ArtifactType
+            data:
+                description: |-
+                    Data is an embedding of the targeted content. This is encoded as a base64
+                    string when marshalled to JSON (automatically, by encoding/json). If
+                    present, Data can be used directly to avoid fetching the targeted content.
+                items:
+                    format: uint8
+                    type: integer
+                type: array
+                x-go-name: Data
+            digest:
+                $ref: '#/definitions/Digest'
+            mediaType:
+                description: MediaType is the media type of the object this schema refers to.
+                type: string
+                x-go-name: MediaType
+            platform:
+                $ref: '#/definitions/Platform'
+            size:
+                description: Size specifies the size in bytes of the blob.
+                format: int64
+                type: integer
+                x-go-name: Size
+            urls:
+                description: URLs specifies a list of URLs from which this object MAY be downloaded
+                items:
+                    type: string
+                type: array
+                x-go-name: URLs
+        title: Descriptor describes the disposition of targeted content.
+        type: object
+        x-go-package: github.com/opencontainers/image-spec/specs-go/v1
     DeviceMapping:
         properties:
             CgroupPermissions:
@@ -3088,6 +3168,38 @@ definitions:
                 type: array
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
+    ImageProperties:
+        properties:
+            Containers:
+                description: |-
+                    Containers is an array containing the IDs of the containers that are
+                    using this image.
+                items:
+                    type: string
+                type: array
+            Platform:
+                $ref: '#/definitions/Platform'
+            Size:
+                properties:
+                    Unpacked:
+                        description: |-
+                            Unpacked is the size (in bytes) of the locally unpacked
+                            (uncompressed) image content that's directly usable by the containers
+                            running this image.
+                            It's independent of the distributable content - e.g.
+                            the image might still have an unpacked data that's still used by
+                            some container even when the distributable/compressed content is
+                            already gone.
+                        format: int64
+                        type: integer
+                required:
+                    - Unpacked
+                type: object
+        required:
+            - Platform
+            - Containers
+        type: object
+        x-go-package: github.com/docker/docker/api/types/image
     ImageStore:
         description: |-
             ImageStore describes the image store.  Right now only the number
@@ -3137,7 +3249,7 @@ definitions:
         properties:
             AccessibleTopology:
                 description: |-
-                    AccessibleTopolgoy is the topology this volume is actually accessible
+                    AccessibleTopology is the topology this volume is actually accessible
                     from.
                 items:
                     $ref: '#/definitions/Topology'
@@ -3390,8 +3502,30 @@ definitions:
                 items:
                     type: string
                 type: array
+            ExposedPorts:
+                additionalProperties:
+                    type: object
+                description: ExposedPorts includes ports the container has exposed.
+                type: object
+            HealthLogDestination:
+                description: HealthLogDestination defines the destination where the log is stored
+                type: string
             Healthcheck:
                 $ref: '#/definitions/Schema2HealthConfig'
+            HealthcheckMaxLogCount:
+                description: |-
+                    HealthMaxLogCount is maximum number of attempts in the HealthCheck log file.
+                    ('0' value means an infinite number of attempts in the log file)
+                format: uint64
+                type: integer
+                x-go-name: HealthMaxLogCount
+            HealthcheckMaxLogSize:
+                description: |-
+                    HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
+                    ("0" value means an infinite log length)
+                format: uint64
+                type: integer
+                x-go-name: HealthMaxLogSize
             HealthcheckOnFailureAction:
                 description: HealthcheckOnFailureAction defines an action to take once the container turns unhealthy.
                 type: string
@@ -3420,6 +3554,8 @@ definitions:
                 items:
                     $ref: '#/definitions/InspectSecret'
                 type: array
+            StartupHealthCheck:
+                $ref: '#/definitions/StartupHealthCheck'
             StdinOnce:
                 description: |-
                     Whether STDIN is only left open once.
@@ -3597,6 +3733,13 @@ definitions:
                 description: |-
                     AutoRemove is whether the container will be automatically removed on
                     exiting.
+                    It is not handled directly within libpod and is stored in an
+                    annotation.
+                type: boolean
+            AutoRemoveImage:
+                description: |-
+                    AutoRemoveImage is whether the container's image will be
+                    automatically removed on exiting.
                     It is not handled directly within libpod and is stored in an
                     annotation.
                 type: boolean
@@ -4351,6 +4494,11 @@ definitions:
                 type: boolean
             Source:
                 description: The source directory for the volume.
+                type: string
+            SubPath:
+                description: |-
+                    SubPath object from the volume. Specified as a path within
+                    the source volume to be mounted at the Destination.
                 type: string
             Type:
                 description: |-
@@ -5920,6 +6068,9 @@ definitions:
                 x-go-name: Variant
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities
+    ManifestKind:
+        type: string
+        x-go-package: github.com/docker/docker/api/types/image
     ManifestModifyOptions:
         description: |-
             swagger 2.0 does not support oneOf for schema validation.
@@ -6104,6 +6255,60 @@ definitions:
                 type: array
         type: object
         x-go-package: github.com/containers/podman/v5/pkg/domain/entities/types
+    ManifestSummary:
+        properties:
+            AttestationData:
+                $ref: '#/definitions/AttestationProperties'
+            Available:
+                description: |-
+                    Indicates whether all the child content (image config, layers) is
+                    fully available locally
+                type: boolean
+            Descriptor:
+                $ref: '#/definitions/Descriptor'
+            ID:
+                description: |-
+                    ID is the content-addressable ID of an image and is the same as the
+                    digest of the image manifest.
+                type: string
+            ImageData:
+                $ref: '#/definitions/ImageProperties'
+            Kind:
+                $ref: '#/definitions/ManifestKind'
+            Size:
+                description: |-
+                    Size is the size information of the content related to this manifest.
+                    Note: These sizes only take the locally available content into account.
+                properties:
+                    Content:
+                        description: |-
+                            Content is the size (in bytes) of all the locally present
+                            content in the content store (e.g. image config, layers)
+                            referenced by this manifest and its children.
+                            This only includes blobs in the content store.
+                        format: int64
+                        type: integer
+                    Total:
+                        description: |-
+                            Total is the total size (in bytes) of all the locally present
+                            data (both distributable and non-distributable) that's related to
+                            this manifest and its children.
+                            This equal to the sum of [Content] size AND all the sizes in the
+                            [Size] struct present in the Kind-specific data struct.
+                            For example, for an image kind (Kind == ManifestKindImage),
+                            this would include the size of the image content and unpacked
+                            image snapshots ([Size.Content] + [ImageData.Size.Unpacked]).
+                        format: int64
+                        type: integer
+                type: object
+        required:
+            - ID
+            - Descriptor
+            - Available
+            - Size
+            - Kind
+        type: object
+        x-go-package: github.com/docker/docker/api/types/image
     Meta:
         properties:
             CreatedAt:
@@ -8877,7 +9082,7 @@ definitions:
         type: string
         x-go-package: github.com/docker/docker/api/types/volume
     Signal:
-        description: It implements the os.Signal interface.
+        description: It implements the [os.Signal] interface.
         format: int64
         title: A Signal is a number describing a process signal.
         type: integer
@@ -9163,6 +9368,24 @@ definitions:
                 x-go-name: Groups
             health_check_on_failure_action:
                 $ref: '#/definitions/HealthCheckOnFailureAction'
+            healthLogDestination:
+                description: HealthLogDestination defines the destination where the log is stored
+                type: string
+                x-go-name: HealthLogDestination
+            healthMaxLogCount:
+                description: |-
+                    HealthMaxLogCount is maximum number of attempts in the HealthCheck log file.
+                    ('0' value means an infinite number of attempts in the log file)
+                format: uint64
+                type: integer
+                x-go-name: HealthMaxLogCount
+            healthMaxLogSize:
+                description: |-
+                    HealthMaxLogSize is the maximum length in characters of stored HealthCheck log
+                    ("0" value means an infinite log length)
+                format: uint64
+                type: integer
+                x-go-name: HealthMaxLogSize
             healthconfig:
                 $ref: '#/definitions/Schema2HealthConfig'
             host_device_list:
@@ -9462,6 +9685,15 @@ definitions:
                     Optional.
                 type: boolean
                 x-go-name: Remove
+            removeImage:
+                description: |-
+                    RemoveImage indicates that the container should remove the image it
+                    was created from after it exits.
+                    Only allowed if Remove is set to true and Image, not Rootfs, is in
+                    use.
+                    Optional.
+                type: boolean
+                x-go-name: RemoveImage
             resource_limits:
                 $ref: '#/definitions/LinuxResources'
             restart_policy:
@@ -9695,7 +9927,7 @@ definitions:
                 x-go-name: Unmask
             unsetenv:
                 description: |-
-                    UnsetEnv unsets the specified default environment variables from the image or from buildin or containers.conf
+                    UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf
                     Optional.
                 items:
                     type: string
@@ -9703,8 +9935,8 @@ definitions:
                 x-go-name: UnsetEnv
             unsetenvall:
                 description: |-
-                    UnsetEnvAll unsetall default environment variables from the image or from buildin or containers.conf
-                    UnsetEnvAll unsets all default environment variables from the image or from buildin
+                    UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf
+                    UnsetEnvAll unsets all default environment variables from the image or from built-in
                     Optional.
                 type: boolean
                 x-go-name: UnsetEnvAll
@@ -9894,7 +10126,6 @@ definitions:
         type: object
         x-go-package: github.com/containers/common/libnetwork/types
     Summary:
-        description: Summary summary
         properties:
             Containers:
                 description: |-
@@ -9908,7 +10139,7 @@ definitions:
             Created:
                 description: |-
                     Date and time at which the image was created as a Unix timestamp
-                    (number of seconds sinds EPOCH).
+                    (number of seconds since EPOCH).
                 format: int64
                 type: integer
             Id:
@@ -9928,6 +10159,17 @@ definitions:
                     type: string
                 description: User-defined key/value metadata.
                 type: object
+            Manifests:
+                description: |-
+                    Manifests is a list of image manifests available in this image.  It
+                    provides a more detailed view of the platform-specific image manifests or
+                    other image-attached data like build attestations.
+
+                    WARNING: This is experimental and may change at any time without any backward
+                    compatibility.
+                items:
+                    $ref: '#/definitions/ManifestSummary'
+                type: array
             ParentId:
                 description: |-
                     ID of the parent image.
@@ -11137,6 +11379,18 @@ paths:
                     (As of version 1.xx)
                   in: query
                   name: remote
+                  type: string
+                - default: 3
+                  description: |
+                    Number of times to retry in case of failure when performing push/pull.
+                  in: query
+                  name: retry
+                  type: integer
+                - default: 2s
+                  description: |
+                    Delay between retries in case of push/pull failures.
+                  in: query
+                  name: retry-delay
                   type: string
                 - default: false
                   description: |
@@ -15115,6 +15369,12 @@ paths:
                   in: query
                   name: external
                   type: boolean
+                - default: false
+                  description: |
+                    Remove persistent build cache created by build instructions such as `--mount=type=cache`.
+                  in: query
+                  name: buildcache
+                  type: boolean
                 - description: |
                     filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:
                       - `dangling=<boolean>` When set to `true` (or `1`), prune only
@@ -15916,9 +16176,50 @@ paths:
                 - containers
                 - pods
         post:
-            description: Create and run pods based on a Kubernetes YAML file (pod or service kind).
+            description: |
+                Create and run pods based on a Kubernetes YAML file.
+
+                ### Content-Type
+
+                Then endpoint support two Content-Type
+                 - `plain/text` for yaml format
+                 - `application/x-tar` for sending context(s) required for building images
+
+                #### Tar format
+
+                The tar format must contain a `play.yaml` file at the root that will be used.
+                If the file format requires context to build an image, it uses the image name and
+                check for corresponding folder.
+
+                For example, the client sends a tar file with the following structure:
+
+                ```
+                └── content.tar
+                 ├── play.yaml
+                 └── foobar/
+                     └── Containerfile
+                ```
+
+                The `play.yaml` is the following, the `foobar` image means we are looking for a context with this name.
+                ```
+                apiVersion: v1
+                kind: Pod
+                metadata:
+                name: demo-build-remote
+                spec:
+                containers:
+                 - name: container
+                   image: foobar
+                ```
             operationId: PlayKubeLibpod
             parameters:
+                - default: plain/text
+                  enum:
+                    - plain/text
+                    - application/x-tar
+                  in: header
+                  name: Content-Type
+                  type: string
                 - description: JSON encoded value of annotations (a map[string]string).
                   in: query
                   name: annotations
@@ -15999,6 +16300,10 @@ paths:
                   description: Clean up all objects created when a SIGTERM is received or pods exit.
                   in: query
                   name: wait
+                  type: boolean
+                - description: Build the images with corresponding context.
+                  in: query
+                  name: build
                   type: boolean
                 - description: Kubernetes YAML file.
                   in: body

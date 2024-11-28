@@ -10,77 +10,115 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ImageConfig */
+/**
+ * Model tests for ImageConfig
+ */
 public class ImageConfigTest {
     private final ImageConfig model = new ImageConfig();
 
-    /** Model tests for ImageConfig */
+    /**
+     * Model tests for ImageConfig
+     */
     @Test
     public void testImageConfig() {
         // TODO: test ImageConfig
     }
 
-    /** Test the property 'argsEscaped' */
+    /**
+     * Test the property 'argsEscaped'
+     */
     @Test
     public void argsEscapedTest() {
         // TODO: test argsEscaped
     }
 
-    /** Test the property 'cmd' */
+    /**
+     * Test the property 'cmd'
+     */
     @Test
     public void cmdTest() {
         // TODO: test cmd
     }
 
-    /** Test the property 'entrypoint' */
+    /**
+     * Test the property 'entrypoint'
+     */
     @Test
     public void entrypointTest() {
         // TODO: test entrypoint
     }
 
-    /** Test the property 'env' */
+    /**
+     * Test the property 'env'
+     */
     @Test
     public void envTest() {
         // TODO: test env
     }
 
-    /** Test the property 'exposedPorts' */
+    /**
+     * Test the property 'exposedPorts'
+     */
     @Test
     public void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
-    /** Test the property 'labels' */
+    /**
+     * Test the property 'labels'
+     */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /** Test the property 'stopSignal' */
+    /**
+     * Test the property 'stopSignal'
+     */
     @Test
     public void stopSignalTest() {
         // TODO: test stopSignal
     }
 
-    /** Test the property 'user' */
+    /**
+     * Test the property 'user'
+     */
     @Test
     public void userTest() {
         // TODO: test user
     }
 
-    /** Test the property 'volumes' */
+    /**
+     * Test the property 'volumes'
+     */
     @Test
     public void volumesTest() {
         // TODO: test volumes
     }
 
-    /** Test the property 'workingDir' */
+    /**
+     * Test the property 'workingDir'
+     */
     @Test
     public void workingDirTest() {
         // TODO: test workingDir
     }
+
 }

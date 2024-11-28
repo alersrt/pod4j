@@ -10,274 +10,276 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** HealthcheckResult stores information about a single run of a healthcheck probe */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * HealthcheckResult stores information about a single run of a healthcheck probe
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class HealthcheckResult {
-    public static final String SERIALIZED_NAME_END = "End";
+  public static final String SERIALIZED_NAME_END = "End";
+  @SerializedName(SERIALIZED_NAME_END)
+  private OffsetDateTime end;
 
-    @SerializedName(SERIALIZED_NAME_END)
-    private OffsetDateTime end;
+  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
+  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+  private Long exitCode;
 
-    public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
+  public static final String SERIALIZED_NAME_OUTPUT = "Output";
+  @SerializedName(SERIALIZED_NAME_OUTPUT)
+  private String output;
 
-    @SerializedName(SERIALIZED_NAME_EXIT_CODE)
-    private Long exitCode;
+  public static final String SERIALIZED_NAME_START = "Start";
+  @SerializedName(SERIALIZED_NAME_START)
+  private OffsetDateTime start;
 
-    public static final String SERIALIZED_NAME_OUTPUT = "Output";
+  public HealthcheckResult() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_OUTPUT)
-    private String output;
+  public HealthcheckResult end(OffsetDateTime end) {
+    this.end = end;
+    return this;
+  }
 
-    public static final String SERIALIZED_NAME_START = "Start";
+  /**
+   * Get end
+   * @return end
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getEnd() {
+    return end;
+  }
 
-    @SerializedName(SERIALIZED_NAME_START)
-    private OffsetDateTime start;
+  public void setEnd(OffsetDateTime end) {
+    this.end = end;
+  }
 
-    public HealthcheckResult() {}
 
-    public HealthcheckResult end(OffsetDateTime end) {
-        this.end = end;
-        return this;
+  public HealthcheckResult exitCode(Long exitCode) {
+    this.exitCode = exitCode;
+    return this;
+  }
+
+  /**
+   * Get exitCode
+   * @return exitCode
+   */
+  @javax.annotation.Nullable
+  public Long getExitCode() {
+    return exitCode;
+  }
+
+  public void setExitCode(Long exitCode) {
+    this.exitCode = exitCode;
+  }
+
+
+  public HealthcheckResult output(String output) {
+    this.output = output;
+    return this;
+  }
+
+  /**
+   * Get output
+   * @return output
+   */
+  @javax.annotation.Nullable
+  public String getOutput() {
+    return output;
+  }
+
+  public void setOutput(String output) {
+    this.output = output;
+  }
+
+
+  public HealthcheckResult start(OffsetDateTime start) {
+    this.start = start;
+    return this;
+  }
+
+  /**
+   * Get start
+   * @return start
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getStart() {
+    return start;
+  }
+
+  public void setStart(OffsetDateTime start) {
+    this.start = start;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Get end
-     *
-     * @return end
-     */
-    @javax.annotation.Nullable
-    public OffsetDateTime getEnd() {
-        return end;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    HealthcheckResult healthcheckResult = (HealthcheckResult) o;
+    return Objects.equals(this.end, healthcheckResult.end) &&
+        Objects.equals(this.exitCode, healthcheckResult.exitCode) &&
+        Objects.equals(this.output, healthcheckResult.output) &&
+        Objects.equals(this.start, healthcheckResult.start);
+  }
 
-    public void setEnd(OffsetDateTime end) {
-        this.end = end;
+  @Override
+  public int hashCode() {
+    return Objects.hash(end, exitCode, output, start);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class HealthcheckResult {\n");
+    sb.append("    end: ").append(toIndentedString(end)).append("\n");
+    sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
+    sb.append("    output: ").append(toIndentedString(output)).append("\n");
+    sb.append("    start: ").append(toIndentedString(start)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public HealthcheckResult exitCode(Long exitCode) {
-        this.exitCode = exitCode;
-        return this;
-    }
 
-    /**
-     * Get exitCode
-     *
-     * @return exitCode
-     */
-    @javax.annotation.Nullable
-    public Long getExitCode() {
-        return exitCode;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setExitCode(Long exitCode) {
-        this.exitCode = exitCode;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("End");
+    openapiFields.add("ExitCode");
+    openapiFields.add("Output");
+    openapiFields.add("Start");
 
-    public HealthcheckResult output(String output) {
-        this.output = output;
-        return this;
-    }
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
 
-    /**
-     * Get output
-     *
-     * @return output
-     */
-    @javax.annotation.Nullable
-    public String getOutput() {
-        return output;
-    }
-
-    public void setOutput(String output) {
-        this.output = output;
-    }
-
-    public HealthcheckResult start(OffsetDateTime start) {
-        this.start = start;
-        return this;
-    }
-
-    /**
-     * Get start
-     *
-     * @return start
-     */
-    @javax.annotation.Nullable
-    public OffsetDateTime getStart() {
-        return start;
-    }
-
-    public void setStart(OffsetDateTime start) {
-        this.start = start;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to HealthcheckResult
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!HealthcheckResult.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in HealthcheckResult is not found in the empty JSON string", HealthcheckResult.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!HealthcheckResult.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HealthcheckResult` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        HealthcheckResult healthcheckResult = (HealthcheckResult) o;
-        return Objects.equals(this.end, healthcheckResult.end)
-                && Objects.equals(this.exitCode, healthcheckResult.exitCode)
-                && Objects.equals(this.output, healthcheckResult.output)
-                && Objects.equals(this.start, healthcheckResult.start);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(end, exitCode, output, start);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class HealthcheckResult {\n");
-        sb.append("    end: ").append(toIndentedString(end)).append("\n");
-        sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
-        sb.append("    output: ").append(toIndentedString(output)).append("\n");
-        sb.append("    start: ").append(toIndentedString(start)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("End");
-        openapiFields.add("ExitCode");
-        openapiFields.add("Output");
-        openapiFields.add("Start");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to HealthcheckResult
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!HealthcheckResult.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in HealthcheckResult is not found in the"
-                                        + " empty JSON string",
-                                HealthcheckResult.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!HealthcheckResult.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `HealthcheckResult` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("Output") != null && !jsonObj.get("Output").isJsonNull())
-                && !jsonObj.get("Output").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Output` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("Output").toString()));
-        }
+      if ((jsonObj.get("Output") != null && !jsonObj.get("Output").isJsonNull()) && !jsonObj.get("Output").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Output` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Output").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!HealthcheckResult.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'HealthcheckResult' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<HealthcheckResult> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(HealthcheckResult.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<HealthcheckResult>() {
+           @Override
+           public void write(JsonWriter out, HealthcheckResult value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public HealthcheckResult read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!HealthcheckResult.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'HealthcheckResult' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<HealthcheckResult> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(HealthcheckResult.class));
+  /**
+   * Create an instance of HealthcheckResult given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of HealthcheckResult
+   * @throws IOException if the JSON string is invalid with respect to HealthcheckResult
+   */
+  public static HealthcheckResult fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, HealthcheckResult.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<HealthcheckResult>() {
-                        @Override
-                        public void write(JsonWriter out, HealthcheckResult value)
-                                throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public HealthcheckResult read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of HealthcheckResult given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of HealthcheckResult
-     * @throws IOException if the JSON string is invalid with respect to HealthcheckResult
-     */
-    public static HealthcheckResult fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, HealthcheckResult.class);
-    }
-
-    /**
-     * Convert an instance of HealthcheckResult to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of HealthcheckResult to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

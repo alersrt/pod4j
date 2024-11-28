@@ -10,35 +10,57 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for TmpfsOptions */
+/**
+ * Model tests for TmpfsOptions
+ */
 public class TmpfsOptionsTest {
     private final TmpfsOptions model = new TmpfsOptions();
 
-    /** Model tests for TmpfsOptions */
+    /**
+     * Model tests for TmpfsOptions
+     */
     @Test
     public void testTmpfsOptions() {
         // TODO: test TmpfsOptions
     }
 
-    /** Test the property 'mode' */
+    /**
+     * Test the property 'mode'
+     */
     @Test
     public void modeTest() {
         // TODO: test mode
     }
 
-    /** Test the property 'options' */
+    /**
+     * Test the property 'options'
+     */
     @Test
     public void optionsTest() {
         // TODO: test options
     }
 
-    /** Test the property 'sizeBytes' */
+    /**
+     * Test the property 'sizeBytes'
+     */
     @Test
     public void sizeBytesTest() {
         // TODO: test sizeBytes
     }
+
 }

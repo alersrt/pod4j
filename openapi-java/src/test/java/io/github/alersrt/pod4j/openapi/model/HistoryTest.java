@@ -10,47 +10,72 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for History */
+/**
+ * Model tests for History
+ */
 public class HistoryTest {
     private final History model = new History();
 
-    /** Model tests for History */
+    /**
+     * Model tests for History
+     */
     @Test
     public void testHistory() {
         // TODO: test History
     }
 
-    /** Test the property 'author' */
+    /**
+     * Test the property 'author'
+     */
     @Test
     public void authorTest() {
         // TODO: test author
     }
 
-    /** Test the property 'comment' */
+    /**
+     * Test the property 'comment'
+     */
     @Test
     public void commentTest() {
         // TODO: test comment
     }
 
-    /** Test the property 'created' */
+    /**
+     * Test the property 'created'
+     */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /** Test the property 'createdBy' */
+    /**
+     * Test the property 'createdBy'
+     */
     @Test
     public void createdByTest() {
         // TODO: test createdBy
     }
 
-    /** Test the property 'emptyLayer' */
+    /**
+     * Test the property 'emptyLayer'
+     */
     @Test
     public void emptyLayerTest() {
         // TODO: test emptyLayer
     }
+
 }

@@ -10,23 +10,39 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PodCgroupConfig */
+/**
+ * Model tests for PodCgroupConfig
+ */
 public class PodCgroupConfigTest {
     private final PodCgroupConfig model = new PodCgroupConfig();
 
-    /** Model tests for PodCgroupConfig */
+    /**
+     * Model tests for PodCgroupConfig
+     */
     @Test
     public void testPodCgroupConfig() {
         // TODO: test PodCgroupConfig
     }
 
-    /** Test the property 'cgroupParent' */
+    /**
+     * Test the property 'cgroupParent'
+     */
     @Test
     public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
+
 }

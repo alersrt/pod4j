@@ -327,11 +327,11 @@ No authorization required
 
 <a id="playKubeLibpod"></a>
 # **playKubeLibpod**
-> PlayKubeReport playKubeLibpod(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, request)
+> PlayKubeReport playKubeLibpod(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request)
 
 Play a Kubernetes YAML file.
 
-Create and run pods based on a Kubernetes YAML file (pod or service kind).
+Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
 
 ### Example
 ```java
@@ -348,6 +348,7 @@ public class Example {
     defaultClient.setBasePath("http://podman.io");
 
     PodsApi apiInstance = new PodsApi(defaultClient);
+    String contentType = "plain/text"; // String | 
     String annotations = "annotations_example"; // String | JSON encoded value of annotations (a map[string]string).
     String logDriver = "logDriver_example"; // String | Logging driver for the containers in the pod.
     List<String> logOptions = Arrays.asList(); // List<String> | logging driver options
@@ -364,9 +365,10 @@ public class Example {
     Boolean tlsVerify = true; // Boolean | Require HTTPS and verify signatures when contacting registries.
     String userns = "userns_example"; // String | Set the user namespace mode for the pods.
     Boolean wait = false; // Boolean | Clean up all objects created when a SIGTERM is received or pods exit.
+    Boolean build = true; // Boolean | Build the images with corresponding context.
     String request = "request_example"; // String | Kubernetes YAML file.
     try {
-      PlayKubeReport result = apiInstance.playKubeLibpod(annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, request);
+      PlayKubeReport result = apiInstance.playKubeLibpod(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#playKubeLibpod");
@@ -383,6 +385,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
+| **contentType** | **String**|  | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
 | **annotations** | **String**| JSON encoded value of annotations (a map[string]string). | [optional] |
 | **logDriver** | **String**| Logging driver for the containers in the pod. | [optional] |
 | **logOptions** | [**List&lt;String&gt;**](String.md)| logging driver options | [optional] |
@@ -399,6 +402,7 @@ public class Example {
 | **tlsVerify** | **Boolean**| Require HTTPS and verify signatures when contacting registries. | [optional] [default to true] |
 | **userns** | **String**| Set the user namespace mode for the pods. | [optional] |
 | **wait** | **Boolean**| Clean up all objects created when a SIGTERM is received or pods exit. | [optional] [default to false] |
+| **build** | **Boolean**| Build the images with corresponding context. | [optional] |
 | **request** | **String**| Kubernetes YAML file. | [optional] |
 
 ### Return type

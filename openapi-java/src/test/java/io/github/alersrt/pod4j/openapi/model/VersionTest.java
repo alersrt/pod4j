@@ -10,23 +10,39 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for Version */
+/**
+ * Model tests for Version
+ */
 public class VersionTest {
     private final Version model = new Version();
 
-    /** Model tests for Version */
+    /**
+     * Model tests for Version
+     */
     @Test
     public void testVersion() {
         // TODO: test Version
     }
 
-    /** Test the property 'index' */
+    /**
+     * Test the property 'index'
+     */
     @Test
     public void indexTest() {
         // TODO: test index
     }
+
 }

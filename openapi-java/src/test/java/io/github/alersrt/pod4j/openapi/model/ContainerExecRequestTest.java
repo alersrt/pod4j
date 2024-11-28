@@ -10,77 +10,113 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainerExecRequest */
+/**
+ * Model tests for ContainerExecRequest
+ */
 public class ContainerExecRequestTest {
     private final ContainerExecRequest model = new ContainerExecRequest();
 
-    /** Model tests for ContainerExecRequest */
+    /**
+     * Model tests for ContainerExecRequest
+     */
     @Test
     public void testContainerExecRequest() {
         // TODO: test ContainerExecRequest
     }
 
-    /** Test the property 'attachStderr' */
+    /**
+     * Test the property 'attachStderr'
+     */
     @Test
     public void attachStderrTest() {
         // TODO: test attachStderr
     }
 
-    /** Test the property 'attachStdin' */
+    /**
+     * Test the property 'attachStdin'
+     */
     @Test
     public void attachStdinTest() {
         // TODO: test attachStdin
     }
 
-    /** Test the property 'attachStdout' */
+    /**
+     * Test the property 'attachStdout'
+     */
     @Test
     public void attachStdoutTest() {
         // TODO: test attachStdout
     }
 
-    /** Test the property 'cmd' */
+    /**
+     * Test the property 'cmd'
+     */
     @Test
     public void cmdTest() {
         // TODO: test cmd
     }
 
-    /** Test the property 'detachKeys' */
+    /**
+     * Test the property 'detachKeys'
+     */
     @Test
     public void detachKeysTest() {
         // TODO: test detachKeys
     }
 
-    /** Test the property 'env' */
+    /**
+     * Test the property 'env'
+     */
     @Test
     public void envTest() {
         // TODO: test env
     }
 
-    /** Test the property 'privileged' */
+    /**
+     * Test the property 'privileged'
+     */
     @Test
     public void privilegedTest() {
         // TODO: test privileged
     }
 
-    /** Test the property 'tty' */
+    /**
+     * Test the property 'tty'
+     */
     @Test
     public void ttyTest() {
         // TODO: test tty
     }
 
-    /** Test the property 'user' */
+    /**
+     * Test the property 'user'
+     */
     @Test
     public void userTest() {
         // TODO: test user
     }
 
-    /** Test the property 'workingDir' */
+    /**
+     * Test the property 'workingDir'
+     */
     @Test
     public void workingDirTest() {
         // TODO: test workingDir
     }
+
 }

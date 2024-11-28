@@ -10,29 +10,48 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.ContainerWait200ResponseError;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainerWait200Response */
+/**
+ * Model tests for ContainerWait200Response
+ */
 public class ContainerWait200ResponseTest {
     private final ContainerWait200Response model = new ContainerWait200Response();
 
-    /** Model tests for ContainerWait200Response */
+    /**
+     * Model tests for ContainerWait200Response
+     */
     @Test
     public void testContainerWait200Response() {
         // TODO: test ContainerWait200Response
     }
 
-    /** Test the property 'error' */
+    /**
+     * Test the property 'error'
+     */
     @Test
     public void errorTest() {
         // TODO: test error
     }
 
-    /** Test the property 'statusCode' */
+    /**
+     * Test the property 'statusCode'
+     */
     @Test
     public void statusCodeTest() {
         // TODO: test statusCode
     }
+
 }

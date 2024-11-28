@@ -10,228 +10,229 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
+import io.github.alersrt.pod4j.openapi.JSON;
+
 /**
- * UsageData Usage details about the volume. This information is used by the &#x60;GET
- * /system/df&#x60; endpoint, and omitted in other endpoints.
+ * UsageData Usage details about the volume. This information is used by the &#x60;GET /system/df&#x60; endpoint, and omitted in other endpoints.
  */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class UsageData {
-    public static final String SERIALIZED_NAME_REF_COUNT = "RefCount";
+  public static final String SERIALIZED_NAME_REF_COUNT = "RefCount";
+  @SerializedName(SERIALIZED_NAME_REF_COUNT)
+  private Long refCount;
 
-    @SerializedName(SERIALIZED_NAME_REF_COUNT)
-    private Long refCount;
+  public static final String SERIALIZED_NAME_SIZE = "Size";
+  @SerializedName(SERIALIZED_NAME_SIZE)
+  private Long size;
 
-    public static final String SERIALIZED_NAME_SIZE = "Size";
+  public UsageData() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_SIZE)
-    private Long size;
+  public UsageData refCount(Long refCount) {
+    this.refCount = refCount;
+    return this;
+  }
 
-    public UsageData() {}
+  /**
+   * The number of containers referencing this volume. This field is set to &#x60;-1&#x60; if the reference-count is not available.
+   * @return refCount
+   */
+  @javax.annotation.Nonnull
+  public Long getRefCount() {
+    return refCount;
+  }
 
-    public UsageData refCount(Long refCount) {
-        this.refCount = refCount;
-        return this;
+  public void setRefCount(Long refCount) {
+    this.refCount = refCount;
+  }
+
+
+  public UsageData size(Long size) {
+    this.size = size;
+    return this;
+  }
+
+  /**
+   * Amount of disk space used by the volume (in bytes). This information is only available for volumes created with the &#x60;\&quot;local\&quot;&#x60; volume driver. For volumes created with other volume drivers, this field is set to &#x60;-1&#x60; (\&quot;not available\&quot;)
+   * @return size
+   */
+  @javax.annotation.Nonnull
+  public Long getSize() {
+    return size;
+  }
+
+  public void setSize(Long size) {
+    this.size = size;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * The number of containers referencing this volume. This field is set to &#x60;-1&#x60; if the
-     * reference-count is not available.
-     *
-     * @return refCount
-     */
-    @javax.annotation.Nonnull
-    public Long getRefCount() {
-        return refCount;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    UsageData usageData = (UsageData) o;
+    return Objects.equals(this.refCount, usageData.refCount) &&
+        Objects.equals(this.size, usageData.size);
+  }
 
-    public void setRefCount(Long refCount) {
-        this.refCount = refCount;
+  @Override
+  public int hashCode() {
+    return Objects.hash(refCount, size);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class UsageData {\n");
+    sb.append("    refCount: ").append(toIndentedString(refCount)).append("\n");
+    sb.append("    size: ").append(toIndentedString(size)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public UsageData size(Long size) {
-        this.size = size;
-        return this;
-    }
 
-    /**
-     * Amount of disk space used by the volume (in bytes). This information is only available for
-     * volumes created with the &#x60;\&quot;local\&quot;&#x60; volume driver. For volumes created
-     * with other volume drivers, this field is set to &#x60;-1&#x60; (\&quot;not available\&quot;)
-     *
-     * @return size
-     */
-    @javax.annotation.Nonnull
-    public Long getSize() {
-        return size;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setSize(Long size) {
-        this.size = size;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("RefCount");
+    openapiFields.add("Size");
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("RefCount");
+    openapiRequiredFields.add("Size");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UsageData
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!UsageData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in UsageData is not found in the empty JSON string", UsageData.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!UsageData.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UsageData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        UsageData usageData = (UsageData) o;
-        return Objects.equals(this.refCount, usageData.refCount)
-                && Objects.equals(this.size, usageData.size);
-    }
+      }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(refCount, size);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class UsageData {\n");
-        sb.append("    refCount: ").append(toIndentedString(refCount)).append("\n");
-        sb.append("    size: ").append(toIndentedString(size)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : UsageData.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("RefCount");
-        openapiFields.add("Size");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("RefCount");
-        openapiRequiredFields.add("Size");
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to UsageData
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!UsageData.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in UsageData is not found in the empty"
-                                        + " JSON string",
-                                UsageData.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!UsageData.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `UsageData` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : UsageData.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!UsageData.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'UsageData' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<UsageData> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(UsageData.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<UsageData>() {
+           @Override
+           public void write(JsonWriter out, UsageData value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public UsageData read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!UsageData.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'UsageData' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<UsageData> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(UsageData.class));
+  /**
+   * Create an instance of UsageData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UsageData
+   * @throws IOException if the JSON string is invalid with respect to UsageData
+   */
+  public static UsageData fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, UsageData.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<UsageData>() {
-                        @Override
-                        public void write(JsonWriter out, UsageData value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public UsageData read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of UsageData given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of UsageData
-     * @throws IOException if the JSON string is invalid with respect to UsageData
-     */
-    public static UsageData fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, UsageData.class);
-    }
-
-    /**
-     * Convert an instance of UsageData to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of UsageData to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

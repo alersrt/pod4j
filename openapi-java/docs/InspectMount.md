@@ -16,6 +16,7 @@ InspectMount provides a record of a single mount in a container. It contains fie
 |**propagation** | **String** | Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty. |  [optional] |
 |**RW** | **Boolean** | Whether the volume is read-write |  [optional] |
 |**source** | **String** | The source directory for the volume. |  [optional] |
+|**subPath** | **String** | SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination. |  [optional] |
 |**type** | **String** | Whether the mount is a volume or bind mount. Allowed values are \&quot;volume\&quot; and \&quot;bind\&quot;. |  [optional] |
 
 

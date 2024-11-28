@@ -10,23 +10,42 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for SummaryNetworkSettings */
+/**
+ * Model tests for SummaryNetworkSettings
+ */
 public class SummaryNetworkSettingsTest {
     private final SummaryNetworkSettings model = new SummaryNetworkSettings();
 
-    /** Model tests for SummaryNetworkSettings */
+    /**
+     * Model tests for SummaryNetworkSettings
+     */
     @Test
     public void testSummaryNetworkSettings() {
         // TODO: test SummaryNetworkSettings
     }
 
-    /** Test the property 'networks' */
+    /**
+     * Test the property 'networks'
+     */
     @Test
     public void networksTest() {
         // TODO: test networks
     }
+
 }

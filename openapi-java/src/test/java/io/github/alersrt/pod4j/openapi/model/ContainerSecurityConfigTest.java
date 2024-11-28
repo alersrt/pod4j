@@ -10,131 +10,187 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
+import io.github.alersrt.pod4j.openapi.model.Namespace;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainerSecurityConfig */
+/**
+ * Model tests for ContainerSecurityConfig
+ */
 public class ContainerSecurityConfigTest {
     private final ContainerSecurityConfig model = new ContainerSecurityConfig();
 
-    /** Model tests for ContainerSecurityConfig */
+    /**
+     * Model tests for ContainerSecurityConfig
+     */
     @Test
     public void testContainerSecurityConfig() {
         // TODO: test ContainerSecurityConfig
     }
 
-    /** Test the property 'apparmorProfile' */
+    /**
+     * Test the property 'apparmorProfile'
+     */
     @Test
     public void apparmorProfileTest() {
         // TODO: test apparmorProfile
     }
 
-    /** Test the property 'capAdd' */
+    /**
+     * Test the property 'capAdd'
+     */
     @Test
     public void capAddTest() {
         // TODO: test capAdd
     }
 
-    /** Test the property 'capDrop' */
+    /**
+     * Test the property 'capDrop'
+     */
     @Test
     public void capDropTest() {
         // TODO: test capDrop
     }
 
-    /** Test the property 'groups' */
+    /**
+     * Test the property 'groups'
+     */
     @Test
     public void groupsTest() {
         // TODO: test groups
     }
 
-    /** Test the property 'idmappings' */
+    /**
+     * Test the property 'idmappings'
+     */
     @Test
     public void idmappingsTest() {
         // TODO: test idmappings
     }
 
-    /** Test the property 'labelNested' */
+    /**
+     * Test the property 'labelNested'
+     */
     @Test
     public void labelNestedTest() {
         // TODO: test labelNested
     }
 
-    /** Test the property 'mask' */
+    /**
+     * Test the property 'mask'
+     */
     @Test
     public void maskTest() {
         // TODO: test mask
     }
 
-    /** Test the property 'noNewPrivileges' */
+    /**
+     * Test the property 'noNewPrivileges'
+     */
     @Test
     public void noNewPrivilegesTest() {
         // TODO: test noNewPrivileges
     }
 
-    /** Test the property 'privileged' */
+    /**
+     * Test the property 'privileged'
+     */
     @Test
     public void privilegedTest() {
         // TODO: test privileged
     }
 
-    /** Test the property 'procfsOpts' */
+    /**
+     * Test the property 'procfsOpts'
+     */
     @Test
     public void procfsOptsTest() {
         // TODO: test procfsOpts
     }
 
-    /** Test the property 'readOnlyFilesystem' */
+    /**
+     * Test the property 'readOnlyFilesystem'
+     */
     @Test
     public void readOnlyFilesystemTest() {
         // TODO: test readOnlyFilesystem
     }
 
-    /** Test the property 'readWriteTmpfs' */
+    /**
+     * Test the property 'readWriteTmpfs'
+     */
     @Test
     public void readWriteTmpfsTest() {
         // TODO: test readWriteTmpfs
     }
 
-    /** Test the property 'seccompPolicy' */
+    /**
+     * Test the property 'seccompPolicy'
+     */
     @Test
     public void seccompPolicyTest() {
         // TODO: test seccompPolicy
     }
 
-    /** Test the property 'seccompProfilePath' */
+    /**
+     * Test the property 'seccompProfilePath'
+     */
     @Test
     public void seccompProfilePathTest() {
         // TODO: test seccompProfilePath
     }
 
-    /** Test the property 'selinuxOpts' */
+    /**
+     * Test the property 'selinuxOpts'
+     */
     @Test
     public void selinuxOptsTest() {
         // TODO: test selinuxOpts
     }
 
-    /** Test the property 'umask' */
+    /**
+     * Test the property 'umask'
+     */
     @Test
     public void umaskTest() {
         // TODO: test umask
     }
 
-    /** Test the property 'unmask' */
+    /**
+     * Test the property 'unmask'
+     */
     @Test
     public void unmaskTest() {
         // TODO: test unmask
     }
 
-    /** Test the property 'user' */
+    /**
+     * Test the property 'user'
+     */
     @Test
     public void userTest() {
         // TODO: test user
     }
 
-    /** Test the property 'userns' */
+    /**
+     * Test the property 'userns'
+     */
     @Test
     public void usernsTest() {
         // TODO: test userns
     }
+
 }

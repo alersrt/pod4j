@@ -21,7 +21,7 @@ All URIs are relative to *http://podman.io*
 
 <a id="imageBuild"></a>
 # **imageBuild**
-> ImageBuild200Response imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream)
+> ImageBuild200Response imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream)
 
 Create image
 
@@ -48,6 +48,8 @@ public class Example {
     String t = "latest"; // String | A name and optional tag to apply to the image in the `name:tag` format. If you omit the tag, the default latest value is assumed. You can provide several t parameters.
     String extrahosts = "extrahosts_example"; // String | TBD Extra hosts to add to /etc/hosts (As of version 1.xx) 
     String remote = "remote_example"; // String | A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx) 
+    Integer retry = 3; // Integer | Number of times to retry in case of failure when performing push/pull. 
+    String retryDelay = "2s"; // String | Delay between retries in case of push/pull failures. 
     Boolean q = false; // Boolean | Suppress verbose build output 
     Boolean compatvolumes = false; // Boolean | Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2) 
     Boolean nocache = false; // Boolean | Do not use the cache when building the image (As of version 1.xx) 
@@ -71,7 +73,7 @@ public class Example {
     String outputs = "outputs_example"; // String | output configuration TBD (As of version 1.xx) 
     File inputStream = new File("/path/to/file"); // File | A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz. 
     try {
-      ImageBuild200Response result = apiInstance.imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
+      ImageBuild200Response result = apiInstance.imageBuild(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling ImagesCompatApi#imageBuild");
@@ -94,6 +96,8 @@ public class Example {
 | **t** | **String**| A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If you omit the tag, the default latest value is assumed. You can provide several t parameters. | [optional] [default to latest] |
 | **extrahosts** | **String**| TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  | [optional] |
 | **remote** | **String**| A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  | [optional] |
+| **retry** | **Integer**| Number of times to retry in case of failure when performing push/pull.  | [optional] [default to 3] |
+| **retryDelay** | **String**| Delay between retries in case of push/pull failures.  | [optional] [default to 2s] |
 | **q** | **Boolean**| Suppress verbose build output  | [optional] [default to false] |
 | **compatvolumes** | **Boolean**| Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  | [optional] [default to false] |
 | **nocache** | **Boolean**| Do not use the cache when building the image (As of version 1.xx)  | [optional] [default to false] |

@@ -10,35 +10,58 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.Schema2ManifestDescriptor;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for Schema2ListPublic */
+/**
+ * Model tests for Schema2ListPublic
+ */
 public class Schema2ListPublicTest {
     private final Schema2ListPublic model = new Schema2ListPublic();
 
-    /** Model tests for Schema2ListPublic */
+    /**
+     * Model tests for Schema2ListPublic
+     */
     @Test
     public void testSchema2ListPublic() {
         // TODO: test Schema2ListPublic
     }
 
-    /** Test the property 'manifests' */
+    /**
+     * Test the property 'manifests'
+     */
     @Test
     public void manifestsTest() {
         // TODO: test manifests
     }
 
-    /** Test the property 'mediaType' */
+    /**
+     * Test the property 'mediaType'
+     */
     @Test
     public void mediaTypeTest() {
         // TODO: test mediaType
     }
 
-    /** Test the property 'schemaVersion' */
+    /**
+     * Test the property 'schemaVersion'
+     */
     @Test
     public void schemaVersionTest() {
         // TODO: test schemaVersion
     }
+
 }

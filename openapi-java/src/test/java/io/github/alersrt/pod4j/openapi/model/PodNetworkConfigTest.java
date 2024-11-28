@@ -10,83 +10,126 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.Namespace;
+import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
+import io.github.alersrt.pod4j.openapi.model.PortMapping;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PodNetworkConfig */
+/**
+ * Model tests for PodNetworkConfig
+ */
 public class PodNetworkConfigTest {
     private final PodNetworkConfig model = new PodNetworkConfig();
 
-    /** Model tests for PodNetworkConfig */
+    /**
+     * Model tests for PodNetworkConfig
+     */
     @Test
     public void testPodNetworkConfig() {
         // TODO: test PodNetworkConfig
     }
 
-    /** Test the property 'networks' */
+    /**
+     * Test the property 'networks'
+     */
     @Test
     public void networksTest() {
         // TODO: test networks
     }
 
-    /** Test the property 'cniNetworks' */
+    /**
+     * Test the property 'cniNetworks'
+     */
     @Test
     public void cniNetworksTest() {
         // TODO: test cniNetworks
     }
 
-    /** Test the property 'dnsOption' */
+    /**
+     * Test the property 'dnsOption'
+     */
     @Test
     public void dnsOptionTest() {
         // TODO: test dnsOption
     }
 
-    /** Test the property 'dnsSearch' */
+    /**
+     * Test the property 'dnsSearch'
+     */
     @Test
     public void dnsSearchTest() {
         // TODO: test dnsSearch
     }
 
-    /** Test the property 'dnsServer' */
+    /**
+     * Test the property 'dnsServer'
+     */
     @Test
     public void dnsServerTest() {
         // TODO: test dnsServer
     }
 
-    /** Test the property 'hostadd' */
+    /**
+     * Test the property 'hostadd'
+     */
     @Test
     public void hostaddTest() {
         // TODO: test hostadd
     }
 
-    /** Test the property 'netns' */
+    /**
+     * Test the property 'netns'
+     */
     @Test
     public void netnsTest() {
         // TODO: test netns
     }
 
-    /** Test the property 'networkOptions' */
+    /**
+     * Test the property 'networkOptions'
+     */
     @Test
     public void networkOptionsTest() {
         // TODO: test networkOptions
     }
 
-    /** Test the property 'noManageHosts' */
+    /**
+     * Test the property 'noManageHosts'
+     */
     @Test
     public void noManageHostsTest() {
         // TODO: test noManageHosts
     }
 
-    /** Test the property 'noManageResolvConf' */
+    /**
+     * Test the property 'noManageResolvConf'
+     */
     @Test
     public void noManageResolvConfTest() {
         // TODO: test noManageResolvConf
     }
 
-    /** Test the property 'portmappings' */
+    /**
+     * Test the property 'portmappings'
+     */
     @Test
     public void portmappingsTest() {
         // TODO: test portmappings
     }
+
 }

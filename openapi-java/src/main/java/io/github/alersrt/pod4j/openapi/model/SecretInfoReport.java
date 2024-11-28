@@ -10,313 +10,310 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
+import io.github.alersrt.pod4j.openapi.model.SecretSpec;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** SecretInfoReport */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * SecretInfoReport
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SecretInfoReport {
-    public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
+  public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private OffsetDateTime createdAt;
 
-    @SerializedName(SERIALIZED_NAME_CREATED_AT)
-    private OffsetDateTime createdAt;
+  public static final String SERIALIZED_NAME_I_D = "ID";
+  @SerializedName(SERIALIZED_NAME_I_D)
+  private String ID;
 
-    public static final String SERIALIZED_NAME_I_D = "ID";
+  public static final String SERIALIZED_NAME_SECRET_DATA = "SecretData";
+  @SerializedName(SERIALIZED_NAME_SECRET_DATA)
+  private String secretData;
 
-    @SerializedName(SERIALIZED_NAME_I_D)
-    private String ID;
+  public static final String SERIALIZED_NAME_SPEC = "Spec";
+  @SerializedName(SERIALIZED_NAME_SPEC)
+  private SecretSpec spec;
 
-    public static final String SERIALIZED_NAME_SECRET_DATA = "SecretData";
+  public static final String SERIALIZED_NAME_UPDATED_AT = "UpdatedAt";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  private OffsetDateTime updatedAt;
 
-    @SerializedName(SERIALIZED_NAME_SECRET_DATA)
-    private String secretData;
+  public SecretInfoReport() {
+  }
 
-    public static final String SERIALIZED_NAME_SPEC = "Spec";
+  public SecretInfoReport createdAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_SPEC)
-    private SecretSpec spec;
+  /**
+   * Get createdAt
+   * @return createdAt
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
+  }
 
-    public static final String SERIALIZED_NAME_UPDATED_AT = "UpdatedAt";
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+  }
 
-    @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-    private OffsetDateTime updatedAt;
 
-    public SecretInfoReport() {}
+  public SecretInfoReport ID(String ID) {
+    this.ID = ID;
+    return this;
+  }
 
-    public SecretInfoReport createdAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-        return this;
+  /**
+   * Get ID
+   * @return ID
+   */
+  @javax.annotation.Nullable
+  public String getID() {
+    return ID;
+  }
+
+  public void setID(String ID) {
+    this.ID = ID;
+  }
+
+
+  public SecretInfoReport secretData(String secretData) {
+    this.secretData = secretData;
+    return this;
+  }
+
+  /**
+   * Get secretData
+   * @return secretData
+   */
+  @javax.annotation.Nullable
+  public String getSecretData() {
+    return secretData;
+  }
+
+  public void setSecretData(String secretData) {
+    this.secretData = secretData;
+  }
+
+
+  public SecretInfoReport spec(SecretSpec spec) {
+    this.spec = spec;
+    return this;
+  }
+
+  /**
+   * Get spec
+   * @return spec
+   */
+  @javax.annotation.Nullable
+  public SecretSpec getSpec() {
+    return spec;
+  }
+
+  public void setSpec(SecretSpec spec) {
+    this.spec = spec;
+  }
+
+
+  public SecretInfoReport updatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+  /**
+   * Get updatedAt
+   * @return updatedAt
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Get createdAt
-     *
-     * @return createdAt
-     */
-    @javax.annotation.Nullable
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    SecretInfoReport secretInfoReport = (SecretInfoReport) o;
+    return Objects.equals(this.createdAt, secretInfoReport.createdAt) &&
+        Objects.equals(this.ID, secretInfoReport.ID) &&
+        Objects.equals(this.secretData, secretInfoReport.secretData) &&
+        Objects.equals(this.spec, secretInfoReport.spec) &&
+        Objects.equals(this.updatedAt, secretInfoReport.updatedAt);
+  }
 
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
+  @Override
+  public int hashCode() {
+    return Objects.hash(createdAt, ID, secretData, spec, updatedAt);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class SecretInfoReport {\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
+    sb.append("    secretData: ").append(toIndentedString(secretData)).append("\n");
+    sb.append("    spec: ").append(toIndentedString(spec)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public SecretInfoReport ID(String ID) {
-        this.ID = ID;
-        return this;
-    }
 
-    /**
-     * Get ID
-     *
-     * @return ID
-     */
-    @javax.annotation.Nullable
-    public String getID() {
-        return ID;
-    }
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("CreatedAt");
+    openapiFields.add("ID");
+    openapiFields.add("SecretData");
+    openapiFields.add("Spec");
+    openapiFields.add("UpdatedAt");
 
-    public SecretInfoReport secretData(String secretData) {
-        this.secretData = secretData;
-        return this;
-    }
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
 
-    /**
-     * Get secretData
-     *
-     * @return secretData
-     */
-    @javax.annotation.Nullable
-    public String getSecretData() {
-        return secretData;
-    }
-
-    public void setSecretData(String secretData) {
-        this.secretData = secretData;
-    }
-
-    public SecretInfoReport spec(SecretSpec spec) {
-        this.spec = spec;
-        return this;
-    }
-
-    /**
-     * Get spec
-     *
-     * @return spec
-     */
-    @javax.annotation.Nullable
-    public SecretSpec getSpec() {
-        return spec;
-    }
-
-    public void setSpec(SecretSpec spec) {
-        this.spec = spec;
-    }
-
-    public SecretInfoReport updatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-        return this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return updatedAt
-     */
-    @javax.annotation.Nullable
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SecretInfoReport
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!SecretInfoReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in SecretInfoReport is not found in the empty JSON string", SecretInfoReport.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!SecretInfoReport.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecretInfoReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        SecretInfoReport secretInfoReport = (SecretInfoReport) o;
-        return Objects.equals(this.createdAt, secretInfoReport.createdAt)
-                && Objects.equals(this.ID, secretInfoReport.ID)
-                && Objects.equals(this.secretData, secretInfoReport.secretData)
-                && Objects.equals(this.spec, secretInfoReport.spec)
-                && Objects.equals(this.updatedAt, secretInfoReport.updatedAt);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(createdAt, ID, secretData, spec, updatedAt);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class SecretInfoReport {\n");
-        sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-        sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
-        sb.append("    secretData: ").append(toIndentedString(secretData)).append("\n");
-        sb.append("    spec: ").append(toIndentedString(spec)).append("\n");
-        sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("CreatedAt");
-        openapiFields.add("ID");
-        openapiFields.add("SecretData");
-        openapiFields.add("Spec");
-        openapiFields.add("UpdatedAt");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to SecretInfoReport
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!SecretInfoReport.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in SecretInfoReport is not found in the"
-                                        + " empty JSON string",
-                                SecretInfoReport.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!SecretInfoReport.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `SecretInfoReport` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull())
-                && !jsonObj.get("ID").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ID` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("ID").toString()));
-        }
-        if ((jsonObj.get("SecretData") != null && !jsonObj.get("SecretData").isJsonNull())
-                && !jsonObj.get("SecretData").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `SecretData` to be a primitive type in the JSON"
-                                    + " string but got `%s`",
-                            jsonObj.get("SecretData").toString()));
-        }
-        // validate the optional field `Spec`
-        if (jsonObj.get("Spec") != null && !jsonObj.get("Spec").isJsonNull()) {
-            SecretSpec.validateJsonElement(jsonObj.get("Spec"));
-        }
+      if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+      }
+      if ((jsonObj.get("SecretData") != null && !jsonObj.get("SecretData").isJsonNull()) && !jsonObj.get("SecretData").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `SecretData` to be a primitive type in the JSON string but got `%s`", jsonObj.get("SecretData").toString()));
+      }
+      // validate the optional field `Spec`
+      if (jsonObj.get("Spec") != null && !jsonObj.get("Spec").isJsonNull()) {
+        SecretSpec.validateJsonElement(jsonObj.get("Spec"));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!SecretInfoReport.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'SecretInfoReport' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<SecretInfoReport> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(SecretInfoReport.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<SecretInfoReport>() {
+           @Override
+           public void write(JsonWriter out, SecretInfoReport value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public SecretInfoReport read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!SecretInfoReport.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'SecretInfoReport' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<SecretInfoReport> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(SecretInfoReport.class));
+  /**
+   * Create an instance of SecretInfoReport given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SecretInfoReport
+   * @throws IOException if the JSON string is invalid with respect to SecretInfoReport
+   */
+  public static SecretInfoReport fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, SecretInfoReport.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<SecretInfoReport>() {
-                        @Override
-                        public void write(JsonWriter out, SecretInfoReport value)
-                                throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public SecretInfoReport read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of SecretInfoReport given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of SecretInfoReport
-     * @throws IOException if the JSON string is invalid with respect to SecretInfoReport
-     */
-    public static SecretInfoReport fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, SecretInfoReport.class);
-    }
-
-    /**
-     * Convert an instance of SecretInfoReport to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of SecretInfoReport to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

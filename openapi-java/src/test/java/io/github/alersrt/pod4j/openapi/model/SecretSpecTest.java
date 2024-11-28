@@ -10,35 +10,58 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.SecretDriverSpec;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for SecretSpec */
+/**
+ * Model tests for SecretSpec
+ */
 public class SecretSpecTest {
     private final SecretSpec model = new SecretSpec();
 
-    /** Model tests for SecretSpec */
+    /**
+     * Model tests for SecretSpec
+     */
     @Test
     public void testSecretSpec() {
         // TODO: test SecretSpec
     }
 
-    /** Test the property 'driver' */
+    /**
+     * Test the property 'driver'
+     */
     @Test
     public void driverTest() {
         // TODO: test driver
     }
 
-    /** Test the property 'labels' */
+    /**
+     * Test the property 'labels'
+     */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
+
 }

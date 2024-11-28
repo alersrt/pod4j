@@ -10,192 +10,197 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
+import java.util.Arrays;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** ImageTreeReport */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * ImageTreeReport
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageTreeReport {
-    public static final String SERIALIZED_NAME_TREE = "Tree";
+  public static final String SERIALIZED_NAME_TREE = "Tree";
+  @SerializedName(SERIALIZED_NAME_TREE)
+  private String tree;
 
-    @SerializedName(SERIALIZED_NAME_TREE)
-    private String tree;
+  public ImageTreeReport() {
+  }
 
-    public ImageTreeReport() {}
+  public ImageTreeReport tree(String tree) {
+    this.tree = tree;
+    return this;
+  }
 
-    public ImageTreeReport tree(String tree) {
-        this.tree = tree;
-        return this;
+  /**
+   * Get tree
+   * @return tree
+   */
+  @javax.annotation.Nullable
+  public String getTree() {
+    return tree;
+  }
+
+  public void setTree(String tree) {
+    this.tree = tree;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    /**
-     * Get tree
-     *
-     * @return tree
-     */
-    @javax.annotation.Nullable
-    public String getTree() {
-        return tree;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    ImageTreeReport imageTreeReport = (ImageTreeReport) o;
+    return Objects.equals(this.tree, imageTreeReport.tree);
+  }
 
-    public void setTree(String tree) {
-        this.tree = tree;
+  @Override
+  public int hashCode() {
+    return Objects.hash(tree);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ImageTreeReport {\n");
+    sb.append("    tree: ").append(toIndentedString(tree)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Tree");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ImageTreeReport
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ImageTreeReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ImageTreeReport is not found in the empty JSON string", ImageTreeReport.openapiRequiredFields.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ImageTreeReport.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageTreeReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        ImageTreeReport imageTreeReport = (ImageTreeReport) o;
-        return Objects.equals(this.tree, imageTreeReport.tree);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(tree);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class ImageTreeReport {\n");
-        sb.append("    tree: ").append(toIndentedString(tree)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Tree");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ImageTreeReport
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ImageTreeReport.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in ImageTreeReport is not found in the"
-                                        + " empty JSON string",
-                                ImageTreeReport.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ImageTreeReport.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ImageTreeReport` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("Tree") != null && !jsonObj.get("Tree").isJsonNull())
-                && !jsonObj.get("Tree").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Tree` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("Tree").toString()));
-        }
+      if ((jsonObj.get("Tree") != null && !jsonObj.get("Tree").isJsonNull()) && !jsonObj.get("Tree").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Tree` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Tree").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ImageTreeReport.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ImageTreeReport' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ImageTreeReport> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ImageTreeReport.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ImageTreeReport>() {
+           @Override
+           public void write(JsonWriter out, ImageTreeReport value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ImageTreeReport read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!ImageTreeReport.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'ImageTreeReport' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ImageTreeReport> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(ImageTreeReport.class));
+  /**
+   * Create an instance of ImageTreeReport given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ImageTreeReport
+   * @throws IOException if the JSON string is invalid with respect to ImageTreeReport
+   */
+  public static ImageTreeReport fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ImageTreeReport.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<ImageTreeReport>() {
-                        @Override
-                        public void write(JsonWriter out, ImageTreeReport value)
-                                throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public ImageTreeReport read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of ImageTreeReport given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ImageTreeReport
-     * @throws IOException if the JSON string is invalid with respect to ImageTreeReport
-     */
-    public static ImageTreeReport fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, ImageTreeReport.class);
-    }
-
-    /**
-     * Convert an instance of ImageTreeReport to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of ImageTreeReport to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

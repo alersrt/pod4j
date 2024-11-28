@@ -10,173 +10,244 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.NetOptions;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PodCreateOptions */
+/**
+ * Model tests for PodCreateOptions
+ */
 public class PodCreateOptionsTest {
     private final PodCreateOptions model = new PodCreateOptions();
 
-    /** Model tests for PodCreateOptions */
+    /**
+     * Model tests for PodCreateOptions
+     */
     @Test
     public void testPodCreateOptions() {
         // TODO: test PodCreateOptions
     }
 
-    /** Test the property 'cgroupParent' */
+    /**
+     * Test the property 'cgroupParent'
+     */
     @Test
     public void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
-    /** Test the property 'containerCommand' */
+    /**
+     * Test the property 'containerCommand'
+     */
     @Test
     public void containerCommandTest() {
         // TODO: test containerCommand
     }
 
-    /** Test the property 'containerConmonPidfile' */
+    /**
+     * Test the property 'containerConmonPidfile'
+     */
     @Test
     public void containerConmonPidfileTest() {
         // TODO: test containerConmonPidfile
     }
 
-    /** Test the property 'containerName' */
+    /**
+     * Test the property 'containerName'
+     */
     @Test
     public void containerNameTest() {
         // TODO: test containerName
     }
 
-    /** Test the property 'cpus' */
+    /**
+     * Test the property 'cpus'
+     */
     @Test
     public void cpusTest() {
         // TODO: test cpus
     }
 
-    /** Test the property 'cpusetCpus' */
+    /**
+     * Test the property 'cpusetCpus'
+     */
     @Test
     public void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
-    /** Test the property 'createCommand' */
+    /**
+     * Test the property 'createCommand'
+     */
     @Test
     public void createCommandTest() {
         // TODO: test createCommand
     }
 
-    /** Test the property 'deviceReadBps' */
+    /**
+     * Test the property 'deviceReadBps'
+     */
     @Test
     public void deviceReadBpsTest() {
         // TODO: test deviceReadBps
     }
 
-    /** Test the property 'devices' */
+    /**
+     * Test the property 'devices'
+     */
     @Test
     public void devicesTest() {
         // TODO: test devices
     }
 
-    /** Test the property 'exitPolicy' */
+    /**
+     * Test the property 'exitPolicy'
+     */
     @Test
     public void exitPolicyTest() {
         // TODO: test exitPolicy
     }
 
-    /** Test the property 'hostname' */
+    /**
+     * Test the property 'hostname'
+     */
     @Test
     public void hostnameTest() {
         // TODO: test hostname
     }
 
-    /** Test the property 'infra' */
+    /**
+     * Test the property 'infra'
+     */
     @Test
     public void infraTest() {
         // TODO: test infra
     }
 
-    /** Test the property 'infraImage' */
+    /**
+     * Test the property 'infraImage'
+     */
     @Test
     public void infraImageTest() {
         // TODO: test infraImage
     }
 
-    /** Test the property 'ipc' */
+    /**
+     * Test the property 'ipc'
+     */
     @Test
     public void ipcTest() {
         // TODO: test ipc
     }
 
-    /** Test the property 'labels' */
+    /**
+     * Test the property 'labels'
+     */
     @Test
     public void labelsTest() {
         // TODO: test labels
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'net' */
+    /**
+     * Test the property 'net'
+     */
     @Test
     public void netTest() {
         // TODO: test net
     }
 
-    /** Test the property 'pid' */
+    /**
+     * Test the property 'pid'
+     */
     @Test
     public void pidTest() {
         // TODO: test pid
     }
 
-    /** Test the property 'restart' */
+    /**
+     * Test the property 'restart'
+     */
     @Test
     public void restartTest() {
         // TODO: test restart
     }
 
-    /** Test the property 'securityOpt' */
+    /**
+     * Test the property 'securityOpt'
+     */
     @Test
     public void securityOptTest() {
         // TODO: test securityOpt
     }
 
-    /** Test the property 'share' */
+    /**
+     * Test the property 'share'
+     */
     @Test
     public void shareTest() {
         // TODO: test share
     }
 
-    /** Test the property 'shareParent' */
+    /**
+     * Test the property 'shareParent'
+     */
     @Test
     public void shareParentTest() {
         // TODO: test shareParent
     }
 
-    /** Test the property 'sysctl' */
+    /**
+     * Test the property 'sysctl'
+     */
     @Test
     public void sysctlTest() {
         // TODO: test sysctl
     }
 
-    /** Test the property 'uts' */
+    /**
+     * Test the property 'uts'
+     */
     @Test
     public void utsTest() {
         // TODO: test uts
     }
 
-    /** Test the property 'volume' */
+    /**
+     * Test the property 'volume'
+     */
     @Test
     public void volumeTest() {
         // TODO: test volume
     }
 
-    /** Test the property 'volumesFrom' */
+    /**
+     * Test the property 'volumesFrom'
+     */
     @Test
     public void volumesFromTest() {
         // TODO: test volumesFrom
     }
+
 }

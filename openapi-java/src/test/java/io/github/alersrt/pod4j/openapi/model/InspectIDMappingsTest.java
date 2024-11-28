@@ -10,29 +10,49 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for InspectIDMappings */
+/**
+ * Model tests for InspectIDMappings
+ */
 public class InspectIDMappingsTest {
     private final InspectIDMappings model = new InspectIDMappings();
 
-    /** Model tests for InspectIDMappings */
+    /**
+     * Model tests for InspectIDMappings
+     */
     @Test
     public void testInspectIDMappings() {
         // TODO: test InspectIDMappings
     }
 
-    /** Test the property 'gidMap' */
+    /**
+     * Test the property 'gidMap'
+     */
     @Test
     public void gidMapTest() {
         // TODO: test gidMap
     }
 
-    /** Test the property 'uidMap' */
+    /**
+     * Test the property 'uidMap'
+     */
     @Test
     public void uidMapTest() {
         // TODO: test uidMap
     }
+
 }

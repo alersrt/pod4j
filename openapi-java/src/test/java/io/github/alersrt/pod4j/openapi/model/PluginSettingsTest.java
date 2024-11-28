@@ -10,41 +10,67 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.PluginDevice;
+import io.github.alersrt.pod4j.openapi.model.PluginMount;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PluginSettings */
+/**
+ * Model tests for PluginSettings
+ */
 public class PluginSettingsTest {
     private final PluginSettings model = new PluginSettings();
 
-    /** Model tests for PluginSettings */
+    /**
+     * Model tests for PluginSettings
+     */
     @Test
     public void testPluginSettings() {
         // TODO: test PluginSettings
     }
 
-    /** Test the property 'args' */
+    /**
+     * Test the property 'args'
+     */
     @Test
     public void argsTest() {
         // TODO: test args
     }
 
-    /** Test the property 'devices' */
+    /**
+     * Test the property 'devices'
+     */
     @Test
     public void devicesTest() {
         // TODO: test devices
     }
 
-    /** Test the property 'env' */
+    /**
+     * Test the property 'env'
+     */
     @Test
     public void envTest() {
         // TODO: test env
     }
 
-    /** Test the property 'mounts' */
+    /**
+     * Test the property 'mounts'
+     */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
+
 }

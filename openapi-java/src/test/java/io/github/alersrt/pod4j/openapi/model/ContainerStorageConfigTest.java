@@ -10,197 +10,283 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.ImageVolume;
+import io.github.alersrt.pod4j.openapi.model.LinuxDevice;
+import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
+import io.github.alersrt.pod4j.openapi.model.Mount;
+import io.github.alersrt.pod4j.openapi.model.NamedVolume;
+import io.github.alersrt.pod4j.openapi.model.Namespace;
+import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
+import io.github.alersrt.pod4j.openapi.model.Secret;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainerStorageConfig */
+/**
+ * Model tests for ContainerStorageConfig
+ */
 public class ContainerStorageConfigTest {
     private final ContainerStorageConfig model = new ContainerStorageConfig();
 
-    /** Model tests for ContainerStorageConfig */
+    /**
+     * Model tests for ContainerStorageConfig
+     */
     @Test
     public void testContainerStorageConfig() {
         // TODO: test ContainerStorageConfig
     }
 
-    /** Test the property 'chrootDirectories' */
+    /**
+     * Test the property 'chrootDirectories'
+     */
     @Test
     public void chrootDirectoriesTest() {
         // TODO: test chrootDirectories
     }
 
-    /** Test the property 'createWorkingDir' */
+    /**
+     * Test the property 'createWorkingDir'
+     */
     @Test
     public void createWorkingDirTest() {
         // TODO: test createWorkingDir
     }
 
-    /** Test the property 'deviceCgroupRule' */
+    /**
+     * Test the property 'deviceCgroupRule'
+     */
     @Test
     public void deviceCgroupRuleTest() {
         // TODO: test deviceCgroupRule
     }
 
-    /** Test the property 'devices' */
+    /**
+     * Test the property 'devices'
+     */
     @Test
     public void devicesTest() {
         // TODO: test devices
     }
 
-    /** Test the property 'devicesFrom' */
+    /**
+     * Test the property 'devicesFrom'
+     */
     @Test
     public void devicesFromTest() {
         // TODO: test devicesFrom
     }
 
-    /** Test the property 'hostDeviceList' */
+    /**
+     * Test the property 'hostDeviceList'
+     */
     @Test
     public void hostDeviceListTest() {
         // TODO: test hostDeviceList
     }
 
-    /** Test the property 'image' */
+    /**
+     * Test the property 'image'
+     */
     @Test
     public void imageTest() {
         // TODO: test image
     }
 
-    /** Test the property 'imageArch' */
+    /**
+     * Test the property 'imageArch'
+     */
     @Test
     public void imageArchTest() {
         // TODO: test imageArch
     }
 
-    /** Test the property 'imageOs' */
+    /**
+     * Test the property 'imageOs'
+     */
     @Test
     public void imageOsTest() {
         // TODO: test imageOs
     }
 
-    /** Test the property 'imageVariant' */
+    /**
+     * Test the property 'imageVariant'
+     */
     @Test
     public void imageVariantTest() {
         // TODO: test imageVariant
     }
 
-    /** Test the property 'imageVolumeMode' */
+    /**
+     * Test the property 'imageVolumeMode'
+     */
     @Test
     public void imageVolumeModeTest() {
         // TODO: test imageVolumeMode
     }
 
-    /** Test the property 'imageVolumes' */
+    /**
+     * Test the property 'imageVolumes'
+     */
     @Test
     public void imageVolumesTest() {
         // TODO: test imageVolumes
     }
 
-    /** Test the property 'init' */
+    /**
+     * Test the property 'init'
+     */
     @Test
     public void initTest() {
         // TODO: test init
     }
 
-    /** Test the property 'initPath' */
+    /**
+     * Test the property 'initPath'
+     */
     @Test
     public void initPathTest() {
         // TODO: test initPath
     }
 
-    /** Test the property 'ipcns' */
+    /**
+     * Test the property 'ipcns'
+     */
     @Test
     public void ipcnsTest() {
         // TODO: test ipcns
     }
 
-    /** Test the property 'mounts' */
+    /**
+     * Test the property 'mounts'
+     */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /** Test the property 'overlayVolumes' */
+    /**
+     * Test the property 'overlayVolumes'
+     */
     @Test
     public void overlayVolumesTest() {
         // TODO: test overlayVolumes
     }
 
-    /** Test the property 'rawImageName' */
+    /**
+     * Test the property 'rawImageName'
+     */
     @Test
     public void rawImageNameTest() {
         // TODO: test rawImageName
     }
 
-    /** Test the property 'rootfs' */
+    /**
+     * Test the property 'rootfs'
+     */
     @Test
     public void rootfsTest() {
         // TODO: test rootfs
     }
 
-    /** Test the property 'rootfsMapping' */
+    /**
+     * Test the property 'rootfsMapping'
+     */
     @Test
     public void rootfsMappingTest() {
         // TODO: test rootfsMapping
     }
 
-    /** Test the property 'rootfsOverlay' */
+    /**
+     * Test the property 'rootfsOverlay'
+     */
     @Test
     public void rootfsOverlayTest() {
         // TODO: test rootfsOverlay
     }
 
-    /** Test the property 'rootfsPropagation' */
+    /**
+     * Test the property 'rootfsPropagation'
+     */
     @Test
     public void rootfsPropagationTest() {
         // TODO: test rootfsPropagation
     }
 
-    /** Test the property 'secrets' */
+    /**
+     * Test the property 'secrets'
+     */
     @Test
     public void secretsTest() {
         // TODO: test secrets
     }
 
-    /** Test the property 'shmSize' */
+    /**
+     * Test the property 'shmSize'
+     */
     @Test
     public void shmSizeTest() {
         // TODO: test shmSize
     }
 
-    /** Test the property 'shmSizeSystemd' */
+    /**
+     * Test the property 'shmSizeSystemd'
+     */
     @Test
     public void shmSizeSystemdTest() {
         // TODO: test shmSizeSystemd
     }
 
-    /** Test the property 'storageOpts' */
+    /**
+     * Test the property 'storageOpts'
+     */
     @Test
     public void storageOptsTest() {
         // TODO: test storageOpts
     }
 
-    /** Test the property '_volatile' */
+    /**
+     * Test the property '_volatile'
+     */
     @Test
     public void _volatileTest() {
         // TODO: test _volatile
     }
 
-    /** Test the property 'volumes' */
+    /**
+     * Test the property 'volumes'
+     */
     @Test
     public void volumesTest() {
         // TODO: test volumes
     }
 
-    /** Test the property 'volumesFrom' */
+    /**
+     * Test the property 'volumesFrom'
+     */
     @Test
     public void volumesFromTest() {
         // TODO: test volumesFrom
     }
 
-    /** Test the property 'workDir' */
+    /**
+     * Test the property 'workDir'
+     */
     @Test
     public void workDirTest() {
         // TODO: test workDir
     }
+
 }

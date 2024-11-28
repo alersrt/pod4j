@@ -10,13 +10,15 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.auth;
 
-import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ApiException;
+
 import java.net.URI;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 public interface Authentication {
     /**
@@ -30,12 +32,5 @@ public interface Authentication {
      * @param uri URI
      * @throws ApiException if failed to update the parameters
      */
-    void applyToParams(
-            List<Pair> queryParams,
-            Map<String, String> headerParams,
-            Map<String, String> cookieParams,
-            String payload,
-            String method,
-            URI uri)
-            throws ApiException;
+    void applyToParams(List<Pair> queryParams, Map<String, String> headerParams, Map<String, String> cookieParams, String payload, String method, URI uri) throws ApiException;
 }

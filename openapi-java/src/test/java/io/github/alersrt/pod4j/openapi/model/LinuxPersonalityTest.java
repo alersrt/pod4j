@@ -10,29 +10,49 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for LinuxPersonality */
+/**
+ * Model tests for LinuxPersonality
+ */
 public class LinuxPersonalityTest {
     private final LinuxPersonality model = new LinuxPersonality();
 
-    /** Model tests for LinuxPersonality */
+    /**
+     * Model tests for LinuxPersonality
+     */
     @Test
     public void testLinuxPersonality() {
         // TODO: test LinuxPersonality
     }
 
-    /** Test the property 'domain' */
+    /**
+     * Test the property 'domain'
+     */
     @Test
     public void domainTest() {
         // TODO: test domain
     }
 
-    /** Test the property 'flags' */
+    /**
+     * Test the property 'flags'
+     */
     @Test
     public void flagsTest() {
         // TODO: test flags
     }
+
 }

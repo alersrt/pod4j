@@ -10,257 +10,360 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.DriverData;
+import io.github.alersrt.pod4j.openapi.model.InspectContainerConfig;
+import io.github.alersrt.pod4j.openapi.model.InspectContainerHostConfig;
+import io.github.alersrt.pod4j.openapi.model.InspectContainerState;
+import io.github.alersrt.pod4j.openapi.model.InspectMount;
+import io.github.alersrt.pod4j.openapi.model.InspectNetworkSettings;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for InspectContainerData */
+/**
+ * Model tests for InspectContainerData
+ */
 public class InspectContainerDataTest {
     private final InspectContainerData model = new InspectContainerData();
 
-    /** Model tests for InspectContainerData */
+    /**
+     * Model tests for InspectContainerData
+     */
     @Test
     public void testInspectContainerData() {
         // TODO: test InspectContainerData
     }
 
-    /** Test the property 'appArmorProfile' */
+    /**
+     * Test the property 'appArmorProfile'
+     */
     @Test
     public void appArmorProfileTest() {
         // TODO: test appArmorProfile
     }
 
-    /** Test the property 'args' */
+    /**
+     * Test the property 'args'
+     */
     @Test
     public void argsTest() {
         // TODO: test args
     }
 
-    /** Test the property 'boundingCaps' */
+    /**
+     * Test the property 'boundingCaps'
+     */
     @Test
     public void boundingCapsTest() {
         // TODO: test boundingCaps
     }
 
-    /** Test the property 'config' */
+    /**
+     * Test the property 'config'
+     */
     @Test
     public void configTest() {
         // TODO: test config
     }
 
-    /** Test the property 'conmonPidFile' */
+    /**
+     * Test the property 'conmonPidFile'
+     */
     @Test
     public void conmonPidFileTest() {
         // TODO: test conmonPidFile
     }
 
-    /** Test the property 'created' */
+    /**
+     * Test the property 'created'
+     */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /** Test the property 'dependencies' */
+    /**
+     * Test the property 'dependencies'
+     */
     @Test
     public void dependenciesTest() {
         // TODO: test dependencies
     }
 
-    /** Test the property 'driver' */
+    /**
+     * Test the property 'driver'
+     */
     @Test
     public void driverTest() {
         // TODO: test driver
     }
 
-    /** Test the property 'effectiveCaps' */
+    /**
+     * Test the property 'effectiveCaps'
+     */
     @Test
     public void effectiveCapsTest() {
         // TODO: test effectiveCaps
     }
 
-    /** Test the property 'execIDs' */
+    /**
+     * Test the property 'execIDs'
+     */
     @Test
     public void execIDsTest() {
         // TODO: test execIDs
     }
 
-    /** Test the property 'graphDriver' */
+    /**
+     * Test the property 'graphDriver'
+     */
     @Test
     public void graphDriverTest() {
         // TODO: test graphDriver
     }
 
-    /** Test the property 'hostConfig' */
+    /**
+     * Test the property 'hostConfig'
+     */
     @Test
     public void hostConfigTest() {
         // TODO: test hostConfig
     }
 
-    /** Test the property 'hostnamePath' */
+    /**
+     * Test the property 'hostnamePath'
+     */
     @Test
     public void hostnamePathTest() {
         // TODO: test hostnamePath
     }
 
-    /** Test the property 'hostsPath' */
+    /**
+     * Test the property 'hostsPath'
+     */
     @Test
     public void hostsPathTest() {
         // TODO: test hostsPath
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'image' */
+    /**
+     * Test the property 'image'
+     */
     @Test
     public void imageTest() {
         // TODO: test image
     }
 
-    /** Test the property 'imageDigest' */
+    /**
+     * Test the property 'imageDigest'
+     */
     @Test
     public void imageDigestTest() {
         // TODO: test imageDigest
     }
 
-    /** Test the property 'imageName' */
+    /**
+     * Test the property 'imageName'
+     */
     @Test
     public void imageNameTest() {
         // TODO: test imageName
     }
 
-    /** Test the property 'isInfra' */
+    /**
+     * Test the property 'isInfra'
+     */
     @Test
     public void isInfraTest() {
         // TODO: test isInfra
     }
 
-    /** Test the property 'isService' */
+    /**
+     * Test the property 'isService'
+     */
     @Test
     public void isServiceTest() {
         // TODO: test isService
     }
 
-    /** Test the property 'kubeExitCodePropagation' */
+    /**
+     * Test the property 'kubeExitCodePropagation'
+     */
     @Test
     public void kubeExitCodePropagationTest() {
         // TODO: test kubeExitCodePropagation
     }
 
-    /** Test the property 'mountLabel' */
+    /**
+     * Test the property 'mountLabel'
+     */
     @Test
     public void mountLabelTest() {
         // TODO: test mountLabel
     }
 
-    /** Test the property 'mounts' */
+    /**
+     * Test the property 'mounts'
+     */
     @Test
     public void mountsTest() {
         // TODO: test mounts
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'namespace' */
+    /**
+     * Test the property 'namespace'
+     */
     @Test
     public void namespaceTest() {
         // TODO: test namespace
     }
 
-    /** Test the property 'networkSettings' */
+    /**
+     * Test the property 'networkSettings'
+     */
     @Test
     public void networkSettingsTest() {
         // TODO: test networkSettings
     }
 
-    /** Test the property 'ocIConfigPath' */
+    /**
+     * Test the property 'ocIConfigPath'
+     */
     @Test
     public void ocIConfigPathTest() {
         // TODO: test ocIConfigPath
     }
 
-    /** Test the property 'ocIRuntime' */
+    /**
+     * Test the property 'ocIRuntime'
+     */
     @Test
     public void ocIRuntimeTest() {
         // TODO: test ocIRuntime
     }
 
-    /** Test the property 'path' */
+    /**
+     * Test the property 'path'
+     */
     @Test
     public void pathTest() {
         // TODO: test path
     }
 
-    /** Test the property 'pidFile' */
+    /**
+     * Test the property 'pidFile'
+     */
     @Test
     public void pidFileTest() {
         // TODO: test pidFile
     }
 
-    /** Test the property 'pod' */
+    /**
+     * Test the property 'pod'
+     */
     @Test
     public void podTest() {
         // TODO: test pod
     }
 
-    /** Test the property 'processLabel' */
+    /**
+     * Test the property 'processLabel'
+     */
     @Test
     public void processLabelTest() {
         // TODO: test processLabel
     }
 
-    /** Test the property 'resolvConfPath' */
+    /**
+     * Test the property 'resolvConfPath'
+     */
     @Test
     public void resolvConfPathTest() {
         // TODO: test resolvConfPath
     }
 
-    /** Test the property 'restartCount' */
+    /**
+     * Test the property 'restartCount'
+     */
     @Test
     public void restartCountTest() {
         // TODO: test restartCount
     }
 
-    /** Test the property 'rootfs' */
+    /**
+     * Test the property 'rootfs'
+     */
     @Test
     public void rootfsTest() {
         // TODO: test rootfs
     }
 
-    /** Test the property 'sizeRootFs' */
+    /**
+     * Test the property 'sizeRootFs'
+     */
     @Test
     public void sizeRootFsTest() {
         // TODO: test sizeRootFs
     }
 
-    /** Test the property 'sizeRw' */
+    /**
+     * Test the property 'sizeRw'
+     */
     @Test
     public void sizeRwTest() {
         // TODO: test sizeRw
     }
 
-    /** Test the property 'state' */
+    /**
+     * Test the property 'state'
+     */
     @Test
     public void stateTest() {
         // TODO: test state
     }
 
-    /** Test the property 'staticDir' */
+    /**
+     * Test the property 'staticDir'
+     */
     @Test
     public void staticDirTest() {
         // TODO: test staticDir
     }
 
-    /** Test the property 'lockNumber' */
+    /**
+     * Test the property 'lockNumber'
+     */
     @Test
     public void lockNumberTest() {
         // TODO: test lockNumber
     }
+
 }

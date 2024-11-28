@@ -10,53 +10,81 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for HistoryResponseItem */
+/**
+ * Model tests for HistoryResponseItem
+ */
 public class HistoryResponseItemTest {
     private final HistoryResponseItem model = new HistoryResponseItem();
 
-    /** Model tests for HistoryResponseItem */
+    /**
+     * Model tests for HistoryResponseItem
+     */
     @Test
     public void testHistoryResponseItem() {
         // TODO: test HistoryResponseItem
     }
 
-    /** Test the property 'comment' */
+    /**
+     * Test the property 'comment'
+     */
     @Test
     public void commentTest() {
         // TODO: test comment
     }
 
-    /** Test the property 'created' */
+    /**
+     * Test the property 'created'
+     */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /** Test the property 'createdBy' */
+    /**
+     * Test the property 'createdBy'
+     */
     @Test
     public void createdByTest() {
         // TODO: test createdBy
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /** Test the property 'tags' */
+    /**
+     * Test the property 'tags'
+     */
     @Test
     public void tagsTest() {
         // TODO: test tags
     }
+
 }

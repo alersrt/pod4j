@@ -10,59 +10,89 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for StartupHealthCheck */
+/**
+ * Model tests for StartupHealthCheck
+ */
 public class StartupHealthCheckTest {
     private final StartupHealthCheck model = new StartupHealthCheck();
 
-    /** Model tests for StartupHealthCheck */
+    /**
+     * Model tests for StartupHealthCheck
+     */
     @Test
     public void testStartupHealthCheck() {
         // TODO: test StartupHealthCheck
     }
 
-    /** Test the property 'interval' */
+    /**
+     * Test the property 'interval'
+     */
     @Test
     public void intervalTest() {
         // TODO: test interval
     }
 
-    /** Test the property 'retries' */
+    /**
+     * Test the property 'retries'
+     */
     @Test
     public void retriesTest() {
         // TODO: test retries
     }
 
-    /** Test the property 'startInterval' */
+    /**
+     * Test the property 'startInterval'
+     */
     @Test
     public void startIntervalTest() {
         // TODO: test startInterval
     }
 
-    /** Test the property 'startPeriod' */
+    /**
+     * Test the property 'startPeriod'
+     */
     @Test
     public void startPeriodTest() {
         // TODO: test startPeriod
     }
 
-    /** Test the property 'successes' */
+    /**
+     * Test the property 'successes'
+     */
     @Test
     public void successesTest() {
         // TODO: test successes
     }
 
-    /** Test the property 'test' */
+    /**
+     * Test the property 'test'
+     */
     @Test
     public void testTest() {
         // TODO: test test
     }
 
-    /** Test the property 'timeout' */
+    /**
+     * Test the property 'timeout'
+     */
     @Test
     public void timeoutTest() {
         // TODO: test timeout
     }
+
 }

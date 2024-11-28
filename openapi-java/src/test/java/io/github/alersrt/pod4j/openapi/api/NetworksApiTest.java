@@ -10,10 +10,12 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.model.DisconnectOptions;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.Network;
 import io.github.alersrt.pod4j.openapi.model.NetworkConnectOptions;
 import io.github.alersrt.pod4j.openapi.model.NetworkCreateLibpod;
@@ -21,11 +23,17 @@ import io.github.alersrt.pod4j.openapi.model.NetworkInspectReport;
 import io.github.alersrt.pod4j.openapi.model.NetworkPruneReport;
 import io.github.alersrt.pod4j.openapi.model.NetworkRmReport;
 import io.github.alersrt.pod4j.openapi.model.NetworkUpdateOptions;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** API tests for NetworksApi */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for NetworksApi
+ */
 @Disabled
 public class NetworksApiTest {
 
@@ -34,7 +42,7 @@ public class NetworksApiTest {
     /**
      * Connect container to network
      *
-     * <p>Connect a container to a network.
+     * Connect a container to a network.
      *
      * @throws ApiException if the Api call fails
      */
@@ -49,7 +57,7 @@ public class NetworksApiTest {
     /**
      * Create network
      *
-     * <p>Create a new network configuration
+     * Create a new network configuration
      *
      * @throws ApiException if the Api call fails
      */
@@ -63,7 +71,7 @@ public class NetworksApiTest {
     /**
      * Remove a network
      *
-     * <p>Remove a configured network
+     * Remove a configured network
      *
      * @throws ApiException if the Api call fails
      */
@@ -78,7 +86,7 @@ public class NetworksApiTest {
     /**
      * Disconnect container from network
      *
-     * <p>Disconnect a container from a network.
+     * Disconnect a container from a network.
      *
      * @throws ApiException if the Api call fails
      */
@@ -93,7 +101,7 @@ public class NetworksApiTest {
     /**
      * Network exists
      *
-     * <p>Check if network exists
+     * Check if network exists
      *
      * @throws ApiException if the Api call fails
      */
@@ -107,7 +115,7 @@ public class NetworksApiTest {
     /**
      * Inspect a network
      *
-     * <p>Display configuration for a network.
+     * Display configuration for a network. 
      *
      * @throws ApiException if the Api call fails
      */
@@ -121,8 +129,7 @@ public class NetworksApiTest {
     /**
      * List networks
      *
-     * <p>Display summary of network configurations. - In a 200 response, all of the fields named
-     * Bytes are returned as a Base64 encoded string.
+     * Display summary of network configurations.   - In a 200 response, all of the fields named Bytes are returned as a Base64 encoded string. 
      *
      * @throws ApiException if the Api call fails
      */
@@ -136,7 +143,7 @@ public class NetworksApiTest {
     /**
      * Delete unused networks
      *
-     * <p>Remove networks that do not have containers
+     * Remove networks that do not have containers
      *
      * @throws ApiException if the Api call fails
      */
@@ -150,7 +157,7 @@ public class NetworksApiTest {
     /**
      * Update existing podman network
      *
-     * <p>Update existing podman network
+     * Update existing podman network
      *
      * @throws ApiException if the Api call fails
      */
@@ -161,4 +168,5 @@ public class NetworksApiTest {
         api.networkUpdateLibpod(name, update);
         // TODO: test validations
     }
+
 }

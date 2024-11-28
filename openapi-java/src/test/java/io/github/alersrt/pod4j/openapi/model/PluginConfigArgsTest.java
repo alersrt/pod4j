@@ -10,41 +10,65 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for PluginConfigArgs */
+/**
+ * Model tests for PluginConfigArgs
+ */
 public class PluginConfigArgsTest {
     private final PluginConfigArgs model = new PluginConfigArgs();
 
-    /** Model tests for PluginConfigArgs */
+    /**
+     * Model tests for PluginConfigArgs
+     */
     @Test
     public void testPluginConfigArgs() {
         // TODO: test PluginConfigArgs
     }
 
-    /** Test the property 'description' */
+    /**
+     * Test the property 'description'
+     */
     @Test
     public void descriptionTest() {
         // TODO: test description
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'settable' */
+    /**
+     * Test the property 'settable'
+     */
     @Test
     public void settableTest() {
         // TODO: test settable
     }
 
-    /** Test the property 'value' */
+    /**
+     * Test the property 'value'
+     */
     @Test
     public void valueTest() {
         // TODO: test value
     }
+
 }

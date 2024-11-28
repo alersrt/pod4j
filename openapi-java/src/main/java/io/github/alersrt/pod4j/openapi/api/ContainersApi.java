@@ -10,19 +10,29 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+
 import io.github.alersrt.pod4j.openapi.model.ContainerCreateResponse;
 import io.github.alersrt.pod4j.openapi.model.ContainerStats;
 import io.github.alersrt.pod4j.openapi.model.ContainerTopOKBody;
 import io.github.alersrt.pod4j.openapi.model.ContainersPruneReportLibpod;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
+import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.HealthCheckResults;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerData;
 import io.github.alersrt.pod4j.openapi.model.LibpodContainersRmReport;
@@ -30,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.model.ListContainer;
 import io.github.alersrt.pod4j.openapi.model.PlayKubeReport;
 import io.github.alersrt.pod4j.openapi.model.SpecGenerator;
 import io.github.alersrt.pod4j.openapi.model.UpdateEntities;
-import java.io.File;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,13 +86,10 @@ public class ContainersApi {
 
     /**
      * Build call for containerAttachLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param detachKeys keys to use for detaching from the container (optional)
-     * @param logs Stream all logs from the container across the connection. Happens before
-     *     streaming attach (if requested). At least one of logs or stream must be set (optional)
-     * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s
-     *     logs will be sent. At least one of stream or logs must be set (optional, default to true)
+     * @param logs Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
+     * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
      * @param stdout Attach to container STDOUT (optional)
      * @param stderr Attach to container STDERR (optional)
      * @param stdin Attach to container STDIN (optional)
@@ -90,32 +97,23 @@ public class ContainersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerAttachLibpodCall(
-            String name,
-            String detachKeys,
-            Boolean logs,
-            Boolean stream,
-            Boolean stdout,
-            Boolean stderr,
-            Boolean stdin,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerAttachLibpodCall(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -124,11 +122,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/attach"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/attach"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -160,298 +155,139 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("stdin", stdin));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerAttachLibpodValidateBeforeCall(
-            String name,
-            String detachKeys,
-            Boolean logs,
-            Boolean stream,
-            Boolean stdout,
-            Boolean stderr,
-            Boolean stdin,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerAttachLibpodValidateBeforeCall(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerAttachLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerAttachLibpod(Async)");
         }
 
-        return containerAttachLibpodCall(
-                name, detachKeys, logs, stream, stdout, stderr, stdin, _callback);
+        return containerAttachLibpodCall(name, detachKeys, logs, stream, stdout, stderr, stdin, _callback);
+
     }
 
     /**
-     * Attach to a container Attach to a container to read its output or send it input. You can
-     * attach to the same container multiple times and you can reattach to containers that have been
-     * detached. ### Hijacking This endpoint hijacks the HTTP connection to transport
-     * &#x60;stdin&#x60;, &#x60;stdout&#x60;, and &#x60;stderr&#x60; on the same socket. This is the
-     * response from the service for an attach request: &#x60;&#x60;&#x60; HTTP/1.1 200 OK
-     * Content-Type: application/vnd.docker.raw-stream [STREAM] &#x60;&#x60;&#x60; After the headers
-     * and two new lines, the TCP connection can now be used for raw, bidirectional communication
-     * between the client and server. To inform potential proxies about connection hijacking, the
-     * client can also optionally send connection upgrade headers. For example, the client sends
-     * this request to upgrade the connection: &#x60;&#x60;&#x60; POST
-     * /v4.6.0/libpod/containers/16253994b7c4/attach?stream&#x3D;1&amp;stdout&#x3D;1 HTTP/1.1
-     * Upgrade: tcp Connection: Upgrade &#x60;&#x60;&#x60; The service will respond with a &#x60;101
-     * UPGRADED&#x60; response, and will similarly follow with the raw stream: &#x60;&#x60;&#x60;
-     * HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade
-     * Upgrade: tcp [STREAM] &#x60;&#x60;&#x60; ### Stream format When the TTY setting is disabled
-     * for the container, the HTTP Content-Type header is set to
-     * application/vnd.docker.multiplexed-stream (starting with v4.7.0, previously
-     * application/vnd.docker.raw-stream was always used) and the stream over the hijacked connected
-     * is multiplexed to separate out &#x60;stdout&#x60; and &#x60;stderr&#x60;. The stream consists
-     * of a series of frames, each containing a header and a payload. The header contains the
-     * information about the output stream type and the size of the payload. It is encoded on the
-     * first eight bytes like this: &#x60;&#x60;&#x60;go header :&#x3D; [8]byte{STREAM_TYPE, 0, 0,
-     * 0, SIZE1, SIZE2, SIZE3, SIZE4} &#x60;&#x60;&#x60; &#x60;STREAM_TYPE&#x60; can be: - 0:
-     * &#x60;stdin&#x60; (is written on &#x60;stdout&#x60;) - 1: &#x60;stdout&#x60; - 2:
-     * &#x60;stderr&#x60; &#x60;SIZE1, SIZE2, SIZE3, SIZE4&#x60; are the four bytes of the
-     * &#x60;uint32&#x60; size encoded as big endian. Following the header is the payload, which
-     * contains the specified number of bytes as written in the size. The simplest way to implement
-     * this protocol is the following: 1. Read 8 bytes. 2. Choose &#x60;stdout&#x60; or
-     * &#x60;stderr&#x60; depending on the first byte. 3. Extract the frame size from the last four
-     * bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1. ### Stream
-     * format when using a TTY When the TTY setting is enabled for the container, the stream is not
-     * multiplexed. The data exchanged over the hijacked connection is simply the raw data from the
-     * process PTY and client&#39;s &#x60;stdin&#x60;.
-     *
+     * Attach to a container
+     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  ### Hijacking  This endpoint hijacks the HTTP connection to transport &#x60;stdin&#x60;, &#x60;stdout&#x60;, and &#x60;stderr&#x60; on the same socket.  This is the response from the service for an attach request:  &#x60;&#x60;&#x60; HTTP/1.1 200 OK Content-Type: application/vnd.docker.raw-stream  [STREAM] &#x60;&#x60;&#x60;  After the headers and two new lines, the TCP connection can now be used for raw, bidirectional communication between the client and server.  To inform potential proxies about connection hijacking, the client can also optionally send connection upgrade headers.  For example, the client sends this request to upgrade the connection:  &#x60;&#x60;&#x60; POST /v4.6.0/libpod/containers/16253994b7c4/attach?stream&#x3D;1&amp;stdout&#x3D;1 HTTP/1.1 Upgrade: tcp Connection: Upgrade &#x60;&#x60;&#x60;  The service will respond with a &#x60;101 UPGRADED&#x60; response, and will similarly follow with the raw stream:  &#x60;&#x60;&#x60; HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade Upgrade: tcp  [STREAM] &#x60;&#x60;&#x60;  ### Stream format  When the TTY setting is disabled for the container, the HTTP Content-Type header is set to application/vnd.docker.multiplexed-stream (starting with v4.7.0, previously application/vnd.docker.raw-stream was always used) and the stream over the hijacked connected is multiplexed to separate out &#x60;stdout&#x60; and &#x60;stderr&#x60;. The stream consists of a series of frames, each containing a header and a payload.  The header contains the information about the output stream type and the size of the payload. It is encoded on the first eight bytes like this:  &#x60;&#x60;&#x60;go header :&#x3D; [8]byte{STREAM_TYPE, 0, 0, 0, SIZE1, SIZE2, SIZE3, SIZE4} &#x60;&#x60;&#x60;  &#x60;STREAM_TYPE&#x60; can be:  - 0: &#x60;stdin&#x60; (is written on &#x60;stdout&#x60;) - 1: &#x60;stdout&#x60; - 2: &#x60;stderr&#x60;  &#x60;SIZE1, SIZE2, SIZE3, SIZE4&#x60; are the four bytes of the &#x60;uint32&#x60; size encoded as big endian.  Following the header is the payload, which contains the specified number of bytes as written in the size.  The simplest way to implement this protocol is the following:  1. Read 8 bytes. 2. Choose &#x60;stdout&#x60; or &#x60;stderr&#x60; depending on the first byte. 3. Extract the frame size from the last four bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1.  ### Stream format when using a TTY  When the TTY setting is enabled for the container, the stream is not multiplexed. The data exchanged over the hijacked connection is simply the raw data from the process PTY and client&#39;s &#x60;stdin&#x60;. 
      * @param name the name or ID of the container (required)
      * @param detachKeys keys to use for detaching from the container (optional)
-     * @param logs Stream all logs from the container across the connection. Happens before
-     *     streaming attach (if requested). At least one of logs or stream must be set (optional)
-     * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s
-     *     logs will be sent. At least one of stream or logs must be set (optional, default to true)
+     * @param logs Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
+     * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
      * @param stdout Attach to container STDOUT (optional)
      * @param stderr Attach to container STDERR (optional)
      * @param stdin Attach to container STDIN (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public void containerAttachLibpod(
-            String name,
-            String detachKeys,
-            Boolean logs,
-            Boolean stream,
-            Boolean stdout,
-            Boolean stderr,
-            Boolean stdin)
-            throws ApiException {
+    public void containerAttachLibpod(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin) throws ApiException {
         containerAttachLibpodWithHttpInfo(name, detachKeys, logs, stream, stdout, stderr, stdin);
     }
 
     /**
-     * Attach to a container Attach to a container to read its output or send it input. You can
-     * attach to the same container multiple times and you can reattach to containers that have been
-     * detached. ### Hijacking This endpoint hijacks the HTTP connection to transport
-     * &#x60;stdin&#x60;, &#x60;stdout&#x60;, and &#x60;stderr&#x60; on the same socket. This is the
-     * response from the service for an attach request: &#x60;&#x60;&#x60; HTTP/1.1 200 OK
-     * Content-Type: application/vnd.docker.raw-stream [STREAM] &#x60;&#x60;&#x60; After the headers
-     * and two new lines, the TCP connection can now be used for raw, bidirectional communication
-     * between the client and server. To inform potential proxies about connection hijacking, the
-     * client can also optionally send connection upgrade headers. For example, the client sends
-     * this request to upgrade the connection: &#x60;&#x60;&#x60; POST
-     * /v4.6.0/libpod/containers/16253994b7c4/attach?stream&#x3D;1&amp;stdout&#x3D;1 HTTP/1.1
-     * Upgrade: tcp Connection: Upgrade &#x60;&#x60;&#x60; The service will respond with a &#x60;101
-     * UPGRADED&#x60; response, and will similarly follow with the raw stream: &#x60;&#x60;&#x60;
-     * HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade
-     * Upgrade: tcp [STREAM] &#x60;&#x60;&#x60; ### Stream format When the TTY setting is disabled
-     * for the container, the HTTP Content-Type header is set to
-     * application/vnd.docker.multiplexed-stream (starting with v4.7.0, previously
-     * application/vnd.docker.raw-stream was always used) and the stream over the hijacked connected
-     * is multiplexed to separate out &#x60;stdout&#x60; and &#x60;stderr&#x60;. The stream consists
-     * of a series of frames, each containing a header and a payload. The header contains the
-     * information about the output stream type and the size of the payload. It is encoded on the
-     * first eight bytes like this: &#x60;&#x60;&#x60;go header :&#x3D; [8]byte{STREAM_TYPE, 0, 0,
-     * 0, SIZE1, SIZE2, SIZE3, SIZE4} &#x60;&#x60;&#x60; &#x60;STREAM_TYPE&#x60; can be: - 0:
-     * &#x60;stdin&#x60; (is written on &#x60;stdout&#x60;) - 1: &#x60;stdout&#x60; - 2:
-     * &#x60;stderr&#x60; &#x60;SIZE1, SIZE2, SIZE3, SIZE4&#x60; are the four bytes of the
-     * &#x60;uint32&#x60; size encoded as big endian. Following the header is the payload, which
-     * contains the specified number of bytes as written in the size. The simplest way to implement
-     * this protocol is the following: 1. Read 8 bytes. 2. Choose &#x60;stdout&#x60; or
-     * &#x60;stderr&#x60; depending on the first byte. 3. Extract the frame size from the last four
-     * bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1. ### Stream
-     * format when using a TTY When the TTY setting is enabled for the container, the stream is not
-     * multiplexed. The data exchanged over the hijacked connection is simply the raw data from the
-     * process PTY and client&#39;s &#x60;stdin&#x60;.
-     *
+     * Attach to a container
+     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  ### Hijacking  This endpoint hijacks the HTTP connection to transport &#x60;stdin&#x60;, &#x60;stdout&#x60;, and &#x60;stderr&#x60; on the same socket.  This is the response from the service for an attach request:  &#x60;&#x60;&#x60; HTTP/1.1 200 OK Content-Type: application/vnd.docker.raw-stream  [STREAM] &#x60;&#x60;&#x60;  After the headers and two new lines, the TCP connection can now be used for raw, bidirectional communication between the client and server.  To inform potential proxies about connection hijacking, the client can also optionally send connection upgrade headers.  For example, the client sends this request to upgrade the connection:  &#x60;&#x60;&#x60; POST /v4.6.0/libpod/containers/16253994b7c4/attach?stream&#x3D;1&amp;stdout&#x3D;1 HTTP/1.1 Upgrade: tcp Connection: Upgrade &#x60;&#x60;&#x60;  The service will respond with a &#x60;101 UPGRADED&#x60; response, and will similarly follow with the raw stream:  &#x60;&#x60;&#x60; HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade Upgrade: tcp  [STREAM] &#x60;&#x60;&#x60;  ### Stream format  When the TTY setting is disabled for the container, the HTTP Content-Type header is set to application/vnd.docker.multiplexed-stream (starting with v4.7.0, previously application/vnd.docker.raw-stream was always used) and the stream over the hijacked connected is multiplexed to separate out &#x60;stdout&#x60; and &#x60;stderr&#x60;. The stream consists of a series of frames, each containing a header and a payload.  The header contains the information about the output stream type and the size of the payload. It is encoded on the first eight bytes like this:  &#x60;&#x60;&#x60;go header :&#x3D; [8]byte{STREAM_TYPE, 0, 0, 0, SIZE1, SIZE2, SIZE3, SIZE4} &#x60;&#x60;&#x60;  &#x60;STREAM_TYPE&#x60; can be:  - 0: &#x60;stdin&#x60; (is written on &#x60;stdout&#x60;) - 1: &#x60;stdout&#x60; - 2: &#x60;stderr&#x60;  &#x60;SIZE1, SIZE2, SIZE3, SIZE4&#x60; are the four bytes of the &#x60;uint32&#x60; size encoded as big endian.  Following the header is the payload, which contains the specified number of bytes as written in the size.  The simplest way to implement this protocol is the following:  1. Read 8 bytes. 2. Choose &#x60;stdout&#x60; or &#x60;stderr&#x60; depending on the first byte. 3. Extract the frame size from the last four bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1.  ### Stream format when using a TTY  When the TTY setting is enabled for the container, the stream is not multiplexed. The data exchanged over the hijacked connection is simply the raw data from the process PTY and client&#39;s &#x60;stdin&#x60;. 
      * @param name the name or ID of the container (required)
      * @param detachKeys keys to use for detaching from the container (optional)
-     * @param logs Stream all logs from the container across the connection. Happens before
-     *     streaming attach (if requested). At least one of logs or stream must be set (optional)
-     * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s
-     *     logs will be sent. At least one of stream or logs must be set (optional, default to true)
+     * @param logs Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
+     * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
      * @param stdout Attach to container STDOUT (optional)
      * @param stderr Attach to container STDERR (optional)
      * @param stdin Attach to container STDIN (optional)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerAttachLibpodWithHttpInfo(
-            String name,
-            String detachKeys,
-            Boolean logs,
-            Boolean stream,
-            Boolean stdout,
-            Boolean stderr,
-            Boolean stdin)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                containerAttachLibpodValidateBeforeCall(
-                        name, detachKeys, logs, stream, stdout, stderr, stdin, null);
+    public ApiResponse<Void> containerAttachLibpodWithHttpInfo(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin) throws ApiException {
+        okhttp3.Call localVarCall = containerAttachLibpodValidateBeforeCall(name, detachKeys, logs, stream, stdout, stderr, stdin, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Attach to a container (asynchronously) Attach to a container to read its output or send it
-     * input. You can attach to the same container multiple times and you can reattach to containers
-     * that have been detached. ### Hijacking This endpoint hijacks the HTTP connection to transport
-     * &#x60;stdin&#x60;, &#x60;stdout&#x60;, and &#x60;stderr&#x60; on the same socket. This is the
-     * response from the service for an attach request: &#x60;&#x60;&#x60; HTTP/1.1 200 OK
-     * Content-Type: application/vnd.docker.raw-stream [STREAM] &#x60;&#x60;&#x60; After the headers
-     * and two new lines, the TCP connection can now be used for raw, bidirectional communication
-     * between the client and server. To inform potential proxies about connection hijacking, the
-     * client can also optionally send connection upgrade headers. For example, the client sends
-     * this request to upgrade the connection: &#x60;&#x60;&#x60; POST
-     * /v4.6.0/libpod/containers/16253994b7c4/attach?stream&#x3D;1&amp;stdout&#x3D;1 HTTP/1.1
-     * Upgrade: tcp Connection: Upgrade &#x60;&#x60;&#x60; The service will respond with a &#x60;101
-     * UPGRADED&#x60; response, and will similarly follow with the raw stream: &#x60;&#x60;&#x60;
-     * HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade
-     * Upgrade: tcp [STREAM] &#x60;&#x60;&#x60; ### Stream format When the TTY setting is disabled
-     * for the container, the HTTP Content-Type header is set to
-     * application/vnd.docker.multiplexed-stream (starting with v4.7.0, previously
-     * application/vnd.docker.raw-stream was always used) and the stream over the hijacked connected
-     * is multiplexed to separate out &#x60;stdout&#x60; and &#x60;stderr&#x60;. The stream consists
-     * of a series of frames, each containing a header and a payload. The header contains the
-     * information about the output stream type and the size of the payload. It is encoded on the
-     * first eight bytes like this: &#x60;&#x60;&#x60;go header :&#x3D; [8]byte{STREAM_TYPE, 0, 0,
-     * 0, SIZE1, SIZE2, SIZE3, SIZE4} &#x60;&#x60;&#x60; &#x60;STREAM_TYPE&#x60; can be: - 0:
-     * &#x60;stdin&#x60; (is written on &#x60;stdout&#x60;) - 1: &#x60;stdout&#x60; - 2:
-     * &#x60;stderr&#x60; &#x60;SIZE1, SIZE2, SIZE3, SIZE4&#x60; are the four bytes of the
-     * &#x60;uint32&#x60; size encoded as big endian. Following the header is the payload, which
-     * contains the specified number of bytes as written in the size. The simplest way to implement
-     * this protocol is the following: 1. Read 8 bytes. 2. Choose &#x60;stdout&#x60; or
-     * &#x60;stderr&#x60; depending on the first byte. 3. Extract the frame size from the last four
-     * bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1. ### Stream
-     * format when using a TTY When the TTY setting is enabled for the container, the stream is not
-     * multiplexed. The data exchanged over the hijacked connection is simply the raw data from the
-     * process PTY and client&#39;s &#x60;stdin&#x60;.
-     *
+     * Attach to a container (asynchronously)
+     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  ### Hijacking  This endpoint hijacks the HTTP connection to transport &#x60;stdin&#x60;, &#x60;stdout&#x60;, and &#x60;stderr&#x60; on the same socket.  This is the response from the service for an attach request:  &#x60;&#x60;&#x60; HTTP/1.1 200 OK Content-Type: application/vnd.docker.raw-stream  [STREAM] &#x60;&#x60;&#x60;  After the headers and two new lines, the TCP connection can now be used for raw, bidirectional communication between the client and server.  To inform potential proxies about connection hijacking, the client can also optionally send connection upgrade headers.  For example, the client sends this request to upgrade the connection:  &#x60;&#x60;&#x60; POST /v4.6.0/libpod/containers/16253994b7c4/attach?stream&#x3D;1&amp;stdout&#x3D;1 HTTP/1.1 Upgrade: tcp Connection: Upgrade &#x60;&#x60;&#x60;  The service will respond with a &#x60;101 UPGRADED&#x60; response, and will similarly follow with the raw stream:  &#x60;&#x60;&#x60; HTTP/1.1 101 UPGRADED Content-Type: application/vnd.docker.raw-stream Connection: Upgrade Upgrade: tcp  [STREAM] &#x60;&#x60;&#x60;  ### Stream format  When the TTY setting is disabled for the container, the HTTP Content-Type header is set to application/vnd.docker.multiplexed-stream (starting with v4.7.0, previously application/vnd.docker.raw-stream was always used) and the stream over the hijacked connected is multiplexed to separate out &#x60;stdout&#x60; and &#x60;stderr&#x60;. The stream consists of a series of frames, each containing a header and a payload.  The header contains the information about the output stream type and the size of the payload. It is encoded on the first eight bytes like this:  &#x60;&#x60;&#x60;go header :&#x3D; [8]byte{STREAM_TYPE, 0, 0, 0, SIZE1, SIZE2, SIZE3, SIZE4} &#x60;&#x60;&#x60;  &#x60;STREAM_TYPE&#x60; can be:  - 0: &#x60;stdin&#x60; (is written on &#x60;stdout&#x60;) - 1: &#x60;stdout&#x60; - 2: &#x60;stderr&#x60;  &#x60;SIZE1, SIZE2, SIZE3, SIZE4&#x60; are the four bytes of the &#x60;uint32&#x60; size encoded as big endian.  Following the header is the payload, which contains the specified number of bytes as written in the size.  The simplest way to implement this protocol is the following:  1. Read 8 bytes. 2. Choose &#x60;stdout&#x60; or &#x60;stderr&#x60; depending on the first byte. 3. Extract the frame size from the last four bytes. 4. Read the extracted size and output it on the correct output. 5. Goto 1.  ### Stream format when using a TTY  When the TTY setting is enabled for the container, the stream is not multiplexed. The data exchanged over the hijacked connection is simply the raw data from the process PTY and client&#39;s &#x60;stdin&#x60;. 
      * @param name the name or ID of the container (required)
      * @param detachKeys keys to use for detaching from the container (optional)
-     * @param logs Stream all logs from the container across the connection. Happens before
-     *     streaming attach (if requested). At least one of logs or stream must be set (optional)
-     * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s
-     *     logs will be sent. At least one of stream or logs must be set (optional, default to true)
+     * @param logs Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
+     * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
      * @param stdout Attach to container STDOUT (optional)
      * @param stderr Attach to container STDERR (optional)
      * @param stdin Attach to container STDIN (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerAttachLibpodAsync(
-            String name,
-            String detachKeys,
-            Boolean logs,
-            Boolean stream,
-            Boolean stdout,
-            Boolean stderr,
-            Boolean stdin,
-            final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerAttachLibpodAsync(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerAttachLibpodValidateBeforeCall(
-                        name, detachKeys, logs, stream, stdout, stderr, stdin, _callback);
+        okhttp3.Call localVarCall = containerAttachLibpodValidateBeforeCall(name, detachKeys, logs, stream, stdout, stderr, stdin, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerChangesLibpod
-     *
      * @param name the name or id of the container (required)
-     * @param parent specify a second layer which is used to compare against it instead of the
-     *     parent layer (optional)
+     * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
      * @param diffType select what you want to match, default is all (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerChangesLibpodCall(
-            String name, String parent, String diffType, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerChangesLibpodCall(String name, String parent, String diffType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -460,11 +296,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/changes"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/changes"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -481,182 +314,133 @@ public class ContainersApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json", "application/octet-stream", "text/plain"
+            "application/json",
+            "application/octet-stream",
+            "text/plain"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerChangesLibpodValidateBeforeCall(
-            String name, String parent, String diffType, final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerChangesLibpodValidateBeforeCall(String name, String parent, String diffType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerChangesLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerChangesLibpod(Async)");
         }
 
         return containerChangesLibpodCall(name, parent, diffType, _callback);
-    }
 
-    /**
-     * Report on changes to container&#39;s filesystem; adds, deletes or modifications. Returns
-     * which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind
-     * of modification can be one of: 0: Modified 1: Added 2: Deleted
-     *
-     * @param name the name or id of the container (required)
-     * @param parent specify a second layer which is used to compare against it instead of the
-     *     parent layer (optional)
-     * @param diffType select what you want to match, default is all (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerChangesLibpod(String name, String parent, String diffType)
-            throws ApiException {
-        containerChangesLibpodWithHttpInfo(name, parent, diffType);
-    }
-
-    /**
-     * Report on changes to container&#39;s filesystem; adds, deletes or modifications. Returns
-     * which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind
-     * of modification can be one of: 0: Modified 1: Added 2: Deleted
-     *
-     * @param name the name or id of the container (required)
-     * @param parent specify a second layer which is used to compare against it instead of the
-     *     parent layer (optional)
-     * @param diffType select what you want to match, default is all (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
-     * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerChangesLibpodWithHttpInfo(
-            String name, String parent, String diffType) throws ApiException {
-        okhttp3.Call localVarCall =
-                containerChangesLibpodValidateBeforeCall(name, parent, diffType, null);
-        return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * Report on changes to container&#39;s filesystem; adds, deletes or modifications.
-     * (asynchronously) Returns which files in a container&#39;s filesystem have been added,
-     * deleted, or modified. The Kind of modification can be one of: 0: Modified 1: Added 2: Deleted
-     *
+     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
      * @param name the name or id of the container (required)
-     * @param parent specify a second layer which is used to compare against it instead of the
-     *     parent layer (optional)
+     * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
      * @param diffType select what you want to match, default is all (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerChangesLibpodAsync(
-            String name, String parent, String diffType, final ApiCallback<Void> _callback)
-            throws ApiException {
-
-        okhttp3.Call localVarCall =
-                containerChangesLibpodValidateBeforeCall(name, parent, diffType, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
-        return localVarCall;
+    public void containerChangesLibpod(String name, String parent, String diffType) throws ApiException {
+        containerChangesLibpodWithHttpInfo(name, parent, diffType);
     }
 
     /**
+     * Report on changes to container&#39;s filesystem; adds, deletes or modifications.
+     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
+     * @param name the name or id of the container (required)
+     * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
+     * @param diffType select what you want to match, default is all (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<Void> containerChangesLibpodWithHttpInfo(String name, String parent, String diffType) throws ApiException {
+        okhttp3.Call localVarCall = containerChangesLibpodValidateBeforeCall(name, parent, diffType, null);
+        return localVarApiClient.execute(localVarCall);
+    }
+
+    /**
+     * Report on changes to container&#39;s filesystem; adds, deletes or modifications. (asynchronously)
+     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
+     * @param name the name or id of the container (required)
+     * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
+     * @param diffType select what you want to match, default is all (optional)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call containerChangesLibpodAsync(String name, String parent, String diffType, final ApiCallback<Void> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = containerChangesLibpodValidateBeforeCall(name, parent, diffType, _callback);
+        localVarApiClient.executeAsync(localVarCall, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for containerCheckpointLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param keep keep all temporary checkpoint files (optional)
      * @param leaveRunning leave the container running after writing checkpoint to disk (optional)
      * @param tcpEstablished checkpoint a container with established TCP connections (optional)
      * @param export export the checkpoint image to a tar.gz (optional)
-     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used
-     *     with export (optional)
-     * @param ignoreVolumes do not include associated volumes. can only be used with export
-     *     (optional)
-     * @param preCheckpoint dump the container&#39;s memory information only, leaving the container
-     *     running. only works on runc 1.0-rc or higher (optional)
-     * @param withPrevious check out the container with previous criu image files in pre-dump. only
-     *     works on runc 1.0-rc or higher (optional)
+     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used with export (optional)
+     * @param ignoreVolumes do not include associated volumes. can only be used with export (optional)
+     * @param preCheckpoint dump the container&#39;s memory information only, leaving the container running. only works on runc 1.0-rc or higher (optional)
+     * @param withPrevious check out the container with previous criu image files in pre-dump. only works on runc 1.0-rc or higher (optional)
      * @param fileLocks checkpoint a container with filelocks (optional)
      * @param printStats add checkpoint statistics to the returned CheckpointReport (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerCheckpointLibpodCall(
-            String name,
-            Boolean keep,
-            Boolean leaveRunning,
-            Boolean tcpEstablished,
-            Boolean export,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean preCheckpoint,
-            Boolean withPrevious,
-            Boolean fileLocks,
-            Boolean printStats,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerCheckpointLibpodCall(String name, Boolean keep, Boolean leaveRunning, Boolean tcpEstablished, Boolean export, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean preCheckpoint, Boolean withPrevious, Boolean fileLocks, Boolean printStats, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -665,11 +449,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/checkpoint"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/checkpoint"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -682,13 +463,11 @@ public class ContainersApi {
         }
 
         if (leaveRunning != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("leaveRunning", leaveRunning));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("leaveRunning", leaveRunning));
         }
 
         if (tcpEstablished != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("tcpEstablished", tcpEstablished));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tcpEstablished", tcpEstablished));
         }
 
         if (export != null) {
@@ -696,23 +475,19 @@ public class ContainersApi {
         }
 
         if (ignoreRootFS != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("ignoreRootFS", ignoreRootFS));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ignoreRootFS", ignoreRootFS));
         }
 
         if (ignoreVolumes != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("ignoreVolumes", ignoreVolumes));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ignoreVolumes", ignoreVolumes));
         }
 
         if (preCheckpoint != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("preCheckpoint", preCheckpoint));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("preCheckpoint", preCheckpoint));
         }
 
         if (withPrevious != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("withPrevious", withPrevious));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("withPrevious", withPrevious));
         }
 
         if (fileLocks != null) {
@@ -723,275 +498,148 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("printStats", printStats));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerCheckpointLibpodValidateBeforeCall(
-            String name,
-            Boolean keep,
-            Boolean leaveRunning,
-            Boolean tcpEstablished,
-            Boolean export,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean preCheckpoint,
-            Boolean withPrevious,
-            Boolean fileLocks,
-            Boolean printStats,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerCheckpointLibpodValidateBeforeCall(String name, Boolean keep, Boolean leaveRunning, Boolean tcpEstablished, Boolean export, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean preCheckpoint, Boolean withPrevious, Boolean fileLocks, Boolean printStats, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerCheckpointLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerCheckpointLibpod(Async)");
         }
 
-        return containerCheckpointLibpodCall(
-                name,
-                keep,
-                leaveRunning,
-                tcpEstablished,
-                export,
-                ignoreRootFS,
-                ignoreVolumes,
-                preCheckpoint,
-                withPrevious,
-                fileLocks,
-                printStats,
-                _callback);
+        return containerCheckpointLibpodCall(name, keep, leaveRunning, tcpEstablished, export, ignoreRootFS, ignoreVolumes, preCheckpoint, withPrevious, fileLocks, printStats, _callback);
+
     }
 
     /**
      * Checkpoint a container
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param keep keep all temporary checkpoint files (optional)
      * @param leaveRunning leave the container running after writing checkpoint to disk (optional)
      * @param tcpEstablished checkpoint a container with established TCP connections (optional)
      * @param export export the checkpoint image to a tar.gz (optional)
-     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used
-     *     with export (optional)
-     * @param ignoreVolumes do not include associated volumes. can only be used with export
-     *     (optional)
-     * @param preCheckpoint dump the container&#39;s memory information only, leaving the container
-     *     running. only works on runc 1.0-rc or higher (optional)
-     * @param withPrevious check out the container with previous criu image files in pre-dump. only
-     *     works on runc 1.0-rc or higher (optional)
+     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used with export (optional)
+     * @param ignoreVolumes do not include associated volumes. can only be used with export (optional)
+     * @param preCheckpoint dump the container&#39;s memory information only, leaving the container running. only works on runc 1.0-rc or higher (optional)
+     * @param withPrevious check out the container with previous criu image files in pre-dump. only works on runc 1.0-rc or higher (optional)
      * @param fileLocks checkpoint a container with filelocks (optional)
      * @param printStats add checkpoint statistics to the returned CheckpointReport (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public void containerCheckpointLibpod(
-            String name,
-            Boolean keep,
-            Boolean leaveRunning,
-            Boolean tcpEstablished,
-            Boolean export,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean preCheckpoint,
-            Boolean withPrevious,
-            Boolean fileLocks,
-            Boolean printStats)
-            throws ApiException {
-        containerCheckpointLibpodWithHttpInfo(
-                name,
-                keep,
-                leaveRunning,
-                tcpEstablished,
-                export,
-                ignoreRootFS,
-                ignoreVolumes,
-                preCheckpoint,
-                withPrevious,
-                fileLocks,
-                printStats);
+    public void containerCheckpointLibpod(String name, Boolean keep, Boolean leaveRunning, Boolean tcpEstablished, Boolean export, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean preCheckpoint, Boolean withPrevious, Boolean fileLocks, Boolean printStats) throws ApiException {
+        containerCheckpointLibpodWithHttpInfo(name, keep, leaveRunning, tcpEstablished, export, ignoreRootFS, ignoreVolumes, preCheckpoint, withPrevious, fileLocks, printStats);
     }
 
     /**
      * Checkpoint a container
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param keep keep all temporary checkpoint files (optional)
      * @param leaveRunning leave the container running after writing checkpoint to disk (optional)
      * @param tcpEstablished checkpoint a container with established TCP connections (optional)
      * @param export export the checkpoint image to a tar.gz (optional)
-     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used
-     *     with export (optional)
-     * @param ignoreVolumes do not include associated volumes. can only be used with export
-     *     (optional)
-     * @param preCheckpoint dump the container&#39;s memory information only, leaving the container
-     *     running. only works on runc 1.0-rc or higher (optional)
-     * @param withPrevious check out the container with previous criu image files in pre-dump. only
-     *     works on runc 1.0-rc or higher (optional)
+     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used with export (optional)
+     * @param ignoreVolumes do not include associated volumes. can only be used with export (optional)
+     * @param preCheckpoint dump the container&#39;s memory information only, leaving the container running. only works on runc 1.0-rc or higher (optional)
+     * @param withPrevious check out the container with previous criu image files in pre-dump. only works on runc 1.0-rc or higher (optional)
      * @param fileLocks checkpoint a container with filelocks (optional)
      * @param printStats add checkpoint statistics to the returned CheckpointReport (optional)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerCheckpointLibpodWithHttpInfo(
-            String name,
-            Boolean keep,
-            Boolean leaveRunning,
-            Boolean tcpEstablished,
-            Boolean export,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean preCheckpoint,
-            Boolean withPrevious,
-            Boolean fileLocks,
-            Boolean printStats)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                containerCheckpointLibpodValidateBeforeCall(
-                        name,
-                        keep,
-                        leaveRunning,
-                        tcpEstablished,
-                        export,
-                        ignoreRootFS,
-                        ignoreVolumes,
-                        preCheckpoint,
-                        withPrevious,
-                        fileLocks,
-                        printStats,
-                        null);
+    public ApiResponse<Void> containerCheckpointLibpodWithHttpInfo(String name, Boolean keep, Boolean leaveRunning, Boolean tcpEstablished, Boolean export, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean preCheckpoint, Boolean withPrevious, Boolean fileLocks, Boolean printStats) throws ApiException {
+        okhttp3.Call localVarCall = containerCheckpointLibpodValidateBeforeCall(name, keep, leaveRunning, tcpEstablished, export, ignoreRootFS, ignoreVolumes, preCheckpoint, withPrevious, fileLocks, printStats, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * Checkpoint a container (asynchronously)
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param keep keep all temporary checkpoint files (optional)
      * @param leaveRunning leave the container running after writing checkpoint to disk (optional)
      * @param tcpEstablished checkpoint a container with established TCP connections (optional)
      * @param export export the checkpoint image to a tar.gz (optional)
-     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used
-     *     with export (optional)
-     * @param ignoreVolumes do not include associated volumes. can only be used with export
-     *     (optional)
-     * @param preCheckpoint dump the container&#39;s memory information only, leaving the container
-     *     running. only works on runc 1.0-rc or higher (optional)
-     * @param withPrevious check out the container with previous criu image files in pre-dump. only
-     *     works on runc 1.0-rc or higher (optional)
+     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used with export (optional)
+     * @param ignoreVolumes do not include associated volumes. can only be used with export (optional)
+     * @param preCheckpoint dump the container&#39;s memory information only, leaving the container running. only works on runc 1.0-rc or higher (optional)
+     * @param withPrevious check out the container with previous criu image files in pre-dump. only works on runc 1.0-rc or higher (optional)
      * @param fileLocks checkpoint a container with filelocks (optional)
      * @param printStats add checkpoint statistics to the returned CheckpointReport (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerCheckpointLibpodAsync(
-            String name,
-            Boolean keep,
-            Boolean leaveRunning,
-            Boolean tcpEstablished,
-            Boolean export,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean preCheckpoint,
-            Boolean withPrevious,
-            Boolean fileLocks,
-            Boolean printStats,
-            final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerCheckpointLibpodAsync(String name, Boolean keep, Boolean leaveRunning, Boolean tcpEstablished, Boolean export, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean preCheckpoint, Boolean withPrevious, Boolean fileLocks, Boolean printStats, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerCheckpointLibpodValidateBeforeCall(
-                        name,
-                        keep,
-                        leaveRunning,
-                        tcpEstablished,
-                        export,
-                        ignoreRootFS,
-                        ignoreVolumes,
-                        preCheckpoint,
-                        withPrevious,
-                        fileLocks,
-                        printStats,
-                        _callback);
+        okhttp3.Call localVarCall = containerCheckpointLibpodValidateBeforeCall(name, keep, leaveRunning, tcpEstablished, export, ignoreRootFS, ignoreVolumes, preCheckpoint, withPrevious, fileLocks, printStats, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerCreateLibpod
-     *
      * @param create attributes for creating a container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerCreateLibpodCall(SpecGenerator create, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerCreateLibpodCall(SpecGenerator create, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1008,164 +656,136 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {"application/json", "application/x-tar"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerCreateLibpodValidateBeforeCall(
-            SpecGenerator create, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerCreateLibpodValidateBeforeCall(SpecGenerator create, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'create' is set
         if (create == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'create' when calling"
-                            + " containerCreateLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'create' when calling containerCreateLibpod(Async)");
         }
 
         return containerCreateLibpodCall(create, _callback);
+
     }
 
     /**
      * Create a container
-     *
+     * 
      * @param create attributes for creating a container (required)
      * @return ContainerCreateResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ContainerCreateResponse containerCreateLibpod(SpecGenerator create) throws ApiException {
-        ApiResponse<ContainerCreateResponse> localVarResp =
-                containerCreateLibpodWithHttpInfo(create);
+        ApiResponse<ContainerCreateResponse> localVarResp = containerCreateLibpodWithHttpInfo(create);
         return localVarResp.getData();
     }
 
     /**
      * Create a container
-     *
+     * 
      * @param create attributes for creating a container (required)
      * @return ApiResponse&lt;ContainerCreateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ContainerCreateResponse> containerCreateLibpodWithHttpInfo(
-            SpecGenerator create) throws ApiException {
+    public ApiResponse<ContainerCreateResponse> containerCreateLibpodWithHttpInfo(SpecGenerator create) throws ApiException {
         okhttp3.Call localVarCall = containerCreateLibpodValidateBeforeCall(create, null);
-        Type localVarReturnType = new TypeToken<ContainerCreateResponse>() {}.getType();
+        Type localVarReturnType = new TypeToken<ContainerCreateResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * Create a container (asynchronously)
-     *
+     * 
      * @param create attributes for creating a container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerCreateLibpodAsync(
-            SpecGenerator create, final ApiCallback<ContainerCreateResponse> _callback)
-            throws ApiException {
+    public okhttp3.Call containerCreateLibpodAsync(SpecGenerator create, final ApiCallback<ContainerCreateResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerCreateLibpodValidateBeforeCall(create, _callback);
-        Type localVarReturnType = new TypeToken<ContainerCreateResponse>() {}.getType();
+        Type localVarReturnType = new TypeToken<ContainerCreateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerDeleteLibpod
-     *
      * @param name the name or ID of the container (required)
-     * @param depend additionally remove containers that depend on the container to be removed
-     *     (optional)
+     * @param depend additionally remove containers that depend on the container to be removed (optional)
      * @param force force stop container if running (optional)
      * @param ignore ignore errors when the container to be removed does not existxo (optional)
-     * @param timeout number of seconds to wait before killing container when force removing
-     *     (optional, default to 10)
+     * @param timeout number of seconds to wait before killing container when force removing (optional, default to 10)
      * @param v delete volumes (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Remove Containers </td><td>  -  </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Remove Containers </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerDeleteLibpodCall(
-            String name,
-            Boolean depend,
-            Boolean force,
-            Boolean ignore,
-            Integer timeout,
-            Boolean v,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerDeleteLibpodCall(String name, Boolean depend, Boolean force, Boolean ignore, Integer timeout, Boolean v, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1174,11 +794,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1206,191 +823,144 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("v", v));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "DELETE",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerDeleteLibpodValidateBeforeCall(
-            String name,
-            Boolean depend,
-            Boolean force,
-            Boolean ignore,
-            Integer timeout,
-            Boolean v,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerDeleteLibpodValidateBeforeCall(String name, Boolean depend, Boolean force, Boolean ignore, Integer timeout, Boolean v, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerDeleteLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerDeleteLibpod(Async)");
         }
 
         return containerDeleteLibpodCall(name, depend, force, ignore, timeout, v, _callback);
+
     }
 
     /**
-     * Delete container Delete container
-     *
+     * Delete container
+     * Delete container
      * @param name the name or ID of the container (required)
-     * @param depend additionally remove containers that depend on the container to be removed
-     *     (optional)
+     * @param depend additionally remove containers that depend on the container to be removed (optional)
      * @param force force stop container if running (optional)
      * @param ignore ignore errors when the container to be removed does not existxo (optional)
-     * @param timeout number of seconds to wait before killing container when force removing
-     *     (optional, default to 10)
+     * @param timeout number of seconds to wait before killing container when force removing (optional, default to 10)
      * @param v delete volumes (optional)
      * @return List&lt;LibpodContainersRmReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Remove Containers </td><td>  -  </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Remove Containers </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public List<LibpodContainersRmReport> containerDeleteLibpod(
-            String name, Boolean depend, Boolean force, Boolean ignore, Integer timeout, Boolean v)
-            throws ApiException {
-        ApiResponse<List<LibpodContainersRmReport>> localVarResp =
-                containerDeleteLibpodWithHttpInfo(name, depend, force, ignore, timeout, v);
+    public List<LibpodContainersRmReport> containerDeleteLibpod(String name, Boolean depend, Boolean force, Boolean ignore, Integer timeout, Boolean v) throws ApiException {
+        ApiResponse<List<LibpodContainersRmReport>> localVarResp = containerDeleteLibpodWithHttpInfo(name, depend, force, ignore, timeout, v);
         return localVarResp.getData();
     }
 
     /**
-     * Delete container Delete container
-     *
+     * Delete container
+     * Delete container
      * @param name the name or ID of the container (required)
-     * @param depend additionally remove containers that depend on the container to be removed
-     *     (optional)
+     * @param depend additionally remove containers that depend on the container to be removed (optional)
      * @param force force stop container if running (optional)
      * @param ignore ignore errors when the container to be removed does not existxo (optional)
-     * @param timeout number of seconds to wait before killing container when force removing
-     *     (optional, default to 10)
+     * @param timeout number of seconds to wait before killing container when force removing (optional, default to 10)
      * @param v delete volumes (optional)
      * @return ApiResponse&lt;List&lt;LibpodContainersRmReport&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Remove Containers </td><td>  -  </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Remove Containers </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<List<LibpodContainersRmReport>> containerDeleteLibpodWithHttpInfo(
-            String name, Boolean depend, Boolean force, Boolean ignore, Integer timeout, Boolean v)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                containerDeleteLibpodValidateBeforeCall(
-                        name, depend, force, ignore, timeout, v, null);
-        Type localVarReturnType = new TypeToken<List<LibpodContainersRmReport>>() {}.getType();
+    public ApiResponse<List<LibpodContainersRmReport>> containerDeleteLibpodWithHttpInfo(String name, Boolean depend, Boolean force, Boolean ignore, Integer timeout, Boolean v) throws ApiException {
+        okhttp3.Call localVarCall = containerDeleteLibpodValidateBeforeCall(name, depend, force, ignore, timeout, v, null);
+        Type localVarReturnType = new TypeToken<List<LibpodContainersRmReport>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Delete container (asynchronously) Delete container
-     *
+     * Delete container (asynchronously)
+     * Delete container
      * @param name the name or ID of the container (required)
-     * @param depend additionally remove containers that depend on the container to be removed
-     *     (optional)
+     * @param depend additionally remove containers that depend on the container to be removed (optional)
      * @param force force stop container if running (optional)
      * @param ignore ignore errors when the container to be removed does not existxo (optional)
-     * @param timeout number of seconds to wait before killing container when force removing
-     *     (optional, default to 10)
+     * @param timeout number of seconds to wait before killing container when force removing (optional, default to 10)
      * @param v delete volumes (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Remove Containers </td><td>  -  </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Remove Containers </td><td>  -  </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerDeleteLibpodAsync(
-            String name,
-            Boolean depend,
-            Boolean force,
-            Boolean ignore,
-            Integer timeout,
-            Boolean v,
-            final ApiCallback<List<LibpodContainersRmReport>> _callback)
-            throws ApiException {
+    public okhttp3.Call containerDeleteLibpodAsync(String name, Boolean depend, Boolean force, Boolean ignore, Integer timeout, Boolean v, final ApiCallback<List<LibpodContainersRmReport>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerDeleteLibpodValidateBeforeCall(
-                        name, depend, force, ignore, timeout, v, _callback);
-        Type localVarReturnType = new TypeToken<List<LibpodContainersRmReport>>() {}.getType();
+        okhttp3.Call localVarCall = containerDeleteLibpodValidateBeforeCall(name, depend, force, ignore, timeout, v, _callback);
+        Type localVarReturnType = new TypeToken<List<LibpodContainersRmReport>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerExistsLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> container exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> container exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerExistsLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1399,11 +969,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/exists"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/exists"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1411,79 +978,66 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerExistsLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerExistsLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerExistsLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerExistsLibpod(Async)");
         }
 
         return containerExistsLibpodCall(name, _callback);
+
     }
 
     /**
-     * Check if container exists Quick way to determine if a container exists by name or ID
-     *
+     * Check if container exists
+     * Quick way to determine if a container exists by name or ID
      * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> container exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> container exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerExistsLibpod(String name) throws ApiException {
         containerExistsLibpodWithHttpInfo(name);
     }
 
     /**
-     * Check if container exists Quick way to determine if a container exists by name or ID
-     *
+     * Check if container exists
+     * Quick way to determine if a container exists by name or ID
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> container exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> container exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<Void> containerExistsLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = containerExistsLibpodValidateBeforeCall(name, null);
@@ -1491,55 +1045,49 @@ public class ContainersApi {
     }
 
     /**
-     * Check if container exists (asynchronously) Quick way to determine if a container exists by
-     * name or ID
-     *
+     * Check if container exists (asynchronously)
+     * Quick way to determine if a container exists by name or ID
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> container exists </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> container exists </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerExistsLibpodAsync(String name, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerExistsLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerExportLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerExportLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerExportLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1548,11 +1096,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/export"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/export"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1560,79 +1105,66 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerExportLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerExportLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerExportLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerExportLibpod(Async)");
         }
 
         return containerExportLibpodCall(name, _callback);
+
     }
 
     /**
-     * Export a container Export the contents of a container as a tarball.
-     *
+     * Export a container
+     * Export the contents of a container as a tarball.
      * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerExportLibpod(String name) throws ApiException {
         containerExportLibpodWithHttpInfo(name);
     }
 
     /**
-     * Export a container Export the contents of a container as a tarball.
-     *
+     * Export a container
+     * Export the contents of a container as a tarball.
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<Void> containerExportLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = containerExportLibpodValidateBeforeCall(name, null);
@@ -1640,55 +1172,50 @@ public class ContainersApi {
     }
 
     /**
-     * Export a container (asynchronously) Export the contents of a container as a tarball.
-     *
+     * Export a container (asynchronously)
+     * Export the contents of a container as a tarball.
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerExportLibpodAsync(String name, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerExportLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerExportLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerHealthcheckLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Healthcheck Results </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container has no healthcheck or is not running </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Healthcheck Results </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> container has no healthcheck or is not running </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerHealthcheckLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerHealthcheckLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1697,11 +1224,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/healthcheck"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/healthcheck"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1709,63 +1233,50 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerHealthcheckLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerHealthcheckLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerHealthcheckLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerHealthcheckLibpod(Async)");
         }
 
         return containerHealthcheckLibpodCall(name, _callback);
+
     }
 
     /**
-     * Run a container&#39;s healthcheck Execute the defined healthcheck and return information
-     * about the results
-     *
+     * Run a container&#39;s healthcheck
+     * Execute the defined healthcheck and return information about the results
      * @param name the name or ID of the container (required)
      * @return HealthCheckResults
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Healthcheck Results </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container has no healthcheck or is not running </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Healthcheck Results </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> container has no healthcheck or is not running </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public HealthCheckResults containerHealthcheckLibpod(String name) throws ApiException {
         ApiResponse<HealthCheckResults> localVarResp = containerHealthcheckLibpodWithHttpInfo(name);
@@ -1773,82 +1284,73 @@ public class ContainersApi {
     }
 
     /**
-     * Run a container&#39;s healthcheck Execute the defined healthcheck and return information
-     * about the results
-     *
+     * Run a container&#39;s healthcheck
+     * Execute the defined healthcheck and return information about the results
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;HealthCheckResults&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Healthcheck Results </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container has no healthcheck or is not running </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Healthcheck Results </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> container has no healthcheck or is not running </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<HealthCheckResults> containerHealthcheckLibpodWithHttpInfo(String name)
-            throws ApiException {
+    public ApiResponse<HealthCheckResults> containerHealthcheckLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = containerHealthcheckLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<HealthCheckResults>() {}.getType();
+        Type localVarReturnType = new TypeToken<HealthCheckResults>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Run a container&#39;s healthcheck (asynchronously) Execute the defined healthcheck and return
-     * information about the results
-     *
+     * Run a container&#39;s healthcheck (asynchronously)
+     * Execute the defined healthcheck and return information about the results
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Healthcheck Results </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> container has no healthcheck or is not running </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Healthcheck Results </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> container has no healthcheck or is not running </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerHealthcheckLibpodAsync(
-            String name, final ApiCallback<HealthCheckResults> _callback) throws ApiException {
+    public okhttp3.Call containerHealthcheckLibpodAsync(String name, final ApiCallback<HealthCheckResults> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerHealthcheckLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<HealthCheckResults>() {}.getType();
+        Type localVarReturnType = new TypeToken<HealthCheckResults>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerInitLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> container already initialized </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> container already initialized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerInitLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerInitLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1857,11 +1359,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/init"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/init"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1869,83 +1368,68 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerInitLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerInitLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerInitLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerInitLibpod(Async)");
         }
 
         return containerInitLibpodCall(name, _callback);
+
     }
 
     /**
-     * Initialize a container Performs all tasks necessary for initializing the container but does
-     * not start the container.
-     *
+     * Initialize a container
+     * Performs all tasks necessary for initializing the container but does not start the container.
      * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> container already initialized </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> container already initialized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerInitLibpod(String name) throws ApiException {
         containerInitLibpodWithHttpInfo(name);
     }
 
     /**
-     * Initialize a container Performs all tasks necessary for initializing the container but does
-     * not start the container.
-     *
+     * Initialize a container
+     * Performs all tasks necessary for initializing the container but does not start the container.
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> container already initialized </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> container already initialized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<Void> containerInitLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = containerInitLibpodValidateBeforeCall(name, null);
@@ -1953,57 +1437,51 @@ public class ContainersApi {
     }
 
     /**
-     * Initialize a container (asynchronously) Performs all tasks necessary for initializing the
-     * container but does not start the container.
-     *
+     * Initialize a container (asynchronously)
+     * Performs all tasks necessary for initializing the container but does not start the container.
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> container already initialized </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> container already initialized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerInitLibpodAsync(String name, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerInitLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerInitLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerInspectLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param size display filesystem usage (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerInspectLibpodCall(
-            String name, Boolean size, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call containerInspectLibpodCall(String name, Boolean size, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2012,11 +1490,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/json"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/json"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2028,148 +1503,125 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerInspectLibpodValidateBeforeCall(
-            String name, Boolean size, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerInspectLibpodValidateBeforeCall(String name, Boolean size, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerInspectLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerInspectLibpod(Async)");
         }
 
         return containerInspectLibpodCall(name, size, _callback);
+
     }
 
     /**
-     * Inspect container Return low-level information about a container.
-     *
+     * Inspect container
+     * Return low-level information about a container.
      * @param name the name or ID of the container (required)
      * @param size display filesystem usage (optional)
      * @return InspectContainerData
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public InspectContainerData containerInspectLibpod(String name, Boolean size)
-            throws ApiException {
-        ApiResponse<InspectContainerData> localVarResp =
-                containerInspectLibpodWithHttpInfo(name, size);
+    public InspectContainerData containerInspectLibpod(String name, Boolean size) throws ApiException {
+        ApiResponse<InspectContainerData> localVarResp = containerInspectLibpodWithHttpInfo(name, size);
         return localVarResp.getData();
     }
 
     /**
-     * Inspect container Return low-level information about a container.
-     *
+     * Inspect container
+     * Return low-level information about a container.
      * @param name the name or ID of the container (required)
      * @param size display filesystem usage (optional)
      * @return ApiResponse&lt;InspectContainerData&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<InspectContainerData> containerInspectLibpodWithHttpInfo(
-            String name, Boolean size) throws ApiException {
+    public ApiResponse<InspectContainerData> containerInspectLibpodWithHttpInfo(String name, Boolean size) throws ApiException {
         okhttp3.Call localVarCall = containerInspectLibpodValidateBeforeCall(name, size, null);
-        Type localVarReturnType = new TypeToken<InspectContainerData>() {}.getType();
+        Type localVarReturnType = new TypeToken<InspectContainerData>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Inspect container (asynchronously) Return low-level information about a container.
-     *
+     * Inspect container (asynchronously)
+     * Return low-level information about a container.
      * @param name the name or ID of the container (required)
      * @param size display filesystem usage (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerInspectLibpodAsync(
-            String name, Boolean size, final ApiCallback<InspectContainerData> _callback)
-            throws ApiException {
+    public okhttp3.Call containerInspectLibpodAsync(String name, Boolean size, final ApiCallback<InspectContainerData> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerInspectLibpodValidateBeforeCall(name, size, _callback);
-        Type localVarReturnType = new TypeToken<InspectContainerData>() {}.getType();
+        Type localVarReturnType = new TypeToken<InspectContainerData>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerKillLibpod
-     *
      * @param name the name or ID of the container (required)
-     * @param signal signal to be sent to container, either by integer or SIG_ name (optional,
-     *     default to SIGKILL)
+     * @param signal signal to be sent to container, either by integer or SIG_ name (optional, default to SIGKILL)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerKillLibpodCall(
-            String name, String signal, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call containerKillLibpodCall(String name, String signal, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2178,11 +1630,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/kill"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/kill"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2194,184 +1643,128 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("signal", signal));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerKillLibpodValidateBeforeCall(
-            String name, String signal, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerKillLibpodValidateBeforeCall(String name, String signal, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerKillLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerKillLibpod(Async)");
         }
 
         return containerKillLibpodCall(name, signal, _callback);
+
     }
 
     /**
-     * Kill container send a signal to a container, defaults to killing the container
-     *
+     * Kill container
+     * send a signal to a container, defaults to killing the container
      * @param name the name or ID of the container (required)
-     * @param signal signal to be sent to container, either by integer or SIG_ name (optional,
-     *     default to SIGKILL)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @param signal signal to be sent to container, either by integer or SIG_ name (optional, default to SIGKILL)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerKillLibpod(String name, String signal) throws ApiException {
         containerKillLibpodWithHttpInfo(name, signal);
     }
 
     /**
-     * Kill container send a signal to a container, defaults to killing the container
-     *
+     * Kill container
+     * send a signal to a container, defaults to killing the container
      * @param name the name or ID of the container (required)
-     * @param signal signal to be sent to container, either by integer or SIG_ name (optional,
-     *     default to SIGKILL)
+     * @param signal signal to be sent to container, either by integer or SIG_ name (optional, default to SIGKILL)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerKillLibpodWithHttpInfo(String name, String signal)
-            throws ApiException {
+    public ApiResponse<Void> containerKillLibpodWithHttpInfo(String name, String signal) throws ApiException {
         okhttp3.Call localVarCall = containerKillLibpodValidateBeforeCall(name, signal, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Kill container (asynchronously) send a signal to a container, defaults to killing the
-     * container
-     *
+     * Kill container (asynchronously)
+     * send a signal to a container, defaults to killing the container
      * @param name the name or ID of the container (required)
-     * @param signal signal to be sent to container, either by integer or SIG_ name (optional,
-     *     default to SIGKILL)
+     * @param signal signal to be sent to container, either by integer or SIG_ name (optional, default to SIGKILL)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerKillLibpodAsync(
-            String name, String signal, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call containerKillLibpodAsync(String name, String signal, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerKillLibpodValidateBeforeCall(name, signal, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerListLibpod
-     *
-     * @param all Return all containers. By default, only running containers are shown (optional,
-     *     default to false)
-     * @param limit Return this number of most recently created containers, including non-running
-     *     ones. (optional)
+     * @param all Return all containers. By default, only running containers are shown (optional, default to false)
+     * @param limit Return this number of most recently created containers, including non-running ones. (optional)
      * @param namespace Include namespace information (optional, default to false)
-     * @param pod Ignored. Previously included details on pod name and ID that are currently
-     *     included by default. (optional, default to false)
-     * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default
-     *     to false)
+     * @param pod Ignored. Previously included details on pod name and ID that are currently included by default. (optional, default to false)
+     * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
      * @param sync Sync container state with OCI runtime (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the containers list. Available filters: -
-     *     &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) -
-     *     &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container
-     *     name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or
-     *     &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) -
-     *     &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60;
-     *     - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;,
-     *     &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a
-     *     container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) -
-     *     &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a
-     *     container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name -
-     *     &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network
-     *     name&gt;&#x60;) - &#x60;pod&#x60;&#x3D;(&#x60;&lt;pod id&gt;&#x60; or &#x60;&lt;pod
-     *     name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or
-     *     &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) -
-     *     &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container
-     *     name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;,
-     *     &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or
-     *     &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or
-     *     &#x60;&lt;mount point destination&gt;&#x60;) (optional)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;pod&#x60;&#x3D;(&#x60;&lt;pod id&gt;&#x60; or &#x60;&lt;pod name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerListLibpodCall(
-            Boolean all,
-            Integer limit,
-            Boolean namespace,
-            Boolean pod,
-            Boolean size,
-            Boolean sync,
-            String filters,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerListLibpodCall(Boolean all, Integer limit, Boolean namespace, Boolean pod, Boolean size, Boolean sync, String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2416,239 +1809,112 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filters", filters));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerListLibpodValidateBeforeCall(
-            Boolean all,
-            Integer limit,
-            Boolean namespace,
-            Boolean pod,
-            Boolean size,
-            Boolean sync,
-            String filters,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerListLibpodValidateBeforeCall(Boolean all, Integer limit, Boolean namespace, Boolean pod, Boolean size, Boolean sync, String filters, final ApiCallback _callback) throws ApiException {
         return containerListLibpodCall(all, limit, namespace, pod, size, sync, filters, _callback);
+
     }
 
     /**
-     * List containers Returns a list of containers
-     *
-     * @param all Return all containers. By default, only running containers are shown (optional,
-     *     default to false)
-     * @param limit Return this number of most recently created containers, including non-running
-     *     ones. (optional)
+     * List containers
+     * Returns a list of containers
+     * @param all Return all containers. By default, only running containers are shown (optional, default to false)
+     * @param limit Return this number of most recently created containers, including non-running ones. (optional)
      * @param namespace Include namespace information (optional, default to false)
-     * @param pod Ignored. Previously included details on pod name and ID that are currently
-     *     included by default. (optional, default to false)
-     * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default
-     *     to false)
+     * @param pod Ignored. Previously included details on pod name and ID that are currently included by default. (optional, default to false)
+     * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
      * @param sync Sync container state with OCI runtime (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the containers list. Available filters: -
-     *     &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) -
-     *     &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container
-     *     name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or
-     *     &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) -
-     *     &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60;
-     *     - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;,
-     *     &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a
-     *     container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) -
-     *     &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a
-     *     container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name -
-     *     &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network
-     *     name&gt;&#x60;) - &#x60;pod&#x60;&#x3D;(&#x60;&lt;pod id&gt;&#x60; or &#x60;&lt;pod
-     *     name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or
-     *     &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) -
-     *     &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container
-     *     name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;,
-     *     &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or
-     *     &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or
-     *     &#x60;&lt;mount point destination&gt;&#x60;) (optional)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;pod&#x60;&#x3D;(&#x60;&lt;pod id&gt;&#x60; or &#x60;&lt;pod name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
      * @return List&lt;ListContainer&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public List<ListContainer> containerListLibpod(
-            Boolean all,
-            Integer limit,
-            Boolean namespace,
-            Boolean pod,
-            Boolean size,
-            Boolean sync,
-            String filters)
-            throws ApiException {
-        ApiResponse<List<ListContainer>> localVarResp =
-                containerListLibpodWithHttpInfo(all, limit, namespace, pod, size, sync, filters);
+    public List<ListContainer> containerListLibpod(Boolean all, Integer limit, Boolean namespace, Boolean pod, Boolean size, Boolean sync, String filters) throws ApiException {
+        ApiResponse<List<ListContainer>> localVarResp = containerListLibpodWithHttpInfo(all, limit, namespace, pod, size, sync, filters);
         return localVarResp.getData();
     }
 
     /**
-     * List containers Returns a list of containers
-     *
-     * @param all Return all containers. By default, only running containers are shown (optional,
-     *     default to false)
-     * @param limit Return this number of most recently created containers, including non-running
-     *     ones. (optional)
+     * List containers
+     * Returns a list of containers
+     * @param all Return all containers. By default, only running containers are shown (optional, default to false)
+     * @param limit Return this number of most recently created containers, including non-running ones. (optional)
      * @param namespace Include namespace information (optional, default to false)
-     * @param pod Ignored. Previously included details on pod name and ID that are currently
-     *     included by default. (optional, default to false)
-     * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default
-     *     to false)
+     * @param pod Ignored. Previously included details on pod name and ID that are currently included by default. (optional, default to false)
+     * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
      * @param sync Sync container state with OCI runtime (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the containers list. Available filters: -
-     *     &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) -
-     *     &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container
-     *     name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or
-     *     &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) -
-     *     &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60;
-     *     - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;,
-     *     &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a
-     *     container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) -
-     *     &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a
-     *     container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name -
-     *     &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network
-     *     name&gt;&#x60;) - &#x60;pod&#x60;&#x3D;(&#x60;&lt;pod id&gt;&#x60; or &#x60;&lt;pod
-     *     name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or
-     *     &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) -
-     *     &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container
-     *     name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;,
-     *     &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or
-     *     &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or
-     *     &#x60;&lt;mount point destination&gt;&#x60;) (optional)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;pod&#x60;&#x3D;(&#x60;&lt;pod id&gt;&#x60; or &#x60;&lt;pod name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
      * @return ApiResponse&lt;List&lt;ListContainer&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<List<ListContainer>> containerListLibpodWithHttpInfo(
-            Boolean all,
-            Integer limit,
-            Boolean namespace,
-            Boolean pod,
-            Boolean size,
-            Boolean sync,
-            String filters)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                containerListLibpodValidateBeforeCall(
-                        all, limit, namespace, pod, size, sync, filters, null);
-        Type localVarReturnType = new TypeToken<List<ListContainer>>() {}.getType();
+    public ApiResponse<List<ListContainer>> containerListLibpodWithHttpInfo(Boolean all, Integer limit, Boolean namespace, Boolean pod, Boolean size, Boolean sync, String filters) throws ApiException {
+        okhttp3.Call localVarCall = containerListLibpodValidateBeforeCall(all, limit, namespace, pod, size, sync, filters, null);
+        Type localVarReturnType = new TypeToken<List<ListContainer>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * List containers (asynchronously) Returns a list of containers
-     *
-     * @param all Return all containers. By default, only running containers are shown (optional,
-     *     default to false)
-     * @param limit Return this number of most recently created containers, including non-running
-     *     ones. (optional)
+     * List containers (asynchronously)
+     * Returns a list of containers
+     * @param all Return all containers. By default, only running containers are shown (optional, default to false)
+     * @param limit Return this number of most recently created containers, including non-running ones. (optional)
      * @param namespace Include namespace information (optional, default to false)
-     * @param pod Ignored. Previously included details on pod name and ID that are currently
-     *     included by default. (optional, default to false)
-     * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default
-     *     to false)
+     * @param pod Ignored. Previously included details on pod name and ID that are currently included by default. (optional, default to false)
+     * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
      * @param sync Sync container state with OCI runtime (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to
-     *     process on the containers list. Available filters: -
-     *     &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image
-     *     id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) -
-     *     &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container
-     *     name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or
-     *     &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) -
-     *     &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60;
-     *     - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;,
-     *     &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a
-     *     container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) -
-     *     &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a
-     *     container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name -
-     *     &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network
-     *     name&gt;&#x60;) - &#x60;pod&#x60;&#x3D;(&#x60;&lt;pod id&gt;&#x60; or &#x60;&lt;pod
-     *     name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or
-     *     &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) -
-     *     &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container
-     *     name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;,
-     *     &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or
-     *     &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or
-     *     &#x60;&lt;mount point destination&gt;&#x60;) (optional)
+     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;pod&#x60;&#x3D;(&#x60;&lt;pod id&gt;&#x60; or &#x60;&lt;pod name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerListLibpodAsync(
-            Boolean all,
-            Integer limit,
-            Boolean namespace,
-            Boolean pod,
-            Boolean size,
-            Boolean sync,
-            String filters,
-            final ApiCallback<List<ListContainer>> _callback)
-            throws ApiException {
+    public okhttp3.Call containerListLibpodAsync(Boolean all, Integer limit, Boolean namespace, Boolean pod, Boolean size, Boolean sync, String filters, final ApiCallback<List<ListContainer>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerListLibpodValidateBeforeCall(
-                        all, limit, namespace, pod, size, sync, filters, _callback);
-        Type localVarReturnType = new TypeToken<List<ListContainer>>() {}.getType();
+        okhttp3.Call localVarCall = containerListLibpodValidateBeforeCall(all, limit, namespace, pod, size, sync, filters, _callback);
+        Type localVarReturnType = new TypeToken<List<ListContainer>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerLogsLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param follow Keep connection after returning logs. (optional)
      * @param stdout Return logs from stdout (optional)
@@ -2656,38 +1922,27 @@ public class ContainersApi {
      * @param since Only return logs since this time, as a UNIX timestamp (optional)
      * @param until Only return logs before this time, as a UNIX timestamp (optional)
      * @param timestamps Add timestamps to every log line (optional, default to false)
-     * @param tail Only return this number of log lines from the end of the logs (optional, default
-     *     to all)
+     * @param tail Only return this number of log lines from the end of the logs (optional, default to all)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerLogsLibpodCall(
-            String name,
-            Boolean follow,
-            Boolean stdout,
-            Boolean stderr,
-            String since,
-            String until,
-            Boolean timestamps,
-            String tail,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerLogsLibpodCall(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2696,11 +1951,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/logs"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/logs"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2736,61 +1988,39 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("tail", tail));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerLogsLibpodValidateBeforeCall(
-            String name,
-            Boolean follow,
-            Boolean stdout,
-            Boolean stderr,
-            String since,
-            String until,
-            Boolean timestamps,
-            String tail,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerLogsLibpodValidateBeforeCall(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerLogsLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerLogsLibpod(Async)");
         }
 
-        return containerLogsLibpodCall(
-                name, follow, stdout, stderr, since, until, timestamps, tail, _callback);
+        return containerLogsLibpodCall(name, follow, stdout, stderr, since, until, timestamps, tail, _callback);
+
     }
 
     /**
-     * Get container logs Get stdout and stderr logs from a container. The stream format is the same
-     * as described in the attach endpoint.
-     *
+     * Get container logs
+     * Get stdout and stderr logs from a container.  The stream format is the same as described in the attach endpoint. 
      * @param name the name or ID of the container (required)
      * @param follow Keep connection after returning logs. (optional)
      * @param stdout Return logs from stdout (optional)
@@ -2798,36 +2028,23 @@ public class ContainersApi {
      * @param since Only return logs since this time, as a UNIX timestamp (optional)
      * @param until Only return logs before this time, as a UNIX timestamp (optional)
      * @param timestamps Add timestamps to every log line (optional, default to false)
-     * @param tail Only return this number of log lines from the end of the logs (optional, default
-     *     to all)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @param tail Only return this number of log lines from the end of the logs (optional, default to all)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public void containerLogsLibpod(
-            String name,
-            Boolean follow,
-            Boolean stdout,
-            Boolean stderr,
-            String since,
-            String until,
-            Boolean timestamps,
-            String tail)
-            throws ApiException {
-        containerLogsLibpodWithHttpInfo(
-                name, follow, stdout, stderr, since, until, timestamps, tail);
+    public void containerLogsLibpod(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail) throws ApiException {
+        containerLogsLibpodWithHttpInfo(name, follow, stdout, stderr, since, until, timestamps, tail);
     }
 
     /**
-     * Get container logs Get stdout and stderr logs from a container. The stream format is the same
-     * as described in the attach endpoint.
-     *
+     * Get container logs
+     * Get stdout and stderr logs from a container.  The stream format is the same as described in the attach endpoint. 
      * @param name the name or ID of the container (required)
      * @param follow Keep connection after returning logs. (optional)
      * @param stdout Return logs from stdout (optional)
@@ -2835,39 +2052,25 @@ public class ContainersApi {
      * @param since Only return logs since this time, as a UNIX timestamp (optional)
      * @param until Only return logs before this time, as a UNIX timestamp (optional)
      * @param timestamps Add timestamps to every log line (optional, default to false)
-     * @param tail Only return this number of log lines from the end of the logs (optional, default
-     *     to all)
+     * @param tail Only return this number of log lines from the end of the logs (optional, default to all)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerLogsLibpodWithHttpInfo(
-            String name,
-            Boolean follow,
-            Boolean stdout,
-            Boolean stderr,
-            String since,
-            String until,
-            Boolean timestamps,
-            String tail)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                containerLogsLibpodValidateBeforeCall(
-                        name, follow, stdout, stderr, since, until, timestamps, tail, null);
+    public ApiResponse<Void> containerLogsLibpodWithHttpInfo(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail) throws ApiException {
+        okhttp3.Call localVarCall = containerLogsLibpodValidateBeforeCall(name, follow, stdout, stderr, since, until, timestamps, tail, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Get container logs (asynchronously) Get stdout and stderr logs from a container. The stream
-     * format is the same as described in the attach endpoint.
-     *
+     * Get container logs (asynchronously)
+     * Get stdout and stderr logs from a container.  The stream format is the same as described in the attach endpoint. 
      * @param name the name or ID of the container (required)
      * @param follow Keep connection after returning logs. (optional)
      * @param stdout Return logs from stdout (optional)
@@ -2875,64 +2078,47 @@ public class ContainersApi {
      * @param since Only return logs since this time, as a UNIX timestamp (optional)
      * @param until Only return logs before this time, as a UNIX timestamp (optional)
      * @param timestamps Add timestamps to every log line (optional, default to false)
-     * @param tail Only return this number of log lines from the end of the logs (optional, default
-     *     to all)
+     * @param tail Only return this number of log lines from the end of the logs (optional, default to all)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerLogsLibpodAsync(
-            String name,
-            Boolean follow,
-            Boolean stdout,
-            Boolean stderr,
-            String since,
-            String until,
-            Boolean timestamps,
-            String tail,
-            final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerLogsLibpodAsync(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerLogsLibpodValidateBeforeCall(
-                        name, follow, stdout, stderr, since, until, timestamps, tail, _callback);
+        okhttp3.Call localVarCall = containerLogsLibpodValidateBeforeCall(name, follow, stdout, stderr, since, until, timestamps, tail, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerMountLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> mounted container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> mounted container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerMountLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerMountLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2941,11 +2127,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/mount"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/mount"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2953,61 +2136,49 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerMountLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerMountLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerMountLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerMountLibpod(Async)");
         }
 
         return containerMountLibpodCall(name, _callback);
+
     }
 
     /**
-     * Mount a container Mount a container to the filesystem
-     *
+     * Mount a container
+     * Mount a container to the filesystem
      * @param name the name or ID of the container (required)
      * @return String
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> mounted container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> mounted container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public String containerMountLibpod(String name) throws ApiException {
         ApiResponse<String> localVarResp = containerMountLibpodWithHttpInfo(name);
@@ -3015,76 +2186,70 @@ public class ContainersApi {
     }
 
     /**
-     * Mount a container Mount a container to the filesystem
-     *
+     * Mount a container
+     * Mount a container to the filesystem
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;String&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> mounted container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> mounted container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<String> containerMountLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = containerMountLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<String>() {}.getType();
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Mount a container (asynchronously) Mount a container to the filesystem
-     *
+     * Mount a container (asynchronously)
+     * Mount a container to the filesystem
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> mounted container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> mounted container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerMountLibpodAsync(String name, final ApiCallback<String> _callback)
-            throws ApiException {
+    public okhttp3.Call containerMountLibpodAsync(String name, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerMountLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<String>() {}.getType();
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerPauseLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerPauseLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerPauseLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3093,11 +2258,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/pause"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/pause"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3105,79 +2267,66 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerPauseLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerPauseLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerPauseLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerPauseLibpod(Async)");
         }
 
         return containerPauseLibpodCall(name, _callback);
+
     }
 
     /**
-     * Pause a container Use the cgroups freezer to suspend all processes in a container.
-     *
+     * Pause a container
+     * Use the cgroups freezer to suspend all processes in a container.
      * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerPauseLibpod(String name) throws ApiException {
         containerPauseLibpodWithHttpInfo(name);
     }
 
     /**
-     * Pause a container Use the cgroups freezer to suspend all processes in a container.
-     *
+     * Pause a container
+     * Use the cgroups freezer to suspend all processes in a container.
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<Void> containerPauseLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = containerPauseLibpodValidateBeforeCall(name, null);
@@ -3185,63 +2334,48 @@ public class ContainersApi {
     }
 
     /**
-     * Pause a container (asynchronously) Use the cgroups freezer to suspend all processes in a
-     * container.
-     *
+     * Pause a container (asynchronously)
+     * Use the cgroups freezer to suspend all processes in a container.
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerPauseLibpodAsync(String name, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerPauseLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerPauseLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerPruneLibpod
-     *
-     * @param filters Filters to process on the prune list, encoded as JSON (a
-     *     &#x60;map[string][]string&#x60;). Available filters: -
-     *     &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp.
-     *     The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or
-     *     Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the
-     *     daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;,
-     *     &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;,
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or
-     *     without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
+     * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerPruneLibpodCall(String filters, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerPruneLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3262,161 +2396,114 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("filters", filters));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerPruneLibpodValidateBeforeCall(
-            String filters, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerPruneLibpodValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
         return containerPruneLibpodCall(filters, _callback);
+
     }
 
     /**
-     * Delete stopped containers Remove containers not in use
-     *
-     * @param filters Filters to process on the prune list, encoded as JSON (a
-     *     &#x60;map[string][]string&#x60;). Available filters: -
-     *     &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp.
-     *     The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or
-     *     Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the
-     *     daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;,
-     *     &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;,
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or
-     *     without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
+     * Delete stopped containers
+     * Remove containers not in use
+     * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
      * @return List&lt;ContainersPruneReportLibpod&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public List<ContainersPruneReportLibpod> containerPruneLibpod(String filters)
-            throws ApiException {
-        ApiResponse<List<ContainersPruneReportLibpod>> localVarResp =
-                containerPruneLibpodWithHttpInfo(filters);
+    public List<ContainersPruneReportLibpod> containerPruneLibpod(String filters) throws ApiException {
+        ApiResponse<List<ContainersPruneReportLibpod>> localVarResp = containerPruneLibpodWithHttpInfo(filters);
         return localVarResp.getData();
     }
 
     /**
-     * Delete stopped containers Remove containers not in use
-     *
-     * @param filters Filters to process on the prune list, encoded as JSON (a
-     *     &#x60;map[string][]string&#x60;). Available filters: -
-     *     &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp.
-     *     The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or
-     *     Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the
-     *     daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;,
-     *     &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;,
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or
-     *     without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
+     * Delete stopped containers
+     * Remove containers not in use
+     * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
      * @return ApiResponse&lt;List&lt;ContainersPruneReportLibpod&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<List<ContainersPruneReportLibpod>> containerPruneLibpodWithHttpInfo(
-            String filters) throws ApiException {
+    public ApiResponse<List<ContainersPruneReportLibpod>> containerPruneLibpodWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = containerPruneLibpodValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<ContainersPruneReportLibpod>>() {}.getType();
+        Type localVarReturnType = new TypeToken<List<ContainersPruneReportLibpod>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Delete stopped containers (asynchronously) Remove containers not in use
-     *
-     * @param filters Filters to process on the prune list, encoded as JSON (a
-     *     &#x60;map[string][]string&#x60;). Available filters: -
-     *     &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp.
-     *     The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or
-     *     Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the
-     *     daemon machine’s time. - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;,
-     *     &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;,
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x60;, or
-     *     &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or
-     *     without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels. (optional)
+     * Delete stopped containers (asynchronously)
+     * Remove containers not in use
+     * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerPruneLibpodAsync(
-            String filters, final ApiCallback<List<ContainersPruneReportLibpod>> _callback)
-            throws ApiException {
+    public okhttp3.Call containerPruneLibpodAsync(String filters, final ApiCallback<List<ContainersPruneReportLibpod>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerPruneLibpodValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<ContainersPruneReportLibpod>>() {}.getType();
+        Type localVarReturnType = new TypeToken<List<ContainersPruneReportLibpod>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerRenameLibpod
-     *
      * @param name Full or partial ID or full name of the container to rename (required)
      * @param name2 New name for the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerRenameLibpodCall(
-            String name, String name2, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call containerRenameLibpodCall(String name, String name2, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3425,11 +2512,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/rename"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/rename"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3441,126 +2525,106 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("name", name2));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerRenameLibpodValidateBeforeCall(
-            String name, String name2, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerRenameLibpodValidateBeforeCall(String name, String name2, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerRenameLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerRenameLibpod(Async)");
         }
 
         // verify the required parameter 'name2' is set
         if (name2 == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name2' when calling"
-                            + " containerRenameLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name2' when calling containerRenameLibpod(Async)");
         }
 
         return containerRenameLibpodCall(name, name2, _callback);
+
     }
 
     /**
-     * Rename an existing container Change the name of an existing container.
-     *
+     * Rename an existing container
+     * Change the name of an existing container.
      * @param name Full or partial ID or full name of the container to rename (required)
      * @param name2 New name for the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerRenameLibpod(String name, String name2) throws ApiException {
         containerRenameLibpodWithHttpInfo(name, name2);
     }
 
     /**
-     * Rename an existing container Change the name of an existing container.
-     *
+     * Rename an existing container
+     * Change the name of an existing container.
      * @param name Full or partial ID or full name of the container to rename (required)
      * @param name2 New name for the container (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerRenameLibpodWithHttpInfo(String name, String name2)
-            throws ApiException {
+    public ApiResponse<Void> containerRenameLibpodWithHttpInfo(String name, String name2) throws ApiException {
         okhttp3.Call localVarCall = containerRenameLibpodValidateBeforeCall(name, name2, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Rename an existing container (asynchronously) Change the name of an existing container.
-     *
+     * Rename an existing container (asynchronously)
+     * Change the name of an existing container.
      * @param name Full or partial ID or full name of the container to rename (required)
      * @param name2 New name for the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerRenameLibpodAsync(
-            String name, String name2, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call containerRenameLibpodAsync(String name, String name2, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerRenameLibpodValidateBeforeCall(name, name2, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerResizeLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param h Height to set for the terminal, in characters (optional)
      * @param w Width to set for the terminal, in characters (optional)
@@ -3568,24 +2632,23 @@ public class ContainersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerResizeLibpodCall(
-            String name, Integer h, Integer w, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call containerResizeLibpodCall(String name, Integer h, Integer w, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3594,11 +2657,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/resize"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/resize"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3614,65 +2674,52 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("w", w));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerResizeLibpodValidateBeforeCall(
-            String name, Integer h, Integer w, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerResizeLibpodValidateBeforeCall(String name, Integer h, Integer w, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerResizeLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerResizeLibpod(Async)");
         }
 
         return containerResizeLibpodCall(name, h, w, _callback);
+
     }
 
     /**
-     * Resize a container&#39;s TTY Resize the terminal attached to a container (for use with
-     * Attach).
-     *
+     * Resize a container&#39;s TTY
+     * Resize the terminal attached to a container (for use with Attach).
      * @param name the name or ID of the container (required)
      * @param h Height to set for the terminal, in characters (optional)
      * @param w Width to set for the terminal, in characters (optional)
      * @return Object
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public Object containerResizeLibpod(String name, Integer h, Integer w) throws ApiException {
         ApiResponse<Object> localVarResp = containerResizeLibpodWithHttpInfo(name, h, w);
@@ -3680,87 +2727,77 @@ public class ContainersApi {
     }
 
     /**
-     * Resize a container&#39;s TTY Resize the terminal attached to a container (for use with
-     * Attach).
-     *
+     * Resize a container&#39;s TTY
+     * Resize the terminal attached to a container (for use with Attach).
      * @param name the name or ID of the container (required)
      * @param h Height to set for the terminal, in characters (optional)
      * @param w Width to set for the terminal, in characters (optional)
      * @return ApiResponse&lt;Object&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Object> containerResizeLibpodWithHttpInfo(String name, Integer h, Integer w)
-            throws ApiException {
+    public ApiResponse<Object> containerResizeLibpodWithHttpInfo(String name, Integer h, Integer w) throws ApiException {
         okhttp3.Call localVarCall = containerResizeLibpodValidateBeforeCall(name, h, w, null);
-        Type localVarReturnType = new TypeToken<Object>() {}.getType();
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Resize a container&#39;s TTY (asynchronously) Resize the terminal attached to a container
-     * (for use with Attach).
-     *
+     * Resize a container&#39;s TTY (asynchronously)
+     * Resize the terminal attached to a container (for use with Attach).
      * @param name the name or ID of the container (required)
      * @param h Height to set for the terminal, in characters (optional)
      * @param w Width to set for the terminal, in characters (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerResizeLibpodAsync(
-            String name, Integer h, Integer w, final ApiCallback<Object> _callback)
-            throws ApiException {
+    public okhttp3.Call containerResizeLibpodAsync(String name, Integer h, Integer w, final ApiCallback<Object> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerResizeLibpodValidateBeforeCall(name, h, w, _callback);
-        Type localVarReturnType = new TypeToken<Object>() {}.getType();
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerRestartLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param t number of seconds to wait before killing container (optional, default to 10)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerRestartLibpodCall(
-            String name, Integer t, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call containerRestartLibpodCall(String name, Integer t, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3769,11 +2806,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/restart"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/restart"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3785,61 +2819,49 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("t", t));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerRestartLibpodValidateBeforeCall(
-            String name, Integer t, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerRestartLibpodValidateBeforeCall(String name, Integer t, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerRestartLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerRestartLibpod(Async)");
         }
 
         return containerRestartLibpodCall(name, t, _callback);
+
     }
 
     /**
      * Restart a container
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param t number of seconds to wait before killing container (optional, default to 10)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerRestartLibpod(String name, Integer t) throws ApiException {
         containerRestartLibpodWithHttpInfo(name, t);
@@ -3847,64 +2869,55 @@ public class ContainersApi {
 
     /**
      * Restart a container
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param t number of seconds to wait before killing container (optional, default to 10)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerRestartLibpodWithHttpInfo(String name, Integer t)
-            throws ApiException {
+    public ApiResponse<Void> containerRestartLibpodWithHttpInfo(String name, Integer t) throws ApiException {
         okhttp3.Call localVarCall = containerRestartLibpodValidateBeforeCall(name, t, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * Restart a container (asynchronously)
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param t number of seconds to wait before killing container (optional, default to 10)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerRestartLibpodAsync(
-            String name, Integer t, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call containerRestartLibpodAsync(String name, Integer t, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerRestartLibpodValidateBeforeCall(name, t, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerRestoreLibpod
-     *
      * @param name the name or id of the container (required)
-     * @param name2 the name of the container when restored from a tar. can only be used with import
-     *     (optional)
+     * @param name2 the name of the container when restored from a tar. can only be used with import (optional)
      * @param keep keep all temporary checkpoint files (optional)
      * @param tcpEstablished checkpoint a container with established TCP connections (optional)
      * @param _import import the restore from a checkpoint tar.gz (optional)
-     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used
-     *     with import (optional)
-     * @param ignoreVolumes do not restore associated volumes. can only be used with import
-     *     (optional)
+     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used with import (optional)
+     * @param ignoreVolumes do not restore associated volumes. can only be used with import (optional)
      * @param ignoreStaticIP ignore IP address if set statically (optional)
      * @param ignoreStaticMAC ignore MAC address if set statically (optional)
      * @param fileLocks restore a container with file locks (optional)
@@ -3914,36 +2927,22 @@ public class ContainersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerRestoreLibpodCall(
-            String name,
-            String name2,
-            Boolean keep,
-            Boolean tcpEstablished,
-            Boolean _import,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean ignoreStaticIP,
-            Boolean ignoreStaticMAC,
-            Boolean fileLocks,
-            Boolean printStats,
-            String pod,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerRestoreLibpodCall(String name, String name2, Boolean keep, Boolean tcpEstablished, Boolean _import, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean ignoreStaticIP, Boolean ignoreStaticMAC, Boolean fileLocks, Boolean printStats, String pod, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3952,11 +2951,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/restore"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/restore"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3973,8 +2969,7 @@ public class ContainersApi {
         }
 
         if (tcpEstablished != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("tcpEstablished", tcpEstablished));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tcpEstablished", tcpEstablished));
         }
 
         if (_import != null) {
@@ -3982,23 +2977,19 @@ public class ContainersApi {
         }
 
         if (ignoreRootFS != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("ignoreRootFS", ignoreRootFS));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ignoreRootFS", ignoreRootFS));
         }
 
         if (ignoreVolumes != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("ignoreVolumes", ignoreVolumes));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ignoreVolumes", ignoreVolumes));
         }
 
         if (ignoreStaticIP != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("ignoreStaticIP", ignoreStaticIP));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ignoreStaticIP", ignoreStaticIP));
         }
 
         if (ignoreStaticMAC != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("ignoreStaticMAC", ignoreStaticMAC));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ignoreStaticMAC", ignoreStaticMAC));
         }
 
         if (fileLocks != null) {
@@ -4013,204 +3004,104 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pod", pod));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerRestoreLibpodValidateBeforeCall(
-            String name,
-            String name2,
-            Boolean keep,
-            Boolean tcpEstablished,
-            Boolean _import,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean ignoreStaticIP,
-            Boolean ignoreStaticMAC,
-            Boolean fileLocks,
-            Boolean printStats,
-            String pod,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerRestoreLibpodValidateBeforeCall(String name, String name2, Boolean keep, Boolean tcpEstablished, Boolean _import, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean ignoreStaticIP, Boolean ignoreStaticMAC, Boolean fileLocks, Boolean printStats, String pod, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerRestoreLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerRestoreLibpod(Async)");
         }
 
-        return containerRestoreLibpodCall(
-                name,
-                name2,
-                keep,
-                tcpEstablished,
-                _import,
-                ignoreRootFS,
-                ignoreVolumes,
-                ignoreStaticIP,
-                ignoreStaticMAC,
-                fileLocks,
-                printStats,
-                pod,
-                _callback);
+        return containerRestoreLibpodCall(name, name2, keep, tcpEstablished, _import, ignoreRootFS, ignoreVolumes, ignoreStaticIP, ignoreStaticMAC, fileLocks, printStats, pod, _callback);
+
     }
 
     /**
-     * Restore a container Restore a container from a checkpoint.
-     *
+     * Restore a container
+     * Restore a container from a checkpoint.
      * @param name the name or id of the container (required)
-     * @param name2 the name of the container when restored from a tar. can only be used with import
-     *     (optional)
+     * @param name2 the name of the container when restored from a tar. can only be used with import (optional)
      * @param keep keep all temporary checkpoint files (optional)
      * @param tcpEstablished checkpoint a container with established TCP connections (optional)
      * @param _import import the restore from a checkpoint tar.gz (optional)
-     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used
-     *     with import (optional)
-     * @param ignoreVolumes do not restore associated volumes. can only be used with import
-     *     (optional)
+     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used with import (optional)
+     * @param ignoreVolumes do not restore associated volumes. can only be used with import (optional)
      * @param ignoreStaticIP ignore IP address if set statically (optional)
      * @param ignoreStaticMAC ignore MAC address if set statically (optional)
      * @param fileLocks restore a container with file locks (optional)
      * @param printStats add restore statistics to the returned RestoreReport (optional)
      * @param pod pod to restore into (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public void containerRestoreLibpod(
-            String name,
-            String name2,
-            Boolean keep,
-            Boolean tcpEstablished,
-            Boolean _import,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean ignoreStaticIP,
-            Boolean ignoreStaticMAC,
-            Boolean fileLocks,
-            Boolean printStats,
-            String pod)
-            throws ApiException {
-        containerRestoreLibpodWithHttpInfo(
-                name,
-                name2,
-                keep,
-                tcpEstablished,
-                _import,
-                ignoreRootFS,
-                ignoreVolumes,
-                ignoreStaticIP,
-                ignoreStaticMAC,
-                fileLocks,
-                printStats,
-                pod);
+    public void containerRestoreLibpod(String name, String name2, Boolean keep, Boolean tcpEstablished, Boolean _import, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean ignoreStaticIP, Boolean ignoreStaticMAC, Boolean fileLocks, Boolean printStats, String pod) throws ApiException {
+        containerRestoreLibpodWithHttpInfo(name, name2, keep, tcpEstablished, _import, ignoreRootFS, ignoreVolumes, ignoreStaticIP, ignoreStaticMAC, fileLocks, printStats, pod);
     }
 
     /**
-     * Restore a container Restore a container from a checkpoint.
-     *
+     * Restore a container
+     * Restore a container from a checkpoint.
      * @param name the name or id of the container (required)
-     * @param name2 the name of the container when restored from a tar. can only be used with import
-     *     (optional)
+     * @param name2 the name of the container when restored from a tar. can only be used with import (optional)
      * @param keep keep all temporary checkpoint files (optional)
      * @param tcpEstablished checkpoint a container with established TCP connections (optional)
      * @param _import import the restore from a checkpoint tar.gz (optional)
-     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used
-     *     with import (optional)
-     * @param ignoreVolumes do not restore associated volumes. can only be used with import
-     *     (optional)
+     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used with import (optional)
+     * @param ignoreVolumes do not restore associated volumes. can only be used with import (optional)
      * @param ignoreStaticIP ignore IP address if set statically (optional)
      * @param ignoreStaticMAC ignore MAC address if set statically (optional)
      * @param fileLocks restore a container with file locks (optional)
      * @param printStats add restore statistics to the returned RestoreReport (optional)
      * @param pod pod to restore into (optional)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerRestoreLibpodWithHttpInfo(
-            String name,
-            String name2,
-            Boolean keep,
-            Boolean tcpEstablished,
-            Boolean _import,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean ignoreStaticIP,
-            Boolean ignoreStaticMAC,
-            Boolean fileLocks,
-            Boolean printStats,
-            String pod)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                containerRestoreLibpodValidateBeforeCall(
-                        name,
-                        name2,
-                        keep,
-                        tcpEstablished,
-                        _import,
-                        ignoreRootFS,
-                        ignoreVolumes,
-                        ignoreStaticIP,
-                        ignoreStaticMAC,
-                        fileLocks,
-                        printStats,
-                        pod,
-                        null);
+    public ApiResponse<Void> containerRestoreLibpodWithHttpInfo(String name, String name2, Boolean keep, Boolean tcpEstablished, Boolean _import, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean ignoreStaticIP, Boolean ignoreStaticMAC, Boolean fileLocks, Boolean printStats, String pod) throws ApiException {
+        okhttp3.Call localVarCall = containerRestoreLibpodValidateBeforeCall(name, name2, keep, tcpEstablished, _import, ignoreRootFS, ignoreVolumes, ignoreStaticIP, ignoreStaticMAC, fileLocks, printStats, pod, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Restore a container (asynchronously) Restore a container from a checkpoint.
-     *
+     * Restore a container (asynchronously)
+     * Restore a container from a checkpoint.
      * @param name the name or id of the container (required)
-     * @param name2 the name of the container when restored from a tar. can only be used with import
-     *     (optional)
+     * @param name2 the name of the container when restored from a tar. can only be used with import (optional)
      * @param keep keep all temporary checkpoint files (optional)
      * @param tcpEstablished checkpoint a container with established TCP connections (optional)
      * @param _import import the restore from a checkpoint tar.gz (optional)
-     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used
-     *     with import (optional)
-     * @param ignoreVolumes do not restore associated volumes. can only be used with import
-     *     (optional)
+     * @param ignoreRootFS do not include root file-system changes when exporting. can only be used with import (optional)
+     * @param ignoreVolumes do not restore associated volumes. can only be used with import (optional)
      * @param ignoreStaticIP ignore IP address if set statically (optional)
      * @param ignoreStaticMAC ignore MAC address if set statically (optional)
      * @param fileLocks restore a container with file locks (optional)
@@ -4218,74 +3109,42 @@ public class ContainersApi {
      * @param pod pod to restore into (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body if exported </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerRestoreLibpodAsync(
-            String name,
-            String name2,
-            Boolean keep,
-            Boolean tcpEstablished,
-            Boolean _import,
-            Boolean ignoreRootFS,
-            Boolean ignoreVolumes,
-            Boolean ignoreStaticIP,
-            Boolean ignoreStaticMAC,
-            Boolean fileLocks,
-            Boolean printStats,
-            String pod,
-            final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerRestoreLibpodAsync(String name, String name2, Boolean keep, Boolean tcpEstablished, Boolean _import, Boolean ignoreRootFS, Boolean ignoreVolumes, Boolean ignoreStaticIP, Boolean ignoreStaticMAC, Boolean fileLocks, Boolean printStats, String pod, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerRestoreLibpodValidateBeforeCall(
-                        name,
-                        name2,
-                        keep,
-                        tcpEstablished,
-                        _import,
-                        ignoreRootFS,
-                        ignoreVolumes,
-                        ignoreStaticIP,
-                        ignoreStaticMAC,
-                        fileLocks,
-                        printStats,
-                        pod,
-                        _callback);
+        okhttp3.Call localVarCall = containerRestoreLibpodValidateBeforeCall(name, name2, keep, tcpEstablished, _import, ignoreRootFS, ignoreVolumes, ignoreStaticIP, ignoreStaticMAC, fileLocks, printStats, pod, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerShowMountedLibpod
-     *
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> mounted containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> mounted containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerShowMountedLibpodCall(final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerShowMountedLibpodCall(final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4302,52 +3161,42 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerShowMountedLibpodValidateBeforeCall(final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerShowMountedLibpodValidateBeforeCall(final ApiCallback _callback) throws ApiException {
         return containerShowMountedLibpodCall(_callback);
+
     }
 
     /**
-     * Show mounted containers Lists all mounted containers mount points
-     *
+     * Show mounted containers
+     * Lists all mounted containers mount points
      * @return Map&lt;String, String&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> mounted containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> mounted containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public Map<String, String> containerShowMountedLibpod() throws ApiException {
         ApiResponse<Map<String, String>> localVarResp = containerShowMountedLibpodWithHttpInfo();
@@ -4355,77 +3204,68 @@ public class ContainersApi {
     }
 
     /**
-     * Show mounted containers Lists all mounted containers mount points
-     *
+     * Show mounted containers
+     * Lists all mounted containers mount points
      * @return ApiResponse&lt;Map&lt;String, String&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> mounted containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> mounted containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Map<String, String>> containerShowMountedLibpodWithHttpInfo()
-            throws ApiException {
+    public ApiResponse<Map<String, String>> containerShowMountedLibpodWithHttpInfo() throws ApiException {
         okhttp3.Call localVarCall = containerShowMountedLibpodValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<Map<String, String>>() {}.getType();
+        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Show mounted containers (asynchronously) Lists all mounted containers mount points
-     *
+     * Show mounted containers (asynchronously)
+     * Lists all mounted containers mount points
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> mounted containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> mounted containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerShowMountedLibpodAsync(
-            final ApiCallback<Map<String, String>> _callback) throws ApiException {
+    public okhttp3.Call containerShowMountedLibpodAsync(final ApiCallback<Map<String, String>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerShowMountedLibpodValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<Map<String, String>>() {}.getType();
+        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerStartLibpod
-     *
      * @param name the name or ID of the container (required)
-     * @param detachKeys Override the key sequence for detaching a container. Format is a single
-     *     character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or
-     *     _. (optional, default to ctrl-p,ctrl-q)
+     * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStartLibpodCall(
-            String name, String detachKeys, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call containerStartLibpodCall(String name, String detachKeys, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4434,11 +3274,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/start"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/start"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4450,64 +3287,50 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("detachKeys", detachKeys));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerStartLibpodValidateBeforeCall(
-            String name, String detachKeys, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerStartLibpodValidateBeforeCall(String name, String detachKeys, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerStartLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerStartLibpod(Async)");
         }
 
         return containerStartLibpodCall(name, detachKeys, _callback);
+
     }
 
     /**
      * Start a container
-     *
+     * 
      * @param name the name or ID of the container (required)
-     * @param detachKeys Override the key sequence for detaching a container. Format is a single
-     *     character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or
-     *     _. (optional, default to ctrl-p,ctrl-q)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerStartLibpod(String name, String detachKeys) throws ApiException {
         containerStartLibpodWithHttpInfo(name, detachKeys);
@@ -4515,85 +3338,73 @@ public class ContainersApi {
 
     /**
      * Start a container
-     *
+     * 
      * @param name the name or ID of the container (required)
-     * @param detachKeys Override the key sequence for detaching a container. Format is a single
-     *     character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or
-     *     _. (optional, default to ctrl-p,ctrl-q)
+     * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerStartLibpodWithHttpInfo(String name, String detachKeys)
-            throws ApiException {
+    public ApiResponse<Void> containerStartLibpodWithHttpInfo(String name, String detachKeys) throws ApiException {
         okhttp3.Call localVarCall = containerStartLibpodValidateBeforeCall(name, detachKeys, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * Start a container (asynchronously)
-     *
+     * 
      * @param name the name or ID of the container (required)
-     * @param detachKeys Override the key sequence for detaching a container. Format is a single
-     *     character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or
-     *     _. (optional, default to ctrl-p,ctrl-q)
+     * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStartLibpodAsync(
-            String name, String detachKeys, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call containerStartLibpodAsync(String name, String detachKeys, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerStartLibpodValidateBeforeCall(name, detachKeys, _callback);
+        okhttp3.Call localVarCall = containerStartLibpodValidateBeforeCall(name, detachKeys, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerStatsLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param stream Stream the output (optional, default to true)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStatsLibpodCall(
-            String name, Boolean stream, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call containerStatsLibpodCall(String name, Boolean stream, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4602,11 +3413,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/stats"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/stats"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4618,149 +3426,125 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("stream", stream));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerStatsLibpodValidateBeforeCall(
-            String name, Boolean stream, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerStatsLibpodValidateBeforeCall(String name, Boolean stream, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerStatsLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerStatsLibpod(Async)");
         }
 
         return containerStatsLibpodCall(name, stream, _callback);
+
     }
 
     /**
-     * Get stats for a container DEPRECATED. This endpoint will be removed with the next major
-     * release. Please use /libpod/containers/stats instead.
-     *
+     * Get stats for a container
+     * DEPRECATED. This endpoint will be removed with the next major release. Please use /libpod/containers/stats instead.
      * @param name the name or ID of the container (required)
      * @param stream Stream the output (optional, default to true)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerStatsLibpod(String name, Boolean stream) throws ApiException {
         containerStatsLibpodWithHttpInfo(name, stream);
     }
 
     /**
-     * Get stats for a container DEPRECATED. This endpoint will be removed with the next major
-     * release. Please use /libpod/containers/stats instead.
-     *
+     * Get stats for a container
+     * DEPRECATED. This endpoint will be removed with the next major release. Please use /libpod/containers/stats instead.
      * @param name the name or ID of the container (required)
      * @param stream Stream the output (optional, default to true)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerStatsLibpodWithHttpInfo(String name, Boolean stream)
-            throws ApiException {
+    public ApiResponse<Void> containerStatsLibpodWithHttpInfo(String name, Boolean stream) throws ApiException {
         okhttp3.Call localVarCall = containerStatsLibpodValidateBeforeCall(name, stream, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Get stats for a container (asynchronously) DEPRECATED. This endpoint will be removed with the
-     * next major release. Please use /libpod/containers/stats instead.
-     *
+     * Get stats for a container (asynchronously)
+     * DEPRECATED. This endpoint will be removed with the next major release. Please use /libpod/containers/stats instead.
      * @param name the name or ID of the container (required)
      * @param stream Stream the output (optional, default to true)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStatsLibpodAsync(
-            String name, Boolean stream, final ApiCallback<Void> _callback) throws ApiException {
+    public okhttp3.Call containerStatsLibpodAsync(String name, Boolean stream, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerStatsLibpodValidateBeforeCall(name, stream, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerStopLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param timeout number of seconds to wait before killing container (optional, default to 10)
-     * @param ignore do not return error if container is already stopped (optional, default to
-     *     false)
+     * @param ignore do not return error if container is already stopped (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStopLibpodCall(
-            String name, Integer timeout, Boolean ignore, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerStopLibpodCall(String name, Integer timeout, Boolean ignore, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4769,11 +3553,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/stop"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/stop"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4789,161 +3570,128 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("Ignore", ignore));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerStopLibpodValidateBeforeCall(
-            String name, Integer timeout, Boolean ignore, final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerStopLibpodValidateBeforeCall(String name, Integer timeout, Boolean ignore, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerStopLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerStopLibpod(Async)");
         }
 
         return containerStopLibpodCall(name, timeout, ignore, _callback);
+
     }
 
     /**
      * Stop a container
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param timeout number of seconds to wait before killing container (optional, default to 10)
-     * @param ignore do not return error if container is already stopped (optional, default to
-     *     false)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @param ignore do not return error if container is already stopped (optional, default to false)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public void containerStopLibpod(String name, Integer timeout, Boolean ignore)
-            throws ApiException {
+    public void containerStopLibpod(String name, Integer timeout, Boolean ignore) throws ApiException {
         containerStopLibpodWithHttpInfo(name, timeout, ignore);
     }
 
     /**
      * Stop a container
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param timeout number of seconds to wait before killing container (optional, default to 10)
-     * @param ignore do not return error if container is already stopped (optional, default to
-     *     false)
+     * @param ignore do not return error if container is already stopped (optional, default to false)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerStopLibpodWithHttpInfo(
-            String name, Integer timeout, Boolean ignore) throws ApiException {
-        okhttp3.Call localVarCall =
-                containerStopLibpodValidateBeforeCall(name, timeout, ignore, null);
+    public ApiResponse<Void> containerStopLibpodWithHttpInfo(String name, Integer timeout, Boolean ignore) throws ApiException {
+        okhttp3.Call localVarCall = containerStopLibpodValidateBeforeCall(name, timeout, ignore, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
      * Stop a container (asynchronously)
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param timeout number of seconds to wait before killing container (optional, default to 10)
-     * @param ignore do not return error if container is already stopped (optional, default to
-     *     false)
+     * @param ignore do not return error if container is already stopped (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStopLibpodAsync(
-            String name, Integer timeout, Boolean ignore, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerStopLibpodAsync(String name, Integer timeout, Boolean ignore, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerStopLibpodValidateBeforeCall(name, timeout, ignore, _callback);
+        okhttp3.Call localVarCall = containerStopLibpodValidateBeforeCall(name, timeout, ignore, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerTopLibpod
-     *
      * @param name Name of container to query for processes (As of version 1.xx) (required)
      * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
-     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version
-     *     4.0) (optional, default to 5)
-     * @param psArgs arguments to pass to ps such as aux. (optional)
+     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
+     * @param psArgs arguments to pass to ps such as aux.  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerTopLibpodCall(
-            String name,
-            Boolean stream,
-            Integer delay,
-            List<String> psArgs,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerTopLibpodCall(String name, Boolean stream, Integer delay, List<String> psArgs, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -4952,11 +3700,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/top"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/top"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -4973,168 +3718,132 @@ public class ContainersApi {
         }
 
         if (psArgs != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "ps_args", psArgs));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "ps_args", psArgs));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerTopLibpodValidateBeforeCall(
-            String name,
-            Boolean stream,
-            Integer delay,
-            List<String> psArgs,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerTopLibpodValidateBeforeCall(String name, Boolean stream, Integer delay, List<String> psArgs, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling containerTopLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerTopLibpod(Async)");
         }
 
         return containerTopLibpodCall(name, stream, delay, psArgs, _callback);
+
     }
 
     /**
-     * List processes List processes running inside a container
-     *
+     * List processes
+     * List processes running inside a container
      * @param name Name of container to query for processes (As of version 1.xx) (required)
      * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
-     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version
-     *     4.0) (optional, default to 5)
-     * @param psArgs arguments to pass to ps such as aux. (optional)
+     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
+     * @param psArgs arguments to pass to ps such as aux.  (optional)
      * @return ContainerTopOKBody
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ContainerTopOKBody containerTopLibpod(
-            String name, Boolean stream, Integer delay, List<String> psArgs) throws ApiException {
-        ApiResponse<ContainerTopOKBody> localVarResp =
-                containerTopLibpodWithHttpInfo(name, stream, delay, psArgs);
+    public ContainerTopOKBody containerTopLibpod(String name, Boolean stream, Integer delay, List<String> psArgs) throws ApiException {
+        ApiResponse<ContainerTopOKBody> localVarResp = containerTopLibpodWithHttpInfo(name, stream, delay, psArgs);
         return localVarResp.getData();
     }
 
     /**
-     * List processes List processes running inside a container
-     *
+     * List processes
+     * List processes running inside a container
      * @param name Name of container to query for processes (As of version 1.xx) (required)
      * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
-     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version
-     *     4.0) (optional, default to 5)
-     * @param psArgs arguments to pass to ps such as aux. (optional)
+     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
+     * @param psArgs arguments to pass to ps such as aux.  (optional)
      * @return ApiResponse&lt;ContainerTopOKBody&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ContainerTopOKBody> containerTopLibpodWithHttpInfo(
-            String name, Boolean stream, Integer delay, List<String> psArgs) throws ApiException {
-        okhttp3.Call localVarCall =
-                containerTopLibpodValidateBeforeCall(name, stream, delay, psArgs, null);
-        Type localVarReturnType = new TypeToken<ContainerTopOKBody>() {}.getType();
+    public ApiResponse<ContainerTopOKBody> containerTopLibpodWithHttpInfo(String name, Boolean stream, Integer delay, List<String> psArgs) throws ApiException {
+        okhttp3.Call localVarCall = containerTopLibpodValidateBeforeCall(name, stream, delay, psArgs, null);
+        Type localVarReturnType = new TypeToken<ContainerTopOKBody>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * List processes (asynchronously) List processes running inside a container
-     *
+     * List processes (asynchronously)
+     * List processes running inside a container
      * @param name Name of container to query for processes (As of version 1.xx) (required)
      * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
-     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version
-     *     4.0) (optional, default to 5)
-     * @param psArgs arguments to pass to ps such as aux. (optional)
+     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
+     * @param psArgs arguments to pass to ps such as aux.  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerTopLibpodAsync(
-            String name,
-            Boolean stream,
-            Integer delay,
-            List<String> psArgs,
-            final ApiCallback<ContainerTopOKBody> _callback)
-            throws ApiException {
+    public okhttp3.Call containerTopLibpodAsync(String name, Boolean stream, Integer delay, List<String> psArgs, final ApiCallback<ContainerTopOKBody> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerTopLibpodValidateBeforeCall(name, stream, delay, psArgs, _callback);
-        Type localVarReturnType = new TypeToken<ContainerTopOKBody>() {}.getType();
+        okhttp3.Call localVarCall = containerTopLibpodValidateBeforeCall(name, stream, delay, psArgs, _callback);
+        Type localVarReturnType = new TypeToken<ContainerTopOKBody>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerUnmountLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> ok </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerUnmountLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerUnmountLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -5143,11 +3852,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/unmount"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/unmount"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5155,79 +3861,66 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerUnmountLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerUnmountLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerUnmountLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerUnmountLibpod(Async)");
         }
 
         return containerUnmountLibpodCall(name, _callback);
+
     }
 
     /**
-     * Unmount a container Unmount a container from the filesystem
-     *
+     * Unmount a container
+     * Unmount a container from the filesystem
      * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> ok </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerUnmountLibpod(String name) throws ApiException {
         containerUnmountLibpodWithHttpInfo(name);
     }
 
     /**
-     * Unmount a container Unmount a container from the filesystem
-     *
+     * Unmount a container
+     * Unmount a container from the filesystem
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> ok </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<Void> containerUnmountLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = containerUnmountLibpodValidateBeforeCall(name, null);
@@ -5235,54 +3928,49 @@ public class ContainersApi {
     }
 
     /**
-     * Unmount a container (asynchronously) Unmount a container from the filesystem
-     *
+     * Unmount a container (asynchronously)
+     * Unmount a container from the filesystem
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> ok </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> ok </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerUnmountLibpodAsync(String name, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerUnmountLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerUnmountLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerUnpauseLibpod
-     *
      * @param name the name or ID of the container (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerUnpauseLibpodCall(String name, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerUnpauseLibpodCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -5291,11 +3979,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/unpause"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/unpause"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5303,60 +3988,48 @@ public class ContainersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerUnpauseLibpodValidateBeforeCall(
-            String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerUnpauseLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerUnpauseLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerUnpauseLibpod(Async)");
         }
 
         return containerUnpauseLibpodCall(name, _callback);
+
     }
 
     /**
      * Unpause Container
-     *
+     * 
      * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public void containerUnpauseLibpod(String name) throws ApiException {
         containerUnpauseLibpodWithHttpInfo(name);
@@ -5364,18 +4037,17 @@ public class ContainersApi {
 
     /**
      * Unpause Container
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public ApiResponse<Void> containerUnpauseLibpodWithHttpInfo(String name) throws ApiException {
         okhttp3.Call localVarCall = containerUnpauseLibpodValidateBeforeCall(name, null);
@@ -5384,62 +4056,51 @@ public class ContainersApi {
 
     /**
      * Unpause Container (asynchronously)
-     *
+     * 
      * @param name the name or ID of the container (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerUnpauseLibpodAsync(String name, final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerUnpauseLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerUnpauseLibpodValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerUpdateLibpod
-     *
      * @param name Full or partial ID or full name of the container to update (required)
      * @param restartPolicy New restart policy for the container. (optional)
-     * @param restartRetries New amount of retries for the container&#39;s restart policy. Only
-     *     allowed if restartPolicy is set to on-failure (optional)
+     * @param restartRetries New amount of retries for the container&#39;s restart policy. Only allowed if restartPolicy is set to on-failure (optional)
      * @param config attributes for updating the container (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerUpdateLibpodCall(
-            String name,
-            String restartPolicy,
-            Integer restartRetries,
-            UpdateEntities config,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerUpdateLibpodCall(String name, String restartPolicy, Integer restartRetries, UpdateEntities config, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -5448,11 +4109,8 @@ public class ContainersApi {
         Object localVarPostBody = config;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/update"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/update"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5461,181 +4119,136 @@ public class ContainersApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (restartPolicy != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("restartPolicy", restartPolicy));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("restartPolicy", restartPolicy));
         }
 
         if (restartRetries != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("restartRetries", restartRetries));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("restartRetries", restartRetries));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {"application/json", "application/x-tar"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerUpdateLibpodValidateBeforeCall(
-            String name,
-            String restartPolicy,
-            Integer restartRetries,
-            UpdateEntities config,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerUpdateLibpodValidateBeforeCall(String name, String restartPolicy, Integer restartRetries, UpdateEntities config, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerUpdateLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerUpdateLibpod(Async)");
         }
 
         return containerUpdateLibpodCall(name, restartPolicy, restartRetries, config, _callback);
+
     }
 
     /**
-     * Update an existing containers cgroup configuration Update an existing containers cgroup
-     * configuration.
-     *
+     * Update an existing containers cgroup configuration
+     * Update an existing containers cgroup configuration.
      * @param name Full or partial ID or full name of the container to update (required)
      * @param restartPolicy New restart policy for the container. (optional)
-     * @param restartRetries New amount of retries for the container&#39;s restart policy. Only
-     *     allowed if restartPolicy is set to on-failure (optional)
+     * @param restartRetries New amount of retries for the container&#39;s restart policy. Only allowed if restartPolicy is set to on-failure (optional)
      * @param config attributes for updating the container (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public void containerUpdateLibpod(
-            String name, String restartPolicy, Integer restartRetries, UpdateEntities config)
-            throws ApiException {
+    public void containerUpdateLibpod(String name, String restartPolicy, Integer restartRetries, UpdateEntities config) throws ApiException {
         containerUpdateLibpodWithHttpInfo(name, restartPolicy, restartRetries, config);
     }
 
     /**
-     * Update an existing containers cgroup configuration Update an existing containers cgroup
-     * configuration.
-     *
+     * Update an existing containers cgroup configuration
+     * Update an existing containers cgroup configuration.
      * @param name Full or partial ID or full name of the container to update (required)
      * @param restartPolicy New restart policy for the container. (optional)
-     * @param restartRetries New amount of retries for the container&#39;s restart policy. Only
-     *     allowed if restartPolicy is set to on-failure (optional)
+     * @param restartRetries New amount of retries for the container&#39;s restart policy. Only allowed if restartPolicy is set to on-failure (optional)
      * @param config attributes for updating the container (optional)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> containerUpdateLibpodWithHttpInfo(
-            String name, String restartPolicy, Integer restartRetries, UpdateEntities config)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                containerUpdateLibpodValidateBeforeCall(
-                        name, restartPolicy, restartRetries, config, null);
+    public ApiResponse<Void> containerUpdateLibpodWithHttpInfo(String name, String restartPolicy, Integer restartRetries, UpdateEntities config) throws ApiException {
+        okhttp3.Call localVarCall = containerUpdateLibpodValidateBeforeCall(name, restartPolicy, restartRetries, config, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Update an existing containers cgroup configuration (asynchronously) Update an existing
-     * containers cgroup configuration.
-     *
+     * Update an existing containers cgroup configuration (asynchronously)
+     * Update an existing containers cgroup configuration.
      * @param name Full or partial ID or full name of the container to update (required)
      * @param restartPolicy New restart policy for the container. (optional)
-     * @param restartRetries New amount of retries for the container&#39;s restart policy. Only
-     *     allowed if restartPolicy is set to on-failure (optional)
+     * @param restartRetries New amount of retries for the container&#39;s restart policy. Only allowed if restartPolicy is set to on-failure (optional)
      * @param config attributes for updating the container (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerUpdateLibpodAsync(
-            String name,
-            String restartPolicy,
-            Integer restartRetries,
-            UpdateEntities config,
-            final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call containerUpdateLibpodAsync(String name, String restartPolicy, Integer restartRetries, UpdateEntities config, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerUpdateLibpodValidateBeforeCall(
-                        name, restartPolicy, restartRetries, config, _callback);
+        okhttp3.Call localVarCall = containerUpdateLibpodValidateBeforeCall(name, restartPolicy, restartRetries, config, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containerWaitLibpod
-     *
      * @param name the name or ID of the container (required)
-     * @param condition Conditions to wait for. If no condition provided the &#39;exited&#39;
-     *     condition is assumed. (optional)
-     * @param interval Time Interval to wait before polling for completion. (optional, default to
-     *     250ms)
+     * @param condition Conditions to wait for. If no condition provided the &#39;exited&#39; condition is assumed. (optional)
+     * @param interval Time Interval to wait before polling for completion. (optional, default to 250ms)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Status code </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Status code </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerWaitLibpodCall(
-            String name, List<String> condition, String interval, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containerWaitLibpodCall(String name, List<String> condition, String interval, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -5644,11 +4257,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/wait"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/wait"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -5657,146 +4267,113 @@ public class ContainersApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (condition != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "condition", condition));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "condition", condition));
         }
 
         if (interval != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("interval", interval));
         }
 
-        final String[] localVarAccepts = {"application/json", "text/plain"};
+        final String[] localVarAccepts = {
+            "application/json",
+            "text/plain"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containerWaitLibpodValidateBeforeCall(
-            String name, List<String> condition, String interval, final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containerWaitLibpodValidateBeforeCall(String name, List<String> condition, String interval, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " containerWaitLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling containerWaitLibpod(Async)");
         }
 
         return containerWaitLibpodCall(name, condition, interval, _callback);
+
     }
 
     /**
-     * Wait on a container Wait on a container to meet a given condition
-     *
+     * Wait on a container
+     * Wait on a container to meet a given condition
      * @param name the name or ID of the container (required)
-     * @param condition Conditions to wait for. If no condition provided the &#39;exited&#39;
-     *     condition is assumed. (optional)
-     * @param interval Time Interval to wait before polling for completion. (optional, default to
-     *     250ms)
+     * @param condition Conditions to wait for. If no condition provided the &#39;exited&#39; condition is assumed. (optional)
+     * @param interval Time Interval to wait before polling for completion. (optional, default to 250ms)
      * @return Integer
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Status code </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Status code </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public Integer containerWaitLibpod(String name, List<String> condition, String interval)
-            throws ApiException {
-        ApiResponse<Integer> localVarResp =
-                containerWaitLibpodWithHttpInfo(name, condition, interval);
+    public Integer containerWaitLibpod(String name, List<String> condition, String interval) throws ApiException {
+        ApiResponse<Integer> localVarResp = containerWaitLibpodWithHttpInfo(name, condition, interval);
         return localVarResp.getData();
     }
 
     /**
-     * Wait on a container Wait on a container to meet a given condition
-     *
+     * Wait on a container
+     * Wait on a container to meet a given condition
      * @param name the name or ID of the container (required)
-     * @param condition Conditions to wait for. If no condition provided the &#39;exited&#39;
-     *     condition is assumed. (optional)
-     * @param interval Time Interval to wait before polling for completion. (optional, default to
-     *     250ms)
+     * @param condition Conditions to wait for. If no condition provided the &#39;exited&#39; condition is assumed. (optional)
+     * @param interval Time Interval to wait before polling for completion. (optional, default to 250ms)
      * @return ApiResponse&lt;Integer&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Status code </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Status code </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Integer> containerWaitLibpodWithHttpInfo(
-            String name, List<String> condition, String interval) throws ApiException {
-        okhttp3.Call localVarCall =
-                containerWaitLibpodValidateBeforeCall(name, condition, interval, null);
-        Type localVarReturnType = new TypeToken<Integer>() {}.getType();
+    public ApiResponse<Integer> containerWaitLibpodWithHttpInfo(String name, List<String> condition, String interval) throws ApiException {
+        okhttp3.Call localVarCall = containerWaitLibpodValidateBeforeCall(name, condition, interval, null);
+        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Wait on a container (asynchronously) Wait on a container to meet a given condition
-     *
+     * Wait on a container (asynchronously)
+     * Wait on a container to meet a given condition
      * @param name the name or ID of the container (required)
-     * @param condition Conditions to wait for. If no condition provided the &#39;exited&#39;
-     *     condition is assumed. (optional)
-     * @param interval Time Interval to wait before polling for completion. (optional, default to
-     *     250ms)
+     * @param condition Conditions to wait for. If no condition provided the &#39;exited&#39; condition is assumed. (optional)
+     * @param interval Time Interval to wait before polling for completion. (optional, default to 250ms)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Status code </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Status code </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerWaitLibpodAsync(
-            String name,
-            List<String> condition,
-            String interval,
-            final ApiCallback<Integer> _callback)
-            throws ApiException {
+    public okhttp3.Call containerWaitLibpodAsync(String name, List<String> condition, String interval, final ApiCallback<Integer> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containerWaitLibpodValidateBeforeCall(name, condition, interval, _callback);
-        Type localVarReturnType = new TypeToken<Integer>() {}.getType();
+        okhttp3.Call localVarCall = containerWaitLibpodValidateBeforeCall(name, condition, interval, _callback);
+        Type localVarReturnType = new TypeToken<Integer>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for containersStatsAllLibpod
-     *
      * @param containers names or IDs of containers (optional)
      * @param stream Stream the output (optional, default to true)
      * @param interval Time in seconds between stats reports (optional, default to 5)
@@ -5804,24 +4381,22 @@ public class ContainersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get stats for one or more containers </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Get stats for one or more containers </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containersStatsAllLibpodCall(
-            List<String> containers, Boolean stream, Integer interval, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call containersStatsAllLibpodCall(List<String> containers, Boolean stream, Integer interval, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -5839,8 +4414,7 @@ public class ContainersApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (containers != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "containers", containers));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "containers", containers));
         }
 
         if (stream != null) {
@@ -5851,166 +4425,125 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("interval", interval));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call containersStatsAllLibpodValidateBeforeCall(
-            List<String> containers, Boolean stream, Integer interval, final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call containersStatsAllLibpodValidateBeforeCall(List<String> containers, Boolean stream, Integer interval, final ApiCallback _callback) throws ApiException {
         return containersStatsAllLibpodCall(containers, stream, interval, _callback);
+
     }
 
     /**
-     * Get stats for one or more containers Return a live stream of resource usage statistics of one
-     * or more container. If no container is specified, the statistics of all containers are
-     * returned.
-     *
+     * Get stats for one or more containers
+     * Return a live stream of resource usage statistics of one or more container. If no container is specified, the statistics of all containers are returned.
      * @param containers names or IDs of containers (optional)
      * @param stream Stream the output (optional, default to true)
      * @param interval Time in seconds between stats reports (optional, default to 5)
      * @return ContainerStats
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get stats for one or more containers </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Get stats for one or more containers </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ContainerStats containersStatsAllLibpod(
-            List<String> containers, Boolean stream, Integer interval) throws ApiException {
-        ApiResponse<ContainerStats> localVarResp =
-                containersStatsAllLibpodWithHttpInfo(containers, stream, interval);
+    public ContainerStats containersStatsAllLibpod(List<String> containers, Boolean stream, Integer interval) throws ApiException {
+        ApiResponse<ContainerStats> localVarResp = containersStatsAllLibpodWithHttpInfo(containers, stream, interval);
         return localVarResp.getData();
     }
 
     /**
-     * Get stats for one or more containers Return a live stream of resource usage statistics of one
-     * or more container. If no container is specified, the statistics of all containers are
-     * returned.
-     *
+     * Get stats for one or more containers
+     * Return a live stream of resource usage statistics of one or more container. If no container is specified, the statistics of all containers are returned.
      * @param containers names or IDs of containers (optional)
      * @param stream Stream the output (optional, default to true)
      * @param interval Time in seconds between stats reports (optional, default to 5)
      * @return ApiResponse&lt;ContainerStats&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get stats for one or more containers </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Get stats for one or more containers </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<ContainerStats> containersStatsAllLibpodWithHttpInfo(
-            List<String> containers, Boolean stream, Integer interval) throws ApiException {
-        okhttp3.Call localVarCall =
-                containersStatsAllLibpodValidateBeforeCall(containers, stream, interval, null);
-        Type localVarReturnType = new TypeToken<ContainerStats>() {}.getType();
+    public ApiResponse<ContainerStats> containersStatsAllLibpodWithHttpInfo(List<String> containers, Boolean stream, Integer interval) throws ApiException {
+        okhttp3.Call localVarCall = containersStatsAllLibpodValidateBeforeCall(containers, stream, interval, null);
+        Type localVarReturnType = new TypeToken<ContainerStats>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Get stats for one or more containers (asynchronously) Return a live stream of resource usage
-     * statistics of one or more container. If no container is specified, the statistics of all
-     * containers are returned.
-     *
+     * Get stats for one or more containers (asynchronously)
+     * Return a live stream of resource usage statistics of one or more container. If no container is specified, the statistics of all containers are returned.
      * @param containers names or IDs of containers (optional)
      * @param stream Stream the output (optional, default to true)
      * @param interval Time in seconds between stats reports (optional, default to 5)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Get stats for one or more containers </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Get stats for one or more containers </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containersStatsAllLibpodAsync(
-            List<String> containers,
-            Boolean stream,
-            Integer interval,
-            final ApiCallback<ContainerStats> _callback)
-            throws ApiException {
+    public okhttp3.Call containersStatsAllLibpodAsync(List<String> containers, Boolean stream, Integer interval, final ApiCallback<ContainerStats> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                containersStatsAllLibpodValidateBeforeCall(containers, stream, interval, _callback);
-        Type localVarReturnType = new TypeToken<ContainerStats>() {}.getType();
+        okhttp3.Call localVarCall = containersStatsAllLibpodValidateBeforeCall(containers, stream, interval, _callback);
+        Type localVarReturnType = new TypeToken<ContainerStats>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for generateKubeLibpod
-     *
      * @param names Name or ID of the container or pod. (required)
      * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
      * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
      * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
-     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63
-     *     characters (optional, default to false)
-     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used
-     *     by Kubernetes) (optional, default to false)
+     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
+     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call generateKubeLibpodCall(
-            List<String> names,
-            Boolean service,
-            String type,
-            Integer replicas,
-            Boolean noTrunc,
-            Boolean podmanOnly,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call generateKubeLibpodCall(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -6028,8 +4561,7 @@ public class ContainersApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (names != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "names", names));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "names", names));
         }
 
         if (service != null) {
@@ -6052,185 +4584,123 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("podmanOnly", podmanOnly));
         }
 
-        final String[] localVarAccepts = {"text/vnd.yaml", "application/json"};
+        final String[] localVarAccepts = {
+            "text/vnd.yaml",
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call generateKubeLibpodValidateBeforeCall(
-            List<String> names,
-            Boolean service,
-            String type,
-            Integer replicas,
-            Boolean noTrunc,
-            Boolean podmanOnly,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call generateKubeLibpodValidateBeforeCall(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'names' is set
         if (names == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'names' when calling"
-                            + " generateKubeLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'names' when calling generateKubeLibpod(Async)");
         }
 
-        return generateKubeLibpodCall(
-                names, service, type, replicas, noTrunc, podmanOnly, _callback);
+        return generateKubeLibpodCall(names, service, type, replicas, noTrunc, podmanOnly, _callback);
+
     }
 
     /**
-     * Generate a Kubernetes YAML file. Generate Kubernetes YAML based on a pod or container.
-     *
+     * Generate a Kubernetes YAML file.
+     * Generate Kubernetes YAML based on a pod or container.
      * @param names Name or ID of the container or pod. (required)
      * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
      * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
      * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
-     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63
-     *     characters (optional, default to false)
-     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used
-     *     by Kubernetes) (optional, default to false)
+     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
+     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
      * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public File generateKubeLibpod(
-            List<String> names,
-            Boolean service,
-            String type,
-            Integer replicas,
-            Boolean noTrunc,
-            Boolean podmanOnly)
-            throws ApiException {
-        ApiResponse<File> localVarResp =
-                generateKubeLibpodWithHttpInfo(names, service, type, replicas, noTrunc, podmanOnly);
+    public File generateKubeLibpod(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly) throws ApiException {
+        ApiResponse<File> localVarResp = generateKubeLibpodWithHttpInfo(names, service, type, replicas, noTrunc, podmanOnly);
         return localVarResp.getData();
     }
 
     /**
-     * Generate a Kubernetes YAML file. Generate Kubernetes YAML based on a pod or container.
-     *
+     * Generate a Kubernetes YAML file.
+     * Generate Kubernetes YAML based on a pod or container.
      * @param names Name or ID of the container or pod. (required)
      * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
      * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
      * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
-     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63
-     *     characters (optional, default to false)
-     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used
-     *     by Kubernetes) (optional, default to false)
+     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
+     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
      * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<File> generateKubeLibpodWithHttpInfo(
-            List<String> names,
-            Boolean service,
-            String type,
-            Integer replicas,
-            Boolean noTrunc,
-            Boolean podmanOnly)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                generateKubeLibpodValidateBeforeCall(
-                        names, service, type, replicas, noTrunc, podmanOnly, null);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+    public ApiResponse<File> generateKubeLibpodWithHttpInfo(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly) throws ApiException {
+        okhttp3.Call localVarCall = generateKubeLibpodValidateBeforeCall(names, service, type, replicas, noTrunc, podmanOnly, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Generate a Kubernetes YAML file. (asynchronously) Generate Kubernetes YAML based on a pod or
-     * container.
-     *
+     * Generate a Kubernetes YAML file. (asynchronously)
+     * Generate Kubernetes YAML based on a pod or container.
      * @param names Name or ID of the container or pod. (required)
      * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
      * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
      * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
-     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63
-     *     characters (optional, default to false)
-     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used
-     *     by Kubernetes) (optional, default to false)
+     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
+     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call generateKubeLibpodAsync(
-            List<String> names,
-            Boolean service,
-            String type,
-            Integer replicas,
-            Boolean noTrunc,
-            Boolean podmanOnly,
-            final ApiCallback<File> _callback)
-            throws ApiException {
+    public okhttp3.Call generateKubeLibpodAsync(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                generateKubeLibpodValidateBeforeCall(
-                        names, service, type, replicas, noTrunc, podmanOnly, _callback);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+        okhttp3.Call localVarCall = generateKubeLibpodValidateBeforeCall(names, service, type, replicas, noTrunc, podmanOnly, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for generateSystemdLibpod
-     *
      * @param name Name or ID of the container or pod. (required)
      * @param useName Use container/pod names instead of IDs. (optional, default to false)
-     * @param _new Create a new container instead of starting an existing one. (optional, default to
-     *     false)
-     * @param noHeader Do not generate the header including the Podman version and the timestamp.
-     *     (optional, default to false)
+     * @param _new Create a new container instead of starting an existing one. (optional, default to false)
+     * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
      * @param startTimeout Start timeout in seconds. (optional, default to 0)
      * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
      * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
-     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to
-     *     container)
+     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
      * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
-     * @param separator Systemd unit name separator between name/id and prefix. (optional, default
-     *     to -)
-     * @param restartSec Configures the time to sleep before restarting a service. (optional,
-     *     default to 0)
+     * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
+     * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
      * @param wants Systemd Wants list for the container or pods. (optional)
      * @param after Systemd After list for the container or pods. (optional)
      * @param requires Systemd Requires list for the container or pods. (optional)
@@ -6239,38 +4709,21 @@ public class ContainersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call generateSystemdLibpodCall(
-            String name,
-            Boolean useName,
-            Boolean _new,
-            Boolean noHeader,
-            Integer startTimeout,
-            Integer stopTimeout,
-            String restartPolicy,
-            String containerPrefix,
-            String podPrefix,
-            String separator,
-            Integer restartSec,
-            List<String> wants,
-            List<String> after,
-            List<String> requires,
-            List<String> additionalEnvVariables,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call generateSystemdLibpodCall(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -6279,11 +4732,8 @@ public class ContainersApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/generate/{name}/systemd"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/generate/{name}/systemd"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -6304,23 +4754,19 @@ public class ContainersApi {
         }
 
         if (startTimeout != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("startTimeout", startTimeout));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTimeout", startTimeout));
         }
 
         if (stopTimeout != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("stopTimeout", stopTimeout));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("stopTimeout", stopTimeout));
         }
 
         if (restartPolicy != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("restartPolicy", restartPolicy));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("restartPolicy", restartPolicy));
         }
 
         if (containerPrefix != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("containerPrefix", containerPrefix));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("containerPrefix", containerPrefix));
         }
 
         if (podPrefix != null) {
@@ -6336,327 +4782,158 @@ public class ContainersApi {
         }
 
         if (wants != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "wants", wants));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "wants", wants));
         }
 
         if (after != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "after", after));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "after", after));
         }
 
         if (requires != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "requires", requires));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "requires", requires));
         }
 
         if (additionalEnvVariables != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs(
-                            "csv", "additionalEnvVariables", additionalEnvVariables));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "additionalEnvVariables", additionalEnvVariables));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "GET",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call generateSystemdLibpodValidateBeforeCall(
-            String name,
-            Boolean useName,
-            Boolean _new,
-            Boolean noHeader,
-            Integer startTimeout,
-            Integer stopTimeout,
-            String restartPolicy,
-            String containerPrefix,
-            String podPrefix,
-            String separator,
-            Integer restartSec,
-            List<String> wants,
-            List<String> after,
-            List<String> requires,
-            List<String> additionalEnvVariables,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call generateSystemdLibpodValidateBeforeCall(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " generateSystemdLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling generateSystemdLibpod(Async)");
         }
 
-        return generateSystemdLibpodCall(
-                name,
-                useName,
-                _new,
-                noHeader,
-                startTimeout,
-                stopTimeout,
-                restartPolicy,
-                containerPrefix,
-                podPrefix,
-                separator,
-                restartSec,
-                wants,
-                after,
-                requires,
-                additionalEnvVariables,
-                _callback);
+        return generateSystemdLibpodCall(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables, _callback);
+
     }
 
     /**
-     * Generate Systemd Units Generate Systemd Units based on a pod or container.
-     *
+     * Generate Systemd Units
+     * Generate Systemd Units based on a pod or container.
      * @param name Name or ID of the container or pod. (required)
      * @param useName Use container/pod names instead of IDs. (optional, default to false)
-     * @param _new Create a new container instead of starting an existing one. (optional, default to
-     *     false)
-     * @param noHeader Do not generate the header including the Podman version and the timestamp.
-     *     (optional, default to false)
+     * @param _new Create a new container instead of starting an existing one. (optional, default to false)
+     * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
      * @param startTimeout Start timeout in seconds. (optional, default to 0)
      * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
      * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
-     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to
-     *     container)
+     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
      * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
-     * @param separator Systemd unit name separator between name/id and prefix. (optional, default
-     *     to -)
-     * @param restartSec Configures the time to sleep before restarting a service. (optional,
-     *     default to 0)
+     * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
+     * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
      * @param wants Systemd Wants list for the container or pods. (optional)
      * @param after Systemd After list for the container or pods. (optional)
      * @param requires Systemd Requires list for the container or pods. (optional)
      * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
      * @return Map&lt;String, String&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public Map<String, String> generateSystemdLibpod(
-            String name,
-            Boolean useName,
-            Boolean _new,
-            Boolean noHeader,
-            Integer startTimeout,
-            Integer stopTimeout,
-            String restartPolicy,
-            String containerPrefix,
-            String podPrefix,
-            String separator,
-            Integer restartSec,
-            List<String> wants,
-            List<String> after,
-            List<String> requires,
-            List<String> additionalEnvVariables)
-            throws ApiException {
-        ApiResponse<Map<String, String>> localVarResp =
-                generateSystemdLibpodWithHttpInfo(
-                        name,
-                        useName,
-                        _new,
-                        noHeader,
-                        startTimeout,
-                        stopTimeout,
-                        restartPolicy,
-                        containerPrefix,
-                        podPrefix,
-                        separator,
-                        restartSec,
-                        wants,
-                        after,
-                        requires,
-                        additionalEnvVariables);
+    public Map<String, String> generateSystemdLibpod(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables) throws ApiException {
+        ApiResponse<Map<String, String>> localVarResp = generateSystemdLibpodWithHttpInfo(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
         return localVarResp.getData();
     }
 
     /**
-     * Generate Systemd Units Generate Systemd Units based on a pod or container.
-     *
+     * Generate Systemd Units
+     * Generate Systemd Units based on a pod or container.
      * @param name Name or ID of the container or pod. (required)
      * @param useName Use container/pod names instead of IDs. (optional, default to false)
-     * @param _new Create a new container instead of starting an existing one. (optional, default to
-     *     false)
-     * @param noHeader Do not generate the header including the Podman version and the timestamp.
-     *     (optional, default to false)
+     * @param _new Create a new container instead of starting an existing one. (optional, default to false)
+     * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
      * @param startTimeout Start timeout in seconds. (optional, default to 0)
      * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
      * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
-     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to
-     *     container)
+     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
      * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
-     * @param separator Systemd unit name separator between name/id and prefix. (optional, default
-     *     to -)
-     * @param restartSec Configures the time to sleep before restarting a service. (optional,
-     *     default to 0)
+     * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
+     * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
      * @param wants Systemd Wants list for the container or pods. (optional)
      * @param after Systemd After list for the container or pods. (optional)
      * @param requires Systemd Requires list for the container or pods. (optional)
      * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
      * @return ApiResponse&lt;Map&lt;String, String&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Map<String, String>> generateSystemdLibpodWithHttpInfo(
-            String name,
-            Boolean useName,
-            Boolean _new,
-            Boolean noHeader,
-            Integer startTimeout,
-            Integer stopTimeout,
-            String restartPolicy,
-            String containerPrefix,
-            String podPrefix,
-            String separator,
-            Integer restartSec,
-            List<String> wants,
-            List<String> after,
-            List<String> requires,
-            List<String> additionalEnvVariables)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                generateSystemdLibpodValidateBeforeCall(
-                        name,
-                        useName,
-                        _new,
-                        noHeader,
-                        startTimeout,
-                        stopTimeout,
-                        restartPolicy,
-                        containerPrefix,
-                        podPrefix,
-                        separator,
-                        restartSec,
-                        wants,
-                        after,
-                        requires,
-                        additionalEnvVariables,
-                        null);
-        Type localVarReturnType = new TypeToken<Map<String, String>>() {}.getType();
+    public ApiResponse<Map<String, String>> generateSystemdLibpodWithHttpInfo(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables) throws ApiException {
+        okhttp3.Call localVarCall = generateSystemdLibpodValidateBeforeCall(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables, null);
+        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Generate Systemd Units (asynchronously) Generate Systemd Units based on a pod or container.
-     *
+     * Generate Systemd Units (asynchronously)
+     * Generate Systemd Units based on a pod or container.
      * @param name Name or ID of the container or pod. (required)
      * @param useName Use container/pod names instead of IDs. (optional, default to false)
-     * @param _new Create a new container instead of starting an existing one. (optional, default to
-     *     false)
-     * @param noHeader Do not generate the header including the Podman version and the timestamp.
-     *     (optional, default to false)
+     * @param _new Create a new container instead of starting an existing one. (optional, default to false)
+     * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
      * @param startTimeout Start timeout in seconds. (optional, default to 0)
      * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
      * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
-     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to
-     *     container)
+     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
      * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
-     * @param separator Systemd unit name separator between name/id and prefix. (optional, default
-     *     to -)
-     * @param restartSec Configures the time to sleep before restarting a service. (optional,
-     *     default to 0)
+     * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
+     * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
      * @param wants Systemd Wants list for the container or pods. (optional)
      * @param after Systemd After list for the container or pods. (optional)
      * @param requires Systemd Requires list for the container or pods. (optional)
      * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call generateSystemdLibpodAsync(
-            String name,
-            Boolean useName,
-            Boolean _new,
-            Boolean noHeader,
-            Integer startTimeout,
-            Integer stopTimeout,
-            String restartPolicy,
-            String containerPrefix,
-            String podPrefix,
-            String separator,
-            Integer restartSec,
-            List<String> wants,
-            List<String> after,
-            List<String> requires,
-            List<String> additionalEnvVariables,
-            final ApiCallback<Map<String, String>> _callback)
-            throws ApiException {
+    public okhttp3.Call generateSystemdLibpodAsync(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables, final ApiCallback<Map<String, String>> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                generateSystemdLibpodValidateBeforeCall(
-                        name,
-                        useName,
-                        _new,
-                        noHeader,
-                        startTimeout,
-                        stopTimeout,
-                        restartPolicy,
-                        containerPrefix,
-                        podPrefix,
-                        separator,
-                        restartSec,
-                        wants,
-                        after,
-                        requires,
-                        additionalEnvVariables,
-                        _callback);
-        Type localVarReturnType = new TypeToken<Map<String, String>>() {}.getType();
+        okhttp3.Call localVarCall = generateSystemdLibpodValidateBeforeCall(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables, _callback);
+        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for imageCommitLibpod
-     *
      * @param container the name or ID of a container (required)
      * @param author author of the image (optional)
-     * @param changes instructions to apply while committing in Dockerfile format (i.e.
-     *     \&quot;CMD&#x3D;/bin/foo\&quot;) (optional)
+     * @param changes instructions to apply while committing in Dockerfile format (i.e. \&quot;CMD&#x3D;/bin/foo\&quot;) (optional)
      * @param comment commit message (optional)
-     * @param format format of the image manifest and metadata (default \&quot;oci\&quot;)
-     *     (optional)
+     * @param format format of the image manifest and metadata (default \&quot;oci\&quot;) (optional)
      * @param pause pause the container before committing it (optional)
      * @param squash squash the container before committing it (optional)
      * @param repo the repository name for the created image (optional)
@@ -6666,34 +4943,22 @@ public class ContainersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageCommitLibpodCall(
-            String container,
-            String author,
-            List<String> changes,
-            String comment,
-            String format,
-            Boolean pause,
-            Boolean squash,
-            String repo,
-            Boolean stream,
-            String tag,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call imageCommitLibpodCall(String container, String author, List<String> changes, String comment, String format, Boolean pause, Boolean squash, String repo, Boolean stream, String tag, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -6719,8 +4984,7 @@ public class ContainersApi {
         }
 
         if (changes != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "changes", changes));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "changes", changes));
         }
 
         if (comment != null) {
@@ -6751,156 +5015,98 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("tag", tag));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call imageCommitLibpodValidateBeforeCall(
-            String container,
-            String author,
-            List<String> changes,
-            String comment,
-            String format,
-            Boolean pause,
-            Boolean squash,
-            String repo,
-            Boolean stream,
-            String tag,
-            final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call imageCommitLibpodValidateBeforeCall(String container, String author, List<String> changes, String comment, String format, Boolean pause, Boolean squash, String repo, Boolean stream, String tag, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'container' is set
         if (container == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'container' when calling"
-                            + " imageCommitLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'container' when calling imageCommitLibpod(Async)");
         }
 
-        return imageCommitLibpodCall(
-                container, author, changes, comment, format, pause, squash, repo, stream, tag,
-                _callback);
+        return imageCommitLibpodCall(container, author, changes, comment, format, pause, squash, repo, stream, tag, _callback);
+
     }
 
     /**
-     * Commit Create a new image from a container
-     *
+     * Commit
+     * Create a new image from a container
      * @param container the name or ID of a container (required)
      * @param author author of the image (optional)
-     * @param changes instructions to apply while committing in Dockerfile format (i.e.
-     *     \&quot;CMD&#x3D;/bin/foo\&quot;) (optional)
+     * @param changes instructions to apply while committing in Dockerfile format (i.e. \&quot;CMD&#x3D;/bin/foo\&quot;) (optional)
      * @param comment commit message (optional)
-     * @param format format of the image manifest and metadata (default \&quot;oci\&quot;)
-     *     (optional)
+     * @param format format of the image manifest and metadata (default \&quot;oci\&quot;) (optional)
      * @param pause pause the container before committing it (optional)
      * @param squash squash the container before committing it (optional)
      * @param repo the repository name for the created image (optional)
      * @param stream output from commit process (optional)
      * @param tag tag name for the created image (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public void imageCommitLibpod(
-            String container,
-            String author,
-            List<String> changes,
-            String comment,
-            String format,
-            Boolean pause,
-            Boolean squash,
-            String repo,
-            Boolean stream,
-            String tag)
-            throws ApiException {
-        imageCommitLibpodWithHttpInfo(
-                container, author, changes, comment, format, pause, squash, repo, stream, tag);
+    public void imageCommitLibpod(String container, String author, List<String> changes, String comment, String format, Boolean pause, Boolean squash, String repo, Boolean stream, String tag) throws ApiException {
+        imageCommitLibpodWithHttpInfo(container, author, changes, comment, format, pause, squash, repo, stream, tag);
     }
 
     /**
-     * Commit Create a new image from a container
-     *
+     * Commit
+     * Create a new image from a container
      * @param container the name or ID of a container (required)
      * @param author author of the image (optional)
-     * @param changes instructions to apply while committing in Dockerfile format (i.e.
-     *     \&quot;CMD&#x3D;/bin/foo\&quot;) (optional)
+     * @param changes instructions to apply while committing in Dockerfile format (i.e. \&quot;CMD&#x3D;/bin/foo\&quot;) (optional)
      * @param comment commit message (optional)
-     * @param format format of the image manifest and metadata (default \&quot;oci\&quot;)
-     *     (optional)
+     * @param format format of the image manifest and metadata (default \&quot;oci\&quot;) (optional)
      * @param pause pause the container before committing it (optional)
      * @param squash squash the container before committing it (optional)
      * @param repo the repository name for the created image (optional)
      * @param stream output from commit process (optional)
      * @param tag tag name for the created image (optional)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> imageCommitLibpodWithHttpInfo(
-            String container,
-            String author,
-            List<String> changes,
-            String comment,
-            String format,
-            Boolean pause,
-            Boolean squash,
-            String repo,
-            Boolean stream,
-            String tag)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                imageCommitLibpodValidateBeforeCall(
-                        container, author, changes, comment, format, pause, squash, repo, stream,
-                        tag, null);
+    public ApiResponse<Void> imageCommitLibpodWithHttpInfo(String container, String author, List<String> changes, String comment, String format, Boolean pause, Boolean squash, String repo, Boolean stream, String tag) throws ApiException {
+        okhttp3.Call localVarCall = imageCommitLibpodValidateBeforeCall(container, author, changes, comment, format, pause, squash, repo, stream, tag, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Commit (asynchronously) Create a new image from a container
-     *
+     * Commit (asynchronously)
+     * Create a new image from a container
      * @param container the name or ID of a container (required)
      * @param author author of the image (optional)
-     * @param changes instructions to apply while committing in Dockerfile format (i.e.
-     *     \&quot;CMD&#x3D;/bin/foo\&quot;) (optional)
+     * @param changes instructions to apply while committing in Dockerfile format (i.e. \&quot;CMD&#x3D;/bin/foo\&quot;) (optional)
      * @param comment commit message (optional)
-     * @param format format of the image manifest and metadata (default \&quot;oci\&quot;)
-     *     (optional)
+     * @param format format of the image manifest and metadata (default \&quot;oci\&quot;) (optional)
      * @param pause pause the container before committing it (optional)
      * @param squash squash the container before committing it (optional)
      * @param repo the repository name for the created image (optional)
@@ -6908,45 +5114,26 @@ public class ContainersApi {
      * @param tag tag name for the created image (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageCommitLibpodAsync(
-            String container,
-            String author,
-            List<String> changes,
-            String comment,
-            String format,
-            Boolean pause,
-            Boolean squash,
-            String repo,
-            Boolean stream,
-            String tag,
-            final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call imageCommitLibpodAsync(String container, String author, List<String> changes, String comment, String format, Boolean pause, Boolean squash, String repo, Boolean stream, String tag, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                imageCommitLibpodValidateBeforeCall(
-                        container, author, changes, comment, format, pause, squash, repo, stream,
-                        tag, _callback);
+        okhttp3.Call localVarCall = imageCommitLibpodValidateBeforeCall(container, author, changes, comment, format, pause, squash, repo, stream, tag, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for kubeApplyLibpod
-     *
      * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
      * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
-     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster.
-     *     (optional)
+     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
      * @param service Create a service object for the container being deployed. (optional)
      * @param _file Path to the Kubernetes yaml file to deploy. (optional)
      * @param request Kubernetes YAML file. (optional)
@@ -6954,29 +5141,21 @@ public class ContainersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call kubeApplyLibpodCall(
-            String caCertFile,
-            String kubeConfig,
-            String namespace,
-            Boolean service,
-            String _file,
-            String request,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call kubeApplyLibpodCall(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -7013,183 +5192,128 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("file", _file));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {"application/json", "application/x-tar"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call kubeApplyLibpodValidateBeforeCall(
-            String caCertFile,
-            String kubeConfig,
-            String namespace,
-            Boolean service,
-            String _file,
-            String request,
-            final ApiCallback _callback)
-            throws ApiException {
-        return kubeApplyLibpodCall(
-                caCertFile, kubeConfig, namespace, service, _file, request, _callback);
+    private okhttp3.Call kubeApplyLibpodValidateBeforeCall(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request, final ApiCallback _callback) throws ApiException {
+        return kubeApplyLibpodCall(caCertFile, kubeConfig, namespace, service, _file, request, _callback);
+
     }
 
     /**
-     * Apply a podman workload or Kubernetes YAML file. Deploy a podman container, pod, volume, or
-     * Kubernetes yaml to a Kubernetes cluster.
-     *
+     * Apply a podman workload or Kubernetes YAML file.
+     * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
      * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
      * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
-     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster.
-     *     (optional)
+     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
      * @param service Create a service object for the container being deployed. (optional)
      * @param _file Path to the Kubernetes yaml file to deploy. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public File kubeApplyLibpod(
-            String caCertFile,
-            String kubeConfig,
-            String namespace,
-            Boolean service,
-            String _file,
-            String request)
-            throws ApiException {
-        ApiResponse<File> localVarResp =
-                kubeApplyLibpodWithHttpInfo(
-                        caCertFile, kubeConfig, namespace, service, _file, request);
+    public File kubeApplyLibpod(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request) throws ApiException {
+        ApiResponse<File> localVarResp = kubeApplyLibpodWithHttpInfo(caCertFile, kubeConfig, namespace, service, _file, request);
         return localVarResp.getData();
     }
 
     /**
-     * Apply a podman workload or Kubernetes YAML file. Deploy a podman container, pod, volume, or
-     * Kubernetes yaml to a Kubernetes cluster.
-     *
+     * Apply a podman workload or Kubernetes YAML file.
+     * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
      * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
      * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
-     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster.
-     *     (optional)
+     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
      * @param service Create a service object for the container being deployed. (optional)
      * @param _file Path to the Kubernetes yaml file to deploy. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<File> kubeApplyLibpodWithHttpInfo(
-            String caCertFile,
-            String kubeConfig,
-            String namespace,
-            Boolean service,
-            String _file,
-            String request)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                kubeApplyLibpodValidateBeforeCall(
-                        caCertFile, kubeConfig, namespace, service, _file, request, null);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+    public ApiResponse<File> kubeApplyLibpodWithHttpInfo(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request) throws ApiException {
+        okhttp3.Call localVarCall = kubeApplyLibpodValidateBeforeCall(caCertFile, kubeConfig, namespace, service, _file, request, null);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Apply a podman workload or Kubernetes YAML file. (asynchronously) Deploy a podman container,
-     * pod, volume, or Kubernetes yaml to a Kubernetes cluster.
-     *
+     * Apply a podman workload or Kubernetes YAML file. (asynchronously)
+     * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
      * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
      * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
-     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster.
-     *     (optional)
+     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
      * @param service Create a service object for the container being deployed. (optional)
      * @param _file Path to the Kubernetes yaml file to deploy. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call kubeApplyLibpodAsync(
-            String caCertFile,
-            String kubeConfig,
-            String namespace,
-            Boolean service,
-            String _file,
-            String request,
-            final ApiCallback<File> _callback)
-            throws ApiException {
+    public okhttp3.Call kubeApplyLibpodAsync(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request, final ApiCallback<File> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                kubeApplyLibpodValidateBeforeCall(
-                        caCertFile, kubeConfig, namespace, service, _file, request, _callback);
-        Type localVarReturnType = new TypeToken<File>() {}.getType();
+        okhttp3.Call localVarCall = kubeApplyLibpodValidateBeforeCall(caCertFile, kubeConfig, namespace, service, _file, request, _callback);
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for playKubeDownLibpod
-     *
      * @param force Remove volumes. (optional, default to false)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call playKubeDownLibpodCall(Boolean force, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call playKubeDownLibpodCall(Boolean force, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -7210,54 +5334,43 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "DELETE",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(
-            Boolean force, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(Boolean force, final ApiCallback _callback) throws ApiException {
         return playKubeDownLibpodCall(force, _callback);
+
     }
 
     /**
-     * Remove resources created from kube play Tears down pods, secrets, and volumes defined in a
-     * YAML file
-     *
+     * Remove resources created from kube play
+     * Tears down pods, secrets, and volumes defined in a YAML file
      * @param force Remove volumes. (optional, default to false)
      * @return PlayKubeReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
     public PlayKubeReport playKubeDownLibpod(Boolean force) throws ApiException {
         ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(force);
@@ -7265,116 +5378,85 @@ public class ContainersApi {
     }
 
     /**
-     * Remove resources created from kube play Tears down pods, secrets, and volumes defined in a
-     * YAML file
-     *
+     * Remove resources created from kube play
+     * Tears down pods, secrets, and volumes defined in a YAML file
      * @param force Remove volumes. (optional, default to false)
      * @return ApiResponse&lt;PlayKubeReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(Boolean force)
-            throws ApiException {
+    public ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(Boolean force) throws ApiException {
         okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, null);
-        Type localVarReturnType = new TypeToken<PlayKubeReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Remove resources created from kube play (asynchronously) Tears down pods, secrets, and
-     * volumes defined in a YAML file
-     *
+     * Remove resources created from kube play (asynchronously)
+     * Tears down pods, secrets, and volumes defined in a YAML file
      * @param force Remove volumes. (optional, default to false)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call playKubeDownLibpodAsync(
-            Boolean force, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
+    public okhttp3.Call playKubeDownLibpodAsync(Boolean force, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, _callback);
-        Type localVarReturnType = new TypeToken<PlayKubeReport>() {}.getType();
+        Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for playKubeLibpod
-     *
+     * @param contentType  (optional, default to plain/text)
      * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
      * @param logDriver Logging driver for the containers in the pod. (optional)
      * @param logOptions logging driver options (optional)
      * @param network USe the network mode or specify an array of networks. (optional)
      * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
-     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63
-     *     characters (optional, default to false)
-     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host
-     *     (optional)
-     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file
-     *     (containerPort, hostPort), if false only hostPort will be published (optional)
+     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
+     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
+     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
      * @param replace replace existing pods and containers (optional, default to false)
-     * @param serviceContainer Starts a service container before all pods. (optional, default to
-     *     false)
+     * @param serviceContainer Starts a service container before all pods. (optional, default to false)
      * @param start Start the pod after creating it. (optional, default to true)
      * @param staticIPs Static IPs used for the pods. (optional)
      * @param staticMACs Static MACs used for the pods. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional,
-     *     default to true)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
      * @param userns Set the user namespace mode for the pods. (optional)
-     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional,
-     *     default to false)
+     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
+     * @param build Build the images with corresponding context. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call playKubeLibpodCall(
-            String annotations,
-            String logDriver,
-            List<String> logOptions,
-            List<String> network,
-            Boolean noHosts,
-            Boolean noTrunc,
-            List<String> publishPorts,
-            Boolean publishAllPorts,
-            Boolean replace,
-            Boolean serviceContainer,
-            Boolean start,
-            List<String> staticIPs,
-            List<String> staticMACs,
-            Boolean tlsVerify,
-            String userns,
-            Boolean wait,
-            String request,
-            final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call playKubeLibpodCall(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -7392,8 +5474,7 @@ public class ContainersApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (annotations != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("annotations", annotations));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("annotations", annotations));
         }
 
         if (logDriver != null) {
@@ -7401,13 +5482,11 @@ public class ContainersApi {
         }
 
         if (logOptions != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "logOptions", logOptions));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "logOptions", logOptions));
         }
 
         if (network != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "network", network));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "network", network));
         }
 
         if (noHosts != null) {
@@ -7419,13 +5498,11 @@ public class ContainersApi {
         }
 
         if (publishPorts != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "publishPorts", publishPorts));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "publishPorts", publishPorts));
         }
 
         if (publishAllPorts != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("publishAllPorts", publishAllPorts));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("publishAllPorts", publishAllPorts));
         }
 
         if (replace != null) {
@@ -7433,8 +5510,7 @@ public class ContainersApi {
         }
 
         if (serviceContainer != null) {
-            localVarQueryParams.addAll(
-                    localVarApiClient.parameterToPair("serviceContainer", serviceContainer));
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("serviceContainer", serviceContainer));
         }
 
         if (start != null) {
@@ -7442,13 +5518,11 @@ public class ContainersApi {
         }
 
         if (staticIPs != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "staticIPs", staticIPs));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "staticIPs", staticIPs));
         }
 
         if (staticMACs != null) {
-            localVarCollectionQueryParams.addAll(
-                    localVarApiClient.parameterToPairs("csv", "staticMACs", staticMACs));
+            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "staticMACs", staticMACs));
         }
 
         if (tlsVerify != null) {
@@ -7463,321 +5537,155 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("wait", wait));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        if (build != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("build", build));
+        }
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {"application/json", "application/x-tar"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "POST",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeLibpodValidateBeforeCall(
-            String annotations,
-            String logDriver,
-            List<String> logOptions,
-            List<String> network,
-            Boolean noHosts,
-            Boolean noTrunc,
-            List<String> publishPorts,
-            Boolean publishAllPorts,
-            Boolean replace,
-            Boolean serviceContainer,
-            Boolean start,
-            List<String> staticIPs,
-            List<String> staticMACs,
-            Boolean tlsVerify,
-            String userns,
-            Boolean wait,
-            String request,
-            final ApiCallback _callback)
-            throws ApiException {
-        return playKubeLibpodCall(
-                annotations,
-                logDriver,
-                logOptions,
-                network,
-                noHosts,
-                noTrunc,
-                publishPorts,
-                publishAllPorts,
-                replace,
-                serviceContainer,
-                start,
-                staticIPs,
-                staticMACs,
-                tlsVerify,
-                userns,
-                wait,
-                request,
-                _callback);
+    private okhttp3.Call playKubeLibpodValidateBeforeCall(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
+        return playKubeLibpodCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
+
     }
 
     /**
-     * Play a Kubernetes YAML file. Create and run pods based on a Kubernetes YAML file (pod or
-     * service kind).
-     *
+     * Play a Kubernetes YAML file.
+     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
+     * @param contentType  (optional, default to plain/text)
      * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
      * @param logDriver Logging driver for the containers in the pod. (optional)
      * @param logOptions logging driver options (optional)
      * @param network USe the network mode or specify an array of networks. (optional)
      * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
-     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63
-     *     characters (optional, default to false)
-     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host
-     *     (optional)
-     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file
-     *     (containerPort, hostPort), if false only hostPort will be published (optional)
+     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
+     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
+     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
      * @param replace replace existing pods and containers (optional, default to false)
-     * @param serviceContainer Starts a service container before all pods. (optional, default to
-     *     false)
+     * @param serviceContainer Starts a service container before all pods. (optional, default to false)
      * @param start Start the pod after creating it. (optional, default to true)
      * @param staticIPs Static IPs used for the pods. (optional)
      * @param staticMACs Static MACs used for the pods. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional,
-     *     default to true)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
      * @param userns Set the user namespace mode for the pods. (optional)
-     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional,
-     *     default to false)
+     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
+     * @param build Build the images with corresponding context. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @return PlayKubeReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public PlayKubeReport playKubeLibpod(
-            String annotations,
-            String logDriver,
-            List<String> logOptions,
-            List<String> network,
-            Boolean noHosts,
-            Boolean noTrunc,
-            List<String> publishPorts,
-            Boolean publishAllPorts,
-            Boolean replace,
-            Boolean serviceContainer,
-            Boolean start,
-            List<String> staticIPs,
-            List<String> staticMACs,
-            Boolean tlsVerify,
-            String userns,
-            Boolean wait,
-            String request)
-            throws ApiException {
-        ApiResponse<PlayKubeReport> localVarResp =
-                playKubeLibpodWithHttpInfo(
-                        annotations,
-                        logDriver,
-                        logOptions,
-                        network,
-                        noHosts,
-                        noTrunc,
-                        publishPorts,
-                        publishAllPorts,
-                        replace,
-                        serviceContainer,
-                        start,
-                        staticIPs,
-                        staticMACs,
-                        tlsVerify,
-                        userns,
-                        wait,
-                        request);
+    public PlayKubeReport playKubeLibpod(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
+        ApiResponse<PlayKubeReport> localVarResp = playKubeLibpodWithHttpInfo(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
         return localVarResp.getData();
     }
 
     /**
-     * Play a Kubernetes YAML file. Create and run pods based on a Kubernetes YAML file (pod or
-     * service kind).
-     *
+     * Play a Kubernetes YAML file.
+     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
+     * @param contentType  (optional, default to plain/text)
      * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
      * @param logDriver Logging driver for the containers in the pod. (optional)
      * @param logOptions logging driver options (optional)
      * @param network USe the network mode or specify an array of networks. (optional)
      * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
-     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63
-     *     characters (optional, default to false)
-     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host
-     *     (optional)
-     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file
-     *     (containerPort, hostPort), if false only hostPort will be published (optional)
+     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
+     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
+     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
      * @param replace replace existing pods and containers (optional, default to false)
-     * @param serviceContainer Starts a service container before all pods. (optional, default to
-     *     false)
+     * @param serviceContainer Starts a service container before all pods. (optional, default to false)
      * @param start Start the pod after creating it. (optional, default to true)
      * @param staticIPs Static IPs used for the pods. (optional)
      * @param staticMACs Static MACs used for the pods. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional,
-     *     default to true)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
      * @param userns Set the user namespace mode for the pods. (optional)
-     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional,
-     *     default to false)
+     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
+     * @param build Build the images with corresponding context. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @return ApiResponse&lt;PlayKubeReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<PlayKubeReport> playKubeLibpodWithHttpInfo(
-            String annotations,
-            String logDriver,
-            List<String> logOptions,
-            List<String> network,
-            Boolean noHosts,
-            Boolean noTrunc,
-            List<String> publishPorts,
-            Boolean publishAllPorts,
-            Boolean replace,
-            Boolean serviceContainer,
-            Boolean start,
-            List<String> staticIPs,
-            List<String> staticMACs,
-            Boolean tlsVerify,
-            String userns,
-            Boolean wait,
-            String request)
-            throws ApiException {
-        okhttp3.Call localVarCall =
-                playKubeLibpodValidateBeforeCall(
-                        annotations,
-                        logDriver,
-                        logOptions,
-                        network,
-                        noHosts,
-                        noTrunc,
-                        publishPorts,
-                        publishAllPorts,
-                        replace,
-                        serviceContainer,
-                        start,
-                        staticIPs,
-                        staticMACs,
-                        tlsVerify,
-                        userns,
-                        wait,
-                        request,
-                        null);
-        Type localVarReturnType = new TypeToken<PlayKubeReport>() {}.getType();
+    public ApiResponse<PlayKubeReport> playKubeLibpodWithHttpInfo(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
+        okhttp3.Call localVarCall = playKubeLibpodValidateBeforeCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, null);
+        Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     * Play a Kubernetes YAML file. (asynchronously) Create and run pods based on a Kubernetes YAML
-     * file (pod or service kind).
-     *
+     * Play a Kubernetes YAML file. (asynchronously)
+     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
+     * @param contentType  (optional, default to plain/text)
      * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
      * @param logDriver Logging driver for the containers in the pod. (optional)
      * @param logOptions logging driver options (optional)
      * @param network USe the network mode or specify an array of networks. (optional)
      * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
-     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63
-     *     characters (optional, default to false)
-     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host
-     *     (optional)
-     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file
-     *     (containerPort, hostPort), if false only hostPort will be published (optional)
+     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
+     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
+     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
      * @param replace replace existing pods and containers (optional, default to false)
-     * @param serviceContainer Starts a service container before all pods. (optional, default to
-     *     false)
+     * @param serviceContainer Starts a service container before all pods. (optional, default to false)
      * @param start Start the pod after creating it. (optional, default to true)
      * @param staticIPs Static IPs used for the pods. (optional)
      * @param staticMACs Static MACs used for the pods. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional,
-     *     default to true)
+     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
      * @param userns Set the user namespace mode for the pods. (optional)
-     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional,
-     *     default to false)
+     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
+     * @param build Build the images with corresponding context. (optional)
      * @param request Kubernetes YAML file. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call playKubeLibpodAsync(
-            String annotations,
-            String logDriver,
-            List<String> logOptions,
-            List<String> network,
-            Boolean noHosts,
-            Boolean noTrunc,
-            List<String> publishPorts,
-            Boolean publishAllPorts,
-            Boolean replace,
-            Boolean serviceContainer,
-            Boolean start,
-            List<String> staticIPs,
-            List<String> staticMACs,
-            Boolean tlsVerify,
-            String userns,
-            Boolean wait,
-            String request,
-            final ApiCallback<PlayKubeReport> _callback)
-            throws ApiException {
+    public okhttp3.Call playKubeLibpodAsync(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                playKubeLibpodValidateBeforeCall(
-                        annotations,
-                        logDriver,
-                        logOptions,
-                        network,
-                        noHosts,
-                        noTrunc,
-                        publishPorts,
-                        publishAllPorts,
-                        replace,
-                        serviceContainer,
-                        start,
-                        staticIPs,
-                        staticMACs,
-                        tlsVerify,
-                        userns,
-                        wait,
-                        request,
-                        _callback);
-        Type localVarReturnType = new TypeToken<PlayKubeReport>() {}.getType();
+        okhttp3.Call localVarCall = playKubeLibpodValidateBeforeCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
+        Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
-
     /**
      * Build call for putContainerArchiveLibpod
-     *
      * @param name container name or id (required)
      * @param path Path to a directory in the container to extract (required)
      * @param pause pause the container while copying (defaults to true) (optional, default to true)
@@ -7786,26 +5694,24 @@ public class ContainersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call putContainerArchiveLibpodCall(
-            String name, String path, Boolean pause, String request, final ApiCallback _callback)
-            throws ApiException {
+    public okhttp3.Call putContainerArchiveLibpodCall(String name, String path, Boolean pause, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -7814,11 +5720,8 @@ public class ContainersApi {
         Object localVarPostBody = request;
 
         // create path and map variables
-        String localVarPath =
-                "/libpod/containers/{name}/archive"
-                        .replace(
-                                "{" + "name" + "}",
-                                localVarApiClient.escapeString(name.toString()));
+        String localVarPath = "/libpod/containers/{name}/archive"
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -7834,137 +5737,112 @@ public class ContainersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("pause", pause));
         }
 
-        final String[] localVarAccepts = {"application/json"};
+        final String[] localVarAccepts = {
+            "application/json"
+        };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
-        final String[] localVarContentTypes = {"application/json", "application/x-tar"};
-        final String localVarContentType =
-                localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String[] localVarContentTypes = {
+            "application/json",
+            "application/x-tar"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {};
-        return localVarApiClient.buildCall(
-                basePath,
-                localVarPath,
-                "PUT",
-                localVarQueryParams,
-                localVarCollectionQueryParams,
-                localVarPostBody,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAuthNames,
-                _callback);
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call putContainerArchiveLibpodValidateBeforeCall(
-            String name, String path, Boolean pause, String request, final ApiCallback _callback)
-            throws ApiException {
+    private okhttp3.Call putContainerArchiveLibpodValidateBeforeCall(String name, String path, Boolean pause, String request, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'name' is set
         if (name == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'name' when calling"
-                            + " putContainerArchiveLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'name' when calling putContainerArchiveLibpod(Async)");
         }
 
         // verify the required parameter 'path' is set
         if (path == null) {
-            throw new ApiException(
-                    "Missing the required parameter 'path' when calling"
-                            + " putContainerArchiveLibpod(Async)");
+            throw new ApiException("Missing the required parameter 'path' when calling putContainerArchiveLibpod(Async)");
         }
 
         return putContainerArchiveLibpodCall(name, path, pause, request, _callback);
+
     }
 
     /**
-     * Copy files into a container Copy a tar archive of files into a container
-     *
+     * Copy files into a container
+     * Copy a tar archive of files into a container
      * @param name container name or id (required)
      * @param path Path to a directory in the container to extract (required)
      * @param pause pause the container while copying (defaults to true) (optional, default to true)
      * @param request tarfile of files to copy into the container (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public void putContainerArchiveLibpod(String name, String path, Boolean pause, String request)
-            throws ApiException {
+    public void putContainerArchiveLibpod(String name, String path, Boolean pause, String request) throws ApiException {
         putContainerArchiveLibpodWithHttpInfo(name, path, pause, request);
     }
 
     /**
-     * Copy files into a container Copy a tar archive of files into a container
-     *
+     * Copy files into a container
+     * Copy a tar archive of files into a container
      * @param name container name or id (required)
      * @param path Path to a directory in the container to extract (required)
      * @param pause pause the container while copying (defaults to true) (optional, default to true)
      * @param request tarfile of files to copy into the container (optional)
      * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the
-     *     response body
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public ApiResponse<Void> putContainerArchiveLibpodWithHttpInfo(
-            String name, String path, Boolean pause, String request) throws ApiException {
-        okhttp3.Call localVarCall =
-                putContainerArchiveLibpodValidateBeforeCall(name, path, pause, request, null);
+    public ApiResponse<Void> putContainerArchiveLibpodWithHttpInfo(String name, String path, Boolean pause, String request) throws ApiException {
+        okhttp3.Call localVarCall = putContainerArchiveLibpodValidateBeforeCall(name, path, pause, request, null);
         return localVarApiClient.execute(localVarCall);
     }
 
     /**
-     * Copy files into a container (asynchronously) Copy a tar archive of files into a container
-     *
+     * Copy files into a container (asynchronously)
+     * Copy a tar archive of files into a container
      * @param name container name or id (required)
      * @param path Path to a directory in the container to extract (required)
      * @param pause pause the container while copying (defaults to true) (optional, default to true)
      * @param request tarfile of files to copy into the container (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body
-     *     object
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     *     <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call putContainerArchiveLibpodAsync(
-            String name,
-            String path,
-            Boolean pause,
-            String request,
-            final ApiCallback<Void> _callback)
-            throws ApiException {
+    public okhttp3.Call putContainerArchiveLibpodAsync(String name, String path, Boolean pause, String request, final ApiCallback<Void> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall =
-                putContainerArchiveLibpodValidateBeforeCall(name, path, pause, request, _callback);
+        okhttp3.Call localVarCall = putContainerArchiveLibpodValidateBeforeCall(name, path, pause, request, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }

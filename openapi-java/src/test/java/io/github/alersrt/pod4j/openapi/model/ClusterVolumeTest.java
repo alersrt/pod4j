@@ -10,59 +10,94 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.ClusterVolumeSpec;
+import io.github.alersrt.pod4j.openapi.model.Info;
+import io.github.alersrt.pod4j.openapi.model.PublishStatus;
+import io.github.alersrt.pod4j.openapi.model.Version;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ClusterVolume */
+/**
+ * Model tests for ClusterVolume
+ */
 public class ClusterVolumeTest {
     private final ClusterVolume model = new ClusterVolume();
 
-    /** Model tests for ClusterVolume */
+    /**
+     * Model tests for ClusterVolume
+     */
     @Test
     public void testClusterVolume() {
         // TODO: test ClusterVolume
     }
 
-    /** Test the property 'createdAt' */
+    /**
+     * Test the property 'createdAt'
+     */
     @Test
     public void createdAtTest() {
         // TODO: test createdAt
     }
 
-    /** Test the property 'ID' */
+    /**
+     * Test the property 'ID'
+     */
     @Test
     public void IDTest() {
         // TODO: test ID
     }
 
-    /** Test the property 'info' */
+    /**
+     * Test the property 'info'
+     */
     @Test
     public void infoTest() {
         // TODO: test info
     }
 
-    /** Test the property 'publishStatus' */
+    /**
+     * Test the property 'publishStatus'
+     */
     @Test
     public void publishStatusTest() {
         // TODO: test publishStatus
     }
 
-    /** Test the property 'spec' */
+    /**
+     * Test the property 'spec'
+     */
     @Test
     public void specTest() {
         // TODO: test spec
     }
 
-    /** Test the property 'updatedAt' */
+    /**
+     * Test the property 'updatedAt'
+     */
     @Test
     public void updatedAtTest() {
         // TODO: test updatedAt
     }
 
-    /** Test the property 'version' */
+    /**
+     * Test the property 'version'
+     */
     @Test
     public void versionTest() {
         // TODO: test version
     }
+
 }

@@ -10,29 +10,47 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for AuthReport */
+/**
+ * Model tests for AuthReport
+ */
 public class AuthReportTest {
     private final AuthReport model = new AuthReport();
 
-    /** Model tests for AuthReport */
+    /**
+     * Model tests for AuthReport
+     */
     @Test
     public void testAuthReport() {
         // TODO: test AuthReport
     }
 
-    /** Test the property 'identityToken' */
+    /**
+     * Test the property 'identityToken'
+     */
     @Test
     public void identityTokenTest() {
         // TODO: test identityToken
     }
 
-    /** Test the property 'status' */
+    /**
+     * Test the property 'status'
+     */
     @Test
     public void statusTest() {
         // TODO: test status
     }
+
 }

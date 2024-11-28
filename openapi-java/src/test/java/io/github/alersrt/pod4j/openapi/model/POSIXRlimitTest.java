@@ -10,35 +10,55 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for POSIXRlimit */
+/**
+ * Model tests for POSIXRlimit
+ */
 public class POSIXRlimitTest {
     private final POSIXRlimit model = new POSIXRlimit();
 
-    /** Model tests for POSIXRlimit */
+    /**
+     * Model tests for POSIXRlimit
+     */
     @Test
     public void testPOSIXRlimit() {
         // TODO: test POSIXRlimit
     }
 
-    /** Test the property 'hard' */
+    /**
+     * Test the property 'hard'
+     */
     @Test
     public void hardTest() {
         // TODO: test hard
     }
 
-    /** Test the property 'soft' */
+    /**
+     * Test the property 'soft'
+     */
     @Test
     public void softTest() {
         // TODO: test soft
     }
 
-    /** Test the property 'type' */
+    /**
+     * Test the property 'type'
+     */
     @Test
     public void typeTest() {
         // TODO: test type
     }
+
 }

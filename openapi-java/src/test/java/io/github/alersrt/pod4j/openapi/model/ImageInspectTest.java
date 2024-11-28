@@ -10,137 +10,197 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import io.github.alersrt.pod4j.openapi.model.Config;
+import io.github.alersrt.pod4j.openapi.model.GraphDriverData;
+import io.github.alersrt.pod4j.openapi.model.Metadata;
+import io.github.alersrt.pod4j.openapi.model.RootFS;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ImageInspect */
+/**
+ * Model tests for ImageInspect
+ */
 public class ImageInspectTest {
     private final ImageInspect model = new ImageInspect();
 
-    /** Model tests for ImageInspect */
+    /**
+     * Model tests for ImageInspect
+     */
     @Test
     public void testImageInspect() {
         // TODO: test ImageInspect
     }
 
-    /** Test the property 'architecture' */
+    /**
+     * Test the property 'architecture'
+     */
     @Test
     public void architectureTest() {
         // TODO: test architecture
     }
 
-    /** Test the property 'author' */
+    /**
+     * Test the property 'author'
+     */
     @Test
     public void authorTest() {
         // TODO: test author
     }
 
-    /** Test the property 'comment' */
+    /**
+     * Test the property 'comment'
+     */
     @Test
     public void commentTest() {
         // TODO: test comment
     }
 
-    /** Test the property 'config' */
+    /**
+     * Test the property 'config'
+     */
     @Test
     public void configTest() {
         // TODO: test config
     }
 
-    /** Test the property 'container' */
+    /**
+     * Test the property 'container'
+     */
     @Test
     public void containerTest() {
         // TODO: test container
     }
 
-    /** Test the property 'containerConfig' */
+    /**
+     * Test the property 'containerConfig'
+     */
     @Test
     public void containerConfigTest() {
         // TODO: test containerConfig
     }
 
-    /** Test the property 'created' */
+    /**
+     * Test the property 'created'
+     */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /** Test the property 'dockerVersion' */
+    /**
+     * Test the property 'dockerVersion'
+     */
     @Test
     public void dockerVersionTest() {
         // TODO: test dockerVersion
     }
 
-    /** Test the property 'graphDriver' */
+    /**
+     * Test the property 'graphDriver'
+     */
     @Test
     public void graphDriverTest() {
         // TODO: test graphDriver
     }
 
-    /** Test the property 'id' */
+    /**
+     * Test the property 'id'
+     */
     @Test
     public void idTest() {
         // TODO: test id
     }
 
-    /** Test the property 'metadata' */
+    /**
+     * Test the property 'metadata'
+     */
     @Test
     public void metadataTest() {
         // TODO: test metadata
     }
 
-    /** Test the property 'os' */
+    /**
+     * Test the property 'os'
+     */
     @Test
     public void osTest() {
         // TODO: test os
     }
 
-    /** Test the property 'osVersion' */
+    /**
+     * Test the property 'osVersion'
+     */
     @Test
     public void osVersionTest() {
         // TODO: test osVersion
     }
 
-    /** Test the property 'parent' */
+    /**
+     * Test the property 'parent'
+     */
     @Test
     public void parentTest() {
         // TODO: test parent
     }
 
-    /** Test the property 'repoDigests' */
+    /**
+     * Test the property 'repoDigests'
+     */
     @Test
     public void repoDigestsTest() {
         // TODO: test repoDigests
     }
 
-    /** Test the property 'repoTags' */
+    /**
+     * Test the property 'repoTags'
+     */
     @Test
     public void repoTagsTest() {
         // TODO: test repoTags
     }
 
-    /** Test the property 'rootFS' */
+    /**
+     * Test the property 'rootFS'
+     */
     @Test
     public void rootFSTest() {
         // TODO: test rootFS
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /** Test the property 'variant' */
+    /**
+     * Test the property 'variant'
+     */
     @Test
     public void variantTest() {
         // TODO: test variant
     }
 
-    /** Test the property 'virtualSize' */
+    /**
+     * Test the property 'virtualSize'
+     */
     @Test
     public void virtualSizeTest() {
         // TODO: test virtualSize
     }
+
 }

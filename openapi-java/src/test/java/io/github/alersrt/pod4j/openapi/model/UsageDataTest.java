@@ -10,29 +10,47 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for UsageData */
+/**
+ * Model tests for UsageData
+ */
 public class UsageDataTest {
     private final UsageData model = new UsageData();
 
-    /** Model tests for UsageData */
+    /**
+     * Model tests for UsageData
+     */
     @Test
     public void testUsageData() {
         // TODO: test UsageData
     }
 
-    /** Test the property 'refCount' */
+    /**
+     * Test the property 'refCount'
+     */
     @Test
     public void refCountTest() {
         // TODO: test refCount
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
+
 }

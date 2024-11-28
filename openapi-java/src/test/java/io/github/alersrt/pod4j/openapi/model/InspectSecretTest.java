@@ -10,47 +10,71 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for InspectSecret */
+/**
+ * Model tests for InspectSecret
+ */
 public class InspectSecretTest {
     private final InspectSecret model = new InspectSecret();
 
-    /** Model tests for InspectSecret */
+    /**
+     * Model tests for InspectSecret
+     */
     @Test
     public void testInspectSecret() {
         // TODO: test InspectSecret
     }
 
-    /** Test the property 'GID' */
+    /**
+     * Test the property 'GID'
+     */
     @Test
     public void GIDTest() {
         // TODO: test GID
     }
 
-    /** Test the property 'ID' */
+    /**
+     * Test the property 'ID'
+     */
     @Test
     public void IDTest() {
         // TODO: test ID
     }
 
-    /** Test the property 'mode' */
+    /**
+     * Test the property 'mode'
+     */
     @Test
     public void modeTest() {
         // TODO: test mode
     }
 
-    /** Test the property 'name' */
+    /**
+     * Test the property 'name'
+     */
     @Test
     public void nameTest() {
         // TODO: test name
     }
 
-    /** Test the property 'UID' */
+    /**
+     * Test the property 'UID'
+     */
     @Test
     public void UIDTest() {
         // TODO: test UID
     }
+
 }

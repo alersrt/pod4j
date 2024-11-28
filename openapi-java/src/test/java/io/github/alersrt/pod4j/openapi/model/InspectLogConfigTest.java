@@ -10,47 +10,73 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for InspectLogConfig */
+/**
+ * Model tests for InspectLogConfig
+ */
 public class InspectLogConfigTest {
     private final InspectLogConfig model = new InspectLogConfig();
 
-    /** Model tests for InspectLogConfig */
+    /**
+     * Model tests for InspectLogConfig
+     */
     @Test
     public void testInspectLogConfig() {
         // TODO: test InspectLogConfig
     }
 
-    /** Test the property 'config' */
+    /**
+     * Test the property 'config'
+     */
     @Test
     public void configTest() {
         // TODO: test config
     }
 
-    /** Test the property 'path' */
+    /**
+     * Test the property 'path'
+     */
     @Test
     public void pathTest() {
         // TODO: test path
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /** Test the property 'tag' */
+    /**
+     * Test the property 'tag'
+     */
     @Test
     public void tagTest() {
         // TODO: test tag
     }
 
-    /** Test the property 'type' */
+    /**
+     * Test the property 'type'
+     */
     @Test
     public void typeTest() {
         // TODO: test type
     }
+
 }

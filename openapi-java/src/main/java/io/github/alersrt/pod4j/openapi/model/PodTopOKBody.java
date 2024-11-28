@@ -10,265 +10,259 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** PodTopOKBody */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * PodTopOKBody
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodTopOKBody {
-    public static final String SERIALIZED_NAME_PROCESSES = "Processes";
+  public static final String SERIALIZED_NAME_PROCESSES = "Processes";
+  @SerializedName(SERIALIZED_NAME_PROCESSES)
+  private List<List<String>> processes = new ArrayList<>();
 
-    @SerializedName(SERIALIZED_NAME_PROCESSES)
-    private List<List<String>> processes = new ArrayList<>();
+  public static final String SERIALIZED_NAME_TITLES = "Titles";
+  @SerializedName(SERIALIZED_NAME_TITLES)
+  private List<String> titles = new ArrayList<>();
 
-    public static final String SERIALIZED_NAME_TITLES = "Titles";
+  public PodTopOKBody() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_TITLES)
-    private List<String> titles = new ArrayList<>();
+  public PodTopOKBody processes(List<List<String>> processes) {
+    this.processes = processes;
+    return this;
+  }
 
-    public PodTopOKBody() {}
-
-    public PodTopOKBody processes(List<List<String>> processes) {
-        this.processes = processes;
-        return this;
+  public PodTopOKBody addProcessesItem(List<String> processesItem) {
+    if (this.processes == null) {
+      this.processes = new ArrayList<>();
     }
+    this.processes.add(processesItem);
+    return this;
+  }
 
-    public PodTopOKBody addProcessesItem(List<String> processesItem) {
-        if (this.processes == null) {
-            this.processes = new ArrayList<>();
+  /**
+   * Each process running in the container, where each is process is an array of values corresponding to the titles.
+   * @return processes
+   */
+  @javax.annotation.Nonnull
+  public List<List<String>> getProcesses() {
+    return processes;
+  }
+
+  public void setProcesses(List<List<String>> processes) {
+    this.processes = processes;
+  }
+
+
+  public PodTopOKBody titles(List<String> titles) {
+    this.titles = titles;
+    return this;
+  }
+
+  public PodTopOKBody addTitlesItem(String titlesItem) {
+    if (this.titles == null) {
+      this.titles = new ArrayList<>();
+    }
+    this.titles.add(titlesItem);
+    return this;
+  }
+
+  /**
+   * The ps column titles
+   * @return titles
+   */
+  @javax.annotation.Nonnull
+  public List<String> getTitles() {
+    return titles;
+  }
+
+  public void setTitles(List<String> titles) {
+    this.titles = titles;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PodTopOKBody podTopOKBody = (PodTopOKBody) o;
+    return Objects.equals(this.processes, podTopOKBody.processes) &&
+        Objects.equals(this.titles, podTopOKBody.titles);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(processes, titles);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class PodTopOKBody {\n");
+    sb.append("    processes: ").append(toIndentedString(processes)).append("\n");
+    sb.append("    titles: ").append(toIndentedString(titles)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Processes");
+    openapiFields.add("Titles");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("Processes");
+    openapiRequiredFields.add("Titles");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PodTopOKBody
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PodTopOKBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PodTopOKBody is not found in the empty JSON string", PodTopOKBody.openapiRequiredFields.toString()));
         }
-        this.processes.add(processesItem);
-        return this;
-    }
+      }
 
-    /**
-     * Each process running in the container, where each is process is an array of values
-     * corresponding to the titles.
-     *
-     * @return processes
-     */
-    @javax.annotation.Nonnull
-    public List<List<String>> getProcesses() {
-        return processes;
-    }
-
-    public void setProcesses(List<List<String>> processes) {
-        this.processes = processes;
-    }
-
-    public PodTopOKBody titles(List<String> titles) {
-        this.titles = titles;
-        return this;
-    }
-
-    public PodTopOKBody addTitlesItem(String titlesItem) {
-        if (this.titles == null) {
-            this.titles = new ArrayList<>();
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PodTopOKBody.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodTopOKBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        this.titles.add(titlesItem);
-        return this;
-    }
+      }
 
-    /**
-     * The ps column titles
-     *
-     * @return titles
-     */
-    @javax.annotation.Nonnull
-    public List<String> getTitles() {
-        return titles;
-    }
-
-    public void setTitles(List<String> titles) {
-        this.titles = titles;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PodTopOKBody.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PodTopOKBody podTopOKBody = (PodTopOKBody) o;
-        return Objects.equals(this.processes, podTopOKBody.processes)
-                && Objects.equals(this.titles, podTopOKBody.titles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(processes, titles);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class PodTopOKBody {\n");
-        sb.append("    processes: ").append(toIndentedString(processes)).append("\n");
-        sb.append("    titles: ").append(toIndentedString(titles)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Processes");
-        openapiFields.add("Titles");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("Processes");
-        openapiRequiredFields.add("Titles");
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to PodTopOKBody
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!PodTopOKBody.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in PodTopOKBody is not found in the empty"
-                                        + " JSON string",
-                                PodTopOKBody.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!PodTopOKBody.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `PodTopOKBody` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
-
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : PodTopOKBody.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field `%s` is not found in the JSON string: %s",
-                                requiredField, jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // ensure the required json array is present
-        if (jsonObj.get("Processes") == null) {
-            throw new IllegalArgumentException(
-                    "Expected the field `linkedContent` to be an array in the JSON string but got"
-                            + " `null`");
-        } else if (!jsonObj.get("Processes").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Processes` to be an array in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("Processes").toString()));
-        }
-        // ensure the required json array is present
-        if (jsonObj.get("Titles") == null) {
-            throw new IllegalArgumentException(
-                    "Expected the field `linkedContent` to be an array in the JSON string but got"
-                            + " `null`");
-        } else if (!jsonObj.get("Titles").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Titles` to be an array in the JSON string but got"
-                                    + " `%s`",
-                            jsonObj.get("Titles").toString()));
-        }
+      // ensure the required json array is present
+      if (jsonObj.get("Processes") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("Processes").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Processes` to be an array in the JSON string but got `%s`", jsonObj.get("Processes").toString()));
+      }
+      // ensure the required json array is present
+      if (jsonObj.get("Titles") == null) {
+        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
+      } else if (!jsonObj.get("Titles").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Titles` to be an array in the JSON string but got `%s`", jsonObj.get("Titles").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PodTopOKBody.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PodTopOKBody' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PodTopOKBody> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PodTopOKBody.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PodTopOKBody>() {
+           @Override
+           public void write(JsonWriter out, PodTopOKBody value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PodTopOKBody read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!PodTopOKBody.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'PodTopOKBody' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<PodTopOKBody> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(PodTopOKBody.class));
+  /**
+   * Create an instance of PodTopOKBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PodTopOKBody
+   * @throws IOException if the JSON string is invalid with respect to PodTopOKBody
+   */
+  public static PodTopOKBody fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PodTopOKBody.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<PodTopOKBody>() {
-                        @Override
-                        public void write(JsonWriter out, PodTopOKBody value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public PodTopOKBody read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of PodTopOKBody given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PodTopOKBody
-     * @throws IOException if the JSON string is invalid with respect to PodTopOKBody
-     */
-    public static PodTopOKBody fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, PodTopOKBody.class);
-    }
-
-    /**
-     * Convert an instance of PodTopOKBody to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of PodTopOKBody to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

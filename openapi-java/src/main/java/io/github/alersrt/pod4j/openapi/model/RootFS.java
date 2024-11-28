@@ -10,237 +10,237 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** RootFS */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * RootFS
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class RootFS {
-    public static final String SERIALIZED_NAME_LAYERS = "Layers";
+  public static final String SERIALIZED_NAME_LAYERS = "Layers";
+  @SerializedName(SERIALIZED_NAME_LAYERS)
+  private List<String> layers = new ArrayList<>();
 
-    @SerializedName(SERIALIZED_NAME_LAYERS)
-    private List<String> layers = new ArrayList<>();
+  public static final String SERIALIZED_NAME_TYPE = "Type";
+  @SerializedName(SERIALIZED_NAME_TYPE)
+  private String type;
 
-    public static final String SERIALIZED_NAME_TYPE = "Type";
+  public RootFS() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_TYPE)
-    private String type;
+  public RootFS layers(List<String> layers) {
+    this.layers = layers;
+    return this;
+  }
 
-    public RootFS() {}
-
-    public RootFS layers(List<String> layers) {
-        this.layers = layers;
-        return this;
+  public RootFS addLayersItem(String layersItem) {
+    if (this.layers == null) {
+      this.layers = new ArrayList<>();
     }
+    this.layers.add(layersItem);
+    return this;
+  }
 
-    public RootFS addLayersItem(String layersItem) {
-        if (this.layers == null) {
-            this.layers = new ArrayList<>();
+  /**
+   * Get layers
+   * @return layers
+   */
+  @javax.annotation.Nullable
+  public List<String> getLayers() {
+    return layers;
+  }
+
+  public void setLayers(List<String> layers) {
+    this.layers = layers;
+  }
+
+
+  public RootFS type(String type) {
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Get type
+   * @return type
+   */
+  @javax.annotation.Nullable
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RootFS rootFS = (RootFS) o;
+    return Objects.equals(this.layers, rootFS.layers) &&
+        Objects.equals(this.type, rootFS.type);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(layers, type);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class RootFS {\n");
+    sb.append("    layers: ").append(toIndentedString(layers)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Layers");
+    openapiFields.add("Type");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RootFS
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!RootFS.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in RootFS is not found in the empty JSON string", RootFS.openapiRequiredFields.toString()));
         }
-        this.layers.add(layersItem);
-        return this;
-    }
+      }
 
-    /**
-     * Get layers
-     *
-     * @return layers
-     */
-    @javax.annotation.Nullable
-    public List<String> getLayers() {
-        return layers;
-    }
-
-    public void setLayers(List<String> layers) {
-        this.layers = layers;
-    }
-
-    public RootFS type(String type) {
-        this.type = type;
-        return this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return type
-     */
-    @javax.annotation.Nullable
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!RootFS.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RootFS` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        RootFS rootFS = (RootFS) o;
-        return Objects.equals(this.layers, rootFS.layers) && Objects.equals(this.type, rootFS.type);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(layers, type);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class RootFS {\n");
-        sb.append("    layers: ").append(toIndentedString(layers)).append("\n");
-        sb.append("    type: ").append(toIndentedString(type)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Layers");
-        openapiFields.add("Type");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to RootFS
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!RootFS.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in RootFS is not found in the empty JSON"
-                                        + " string",
-                                RootFS.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!RootFS.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the `RootFS`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("Layers") != null
-                && !jsonObj.get("Layers").isJsonNull()
-                && !jsonObj.get("Layers").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Layers` to be an array in the JSON string but got"
-                                    + " `%s`",
-                            jsonObj.get("Layers").toString()));
-        }
-        if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull())
-                && !jsonObj.get("Type").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Type` to be a primitive type in the JSON string"
-                                    + " but got `%s`",
-                            jsonObj.get("Type").toString()));
-        }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("Layers") != null && !jsonObj.get("Layers").isJsonNull() && !jsonObj.get("Layers").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Layers` to be an array in the JSON string but got `%s`", jsonObj.get("Layers").toString()));
+      }
+      if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull()) && !jsonObj.get("Type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Type").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!RootFS.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'RootFS' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<RootFS> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(RootFS.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<RootFS>() {
+           @Override
+           public void write(JsonWriter out, RootFS value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public RootFS read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!RootFS.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'RootFS' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<RootFS> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(RootFS.class));
+  /**
+   * Create an instance of RootFS given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RootFS
+   * @throws IOException if the JSON string is invalid with respect to RootFS
+   */
+  public static RootFS fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, RootFS.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<RootFS>() {
-                        @Override
-                        public void write(JsonWriter out, RootFS value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public RootFS read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of RootFS given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of RootFS
-     * @throws IOException if the JSON string is invalid with respect to RootFS
-     */
-    public static RootFS fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, RootFS.class);
-    }
-
-    /**
-     * Convert an instance of RootFS to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of RootFS to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

@@ -10,243 +10,237 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
+import io.github.alersrt.pod4j.openapi.JSON;
+
 /**
- * ServiceCreateResponse contains the information returned to a client on the creation of a new
- * service.
+ * ServiceCreateResponse contains the information returned to a client on the creation of a new service.
  */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ServiceCreateResponse {
-    public static final String SERIALIZED_NAME_I_D = "ID";
+  public static final String SERIALIZED_NAME_I_D = "ID";
+  @SerializedName(SERIALIZED_NAME_I_D)
+  private String ID;
 
-    @SerializedName(SERIALIZED_NAME_I_D)
-    private String ID;
+  public static final String SERIALIZED_NAME_WARNINGS = "Warnings";
+  @SerializedName(SERIALIZED_NAME_WARNINGS)
+  private List<String> warnings = new ArrayList<>();
 
-    public static final String SERIALIZED_NAME_WARNINGS = "Warnings";
+  public ServiceCreateResponse() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_WARNINGS)
-    private List<String> warnings = new ArrayList<>();
+  public ServiceCreateResponse ID(String ID) {
+    this.ID = ID;
+    return this;
+  }
 
-    public ServiceCreateResponse() {}
+  /**
+   * The ID of the created service.
+   * @return ID
+   */
+  @javax.annotation.Nullable
+  public String getID() {
+    return ID;
+  }
 
-    public ServiceCreateResponse ID(String ID) {
-        this.ID = ID;
-        return this;
+  public void setID(String ID) {
+    this.ID = ID;
+  }
+
+
+  public ServiceCreateResponse warnings(List<String> warnings) {
+    this.warnings = warnings;
+    return this;
+  }
+
+  public ServiceCreateResponse addWarningsItem(String warningsItem) {
+    if (this.warnings == null) {
+      this.warnings = new ArrayList<>();
     }
+    this.warnings.add(warningsItem);
+    return this;
+  }
 
-    /**
-     * The ID of the created service.
-     *
-     * @return ID
-     */
-    @javax.annotation.Nullable
-    public String getID() {
-        return ID;
+  /**
+   * Optional warning message.  FIXME(thaJeztah): this should have \&quot;omitempty\&quot; in the generated type.
+   * @return warnings
+   */
+  @javax.annotation.Nullable
+  public List<String> getWarnings() {
+    return warnings;
+  }
+
+  public void setWarnings(List<String> warnings) {
+    this.warnings = warnings;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    public void setID(String ID) {
-        this.ID = ID;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    ServiceCreateResponse serviceCreateResponse = (ServiceCreateResponse) o;
+    return Objects.equals(this.ID, serviceCreateResponse.ID) &&
+        Objects.equals(this.warnings, serviceCreateResponse.warnings);
+  }
 
-    public ServiceCreateResponse warnings(List<String> warnings) {
-        this.warnings = warnings;
-        return this;
+  @Override
+  public int hashCode() {
+    return Objects.hash(ID, warnings);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ServiceCreateResponse {\n");
+    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
+    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public ServiceCreateResponse addWarningsItem(String warningsItem) {
-        if (this.warnings == null) {
-            this.warnings = new ArrayList<>();
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("ID");
+    openapiFields.add("Warnings");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ServiceCreateResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ServiceCreateResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ServiceCreateResponse is not found in the empty JSON string", ServiceCreateResponse.openapiRequiredFields.toString()));
         }
-        this.warnings.add(warningsItem);
-        return this;
-    }
+      }
 
-    /**
-     * Optional warning message. FIXME(thaJeztah): this should have \&quot;omitempty\&quot; in the
-     * generated type.
-     *
-     * @return warnings
-     */
-    @javax.annotation.Nullable
-    public List<String> getWarnings() {
-        return warnings;
-    }
-
-    public void setWarnings(List<String> warnings) {
-        this.warnings = warnings;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ServiceCreateResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ServiceCreateResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ServiceCreateResponse serviceCreateResponse = (ServiceCreateResponse) o;
-        return Objects.equals(this.ID, serviceCreateResponse.ID)
-                && Objects.equals(this.warnings, serviceCreateResponse.warnings);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(ID, warnings);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class ServiceCreateResponse {\n");
-        sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
-        sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("ID");
-        openapiFields.add("Warnings");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ServiceCreateResponse
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ServiceCreateResponse.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in ServiceCreateResponse is not found in"
-                                        + " the empty JSON string",
-                                ServiceCreateResponse.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ServiceCreateResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the"
-                                        + " `ServiceCreateResponse` properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull())
-                && !jsonObj.get("ID").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `ID` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("ID").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("Warnings") != null
-                && !jsonObj.get("Warnings").isJsonNull()
-                && !jsonObj.get("Warnings").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Warnings` to be an array in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("Warnings").toString()));
-        }
+      if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("Warnings") != null && !jsonObj.get("Warnings").isJsonNull() && !jsonObj.get("Warnings").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Warnings` to be an array in the JSON string but got `%s`", jsonObj.get("Warnings").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ServiceCreateResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ServiceCreateResponse' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ServiceCreateResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ServiceCreateResponse.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ServiceCreateResponse>() {
+           @Override
+           public void write(JsonWriter out, ServiceCreateResponse value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ServiceCreateResponse read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!ServiceCreateResponse.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'ServiceCreateResponse' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ServiceCreateResponse> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(ServiceCreateResponse.class));
+  /**
+   * Create an instance of ServiceCreateResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ServiceCreateResponse
+   * @throws IOException if the JSON string is invalid with respect to ServiceCreateResponse
+   */
+  public static ServiceCreateResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ServiceCreateResponse.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<ServiceCreateResponse>() {
-                        @Override
-                        public void write(JsonWriter out, ServiceCreateResponse value)
-                                throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public ServiceCreateResponse read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of ServiceCreateResponse given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ServiceCreateResponse
-     * @throws IOException if the JSON string is invalid with respect to ServiceCreateResponse
-     */
-    public static ServiceCreateResponse fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, ServiceCreateResponse.class);
-    }
-
-    /**
-     * Convert an instance of ServiceCreateResponse to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of ServiceCreateResponse to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

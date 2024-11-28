@@ -10,20 +10,28 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.api;
 
 import io.github.alersrt.pod4j.openapi.ApiException;
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import io.github.alersrt.pod4j.openapi.model.IdResponse;
 import io.github.alersrt.pod4j.openapi.model.LibpodImagesRemoveReport;
 import io.github.alersrt.pod4j.openapi.model.ManifestAddOptions;
 import io.github.alersrt.pod4j.openapi.model.ManifestModifyOptions;
 import io.github.alersrt.pod4j.openapi.model.ManifestModifyReport;
 import io.github.alersrt.pod4j.openapi.model.Schema2ListPublic;
-import java.util.List;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** API tests for ManifestsApi */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * API tests for ManifestsApi
+ */
 @Disabled
 public class ManifestsApiTest {
 
@@ -32,7 +40,7 @@ public class ManifestsApiTest {
     /**
      * Add image
      *
-     * <p>Add an image to a manifest list Deprecated: As of 4.0.0 use ManifestModifyLibpod instead
+     * Add an image to a manifest list  Deprecated: As of 4.0.0 use ManifestModifyLibpod instead 
      *
      * @throws ApiException if the Api call fails
      */
@@ -47,7 +55,7 @@ public class ManifestsApiTest {
     /**
      * Create
      *
-     * <p>Create a manifest list
+     * Create a manifest list
      *
      * @throws ApiException if the Api call fails
      */
@@ -65,7 +73,7 @@ public class ManifestsApiTest {
     /**
      * Delete manifest list
      *
-     * <p>Delete named manifest list As of v4.0.0
+     * Delete named manifest list  As of v4.0.0 
      *
      * @throws ApiException if the Api call fails
      */
@@ -79,8 +87,7 @@ public class ManifestsApiTest {
     /**
      * Exists
      *
-     * <p>Check if manifest list exists Note: There is no contract that the manifest list will exist
-     * for a follow-on operation
+     * Check if manifest list exists  Note: There is no contract that the manifest list will exist for a follow-on operation 
      *
      * @throws ApiException if the Api call fails
      */
@@ -94,7 +101,7 @@ public class ManifestsApiTest {
     /**
      * Inspect
      *
-     * <p>Display attributes of given manifest list
+     * Display attributes of given manifest list
      *
      * @throws ApiException if the Api call fails
      */
@@ -109,8 +116,7 @@ public class ManifestsApiTest {
     /**
      * Modify manifest list
      *
-     * <p>Add/Remove an image(s) to a manifest list Note: operations are not atomic when multiple
-     * Images are provided. As of v4.0.0
+     * Add/Remove an image(s) to a manifest list  Note: operations are not atomic when multiple Images are provided.  As of v4.0.0 
      *
      * @throws ApiException if the Api call fails
      */
@@ -126,7 +132,7 @@ public class ManifestsApiTest {
     /**
      * Push manifest list to registry
      *
-     * <p>Push a manifest list or image index to the named registry As of v4.0.0
+     * Push a manifest list or image index to the named registry  As of v4.0.0 
      *
      * @throws ApiException if the Api call fails
      */
@@ -139,23 +145,14 @@ public class ManifestsApiTest {
         Boolean all = null;
         Boolean tlsVerify = null;
         Boolean quiet = null;
-        IdResponse response =
-                api.manifestPushLibpod(
-                        name,
-                        destination,
-                        addCompression,
-                        forceCompressionFormat,
-                        all,
-                        tlsVerify,
-                        quiet);
+        IdResponse response = api.manifestPushLibpod(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet);
         // TODO: test validations
     }
 
     /**
      * Push manifest to registry
      *
-     * <p>Push a manifest list or image index to a registry Deprecated: As of 4.0.0 use
-     * ManifestPushLibpod instead
+     * Push a manifest list or image index to a registry  Deprecated: As of 4.0.0 use ManifestPushLibpod instead 
      *
      * @throws ApiException if the Api call fails
      */
@@ -167,4 +164,5 @@ public class ManifestsApiTest {
         IdResponse response = api.manifestPushV3Libpod(name, destination, all);
         // TODO: test validations
     }
+
 }

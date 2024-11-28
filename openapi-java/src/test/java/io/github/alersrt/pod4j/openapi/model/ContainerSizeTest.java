@@ -10,29 +10,47 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for ContainerSize */
+/**
+ * Model tests for ContainerSize
+ */
 public class ContainerSizeTest {
     private final ContainerSize model = new ContainerSize();
 
-    /** Model tests for ContainerSize */
+    /**
+     * Model tests for ContainerSize
+     */
     @Test
     public void testContainerSize() {
         // TODO: test ContainerSize
     }
 
-    /** Test the property 'rootFsSize' */
+    /**
+     * Test the property 'rootFsSize'
+     */
     @Test
     public void rootFsSizeTest() {
         // TODO: test rootFsSize
     }
 
-    /** Test the property 'rwSize' */
+    /**
+     * Test the property 'rwSize'
+     */
     @Test
     public void rwSizeTest() {
         // TODO: test rwSize
     }
+
 }

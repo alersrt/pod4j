@@ -10,237 +10,237 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
-/** IPNet */
-@javax.annotation.Generated(
-        value = "org.openapitools.codegen.languages.JavaClientCodegen",
-        date = "2024-11-26T18:24:48.119248545+07:00[Asia/Barnaul]",
-        comments = "Generator version: 7.7.0")
+import io.github.alersrt.pod4j.openapi.JSON;
+
+/**
+ * IPNet
+ */
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IPNet {
-    public static final String SERIALIZED_NAME_I_P = "IP";
+  public static final String SERIALIZED_NAME_I_P = "IP";
+  @SerializedName(SERIALIZED_NAME_I_P)
+  private String IP;
 
-    @SerializedName(SERIALIZED_NAME_I_P)
-    private String IP;
+  public static final String SERIALIZED_NAME_MASK = "Mask";
+  @SerializedName(SERIALIZED_NAME_MASK)
+  private List<Integer> mask = new ArrayList<>();
 
-    public static final String SERIALIZED_NAME_MASK = "Mask";
+  public IPNet() {
+  }
 
-    @SerializedName(SERIALIZED_NAME_MASK)
-    private List<Integer> mask = new ArrayList<>();
+  public IPNet IP(String IP) {
+    this.IP = IP;
+    return this;
+  }
 
-    public IPNet() {}
+  /**
+   * Get IP
+   * @return IP
+   */
+  @javax.annotation.Nullable
+  public String getIP() {
+    return IP;
+  }
 
-    public IPNet IP(String IP) {
-        this.IP = IP;
-        return this;
+  public void setIP(String IP) {
+    this.IP = IP;
+  }
+
+
+  public IPNet mask(List<Integer> mask) {
+    this.mask = mask;
+    return this;
+  }
+
+  public IPNet addMaskItem(Integer maskItem) {
+    if (this.mask == null) {
+      this.mask = new ArrayList<>();
     }
+    this.mask.add(maskItem);
+    return this;
+  }
 
-    /**
-     * Get IP
-     *
-     * @return IP
-     */
-    @javax.annotation.Nullable
-    public String getIP() {
-        return IP;
+  /**
+   * See type [IPNet] and func [ParseCIDR] for details.
+   * @return mask
+   */
+  @javax.annotation.Nullable
+  public List<Integer> getMask() {
+    return mask;
+  }
+
+  public void setMask(List<Integer> mask) {
+    this.mask = mask;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    public void setIP(String IP) {
-        this.IP = IP;
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    IPNet ipNet = (IPNet) o;
+    return Objects.equals(this.IP, ipNet.IP) &&
+        Objects.equals(this.mask, ipNet.mask);
+  }
 
-    public IPNet mask(List<Integer> mask) {
-        this.mask = mask;
-        return this;
+  @Override
+  public int hashCode() {
+    return Objects.hash(IP, mask);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class IPNet {\n");
+    sb.append("    IP: ").append(toIndentedString(IP)).append("\n");
+    sb.append("    mask: ").append(toIndentedString(mask)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
     }
+    return o.toString().replace("\n", "\n    ");
+  }
 
-    public IPNet addMaskItem(Integer maskItem) {
-        if (this.mask == null) {
-            this.mask = new ArrayList<>();
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("IP");
+    openapiFields.add("Mask");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to IPNet
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!IPNet.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in IPNet is not found in the empty JSON string", IPNet.openapiRequiredFields.toString()));
         }
-        this.mask.add(maskItem);
-        return this;
-    }
+      }
 
-    /**
-     * See type [IPNet] and func [ParseCIDR] for details.
-     *
-     * @return mask
-     */
-    @javax.annotation.Nullable
-    public List<Integer> getMask() {
-        return mask;
-    }
-
-    public void setMask(List<Integer> mask) {
-        this.mask = mask;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!IPNet.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IPNet` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        IPNet ipNet = (IPNet) o;
-        return Objects.equals(this.IP, ipNet.IP) && Objects.equals(this.mask, ipNet.mask);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(IP, mask);
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class IPNet {\n");
-        sb.append("    IP: ").append(toIndentedString(IP)).append("\n");
-        sb.append("    mask: ").append(toIndentedString(mask)).append("\n");
-        sb.append("}");
-        return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces (except the first
-     * line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
-
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("IP");
-        openapiFields.add("Mask");
-
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-    }
-
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to IPNet
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!IPNet.openapiRequiredFields
-                    .isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The required field(s) %s in IPNet is not found in the empty JSON"
-                                        + " string",
-                                IPNet.openapiRequiredFields.toString()));
-            }
-        }
-
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!IPNet.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(
-                        String.format(
-                                "The field `%s` in the JSON string is not defined in the `IPNet`"
-                                        + " properties. JSON: %s",
-                                entry.getKey(), jsonElement.toString()));
-            }
-        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("IP") != null && !jsonObj.get("IP").isJsonNull())
-                && !jsonObj.get("IP").isJsonPrimitive()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `IP` to be a primitive type in the JSON string but"
-                                    + " got `%s`",
-                            jsonObj.get("IP").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("Mask") != null
-                && !jsonObj.get("Mask").isJsonNull()
-                && !jsonObj.get("Mask").isJsonArray()) {
-            throw new IllegalArgumentException(
-                    String.format(
-                            "Expected the field `Mask` to be an array in the JSON string but got"
-                                    + " `%s`",
-                            jsonObj.get("Mask").toString()));
-        }
+      if ((jsonObj.get("IP") != null && !jsonObj.get("IP").isJsonNull()) && !jsonObj.get("IP").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `IP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IP").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("Mask") != null && !jsonObj.get("Mask").isJsonNull() && !jsonObj.get("Mask").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Mask` to be an array in the JSON string but got `%s`", jsonObj.get("Mask").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!IPNet.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'IPNet' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<IPNet> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(IPNet.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<IPNet>() {
+           @Override
+           public void write(JsonWriter out, IPNet value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public IPNet read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!IPNet.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'IPNet' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<IPNet> thisAdapter =
-                    gson.getDelegateAdapter(this, TypeToken.get(IPNet.class));
+  /**
+   * Create an instance of IPNet given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of IPNet
+   * @throws IOException if the JSON string is invalid with respect to IPNet
+   */
+  public static IPNet fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, IPNet.class);
+  }
 
-            return (TypeAdapter<T>)
-                    new TypeAdapter<IPNet>() {
-                        @Override
-                        public void write(JsonWriter out, IPNet value) throws IOException {
-                            JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                            elementAdapter.write(out, obj);
-                        }
-
-                        @Override
-                        public IPNet read(JsonReader in) throws IOException {
-                            JsonElement jsonElement = elementAdapter.read(in);
-                            validateJsonElement(jsonElement);
-                            return thisAdapter.fromJsonTree(jsonElement);
-                        }
-                    }.nullSafe();
-        }
-    }
-
-    /**
-     * Create an instance of IPNet given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of IPNet
-     * @throws IOException if the JSON string is invalid with respect to IPNet
-     */
-    public static IPNet fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, IPNet.class);
-    }
-
-    /**
-     * Convert an instance of IPNet to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
+  /**
+   * Convert an instance of IPNet to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
+

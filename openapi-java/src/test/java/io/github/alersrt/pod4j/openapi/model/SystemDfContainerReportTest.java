@@ -10,71 +10,106 @@
  * Do not edit the class manually.
  */
 
+
 package io.github.alersrt.pod4j.openapi.model;
 
+import com.google.gson.TypeAdapter;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/** Model tests for SystemDfContainerReport */
+/**
+ * Model tests for SystemDfContainerReport
+ */
 public class SystemDfContainerReportTest {
     private final SystemDfContainerReport model = new SystemDfContainerReport();
 
-    /** Model tests for SystemDfContainerReport */
+    /**
+     * Model tests for SystemDfContainerReport
+     */
     @Test
     public void testSystemDfContainerReport() {
         // TODO: test SystemDfContainerReport
     }
 
-    /** Test the property 'command' */
+    /**
+     * Test the property 'command'
+     */
     @Test
     public void commandTest() {
         // TODO: test command
     }
 
-    /** Test the property 'containerID' */
+    /**
+     * Test the property 'containerID'
+     */
     @Test
     public void containerIDTest() {
         // TODO: test containerID
     }
 
-    /** Test the property 'created' */
+    /**
+     * Test the property 'created'
+     */
     @Test
     public void createdTest() {
         // TODO: test created
     }
 
-    /** Test the property 'image' */
+    /**
+     * Test the property 'image'
+     */
     @Test
     public void imageTest() {
         // TODO: test image
     }
 
-    /** Test the property 'localVolumes' */
+    /**
+     * Test the property 'localVolumes'
+     */
     @Test
     public void localVolumesTest() {
         // TODO: test localVolumes
     }
 
-    /** Test the property 'names' */
+    /**
+     * Test the property 'names'
+     */
     @Test
     public void namesTest() {
         // TODO: test names
     }
 
-    /** Test the property 'rwSize' */
+    /**
+     * Test the property 'rwSize'
+     */
     @Test
     public void rwSizeTest() {
         // TODO: test rwSize
     }
 
-    /** Test the property 'size' */
+    /**
+     * Test the property 'size'
+     */
     @Test
     public void sizeTest() {
         // TODO: test size
     }
 
-    /** Test the property 'status' */
+    /**
+     * Test the property 'status'
+     */
     @Test
     public void statusTest() {
         // TODO: test status
     }
+
 }
