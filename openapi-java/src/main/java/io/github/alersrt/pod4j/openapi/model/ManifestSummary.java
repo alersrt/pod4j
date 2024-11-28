@@ -13,77 +13,64 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.AttestationProperties;
 import io.github.alersrt.pod4j.openapi.model.Descriptor;
 import io.github.alersrt.pod4j.openapi.model.ImageProperties;
 import io.github.alersrt.pod4j.openapi.model.ManifestSummarySize;
-import java.io.IOException;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ManifestSummary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ManifestSummary.JSON_PROPERTY_ATTESTATION_DATA,
+  ManifestSummary.JSON_PROPERTY_AVAILABLE,
+  ManifestSummary.JSON_PROPERTY_DESCRIPTOR,
+  ManifestSummary.JSON_PROPERTY_I_D,
+  ManifestSummary.JSON_PROPERTY_IMAGE_DATA,
+  ManifestSummary.JSON_PROPERTY_KIND,
+  ManifestSummary.JSON_PROPERTY_SIZE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestSummary {
-  public static final String SERIALIZED_NAME_ATTESTATION_DATA = "AttestationData";
-  @SerializedName(SERIALIZED_NAME_ATTESTATION_DATA)
+  public static final String JSON_PROPERTY_ATTESTATION_DATA = "AttestationData";
   private AttestationProperties attestationData;
 
-  public static final String SERIALIZED_NAME_AVAILABLE = "Available";
-  @SerializedName(SERIALIZED_NAME_AVAILABLE)
+  public static final String JSON_PROPERTY_AVAILABLE = "Available";
   private Boolean available;
 
-  public static final String SERIALIZED_NAME_DESCRIPTOR = "Descriptor";
-  @SerializedName(SERIALIZED_NAME_DESCRIPTOR)
+  public static final String JSON_PROPERTY_DESCRIPTOR = "Descriptor";
   private Descriptor descriptor;
 
-  public static final String SERIALIZED_NAME_I_D = "ID";
-  @SerializedName(SERIALIZED_NAME_I_D)
+  public static final String JSON_PROPERTY_I_D = "ID";
   private String ID;
 
-  public static final String SERIALIZED_NAME_IMAGE_DATA = "ImageData";
-  @SerializedName(SERIALIZED_NAME_IMAGE_DATA)
+  public static final String JSON_PROPERTY_IMAGE_DATA = "ImageData";
   private ImageProperties imageData;
 
-  public static final String SERIALIZED_NAME_KIND = "Kind";
-  @SerializedName(SERIALIZED_NAME_KIND)
+  public static final String JSON_PROPERTY_KIND = "Kind";
   private String kind;
 
-  public static final String SERIALIZED_NAME_SIZE = "Size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
+  public static final String JSON_PROPERTY_SIZE = "Size";
   private ManifestSummarySize size;
 
-  public ManifestSummary() {
+  public ManifestSummary() { 
   }
 
   public ManifestSummary attestationData(AttestationProperties attestationData) {
@@ -96,10 +83,17 @@ public class ManifestSummary {
    * @return attestationData
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_ATTESTATION_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public AttestationProperties getAttestationData() {
     return attestationData;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ATTESTATION_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttestationData(AttestationProperties attestationData) {
     this.attestationData = attestationData;
   }
@@ -115,10 +109,17 @@ public class ManifestSummary {
    * @return available
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_AVAILABLE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getAvailable() {
     return available;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AVAILABLE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAvailable(Boolean available) {
     this.available = available;
   }
@@ -134,10 +135,18 @@ public class ManifestSummary {
    * @return descriptor
    */
   @javax.annotation.Nonnull
+  @NotNull
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTOR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Descriptor getDescriptor() {
     return descriptor;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DESCRIPTOR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDescriptor(Descriptor descriptor) {
     this.descriptor = descriptor;
   }
@@ -153,10 +162,17 @@ public class ManifestSummary {
    * @return ID
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getID() {
     return ID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setID(String ID) {
     this.ID = ID;
   }
@@ -172,10 +188,17 @@ public class ManifestSummary {
    * @return imageData
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ImageProperties getImageData() {
     return imageData;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageData(ImageProperties imageData) {
     this.imageData = imageData;
   }
@@ -191,10 +214,17 @@ public class ManifestSummary {
    * @return kind
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getKind() {
     return kind;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_KIND)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setKind(String kind) {
     this.kind = kind;
   }
@@ -210,16 +240,26 @@ public class ManifestSummary {
    * @return size
    */
   @javax.annotation.Nonnull
+  @NotNull
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public ManifestSummarySize getSize() {
     return size;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(ManifestSummarySize size) {
     this.size = size;
   }
 
 
-
+  /**
+   * Return true if this ManifestSummary object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -269,125 +309,74 @@ public class ManifestSummary {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("AttestationData");
-    openapiFields.add("Available");
-    openapiFields.add("Descriptor");
-    openapiFields.add("ID");
-    openapiFields.add("ImageData");
-    openapiFields.add("Kind");
-    openapiFields.add("Size");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("Available");
-    openapiRequiredFields.add("Descriptor");
-    openapiRequiredFields.add("ID");
-    openapiRequiredFields.add("Kind");
-    openapiRequiredFields.add("Size");
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ManifestSummary
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ManifestSummary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestSummary is not found in the empty JSON string", ManifestSummary.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ManifestSummary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestSummary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ManifestSummary.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `AttestationData`
-      if (jsonObj.get("AttestationData") != null && !jsonObj.get("AttestationData").isJsonNull()) {
-        AttestationProperties.validateJsonElement(jsonObj.get("AttestationData"));
-      }
-      // validate the required field `Descriptor`
-      Descriptor.validateJsonElement(jsonObj.get("Descriptor"));
-      if (!jsonObj.get("ID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
-      }
-      // validate the optional field `ImageData`
-      if (jsonObj.get("ImageData") != null && !jsonObj.get("ImageData").isJsonNull()) {
-        ImageProperties.validateJsonElement(jsonObj.get("ImageData"));
-      }
-      if (!jsonObj.get("Kind").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Kind` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Kind").toString()));
-      }
-      // validate the required field `Size`
-      ManifestSummarySize.validateJsonElement(jsonObj.get("Size"));
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ManifestSummary.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ManifestSummary' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ManifestSummary> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ManifestSummary.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ManifestSummary>() {
-           @Override
-           public void write(JsonWriter out, ManifestSummary value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ManifestSummary read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ManifestSummary given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ManifestSummary
-   * @throws IOException if the JSON string is invalid with respect to ManifestSummary
-   */
-  public static ManifestSummary fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ManifestSummary.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ManifestSummary to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `AttestationData` to the URL query string
+    if (getAttestationData() != null) {
+      joiner.add(getAttestationData().toUrlQueryString(prefix + "AttestationData" + suffix));
+    }
+
+    // add `Available` to the URL query string
+    if (getAvailable() != null) {
+      joiner.add(String.format("%sAvailable%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAvailable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Descriptor` to the URL query string
+    if (getDescriptor() != null) {
+      joiner.add(getDescriptor().toUrlQueryString(prefix + "Descriptor" + suffix));
+    }
+
+    // add `ID` to the URL query string
+    if (getID() != null) {
+      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ImageData` to the URL query string
+    if (getImageData() != null) {
+      joiner.add(getImageData().toUrlQueryString(prefix + "ImageData" + suffix));
+    }
+
+    // add `Kind` to the URL query string
+    if (getKind() != null) {
+      joiner.add(String.format("%sKind%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKind()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(getSize().toUrlQueryString(prefix + "Size" + suffix));
+    }
+
+    return joiner.toString();
   }
 }
 

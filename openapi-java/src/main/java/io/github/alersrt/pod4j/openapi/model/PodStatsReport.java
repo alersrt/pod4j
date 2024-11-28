@@ -13,85 +13,72 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PodStatsReport
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  PodStatsReport.JSON_PROPERTY_BLOCK_I_O,
+  PodStatsReport.JSON_PROPERTY_C_I_D,
+  PodStatsReport.JSON_PROPERTY_C_P_U,
+  PodStatsReport.JSON_PROPERTY_MEM,
+  PodStatsReport.JSON_PROPERTY_MEM_USAGE,
+  PodStatsReport.JSON_PROPERTY_MEM_USAGE_BYTES,
+  PodStatsReport.JSON_PROPERTY_NAME,
+  PodStatsReport.JSON_PROPERTY_NET_I_O,
+  PodStatsReport.JSON_PROPERTY_P_I_D_S,
+  PodStatsReport.JSON_PROPERTY_POD
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodStatsReport {
-  public static final String SERIALIZED_NAME_BLOCK_I_O = "BlockIO";
-  @SerializedName(SERIALIZED_NAME_BLOCK_I_O)
+  public static final String JSON_PROPERTY_BLOCK_I_O = "BlockIO";
   private String blockIO;
 
-  public static final String SERIALIZED_NAME_C_I_D = "CID";
-  @SerializedName(SERIALIZED_NAME_C_I_D)
+  public static final String JSON_PROPERTY_C_I_D = "CID";
   private String CID;
 
-  public static final String SERIALIZED_NAME_C_P_U = "CPU";
-  @SerializedName(SERIALIZED_NAME_C_P_U)
+  public static final String JSON_PROPERTY_C_P_U = "CPU";
   private String CPU;
 
-  public static final String SERIALIZED_NAME_MEM = "Mem";
-  @SerializedName(SERIALIZED_NAME_MEM)
+  public static final String JSON_PROPERTY_MEM = "Mem";
   private String mem;
 
-  public static final String SERIALIZED_NAME_MEM_USAGE = "MemUsage";
-  @SerializedName(SERIALIZED_NAME_MEM_USAGE)
+  public static final String JSON_PROPERTY_MEM_USAGE = "MemUsage";
   private String memUsage;
 
-  public static final String SERIALIZED_NAME_MEM_USAGE_BYTES = "MemUsageBytes";
-  @SerializedName(SERIALIZED_NAME_MEM_USAGE_BYTES)
+  public static final String JSON_PROPERTY_MEM_USAGE_BYTES = "MemUsageBytes";
   private String memUsageBytes;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public static final String SERIALIZED_NAME_NET_I_O = "NetIO";
-  @SerializedName(SERIALIZED_NAME_NET_I_O)
+  public static final String JSON_PROPERTY_NET_I_O = "NetIO";
   private String netIO;
 
-  public static final String SERIALIZED_NAME_P_I_D_S = "PIDS";
-  @SerializedName(SERIALIZED_NAME_P_I_D_S)
+  public static final String JSON_PROPERTY_P_I_D_S = "PIDS";
   private String PIDS;
 
-  public static final String SERIALIZED_NAME_POD = "Pod";
-  @SerializedName(SERIALIZED_NAME_POD)
+  public static final String JSON_PROPERTY_POD = "Pod";
   private String pod;
 
-  public PodStatsReport() {
+  public PodStatsReport() { 
   }
 
   public PodStatsReport blockIO(String blockIO) {
@@ -104,10 +91,16 @@ public class PodStatsReport {
    * @return blockIO
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BLOCK_I_O)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getBlockIO() {
     return blockIO;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BLOCK_I_O)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBlockIO(String blockIO) {
     this.blockIO = blockIO;
   }
@@ -123,10 +116,16 @@ public class PodStatsReport {
    * @return CID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_C_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCID() {
     return CID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_C_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCID(String CID) {
     this.CID = CID;
   }
@@ -142,10 +141,16 @@ public class PodStatsReport {
    * @return CPU
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_C_P_U)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCPU() {
     return CPU;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_C_P_U)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCPU(String CPU) {
     this.CPU = CPU;
   }
@@ -161,10 +166,16 @@ public class PodStatsReport {
    * @return mem
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMem() {
     return mem;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMem(String mem) {
     this.mem = mem;
   }
@@ -180,10 +191,16 @@ public class PodStatsReport {
    * @return memUsage
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM_USAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMemUsage() {
     return memUsage;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM_USAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemUsage(String memUsage) {
     this.memUsage = memUsage;
   }
@@ -199,10 +216,16 @@ public class PodStatsReport {
    * @return memUsageBytes
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM_USAGE_BYTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMemUsageBytes() {
     return memUsageBytes;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM_USAGE_BYTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemUsageBytes(String memUsageBytes) {
     this.memUsageBytes = memUsageBytes;
   }
@@ -218,10 +241,16 @@ public class PodStatsReport {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -237,10 +266,16 @@ public class PodStatsReport {
    * @return netIO
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NET_I_O)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNetIO() {
     return netIO;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NET_I_O)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetIO(String netIO) {
     this.netIO = netIO;
   }
@@ -256,10 +291,16 @@ public class PodStatsReport {
    * @return PIDS
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_P_I_D_S)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPIDS() {
     return PIDS;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_P_I_D_S)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPIDS(String PIDS) {
     this.PIDS = PIDS;
   }
@@ -275,16 +316,24 @@ public class PodStatsReport {
    * @return pod
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_POD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPod() {
     return pod;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_POD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPod(String pod) {
     this.pod = pod;
   }
 
 
-
+  /**
+   * Return true if this PodStatsReport object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -340,128 +389,89 @@ public class PodStatsReport {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("BlockIO");
-    openapiFields.add("CID");
-    openapiFields.add("CPU");
-    openapiFields.add("Mem");
-    openapiFields.add("MemUsage");
-    openapiFields.add("MemUsageBytes");
-    openapiFields.add("Name");
-    openapiFields.add("NetIO");
-    openapiFields.add("PIDS");
-    openapiFields.add("Pod");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PodStatsReport
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PodStatsReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PodStatsReport is not found in the empty JSON string", PodStatsReport.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PodStatsReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodStatsReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("BlockIO") != null && !jsonObj.get("BlockIO").isJsonNull()) && !jsonObj.get("BlockIO").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `BlockIO` to be a primitive type in the JSON string but got `%s`", jsonObj.get("BlockIO").toString()));
-      }
-      if ((jsonObj.get("CID") != null && !jsonObj.get("CID").isJsonNull()) && !jsonObj.get("CID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CID").toString()));
-      }
-      if ((jsonObj.get("CPU") != null && !jsonObj.get("CPU").isJsonNull()) && !jsonObj.get("CPU").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CPU` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CPU").toString()));
-      }
-      if ((jsonObj.get("Mem") != null && !jsonObj.get("Mem").isJsonNull()) && !jsonObj.get("Mem").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Mem` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Mem").toString()));
-      }
-      if ((jsonObj.get("MemUsage") != null && !jsonObj.get("MemUsage").isJsonNull()) && !jsonObj.get("MemUsage").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `MemUsage` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MemUsage").toString()));
-      }
-      if ((jsonObj.get("MemUsageBytes") != null && !jsonObj.get("MemUsageBytes").isJsonNull()) && !jsonObj.get("MemUsageBytes").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `MemUsageBytes` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MemUsageBytes").toString()));
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      if ((jsonObj.get("NetIO") != null && !jsonObj.get("NetIO").isJsonNull()) && !jsonObj.get("NetIO").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `NetIO` to be a primitive type in the JSON string but got `%s`", jsonObj.get("NetIO").toString()));
-      }
-      if ((jsonObj.get("PIDS") != null && !jsonObj.get("PIDS").isJsonNull()) && !jsonObj.get("PIDS").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `PIDS` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PIDS").toString()));
-      }
-      if ((jsonObj.get("Pod") != null && !jsonObj.get("Pod").isJsonNull()) && !jsonObj.get("Pod").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Pod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Pod").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PodStatsReport.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PodStatsReport' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PodStatsReport> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PodStatsReport.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PodStatsReport>() {
-           @Override
-           public void write(JsonWriter out, PodStatsReport value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PodStatsReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of PodStatsReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PodStatsReport
-   * @throws IOException if the JSON string is invalid with respect to PodStatsReport
-   */
-  public static PodStatsReport fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PodStatsReport.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of PodStatsReport to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `BlockIO` to the URL query string
+    if (getBlockIO() != null) {
+      joiner.add(String.format("%sBlockIO%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBlockIO()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CID` to the URL query string
+    if (getCID() != null) {
+      joiner.add(String.format("%sCID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CPU` to the URL query string
+    if (getCPU() != null) {
+      joiner.add(String.format("%sCPU%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCPU()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Mem` to the URL query string
+    if (getMem() != null) {
+      joiner.add(String.format("%sMem%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMem()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `MemUsage` to the URL query string
+    if (getMemUsage() != null) {
+      joiner.add(String.format("%sMemUsage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemUsage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `MemUsageBytes` to the URL query string
+    if (getMemUsageBytes() != null) {
+      joiner.add(String.format("%sMemUsageBytes%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemUsageBytes()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `NetIO` to the URL query string
+    if (getNetIO() != null) {
+      joiner.add(String.format("%sNetIO%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetIO()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `PIDS` to the URL query string
+    if (getPIDS() != null) {
+      joiner.add(String.format("%sPIDS%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPIDS()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Pod` to the URL query string
+    if (getPod() != null) {
+      joiner.add(String.format("%sPod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

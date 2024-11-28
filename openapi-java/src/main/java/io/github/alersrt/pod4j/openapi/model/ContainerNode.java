@@ -13,75 +13,62 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Deprecated: ContainerNode was used for the classic Docker Swarm standalone API. It will be removed in the next release.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerNode.JSON_PROPERTY_ADDR,
+  ContainerNode.JSON_PROPERTY_CPUS,
+  ContainerNode.JSON_PROPERTY_I_D,
+  ContainerNode.JSON_PROPERTY_I_P,
+  ContainerNode.JSON_PROPERTY_LABELS,
+  ContainerNode.JSON_PROPERTY_MEMORY,
+  ContainerNode.JSON_PROPERTY_NAME
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerNode {
-  public static final String SERIALIZED_NAME_ADDR = "Addr";
-  @SerializedName(SERIALIZED_NAME_ADDR)
+  public static final String JSON_PROPERTY_ADDR = "Addr";
   private String addr;
 
-  public static final String SERIALIZED_NAME_CPUS = "Cpus";
-  @SerializedName(SERIALIZED_NAME_CPUS)
+  public static final String JSON_PROPERTY_CPUS = "Cpus";
   private Long cpus;
 
-  public static final String SERIALIZED_NAME_I_D = "ID";
-  @SerializedName(SERIALIZED_NAME_I_D)
+  public static final String JSON_PROPERTY_I_D = "ID";
   private String ID;
 
-  public static final String SERIALIZED_NAME_I_P = "IP";
-  @SerializedName(SERIALIZED_NAME_I_P)
+  public static final String JSON_PROPERTY_I_P = "IP";
   private String IP;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_MEMORY = "Memory";
-  @SerializedName(SERIALIZED_NAME_MEMORY)
+  public static final String JSON_PROPERTY_MEMORY = "Memory";
   private Long memory;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public ContainerNode() {
+  public ContainerNode() { 
   }
 
   public ContainerNode addr(String addr) {
@@ -94,10 +81,16 @@ public class ContainerNode {
    * @return addr
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ADDR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAddr() {
     return addr;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ADDR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAddr(String addr) {
     this.addr = addr;
   }
@@ -113,10 +106,16 @@ public class ContainerNode {
    * @return cpus
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getCpus() {
     return cpus;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpus(Long cpus) {
     this.cpus = cpus;
   }
@@ -132,10 +131,16 @@ public class ContainerNode {
    * @return ID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getID() {
     return ID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setID(String ID) {
     this.ID = ID;
   }
@@ -151,10 +156,16 @@ public class ContainerNode {
    * @return IP
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_I_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIP() {
     return IP;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_I_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIP(String IP) {
     this.IP = IP;
   }
@@ -178,10 +189,16 @@ public class ContainerNode {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -197,10 +214,16 @@ public class ContainerNode {
    * @return memory
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getMemory() {
     return memory;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemory(Long memory) {
     this.memory = memory;
   }
@@ -216,16 +239,24 @@ public class ContainerNode {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
 
 
-
+  /**
+   * Return true if this ContainerNode object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -275,107 +306,78 @@ public class ContainerNode {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Addr");
-    openapiFields.add("Cpus");
-    openapiFields.add("ID");
-    openapiFields.add("IP");
-    openapiFields.add("Labels");
-    openapiFields.add("Memory");
-    openapiFields.add("Name");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerNode
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerNode.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerNode is not found in the empty JSON string", ContainerNode.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerNode.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerNode` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Addr") != null && !jsonObj.get("Addr").isJsonNull()) && !jsonObj.get("Addr").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Addr` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Addr").toString()));
-      }
-      if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
-      }
-      if ((jsonObj.get("IP") != null && !jsonObj.get("IP").isJsonNull()) && !jsonObj.get("IP").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IP").toString()));
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerNode.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerNode' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerNode> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerNode.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerNode>() {
-           @Override
-           public void write(JsonWriter out, ContainerNode value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerNode read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerNode given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerNode
-   * @throws IOException if the JSON string is invalid with respect to ContainerNode
-   */
-  public static ContainerNode fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerNode.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerNode to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Addr` to the URL query string
+    if (getAddr() != null) {
+      joiner.add(String.format("%sAddr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAddr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Cpus` to the URL query string
+    if (getCpus() != null) {
+      joiner.add(String.format("%sCpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ID` to the URL query string
+    if (getID() != null) {
+      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IP` to the URL query string
+    if (getIP() != null) {
+      joiner.add(String.format("%sIP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Memory` to the URL query string
+    if (getMemory() != null) {
+      joiner.add(String.format("%sMemory%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemory()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

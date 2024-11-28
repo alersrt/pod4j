@@ -13,71 +13,58 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.HostInfo;
 import io.github.alersrt.pod4j.openapi.model.Plugins;
 import io.github.alersrt.pod4j.openapi.model.StoreInfo;
 import io.github.alersrt.pod4j.openapi.model.Version;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Info is the overall struct that describes the host system running libpod/podman
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  LibpodInfo.JSON_PROPERTY_HOST,
+  LibpodInfo.JSON_PROPERTY_PLUGINS,
+  LibpodInfo.JSON_PROPERTY_REGISTRIES,
+  LibpodInfo.JSON_PROPERTY_STORE,
+  LibpodInfo.JSON_PROPERTY_VERSION
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LibpodInfo {
-  public static final String SERIALIZED_NAME_HOST = "host";
-  @SerializedName(SERIALIZED_NAME_HOST)
+  public static final String JSON_PROPERTY_HOST = "host";
   private HostInfo host;
 
-  public static final String SERIALIZED_NAME_PLUGINS = "plugins";
-  @SerializedName(SERIALIZED_NAME_PLUGINS)
+  public static final String JSON_PROPERTY_PLUGINS = "plugins";
   private Plugins plugins;
 
-  public static final String SERIALIZED_NAME_REGISTRIES = "registries";
-  @SerializedName(SERIALIZED_NAME_REGISTRIES)
+  public static final String JSON_PROPERTY_REGISTRIES = "registries";
   private Map<String, Object> registries = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_STORE = "store";
-  @SerializedName(SERIALIZED_NAME_STORE)
+  public static final String JSON_PROPERTY_STORE = "store";
   private StoreInfo store;
 
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
+  public static final String JSON_PROPERTY_VERSION = "version";
   private Version version;
 
-  public LibpodInfo() {
+  public LibpodInfo() { 
   }
 
   public LibpodInfo host(HostInfo host) {
@@ -90,10 +77,17 @@ public class LibpodInfo {
    * @return host
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public HostInfo getHost() {
     return host;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHost(HostInfo host) {
     this.host = host;
   }
@@ -109,10 +103,17 @@ public class LibpodInfo {
    * @return plugins
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PLUGINS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Plugins getPlugins() {
     return plugins;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PLUGINS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlugins(Plugins plugins) {
     this.plugins = plugins;
   }
@@ -136,10 +137,16 @@ public class LibpodInfo {
    * @return registries
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REGISTRIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getRegistries() {
     return registries;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REGISTRIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistries(Map<String, Object> registries) {
     this.registries = registries;
   }
@@ -155,10 +162,17 @@ public class LibpodInfo {
    * @return store
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_STORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public StoreInfo getStore() {
     return store;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStore(StoreInfo store) {
     this.store = store;
   }
@@ -174,16 +188,25 @@ public class LibpodInfo {
    * @return version
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Version getVersion() {
     return version;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVersion(Version version) {
     this.version = version;
   }
 
 
-
+  /**
+   * Return true if this LibpodInfo object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -229,109 +252,68 @@ public class LibpodInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("host");
-    openapiFields.add("plugins");
-    openapiFields.add("registries");
-    openapiFields.add("store");
-    openapiFields.add("version");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LibpodInfo
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LibpodInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LibpodInfo is not found in the empty JSON string", LibpodInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LibpodInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LibpodInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `host`
-      if (jsonObj.get("host") != null && !jsonObj.get("host").isJsonNull()) {
-        HostInfo.validateJsonElement(jsonObj.get("host"));
-      }
-      // validate the optional field `plugins`
-      if (jsonObj.get("plugins") != null && !jsonObj.get("plugins").isJsonNull()) {
-        Plugins.validateJsonElement(jsonObj.get("plugins"));
-      }
-      // validate the optional field `store`
-      if (jsonObj.get("store") != null && !jsonObj.get("store").isJsonNull()) {
-        StoreInfo.validateJsonElement(jsonObj.get("store"));
-      }
-      // validate the optional field `version`
-      if (jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) {
-        Version.validateJsonElement(jsonObj.get("version"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LibpodInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LibpodInfo' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LibpodInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LibpodInfo.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LibpodInfo>() {
-           @Override
-           public void write(JsonWriter out, LibpodInfo value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LibpodInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of LibpodInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LibpodInfo
-   * @throws IOException if the JSON string is invalid with respect to LibpodInfo
-   */
-  public static LibpodInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LibpodInfo.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of LibpodInfo to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `host` to the URL query string
+    if (getHost() != null) {
+      joiner.add(getHost().toUrlQueryString(prefix + "host" + suffix));
+    }
+
+    // add `plugins` to the URL query string
+    if (getPlugins() != null) {
+      joiner.add(getPlugins().toUrlQueryString(prefix + "plugins" + suffix));
+    }
+
+    // add `registries` to the URL query string
+    if (getRegistries() != null) {
+      for (String _key : getRegistries().keySet()) {
+        joiner.add(String.format("%sregistries%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getRegistries().get(_key), URLEncoder.encode(ApiClient.valueToString(getRegistries().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `store` to the URL query string
+    if (getStore() != null) {
+      joiner.add(getStore().toUrlQueryString(prefix + "store" + suffix));
+    }
+
+    // add `version` to the URL query string
+    if (getVersion() != null) {
+      joiner.add(getVersion().toUrlQueryString(prefix + "version" + suffix));
+    }
+
+    return joiner.toString();
   }
 }
 

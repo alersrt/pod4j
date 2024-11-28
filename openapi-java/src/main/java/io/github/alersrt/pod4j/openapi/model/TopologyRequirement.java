@@ -13,59 +13,46 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Topology;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * TopologyRequirement expresses the user&#39;s requirements for a volume&#39;s accessible topology.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  TopologyRequirement.JSON_PROPERTY_PREFERRED,
+  TopologyRequirement.JSON_PROPERTY_REQUISITE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class TopologyRequirement {
-  public static final String SERIALIZED_NAME_PREFERRED = "Preferred";
-  @SerializedName(SERIALIZED_NAME_PREFERRED)
-  private List<Topology> preferred = new ArrayList<>();
+  public static final String JSON_PROPERTY_PREFERRED = "Preferred";
+  private List<@Valid Topology> preferred = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_REQUISITE = "Requisite";
-  @SerializedName(SERIALIZED_NAME_REQUISITE)
-  private List<Topology> requisite = new ArrayList<>();
+  public static final String JSON_PROPERTY_REQUISITE = "Requisite";
+  private List<@Valid Topology> requisite = new ArrayList<>();
 
-  public TopologyRequirement() {
+  public TopologyRequirement() { 
   }
 
-  public TopologyRequirement preferred(List<Topology> preferred) {
+  public TopologyRequirement preferred(List<@Valid Topology> preferred) {
     this.preferred = preferred;
     return this;
   }
@@ -83,16 +70,23 @@ public class TopologyRequirement {
    * @return preferred
    */
   @javax.annotation.Nullable
-  public List<Topology> getPreferred() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PREFERRED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid Topology> getPreferred() {
     return preferred;
   }
 
-  public void setPreferred(List<Topology> preferred) {
+
+  @JsonProperty(JSON_PROPERTY_PREFERRED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPreferred(List<@Valid Topology> preferred) {
     this.preferred = preferred;
   }
 
 
-  public TopologyRequirement requisite(List<Topology> requisite) {
+  public TopologyRequirement requisite(List<@Valid Topology> requisite) {
     this.requisite = requisite;
     return this;
   }
@@ -110,16 +104,25 @@ public class TopologyRequirement {
    * @return requisite
    */
   @javax.annotation.Nullable
-  public List<Topology> getRequisite() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_REQUISITE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid Topology> getRequisite() {
     return requisite;
   }
 
-  public void setRequisite(List<Topology> requisite) {
+
+  @JsonProperty(JSON_PROPERTY_REQUISITE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRequisite(List<@Valid Topology> requisite) {
     this.requisite = requisite;
   }
 
 
-
+  /**
+   * Return true if this TopologyRequirement object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -159,118 +162,59 @@ public class TopologyRequirement {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Preferred");
-    openapiFields.add("Requisite");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to TopologyRequirement
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!TopologyRequirement.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in TopologyRequirement is not found in the empty JSON string", TopologyRequirement.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!TopologyRequirement.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TopologyRequirement` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("Preferred") != null && !jsonObj.get("Preferred").isJsonNull()) {
-        JsonArray jsonArraypreferred = jsonObj.getAsJsonArray("Preferred");
-        if (jsonArraypreferred != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Preferred").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Preferred` to be an array in the JSON string but got `%s`", jsonObj.get("Preferred").toString()));
-          }
-
-          // validate the optional field `Preferred` (array)
-          for (int i = 0; i < jsonArraypreferred.size(); i++) {
-            Topology.validateJsonElement(jsonArraypreferred.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("Requisite") != null && !jsonObj.get("Requisite").isJsonNull()) {
-        JsonArray jsonArrayrequisite = jsonObj.getAsJsonArray("Requisite");
-        if (jsonArrayrequisite != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Requisite").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Requisite` to be an array in the JSON string but got `%s`", jsonObj.get("Requisite").toString()));
-          }
-
-          // validate the optional field `Requisite` (array)
-          for (int i = 0; i < jsonArrayrequisite.size(); i++) {
-            Topology.validateJsonElement(jsonArrayrequisite.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!TopologyRequirement.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'TopologyRequirement' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<TopologyRequirement> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(TopologyRequirement.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<TopologyRequirement>() {
-           @Override
-           public void write(JsonWriter out, TopologyRequirement value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public TopologyRequirement read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of TopologyRequirement given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of TopologyRequirement
-   * @throws IOException if the JSON string is invalid with respect to TopologyRequirement
-   */
-  public static TopologyRequirement fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, TopologyRequirement.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of TopologyRequirement to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Preferred` to the URL query string
+    if (getPreferred() != null) {
+      for (int i = 0; i < getPreferred().size(); i++) {
+        if (getPreferred().get(i) != null) {
+          joiner.add(getPreferred().get(i).toUrlQueryString(String.format("%sPreferred%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `Requisite` to the URL query string
+    if (getRequisite() != null) {
+      for (int i = 0; i < getRequisite().size(); i++) {
+        if (getRequisite().get(i) != null) {
+          joiner.add(getRequisite().get(i).toUrlQueryString(String.format("%sRequisite%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

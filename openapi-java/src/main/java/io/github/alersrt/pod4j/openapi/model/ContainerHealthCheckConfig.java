@@ -13,71 +13,58 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
 import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.io.IOException;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerHealthCheckConfig describes a container healthcheck with attributes like command, retries, interval, start period, and timeout.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerHealthCheckConfig.JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION,
+  ContainerHealthCheckConfig.JSON_PROPERTY_HEALTH_LOG_DESTINATION,
+  ContainerHealthCheckConfig.JSON_PROPERTY_HEALTH_MAX_LOG_COUNT,
+  ContainerHealthCheckConfig.JSON_PROPERTY_HEALTH_MAX_LOG_SIZE,
+  ContainerHealthCheckConfig.JSON_PROPERTY_HEALTHCONFIG,
+  ContainerHealthCheckConfig.JSON_PROPERTY_STARTUP_HEALTH_CONFIG
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerHealthCheckConfig {
-  public static final String SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION = "health_check_on_failure_action";
-  @SerializedName(SERIALIZED_NAME_HEALTH_CHECK_ON_FAILURE_ACTION)
+  public static final String JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION = "health_check_on_failure_action";
   private Long healthCheckOnFailureAction;
 
-  public static final String SERIALIZED_NAME_HEALTH_LOG_DESTINATION = "healthLogDestination";
-  @SerializedName(SERIALIZED_NAME_HEALTH_LOG_DESTINATION)
+  public static final String JSON_PROPERTY_HEALTH_LOG_DESTINATION = "healthLogDestination";
   private String healthLogDestination;
 
-  public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT = "healthMaxLogCount";
-  @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_COUNT)
+  public static final String JSON_PROPERTY_HEALTH_MAX_LOG_COUNT = "healthMaxLogCount";
   private Integer healthMaxLogCount;
 
-  public static final String SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE = "healthMaxLogSize";
-  @SerializedName(SERIALIZED_NAME_HEALTH_MAX_LOG_SIZE)
+  public static final String JSON_PROPERTY_HEALTH_MAX_LOG_SIZE = "healthMaxLogSize";
   private Integer healthMaxLogSize;
 
-  public static final String SERIALIZED_NAME_HEALTHCONFIG = "healthconfig";
-  @SerializedName(SERIALIZED_NAME_HEALTHCONFIG)
+  public static final String JSON_PROPERTY_HEALTHCONFIG = "healthconfig";
   private Schema2HealthConfig healthconfig;
 
-  public static final String SERIALIZED_NAME_STARTUP_HEALTH_CONFIG = "startupHealthConfig";
-  @SerializedName(SERIALIZED_NAME_STARTUP_HEALTH_CONFIG)
+  public static final String JSON_PROPERTY_STARTUP_HEALTH_CONFIG = "startupHealthConfig";
   private StartupHealthCheck startupHealthConfig;
 
-  public ContainerHealthCheckConfig() {
+  public ContainerHealthCheckConfig() { 
   }
 
   public ContainerHealthCheckConfig healthCheckOnFailureAction(Long healthCheckOnFailureAction) {
@@ -90,10 +77,16 @@ public class ContainerHealthCheckConfig {
    * @return healthCheckOnFailureAction
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getHealthCheckOnFailureAction() {
     return healthCheckOnFailureAction;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthCheckOnFailureAction(Long healthCheckOnFailureAction) {
     this.healthCheckOnFailureAction = healthCheckOnFailureAction;
   }
@@ -109,10 +102,16 @@ public class ContainerHealthCheckConfig {
    * @return healthLogDestination
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHealthLogDestination() {
     return healthLogDestination;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthLogDestination(String healthLogDestination) {
     this.healthLogDestination = healthLogDestination;
   }
@@ -128,10 +127,16 @@ public class ContainerHealthCheckConfig {
    * @return healthMaxLogCount
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getHealthMaxLogCount() {
     return healthMaxLogCount;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthMaxLogCount(Integer healthMaxLogCount) {
     this.healthMaxLogCount = healthMaxLogCount;
   }
@@ -147,10 +152,16 @@ public class ContainerHealthCheckConfig {
    * @return healthMaxLogSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getHealthMaxLogSize() {
     return healthMaxLogSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthMaxLogSize(Integer healthMaxLogSize) {
     this.healthMaxLogSize = healthMaxLogSize;
   }
@@ -166,10 +177,17 @@ public class ContainerHealthCheckConfig {
    * @return healthconfig
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Schema2HealthConfig getHealthconfig() {
     return healthconfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthconfig(Schema2HealthConfig healthconfig) {
     this.healthconfig = healthconfig;
   }
@@ -185,16 +203,25 @@ public class ContainerHealthCheckConfig {
    * @return startupHealthConfig
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public StartupHealthCheck getStartupHealthConfig() {
     return startupHealthConfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartupHealthConfig(StartupHealthCheck startupHealthConfig) {
     this.startupHealthConfig = startupHealthConfig;
   }
 
 
-
+  /**
+   * Return true if this ContainerHealthCheckConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -242,105 +269,69 @@ public class ContainerHealthCheckConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("health_check_on_failure_action");
-    openapiFields.add("healthLogDestination");
-    openapiFields.add("healthMaxLogCount");
-    openapiFields.add("healthMaxLogSize");
-    openapiFields.add("healthconfig");
-    openapiFields.add("startupHealthConfig");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerHealthCheckConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerHealthCheckConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerHealthCheckConfig is not found in the empty JSON string", ContainerHealthCheckConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerHealthCheckConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerHealthCheckConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("healthLogDestination") != null && !jsonObj.get("healthLogDestination").isJsonNull()) && !jsonObj.get("healthLogDestination").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `healthLogDestination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("healthLogDestination").toString()));
-      }
-      // validate the optional field `healthconfig`
-      if (jsonObj.get("healthconfig") != null && !jsonObj.get("healthconfig").isJsonNull()) {
-        Schema2HealthConfig.validateJsonElement(jsonObj.get("healthconfig"));
-      }
-      // validate the optional field `startupHealthConfig`
-      if (jsonObj.get("startupHealthConfig") != null && !jsonObj.get("startupHealthConfig").isJsonNull()) {
-        StartupHealthCheck.validateJsonElement(jsonObj.get("startupHealthConfig"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerHealthCheckConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerHealthCheckConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerHealthCheckConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerHealthCheckConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerHealthCheckConfig>() {
-           @Override
-           public void write(JsonWriter out, ContainerHealthCheckConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerHealthCheckConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerHealthCheckConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerHealthCheckConfig
-   * @throws IOException if the JSON string is invalid with respect to ContainerHealthCheckConfig
-   */
-  public static ContainerHealthCheckConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerHealthCheckConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerHealthCheckConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `health_check_on_failure_action` to the URL query string
+    if (getHealthCheckOnFailureAction() != null) {
+      joiner.add(String.format("%shealth_check_on_failure_action%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthCheckOnFailureAction()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `healthLogDestination` to the URL query string
+    if (getHealthLogDestination() != null) {
+      joiner.add(String.format("%shealthLogDestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthLogDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `healthMaxLogCount` to the URL query string
+    if (getHealthMaxLogCount() != null) {
+      joiner.add(String.format("%shealthMaxLogCount%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthMaxLogCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `healthMaxLogSize` to the URL query string
+    if (getHealthMaxLogSize() != null) {
+      joiner.add(String.format("%shealthMaxLogSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthMaxLogSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `healthconfig` to the URL query string
+    if (getHealthconfig() != null) {
+      joiner.add(getHealthconfig().toUrlQueryString(prefix + "healthconfig" + suffix));
+    }
+
+    // add `startupHealthConfig` to the URL query string
+    if (getStartupHealthConfig() != null) {
+      joiner.add(getStartupHealthConfig().toUrlQueryString(prefix + "startupHealthConfig" + suffix));
+    }
+
+    return joiner.toString();
   }
 }
 

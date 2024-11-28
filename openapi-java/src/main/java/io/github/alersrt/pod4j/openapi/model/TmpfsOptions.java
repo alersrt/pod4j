@@ -13,59 +13,46 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * TmpfsOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  TmpfsOptions.JSON_PROPERTY_MODE,
+  TmpfsOptions.JSON_PROPERTY_OPTIONS,
+  TmpfsOptions.JSON_PROPERTY_SIZE_BYTES
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class TmpfsOptions {
-  public static final String SERIALIZED_NAME_MODE = "Mode";
-  @SerializedName(SERIALIZED_NAME_MODE)
+  public static final String JSON_PROPERTY_MODE = "Mode";
   private Integer mode;
 
-  public static final String SERIALIZED_NAME_OPTIONS = "Options";
-  @SerializedName(SERIALIZED_NAME_OPTIONS)
+  public static final String JSON_PROPERTY_OPTIONS = "Options";
   private List<List<String>> options = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SIZE_BYTES = "SizeBytes";
-  @SerializedName(SERIALIZED_NAME_SIZE_BYTES)
+  public static final String JSON_PROPERTY_SIZE_BYTES = "SizeBytes";
   private Long sizeBytes;
 
-  public TmpfsOptions() {
+  public TmpfsOptions() { 
   }
 
   public TmpfsOptions mode(Integer mode) {
@@ -78,10 +65,16 @@ public class TmpfsOptions {
    * @return mode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getMode() {
     return mode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMode(Integer mode) {
     this.mode = mode;
   }
@@ -105,10 +98,17 @@ public class TmpfsOptions {
    * @return options
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<List<String>> getOptions() {
     return options;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptions(List<List<String>> options) {
     this.options = options;
   }
@@ -124,16 +124,24 @@ public class TmpfsOptions {
    * @return sizeBytes
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SIZE_BYTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSizeBytes() {
     return sizeBytes;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE_BYTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSizeBytes(Long sizeBytes) {
     this.sizeBytes = sizeBytes;
   }
 
 
-
+  /**
+   * Return true if this TmpfsOptions object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -175,95 +183,58 @@ public class TmpfsOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Mode");
-    openapiFields.add("Options");
-    openapiFields.add("SizeBytes");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to TmpfsOptions
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!TmpfsOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in TmpfsOptions is not found in the empty JSON string", TmpfsOptions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!TmpfsOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `TmpfsOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull() && !jsonObj.get("Options").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!TmpfsOptions.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'TmpfsOptions' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<TmpfsOptions> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(TmpfsOptions.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<TmpfsOptions>() {
-           @Override
-           public void write(JsonWriter out, TmpfsOptions value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public TmpfsOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of TmpfsOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of TmpfsOptions
-   * @throws IOException if the JSON string is invalid with respect to TmpfsOptions
-   */
-  public static TmpfsOptions fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, TmpfsOptions.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of TmpfsOptions to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Mode` to the URL query string
+    if (getMode() != null) {
+      joiner.add(String.format("%sMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Options` to the URL query string
+    if (getOptions() != null) {
+      for (int i = 0; i < getOptions().size(); i++) {
+        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getOptions().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `SizeBytes` to the URL query string
+    if (getSizeBytes() != null) {
+      joiner.add(String.format("%sSizeBytes%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSizeBytes()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

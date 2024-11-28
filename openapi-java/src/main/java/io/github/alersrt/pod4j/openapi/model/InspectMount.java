@@ -13,87 +13,74 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectMount provides a record of a single mount in a container. It contains fields for both named and normal volumes. Only user-specified volumes will be included, and tmpfs volumes are not included even if the user specified them.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  InspectMount.JSON_PROPERTY_DESTINATION,
+  InspectMount.JSON_PROPERTY_DRIVER,
+  InspectMount.JSON_PROPERTY_MODE,
+  InspectMount.JSON_PROPERTY_NAME,
+  InspectMount.JSON_PROPERTY_OPTIONS,
+  InspectMount.JSON_PROPERTY_PROPAGATION,
+  InspectMount.JSON_PROPERTY_R_W,
+  InspectMount.JSON_PROPERTY_SOURCE,
+  InspectMount.JSON_PROPERTY_SUB_PATH,
+  InspectMount.JSON_PROPERTY_TYPE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectMount {
-  public static final String SERIALIZED_NAME_DESTINATION = "Destination";
-  @SerializedName(SERIALIZED_NAME_DESTINATION)
+  public static final String JSON_PROPERTY_DESTINATION = "Destination";
   private String destination;
 
-  public static final String SERIALIZED_NAME_DRIVER = "Driver";
-  @SerializedName(SERIALIZED_NAME_DRIVER)
+  public static final String JSON_PROPERTY_DRIVER = "Driver";
   private String driver;
 
-  public static final String SERIALIZED_NAME_MODE = "Mode";
-  @SerializedName(SERIALIZED_NAME_MODE)
+  public static final String JSON_PROPERTY_MODE = "Mode";
   private String mode;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public static final String SERIALIZED_NAME_OPTIONS = "Options";
-  @SerializedName(SERIALIZED_NAME_OPTIONS)
+  public static final String JSON_PROPERTY_OPTIONS = "Options";
   private List<String> options = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_PROPAGATION = "Propagation";
-  @SerializedName(SERIALIZED_NAME_PROPAGATION)
+  public static final String JSON_PROPERTY_PROPAGATION = "Propagation";
   private String propagation;
 
-  public static final String SERIALIZED_NAME_R_W = "RW";
-  @SerializedName(SERIALIZED_NAME_R_W)
+  public static final String JSON_PROPERTY_R_W = "RW";
   private Boolean RW;
 
-  public static final String SERIALIZED_NAME_SOURCE = "Source";
-  @SerializedName(SERIALIZED_NAME_SOURCE)
+  public static final String JSON_PROPERTY_SOURCE = "Source";
   private String source;
 
-  public static final String SERIALIZED_NAME_SUB_PATH = "SubPath";
-  @SerializedName(SERIALIZED_NAME_SUB_PATH)
+  public static final String JSON_PROPERTY_SUB_PATH = "SubPath";
   private String subPath;
 
-  public static final String SERIALIZED_NAME_TYPE = "Type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
+  public static final String JSON_PROPERTY_TYPE = "Type";
   private String type;
 
-  public InspectMount() {
+  public InspectMount() { 
   }
 
   public InspectMount destination(String destination) {
@@ -106,10 +93,16 @@ public class InspectMount {
    * @return destination
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDestination() {
     return destination;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDestination(String destination) {
     this.destination = destination;
   }
@@ -125,10 +118,16 @@ public class InspectMount {
    * @return driver
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDriver() {
     return driver;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDriver(String driver) {
     this.driver = driver;
   }
@@ -144,10 +143,16 @@ public class InspectMount {
    * @return mode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMode() {
     return mode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMode(String mode) {
     this.mode = mode;
   }
@@ -163,10 +168,16 @@ public class InspectMount {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -190,10 +201,16 @@ public class InspectMount {
    * @return options
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getOptions() {
     return options;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptions(List<String> options) {
     this.options = options;
   }
@@ -209,10 +226,16 @@ public class InspectMount {
    * @return propagation
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PROPAGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPropagation() {
     return propagation;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PROPAGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPropagation(String propagation) {
     this.propagation = propagation;
   }
@@ -228,10 +251,16 @@ public class InspectMount {
    * @return RW
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_R_W)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRW() {
     return RW;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_R_W)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRW(Boolean RW) {
     this.RW = RW;
   }
@@ -247,10 +276,16 @@ public class InspectMount {
    * @return source
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSource() {
     return source;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSource(String source) {
     this.source = source;
   }
@@ -266,10 +301,16 @@ public class InspectMount {
    * @return subPath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SUB_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSubPath() {
     return subPath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SUB_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubPath(String subPath) {
     this.subPath = subPath;
   }
@@ -285,16 +326,24 @@ public class InspectMount {
    * @return type
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getType() {
     return type;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(String type) {
     this.type = type;
   }
 
 
-
+  /**
+   * Return true if this InspectMount object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -350,126 +399,93 @@ public class InspectMount {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Destination");
-    openapiFields.add("Driver");
-    openapiFields.add("Mode");
-    openapiFields.add("Name");
-    openapiFields.add("Options");
-    openapiFields.add("Propagation");
-    openapiFields.add("RW");
-    openapiFields.add("Source");
-    openapiFields.add("SubPath");
-    openapiFields.add("Type");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectMount
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectMount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectMount is not found in the empty JSON string", InspectMount.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InspectMount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectMount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Destination") != null && !jsonObj.get("Destination").isJsonNull()) && !jsonObj.get("Destination").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Destination").toString()));
-      }
-      if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
-      }
-      if ((jsonObj.get("Mode") != null && !jsonObj.get("Mode").isJsonNull()) && !jsonObj.get("Mode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Mode").toString()));
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Options") != null && !jsonObj.get("Options").isJsonNull() && !jsonObj.get("Options").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Options` to be an array in the JSON string but got `%s`", jsonObj.get("Options").toString()));
-      }
-      if ((jsonObj.get("Propagation") != null && !jsonObj.get("Propagation").isJsonNull()) && !jsonObj.get("Propagation").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Propagation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Propagation").toString()));
-      }
-      if ((jsonObj.get("Source") != null && !jsonObj.get("Source").isJsonNull()) && !jsonObj.get("Source").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Source` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Source").toString()));
-      }
-      if ((jsonObj.get("SubPath") != null && !jsonObj.get("SubPath").isJsonNull()) && !jsonObj.get("SubPath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `SubPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("SubPath").toString()));
-      }
-      if ((jsonObj.get("Type") != null && !jsonObj.get("Type").isJsonNull()) && !jsonObj.get("Type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Type").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InspectMount.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InspectMount' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InspectMount> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InspectMount.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InspectMount>() {
-           @Override
-           public void write(JsonWriter out, InspectMount value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InspectMount read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of InspectMount given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectMount
-   * @throws IOException if the JSON string is invalid with respect to InspectMount
-   */
-  public static InspectMount fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InspectMount.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of InspectMount to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Destination` to the URL query string
+    if (getDestination() != null) {
+      joiner.add(String.format("%sDestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Driver` to the URL query string
+    if (getDriver() != null) {
+      joiner.add(String.format("%sDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Mode` to the URL query string
+    if (getMode() != null) {
+      joiner.add(String.format("%sMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Options` to the URL query string
+    if (getOptions() != null) {
+      for (int i = 0; i < getOptions().size(); i++) {
+        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getOptions().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Propagation` to the URL query string
+    if (getPropagation() != null) {
+      joiner.add(String.format("%sPropagation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPropagation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RW` to the URL query string
+    if (getRW() != null) {
+      joiner.add(String.format("%sRW%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRW()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Source` to the URL query string
+    if (getSource() != null) {
+      joiner.add(String.format("%sSource%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSource()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `SubPath` to the URL query string
+    if (getSubPath() != null) {
+      joiner.add(String.format("%sSubPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format("%sType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

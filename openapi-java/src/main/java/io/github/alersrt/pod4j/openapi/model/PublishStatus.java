@@ -13,59 +13,46 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PublishStatus represents the status of the volume as published to an individual node
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  PublishStatus.JSON_PROPERTY_NODE_I_D,
+  PublishStatus.JSON_PROPERTY_PUBLISH_CONTEXT,
+  PublishStatus.JSON_PROPERTY_STATE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PublishStatus {
-  public static final String SERIALIZED_NAME_NODE_I_D = "NodeID";
-  @SerializedName(SERIALIZED_NAME_NODE_I_D)
+  public static final String JSON_PROPERTY_NODE_I_D = "NodeID";
   private String nodeID;
 
-  public static final String SERIALIZED_NAME_PUBLISH_CONTEXT = "PublishContext";
-  @SerializedName(SERIALIZED_NAME_PUBLISH_CONTEXT)
+  public static final String JSON_PROPERTY_PUBLISH_CONTEXT = "PublishContext";
   private Map<String, String> publishContext = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_STATE = "State";
-  @SerializedName(SERIALIZED_NAME_STATE)
+  public static final String JSON_PROPERTY_STATE = "State";
   private String state;
 
-  public PublishStatus() {
+  public PublishStatus() { 
   }
 
   public PublishStatus nodeID(String nodeID) {
@@ -78,10 +65,16 @@ public class PublishStatus {
    * @return nodeID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NODE_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNodeID() {
     return nodeID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NODE_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNodeID(String nodeID) {
     this.nodeID = nodeID;
   }
@@ -105,10 +98,16 @@ public class PublishStatus {
    * @return publishContext
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PUBLISH_CONTEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getPublishContext() {
     return publishContext;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PUBLISH_CONTEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPublishContext(Map<String, String> publishContext) {
     this.publishContext = publishContext;
   }
@@ -124,16 +123,24 @@ public class PublishStatus {
    * @return state
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getState() {
     return state;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setState(String state) {
     this.state = state;
   }
 
 
-
+  /**
+   * Return true if this PublishStatus object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -175,97 +182,58 @@ public class PublishStatus {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("NodeID");
-    openapiFields.add("PublishContext");
-    openapiFields.add("State");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PublishStatus
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PublishStatus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PublishStatus is not found in the empty JSON string", PublishStatus.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PublishStatus.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PublishStatus` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("NodeID") != null && !jsonObj.get("NodeID").isJsonNull()) && !jsonObj.get("NodeID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `NodeID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("NodeID").toString()));
-      }
-      if ((jsonObj.get("State") != null && !jsonObj.get("State").isJsonNull()) && !jsonObj.get("State").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `State` to be a primitive type in the JSON string but got `%s`", jsonObj.get("State").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PublishStatus.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PublishStatus' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PublishStatus> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PublishStatus.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PublishStatus>() {
-           @Override
-           public void write(JsonWriter out, PublishStatus value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PublishStatus read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of PublishStatus given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PublishStatus
-   * @throws IOException if the JSON string is invalid with respect to PublishStatus
-   */
-  public static PublishStatus fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PublishStatus.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of PublishStatus to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `NodeID` to the URL query string
+    if (getNodeID() != null) {
+      joiner.add(String.format("%sNodeID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNodeID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `PublishContext` to the URL query string
+    if (getPublishContext() != null) {
+      for (String _key : getPublishContext().keySet()) {
+        joiner.add(String.format("%sPublishContext%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getPublishContext().get(_key), URLEncoder.encode(ApiClient.valueToString(getPublishContext().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `State` to the URL query string
+    if (getState() != null) {
+      joiner.add(String.format("%sState%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

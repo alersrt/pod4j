@@ -13,66 +13,53 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.DNSNetworkInfo;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.alersrt.pod4j.openapi.model.DNSNetworkInfo;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * NetworkInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  NetworkInfo.JSON_PROPERTY_BACKEND,
+  NetworkInfo.JSON_PROPERTY_DNS,
+  NetworkInfo.JSON_PROPERTY_PACKAGE,
+  NetworkInfo.JSON_PROPERTY_PATH,
+  NetworkInfo.JSON_PROPERTY_VERSION
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkInfo {
-  public static final String SERIALIZED_NAME_BACKEND = "backend";
-  @SerializedName(SERIALIZED_NAME_BACKEND)
+  public static final String JSON_PROPERTY_BACKEND = "backend";
   private String backend;
 
-  public static final String SERIALIZED_NAME_DNS = "dns";
-  @SerializedName(SERIALIZED_NAME_DNS)
+  public static final String JSON_PROPERTY_DNS = "dns";
   private DNSNetworkInfo dns;
 
-  public static final String SERIALIZED_NAME_PACKAGE = "package";
-  @SerializedName(SERIALIZED_NAME_PACKAGE)
+  public static final String JSON_PROPERTY_PACKAGE = "package";
   private String _package;
 
-  public static final String SERIALIZED_NAME_PATH = "path";
-  @SerializedName(SERIALIZED_NAME_PATH)
+  public static final String JSON_PROPERTY_PATH = "path";
   private String path;
 
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
+  public static final String JSON_PROPERTY_VERSION = "version";
   private String version;
 
-  public NetworkInfo() {
+  public NetworkInfo() { 
   }
 
   public NetworkInfo backend(String backend) {
@@ -85,10 +72,16 @@ public class NetworkInfo {
    * @return backend
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BACKEND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getBackend() {
     return backend;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BACKEND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBackend(String backend) {
     this.backend = backend;
   }
@@ -104,10 +97,17 @@ public class NetworkInfo {
    * @return dns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public DNSNetworkInfo getDns() {
     return dns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDns(DNSNetworkInfo dns) {
     this.dns = dns;
   }
@@ -123,10 +123,16 @@ public class NetworkInfo {
    * @return _package
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PACKAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPackage() {
     return _package;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PACKAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPackage(String _package) {
     this._package = _package;
   }
@@ -142,10 +148,16 @@ public class NetworkInfo {
    * @return path
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPath() {
     return path;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPath(String path) {
     this.path = path;
   }
@@ -161,16 +173,24 @@ public class NetworkInfo {
    * @return version
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVersion() {
     return version;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVersion(String version) {
     this.version = version;
   }
 
 
-
+  /**
+   * Return true if this NetworkInfo object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -216,109 +236,64 @@ public class NetworkInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("backend");
-    openapiFields.add("dns");
-    openapiFields.add("package");
-    openapiFields.add("path");
-    openapiFields.add("version");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to NetworkInfo
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!NetworkInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in NetworkInfo is not found in the empty JSON string", NetworkInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!NetworkInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetworkInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("backend") != null && !jsonObj.get("backend").isJsonNull()) && !jsonObj.get("backend").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `backend` to be a primitive type in the JSON string but got `%s`", jsonObj.get("backend").toString()));
-      }
-      // validate the optional field `dns`
-      if (jsonObj.get("dns") != null && !jsonObj.get("dns").isJsonNull()) {
-        DNSNetworkInfo.validateJsonElement(jsonObj.get("dns"));
-      }
-      if ((jsonObj.get("package") != null && !jsonObj.get("package").isJsonNull()) && !jsonObj.get("package").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `package` to be a primitive type in the JSON string but got `%s`", jsonObj.get("package").toString()));
-      }
-      if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
-      }
-      if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!NetworkInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'NetworkInfo' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<NetworkInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(NetworkInfo.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<NetworkInfo>() {
-           @Override
-           public void write(JsonWriter out, NetworkInfo value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public NetworkInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of NetworkInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of NetworkInfo
-   * @throws IOException if the JSON string is invalid with respect to NetworkInfo
-   */
-  public static NetworkInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, NetworkInfo.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of NetworkInfo to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `backend` to the URL query string
+    if (getBackend() != null) {
+      joiner.add(String.format("%sbackend%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBackend()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `dns` to the URL query string
+    if (getDns() != null) {
+      joiner.add(getDns().toUrlQueryString(prefix + "dns" + suffix));
+    }
+
+    // add `package` to the URL query string
+    if (getPackage() != null) {
+      joiner.add(String.format("%spackage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPackage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `path` to the URL query string
+    if (getPath() != null) {
+      joiner.add(String.format("%spath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `version` to the URL query string
+    if (getVersion() != null) {
+      joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

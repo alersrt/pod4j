@@ -13,89 +13,76 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ClusterVolume;
 import io.github.alersrt.pod4j.openapi.model.UsageData;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Volume volume
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  Volume.JSON_PROPERTY_CLUSTER_VOLUME,
+  Volume.JSON_PROPERTY_CREATED_AT,
+  Volume.JSON_PROPERTY_DRIVER,
+  Volume.JSON_PROPERTY_LABELS,
+  Volume.JSON_PROPERTY_MOUNTPOINT,
+  Volume.JSON_PROPERTY_NAME,
+  Volume.JSON_PROPERTY_OPTIONS,
+  Volume.JSON_PROPERTY_SCOPE,
+  Volume.JSON_PROPERTY_STATUS,
+  Volume.JSON_PROPERTY_USAGE_DATA
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Volume {
-  public static final String SERIALIZED_NAME_CLUSTER_VOLUME = "ClusterVolume";
-  @SerializedName(SERIALIZED_NAME_CLUSTER_VOLUME)
+  public static final String JSON_PROPERTY_CLUSTER_VOLUME = "ClusterVolume";
   private ClusterVolume clusterVolume;
 
-  public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  public static final String JSON_PROPERTY_CREATED_AT = "CreatedAt";
   private String createdAt;
 
-  public static final String SERIALIZED_NAME_DRIVER = "Driver";
-  @SerializedName(SERIALIZED_NAME_DRIVER)
+  public static final String JSON_PROPERTY_DRIVER = "Driver";
   private String driver;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_MOUNTPOINT = "Mountpoint";
-  @SerializedName(SERIALIZED_NAME_MOUNTPOINT)
+  public static final String JSON_PROPERTY_MOUNTPOINT = "Mountpoint";
   private String mountpoint;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public static final String SERIALIZED_NAME_OPTIONS = "Options";
-  @SerializedName(SERIALIZED_NAME_OPTIONS)
+  public static final String JSON_PROPERTY_OPTIONS = "Options";
   private Map<String, String> options = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_SCOPE = "Scope";
-  @SerializedName(SERIALIZED_NAME_SCOPE)
+  public static final String JSON_PROPERTY_SCOPE = "Scope";
   private String scope;
 
-  public static final String SERIALIZED_NAME_STATUS = "Status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
+  public static final String JSON_PROPERTY_STATUS = "Status";
   private Map<String, Object> status = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_USAGE_DATA = "UsageData";
-  @SerializedName(SERIALIZED_NAME_USAGE_DATA)
+  public static final String JSON_PROPERTY_USAGE_DATA = "UsageData";
   private UsageData usageData;
 
-  public Volume() {
+  public Volume() { 
   }
 
   public Volume clusterVolume(ClusterVolume clusterVolume) {
@@ -108,10 +95,17 @@ public class Volume {
    * @return clusterVolume
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CLUSTER_VOLUME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ClusterVolume getClusterVolume() {
     return clusterVolume;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CLUSTER_VOLUME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setClusterVolume(ClusterVolume clusterVolume) {
     this.clusterVolume = clusterVolume;
   }
@@ -127,10 +121,16 @@ public class Volume {
    * @return createdAt
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCreatedAt() {
     return createdAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
@@ -146,10 +146,17 @@ public class Volume {
    * @return driver
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDriver() {
     return driver;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDriver(String driver) {
     this.driver = driver;
   }
@@ -173,10 +180,17 @@ public class Volume {
    * @return labels
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -192,10 +206,17 @@ public class Volume {
    * @return mountpoint
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_MOUNTPOINT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getMountpoint() {
     return mountpoint;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MOUNTPOINT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMountpoint(String mountpoint) {
     this.mountpoint = mountpoint;
   }
@@ -211,10 +232,17 @@ public class Volume {
    * @return name
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(String name) {
     this.name = name;
   }
@@ -238,10 +266,17 @@ public class Volume {
    * @return options
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Map<String, String> getOptions() {
     return options;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOptions(Map<String, String> options) {
     this.options = options;
   }
@@ -257,10 +292,17 @@ public class Volume {
    * @return scope
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_SCOPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getScope() {
     return scope;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SCOPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setScope(String scope) {
     this.scope = scope;
   }
@@ -284,10 +326,16 @@ public class Volume {
    * @return status
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getStatus() {
     return status;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(Map<String, Object> status) {
     this.status = status;
   }
@@ -303,16 +351,25 @@ public class Volume {
    * @return usageData
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_USAGE_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UsageData getUsageData() {
     return usageData;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USAGE_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsageData(UsageData usageData) {
     this.usageData = usageData;
   }
 
 
-
+  /**
+   * Return true if this Volume object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -368,134 +425,101 @@ public class Volume {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("ClusterVolume");
-    openapiFields.add("CreatedAt");
-    openapiFields.add("Driver");
-    openapiFields.add("Labels");
-    openapiFields.add("Mountpoint");
-    openapiFields.add("Name");
-    openapiFields.add("Options");
-    openapiFields.add("Scope");
-    openapiFields.add("Status");
-    openapiFields.add("UsageData");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("Driver");
-    openapiRequiredFields.add("Labels");
-    openapiRequiredFields.add("Mountpoint");
-    openapiRequiredFields.add("Name");
-    openapiRequiredFields.add("Options");
-    openapiRequiredFields.add("Scope");
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Volume
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Volume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Volume is not found in the empty JSON string", Volume.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Volume.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Volume` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : Volume.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `ClusterVolume`
-      if (jsonObj.get("ClusterVolume") != null && !jsonObj.get("ClusterVolume").isJsonNull()) {
-        ClusterVolume.validateJsonElement(jsonObj.get("ClusterVolume"));
-      }
-      if ((jsonObj.get("CreatedAt") != null && !jsonObj.get("CreatedAt").isJsonNull()) && !jsonObj.get("CreatedAt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CreatedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CreatedAt").toString()));
-      }
-      if (!jsonObj.get("Driver").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
-      }
-      if (!jsonObj.get("Mountpoint").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Mountpoint` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Mountpoint").toString()));
-      }
-      if (!jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      if (!jsonObj.get("Scope").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Scope").toString()));
-      }
-      // validate the optional field `UsageData`
-      if (jsonObj.get("UsageData") != null && !jsonObj.get("UsageData").isJsonNull()) {
-        UsageData.validateJsonElement(jsonObj.get("UsageData"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Volume.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Volume' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Volume> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Volume.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Volume>() {
-           @Override
-           public void write(JsonWriter out, Volume value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Volume read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of Volume given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Volume
-   * @throws IOException if the JSON string is invalid with respect to Volume
-   */
-  public static Volume fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Volume.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of Volume to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `ClusterVolume` to the URL query string
+    if (getClusterVolume() != null) {
+      joiner.add(getClusterVolume().toUrlQueryString(prefix + "ClusterVolume" + suffix));
+    }
+
+    // add `CreatedAt` to the URL query string
+    if (getCreatedAt() != null) {
+      joiner.add(String.format("%sCreatedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreatedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Driver` to the URL query string
+    if (getDriver() != null) {
+      joiner.add(String.format("%sDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Mountpoint` to the URL query string
+    if (getMountpoint() != null) {
+      joiner.add(String.format("%sMountpoint%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMountpoint()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Options` to the URL query string
+    if (getOptions() != null) {
+      for (String _key : getOptions().keySet()) {
+        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getOptions().get(_key), URLEncoder.encode(ApiClient.valueToString(getOptions().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Scope` to the URL query string
+    if (getScope() != null) {
+      joiner.add(String.format("%sScope%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getScope()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Status` to the URL query string
+    if (getStatus() != null) {
+      for (String _key : getStatus().keySet()) {
+        joiner.add(String.format("%sStatus%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getStatus().get(_key), URLEncoder.encode(ApiClient.valueToString(getStatus().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `UsageData` to the URL query string
+    if (getUsageData() != null) {
+      joiner.add(getUsageData().toUrlQueryString(prefix + "UsageData" + suffix));
+    }
+
+    return joiner.toString();
   }
 }
 

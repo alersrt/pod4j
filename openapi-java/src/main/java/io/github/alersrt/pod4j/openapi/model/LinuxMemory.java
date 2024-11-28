@@ -13,81 +13,68 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxMemory for Linux cgroup &#39;memory&#39; resource management
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  LinuxMemory.JSON_PROPERTY_CHECK_BEFORE_UPDATE,
+  LinuxMemory.JSON_PROPERTY_DISABLE_O_O_M_KILLER,
+  LinuxMemory.JSON_PROPERTY_KERNEL,
+  LinuxMemory.JSON_PROPERTY_KERNEL_T_C_P,
+  LinuxMemory.JSON_PROPERTY_LIMIT,
+  LinuxMemory.JSON_PROPERTY_RESERVATION,
+  LinuxMemory.JSON_PROPERTY_SWAP,
+  LinuxMemory.JSON_PROPERTY_SWAPPINESS,
+  LinuxMemory.JSON_PROPERTY_USE_HIERARCHY
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxMemory {
-  public static final String SERIALIZED_NAME_CHECK_BEFORE_UPDATE = "checkBeforeUpdate";
-  @SerializedName(SERIALIZED_NAME_CHECK_BEFORE_UPDATE)
+  public static final String JSON_PROPERTY_CHECK_BEFORE_UPDATE = "checkBeforeUpdate";
   private Boolean checkBeforeUpdate;
 
-  public static final String SERIALIZED_NAME_DISABLE_O_O_M_KILLER = "disableOOMKiller";
-  @SerializedName(SERIALIZED_NAME_DISABLE_O_O_M_KILLER)
+  public static final String JSON_PROPERTY_DISABLE_O_O_M_KILLER = "disableOOMKiller";
   private Boolean disableOOMKiller;
 
-  public static final String SERIALIZED_NAME_KERNEL = "kernel";
-  @SerializedName(SERIALIZED_NAME_KERNEL)
+  public static final String JSON_PROPERTY_KERNEL = "kernel";
   private Long kernel;
 
-  public static final String SERIALIZED_NAME_KERNEL_T_C_P = "kernelTCP";
-  @SerializedName(SERIALIZED_NAME_KERNEL_T_C_P)
+  public static final String JSON_PROPERTY_KERNEL_T_C_P = "kernelTCP";
   private Long kernelTCP;
 
-  public static final String SERIALIZED_NAME_LIMIT = "limit";
-  @SerializedName(SERIALIZED_NAME_LIMIT)
+  public static final String JSON_PROPERTY_LIMIT = "limit";
   private Long limit;
 
-  public static final String SERIALIZED_NAME_RESERVATION = "reservation";
-  @SerializedName(SERIALIZED_NAME_RESERVATION)
+  public static final String JSON_PROPERTY_RESERVATION = "reservation";
   private Long reservation;
 
-  public static final String SERIALIZED_NAME_SWAP = "swap";
-  @SerializedName(SERIALIZED_NAME_SWAP)
+  public static final String JSON_PROPERTY_SWAP = "swap";
   private Long swap;
 
-  public static final String SERIALIZED_NAME_SWAPPINESS = "swappiness";
-  @SerializedName(SERIALIZED_NAME_SWAPPINESS)
+  public static final String JSON_PROPERTY_SWAPPINESS = "swappiness";
   private Integer swappiness;
 
-  public static final String SERIALIZED_NAME_USE_HIERARCHY = "useHierarchy";
-  @SerializedName(SERIALIZED_NAME_USE_HIERARCHY)
+  public static final String JSON_PROPERTY_USE_HIERARCHY = "useHierarchy";
   private Boolean useHierarchy;
 
-  public LinuxMemory() {
+  public LinuxMemory() { 
   }
 
   public LinuxMemory checkBeforeUpdate(Boolean checkBeforeUpdate) {
@@ -100,10 +87,16 @@ public class LinuxMemory {
    * @return checkBeforeUpdate
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CHECK_BEFORE_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCheckBeforeUpdate() {
     return checkBeforeUpdate;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CHECK_BEFORE_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCheckBeforeUpdate(Boolean checkBeforeUpdate) {
     this.checkBeforeUpdate = checkBeforeUpdate;
   }
@@ -119,10 +112,16 @@ public class LinuxMemory {
    * @return disableOOMKiller
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DISABLE_O_O_M_KILLER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getDisableOOMKiller() {
     return disableOOMKiller;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DISABLE_O_O_M_KILLER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDisableOOMKiller(Boolean disableOOMKiller) {
     this.disableOOMKiller = disableOOMKiller;
   }
@@ -138,10 +137,16 @@ public class LinuxMemory {
    * @return kernel
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_KERNEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getKernel() {
     return kernel;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_KERNEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setKernel(Long kernel) {
     this.kernel = kernel;
   }
@@ -157,10 +162,16 @@ public class LinuxMemory {
    * @return kernelTCP
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_KERNEL_T_C_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getKernelTCP() {
     return kernelTCP;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_KERNEL_T_C_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setKernelTCP(Long kernelTCP) {
     this.kernelTCP = kernelTCP;
   }
@@ -176,10 +187,16 @@ public class LinuxMemory {
    * @return limit
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getLimit() {
     return limit;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLimit(Long limit) {
     this.limit = limit;
   }
@@ -195,10 +212,16 @@ public class LinuxMemory {
    * @return reservation
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESERVATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getReservation() {
     return reservation;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESERVATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReservation(Long reservation) {
     this.reservation = reservation;
   }
@@ -214,10 +237,16 @@ public class LinuxMemory {
    * @return swap
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SWAP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSwap() {
     return swap;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SWAP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSwap(Long swap) {
     this.swap = swap;
   }
@@ -233,10 +262,16 @@ public class LinuxMemory {
    * @return swappiness
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SWAPPINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getSwappiness() {
     return swappiness;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SWAPPINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSwappiness(Integer swappiness) {
     this.swappiness = swappiness;
   }
@@ -252,16 +287,24 @@ public class LinuxMemory {
    * @return useHierarchy
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USE_HIERARCHY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getUseHierarchy() {
     return useHierarchy;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USE_HIERARCHY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUseHierarchy(Boolean useHierarchy) {
     this.useHierarchy = useHierarchy;
   }
 
 
-
+  /**
+   * Return true if this LinuxMemory object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -315,97 +358,84 @@ public class LinuxMemory {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("checkBeforeUpdate");
-    openapiFields.add("disableOOMKiller");
-    openapiFields.add("kernel");
-    openapiFields.add("kernelTCP");
-    openapiFields.add("limit");
-    openapiFields.add("reservation");
-    openapiFields.add("swap");
-    openapiFields.add("swappiness");
-    openapiFields.add("useHierarchy");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxMemory
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxMemory.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxMemory is not found in the empty JSON string", LinuxMemory.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LinuxMemory.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxMemory` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LinuxMemory.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LinuxMemory' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LinuxMemory> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxMemory.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LinuxMemory>() {
-           @Override
-           public void write(JsonWriter out, LinuxMemory value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LinuxMemory read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of LinuxMemory given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxMemory
-   * @throws IOException if the JSON string is invalid with respect to LinuxMemory
-   */
-  public static LinuxMemory fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LinuxMemory.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of LinuxMemory to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `checkBeforeUpdate` to the URL query string
+    if (getCheckBeforeUpdate() != null) {
+      joiner.add(String.format("%scheckBeforeUpdate%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckBeforeUpdate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `disableOOMKiller` to the URL query string
+    if (getDisableOOMKiller() != null) {
+      joiner.add(String.format("%sdisableOOMKiller%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDisableOOMKiller()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `kernel` to the URL query string
+    if (getKernel() != null) {
+      joiner.add(String.format("%skernel%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernel()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `kernelTCP` to the URL query string
+    if (getKernelTCP() != null) {
+      joiner.add(String.format("%skernelTCP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernelTCP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `limit` to the URL query string
+    if (getLimit() != null) {
+      joiner.add(String.format("%slimit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `reservation` to the URL query string
+    if (getReservation() != null) {
+      joiner.add(String.format("%sreservation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReservation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `swap` to the URL query string
+    if (getSwap() != null) {
+      joiner.add(String.format("%sswap%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSwap()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `swappiness` to the URL query string
+    if (getSwappiness() != null) {
+      joiner.add(String.format("%sswappiness%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSwappiness()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `useHierarchy` to the URL query string
+    if (getUseHierarchy() != null) {
+      joiner.add(String.format("%suseHierarchy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUseHierarchy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

@@ -10,22 +10,12 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi.api;
 
-import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
-import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
-import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
-import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
-
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-
 
 import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import java.io.File;
@@ -45,2927 +35,1785 @@ import io.github.alersrt.pod4j.openapi.model.PodStopReport;
 import io.github.alersrt.pod4j.openapi.model.PodTopOKBody;
 import io.github.alersrt.pod4j.openapi.model.PodUnpauseReport;
 
-import java.lang.reflect.Type;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.http.HttpRequest;
+import java.nio.channels.Channels;
+import java.nio.channels.Pipe;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
+
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Consumer;
 
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodsApi {
-    private ApiClient localVarApiClient;
-    private int localHostIndex;
-    private String localCustomBaseUrl;
+  private final HttpClient memberVarHttpClient;
+  private final ObjectMapper memberVarObjectMapper;
+  private final String memberVarBaseUri;
+  private final Consumer<HttpRequest.Builder> memberVarInterceptor;
+  private final Duration memberVarReadTimeout;
+  private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
+  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+
+  public PodsApi() {
+    this(new ApiClient());
+  }
+
+  public PodsApi(ApiClient apiClient) {
+    memberVarHttpClient = apiClient.getHttpClient();
+    memberVarObjectMapper = apiClient.getObjectMapper();
+    memberVarBaseUri = apiClient.getBaseUri();
+    memberVarInterceptor = apiClient.getRequestInterceptor();
+    memberVarReadTimeout = apiClient.getReadTimeout();
+    memberVarResponseInterceptor = apiClient.getResponseInterceptor();
+    memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
+  }
+
+  protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
+    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    String message = formatExceptionMessage(operationId, response.statusCode(), body);
+    return new ApiException(response.statusCode(), message, response.headers(), body);
+  }
+
+  private String formatExceptionMessage(String operationId, int statusCode, String body) {
+    if (body == null || body.isEmpty()) {
+      body = "[no body]";
+    }
+    return operationId + " call failed with: " + statusCode + " - " + body;
+  }
+
+  /**
+   * Generate a Kubernetes YAML file.
+   * Generate Kubernetes YAML based on a pod or container.
+   * @param names Name or ID of the container or pod. (required)
+   * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
+   * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
+   * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
+   * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
+   * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
+   * @return File
+   * @throws ApiException if fails to make API call
+   */
+  public File generateKubeLibpod(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly) throws ApiException {
+    ApiResponse<File> localVarResponse = generateKubeLibpodWithHttpInfo(names, service, type, replicas, noTrunc, podmanOnly);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Generate a Kubernetes YAML file.
+   * Generate Kubernetes YAML based on a pod or container.
+   * @param names Name or ID of the container or pod. (required)
+   * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
+   * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
+   * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
+   * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
+   * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
+   * @return ApiResponse&lt;File&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<File> generateKubeLibpodWithHttpInfo(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = generateKubeLibpodRequestBuilder(names, service, type, replicas, noTrunc, podmanOnly);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("generateKubeLibpod", localVarResponse);
+        }
+        return new ApiResponse<File>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder generateKubeLibpodRequestBuilder(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly) throws ApiException {
+    // verify the required parameter 'names' is set
+    if (names == null) {
+      throw new ApiException(400, "Missing the required parameter 'names' when calling generateKubeLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/generate/kube";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "names";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "names", names));
+    localVarQueryParameterBaseName = "service";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("service", service));
+    localVarQueryParameterBaseName = "type";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("type", type));
+    localVarQueryParameterBaseName = "replicas";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("replicas", replicas));
+    localVarQueryParameterBaseName = "noTrunc";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("noTrunc", noTrunc));
+    localVarQueryParameterBaseName = "podmanOnly";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("podmanOnly", podmanOnly));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "text/vnd.yaml, application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Generate Systemd Units
+   * Generate Systemd Units based on a pod or container.
+   * @param name Name or ID of the container or pod. (required)
+   * @param useName Use container/pod names instead of IDs. (optional, default to false)
+   * @param _new Create a new container instead of starting an existing one. (optional, default to false)
+   * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
+   * @param startTimeout Start timeout in seconds. (optional, default to 0)
+   * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
+   * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
+   * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
+   * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
+   * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
+   * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
+   * @param wants Systemd Wants list for the container or pods. (optional)
+   * @param after Systemd After list for the container or pods. (optional)
+   * @param requires Systemd Requires list for the container or pods. (optional)
+   * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
+   * @return Map&lt;String, String&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public Map<String, String> generateSystemdLibpod(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables) throws ApiException {
+    ApiResponse<Map<String, String>> localVarResponse = generateSystemdLibpodWithHttpInfo(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Generate Systemd Units
+   * Generate Systemd Units based on a pod or container.
+   * @param name Name or ID of the container or pod. (required)
+   * @param useName Use container/pod names instead of IDs. (optional, default to false)
+   * @param _new Create a new container instead of starting an existing one. (optional, default to false)
+   * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
+   * @param startTimeout Start timeout in seconds. (optional, default to 0)
+   * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
+   * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
+   * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
+   * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
+   * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
+   * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
+   * @param wants Systemd Wants list for the container or pods. (optional)
+   * @param after Systemd After list for the container or pods. (optional)
+   * @param requires Systemd Requires list for the container or pods. (optional)
+   * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
+   * @return ApiResponse&lt;Map&lt;String, String&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Map<String, String>> generateSystemdLibpodWithHttpInfo(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = generateSystemdLibpodRequestBuilder(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("generateSystemdLibpod", localVarResponse);
+        }
+        return new ApiResponse<Map<String, String>>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<Map<String, String>>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder generateSystemdLibpodRequestBuilder(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling generateSystemdLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/generate/{name}/systemd"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "useName";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("useName", useName));
+    localVarQueryParameterBaseName = "new";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("new", _new));
+    localVarQueryParameterBaseName = "noHeader";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("noHeader", noHeader));
+    localVarQueryParameterBaseName = "startTimeout";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("startTimeout", startTimeout));
+    localVarQueryParameterBaseName = "stopTimeout";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("stopTimeout", stopTimeout));
+    localVarQueryParameterBaseName = "restartPolicy";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("restartPolicy", restartPolicy));
+    localVarQueryParameterBaseName = "containerPrefix";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("containerPrefix", containerPrefix));
+    localVarQueryParameterBaseName = "podPrefix";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("podPrefix", podPrefix));
+    localVarQueryParameterBaseName = "separator";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("separator", separator));
+    localVarQueryParameterBaseName = "restartSec";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("restartSec", restartSec));
+    localVarQueryParameterBaseName = "wants";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "wants", wants));
+    localVarQueryParameterBaseName = "after";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "after", after));
+    localVarQueryParameterBaseName = "requires";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "requires", requires));
+    localVarQueryParameterBaseName = "additionalEnvVariables";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "additionalEnvVariables", additionalEnvVariables));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Apply a podman workload or Kubernetes YAML file.
+   * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
+   * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
+   * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
+   * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
+   * @param service Create a service object for the container being deployed. (optional)
+   * @param _file Path to the Kubernetes yaml file to deploy. (optional)
+   * @param request Kubernetes YAML file. (optional)
+   * @return File
+   * @throws ApiException if fails to make API call
+   */
+  public File kubeApplyLibpod(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request) throws ApiException {
+    ApiResponse<File> localVarResponse = kubeApplyLibpodWithHttpInfo(caCertFile, kubeConfig, namespace, service, _file, request);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Apply a podman workload or Kubernetes YAML file.
+   * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
+   * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
+   * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
+   * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
+   * @param service Create a service object for the container being deployed. (optional)
+   * @param _file Path to the Kubernetes yaml file to deploy. (optional)
+   * @param request Kubernetes YAML file. (optional)
+   * @return ApiResponse&lt;File&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<File> kubeApplyLibpodWithHttpInfo(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = kubeApplyLibpodRequestBuilder(caCertFile, kubeConfig, namespace, service, _file, request);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("kubeApplyLibpod", localVarResponse);
+        }
+        return new ApiResponse<File>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<File>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder kubeApplyLibpodRequestBuilder(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/kube/apply";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "caCertFile";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("caCertFile", caCertFile));
+    localVarQueryParameterBaseName = "kubeConfig";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("kubeConfig", kubeConfig));
+    localVarQueryParameterBaseName = "namespace";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("namespace", namespace));
+    localVarQueryParameterBaseName = "service";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("service", service));
+    localVarQueryParameterBaseName = "file";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("file", _file));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofString(request));
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove resources created from kube play
+   * Tears down pods, secrets, and volumes defined in a YAML file
+   * @param contentType  (optional, default to plain/text)
+   * @param force Remove volumes. (optional, default to false)
+   * @param request Kubernetes YAML file. (optional)
+   * @return PlayKubeReport
+   * @throws ApiException if fails to make API call
+   */
+  public PlayKubeReport playKubeDownLibpod(String contentType, Boolean force, String request) throws ApiException {
+    ApiResponse<PlayKubeReport> localVarResponse = playKubeDownLibpodWithHttpInfo(contentType, force, request);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove resources created from kube play
+   * Tears down pods, secrets, and volumes defined in a YAML file
+   * @param contentType  (optional, default to plain/text)
+   * @param force Remove volumes. (optional, default to false)
+   * @param request Kubernetes YAML file. (optional)
+   * @return ApiResponse&lt;PlayKubeReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(String contentType, Boolean force, String request) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = playKubeDownLibpodRequestBuilder(contentType, force, request);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("playKubeDownLibpod", localVarResponse);
+        }
+        return new ApiResponse<PlayKubeReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PlayKubeReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder playKubeDownLibpodRequestBuilder(String contentType, Boolean force, String request) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/play/kube";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "force";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("force", force));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    if (contentType != null) {
+      localVarRequestBuilder.header("Content-Type", contentType.toString());
+    }
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofString(request));
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Play a Kubernetes YAML file.
+   * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
+   * @param contentType  (optional, default to plain/text)
+   * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
+   * @param logDriver Logging driver for the containers in the pod. (optional)
+   * @param logOptions logging driver options (optional)
+   * @param network USe the network mode or specify an array of networks. (optional)
+   * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
+   * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
+   * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
+   * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
+   * @param replace replace existing pods and containers (optional, default to false)
+   * @param serviceContainer Starts a service container before all pods. (optional, default to false)
+   * @param start Start the pod after creating it. (optional, default to true)
+   * @param staticIPs Static IPs used for the pods. (optional)
+   * @param staticMACs Static MACs used for the pods. (optional)
+   * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+   * @param userns Set the user namespace mode for the pods. (optional)
+   * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
+   * @param build Build the images with corresponding context. (optional)
+   * @param request Kubernetes YAML file. (optional)
+   * @return PlayKubeReport
+   * @throws ApiException if fails to make API call
+   */
+  public PlayKubeReport playKubeLibpod(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
+    ApiResponse<PlayKubeReport> localVarResponse = playKubeLibpodWithHttpInfo(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Play a Kubernetes YAML file.
+   * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
+   * @param contentType  (optional, default to plain/text)
+   * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
+   * @param logDriver Logging driver for the containers in the pod. (optional)
+   * @param logOptions logging driver options (optional)
+   * @param network USe the network mode or specify an array of networks. (optional)
+   * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
+   * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
+   * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
+   * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
+   * @param replace replace existing pods and containers (optional, default to false)
+   * @param serviceContainer Starts a service container before all pods. (optional, default to false)
+   * @param start Start the pod after creating it. (optional, default to true)
+   * @param staticIPs Static IPs used for the pods. (optional)
+   * @param staticMACs Static MACs used for the pods. (optional)
+   * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+   * @param userns Set the user namespace mode for the pods. (optional)
+   * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
+   * @param build Build the images with corresponding context. (optional)
+   * @param request Kubernetes YAML file. (optional)
+   * @return ApiResponse&lt;PlayKubeReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PlayKubeReport> playKubeLibpodWithHttpInfo(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = playKubeLibpodRequestBuilder(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("playKubeLibpod", localVarResponse);
+        }
+        return new ApiResponse<PlayKubeReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PlayKubeReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder playKubeLibpodRequestBuilder(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/play/kube";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "annotations";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("annotations", annotations));
+    localVarQueryParameterBaseName = "logDriver";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("logDriver", logDriver));
+    localVarQueryParameterBaseName = "logOptions";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "logOptions", logOptions));
+    localVarQueryParameterBaseName = "network";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "network", network));
+    localVarQueryParameterBaseName = "noHosts";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("noHosts", noHosts));
+    localVarQueryParameterBaseName = "noTrunc";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("noTrunc", noTrunc));
+    localVarQueryParameterBaseName = "publishPorts";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "publishPorts", publishPorts));
+    localVarQueryParameterBaseName = "publishAllPorts";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("publishAllPorts", publishAllPorts));
+    localVarQueryParameterBaseName = "replace";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("replace", replace));
+    localVarQueryParameterBaseName = "serviceContainer";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("serviceContainer", serviceContainer));
+    localVarQueryParameterBaseName = "start";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("start", start));
+    localVarQueryParameterBaseName = "staticIPs";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "staticIPs", staticIPs));
+    localVarQueryParameterBaseName = "staticMACs";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "staticMACs", staticMACs));
+    localVarQueryParameterBaseName = "tlsVerify";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("tlsVerify", tlsVerify));
+    localVarQueryParameterBaseName = "userns";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("userns", userns));
+    localVarQueryParameterBaseName = "wait";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("wait", wait));
+    localVarQueryParameterBaseName = "build";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("build", build));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    if (contentType != null) {
+      localVarRequestBuilder.header("Content-Type", contentType.toString());
+    }
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofString(request));
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create a pod
+   * 
+   * @param create attributes for creating a pod (optional)
+   * @return IdResponse
+   * @throws ApiException if fails to make API call
+   */
+  public IdResponse podCreateLibpod(PodSpecGenerator create) throws ApiException {
+    ApiResponse<IdResponse> localVarResponse = podCreateLibpodWithHttpInfo(create);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a pod
+   * 
+   * @param create attributes for creating a pod (optional)
+   * @return ApiResponse&lt;IdResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<IdResponse> podCreateLibpodWithHttpInfo(PodSpecGenerator create) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podCreateLibpodRequestBuilder(create);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podCreateLibpod", localVarResponse);
+        }
+        return new ApiResponse<IdResponse>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<IdResponse>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podCreateLibpodRequestBuilder(PodSpecGenerator create) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/create";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(create);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @param force force removal of a running pod by first stopping all containers, then removing all containers in the pod (optional)
+   * @return PodRmReport
+   * @throws ApiException if fails to make API call
+   */
+  public PodRmReport podDeleteLibpod(String name, Boolean force) throws ApiException {
+    ApiResponse<PodRmReport> localVarResponse = podDeleteLibpodWithHttpInfo(name, force);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @param force force removal of a running pod by first stopping all containers, then removing all containers in the pod (optional)
+   * @return ApiResponse&lt;PodRmReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodRmReport> podDeleteLibpodWithHttpInfo(String name, Boolean force) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podDeleteLibpodRequestBuilder(name, force);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podDeleteLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodRmReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodRmReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podDeleteLibpodRequestBuilder(String name, Boolean force) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podDeleteLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "force";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("force", force));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Pod exists
+   * Check if a pod exists by name or ID
+   * @param name the name or ID of the pod (required)
+   * @throws ApiException if fails to make API call
+   */
+  public void podExistsLibpod(String name) throws ApiException {
+    podExistsLibpodWithHttpInfo(name);
+  }
+
+  /**
+   * Pod exists
+   * Check if a pod exists by name or ID
+   * @param name the name or ID of the pod (required)
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> podExistsLibpodWithHttpInfo(String name) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podExistsLibpodRequestBuilder(name);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podExistsLibpod", localVarResponse);
+        }
+        return new ApiResponse<Void>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          null
+        );
+      } finally {
+        // Drain the InputStream
+        while (localVarResponse.body().read() != -1) {
+            // Ignore
+        }
+        localVarResponse.body().close();
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podExistsLibpodRequestBuilder(String name) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podExistsLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/exists"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Inspect pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @return InspectPodData
+   * @throws ApiException if fails to make API call
+   */
+  public InspectPodData podInspectLibpod(String name) throws ApiException {
+    ApiResponse<InspectPodData> localVarResponse = podInspectLibpodWithHttpInfo(name);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Inspect pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @return ApiResponse&lt;InspectPodData&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<InspectPodData> podInspectLibpodWithHttpInfo(String name) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podInspectLibpodRequestBuilder(name);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podInspectLibpod", localVarResponse);
+        }
+        return new ApiResponse<InspectPodData>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<InspectPodData>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podInspectLibpodRequestBuilder(String name) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podInspectLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/json"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Kill a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @param signal signal to be sent to pod (optional, default to SIGKILL)
+   * @return PodKillReport
+   * @throws ApiException if fails to make API call
+   */
+  public PodKillReport podKillLibpod(String name, String signal) throws ApiException {
+    ApiResponse<PodKillReport> localVarResponse = podKillLibpodWithHttpInfo(name, signal);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Kill a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @param signal signal to be sent to pod (optional, default to SIGKILL)
+   * @return ApiResponse&lt;PodKillReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodKillReport> podKillLibpodWithHttpInfo(String name, String signal) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podKillLibpodRequestBuilder(name, signal);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podKillLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodKillReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodKillReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podKillLibpodRequestBuilder(String name, String signal) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podKillLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/kill"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "signal";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("signal", signal));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List pods
+   * 
+   * @param filters JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - &#x60;id&#x3D;&lt;pod-id&gt;&#x60; Matches all of pod id.   - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches pods based on the presence of a label alone or a label and a value.   - &#x60;name&#x3D;&lt;pod-name&gt;&#x60; Matches all of pod name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List pods created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;status&#x3D;&lt;pod-status&gt;&#x60; Pod&#39;s status: &#x60;stopped&#x60;, &#x60;running&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60;, &#x60;dead&#x60;, &#x60;created&#x60;, &#x60;degraded&#x60;.   - &#x60;network&#x3D;&lt;pod-network&gt;&#x60; Name or full ID of network.   - &#x60;ctr-names&#x3D;&lt;pod-ctr-names&gt;&#x60; Container name within the pod.   - &#x60;ctr-ids&#x3D;&lt;pod-ctr-ids&gt;&#x60; Container ID within the pod.   - &#x60;ctr-status&#x3D;&lt;pod-ctr-status&gt;&#x60; Container status within the pod.   - &#x60;ctr-number&#x3D;&lt;pod-ctr-number&gt;&#x60; Number of containers in the pod.  (optional)
+   * @return List&lt;ListPodsReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<ListPodsReport> podListLibpod(String filters) throws ApiException {
+    ApiResponse<List<ListPodsReport>> localVarResponse = podListLibpodWithHttpInfo(filters);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List pods
+   * 
+   * @param filters JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - &#x60;id&#x3D;&lt;pod-id&gt;&#x60; Matches all of pod id.   - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches pods based on the presence of a label alone or a label and a value.   - &#x60;name&#x3D;&lt;pod-name&gt;&#x60; Matches all of pod name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List pods created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;status&#x3D;&lt;pod-status&gt;&#x60; Pod&#39;s status: &#x60;stopped&#x60;, &#x60;running&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60;, &#x60;dead&#x60;, &#x60;created&#x60;, &#x60;degraded&#x60;.   - &#x60;network&#x3D;&lt;pod-network&gt;&#x60; Name or full ID of network.   - &#x60;ctr-names&#x3D;&lt;pod-ctr-names&gt;&#x60; Container name within the pod.   - &#x60;ctr-ids&#x3D;&lt;pod-ctr-ids&gt;&#x60; Container ID within the pod.   - &#x60;ctr-status&#x3D;&lt;pod-ctr-status&gt;&#x60; Container status within the pod.   - &#x60;ctr-number&#x3D;&lt;pod-ctr-number&gt;&#x60; Number of containers in the pod.  (optional)
+   * @return ApiResponse&lt;List&lt;ListPodsReport&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<ListPodsReport>> podListLibpodWithHttpInfo(String filters) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podListLibpodRequestBuilder(filters);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podListLibpod", localVarResponse);
+        }
+        return new ApiResponse<List<ListPodsReport>>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<ListPodsReport>>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podListLibpodRequestBuilder(String filters) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/json";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "filters";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("filters", filters));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Pause a pod
+   * Pause a pod
+   * @param name the name or ID of the pod (required)
+   * @return PodPauseReport
+   * @throws ApiException if fails to make API call
+   */
+  public PodPauseReport podPauseLibpod(String name) throws ApiException {
+    ApiResponse<PodPauseReport> localVarResponse = podPauseLibpodWithHttpInfo(name);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Pause a pod
+   * Pause a pod
+   * @param name the name or ID of the pod (required)
+   * @return ApiResponse&lt;PodPauseReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodPauseReport> podPauseLibpodWithHttpInfo(String name) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podPauseLibpodRequestBuilder(name);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podPauseLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodPauseReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodPauseReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podPauseLibpodRequestBuilder(String name) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podPauseLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/pause"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Prune unused pods
+   * 
+   * @return PodPruneReport
+   * @throws ApiException if fails to make API call
+   */
+  public PodPruneReport podPruneLibpod() throws ApiException {
+    ApiResponse<PodPruneReport> localVarResponse = podPruneLibpodWithHttpInfo();
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Prune unused pods
+   * 
+   * @return ApiResponse&lt;PodPruneReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodPruneReport> podPruneLibpodWithHttpInfo() throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podPruneLibpodRequestBuilder();
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podPruneLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodPruneReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodPruneReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podPruneLibpodRequestBuilder() throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/prune";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Restart a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @return PodRestartReport
+   * @throws ApiException if fails to make API call
+   */
+  public PodRestartReport podRestartLibpod(String name) throws ApiException {
+    ApiResponse<PodRestartReport> localVarResponse = podRestartLibpodWithHttpInfo(name);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Restart a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @return ApiResponse&lt;PodRestartReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodRestartReport> podRestartLibpodWithHttpInfo(String name) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podRestartLibpodRequestBuilder(name);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podRestartLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodRestartReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodRestartReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podRestartLibpodRequestBuilder(String name) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podRestartLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/restart"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Start a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @return PodStartReport
+   * @throws ApiException if fails to make API call
+   */
+  public PodStartReport podStartLibpod(String name) throws ApiException {
+    ApiResponse<PodStartReport> localVarResponse = podStartLibpodWithHttpInfo(name);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Start a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @return ApiResponse&lt;PodStartReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodStartReport> podStartLibpodWithHttpInfo(String name) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podStartLibpodRequestBuilder(name);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podStartLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodStartReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodStartReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podStartLibpodRequestBuilder(String name) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podStartLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/start"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Statistics for one or more pods
+   * Display a live stream of resource usage statistics for the containers in one or more pods
+   * @param all Provide statistics for all running pods. (optional)
+   * @param namesOrIDs Names or IDs of pods. (optional)
+   * @return List&lt;PodStatsReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<PodStatsReport> podStatsAllLibpod(Boolean all, List<String> namesOrIDs) throws ApiException {
+    ApiResponse<List<PodStatsReport>> localVarResponse = podStatsAllLibpodWithHttpInfo(all, namesOrIDs);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Statistics for one or more pods
+   * Display a live stream of resource usage statistics for the containers in one or more pods
+   * @param all Provide statistics for all running pods. (optional)
+   * @param namesOrIDs Names or IDs of pods. (optional)
+   * @return ApiResponse&lt;List&lt;PodStatsReport&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<PodStatsReport>> podStatsAllLibpodWithHttpInfo(Boolean all, List<String> namesOrIDs) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podStatsAllLibpodRequestBuilder(all, namesOrIDs);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podStatsAllLibpod", localVarResponse);
+        }
+        return new ApiResponse<List<PodStatsReport>>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<List<PodStatsReport>>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podStatsAllLibpodRequestBuilder(Boolean all, List<String> namesOrIDs) throws ApiException {
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/stats";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "all";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("all", all));
+    localVarQueryParameterBaseName = "namesOrIDs";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("csv", "namesOrIDs", namesOrIDs));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Stop a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @param t timeout (optional)
+   * @return PodStopReport
+   * @throws ApiException if fails to make API call
+   */
+  public PodStopReport podStopLibpod(String name, Integer t) throws ApiException {
+    ApiResponse<PodStopReport> localVarResponse = podStopLibpodWithHttpInfo(name, t);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Stop a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @param t timeout (optional)
+   * @return ApiResponse&lt;PodStopReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodStopReport> podStopLibpodWithHttpInfo(String name, Integer t) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podStopLibpodRequestBuilder(name, t);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podStopLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodStopReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodStopReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podStopLibpodRequestBuilder(String name, Integer t) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podStopLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/stop"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "t";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("t", t));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List processes
+   * List processes running inside a pod
+   * @param name Name of pod to query for processes (required)
+   * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
+   * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
+   * @param psArgs arguments to pass to ps such as aux.  (optional)
+   * @return PodTopOKBody
+   * @throws ApiException if fails to make API call
+   */
+  public PodTopOKBody podTopLibpod(String name, Boolean stream, Integer delay, String psArgs) throws ApiException {
+    ApiResponse<PodTopOKBody> localVarResponse = podTopLibpodWithHttpInfo(name, stream, delay, psArgs);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List processes
+   * List processes running inside a pod
+   * @param name Name of pod to query for processes (required)
+   * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
+   * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
+   * @param psArgs arguments to pass to ps such as aux.  (optional)
+   * @return ApiResponse&lt;PodTopOKBody&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodTopOKBody> podTopLibpodWithHttpInfo(String name, Boolean stream, Integer delay, String psArgs) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podTopLibpodRequestBuilder(name, stream, delay, psArgs);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podTopLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodTopOKBody>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodTopOKBody>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podTopLibpodRequestBuilder(String name, Boolean stream, Integer delay, String psArgs) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podTopLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/top"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "stream";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("stream", stream));
+    localVarQueryParameterBaseName = "delay";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("delay", delay));
+    localVarQueryParameterBaseName = "ps_args";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("ps_args", psArgs));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Unpause a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @return PodUnpauseReport
+   * @throws ApiException if fails to make API call
+   */
+  public PodUnpauseReport podUnpauseLibpod(String name) throws ApiException {
+    ApiResponse<PodUnpauseReport> localVarResponse = podUnpauseLibpodWithHttpInfo(name);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Unpause a pod
+   * 
+   * @param name the name or ID of the pod (required)
+   * @return ApiResponse&lt;PodUnpauseReport&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PodUnpauseReport> podUnpauseLibpodWithHttpInfo(String name) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = podUnpauseLibpodRequestBuilder(name);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("podUnpauseLibpod", localVarResponse);
+        }
+        return new ApiResponse<PodUnpauseReport>(
+          localVarResponse.statusCode(),
+          localVarResponse.headers().map(),
+          localVarResponse.body() == null ? null : memberVarObjectMapper.readValue(localVarResponse.body(), new TypeReference<PodUnpauseReport>() {}) // closes the InputStream
+        );
+      } finally {
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder podUnpauseLibpodRequestBuilder(String name) throws ApiException {
+    // verify the required parameter 'name' is set
+    if (name == null) {
+      throw new ApiException(400, "Missing the required parameter 'name' when calling podUnpauseLibpod");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/libpod/pods/{name}/unpause"
+        .replace("{name}", ApiClient.urlEncode(name.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
 
-    public PodsApi() {
-        this(Configuration.getDefaultApiClient());
-    }
-
-    public PodsApi(ApiClient apiClient) {
-        this.localVarApiClient = apiClient;
-    }
-
-    public ApiClient getApiClient() {
-        return localVarApiClient;
-    }
-
-    public void setApiClient(ApiClient apiClient) {
-        this.localVarApiClient = apiClient;
-    }
-
-    public int getHostIndex() {
-        return localHostIndex;
-    }
-
-    public void setHostIndex(int hostIndex) {
-        this.localHostIndex = hostIndex;
-    }
-
-    public String getCustomBaseUrl() {
-        return localCustomBaseUrl;
-    }
-
-    public void setCustomBaseUrl(String customBaseUrl) {
-        this.localCustomBaseUrl = customBaseUrl;
-    }
-
-    /**
-     * Build call for generateKubeLibpod
-     * @param names Name or ID of the container or pod. (required)
-     * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
-     * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
-     * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
-     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
-     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call generateKubeLibpodCall(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/generate/kube";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (names != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "names", names));
-        }
-
-        if (service != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("service", service));
-        }
-
-        if (type != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("type", type));
-        }
-
-        if (replicas != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("replicas", replicas));
-        }
-
-        if (noTrunc != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("noTrunc", noTrunc));
-        }
-
-        if (podmanOnly != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("podmanOnly", podmanOnly));
-        }
-
-        final String[] localVarAccepts = {
-            "text/vnd.yaml",
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call generateKubeLibpodValidateBeforeCall(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'names' is set
-        if (names == null) {
-            throw new ApiException("Missing the required parameter 'names' when calling generateKubeLibpod(Async)");
-        }
-
-        return generateKubeLibpodCall(names, service, type, replicas, noTrunc, podmanOnly, _callback);
-
-    }
-
-    /**
-     * Generate a Kubernetes YAML file.
-     * Generate Kubernetes YAML based on a pod or container.
-     * @param names Name or ID of the container or pod. (required)
-     * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
-     * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
-     * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
-     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
-     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public File generateKubeLibpod(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly) throws ApiException {
-        ApiResponse<File> localVarResp = generateKubeLibpodWithHttpInfo(names, service, type, replicas, noTrunc, podmanOnly);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Generate a Kubernetes YAML file.
-     * Generate Kubernetes YAML based on a pod or container.
-     * @param names Name or ID of the container or pod. (required)
-     * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
-     * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
-     * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
-     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
-     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<File> generateKubeLibpodWithHttpInfo(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly) throws ApiException {
-        okhttp3.Call localVarCall = generateKubeLibpodValidateBeforeCall(names, service, type, replicas, noTrunc, podmanOnly, null);
-        Type localVarReturnType = new TypeToken<File>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Generate a Kubernetes YAML file. (asynchronously)
-     * Generate Kubernetes YAML based on a pod or container.
-     * @param names Name or ID of the container or pod. (required)
-     * @param service Generate YAML for a Kubernetes service object. (optional, default to false)
-     * @param type Generate YAML for the given Kubernetes kind. (optional, default to pod)
-     * @param replicas Set the replica number for Deployment kind. (optional, default to 0)
-     * @param noTrunc don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters (optional, default to false)
-     * @param podmanOnly add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) (optional, default to false)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kubernetes YAML file describing pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call generateKubeLibpodAsync(List<String> names, Boolean service, String type, Integer replicas, Boolean noTrunc, Boolean podmanOnly, final ApiCallback<File> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = generateKubeLibpodValidateBeforeCall(names, service, type, replicas, noTrunc, podmanOnly, _callback);
-        Type localVarReturnType = new TypeToken<File>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for generateSystemdLibpod
-     * @param name Name or ID of the container or pod. (required)
-     * @param useName Use container/pod names instead of IDs. (optional, default to false)
-     * @param _new Create a new container instead of starting an existing one. (optional, default to false)
-     * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
-     * @param startTimeout Start timeout in seconds. (optional, default to 0)
-     * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
-     * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
-     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
-     * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
-     * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
-     * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
-     * @param wants Systemd Wants list for the container or pods. (optional)
-     * @param after Systemd After list for the container or pods. (optional)
-     * @param requires Systemd Requires list for the container or pods. (optional)
-     * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call generateSystemdLibpodCall(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/generate/{name}/systemd"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (useName != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("useName", useName));
-        }
-
-        if (_new != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("new", _new));
-        }
-
-        if (noHeader != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("noHeader", noHeader));
-        }
-
-        if (startTimeout != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("startTimeout", startTimeout));
-        }
-
-        if (stopTimeout != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("stopTimeout", stopTimeout));
-        }
-
-        if (restartPolicy != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("restartPolicy", restartPolicy));
-        }
-
-        if (containerPrefix != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("containerPrefix", containerPrefix));
-        }
-
-        if (podPrefix != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("podPrefix", podPrefix));
-        }
-
-        if (separator != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("separator", separator));
-        }
-
-        if (restartSec != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("restartSec", restartSec));
-        }
-
-        if (wants != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "wants", wants));
-        }
-
-        if (after != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "after", after));
-        }
-
-        if (requires != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "requires", requires));
-        }
-
-        if (additionalEnvVariables != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "additionalEnvVariables", additionalEnvVariables));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call generateSystemdLibpodValidateBeforeCall(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling generateSystemdLibpod(Async)");
-        }
-
-        return generateSystemdLibpodCall(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables, _callback);
-
-    }
-
-    /**
-     * Generate Systemd Units
-     * Generate Systemd Units based on a pod or container.
-     * @param name Name or ID of the container or pod. (required)
-     * @param useName Use container/pod names instead of IDs. (optional, default to false)
-     * @param _new Create a new container instead of starting an existing one. (optional, default to false)
-     * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
-     * @param startTimeout Start timeout in seconds. (optional, default to 0)
-     * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
-     * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
-     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
-     * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
-     * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
-     * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
-     * @param wants Systemd Wants list for the container or pods. (optional)
-     * @param after Systemd After list for the container or pods. (optional)
-     * @param requires Systemd Requires list for the container or pods. (optional)
-     * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
-     * @return Map&lt;String, String&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public Map<String, String> generateSystemdLibpod(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables) throws ApiException {
-        ApiResponse<Map<String, String>> localVarResp = generateSystemdLibpodWithHttpInfo(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Generate Systemd Units
-     * Generate Systemd Units based on a pod or container.
-     * @param name Name or ID of the container or pod. (required)
-     * @param useName Use container/pod names instead of IDs. (optional, default to false)
-     * @param _new Create a new container instead of starting an existing one. (optional, default to false)
-     * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
-     * @param startTimeout Start timeout in seconds. (optional, default to 0)
-     * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
-     * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
-     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
-     * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
-     * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
-     * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
-     * @param wants Systemd Wants list for the container or pods. (optional)
-     * @param after Systemd After list for the container or pods. (optional)
-     * @param requires Systemd Requires list for the container or pods. (optional)
-     * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
-     * @return ApiResponse&lt;Map&lt;String, String&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Map<String, String>> generateSystemdLibpodWithHttpInfo(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables) throws ApiException {
-        okhttp3.Call localVarCall = generateSystemdLibpodValidateBeforeCall(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables, null);
-        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Generate Systemd Units (asynchronously)
-     * Generate Systemd Units based on a pod or container.
-     * @param name Name or ID of the container or pod. (required)
-     * @param useName Use container/pod names instead of IDs. (optional, default to false)
-     * @param _new Create a new container instead of starting an existing one. (optional, default to false)
-     * @param noHeader Do not generate the header including the Podman version and the timestamp. (optional, default to false)
-     * @param startTimeout Start timeout in seconds. (optional, default to 0)
-     * @param stopTimeout Stop timeout in seconds. (optional, default to 10)
-     * @param restartPolicy Systemd restart-policy. (optional, default to on-failure)
-     * @param containerPrefix Systemd unit name prefix for containers. (optional, default to container)
-     * @param podPrefix Systemd unit name prefix for pods. (optional, default to pod)
-     * @param separator Systemd unit name separator between name/id and prefix. (optional, default to -)
-     * @param restartSec Configures the time to sleep before restarting a service. (optional, default to 0)
-     * @param wants Systemd Wants list for the container or pods. (optional)
-     * @param after Systemd After list for the container or pods. (optional)
-     * @param requires Systemd Requires list for the container or pods. (optional)
-     * @param additionalEnvVariables Set environment variables to the systemd unit files. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call generateSystemdLibpodAsync(String name, Boolean useName, Boolean _new, Boolean noHeader, Integer startTimeout, Integer stopTimeout, String restartPolicy, String containerPrefix, String podPrefix, String separator, Integer restartSec, List<String> wants, List<String> after, List<String> requires, List<String> additionalEnvVariables, final ApiCallback<Map<String, String>> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = generateSystemdLibpodValidateBeforeCall(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables, _callback);
-        Type localVarReturnType = new TypeToken<Map<String, String>>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for kubeApplyLibpod
-     * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
-     * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
-     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
-     * @param service Create a service object for the container being deployed. (optional)
-     * @param _file Path to the Kubernetes yaml file to deploy. (optional)
-     * @param request Kubernetes YAML file. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call kubeApplyLibpodCall(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = request;
-
-        // create path and map variables
-        String localVarPath = "/libpod/kube/apply";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (caCertFile != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("caCertFile", caCertFile));
-        }
-
-        if (kubeConfig != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("kubeConfig", kubeConfig));
-        }
-
-        if (namespace != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("namespace", namespace));
-        }
-
-        if (service != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("service", service));
-        }
-
-        if (_file != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("file", _file));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call kubeApplyLibpodValidateBeforeCall(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request, final ApiCallback _callback) throws ApiException {
-        return kubeApplyLibpodCall(caCertFile, kubeConfig, namespace, service, _file, request, _callback);
-
-    }
-
-    /**
-     * Apply a podman workload or Kubernetes YAML file.
-     * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
-     * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
-     * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
-     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
-     * @param service Create a service object for the container being deployed. (optional)
-     * @param _file Path to the Kubernetes yaml file to deploy. (optional)
-     * @param request Kubernetes YAML file. (optional)
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public File kubeApplyLibpod(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request) throws ApiException {
-        ApiResponse<File> localVarResp = kubeApplyLibpodWithHttpInfo(caCertFile, kubeConfig, namespace, service, _file, request);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Apply a podman workload or Kubernetes YAML file.
-     * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
-     * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
-     * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
-     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
-     * @param service Create a service object for the container being deployed. (optional)
-     * @param _file Path to the Kubernetes yaml file to deploy. (optional)
-     * @param request Kubernetes YAML file. (optional)
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<File> kubeApplyLibpodWithHttpInfo(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request) throws ApiException {
-        okhttp3.Call localVarCall = kubeApplyLibpodValidateBeforeCall(caCertFile, kubeConfig, namespace, service, _file, request, null);
-        Type localVarReturnType = new TypeToken<File>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Apply a podman workload or Kubernetes YAML file. (asynchronously)
-     * Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
-     * @param caCertFile Path to the CA cert file for the Kubernetes cluster. (optional)
-     * @param kubeConfig Path to the kubeconfig file for the Kubernetes cluster. (optional)
-     * @param namespace The namespace to deploy the workload to on the Kubernetes cluster. (optional)
-     * @param service Create a service object for the container being deployed. (optional)
-     * @param _file Path to the Kubernetes yaml file to deploy. (optional)
-     * @param request Kubernetes YAML file. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kubernetes YAML file successfully deployed to cluster </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call kubeApplyLibpodAsync(String caCertFile, String kubeConfig, String namespace, Boolean service, String _file, String request, final ApiCallback<File> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = kubeApplyLibpodValidateBeforeCall(caCertFile, kubeConfig, namespace, service, _file, request, _callback);
-        Type localVarReturnType = new TypeToken<File>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for playKubeDownLibpod
-     * @param force Remove volumes. (optional, default to false)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call playKubeDownLibpodCall(Boolean force, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/play/kube";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (force != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeDownLibpodValidateBeforeCall(Boolean force, final ApiCallback _callback) throws ApiException {
-        return playKubeDownLibpodCall(force, _callback);
-
-    }
-
-    /**
-     * Remove resources created from kube play
-     * Tears down pods, secrets, and volumes defined in a YAML file
-     * @param force Remove volumes. (optional, default to false)
-     * @return PlayKubeReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PlayKubeReport playKubeDownLibpod(Boolean force) throws ApiException {
-        ApiResponse<PlayKubeReport> localVarResp = playKubeDownLibpodWithHttpInfo(force);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Remove resources created from kube play
-     * Tears down pods, secrets, and volumes defined in a YAML file
-     * @param force Remove volumes. (optional, default to false)
-     * @return ApiResponse&lt;PlayKubeReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PlayKubeReport> playKubeDownLibpodWithHttpInfo(Boolean force) throws ApiException {
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, null);
-        Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Remove resources created from kube play (asynchronously)
-     * Tears down pods, secrets, and volumes defined in a YAML file
-     * @param force Remove volumes. (optional, default to false)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call playKubeDownLibpodAsync(Boolean force, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = playKubeDownLibpodValidateBeforeCall(force, _callback);
-        Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for playKubeLibpod
-     * @param contentType  (optional, default to plain/text)
-     * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
-     * @param logDriver Logging driver for the containers in the pod. (optional)
-     * @param logOptions logging driver options (optional)
-     * @param network USe the network mode or specify an array of networks. (optional)
-     * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
-     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
-     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
-     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
-     * @param replace replace existing pods and containers (optional, default to false)
-     * @param serviceContainer Starts a service container before all pods. (optional, default to false)
-     * @param start Start the pod after creating it. (optional, default to true)
-     * @param staticIPs Static IPs used for the pods. (optional)
-     * @param staticMACs Static MACs used for the pods. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-     * @param userns Set the user namespace mode for the pods. (optional)
-     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
-     * @param build Build the images with corresponding context. (optional)
-     * @param request Kubernetes YAML file. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call playKubeLibpodCall(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = request;
-
-        // create path and map variables
-        String localVarPath = "/libpod/play/kube";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (annotations != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("annotations", annotations));
-        }
-
-        if (logDriver != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("logDriver", logDriver));
-        }
-
-        if (logOptions != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "logOptions", logOptions));
-        }
-
-        if (network != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "network", network));
-        }
-
-        if (noHosts != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("noHosts", noHosts));
-        }
-
-        if (noTrunc != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("noTrunc", noTrunc));
-        }
-
-        if (publishPorts != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "publishPorts", publishPorts));
-        }
-
-        if (publishAllPorts != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("publishAllPorts", publishAllPorts));
-        }
-
-        if (replace != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("replace", replace));
-        }
-
-        if (serviceContainer != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("serviceContainer", serviceContainer));
-        }
-
-        if (start != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("start", start));
-        }
-
-        if (staticIPs != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "staticIPs", staticIPs));
-        }
-
-        if (staticMACs != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "staticMACs", staticMACs));
-        }
-
-        if (tlsVerify != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("tlsVerify", tlsVerify));
-        }
-
-        if (userns != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("userns", userns));
-        }
-
-        if (wait != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("wait", wait));
-        }
-
-        if (build != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("build", build));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", contentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call playKubeLibpodValidateBeforeCall(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback _callback) throws ApiException {
-        return playKubeLibpodCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
-
-    }
-
-    /**
-     * Play a Kubernetes YAML file.
-     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
-     * @param contentType  (optional, default to plain/text)
-     * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
-     * @param logDriver Logging driver for the containers in the pod. (optional)
-     * @param logOptions logging driver options (optional)
-     * @param network USe the network mode or specify an array of networks. (optional)
-     * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
-     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
-     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
-     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
-     * @param replace replace existing pods and containers (optional, default to false)
-     * @param serviceContainer Starts a service container before all pods. (optional, default to false)
-     * @param start Start the pod after creating it. (optional, default to true)
-     * @param staticIPs Static IPs used for the pods. (optional)
-     * @param staticMACs Static MACs used for the pods. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-     * @param userns Set the user namespace mode for the pods. (optional)
-     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
-     * @param build Build the images with corresponding context. (optional)
-     * @param request Kubernetes YAML file. (optional)
-     * @return PlayKubeReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PlayKubeReport playKubeLibpod(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
-        ApiResponse<PlayKubeReport> localVarResp = playKubeLibpodWithHttpInfo(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Play a Kubernetes YAML file.
-     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
-     * @param contentType  (optional, default to plain/text)
-     * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
-     * @param logDriver Logging driver for the containers in the pod. (optional)
-     * @param logOptions logging driver options (optional)
-     * @param network USe the network mode or specify an array of networks. (optional)
-     * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
-     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
-     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
-     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
-     * @param replace replace existing pods and containers (optional, default to false)
-     * @param serviceContainer Starts a service container before all pods. (optional, default to false)
-     * @param start Start the pod after creating it. (optional, default to true)
-     * @param staticIPs Static IPs used for the pods. (optional)
-     * @param staticMACs Static MACs used for the pods. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-     * @param userns Set the user namespace mode for the pods. (optional)
-     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
-     * @param build Build the images with corresponding context. (optional)
-     * @param request Kubernetes YAML file. (optional)
-     * @return ApiResponse&lt;PlayKubeReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PlayKubeReport> playKubeLibpodWithHttpInfo(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request) throws ApiException {
-        okhttp3.Call localVarCall = playKubeLibpodValidateBeforeCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, null);
-        Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Play a Kubernetes YAML file. (asynchronously)
-     * Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
-     * @param contentType  (optional, default to plain/text)
-     * @param annotations JSON encoded value of annotations (a map[string]string). (optional)
-     * @param logDriver Logging driver for the containers in the pod. (optional)
-     * @param logOptions logging driver options (optional)
-     * @param network USe the network mode or specify an array of networks. (optional)
-     * @param noHosts do not setup /etc/hosts file in container (optional, default to false)
-     * @param noTrunc use annotations that are not truncated to the Kubernetes maximum length of 63 characters (optional, default to false)
-     * @param publishPorts publish a container&#39;s port, or a range of ports, to the host (optional)
-     * @param publishAllPorts Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published (optional)
-     * @param replace replace existing pods and containers (optional, default to false)
-     * @param serviceContainer Starts a service container before all pods. (optional, default to false)
-     * @param start Start the pod after creating it. (optional, default to true)
-     * @param staticIPs Static IPs used for the pods. (optional)
-     * @param staticMACs Static MACs used for the pods. (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-     * @param userns Set the user namespace mode for the pods. (optional)
-     * @param wait Clean up all objects created when a SIGTERM is received or pods exit. (optional, default to false)
-     * @param build Build the images with corresponding context. (optional)
-     * @param request Kubernetes YAML file. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> PlayKube response </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call playKubeLibpodAsync(String contentType, String annotations, String logDriver, List<String> logOptions, List<String> network, Boolean noHosts, Boolean noTrunc, List<String> publishPorts, Boolean publishAllPorts, Boolean replace, Boolean serviceContainer, Boolean start, List<String> staticIPs, List<String> staticMACs, Boolean tlsVerify, String userns, Boolean wait, Boolean build, String request, final ApiCallback<PlayKubeReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = playKubeLibpodValidateBeforeCall(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request, _callback);
-        Type localVarReturnType = new TypeToken<PlayKubeReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podCreateLibpod
-     * @param create attributes for creating a pod (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> status conflict </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podCreateLibpodCall(PodSpecGenerator create, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = create;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/create";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-            "application/json",
-            "application/x-tar"
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podCreateLibpodValidateBeforeCall(PodSpecGenerator create, final ApiCallback _callback) throws ApiException {
-        return podCreateLibpodCall(create, _callback);
-
-    }
-
-    /**
-     * Create a pod
-     * 
-     * @param create attributes for creating a pod (optional)
-     * @return IdResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> status conflict </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public IdResponse podCreateLibpod(PodSpecGenerator create) throws ApiException {
-        ApiResponse<IdResponse> localVarResp = podCreateLibpodWithHttpInfo(create);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Create a pod
-     * 
-     * @param create attributes for creating a pod (optional)
-     * @return ApiResponse&lt;IdResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> status conflict </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<IdResponse> podCreateLibpodWithHttpInfo(PodSpecGenerator create) throws ApiException {
-        okhttp3.Call localVarCall = podCreateLibpodValidateBeforeCall(create, null);
-        Type localVarReturnType = new TypeToken<IdResponse>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Create a pod (asynchronously)
-     * 
-     * @param create attributes for creating a pod (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 201 </td><td>  </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> status conflict </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podCreateLibpodAsync(PodSpecGenerator create, final ApiCallback<IdResponse> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podCreateLibpodValidateBeforeCall(create, _callback);
-        Type localVarReturnType = new TypeToken<IdResponse>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podDeleteLibpod
-     * @param name the name or ID of the pod (required)
-     * @param force force removal of a running pod by first stopping all containers, then removing all containers in the pod (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Rm pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podDeleteLibpodCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (force != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podDeleteLibpodValidateBeforeCall(String name, Boolean force, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podDeleteLibpod(Async)");
-        }
-
-        return podDeleteLibpodCall(name, force, _callback);
-
-    }
-
-    /**
-     * Remove pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param force force removal of a running pod by first stopping all containers, then removing all containers in the pod (optional)
-     * @return PodRmReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Rm pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodRmReport podDeleteLibpod(String name, Boolean force) throws ApiException {
-        ApiResponse<PodRmReport> localVarResp = podDeleteLibpodWithHttpInfo(name, force);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Remove pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param force force removal of a running pod by first stopping all containers, then removing all containers in the pod (optional)
-     * @return ApiResponse&lt;PodRmReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Rm pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodRmReport> podDeleteLibpodWithHttpInfo(String name, Boolean force) throws ApiException {
-        okhttp3.Call localVarCall = podDeleteLibpodValidateBeforeCall(name, force, null);
-        Type localVarReturnType = new TypeToken<PodRmReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Remove pod (asynchronously)
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param force force removal of a running pod by first stopping all containers, then removing all containers in the pod (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Rm pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podDeleteLibpodAsync(String name, Boolean force, final ApiCallback<PodRmReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podDeleteLibpodValidateBeforeCall(name, force, _callback);
-        Type localVarReturnType = new TypeToken<PodRmReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podExistsLibpod
-     * @param name the name or ID of the pod (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> pod exists </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podExistsLibpodCall(String name, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/exists"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podExistsLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podExistsLibpod(Async)");
-        }
-
-        return podExistsLibpodCall(name, _callback);
-
-    }
-
-    /**
-     * Pod exists
-     * Check if a pod exists by name or ID
-     * @param name the name or ID of the pod (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> pod exists </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public void podExistsLibpod(String name) throws ApiException {
-        podExistsLibpodWithHttpInfo(name);
-    }
-
-    /**
-     * Pod exists
-     * Check if a pod exists by name or ID
-     * @param name the name or ID of the pod (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> pod exists </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<Void> podExistsLibpodWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = podExistsLibpodValidateBeforeCall(name, null);
-        return localVarApiClient.execute(localVarCall);
-    }
-
-    /**
-     * Pod exists (asynchronously)
-     * Check if a pod exists by name or ID
-     * @param name the name or ID of the pod (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 204 </td><td> pod exists </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podExistsLibpodAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podExistsLibpodValidateBeforeCall(name, _callback);
-        localVarApiClient.executeAsync(localVarCall, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podInspectLibpod
-     * @param name the name or ID of the pod (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Inspect pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podInspectLibpodCall(String name, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/json"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podInspectLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podInspectLibpod(Async)");
-        }
-
-        return podInspectLibpodCall(name, _callback);
-
-    }
-
-    /**
-     * Inspect pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @return InspectPodData
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Inspect pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public InspectPodData podInspectLibpod(String name) throws ApiException {
-        ApiResponse<InspectPodData> localVarResp = podInspectLibpodWithHttpInfo(name);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Inspect pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @return ApiResponse&lt;InspectPodData&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Inspect pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<InspectPodData> podInspectLibpodWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = podInspectLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<InspectPodData>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Inspect pod (asynchronously)
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Inspect pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podInspectLibpodAsync(String name, final ApiCallback<InspectPodData> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podInspectLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<InspectPodData>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podKillLibpod
-     * @param name the name or ID of the pod (required)
-     * @param signal signal to be sent to pod (optional, default to SIGKILL)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kill Pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Kill Pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podKillLibpodCall(String name, String signal, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/kill"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (signal != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("signal", signal));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podKillLibpodValidateBeforeCall(String name, String signal, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podKillLibpod(Async)");
-        }
-
-        return podKillLibpodCall(name, signal, _callback);
-
-    }
-
-    /**
-     * Kill a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param signal signal to be sent to pod (optional, default to SIGKILL)
-     * @return PodKillReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kill Pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Kill Pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodKillReport podKillLibpod(String name, String signal) throws ApiException {
-        ApiResponse<PodKillReport> localVarResp = podKillLibpodWithHttpInfo(name, signal);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Kill a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param signal signal to be sent to pod (optional, default to SIGKILL)
-     * @return ApiResponse&lt;PodKillReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kill Pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Kill Pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodKillReport> podKillLibpodWithHttpInfo(String name, String signal) throws ApiException {
-        okhttp3.Call localVarCall = podKillLibpodValidateBeforeCall(name, signal, null);
-        Type localVarReturnType = new TypeToken<PodKillReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Kill a pod (asynchronously)
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param signal signal to be sent to pod (optional, default to SIGKILL)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Kill Pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Kill Pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podKillLibpodAsync(String name, String signal, final ApiCallback<PodKillReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podKillLibpodValidateBeforeCall(name, signal, _callback);
-        Type localVarReturnType = new TypeToken<PodKillReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podListLibpod
-     * @param filters JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - &#x60;id&#x3D;&lt;pod-id&gt;&#x60; Matches all of pod id.   - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches pods based on the presence of a label alone or a label and a value.   - &#x60;name&#x3D;&lt;pod-name&gt;&#x60; Matches all of pod name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List pods created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;status&#x3D;&lt;pod-status&gt;&#x60; Pod&#39;s status: &#x60;stopped&#x60;, &#x60;running&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60;, &#x60;dead&#x60;, &#x60;created&#x60;, &#x60;degraded&#x60;.   - &#x60;network&#x3D;&lt;pod-network&gt;&#x60; Name or full ID of network.   - &#x60;ctr-names&#x3D;&lt;pod-ctr-names&gt;&#x60; Container name within the pod.   - &#x60;ctr-ids&#x3D;&lt;pod-ctr-ids&gt;&#x60; Container ID within the pod.   - &#x60;ctr-status&#x3D;&lt;pod-ctr-status&gt;&#x60; Container status within the pod.   - &#x60;ctr-number&#x3D;&lt;pod-ctr-number&gt;&#x60; Number of containers in the pod.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List pods </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podListLibpodCall(String filters, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/json";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (filters != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("filters", filters));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podListLibpodValidateBeforeCall(String filters, final ApiCallback _callback) throws ApiException {
-        return podListLibpodCall(filters, _callback);
-
-    }
-
-    /**
-     * List pods
-     * 
-     * @param filters JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - &#x60;id&#x3D;&lt;pod-id&gt;&#x60; Matches all of pod id.   - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches pods based on the presence of a label alone or a label and a value.   - &#x60;name&#x3D;&lt;pod-name&gt;&#x60; Matches all of pod name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List pods created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;status&#x3D;&lt;pod-status&gt;&#x60; Pod&#39;s status: &#x60;stopped&#x60;, &#x60;running&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60;, &#x60;dead&#x60;, &#x60;created&#x60;, &#x60;degraded&#x60;.   - &#x60;network&#x3D;&lt;pod-network&gt;&#x60; Name or full ID of network.   - &#x60;ctr-names&#x3D;&lt;pod-ctr-names&gt;&#x60; Container name within the pod.   - &#x60;ctr-ids&#x3D;&lt;pod-ctr-ids&gt;&#x60; Container ID within the pod.   - &#x60;ctr-status&#x3D;&lt;pod-ctr-status&gt;&#x60; Container status within the pod.   - &#x60;ctr-number&#x3D;&lt;pod-ctr-number&gt;&#x60; Number of containers in the pod.  (optional)
-     * @return List&lt;ListPodsReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List pods </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public List<ListPodsReport> podListLibpod(String filters) throws ApiException {
-        ApiResponse<List<ListPodsReport>> localVarResp = podListLibpodWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
-
-    /**
-     * List pods
-     * 
-     * @param filters JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - &#x60;id&#x3D;&lt;pod-id&gt;&#x60; Matches all of pod id.   - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches pods based on the presence of a label alone or a label and a value.   - &#x60;name&#x3D;&lt;pod-name&gt;&#x60; Matches all of pod name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List pods created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;status&#x3D;&lt;pod-status&gt;&#x60; Pod&#39;s status: &#x60;stopped&#x60;, &#x60;running&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60;, &#x60;dead&#x60;, &#x60;created&#x60;, &#x60;degraded&#x60;.   - &#x60;network&#x3D;&lt;pod-network&gt;&#x60; Name or full ID of network.   - &#x60;ctr-names&#x3D;&lt;pod-ctr-names&gt;&#x60; Container name within the pod.   - &#x60;ctr-ids&#x3D;&lt;pod-ctr-ids&gt;&#x60; Container ID within the pod.   - &#x60;ctr-status&#x3D;&lt;pod-ctr-status&gt;&#x60; Container status within the pod.   - &#x60;ctr-number&#x3D;&lt;pod-ctr-number&gt;&#x60; Number of containers in the pod.  (optional)
-     * @return ApiResponse&lt;List&lt;ListPodsReport&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List pods </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<List<ListPodsReport>> podListLibpodWithHttpInfo(String filters) throws ApiException {
-        okhttp3.Call localVarCall = podListLibpodValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<ListPodsReport>>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * List pods (asynchronously)
-     * 
-     * @param filters JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - &#x60;id&#x3D;&lt;pod-id&gt;&#x60; Matches all of pod id.   - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches pods based on the presence of a label alone or a label and a value.   - &#x60;name&#x3D;&lt;pod-name&gt;&#x60; Matches all of pod name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List pods created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;status&#x3D;&lt;pod-status&gt;&#x60; Pod&#39;s status: &#x60;stopped&#x60;, &#x60;running&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60;, &#x60;dead&#x60;, &#x60;created&#x60;, &#x60;degraded&#x60;.   - &#x60;network&#x3D;&lt;pod-network&gt;&#x60; Name or full ID of network.   - &#x60;ctr-names&#x3D;&lt;pod-ctr-names&gt;&#x60; Container name within the pod.   - &#x60;ctr-ids&#x3D;&lt;pod-ctr-ids&gt;&#x60; Container ID within the pod.   - &#x60;ctr-status&#x3D;&lt;pod-ctr-status&gt;&#x60; Container status within the pod.   - &#x60;ctr-number&#x3D;&lt;pod-ctr-number&gt;&#x60; Number of containers in the pod.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List pods </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podListLibpodAsync(String filters, final ApiCallback<List<ListPodsReport>> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podListLibpodValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<ListPodsReport>>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podPauseLibpod
-     * @param name the name or ID of the pod (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Pause pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Pause pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podPauseLibpodCall(String name, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/pause"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podPauseLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podPauseLibpod(Async)");
-        }
-
-        return podPauseLibpodCall(name, _callback);
-
-    }
-
-    /**
-     * Pause a pod
-     * Pause a pod
-     * @param name the name or ID of the pod (required)
-     * @return PodPauseReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Pause pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Pause pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodPauseReport podPauseLibpod(String name) throws ApiException {
-        ApiResponse<PodPauseReport> localVarResp = podPauseLibpodWithHttpInfo(name);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Pause a pod
-     * Pause a pod
-     * @param name the name or ID of the pod (required)
-     * @return ApiResponse&lt;PodPauseReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Pause pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Pause pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodPauseReport> podPauseLibpodWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = podPauseLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<PodPauseReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Pause a pod (asynchronously)
-     * Pause a pod
-     * @param name the name or ID of the pod (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Pause pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Pause pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podPauseLibpodAsync(String name, final ApiCallback<PodPauseReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podPauseLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<PodPauseReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podPruneLibpod
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Prune pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> pod already exists </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podPruneLibpodCall(final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/prune";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podPruneLibpodValidateBeforeCall(final ApiCallback _callback) throws ApiException {
-        return podPruneLibpodCall(_callback);
-
-    }
-
-    /**
-     * Prune unused pods
-     * 
-     * @return PodPruneReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Prune pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> pod already exists </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodPruneReport podPruneLibpod() throws ApiException {
-        ApiResponse<PodPruneReport> localVarResp = podPruneLibpodWithHttpInfo();
-        return localVarResp.getData();
-    }
-
-    /**
-     * Prune unused pods
-     * 
-     * @return ApiResponse&lt;PodPruneReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Prune pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> pod already exists </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodPruneReport> podPruneLibpodWithHttpInfo() throws ApiException {
-        okhttp3.Call localVarCall = podPruneLibpodValidateBeforeCall(null);
-        Type localVarReturnType = new TypeToken<PodPruneReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Prune unused pods (asynchronously)
-     * 
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Prune pod </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> pod already exists </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podPruneLibpodAsync(final ApiCallback<PodPruneReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podPruneLibpodValidateBeforeCall(_callback);
-        Type localVarReturnType = new TypeToken<PodPruneReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podRestartLibpod
-     * @param name the name or ID of the pod (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Restart pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Restart pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podRestartLibpodCall(String name, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/restart"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podRestartLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podRestartLibpod(Async)");
-        }
-
-        return podRestartLibpodCall(name, _callback);
-
-    }
-
-    /**
-     * Restart a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @return PodRestartReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Restart pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Restart pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodRestartReport podRestartLibpod(String name) throws ApiException {
-        ApiResponse<PodRestartReport> localVarResp = podRestartLibpodWithHttpInfo(name);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Restart a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @return ApiResponse&lt;PodRestartReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Restart pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Restart pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodRestartReport> podRestartLibpodWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = podRestartLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<PodRestartReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Restart a pod (asynchronously)
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Restart pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Restart pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podRestartLibpodAsync(String name, final ApiCallback<PodRestartReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podRestartLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<PodRestartReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podStartLibpod
-     * @param name the name or ID of the pod (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Start pod </td><td>  -  </td></tr>
-        <tr><td> 304 </td><td> Pod already started </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Start pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podStartLibpodCall(String name, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/start"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podStartLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podStartLibpod(Async)");
-        }
-
-        return podStartLibpodCall(name, _callback);
-
-    }
-
-    /**
-     * Start a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @return PodStartReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Start pod </td><td>  -  </td></tr>
-        <tr><td> 304 </td><td> Pod already started </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Start pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodStartReport podStartLibpod(String name) throws ApiException {
-        ApiResponse<PodStartReport> localVarResp = podStartLibpodWithHttpInfo(name);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Start a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @return ApiResponse&lt;PodStartReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Start pod </td><td>  -  </td></tr>
-        <tr><td> 304 </td><td> Pod already started </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Start pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodStartReport> podStartLibpodWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = podStartLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<PodStartReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Start a pod (asynchronously)
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Start pod </td><td>  -  </td></tr>
-        <tr><td> 304 </td><td> Pod already started </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Start pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podStartLibpodAsync(String name, final ApiCallback<PodStartReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podStartLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<PodStartReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podStatsAllLibpod
-     * @param all Provide statistics for all running pods. (optional)
-     * @param namesOrIDs Names or IDs of pods. (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Pod Statistics </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podStatsAllLibpodCall(Boolean all, List<String> namesOrIDs, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/stats";
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (all != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("all", all));
-        }
-
-        if (namesOrIDs != null) {
-            localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("csv", "namesOrIDs", namesOrIDs));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podStatsAllLibpodValidateBeforeCall(Boolean all, List<String> namesOrIDs, final ApiCallback _callback) throws ApiException {
-        return podStatsAllLibpodCall(all, namesOrIDs, _callback);
-
-    }
-
-    /**
-     * Statistics for one or more pods
-     * Display a live stream of resource usage statistics for the containers in one or more pods
-     * @param all Provide statistics for all running pods. (optional)
-     * @param namesOrIDs Names or IDs of pods. (optional)
-     * @return List&lt;PodStatsReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Pod Statistics </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public List<PodStatsReport> podStatsAllLibpod(Boolean all, List<String> namesOrIDs) throws ApiException {
-        ApiResponse<List<PodStatsReport>> localVarResp = podStatsAllLibpodWithHttpInfo(all, namesOrIDs);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Statistics for one or more pods
-     * Display a live stream of resource usage statistics for the containers in one or more pods
-     * @param all Provide statistics for all running pods. (optional)
-     * @param namesOrIDs Names or IDs of pods. (optional)
-     * @return ApiResponse&lt;List&lt;PodStatsReport&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Pod Statistics </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<List<PodStatsReport>> podStatsAllLibpodWithHttpInfo(Boolean all, List<String> namesOrIDs) throws ApiException {
-        okhttp3.Call localVarCall = podStatsAllLibpodValidateBeforeCall(all, namesOrIDs, null);
-        Type localVarReturnType = new TypeToken<List<PodStatsReport>>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Statistics for one or more pods (asynchronously)
-     * Display a live stream of resource usage statistics for the containers in one or more pods
-     * @param all Provide statistics for all running pods. (optional)
-     * @param namesOrIDs Names or IDs of pods. (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Pod Statistics </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podStatsAllLibpodAsync(Boolean all, List<String> namesOrIDs, final ApiCallback<List<PodStatsReport>> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podStatsAllLibpodValidateBeforeCall(all, namesOrIDs, _callback);
-        Type localVarReturnType = new TypeToken<List<PodStatsReport>>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podStopLibpod
-     * @param name the name or ID of the pod (required)
-     * @param t timeout (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Stop pod </td><td>  -  </td></tr>
-        <tr><td> 304 </td><td> Pod already stopped </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Stop pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podStopLibpodCall(String name, Integer t, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/stop"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (t != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("t", t));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podStopLibpodValidateBeforeCall(String name, Integer t, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podStopLibpod(Async)");
-        }
-
-        return podStopLibpodCall(name, t, _callback);
-
-    }
-
-    /**
-     * Stop a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param t timeout (optional)
-     * @return PodStopReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Stop pod </td><td>  -  </td></tr>
-        <tr><td> 304 </td><td> Pod already stopped </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Stop pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodStopReport podStopLibpod(String name, Integer t) throws ApiException {
-        ApiResponse<PodStopReport> localVarResp = podStopLibpodWithHttpInfo(name, t);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Stop a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param t timeout (optional)
-     * @return ApiResponse&lt;PodStopReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Stop pod </td><td>  -  </td></tr>
-        <tr><td> 304 </td><td> Pod already stopped </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Stop pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodStopReport> podStopLibpodWithHttpInfo(String name, Integer t) throws ApiException {
-        okhttp3.Call localVarCall = podStopLibpodValidateBeforeCall(name, t, null);
-        Type localVarReturnType = new TypeToken<PodStopReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Stop a pod (asynchronously)
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param t timeout (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Stop pod </td><td>  -  </td></tr>
-        <tr><td> 304 </td><td> Pod already stopped </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Stop pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podStopLibpodAsync(String name, Integer t, final ApiCallback<PodStopReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podStopLibpodValidateBeforeCall(name, t, _callback);
-        Type localVarReturnType = new TypeToken<PodStopReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podTopLibpod
-     * @param name Name of pod to query for processes (required)
-     * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
-     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
-     * @param psArgs arguments to pass to ps such as aux.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List processes in pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podTopLibpodCall(String name, Boolean stream, Integer delay, String psArgs, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/top"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        if (stream != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("stream", stream));
-        }
-
-        if (delay != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("delay", delay));
-        }
-
-        if (psArgs != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("ps_args", psArgs));
-        }
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podTopLibpodValidateBeforeCall(String name, Boolean stream, Integer delay, String psArgs, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podTopLibpod(Async)");
-        }
-
-        return podTopLibpodCall(name, stream, delay, psArgs, _callback);
-
-    }
-
-    /**
-     * List processes
-     * List processes running inside a pod
-     * @param name Name of pod to query for processes (required)
-     * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
-     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
-     * @param psArgs arguments to pass to ps such as aux.  (optional)
-     * @return PodTopOKBody
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List processes in pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodTopOKBody podTopLibpod(String name, Boolean stream, Integer delay, String psArgs) throws ApiException {
-        ApiResponse<PodTopOKBody> localVarResp = podTopLibpodWithHttpInfo(name, stream, delay, psArgs);
-        return localVarResp.getData();
-    }
-
-    /**
-     * List processes
-     * List processes running inside a pod
-     * @param name Name of pod to query for processes (required)
-     * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
-     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
-     * @param psArgs arguments to pass to ps such as aux.  (optional)
-     * @return ApiResponse&lt;PodTopOKBody&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List processes in pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodTopOKBody> podTopLibpodWithHttpInfo(String name, Boolean stream, Integer delay, String psArgs) throws ApiException {
-        okhttp3.Call localVarCall = podTopLibpodValidateBeforeCall(name, stream, delay, psArgs, null);
-        Type localVarReturnType = new TypeToken<PodTopOKBody>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * List processes (asynchronously)
-     * List processes running inside a pod
-     * @param name Name of pod to query for processes (required)
-     * @param stream when true, repeatedly stream the latest output (As of version 4.0) (optional)
-     * @param delay if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) (optional, default to 5)
-     * @param psArgs arguments to pass to ps such as aux.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> List processes in pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podTopLibpodAsync(String name, Boolean stream, Integer delay, String psArgs, final ApiCallback<PodTopOKBody> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podTopLibpodValidateBeforeCall(name, stream, delay, psArgs, _callback);
-        Type localVarReturnType = new TypeToken<PodTopOKBody>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
-    /**
-     * Build call for podUnpauseLibpod
-     * @param name the name or ID of the pod (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Unpause pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Unpause pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podUnpauseLibpodCall(String name, final ApiCallback _callback) throws ApiException {
-        String basePath = null;
-        // Operation Servers
-        String[] localBasePaths = new String[] {  };
-
-        // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
-            basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
-            basePath = localBasePaths[localHostIndex];
-        } else {
-            basePath = null;
-        }
-
-        Object localVarPostBody = null;
-
-        // create path and map variables
-        String localVarPath = "/libpod/pods/{name}/unpause"
-            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-        Map<String, String> localVarCookieParams = new HashMap<String, String>();
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) {
-            localVarHeaderParams.put("Accept", localVarAccept);
-        }
-
-        final String[] localVarContentTypes = {
-        };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
-        if (localVarContentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarContentType);
-        }
-
-        String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
-    }
-
-    @SuppressWarnings("rawtypes")
-    private okhttp3.Call podUnpauseLibpodValidateBeforeCall(String name, final ApiCallback _callback) throws ApiException {
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling podUnpauseLibpod(Async)");
-        }
-
-        return podUnpauseLibpodCall(name, _callback);
-
-    }
-
-    /**
-     * Unpause a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @return PodUnpauseReport
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Unpause pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Unpause pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public PodUnpauseReport podUnpauseLibpod(String name) throws ApiException {
-        ApiResponse<PodUnpauseReport> localVarResp = podUnpauseLibpodWithHttpInfo(name);
-        return localVarResp.getData();
-    }
-
-    /**
-     * Unpause a pod
-     * 
-     * @param name the name or ID of the pod (required)
-     * @return ApiResponse&lt;PodUnpauseReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Unpause pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Unpause pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public ApiResponse<PodUnpauseReport> podUnpauseLibpodWithHttpInfo(String name) throws ApiException {
-        okhttp3.Call localVarCall = podUnpauseLibpodValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<PodUnpauseReport>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
-    }
-
-    /**
-     * Unpause a pod (asynchronously)
-     * 
-     * @param name the name or ID of the pod (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table summary="Response Details" border="1">
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Unpause pod </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> No such pod </td><td>  -  </td></tr>
-        <tr><td> 409 </td><td> Unpause pod </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     </table>
-     */
-    public okhttp3.Call podUnpauseLibpodAsync(String name, final ApiCallback<PodUnpauseReport> _callback) throws ApiException {
-
-        okhttp3.Call localVarCall = podUnpauseLibpodValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<PodUnpauseReport>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
-        return localVarCall;
-    }
 }

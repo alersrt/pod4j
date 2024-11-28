@@ -13,77 +13,64 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.NetworkPruneReport;
 import io.github.alersrt.pod4j.openapi.model.PodPruneReport;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SystemPruneReport
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  SystemPruneReport.JSON_PROPERTY_CONTAINER_PRUNE_REPORTS,
+  SystemPruneReport.JSON_PROPERTY_IMAGE_PRUNE_REPORTS,
+  SystemPruneReport.JSON_PROPERTY_NETWORK_PRUNE_REPORTS,
+  SystemPruneReport.JSON_PROPERTY_POD_PRUNE_REPORT,
+  SystemPruneReport.JSON_PROPERTY_RECLAIMED_SPACE,
+  SystemPruneReport.JSON_PROPERTY_VOLUME_PRUNE_REPORTS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemPruneReport {
-  public static final String SERIALIZED_NAME_CONTAINER_PRUNE_REPORTS = "ContainerPruneReports";
-  @SerializedName(SERIALIZED_NAME_CONTAINER_PRUNE_REPORTS)
-  private List<PruneReport> containerPruneReports = new ArrayList<>();
+  public static final String JSON_PROPERTY_CONTAINER_PRUNE_REPORTS = "ContainerPruneReports";
+  private List<@Valid PruneReport> containerPruneReports = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_IMAGE_PRUNE_REPORTS = "ImagePruneReports";
-  @SerializedName(SERIALIZED_NAME_IMAGE_PRUNE_REPORTS)
-  private List<PruneReport> imagePruneReports = new ArrayList<>();
+  public static final String JSON_PROPERTY_IMAGE_PRUNE_REPORTS = "ImagePruneReports";
+  private List<@Valid PruneReport> imagePruneReports = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NETWORK_PRUNE_REPORTS = "NetworkPruneReports";
-  @SerializedName(SERIALIZED_NAME_NETWORK_PRUNE_REPORTS)
-  private List<NetworkPruneReport> networkPruneReports = new ArrayList<>();
+  public static final String JSON_PROPERTY_NETWORK_PRUNE_REPORTS = "NetworkPruneReports";
+  private List<@Valid NetworkPruneReport> networkPruneReports = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_POD_PRUNE_REPORT = "PodPruneReport";
-  @SerializedName(SERIALIZED_NAME_POD_PRUNE_REPORT)
-  private List<PodPruneReport> podPruneReport = new ArrayList<>();
+  public static final String JSON_PROPERTY_POD_PRUNE_REPORT = "PodPruneReport";
+  private List<@Valid PodPruneReport> podPruneReport = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_RECLAIMED_SPACE = "ReclaimedSpace";
-  @SerializedName(SERIALIZED_NAME_RECLAIMED_SPACE)
+  public static final String JSON_PROPERTY_RECLAIMED_SPACE = "ReclaimedSpace";
   private Integer reclaimedSpace;
 
-  public static final String SERIALIZED_NAME_VOLUME_PRUNE_REPORTS = "VolumePruneReports";
-  @SerializedName(SERIALIZED_NAME_VOLUME_PRUNE_REPORTS)
-  private List<PruneReport> volumePruneReports = new ArrayList<>();
+  public static final String JSON_PROPERTY_VOLUME_PRUNE_REPORTS = "VolumePruneReports";
+  private List<@Valid PruneReport> volumePruneReports = new ArrayList<>();
 
-  public SystemPruneReport() {
+  public SystemPruneReport() { 
   }
 
-  public SystemPruneReport containerPruneReports(List<PruneReport> containerPruneReports) {
+  public SystemPruneReport containerPruneReports(List<@Valid PruneReport> containerPruneReports) {
     this.containerPruneReports = containerPruneReports;
     return this;
   }
@@ -101,16 +88,23 @@ public class SystemPruneReport {
    * @return containerPruneReports
    */
   @javax.annotation.Nullable
-  public List<PruneReport> getContainerPruneReports() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_PRUNE_REPORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PruneReport> getContainerPruneReports() {
     return containerPruneReports;
   }
 
-  public void setContainerPruneReports(List<PruneReport> containerPruneReports) {
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_PRUNE_REPORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContainerPruneReports(List<@Valid PruneReport> containerPruneReports) {
     this.containerPruneReports = containerPruneReports;
   }
 
 
-  public SystemPruneReport imagePruneReports(List<PruneReport> imagePruneReports) {
+  public SystemPruneReport imagePruneReports(List<@Valid PruneReport> imagePruneReports) {
     this.imagePruneReports = imagePruneReports;
     return this;
   }
@@ -128,16 +122,23 @@ public class SystemPruneReport {
    * @return imagePruneReports
    */
   @javax.annotation.Nullable
-  public List<PruneReport> getImagePruneReports() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_PRUNE_REPORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PruneReport> getImagePruneReports() {
     return imagePruneReports;
   }
 
-  public void setImagePruneReports(List<PruneReport> imagePruneReports) {
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_PRUNE_REPORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImagePruneReports(List<@Valid PruneReport> imagePruneReports) {
     this.imagePruneReports = imagePruneReports;
   }
 
 
-  public SystemPruneReport networkPruneReports(List<NetworkPruneReport> networkPruneReports) {
+  public SystemPruneReport networkPruneReports(List<@Valid NetworkPruneReport> networkPruneReports) {
     this.networkPruneReports = networkPruneReports;
     return this;
   }
@@ -155,16 +156,23 @@ public class SystemPruneReport {
    * @return networkPruneReports
    */
   @javax.annotation.Nullable
-  public List<NetworkPruneReport> getNetworkPruneReports() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_PRUNE_REPORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid NetworkPruneReport> getNetworkPruneReports() {
     return networkPruneReports;
   }
 
-  public void setNetworkPruneReports(List<NetworkPruneReport> networkPruneReports) {
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_PRUNE_REPORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNetworkPruneReports(List<@Valid NetworkPruneReport> networkPruneReports) {
     this.networkPruneReports = networkPruneReports;
   }
 
 
-  public SystemPruneReport podPruneReport(List<PodPruneReport> podPruneReport) {
+  public SystemPruneReport podPruneReport(List<@Valid PodPruneReport> podPruneReport) {
     this.podPruneReport = podPruneReport;
     return this;
   }
@@ -182,11 +190,18 @@ public class SystemPruneReport {
    * @return podPruneReport
    */
   @javax.annotation.Nullable
-  public List<PodPruneReport> getPodPruneReport() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_POD_PRUNE_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PodPruneReport> getPodPruneReport() {
     return podPruneReport;
   }
 
-  public void setPodPruneReport(List<PodPruneReport> podPruneReport) {
+
+  @JsonProperty(JSON_PROPERTY_POD_PRUNE_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPodPruneReport(List<@Valid PodPruneReport> podPruneReport) {
     this.podPruneReport = podPruneReport;
   }
 
@@ -201,16 +216,22 @@ public class SystemPruneReport {
    * @return reclaimedSpace
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RECLAIMED_SPACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getReclaimedSpace() {
     return reclaimedSpace;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RECLAIMED_SPACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReclaimedSpace(Integer reclaimedSpace) {
     this.reclaimedSpace = reclaimedSpace;
   }
 
 
-  public SystemPruneReport volumePruneReports(List<PruneReport> volumePruneReports) {
+  public SystemPruneReport volumePruneReports(List<@Valid PruneReport> volumePruneReports) {
     this.volumePruneReports = volumePruneReports;
     return this;
   }
@@ -228,16 +249,25 @@ public class SystemPruneReport {
    * @return volumePruneReports
    */
   @javax.annotation.Nullable
-  public List<PruneReport> getVolumePruneReports() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_VOLUME_PRUNE_REPORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PruneReport> getVolumePruneReports() {
     return volumePruneReports;
   }
 
-  public void setVolumePruneReports(List<PruneReport> volumePruneReports) {
+
+  @JsonProperty(JSON_PROPERTY_VOLUME_PRUNE_REPORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVolumePruneReports(List<@Valid PruneReport> volumePruneReports) {
     this.volumePruneReports = volumePruneReports;
   }
 
 
-
+  /**
+   * Return true if this SystemPruneReport object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -285,164 +315,94 @@ public class SystemPruneReport {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("ContainerPruneReports");
-    openapiFields.add("ImagePruneReports");
-    openapiFields.add("NetworkPruneReports");
-    openapiFields.add("PodPruneReport");
-    openapiFields.add("ReclaimedSpace");
-    openapiFields.add("VolumePruneReports");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SystemPruneReport
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SystemPruneReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SystemPruneReport is not found in the empty JSON string", SystemPruneReport.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SystemPruneReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemPruneReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("ContainerPruneReports") != null && !jsonObj.get("ContainerPruneReports").isJsonNull()) {
-        JsonArray jsonArraycontainerPruneReports = jsonObj.getAsJsonArray("ContainerPruneReports");
-        if (jsonArraycontainerPruneReports != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("ContainerPruneReports").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `ContainerPruneReports` to be an array in the JSON string but got `%s`", jsonObj.get("ContainerPruneReports").toString()));
-          }
-
-          // validate the optional field `ContainerPruneReports` (array)
-          for (int i = 0; i < jsonArraycontainerPruneReports.size(); i++) {
-            PruneReport.validateJsonElement(jsonArraycontainerPruneReports.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("ImagePruneReports") != null && !jsonObj.get("ImagePruneReports").isJsonNull()) {
-        JsonArray jsonArrayimagePruneReports = jsonObj.getAsJsonArray("ImagePruneReports");
-        if (jsonArrayimagePruneReports != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("ImagePruneReports").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `ImagePruneReports` to be an array in the JSON string but got `%s`", jsonObj.get("ImagePruneReports").toString()));
-          }
-
-          // validate the optional field `ImagePruneReports` (array)
-          for (int i = 0; i < jsonArrayimagePruneReports.size(); i++) {
-            PruneReport.validateJsonElement(jsonArrayimagePruneReports.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("NetworkPruneReports") != null && !jsonObj.get("NetworkPruneReports").isJsonNull()) {
-        JsonArray jsonArraynetworkPruneReports = jsonObj.getAsJsonArray("NetworkPruneReports");
-        if (jsonArraynetworkPruneReports != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("NetworkPruneReports").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `NetworkPruneReports` to be an array in the JSON string but got `%s`", jsonObj.get("NetworkPruneReports").toString()));
-          }
-
-          // validate the optional field `NetworkPruneReports` (array)
-          for (int i = 0; i < jsonArraynetworkPruneReports.size(); i++) {
-            NetworkPruneReport.validateJsonElement(jsonArraynetworkPruneReports.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("PodPruneReport") != null && !jsonObj.get("PodPruneReport").isJsonNull()) {
-        JsonArray jsonArraypodPruneReport = jsonObj.getAsJsonArray("PodPruneReport");
-        if (jsonArraypodPruneReport != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("PodPruneReport").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `PodPruneReport` to be an array in the JSON string but got `%s`", jsonObj.get("PodPruneReport").toString()));
-          }
-
-          // validate the optional field `PodPruneReport` (array)
-          for (int i = 0; i < jsonArraypodPruneReport.size(); i++) {
-            PodPruneReport.validateJsonElement(jsonArraypodPruneReport.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("VolumePruneReports") != null && !jsonObj.get("VolumePruneReports").isJsonNull()) {
-        JsonArray jsonArrayvolumePruneReports = jsonObj.getAsJsonArray("VolumePruneReports");
-        if (jsonArrayvolumePruneReports != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("VolumePruneReports").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `VolumePruneReports` to be an array in the JSON string but got `%s`", jsonObj.get("VolumePruneReports").toString()));
-          }
-
-          // validate the optional field `VolumePruneReports` (array)
-          for (int i = 0; i < jsonArrayvolumePruneReports.size(); i++) {
-            PruneReport.validateJsonElement(jsonArrayvolumePruneReports.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!SystemPruneReport.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'SystemPruneReport' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<SystemPruneReport> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(SystemPruneReport.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<SystemPruneReport>() {
-           @Override
-           public void write(JsonWriter out, SystemPruneReport value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public SystemPruneReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of SystemPruneReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of SystemPruneReport
-   * @throws IOException if the JSON string is invalid with respect to SystemPruneReport
-   */
-  public static SystemPruneReport fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SystemPruneReport.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of SystemPruneReport to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `ContainerPruneReports` to the URL query string
+    if (getContainerPruneReports() != null) {
+      for (int i = 0; i < getContainerPruneReports().size(); i++) {
+        if (getContainerPruneReports().get(i) != null) {
+          joiner.add(getContainerPruneReports().get(i).toUrlQueryString(String.format("%sContainerPruneReports%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `ImagePruneReports` to the URL query string
+    if (getImagePruneReports() != null) {
+      for (int i = 0; i < getImagePruneReports().size(); i++) {
+        if (getImagePruneReports().get(i) != null) {
+          joiner.add(getImagePruneReports().get(i).toUrlQueryString(String.format("%sImagePruneReports%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `NetworkPruneReports` to the URL query string
+    if (getNetworkPruneReports() != null) {
+      for (int i = 0; i < getNetworkPruneReports().size(); i++) {
+        if (getNetworkPruneReports().get(i) != null) {
+          joiner.add(getNetworkPruneReports().get(i).toUrlQueryString(String.format("%sNetworkPruneReports%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `PodPruneReport` to the URL query string
+    if (getPodPruneReport() != null) {
+      for (int i = 0; i < getPodPruneReport().size(); i++) {
+        if (getPodPruneReport().get(i) != null) {
+          joiner.add(getPodPruneReport().get(i).toUrlQueryString(String.format("%sPodPruneReport%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `ReclaimedSpace` to the URL query string
+    if (getReclaimedSpace() != null) {
+      joiner.add(String.format("%sReclaimedSpace%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReclaimedSpace()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `VolumePruneReports` to the URL query string
+    if (getVolumePruneReports() != null) {
+      for (int i = 0; i < getVolumePruneReports().size(); i++) {
+        if (getVolumePruneReports().get(i) != null) {
+          joiner.add(getVolumePruneReports().get(i).toUrlQueryString(String.format("%sVolumePruneReports%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

@@ -13,82 +13,69 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ImageVolume;
 import io.github.alersrt.pod4j.openapi.model.Mount;
 import io.github.alersrt.pod4j.openapi.model.NamedVolume;
 import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PodStorageConfig
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  PodStorageConfig.JSON_PROPERTY_IMAGE_VOLUMES,
+  PodStorageConfig.JSON_PROPERTY_MOUNTS,
+  PodStorageConfig.JSON_PROPERTY_OVERLAY_VOLUMES,
+  PodStorageConfig.JSON_PROPERTY_SHM_SIZE,
+  PodStorageConfig.JSON_PROPERTY_SHM_SIZE_SYSTEMD,
+  PodStorageConfig.JSON_PROPERTY_VOLUMES,
+  PodStorageConfig.JSON_PROPERTY_VOLUMES_FROM
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodStorageConfig {
-  public static final String SERIALIZED_NAME_IMAGE_VOLUMES = "image_volumes";
-  @SerializedName(SERIALIZED_NAME_IMAGE_VOLUMES)
-  private List<ImageVolume> imageVolumes = new ArrayList<>();
+  public static final String JSON_PROPERTY_IMAGE_VOLUMES = "image_volumes";
+  private List<@Valid ImageVolume> imageVolumes = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_MOUNTS = "mounts";
-  @SerializedName(SERIALIZED_NAME_MOUNTS)
-  private List<Mount> mounts = new ArrayList<>();
+  public static final String JSON_PROPERTY_MOUNTS = "mounts";
+  private List<@Valid Mount> mounts = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_OVERLAY_VOLUMES = "overlay_volumes";
-  @SerializedName(SERIALIZED_NAME_OVERLAY_VOLUMES)
-  private List<OverlayVolume> overlayVolumes = new ArrayList<>();
+  public static final String JSON_PROPERTY_OVERLAY_VOLUMES = "overlay_volumes";
+  private List<@Valid OverlayVolume> overlayVolumes = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SHM_SIZE = "shm_size";
-  @SerializedName(SERIALIZED_NAME_SHM_SIZE)
+  public static final String JSON_PROPERTY_SHM_SIZE = "shm_size";
   private Long shmSize;
 
-  public static final String SERIALIZED_NAME_SHM_SIZE_SYSTEMD = "shm_size_systemd";
-  @SerializedName(SERIALIZED_NAME_SHM_SIZE_SYSTEMD)
+  public static final String JSON_PROPERTY_SHM_SIZE_SYSTEMD = "shm_size_systemd";
   private Long shmSizeSystemd;
 
-  public static final String SERIALIZED_NAME_VOLUMES = "volumes";
-  @SerializedName(SERIALIZED_NAME_VOLUMES)
-  private List<NamedVolume> volumes = new ArrayList<>();
+  public static final String JSON_PROPERTY_VOLUMES = "volumes";
+  private List<@Valid NamedVolume> volumes = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_VOLUMES_FROM = "volumes_from";
-  @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
+  public static final String JSON_PROPERTY_VOLUMES_FROM = "volumes_from";
   private List<String> volumesFrom = new ArrayList<>();
 
-  public PodStorageConfig() {
+  public PodStorageConfig() { 
   }
 
-  public PodStorageConfig imageVolumes(List<ImageVolume> imageVolumes) {
+  public PodStorageConfig imageVolumes(List<@Valid ImageVolume> imageVolumes) {
     this.imageVolumes = imageVolumes;
     return this;
   }
@@ -106,16 +93,23 @@ public class PodStorageConfig {
    * @return imageVolumes
    */
   @javax.annotation.Nullable
-  public List<ImageVolume> getImageVolumes() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid ImageVolume> getImageVolumes() {
     return imageVolumes;
   }
 
-  public void setImageVolumes(List<ImageVolume> imageVolumes) {
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImageVolumes(List<@Valid ImageVolume> imageVolumes) {
     this.imageVolumes = imageVolumes;
   }
 
 
-  public PodStorageConfig mounts(List<Mount> mounts) {
+  public PodStorageConfig mounts(List<@Valid Mount> mounts) {
     this.mounts = mounts;
     return this;
   }
@@ -133,16 +127,23 @@ public class PodStorageConfig {
    * @return mounts
    */
   @javax.annotation.Nullable
-  public List<Mount> getMounts() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid Mount> getMounts() {
     return mounts;
   }
 
-  public void setMounts(List<Mount> mounts) {
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMounts(List<@Valid Mount> mounts) {
     this.mounts = mounts;
   }
 
 
-  public PodStorageConfig overlayVolumes(List<OverlayVolume> overlayVolumes) {
+  public PodStorageConfig overlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
     this.overlayVolumes = overlayVolumes;
     return this;
   }
@@ -160,11 +161,18 @@ public class PodStorageConfig {
    * @return overlayVolumes
    */
   @javax.annotation.Nullable
-  public List<OverlayVolume> getOverlayVolumes() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid OverlayVolume> getOverlayVolumes() {
     return overlayVolumes;
   }
 
-  public void setOverlayVolumes(List<OverlayVolume> overlayVolumes) {
+
+  @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOverlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
     this.overlayVolumes = overlayVolumes;
   }
 
@@ -179,10 +187,16 @@ public class PodStorageConfig {
    * @return shmSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getShmSize() {
     return shmSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShmSize(Long shmSize) {
     this.shmSize = shmSize;
   }
@@ -198,16 +212,22 @@ public class PodStorageConfig {
    * @return shmSizeSystemd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getShmSizeSystemd() {
     return shmSizeSystemd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShmSizeSystemd(Long shmSizeSystemd) {
     this.shmSizeSystemd = shmSizeSystemd;
   }
 
 
-  public PodStorageConfig volumes(List<NamedVolume> volumes) {
+  public PodStorageConfig volumes(List<@Valid NamedVolume> volumes) {
     this.volumes = volumes;
     return this;
   }
@@ -225,11 +245,18 @@ public class PodStorageConfig {
    * @return volumes
    */
   @javax.annotation.Nullable
-  public List<NamedVolume> getVolumes() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid NamedVolume> getVolumes() {
     return volumes;
   }
 
-  public void setVolumes(List<NamedVolume> volumes) {
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVolumes(List<@Valid NamedVolume> volumes) {
     this.volumes = volumes;
   }
 
@@ -252,16 +279,24 @@ public class PodStorageConfig {
    * @return volumesFrom
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getVolumesFrom() {
     return volumesFrom;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVolumesFrom(List<String> volumesFrom) {
     this.volumesFrom = volumesFrom;
   }
 
 
-
+  /**
+   * Return true if this PodStorageConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -311,155 +346,98 @@ public class PodStorageConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("image_volumes");
-    openapiFields.add("mounts");
-    openapiFields.add("overlay_volumes");
-    openapiFields.add("shm_size");
-    openapiFields.add("shm_size_systemd");
-    openapiFields.add("volumes");
-    openapiFields.add("volumes_from");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PodStorageConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PodStorageConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PodStorageConfig is not found in the empty JSON string", PodStorageConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PodStorageConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodStorageConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("image_volumes") != null && !jsonObj.get("image_volumes").isJsonNull()) {
-        JsonArray jsonArrayimageVolumes = jsonObj.getAsJsonArray("image_volumes");
-        if (jsonArrayimageVolumes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("image_volumes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `image_volumes` to be an array in the JSON string but got `%s`", jsonObj.get("image_volumes").toString()));
-          }
-
-          // validate the optional field `image_volumes` (array)
-          for (int i = 0; i < jsonArrayimageVolumes.size(); i++) {
-            ImageVolume.validateJsonElement(jsonArrayimageVolumes.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("mounts") != null && !jsonObj.get("mounts").isJsonNull()) {
-        JsonArray jsonArraymounts = jsonObj.getAsJsonArray("mounts");
-        if (jsonArraymounts != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("mounts").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `mounts` to be an array in the JSON string but got `%s`", jsonObj.get("mounts").toString()));
-          }
-
-          // validate the optional field `mounts` (array)
-          for (int i = 0; i < jsonArraymounts.size(); i++) {
-            Mount.validateJsonElement(jsonArraymounts.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("overlay_volumes") != null && !jsonObj.get("overlay_volumes").isJsonNull()) {
-        JsonArray jsonArrayoverlayVolumes = jsonObj.getAsJsonArray("overlay_volumes");
-        if (jsonArrayoverlayVolumes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("overlay_volumes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `overlay_volumes` to be an array in the JSON string but got `%s`", jsonObj.get("overlay_volumes").toString()));
-          }
-
-          // validate the optional field `overlay_volumes` (array)
-          for (int i = 0; i < jsonArrayoverlayVolumes.size(); i++) {
-            OverlayVolume.validateJsonElement(jsonArrayoverlayVolumes.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("volumes") != null && !jsonObj.get("volumes").isJsonNull()) {
-        JsonArray jsonArrayvolumes = jsonObj.getAsJsonArray("volumes");
-        if (jsonArrayvolumes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("volumes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `volumes` to be an array in the JSON string but got `%s`", jsonObj.get("volumes").toString()));
-          }
-
-          // validate the optional field `volumes` (array)
-          for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-            NamedVolume.validateJsonElement(jsonArrayvolumes.get(i));
-          };
-        }
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull() && !jsonObj.get("volumes_from").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `volumes_from` to be an array in the JSON string but got `%s`", jsonObj.get("volumes_from").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PodStorageConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PodStorageConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PodStorageConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PodStorageConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PodStorageConfig>() {
-           @Override
-           public void write(JsonWriter out, PodStorageConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PodStorageConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of PodStorageConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PodStorageConfig
-   * @throws IOException if the JSON string is invalid with respect to PodStorageConfig
-   */
-  public static PodStorageConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PodStorageConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of PodStorageConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `image_volumes` to the URL query string
+    if (getImageVolumes() != null) {
+      for (int i = 0; i < getImageVolumes().size(); i++) {
+        if (getImageVolumes().get(i) != null) {
+          joiner.add(getImageVolumes().get(i).toUrlQueryString(String.format("%simage_volumes%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `mounts` to the URL query string
+    if (getMounts() != null) {
+      for (int i = 0; i < getMounts().size(); i++) {
+        if (getMounts().get(i) != null) {
+          joiner.add(getMounts().get(i).toUrlQueryString(String.format("%smounts%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `overlay_volumes` to the URL query string
+    if (getOverlayVolumes() != null) {
+      for (int i = 0; i < getOverlayVolumes().size(); i++) {
+        if (getOverlayVolumes().get(i) != null) {
+          joiner.add(getOverlayVolumes().get(i).toUrlQueryString(String.format("%soverlay_volumes%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `shm_size` to the URL query string
+    if (getShmSize() != null) {
+      joiner.add(String.format("%sshm_size%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShmSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `shm_size_systemd` to the URL query string
+    if (getShmSizeSystemd() != null) {
+      joiner.add(String.format("%sshm_size_systemd%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShmSizeSystemd()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `volumes` to the URL query string
+    if (getVolumes() != null) {
+      for (int i = 0; i < getVolumes().size(); i++) {
+        if (getVolumes().get(i) != null) {
+          joiner.add(getVolumes().get(i).toUrlQueryString(String.format("%svolumes%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `volumes_from` to the URL query string
+    if (getVolumesFrom() != null) {
+      for (int i = 0; i < getVolumesFrom().size(); i++) {
+        joiner.add(String.format("%svolumes_from%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getVolumesFrom().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

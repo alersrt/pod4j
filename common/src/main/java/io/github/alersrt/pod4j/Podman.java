@@ -30,7 +30,7 @@ public class Podman {
         final var pods = new PodsApi(api);
         String yaml = readFile(yamlPath);
         pods.playKubeLibpod(
-                "plain/text",
+                null,
                 null,
                 null,
                 null,
@@ -45,16 +45,17 @@ public class Podman {
                 null,
                 null,
                 false,
-                "podman-test",
+                null,
                 true,
                 false,
                 yaml
         );
     }
 
-    public void stop() throws ApiException {
+    public void stop(String yamlPath) throws ApiException, IOException {
         final var pods = new PodsApi(api);
-        pods.playKubeDownLibpod(true);
+        String yaml = readFile(yamlPath);
+        pods.playKubeDownLibpod(true, yaml);
     }
 
     private String readFile(String filename) throws IOException {

@@ -13,59 +13,46 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * EndpointIPAMConfig represents IPAM configurations for the endpoint
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  EndpointIPAMConfig.JSON_PROPERTY_IPV4_ADDRESS,
+  EndpointIPAMConfig.JSON_PROPERTY_IPV6_ADDRESS,
+  EndpointIPAMConfig.JSON_PROPERTY_LINK_LOCAL_I_PS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class EndpointIPAMConfig {
-  public static final String SERIALIZED_NAME_IPV4_ADDRESS = "IPv4Address";
-  @SerializedName(SERIALIZED_NAME_IPV4_ADDRESS)
+  public static final String JSON_PROPERTY_IPV4_ADDRESS = "IPv4Address";
   private String ipv4Address;
 
-  public static final String SERIALIZED_NAME_IPV6_ADDRESS = "IPv6Address";
-  @SerializedName(SERIALIZED_NAME_IPV6_ADDRESS)
+  public static final String JSON_PROPERTY_IPV6_ADDRESS = "IPv6Address";
   private String ipv6Address;
 
-  public static final String SERIALIZED_NAME_LINK_LOCAL_I_PS = "LinkLocalIPs";
-  @SerializedName(SERIALIZED_NAME_LINK_LOCAL_I_PS)
+  public static final String JSON_PROPERTY_LINK_LOCAL_I_PS = "LinkLocalIPs";
   private List<String> linkLocalIPs = new ArrayList<>();
 
-  public EndpointIPAMConfig() {
+  public EndpointIPAMConfig() { 
   }
 
   public EndpointIPAMConfig ipv4Address(String ipv4Address) {
@@ -78,10 +65,16 @@ public class EndpointIPAMConfig {
    * @return ipv4Address
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IPV4_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIpv4Address() {
     return ipv4Address;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IPV4_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv4Address(String ipv4Address) {
     this.ipv4Address = ipv4Address;
   }
@@ -97,10 +90,16 @@ public class EndpointIPAMConfig {
    * @return ipv6Address
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IPV6_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIpv6Address() {
     return ipv6Address;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IPV6_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv6Address(String ipv6Address) {
     this.ipv6Address = ipv6Address;
   }
@@ -124,16 +123,24 @@ public class EndpointIPAMConfig {
    * @return linkLocalIPs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LINK_LOCAL_I_PS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getLinkLocalIPs() {
     return linkLocalIPs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LINK_LOCAL_I_PS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLinkLocalIPs(List<String> linkLocalIPs) {
     this.linkLocalIPs = linkLocalIPs;
   }
 
 
-
+  /**
+   * Return true if this EndpointIPAMConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -175,101 +182,58 @@ public class EndpointIPAMConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("IPv4Address");
-    openapiFields.add("IPv6Address");
-    openapiFields.add("LinkLocalIPs");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to EndpointIPAMConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!EndpointIPAMConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in EndpointIPAMConfig is not found in the empty JSON string", EndpointIPAMConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!EndpointIPAMConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EndpointIPAMConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("IPv4Address") != null && !jsonObj.get("IPv4Address").isJsonNull()) && !jsonObj.get("IPv4Address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IPv4Address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPv4Address").toString()));
-      }
-      if ((jsonObj.get("IPv6Address") != null && !jsonObj.get("IPv6Address").isJsonNull()) && !jsonObj.get("IPv6Address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IPv6Address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPv6Address").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("LinkLocalIPs") != null && !jsonObj.get("LinkLocalIPs").isJsonNull() && !jsonObj.get("LinkLocalIPs").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `LinkLocalIPs` to be an array in the JSON string but got `%s`", jsonObj.get("LinkLocalIPs").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!EndpointIPAMConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'EndpointIPAMConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<EndpointIPAMConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(EndpointIPAMConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<EndpointIPAMConfig>() {
-           @Override
-           public void write(JsonWriter out, EndpointIPAMConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public EndpointIPAMConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of EndpointIPAMConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of EndpointIPAMConfig
-   * @throws IOException if the JSON string is invalid with respect to EndpointIPAMConfig
-   */
-  public static EndpointIPAMConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, EndpointIPAMConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of EndpointIPAMConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `IPv4Address` to the URL query string
+    if (getIpv4Address() != null) {
+      joiner.add(String.format("%sIPv4Address%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpv4Address()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IPv6Address` to the URL query string
+    if (getIpv6Address() != null) {
+      joiner.add(String.format("%sIPv6Address%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpv6Address()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `LinkLocalIPs` to the URL query string
+    if (getLinkLocalIPs() != null) {
+      for (int i = 0; i < getLinkLocalIPs().size(); i++) {
+        joiner.add(String.format("%sLinkLocalIPs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getLinkLocalIPs().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

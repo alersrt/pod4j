@@ -13,73 +13,60 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * AuthConfig contains authorization information for connecting to a Registry
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  AuthConfig.JSON_PROPERTY_AUTH,
+  AuthConfig.JSON_PROPERTY_EMAIL,
+  AuthConfig.JSON_PROPERTY_IDENTITYTOKEN,
+  AuthConfig.JSON_PROPERTY_PASSWORD,
+  AuthConfig.JSON_PROPERTY_REGISTRYTOKEN,
+  AuthConfig.JSON_PROPERTY_SERVERADDRESS,
+  AuthConfig.JSON_PROPERTY_USERNAME
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class AuthConfig {
-  public static final String SERIALIZED_NAME_AUTH = "auth";
-  @SerializedName(SERIALIZED_NAME_AUTH)
+  public static final String JSON_PROPERTY_AUTH = "auth";
   private String auth;
 
-  public static final String SERIALIZED_NAME_EMAIL = "email";
-  @SerializedName(SERIALIZED_NAME_EMAIL)
+  public static final String JSON_PROPERTY_EMAIL = "email";
   private String email;
 
-  public static final String SERIALIZED_NAME_IDENTITYTOKEN = "identitytoken";
-  @SerializedName(SERIALIZED_NAME_IDENTITYTOKEN)
+  public static final String JSON_PROPERTY_IDENTITYTOKEN = "identitytoken";
   private String identitytoken;
 
-  public static final String SERIALIZED_NAME_PASSWORD = "password";
-  @SerializedName(SERIALIZED_NAME_PASSWORD)
+  public static final String JSON_PROPERTY_PASSWORD = "password";
   private String password;
 
-  public static final String SERIALIZED_NAME_REGISTRYTOKEN = "registrytoken";
-  @SerializedName(SERIALIZED_NAME_REGISTRYTOKEN)
+  public static final String JSON_PROPERTY_REGISTRYTOKEN = "registrytoken";
   private String registrytoken;
 
-  public static final String SERIALIZED_NAME_SERVERADDRESS = "serveraddress";
-  @SerializedName(SERIALIZED_NAME_SERVERADDRESS)
+  public static final String JSON_PROPERTY_SERVERADDRESS = "serveraddress";
   private String serveraddress;
 
-  public static final String SERIALIZED_NAME_USERNAME = "username";
-  @SerializedName(SERIALIZED_NAME_USERNAME)
+  public static final String JSON_PROPERTY_USERNAME = "username";
   private String username;
 
-  public AuthConfig() {
+  public AuthConfig() { 
   }
 
   public AuthConfig auth(String auth) {
@@ -92,10 +79,16 @@ public class AuthConfig {
    * @return auth
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_AUTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAuth() {
     return auth;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AUTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAuth(String auth) {
     this.auth = auth;
   }
@@ -111,10 +104,16 @@ public class AuthConfig {
    * @return email
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getEmail() {
     return email;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmail(String email) {
     this.email = email;
   }
@@ -130,10 +129,16 @@ public class AuthConfig {
    * @return identitytoken
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IDENTITYTOKEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIdentitytoken() {
     return identitytoken;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IDENTITYTOKEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdentitytoken(String identitytoken) {
     this.identitytoken = identitytoken;
   }
@@ -149,10 +154,16 @@ public class AuthConfig {
    * @return password
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPassword() {
     return password;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPassword(String password) {
     this.password = password;
   }
@@ -168,10 +179,16 @@ public class AuthConfig {
    * @return registrytoken
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REGISTRYTOKEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRegistrytoken() {
     return registrytoken;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REGISTRYTOKEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRegistrytoken(String registrytoken) {
     this.registrytoken = registrytoken;
   }
@@ -187,10 +204,16 @@ public class AuthConfig {
    * @return serveraddress
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SERVERADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getServeraddress() {
     return serveraddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SERVERADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setServeraddress(String serveraddress) {
     this.serveraddress = serveraddress;
   }
@@ -206,16 +229,24 @@ public class AuthConfig {
    * @return username
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUsername() {
     return username;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsername(String username) {
     this.username = username;
   }
 
 
-
+  /**
+   * Return true if this AuthConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -265,116 +296,74 @@ public class AuthConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("auth");
-    openapiFields.add("email");
-    openapiFields.add("identitytoken");
-    openapiFields.add("password");
-    openapiFields.add("registrytoken");
-    openapiFields.add("serveraddress");
-    openapiFields.add("username");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to AuthConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!AuthConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in AuthConfig is not found in the empty JSON string", AuthConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!AuthConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `AuthConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("auth") != null && !jsonObj.get("auth").isJsonNull()) && !jsonObj.get("auth").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `auth` to be a primitive type in the JSON string but got `%s`", jsonObj.get("auth").toString()));
-      }
-      if ((jsonObj.get("email") != null && !jsonObj.get("email").isJsonNull()) && !jsonObj.get("email").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `email` to be a primitive type in the JSON string but got `%s`", jsonObj.get("email").toString()));
-      }
-      if ((jsonObj.get("identitytoken") != null && !jsonObj.get("identitytoken").isJsonNull()) && !jsonObj.get("identitytoken").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `identitytoken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("identitytoken").toString()));
-      }
-      if ((jsonObj.get("password") != null && !jsonObj.get("password").isJsonNull()) && !jsonObj.get("password").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `password` to be a primitive type in the JSON string but got `%s`", jsonObj.get("password").toString()));
-      }
-      if ((jsonObj.get("registrytoken") != null && !jsonObj.get("registrytoken").isJsonNull()) && !jsonObj.get("registrytoken").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `registrytoken` to be a primitive type in the JSON string but got `%s`", jsonObj.get("registrytoken").toString()));
-      }
-      if ((jsonObj.get("serveraddress") != null && !jsonObj.get("serveraddress").isJsonNull()) && !jsonObj.get("serveraddress").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `serveraddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("serveraddress").toString()));
-      }
-      if ((jsonObj.get("username") != null && !jsonObj.get("username").isJsonNull()) && !jsonObj.get("username").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `username` to be a primitive type in the JSON string but got `%s`", jsonObj.get("username").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!AuthConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'AuthConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<AuthConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(AuthConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<AuthConfig>() {
-           @Override
-           public void write(JsonWriter out, AuthConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public AuthConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of AuthConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of AuthConfig
-   * @throws IOException if the JSON string is invalid with respect to AuthConfig
-   */
-  public static AuthConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, AuthConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of AuthConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `auth` to the URL query string
+    if (getAuth() != null) {
+      joiner.add(String.format("%sauth%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAuth()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `email` to the URL query string
+    if (getEmail() != null) {
+      joiner.add(String.format("%semail%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEmail()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `identitytoken` to the URL query string
+    if (getIdentitytoken() != null) {
+      joiner.add(String.format("%sidentitytoken%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIdentitytoken()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `password` to the URL query string
+    if (getPassword() != null) {
+      joiner.add(String.format("%spassword%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPassword()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `registrytoken` to the URL query string
+    if (getRegistrytoken() != null) {
+      joiner.add(String.format("%sregistrytoken%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRegistrytoken()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `serveraddress` to the URL query string
+    if (getServeraddress() != null) {
+      joiner.add(String.format("%sserveraddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getServeraddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `username` to the URL query string
+    if (getUsername() != null) {
+      joiner.add(String.format("%susername%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUsername()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

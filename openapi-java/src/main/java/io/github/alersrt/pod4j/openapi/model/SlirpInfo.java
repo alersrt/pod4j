@@ -13,57 +13,44 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SlirpInfo describes the slirp executable that is being used
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  SlirpInfo.JSON_PROPERTY_EXECUTABLE,
+  SlirpInfo.JSON_PROPERTY_PACKAGE,
+  SlirpInfo.JSON_PROPERTY_VERSION
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SlirpInfo {
-  public static final String SERIALIZED_NAME_EXECUTABLE = "executable";
-  @SerializedName(SERIALIZED_NAME_EXECUTABLE)
+  public static final String JSON_PROPERTY_EXECUTABLE = "executable";
   private String executable;
 
-  public static final String SERIALIZED_NAME_PACKAGE = "package";
-  @SerializedName(SERIALIZED_NAME_PACKAGE)
+  public static final String JSON_PROPERTY_PACKAGE = "package";
   private String _package;
 
-  public static final String SERIALIZED_NAME_VERSION = "version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
+  public static final String JSON_PROPERTY_VERSION = "version";
   private String version;
 
-  public SlirpInfo() {
+  public SlirpInfo() { 
   }
 
   public SlirpInfo executable(String executable) {
@@ -76,10 +63,16 @@ public class SlirpInfo {
    * @return executable
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXECUTABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getExecutable() {
     return executable;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXECUTABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExecutable(String executable) {
     this.executable = executable;
   }
@@ -95,10 +88,16 @@ public class SlirpInfo {
    * @return _package
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PACKAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPackage() {
     return _package;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PACKAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPackage(String _package) {
     this._package = _package;
   }
@@ -114,16 +113,24 @@ public class SlirpInfo {
    * @return version
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVersion() {
     return version;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVersion(String version) {
     this.version = version;
   }
 
 
-
+  /**
+   * Return true if this SlirpInfo object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -165,100 +172,54 @@ public class SlirpInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("executable");
-    openapiFields.add("package");
-    openapiFields.add("version");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SlirpInfo
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SlirpInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SlirpInfo is not found in the empty JSON string", SlirpInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SlirpInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SlirpInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("executable") != null && !jsonObj.get("executable").isJsonNull()) && !jsonObj.get("executable").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `executable` to be a primitive type in the JSON string but got `%s`", jsonObj.get("executable").toString()));
-      }
-      if ((jsonObj.get("package") != null && !jsonObj.get("package").isJsonNull()) && !jsonObj.get("package").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `package` to be a primitive type in the JSON string but got `%s`", jsonObj.get("package").toString()));
-      }
-      if ((jsonObj.get("version") != null && !jsonObj.get("version").isJsonNull()) && !jsonObj.get("version").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("version").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!SlirpInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'SlirpInfo' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<SlirpInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(SlirpInfo.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<SlirpInfo>() {
-           @Override
-           public void write(JsonWriter out, SlirpInfo value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public SlirpInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of SlirpInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of SlirpInfo
-   * @throws IOException if the JSON string is invalid with respect to SlirpInfo
-   */
-  public static SlirpInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SlirpInfo.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of SlirpInfo to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `executable` to the URL query string
+    if (getExecutable() != null) {
+      joiner.add(String.format("%sexecutable%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExecutable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `package` to the URL query string
+    if (getPackage() != null) {
+      joiner.add(String.format("%spackage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPackage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `version` to the URL query string
+    if (getVersion() != null) {
+      joiner.add(String.format("%sversion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

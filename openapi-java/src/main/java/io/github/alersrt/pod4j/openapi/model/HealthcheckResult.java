@@ -13,62 +13,49 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * HealthcheckResult stores information about a single run of a healthcheck probe
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  HealthcheckResult.JSON_PROPERTY_END,
+  HealthcheckResult.JSON_PROPERTY_EXIT_CODE,
+  HealthcheckResult.JSON_PROPERTY_OUTPUT,
+  HealthcheckResult.JSON_PROPERTY_START
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class HealthcheckResult {
-  public static final String SERIALIZED_NAME_END = "End";
-  @SerializedName(SERIALIZED_NAME_END)
+  public static final String JSON_PROPERTY_END = "End";
   private OffsetDateTime end;
 
-  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+  public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
   private Long exitCode;
 
-  public static final String SERIALIZED_NAME_OUTPUT = "Output";
-  @SerializedName(SERIALIZED_NAME_OUTPUT)
+  public static final String JSON_PROPERTY_OUTPUT = "Output";
   private String output;
 
-  public static final String SERIALIZED_NAME_START = "Start";
-  @SerializedName(SERIALIZED_NAME_START)
+  public static final String JSON_PROPERTY_START = "Start";
   private OffsetDateTime start;
 
-  public HealthcheckResult() {
+  public HealthcheckResult() { 
   }
 
   public HealthcheckResult end(OffsetDateTime end) {
@@ -81,10 +68,17 @@ public class HealthcheckResult {
    * @return end
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_END)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getEnd() {
     return end;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_END)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnd(OffsetDateTime end) {
     this.end = end;
   }
@@ -100,10 +94,16 @@ public class HealthcheckResult {
    * @return exitCode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getExitCode() {
     return exitCode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitCode(Long exitCode) {
     this.exitCode = exitCode;
   }
@@ -119,10 +119,16 @@ public class HealthcheckResult {
    * @return output
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OUTPUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOutput() {
     return output;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OUTPUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOutput(String output) {
     this.output = output;
   }
@@ -138,16 +144,25 @@ public class HealthcheckResult {
    * @return start
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_START)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getStart() {
     return start;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_START)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStart(OffsetDateTime start) {
     this.start = start;
   }
 
 
-
+  /**
+   * Return true if this HealthcheckResult object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -191,95 +206,59 @@ public class HealthcheckResult {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("End");
-    openapiFields.add("ExitCode");
-    openapiFields.add("Output");
-    openapiFields.add("Start");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to HealthcheckResult
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!HealthcheckResult.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in HealthcheckResult is not found in the empty JSON string", HealthcheckResult.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!HealthcheckResult.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HealthcheckResult` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Output") != null && !jsonObj.get("Output").isJsonNull()) && !jsonObj.get("Output").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Output` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Output").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!HealthcheckResult.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'HealthcheckResult' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<HealthcheckResult> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(HealthcheckResult.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<HealthcheckResult>() {
-           @Override
-           public void write(JsonWriter out, HealthcheckResult value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public HealthcheckResult read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of HealthcheckResult given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of HealthcheckResult
-   * @throws IOException if the JSON string is invalid with respect to HealthcheckResult
-   */
-  public static HealthcheckResult fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, HealthcheckResult.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of HealthcheckResult to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `End` to the URL query string
+    if (getEnd() != null) {
+      joiner.add(String.format("%sEnd%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnd()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ExitCode` to the URL query string
+    if (getExitCode() != null) {
+      joiner.add(String.format("%sExitCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Output` to the URL query string
+    if (getOutput() != null) {
+      joiner.add(String.format("%sOutput%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOutput()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Start` to the URL query string
+    if (getStart() != null) {
+      joiner.add(String.format("%sStart%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStart()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

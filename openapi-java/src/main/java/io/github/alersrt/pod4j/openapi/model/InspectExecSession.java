@@ -13,90 +13,77 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.InspectExecProcess;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.alersrt.pod4j.openapi.model.InspectExecProcess;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectExecSession
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  InspectExecSession.JSON_PROPERTY_CAN_REMOVE,
+  InspectExecSession.JSON_PROPERTY_CONTAINER_I_D,
+  InspectExecSession.JSON_PROPERTY_DETACH_KEYS,
+  InspectExecSession.JSON_PROPERTY_EXIT_CODE,
+  InspectExecSession.JSON_PROPERTY_I_D,
+  InspectExecSession.JSON_PROPERTY_OPEN_STDERR,
+  InspectExecSession.JSON_PROPERTY_OPEN_STDIN,
+  InspectExecSession.JSON_PROPERTY_OPEN_STDOUT,
+  InspectExecSession.JSON_PROPERTY_PID,
+  InspectExecSession.JSON_PROPERTY_PROCESS_CONFIG,
+  InspectExecSession.JSON_PROPERTY_RUNNING
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectExecSession {
-  public static final String SERIALIZED_NAME_CAN_REMOVE = "CanRemove";
-  @SerializedName(SERIALIZED_NAME_CAN_REMOVE)
+  public static final String JSON_PROPERTY_CAN_REMOVE = "CanRemove";
   private Boolean canRemove;
 
-  public static final String SERIALIZED_NAME_CONTAINER_I_D = "ContainerID";
-  @SerializedName(SERIALIZED_NAME_CONTAINER_I_D)
+  public static final String JSON_PROPERTY_CONTAINER_I_D = "ContainerID";
   private String containerID;
 
-  public static final String SERIALIZED_NAME_DETACH_KEYS = "DetachKeys";
-  @SerializedName(SERIALIZED_NAME_DETACH_KEYS)
+  public static final String JSON_PROPERTY_DETACH_KEYS = "DetachKeys";
   private String detachKeys;
 
-  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+  public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
   private Long exitCode;
 
-  public static final String SERIALIZED_NAME_I_D = "ID";
-  @SerializedName(SERIALIZED_NAME_I_D)
+  public static final String JSON_PROPERTY_I_D = "ID";
   private String ID;
 
-  public static final String SERIALIZED_NAME_OPEN_STDERR = "OpenStderr";
-  @SerializedName(SERIALIZED_NAME_OPEN_STDERR)
+  public static final String JSON_PROPERTY_OPEN_STDERR = "OpenStderr";
   private Boolean openStderr;
 
-  public static final String SERIALIZED_NAME_OPEN_STDIN = "OpenStdin";
-  @SerializedName(SERIALIZED_NAME_OPEN_STDIN)
+  public static final String JSON_PROPERTY_OPEN_STDIN = "OpenStdin";
   private Boolean openStdin;
 
-  public static final String SERIALIZED_NAME_OPEN_STDOUT = "OpenStdout";
-  @SerializedName(SERIALIZED_NAME_OPEN_STDOUT)
+  public static final String JSON_PROPERTY_OPEN_STDOUT = "OpenStdout";
   private Boolean openStdout;
 
-  public static final String SERIALIZED_NAME_PID = "Pid";
-  @SerializedName(SERIALIZED_NAME_PID)
+  public static final String JSON_PROPERTY_PID = "Pid";
   private Long pid;
 
-  public static final String SERIALIZED_NAME_PROCESS_CONFIG = "ProcessConfig";
-  @SerializedName(SERIALIZED_NAME_PROCESS_CONFIG)
+  public static final String JSON_PROPERTY_PROCESS_CONFIG = "ProcessConfig";
   private InspectExecProcess processConfig;
 
-  public static final String SERIALIZED_NAME_RUNNING = "Running";
-  @SerializedName(SERIALIZED_NAME_RUNNING)
+  public static final String JSON_PROPERTY_RUNNING = "Running";
   private Boolean running;
 
-  public InspectExecSession() {
+  public InspectExecSession() { 
   }
 
   public InspectExecSession canRemove(Boolean canRemove) {
@@ -109,10 +96,16 @@ public class InspectExecSession {
    * @return canRemove
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CAN_REMOVE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCanRemove() {
     return canRemove;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CAN_REMOVE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCanRemove(Boolean canRemove) {
     this.canRemove = canRemove;
   }
@@ -128,10 +121,16 @@ public class InspectExecSession {
    * @return containerID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getContainerID() {
     return containerID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainerID(String containerID) {
     this.containerID = containerID;
   }
@@ -147,10 +146,16 @@ public class InspectExecSession {
    * @return detachKeys
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDetachKeys() {
     return detachKeys;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetachKeys(String detachKeys) {
     this.detachKeys = detachKeys;
   }
@@ -166,10 +171,16 @@ public class InspectExecSession {
    * @return exitCode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getExitCode() {
     return exitCode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitCode(Long exitCode) {
     this.exitCode = exitCode;
   }
@@ -185,10 +196,16 @@ public class InspectExecSession {
    * @return ID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getID() {
     return ID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setID(String ID) {
     this.ID = ID;
   }
@@ -204,10 +221,16 @@ public class InspectExecSession {
    * @return openStderr
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OPEN_STDERR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getOpenStderr() {
     return openStderr;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OPEN_STDERR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOpenStderr(Boolean openStderr) {
     this.openStderr = openStderr;
   }
@@ -223,10 +246,16 @@ public class InspectExecSession {
    * @return openStdin
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getOpenStdin() {
     return openStdin;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOpenStdin(Boolean openStdin) {
     this.openStdin = openStdin;
   }
@@ -242,10 +271,16 @@ public class InspectExecSession {
    * @return openStdout
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OPEN_STDOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getOpenStdout() {
     return openStdout;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OPEN_STDOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOpenStdout(Boolean openStdout) {
     this.openStdout = openStdout;
   }
@@ -261,10 +296,16 @@ public class InspectExecSession {
    * @return pid
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getPid() {
     return pid;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPid(Long pid) {
     this.pid = pid;
   }
@@ -280,10 +321,17 @@ public class InspectExecSession {
    * @return processConfig
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PROCESS_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public InspectExecProcess getProcessConfig() {
     return processConfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PROCESS_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProcessConfig(InspectExecProcess processConfig) {
     this.processConfig = processConfig;
   }
@@ -299,16 +347,24 @@ public class InspectExecSession {
    * @return running
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RUNNING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRunning() {
     return running;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RUNNING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunning(Boolean running) {
     this.running = running;
   }
 
 
-
+  /**
+   * Return true if this InspectExecSession object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -366,112 +422,94 @@ public class InspectExecSession {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("CanRemove");
-    openapiFields.add("ContainerID");
-    openapiFields.add("DetachKeys");
-    openapiFields.add("ExitCode");
-    openapiFields.add("ID");
-    openapiFields.add("OpenStderr");
-    openapiFields.add("OpenStdin");
-    openapiFields.add("OpenStdout");
-    openapiFields.add("Pid");
-    openapiFields.add("ProcessConfig");
-    openapiFields.add("Running");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectExecSession
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectExecSession.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectExecSession is not found in the empty JSON string", InspectExecSession.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InspectExecSession.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectExecSession` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("ContainerID") != null && !jsonObj.get("ContainerID").isJsonNull()) && !jsonObj.get("ContainerID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerID").toString()));
-      }
-      if ((jsonObj.get("DetachKeys") != null && !jsonObj.get("DetachKeys").isJsonNull()) && !jsonObj.get("DetachKeys").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `DetachKeys` to be a primitive type in the JSON string but got `%s`", jsonObj.get("DetachKeys").toString()));
-      }
-      if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
-      }
-      // validate the optional field `ProcessConfig`
-      if (jsonObj.get("ProcessConfig") != null && !jsonObj.get("ProcessConfig").isJsonNull()) {
-        InspectExecProcess.validateJsonElement(jsonObj.get("ProcessConfig"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InspectExecSession.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InspectExecSession' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InspectExecSession> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InspectExecSession.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InspectExecSession>() {
-           @Override
-           public void write(JsonWriter out, InspectExecSession value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InspectExecSession read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of InspectExecSession given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectExecSession
-   * @throws IOException if the JSON string is invalid with respect to InspectExecSession
-   */
-  public static InspectExecSession fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InspectExecSession.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of InspectExecSession to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `CanRemove` to the URL query string
+    if (getCanRemove() != null) {
+      joiner.add(String.format("%sCanRemove%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCanRemove()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ContainerID` to the URL query string
+    if (getContainerID() != null) {
+      joiner.add(String.format("%sContainerID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainerID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `DetachKeys` to the URL query string
+    if (getDetachKeys() != null) {
+      joiner.add(String.format("%sDetachKeys%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDetachKeys()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ExitCode` to the URL query string
+    if (getExitCode() != null) {
+      joiner.add(String.format("%sExitCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ID` to the URL query string
+    if (getID() != null) {
+      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `OpenStderr` to the URL query string
+    if (getOpenStderr() != null) {
+      joiner.add(String.format("%sOpenStderr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStderr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `OpenStdin` to the URL query string
+    if (getOpenStdin() != null) {
+      joiner.add(String.format("%sOpenStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `OpenStdout` to the URL query string
+    if (getOpenStdout() != null) {
+      joiner.add(String.format("%sOpenStdout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStdout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Pid` to the URL query string
+    if (getPid() != null) {
+      joiner.add(String.format("%sPid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ProcessConfig` to the URL query string
+    if (getProcessConfig() != null) {
+      joiner.add(getProcessConfig().toUrlQueryString(prefix + "ProcessConfig" + suffix));
+    }
+
+    // add `Running` to the URL query string
+    if (getRunning() != null) {
+      joiner.add(String.format("%sRunning%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRunning()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

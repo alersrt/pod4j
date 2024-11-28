@@ -13,61 +13,48 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SystemDfVolumeReport describes a volume and its size
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  SystemDfVolumeReport.JSON_PROPERTY_LINKS,
+  SystemDfVolumeReport.JSON_PROPERTY_RECLAIMABLE_SIZE,
+  SystemDfVolumeReport.JSON_PROPERTY_SIZE,
+  SystemDfVolumeReport.JSON_PROPERTY_VOLUME_NAME
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemDfVolumeReport {
-  public static final String SERIALIZED_NAME_LINKS = "Links";
-  @SerializedName(SERIALIZED_NAME_LINKS)
+  public static final String JSON_PROPERTY_LINKS = "Links";
   private Long links;
 
-  public static final String SERIALIZED_NAME_RECLAIMABLE_SIZE = "ReclaimableSize";
-  @SerializedName(SERIALIZED_NAME_RECLAIMABLE_SIZE)
+  public static final String JSON_PROPERTY_RECLAIMABLE_SIZE = "ReclaimableSize";
   private Long reclaimableSize;
 
-  public static final String SERIALIZED_NAME_SIZE = "Size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
+  public static final String JSON_PROPERTY_SIZE = "Size";
   private Long size;
 
-  public static final String SERIALIZED_NAME_VOLUME_NAME = "VolumeName";
-  @SerializedName(SERIALIZED_NAME_VOLUME_NAME)
+  public static final String JSON_PROPERTY_VOLUME_NAME = "VolumeName";
   private String volumeName;
 
-  public SystemDfVolumeReport() {
+  public SystemDfVolumeReport() { 
   }
 
   public SystemDfVolumeReport links(Long links) {
@@ -80,10 +67,16 @@ public class SystemDfVolumeReport {
    * @return links
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LINKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getLinks() {
     return links;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LINKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLinks(Long links) {
     this.links = links;
   }
@@ -99,10 +92,16 @@ public class SystemDfVolumeReport {
    * @return reclaimableSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RECLAIMABLE_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getReclaimableSize() {
     return reclaimableSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RECLAIMABLE_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReclaimableSize(Long reclaimableSize) {
     this.reclaimableSize = reclaimableSize;
   }
@@ -118,10 +117,16 @@ public class SystemDfVolumeReport {
    * @return size
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSize() {
     return size;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -137,16 +142,24 @@ public class SystemDfVolumeReport {
    * @return volumeName
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VOLUME_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVolumeName() {
     return volumeName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VOLUME_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVolumeName(String volumeName) {
     this.volumeName = volumeName;
   }
 
 
-
+  /**
+   * Return true if this SystemDfVolumeReport object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -190,95 +203,59 @@ public class SystemDfVolumeReport {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Links");
-    openapiFields.add("ReclaimableSize");
-    openapiFields.add("Size");
-    openapiFields.add("VolumeName");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SystemDfVolumeReport
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SystemDfVolumeReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SystemDfVolumeReport is not found in the empty JSON string", SystemDfVolumeReport.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SystemDfVolumeReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SystemDfVolumeReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("VolumeName") != null && !jsonObj.get("VolumeName").isJsonNull()) && !jsonObj.get("VolumeName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `VolumeName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("VolumeName").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!SystemDfVolumeReport.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'SystemDfVolumeReport' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<SystemDfVolumeReport> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(SystemDfVolumeReport.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<SystemDfVolumeReport>() {
-           @Override
-           public void write(JsonWriter out, SystemDfVolumeReport value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public SystemDfVolumeReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of SystemDfVolumeReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of SystemDfVolumeReport
-   * @throws IOException if the JSON string is invalid with respect to SystemDfVolumeReport
-   */
-  public static SystemDfVolumeReport fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SystemDfVolumeReport.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of SystemDfVolumeReport to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Links` to the URL query string
+    if (getLinks() != null) {
+      joiner.add(String.format("%sLinks%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLinks()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ReclaimableSize` to the URL query string
+    if (getReclaimableSize() != null) {
+      joiner.add(String.format("%sReclaimableSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReclaimableSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `VolumeName` to the URL query string
+    if (getVolumeName() != null) {
+      joiner.add(String.format("%sVolumeName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVolumeName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

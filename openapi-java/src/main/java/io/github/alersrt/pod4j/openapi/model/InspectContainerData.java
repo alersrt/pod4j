@@ -13,214 +13,201 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.DriverData;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerConfig;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerHostConfig;
 import io.github.alersrt.pod4j.openapi.model.InspectContainerState;
 import io.github.alersrt.pod4j.openapi.model.InspectMount;
 import io.github.alersrt.pod4j.openapi.model.InspectNetworkSettings;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectContainerData provides a detailed record of a container&#39;s configuration and state as viewed by Libpod. Large portions of this structure are defined such that the output is compatible with &#x60;docker inspect&#x60; JSON, but additional fields have been added as required to share information not in the original output.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  InspectContainerData.JSON_PROPERTY_APP_ARMOR_PROFILE,
+  InspectContainerData.JSON_PROPERTY_ARGS,
+  InspectContainerData.JSON_PROPERTY_BOUNDING_CAPS,
+  InspectContainerData.JSON_PROPERTY_CONFIG,
+  InspectContainerData.JSON_PROPERTY_CONMON_PID_FILE,
+  InspectContainerData.JSON_PROPERTY_CREATED,
+  InspectContainerData.JSON_PROPERTY_DEPENDENCIES,
+  InspectContainerData.JSON_PROPERTY_DRIVER,
+  InspectContainerData.JSON_PROPERTY_EFFECTIVE_CAPS,
+  InspectContainerData.JSON_PROPERTY_EXEC_I_DS,
+  InspectContainerData.JSON_PROPERTY_GRAPH_DRIVER,
+  InspectContainerData.JSON_PROPERTY_HOST_CONFIG,
+  InspectContainerData.JSON_PROPERTY_HOSTNAME_PATH,
+  InspectContainerData.JSON_PROPERTY_HOSTS_PATH,
+  InspectContainerData.JSON_PROPERTY_ID,
+  InspectContainerData.JSON_PROPERTY_IMAGE,
+  InspectContainerData.JSON_PROPERTY_IMAGE_DIGEST,
+  InspectContainerData.JSON_PROPERTY_IMAGE_NAME,
+  InspectContainerData.JSON_PROPERTY_IS_INFRA,
+  InspectContainerData.JSON_PROPERTY_IS_SERVICE,
+  InspectContainerData.JSON_PROPERTY_KUBE_EXIT_CODE_PROPAGATION,
+  InspectContainerData.JSON_PROPERTY_MOUNT_LABEL,
+  InspectContainerData.JSON_PROPERTY_MOUNTS,
+  InspectContainerData.JSON_PROPERTY_NAME,
+  InspectContainerData.JSON_PROPERTY_NAMESPACE,
+  InspectContainerData.JSON_PROPERTY_NETWORK_SETTINGS,
+  InspectContainerData.JSON_PROPERTY_OC_I_CONFIG_PATH,
+  InspectContainerData.JSON_PROPERTY_OC_I_RUNTIME,
+  InspectContainerData.JSON_PROPERTY_PATH,
+  InspectContainerData.JSON_PROPERTY_PID_FILE,
+  InspectContainerData.JSON_PROPERTY_POD,
+  InspectContainerData.JSON_PROPERTY_PROCESS_LABEL,
+  InspectContainerData.JSON_PROPERTY_RESOLV_CONF_PATH,
+  InspectContainerData.JSON_PROPERTY_RESTART_COUNT,
+  InspectContainerData.JSON_PROPERTY_ROOTFS,
+  InspectContainerData.JSON_PROPERTY_SIZE_ROOT_FS,
+  InspectContainerData.JSON_PROPERTY_SIZE_RW,
+  InspectContainerData.JSON_PROPERTY_STATE,
+  InspectContainerData.JSON_PROPERTY_STATIC_DIR,
+  InspectContainerData.JSON_PROPERTY_LOCK_NUMBER
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerData {
-  public static final String SERIALIZED_NAME_APP_ARMOR_PROFILE = "AppArmorProfile";
-  @SerializedName(SERIALIZED_NAME_APP_ARMOR_PROFILE)
+  public static final String JSON_PROPERTY_APP_ARMOR_PROFILE = "AppArmorProfile";
   private String appArmorProfile;
 
-  public static final String SERIALIZED_NAME_ARGS = "Args";
-  @SerializedName(SERIALIZED_NAME_ARGS)
+  public static final String JSON_PROPERTY_ARGS = "Args";
   private List<String> args = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_BOUNDING_CAPS = "BoundingCaps";
-  @SerializedName(SERIALIZED_NAME_BOUNDING_CAPS)
+  public static final String JSON_PROPERTY_BOUNDING_CAPS = "BoundingCaps";
   private List<String> boundingCaps = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CONFIG = "Config";
-  @SerializedName(SERIALIZED_NAME_CONFIG)
+  public static final String JSON_PROPERTY_CONFIG = "Config";
   private InspectContainerConfig config;
 
-  public static final String SERIALIZED_NAME_CONMON_PID_FILE = "ConmonPidFile";
-  @SerializedName(SERIALIZED_NAME_CONMON_PID_FILE)
+  public static final String JSON_PROPERTY_CONMON_PID_FILE = "ConmonPidFile";
   private String conmonPidFile;
 
-  public static final String SERIALIZED_NAME_CREATED = "Created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
+  public static final String JSON_PROPERTY_CREATED = "Created";
   private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_DEPENDENCIES = "Dependencies";
-  @SerializedName(SERIALIZED_NAME_DEPENDENCIES)
+  public static final String JSON_PROPERTY_DEPENDENCIES = "Dependencies";
   private List<String> dependencies = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DRIVER = "Driver";
-  @SerializedName(SERIALIZED_NAME_DRIVER)
+  public static final String JSON_PROPERTY_DRIVER = "Driver";
   private String driver;
 
-  public static final String SERIALIZED_NAME_EFFECTIVE_CAPS = "EffectiveCaps";
-  @SerializedName(SERIALIZED_NAME_EFFECTIVE_CAPS)
+  public static final String JSON_PROPERTY_EFFECTIVE_CAPS = "EffectiveCaps";
   private List<String> effectiveCaps = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_EXEC_I_DS = "ExecIDs";
-  @SerializedName(SERIALIZED_NAME_EXEC_I_DS)
+  public static final String JSON_PROPERTY_EXEC_I_DS = "ExecIDs";
   private List<String> execIDs = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_GRAPH_DRIVER = "GraphDriver";
-  @SerializedName(SERIALIZED_NAME_GRAPH_DRIVER)
+  public static final String JSON_PROPERTY_GRAPH_DRIVER = "GraphDriver";
   private DriverData graphDriver;
 
-  public static final String SERIALIZED_NAME_HOST_CONFIG = "HostConfig";
-  @SerializedName(SERIALIZED_NAME_HOST_CONFIG)
+  public static final String JSON_PROPERTY_HOST_CONFIG = "HostConfig";
   private InspectContainerHostConfig hostConfig;
 
-  public static final String SERIALIZED_NAME_HOSTNAME_PATH = "HostnamePath";
-  @SerializedName(SERIALIZED_NAME_HOSTNAME_PATH)
+  public static final String JSON_PROPERTY_HOSTNAME_PATH = "HostnamePath";
   private String hostnamePath;
 
-  public static final String SERIALIZED_NAME_HOSTS_PATH = "HostsPath";
-  @SerializedName(SERIALIZED_NAME_HOSTS_PATH)
+  public static final String JSON_PROPERTY_HOSTS_PATH = "HostsPath";
   private String hostsPath;
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "Id";
   private String id;
 
-  public static final String SERIALIZED_NAME_IMAGE = "Image";
-  @SerializedName(SERIALIZED_NAME_IMAGE)
+  public static final String JSON_PROPERTY_IMAGE = "Image";
   private String image;
 
-  public static final String SERIALIZED_NAME_IMAGE_DIGEST = "ImageDigest";
-  @SerializedName(SERIALIZED_NAME_IMAGE_DIGEST)
+  public static final String JSON_PROPERTY_IMAGE_DIGEST = "ImageDigest";
   private String imageDigest;
 
-  public static final String SERIALIZED_NAME_IMAGE_NAME = "ImageName";
-  @SerializedName(SERIALIZED_NAME_IMAGE_NAME)
+  public static final String JSON_PROPERTY_IMAGE_NAME = "ImageName";
   private String imageName;
 
-  public static final String SERIALIZED_NAME_IS_INFRA = "IsInfra";
-  @SerializedName(SERIALIZED_NAME_IS_INFRA)
+  public static final String JSON_PROPERTY_IS_INFRA = "IsInfra";
   private Boolean isInfra;
 
-  public static final String SERIALIZED_NAME_IS_SERVICE = "IsService";
-  @SerializedName(SERIALIZED_NAME_IS_SERVICE)
+  public static final String JSON_PROPERTY_IS_SERVICE = "IsService";
   private Boolean isService;
 
-  public static final String SERIALIZED_NAME_KUBE_EXIT_CODE_PROPAGATION = "KubeExitCodePropagation";
-  @SerializedName(SERIALIZED_NAME_KUBE_EXIT_CODE_PROPAGATION)
+  public static final String JSON_PROPERTY_KUBE_EXIT_CODE_PROPAGATION = "KubeExitCodePropagation";
   private String kubeExitCodePropagation;
 
-  public static final String SERIALIZED_NAME_MOUNT_LABEL = "MountLabel";
-  @SerializedName(SERIALIZED_NAME_MOUNT_LABEL)
+  public static final String JSON_PROPERTY_MOUNT_LABEL = "MountLabel";
   private String mountLabel;
 
-  public static final String SERIALIZED_NAME_MOUNTS = "Mounts";
-  @SerializedName(SERIALIZED_NAME_MOUNTS)
-  private List<InspectMount> mounts = new ArrayList<>();
+  public static final String JSON_PROPERTY_MOUNTS = "Mounts";
+  private List<@Valid InspectMount> mounts = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public static final String SERIALIZED_NAME_NAMESPACE = "Namespace";
-  @SerializedName(SERIALIZED_NAME_NAMESPACE)
+  public static final String JSON_PROPERTY_NAMESPACE = "Namespace";
   private String namespace;
 
-  public static final String SERIALIZED_NAME_NETWORK_SETTINGS = "NetworkSettings";
-  @SerializedName(SERIALIZED_NAME_NETWORK_SETTINGS)
+  public static final String JSON_PROPERTY_NETWORK_SETTINGS = "NetworkSettings";
   private InspectNetworkSettings networkSettings;
 
-  public static final String SERIALIZED_NAME_OC_I_CONFIG_PATH = "OCIConfigPath";
-  @SerializedName(SERIALIZED_NAME_OC_I_CONFIG_PATH)
+  public static final String JSON_PROPERTY_OC_I_CONFIG_PATH = "OCIConfigPath";
   private String ocIConfigPath;
 
-  public static final String SERIALIZED_NAME_OC_I_RUNTIME = "OCIRuntime";
-  @SerializedName(SERIALIZED_NAME_OC_I_RUNTIME)
+  public static final String JSON_PROPERTY_OC_I_RUNTIME = "OCIRuntime";
   private String ocIRuntime;
 
-  public static final String SERIALIZED_NAME_PATH = "Path";
-  @SerializedName(SERIALIZED_NAME_PATH)
+  public static final String JSON_PROPERTY_PATH = "Path";
   private String path;
 
-  public static final String SERIALIZED_NAME_PID_FILE = "PidFile";
-  @SerializedName(SERIALIZED_NAME_PID_FILE)
+  public static final String JSON_PROPERTY_PID_FILE = "PidFile";
   private String pidFile;
 
-  public static final String SERIALIZED_NAME_POD = "Pod";
-  @SerializedName(SERIALIZED_NAME_POD)
+  public static final String JSON_PROPERTY_POD = "Pod";
   private String pod;
 
-  public static final String SERIALIZED_NAME_PROCESS_LABEL = "ProcessLabel";
-  @SerializedName(SERIALIZED_NAME_PROCESS_LABEL)
+  public static final String JSON_PROPERTY_PROCESS_LABEL = "ProcessLabel";
   private String processLabel;
 
-  public static final String SERIALIZED_NAME_RESOLV_CONF_PATH = "ResolvConfPath";
-  @SerializedName(SERIALIZED_NAME_RESOLV_CONF_PATH)
+  public static final String JSON_PROPERTY_RESOLV_CONF_PATH = "ResolvConfPath";
   private String resolvConfPath;
 
-  public static final String SERIALIZED_NAME_RESTART_COUNT = "RestartCount";
-  @SerializedName(SERIALIZED_NAME_RESTART_COUNT)
+  public static final String JSON_PROPERTY_RESTART_COUNT = "RestartCount";
   private Integer restartCount;
 
-  public static final String SERIALIZED_NAME_ROOTFS = "Rootfs";
-  @SerializedName(SERIALIZED_NAME_ROOTFS)
+  public static final String JSON_PROPERTY_ROOTFS = "Rootfs";
   private String rootfs;
 
-  public static final String SERIALIZED_NAME_SIZE_ROOT_FS = "SizeRootFs";
-  @SerializedName(SERIALIZED_NAME_SIZE_ROOT_FS)
+  public static final String JSON_PROPERTY_SIZE_ROOT_FS = "SizeRootFs";
   private Long sizeRootFs;
 
-  public static final String SERIALIZED_NAME_SIZE_RW = "SizeRw";
-  @SerializedName(SERIALIZED_NAME_SIZE_RW)
+  public static final String JSON_PROPERTY_SIZE_RW = "SizeRw";
   private Long sizeRw;
 
-  public static final String SERIALIZED_NAME_STATE = "State";
-  @SerializedName(SERIALIZED_NAME_STATE)
+  public static final String JSON_PROPERTY_STATE = "State";
   private InspectContainerState state;
 
-  public static final String SERIALIZED_NAME_STATIC_DIR = "StaticDir";
-  @SerializedName(SERIALIZED_NAME_STATIC_DIR)
+  public static final String JSON_PROPERTY_STATIC_DIR = "StaticDir";
   private String staticDir;
 
-  public static final String SERIALIZED_NAME_LOCK_NUMBER = "lockNumber";
-  @SerializedName(SERIALIZED_NAME_LOCK_NUMBER)
+  public static final String JSON_PROPERTY_LOCK_NUMBER = "lockNumber";
   private Integer lockNumber;
 
-  public InspectContainerData() {
+  public InspectContainerData() { 
   }
 
   public InspectContainerData appArmorProfile(String appArmorProfile) {
@@ -233,10 +220,16 @@ public class InspectContainerData {
    * @return appArmorProfile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_APP_ARMOR_PROFILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAppArmorProfile() {
     return appArmorProfile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_APP_ARMOR_PROFILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAppArmorProfile(String appArmorProfile) {
     this.appArmorProfile = appArmorProfile;
   }
@@ -260,10 +253,16 @@ public class InspectContainerData {
    * @return args
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getArgs() {
     return args;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArgs(List<String> args) {
     this.args = args;
   }
@@ -287,10 +286,16 @@ public class InspectContainerData {
    * @return boundingCaps
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BOUNDING_CAPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getBoundingCaps() {
     return boundingCaps;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BOUNDING_CAPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBoundingCaps(List<String> boundingCaps) {
     this.boundingCaps = boundingCaps;
   }
@@ -306,10 +311,17 @@ public class InspectContainerData {
    * @return config
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public InspectContainerConfig getConfig() {
     return config;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConfig(InspectContainerConfig config) {
     this.config = config;
   }
@@ -325,10 +337,16 @@ public class InspectContainerData {
    * @return conmonPidFile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getConmonPidFile() {
     return conmonPidFile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConmonPidFile(String conmonPidFile) {
     this.conmonPidFile = conmonPidFile;
   }
@@ -344,10 +362,17 @@ public class InspectContainerData {
    * @return created
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getCreated() {
     return created;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
@@ -371,10 +396,16 @@ public class InspectContainerData {
    * @return dependencies
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DEPENDENCIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDependencies() {
     return dependencies;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DEPENDENCIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDependencies(List<String> dependencies) {
     this.dependencies = dependencies;
   }
@@ -390,10 +421,16 @@ public class InspectContainerData {
    * @return driver
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDriver() {
     return driver;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDriver(String driver) {
     this.driver = driver;
   }
@@ -417,10 +454,16 @@ public class InspectContainerData {
    * @return effectiveCaps
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EFFECTIVE_CAPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getEffectiveCaps() {
     return effectiveCaps;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EFFECTIVE_CAPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEffectiveCaps(List<String> effectiveCaps) {
     this.effectiveCaps = effectiveCaps;
   }
@@ -444,10 +487,16 @@ public class InspectContainerData {
    * @return execIDs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXEC_I_DS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getExecIDs() {
     return execIDs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXEC_I_DS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExecIDs(List<String> execIDs) {
     this.execIDs = execIDs;
   }
@@ -463,10 +512,17 @@ public class InspectContainerData {
    * @return graphDriver
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public DriverData getGraphDriver() {
     return graphDriver;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphDriver(DriverData graphDriver) {
     this.graphDriver = graphDriver;
   }
@@ -482,10 +538,17 @@ public class InspectContainerData {
    * @return hostConfig
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public InspectContainerHostConfig getHostConfig() {
     return hostConfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostConfig(InspectContainerHostConfig hostConfig) {
     this.hostConfig = hostConfig;
   }
@@ -501,10 +564,16 @@ public class InspectContainerData {
    * @return hostnamePath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHostnamePath() {
     return hostnamePath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostnamePath(String hostnamePath) {
     this.hostnamePath = hostnamePath;
   }
@@ -520,10 +589,16 @@ public class InspectContainerData {
    * @return hostsPath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOSTS_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHostsPath() {
     return hostsPath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOSTS_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostsPath(String hostsPath) {
     this.hostsPath = hostsPath;
   }
@@ -539,10 +614,16 @@ public class InspectContainerData {
    * @return id
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -558,10 +639,16 @@ public class InspectContainerData {
    * @return image
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImage() {
     return image;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImage(String image) {
     this.image = image;
   }
@@ -577,10 +664,16 @@ public class InspectContainerData {
    * @return imageDigest
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_DIGEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImageDigest() {
     return imageDigest;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_DIGEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageDigest(String imageDigest) {
     this.imageDigest = imageDigest;
   }
@@ -596,10 +689,16 @@ public class InspectContainerData {
    * @return imageName
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImageName() {
     return imageName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageName(String imageName) {
     this.imageName = imageName;
   }
@@ -615,10 +714,16 @@ public class InspectContainerData {
    * @return isInfra
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IS_INFRA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsInfra() {
     return isInfra;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IS_INFRA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsInfra(Boolean isInfra) {
     this.isInfra = isInfra;
   }
@@ -634,10 +739,16 @@ public class InspectContainerData {
    * @return isService
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IS_SERVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsService() {
     return isService;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IS_SERVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsService(Boolean isService) {
     this.isService = isService;
   }
@@ -653,10 +764,16 @@ public class InspectContainerData {
    * @return kubeExitCodePropagation
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_KUBE_EXIT_CODE_PROPAGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getKubeExitCodePropagation() {
     return kubeExitCodePropagation;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_KUBE_EXIT_CODE_PROPAGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setKubeExitCodePropagation(String kubeExitCodePropagation) {
     this.kubeExitCodePropagation = kubeExitCodePropagation;
   }
@@ -672,16 +789,22 @@ public class InspectContainerData {
    * @return mountLabel
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MOUNT_LABEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMountLabel() {
     return mountLabel;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MOUNT_LABEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMountLabel(String mountLabel) {
     this.mountLabel = mountLabel;
   }
 
 
-  public InspectContainerData mounts(List<InspectMount> mounts) {
+  public InspectContainerData mounts(List<@Valid InspectMount> mounts) {
     this.mounts = mounts;
     return this;
   }
@@ -699,11 +822,18 @@ public class InspectContainerData {
    * @return mounts
    */
   @javax.annotation.Nullable
-  public List<InspectMount> getMounts() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid InspectMount> getMounts() {
     return mounts;
   }
 
-  public void setMounts(List<InspectMount> mounts) {
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMounts(List<@Valid InspectMount> mounts) {
     this.mounts = mounts;
   }
 
@@ -718,10 +848,16 @@ public class InspectContainerData {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -737,10 +873,16 @@ public class InspectContainerData {
    * @return namespace
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAMESPACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNamespace() {
     return namespace;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAMESPACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNamespace(String namespace) {
     this.namespace = namespace;
   }
@@ -756,10 +898,17 @@ public class InspectContainerData {
    * @return networkSettings
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_SETTINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public InspectNetworkSettings getNetworkSettings() {
     return networkSettings;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_SETTINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworkSettings(InspectNetworkSettings networkSettings) {
     this.networkSettings = networkSettings;
   }
@@ -775,10 +924,16 @@ public class InspectContainerData {
    * @return ocIConfigPath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OC_I_CONFIG_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOcIConfigPath() {
     return ocIConfigPath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OC_I_CONFIG_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOcIConfigPath(String ocIConfigPath) {
     this.ocIConfigPath = ocIConfigPath;
   }
@@ -794,10 +949,16 @@ public class InspectContainerData {
    * @return ocIRuntime
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OC_I_RUNTIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOcIRuntime() {
     return ocIRuntime;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OC_I_RUNTIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOcIRuntime(String ocIRuntime) {
     this.ocIRuntime = ocIRuntime;
   }
@@ -813,10 +974,16 @@ public class InspectContainerData {
    * @return path
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPath() {
     return path;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPath(String path) {
     this.path = path;
   }
@@ -832,10 +999,16 @@ public class InspectContainerData {
    * @return pidFile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PID_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPidFile() {
     return pidFile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PID_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPidFile(String pidFile) {
     this.pidFile = pidFile;
   }
@@ -851,10 +1024,16 @@ public class InspectContainerData {
    * @return pod
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_POD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPod() {
     return pod;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_POD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPod(String pod) {
     this.pod = pod;
   }
@@ -870,10 +1049,16 @@ public class InspectContainerData {
    * @return processLabel
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PROCESS_LABEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProcessLabel() {
     return processLabel;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PROCESS_LABEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProcessLabel(String processLabel) {
     this.processLabel = processLabel;
   }
@@ -889,10 +1074,16 @@ public class InspectContainerData {
    * @return resolvConfPath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESOLV_CONF_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getResolvConfPath() {
     return resolvConfPath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESOLV_CONF_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResolvConfPath(String resolvConfPath) {
     this.resolvConfPath = resolvConfPath;
   }
@@ -908,10 +1099,16 @@ public class InspectContainerData {
    * @return restartCount
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTART_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRestartCount() {
     return restartCount;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTART_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestartCount(Integer restartCount) {
     this.restartCount = restartCount;
   }
@@ -927,10 +1124,16 @@ public class InspectContainerData {
    * @return rootfs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRootfs() {
     return rootfs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootfs(String rootfs) {
     this.rootfs = rootfs;
   }
@@ -946,10 +1149,16 @@ public class InspectContainerData {
    * @return sizeRootFs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SIZE_ROOT_FS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSizeRootFs() {
     return sizeRootFs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE_ROOT_FS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSizeRootFs(Long sizeRootFs) {
     this.sizeRootFs = sizeRootFs;
   }
@@ -965,10 +1174,16 @@ public class InspectContainerData {
    * @return sizeRw
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SIZE_RW)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSizeRw() {
     return sizeRw;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE_RW)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSizeRw(Long sizeRw) {
     this.sizeRw = sizeRw;
   }
@@ -984,10 +1199,17 @@ public class InspectContainerData {
    * @return state
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public InspectContainerState getState() {
     return state;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setState(InspectContainerState state) {
     this.state = state;
   }
@@ -1003,10 +1225,16 @@ public class InspectContainerData {
    * @return staticDir
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATIC_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getStaticDir() {
     return staticDir;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATIC_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStaticDir(String staticDir) {
     this.staticDir = staticDir;
   }
@@ -1022,16 +1250,24 @@ public class InspectContainerData {
    * @return lockNumber
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LOCK_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getLockNumber() {
     return lockNumber;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LOCK_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLockNumber(Integer lockNumber) {
     this.lockNumber = lockNumber;
   }
 
 
-
+  /**
+   * Return true if this InspectContainerData object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1147,248 +1383,264 @@ public class InspectContainerData {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("AppArmorProfile");
-    openapiFields.add("Args");
-    openapiFields.add("BoundingCaps");
-    openapiFields.add("Config");
-    openapiFields.add("ConmonPidFile");
-    openapiFields.add("Created");
-    openapiFields.add("Dependencies");
-    openapiFields.add("Driver");
-    openapiFields.add("EffectiveCaps");
-    openapiFields.add("ExecIDs");
-    openapiFields.add("GraphDriver");
-    openapiFields.add("HostConfig");
-    openapiFields.add("HostnamePath");
-    openapiFields.add("HostsPath");
-    openapiFields.add("Id");
-    openapiFields.add("Image");
-    openapiFields.add("ImageDigest");
-    openapiFields.add("ImageName");
-    openapiFields.add("IsInfra");
-    openapiFields.add("IsService");
-    openapiFields.add("KubeExitCodePropagation");
-    openapiFields.add("MountLabel");
-    openapiFields.add("Mounts");
-    openapiFields.add("Name");
-    openapiFields.add("Namespace");
-    openapiFields.add("NetworkSettings");
-    openapiFields.add("OCIConfigPath");
-    openapiFields.add("OCIRuntime");
-    openapiFields.add("Path");
-    openapiFields.add("PidFile");
-    openapiFields.add("Pod");
-    openapiFields.add("ProcessLabel");
-    openapiFields.add("ResolvConfPath");
-    openapiFields.add("RestartCount");
-    openapiFields.add("Rootfs");
-    openapiFields.add("SizeRootFs");
-    openapiFields.add("SizeRw");
-    openapiFields.add("State");
-    openapiFields.add("StaticDir");
-    openapiFields.add("lockNumber");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectContainerData
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectContainerData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerData is not found in the empty JSON string", InspectContainerData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InspectContainerData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("AppArmorProfile") != null && !jsonObj.get("AppArmorProfile").isJsonNull()) && !jsonObj.get("AppArmorProfile").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `AppArmorProfile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("AppArmorProfile").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Args") != null && !jsonObj.get("Args").isJsonNull() && !jsonObj.get("Args").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Args` to be an array in the JSON string but got `%s`", jsonObj.get("Args").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("BoundingCaps") != null && !jsonObj.get("BoundingCaps").isJsonNull() && !jsonObj.get("BoundingCaps").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `BoundingCaps` to be an array in the JSON string but got `%s`", jsonObj.get("BoundingCaps").toString()));
-      }
-      // validate the optional field `Config`
-      if (jsonObj.get("Config") != null && !jsonObj.get("Config").isJsonNull()) {
-        InspectContainerConfig.validateJsonElement(jsonObj.get("Config"));
-      }
-      if ((jsonObj.get("ConmonPidFile") != null && !jsonObj.get("ConmonPidFile").isJsonNull()) && !jsonObj.get("ConmonPidFile").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ConmonPidFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ConmonPidFile").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Dependencies") != null && !jsonObj.get("Dependencies").isJsonNull() && !jsonObj.get("Dependencies").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Dependencies` to be an array in the JSON string but got `%s`", jsonObj.get("Dependencies").toString()));
-      }
-      if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("EffectiveCaps") != null && !jsonObj.get("EffectiveCaps").isJsonNull() && !jsonObj.get("EffectiveCaps").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `EffectiveCaps` to be an array in the JSON string but got `%s`", jsonObj.get("EffectiveCaps").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("ExecIDs") != null && !jsonObj.get("ExecIDs").isJsonNull() && !jsonObj.get("ExecIDs").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ExecIDs` to be an array in the JSON string but got `%s`", jsonObj.get("ExecIDs").toString()));
-      }
-      // validate the optional field `GraphDriver`
-      if (jsonObj.get("GraphDriver") != null && !jsonObj.get("GraphDriver").isJsonNull()) {
-        DriverData.validateJsonElement(jsonObj.get("GraphDriver"));
-      }
-      // validate the optional field `HostConfig`
-      if (jsonObj.get("HostConfig") != null && !jsonObj.get("HostConfig").isJsonNull()) {
-        InspectContainerHostConfig.validateJsonElement(jsonObj.get("HostConfig"));
-      }
-      if ((jsonObj.get("HostnamePath") != null && !jsonObj.get("HostnamePath").isJsonNull()) && !jsonObj.get("HostnamePath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `HostnamePath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HostnamePath").toString()));
-      }
-      if ((jsonObj.get("HostsPath") != null && !jsonObj.get("HostsPath").isJsonNull()) && !jsonObj.get("HostsPath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `HostsPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HostsPath").toString()));
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      if ((jsonObj.get("Image") != null && !jsonObj.get("Image").isJsonNull()) && !jsonObj.get("Image").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Image").toString()));
-      }
-      if ((jsonObj.get("ImageDigest") != null && !jsonObj.get("ImageDigest").isJsonNull()) && !jsonObj.get("ImageDigest").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ImageDigest` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ImageDigest").toString()));
-      }
-      if ((jsonObj.get("ImageName") != null && !jsonObj.get("ImageName").isJsonNull()) && !jsonObj.get("ImageName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ImageName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ImageName").toString()));
-      }
-      if ((jsonObj.get("KubeExitCodePropagation") != null && !jsonObj.get("KubeExitCodePropagation").isJsonNull()) && !jsonObj.get("KubeExitCodePropagation").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `KubeExitCodePropagation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("KubeExitCodePropagation").toString()));
-      }
-      if ((jsonObj.get("MountLabel") != null && !jsonObj.get("MountLabel").isJsonNull()) && !jsonObj.get("MountLabel").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `MountLabel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MountLabel").toString()));
-      }
-      if (jsonObj.get("Mounts") != null && !jsonObj.get("Mounts").isJsonNull()) {
-        JsonArray jsonArraymounts = jsonObj.getAsJsonArray("Mounts");
-        if (jsonArraymounts != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Mounts").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Mounts` to be an array in the JSON string but got `%s`", jsonObj.get("Mounts").toString()));
-          }
-
-          // validate the optional field `Mounts` (array)
-          for (int i = 0; i < jsonArraymounts.size(); i++) {
-            InspectMount.validateJsonElement(jsonArraymounts.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      if ((jsonObj.get("Namespace") != null && !jsonObj.get("Namespace").isJsonNull()) && !jsonObj.get("Namespace").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Namespace` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Namespace").toString()));
-      }
-      // validate the optional field `NetworkSettings`
-      if (jsonObj.get("NetworkSettings") != null && !jsonObj.get("NetworkSettings").isJsonNull()) {
-        InspectNetworkSettings.validateJsonElement(jsonObj.get("NetworkSettings"));
-      }
-      if ((jsonObj.get("OCIConfigPath") != null && !jsonObj.get("OCIConfigPath").isJsonNull()) && !jsonObj.get("OCIConfigPath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `OCIConfigPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OCIConfigPath").toString()));
-      }
-      if ((jsonObj.get("OCIRuntime") != null && !jsonObj.get("OCIRuntime").isJsonNull()) && !jsonObj.get("OCIRuntime").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `OCIRuntime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OCIRuntime").toString()));
-      }
-      if ((jsonObj.get("Path") != null && !jsonObj.get("Path").isJsonNull()) && !jsonObj.get("Path").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Path").toString()));
-      }
-      if ((jsonObj.get("PidFile") != null && !jsonObj.get("PidFile").isJsonNull()) && !jsonObj.get("PidFile").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `PidFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PidFile").toString()));
-      }
-      if ((jsonObj.get("Pod") != null && !jsonObj.get("Pod").isJsonNull()) && !jsonObj.get("Pod").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Pod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Pod").toString()));
-      }
-      if ((jsonObj.get("ProcessLabel") != null && !jsonObj.get("ProcessLabel").isJsonNull()) && !jsonObj.get("ProcessLabel").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ProcessLabel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ProcessLabel").toString()));
-      }
-      if ((jsonObj.get("ResolvConfPath") != null && !jsonObj.get("ResolvConfPath").isJsonNull()) && !jsonObj.get("ResolvConfPath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ResolvConfPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ResolvConfPath").toString()));
-      }
-      if ((jsonObj.get("Rootfs") != null && !jsonObj.get("Rootfs").isJsonNull()) && !jsonObj.get("Rootfs").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Rootfs` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Rootfs").toString()));
-      }
-      // validate the optional field `State`
-      if (jsonObj.get("State") != null && !jsonObj.get("State").isJsonNull()) {
-        InspectContainerState.validateJsonElement(jsonObj.get("State"));
-      }
-      if ((jsonObj.get("StaticDir") != null && !jsonObj.get("StaticDir").isJsonNull()) && !jsonObj.get("StaticDir").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `StaticDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StaticDir").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InspectContainerData.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InspectContainerData' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InspectContainerData> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InspectContainerData.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InspectContainerData>() {
-           @Override
-           public void write(JsonWriter out, InspectContainerData value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InspectContainerData read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of InspectContainerData given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectContainerData
-   * @throws IOException if the JSON string is invalid with respect to InspectContainerData
-   */
-  public static InspectContainerData fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InspectContainerData.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of InspectContainerData to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `AppArmorProfile` to the URL query string
+    if (getAppArmorProfile() != null) {
+      joiner.add(String.format("%sAppArmorProfile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAppArmorProfile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Args` to the URL query string
+    if (getArgs() != null) {
+      for (int i = 0; i < getArgs().size(); i++) {
+        joiner.add(String.format("%sArgs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getArgs().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `BoundingCaps` to the URL query string
+    if (getBoundingCaps() != null) {
+      for (int i = 0; i < getBoundingCaps().size(); i++) {
+        joiner.add(String.format("%sBoundingCaps%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getBoundingCaps().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Config` to the URL query string
+    if (getConfig() != null) {
+      joiner.add(getConfig().toUrlQueryString(prefix + "Config" + suffix));
+    }
+
+    // add `ConmonPidFile` to the URL query string
+    if (getConmonPidFile() != null) {
+      joiner.add(String.format("%sConmonPidFile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConmonPidFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Created` to the URL query string
+    if (getCreated() != null) {
+      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Dependencies` to the URL query string
+    if (getDependencies() != null) {
+      for (int i = 0; i < getDependencies().size(); i++) {
+        joiner.add(String.format("%sDependencies%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDependencies().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Driver` to the URL query string
+    if (getDriver() != null) {
+      joiner.add(String.format("%sDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `EffectiveCaps` to the URL query string
+    if (getEffectiveCaps() != null) {
+      for (int i = 0; i < getEffectiveCaps().size(); i++) {
+        joiner.add(String.format("%sEffectiveCaps%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getEffectiveCaps().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `ExecIDs` to the URL query string
+    if (getExecIDs() != null) {
+      for (int i = 0; i < getExecIDs().size(); i++) {
+        joiner.add(String.format("%sExecIDs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getExecIDs().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `GraphDriver` to the URL query string
+    if (getGraphDriver() != null) {
+      joiner.add(getGraphDriver().toUrlQueryString(prefix + "GraphDriver" + suffix));
+    }
+
+    // add `HostConfig` to the URL query string
+    if (getHostConfig() != null) {
+      joiner.add(getHostConfig().toUrlQueryString(prefix + "HostConfig" + suffix));
+    }
+
+    // add `HostnamePath` to the URL query string
+    if (getHostnamePath() != null) {
+      joiner.add(String.format("%sHostnamePath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostnamePath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `HostsPath` to the URL query string
+    if (getHostsPath() != null) {
+      joiner.add(String.format("%sHostsPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostsPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Image` to the URL query string
+    if (getImage() != null) {
+      joiner.add(String.format("%sImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ImageDigest` to the URL query string
+    if (getImageDigest() != null) {
+      joiner.add(String.format("%sImageDigest%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageDigest()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ImageName` to the URL query string
+    if (getImageName() != null) {
+      joiner.add(String.format("%sImageName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IsInfra` to the URL query string
+    if (getIsInfra() != null) {
+      joiner.add(String.format("%sIsInfra%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIsInfra()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IsService` to the URL query string
+    if (getIsService() != null) {
+      joiner.add(String.format("%sIsService%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIsService()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `KubeExitCodePropagation` to the URL query string
+    if (getKubeExitCodePropagation() != null) {
+      joiner.add(String.format("%sKubeExitCodePropagation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKubeExitCodePropagation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `MountLabel` to the URL query string
+    if (getMountLabel() != null) {
+      joiner.add(String.format("%sMountLabel%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMountLabel()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Mounts` to the URL query string
+    if (getMounts() != null) {
+      for (int i = 0; i < getMounts().size(); i++) {
+        if (getMounts().get(i) != null) {
+          joiner.add(getMounts().get(i).toUrlQueryString(String.format("%sMounts%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Namespace` to the URL query string
+    if (getNamespace() != null) {
+      joiner.add(String.format("%sNamespace%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNamespace()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `NetworkSettings` to the URL query string
+    if (getNetworkSettings() != null) {
+      joiner.add(getNetworkSettings().toUrlQueryString(prefix + "NetworkSettings" + suffix));
+    }
+
+    // add `OCIConfigPath` to the URL query string
+    if (getOcIConfigPath() != null) {
+      joiner.add(String.format("%sOCIConfigPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOcIConfigPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `OCIRuntime` to the URL query string
+    if (getOcIRuntime() != null) {
+      joiner.add(String.format("%sOCIRuntime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOcIRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Path` to the URL query string
+    if (getPath() != null) {
+      joiner.add(String.format("%sPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `PidFile` to the URL query string
+    if (getPidFile() != null) {
+      joiner.add(String.format("%sPidFile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPidFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Pod` to the URL query string
+    if (getPod() != null) {
+      joiner.add(String.format("%sPod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ProcessLabel` to the URL query string
+    if (getProcessLabel() != null) {
+      joiner.add(String.format("%sProcessLabel%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getProcessLabel()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ResolvConfPath` to the URL query string
+    if (getResolvConfPath() != null) {
+      joiner.add(String.format("%sResolvConfPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getResolvConfPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RestartCount` to the URL query string
+    if (getRestartCount() != null) {
+      joiner.add(String.format("%sRestartCount%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Rootfs` to the URL query string
+    if (getRootfs() != null) {
+      joiner.add(String.format("%sRootfs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `SizeRootFs` to the URL query string
+    if (getSizeRootFs() != null) {
+      joiner.add(String.format("%sSizeRootFs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSizeRootFs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `SizeRw` to the URL query string
+    if (getSizeRw() != null) {
+      joiner.add(String.format("%sSizeRw%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSizeRw()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `State` to the URL query string
+    if (getState() != null) {
+      joiner.add(getState().toUrlQueryString(prefix + "State" + suffix));
+    }
+
+    // add `StaticDir` to the URL query string
+    if (getStaticDir() != null) {
+      joiner.add(String.format("%sStaticDir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStaticDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `lockNumber` to the URL query string
+    if (getLockNumber() != null) {
+      joiner.add(String.format("%slockNumber%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLockNumber()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

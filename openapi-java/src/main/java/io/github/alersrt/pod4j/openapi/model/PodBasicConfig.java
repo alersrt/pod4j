@@ -13,130 +13,117 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PodBasicConfig
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  PodBasicConfig.JSON_PROPERTY_EXIT_POLICY,
+  PodBasicConfig.JSON_PROPERTY_HOSTNAME,
+  PodBasicConfig.JSON_PROPERTY_INFRA_COMMAND,
+  PodBasicConfig.JSON_PROPERTY_INFRA_CONMON_PID_FILE,
+  PodBasicConfig.JSON_PROPERTY_INFRA_IMAGE,
+  PodBasicConfig.JSON_PROPERTY_INFRA_NAME,
+  PodBasicConfig.JSON_PROPERTY_IPCNS,
+  PodBasicConfig.JSON_PROPERTY_LABELS,
+  PodBasicConfig.JSON_PROPERTY_NAME,
+  PodBasicConfig.JSON_PROPERTY_NO_INFRA,
+  PodBasicConfig.JSON_PROPERTY_PIDNS,
+  PodBasicConfig.JSON_PROPERTY_POD_CREATE_COMMAND,
+  PodBasicConfig.JSON_PROPERTY_POD_DEVICES,
+  PodBasicConfig.JSON_PROPERTY_RESTART_POLICY,
+  PodBasicConfig.JSON_PROPERTY_RESTART_TRIES,
+  PodBasicConfig.JSON_PROPERTY_SHARE_PARENT,
+  PodBasicConfig.JSON_PROPERTY_SHARED_NAMESPACES,
+  PodBasicConfig.JSON_PROPERTY_SYSCTL,
+  PodBasicConfig.JSON_PROPERTY_USERNS,
+  PodBasicConfig.JSON_PROPERTY_UTSNS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodBasicConfig {
-  public static final String SERIALIZED_NAME_EXIT_POLICY = "exit_policy";
-  @SerializedName(SERIALIZED_NAME_EXIT_POLICY)
+  public static final String JSON_PROPERTY_EXIT_POLICY = "exit_policy";
   private String exitPolicy;
 
-  public static final String SERIALIZED_NAME_HOSTNAME = "hostname";
-  @SerializedName(SERIALIZED_NAME_HOSTNAME)
+  public static final String JSON_PROPERTY_HOSTNAME = "hostname";
   private String hostname;
 
-  public static final String SERIALIZED_NAME_INFRA_COMMAND = "infra_command";
-  @SerializedName(SERIALIZED_NAME_INFRA_COMMAND)
+  public static final String JSON_PROPERTY_INFRA_COMMAND = "infra_command";
   private List<String> infraCommand = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_INFRA_CONMON_PID_FILE = "infra_conmon_pid_file";
-  @SerializedName(SERIALIZED_NAME_INFRA_CONMON_PID_FILE)
+  public static final String JSON_PROPERTY_INFRA_CONMON_PID_FILE = "infra_conmon_pid_file";
   private String infraConmonPidFile;
 
-  public static final String SERIALIZED_NAME_INFRA_IMAGE = "infra_image";
-  @SerializedName(SERIALIZED_NAME_INFRA_IMAGE)
+  public static final String JSON_PROPERTY_INFRA_IMAGE = "infra_image";
   private String infraImage;
 
-  public static final String SERIALIZED_NAME_INFRA_NAME = "infra_name";
-  @SerializedName(SERIALIZED_NAME_INFRA_NAME)
+  public static final String JSON_PROPERTY_INFRA_NAME = "infra_name";
   private String infraName;
 
-  public static final String SERIALIZED_NAME_IPCNS = "ipcns";
-  @SerializedName(SERIALIZED_NAME_IPCNS)
+  public static final String JSON_PROPERTY_IPCNS = "ipcns";
   private Namespace ipcns;
 
-  public static final String SERIALIZED_NAME_LABELS = "labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_NAME = "name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public static final String SERIALIZED_NAME_NO_INFRA = "no_infra";
-  @SerializedName(SERIALIZED_NAME_NO_INFRA)
+  public static final String JSON_PROPERTY_NO_INFRA = "no_infra";
   private Boolean noInfra;
 
-  public static final String SERIALIZED_NAME_PIDNS = "pidns";
-  @SerializedName(SERIALIZED_NAME_PIDNS)
+  public static final String JSON_PROPERTY_PIDNS = "pidns";
   private Namespace pidns;
 
-  public static final String SERIALIZED_NAME_POD_CREATE_COMMAND = "pod_create_command";
-  @SerializedName(SERIALIZED_NAME_POD_CREATE_COMMAND)
+  public static final String JSON_PROPERTY_POD_CREATE_COMMAND = "pod_create_command";
   private List<String> podCreateCommand = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_POD_DEVICES = "pod_devices";
-  @SerializedName(SERIALIZED_NAME_POD_DEVICES)
+  public static final String JSON_PROPERTY_POD_DEVICES = "pod_devices";
   private List<String> podDevices = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_RESTART_POLICY = "restart_policy";
-  @SerializedName(SERIALIZED_NAME_RESTART_POLICY)
+  public static final String JSON_PROPERTY_RESTART_POLICY = "restart_policy";
   private String restartPolicy;
 
-  public static final String SERIALIZED_NAME_RESTART_TRIES = "restart_tries";
-  @SerializedName(SERIALIZED_NAME_RESTART_TRIES)
+  public static final String JSON_PROPERTY_RESTART_TRIES = "restart_tries";
   private Integer restartTries;
 
-  public static final String SERIALIZED_NAME_SHARE_PARENT = "share_parent";
-  @SerializedName(SERIALIZED_NAME_SHARE_PARENT)
+  public static final String JSON_PROPERTY_SHARE_PARENT = "share_parent";
   private Boolean shareParent;
 
-  public static final String SERIALIZED_NAME_SHARED_NAMESPACES = "shared_namespaces";
-  @SerializedName(SERIALIZED_NAME_SHARED_NAMESPACES)
+  public static final String JSON_PROPERTY_SHARED_NAMESPACES = "shared_namespaces";
   private List<String> sharedNamespaces = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SYSCTL = "sysctl";
-  @SerializedName(SERIALIZED_NAME_SYSCTL)
+  public static final String JSON_PROPERTY_SYSCTL = "sysctl";
   private Map<String, String> sysctl = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_USERNS = "userns";
-  @SerializedName(SERIALIZED_NAME_USERNS)
+  public static final String JSON_PROPERTY_USERNS = "userns";
   private Namespace userns;
 
-  public static final String SERIALIZED_NAME_UTSNS = "utsns";
-  @SerializedName(SERIALIZED_NAME_UTSNS)
+  public static final String JSON_PROPERTY_UTSNS = "utsns";
   private Namespace utsns;
 
-  public PodBasicConfig() {
+  public PodBasicConfig() { 
   }
 
   public PodBasicConfig exitPolicy(String exitPolicy) {
@@ -149,10 +136,16 @@ public class PodBasicConfig {
    * @return exitPolicy
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXIT_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getExitPolicy() {
     return exitPolicy;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXIT_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitPolicy(String exitPolicy) {
     this.exitPolicy = exitPolicy;
   }
@@ -168,10 +161,16 @@ public class PodBasicConfig {
    * @return hostname
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHostname() {
     return hostname;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostname(String hostname) {
     this.hostname = hostname;
   }
@@ -195,10 +194,16 @@ public class PodBasicConfig {
    * @return infraCommand
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INFRA_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getInfraCommand() {
     return infraCommand;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INFRA_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfraCommand(List<String> infraCommand) {
     this.infraCommand = infraCommand;
   }
@@ -214,10 +219,16 @@ public class PodBasicConfig {
    * @return infraConmonPidFile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INFRA_CONMON_PID_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getInfraConmonPidFile() {
     return infraConmonPidFile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INFRA_CONMON_PID_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfraConmonPidFile(String infraConmonPidFile) {
     this.infraConmonPidFile = infraConmonPidFile;
   }
@@ -233,10 +244,16 @@ public class PodBasicConfig {
    * @return infraImage
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INFRA_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getInfraImage() {
     return infraImage;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INFRA_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfraImage(String infraImage) {
     this.infraImage = infraImage;
   }
@@ -252,10 +269,16 @@ public class PodBasicConfig {
    * @return infraName
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INFRA_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getInfraName() {
     return infraName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INFRA_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfraName(String infraName) {
     this.infraName = infraName;
   }
@@ -271,10 +294,17 @@ public class PodBasicConfig {
    * @return ipcns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IPCNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Namespace getIpcns() {
     return ipcns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IPCNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpcns(Namespace ipcns) {
     this.ipcns = ipcns;
   }
@@ -298,10 +328,16 @@ public class PodBasicConfig {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -317,10 +353,16 @@ public class PodBasicConfig {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -336,10 +378,16 @@ public class PodBasicConfig {
    * @return noInfra
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NO_INFRA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getNoInfra() {
     return noInfra;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NO_INFRA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNoInfra(Boolean noInfra) {
     this.noInfra = noInfra;
   }
@@ -355,10 +403,17 @@ public class PodBasicConfig {
    * @return pidns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PIDNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Namespace getPidns() {
     return pidns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PIDNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPidns(Namespace pidns) {
     this.pidns = pidns;
   }
@@ -382,10 +437,16 @@ public class PodBasicConfig {
    * @return podCreateCommand
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_POD_CREATE_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getPodCreateCommand() {
     return podCreateCommand;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_POD_CREATE_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPodCreateCommand(List<String> podCreateCommand) {
     this.podCreateCommand = podCreateCommand;
   }
@@ -409,10 +470,16 @@ public class PodBasicConfig {
    * @return podDevices
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_POD_DEVICES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getPodDevices() {
     return podDevices;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_POD_DEVICES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPodDevices(List<String> podDevices) {
     this.podDevices = podDevices;
   }
@@ -428,10 +495,16 @@ public class PodBasicConfig {
    * @return restartPolicy
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRestartPolicy() {
     return restartPolicy;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestartPolicy(String restartPolicy) {
     this.restartPolicy = restartPolicy;
   }
@@ -447,10 +520,16 @@ public class PodBasicConfig {
    * @return restartTries
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRestartTries() {
     return restartTries;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestartTries(Integer restartTries) {
     this.restartTries = restartTries;
   }
@@ -466,10 +545,16 @@ public class PodBasicConfig {
    * @return shareParent
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHARE_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getShareParent() {
     return shareParent;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHARE_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShareParent(Boolean shareParent) {
     this.shareParent = shareParent;
   }
@@ -493,10 +578,16 @@ public class PodBasicConfig {
    * @return sharedNamespaces
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHARED_NAMESPACES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getSharedNamespaces() {
     return sharedNamespaces;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHARED_NAMESPACES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSharedNamespaces(List<String> sharedNamespaces) {
     this.sharedNamespaces = sharedNamespaces;
   }
@@ -520,10 +611,16 @@ public class PodBasicConfig {
    * @return sysctl
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SYSCTL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getSysctl() {
     return sysctl;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SYSCTL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSysctl(Map<String, String> sysctl) {
     this.sysctl = sysctl;
   }
@@ -539,10 +636,17 @@ public class PodBasicConfig {
    * @return userns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_USERNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Namespace getUserns() {
     return userns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USERNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserns(Namespace userns) {
     this.userns = userns;
   }
@@ -558,16 +662,25 @@ public class PodBasicConfig {
    * @return utsns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_UTSNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Namespace getUtsns() {
     return utsns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UTSNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUtsns(Namespace utsns) {
     this.utsns = utsns;
   }
 
 
-
+  /**
+   * Return true if this PodBasicConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -643,161 +756,163 @@ public class PodBasicConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("exit_policy");
-    openapiFields.add("hostname");
-    openapiFields.add("infra_command");
-    openapiFields.add("infra_conmon_pid_file");
-    openapiFields.add("infra_image");
-    openapiFields.add("infra_name");
-    openapiFields.add("ipcns");
-    openapiFields.add("labels");
-    openapiFields.add("name");
-    openapiFields.add("no_infra");
-    openapiFields.add("pidns");
-    openapiFields.add("pod_create_command");
-    openapiFields.add("pod_devices");
-    openapiFields.add("restart_policy");
-    openapiFields.add("restart_tries");
-    openapiFields.add("share_parent");
-    openapiFields.add("shared_namespaces");
-    openapiFields.add("sysctl");
-    openapiFields.add("userns");
-    openapiFields.add("utsns");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PodBasicConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PodBasicConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PodBasicConfig is not found in the empty JSON string", PodBasicConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PodBasicConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodBasicConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("exit_policy") != null && !jsonObj.get("exit_policy").isJsonNull()) && !jsonObj.get("exit_policy").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `exit_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("exit_policy").toString()));
-      }
-      if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("infra_command") != null && !jsonObj.get("infra_command").isJsonNull() && !jsonObj.get("infra_command").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `infra_command` to be an array in the JSON string but got `%s`", jsonObj.get("infra_command").toString()));
-      }
-      if ((jsonObj.get("infra_conmon_pid_file") != null && !jsonObj.get("infra_conmon_pid_file").isJsonNull()) && !jsonObj.get("infra_conmon_pid_file").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `infra_conmon_pid_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("infra_conmon_pid_file").toString()));
-      }
-      if ((jsonObj.get("infra_image") != null && !jsonObj.get("infra_image").isJsonNull()) && !jsonObj.get("infra_image").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `infra_image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("infra_image").toString()));
-      }
-      if ((jsonObj.get("infra_name") != null && !jsonObj.get("infra_name").isJsonNull()) && !jsonObj.get("infra_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `infra_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("infra_name").toString()));
-      }
-      // validate the optional field `ipcns`
-      if (jsonObj.get("ipcns") != null && !jsonObj.get("ipcns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("ipcns"));
-      }
-      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
-      }
-      // validate the optional field `pidns`
-      if (jsonObj.get("pidns") != null && !jsonObj.get("pidns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("pidns"));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("pod_create_command") != null && !jsonObj.get("pod_create_command").isJsonNull() && !jsonObj.get("pod_create_command").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pod_create_command` to be an array in the JSON string but got `%s`", jsonObj.get("pod_create_command").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("pod_devices") != null && !jsonObj.get("pod_devices").isJsonNull() && !jsonObj.get("pod_devices").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pod_devices` to be an array in the JSON string but got `%s`", jsonObj.get("pod_devices").toString()));
-      }
-      if ((jsonObj.get("restart_policy") != null && !jsonObj.get("restart_policy").isJsonNull()) && !jsonObj.get("restart_policy").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `restart_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("restart_policy").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("shared_namespaces") != null && !jsonObj.get("shared_namespaces").isJsonNull() && !jsonObj.get("shared_namespaces").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `shared_namespaces` to be an array in the JSON string but got `%s`", jsonObj.get("shared_namespaces").toString()));
-      }
-      // validate the optional field `userns`
-      if (jsonObj.get("userns") != null && !jsonObj.get("userns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("userns"));
-      }
-      // validate the optional field `utsns`
-      if (jsonObj.get("utsns") != null && !jsonObj.get("utsns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("utsns"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PodBasicConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PodBasicConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PodBasicConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PodBasicConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PodBasicConfig>() {
-           @Override
-           public void write(JsonWriter out, PodBasicConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PodBasicConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of PodBasicConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PodBasicConfig
-   * @throws IOException if the JSON string is invalid with respect to PodBasicConfig
-   */
-  public static PodBasicConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PodBasicConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of PodBasicConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `exit_policy` to the URL query string
+    if (getExitPolicy() != null) {
+      joiner.add(String.format("%sexit_policy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitPolicy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `hostname` to the URL query string
+    if (getHostname() != null) {
+      joiner.add(String.format("%shostname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `infra_command` to the URL query string
+    if (getInfraCommand() != null) {
+      for (int i = 0; i < getInfraCommand().size(); i++) {
+        joiner.add(String.format("%sinfra_command%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getInfraCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `infra_conmon_pid_file` to the URL query string
+    if (getInfraConmonPidFile() != null) {
+      joiner.add(String.format("%sinfra_conmon_pid_file%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInfraConmonPidFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `infra_image` to the URL query string
+    if (getInfraImage() != null) {
+      joiner.add(String.format("%sinfra_image%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInfraImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `infra_name` to the URL query string
+    if (getInfraName() != null) {
+      joiner.add(String.format("%sinfra_name%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInfraName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ipcns` to the URL query string
+    if (getIpcns() != null) {
+      joiner.add(getIpcns().toUrlQueryString(prefix + "ipcns" + suffix));
+    }
+
+    // add `labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%slabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `no_infra` to the URL query string
+    if (getNoInfra() != null) {
+      joiner.add(String.format("%sno_infra%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNoInfra()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `pidns` to the URL query string
+    if (getPidns() != null) {
+      joiner.add(getPidns().toUrlQueryString(prefix + "pidns" + suffix));
+    }
+
+    // add `pod_create_command` to the URL query string
+    if (getPodCreateCommand() != null) {
+      for (int i = 0; i < getPodCreateCommand().size(); i++) {
+        joiner.add(String.format("%spod_create_command%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getPodCreateCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `pod_devices` to the URL query string
+    if (getPodDevices() != null) {
+      for (int i = 0; i < getPodDevices().size(); i++) {
+        joiner.add(String.format("%spod_devices%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getPodDevices().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `restart_policy` to the URL query string
+    if (getRestartPolicy() != null) {
+      joiner.add(String.format("%srestart_policy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartPolicy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `restart_tries` to the URL query string
+    if (getRestartTries() != null) {
+      joiner.add(String.format("%srestart_tries%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartTries()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `share_parent` to the URL query string
+    if (getShareParent() != null) {
+      joiner.add(String.format("%sshare_parent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShareParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `shared_namespaces` to the URL query string
+    if (getSharedNamespaces() != null) {
+      for (int i = 0; i < getSharedNamespaces().size(); i++) {
+        joiner.add(String.format("%sshared_namespaces%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getSharedNamespaces().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `sysctl` to the URL query string
+    if (getSysctl() != null) {
+      for (String _key : getSysctl().keySet()) {
+        joiner.add(String.format("%ssysctl%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getSysctl().get(_key), URLEncoder.encode(ApiClient.valueToString(getSysctl().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `userns` to the URL query string
+    if (getUserns() != null) {
+      joiner.add(getUserns().toUrlQueryString(prefix + "userns" + suffix));
+    }
+
+    // add `utsns` to the URL query string
+    if (getUtsns() != null) {
+      joiner.add(getUtsns().toUrlQueryString(prefix + "utsns" + suffix));
+    }
+
+    return joiner.toString();
   }
 }
 

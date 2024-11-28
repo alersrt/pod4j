@@ -13,94 +13,81 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Health;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.alersrt.pod4j.openapi.model.Health;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerState stores container&#39;s running state it&#39;s part of ContainerJSONBase and will return by \&quot;inspect\&quot; command
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerState.JSON_PROPERTY_DEAD,
+  ContainerState.JSON_PROPERTY_ERROR,
+  ContainerState.JSON_PROPERTY_EXIT_CODE,
+  ContainerState.JSON_PROPERTY_FINISHED_AT,
+  ContainerState.JSON_PROPERTY_HEALTH,
+  ContainerState.JSON_PROPERTY_OO_M_KILLED,
+  ContainerState.JSON_PROPERTY_PAUSED,
+  ContainerState.JSON_PROPERTY_PID,
+  ContainerState.JSON_PROPERTY_RESTARTING,
+  ContainerState.JSON_PROPERTY_RUNNING,
+  ContainerState.JSON_PROPERTY_STARTED_AT,
+  ContainerState.JSON_PROPERTY_STATUS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerState {
-  public static final String SERIALIZED_NAME_DEAD = "Dead";
-  @SerializedName(SERIALIZED_NAME_DEAD)
+  public static final String JSON_PROPERTY_DEAD = "Dead";
   private Boolean dead;
 
-  public static final String SERIALIZED_NAME_ERROR = "Error";
-  @SerializedName(SERIALIZED_NAME_ERROR)
+  public static final String JSON_PROPERTY_ERROR = "Error";
   private String error;
 
-  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+  public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
   private Long exitCode;
 
-  public static final String SERIALIZED_NAME_FINISHED_AT = "FinishedAt";
-  @SerializedName(SERIALIZED_NAME_FINISHED_AT)
+  public static final String JSON_PROPERTY_FINISHED_AT = "FinishedAt";
   private String finishedAt;
 
-  public static final String SERIALIZED_NAME_HEALTH = "Health";
-  @SerializedName(SERIALIZED_NAME_HEALTH)
+  public static final String JSON_PROPERTY_HEALTH = "Health";
   private Health health;
 
-  public static final String SERIALIZED_NAME_OO_M_KILLED = "OOMKilled";
-  @SerializedName(SERIALIZED_NAME_OO_M_KILLED)
+  public static final String JSON_PROPERTY_OO_M_KILLED = "OOMKilled";
   private Boolean ooMKilled;
 
-  public static final String SERIALIZED_NAME_PAUSED = "Paused";
-  @SerializedName(SERIALIZED_NAME_PAUSED)
+  public static final String JSON_PROPERTY_PAUSED = "Paused";
   private Boolean paused;
 
-  public static final String SERIALIZED_NAME_PID = "Pid";
-  @SerializedName(SERIALIZED_NAME_PID)
+  public static final String JSON_PROPERTY_PID = "Pid";
   private Long pid;
 
-  public static final String SERIALIZED_NAME_RESTARTING = "Restarting";
-  @SerializedName(SERIALIZED_NAME_RESTARTING)
+  public static final String JSON_PROPERTY_RESTARTING = "Restarting";
   private Boolean restarting;
 
-  public static final String SERIALIZED_NAME_RUNNING = "Running";
-  @SerializedName(SERIALIZED_NAME_RUNNING)
+  public static final String JSON_PROPERTY_RUNNING = "Running";
   private Boolean running;
 
-  public static final String SERIALIZED_NAME_STARTED_AT = "StartedAt";
-  @SerializedName(SERIALIZED_NAME_STARTED_AT)
+  public static final String JSON_PROPERTY_STARTED_AT = "StartedAt";
   private String startedAt;
 
-  public static final String SERIALIZED_NAME_STATUS = "Status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
+  public static final String JSON_PROPERTY_STATUS = "Status";
   private String status;
 
-  public ContainerState() {
+  public ContainerState() { 
   }
 
   public ContainerState dead(Boolean dead) {
@@ -113,10 +100,16 @@ public class ContainerState {
    * @return dead
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DEAD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getDead() {
     return dead;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DEAD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDead(Boolean dead) {
     this.dead = dead;
   }
@@ -132,10 +125,16 @@ public class ContainerState {
    * @return error
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getError() {
     return error;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setError(String error) {
     this.error = error;
   }
@@ -151,10 +150,16 @@ public class ContainerState {
    * @return exitCode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getExitCode() {
     return exitCode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitCode(Long exitCode) {
     this.exitCode = exitCode;
   }
@@ -170,10 +175,16 @@ public class ContainerState {
    * @return finishedAt
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_FINISHED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getFinishedAt() {
     return finishedAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_FINISHED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFinishedAt(String finishedAt) {
     this.finishedAt = finishedAt;
   }
@@ -189,10 +200,17 @@ public class ContainerState {
    * @return health
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HEALTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Health getHealth() {
     return health;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealth(Health health) {
     this.health = health;
   }
@@ -208,10 +226,16 @@ public class ContainerState {
    * @return ooMKilled
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OO_M_KILLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getOoMKilled() {
     return ooMKilled;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OO_M_KILLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOoMKilled(Boolean ooMKilled) {
     this.ooMKilled = ooMKilled;
   }
@@ -227,10 +251,16 @@ public class ContainerState {
    * @return paused
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PAUSED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getPaused() {
     return paused;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PAUSED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPaused(Boolean paused) {
     this.paused = paused;
   }
@@ -246,10 +276,16 @@ public class ContainerState {
    * @return pid
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getPid() {
     return pid;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPid(Long pid) {
     this.pid = pid;
   }
@@ -265,10 +301,16 @@ public class ContainerState {
    * @return restarting
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTARTING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRestarting() {
     return restarting;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTARTING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestarting(Boolean restarting) {
     this.restarting = restarting;
   }
@@ -284,10 +326,16 @@ public class ContainerState {
    * @return running
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RUNNING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRunning() {
     return running;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RUNNING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunning(Boolean running) {
     this.running = running;
   }
@@ -303,10 +351,16 @@ public class ContainerState {
    * @return startedAt
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STARTED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getStartedAt() {
     return startedAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STARTED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartedAt(String startedAt) {
     this.startedAt = startedAt;
   }
@@ -322,16 +376,24 @@ public class ContainerState {
    * @return status
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getStatus() {
     return status;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(String status) {
     this.status = status;
   }
 
 
-
+  /**
+   * Return true if this ContainerState object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -391,116 +453,99 @@ public class ContainerState {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Dead");
-    openapiFields.add("Error");
-    openapiFields.add("ExitCode");
-    openapiFields.add("FinishedAt");
-    openapiFields.add("Health");
-    openapiFields.add("OOMKilled");
-    openapiFields.add("Paused");
-    openapiFields.add("Pid");
-    openapiFields.add("Restarting");
-    openapiFields.add("Running");
-    openapiFields.add("StartedAt");
-    openapiFields.add("Status");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerState
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerState.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerState is not found in the empty JSON string", ContainerState.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerState.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerState` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull()) && !jsonObj.get("Error").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Error` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Error").toString()));
-      }
-      if ((jsonObj.get("FinishedAt") != null && !jsonObj.get("FinishedAt").isJsonNull()) && !jsonObj.get("FinishedAt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `FinishedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("FinishedAt").toString()));
-      }
-      // validate the optional field `Health`
-      if (jsonObj.get("Health") != null && !jsonObj.get("Health").isJsonNull()) {
-        Health.validateJsonElement(jsonObj.get("Health"));
-      }
-      if ((jsonObj.get("StartedAt") != null && !jsonObj.get("StartedAt").isJsonNull()) && !jsonObj.get("StartedAt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `StartedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StartedAt").toString()));
-      }
-      if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerState.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerState' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerState> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerState.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerState>() {
-           @Override
-           public void write(JsonWriter out, ContainerState value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerState read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerState given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerState
-   * @throws IOException if the JSON string is invalid with respect to ContainerState
-   */
-  public static ContainerState fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerState.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerState to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Dead` to the URL query string
+    if (getDead() != null) {
+      joiner.add(String.format("%sDead%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDead()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Error` to the URL query string
+    if (getError() != null) {
+      joiner.add(String.format("%sError%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getError()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ExitCode` to the URL query string
+    if (getExitCode() != null) {
+      joiner.add(String.format("%sExitCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `FinishedAt` to the URL query string
+    if (getFinishedAt() != null) {
+      joiner.add(String.format("%sFinishedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFinishedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Health` to the URL query string
+    if (getHealth() != null) {
+      joiner.add(getHealth().toUrlQueryString(prefix + "Health" + suffix));
+    }
+
+    // add `OOMKilled` to the URL query string
+    if (getOoMKilled() != null) {
+      joiner.add(String.format("%sOOMKilled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOoMKilled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Paused` to the URL query string
+    if (getPaused() != null) {
+      joiner.add(String.format("%sPaused%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPaused()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Pid` to the URL query string
+    if (getPid() != null) {
+      joiner.add(String.format("%sPid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Restarting` to the URL query string
+    if (getRestarting() != null) {
+      joiner.add(String.format("%sRestarting%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestarting()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Running` to the URL query string
+    if (getRunning() != null) {
+      joiner.add(String.format("%sRunning%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRunning()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StartedAt` to the URL query string
+    if (getStartedAt() != null) {
+      joiner.add(String.format("%sStartedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

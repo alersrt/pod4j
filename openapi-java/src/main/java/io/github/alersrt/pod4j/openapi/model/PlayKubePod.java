@@ -13,67 +13,54 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PlayKubePod
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  PlayKubePod.JSON_PROPERTY_CONTAINER_ERRORS,
+  PlayKubePod.JSON_PROPERTY_CONTAINERS,
+  PlayKubePod.JSON_PROPERTY_I_D,
+  PlayKubePod.JSON_PROPERTY_INIT_CONTAINERS,
+  PlayKubePod.JSON_PROPERTY_LOGS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PlayKubePod {
-  public static final String SERIALIZED_NAME_CONTAINER_ERRORS = "ContainerErrors";
-  @SerializedName(SERIALIZED_NAME_CONTAINER_ERRORS)
+  public static final String JSON_PROPERTY_CONTAINER_ERRORS = "ContainerErrors";
   private List<String> containerErrors = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
-  @SerializedName(SERIALIZED_NAME_CONTAINERS)
+  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
   private List<String> containers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_I_D = "ID";
-  @SerializedName(SERIALIZED_NAME_I_D)
+  public static final String JSON_PROPERTY_I_D = "ID";
   private String ID;
 
-  public static final String SERIALIZED_NAME_INIT_CONTAINERS = "InitContainers";
-  @SerializedName(SERIALIZED_NAME_INIT_CONTAINERS)
+  public static final String JSON_PROPERTY_INIT_CONTAINERS = "InitContainers";
   private List<String> initContainers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_LOGS = "Logs";
-  @SerializedName(SERIALIZED_NAME_LOGS)
+  public static final String JSON_PROPERTY_LOGS = "Logs";
   private List<String> logs = new ArrayList<>();
 
-  public PlayKubePod() {
+  public PlayKubePod() { 
   }
 
   public PlayKubePod containerErrors(List<String> containerErrors) {
@@ -94,10 +81,16 @@ public class PlayKubePod {
    * @return containerErrors
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getContainerErrors() {
     return containerErrors;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainerErrors(List<String> containerErrors) {
     this.containerErrors = containerErrors;
   }
@@ -121,10 +114,16 @@ public class PlayKubePod {
    * @return containers
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getContainers() {
     return containers;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainers(List<String> containers) {
     this.containers = containers;
   }
@@ -140,10 +139,16 @@ public class PlayKubePod {
    * @return ID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getID() {
     return ID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setID(String ID) {
     this.ID = ID;
   }
@@ -167,10 +172,16 @@ public class PlayKubePod {
    * @return initContainers
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INIT_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getInitContainers() {
     return initContainers;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INIT_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInitContainers(List<String> initContainers) {
     this.initContainers = initContainers;
   }
@@ -194,16 +205,24 @@ public class PlayKubePod {
    * @return logs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LOGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getLogs() {
     return logs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LOGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLogs(List<String> logs) {
     this.logs = logs;
   }
 
 
-
+  /**
+   * Return true if this PlayKubePod object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -249,112 +268,80 @@ public class PlayKubePod {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("ContainerErrors");
-    openapiFields.add("Containers");
-    openapiFields.add("ID");
-    openapiFields.add("InitContainers");
-    openapiFields.add("Logs");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PlayKubePod
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PlayKubePod.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PlayKubePod is not found in the empty JSON string", PlayKubePod.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PlayKubePod.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PlayKubePod` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("ContainerErrors") != null && !jsonObj.get("ContainerErrors").isJsonNull() && !jsonObj.get("ContainerErrors").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ContainerErrors` to be an array in the JSON string but got `%s`", jsonObj.get("ContainerErrors").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Containers") != null && !jsonObj.get("Containers").isJsonNull() && !jsonObj.get("Containers").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Containers` to be an array in the JSON string but got `%s`", jsonObj.get("Containers").toString()));
-      }
-      if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("InitContainers") != null && !jsonObj.get("InitContainers").isJsonNull() && !jsonObj.get("InitContainers").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `InitContainers` to be an array in the JSON string but got `%s`", jsonObj.get("InitContainers").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Logs") != null && !jsonObj.get("Logs").isJsonNull() && !jsonObj.get("Logs").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Logs` to be an array in the JSON string but got `%s`", jsonObj.get("Logs").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PlayKubePod.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PlayKubePod' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PlayKubePod> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PlayKubePod.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PlayKubePod>() {
-           @Override
-           public void write(JsonWriter out, PlayKubePod value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PlayKubePod read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of PlayKubePod given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PlayKubePod
-   * @throws IOException if the JSON string is invalid with respect to PlayKubePod
-   */
-  public static PlayKubePod fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PlayKubePod.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of PlayKubePod to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `ContainerErrors` to the URL query string
+    if (getContainerErrors() != null) {
+      for (int i = 0; i < getContainerErrors().size(); i++) {
+        joiner.add(String.format("%sContainerErrors%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getContainerErrors().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Containers` to the URL query string
+    if (getContainers() != null) {
+      for (int i = 0; i < getContainers().size(); i++) {
+        joiner.add(String.format("%sContainers%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getContainers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `ID` to the URL query string
+    if (getID() != null) {
+      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `InitContainers` to the URL query string
+    if (getInitContainers() != null) {
+      for (int i = 0; i < getInitContainers().size(); i++) {
+        joiner.add(String.format("%sInitContainers%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getInitContainers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Logs` to the URL query string
+    if (getLogs() != null) {
+      for (int i = 0; i < getLogs().size(); i++) {
+        joiner.add(String.format("%sLogs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getLogs().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

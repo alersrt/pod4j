@@ -13,69 +13,56 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SecurityInfo describes the libpod host
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  SecurityInfo.JSON_PROPERTY_APPARMOR_ENABLED,
+  SecurityInfo.JSON_PROPERTY_CAPABILITIES,
+  SecurityInfo.JSON_PROPERTY_ROOTLESS,
+  SecurityInfo.JSON_PROPERTY_SECCOMP_ENABLED,
+  SecurityInfo.JSON_PROPERTY_SECCOMP_PROFILE_PATH,
+  SecurityInfo.JSON_PROPERTY_SELINUX_ENABLED
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SecurityInfo {
-  public static final String SERIALIZED_NAME_APPARMOR_ENABLED = "apparmorEnabled";
-  @SerializedName(SERIALIZED_NAME_APPARMOR_ENABLED)
+  public static final String JSON_PROPERTY_APPARMOR_ENABLED = "apparmorEnabled";
   private Boolean apparmorEnabled;
 
-  public static final String SERIALIZED_NAME_CAPABILITIES = "capabilities";
-  @SerializedName(SERIALIZED_NAME_CAPABILITIES)
+  public static final String JSON_PROPERTY_CAPABILITIES = "capabilities";
   private String capabilities;
 
-  public static final String SERIALIZED_NAME_ROOTLESS = "rootless";
-  @SerializedName(SERIALIZED_NAME_ROOTLESS)
+  public static final String JSON_PROPERTY_ROOTLESS = "rootless";
   private Boolean rootless;
 
-  public static final String SERIALIZED_NAME_SECCOMP_ENABLED = "seccompEnabled";
-  @SerializedName(SERIALIZED_NAME_SECCOMP_ENABLED)
+  public static final String JSON_PROPERTY_SECCOMP_ENABLED = "seccompEnabled";
   private Boolean seccompEnabled;
 
-  public static final String SERIALIZED_NAME_SECCOMP_PROFILE_PATH = "seccompProfilePath";
-  @SerializedName(SERIALIZED_NAME_SECCOMP_PROFILE_PATH)
+  public static final String JSON_PROPERTY_SECCOMP_PROFILE_PATH = "seccompProfilePath";
   private String seccompProfilePath;
 
-  public static final String SERIALIZED_NAME_SELINUX_ENABLED = "selinuxEnabled";
-  @SerializedName(SERIALIZED_NAME_SELINUX_ENABLED)
+  public static final String JSON_PROPERTY_SELINUX_ENABLED = "selinuxEnabled";
   private Boolean selinuxEnabled;
 
-  public SecurityInfo() {
+  public SecurityInfo() { 
   }
 
   public SecurityInfo apparmorEnabled(Boolean apparmorEnabled) {
@@ -88,10 +75,16 @@ public class SecurityInfo {
    * @return apparmorEnabled
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_APPARMOR_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getApparmorEnabled() {
     return apparmorEnabled;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_APPARMOR_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setApparmorEnabled(Boolean apparmorEnabled) {
     this.apparmorEnabled = apparmorEnabled;
   }
@@ -107,10 +100,16 @@ public class SecurityInfo {
    * @return capabilities
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CAPABILITIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCapabilities() {
     return capabilities;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CAPABILITIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCapabilities(String capabilities) {
     this.capabilities = capabilities;
   }
@@ -126,10 +125,16 @@ public class SecurityInfo {
    * @return rootless
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ROOTLESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRootless() {
     return rootless;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOTLESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootless(Boolean rootless) {
     this.rootless = rootless;
   }
@@ -145,10 +150,16 @@ public class SecurityInfo {
    * @return seccompEnabled
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SECCOMP_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getSeccompEnabled() {
     return seccompEnabled;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SECCOMP_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSeccompEnabled(Boolean seccompEnabled) {
     this.seccompEnabled = seccompEnabled;
   }
@@ -164,10 +175,16 @@ public class SecurityInfo {
    * @return seccompProfilePath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SECCOMP_PROFILE_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSeccompProfilePath() {
     return seccompProfilePath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SECCOMP_PROFILE_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSeccompProfilePath(String seccompProfilePath) {
     this.seccompProfilePath = seccompProfilePath;
   }
@@ -183,16 +200,24 @@ public class SecurityInfo {
    * @return selinuxEnabled
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SELINUX_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getSelinuxEnabled() {
     return selinuxEnabled;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SELINUX_ENABLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSelinuxEnabled(Boolean selinuxEnabled) {
     this.selinuxEnabled = selinuxEnabled;
   }
 
 
-
+  /**
+   * Return true if this SecurityInfo object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -240,100 +265,69 @@ public class SecurityInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("apparmorEnabled");
-    openapiFields.add("capabilities");
-    openapiFields.add("rootless");
-    openapiFields.add("seccompEnabled");
-    openapiFields.add("seccompProfilePath");
-    openapiFields.add("selinuxEnabled");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SecurityInfo
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SecurityInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SecurityInfo is not found in the empty JSON string", SecurityInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SecurityInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecurityInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("capabilities") != null && !jsonObj.get("capabilities").isJsonNull()) && !jsonObj.get("capabilities").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `capabilities` to be a primitive type in the JSON string but got `%s`", jsonObj.get("capabilities").toString()));
-      }
-      if ((jsonObj.get("seccompProfilePath") != null && !jsonObj.get("seccompProfilePath").isJsonNull()) && !jsonObj.get("seccompProfilePath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `seccompProfilePath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("seccompProfilePath").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!SecurityInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'SecurityInfo' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<SecurityInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(SecurityInfo.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<SecurityInfo>() {
-           @Override
-           public void write(JsonWriter out, SecurityInfo value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public SecurityInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of SecurityInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of SecurityInfo
-   * @throws IOException if the JSON string is invalid with respect to SecurityInfo
-   */
-  public static SecurityInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SecurityInfo.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of SecurityInfo to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `apparmorEnabled` to the URL query string
+    if (getApparmorEnabled() != null) {
+      joiner.add(String.format("%sapparmorEnabled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getApparmorEnabled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `capabilities` to the URL query string
+    if (getCapabilities() != null) {
+      joiner.add(String.format("%scapabilities%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCapabilities()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `rootless` to the URL query string
+    if (getRootless() != null) {
+      joiner.add(String.format("%srootless%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootless()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `seccompEnabled` to the URL query string
+    if (getSeccompEnabled() != null) {
+      joiner.add(String.format("%sseccompEnabled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSeccompEnabled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `seccompProfilePath` to the URL query string
+    if (getSeccompProfilePath() != null) {
+      joiner.add(String.format("%sseccompProfilePath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSeccompProfilePath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `selinuxEnabled` to the URL query string
+    if (getSelinuxEnabled() != null) {
+      joiner.add(String.format("%sselinuxEnabled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSelinuxEnabled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

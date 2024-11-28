@@ -13,101 +13,88 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ContainerStore;
 import io.github.alersrt.pod4j.openapi.model.ImageStore;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * StoreInfo describes the container storage and its attributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  StoreInfo.JSON_PROPERTY_CONFIG_FILE,
+  StoreInfo.JSON_PROPERTY_CONTAINER_STORE,
+  StoreInfo.JSON_PROPERTY_GRAPH_DRIVER_NAME,
+  StoreInfo.JSON_PROPERTY_GRAPH_OPTIONS,
+  StoreInfo.JSON_PROPERTY_GRAPH_ROOT,
+  StoreInfo.JSON_PROPERTY_GRAPH_ROOT_ALLOCATED,
+  StoreInfo.JSON_PROPERTY_GRAPH_ROOT_USED,
+  StoreInfo.JSON_PROPERTY_GRAPH_STATUS,
+  StoreInfo.JSON_PROPERTY_IMAGE_COPY_TMP_DIR,
+  StoreInfo.JSON_PROPERTY_IMAGE_STORE,
+  StoreInfo.JSON_PROPERTY_RUN_ROOT,
+  StoreInfo.JSON_PROPERTY_TRANSIENT_STORE,
+  StoreInfo.JSON_PROPERTY_VOLUME_PATH
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class StoreInfo {
-  public static final String SERIALIZED_NAME_CONFIG_FILE = "configFile";
-  @SerializedName(SERIALIZED_NAME_CONFIG_FILE)
+  public static final String JSON_PROPERTY_CONFIG_FILE = "configFile";
   private String configFile;
 
-  public static final String SERIALIZED_NAME_CONTAINER_STORE = "containerStore";
-  @SerializedName(SERIALIZED_NAME_CONTAINER_STORE)
+  public static final String JSON_PROPERTY_CONTAINER_STORE = "containerStore";
   private ContainerStore containerStore;
 
-  public static final String SERIALIZED_NAME_GRAPH_DRIVER_NAME = "graphDriverName";
-  @SerializedName(SERIALIZED_NAME_GRAPH_DRIVER_NAME)
+  public static final String JSON_PROPERTY_GRAPH_DRIVER_NAME = "graphDriverName";
   private String graphDriverName;
 
-  public static final String SERIALIZED_NAME_GRAPH_OPTIONS = "graphOptions";
-  @SerializedName(SERIALIZED_NAME_GRAPH_OPTIONS)
+  public static final String JSON_PROPERTY_GRAPH_OPTIONS = "graphOptions";
   private Map<String, Object> graphOptions = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_GRAPH_ROOT = "graphRoot";
-  @SerializedName(SERIALIZED_NAME_GRAPH_ROOT)
+  public static final String JSON_PROPERTY_GRAPH_ROOT = "graphRoot";
   private String graphRoot;
 
-  public static final String SERIALIZED_NAME_GRAPH_ROOT_ALLOCATED = "graphRootAllocated";
-  @SerializedName(SERIALIZED_NAME_GRAPH_ROOT_ALLOCATED)
+  public static final String JSON_PROPERTY_GRAPH_ROOT_ALLOCATED = "graphRootAllocated";
   private Integer graphRootAllocated;
 
-  public static final String SERIALIZED_NAME_GRAPH_ROOT_USED = "graphRootUsed";
-  @SerializedName(SERIALIZED_NAME_GRAPH_ROOT_USED)
+  public static final String JSON_PROPERTY_GRAPH_ROOT_USED = "graphRootUsed";
   private Integer graphRootUsed;
 
-  public static final String SERIALIZED_NAME_GRAPH_STATUS = "graphStatus";
-  @SerializedName(SERIALIZED_NAME_GRAPH_STATUS)
+  public static final String JSON_PROPERTY_GRAPH_STATUS = "graphStatus";
   private Map<String, String> graphStatus = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_IMAGE_COPY_TMP_DIR = "imageCopyTmpDir";
-  @SerializedName(SERIALIZED_NAME_IMAGE_COPY_TMP_DIR)
+  public static final String JSON_PROPERTY_IMAGE_COPY_TMP_DIR = "imageCopyTmpDir";
   private String imageCopyTmpDir;
 
-  public static final String SERIALIZED_NAME_IMAGE_STORE = "imageStore";
-  @SerializedName(SERIALIZED_NAME_IMAGE_STORE)
+  public static final String JSON_PROPERTY_IMAGE_STORE = "imageStore";
   private ImageStore imageStore;
 
-  public static final String SERIALIZED_NAME_RUN_ROOT = "runRoot";
-  @SerializedName(SERIALIZED_NAME_RUN_ROOT)
+  public static final String JSON_PROPERTY_RUN_ROOT = "runRoot";
   private String runRoot;
 
-  public static final String SERIALIZED_NAME_TRANSIENT_STORE = "transientStore";
-  @SerializedName(SERIALIZED_NAME_TRANSIENT_STORE)
+  public static final String JSON_PROPERTY_TRANSIENT_STORE = "transientStore";
   private Boolean transientStore;
 
-  public static final String SERIALIZED_NAME_VOLUME_PATH = "volumePath";
-  @SerializedName(SERIALIZED_NAME_VOLUME_PATH)
+  public static final String JSON_PROPERTY_VOLUME_PATH = "volumePath";
   private String volumePath;
 
-  public StoreInfo() {
+  public StoreInfo() { 
   }
 
   public StoreInfo configFile(String configFile) {
@@ -120,10 +107,16 @@ public class StoreInfo {
    * @return configFile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONFIG_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getConfigFile() {
     return configFile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONFIG_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConfigFile(String configFile) {
     this.configFile = configFile;
   }
@@ -139,10 +132,17 @@ public class StoreInfo {
    * @return containerStore
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_STORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ContainerStore getContainerStore() {
     return containerStore;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_STORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainerStore(ContainerStore containerStore) {
     this.containerStore = containerStore;
   }
@@ -158,10 +158,16 @@ public class StoreInfo {
    * @return graphDriverName
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGraphDriverName() {
     return graphDriverName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphDriverName(String graphDriverName) {
     this.graphDriverName = graphDriverName;
   }
@@ -185,10 +191,16 @@ public class StoreInfo {
    * @return graphOptions
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getGraphOptions() {
     return graphOptions;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphOptions(Map<String, Object> graphOptions) {
     this.graphOptions = graphOptions;
   }
@@ -204,10 +216,16 @@ public class StoreInfo {
    * @return graphRoot
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_ROOT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGraphRoot() {
     return graphRoot;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_ROOT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphRoot(String graphRoot) {
     this.graphRoot = graphRoot;
   }
@@ -223,10 +241,16 @@ public class StoreInfo {
    * @return graphRootAllocated
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_ROOT_ALLOCATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getGraphRootAllocated() {
     return graphRootAllocated;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_ROOT_ALLOCATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphRootAllocated(Integer graphRootAllocated) {
     this.graphRootAllocated = graphRootAllocated;
   }
@@ -242,10 +266,16 @@ public class StoreInfo {
    * @return graphRootUsed
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_ROOT_USED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getGraphRootUsed() {
     return graphRootUsed;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_ROOT_USED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphRootUsed(Integer graphRootUsed) {
     this.graphRootUsed = graphRootUsed;
   }
@@ -269,10 +299,16 @@ public class StoreInfo {
    * @return graphStatus
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getGraphStatus() {
     return graphStatus;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphStatus(Map<String, String> graphStatus) {
     this.graphStatus = graphStatus;
   }
@@ -288,10 +324,16 @@ public class StoreInfo {
    * @return imageCopyTmpDir
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_COPY_TMP_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImageCopyTmpDir() {
     return imageCopyTmpDir;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_COPY_TMP_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageCopyTmpDir(String imageCopyTmpDir) {
     this.imageCopyTmpDir = imageCopyTmpDir;
   }
@@ -307,10 +349,17 @@ public class StoreInfo {
    * @return imageStore
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_STORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ImageStore getImageStore() {
     return imageStore;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_STORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageStore(ImageStore imageStore) {
     this.imageStore = imageStore;
   }
@@ -326,10 +375,16 @@ public class StoreInfo {
    * @return runRoot
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RUN_ROOT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRunRoot() {
     return runRoot;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RUN_ROOT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunRoot(String runRoot) {
     this.runRoot = runRoot;
   }
@@ -345,10 +400,16 @@ public class StoreInfo {
    * @return transientStore
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TRANSIENT_STORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getTransientStore() {
     return transientStore;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TRANSIENT_STORE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTransientStore(Boolean transientStore) {
     this.transientStore = transientStore;
   }
@@ -364,16 +425,24 @@ public class StoreInfo {
    * @return volumePath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VOLUME_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVolumePath() {
     return volumePath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VOLUME_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVolumePath(String volumePath) {
     this.volumePath = volumePath;
   }
 
 
-
+  /**
+   * Return true if this StoreInfo object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -435,127 +504,112 @@ public class StoreInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("configFile");
-    openapiFields.add("containerStore");
-    openapiFields.add("graphDriverName");
-    openapiFields.add("graphOptions");
-    openapiFields.add("graphRoot");
-    openapiFields.add("graphRootAllocated");
-    openapiFields.add("graphRootUsed");
-    openapiFields.add("graphStatus");
-    openapiFields.add("imageCopyTmpDir");
-    openapiFields.add("imageStore");
-    openapiFields.add("runRoot");
-    openapiFields.add("transientStore");
-    openapiFields.add("volumePath");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to StoreInfo
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!StoreInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in StoreInfo is not found in the empty JSON string", StoreInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!StoreInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `StoreInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("configFile") != null && !jsonObj.get("configFile").isJsonNull()) && !jsonObj.get("configFile").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `configFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("configFile").toString()));
-      }
-      // validate the optional field `containerStore`
-      if (jsonObj.get("containerStore") != null && !jsonObj.get("containerStore").isJsonNull()) {
-        ContainerStore.validateJsonElement(jsonObj.get("containerStore"));
-      }
-      if ((jsonObj.get("graphDriverName") != null && !jsonObj.get("graphDriverName").isJsonNull()) && !jsonObj.get("graphDriverName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `graphDriverName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("graphDriverName").toString()));
-      }
-      if ((jsonObj.get("graphRoot") != null && !jsonObj.get("graphRoot").isJsonNull()) && !jsonObj.get("graphRoot").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `graphRoot` to be a primitive type in the JSON string but got `%s`", jsonObj.get("graphRoot").toString()));
-      }
-      if ((jsonObj.get("imageCopyTmpDir") != null && !jsonObj.get("imageCopyTmpDir").isJsonNull()) && !jsonObj.get("imageCopyTmpDir").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `imageCopyTmpDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("imageCopyTmpDir").toString()));
-      }
-      // validate the optional field `imageStore`
-      if (jsonObj.get("imageStore") != null && !jsonObj.get("imageStore").isJsonNull()) {
-        ImageStore.validateJsonElement(jsonObj.get("imageStore"));
-      }
-      if ((jsonObj.get("runRoot") != null && !jsonObj.get("runRoot").isJsonNull()) && !jsonObj.get("runRoot").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `runRoot` to be a primitive type in the JSON string but got `%s`", jsonObj.get("runRoot").toString()));
-      }
-      if ((jsonObj.get("volumePath") != null && !jsonObj.get("volumePath").isJsonNull()) && !jsonObj.get("volumePath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `volumePath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("volumePath").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!StoreInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'StoreInfo' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<StoreInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(StoreInfo.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<StoreInfo>() {
-           @Override
-           public void write(JsonWriter out, StoreInfo value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public StoreInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of StoreInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of StoreInfo
-   * @throws IOException if the JSON string is invalid with respect to StoreInfo
-   */
-  public static StoreInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, StoreInfo.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of StoreInfo to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `configFile` to the URL query string
+    if (getConfigFile() != null) {
+      joiner.add(String.format("%sconfigFile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConfigFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `containerStore` to the URL query string
+    if (getContainerStore() != null) {
+      joiner.add(getContainerStore().toUrlQueryString(prefix + "containerStore" + suffix));
+    }
+
+    // add `graphDriverName` to the URL query string
+    if (getGraphDriverName() != null) {
+      joiner.add(String.format("%sgraphDriverName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGraphDriverName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `graphOptions` to the URL query string
+    if (getGraphOptions() != null) {
+      for (String _key : getGraphOptions().keySet()) {
+        joiner.add(String.format("%sgraphOptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getGraphOptions().get(_key), URLEncoder.encode(ApiClient.valueToString(getGraphOptions().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `graphRoot` to the URL query string
+    if (getGraphRoot() != null) {
+      joiner.add(String.format("%sgraphRoot%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGraphRoot()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `graphRootAllocated` to the URL query string
+    if (getGraphRootAllocated() != null) {
+      joiner.add(String.format("%sgraphRootAllocated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGraphRootAllocated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `graphRootUsed` to the URL query string
+    if (getGraphRootUsed() != null) {
+      joiner.add(String.format("%sgraphRootUsed%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGraphRootUsed()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `graphStatus` to the URL query string
+    if (getGraphStatus() != null) {
+      for (String _key : getGraphStatus().keySet()) {
+        joiner.add(String.format("%sgraphStatus%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getGraphStatus().get(_key), URLEncoder.encode(ApiClient.valueToString(getGraphStatus().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `imageCopyTmpDir` to the URL query string
+    if (getImageCopyTmpDir() != null) {
+      joiner.add(String.format("%simageCopyTmpDir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageCopyTmpDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `imageStore` to the URL query string
+    if (getImageStore() != null) {
+      joiner.add(getImageStore().toUrlQueryString(prefix + "imageStore" + suffix));
+    }
+
+    // add `runRoot` to the URL query string
+    if (getRunRoot() != null) {
+      joiner.add(String.format("%srunRoot%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRunRoot()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `transientStore` to the URL query string
+    if (getTransientStore() != null) {
+      joiner.add(String.format("%stransientStore%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTransientStore()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `volumePath` to the URL query string
+    if (getVolumePath() != null) {
+      joiner.add(String.format("%svolumePath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVolumePath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

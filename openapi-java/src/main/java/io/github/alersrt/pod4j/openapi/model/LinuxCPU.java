@@ -13,81 +13,68 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxCPU for Linux cgroup &#39;cpu&#39; resource management
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  LinuxCPU.JSON_PROPERTY_BURST,
+  LinuxCPU.JSON_PROPERTY_CPUS,
+  LinuxCPU.JSON_PROPERTY_IDLE,
+  LinuxCPU.JSON_PROPERTY_MEMS,
+  LinuxCPU.JSON_PROPERTY_PERIOD,
+  LinuxCPU.JSON_PROPERTY_QUOTA,
+  LinuxCPU.JSON_PROPERTY_REALTIME_PERIOD,
+  LinuxCPU.JSON_PROPERTY_REALTIME_RUNTIME,
+  LinuxCPU.JSON_PROPERTY_SHARES
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxCPU {
-  public static final String SERIALIZED_NAME_BURST = "burst";
-  @SerializedName(SERIALIZED_NAME_BURST)
+  public static final String JSON_PROPERTY_BURST = "burst";
   private Integer burst;
 
-  public static final String SERIALIZED_NAME_CPUS = "cpus";
-  @SerializedName(SERIALIZED_NAME_CPUS)
+  public static final String JSON_PROPERTY_CPUS = "cpus";
   private String cpus;
 
-  public static final String SERIALIZED_NAME_IDLE = "idle";
-  @SerializedName(SERIALIZED_NAME_IDLE)
+  public static final String JSON_PROPERTY_IDLE = "idle";
   private Long idle;
 
-  public static final String SERIALIZED_NAME_MEMS = "mems";
-  @SerializedName(SERIALIZED_NAME_MEMS)
+  public static final String JSON_PROPERTY_MEMS = "mems";
   private String mems;
 
-  public static final String SERIALIZED_NAME_PERIOD = "period";
-  @SerializedName(SERIALIZED_NAME_PERIOD)
+  public static final String JSON_PROPERTY_PERIOD = "period";
   private Integer period;
 
-  public static final String SERIALIZED_NAME_QUOTA = "quota";
-  @SerializedName(SERIALIZED_NAME_QUOTA)
+  public static final String JSON_PROPERTY_QUOTA = "quota";
   private Long quota;
 
-  public static final String SERIALIZED_NAME_REALTIME_PERIOD = "realtimePeriod";
-  @SerializedName(SERIALIZED_NAME_REALTIME_PERIOD)
+  public static final String JSON_PROPERTY_REALTIME_PERIOD = "realtimePeriod";
   private Integer realtimePeriod;
 
-  public static final String SERIALIZED_NAME_REALTIME_RUNTIME = "realtimeRuntime";
-  @SerializedName(SERIALIZED_NAME_REALTIME_RUNTIME)
+  public static final String JSON_PROPERTY_REALTIME_RUNTIME = "realtimeRuntime";
   private Long realtimeRuntime;
 
-  public static final String SERIALIZED_NAME_SHARES = "shares";
-  @SerializedName(SERIALIZED_NAME_SHARES)
+  public static final String JSON_PROPERTY_SHARES = "shares";
   private Integer shares;
 
-  public LinuxCPU() {
+  public LinuxCPU() { 
   }
 
   public LinuxCPU burst(Integer burst) {
@@ -100,10 +87,16 @@ public class LinuxCPU {
    * @return burst
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BURST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getBurst() {
     return burst;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BURST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBurst(Integer burst) {
     this.burst = burst;
   }
@@ -119,10 +112,16 @@ public class LinuxCPU {
    * @return cpus
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCpus() {
     return cpus;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpus(String cpus) {
     this.cpus = cpus;
   }
@@ -138,10 +137,16 @@ public class LinuxCPU {
    * @return idle
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IDLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getIdle() {
     return idle;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IDLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdle(Long idle) {
     this.idle = idle;
   }
@@ -157,10 +162,16 @@ public class LinuxCPU {
    * @return mems
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEMS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMems() {
     return mems;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEMS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMems(String mems) {
     this.mems = mems;
   }
@@ -176,10 +187,16 @@ public class LinuxCPU {
    * @return period
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getPeriod() {
     return period;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPeriod(Integer period) {
     this.period = period;
   }
@@ -195,10 +212,16 @@ public class LinuxCPU {
    * @return quota
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_QUOTA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getQuota() {
     return quota;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_QUOTA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQuota(Long quota) {
     this.quota = quota;
   }
@@ -214,10 +237,16 @@ public class LinuxCPU {
    * @return realtimePeriod
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REALTIME_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRealtimePeriod() {
     return realtimePeriod;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REALTIME_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRealtimePeriod(Integer realtimePeriod) {
     this.realtimePeriod = realtimePeriod;
   }
@@ -233,10 +262,16 @@ public class LinuxCPU {
    * @return realtimeRuntime
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REALTIME_RUNTIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getRealtimeRuntime() {
     return realtimeRuntime;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REALTIME_RUNTIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRealtimeRuntime(Long realtimeRuntime) {
     this.realtimeRuntime = realtimeRuntime;
   }
@@ -252,16 +287,24 @@ public class LinuxCPU {
    * @return shares
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHARES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getShares() {
     return shares;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHARES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShares(Integer shares) {
     this.shares = shares;
   }
 
 
-
+  /**
+   * Return true if this LinuxCPU object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -315,103 +358,84 @@ public class LinuxCPU {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("burst");
-    openapiFields.add("cpus");
-    openapiFields.add("idle");
-    openapiFields.add("mems");
-    openapiFields.add("period");
-    openapiFields.add("quota");
-    openapiFields.add("realtimePeriod");
-    openapiFields.add("realtimeRuntime");
-    openapiFields.add("shares");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxCPU
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxCPU.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxCPU is not found in the empty JSON string", LinuxCPU.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LinuxCPU.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxCPU` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("cpus") != null && !jsonObj.get("cpus").isJsonNull()) && !jsonObj.get("cpus").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cpus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cpus").toString()));
-      }
-      if ((jsonObj.get("mems") != null && !jsonObj.get("mems").isJsonNull()) && !jsonObj.get("mems").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `mems` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mems").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LinuxCPU.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LinuxCPU' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LinuxCPU> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxCPU.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LinuxCPU>() {
-           @Override
-           public void write(JsonWriter out, LinuxCPU value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LinuxCPU read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of LinuxCPU given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxCPU
-   * @throws IOException if the JSON string is invalid with respect to LinuxCPU
-   */
-  public static LinuxCPU fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LinuxCPU.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of LinuxCPU to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `burst` to the URL query string
+    if (getBurst() != null) {
+      joiner.add(String.format("%sburst%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBurst()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cpus` to the URL query string
+    if (getCpus() != null) {
+      joiner.add(String.format("%scpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `idle` to the URL query string
+    if (getIdle() != null) {
+      joiner.add(String.format("%sidle%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIdle()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `mems` to the URL query string
+    if (getMems() != null) {
+      joiner.add(String.format("%smems%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMems()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `period` to the URL query string
+    if (getPeriod() != null) {
+      joiner.add(String.format("%speriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `quota` to the URL query string
+    if (getQuota() != null) {
+      joiner.add(String.format("%squota%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getQuota()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `realtimePeriod` to the URL query string
+    if (getRealtimePeriod() != null) {
+      joiner.add(String.format("%srealtimePeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRealtimePeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `realtimeRuntime` to the URL query string
+    if (getRealtimeRuntime() != null) {
+      joiner.add(String.format("%srealtimeRuntime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRealtimeRuntime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `shares` to the URL query string
+    if (getShares() != null) {
+      joiner.add(String.format("%sshares%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShares()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

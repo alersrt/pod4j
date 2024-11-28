@@ -13,57 +13,44 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Route
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  Route.JSON_PROPERTY_DESTINATION,
+  Route.JSON_PROPERTY_GATEWAY,
+  Route.JSON_PROPERTY_METRIC
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Route {
-  public static final String SERIALIZED_NAME_DESTINATION = "destination";
-  @SerializedName(SERIALIZED_NAME_DESTINATION)
+  public static final String JSON_PROPERTY_DESTINATION = "destination";
   private String destination;
 
-  public static final String SERIALIZED_NAME_GATEWAY = "gateway";
-  @SerializedName(SERIALIZED_NAME_GATEWAY)
+  public static final String JSON_PROPERTY_GATEWAY = "gateway";
   private String gateway;
 
-  public static final String SERIALIZED_NAME_METRIC = "metric";
-  @SerializedName(SERIALIZED_NAME_METRIC)
+  public static final String JSON_PROPERTY_METRIC = "metric";
   private Integer metric;
 
-  public Route() {
+  public Route() { 
   }
 
   public Route destination(String destination) {
@@ -76,10 +63,16 @@ public class Route {
    * @return destination
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDestination() {
     return destination;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDestination(String destination) {
     this.destination = destination;
   }
@@ -95,10 +88,16 @@ public class Route {
    * @return gateway
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GATEWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGateway() {
     return gateway;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GATEWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGateway(String gateway) {
     this.gateway = gateway;
   }
@@ -114,16 +113,24 @@ public class Route {
    * @return metric
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_METRIC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getMetric() {
     return metric;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_METRIC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetric(Integer metric) {
     this.metric = metric;
   }
 
 
-
+  /**
+   * Return true if this Route object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -165,97 +172,54 @@ public class Route {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("destination");
-    openapiFields.add("gateway");
-    openapiFields.add("metric");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Route
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Route.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Route is not found in the empty JSON string", Route.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Route.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Route` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("destination") != null && !jsonObj.get("destination").isJsonNull()) && !jsonObj.get("destination").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `destination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("destination").toString()));
-      }
-      if ((jsonObj.get("gateway") != null && !jsonObj.get("gateway").isJsonNull()) && !jsonObj.get("gateway").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("gateway").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Route.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Route' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Route> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Route.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Route>() {
-           @Override
-           public void write(JsonWriter out, Route value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Route read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of Route given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Route
-   * @throws IOException if the JSON string is invalid with respect to Route
-   */
-  public static Route fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Route.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of Route to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `destination` to the URL query string
+    if (getDestination() != null) {
+      joiner.add(String.format("%sdestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `gateway` to the URL query string
+    if (getGateway() != null) {
+      joiner.add(String.format("%sgateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `metric` to the URL query string
+    if (getMetric() != null) {
+      joiner.add(String.format("%smetric%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMetric()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

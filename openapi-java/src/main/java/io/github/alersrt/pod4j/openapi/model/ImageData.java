@@ -13,147 +13,134 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.DriverData;
 import io.github.alersrt.pod4j.openapi.model.History;
 import io.github.alersrt.pod4j.openapi.model.ImageConfig;
 import io.github.alersrt.pod4j.openapi.model.RootFS;
 import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ImageData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ImageData.JSON_PROPERTY_ANNOTATIONS,
+  ImageData.JSON_PROPERTY_ARCHITECTURE,
+  ImageData.JSON_PROPERTY_AUTHOR,
+  ImageData.JSON_PROPERTY_COMMENT,
+  ImageData.JSON_PROPERTY_CONFIG,
+  ImageData.JSON_PROPERTY_CREATED,
+  ImageData.JSON_PROPERTY_DIGEST,
+  ImageData.JSON_PROPERTY_GRAPH_DRIVER,
+  ImageData.JSON_PROPERTY_HEALTHCHECK,
+  ImageData.JSON_PROPERTY_HISTORY,
+  ImageData.JSON_PROPERTY_ID,
+  ImageData.JSON_PROPERTY_LABELS,
+  ImageData.JSON_PROPERTY_MANIFEST_TYPE,
+  ImageData.JSON_PROPERTY_NAMES_HISTORY,
+  ImageData.JSON_PROPERTY_OS,
+  ImageData.JSON_PROPERTY_PARENT,
+  ImageData.JSON_PROPERTY_REPO_DIGESTS,
+  ImageData.JSON_PROPERTY_REPO_TAGS,
+  ImageData.JSON_PROPERTY_ROOT_F_S,
+  ImageData.JSON_PROPERTY_SIZE,
+  ImageData.JSON_PROPERTY_USER,
+  ImageData.JSON_PROPERTY_VERSION,
+  ImageData.JSON_PROPERTY_VIRTUAL_SIZE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageData {
-  public static final String SERIALIZED_NAME_ANNOTATIONS = "Annotations";
-  @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+  public static final String JSON_PROPERTY_ANNOTATIONS = "Annotations";
   private Map<String, String> annotations = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_ARCHITECTURE = "Architecture";
-  @SerializedName(SERIALIZED_NAME_ARCHITECTURE)
+  public static final String JSON_PROPERTY_ARCHITECTURE = "Architecture";
   private String architecture;
 
-  public static final String SERIALIZED_NAME_AUTHOR = "Author";
-  @SerializedName(SERIALIZED_NAME_AUTHOR)
+  public static final String JSON_PROPERTY_AUTHOR = "Author";
   private String author;
 
-  public static final String SERIALIZED_NAME_COMMENT = "Comment";
-  @SerializedName(SERIALIZED_NAME_COMMENT)
+  public static final String JSON_PROPERTY_COMMENT = "Comment";
   private String comment;
 
-  public static final String SERIALIZED_NAME_CONFIG = "Config";
-  @SerializedName(SERIALIZED_NAME_CONFIG)
+  public static final String JSON_PROPERTY_CONFIG = "Config";
   private ImageConfig config;
 
-  public static final String SERIALIZED_NAME_CREATED = "Created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
+  public static final String JSON_PROPERTY_CREATED = "Created";
   private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_DIGEST = "Digest";
-  @SerializedName(SERIALIZED_NAME_DIGEST)
+  public static final String JSON_PROPERTY_DIGEST = "Digest";
   private String digest;
 
-  public static final String SERIALIZED_NAME_GRAPH_DRIVER = "GraphDriver";
-  @SerializedName(SERIALIZED_NAME_GRAPH_DRIVER)
+  public static final String JSON_PROPERTY_GRAPH_DRIVER = "GraphDriver";
   private DriverData graphDriver;
 
-  public static final String SERIALIZED_NAME_HEALTHCHECK = "Healthcheck";
-  @SerializedName(SERIALIZED_NAME_HEALTHCHECK)
+  public static final String JSON_PROPERTY_HEALTHCHECK = "Healthcheck";
   private Schema2HealthConfig healthcheck;
 
-  public static final String SERIALIZED_NAME_HISTORY = "History";
-  @SerializedName(SERIALIZED_NAME_HISTORY)
-  private List<History> history = new ArrayList<>();
+  public static final String JSON_PROPERTY_HISTORY = "History";
+  private List<@Valid History> history = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "Id";
   private String id;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_MANIFEST_TYPE = "ManifestType";
-  @SerializedName(SERIALIZED_NAME_MANIFEST_TYPE)
+  public static final String JSON_PROPERTY_MANIFEST_TYPE = "ManifestType";
   private String manifestType;
 
-  public static final String SERIALIZED_NAME_NAMES_HISTORY = "NamesHistory";
-  @SerializedName(SERIALIZED_NAME_NAMES_HISTORY)
+  public static final String JSON_PROPERTY_NAMES_HISTORY = "NamesHistory";
   private List<String> namesHistory = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_OS = "Os";
-  @SerializedName(SERIALIZED_NAME_OS)
+  public static final String JSON_PROPERTY_OS = "Os";
   private String os;
 
-  public static final String SERIALIZED_NAME_PARENT = "Parent";
-  @SerializedName(SERIALIZED_NAME_PARENT)
+  public static final String JSON_PROPERTY_PARENT = "Parent";
   private String parent;
 
-  public static final String SERIALIZED_NAME_REPO_DIGESTS = "RepoDigests";
-  @SerializedName(SERIALIZED_NAME_REPO_DIGESTS)
+  public static final String JSON_PROPERTY_REPO_DIGESTS = "RepoDigests";
   private List<String> repoDigests = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_REPO_TAGS = "RepoTags";
-  @SerializedName(SERIALIZED_NAME_REPO_TAGS)
+  public static final String JSON_PROPERTY_REPO_TAGS = "RepoTags";
   private List<String> repoTags = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ROOT_F_S = "RootFS";
-  @SerializedName(SERIALIZED_NAME_ROOT_F_S)
+  public static final String JSON_PROPERTY_ROOT_F_S = "RootFS";
   private RootFS rootFS;
 
-  public static final String SERIALIZED_NAME_SIZE = "Size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
+  public static final String JSON_PROPERTY_SIZE = "Size";
   private Long size;
 
-  public static final String SERIALIZED_NAME_USER = "User";
-  @SerializedName(SERIALIZED_NAME_USER)
+  public static final String JSON_PROPERTY_USER = "User";
   private String user;
 
-  public static final String SERIALIZED_NAME_VERSION = "Version";
-  @SerializedName(SERIALIZED_NAME_VERSION)
+  public static final String JSON_PROPERTY_VERSION = "Version";
   private String version;
 
-  public static final String SERIALIZED_NAME_VIRTUAL_SIZE = "VirtualSize";
-  @SerializedName(SERIALIZED_NAME_VIRTUAL_SIZE)
+  public static final String JSON_PROPERTY_VIRTUAL_SIZE = "VirtualSize";
   private Long virtualSize;
 
-  public ImageData() {
+  public ImageData() { 
   }
 
   public ImageData annotations(Map<String, String> annotations) {
@@ -174,10 +161,16 @@ public class ImageData {
    * @return annotations
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getAnnotations() {
     return annotations;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnnotations(Map<String, String> annotations) {
     this.annotations = annotations;
   }
@@ -193,10 +186,16 @@ public class ImageData {
    * @return architecture
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArchitecture() {
     return architecture;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArchitecture(String architecture) {
     this.architecture = architecture;
   }
@@ -212,10 +211,16 @@ public class ImageData {
    * @return author
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAuthor() {
     return author;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAuthor(String author) {
     this.author = author;
   }
@@ -231,10 +236,16 @@ public class ImageData {
    * @return comment
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_COMMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getComment() {
     return comment;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_COMMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setComment(String comment) {
     this.comment = comment;
   }
@@ -250,10 +261,17 @@ public class ImageData {
    * @return config
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ImageConfig getConfig() {
     return config;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConfig(ImageConfig config) {
     this.config = config;
   }
@@ -269,10 +287,17 @@ public class ImageData {
    * @return created
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getCreated() {
     return created;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
@@ -288,10 +313,16 @@ public class ImageData {
    * @return digest
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DIGEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDigest() {
     return digest;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DIGEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDigest(String digest) {
     this.digest = digest;
   }
@@ -307,10 +338,17 @@ public class ImageData {
    * @return graphDriver
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public DriverData getGraphDriver() {
     return graphDriver;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphDriver(DriverData graphDriver) {
     this.graphDriver = graphDriver;
   }
@@ -326,16 +364,23 @@ public class ImageData {
    * @return healthcheck
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Schema2HealthConfig getHealthcheck() {
     return healthcheck;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthcheck(Schema2HealthConfig healthcheck) {
     this.healthcheck = healthcheck;
   }
 
 
-  public ImageData history(List<History> history) {
+  public ImageData history(List<@Valid History> history) {
     this.history = history;
     return this;
   }
@@ -353,11 +398,18 @@ public class ImageData {
    * @return history
    */
   @javax.annotation.Nullable
-  public List<History> getHistory() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HISTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid History> getHistory() {
     return history;
   }
 
-  public void setHistory(List<History> history) {
+
+  @JsonProperty(JSON_PROPERTY_HISTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHistory(List<@Valid History> history) {
     this.history = history;
   }
 
@@ -372,10 +424,16 @@ public class ImageData {
    * @return id
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -399,10 +457,16 @@ public class ImageData {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -418,10 +482,16 @@ public class ImageData {
    * @return manifestType
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MANIFEST_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getManifestType() {
     return manifestType;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MANIFEST_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setManifestType(String manifestType) {
     this.manifestType = manifestType;
   }
@@ -445,10 +515,16 @@ public class ImageData {
    * @return namesHistory
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAMES_HISTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getNamesHistory() {
     return namesHistory;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAMES_HISTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNamesHistory(List<String> namesHistory) {
     this.namesHistory = namesHistory;
   }
@@ -464,10 +540,16 @@ public class ImageData {
    * @return os
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOs() {
     return os;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOs(String os) {
     this.os = os;
   }
@@ -483,10 +565,16 @@ public class ImageData {
    * @return parent
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getParent() {
     return parent;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setParent(String parent) {
     this.parent = parent;
   }
@@ -510,10 +598,16 @@ public class ImageData {
    * @return repoDigests
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getRepoDigests() {
     return repoDigests;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRepoDigests(List<String> repoDigests) {
     this.repoDigests = repoDigests;
   }
@@ -537,10 +631,16 @@ public class ImageData {
    * @return repoTags
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getRepoTags() {
     return repoTags;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRepoTags(List<String> repoTags) {
     this.repoTags = repoTags;
   }
@@ -556,10 +656,17 @@ public class ImageData {
    * @return rootFS
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_ROOT_F_S)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public RootFS getRootFS() {
     return rootFS;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOT_F_S)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootFS(RootFS rootFS) {
     this.rootFS = rootFS;
   }
@@ -575,10 +682,16 @@ public class ImageData {
    * @return size
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSize() {
     return size;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -594,10 +707,16 @@ public class ImageData {
    * @return user
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUser() {
     return user;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUser(String user) {
     this.user = user;
   }
@@ -613,10 +732,16 @@ public class ImageData {
    * @return version
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVersion() {
     return version;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVersion(String version) {
     this.version = version;
   }
@@ -632,16 +757,24 @@ public class ImageData {
    * @return virtualSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getVirtualSize() {
     return virtualSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVirtualSize(Long virtualSize) {
     this.virtualSize = virtualSize;
   }
 
 
-
+  /**
+   * Return true if this ImageData object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -723,183 +856,179 @@ public class ImageData {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Annotations");
-    openapiFields.add("Architecture");
-    openapiFields.add("Author");
-    openapiFields.add("Comment");
-    openapiFields.add("Config");
-    openapiFields.add("Created");
-    openapiFields.add("Digest");
-    openapiFields.add("GraphDriver");
-    openapiFields.add("Healthcheck");
-    openapiFields.add("History");
-    openapiFields.add("Id");
-    openapiFields.add("Labels");
-    openapiFields.add("ManifestType");
-    openapiFields.add("NamesHistory");
-    openapiFields.add("Os");
-    openapiFields.add("Parent");
-    openapiFields.add("RepoDigests");
-    openapiFields.add("RepoTags");
-    openapiFields.add("RootFS");
-    openapiFields.add("Size");
-    openapiFields.add("User");
-    openapiFields.add("Version");
-    openapiFields.add("VirtualSize");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ImageData
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ImageData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ImageData is not found in the empty JSON string", ImageData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ImageData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Architecture") != null && !jsonObj.get("Architecture").isJsonNull()) && !jsonObj.get("Architecture").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Architecture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Architecture").toString()));
-      }
-      if ((jsonObj.get("Author") != null && !jsonObj.get("Author").isJsonNull()) && !jsonObj.get("Author").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Author` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Author").toString()));
-      }
-      if ((jsonObj.get("Comment") != null && !jsonObj.get("Comment").isJsonNull()) && !jsonObj.get("Comment").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Comment` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Comment").toString()));
-      }
-      // validate the optional field `Config`
-      if (jsonObj.get("Config") != null && !jsonObj.get("Config").isJsonNull()) {
-        ImageConfig.validateJsonElement(jsonObj.get("Config"));
-      }
-      if ((jsonObj.get("Digest") != null && !jsonObj.get("Digest").isJsonNull()) && !jsonObj.get("Digest").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Digest` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Digest").toString()));
-      }
-      // validate the optional field `GraphDriver`
-      if (jsonObj.get("GraphDriver") != null && !jsonObj.get("GraphDriver").isJsonNull()) {
-        DriverData.validateJsonElement(jsonObj.get("GraphDriver"));
-      }
-      // validate the optional field `Healthcheck`
-      if (jsonObj.get("Healthcheck") != null && !jsonObj.get("Healthcheck").isJsonNull()) {
-        Schema2HealthConfig.validateJsonElement(jsonObj.get("Healthcheck"));
-      }
-      if (jsonObj.get("History") != null && !jsonObj.get("History").isJsonNull()) {
-        JsonArray jsonArrayhistory = jsonObj.getAsJsonArray("History");
-        if (jsonArrayhistory != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("History").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `History` to be an array in the JSON string but got `%s`", jsonObj.get("History").toString()));
-          }
-
-          // validate the optional field `History` (array)
-          for (int i = 0; i < jsonArrayhistory.size(); i++) {
-            History.validateJsonElement(jsonArrayhistory.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      if ((jsonObj.get("ManifestType") != null && !jsonObj.get("ManifestType").isJsonNull()) && !jsonObj.get("ManifestType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ManifestType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ManifestType").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("NamesHistory") != null && !jsonObj.get("NamesHistory").isJsonNull() && !jsonObj.get("NamesHistory").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `NamesHistory` to be an array in the JSON string but got `%s`", jsonObj.get("NamesHistory").toString()));
-      }
-      if ((jsonObj.get("Os") != null && !jsonObj.get("Os").isJsonNull()) && !jsonObj.get("Os").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Os").toString()));
-      }
-      if ((jsonObj.get("Parent") != null && !jsonObj.get("Parent").isJsonNull()) && !jsonObj.get("Parent").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Parent").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("RepoDigests") != null && !jsonObj.get("RepoDigests").isJsonNull() && !jsonObj.get("RepoDigests").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RepoDigests` to be an array in the JSON string but got `%s`", jsonObj.get("RepoDigests").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("RepoTags") != null && !jsonObj.get("RepoTags").isJsonNull() && !jsonObj.get("RepoTags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RepoTags` to be an array in the JSON string but got `%s`", jsonObj.get("RepoTags").toString()));
-      }
-      // validate the optional field `RootFS`
-      if (jsonObj.get("RootFS") != null && !jsonObj.get("RootFS").isJsonNull()) {
-        RootFS.validateJsonElement(jsonObj.get("RootFS"));
-      }
-      if ((jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) && !jsonObj.get("User").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `User` to be a primitive type in the JSON string but got `%s`", jsonObj.get("User").toString()));
-      }
-      if ((jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) && !jsonObj.get("Version").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Version").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ImageData.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ImageData' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ImageData> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ImageData.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ImageData>() {
-           @Override
-           public void write(JsonWriter out, ImageData value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ImageData read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ImageData given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ImageData
-   * @throws IOException if the JSON string is invalid with respect to ImageData
-   */
-  public static ImageData fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ImageData.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ImageData to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Annotations` to the URL query string
+    if (getAnnotations() != null) {
+      for (String _key : getAnnotations().keySet()) {
+        joiner.add(String.format("%sAnnotations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Architecture` to the URL query string
+    if (getArchitecture() != null) {
+      joiner.add(String.format("%sArchitecture%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArchitecture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Author` to the URL query string
+    if (getAuthor() != null) {
+      joiner.add(String.format("%sAuthor%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAuthor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Comment` to the URL query string
+    if (getComment() != null) {
+      joiner.add(String.format("%sComment%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getComment()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Config` to the URL query string
+    if (getConfig() != null) {
+      joiner.add(getConfig().toUrlQueryString(prefix + "Config" + suffix));
+    }
+
+    // add `Created` to the URL query string
+    if (getCreated() != null) {
+      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Digest` to the URL query string
+    if (getDigest() != null) {
+      joiner.add(String.format("%sDigest%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDigest()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `GraphDriver` to the URL query string
+    if (getGraphDriver() != null) {
+      joiner.add(getGraphDriver().toUrlQueryString(prefix + "GraphDriver" + suffix));
+    }
+
+    // add `Healthcheck` to the URL query string
+    if (getHealthcheck() != null) {
+      joiner.add(getHealthcheck().toUrlQueryString(prefix + "Healthcheck" + suffix));
+    }
+
+    // add `History` to the URL query string
+    if (getHistory() != null) {
+      for (int i = 0; i < getHistory().size(); i++) {
+        if (getHistory().get(i) != null) {
+          joiner.add(getHistory().get(i).toUrlQueryString(String.format("%sHistory%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `Id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `ManifestType` to the URL query string
+    if (getManifestType() != null) {
+      joiner.add(String.format("%sManifestType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getManifestType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `NamesHistory` to the URL query string
+    if (getNamesHistory() != null) {
+      for (int i = 0; i < getNamesHistory().size(); i++) {
+        joiner.add(String.format("%sNamesHistory%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getNamesHistory().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Os` to the URL query string
+    if (getOs() != null) {
+      joiner.add(String.format("%sOs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Parent` to the URL query string
+    if (getParent() != null) {
+      joiner.add(String.format("%sParent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RepoDigests` to the URL query string
+    if (getRepoDigests() != null) {
+      for (int i = 0; i < getRepoDigests().size(); i++) {
+        joiner.add(String.format("%sRepoDigests%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getRepoDigests().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `RepoTags` to the URL query string
+    if (getRepoTags() != null) {
+      for (int i = 0; i < getRepoTags().size(); i++) {
+        joiner.add(String.format("%sRepoTags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getRepoTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `RootFS` to the URL query string
+    if (getRootFS() != null) {
+      joiner.add(getRootFS().toUrlQueryString(prefix + "RootFS" + suffix));
+    }
+
+    // add `Size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `User` to the URL query string
+    if (getUser() != null) {
+      joiner.add(String.format("%sUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Version` to the URL query string
+    if (getVersion() != null) {
+      joiner.add(String.format("%sVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `VirtualSize` to the URL query string
+    if (getVirtualSize() != null) {
+      joiner.add(String.format("%sVirtualSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVirtualSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

@@ -13,12 +13,17 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ImageVolume;
 import io.github.alersrt.pod4j.openapi.model.LinuxDevice;
 import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
@@ -27,163 +32,145 @@ import io.github.alersrt.pod4j.openapi.model.NamedVolume;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
 import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
 import io.github.alersrt.pod4j.openapi.model.Secret;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerStorageConfig contains information on the storage configuration of a container.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerStorageConfig.JSON_PROPERTY_CHROOT_DIRECTORIES,
+  ContainerStorageConfig.JSON_PROPERTY_CREATE_WORKING_DIR,
+  ContainerStorageConfig.JSON_PROPERTY_DEVICE_CGROUP_RULE,
+  ContainerStorageConfig.JSON_PROPERTY_DEVICES,
+  ContainerStorageConfig.JSON_PROPERTY_DEVICES_FROM,
+  ContainerStorageConfig.JSON_PROPERTY_HOST_DEVICE_LIST,
+  ContainerStorageConfig.JSON_PROPERTY_IMAGE,
+  ContainerStorageConfig.JSON_PROPERTY_IMAGE_ARCH,
+  ContainerStorageConfig.JSON_PROPERTY_IMAGE_OS,
+  ContainerStorageConfig.JSON_PROPERTY_IMAGE_VARIANT,
+  ContainerStorageConfig.JSON_PROPERTY_IMAGE_VOLUME_MODE,
+  ContainerStorageConfig.JSON_PROPERTY_IMAGE_VOLUMES,
+  ContainerStorageConfig.JSON_PROPERTY_INIT,
+  ContainerStorageConfig.JSON_PROPERTY_INIT_PATH,
+  ContainerStorageConfig.JSON_PROPERTY_IPCNS,
+  ContainerStorageConfig.JSON_PROPERTY_MOUNTS,
+  ContainerStorageConfig.JSON_PROPERTY_OVERLAY_VOLUMES,
+  ContainerStorageConfig.JSON_PROPERTY_RAW_IMAGE_NAME,
+  ContainerStorageConfig.JSON_PROPERTY_ROOTFS,
+  ContainerStorageConfig.JSON_PROPERTY_ROOTFS_MAPPING,
+  ContainerStorageConfig.JSON_PROPERTY_ROOTFS_OVERLAY,
+  ContainerStorageConfig.JSON_PROPERTY_ROOTFS_PROPAGATION,
+  ContainerStorageConfig.JSON_PROPERTY_SECRETS,
+  ContainerStorageConfig.JSON_PROPERTY_SHM_SIZE,
+  ContainerStorageConfig.JSON_PROPERTY_SHM_SIZE_SYSTEMD,
+  ContainerStorageConfig.JSON_PROPERTY_STORAGE_OPTS,
+  ContainerStorageConfig.JSON_PROPERTY_VOLATILE,
+  ContainerStorageConfig.JSON_PROPERTY_VOLUMES,
+  ContainerStorageConfig.JSON_PROPERTY_VOLUMES_FROM,
+  ContainerStorageConfig.JSON_PROPERTY_WORK_DIR
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerStorageConfig {
-  public static final String SERIALIZED_NAME_CHROOT_DIRECTORIES = "chroot_directories";
-  @SerializedName(SERIALIZED_NAME_CHROOT_DIRECTORIES)
+  public static final String JSON_PROPERTY_CHROOT_DIRECTORIES = "chroot_directories";
   private List<String> chrootDirectories = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CREATE_WORKING_DIR = "create_working_dir";
-  @SerializedName(SERIALIZED_NAME_CREATE_WORKING_DIR)
+  public static final String JSON_PROPERTY_CREATE_WORKING_DIR = "create_working_dir";
   private Boolean createWorkingDir;
 
-  public static final String SERIALIZED_NAME_DEVICE_CGROUP_RULE = "device_cgroup_rule";
-  @SerializedName(SERIALIZED_NAME_DEVICE_CGROUP_RULE)
-  private List<LinuxDeviceCgroup> deviceCgroupRule = new ArrayList<>();
+  public static final String JSON_PROPERTY_DEVICE_CGROUP_RULE = "device_cgroup_rule";
+  private List<@Valid LinuxDeviceCgroup> deviceCgroupRule = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DEVICES = "devices";
-  @SerializedName(SERIALIZED_NAME_DEVICES)
-  private List<LinuxDevice> devices = new ArrayList<>();
+  public static final String JSON_PROPERTY_DEVICES = "devices";
+  private List<@Valid LinuxDevice> devices = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DEVICES_FROM = "devices_from";
-  @SerializedName(SERIALIZED_NAME_DEVICES_FROM)
+  public static final String JSON_PROPERTY_DEVICES_FROM = "devices_from";
   private List<String> devicesFrom = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_HOST_DEVICE_LIST = "host_device_list";
-  @SerializedName(SERIALIZED_NAME_HOST_DEVICE_LIST)
-  private List<LinuxDevice> hostDeviceList = new ArrayList<>();
+  public static final String JSON_PROPERTY_HOST_DEVICE_LIST = "host_device_list";
+  private List<@Valid LinuxDevice> hostDeviceList = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_IMAGE = "image";
-  @SerializedName(SERIALIZED_NAME_IMAGE)
+  public static final String JSON_PROPERTY_IMAGE = "image";
   private String image;
 
-  public static final String SERIALIZED_NAME_IMAGE_ARCH = "image_arch";
-  @SerializedName(SERIALIZED_NAME_IMAGE_ARCH)
+  public static final String JSON_PROPERTY_IMAGE_ARCH = "image_arch";
   private String imageArch;
 
-  public static final String SERIALIZED_NAME_IMAGE_OS = "image_os";
-  @SerializedName(SERIALIZED_NAME_IMAGE_OS)
+  public static final String JSON_PROPERTY_IMAGE_OS = "image_os";
   private String imageOs;
 
-  public static final String SERIALIZED_NAME_IMAGE_VARIANT = "image_variant";
-  @SerializedName(SERIALIZED_NAME_IMAGE_VARIANT)
+  public static final String JSON_PROPERTY_IMAGE_VARIANT = "image_variant";
   private String imageVariant;
 
-  public static final String SERIALIZED_NAME_IMAGE_VOLUME_MODE = "image_volume_mode";
-  @SerializedName(SERIALIZED_NAME_IMAGE_VOLUME_MODE)
+  public static final String JSON_PROPERTY_IMAGE_VOLUME_MODE = "image_volume_mode";
   private String imageVolumeMode;
 
-  public static final String SERIALIZED_NAME_IMAGE_VOLUMES = "image_volumes";
-  @SerializedName(SERIALIZED_NAME_IMAGE_VOLUMES)
-  private List<ImageVolume> imageVolumes = new ArrayList<>();
+  public static final String JSON_PROPERTY_IMAGE_VOLUMES = "image_volumes";
+  private List<@Valid ImageVolume> imageVolumes = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_INIT = "init";
-  @SerializedName(SERIALIZED_NAME_INIT)
+  public static final String JSON_PROPERTY_INIT = "init";
   private Boolean init;
 
-  public static final String SERIALIZED_NAME_INIT_PATH = "init_path";
-  @SerializedName(SERIALIZED_NAME_INIT_PATH)
+  public static final String JSON_PROPERTY_INIT_PATH = "init_path";
   private String initPath;
 
-  public static final String SERIALIZED_NAME_IPCNS = "ipcns";
-  @SerializedName(SERIALIZED_NAME_IPCNS)
+  public static final String JSON_PROPERTY_IPCNS = "ipcns";
   private Namespace ipcns;
 
-  public static final String SERIALIZED_NAME_MOUNTS = "mounts";
-  @SerializedName(SERIALIZED_NAME_MOUNTS)
-  private List<Mount> mounts = new ArrayList<>();
+  public static final String JSON_PROPERTY_MOUNTS = "mounts";
+  private List<@Valid Mount> mounts = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_OVERLAY_VOLUMES = "overlay_volumes";
-  @SerializedName(SERIALIZED_NAME_OVERLAY_VOLUMES)
-  private List<OverlayVolume> overlayVolumes = new ArrayList<>();
+  public static final String JSON_PROPERTY_OVERLAY_VOLUMES = "overlay_volumes";
+  private List<@Valid OverlayVolume> overlayVolumes = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_RAW_IMAGE_NAME = "raw_image_name";
-  @SerializedName(SERIALIZED_NAME_RAW_IMAGE_NAME)
+  public static final String JSON_PROPERTY_RAW_IMAGE_NAME = "raw_image_name";
   private String rawImageName;
 
-  public static final String SERIALIZED_NAME_ROOTFS = "rootfs";
-  @SerializedName(SERIALIZED_NAME_ROOTFS)
+  public static final String JSON_PROPERTY_ROOTFS = "rootfs";
   private String rootfs;
 
-  public static final String SERIALIZED_NAME_ROOTFS_MAPPING = "rootfs_mapping";
-  @SerializedName(SERIALIZED_NAME_ROOTFS_MAPPING)
+  public static final String JSON_PROPERTY_ROOTFS_MAPPING = "rootfs_mapping";
   private String rootfsMapping;
 
-  public static final String SERIALIZED_NAME_ROOTFS_OVERLAY = "rootfs_overlay";
-  @SerializedName(SERIALIZED_NAME_ROOTFS_OVERLAY)
+  public static final String JSON_PROPERTY_ROOTFS_OVERLAY = "rootfs_overlay";
   private Boolean rootfsOverlay;
 
-  public static final String SERIALIZED_NAME_ROOTFS_PROPAGATION = "rootfs_propagation";
-  @SerializedName(SERIALIZED_NAME_ROOTFS_PROPAGATION)
+  public static final String JSON_PROPERTY_ROOTFS_PROPAGATION = "rootfs_propagation";
   private String rootfsPropagation;
 
-  public static final String SERIALIZED_NAME_SECRETS = "secrets";
-  @SerializedName(SERIALIZED_NAME_SECRETS)
-  private List<Secret> secrets = new ArrayList<>();
+  public static final String JSON_PROPERTY_SECRETS = "secrets";
+  private List<@Valid Secret> secrets = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SHM_SIZE = "shm_size";
-  @SerializedName(SERIALIZED_NAME_SHM_SIZE)
+  public static final String JSON_PROPERTY_SHM_SIZE = "shm_size";
   private Long shmSize;
 
-  public static final String SERIALIZED_NAME_SHM_SIZE_SYSTEMD = "shm_size_systemd";
-  @SerializedName(SERIALIZED_NAME_SHM_SIZE_SYSTEMD)
+  public static final String JSON_PROPERTY_SHM_SIZE_SYSTEMD = "shm_size_systemd";
   private Long shmSizeSystemd;
 
-  public static final String SERIALIZED_NAME_STORAGE_OPTS = "storage_opts";
-  @SerializedName(SERIALIZED_NAME_STORAGE_OPTS)
+  public static final String JSON_PROPERTY_STORAGE_OPTS = "storage_opts";
   private Map<String, String> storageOpts = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_VOLATILE = "volatile";
-  @SerializedName(SERIALIZED_NAME_VOLATILE)
+  public static final String JSON_PROPERTY_VOLATILE = "volatile";
   private Boolean _volatile;
 
-  public static final String SERIALIZED_NAME_VOLUMES = "volumes";
-  @SerializedName(SERIALIZED_NAME_VOLUMES)
-  private List<NamedVolume> volumes = new ArrayList<>();
+  public static final String JSON_PROPERTY_VOLUMES = "volumes";
+  private List<@Valid NamedVolume> volumes = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_VOLUMES_FROM = "volumes_from";
-  @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
+  public static final String JSON_PROPERTY_VOLUMES_FROM = "volumes_from";
   private List<String> volumesFrom = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_WORK_DIR = "work_dir";
-  @SerializedName(SERIALIZED_NAME_WORK_DIR)
+  public static final String JSON_PROPERTY_WORK_DIR = "work_dir";
   private String workDir;
 
-  public ContainerStorageConfig() {
+  public ContainerStorageConfig() { 
   }
 
   public ContainerStorageConfig chrootDirectories(List<String> chrootDirectories) {
@@ -204,10 +191,16 @@ public class ContainerStorageConfig {
    * @return chrootDirectories
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CHROOT_DIRECTORIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getChrootDirectories() {
     return chrootDirectories;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CHROOT_DIRECTORIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChrootDirectories(List<String> chrootDirectories) {
     this.chrootDirectories = chrootDirectories;
   }
@@ -223,16 +216,22 @@ public class ContainerStorageConfig {
    * @return createWorkingDir
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATE_WORKING_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCreateWorkingDir() {
     return createWorkingDir;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATE_WORKING_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreateWorkingDir(Boolean createWorkingDir) {
     this.createWorkingDir = createWorkingDir;
   }
 
 
-  public ContainerStorageConfig deviceCgroupRule(List<LinuxDeviceCgroup> deviceCgroupRule) {
+  public ContainerStorageConfig deviceCgroupRule(List<@Valid LinuxDeviceCgroup> deviceCgroupRule) {
     this.deviceCgroupRule = deviceCgroupRule;
     return this;
   }
@@ -250,16 +249,23 @@ public class ContainerStorageConfig {
    * @return deviceCgroupRule
    */
   @javax.annotation.Nullable
-  public List<LinuxDeviceCgroup> getDeviceCgroupRule() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid LinuxDeviceCgroup> getDeviceCgroupRule() {
     return deviceCgroupRule;
   }
 
-  public void setDeviceCgroupRule(List<LinuxDeviceCgroup> deviceCgroupRule) {
+
+  @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDeviceCgroupRule(List<@Valid LinuxDeviceCgroup> deviceCgroupRule) {
     this.deviceCgroupRule = deviceCgroupRule;
   }
 
 
-  public ContainerStorageConfig devices(List<LinuxDevice> devices) {
+  public ContainerStorageConfig devices(List<@Valid LinuxDevice> devices) {
     this.devices = devices;
     return this;
   }
@@ -277,11 +283,18 @@ public class ContainerStorageConfig {
    * @return devices
    */
   @javax.annotation.Nullable
-  public List<LinuxDevice> getDevices() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DEVICES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid LinuxDevice> getDevices() {
     return devices;
   }
 
-  public void setDevices(List<LinuxDevice> devices) {
+
+  @JsonProperty(JSON_PROPERTY_DEVICES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDevices(List<@Valid LinuxDevice> devices) {
     this.devices = devices;
   }
 
@@ -304,16 +317,22 @@ public class ContainerStorageConfig {
    * @return devicesFrom
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DEVICES_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDevicesFrom() {
     return devicesFrom;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DEVICES_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDevicesFrom(List<String> devicesFrom) {
     this.devicesFrom = devicesFrom;
   }
 
 
-  public ContainerStorageConfig hostDeviceList(List<LinuxDevice> hostDeviceList) {
+  public ContainerStorageConfig hostDeviceList(List<@Valid LinuxDevice> hostDeviceList) {
     this.hostDeviceList = hostDeviceList;
     return this;
   }
@@ -331,11 +350,18 @@ public class ContainerStorageConfig {
    * @return hostDeviceList
    */
   @javax.annotation.Nullable
-  public List<LinuxDevice> getHostDeviceList() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HOST_DEVICE_LIST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid LinuxDevice> getHostDeviceList() {
     return hostDeviceList;
   }
 
-  public void setHostDeviceList(List<LinuxDevice> hostDeviceList) {
+
+  @JsonProperty(JSON_PROPERTY_HOST_DEVICE_LIST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHostDeviceList(List<@Valid LinuxDevice> hostDeviceList) {
     this.hostDeviceList = hostDeviceList;
   }
 
@@ -350,10 +376,16 @@ public class ContainerStorageConfig {
    * @return image
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImage() {
     return image;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImage(String image) {
     this.image = image;
   }
@@ -369,10 +401,16 @@ public class ContainerStorageConfig {
    * @return imageArch
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImageArch() {
     return imageArch;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageArch(String imageArch) {
     this.imageArch = imageArch;
   }
@@ -388,10 +426,16 @@ public class ContainerStorageConfig {
    * @return imageOs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImageOs() {
     return imageOs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageOs(String imageOs) {
     this.imageOs = imageOs;
   }
@@ -407,10 +451,16 @@ public class ContainerStorageConfig {
    * @return imageVariant
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImageVariant() {
     return imageVariant;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageVariant(String imageVariant) {
     this.imageVariant = imageVariant;
   }
@@ -426,16 +476,22 @@ public class ContainerStorageConfig {
    * @return imageVolumeMode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUME_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImageVolumeMode() {
     return imageVolumeMode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUME_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageVolumeMode(String imageVolumeMode) {
     this.imageVolumeMode = imageVolumeMode;
   }
 
 
-  public ContainerStorageConfig imageVolumes(List<ImageVolume> imageVolumes) {
+  public ContainerStorageConfig imageVolumes(List<@Valid ImageVolume> imageVolumes) {
     this.imageVolumes = imageVolumes;
     return this;
   }
@@ -453,11 +509,18 @@ public class ContainerStorageConfig {
    * @return imageVolumes
    */
   @javax.annotation.Nullable
-  public List<ImageVolume> getImageVolumes() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid ImageVolume> getImageVolumes() {
     return imageVolumes;
   }
 
-  public void setImageVolumes(List<ImageVolume> imageVolumes) {
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setImageVolumes(List<@Valid ImageVolume> imageVolumes) {
     this.imageVolumes = imageVolumes;
   }
 
@@ -472,10 +535,16 @@ public class ContainerStorageConfig {
    * @return init
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getInit() {
     return init;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInit(Boolean init) {
     this.init = init;
   }
@@ -491,10 +560,16 @@ public class ContainerStorageConfig {
    * @return initPath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INIT_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getInitPath() {
     return initPath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INIT_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInitPath(String initPath) {
     this.initPath = initPath;
   }
@@ -510,16 +585,23 @@ public class ContainerStorageConfig {
    * @return ipcns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IPCNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Namespace getIpcns() {
     return ipcns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IPCNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpcns(Namespace ipcns) {
     this.ipcns = ipcns;
   }
 
 
-  public ContainerStorageConfig mounts(List<Mount> mounts) {
+  public ContainerStorageConfig mounts(List<@Valid Mount> mounts) {
     this.mounts = mounts;
     return this;
   }
@@ -537,16 +619,23 @@ public class ContainerStorageConfig {
    * @return mounts
    */
   @javax.annotation.Nullable
-  public List<Mount> getMounts() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid Mount> getMounts() {
     return mounts;
   }
 
-  public void setMounts(List<Mount> mounts) {
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMounts(List<@Valid Mount> mounts) {
     this.mounts = mounts;
   }
 
 
-  public ContainerStorageConfig overlayVolumes(List<OverlayVolume> overlayVolumes) {
+  public ContainerStorageConfig overlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
     this.overlayVolumes = overlayVolumes;
     return this;
   }
@@ -564,11 +653,18 @@ public class ContainerStorageConfig {
    * @return overlayVolumes
    */
   @javax.annotation.Nullable
-  public List<OverlayVolume> getOverlayVolumes() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid OverlayVolume> getOverlayVolumes() {
     return overlayVolumes;
   }
 
-  public void setOverlayVolumes(List<OverlayVolume> overlayVolumes) {
+
+  @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOverlayVolumes(List<@Valid OverlayVolume> overlayVolumes) {
     this.overlayVolumes = overlayVolumes;
   }
 
@@ -583,10 +679,16 @@ public class ContainerStorageConfig {
    * @return rawImageName
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RAW_IMAGE_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRawImageName() {
     return rawImageName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RAW_IMAGE_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRawImageName(String rawImageName) {
     this.rawImageName = rawImageName;
   }
@@ -602,10 +704,16 @@ public class ContainerStorageConfig {
    * @return rootfs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRootfs() {
     return rootfs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootfs(String rootfs) {
     this.rootfs = rootfs;
   }
@@ -621,10 +729,16 @@ public class ContainerStorageConfig {
    * @return rootfsMapping
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS_MAPPING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRootfsMapping() {
     return rootfsMapping;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS_MAPPING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootfsMapping(String rootfsMapping) {
     this.rootfsMapping = rootfsMapping;
   }
@@ -640,10 +754,16 @@ public class ContainerStorageConfig {
    * @return rootfsOverlay
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS_OVERLAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRootfsOverlay() {
     return rootfsOverlay;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS_OVERLAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootfsOverlay(Boolean rootfsOverlay) {
     this.rootfsOverlay = rootfsOverlay;
   }
@@ -659,16 +779,22 @@ public class ContainerStorageConfig {
    * @return rootfsPropagation
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS_PROPAGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRootfsPropagation() {
     return rootfsPropagation;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOTFS_PROPAGATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootfsPropagation(String rootfsPropagation) {
     this.rootfsPropagation = rootfsPropagation;
   }
 
 
-  public ContainerStorageConfig secrets(List<Secret> secrets) {
+  public ContainerStorageConfig secrets(List<@Valid Secret> secrets) {
     this.secrets = secrets;
     return this;
   }
@@ -686,11 +812,18 @@ public class ContainerStorageConfig {
    * @return secrets
    */
   @javax.annotation.Nullable
-  public List<Secret> getSecrets() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SECRETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid Secret> getSecrets() {
     return secrets;
   }
 
-  public void setSecrets(List<Secret> secrets) {
+
+  @JsonProperty(JSON_PROPERTY_SECRETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSecrets(List<@Valid Secret> secrets) {
     this.secrets = secrets;
   }
 
@@ -705,10 +838,16 @@ public class ContainerStorageConfig {
    * @return shmSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getShmSize() {
     return shmSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHM_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShmSize(Long shmSize) {
     this.shmSize = shmSize;
   }
@@ -724,10 +863,16 @@ public class ContainerStorageConfig {
    * @return shmSizeSystemd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getShmSizeSystemd() {
     return shmSizeSystemd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShmSizeSystemd(Long shmSizeSystemd) {
     this.shmSizeSystemd = shmSizeSystemd;
   }
@@ -751,10 +896,16 @@ public class ContainerStorageConfig {
    * @return storageOpts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STORAGE_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getStorageOpts() {
     return storageOpts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STORAGE_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStorageOpts(Map<String, String> storageOpts) {
     this.storageOpts = storageOpts;
   }
@@ -770,16 +921,22 @@ public class ContainerStorageConfig {
    * @return _volatile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VOLATILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getVolatile() {
     return _volatile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VOLATILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVolatile(Boolean _volatile) {
     this._volatile = _volatile;
   }
 
 
-  public ContainerStorageConfig volumes(List<NamedVolume> volumes) {
+  public ContainerStorageConfig volumes(List<@Valid NamedVolume> volumes) {
     this.volumes = volumes;
     return this;
   }
@@ -797,11 +954,18 @@ public class ContainerStorageConfig {
    * @return volumes
    */
   @javax.annotation.Nullable
-  public List<NamedVolume> getVolumes() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid NamedVolume> getVolumes() {
     return volumes;
   }
 
-  public void setVolumes(List<NamedVolume> volumes) {
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVolumes(List<@Valid NamedVolume> volumes) {
     this.volumes = volumes;
   }
 
@@ -824,10 +988,16 @@ public class ContainerStorageConfig {
    * @return volumesFrom
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getVolumesFrom() {
     return volumesFrom;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVolumesFrom(List<String> volumesFrom) {
     this.volumesFrom = volumesFrom;
   }
@@ -843,16 +1013,24 @@ public class ContainerStorageConfig {
    * @return workDir
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_WORK_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getWorkDir() {
     return workDir;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_WORK_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWorkDir(String workDir) {
     this.workDir = workDir;
   }
 
 
-
+  /**
+   * Return true if this ContainerStorageConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -948,279 +1126,245 @@ public class ContainerStorageConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("chroot_directories");
-    openapiFields.add("create_working_dir");
-    openapiFields.add("device_cgroup_rule");
-    openapiFields.add("devices");
-    openapiFields.add("devices_from");
-    openapiFields.add("host_device_list");
-    openapiFields.add("image");
-    openapiFields.add("image_arch");
-    openapiFields.add("image_os");
-    openapiFields.add("image_variant");
-    openapiFields.add("image_volume_mode");
-    openapiFields.add("image_volumes");
-    openapiFields.add("init");
-    openapiFields.add("init_path");
-    openapiFields.add("ipcns");
-    openapiFields.add("mounts");
-    openapiFields.add("overlay_volumes");
-    openapiFields.add("raw_image_name");
-    openapiFields.add("rootfs");
-    openapiFields.add("rootfs_mapping");
-    openapiFields.add("rootfs_overlay");
-    openapiFields.add("rootfs_propagation");
-    openapiFields.add("secrets");
-    openapiFields.add("shm_size");
-    openapiFields.add("shm_size_systemd");
-    openapiFields.add("storage_opts");
-    openapiFields.add("volatile");
-    openapiFields.add("volumes");
-    openapiFields.add("volumes_from");
-    openapiFields.add("work_dir");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerStorageConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerStorageConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerStorageConfig is not found in the empty JSON string", ContainerStorageConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerStorageConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerStorageConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("chroot_directories") != null && !jsonObj.get("chroot_directories").isJsonNull() && !jsonObj.get("chroot_directories").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `chroot_directories` to be an array in the JSON string but got `%s`", jsonObj.get("chroot_directories").toString()));
-      }
-      if (jsonObj.get("device_cgroup_rule") != null && !jsonObj.get("device_cgroup_rule").isJsonNull()) {
-        JsonArray jsonArraydeviceCgroupRule = jsonObj.getAsJsonArray("device_cgroup_rule");
-        if (jsonArraydeviceCgroupRule != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("device_cgroup_rule").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `device_cgroup_rule` to be an array in the JSON string but got `%s`", jsonObj.get("device_cgroup_rule").toString()));
-          }
-
-          // validate the optional field `device_cgroup_rule` (array)
-          for (int i = 0; i < jsonArraydeviceCgroupRule.size(); i++) {
-            LinuxDeviceCgroup.validateJsonElement(jsonArraydeviceCgroupRule.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("devices") != null && !jsonObj.get("devices").isJsonNull()) {
-        JsonArray jsonArraydevices = jsonObj.getAsJsonArray("devices");
-        if (jsonArraydevices != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("devices").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `devices` to be an array in the JSON string but got `%s`", jsonObj.get("devices").toString()));
-          }
-
-          // validate the optional field `devices` (array)
-          for (int i = 0; i < jsonArraydevices.size(); i++) {
-            LinuxDevice.validateJsonElement(jsonArraydevices.get(i));
-          };
-        }
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("devices_from") != null && !jsonObj.get("devices_from").isJsonNull() && !jsonObj.get("devices_from").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `devices_from` to be an array in the JSON string but got `%s`", jsonObj.get("devices_from").toString()));
-      }
-      if (jsonObj.get("host_device_list") != null && !jsonObj.get("host_device_list").isJsonNull()) {
-        JsonArray jsonArrayhostDeviceList = jsonObj.getAsJsonArray("host_device_list");
-        if (jsonArrayhostDeviceList != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("host_device_list").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `host_device_list` to be an array in the JSON string but got `%s`", jsonObj.get("host_device_list").toString()));
-          }
-
-          // validate the optional field `host_device_list` (array)
-          for (int i = 0; i < jsonArrayhostDeviceList.size(); i++) {
-            LinuxDevice.validateJsonElement(jsonArrayhostDeviceList.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("image") != null && !jsonObj.get("image").isJsonNull()) && !jsonObj.get("image").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image").toString()));
-      }
-      if ((jsonObj.get("image_arch") != null && !jsonObj.get("image_arch").isJsonNull()) && !jsonObj.get("image_arch").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `image_arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image_arch").toString()));
-      }
-      if ((jsonObj.get("image_os") != null && !jsonObj.get("image_os").isJsonNull()) && !jsonObj.get("image_os").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `image_os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image_os").toString()));
-      }
-      if ((jsonObj.get("image_variant") != null && !jsonObj.get("image_variant").isJsonNull()) && !jsonObj.get("image_variant").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `image_variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image_variant").toString()));
-      }
-      if ((jsonObj.get("image_volume_mode") != null && !jsonObj.get("image_volume_mode").isJsonNull()) && !jsonObj.get("image_volume_mode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `image_volume_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("image_volume_mode").toString()));
-      }
-      if (jsonObj.get("image_volumes") != null && !jsonObj.get("image_volumes").isJsonNull()) {
-        JsonArray jsonArrayimageVolumes = jsonObj.getAsJsonArray("image_volumes");
-        if (jsonArrayimageVolumes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("image_volumes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `image_volumes` to be an array in the JSON string but got `%s`", jsonObj.get("image_volumes").toString()));
-          }
-
-          // validate the optional field `image_volumes` (array)
-          for (int i = 0; i < jsonArrayimageVolumes.size(); i++) {
-            ImageVolume.validateJsonElement(jsonArrayimageVolumes.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("init_path") != null && !jsonObj.get("init_path").isJsonNull()) && !jsonObj.get("init_path").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `init_path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("init_path").toString()));
-      }
-      // validate the optional field `ipcns`
-      if (jsonObj.get("ipcns") != null && !jsonObj.get("ipcns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("ipcns"));
-      }
-      if (jsonObj.get("mounts") != null && !jsonObj.get("mounts").isJsonNull()) {
-        JsonArray jsonArraymounts = jsonObj.getAsJsonArray("mounts");
-        if (jsonArraymounts != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("mounts").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `mounts` to be an array in the JSON string but got `%s`", jsonObj.get("mounts").toString()));
-          }
-
-          // validate the optional field `mounts` (array)
-          for (int i = 0; i < jsonArraymounts.size(); i++) {
-            Mount.validateJsonElement(jsonArraymounts.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("overlay_volumes") != null && !jsonObj.get("overlay_volumes").isJsonNull()) {
-        JsonArray jsonArrayoverlayVolumes = jsonObj.getAsJsonArray("overlay_volumes");
-        if (jsonArrayoverlayVolumes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("overlay_volumes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `overlay_volumes` to be an array in the JSON string but got `%s`", jsonObj.get("overlay_volumes").toString()));
-          }
-
-          // validate the optional field `overlay_volumes` (array)
-          for (int i = 0; i < jsonArrayoverlayVolumes.size(); i++) {
-            OverlayVolume.validateJsonElement(jsonArrayoverlayVolumes.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("raw_image_name") != null && !jsonObj.get("raw_image_name").isJsonNull()) && !jsonObj.get("raw_image_name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `raw_image_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("raw_image_name").toString()));
-      }
-      if ((jsonObj.get("rootfs") != null && !jsonObj.get("rootfs").isJsonNull()) && !jsonObj.get("rootfs").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `rootfs` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootfs").toString()));
-      }
-      if ((jsonObj.get("rootfs_mapping") != null && !jsonObj.get("rootfs_mapping").isJsonNull()) && !jsonObj.get("rootfs_mapping").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `rootfs_mapping` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootfs_mapping").toString()));
-      }
-      if ((jsonObj.get("rootfs_propagation") != null && !jsonObj.get("rootfs_propagation").isJsonNull()) && !jsonObj.get("rootfs_propagation").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `rootfs_propagation` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootfs_propagation").toString()));
-      }
-      if (jsonObj.get("secrets") != null && !jsonObj.get("secrets").isJsonNull()) {
-        JsonArray jsonArraysecrets = jsonObj.getAsJsonArray("secrets");
-        if (jsonArraysecrets != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("secrets").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `secrets` to be an array in the JSON string but got `%s`", jsonObj.get("secrets").toString()));
-          }
-
-          // validate the optional field `secrets` (array)
-          for (int i = 0; i < jsonArraysecrets.size(); i++) {
-            Secret.validateJsonElement(jsonArraysecrets.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("volumes") != null && !jsonObj.get("volumes").isJsonNull()) {
-        JsonArray jsonArrayvolumes = jsonObj.getAsJsonArray("volumes");
-        if (jsonArrayvolumes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("volumes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `volumes` to be an array in the JSON string but got `%s`", jsonObj.get("volumes").toString()));
-          }
-
-          // validate the optional field `volumes` (array)
-          for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-            NamedVolume.validateJsonElement(jsonArrayvolumes.get(i));
-          };
-        }
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull() && !jsonObj.get("volumes_from").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `volumes_from` to be an array in the JSON string but got `%s`", jsonObj.get("volumes_from").toString()));
-      }
-      if ((jsonObj.get("work_dir") != null && !jsonObj.get("work_dir").isJsonNull()) && !jsonObj.get("work_dir").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `work_dir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("work_dir").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerStorageConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerStorageConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerStorageConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerStorageConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerStorageConfig>() {
-           @Override
-           public void write(JsonWriter out, ContainerStorageConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerStorageConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerStorageConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerStorageConfig
-   * @throws IOException if the JSON string is invalid with respect to ContainerStorageConfig
-   */
-  public static ContainerStorageConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerStorageConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerStorageConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `chroot_directories` to the URL query string
+    if (getChrootDirectories() != null) {
+      for (int i = 0; i < getChrootDirectories().size(); i++) {
+        joiner.add(String.format("%schroot_directories%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getChrootDirectories().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `create_working_dir` to the URL query string
+    if (getCreateWorkingDir() != null) {
+      joiner.add(String.format("%screate_working_dir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreateWorkingDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `device_cgroup_rule` to the URL query string
+    if (getDeviceCgroupRule() != null) {
+      for (int i = 0; i < getDeviceCgroupRule().size(); i++) {
+        if (getDeviceCgroupRule().get(i) != null) {
+          joiner.add(getDeviceCgroupRule().get(i).toUrlQueryString(String.format("%sdevice_cgroup_rule%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `devices` to the URL query string
+    if (getDevices() != null) {
+      for (int i = 0; i < getDevices().size(); i++) {
+        if (getDevices().get(i) != null) {
+          joiner.add(getDevices().get(i).toUrlQueryString(String.format("%sdevices%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `devices_from` to the URL query string
+    if (getDevicesFrom() != null) {
+      for (int i = 0; i < getDevicesFrom().size(); i++) {
+        joiner.add(String.format("%sdevices_from%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDevicesFrom().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `host_device_list` to the URL query string
+    if (getHostDeviceList() != null) {
+      for (int i = 0; i < getHostDeviceList().size(); i++) {
+        if (getHostDeviceList().get(i) != null) {
+          joiner.add(getHostDeviceList().get(i).toUrlQueryString(String.format("%shost_device_list%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `image` to the URL query string
+    if (getImage() != null) {
+      joiner.add(String.format("%simage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `image_arch` to the URL query string
+    if (getImageArch() != null) {
+      joiner.add(String.format("%simage_arch%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageArch()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `image_os` to the URL query string
+    if (getImageOs() != null) {
+      joiner.add(String.format("%simage_os%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `image_variant` to the URL query string
+    if (getImageVariant() != null) {
+      joiner.add(String.format("%simage_variant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `image_volume_mode` to the URL query string
+    if (getImageVolumeMode() != null) {
+      joiner.add(String.format("%simage_volume_mode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageVolumeMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `image_volumes` to the URL query string
+    if (getImageVolumes() != null) {
+      for (int i = 0; i < getImageVolumes().size(); i++) {
+        if (getImageVolumes().get(i) != null) {
+          joiner.add(getImageVolumes().get(i).toUrlQueryString(String.format("%simage_volumes%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `init` to the URL query string
+    if (getInit() != null) {
+      joiner.add(String.format("%sinit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `init_path` to the URL query string
+    if (getInitPath() != null) {
+      joiner.add(String.format("%sinit_path%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInitPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ipcns` to the URL query string
+    if (getIpcns() != null) {
+      joiner.add(getIpcns().toUrlQueryString(prefix + "ipcns" + suffix));
+    }
+
+    // add `mounts` to the URL query string
+    if (getMounts() != null) {
+      for (int i = 0; i < getMounts().size(); i++) {
+        if (getMounts().get(i) != null) {
+          joiner.add(getMounts().get(i).toUrlQueryString(String.format("%smounts%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `overlay_volumes` to the URL query string
+    if (getOverlayVolumes() != null) {
+      for (int i = 0; i < getOverlayVolumes().size(); i++) {
+        if (getOverlayVolumes().get(i) != null) {
+          joiner.add(getOverlayVolumes().get(i).toUrlQueryString(String.format("%soverlay_volumes%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `raw_image_name` to the URL query string
+    if (getRawImageName() != null) {
+      joiner.add(String.format("%sraw_image_name%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRawImageName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `rootfs` to the URL query string
+    if (getRootfs() != null) {
+      joiner.add(String.format("%srootfs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `rootfs_mapping` to the URL query string
+    if (getRootfsMapping() != null) {
+      joiner.add(String.format("%srootfs_mapping%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfsMapping()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `rootfs_overlay` to the URL query string
+    if (getRootfsOverlay() != null) {
+      joiner.add(String.format("%srootfs_overlay%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfsOverlay()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `rootfs_propagation` to the URL query string
+    if (getRootfsPropagation() != null) {
+      joiner.add(String.format("%srootfs_propagation%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootfsPropagation()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `secrets` to the URL query string
+    if (getSecrets() != null) {
+      for (int i = 0; i < getSecrets().size(); i++) {
+        if (getSecrets().get(i) != null) {
+          joiner.add(getSecrets().get(i).toUrlQueryString(String.format("%ssecrets%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `shm_size` to the URL query string
+    if (getShmSize() != null) {
+      joiner.add(String.format("%sshm_size%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShmSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `shm_size_systemd` to the URL query string
+    if (getShmSizeSystemd() != null) {
+      joiner.add(String.format("%sshm_size_systemd%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getShmSizeSystemd()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `storage_opts` to the URL query string
+    if (getStorageOpts() != null) {
+      for (String _key : getStorageOpts().keySet()) {
+        joiner.add(String.format("%sstorage_opts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getStorageOpts().get(_key), URLEncoder.encode(ApiClient.valueToString(getStorageOpts().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `volatile` to the URL query string
+    if (getVolatile() != null) {
+      joiner.add(String.format("%svolatile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVolatile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `volumes` to the URL query string
+    if (getVolumes() != null) {
+      for (int i = 0; i < getVolumes().size(); i++) {
+        if (getVolumes().get(i) != null) {
+          joiner.add(getVolumes().get(i).toUrlQueryString(String.format("%svolumes%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `volumes_from` to the URL query string
+    if (getVolumesFrom() != null) {
+      for (int i = 0; i < getVolumesFrom().size(); i++) {
+        joiner.add(String.format("%svolumes_from%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getVolumesFrom().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `work_dir` to the URL query string
+    if (getWorkDir() != null) {
+      joiner.add(String.format("%swork_dir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWorkDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

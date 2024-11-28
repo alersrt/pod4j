@@ -13,55 +13,42 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ImageDelete200ResponseInner
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ImageDelete200ResponseInner.JSON_PROPERTY_DELETED,
+  ImageDelete200ResponseInner.JSON_PROPERTY_UNTAGGED
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageDelete200ResponseInner {
-  public static final String SERIALIZED_NAME_DELETED = "deleted";
-  @SerializedName(SERIALIZED_NAME_DELETED)
+  public static final String JSON_PROPERTY_DELETED = "deleted";
   private String deleted;
 
-  public static final String SERIALIZED_NAME_UNTAGGED = "untagged";
-  @SerializedName(SERIALIZED_NAME_UNTAGGED)
+  public static final String JSON_PROPERTY_UNTAGGED = "untagged";
   private List<String> untagged = new ArrayList<>();
 
-  public ImageDelete200ResponseInner() {
+  public ImageDelete200ResponseInner() { 
   }
 
   public ImageDelete200ResponseInner deleted(String deleted) {
@@ -74,10 +61,16 @@ public class ImageDelete200ResponseInner {
    * @return deleted
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DELETED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDeleted() {
     return deleted;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DELETED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDeleted(String deleted) {
     this.deleted = deleted;
   }
@@ -101,16 +94,24 @@ public class ImageDelete200ResponseInner {
    * @return untagged
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UNTAGGED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getUntagged() {
     return untagged;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UNTAGGED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUntagged(List<String> untagged) {
     this.untagged = untagged;
   }
 
 
-
+  /**
+   * Return true if this ImageDelete_200_response_inner object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -150,97 +151,53 @@ public class ImageDelete200ResponseInner {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("deleted");
-    openapiFields.add("untagged");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ImageDelete200ResponseInner
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ImageDelete200ResponseInner.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ImageDelete200ResponseInner is not found in the empty JSON string", ImageDelete200ResponseInner.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ImageDelete200ResponseInner.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageDelete200ResponseInner` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("deleted") != null && !jsonObj.get("deleted").isJsonNull()) && !jsonObj.get("deleted").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `deleted` to be a primitive type in the JSON string but got `%s`", jsonObj.get("deleted").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("untagged") != null && !jsonObj.get("untagged").isJsonNull() && !jsonObj.get("untagged").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `untagged` to be an array in the JSON string but got `%s`", jsonObj.get("untagged").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ImageDelete200ResponseInner.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ImageDelete200ResponseInner' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ImageDelete200ResponseInner> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ImageDelete200ResponseInner.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ImageDelete200ResponseInner>() {
-           @Override
-           public void write(JsonWriter out, ImageDelete200ResponseInner value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ImageDelete200ResponseInner read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ImageDelete200ResponseInner given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ImageDelete200ResponseInner
-   * @throws IOException if the JSON string is invalid with respect to ImageDelete200ResponseInner
-   */
-  public static ImageDelete200ResponseInner fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ImageDelete200ResponseInner.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ImageDelete200ResponseInner to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `deleted` to the URL query string
+    if (getDeleted() != null) {
+      joiner.add(String.format("%sdeleted%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDeleted()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `untagged` to the URL query string
+    if (getUntagged() != null) {
+      for (int i = 0; i < getUntagged().size(); i++) {
+        joiner.add(String.format("%suntagged%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getUntagged().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

@@ -13,53 +13,40 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerSize holds the size of the container&#39;s root filesystem and top read-write layer.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerSize.JSON_PROPERTY_ROOT_FS_SIZE,
+  ContainerSize.JSON_PROPERTY_RW_SIZE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerSize {
-  public static final String SERIALIZED_NAME_ROOT_FS_SIZE = "rootFsSize";
-  @SerializedName(SERIALIZED_NAME_ROOT_FS_SIZE)
+  public static final String JSON_PROPERTY_ROOT_FS_SIZE = "rootFsSize";
   private Long rootFsSize;
 
-  public static final String SERIALIZED_NAME_RW_SIZE = "rwSize";
-  @SerializedName(SERIALIZED_NAME_RW_SIZE)
+  public static final String JSON_PROPERTY_RW_SIZE = "rwSize";
   private Long rwSize;
 
-  public ContainerSize() {
+  public ContainerSize() { 
   }
 
   public ContainerSize rootFsSize(Long rootFsSize) {
@@ -72,10 +59,16 @@ public class ContainerSize {
    * @return rootFsSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ROOT_FS_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getRootFsSize() {
     return rootFsSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOT_FS_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootFsSize(Long rootFsSize) {
     this.rootFsSize = rootFsSize;
   }
@@ -91,16 +84,24 @@ public class ContainerSize {
    * @return rwSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RW_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getRwSize() {
     return rwSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RW_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRwSize(Long rwSize) {
     this.rwSize = rwSize;
   }
 
 
-
+  /**
+   * Return true if this ContainerSize object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -140,90 +141,49 @@ public class ContainerSize {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("rootFsSize");
-    openapiFields.add("rwSize");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerSize
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerSize.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerSize is not found in the empty JSON string", ContainerSize.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerSize.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerSize` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerSize.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerSize' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerSize> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerSize.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerSize>() {
-           @Override
-           public void write(JsonWriter out, ContainerSize value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerSize read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerSize given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerSize
-   * @throws IOException if the JSON string is invalid with respect to ContainerSize
-   */
-  public static ContainerSize fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerSize.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerSize to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `rootFsSize` to the URL query string
+    if (getRootFsSize() != null) {
+      joiner.add(String.format("%srootFsSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootFsSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `rwSize` to the URL query string
+    if (getRwSize() != null) {
+      joiner.add(String.format("%srwSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRwSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

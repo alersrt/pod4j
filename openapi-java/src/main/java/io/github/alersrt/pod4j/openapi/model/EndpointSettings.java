@@ -13,106 +13,93 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.EndpointIPAMConfig;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * EndpointSettings stores the network endpoint details
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  EndpointSettings.JSON_PROPERTY_ALIASES,
+  EndpointSettings.JSON_PROPERTY_DN_S_NAMES,
+  EndpointSettings.JSON_PROPERTY_DRIVER_OPTS,
+  EndpointSettings.JSON_PROPERTY_ENDPOINT_I_D,
+  EndpointSettings.JSON_PROPERTY_GATEWAY,
+  EndpointSettings.JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS,
+  EndpointSettings.JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN,
+  EndpointSettings.JSON_PROPERTY_IP_A_M_CONFIG,
+  EndpointSettings.JSON_PROPERTY_IP_ADDRESS,
+  EndpointSettings.JSON_PROPERTY_IP_PREFIX_LEN,
+  EndpointSettings.JSON_PROPERTY_IPV6_GATEWAY,
+  EndpointSettings.JSON_PROPERTY_LINKS,
+  EndpointSettings.JSON_PROPERTY_MAC_ADDRESS,
+  EndpointSettings.JSON_PROPERTY_NETWORK_I_D
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class EndpointSettings {
-  public static final String SERIALIZED_NAME_ALIASES = "Aliases";
-  @SerializedName(SERIALIZED_NAME_ALIASES)
+  public static final String JSON_PROPERTY_ALIASES = "Aliases";
   private List<String> aliases = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DN_S_NAMES = "DNSNames";
-  @SerializedName(SERIALIZED_NAME_DN_S_NAMES)
+  public static final String JSON_PROPERTY_DN_S_NAMES = "DNSNames";
   private List<String> dnSNames = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DRIVER_OPTS = "DriverOpts";
-  @SerializedName(SERIALIZED_NAME_DRIVER_OPTS)
+  public static final String JSON_PROPERTY_DRIVER_OPTS = "DriverOpts";
   private Map<String, String> driverOpts = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_ENDPOINT_I_D = "EndpointID";
-  @SerializedName(SERIALIZED_NAME_ENDPOINT_I_D)
+  public static final String JSON_PROPERTY_ENDPOINT_I_D = "EndpointID";
   private String endpointID;
 
-  public static final String SERIALIZED_NAME_GATEWAY = "Gateway";
-  @SerializedName(SERIALIZED_NAME_GATEWAY)
+  public static final String JSON_PROPERTY_GATEWAY = "Gateway";
   private String gateway;
 
-  public static final String SERIALIZED_NAME_GLOBAL_I_PV6_ADDRESS = "GlobalIPv6Address";
-  @SerializedName(SERIALIZED_NAME_GLOBAL_I_PV6_ADDRESS)
+  public static final String JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS = "GlobalIPv6Address";
   private String globalIPv6Address;
 
-  public static final String SERIALIZED_NAME_GLOBAL_I_PV6_PREFIX_LEN = "GlobalIPv6PrefixLen";
-  @SerializedName(SERIALIZED_NAME_GLOBAL_I_PV6_PREFIX_LEN)
+  public static final String JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN = "GlobalIPv6PrefixLen";
   private Long globalIPv6PrefixLen;
 
-  public static final String SERIALIZED_NAME_IP_A_M_CONFIG = "IPAMConfig";
-  @SerializedName(SERIALIZED_NAME_IP_A_M_CONFIG)
+  public static final String JSON_PROPERTY_IP_A_M_CONFIG = "IPAMConfig";
   private EndpointIPAMConfig ipAMConfig;
 
-  public static final String SERIALIZED_NAME_IP_ADDRESS = "IPAddress";
-  @SerializedName(SERIALIZED_NAME_IP_ADDRESS)
+  public static final String JSON_PROPERTY_IP_ADDRESS = "IPAddress";
   private String ipAddress;
 
-  public static final String SERIALIZED_NAME_IP_PREFIX_LEN = "IPPrefixLen";
-  @SerializedName(SERIALIZED_NAME_IP_PREFIX_LEN)
+  public static final String JSON_PROPERTY_IP_PREFIX_LEN = "IPPrefixLen";
   private Long ipPrefixLen;
 
-  public static final String SERIALIZED_NAME_IPV6_GATEWAY = "IPv6Gateway";
-  @SerializedName(SERIALIZED_NAME_IPV6_GATEWAY)
+  public static final String JSON_PROPERTY_IPV6_GATEWAY = "IPv6Gateway";
   private String ipv6Gateway;
 
-  public static final String SERIALIZED_NAME_LINKS = "Links";
-  @SerializedName(SERIALIZED_NAME_LINKS)
+  public static final String JSON_PROPERTY_LINKS = "Links";
   private List<String> links = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_MAC_ADDRESS = "MacAddress";
-  @SerializedName(SERIALIZED_NAME_MAC_ADDRESS)
+  public static final String JSON_PROPERTY_MAC_ADDRESS = "MacAddress";
   private String macAddress;
 
-  public static final String SERIALIZED_NAME_NETWORK_I_D = "NetworkID";
-  @SerializedName(SERIALIZED_NAME_NETWORK_I_D)
+  public static final String JSON_PROPERTY_NETWORK_I_D = "NetworkID";
   private String networkID;
 
-  public EndpointSettings() {
+  public EndpointSettings() { 
   }
 
   public EndpointSettings aliases(List<String> aliases) {
@@ -133,10 +120,16 @@ public class EndpointSettings {
    * @return aliases
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ALIASES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getAliases() {
     return aliases;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ALIASES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAliases(List<String> aliases) {
     this.aliases = aliases;
   }
@@ -160,10 +153,16 @@ public class EndpointSettings {
    * @return dnSNames
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DN_S_NAMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDnSNames() {
     return dnSNames;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DN_S_NAMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDnSNames(List<String> dnSNames) {
     this.dnSNames = dnSNames;
   }
@@ -187,10 +186,16 @@ public class EndpointSettings {
    * @return driverOpts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getDriverOpts() {
     return driverOpts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDriverOpts(Map<String, String> driverOpts) {
     this.driverOpts = driverOpts;
   }
@@ -206,10 +211,16 @@ public class EndpointSettings {
    * @return endpointID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getEndpointID() {
     return endpointID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEndpointID(String endpointID) {
     this.endpointID = endpointID;
   }
@@ -225,10 +236,16 @@ public class EndpointSettings {
    * @return gateway
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GATEWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGateway() {
     return gateway;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GATEWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGateway(String gateway) {
     this.gateway = gateway;
   }
@@ -244,10 +261,16 @@ public class EndpointSettings {
    * @return globalIPv6Address
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGlobalIPv6Address() {
     return globalIPv6Address;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGlobalIPv6Address(String globalIPv6Address) {
     this.globalIPv6Address = globalIPv6Address;
   }
@@ -263,10 +286,16 @@ public class EndpointSettings {
    * @return globalIPv6PrefixLen
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getGlobalIPv6PrefixLen() {
     return globalIPv6PrefixLen;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGlobalIPv6PrefixLen(Long globalIPv6PrefixLen) {
     this.globalIPv6PrefixLen = globalIPv6PrefixLen;
   }
@@ -282,10 +311,17 @@ public class EndpointSettings {
    * @return ipAMConfig
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IP_A_M_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public EndpointIPAMConfig getIpAMConfig() {
     return ipAMConfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IP_A_M_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpAMConfig(EndpointIPAMConfig ipAMConfig) {
     this.ipAMConfig = ipAMConfig;
   }
@@ -301,10 +337,16 @@ public class EndpointSettings {
    * @return ipAddress
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIpAddress() {
     return ipAddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpAddress(String ipAddress) {
     this.ipAddress = ipAddress;
   }
@@ -320,10 +362,16 @@ public class EndpointSettings {
    * @return ipPrefixLen
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getIpPrefixLen() {
     return ipPrefixLen;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpPrefixLen(Long ipPrefixLen) {
     this.ipPrefixLen = ipPrefixLen;
   }
@@ -339,10 +387,16 @@ public class EndpointSettings {
    * @return ipv6Gateway
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIpv6Gateway() {
     return ipv6Gateway;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv6Gateway(String ipv6Gateway) {
     this.ipv6Gateway = ipv6Gateway;
   }
@@ -366,10 +420,16 @@ public class EndpointSettings {
    * @return links
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LINKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getLinks() {
     return links;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LINKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLinks(List<String> links) {
     this.links = links;
   }
@@ -385,10 +445,16 @@ public class EndpointSettings {
    * @return macAddress
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMacAddress() {
     return macAddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMacAddress(String macAddress) {
     this.macAddress = macAddress;
   }
@@ -404,16 +470,24 @@ public class EndpointSettings {
    * @return networkID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNetworkID() {
     return networkID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworkID(String networkID) {
     this.networkID = networkID;
   }
 
 
-
+  /**
+   * Return true if this EndpointSettings object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -477,139 +551,125 @@ public class EndpointSettings {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Aliases");
-    openapiFields.add("DNSNames");
-    openapiFields.add("DriverOpts");
-    openapiFields.add("EndpointID");
-    openapiFields.add("Gateway");
-    openapiFields.add("GlobalIPv6Address");
-    openapiFields.add("GlobalIPv6PrefixLen");
-    openapiFields.add("IPAMConfig");
-    openapiFields.add("IPAddress");
-    openapiFields.add("IPPrefixLen");
-    openapiFields.add("IPv6Gateway");
-    openapiFields.add("Links");
-    openapiFields.add("MacAddress");
-    openapiFields.add("NetworkID");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to EndpointSettings
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!EndpointSettings.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in EndpointSettings is not found in the empty JSON string", EndpointSettings.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!EndpointSettings.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EndpointSettings` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Aliases") != null && !jsonObj.get("Aliases").isJsonNull() && !jsonObj.get("Aliases").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Aliases` to be an array in the JSON string but got `%s`", jsonObj.get("Aliases").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("DNSNames") != null && !jsonObj.get("DNSNames").isJsonNull() && !jsonObj.get("DNSNames").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `DNSNames` to be an array in the JSON string but got `%s`", jsonObj.get("DNSNames").toString()));
-      }
-      if ((jsonObj.get("EndpointID") != null && !jsonObj.get("EndpointID").isJsonNull()) && !jsonObj.get("EndpointID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `EndpointID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("EndpointID").toString()));
-      }
-      if ((jsonObj.get("Gateway") != null && !jsonObj.get("Gateway").isJsonNull()) && !jsonObj.get("Gateway").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Gateway").toString()));
-      }
-      if ((jsonObj.get("GlobalIPv6Address") != null && !jsonObj.get("GlobalIPv6Address").isJsonNull()) && !jsonObj.get("GlobalIPv6Address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `GlobalIPv6Address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("GlobalIPv6Address").toString()));
-      }
-      // validate the optional field `IPAMConfig`
-      if (jsonObj.get("IPAMConfig") != null && !jsonObj.get("IPAMConfig").isJsonNull()) {
-        EndpointIPAMConfig.validateJsonElement(jsonObj.get("IPAMConfig"));
-      }
-      if ((jsonObj.get("IPAddress") != null && !jsonObj.get("IPAddress").isJsonNull()) && !jsonObj.get("IPAddress").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IPAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPAddress").toString()));
-      }
-      if ((jsonObj.get("IPv6Gateway") != null && !jsonObj.get("IPv6Gateway").isJsonNull()) && !jsonObj.get("IPv6Gateway").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IPv6Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPv6Gateway").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Links") != null && !jsonObj.get("Links").isJsonNull() && !jsonObj.get("Links").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Links` to be an array in the JSON string but got `%s`", jsonObj.get("Links").toString()));
-      }
-      if ((jsonObj.get("MacAddress") != null && !jsonObj.get("MacAddress").isJsonNull()) && !jsonObj.get("MacAddress").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `MacAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MacAddress").toString()));
-      }
-      if ((jsonObj.get("NetworkID") != null && !jsonObj.get("NetworkID").isJsonNull()) && !jsonObj.get("NetworkID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `NetworkID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("NetworkID").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!EndpointSettings.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'EndpointSettings' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<EndpointSettings> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(EndpointSettings.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<EndpointSettings>() {
-           @Override
-           public void write(JsonWriter out, EndpointSettings value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public EndpointSettings read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of EndpointSettings given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of EndpointSettings
-   * @throws IOException if the JSON string is invalid with respect to EndpointSettings
-   */
-  public static EndpointSettings fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, EndpointSettings.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of EndpointSettings to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Aliases` to the URL query string
+    if (getAliases() != null) {
+      for (int i = 0; i < getAliases().size(); i++) {
+        joiner.add(String.format("%sAliases%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getAliases().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `DNSNames` to the URL query string
+    if (getDnSNames() != null) {
+      for (int i = 0; i < getDnSNames().size(); i++) {
+        joiner.add(String.format("%sDNSNames%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDnSNames().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `DriverOpts` to the URL query string
+    if (getDriverOpts() != null) {
+      for (String _key : getDriverOpts().keySet()) {
+        joiner.add(String.format("%sDriverOpts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getDriverOpts().get(_key), URLEncoder.encode(ApiClient.valueToString(getDriverOpts().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `EndpointID` to the URL query string
+    if (getEndpointID() != null) {
+      joiner.add(String.format("%sEndpointID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEndpointID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Gateway` to the URL query string
+    if (getGateway() != null) {
+      joiner.add(String.format("%sGateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `GlobalIPv6Address` to the URL query string
+    if (getGlobalIPv6Address() != null) {
+      joiner.add(String.format("%sGlobalIPv6Address%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGlobalIPv6Address()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `GlobalIPv6PrefixLen` to the URL query string
+    if (getGlobalIPv6PrefixLen() != null) {
+      joiner.add(String.format("%sGlobalIPv6PrefixLen%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGlobalIPv6PrefixLen()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IPAMConfig` to the URL query string
+    if (getIpAMConfig() != null) {
+      joiner.add(getIpAMConfig().toUrlQueryString(prefix + "IPAMConfig" + suffix));
+    }
+
+    // add `IPAddress` to the URL query string
+    if (getIpAddress() != null) {
+      joiner.add(String.format("%sIPAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IPPrefixLen` to the URL query string
+    if (getIpPrefixLen() != null) {
+      joiner.add(String.format("%sIPPrefixLen%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpPrefixLen()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IPv6Gateway` to the URL query string
+    if (getIpv6Gateway() != null) {
+      joiner.add(String.format("%sIPv6Gateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpv6Gateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Links` to the URL query string
+    if (getLinks() != null) {
+      for (int i = 0; i < getLinks().size(); i++) {
+        joiner.add(String.format("%sLinks%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getLinks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `MacAddress` to the URL query string
+    if (getMacAddress() != null) {
+      joiner.add(String.format("%sMacAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMacAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `NetworkID` to the URL query string
+    if (getNetworkID() != null) {
+      joiner.add(String.format("%sNetworkID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetworkID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

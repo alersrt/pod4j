@@ -13,58 +13,45 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import io.github.alersrt.pod4j.openapi.model.Namespace;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerCgroupConfig contains configuration information about a container&#39;s cgroups.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerCgroupConfig.JSON_PROPERTY_CGROUP_PARENT,
+  ContainerCgroupConfig.JSON_PROPERTY_CGROUPNS,
+  ContainerCgroupConfig.JSON_PROPERTY_CGROUPS_MODE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerCgroupConfig {
-  public static final String SERIALIZED_NAME_CGROUP_PARENT = "cgroup_parent";
-  @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
+  public static final String JSON_PROPERTY_CGROUP_PARENT = "cgroup_parent";
   private String cgroupParent;
 
-  public static final String SERIALIZED_NAME_CGROUPNS = "cgroupns";
-  @SerializedName(SERIALIZED_NAME_CGROUPNS)
+  public static final String JSON_PROPERTY_CGROUPNS = "cgroupns";
   private Namespace cgroupns;
 
-  public static final String SERIALIZED_NAME_CGROUPS_MODE = "cgroups_mode";
-  @SerializedName(SERIALIZED_NAME_CGROUPS_MODE)
+  public static final String JSON_PROPERTY_CGROUPS_MODE = "cgroups_mode";
   private String cgroupsMode;
 
-  public ContainerCgroupConfig() {
+  public ContainerCgroupConfig() { 
   }
 
   public ContainerCgroupConfig cgroupParent(String cgroupParent) {
@@ -77,10 +64,16 @@ public class ContainerCgroupConfig {
    * @return cgroupParent
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCgroupParent() {
     return cgroupParent;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupParent(String cgroupParent) {
     this.cgroupParent = cgroupParent;
   }
@@ -96,10 +89,17 @@ public class ContainerCgroupConfig {
    * @return cgroupns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CGROUPNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Namespace getCgroupns() {
     return cgroupns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUPNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupns(Namespace cgroupns) {
     this.cgroupns = cgroupns;
   }
@@ -115,16 +115,24 @@ public class ContainerCgroupConfig {
    * @return cgroupsMode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CGROUPS_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCgroupsMode() {
     return cgroupsMode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUPS_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupsMode(String cgroupsMode) {
     this.cgroupsMode = cgroupsMode;
   }
 
 
-
+  /**
+   * Return true if this ContainerCgroupConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -166,101 +174,54 @@ public class ContainerCgroupConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("cgroup_parent");
-    openapiFields.add("cgroupns");
-    openapiFields.add("cgroups_mode");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerCgroupConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerCgroupConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerCgroupConfig is not found in the empty JSON string", ContainerCgroupConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerCgroupConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerCgroupConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("cgroup_parent") != null && !jsonObj.get("cgroup_parent").isJsonNull()) && !jsonObj.get("cgroup_parent").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cgroup_parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroup_parent").toString()));
-      }
-      // validate the optional field `cgroupns`
-      if (jsonObj.get("cgroupns") != null && !jsonObj.get("cgroupns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("cgroupns"));
-      }
-      if ((jsonObj.get("cgroups_mode") != null && !jsonObj.get("cgroups_mode").isJsonNull()) && !jsonObj.get("cgroups_mode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cgroups_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroups_mode").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerCgroupConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerCgroupConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerCgroupConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerCgroupConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerCgroupConfig>() {
-           @Override
-           public void write(JsonWriter out, ContainerCgroupConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerCgroupConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerCgroupConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerCgroupConfig
-   * @throws IOException if the JSON string is invalid with respect to ContainerCgroupConfig
-   */
-  public static ContainerCgroupConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerCgroupConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerCgroupConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `cgroup_parent` to the URL query string
+    if (getCgroupParent() != null) {
+      joiner.add(String.format("%scgroup_parent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cgroupns` to the URL query string
+    if (getCgroupns() != null) {
+      joiner.add(getCgroupns().toUrlQueryString(prefix + "cgroupns" + suffix));
+    }
+
+    // add `cgroups_mode` to the URL query string
+    if (getCgroupsMode() != null) {
+      joiner.add(String.format("%scgroups_mode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupsMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

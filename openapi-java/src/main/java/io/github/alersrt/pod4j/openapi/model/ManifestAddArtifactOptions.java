@@ -13,125 +13,112 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ManifestAddArtifactOptions provides the model for creating artifact manifests for files and adding those manifests to a manifest list
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ManifestAddArtifactOptions.JSON_PROPERTY_ANNOTATION,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ANNOTATIONS,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARCH,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARTIFACT_ANNOTATIONS,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARTIFACT_CONFIG,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARTIFACT_CONFIG_TYPE,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARTIFACT_EXCLUDE_TITLES,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARTIFACT_FILES,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARTIFACT_LAYER_TYPE,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARTIFACT_SUBJECT,
+  ManifestAddArtifactOptions.JSON_PROPERTY_ARTIFACT_TYPE,
+  ManifestAddArtifactOptions.JSON_PROPERTY_FEATURES,
+  ManifestAddArtifactOptions.JSON_PROPERTY_INDEX_ANNOTATION,
+  ManifestAddArtifactOptions.JSON_PROPERTY_INDEX_ANNOTATIONS,
+  ManifestAddArtifactOptions.JSON_PROPERTY_OS,
+  ManifestAddArtifactOptions.JSON_PROPERTY_OS_FEATURES,
+  ManifestAddArtifactOptions.JSON_PROPERTY_OS_VERSION,
+  ManifestAddArtifactOptions.JSON_PROPERTY_SUBJECT,
+  ManifestAddArtifactOptions.JSON_PROPERTY_VARIANT
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestAddArtifactOptions {
-  public static final String SERIALIZED_NAME_ANNOTATION = "annotation";
-  @SerializedName(SERIALIZED_NAME_ANNOTATION)
+  public static final String JSON_PROPERTY_ANNOTATION = "annotation";
   private List<String> annotation = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
-  @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
   private Map<String, String> annotations = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_ARCH = "arch";
-  @SerializedName(SERIALIZED_NAME_ARCH)
+  public static final String JSON_PROPERTY_ARCH = "arch";
   private String arch;
 
-  public static final String SERIALIZED_NAME_ARTIFACT_ANNOTATIONS = "artifact_annotations";
-  @SerializedName(SERIALIZED_NAME_ARTIFACT_ANNOTATIONS)
+  public static final String JSON_PROPERTY_ARTIFACT_ANNOTATIONS = "artifact_annotations";
   private Map<String, String> artifactAnnotations = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_ARTIFACT_CONFIG = "artifact_config";
-  @SerializedName(SERIALIZED_NAME_ARTIFACT_CONFIG)
+  public static final String JSON_PROPERTY_ARTIFACT_CONFIG = "artifact_config";
   private String artifactConfig;
 
-  public static final String SERIALIZED_NAME_ARTIFACT_CONFIG_TYPE = "artifact_config_type";
-  @SerializedName(SERIALIZED_NAME_ARTIFACT_CONFIG_TYPE)
+  public static final String JSON_PROPERTY_ARTIFACT_CONFIG_TYPE = "artifact_config_type";
   private String artifactConfigType;
 
-  public static final String SERIALIZED_NAME_ARTIFACT_EXCLUDE_TITLES = "artifact_exclude_titles";
-  @SerializedName(SERIALIZED_NAME_ARTIFACT_EXCLUDE_TITLES)
+  public static final String JSON_PROPERTY_ARTIFACT_EXCLUDE_TITLES = "artifact_exclude_titles";
   private Boolean artifactExcludeTitles;
 
-  public static final String SERIALIZED_NAME_ARTIFACT_FILES = "artifact_files";
-  @SerializedName(SERIALIZED_NAME_ARTIFACT_FILES)
+  public static final String JSON_PROPERTY_ARTIFACT_FILES = "artifact_files";
   private List<String> artifactFiles = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ARTIFACT_LAYER_TYPE = "artifact_layer_type";
-  @SerializedName(SERIALIZED_NAME_ARTIFACT_LAYER_TYPE)
+  public static final String JSON_PROPERTY_ARTIFACT_LAYER_TYPE = "artifact_layer_type";
   private String artifactLayerType;
 
-  public static final String SERIALIZED_NAME_ARTIFACT_SUBJECT = "artifact_subject";
-  @SerializedName(SERIALIZED_NAME_ARTIFACT_SUBJECT)
+  public static final String JSON_PROPERTY_ARTIFACT_SUBJECT = "artifact_subject";
   private String artifactSubject;
 
-  public static final String SERIALIZED_NAME_ARTIFACT_TYPE = "artifact_type";
-  @SerializedName(SERIALIZED_NAME_ARTIFACT_TYPE)
+  public static final String JSON_PROPERTY_ARTIFACT_TYPE = "artifact_type";
   private String artifactType;
 
-  public static final String SERIALIZED_NAME_FEATURES = "features";
-  @SerializedName(SERIALIZED_NAME_FEATURES)
+  public static final String JSON_PROPERTY_FEATURES = "features";
   private List<String> features = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_INDEX_ANNOTATION = "index_annotation";
-  @SerializedName(SERIALIZED_NAME_INDEX_ANNOTATION)
+  public static final String JSON_PROPERTY_INDEX_ANNOTATION = "index_annotation";
   private List<String> indexAnnotation = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_INDEX_ANNOTATIONS = "index_annotations";
-  @SerializedName(SERIALIZED_NAME_INDEX_ANNOTATIONS)
+  public static final String JSON_PROPERTY_INDEX_ANNOTATIONS = "index_annotations";
   private Map<String, String> indexAnnotations = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_OS = "os";
-  @SerializedName(SERIALIZED_NAME_OS)
+  public static final String JSON_PROPERTY_OS = "os";
   private String os;
 
-  public static final String SERIALIZED_NAME_OS_FEATURES = "os_features";
-  @SerializedName(SERIALIZED_NAME_OS_FEATURES)
+  public static final String JSON_PROPERTY_OS_FEATURES = "os_features";
   private List<String> osFeatures = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_OS_VERSION = "os_version";
-  @SerializedName(SERIALIZED_NAME_OS_VERSION)
+  public static final String JSON_PROPERTY_OS_VERSION = "os_version";
   private String osVersion;
 
-  public static final String SERIALIZED_NAME_SUBJECT = "subject";
-  @SerializedName(SERIALIZED_NAME_SUBJECT)
+  public static final String JSON_PROPERTY_SUBJECT = "subject";
   private String subject;
 
-  public static final String SERIALIZED_NAME_VARIANT = "variant";
-  @SerializedName(SERIALIZED_NAME_VARIANT)
+  public static final String JSON_PROPERTY_VARIANT = "variant";
   private String variant;
 
-  public ManifestAddArtifactOptions() {
+  public ManifestAddArtifactOptions() { 
   }
 
   public ManifestAddArtifactOptions annotation(List<String> annotation) {
@@ -152,10 +139,16 @@ public class ManifestAddArtifactOptions {
    * @return annotation
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getAnnotation() {
     return annotation;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnnotation(List<String> annotation) {
     this.annotation = annotation;
   }
@@ -179,10 +172,16 @@ public class ManifestAddArtifactOptions {
    * @return annotations
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getAnnotations() {
     return annotations;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnnotations(Map<String, String> annotations) {
     this.annotations = annotations;
   }
@@ -198,10 +197,16 @@ public class ManifestAddArtifactOptions {
    * @return arch
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArch() {
     return arch;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArch(String arch) {
     this.arch = arch;
   }
@@ -225,10 +230,16 @@ public class ManifestAddArtifactOptions {
    * @return artifactAnnotations
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getArtifactAnnotations() {
     return artifactAnnotations;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtifactAnnotations(Map<String, String> artifactAnnotations) {
     this.artifactAnnotations = artifactAnnotations;
   }
@@ -244,10 +255,16 @@ public class ManifestAddArtifactOptions {
    * @return artifactConfig
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArtifactConfig() {
     return artifactConfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtifactConfig(String artifactConfig) {
     this.artifactConfig = artifactConfig;
   }
@@ -263,10 +280,16 @@ public class ManifestAddArtifactOptions {
    * @return artifactConfigType
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_CONFIG_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArtifactConfigType() {
     return artifactConfigType;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_CONFIG_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtifactConfigType(String artifactConfigType) {
     this.artifactConfigType = artifactConfigType;
   }
@@ -282,10 +305,16 @@ public class ManifestAddArtifactOptions {
    * @return artifactExcludeTitles
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_EXCLUDE_TITLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getArtifactExcludeTitles() {
     return artifactExcludeTitles;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_EXCLUDE_TITLES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtifactExcludeTitles(Boolean artifactExcludeTitles) {
     this.artifactExcludeTitles = artifactExcludeTitles;
   }
@@ -309,10 +338,16 @@ public class ManifestAddArtifactOptions {
    * @return artifactFiles
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_FILES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getArtifactFiles() {
     return artifactFiles;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_FILES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtifactFiles(List<String> artifactFiles) {
     this.artifactFiles = artifactFiles;
   }
@@ -328,10 +363,16 @@ public class ManifestAddArtifactOptions {
    * @return artifactLayerType
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_LAYER_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArtifactLayerType() {
     return artifactLayerType;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_LAYER_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtifactLayerType(String artifactLayerType) {
     this.artifactLayerType = artifactLayerType;
   }
@@ -347,10 +388,16 @@ public class ManifestAddArtifactOptions {
    * @return artifactSubject
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_SUBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArtifactSubject() {
     return artifactSubject;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_SUBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtifactSubject(String artifactSubject) {
     this.artifactSubject = artifactSubject;
   }
@@ -366,10 +413,16 @@ public class ManifestAddArtifactOptions {
    * @return artifactType
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArtifactType() {
     return artifactType;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARTIFACT_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArtifactType(String artifactType) {
     this.artifactType = artifactType;
   }
@@ -393,10 +446,16 @@ public class ManifestAddArtifactOptions {
    * @return features
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_FEATURES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getFeatures() {
     return features;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_FEATURES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFeatures(List<String> features) {
     this.features = features;
   }
@@ -420,10 +479,16 @@ public class ManifestAddArtifactOptions {
    * @return indexAnnotation
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getIndexAnnotation() {
     return indexAnnotation;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIndexAnnotation(List<String> indexAnnotation) {
     this.indexAnnotation = indexAnnotation;
   }
@@ -447,10 +512,16 @@ public class ManifestAddArtifactOptions {
    * @return indexAnnotations
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getIndexAnnotations() {
     return indexAnnotations;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIndexAnnotations(Map<String, String> indexAnnotations) {
     this.indexAnnotations = indexAnnotations;
   }
@@ -466,10 +537,16 @@ public class ManifestAddArtifactOptions {
    * @return os
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOs() {
     return os;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOs(String os) {
     this.os = os;
   }
@@ -493,10 +570,16 @@ public class ManifestAddArtifactOptions {
    * @return osFeatures
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS_FEATURES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getOsFeatures() {
     return osFeatures;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS_FEATURES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOsFeatures(List<String> osFeatures) {
     this.osFeatures = osFeatures;
   }
@@ -512,10 +595,16 @@ public class ManifestAddArtifactOptions {
    * @return osVersion
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOsVersion() {
     return osVersion;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOsVersion(String osVersion) {
     this.osVersion = osVersion;
   }
@@ -531,10 +620,16 @@ public class ManifestAddArtifactOptions {
    * @return subject
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SUBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSubject() {
     return subject;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SUBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubject(String subject) {
     this.subject = subject;
   }
@@ -550,16 +645,24 @@ public class ManifestAddArtifactOptions {
    * @return variant
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVariant() {
     return variant;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVariant(String variant) {
     this.variant = variant;
   }
 
 
-
+  /**
+   * Return true if this ManifestAddArtifactOptions object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -633,157 +736,166 @@ public class ManifestAddArtifactOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("annotation");
-    openapiFields.add("annotations");
-    openapiFields.add("arch");
-    openapiFields.add("artifact_annotations");
-    openapiFields.add("artifact_config");
-    openapiFields.add("artifact_config_type");
-    openapiFields.add("artifact_exclude_titles");
-    openapiFields.add("artifact_files");
-    openapiFields.add("artifact_layer_type");
-    openapiFields.add("artifact_subject");
-    openapiFields.add("artifact_type");
-    openapiFields.add("features");
-    openapiFields.add("index_annotation");
-    openapiFields.add("index_annotations");
-    openapiFields.add("os");
-    openapiFields.add("os_features");
-    openapiFields.add("os_version");
-    openapiFields.add("subject");
-    openapiFields.add("variant");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ManifestAddArtifactOptions
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ManifestAddArtifactOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestAddArtifactOptions is not found in the empty JSON string", ManifestAddArtifactOptions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ManifestAddArtifactOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestAddArtifactOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("annotation") != null && !jsonObj.get("annotation").isJsonNull() && !jsonObj.get("annotation").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `annotation` to be an array in the JSON string but got `%s`", jsonObj.get("annotation").toString()));
-      }
-      if ((jsonObj.get("arch") != null && !jsonObj.get("arch").isJsonNull()) && !jsonObj.get("arch").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arch").toString()));
-      }
-      if ((jsonObj.get("artifact_config") != null && !jsonObj.get("artifact_config").isJsonNull()) && !jsonObj.get("artifact_config").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `artifact_config` to be a primitive type in the JSON string but got `%s`", jsonObj.get("artifact_config").toString()));
-      }
-      if ((jsonObj.get("artifact_config_type") != null && !jsonObj.get("artifact_config_type").isJsonNull()) && !jsonObj.get("artifact_config_type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `artifact_config_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("artifact_config_type").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("artifact_files") != null && !jsonObj.get("artifact_files").isJsonNull() && !jsonObj.get("artifact_files").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `artifact_files` to be an array in the JSON string but got `%s`", jsonObj.get("artifact_files").toString()));
-      }
-      if ((jsonObj.get("artifact_layer_type") != null && !jsonObj.get("artifact_layer_type").isJsonNull()) && !jsonObj.get("artifact_layer_type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `artifact_layer_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("artifact_layer_type").toString()));
-      }
-      if ((jsonObj.get("artifact_subject") != null && !jsonObj.get("artifact_subject").isJsonNull()) && !jsonObj.get("artifact_subject").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `artifact_subject` to be a primitive type in the JSON string but got `%s`", jsonObj.get("artifact_subject").toString()));
-      }
-      if ((jsonObj.get("artifact_type") != null && !jsonObj.get("artifact_type").isJsonNull()) && !jsonObj.get("artifact_type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `artifact_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("artifact_type").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("features") != null && !jsonObj.get("features").isJsonNull() && !jsonObj.get("features").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `features` to be an array in the JSON string but got `%s`", jsonObj.get("features").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("index_annotation") != null && !jsonObj.get("index_annotation").isJsonNull() && !jsonObj.get("index_annotation").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `index_annotation` to be an array in the JSON string but got `%s`", jsonObj.get("index_annotation").toString()));
-      }
-      if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("os_features") != null && !jsonObj.get("os_features").isJsonNull() && !jsonObj.get("os_features").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `os_features` to be an array in the JSON string but got `%s`", jsonObj.get("os_features").toString()));
-      }
-      if ((jsonObj.get("os_version") != null && !jsonObj.get("os_version").isJsonNull()) && !jsonObj.get("os_version").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `os_version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os_version").toString()));
-      }
-      if ((jsonObj.get("subject") != null && !jsonObj.get("subject").isJsonNull()) && !jsonObj.get("subject").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subject` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subject").toString()));
-      }
-      if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ManifestAddArtifactOptions.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ManifestAddArtifactOptions' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ManifestAddArtifactOptions> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ManifestAddArtifactOptions.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ManifestAddArtifactOptions>() {
-           @Override
-           public void write(JsonWriter out, ManifestAddArtifactOptions value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ManifestAddArtifactOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ManifestAddArtifactOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ManifestAddArtifactOptions
-   * @throws IOException if the JSON string is invalid with respect to ManifestAddArtifactOptions
-   */
-  public static ManifestAddArtifactOptions fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ManifestAddArtifactOptions.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ManifestAddArtifactOptions to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `annotation` to the URL query string
+    if (getAnnotation() != null) {
+      for (int i = 0; i < getAnnotation().size(); i++) {
+        joiner.add(String.format("%sannotation%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getAnnotation().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `annotations` to the URL query string
+    if (getAnnotations() != null) {
+      for (String _key : getAnnotations().keySet()) {
+        joiner.add(String.format("%sannotations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `arch` to the URL query string
+    if (getArch() != null) {
+      joiner.add(String.format("%sarch%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArch()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `artifact_annotations` to the URL query string
+    if (getArtifactAnnotations() != null) {
+      for (String _key : getArtifactAnnotations().keySet()) {
+        joiner.add(String.format("%sartifact_annotations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getArtifactAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getArtifactAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `artifact_config` to the URL query string
+    if (getArtifactConfig() != null) {
+      joiner.add(String.format("%sartifact_config%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArtifactConfig()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `artifact_config_type` to the URL query string
+    if (getArtifactConfigType() != null) {
+      joiner.add(String.format("%sartifact_config_type%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArtifactConfigType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `artifact_exclude_titles` to the URL query string
+    if (getArtifactExcludeTitles() != null) {
+      joiner.add(String.format("%sartifact_exclude_titles%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArtifactExcludeTitles()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `artifact_files` to the URL query string
+    if (getArtifactFiles() != null) {
+      for (int i = 0; i < getArtifactFiles().size(); i++) {
+        joiner.add(String.format("%sartifact_files%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getArtifactFiles().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `artifact_layer_type` to the URL query string
+    if (getArtifactLayerType() != null) {
+      joiner.add(String.format("%sartifact_layer_type%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArtifactLayerType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `artifact_subject` to the URL query string
+    if (getArtifactSubject() != null) {
+      joiner.add(String.format("%sartifact_subject%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArtifactSubject()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `artifact_type` to the URL query string
+    if (getArtifactType() != null) {
+      joiner.add(String.format("%sartifact_type%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArtifactType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `features` to the URL query string
+    if (getFeatures() != null) {
+      for (int i = 0; i < getFeatures().size(); i++) {
+        joiner.add(String.format("%sfeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getFeatures().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `index_annotation` to the URL query string
+    if (getIndexAnnotation() != null) {
+      for (int i = 0; i < getIndexAnnotation().size(); i++) {
+        joiner.add(String.format("%sindex_annotation%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getIndexAnnotation().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `index_annotations` to the URL query string
+    if (getIndexAnnotations() != null) {
+      for (String _key : getIndexAnnotations().keySet()) {
+        joiner.add(String.format("%sindex_annotations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getIndexAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getIndexAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `os` to the URL query string
+    if (getOs() != null) {
+      joiner.add(String.format("%sos%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `os_features` to the URL query string
+    if (getOsFeatures() != null) {
+      for (int i = 0; i < getOsFeatures().size(); i++) {
+        joiner.add(String.format("%sos_features%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getOsFeatures().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `os_version` to the URL query string
+    if (getOsVersion() != null) {
+      joiner.add(String.format("%sos_version%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOsVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subject` to the URL query string
+    if (getSubject() != null) {
+      joiner.add(String.format("%ssubject%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubject()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `variant` to the URL query string
+    if (getVariant() != null) {
+      joiner.add(String.format("%svariant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

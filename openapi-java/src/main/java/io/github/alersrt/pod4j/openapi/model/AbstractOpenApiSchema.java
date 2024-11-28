@@ -13,15 +13,16 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import io.github.alersrt.pod4j.openapi.ApiException;
 import java.util.Objects;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 /**
  * Abstract class for oneOf,anyOf schemas defined in OpenAPI spec
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public abstract class AbstractOpenApiSchema {
 
     // store the actual instance of the schema/object
@@ -50,7 +51,7 @@ public abstract class AbstractOpenApiSchema {
      *
      * @return an instance of the actual schema/object
      */
-    //@JsonValue
+    @JsonValue
     public Object getActualInstance() {return instance;}
 
     /**

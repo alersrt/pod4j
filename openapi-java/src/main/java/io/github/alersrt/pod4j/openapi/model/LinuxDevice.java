@@ -13,73 +13,60 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxDevice represents the mknod information for a Linux special device file
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  LinuxDevice.JSON_PROPERTY_FILE_MODE,
+  LinuxDevice.JSON_PROPERTY_GID,
+  LinuxDevice.JSON_PROPERTY_MAJOR,
+  LinuxDevice.JSON_PROPERTY_MINOR,
+  LinuxDevice.JSON_PROPERTY_PATH,
+  LinuxDevice.JSON_PROPERTY_TYPE,
+  LinuxDevice.JSON_PROPERTY_UID
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxDevice {
-  public static final String SERIALIZED_NAME_FILE_MODE = "fileMode";
-  @SerializedName(SERIALIZED_NAME_FILE_MODE)
+  public static final String JSON_PROPERTY_FILE_MODE = "fileMode";
   private Integer fileMode;
 
-  public static final String SERIALIZED_NAME_GID = "gid";
-  @SerializedName(SERIALIZED_NAME_GID)
+  public static final String JSON_PROPERTY_GID = "gid";
   private Integer gid;
 
-  public static final String SERIALIZED_NAME_MAJOR = "major";
-  @SerializedName(SERIALIZED_NAME_MAJOR)
+  public static final String JSON_PROPERTY_MAJOR = "major";
   private Long major;
 
-  public static final String SERIALIZED_NAME_MINOR = "minor";
-  @SerializedName(SERIALIZED_NAME_MINOR)
+  public static final String JSON_PROPERTY_MINOR = "minor";
   private Long minor;
 
-  public static final String SERIALIZED_NAME_PATH = "path";
-  @SerializedName(SERIALIZED_NAME_PATH)
+  public static final String JSON_PROPERTY_PATH = "path";
   private String path;
 
-  public static final String SERIALIZED_NAME_TYPE = "type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
+  public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
 
-  public static final String SERIALIZED_NAME_UID = "uid";
-  @SerializedName(SERIALIZED_NAME_UID)
+  public static final String JSON_PROPERTY_UID = "uid";
   private Integer uid;
 
-  public LinuxDevice() {
+  public LinuxDevice() { 
   }
 
   public LinuxDevice fileMode(Integer fileMode) {
@@ -92,10 +79,16 @@ public class LinuxDevice {
    * @return fileMode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_FILE_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getFileMode() {
     return fileMode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_FILE_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFileMode(Integer fileMode) {
     this.fileMode = fileMode;
   }
@@ -111,10 +104,16 @@ public class LinuxDevice {
    * @return gid
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getGid() {
     return gid;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGid(Integer gid) {
     this.gid = gid;
   }
@@ -130,10 +129,16 @@ public class LinuxDevice {
    * @return major
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MAJOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getMajor() {
     return major;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MAJOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMajor(Long major) {
     this.major = major;
   }
@@ -149,10 +154,16 @@ public class LinuxDevice {
    * @return minor
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MINOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getMinor() {
     return minor;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MINOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMinor(Long minor) {
     this.minor = minor;
   }
@@ -168,10 +179,16 @@ public class LinuxDevice {
    * @return path
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPath() {
     return path;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPath(String path) {
     this.path = path;
   }
@@ -187,10 +204,16 @@ public class LinuxDevice {
    * @return type
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getType() {
     return type;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(String type) {
     this.type = type;
   }
@@ -206,16 +229,24 @@ public class LinuxDevice {
    * @return uid
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getUid() {
     return uid;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUid(Integer uid) {
     this.uid = uid;
   }
 
 
-
+  /**
+   * Return true if this LinuxDevice object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -265,101 +296,74 @@ public class LinuxDevice {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("fileMode");
-    openapiFields.add("gid");
-    openapiFields.add("major");
-    openapiFields.add("minor");
-    openapiFields.add("path");
-    openapiFields.add("type");
-    openapiFields.add("uid");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxDevice
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxDevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxDevice is not found in the empty JSON string", LinuxDevice.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LinuxDevice.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxDevice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("path") != null && !jsonObj.get("path").isJsonNull()) && !jsonObj.get("path").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("path").toString()));
-      }
-      if ((jsonObj.get("type") != null && !jsonObj.get("type").isJsonNull()) && !jsonObj.get("type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("type").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LinuxDevice.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LinuxDevice' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LinuxDevice> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxDevice.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LinuxDevice>() {
-           @Override
-           public void write(JsonWriter out, LinuxDevice value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LinuxDevice read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of LinuxDevice given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxDevice
-   * @throws IOException if the JSON string is invalid with respect to LinuxDevice
-   */
-  public static LinuxDevice fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LinuxDevice.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of LinuxDevice to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `fileMode` to the URL query string
+    if (getFileMode() != null) {
+      joiner.add(String.format("%sfileMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFileMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `gid` to the URL query string
+    if (getGid() != null) {
+      joiner.add(String.format("%sgid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `major` to the URL query string
+    if (getMajor() != null) {
+      joiner.add(String.format("%smajor%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMajor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `minor` to the URL query string
+    if (getMinor() != null) {
+      joiner.add(String.format("%sminor%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMinor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `path` to the URL query string
+    if (getPath() != null) {
+      joiner.add(String.format("%spath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format("%stype%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `uid` to the URL query string
+    if (getUid() != null) {
+      joiner.add(String.format("%suid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

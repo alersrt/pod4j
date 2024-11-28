@@ -13,61 +13,48 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Port An open port on a container
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  Port.JSON_PROPERTY_I_P,
+  Port.JSON_PROPERTY_PRIVATE_PORT,
+  Port.JSON_PROPERTY_PUBLIC_PORT,
+  Port.JSON_PROPERTY_TYPE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Port {
-  public static final String SERIALIZED_NAME_I_P = "IP";
-  @SerializedName(SERIALIZED_NAME_I_P)
+  public static final String JSON_PROPERTY_I_P = "IP";
   private String IP;
 
-  public static final String SERIALIZED_NAME_PRIVATE_PORT = "PrivatePort";
-  @SerializedName(SERIALIZED_NAME_PRIVATE_PORT)
+  public static final String JSON_PROPERTY_PRIVATE_PORT = "PrivatePort";
   private Integer privatePort;
 
-  public static final String SERIALIZED_NAME_PUBLIC_PORT = "PublicPort";
-  @SerializedName(SERIALIZED_NAME_PUBLIC_PORT)
+  public static final String JSON_PROPERTY_PUBLIC_PORT = "PublicPort";
   private Integer publicPort;
 
-  public static final String SERIALIZED_NAME_TYPE = "Type";
-  @SerializedName(SERIALIZED_NAME_TYPE)
+  public static final String JSON_PROPERTY_TYPE = "Type";
   private String type;
 
-  public Port() {
+  public Port() { 
   }
 
   public Port IP(String IP) {
@@ -80,10 +67,16 @@ public class Port {
    * @return IP
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_I_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIP() {
     return IP;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_I_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIP(String IP) {
     this.IP = IP;
   }
@@ -99,10 +92,17 @@ public class Port {
    * @return privatePort
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_PRIVATE_PORT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Integer getPrivatePort() {
     return privatePort;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PRIVATE_PORT)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPrivatePort(Integer privatePort) {
     this.privatePort = privatePort;
   }
@@ -118,10 +118,16 @@ public class Port {
    * @return publicPort
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PUBLIC_PORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getPublicPort() {
     return publicPort;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PUBLIC_PORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPublicPort(Integer publicPort) {
     this.publicPort = publicPort;
   }
@@ -137,16 +143,25 @@ public class Port {
    * @return type
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getType() {
     return type;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(String type) {
     this.type = type;
   }
 
 
-
+  /**
+   * Return true if this Port object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -190,107 +205,59 @@ public class Port {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("IP");
-    openapiFields.add("PrivatePort");
-    openapiFields.add("PublicPort");
-    openapiFields.add("Type");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("PrivatePort");
-    openapiRequiredFields.add("Type");
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Port
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Port.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Port is not found in the empty JSON string", Port.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Port.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Port` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : Port.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("IP") != null && !jsonObj.get("IP").isJsonNull()) && !jsonObj.get("IP").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IP").toString()));
-      }
-      if (!jsonObj.get("Type").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Type").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Port.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Port' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Port> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Port.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Port>() {
-           @Override
-           public void write(JsonWriter out, Port value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Port read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of Port given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Port
-   * @throws IOException if the JSON string is invalid with respect to Port
-   */
-  public static Port fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Port.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of Port to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `IP` to the URL query string
+    if (getIP() != null) {
+      joiner.add(String.format("%sIP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `PrivatePort` to the URL query string
+    if (getPrivatePort() != null) {
+      joiner.add(String.format("%sPrivatePort%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivatePort()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `PublicPort` to the URL query string
+    if (getPublicPort() != null) {
+      joiner.add(String.format("%sPublicPort%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPublicPort()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Type` to the URL query string
+    if (getType() != null) {
+      joiner.add(String.format("%sType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

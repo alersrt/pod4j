@@ -13,125 +13,112 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerSecurityConfig is a container&#39;s security features, including SELinux, Apparmor, and Seccomp.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerSecurityConfig.JSON_PROPERTY_APPARMOR_PROFILE,
+  ContainerSecurityConfig.JSON_PROPERTY_CAP_ADD,
+  ContainerSecurityConfig.JSON_PROPERTY_CAP_DROP,
+  ContainerSecurityConfig.JSON_PROPERTY_GROUPS,
+  ContainerSecurityConfig.JSON_PROPERTY_IDMAPPINGS,
+  ContainerSecurityConfig.JSON_PROPERTY_LABEL_NESTED,
+  ContainerSecurityConfig.JSON_PROPERTY_MASK,
+  ContainerSecurityConfig.JSON_PROPERTY_NO_NEW_PRIVILEGES,
+  ContainerSecurityConfig.JSON_PROPERTY_PRIVILEGED,
+  ContainerSecurityConfig.JSON_PROPERTY_PROCFS_OPTS,
+  ContainerSecurityConfig.JSON_PROPERTY_READ_ONLY_FILESYSTEM,
+  ContainerSecurityConfig.JSON_PROPERTY_READ_WRITE_TMPFS,
+  ContainerSecurityConfig.JSON_PROPERTY_SECCOMP_POLICY,
+  ContainerSecurityConfig.JSON_PROPERTY_SECCOMP_PROFILE_PATH,
+  ContainerSecurityConfig.JSON_PROPERTY_SELINUX_OPTS,
+  ContainerSecurityConfig.JSON_PROPERTY_UMASK,
+  ContainerSecurityConfig.JSON_PROPERTY_UNMASK,
+  ContainerSecurityConfig.JSON_PROPERTY_USER,
+  ContainerSecurityConfig.JSON_PROPERTY_USERNS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerSecurityConfig {
-  public static final String SERIALIZED_NAME_APPARMOR_PROFILE = "apparmor_profile";
-  @SerializedName(SERIALIZED_NAME_APPARMOR_PROFILE)
+  public static final String JSON_PROPERTY_APPARMOR_PROFILE = "apparmor_profile";
   private String apparmorProfile;
 
-  public static final String SERIALIZED_NAME_CAP_ADD = "cap_add";
-  @SerializedName(SERIALIZED_NAME_CAP_ADD)
+  public static final String JSON_PROPERTY_CAP_ADD = "cap_add";
   private List<String> capAdd = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CAP_DROP = "cap_drop";
-  @SerializedName(SERIALIZED_NAME_CAP_DROP)
+  public static final String JSON_PROPERTY_CAP_DROP = "cap_drop";
   private List<String> capDrop = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_GROUPS = "groups";
-  @SerializedName(SERIALIZED_NAME_GROUPS)
+  public static final String JSON_PROPERTY_GROUPS = "groups";
   private List<String> groups = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_IDMAPPINGS = "idmappings";
-  @SerializedName(SERIALIZED_NAME_IDMAPPINGS)
+  public static final String JSON_PROPERTY_IDMAPPINGS = "idmappings";
   private IDMappingOptions idmappings;
 
-  public static final String SERIALIZED_NAME_LABEL_NESTED = "label_nested";
-  @SerializedName(SERIALIZED_NAME_LABEL_NESTED)
+  public static final String JSON_PROPERTY_LABEL_NESTED = "label_nested";
   private Boolean labelNested;
 
-  public static final String SERIALIZED_NAME_MASK = "mask";
-  @SerializedName(SERIALIZED_NAME_MASK)
+  public static final String JSON_PROPERTY_MASK = "mask";
   private List<String> mask = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NO_NEW_PRIVILEGES = "no_new_privileges";
-  @SerializedName(SERIALIZED_NAME_NO_NEW_PRIVILEGES)
+  public static final String JSON_PROPERTY_NO_NEW_PRIVILEGES = "no_new_privileges";
   private Boolean noNewPrivileges;
 
-  public static final String SERIALIZED_NAME_PRIVILEGED = "privileged";
-  @SerializedName(SERIALIZED_NAME_PRIVILEGED)
+  public static final String JSON_PROPERTY_PRIVILEGED = "privileged";
   private Boolean privileged;
 
-  public static final String SERIALIZED_NAME_PROCFS_OPTS = "procfs_opts";
-  @SerializedName(SERIALIZED_NAME_PROCFS_OPTS)
+  public static final String JSON_PROPERTY_PROCFS_OPTS = "procfs_opts";
   private List<String> procfsOpts = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_READ_ONLY_FILESYSTEM = "read_only_filesystem";
-  @SerializedName(SERIALIZED_NAME_READ_ONLY_FILESYSTEM)
+  public static final String JSON_PROPERTY_READ_ONLY_FILESYSTEM = "read_only_filesystem";
   private Boolean readOnlyFilesystem;
 
-  public static final String SERIALIZED_NAME_READ_WRITE_TMPFS = "read_write_tmpfs";
-  @SerializedName(SERIALIZED_NAME_READ_WRITE_TMPFS)
+  public static final String JSON_PROPERTY_READ_WRITE_TMPFS = "read_write_tmpfs";
   private Boolean readWriteTmpfs;
 
-  public static final String SERIALIZED_NAME_SECCOMP_POLICY = "seccomp_policy";
-  @SerializedName(SERIALIZED_NAME_SECCOMP_POLICY)
+  public static final String JSON_PROPERTY_SECCOMP_POLICY = "seccomp_policy";
   private String seccompPolicy;
 
-  public static final String SERIALIZED_NAME_SECCOMP_PROFILE_PATH = "seccomp_profile_path";
-  @SerializedName(SERIALIZED_NAME_SECCOMP_PROFILE_PATH)
+  public static final String JSON_PROPERTY_SECCOMP_PROFILE_PATH = "seccomp_profile_path";
   private String seccompProfilePath;
 
-  public static final String SERIALIZED_NAME_SELINUX_OPTS = "selinux_opts";
-  @SerializedName(SERIALIZED_NAME_SELINUX_OPTS)
+  public static final String JSON_PROPERTY_SELINUX_OPTS = "selinux_opts";
   private List<String> selinuxOpts = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_UMASK = "umask";
-  @SerializedName(SERIALIZED_NAME_UMASK)
+  public static final String JSON_PROPERTY_UMASK = "umask";
   private String umask;
 
-  public static final String SERIALIZED_NAME_UNMASK = "unmask";
-  @SerializedName(SERIALIZED_NAME_UNMASK)
+  public static final String JSON_PROPERTY_UNMASK = "unmask";
   private List<String> unmask = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_USER = "user";
-  @SerializedName(SERIALIZED_NAME_USER)
+  public static final String JSON_PROPERTY_USER = "user";
   private String user;
 
-  public static final String SERIALIZED_NAME_USERNS = "userns";
-  @SerializedName(SERIALIZED_NAME_USERNS)
+  public static final String JSON_PROPERTY_USERNS = "userns";
   private Namespace userns;
 
-  public ContainerSecurityConfig() {
+  public ContainerSecurityConfig() { 
   }
 
   public ContainerSecurityConfig apparmorProfile(String apparmorProfile) {
@@ -144,10 +131,16 @@ public class ContainerSecurityConfig {
    * @return apparmorProfile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_APPARMOR_PROFILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getApparmorProfile() {
     return apparmorProfile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_APPARMOR_PROFILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setApparmorProfile(String apparmorProfile) {
     this.apparmorProfile = apparmorProfile;
   }
@@ -171,10 +164,16 @@ public class ContainerSecurityConfig {
    * @return capAdd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CAP_ADD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCapAdd() {
     return capAdd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CAP_ADD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCapAdd(List<String> capAdd) {
     this.capAdd = capAdd;
   }
@@ -198,10 +197,16 @@ public class ContainerSecurityConfig {
    * @return capDrop
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CAP_DROP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCapDrop() {
     return capDrop;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CAP_DROP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCapDrop(List<String> capDrop) {
     this.capDrop = capDrop;
   }
@@ -225,10 +230,16 @@ public class ContainerSecurityConfig {
    * @return groups
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getGroups() {
     return groups;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GROUPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroups(List<String> groups) {
     this.groups = groups;
   }
@@ -244,10 +255,17 @@ public class ContainerSecurityConfig {
    * @return idmappings
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public IDMappingOptions getIdmappings() {
     return idmappings;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdmappings(IDMappingOptions idmappings) {
     this.idmappings = idmappings;
   }
@@ -263,10 +281,16 @@ public class ContainerSecurityConfig {
    * @return labelNested
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABEL_NESTED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getLabelNested() {
     return labelNested;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABEL_NESTED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabelNested(Boolean labelNested) {
     this.labelNested = labelNested;
   }
@@ -290,10 +314,16 @@ public class ContainerSecurityConfig {
    * @return mask
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MASK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getMask() {
     return mask;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MASK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMask(List<String> mask) {
     this.mask = mask;
   }
@@ -309,10 +339,16 @@ public class ContainerSecurityConfig {
    * @return noNewPrivileges
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NO_NEW_PRIVILEGES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getNoNewPrivileges() {
     return noNewPrivileges;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NO_NEW_PRIVILEGES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNoNewPrivileges(Boolean noNewPrivileges) {
     this.noNewPrivileges = noNewPrivileges;
   }
@@ -328,10 +364,16 @@ public class ContainerSecurityConfig {
    * @return privileged
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getPrivileged() {
     return privileged;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPrivileged(Boolean privileged) {
     this.privileged = privileged;
   }
@@ -355,10 +397,16 @@ public class ContainerSecurityConfig {
    * @return procfsOpts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PROCFS_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getProcfsOpts() {
     return procfsOpts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PROCFS_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProcfsOpts(List<String> procfsOpts) {
     this.procfsOpts = procfsOpts;
   }
@@ -374,10 +422,16 @@ public class ContainerSecurityConfig {
    * @return readOnlyFilesystem
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_READ_ONLY_FILESYSTEM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getReadOnlyFilesystem() {
     return readOnlyFilesystem;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_READ_ONLY_FILESYSTEM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReadOnlyFilesystem(Boolean readOnlyFilesystem) {
     this.readOnlyFilesystem = readOnlyFilesystem;
   }
@@ -393,10 +447,16 @@ public class ContainerSecurityConfig {
    * @return readWriteTmpfs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_READ_WRITE_TMPFS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getReadWriteTmpfs() {
     return readWriteTmpfs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_READ_WRITE_TMPFS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReadWriteTmpfs(Boolean readWriteTmpfs) {
     this.readWriteTmpfs = readWriteTmpfs;
   }
@@ -412,10 +472,16 @@ public class ContainerSecurityConfig {
    * @return seccompPolicy
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SECCOMP_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSeccompPolicy() {
     return seccompPolicy;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SECCOMP_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSeccompPolicy(String seccompPolicy) {
     this.seccompPolicy = seccompPolicy;
   }
@@ -431,10 +497,16 @@ public class ContainerSecurityConfig {
    * @return seccompProfilePath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SECCOMP_PROFILE_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSeccompProfilePath() {
     return seccompProfilePath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SECCOMP_PROFILE_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSeccompProfilePath(String seccompProfilePath) {
     this.seccompProfilePath = seccompProfilePath;
   }
@@ -458,10 +530,16 @@ public class ContainerSecurityConfig {
    * @return selinuxOpts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SELINUX_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getSelinuxOpts() {
     return selinuxOpts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SELINUX_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSelinuxOpts(List<String> selinuxOpts) {
     this.selinuxOpts = selinuxOpts;
   }
@@ -477,10 +555,16 @@ public class ContainerSecurityConfig {
    * @return umask
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UMASK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUmask() {
     return umask;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UMASK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUmask(String umask) {
     this.umask = umask;
   }
@@ -504,10 +588,16 @@ public class ContainerSecurityConfig {
    * @return unmask
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UNMASK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getUnmask() {
     return unmask;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UNMASK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUnmask(List<String> unmask) {
     this.unmask = unmask;
   }
@@ -523,10 +613,16 @@ public class ContainerSecurityConfig {
    * @return user
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUser() {
     return user;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUser(String user) {
     this.user = user;
   }
@@ -542,16 +638,25 @@ public class ContainerSecurityConfig {
    * @return userns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_USERNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Namespace getUserns() {
     return userns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USERNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserns(Namespace userns) {
     this.userns = userns;
   }
 
 
-
+  /**
+   * Return true if this ContainerSecurityConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -625,158 +730,162 @@ public class ContainerSecurityConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("apparmor_profile");
-    openapiFields.add("cap_add");
-    openapiFields.add("cap_drop");
-    openapiFields.add("groups");
-    openapiFields.add("idmappings");
-    openapiFields.add("label_nested");
-    openapiFields.add("mask");
-    openapiFields.add("no_new_privileges");
-    openapiFields.add("privileged");
-    openapiFields.add("procfs_opts");
-    openapiFields.add("read_only_filesystem");
-    openapiFields.add("read_write_tmpfs");
-    openapiFields.add("seccomp_policy");
-    openapiFields.add("seccomp_profile_path");
-    openapiFields.add("selinux_opts");
-    openapiFields.add("umask");
-    openapiFields.add("unmask");
-    openapiFields.add("user");
-    openapiFields.add("userns");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerSecurityConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerSecurityConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerSecurityConfig is not found in the empty JSON string", ContainerSecurityConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerSecurityConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerSecurityConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("apparmor_profile") != null && !jsonObj.get("apparmor_profile").isJsonNull()) && !jsonObj.get("apparmor_profile").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `apparmor_profile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("apparmor_profile").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cap_add") != null && !jsonObj.get("cap_add").isJsonNull() && !jsonObj.get("cap_add").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cap_add` to be an array in the JSON string but got `%s`", jsonObj.get("cap_add").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cap_drop") != null && !jsonObj.get("cap_drop").isJsonNull() && !jsonObj.get("cap_drop").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cap_drop` to be an array in the JSON string but got `%s`", jsonObj.get("cap_drop").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("groups") != null && !jsonObj.get("groups").isJsonNull() && !jsonObj.get("groups").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `groups` to be an array in the JSON string but got `%s`", jsonObj.get("groups").toString()));
-      }
-      // validate the optional field `idmappings`
-      if (jsonObj.get("idmappings") != null && !jsonObj.get("idmappings").isJsonNull()) {
-        IDMappingOptions.validateJsonElement(jsonObj.get("idmappings"));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("mask") != null && !jsonObj.get("mask").isJsonNull() && !jsonObj.get("mask").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `mask` to be an array in the JSON string but got `%s`", jsonObj.get("mask").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("procfs_opts") != null && !jsonObj.get("procfs_opts").isJsonNull() && !jsonObj.get("procfs_opts").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `procfs_opts` to be an array in the JSON string but got `%s`", jsonObj.get("procfs_opts").toString()));
-      }
-      if ((jsonObj.get("seccomp_policy") != null && !jsonObj.get("seccomp_policy").isJsonNull()) && !jsonObj.get("seccomp_policy").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `seccomp_policy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("seccomp_policy").toString()));
-      }
-      if ((jsonObj.get("seccomp_profile_path") != null && !jsonObj.get("seccomp_profile_path").isJsonNull()) && !jsonObj.get("seccomp_profile_path").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `seccomp_profile_path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("seccomp_profile_path").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("selinux_opts") != null && !jsonObj.get("selinux_opts").isJsonNull() && !jsonObj.get("selinux_opts").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `selinux_opts` to be an array in the JSON string but got `%s`", jsonObj.get("selinux_opts").toString()));
-      }
-      if ((jsonObj.get("umask") != null && !jsonObj.get("umask").isJsonNull()) && !jsonObj.get("umask").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `umask` to be a primitive type in the JSON string but got `%s`", jsonObj.get("umask").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("unmask") != null && !jsonObj.get("unmask").isJsonNull() && !jsonObj.get("unmask").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `unmask` to be an array in the JSON string but got `%s`", jsonObj.get("unmask").toString()));
-      }
-      if ((jsonObj.get("user") != null && !jsonObj.get("user").isJsonNull()) && !jsonObj.get("user").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `user` to be a primitive type in the JSON string but got `%s`", jsonObj.get("user").toString()));
-      }
-      // validate the optional field `userns`
-      if (jsonObj.get("userns") != null && !jsonObj.get("userns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("userns"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerSecurityConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerSecurityConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerSecurityConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerSecurityConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerSecurityConfig>() {
-           @Override
-           public void write(JsonWriter out, ContainerSecurityConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerSecurityConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerSecurityConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerSecurityConfig
-   * @throws IOException if the JSON string is invalid with respect to ContainerSecurityConfig
-   */
-  public static ContainerSecurityConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerSecurityConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerSecurityConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `apparmor_profile` to the URL query string
+    if (getApparmorProfile() != null) {
+      joiner.add(String.format("%sapparmor_profile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getApparmorProfile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cap_add` to the URL query string
+    if (getCapAdd() != null) {
+      for (int i = 0; i < getCapAdd().size(); i++) {
+        joiner.add(String.format("%scap_add%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCapAdd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `cap_drop` to the URL query string
+    if (getCapDrop() != null) {
+      for (int i = 0; i < getCapDrop().size(); i++) {
+        joiner.add(String.format("%scap_drop%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCapDrop().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `groups` to the URL query string
+    if (getGroups() != null) {
+      for (int i = 0; i < getGroups().size(); i++) {
+        joiner.add(String.format("%sgroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getGroups().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `idmappings` to the URL query string
+    if (getIdmappings() != null) {
+      joiner.add(getIdmappings().toUrlQueryString(prefix + "idmappings" + suffix));
+    }
+
+    // add `label_nested` to the URL query string
+    if (getLabelNested() != null) {
+      joiner.add(String.format("%slabel_nested%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLabelNested()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `mask` to the URL query string
+    if (getMask() != null) {
+      for (int i = 0; i < getMask().size(); i++) {
+        joiner.add(String.format("%smask%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getMask().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `no_new_privileges` to the URL query string
+    if (getNoNewPrivileges() != null) {
+      joiner.add(String.format("%sno_new_privileges%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNoNewPrivileges()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `privileged` to the URL query string
+    if (getPrivileged() != null) {
+      joiner.add(String.format("%sprivileged%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivileged()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `procfs_opts` to the URL query string
+    if (getProcfsOpts() != null) {
+      for (int i = 0; i < getProcfsOpts().size(); i++) {
+        joiner.add(String.format("%sprocfs_opts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getProcfsOpts().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `read_only_filesystem` to the URL query string
+    if (getReadOnlyFilesystem() != null) {
+      joiner.add(String.format("%sread_only_filesystem%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadOnlyFilesystem()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `read_write_tmpfs` to the URL query string
+    if (getReadWriteTmpfs() != null) {
+      joiner.add(String.format("%sread_write_tmpfs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadWriteTmpfs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `seccomp_policy` to the URL query string
+    if (getSeccompPolicy() != null) {
+      joiner.add(String.format("%sseccomp_policy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSeccompPolicy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `seccomp_profile_path` to the URL query string
+    if (getSeccompProfilePath() != null) {
+      joiner.add(String.format("%sseccomp_profile_path%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSeccompProfilePath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `selinux_opts` to the URL query string
+    if (getSelinuxOpts() != null) {
+      for (int i = 0; i < getSelinuxOpts().size(); i++) {
+        joiner.add(String.format("%sselinux_opts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getSelinuxOpts().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `umask` to the URL query string
+    if (getUmask() != null) {
+      joiner.add(String.format("%sumask%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUmask()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `unmask` to the URL query string
+    if (getUnmask() != null) {
+      for (int i = 0; i < getUnmask().size(); i++) {
+        joiner.add(String.format("%sunmask%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getUnmask().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `user` to the URL query string
+    if (getUser() != null) {
+      joiner.add(String.format("%suser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `userns` to the URL query string
+    if (getUserns() != null) {
+      joiner.add(getUserns().toUrlQueryString(prefix + "userns" + suffix));
+    }
+
+    return joiner.toString();
   }
 }
 

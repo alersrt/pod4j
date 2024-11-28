@@ -13,61 +13,48 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ExecStartLibpodRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ExecStartLibpodRequest.JSON_PROPERTY_DETACH,
+  ExecStartLibpodRequest.JSON_PROPERTY_TTY,
+  ExecStartLibpodRequest.JSON_PROPERTY_H,
+  ExecStartLibpodRequest.JSON_PROPERTY_W
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ExecStartLibpodRequest {
-  public static final String SERIALIZED_NAME_DETACH = "Detach";
-  @SerializedName(SERIALIZED_NAME_DETACH)
+  public static final String JSON_PROPERTY_DETACH = "Detach";
   private Boolean detach;
 
-  public static final String SERIALIZED_NAME_TTY = "Tty";
-  @SerializedName(SERIALIZED_NAME_TTY)
+  public static final String JSON_PROPERTY_TTY = "Tty";
   private Boolean tty;
 
-  public static final String SERIALIZED_NAME_H = "h";
-  @SerializedName(SERIALIZED_NAME_H)
+  public static final String JSON_PROPERTY_H = "h";
   private Integer h;
 
-  public static final String SERIALIZED_NAME_W = "w";
-  @SerializedName(SERIALIZED_NAME_W)
+  public static final String JSON_PROPERTY_W = "w";
   private Integer w;
 
-  public ExecStartLibpodRequest() {
+  public ExecStartLibpodRequest() { 
   }
 
   public ExecStartLibpodRequest detach(Boolean detach) {
@@ -80,10 +67,16 @@ public class ExecStartLibpodRequest {
    * @return detach
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DETACH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getDetach() {
     return detach;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DETACH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetach(Boolean detach) {
     this.detach = detach;
   }
@@ -99,10 +92,16 @@ public class ExecStartLibpodRequest {
    * @return tty
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TTY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getTty() {
     return tty;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TTY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTty(Boolean tty) {
     this.tty = tty;
   }
@@ -118,10 +117,16 @@ public class ExecStartLibpodRequest {
    * @return h
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_H)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getH() {
     return h;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_H)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setH(Integer h) {
     this.h = h;
   }
@@ -137,16 +142,24 @@ public class ExecStartLibpodRequest {
    * @return w
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_W)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getW() {
     return w;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_W)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setW(Integer w) {
     this.w = w;
   }
 
 
-
+  /**
+   * Return true if this ExecStartLibpod_request object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -190,92 +203,59 @@ public class ExecStartLibpodRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Detach");
-    openapiFields.add("Tty");
-    openapiFields.add("h");
-    openapiFields.add("w");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ExecStartLibpodRequest
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ExecStartLibpodRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ExecStartLibpodRequest is not found in the empty JSON string", ExecStartLibpodRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ExecStartLibpodRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ExecStartLibpodRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ExecStartLibpodRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ExecStartLibpodRequest' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ExecStartLibpodRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ExecStartLibpodRequest.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ExecStartLibpodRequest>() {
-           @Override
-           public void write(JsonWriter out, ExecStartLibpodRequest value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ExecStartLibpodRequest read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ExecStartLibpodRequest given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ExecStartLibpodRequest
-   * @throws IOException if the JSON string is invalid with respect to ExecStartLibpodRequest
-   */
-  public static ExecStartLibpodRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ExecStartLibpodRequest.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ExecStartLibpodRequest to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Detach` to the URL query string
+    if (getDetach() != null) {
+      joiner.add(String.format("%sDetach%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDetach()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Tty` to the URL query string
+    if (getTty() != null) {
+      joiner.add(String.format("%sTty%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTty()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `h` to the URL query string
+    if (getH() != null) {
+      joiner.add(String.format("%sh%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getH()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `w` to the URL query string
+    if (getW() != null) {
+      joiner.add(String.format("%sw%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getW()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

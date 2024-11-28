@@ -11,6 +11,6 @@ public class App {
     public static void main(String[] args) throws ApiException, IOException {
         var podman = new Podman("/var/run/user/1000/podman/podman.sock");
         podman.start(Paths.get("common/src/main/resources/nginx.yaml").toAbsolutePath().toString());
-        podman.stop();
+        podman.stop(Paths.get("common/src/main/resources/nginx.yaml").toAbsolutePath().toString());
     }
 }

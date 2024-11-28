@@ -13,57 +13,44 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectUlimit
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  InspectUlimit.JSON_PROPERTY_HARD,
+  InspectUlimit.JSON_PROPERTY_NAME,
+  InspectUlimit.JSON_PROPERTY_SOFT
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectUlimit {
-  public static final String SERIALIZED_NAME_HARD = "Hard";
-  @SerializedName(SERIALIZED_NAME_HARD)
+  public static final String JSON_PROPERTY_HARD = "Hard";
   private Long hard;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public static final String SERIALIZED_NAME_SOFT = "Soft";
-  @SerializedName(SERIALIZED_NAME_SOFT)
+  public static final String JSON_PROPERTY_SOFT = "Soft";
   private Long soft;
 
-  public InspectUlimit() {
+  public InspectUlimit() { 
   }
 
   public InspectUlimit hard(Long hard) {
@@ -76,10 +63,16 @@ public class InspectUlimit {
    * @return hard
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HARD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getHard() {
     return hard;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HARD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHard(Long hard) {
     this.hard = hard;
   }
@@ -95,10 +88,16 @@ public class InspectUlimit {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -114,16 +113,24 @@ public class InspectUlimit {
    * @return soft
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SOFT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSoft() {
     return soft;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SOFT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSoft(Long soft) {
     this.soft = soft;
   }
 
 
-
+  /**
+   * Return true if this InspectUlimit object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -165,94 +172,54 @@ public class InspectUlimit {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Hard");
-    openapiFields.add("Name");
-    openapiFields.add("Soft");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectUlimit
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectUlimit.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectUlimit is not found in the empty JSON string", InspectUlimit.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InspectUlimit.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectUlimit` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InspectUlimit.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InspectUlimit' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InspectUlimit> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InspectUlimit.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InspectUlimit>() {
-           @Override
-           public void write(JsonWriter out, InspectUlimit value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InspectUlimit read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of InspectUlimit given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectUlimit
-   * @throws IOException if the JSON string is invalid with respect to InspectUlimit
-   */
-  public static InspectUlimit fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InspectUlimit.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of InspectUlimit to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Hard` to the URL query string
+    if (getHard() != null) {
+      joiner.add(String.format("%sHard%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHard()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Soft` to the URL query string
+    if (getSoft() != null) {
+      joiner.add(String.format("%sSoft%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSoft()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

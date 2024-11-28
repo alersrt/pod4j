@@ -13,75 +13,62 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.AccessMode;
 import io.github.alersrt.pod4j.openapi.model.CapacityRange;
 import io.github.alersrt.pod4j.openapi.model.Secret;
 import io.github.alersrt.pod4j.openapi.model.TopologyRequirement;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ClusterVolumeSpec
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ClusterVolumeSpec.JSON_PROPERTY_ACCESS_MODE,
+  ClusterVolumeSpec.JSON_PROPERTY_ACCESSIBILITY_REQUIREMENTS,
+  ClusterVolumeSpec.JSON_PROPERTY_AVAILABILITY,
+  ClusterVolumeSpec.JSON_PROPERTY_CAPACITY_RANGE,
+  ClusterVolumeSpec.JSON_PROPERTY_GROUP,
+  ClusterVolumeSpec.JSON_PROPERTY_SECRETS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ClusterVolumeSpec {
-  public static final String SERIALIZED_NAME_ACCESS_MODE = "AccessMode";
-  @SerializedName(SERIALIZED_NAME_ACCESS_MODE)
+  public static final String JSON_PROPERTY_ACCESS_MODE = "AccessMode";
   private AccessMode accessMode;
 
-  public static final String SERIALIZED_NAME_ACCESSIBILITY_REQUIREMENTS = "AccessibilityRequirements";
-  @SerializedName(SERIALIZED_NAME_ACCESSIBILITY_REQUIREMENTS)
+  public static final String JSON_PROPERTY_ACCESSIBILITY_REQUIREMENTS = "AccessibilityRequirements";
   private TopologyRequirement accessibilityRequirements;
 
-  public static final String SERIALIZED_NAME_AVAILABILITY = "Availability";
-  @SerializedName(SERIALIZED_NAME_AVAILABILITY)
+  public static final String JSON_PROPERTY_AVAILABILITY = "Availability";
   private String availability;
 
-  public static final String SERIALIZED_NAME_CAPACITY_RANGE = "CapacityRange";
-  @SerializedName(SERIALIZED_NAME_CAPACITY_RANGE)
+  public static final String JSON_PROPERTY_CAPACITY_RANGE = "CapacityRange";
   private CapacityRange capacityRange;
 
-  public static final String SERIALIZED_NAME_GROUP = "Group";
-  @SerializedName(SERIALIZED_NAME_GROUP)
+  public static final String JSON_PROPERTY_GROUP = "Group";
   private String group;
 
-  public static final String SERIALIZED_NAME_SECRETS = "Secrets";
-  @SerializedName(SERIALIZED_NAME_SECRETS)
-  private List<Secret> secrets = new ArrayList<>();
+  public static final String JSON_PROPERTY_SECRETS = "Secrets";
+  private List<@Valid Secret> secrets = new ArrayList<>();
 
-  public ClusterVolumeSpec() {
+  public ClusterVolumeSpec() { 
   }
 
   public ClusterVolumeSpec accessMode(AccessMode accessMode) {
@@ -94,10 +81,17 @@ public class ClusterVolumeSpec {
    * @return accessMode
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_ACCESS_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public AccessMode getAccessMode() {
     return accessMode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ACCESS_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccessMode(AccessMode accessMode) {
     this.accessMode = accessMode;
   }
@@ -113,10 +107,17 @@ public class ClusterVolumeSpec {
    * @return accessibilityRequirements
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_ACCESSIBILITY_REQUIREMENTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public TopologyRequirement getAccessibilityRequirements() {
     return accessibilityRequirements;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ACCESSIBILITY_REQUIREMENTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAccessibilityRequirements(TopologyRequirement accessibilityRequirements) {
     this.accessibilityRequirements = accessibilityRequirements;
   }
@@ -132,10 +133,16 @@ public class ClusterVolumeSpec {
    * @return availability
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_AVAILABILITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAvailability() {
     return availability;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AVAILABILITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAvailability(String availability) {
     this.availability = availability;
   }
@@ -151,10 +158,17 @@ public class ClusterVolumeSpec {
    * @return capacityRange
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CAPACITY_RANGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public CapacityRange getCapacityRange() {
     return capacityRange;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CAPACITY_RANGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCapacityRange(CapacityRange capacityRange) {
     this.capacityRange = capacityRange;
   }
@@ -170,16 +184,22 @@ public class ClusterVolumeSpec {
    * @return group
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GROUP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGroup() {
     return group;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GROUP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroup(String group) {
     this.group = group;
   }
 
 
-  public ClusterVolumeSpec secrets(List<Secret> secrets) {
+  public ClusterVolumeSpec secrets(List<@Valid Secret> secrets) {
     this.secrets = secrets;
     return this;
   }
@@ -197,16 +217,25 @@ public class ClusterVolumeSpec {
    * @return secrets
    */
   @javax.annotation.Nullable
-  public List<Secret> getSecrets() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SECRETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid Secret> getSecrets() {
     return secrets;
   }
 
-  public void setSecrets(List<Secret> secrets) {
+
+  @JsonProperty(JSON_PROPERTY_SECRETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSecrets(List<@Valid Secret> secrets) {
     this.secrets = secrets;
   }
 
 
-
+  /**
+   * Return true if this ClusterVolumeSpec object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -254,126 +283,74 @@ public class ClusterVolumeSpec {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("AccessMode");
-    openapiFields.add("AccessibilityRequirements");
-    openapiFields.add("Availability");
-    openapiFields.add("CapacityRange");
-    openapiFields.add("Group");
-    openapiFields.add("Secrets");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ClusterVolumeSpec
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ClusterVolumeSpec.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ClusterVolumeSpec is not found in the empty JSON string", ClusterVolumeSpec.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ClusterVolumeSpec.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ClusterVolumeSpec` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `AccessMode`
-      if (jsonObj.get("AccessMode") != null && !jsonObj.get("AccessMode").isJsonNull()) {
-        AccessMode.validateJsonElement(jsonObj.get("AccessMode"));
-      }
-      // validate the optional field `AccessibilityRequirements`
-      if (jsonObj.get("AccessibilityRequirements") != null && !jsonObj.get("AccessibilityRequirements").isJsonNull()) {
-        TopologyRequirement.validateJsonElement(jsonObj.get("AccessibilityRequirements"));
-      }
-      if ((jsonObj.get("Availability") != null && !jsonObj.get("Availability").isJsonNull()) && !jsonObj.get("Availability").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Availability` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Availability").toString()));
-      }
-      // validate the optional field `CapacityRange`
-      if (jsonObj.get("CapacityRange") != null && !jsonObj.get("CapacityRange").isJsonNull()) {
-        CapacityRange.validateJsonElement(jsonObj.get("CapacityRange"));
-      }
-      if ((jsonObj.get("Group") != null && !jsonObj.get("Group").isJsonNull()) && !jsonObj.get("Group").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Group` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Group").toString()));
-      }
-      if (jsonObj.get("Secrets") != null && !jsonObj.get("Secrets").isJsonNull()) {
-        JsonArray jsonArraysecrets = jsonObj.getAsJsonArray("Secrets");
-        if (jsonArraysecrets != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Secrets").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Secrets` to be an array in the JSON string but got `%s`", jsonObj.get("Secrets").toString()));
-          }
-
-          // validate the optional field `Secrets` (array)
-          for (int i = 0; i < jsonArraysecrets.size(); i++) {
-            Secret.validateJsonElement(jsonArraysecrets.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ClusterVolumeSpec.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ClusterVolumeSpec' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ClusterVolumeSpec> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ClusterVolumeSpec.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ClusterVolumeSpec>() {
-           @Override
-           public void write(JsonWriter out, ClusterVolumeSpec value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ClusterVolumeSpec read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ClusterVolumeSpec given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ClusterVolumeSpec
-   * @throws IOException if the JSON string is invalid with respect to ClusterVolumeSpec
-   */
-  public static ClusterVolumeSpec fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ClusterVolumeSpec.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ClusterVolumeSpec to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `AccessMode` to the URL query string
+    if (getAccessMode() != null) {
+      joiner.add(getAccessMode().toUrlQueryString(prefix + "AccessMode" + suffix));
+    }
+
+    // add `AccessibilityRequirements` to the URL query string
+    if (getAccessibilityRequirements() != null) {
+      joiner.add(getAccessibilityRequirements().toUrlQueryString(prefix + "AccessibilityRequirements" + suffix));
+    }
+
+    // add `Availability` to the URL query string
+    if (getAvailability() != null) {
+      joiner.add(String.format("%sAvailability%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAvailability()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CapacityRange` to the URL query string
+    if (getCapacityRange() != null) {
+      joiner.add(getCapacityRange().toUrlQueryString(prefix + "CapacityRange" + suffix));
+    }
+
+    // add `Group` to the URL query string
+    if (getGroup() != null) {
+      joiner.add(String.format("%sGroup%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGroup()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Secrets` to the URL query string
+    if (getSecrets() != null) {
+      for (int i = 0; i < getSecrets().size(); i++) {
+        if (getSecrets().get(i) != null) {
+          joiner.add(getSecrets().get(i).toUrlQueryString(String.format("%sSecrets%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

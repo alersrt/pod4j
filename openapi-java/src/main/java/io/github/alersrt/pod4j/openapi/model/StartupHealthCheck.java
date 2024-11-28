@@ -13,75 +13,62 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * StartupHealthCheck
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  StartupHealthCheck.JSON_PROPERTY_INTERVAL,
+  StartupHealthCheck.JSON_PROPERTY_RETRIES,
+  StartupHealthCheck.JSON_PROPERTY_START_INTERVAL,
+  StartupHealthCheck.JSON_PROPERTY_START_PERIOD,
+  StartupHealthCheck.JSON_PROPERTY_SUCCESSES,
+  StartupHealthCheck.JSON_PROPERTY_TEST,
+  StartupHealthCheck.JSON_PROPERTY_TIMEOUT
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class StartupHealthCheck {
-  public static final String SERIALIZED_NAME_INTERVAL = "Interval";
-  @SerializedName(SERIALIZED_NAME_INTERVAL)
+  public static final String JSON_PROPERTY_INTERVAL = "Interval";
   private Long interval;
 
-  public static final String SERIALIZED_NAME_RETRIES = "Retries";
-  @SerializedName(SERIALIZED_NAME_RETRIES)
+  public static final String JSON_PROPERTY_RETRIES = "Retries";
   private Long retries;
 
-  public static final String SERIALIZED_NAME_START_INTERVAL = "StartInterval";
-  @SerializedName(SERIALIZED_NAME_START_INTERVAL)
+  public static final String JSON_PROPERTY_START_INTERVAL = "StartInterval";
   private Long startInterval;
 
-  public static final String SERIALIZED_NAME_START_PERIOD = "StartPeriod";
-  @SerializedName(SERIALIZED_NAME_START_PERIOD)
+  public static final String JSON_PROPERTY_START_PERIOD = "StartPeriod";
   private Long startPeriod;
 
-  public static final String SERIALIZED_NAME_SUCCESSES = "Successes";
-  @SerializedName(SERIALIZED_NAME_SUCCESSES)
+  public static final String JSON_PROPERTY_SUCCESSES = "Successes";
   private Long successes;
 
-  public static final String SERIALIZED_NAME_TEST = "Test";
-  @SerializedName(SERIALIZED_NAME_TEST)
+  public static final String JSON_PROPERTY_TEST = "Test";
   private List<String> test = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_TIMEOUT = "Timeout";
-  @SerializedName(SERIALIZED_NAME_TIMEOUT)
+  public static final String JSON_PROPERTY_TIMEOUT = "Timeout";
   private Long timeout;
 
-  public StartupHealthCheck() {
+  public StartupHealthCheck() { 
   }
 
   public StartupHealthCheck interval(Long interval) {
@@ -94,10 +81,16 @@ public class StartupHealthCheck {
    * @return interval
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INTERVAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getInterval() {
     return interval;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INTERVAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInterval(Long interval) {
     this.interval = interval;
   }
@@ -113,10 +106,16 @@ public class StartupHealthCheck {
    * @return retries
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RETRIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getRetries() {
     return retries;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RETRIES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRetries(Long retries) {
     this.retries = retries;
   }
@@ -132,10 +131,16 @@ public class StartupHealthCheck {
    * @return startInterval
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_START_INTERVAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getStartInterval() {
     return startInterval;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_START_INTERVAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartInterval(Long startInterval) {
     this.startInterval = startInterval;
   }
@@ -151,10 +156,16 @@ public class StartupHealthCheck {
    * @return startPeriod
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_START_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getStartPeriod() {
     return startPeriod;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_START_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartPeriod(Long startPeriod) {
     this.startPeriod = startPeriod;
   }
@@ -170,10 +181,16 @@ public class StartupHealthCheck {
    * @return successes
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SUCCESSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSuccesses() {
     return successes;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SUCCESSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSuccesses(Long successes) {
     this.successes = successes;
   }
@@ -197,10 +214,16 @@ public class StartupHealthCheck {
    * @return test
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getTest() {
     return test;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTest(List<String> test) {
     this.test = test;
   }
@@ -216,16 +239,24 @@ public class StartupHealthCheck {
    * @return timeout
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TIMEOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getTimeout() {
     return timeout;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TIMEOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTimeout(Long timeout) {
     this.timeout = timeout;
   }
 
 
-
+  /**
+   * Return true if this StartupHealthCheck object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -275,99 +306,78 @@ public class StartupHealthCheck {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Interval");
-    openapiFields.add("Retries");
-    openapiFields.add("StartInterval");
-    openapiFields.add("StartPeriod");
-    openapiFields.add("Successes");
-    openapiFields.add("Test");
-    openapiFields.add("Timeout");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to StartupHealthCheck
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!StartupHealthCheck.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in StartupHealthCheck is not found in the empty JSON string", StartupHealthCheck.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!StartupHealthCheck.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `StartupHealthCheck` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Test") != null && !jsonObj.get("Test").isJsonNull() && !jsonObj.get("Test").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Test` to be an array in the JSON string but got `%s`", jsonObj.get("Test").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!StartupHealthCheck.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'StartupHealthCheck' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<StartupHealthCheck> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(StartupHealthCheck.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<StartupHealthCheck>() {
-           @Override
-           public void write(JsonWriter out, StartupHealthCheck value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public StartupHealthCheck read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of StartupHealthCheck given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of StartupHealthCheck
-   * @throws IOException if the JSON string is invalid with respect to StartupHealthCheck
-   */
-  public static StartupHealthCheck fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, StartupHealthCheck.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of StartupHealthCheck to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Interval` to the URL query string
+    if (getInterval() != null) {
+      joiner.add(String.format("%sInterval%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInterval()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Retries` to the URL query string
+    if (getRetries() != null) {
+      joiner.add(String.format("%sRetries%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRetries()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StartInterval` to the URL query string
+    if (getStartInterval() != null) {
+      joiner.add(String.format("%sStartInterval%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartInterval()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StartPeriod` to the URL query string
+    if (getStartPeriod() != null) {
+      joiner.add(String.format("%sStartPeriod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Successes` to the URL query string
+    if (getSuccesses() != null) {
+      joiner.add(String.format("%sSuccesses%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSuccesses()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Test` to the URL query string
+    if (getTest() != null) {
+      for (int i = 0; i < getTest().size(); i++) {
+        joiner.add(String.format("%sTest%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getTest().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Timeout` to the URL query string
+    if (getTimeout() != null) {
+      joiner.add(String.format("%sTimeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

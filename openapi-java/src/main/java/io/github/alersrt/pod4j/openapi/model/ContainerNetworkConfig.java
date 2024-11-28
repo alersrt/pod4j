@@ -13,108 +13,95 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
 import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
 import io.github.alersrt.pod4j.openapi.model.PortMapping;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerNetworkConfig contains information on a container&#39;s network configuration.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerNetworkConfig.JSON_PROPERTY_NETWORKS,
+  ContainerNetworkConfig.JSON_PROPERTY_BASE_HOSTS_FILE,
+  ContainerNetworkConfig.JSON_PROPERTY_CNI_NETWORKS,
+  ContainerNetworkConfig.JSON_PROPERTY_DNS_OPTION,
+  ContainerNetworkConfig.JSON_PROPERTY_DNS_SEARCH,
+  ContainerNetworkConfig.JSON_PROPERTY_DNS_SERVER,
+  ContainerNetworkConfig.JSON_PROPERTY_EXPOSE,
+  ContainerNetworkConfig.JSON_PROPERTY_HOSTADD,
+  ContainerNetworkConfig.JSON_PROPERTY_NETNS,
+  ContainerNetworkConfig.JSON_PROPERTY_NETWORK_OPTIONS,
+  ContainerNetworkConfig.JSON_PROPERTY_PORTMAPPINGS,
+  ContainerNetworkConfig.JSON_PROPERTY_PUBLISH_IMAGE_PORTS,
+  ContainerNetworkConfig.JSON_PROPERTY_USE_IMAGE_HOSTS,
+  ContainerNetworkConfig.JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerNetworkConfig {
-  public static final String SERIALIZED_NAME_NETWORKS = "Networks";
-  @SerializedName(SERIALIZED_NAME_NETWORKS)
+  public static final String JSON_PROPERTY_NETWORKS = "Networks";
   private Map<String, PerNetworkOptions> networks = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_BASE_HOSTS_FILE = "base_hosts_file";
-  @SerializedName(SERIALIZED_NAME_BASE_HOSTS_FILE)
+  public static final String JSON_PROPERTY_BASE_HOSTS_FILE = "base_hosts_file";
   private String baseHostsFile;
 
-  public static final String SERIALIZED_NAME_CNI_NETWORKS = "cni_networks";
-  @SerializedName(SERIALIZED_NAME_CNI_NETWORKS)
+  public static final String JSON_PROPERTY_CNI_NETWORKS = "cni_networks";
   private List<String> cniNetworks = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DNS_OPTION = "dns_option";
-  @SerializedName(SERIALIZED_NAME_DNS_OPTION)
+  public static final String JSON_PROPERTY_DNS_OPTION = "dns_option";
   private List<String> dnsOption = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DNS_SEARCH = "dns_search";
-  @SerializedName(SERIALIZED_NAME_DNS_SEARCH)
+  public static final String JSON_PROPERTY_DNS_SEARCH = "dns_search";
   private List<String> dnsSearch = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DNS_SERVER = "dns_server";
-  @SerializedName(SERIALIZED_NAME_DNS_SERVER)
+  public static final String JSON_PROPERTY_DNS_SERVER = "dns_server";
   private List<String> dnsServer = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_EXPOSE = "expose";
-  @SerializedName(SERIALIZED_NAME_EXPOSE)
+  public static final String JSON_PROPERTY_EXPOSE = "expose";
   private Object expose;
 
-  public static final String SERIALIZED_NAME_HOSTADD = "hostadd";
-  @SerializedName(SERIALIZED_NAME_HOSTADD)
+  public static final String JSON_PROPERTY_HOSTADD = "hostadd";
   private List<String> hostadd = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NETNS = "netns";
-  @SerializedName(SERIALIZED_NAME_NETNS)
+  public static final String JSON_PROPERTY_NETNS = "netns";
   private Namespace netns;
 
-  public static final String SERIALIZED_NAME_NETWORK_OPTIONS = "network_options";
-  @SerializedName(SERIALIZED_NAME_NETWORK_OPTIONS)
+  public static final String JSON_PROPERTY_NETWORK_OPTIONS = "network_options";
   private Map<String, List<String>> networkOptions = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_PORTMAPPINGS = "portmappings";
-  @SerializedName(SERIALIZED_NAME_PORTMAPPINGS)
-  private List<PortMapping> portmappings = new ArrayList<>();
+  public static final String JSON_PROPERTY_PORTMAPPINGS = "portmappings";
+  private List<@Valid PortMapping> portmappings = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_PUBLISH_IMAGE_PORTS = "publish_image_ports";
-  @SerializedName(SERIALIZED_NAME_PUBLISH_IMAGE_PORTS)
+  public static final String JSON_PROPERTY_PUBLISH_IMAGE_PORTS = "publish_image_ports";
   private Boolean publishImagePorts;
 
-  public static final String SERIALIZED_NAME_USE_IMAGE_HOSTS = "use_image_hosts";
-  @SerializedName(SERIALIZED_NAME_USE_IMAGE_HOSTS)
+  public static final String JSON_PROPERTY_USE_IMAGE_HOSTS = "use_image_hosts";
   private Boolean useImageHosts;
 
-  public static final String SERIALIZED_NAME_USE_IMAGE_RESOLVE_CONF = "use_image_resolve_conf";
-  @SerializedName(SERIALIZED_NAME_USE_IMAGE_RESOLVE_CONF)
+  public static final String JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF = "use_image_resolve_conf";
   private Boolean useImageResolveConf;
 
-  public ContainerNetworkConfig() {
+  public ContainerNetworkConfig() { 
   }
 
   public ContainerNetworkConfig networks(Map<String, PerNetworkOptions> networks) {
@@ -135,10 +122,17 @@ public class ContainerNetworkConfig {
    * @return networks
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NETWORKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, PerNetworkOptions> getNetworks() {
     return networks;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworks(Map<String, PerNetworkOptions> networks) {
     this.networks = networks;
   }
@@ -154,10 +148,16 @@ public class ContainerNetworkConfig {
    * @return baseHostsFile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BASE_HOSTS_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getBaseHostsFile() {
     return baseHostsFile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BASE_HOSTS_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBaseHostsFile(String baseHostsFile) {
     this.baseHostsFile = baseHostsFile;
   }
@@ -181,10 +181,16 @@ public class ContainerNetworkConfig {
    * @return cniNetworks
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CNI_NETWORKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCniNetworks() {
     return cniNetworks;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CNI_NETWORKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCniNetworks(List<String> cniNetworks) {
     this.cniNetworks = cniNetworks;
   }
@@ -208,10 +214,16 @@ public class ContainerNetworkConfig {
    * @return dnsOption
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DNS_OPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDnsOption() {
     return dnsOption;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DNS_OPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDnsOption(List<String> dnsOption) {
     this.dnsOption = dnsOption;
   }
@@ -235,10 +247,16 @@ public class ContainerNetworkConfig {
    * @return dnsSearch
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDnsSearch() {
     return dnsSearch;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDnsSearch(List<String> dnsSearch) {
     this.dnsSearch = dnsSearch;
   }
@@ -262,10 +280,16 @@ public class ContainerNetworkConfig {
    * @return dnsServer
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DNS_SERVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDnsServer() {
     return dnsServer;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DNS_SERVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDnsServer(List<String> dnsServer) {
     this.dnsServer = dnsServer;
   }
@@ -281,10 +305,16 @@ public class ContainerNetworkConfig {
    * @return expose
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXPOSE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getExpose() {
     return expose;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXPOSE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpose(Object expose) {
     this.expose = expose;
   }
@@ -308,10 +338,16 @@ public class ContainerNetworkConfig {
    * @return hostadd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOSTADD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getHostadd() {
     return hostadd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOSTADD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostadd(List<String> hostadd) {
     this.hostadd = hostadd;
   }
@@ -327,10 +363,17 @@ public class ContainerNetworkConfig {
    * @return netns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NETNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Namespace getNetns() {
     return netns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetns(Namespace netns) {
     this.netns = netns;
   }
@@ -354,16 +397,23 @@ public class ContainerNetworkConfig {
    * @return networkOptions
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<String>> getNetworkOptions() {
     return networkOptions;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworkOptions(Map<String, List<String>> networkOptions) {
     this.networkOptions = networkOptions;
   }
 
 
-  public ContainerNetworkConfig portmappings(List<PortMapping> portmappings) {
+  public ContainerNetworkConfig portmappings(List<@Valid PortMapping> portmappings) {
     this.portmappings = portmappings;
     return this;
   }
@@ -381,11 +431,18 @@ public class ContainerNetworkConfig {
    * @return portmappings
    */
   @javax.annotation.Nullable
-  public List<PortMapping> getPortmappings() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PORTMAPPINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PortMapping> getPortmappings() {
     return portmappings;
   }
 
-  public void setPortmappings(List<PortMapping> portmappings) {
+
+  @JsonProperty(JSON_PROPERTY_PORTMAPPINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPortmappings(List<@Valid PortMapping> portmappings) {
     this.portmappings = portmappings;
   }
 
@@ -400,10 +457,16 @@ public class ContainerNetworkConfig {
    * @return publishImagePorts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PUBLISH_IMAGE_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getPublishImagePorts() {
     return publishImagePorts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PUBLISH_IMAGE_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPublishImagePorts(Boolean publishImagePorts) {
     this.publishImagePorts = publishImagePorts;
   }
@@ -419,10 +482,16 @@ public class ContainerNetworkConfig {
    * @return useImageHosts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USE_IMAGE_HOSTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getUseImageHosts() {
     return useImageHosts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USE_IMAGE_HOSTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUseImageHosts(Boolean useImageHosts) {
     this.useImageHosts = useImageHosts;
   }
@@ -438,16 +507,24 @@ public class ContainerNetworkConfig {
    * @return useImageResolveConf
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getUseImageResolveConf() {
     return useImageResolveConf;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUseImageResolveConf(Boolean useImageResolveConf) {
     this.useImageResolveConf = useImageResolveConf;
   }
 
 
-
+  /**
+   * Return true if this ContainerNetworkConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -511,143 +588,143 @@ public class ContainerNetworkConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Networks");
-    openapiFields.add("base_hosts_file");
-    openapiFields.add("cni_networks");
-    openapiFields.add("dns_option");
-    openapiFields.add("dns_search");
-    openapiFields.add("dns_server");
-    openapiFields.add("expose");
-    openapiFields.add("hostadd");
-    openapiFields.add("netns");
-    openapiFields.add("network_options");
-    openapiFields.add("portmappings");
-    openapiFields.add("publish_image_ports");
-    openapiFields.add("use_image_hosts");
-    openapiFields.add("use_image_resolve_conf");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerNetworkConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerNetworkConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerNetworkConfig is not found in the empty JSON string", ContainerNetworkConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerNetworkConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerNetworkConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("base_hosts_file") != null && !jsonObj.get("base_hosts_file").isJsonNull()) && !jsonObj.get("base_hosts_file").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `base_hosts_file` to be a primitive type in the JSON string but got `%s`", jsonObj.get("base_hosts_file").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cni_networks") != null && !jsonObj.get("cni_networks").isJsonNull() && !jsonObj.get("cni_networks").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cni_networks` to be an array in the JSON string but got `%s`", jsonObj.get("cni_networks").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_option") != null && !jsonObj.get("dns_option").isJsonNull() && !jsonObj.get("dns_option").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `dns_option` to be an array in the JSON string but got `%s`", jsonObj.get("dns_option").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_search") != null && !jsonObj.get("dns_search").isJsonNull() && !jsonObj.get("dns_search").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `dns_search` to be an array in the JSON string but got `%s`", jsonObj.get("dns_search").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("dns_server") != null && !jsonObj.get("dns_server").isJsonNull() && !jsonObj.get("dns_server").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `dns_server` to be an array in the JSON string but got `%s`", jsonObj.get("dns_server").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("hostadd") != null && !jsonObj.get("hostadd").isJsonNull() && !jsonObj.get("hostadd").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `hostadd` to be an array in the JSON string but got `%s`", jsonObj.get("hostadd").toString()));
-      }
-      // validate the optional field `netns`
-      if (jsonObj.get("netns") != null && !jsonObj.get("netns").isJsonNull()) {
-        Namespace.validateJsonElement(jsonObj.get("netns"));
-      }
-      if (jsonObj.get("portmappings") != null && !jsonObj.get("portmappings").isJsonNull()) {
-        JsonArray jsonArrayportmappings = jsonObj.getAsJsonArray("portmappings");
-        if (jsonArrayportmappings != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("portmappings").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `portmappings` to be an array in the JSON string but got `%s`", jsonObj.get("portmappings").toString()));
-          }
-
-          // validate the optional field `portmappings` (array)
-          for (int i = 0; i < jsonArrayportmappings.size(); i++) {
-            PortMapping.validateJsonElement(jsonArrayportmappings.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerNetworkConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerNetworkConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerNetworkConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerNetworkConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerNetworkConfig>() {
-           @Override
-           public void write(JsonWriter out, ContainerNetworkConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerNetworkConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerNetworkConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerNetworkConfig
-   * @throws IOException if the JSON string is invalid with respect to ContainerNetworkConfig
-   */
-  public static ContainerNetworkConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerNetworkConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerNetworkConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Networks` to the URL query string
+    if (getNetworks() != null) {
+      for (String _key : getNetworks().keySet()) {
+        if (getNetworks().get(_key) != null) {
+          joiner.add(getNetworks().get(_key).toUrlQueryString(String.format("%sNetworks%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
+      }
+    }
+
+    // add `base_hosts_file` to the URL query string
+    if (getBaseHostsFile() != null) {
+      joiner.add(String.format("%sbase_hosts_file%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBaseHostsFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cni_networks` to the URL query string
+    if (getCniNetworks() != null) {
+      for (int i = 0; i < getCniNetworks().size(); i++) {
+        joiner.add(String.format("%scni_networks%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCniNetworks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `dns_option` to the URL query string
+    if (getDnsOption() != null) {
+      for (int i = 0; i < getDnsOption().size(); i++) {
+        joiner.add(String.format("%sdns_option%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDnsOption().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `dns_search` to the URL query string
+    if (getDnsSearch() != null) {
+      for (int i = 0; i < getDnsSearch().size(); i++) {
+        joiner.add(String.format("%sdns_search%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDnsSearch().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `dns_server` to the URL query string
+    if (getDnsServer() != null) {
+      for (int i = 0; i < getDnsServer().size(); i++) {
+        joiner.add(String.format("%sdns_server%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDnsServer().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `expose` to the URL query string
+    if (getExpose() != null) {
+      joiner.add(String.format("%sexpose%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExpose()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `hostadd` to the URL query string
+    if (getHostadd() != null) {
+      for (int i = 0; i < getHostadd().size(); i++) {
+        joiner.add(String.format("%shostadd%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getHostadd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `netns` to the URL query string
+    if (getNetns() != null) {
+      joiner.add(getNetns().toUrlQueryString(prefix + "netns" + suffix));
+    }
+
+    // add `network_options` to the URL query string
+    if (getNetworkOptions() != null) {
+      for (String _key : getNetworkOptions().keySet()) {
+        joiner.add(String.format("%snetwork_options%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getNetworkOptions().get(_key), URLEncoder.encode(ApiClient.valueToString(getNetworkOptions().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `portmappings` to the URL query string
+    if (getPortmappings() != null) {
+      for (int i = 0; i < getPortmappings().size(); i++) {
+        if (getPortmappings().get(i) != null) {
+          joiner.add(getPortmappings().get(i).toUrlQueryString(String.format("%sportmappings%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `publish_image_ports` to the URL query string
+    if (getPublishImagePorts() != null) {
+      joiner.add(String.format("%spublish_image_ports%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPublishImagePorts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `use_image_hosts` to the URL query string
+    if (getUseImageHosts() != null) {
+      joiner.add(String.format("%suse_image_hosts%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUseImageHosts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `use_image_resolve_conf` to the URL query string
+    if (getUseImageResolveConf() != null) {
+      joiner.add(String.format("%suse_image_resolve_conf%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUseImageResolveConf()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

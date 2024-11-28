@@ -13,93 +13,80 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ManifestAnnotateOptions provides model for annotating manifest list
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ManifestAnnotateOptions.JSON_PROPERTY_ANNOTATION,
+  ManifestAnnotateOptions.JSON_PROPERTY_ANNOTATIONS,
+  ManifestAnnotateOptions.JSON_PROPERTY_ARCH,
+  ManifestAnnotateOptions.JSON_PROPERTY_FEATURES,
+  ManifestAnnotateOptions.JSON_PROPERTY_INDEX_ANNOTATION,
+  ManifestAnnotateOptions.JSON_PROPERTY_INDEX_ANNOTATIONS,
+  ManifestAnnotateOptions.JSON_PROPERTY_OS,
+  ManifestAnnotateOptions.JSON_PROPERTY_OS_FEATURES,
+  ManifestAnnotateOptions.JSON_PROPERTY_OS_VERSION,
+  ManifestAnnotateOptions.JSON_PROPERTY_SUBJECT,
+  ManifestAnnotateOptions.JSON_PROPERTY_VARIANT
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestAnnotateOptions {
-  public static final String SERIALIZED_NAME_ANNOTATION = "annotation";
-  @SerializedName(SERIALIZED_NAME_ANNOTATION)
+  public static final String JSON_PROPERTY_ANNOTATION = "annotation";
   private List<String> annotation = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ANNOTATIONS = "annotations";
-  @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+  public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
   private Map<String, String> annotations = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_ARCH = "arch";
-  @SerializedName(SERIALIZED_NAME_ARCH)
+  public static final String JSON_PROPERTY_ARCH = "arch";
   private String arch;
 
-  public static final String SERIALIZED_NAME_FEATURES = "features";
-  @SerializedName(SERIALIZED_NAME_FEATURES)
+  public static final String JSON_PROPERTY_FEATURES = "features";
   private List<String> features = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_INDEX_ANNOTATION = "index_annotation";
-  @SerializedName(SERIALIZED_NAME_INDEX_ANNOTATION)
+  public static final String JSON_PROPERTY_INDEX_ANNOTATION = "index_annotation";
   private List<String> indexAnnotation = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_INDEX_ANNOTATIONS = "index_annotations";
-  @SerializedName(SERIALIZED_NAME_INDEX_ANNOTATIONS)
+  public static final String JSON_PROPERTY_INDEX_ANNOTATIONS = "index_annotations";
   private Map<String, String> indexAnnotations = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_OS = "os";
-  @SerializedName(SERIALIZED_NAME_OS)
+  public static final String JSON_PROPERTY_OS = "os";
   private String os;
 
-  public static final String SERIALIZED_NAME_OS_FEATURES = "os_features";
-  @SerializedName(SERIALIZED_NAME_OS_FEATURES)
+  public static final String JSON_PROPERTY_OS_FEATURES = "os_features";
   private List<String> osFeatures = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_OS_VERSION = "os_version";
-  @SerializedName(SERIALIZED_NAME_OS_VERSION)
+  public static final String JSON_PROPERTY_OS_VERSION = "os_version";
   private String osVersion;
 
-  public static final String SERIALIZED_NAME_SUBJECT = "subject";
-  @SerializedName(SERIALIZED_NAME_SUBJECT)
+  public static final String JSON_PROPERTY_SUBJECT = "subject";
   private String subject;
 
-  public static final String SERIALIZED_NAME_VARIANT = "variant";
-  @SerializedName(SERIALIZED_NAME_VARIANT)
+  public static final String JSON_PROPERTY_VARIANT = "variant";
   private String variant;
 
-  public ManifestAnnotateOptions() {
+  public ManifestAnnotateOptions() { 
   }
 
   public ManifestAnnotateOptions annotation(List<String> annotation) {
@@ -120,10 +107,16 @@ public class ManifestAnnotateOptions {
    * @return annotation
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getAnnotation() {
     return annotation;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnnotation(List<String> annotation) {
     this.annotation = annotation;
   }
@@ -147,10 +140,16 @@ public class ManifestAnnotateOptions {
    * @return annotations
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getAnnotations() {
     return annotations;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnnotations(Map<String, String> annotations) {
     this.annotations = annotations;
   }
@@ -166,10 +165,16 @@ public class ManifestAnnotateOptions {
    * @return arch
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArch() {
     return arch;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArch(String arch) {
     this.arch = arch;
   }
@@ -193,10 +198,16 @@ public class ManifestAnnotateOptions {
    * @return features
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_FEATURES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getFeatures() {
     return features;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_FEATURES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFeatures(List<String> features) {
     this.features = features;
   }
@@ -220,10 +231,16 @@ public class ManifestAnnotateOptions {
    * @return indexAnnotation
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getIndexAnnotation() {
     return indexAnnotation;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIndexAnnotation(List<String> indexAnnotation) {
     this.indexAnnotation = indexAnnotation;
   }
@@ -247,10 +264,16 @@ public class ManifestAnnotateOptions {
    * @return indexAnnotations
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getIndexAnnotations() {
     return indexAnnotations;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIndexAnnotations(Map<String, String> indexAnnotations) {
     this.indexAnnotations = indexAnnotations;
   }
@@ -266,10 +289,16 @@ public class ManifestAnnotateOptions {
    * @return os
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOs() {
     return os;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOs(String os) {
     this.os = os;
   }
@@ -293,10 +322,16 @@ public class ManifestAnnotateOptions {
    * @return osFeatures
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS_FEATURES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getOsFeatures() {
     return osFeatures;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS_FEATURES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOsFeatures(List<String> osFeatures) {
     this.osFeatures = osFeatures;
   }
@@ -312,10 +347,16 @@ public class ManifestAnnotateOptions {
    * @return osVersion
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOsVersion() {
     return osVersion;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOsVersion(String osVersion) {
     this.osVersion = osVersion;
   }
@@ -331,10 +372,16 @@ public class ManifestAnnotateOptions {
    * @return subject
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SUBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSubject() {
     return subject;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SUBJECT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubject(String subject) {
     this.subject = subject;
   }
@@ -350,16 +397,24 @@ public class ManifestAnnotateOptions {
    * @return variant
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVariant() {
     return variant;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVariant(String variant) {
     this.variant = variant;
   }
 
 
-
+  /**
+   * Return true if this ManifestAnnotateOptions object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -417,130 +472,118 @@ public class ManifestAnnotateOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("annotation");
-    openapiFields.add("annotations");
-    openapiFields.add("arch");
-    openapiFields.add("features");
-    openapiFields.add("index_annotation");
-    openapiFields.add("index_annotations");
-    openapiFields.add("os");
-    openapiFields.add("os_features");
-    openapiFields.add("os_version");
-    openapiFields.add("subject");
-    openapiFields.add("variant");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ManifestAnnotateOptions
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ManifestAnnotateOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestAnnotateOptions is not found in the empty JSON string", ManifestAnnotateOptions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ManifestAnnotateOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestAnnotateOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("annotation") != null && !jsonObj.get("annotation").isJsonNull() && !jsonObj.get("annotation").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `annotation` to be an array in the JSON string but got `%s`", jsonObj.get("annotation").toString()));
-      }
-      if ((jsonObj.get("arch") != null && !jsonObj.get("arch").isJsonNull()) && !jsonObj.get("arch").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arch").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("features") != null && !jsonObj.get("features").isJsonNull() && !jsonObj.get("features").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `features` to be an array in the JSON string but got `%s`", jsonObj.get("features").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("index_annotation") != null && !jsonObj.get("index_annotation").isJsonNull() && !jsonObj.get("index_annotation").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `index_annotation` to be an array in the JSON string but got `%s`", jsonObj.get("index_annotation").toString()));
-      }
-      if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("os_features") != null && !jsonObj.get("os_features").isJsonNull() && !jsonObj.get("os_features").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `os_features` to be an array in the JSON string but got `%s`", jsonObj.get("os_features").toString()));
-      }
-      if ((jsonObj.get("os_version") != null && !jsonObj.get("os_version").isJsonNull()) && !jsonObj.get("os_version").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `os_version` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os_version").toString()));
-      }
-      if ((jsonObj.get("subject") != null && !jsonObj.get("subject").isJsonNull()) && !jsonObj.get("subject").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `subject` to be a primitive type in the JSON string but got `%s`", jsonObj.get("subject").toString()));
-      }
-      if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ManifestAnnotateOptions.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ManifestAnnotateOptions' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ManifestAnnotateOptions> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ManifestAnnotateOptions.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ManifestAnnotateOptions>() {
-           @Override
-           public void write(JsonWriter out, ManifestAnnotateOptions value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ManifestAnnotateOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ManifestAnnotateOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ManifestAnnotateOptions
-   * @throws IOException if the JSON string is invalid with respect to ManifestAnnotateOptions
-   */
-  public static ManifestAnnotateOptions fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ManifestAnnotateOptions.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ManifestAnnotateOptions to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `annotation` to the URL query string
+    if (getAnnotation() != null) {
+      for (int i = 0; i < getAnnotation().size(); i++) {
+        joiner.add(String.format("%sannotation%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getAnnotation().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `annotations` to the URL query string
+    if (getAnnotations() != null) {
+      for (String _key : getAnnotations().keySet()) {
+        joiner.add(String.format("%sannotations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `arch` to the URL query string
+    if (getArch() != null) {
+      joiner.add(String.format("%sarch%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArch()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `features` to the URL query string
+    if (getFeatures() != null) {
+      for (int i = 0; i < getFeatures().size(); i++) {
+        joiner.add(String.format("%sfeatures%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getFeatures().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `index_annotation` to the URL query string
+    if (getIndexAnnotation() != null) {
+      for (int i = 0; i < getIndexAnnotation().size(); i++) {
+        joiner.add(String.format("%sindex_annotation%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getIndexAnnotation().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `index_annotations` to the URL query string
+    if (getIndexAnnotations() != null) {
+      for (String _key : getIndexAnnotations().keySet()) {
+        joiner.add(String.format("%sindex_annotations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getIndexAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getIndexAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `os` to the URL query string
+    if (getOs() != null) {
+      joiner.add(String.format("%sos%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `os_features` to the URL query string
+    if (getOsFeatures() != null) {
+      for (int i = 0; i < getOsFeatures().size(); i++) {
+        joiner.add(String.format("%sos_features%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getOsFeatures().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `os_version` to the URL query string
+    if (getOsVersion() != null) {
+      joiner.add(String.format("%sos_version%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOsVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subject` to the URL query string
+    if (getSubject() != null) {
+      joiner.add(String.format("%ssubject%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubject()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `variant` to the URL query string
+    if (getVariant() != null) {
+      joiner.add(String.format("%svariant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

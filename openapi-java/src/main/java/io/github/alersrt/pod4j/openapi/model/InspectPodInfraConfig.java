@@ -13,122 +13,109 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.InspectHostPort;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectPodInfraConfig contains the configuration of the pod&#39;s infra container.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  InspectPodInfraConfig.JSON_PROPERTY_DN_S_OPTION,
+  InspectPodInfraConfig.JSON_PROPERTY_DN_S_SEARCH,
+  InspectPodInfraConfig.JSON_PROPERTY_DN_S_SERVER,
+  InspectPodInfraConfig.JSON_PROPERTY_HOST_ADD,
+  InspectPodInfraConfig.JSON_PROPERTY_HOST_NETWORK,
+  InspectPodInfraConfig.JSON_PROPERTY_NETWORK_OPTIONS,
+  InspectPodInfraConfig.JSON_PROPERTY_NETWORKS,
+  InspectPodInfraConfig.JSON_PROPERTY_NO_MANAGE_HOSTS,
+  InspectPodInfraConfig.JSON_PROPERTY_NO_MANAGE_RESOLV_CONF,
+  InspectPodInfraConfig.JSON_PROPERTY_PORT_BINDINGS,
+  InspectPodInfraConfig.JSON_PROPERTY_STATIC_I_P,
+  InspectPodInfraConfig.JSON_PROPERTY_STATIC_M_A_C,
+  InspectPodInfraConfig.JSON_PROPERTY_CPU_PERIOD,
+  InspectPodInfraConfig.JSON_PROPERTY_CPU_QUOTA,
+  InspectPodInfraConfig.JSON_PROPERTY_CPUSET_CPUS,
+  InspectPodInfraConfig.JSON_PROPERTY_PID_NS,
+  InspectPodInfraConfig.JSON_PROPERTY_USERNS,
+  InspectPodInfraConfig.JSON_PROPERTY_UTS_NS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectPodInfraConfig {
-  public static final String SERIALIZED_NAME_DN_S_OPTION = "DNSOption";
-  @SerializedName(SERIALIZED_NAME_DN_S_OPTION)
+  public static final String JSON_PROPERTY_DN_S_OPTION = "DNSOption";
   private List<String> dnSOption = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DN_S_SEARCH = "DNSSearch";
-  @SerializedName(SERIALIZED_NAME_DN_S_SEARCH)
+  public static final String JSON_PROPERTY_DN_S_SEARCH = "DNSSearch";
   private List<String> dnSSearch = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DN_S_SERVER = "DNSServer";
-  @SerializedName(SERIALIZED_NAME_DN_S_SERVER)
+  public static final String JSON_PROPERTY_DN_S_SERVER = "DNSServer";
   private List<String> dnSServer = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_HOST_ADD = "HostAdd";
-  @SerializedName(SERIALIZED_NAME_HOST_ADD)
+  public static final String JSON_PROPERTY_HOST_ADD = "HostAdd";
   private List<String> hostAdd = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_HOST_NETWORK = "HostNetwork";
-  @SerializedName(SERIALIZED_NAME_HOST_NETWORK)
+  public static final String JSON_PROPERTY_HOST_NETWORK = "HostNetwork";
   private Boolean hostNetwork;
 
-  public static final String SERIALIZED_NAME_NETWORK_OPTIONS = "NetworkOptions";
-  @SerializedName(SERIALIZED_NAME_NETWORK_OPTIONS)
+  public static final String JSON_PROPERTY_NETWORK_OPTIONS = "NetworkOptions";
   private Map<String, List<String>> networkOptions = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_NETWORKS = "Networks";
-  @SerializedName(SERIALIZED_NAME_NETWORKS)
+  public static final String JSON_PROPERTY_NETWORKS = "Networks";
   private List<String> networks = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NO_MANAGE_HOSTS = "NoManageHosts";
-  @SerializedName(SERIALIZED_NAME_NO_MANAGE_HOSTS)
+  public static final String JSON_PROPERTY_NO_MANAGE_HOSTS = "NoManageHosts";
   private Boolean noManageHosts;
 
-  public static final String SERIALIZED_NAME_NO_MANAGE_RESOLV_CONF = "NoManageResolvConf";
-  @SerializedName(SERIALIZED_NAME_NO_MANAGE_RESOLV_CONF)
+  public static final String JSON_PROPERTY_NO_MANAGE_RESOLV_CONF = "NoManageResolvConf";
   private Boolean noManageResolvConf;
 
-  public static final String SERIALIZED_NAME_PORT_BINDINGS = "PortBindings";
-  @SerializedName(SERIALIZED_NAME_PORT_BINDINGS)
-  private Map<String, List<InspectHostPort>> portBindings = new HashMap<>();
+  public static final String JSON_PROPERTY_PORT_BINDINGS = "PortBindings";
+  private Map<String, List<@Valid InspectHostPort>> portBindings = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_STATIC_I_P = "StaticIP";
-  @SerializedName(SERIALIZED_NAME_STATIC_I_P)
+  public static final String JSON_PROPERTY_STATIC_I_P = "StaticIP";
   private String staticIP;
 
-  public static final String SERIALIZED_NAME_STATIC_M_A_C = "StaticMAC";
-  @SerializedName(SERIALIZED_NAME_STATIC_M_A_C)
+  public static final String JSON_PROPERTY_STATIC_M_A_C = "StaticMAC";
   private String staticMAC;
 
-  public static final String SERIALIZED_NAME_CPU_PERIOD = "cpu_period";
-  @SerializedName(SERIALIZED_NAME_CPU_PERIOD)
+  public static final String JSON_PROPERTY_CPU_PERIOD = "cpu_period";
   private Integer cpuPeriod;
 
-  public static final String SERIALIZED_NAME_CPU_QUOTA = "cpu_quota";
-  @SerializedName(SERIALIZED_NAME_CPU_QUOTA)
+  public static final String JSON_PROPERTY_CPU_QUOTA = "cpu_quota";
   private Long cpuQuota;
 
-  public static final String SERIALIZED_NAME_CPUSET_CPUS = "cpuset_cpus";
-  @SerializedName(SERIALIZED_NAME_CPUSET_CPUS)
+  public static final String JSON_PROPERTY_CPUSET_CPUS = "cpuset_cpus";
   private String cpusetCpus;
 
-  public static final String SERIALIZED_NAME_PID_NS = "pid_ns";
-  @SerializedName(SERIALIZED_NAME_PID_NS)
+  public static final String JSON_PROPERTY_PID_NS = "pid_ns";
   private String pidNs;
 
-  public static final String SERIALIZED_NAME_USERNS = "userns";
-  @SerializedName(SERIALIZED_NAME_USERNS)
+  public static final String JSON_PROPERTY_USERNS = "userns";
   private String userns;
 
-  public static final String SERIALIZED_NAME_UTS_NS = "uts_ns";
-  @SerializedName(SERIALIZED_NAME_UTS_NS)
+  public static final String JSON_PROPERTY_UTS_NS = "uts_ns";
   private String utsNs;
 
-  public InspectPodInfraConfig() {
+  public InspectPodInfraConfig() { 
   }
 
   public InspectPodInfraConfig dnSOption(List<String> dnSOption) {
@@ -149,10 +136,16 @@ public class InspectPodInfraConfig {
    * @return dnSOption
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DN_S_OPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDnSOption() {
     return dnSOption;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DN_S_OPTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDnSOption(List<String> dnSOption) {
     this.dnSOption = dnSOption;
   }
@@ -176,10 +169,16 @@ public class InspectPodInfraConfig {
    * @return dnSSearch
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DN_S_SEARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDnSSearch() {
     return dnSSearch;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DN_S_SEARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDnSSearch(List<String> dnSSearch) {
     this.dnSSearch = dnSSearch;
   }
@@ -203,10 +202,16 @@ public class InspectPodInfraConfig {
    * @return dnSServer
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DN_S_SERVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getDnSServer() {
     return dnSServer;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DN_S_SERVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDnSServer(List<String> dnSServer) {
     this.dnSServer = dnSServer;
   }
@@ -230,10 +235,16 @@ public class InspectPodInfraConfig {
    * @return hostAdd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOST_ADD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getHostAdd() {
     return hostAdd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOST_ADD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostAdd(List<String> hostAdd) {
     this.hostAdd = hostAdd;
   }
@@ -249,10 +260,16 @@ public class InspectPodInfraConfig {
    * @return hostNetwork
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOST_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getHostNetwork() {
     return hostNetwork;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOST_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostNetwork(Boolean hostNetwork) {
     this.hostNetwork = hostNetwork;
   }
@@ -276,10 +293,17 @@ public class InspectPodInfraConfig {
    * @return networkOptions
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<String>> getNetworkOptions() {
     return networkOptions;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworkOptions(Map<String, List<String>> networkOptions) {
     this.networkOptions = networkOptions;
   }
@@ -303,10 +327,16 @@ public class InspectPodInfraConfig {
    * @return networks
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NETWORKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getNetworks() {
     return networks;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworks(List<String> networks) {
     this.networks = networks;
   }
@@ -322,10 +352,16 @@ public class InspectPodInfraConfig {
    * @return noManageHosts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NO_MANAGE_HOSTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getNoManageHosts() {
     return noManageHosts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NO_MANAGE_HOSTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNoManageHosts(Boolean noManageHosts) {
     this.noManageHosts = noManageHosts;
   }
@@ -341,21 +377,27 @@ public class InspectPodInfraConfig {
    * @return noManageResolvConf
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NO_MANAGE_RESOLV_CONF)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getNoManageResolvConf() {
     return noManageResolvConf;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NO_MANAGE_RESOLV_CONF)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNoManageResolvConf(Boolean noManageResolvConf) {
     this.noManageResolvConf = noManageResolvConf;
   }
 
 
-  public InspectPodInfraConfig portBindings(Map<String, List<InspectHostPort>> portBindings) {
+  public InspectPodInfraConfig portBindings(Map<String, List<@Valid InspectHostPort>> portBindings) {
     this.portBindings = portBindings;
     return this;
   }
 
-  public InspectPodInfraConfig putPortBindingsItem(String key, List<InspectHostPort> portBindingsItem) {
+  public InspectPodInfraConfig putPortBindingsItem(String key, List<@Valid InspectHostPort> portBindingsItem) {
     if (this.portBindings == null) {
       this.portBindings = new HashMap<>();
     }
@@ -368,11 +410,18 @@ public class InspectPodInfraConfig {
    * @return portBindings
    */
   @javax.annotation.Nullable
-  public Map<String, List<InspectHostPort>> getPortBindings() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, List<@Valid InspectHostPort>> getPortBindings() {
     return portBindings;
   }
 
-  public void setPortBindings(Map<String, List<InspectHostPort>> portBindings) {
+
+  @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPortBindings(Map<String, List<@Valid InspectHostPort>> portBindings) {
     this.portBindings = portBindings;
   }
 
@@ -387,10 +436,16 @@ public class InspectPodInfraConfig {
    * @return staticIP
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATIC_I_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getStaticIP() {
     return staticIP;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATIC_I_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStaticIP(String staticIP) {
     this.staticIP = staticIP;
   }
@@ -406,10 +461,16 @@ public class InspectPodInfraConfig {
    * @return staticMAC
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATIC_M_A_C)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getStaticMAC() {
     return staticMAC;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATIC_M_A_C)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStaticMAC(String staticMAC) {
     this.staticMAC = staticMAC;
   }
@@ -425,10 +486,16 @@ public class InspectPodInfraConfig {
    * @return cpuPeriod
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getCpuPeriod() {
     return cpuPeriod;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpuPeriod(Integer cpuPeriod) {
     this.cpuPeriod = cpuPeriod;
   }
@@ -444,10 +511,16 @@ public class InspectPodInfraConfig {
    * @return cpuQuota
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getCpuQuota() {
     return cpuQuota;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpuQuota(Long cpuQuota) {
     this.cpuQuota = cpuQuota;
   }
@@ -463,10 +536,16 @@ public class InspectPodInfraConfig {
    * @return cpusetCpus
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCpusetCpus() {
     return cpusetCpus;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpusetCpus(String cpusetCpus) {
     this.cpusetCpus = cpusetCpus;
   }
@@ -482,10 +561,16 @@ public class InspectPodInfraConfig {
    * @return pidNs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PID_NS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPidNs() {
     return pidNs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PID_NS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPidNs(String pidNs) {
     this.pidNs = pidNs;
   }
@@ -501,10 +586,16 @@ public class InspectPodInfraConfig {
    * @return userns
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USERNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUserns() {
     return userns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USERNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserns(String userns) {
     this.userns = userns;
   }
@@ -520,16 +611,24 @@ public class InspectPodInfraConfig {
    * @return utsNs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UTS_NS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUtsNs() {
     return utsNs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UTS_NS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUtsNs(String utsNs) {
     this.utsNs = utsNs;
   }
 
 
-
+  /**
+   * Return true if this InspectPodInfraConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -601,144 +700,157 @@ public class InspectPodInfraConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("DNSOption");
-    openapiFields.add("DNSSearch");
-    openapiFields.add("DNSServer");
-    openapiFields.add("HostAdd");
-    openapiFields.add("HostNetwork");
-    openapiFields.add("NetworkOptions");
-    openapiFields.add("Networks");
-    openapiFields.add("NoManageHosts");
-    openapiFields.add("NoManageResolvConf");
-    openapiFields.add("PortBindings");
-    openapiFields.add("StaticIP");
-    openapiFields.add("StaticMAC");
-    openapiFields.add("cpu_period");
-    openapiFields.add("cpu_quota");
-    openapiFields.add("cpuset_cpus");
-    openapiFields.add("pid_ns");
-    openapiFields.add("userns");
-    openapiFields.add("uts_ns");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectPodInfraConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectPodInfraConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectPodInfraConfig is not found in the empty JSON string", InspectPodInfraConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InspectPodInfraConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectPodInfraConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("DNSOption") != null && !jsonObj.get("DNSOption").isJsonNull() && !jsonObj.get("DNSOption").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `DNSOption` to be an array in the JSON string but got `%s`", jsonObj.get("DNSOption").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("DNSSearch") != null && !jsonObj.get("DNSSearch").isJsonNull() && !jsonObj.get("DNSSearch").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `DNSSearch` to be an array in the JSON string but got `%s`", jsonObj.get("DNSSearch").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("DNSServer") != null && !jsonObj.get("DNSServer").isJsonNull() && !jsonObj.get("DNSServer").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `DNSServer` to be an array in the JSON string but got `%s`", jsonObj.get("DNSServer").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("HostAdd") != null && !jsonObj.get("HostAdd").isJsonNull() && !jsonObj.get("HostAdd").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `HostAdd` to be an array in the JSON string but got `%s`", jsonObj.get("HostAdd").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Networks") != null && !jsonObj.get("Networks").isJsonNull() && !jsonObj.get("Networks").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Networks` to be an array in the JSON string but got `%s`", jsonObj.get("Networks").toString()));
-      }
-      if ((jsonObj.get("StaticIP") != null && !jsonObj.get("StaticIP").isJsonNull()) && !jsonObj.get("StaticIP").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `StaticIP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StaticIP").toString()));
-      }
-      if ((jsonObj.get("StaticMAC") != null && !jsonObj.get("StaticMAC").isJsonNull()) && !jsonObj.get("StaticMAC").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `StaticMAC` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StaticMAC").toString()));
-      }
-      if ((jsonObj.get("cpuset_cpus") != null && !jsonObj.get("cpuset_cpus").isJsonNull()) && !jsonObj.get("cpuset_cpus").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cpuset_cpus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cpuset_cpus").toString()));
-      }
-      if ((jsonObj.get("pid_ns") != null && !jsonObj.get("pid_ns").isJsonNull()) && !jsonObj.get("pid_ns").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `pid_ns` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pid_ns").toString()));
-      }
-      if ((jsonObj.get("userns") != null && !jsonObj.get("userns").isJsonNull()) && !jsonObj.get("userns").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `userns` to be a primitive type in the JSON string but got `%s`", jsonObj.get("userns").toString()));
-      }
-      if ((jsonObj.get("uts_ns") != null && !jsonObj.get("uts_ns").isJsonNull()) && !jsonObj.get("uts_ns").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `uts_ns` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uts_ns").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InspectPodInfraConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InspectPodInfraConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InspectPodInfraConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InspectPodInfraConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InspectPodInfraConfig>() {
-           @Override
-           public void write(JsonWriter out, InspectPodInfraConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InspectPodInfraConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of InspectPodInfraConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectPodInfraConfig
-   * @throws IOException if the JSON string is invalid with respect to InspectPodInfraConfig
-   */
-  public static InspectPodInfraConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InspectPodInfraConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of InspectPodInfraConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `DNSOption` to the URL query string
+    if (getDnSOption() != null) {
+      for (int i = 0; i < getDnSOption().size(); i++) {
+        joiner.add(String.format("%sDNSOption%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDnSOption().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `DNSSearch` to the URL query string
+    if (getDnSSearch() != null) {
+      for (int i = 0; i < getDnSSearch().size(); i++) {
+        joiner.add(String.format("%sDNSSearch%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDnSSearch().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `DNSServer` to the URL query string
+    if (getDnSServer() != null) {
+      for (int i = 0; i < getDnSServer().size(); i++) {
+        joiner.add(String.format("%sDNSServer%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getDnSServer().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `HostAdd` to the URL query string
+    if (getHostAdd() != null) {
+      for (int i = 0; i < getHostAdd().size(); i++) {
+        joiner.add(String.format("%sHostAdd%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getHostAdd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `HostNetwork` to the URL query string
+    if (getHostNetwork() != null) {
+      joiner.add(String.format("%sHostNetwork%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostNetwork()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `NetworkOptions` to the URL query string
+    if (getNetworkOptions() != null) {
+      for (String _key : getNetworkOptions().keySet()) {
+        joiner.add(String.format("%sNetworkOptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getNetworkOptions().get(_key), URLEncoder.encode(ApiClient.valueToString(getNetworkOptions().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Networks` to the URL query string
+    if (getNetworks() != null) {
+      for (int i = 0; i < getNetworks().size(); i++) {
+        joiner.add(String.format("%sNetworks%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getNetworks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `NoManageHosts` to the URL query string
+    if (getNoManageHosts() != null) {
+      joiner.add(String.format("%sNoManageHosts%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNoManageHosts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `NoManageResolvConf` to the URL query string
+    if (getNoManageResolvConf() != null) {
+      joiner.add(String.format("%sNoManageResolvConf%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNoManageResolvConf()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `PortBindings` to the URL query string
+    if (getPortBindings() != null) {
+      for (String _key : getPortBindings().keySet()) {
+        joiner.add(String.format("%sPortBindings%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getPortBindings().get(_key), URLEncoder.encode(ApiClient.valueToString(getPortBindings().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `StaticIP` to the URL query string
+    if (getStaticIP() != null) {
+      joiner.add(String.format("%sStaticIP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStaticIP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StaticMAC` to the URL query string
+    if (getStaticMAC() != null) {
+      joiner.add(String.format("%sStaticMAC%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStaticMAC()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cpu_period` to the URL query string
+    if (getCpuPeriod() != null) {
+      joiner.add(String.format("%scpu_period%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cpu_quota` to the URL query string
+    if (getCpuQuota() != null) {
+      joiner.add(String.format("%scpu_quota%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuQuota()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cpuset_cpus` to the URL query string
+    if (getCpusetCpus() != null) {
+      joiner.add(String.format("%scpuset_cpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `pid_ns` to the URL query string
+    if (getPidNs() != null) {
+      joiner.add(String.format("%spid_ns%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPidNs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `userns` to the URL query string
+    if (getUserns() != null) {
+      joiner.add(String.format("%suserns%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUserns()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `uts_ns` to the URL query string
+    if (getUtsNs() != null) {
+      joiner.add(String.format("%suts_ns%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUtsNs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

@@ -13,12 +13,17 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.PlayKubePod;
 import io.github.alersrt.pod4j.openapi.model.PlayKubeVolume;
 import io.github.alersrt.pod4j.openapi.model.PlaySecret;
@@ -26,77 +31,59 @@ import io.github.alersrt.pod4j.openapi.model.PodRmReport;
 import io.github.alersrt.pod4j.openapi.model.PodStopReport;
 import io.github.alersrt.pod4j.openapi.model.SecretRmReport;
 import io.github.alersrt.pod4j.openapi.model.VolumeRmReport;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PlayKubeReport
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  PlayKubeReport.JSON_PROPERTY_EXIT_CODE,
+  PlayKubeReport.JSON_PROPERTY_PODS,
+  PlayKubeReport.JSON_PROPERTY_RM_REPORT,
+  PlayKubeReport.JSON_PROPERTY_SECRET_RM_REPORT,
+  PlayKubeReport.JSON_PROPERTY_SECRETS,
+  PlayKubeReport.JSON_PROPERTY_SERVICE_CONTAINER_I_D,
+  PlayKubeReport.JSON_PROPERTY_STOP_REPORT,
+  PlayKubeReport.JSON_PROPERTY_VOLUME_RM_REPORT,
+  PlayKubeReport.JSON_PROPERTY_VOLUMES
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PlayKubeReport {
-  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+  public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
   private Integer exitCode;
 
-  public static final String SERIALIZED_NAME_PODS = "Pods";
-  @SerializedName(SERIALIZED_NAME_PODS)
-  private List<PlayKubePod> pods = new ArrayList<>();
+  public static final String JSON_PROPERTY_PODS = "Pods";
+  private List<@Valid PlayKubePod> pods = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_RM_REPORT = "RmReport";
-  @SerializedName(SERIALIZED_NAME_RM_REPORT)
-  private List<PodRmReport> rmReport = new ArrayList<>();
+  public static final String JSON_PROPERTY_RM_REPORT = "RmReport";
+  private List<@Valid PodRmReport> rmReport = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SECRET_RM_REPORT = "SecretRmReport";
-  @SerializedName(SERIALIZED_NAME_SECRET_RM_REPORT)
-  private List<SecretRmReport> secretRmReport = new ArrayList<>();
+  public static final String JSON_PROPERTY_SECRET_RM_REPORT = "SecretRmReport";
+  private List<@Valid SecretRmReport> secretRmReport = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SECRETS = "Secrets";
-  @SerializedName(SERIALIZED_NAME_SECRETS)
-  private List<PlaySecret> secrets = new ArrayList<>();
+  public static final String JSON_PROPERTY_SECRETS = "Secrets";
+  private List<@Valid PlaySecret> secrets = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SERVICE_CONTAINER_I_D = "ServiceContainerID";
-  @SerializedName(SERIALIZED_NAME_SERVICE_CONTAINER_I_D)
+  public static final String JSON_PROPERTY_SERVICE_CONTAINER_I_D = "ServiceContainerID";
   private String serviceContainerID;
 
-  public static final String SERIALIZED_NAME_STOP_REPORT = "StopReport";
-  @SerializedName(SERIALIZED_NAME_STOP_REPORT)
-  private List<PodStopReport> stopReport = new ArrayList<>();
+  public static final String JSON_PROPERTY_STOP_REPORT = "StopReport";
+  private List<@Valid PodStopReport> stopReport = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_VOLUME_RM_REPORT = "VolumeRmReport";
-  @SerializedName(SERIALIZED_NAME_VOLUME_RM_REPORT)
-  private List<VolumeRmReport> volumeRmReport = new ArrayList<>();
+  public static final String JSON_PROPERTY_VOLUME_RM_REPORT = "VolumeRmReport";
+  private List<@Valid VolumeRmReport> volumeRmReport = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_VOLUMES = "Volumes";
-  @SerializedName(SERIALIZED_NAME_VOLUMES)
-  private List<PlayKubeVolume> volumes = new ArrayList<>();
+  public static final String JSON_PROPERTY_VOLUMES = "Volumes";
+  private List<@Valid PlayKubeVolume> volumes = new ArrayList<>();
 
-  public PlayKubeReport() {
+  public PlayKubeReport() { 
   }
 
   public PlayKubeReport exitCode(Integer exitCode) {
@@ -109,16 +96,22 @@ public class PlayKubeReport {
    * @return exitCode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getExitCode() {
     return exitCode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitCode(Integer exitCode) {
     this.exitCode = exitCode;
   }
 
 
-  public PlayKubeReport pods(List<PlayKubePod> pods) {
+  public PlayKubeReport pods(List<@Valid PlayKubePod> pods) {
     this.pods = pods;
     return this;
   }
@@ -136,16 +129,23 @@ public class PlayKubeReport {
    * @return pods
    */
   @javax.annotation.Nullable
-  public List<PlayKubePod> getPods() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PODS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PlayKubePod> getPods() {
     return pods;
   }
 
-  public void setPods(List<PlayKubePod> pods) {
+
+  @JsonProperty(JSON_PROPERTY_PODS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPods(List<@Valid PlayKubePod> pods) {
     this.pods = pods;
   }
 
 
-  public PlayKubeReport rmReport(List<PodRmReport> rmReport) {
+  public PlayKubeReport rmReport(List<@Valid PodRmReport> rmReport) {
     this.rmReport = rmReport;
     return this;
   }
@@ -163,16 +163,23 @@ public class PlayKubeReport {
    * @return rmReport
    */
   @javax.annotation.Nullable
-  public List<PodRmReport> getRmReport() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_RM_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PodRmReport> getRmReport() {
     return rmReport;
   }
 
-  public void setRmReport(List<PodRmReport> rmReport) {
+
+  @JsonProperty(JSON_PROPERTY_RM_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRmReport(List<@Valid PodRmReport> rmReport) {
     this.rmReport = rmReport;
   }
 
 
-  public PlayKubeReport secretRmReport(List<SecretRmReport> secretRmReport) {
+  public PlayKubeReport secretRmReport(List<@Valid SecretRmReport> secretRmReport) {
     this.secretRmReport = secretRmReport;
     return this;
   }
@@ -190,16 +197,23 @@ public class PlayKubeReport {
    * @return secretRmReport
    */
   @javax.annotation.Nullable
-  public List<SecretRmReport> getSecretRmReport() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SECRET_RM_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid SecretRmReport> getSecretRmReport() {
     return secretRmReport;
   }
 
-  public void setSecretRmReport(List<SecretRmReport> secretRmReport) {
+
+  @JsonProperty(JSON_PROPERTY_SECRET_RM_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSecretRmReport(List<@Valid SecretRmReport> secretRmReport) {
     this.secretRmReport = secretRmReport;
   }
 
 
-  public PlayKubeReport secrets(List<PlaySecret> secrets) {
+  public PlayKubeReport secrets(List<@Valid PlaySecret> secrets) {
     this.secrets = secrets;
     return this;
   }
@@ -217,11 +231,18 @@ public class PlayKubeReport {
    * @return secrets
    */
   @javax.annotation.Nullable
-  public List<PlaySecret> getSecrets() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SECRETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PlaySecret> getSecrets() {
     return secrets;
   }
 
-  public void setSecrets(List<PlaySecret> secrets) {
+
+  @JsonProperty(JSON_PROPERTY_SECRETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSecrets(List<@Valid PlaySecret> secrets) {
     this.secrets = secrets;
   }
 
@@ -236,16 +257,22 @@ public class PlayKubeReport {
    * @return serviceContainerID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SERVICE_CONTAINER_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getServiceContainerID() {
     return serviceContainerID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SERVICE_CONTAINER_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setServiceContainerID(String serviceContainerID) {
     this.serviceContainerID = serviceContainerID;
   }
 
 
-  public PlayKubeReport stopReport(List<PodStopReport> stopReport) {
+  public PlayKubeReport stopReport(List<@Valid PodStopReport> stopReport) {
     this.stopReport = stopReport;
     return this;
   }
@@ -263,16 +290,23 @@ public class PlayKubeReport {
    * @return stopReport
    */
   @javax.annotation.Nullable
-  public List<PodStopReport> getStopReport() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_STOP_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PodStopReport> getStopReport() {
     return stopReport;
   }
 
-  public void setStopReport(List<PodStopReport> stopReport) {
+
+  @JsonProperty(JSON_PROPERTY_STOP_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStopReport(List<@Valid PodStopReport> stopReport) {
     this.stopReport = stopReport;
   }
 
 
-  public PlayKubeReport volumeRmReport(List<VolumeRmReport> volumeRmReport) {
+  public PlayKubeReport volumeRmReport(List<@Valid VolumeRmReport> volumeRmReport) {
     this.volumeRmReport = volumeRmReport;
     return this;
   }
@@ -290,16 +324,23 @@ public class PlayKubeReport {
    * @return volumeRmReport
    */
   @javax.annotation.Nullable
-  public List<VolumeRmReport> getVolumeRmReport() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_VOLUME_RM_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid VolumeRmReport> getVolumeRmReport() {
     return volumeRmReport;
   }
 
-  public void setVolumeRmReport(List<VolumeRmReport> volumeRmReport) {
+
+  @JsonProperty(JSON_PROPERTY_VOLUME_RM_REPORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVolumeRmReport(List<@Valid VolumeRmReport> volumeRmReport) {
     this.volumeRmReport = volumeRmReport;
   }
 
 
-  public PlayKubeReport volumes(List<PlayKubeVolume> volumes) {
+  public PlayKubeReport volumes(List<@Valid PlayKubeVolume> volumes) {
     this.volumes = volumes;
     return this;
   }
@@ -317,16 +358,25 @@ public class PlayKubeReport {
    * @return volumes
    */
   @javax.annotation.Nullable
-  public List<PlayKubeVolume> getVolumes() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PlayKubeVolume> getVolumes() {
     return volumes;
   }
 
-  public void setVolumes(List<PlayKubeVolume> volumes) {
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVolumes(List<@Valid PlayKubeVolume> volumes) {
     this.volumes = volumes;
   }
 
 
-
+  /**
+   * Return true if this PlayKubeReport object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -380,198 +430,119 @@ public class PlayKubeReport {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("ExitCode");
-    openapiFields.add("Pods");
-    openapiFields.add("RmReport");
-    openapiFields.add("SecretRmReport");
-    openapiFields.add("Secrets");
-    openapiFields.add("ServiceContainerID");
-    openapiFields.add("StopReport");
-    openapiFields.add("VolumeRmReport");
-    openapiFields.add("Volumes");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PlayKubeReport
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PlayKubeReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PlayKubeReport is not found in the empty JSON string", PlayKubeReport.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PlayKubeReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PlayKubeReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (jsonObj.get("Pods") != null && !jsonObj.get("Pods").isJsonNull()) {
-        JsonArray jsonArraypods = jsonObj.getAsJsonArray("Pods");
-        if (jsonArraypods != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Pods").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Pods` to be an array in the JSON string but got `%s`", jsonObj.get("Pods").toString()));
-          }
-
-          // validate the optional field `Pods` (array)
-          for (int i = 0; i < jsonArraypods.size(); i++) {
-            PlayKubePod.validateJsonElement(jsonArraypods.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("RmReport") != null && !jsonObj.get("RmReport").isJsonNull()) {
-        JsonArray jsonArrayrmReport = jsonObj.getAsJsonArray("RmReport");
-        if (jsonArrayrmReport != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("RmReport").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `RmReport` to be an array in the JSON string but got `%s`", jsonObj.get("RmReport").toString()));
-          }
-
-          // validate the optional field `RmReport` (array)
-          for (int i = 0; i < jsonArrayrmReport.size(); i++) {
-            PodRmReport.validateJsonElement(jsonArrayrmReport.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("SecretRmReport") != null && !jsonObj.get("SecretRmReport").isJsonNull()) {
-        JsonArray jsonArraysecretRmReport = jsonObj.getAsJsonArray("SecretRmReport");
-        if (jsonArraysecretRmReport != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("SecretRmReport").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `SecretRmReport` to be an array in the JSON string but got `%s`", jsonObj.get("SecretRmReport").toString()));
-          }
-
-          // validate the optional field `SecretRmReport` (array)
-          for (int i = 0; i < jsonArraysecretRmReport.size(); i++) {
-            SecretRmReport.validateJsonElement(jsonArraysecretRmReport.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("Secrets") != null && !jsonObj.get("Secrets").isJsonNull()) {
-        JsonArray jsonArraysecrets = jsonObj.getAsJsonArray("Secrets");
-        if (jsonArraysecrets != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Secrets").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Secrets` to be an array in the JSON string but got `%s`", jsonObj.get("Secrets").toString()));
-          }
-
-          // validate the optional field `Secrets` (array)
-          for (int i = 0; i < jsonArraysecrets.size(); i++) {
-            PlaySecret.validateJsonElement(jsonArraysecrets.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("ServiceContainerID") != null && !jsonObj.get("ServiceContainerID").isJsonNull()) && !jsonObj.get("ServiceContainerID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ServiceContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ServiceContainerID").toString()));
-      }
-      if (jsonObj.get("StopReport") != null && !jsonObj.get("StopReport").isJsonNull()) {
-        JsonArray jsonArraystopReport = jsonObj.getAsJsonArray("StopReport");
-        if (jsonArraystopReport != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("StopReport").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `StopReport` to be an array in the JSON string but got `%s`", jsonObj.get("StopReport").toString()));
-          }
-
-          // validate the optional field `StopReport` (array)
-          for (int i = 0; i < jsonArraystopReport.size(); i++) {
-            PodStopReport.validateJsonElement(jsonArraystopReport.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("VolumeRmReport") != null && !jsonObj.get("VolumeRmReport").isJsonNull()) {
-        JsonArray jsonArrayvolumeRmReport = jsonObj.getAsJsonArray("VolumeRmReport");
-        if (jsonArrayvolumeRmReport != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("VolumeRmReport").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `VolumeRmReport` to be an array in the JSON string but got `%s`", jsonObj.get("VolumeRmReport").toString()));
-          }
-
-          // validate the optional field `VolumeRmReport` (array)
-          for (int i = 0; i < jsonArrayvolumeRmReport.size(); i++) {
-            VolumeRmReport.validateJsonElement(jsonArrayvolumeRmReport.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("Volumes") != null && !jsonObj.get("Volumes").isJsonNull()) {
-        JsonArray jsonArrayvolumes = jsonObj.getAsJsonArray("Volumes");
-        if (jsonArrayvolumes != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Volumes").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Volumes` to be an array in the JSON string but got `%s`", jsonObj.get("Volumes").toString()));
-          }
-
-          // validate the optional field `Volumes` (array)
-          for (int i = 0; i < jsonArrayvolumes.size(); i++) {
-            PlayKubeVolume.validateJsonElement(jsonArrayvolumes.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PlayKubeReport.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PlayKubeReport' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PlayKubeReport> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PlayKubeReport.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PlayKubeReport>() {
-           @Override
-           public void write(JsonWriter out, PlayKubeReport value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PlayKubeReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of PlayKubeReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PlayKubeReport
-   * @throws IOException if the JSON string is invalid with respect to PlayKubeReport
-   */
-  public static PlayKubeReport fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PlayKubeReport.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of PlayKubeReport to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `ExitCode` to the URL query string
+    if (getExitCode() != null) {
+      joiner.add(String.format("%sExitCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Pods` to the URL query string
+    if (getPods() != null) {
+      for (int i = 0; i < getPods().size(); i++) {
+        if (getPods().get(i) != null) {
+          joiner.add(getPods().get(i).toUrlQueryString(String.format("%sPods%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `RmReport` to the URL query string
+    if (getRmReport() != null) {
+      for (int i = 0; i < getRmReport().size(); i++) {
+        if (getRmReport().get(i) != null) {
+          joiner.add(getRmReport().get(i).toUrlQueryString(String.format("%sRmReport%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `SecretRmReport` to the URL query string
+    if (getSecretRmReport() != null) {
+      for (int i = 0; i < getSecretRmReport().size(); i++) {
+        if (getSecretRmReport().get(i) != null) {
+          joiner.add(getSecretRmReport().get(i).toUrlQueryString(String.format("%sSecretRmReport%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `Secrets` to the URL query string
+    if (getSecrets() != null) {
+      for (int i = 0; i < getSecrets().size(); i++) {
+        if (getSecrets().get(i) != null) {
+          joiner.add(getSecrets().get(i).toUrlQueryString(String.format("%sSecrets%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `ServiceContainerID` to the URL query string
+    if (getServiceContainerID() != null) {
+      joiner.add(String.format("%sServiceContainerID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getServiceContainerID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StopReport` to the URL query string
+    if (getStopReport() != null) {
+      for (int i = 0; i < getStopReport().size(); i++) {
+        if (getStopReport().get(i) != null) {
+          joiner.add(getStopReport().get(i).toUrlQueryString(String.format("%sStopReport%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `VolumeRmReport` to the URL query string
+    if (getVolumeRmReport() != null) {
+      for (int i = 0; i < getVolumeRmReport().size(); i++) {
+        if (getVolumeRmReport().get(i) != null) {
+          joiner.add(getVolumeRmReport().get(i).toUrlQueryString(String.format("%sVolumeRmReport%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `Volumes` to the URL query string
+    if (getVolumes() != null) {
+      for (int i = 0; i < getVolumes().size(); i++) {
+        if (getVolumes().get(i) != null) {
+          joiner.add(getVolumes().get(i).toUrlQueryString(String.format("%sVolumes%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

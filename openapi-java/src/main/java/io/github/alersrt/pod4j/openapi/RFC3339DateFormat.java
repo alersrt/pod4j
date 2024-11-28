@@ -10,48 +10,49 @@
  * Do not edit the class manually.
  */
 
-
 package io.github.alersrt.pod4j.openapi;
 
+import com.fasterxml.jackson.databind.util.StdDateFormat;
+
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.util.Date;
+import java.text.DecimalFormat;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class Pair {
-    private String name = "";
-    private String value = "";
+public class RFC3339DateFormat extends DateFormat {
+  private static final long serialVersionUID = 1L;
+  private static final TimeZone TIMEZONE_Z = TimeZone.getTimeZone("UTC");
 
-    public Pair (String name, String value) {
-        setName(name);
-        setValue(value);
-    }
+  private final StdDateFormat fmt = new StdDateFormat()
+          .withTimeZone(TIMEZONE_Z)
+          .withColonInTimeZone(true);
 
-    private void setName(String name) {
-        if (!isValidString(name)) {
-            return;
-        }
+  public RFC3339DateFormat() {
+    this.calendar = new GregorianCalendar();
+    this.numberFormat = new DecimalFormat();
+  }
 
-        this.name = name;
-    }
+  @Override
+  public Date parse(String source) {
+    return parse(source, new ParsePosition(0));
+  }
 
-    private void setValue(String value) {
-        if (!isValidString(value)) {
-            return;
-        }
+  @Override
+  public Date parse(String source, ParsePosition pos) {
+    return fmt.parse(source, pos);
+  }
 
-        this.value = value;
-    }
+  @Override
+  public StringBuffer format(Date date, StringBuffer toAppendTo, FieldPosition fieldPosition) {
+    return fmt.format(date, toAppendTo, fieldPosition);
+  }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public String getValue() {
-        return this.value;
-    }
-
-    private boolean isValidString(String arg) {
-        if (arg == null) {
-            return false;
-        }
-
-        return true;
-    }
+  @Override
+  public Object clone() {
+    return super.clone();
+  }
 }

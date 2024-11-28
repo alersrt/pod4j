@@ -13,65 +13,52 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LinuxIntelRdt has container runtime resource constraints for Intel RDT CAT and MBA features and flags enabling Intel RDT CMT and MBM features. Intel RDT features are available in Linux 4.14 and newer kernel versions.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  LinuxIntelRdt.JSON_PROPERTY_CLOS_I_D,
+  LinuxIntelRdt.JSON_PROPERTY_ENABLE_C_M_T,
+  LinuxIntelRdt.JSON_PROPERTY_ENABLE_M_B_M,
+  LinuxIntelRdt.JSON_PROPERTY_L3_CACHE_SCHEMA,
+  LinuxIntelRdt.JSON_PROPERTY_MEM_BW_SCHEMA
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxIntelRdt {
-  public static final String SERIALIZED_NAME_CLOS_I_D = "closID";
-  @SerializedName(SERIALIZED_NAME_CLOS_I_D)
+  public static final String JSON_PROPERTY_CLOS_I_D = "closID";
   private String closID;
 
-  public static final String SERIALIZED_NAME_ENABLE_C_M_T = "enableCMT";
-  @SerializedName(SERIALIZED_NAME_ENABLE_C_M_T)
+  public static final String JSON_PROPERTY_ENABLE_C_M_T = "enableCMT";
   private Boolean enableCMT;
 
-  public static final String SERIALIZED_NAME_ENABLE_M_B_M = "enableMBM";
-  @SerializedName(SERIALIZED_NAME_ENABLE_M_B_M)
+  public static final String JSON_PROPERTY_ENABLE_M_B_M = "enableMBM";
   private Boolean enableMBM;
 
-  public static final String SERIALIZED_NAME_L3_CACHE_SCHEMA = "l3CacheSchema";
-  @SerializedName(SERIALIZED_NAME_L3_CACHE_SCHEMA)
+  public static final String JSON_PROPERTY_L3_CACHE_SCHEMA = "l3CacheSchema";
   private String l3CacheSchema;
 
-  public static final String SERIALIZED_NAME_MEM_BW_SCHEMA = "memBwSchema";
-  @SerializedName(SERIALIZED_NAME_MEM_BW_SCHEMA)
+  public static final String JSON_PROPERTY_MEM_BW_SCHEMA = "memBwSchema";
   private String memBwSchema;
 
-  public LinuxIntelRdt() {
+  public LinuxIntelRdt() { 
   }
 
   public LinuxIntelRdt closID(String closID) {
@@ -84,10 +71,16 @@ public class LinuxIntelRdt {
    * @return closID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CLOS_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getClosID() {
     return closID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CLOS_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setClosID(String closID) {
     this.closID = closID;
   }
@@ -103,10 +96,16 @@ public class LinuxIntelRdt {
    * @return enableCMT
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ENABLE_C_M_T)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getEnableCMT() {
     return enableCMT;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ENABLE_C_M_T)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnableCMT(Boolean enableCMT) {
     this.enableCMT = enableCMT;
   }
@@ -122,10 +121,16 @@ public class LinuxIntelRdt {
    * @return enableMBM
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ENABLE_M_B_M)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getEnableMBM() {
     return enableMBM;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ENABLE_M_B_M)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnableMBM(Boolean enableMBM) {
     this.enableMBM = enableMBM;
   }
@@ -141,10 +146,16 @@ public class LinuxIntelRdt {
    * @return l3CacheSchema
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_L3_CACHE_SCHEMA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getL3CacheSchema() {
     return l3CacheSchema;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_L3_CACHE_SCHEMA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setL3CacheSchema(String l3CacheSchema) {
     this.l3CacheSchema = l3CacheSchema;
   }
@@ -160,16 +171,24 @@ public class LinuxIntelRdt {
    * @return memBwSchema
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM_BW_SCHEMA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMemBwSchema() {
     return memBwSchema;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM_BW_SCHEMA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemBwSchema(String memBwSchema) {
     this.memBwSchema = memBwSchema;
   }
 
 
-
+  /**
+   * Return true if this LinuxIntelRdt object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -215,102 +234,64 @@ public class LinuxIntelRdt {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("closID");
-    openapiFields.add("enableCMT");
-    openapiFields.add("enableMBM");
-    openapiFields.add("l3CacheSchema");
-    openapiFields.add("memBwSchema");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LinuxIntelRdt
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LinuxIntelRdt.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LinuxIntelRdt is not found in the empty JSON string", LinuxIntelRdt.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LinuxIntelRdt.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LinuxIntelRdt` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("closID") != null && !jsonObj.get("closID").isJsonNull()) && !jsonObj.get("closID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `closID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("closID").toString()));
-      }
-      if ((jsonObj.get("l3CacheSchema") != null && !jsonObj.get("l3CacheSchema").isJsonNull()) && !jsonObj.get("l3CacheSchema").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `l3CacheSchema` to be a primitive type in the JSON string but got `%s`", jsonObj.get("l3CacheSchema").toString()));
-      }
-      if ((jsonObj.get("memBwSchema") != null && !jsonObj.get("memBwSchema").isJsonNull()) && !jsonObj.get("memBwSchema").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `memBwSchema` to be a primitive type in the JSON string but got `%s`", jsonObj.get("memBwSchema").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LinuxIntelRdt.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LinuxIntelRdt' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LinuxIntelRdt> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LinuxIntelRdt.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LinuxIntelRdt>() {
-           @Override
-           public void write(JsonWriter out, LinuxIntelRdt value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LinuxIntelRdt read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of LinuxIntelRdt given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LinuxIntelRdt
-   * @throws IOException if the JSON string is invalid with respect to LinuxIntelRdt
-   */
-  public static LinuxIntelRdt fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LinuxIntelRdt.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of LinuxIntelRdt to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `closID` to the URL query string
+    if (getClosID() != null) {
+      joiner.add(String.format("%sclosID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getClosID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `enableCMT` to the URL query string
+    if (getEnableCMT() != null) {
+      joiner.add(String.format("%senableCMT%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnableCMT()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `enableMBM` to the URL query string
+    if (getEnableMBM() != null) {
+      joiner.add(String.format("%senableMBM%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnableMBM()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `l3CacheSchema` to the URL query string
+    if (getL3CacheSchema() != null) {
+      joiner.add(String.format("%sl3CacheSchema%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getL3CacheSchema()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `memBwSchema` to the URL query string
+    if (getMemBwSchema() != null) {
+      joiner.add(String.format("%smemBwSchema%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemBwSchema()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

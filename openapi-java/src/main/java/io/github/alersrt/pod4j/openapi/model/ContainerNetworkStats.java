@@ -13,77 +13,64 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Statistics for an individual container network interface
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerNetworkStats.JSON_PROPERTY_RX_BYTES,
+  ContainerNetworkStats.JSON_PROPERTY_RX_DROPPED,
+  ContainerNetworkStats.JSON_PROPERTY_RX_ERRORS,
+  ContainerNetworkStats.JSON_PROPERTY_RX_PACKETS,
+  ContainerNetworkStats.JSON_PROPERTY_TX_BYTES,
+  ContainerNetworkStats.JSON_PROPERTY_TX_DROPPED,
+  ContainerNetworkStats.JSON_PROPERTY_TX_ERRORS,
+  ContainerNetworkStats.JSON_PROPERTY_TX_PACKETS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerNetworkStats {
-  public static final String SERIALIZED_NAME_RX_BYTES = "RxBytes";
-  @SerializedName(SERIALIZED_NAME_RX_BYTES)
+  public static final String JSON_PROPERTY_RX_BYTES = "RxBytes";
   private Integer rxBytes;
 
-  public static final String SERIALIZED_NAME_RX_DROPPED = "RxDropped";
-  @SerializedName(SERIALIZED_NAME_RX_DROPPED)
+  public static final String JSON_PROPERTY_RX_DROPPED = "RxDropped";
   private Integer rxDropped;
 
-  public static final String SERIALIZED_NAME_RX_ERRORS = "RxErrors";
-  @SerializedName(SERIALIZED_NAME_RX_ERRORS)
+  public static final String JSON_PROPERTY_RX_ERRORS = "RxErrors";
   private Integer rxErrors;
 
-  public static final String SERIALIZED_NAME_RX_PACKETS = "RxPackets";
-  @SerializedName(SERIALIZED_NAME_RX_PACKETS)
+  public static final String JSON_PROPERTY_RX_PACKETS = "RxPackets";
   private Integer rxPackets;
 
-  public static final String SERIALIZED_NAME_TX_BYTES = "TxBytes";
-  @SerializedName(SERIALIZED_NAME_TX_BYTES)
+  public static final String JSON_PROPERTY_TX_BYTES = "TxBytes";
   private Integer txBytes;
 
-  public static final String SERIALIZED_NAME_TX_DROPPED = "TxDropped";
-  @SerializedName(SERIALIZED_NAME_TX_DROPPED)
+  public static final String JSON_PROPERTY_TX_DROPPED = "TxDropped";
   private Integer txDropped;
 
-  public static final String SERIALIZED_NAME_TX_ERRORS = "TxErrors";
-  @SerializedName(SERIALIZED_NAME_TX_ERRORS)
+  public static final String JSON_PROPERTY_TX_ERRORS = "TxErrors";
   private Integer txErrors;
 
-  public static final String SERIALIZED_NAME_TX_PACKETS = "TxPackets";
-  @SerializedName(SERIALIZED_NAME_TX_PACKETS)
+  public static final String JSON_PROPERTY_TX_PACKETS = "TxPackets";
   private Integer txPackets;
 
-  public ContainerNetworkStats() {
+  public ContainerNetworkStats() { 
   }
 
   public ContainerNetworkStats rxBytes(Integer rxBytes) {
@@ -96,10 +83,16 @@ public class ContainerNetworkStats {
    * @return rxBytes
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RX_BYTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRxBytes() {
     return rxBytes;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RX_BYTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRxBytes(Integer rxBytes) {
     this.rxBytes = rxBytes;
   }
@@ -115,10 +108,16 @@ public class ContainerNetworkStats {
    * @return rxDropped
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RX_DROPPED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRxDropped() {
     return rxDropped;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RX_DROPPED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRxDropped(Integer rxDropped) {
     this.rxDropped = rxDropped;
   }
@@ -134,10 +133,16 @@ public class ContainerNetworkStats {
    * @return rxErrors
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RX_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRxErrors() {
     return rxErrors;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RX_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRxErrors(Integer rxErrors) {
     this.rxErrors = rxErrors;
   }
@@ -153,10 +158,16 @@ public class ContainerNetworkStats {
    * @return rxPackets
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RX_PACKETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRxPackets() {
     return rxPackets;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RX_PACKETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRxPackets(Integer rxPackets) {
     this.rxPackets = rxPackets;
   }
@@ -172,10 +183,16 @@ public class ContainerNetworkStats {
    * @return txBytes
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TX_BYTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getTxBytes() {
     return txBytes;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TX_BYTES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTxBytes(Integer txBytes) {
     this.txBytes = txBytes;
   }
@@ -191,10 +208,16 @@ public class ContainerNetworkStats {
    * @return txDropped
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TX_DROPPED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getTxDropped() {
     return txDropped;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TX_DROPPED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTxDropped(Integer txDropped) {
     this.txDropped = txDropped;
   }
@@ -210,10 +233,16 @@ public class ContainerNetworkStats {
    * @return txErrors
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TX_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getTxErrors() {
     return txErrors;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TX_ERRORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTxErrors(Integer txErrors) {
     this.txErrors = txErrors;
   }
@@ -229,16 +258,24 @@ public class ContainerNetworkStats {
    * @return txPackets
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TX_PACKETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getTxPackets() {
     return txPackets;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TX_PACKETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTxPackets(Integer txPackets) {
     this.txPackets = txPackets;
   }
 
 
-
+  /**
+   * Return true if this ContainerNetworkStats object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -290,96 +327,79 @@ public class ContainerNetworkStats {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("RxBytes");
-    openapiFields.add("RxDropped");
-    openapiFields.add("RxErrors");
-    openapiFields.add("RxPackets");
-    openapiFields.add("TxBytes");
-    openapiFields.add("TxDropped");
-    openapiFields.add("TxErrors");
-    openapiFields.add("TxPackets");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerNetworkStats
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerNetworkStats.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerNetworkStats is not found in the empty JSON string", ContainerNetworkStats.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerNetworkStats.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerNetworkStats` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerNetworkStats.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerNetworkStats' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerNetworkStats> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerNetworkStats.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerNetworkStats>() {
-           @Override
-           public void write(JsonWriter out, ContainerNetworkStats value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerNetworkStats read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerNetworkStats given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerNetworkStats
-   * @throws IOException if the JSON string is invalid with respect to ContainerNetworkStats
-   */
-  public static ContainerNetworkStats fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerNetworkStats.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerNetworkStats to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `RxBytes` to the URL query string
+    if (getRxBytes() != null) {
+      joiner.add(String.format("%sRxBytes%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRxBytes()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RxDropped` to the URL query string
+    if (getRxDropped() != null) {
+      joiner.add(String.format("%sRxDropped%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRxDropped()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RxErrors` to the URL query string
+    if (getRxErrors() != null) {
+      joiner.add(String.format("%sRxErrors%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRxErrors()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RxPackets` to the URL query string
+    if (getRxPackets() != null) {
+      joiner.add(String.format("%sRxPackets%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRxPackets()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `TxBytes` to the URL query string
+    if (getTxBytes() != null) {
+      joiner.add(String.format("%sTxBytes%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTxBytes()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `TxDropped` to the URL query string
+    if (getTxDropped() != null) {
+      joiner.add(String.format("%sTxDropped%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTxDropped()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `TxErrors` to the URL query string
+    if (getTxErrors() != null) {
+      joiner.add(String.format("%sTxErrors%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTxErrors()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `TxPackets` to the URL query string
+    if (getTxPackets() != null) {
+      joiner.add(String.format("%sTxPackets%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTxPackets()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

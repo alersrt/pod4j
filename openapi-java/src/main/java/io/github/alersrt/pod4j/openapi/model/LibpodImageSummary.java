@@ -13,121 +13,108 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * LibpodImageSummary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  LibpodImageSummary.JSON_PROPERTY_ARCH,
+  LibpodImageSummary.JSON_PROPERTY_CONTAINERS,
+  LibpodImageSummary.JSON_PROPERTY_CREATED,
+  LibpodImageSummary.JSON_PROPERTY_DANGLING,
+  LibpodImageSummary.JSON_PROPERTY_DIGEST,
+  LibpodImageSummary.JSON_PROPERTY_HISTORY,
+  LibpodImageSummary.JSON_PROPERTY_ID,
+  LibpodImageSummary.JSON_PROPERTY_IS_MANIFEST_LIST,
+  LibpodImageSummary.JSON_PROPERTY_LABELS,
+  LibpodImageSummary.JSON_PROPERTY_NAMES,
+  LibpodImageSummary.JSON_PROPERTY_OS,
+  LibpodImageSummary.JSON_PROPERTY_PARENT_ID,
+  LibpodImageSummary.JSON_PROPERTY_READ_ONLY,
+  LibpodImageSummary.JSON_PROPERTY_REPO_DIGESTS,
+  LibpodImageSummary.JSON_PROPERTY_REPO_TAGS,
+  LibpodImageSummary.JSON_PROPERTY_SHARED_SIZE,
+  LibpodImageSummary.JSON_PROPERTY_SIZE,
+  LibpodImageSummary.JSON_PROPERTY_VIRTUAL_SIZE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LibpodImageSummary {
-  public static final String SERIALIZED_NAME_ARCH = "Arch";
-  @SerializedName(SERIALIZED_NAME_ARCH)
+  public static final String JSON_PROPERTY_ARCH = "Arch";
   private String arch;
 
-  public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
-  @SerializedName(SERIALIZED_NAME_CONTAINERS)
+  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
   private Long containers;
 
-  public static final String SERIALIZED_NAME_CREATED = "Created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
+  public static final String JSON_PROPERTY_CREATED = "Created";
   private Long created;
 
-  public static final String SERIALIZED_NAME_DANGLING = "Dangling";
-  @SerializedName(SERIALIZED_NAME_DANGLING)
+  public static final String JSON_PROPERTY_DANGLING = "Dangling";
   private Boolean dangling;
 
-  public static final String SERIALIZED_NAME_DIGEST = "Digest";
-  @SerializedName(SERIALIZED_NAME_DIGEST)
+  public static final String JSON_PROPERTY_DIGEST = "Digest";
   private String digest;
 
-  public static final String SERIALIZED_NAME_HISTORY = "History";
-  @SerializedName(SERIALIZED_NAME_HISTORY)
+  public static final String JSON_PROPERTY_HISTORY = "History";
   private List<String> history = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "Id";
   private String id;
 
-  public static final String SERIALIZED_NAME_IS_MANIFEST_LIST = "IsManifestList";
-  @SerializedName(SERIALIZED_NAME_IS_MANIFEST_LIST)
+  public static final String JSON_PROPERTY_IS_MANIFEST_LIST = "IsManifestList";
   private Boolean isManifestList;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_NAMES = "Names";
-  @SerializedName(SERIALIZED_NAME_NAMES)
+  public static final String JSON_PROPERTY_NAMES = "Names";
   private List<String> names = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_OS = "Os";
-  @SerializedName(SERIALIZED_NAME_OS)
+  public static final String JSON_PROPERTY_OS = "Os";
   private String os;
 
-  public static final String SERIALIZED_NAME_PARENT_ID = "ParentId";
-  @SerializedName(SERIALIZED_NAME_PARENT_ID)
+  public static final String JSON_PROPERTY_PARENT_ID = "ParentId";
   private String parentId;
 
-  public static final String SERIALIZED_NAME_READ_ONLY = "ReadOnly";
-  @SerializedName(SERIALIZED_NAME_READ_ONLY)
+  public static final String JSON_PROPERTY_READ_ONLY = "ReadOnly";
   private Boolean readOnly;
 
-  public static final String SERIALIZED_NAME_REPO_DIGESTS = "RepoDigests";
-  @SerializedName(SERIALIZED_NAME_REPO_DIGESTS)
+  public static final String JSON_PROPERTY_REPO_DIGESTS = "RepoDigests";
   private List<String> repoDigests = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_REPO_TAGS = "RepoTags";
-  @SerializedName(SERIALIZED_NAME_REPO_TAGS)
+  public static final String JSON_PROPERTY_REPO_TAGS = "RepoTags";
   private List<String> repoTags = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SHARED_SIZE = "SharedSize";
-  @SerializedName(SERIALIZED_NAME_SHARED_SIZE)
+  public static final String JSON_PROPERTY_SHARED_SIZE = "SharedSize";
   private Long sharedSize;
 
-  public static final String SERIALIZED_NAME_SIZE = "Size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
+  public static final String JSON_PROPERTY_SIZE = "Size";
   private Long size;
 
-  public static final String SERIALIZED_NAME_VIRTUAL_SIZE = "VirtualSize";
-  @SerializedName(SERIALIZED_NAME_VIRTUAL_SIZE)
+  public static final String JSON_PROPERTY_VIRTUAL_SIZE = "VirtualSize";
   private Long virtualSize;
 
-  public LibpodImageSummary() {
+  public LibpodImageSummary() { 
   }
 
   public LibpodImageSummary arch(String arch) {
@@ -140,10 +127,16 @@ public class LibpodImageSummary {
    * @return arch
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArch() {
     return arch;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArch(String arch) {
     this.arch = arch;
   }
@@ -159,10 +152,16 @@ public class LibpodImageSummary {
    * @return containers
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getContainers() {
     return containers;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainers(Long containers) {
     this.containers = containers;
   }
@@ -178,10 +177,16 @@ public class LibpodImageSummary {
    * @return created
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getCreated() {
     return created;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreated(Long created) {
     this.created = created;
   }
@@ -197,10 +202,16 @@ public class LibpodImageSummary {
    * @return dangling
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DANGLING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getDangling() {
     return dangling;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DANGLING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDangling(Boolean dangling) {
     this.dangling = dangling;
   }
@@ -216,10 +227,16 @@ public class LibpodImageSummary {
    * @return digest
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DIGEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDigest() {
     return digest;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DIGEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDigest(String digest) {
     this.digest = digest;
   }
@@ -243,10 +260,16 @@ public class LibpodImageSummary {
    * @return history
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HISTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getHistory() {
     return history;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HISTORY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHistory(List<String> history) {
     this.history = history;
   }
@@ -262,10 +285,16 @@ public class LibpodImageSummary {
    * @return id
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -281,10 +310,16 @@ public class LibpodImageSummary {
    * @return isManifestList
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IS_MANIFEST_LIST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsManifestList() {
     return isManifestList;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IS_MANIFEST_LIST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsManifestList(Boolean isManifestList) {
     this.isManifestList = isManifestList;
   }
@@ -308,10 +343,16 @@ public class LibpodImageSummary {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -335,10 +376,16 @@ public class LibpodImageSummary {
    * @return names
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getNames() {
     return names;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNames(List<String> names) {
     this.names = names;
   }
@@ -354,10 +401,16 @@ public class LibpodImageSummary {
    * @return os
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOs() {
     return os;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOs(String os) {
     this.os = os;
   }
@@ -373,10 +426,16 @@ public class LibpodImageSummary {
    * @return parentId
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PARENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getParentId() {
     return parentId;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PARENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setParentId(String parentId) {
     this.parentId = parentId;
   }
@@ -392,10 +451,16 @@ public class LibpodImageSummary {
    * @return readOnly
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getReadOnly() {
     return readOnly;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReadOnly(Boolean readOnly) {
     this.readOnly = readOnly;
   }
@@ -419,10 +484,16 @@ public class LibpodImageSummary {
    * @return repoDigests
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getRepoDigests() {
     return repoDigests;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRepoDigests(List<String> repoDigests) {
     this.repoDigests = repoDigests;
   }
@@ -446,10 +517,16 @@ public class LibpodImageSummary {
    * @return repoTags
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getRepoTags() {
     return repoTags;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRepoTags(List<String> repoTags) {
     this.repoTags = repoTags;
   }
@@ -465,10 +542,16 @@ public class LibpodImageSummary {
    * @return sharedSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSharedSize() {
     return sharedSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSharedSize(Long sharedSize) {
     this.sharedSize = sharedSize;
   }
@@ -484,10 +567,16 @@ public class LibpodImageSummary {
    * @return size
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSize() {
     return size;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -503,16 +592,24 @@ public class LibpodImageSummary {
    * @return virtualSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getVirtualSize() {
     return virtualSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVirtualSize(Long virtualSize) {
     this.virtualSize = virtualSize;
   }
 
 
-
+  /**
+   * Return true if this LibpodImageSummary object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -584,137 +681,149 @@ public class LibpodImageSummary {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Arch");
-    openapiFields.add("Containers");
-    openapiFields.add("Created");
-    openapiFields.add("Dangling");
-    openapiFields.add("Digest");
-    openapiFields.add("History");
-    openapiFields.add("Id");
-    openapiFields.add("IsManifestList");
-    openapiFields.add("Labels");
-    openapiFields.add("Names");
-    openapiFields.add("Os");
-    openapiFields.add("ParentId");
-    openapiFields.add("ReadOnly");
-    openapiFields.add("RepoDigests");
-    openapiFields.add("RepoTags");
-    openapiFields.add("SharedSize");
-    openapiFields.add("Size");
-    openapiFields.add("VirtualSize");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to LibpodImageSummary
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!LibpodImageSummary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in LibpodImageSummary is not found in the empty JSON string", LibpodImageSummary.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!LibpodImageSummary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `LibpodImageSummary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Arch") != null && !jsonObj.get("Arch").isJsonNull()) && !jsonObj.get("Arch").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Arch").toString()));
-      }
-      if ((jsonObj.get("Digest") != null && !jsonObj.get("Digest").isJsonNull()) && !jsonObj.get("Digest").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Digest` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Digest").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("History") != null && !jsonObj.get("History").isJsonNull() && !jsonObj.get("History").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `History` to be an array in the JSON string but got `%s`", jsonObj.get("History").toString()));
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull() && !jsonObj.get("Names").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Names` to be an array in the JSON string but got `%s`", jsonObj.get("Names").toString()));
-      }
-      if ((jsonObj.get("Os") != null && !jsonObj.get("Os").isJsonNull()) && !jsonObj.get("Os").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Os").toString()));
-      }
-      if ((jsonObj.get("ParentId") != null && !jsonObj.get("ParentId").isJsonNull()) && !jsonObj.get("ParentId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ParentId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ParentId").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("RepoDigests") != null && !jsonObj.get("RepoDigests").isJsonNull() && !jsonObj.get("RepoDigests").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RepoDigests` to be an array in the JSON string but got `%s`", jsonObj.get("RepoDigests").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("RepoTags") != null && !jsonObj.get("RepoTags").isJsonNull() && !jsonObj.get("RepoTags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RepoTags` to be an array in the JSON string but got `%s`", jsonObj.get("RepoTags").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!LibpodImageSummary.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'LibpodImageSummary' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<LibpodImageSummary> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(LibpodImageSummary.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<LibpodImageSummary>() {
-           @Override
-           public void write(JsonWriter out, LibpodImageSummary value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public LibpodImageSummary read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of LibpodImageSummary given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of LibpodImageSummary
-   * @throws IOException if the JSON string is invalid with respect to LibpodImageSummary
-   */
-  public static LibpodImageSummary fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, LibpodImageSummary.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of LibpodImageSummary to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Arch` to the URL query string
+    if (getArch() != null) {
+      joiner.add(String.format("%sArch%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArch()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Containers` to the URL query string
+    if (getContainers() != null) {
+      joiner.add(String.format("%sContainers%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainers()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Created` to the URL query string
+    if (getCreated() != null) {
+      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Dangling` to the URL query string
+    if (getDangling() != null) {
+      joiner.add(String.format("%sDangling%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDangling()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Digest` to the URL query string
+    if (getDigest() != null) {
+      joiner.add(String.format("%sDigest%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDigest()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `History` to the URL query string
+    if (getHistory() != null) {
+      for (int i = 0; i < getHistory().size(); i++) {
+        joiner.add(String.format("%sHistory%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getHistory().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IsManifestList` to the URL query string
+    if (getIsManifestList() != null) {
+      joiner.add(String.format("%sIsManifestList%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIsManifestList()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Names` to the URL query string
+    if (getNames() != null) {
+      for (int i = 0; i < getNames().size(); i++) {
+        joiner.add(String.format("%sNames%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getNames().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Os` to the URL query string
+    if (getOs() != null) {
+      joiner.add(String.format("%sOs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ParentId` to the URL query string
+    if (getParentId() != null) {
+      joiner.add(String.format("%sParentId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getParentId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ReadOnly` to the URL query string
+    if (getReadOnly() != null) {
+      joiner.add(String.format("%sReadOnly%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getReadOnly()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RepoDigests` to the URL query string
+    if (getRepoDigests() != null) {
+      for (int i = 0; i < getRepoDigests().size(); i++) {
+        joiner.add(String.format("%sRepoDigests%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getRepoDigests().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `RepoTags` to the URL query string
+    if (getRepoTags() != null) {
+      for (int i = 0; i < getRepoTags().size(); i++) {
+        joiner.add(String.format("%sRepoTags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getRepoTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `SharedSize` to the URL query string
+    if (getSharedSize() != null) {
+      joiner.add(String.format("%sSharedSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSharedSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `VirtualSize` to the URL query string
+    if (getVirtualSize() != null) {
+      joiner.add(String.format("%sVirtualSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVirtualSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

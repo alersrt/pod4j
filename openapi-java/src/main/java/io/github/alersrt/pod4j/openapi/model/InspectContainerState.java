@@ -13,139 +13,126 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.HealthCheckResults;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectContainerState provides a detailed record of a container&#39;s current state. It is returned as part of InspectContainerData. As with InspectContainerData, many portions of this struct are matched to Docker, but here we see more fields that are unused (nonsensical in the context of Libpod).
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  InspectContainerState.JSON_PROPERTY_CGROUP_PATH,
+  InspectContainerState.JSON_PROPERTY_CHECKPOINT_LOG,
+  InspectContainerState.JSON_PROPERTY_CHECKPOINT_PATH,
+  InspectContainerState.JSON_PROPERTY_CHECKPOINTED,
+  InspectContainerState.JSON_PROPERTY_CHECKPOINTED_AT,
+  InspectContainerState.JSON_PROPERTY_CONMON_PID,
+  InspectContainerState.JSON_PROPERTY_DEAD,
+  InspectContainerState.JSON_PROPERTY_ERROR,
+  InspectContainerState.JSON_PROPERTY_EXIT_CODE,
+  InspectContainerState.JSON_PROPERTY_FINISHED_AT,
+  InspectContainerState.JSON_PROPERTY_HEALTH,
+  InspectContainerState.JSON_PROPERTY_OO_M_KILLED,
+  InspectContainerState.JSON_PROPERTY_OCI_VERSION,
+  InspectContainerState.JSON_PROPERTY_PAUSED,
+  InspectContainerState.JSON_PROPERTY_PID,
+  InspectContainerState.JSON_PROPERTY_RESTARTING,
+  InspectContainerState.JSON_PROPERTY_RESTORE_LOG,
+  InspectContainerState.JSON_PROPERTY_RESTORED,
+  InspectContainerState.JSON_PROPERTY_RESTORED_AT,
+  InspectContainerState.JSON_PROPERTY_RUNNING,
+  InspectContainerState.JSON_PROPERTY_STARTED_AT,
+  InspectContainerState.JSON_PROPERTY_STATUS,
+  InspectContainerState.JSON_PROPERTY_STOPPED_BY_USER
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerState {
-  public static final String SERIALIZED_NAME_CGROUP_PATH = "CgroupPath";
-  @SerializedName(SERIALIZED_NAME_CGROUP_PATH)
+  public static final String JSON_PROPERTY_CGROUP_PATH = "CgroupPath";
   private String cgroupPath;
 
-  public static final String SERIALIZED_NAME_CHECKPOINT_LOG = "CheckpointLog";
-  @SerializedName(SERIALIZED_NAME_CHECKPOINT_LOG)
+  public static final String JSON_PROPERTY_CHECKPOINT_LOG = "CheckpointLog";
   private String checkpointLog;
 
-  public static final String SERIALIZED_NAME_CHECKPOINT_PATH = "CheckpointPath";
-  @SerializedName(SERIALIZED_NAME_CHECKPOINT_PATH)
+  public static final String JSON_PROPERTY_CHECKPOINT_PATH = "CheckpointPath";
   private String checkpointPath;
 
-  public static final String SERIALIZED_NAME_CHECKPOINTED = "Checkpointed";
-  @SerializedName(SERIALIZED_NAME_CHECKPOINTED)
+  public static final String JSON_PROPERTY_CHECKPOINTED = "Checkpointed";
   private Boolean checkpointed;
 
-  public static final String SERIALIZED_NAME_CHECKPOINTED_AT = "CheckpointedAt";
-  @SerializedName(SERIALIZED_NAME_CHECKPOINTED_AT)
+  public static final String JSON_PROPERTY_CHECKPOINTED_AT = "CheckpointedAt";
   private OffsetDateTime checkpointedAt;
 
-  public static final String SERIALIZED_NAME_CONMON_PID = "ConmonPid";
-  @SerializedName(SERIALIZED_NAME_CONMON_PID)
+  public static final String JSON_PROPERTY_CONMON_PID = "ConmonPid";
   private Long conmonPid;
 
-  public static final String SERIALIZED_NAME_DEAD = "Dead";
-  @SerializedName(SERIALIZED_NAME_DEAD)
+  public static final String JSON_PROPERTY_DEAD = "Dead";
   private Boolean dead;
 
-  public static final String SERIALIZED_NAME_ERROR = "Error";
-  @SerializedName(SERIALIZED_NAME_ERROR)
+  public static final String JSON_PROPERTY_ERROR = "Error";
   private String error;
 
-  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+  public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
   private Integer exitCode;
 
-  public static final String SERIALIZED_NAME_FINISHED_AT = "FinishedAt";
-  @SerializedName(SERIALIZED_NAME_FINISHED_AT)
+  public static final String JSON_PROPERTY_FINISHED_AT = "FinishedAt";
   private OffsetDateTime finishedAt;
 
-  public static final String SERIALIZED_NAME_HEALTH = "Health";
-  @SerializedName(SERIALIZED_NAME_HEALTH)
+  public static final String JSON_PROPERTY_HEALTH = "Health";
   private HealthCheckResults health;
 
-  public static final String SERIALIZED_NAME_OO_M_KILLED = "OOMKilled";
-  @SerializedName(SERIALIZED_NAME_OO_M_KILLED)
+  public static final String JSON_PROPERTY_OO_M_KILLED = "OOMKilled";
   private Boolean ooMKilled;
 
-  public static final String SERIALIZED_NAME_OCI_VERSION = "OciVersion";
-  @SerializedName(SERIALIZED_NAME_OCI_VERSION)
+  public static final String JSON_PROPERTY_OCI_VERSION = "OciVersion";
   private String ociVersion;
 
-  public static final String SERIALIZED_NAME_PAUSED = "Paused";
-  @SerializedName(SERIALIZED_NAME_PAUSED)
+  public static final String JSON_PROPERTY_PAUSED = "Paused";
   private Boolean paused;
 
-  public static final String SERIALIZED_NAME_PID = "Pid";
-  @SerializedName(SERIALIZED_NAME_PID)
+  public static final String JSON_PROPERTY_PID = "Pid";
   private Long pid;
 
-  public static final String SERIALIZED_NAME_RESTARTING = "Restarting";
-  @SerializedName(SERIALIZED_NAME_RESTARTING)
+  public static final String JSON_PROPERTY_RESTARTING = "Restarting";
   private Boolean restarting;
 
-  public static final String SERIALIZED_NAME_RESTORE_LOG = "RestoreLog";
-  @SerializedName(SERIALIZED_NAME_RESTORE_LOG)
+  public static final String JSON_PROPERTY_RESTORE_LOG = "RestoreLog";
   private String restoreLog;
 
-  public static final String SERIALIZED_NAME_RESTORED = "Restored";
-  @SerializedName(SERIALIZED_NAME_RESTORED)
+  public static final String JSON_PROPERTY_RESTORED = "Restored";
   private Boolean restored;
 
-  public static final String SERIALIZED_NAME_RESTORED_AT = "RestoredAt";
-  @SerializedName(SERIALIZED_NAME_RESTORED_AT)
+  public static final String JSON_PROPERTY_RESTORED_AT = "RestoredAt";
   private OffsetDateTime restoredAt;
 
-  public static final String SERIALIZED_NAME_RUNNING = "Running";
-  @SerializedName(SERIALIZED_NAME_RUNNING)
+  public static final String JSON_PROPERTY_RUNNING = "Running";
   private Boolean running;
 
-  public static final String SERIALIZED_NAME_STARTED_AT = "StartedAt";
-  @SerializedName(SERIALIZED_NAME_STARTED_AT)
+  public static final String JSON_PROPERTY_STARTED_AT = "StartedAt";
   private OffsetDateTime startedAt;
 
-  public static final String SERIALIZED_NAME_STATUS = "Status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
+  public static final String JSON_PROPERTY_STATUS = "Status";
   private String status;
 
-  public static final String SERIALIZED_NAME_STOPPED_BY_USER = "StoppedByUser";
-  @SerializedName(SERIALIZED_NAME_STOPPED_BY_USER)
+  public static final String JSON_PROPERTY_STOPPED_BY_USER = "StoppedByUser";
   private Boolean stoppedByUser;
 
-  public InspectContainerState() {
+  public InspectContainerState() { 
   }
 
   public InspectContainerState cgroupPath(String cgroupPath) {
@@ -158,10 +145,16 @@ public class InspectContainerState {
    * @return cgroupPath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCgroupPath() {
     return cgroupPath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupPath(String cgroupPath) {
     this.cgroupPath = cgroupPath;
   }
@@ -177,10 +170,16 @@ public class InspectContainerState {
    * @return checkpointLog
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CHECKPOINT_LOG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCheckpointLog() {
     return checkpointLog;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CHECKPOINT_LOG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCheckpointLog(String checkpointLog) {
     this.checkpointLog = checkpointLog;
   }
@@ -196,10 +195,16 @@ public class InspectContainerState {
    * @return checkpointPath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CHECKPOINT_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCheckpointPath() {
     return checkpointPath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CHECKPOINT_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCheckpointPath(String checkpointPath) {
     this.checkpointPath = checkpointPath;
   }
@@ -215,10 +220,16 @@ public class InspectContainerState {
    * @return checkpointed
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CHECKPOINTED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCheckpointed() {
     return checkpointed;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CHECKPOINTED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCheckpointed(Boolean checkpointed) {
     this.checkpointed = checkpointed;
   }
@@ -234,10 +245,17 @@ public class InspectContainerState {
    * @return checkpointedAt
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CHECKPOINTED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getCheckpointedAt() {
     return checkpointedAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CHECKPOINTED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCheckpointedAt(OffsetDateTime checkpointedAt) {
     this.checkpointedAt = checkpointedAt;
   }
@@ -253,10 +271,16 @@ public class InspectContainerState {
    * @return conmonPid
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONMON_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getConmonPid() {
     return conmonPid;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONMON_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConmonPid(Long conmonPid) {
     this.conmonPid = conmonPid;
   }
@@ -272,10 +296,16 @@ public class InspectContainerState {
    * @return dead
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DEAD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getDead() {
     return dead;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DEAD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDead(Boolean dead) {
     this.dead = dead;
   }
@@ -291,10 +321,16 @@ public class InspectContainerState {
    * @return error
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getError() {
     return error;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setError(String error) {
     this.error = error;
   }
@@ -310,10 +346,16 @@ public class InspectContainerState {
    * @return exitCode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getExitCode() {
     return exitCode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitCode(Integer exitCode) {
     this.exitCode = exitCode;
   }
@@ -329,10 +371,17 @@ public class InspectContainerState {
    * @return finishedAt
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_FINISHED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getFinishedAt() {
     return finishedAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_FINISHED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFinishedAt(OffsetDateTime finishedAt) {
     this.finishedAt = finishedAt;
   }
@@ -348,10 +397,17 @@ public class InspectContainerState {
    * @return health
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HEALTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public HealthCheckResults getHealth() {
     return health;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealth(HealthCheckResults health) {
     this.health = health;
   }
@@ -367,10 +423,16 @@ public class InspectContainerState {
    * @return ooMKilled
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OO_M_KILLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getOoMKilled() {
     return ooMKilled;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OO_M_KILLED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOoMKilled(Boolean ooMKilled) {
     this.ooMKilled = ooMKilled;
   }
@@ -386,10 +448,16 @@ public class InspectContainerState {
    * @return ociVersion
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OCI_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOciVersion() {
     return ociVersion;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OCI_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOciVersion(String ociVersion) {
     this.ociVersion = ociVersion;
   }
@@ -405,10 +473,16 @@ public class InspectContainerState {
    * @return paused
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PAUSED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getPaused() {
     return paused;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PAUSED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPaused(Boolean paused) {
     this.paused = paused;
   }
@@ -424,10 +498,16 @@ public class InspectContainerState {
    * @return pid
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getPid() {
     return pid;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPid(Long pid) {
     this.pid = pid;
   }
@@ -443,10 +523,16 @@ public class InspectContainerState {
    * @return restarting
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTARTING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRestarting() {
     return restarting;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTARTING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestarting(Boolean restarting) {
     this.restarting = restarting;
   }
@@ -462,10 +548,16 @@ public class InspectContainerState {
    * @return restoreLog
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTORE_LOG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRestoreLog() {
     return restoreLog;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTORE_LOG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestoreLog(String restoreLog) {
     this.restoreLog = restoreLog;
   }
@@ -481,10 +573,16 @@ public class InspectContainerState {
    * @return restored
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTORED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRestored() {
     return restored;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTORED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestored(Boolean restored) {
     this.restored = restored;
   }
@@ -500,10 +598,17 @@ public class InspectContainerState {
    * @return restoredAt
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_RESTORED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getRestoredAt() {
     return restoredAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTORED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestoredAt(OffsetDateTime restoredAt) {
     this.restoredAt = restoredAt;
   }
@@ -519,10 +624,16 @@ public class InspectContainerState {
    * @return running
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RUNNING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getRunning() {
     return running;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RUNNING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunning(Boolean running) {
     this.running = running;
   }
@@ -538,10 +649,17 @@ public class InspectContainerState {
    * @return startedAt
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_STARTED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getStartedAt() {
     return startedAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STARTED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartedAt(OffsetDateTime startedAt) {
     this.startedAt = startedAt;
   }
@@ -557,10 +675,16 @@ public class InspectContainerState {
    * @return status
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getStatus() {
     return status;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(String status) {
     this.status = status;
   }
@@ -576,16 +700,24 @@ public class InspectContainerState {
    * @return stoppedByUser
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STOPPED_BY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getStoppedByUser() {
     return stoppedByUser;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STOPPED_BY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStoppedByUser(Boolean stoppedByUser) {
     this.stoppedByUser = stoppedByUser;
   }
 
 
-
+  /**
+   * Return true if this InspectContainerState object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -667,136 +799,154 @@ public class InspectContainerState {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("CgroupPath");
-    openapiFields.add("CheckpointLog");
-    openapiFields.add("CheckpointPath");
-    openapiFields.add("Checkpointed");
-    openapiFields.add("CheckpointedAt");
-    openapiFields.add("ConmonPid");
-    openapiFields.add("Dead");
-    openapiFields.add("Error");
-    openapiFields.add("ExitCode");
-    openapiFields.add("FinishedAt");
-    openapiFields.add("Health");
-    openapiFields.add("OOMKilled");
-    openapiFields.add("OciVersion");
-    openapiFields.add("Paused");
-    openapiFields.add("Pid");
-    openapiFields.add("Restarting");
-    openapiFields.add("RestoreLog");
-    openapiFields.add("Restored");
-    openapiFields.add("RestoredAt");
-    openapiFields.add("Running");
-    openapiFields.add("StartedAt");
-    openapiFields.add("Status");
-    openapiFields.add("StoppedByUser");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectContainerState
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectContainerState.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerState is not found in the empty JSON string", InspectContainerState.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InspectContainerState.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerState` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("CgroupPath") != null && !jsonObj.get("CgroupPath").isJsonNull()) && !jsonObj.get("CgroupPath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CgroupPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupPath").toString()));
-      }
-      if ((jsonObj.get("CheckpointLog") != null && !jsonObj.get("CheckpointLog").isJsonNull()) && !jsonObj.get("CheckpointLog").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CheckpointLog` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CheckpointLog").toString()));
-      }
-      if ((jsonObj.get("CheckpointPath") != null && !jsonObj.get("CheckpointPath").isJsonNull()) && !jsonObj.get("CheckpointPath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CheckpointPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CheckpointPath").toString()));
-      }
-      if ((jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull()) && !jsonObj.get("Error").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Error` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Error").toString()));
-      }
-      // validate the optional field `Health`
-      if (jsonObj.get("Health") != null && !jsonObj.get("Health").isJsonNull()) {
-        HealthCheckResults.validateJsonElement(jsonObj.get("Health"));
-      }
-      if ((jsonObj.get("OciVersion") != null && !jsonObj.get("OciVersion").isJsonNull()) && !jsonObj.get("OciVersion").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `OciVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OciVersion").toString()));
-      }
-      if ((jsonObj.get("RestoreLog") != null && !jsonObj.get("RestoreLog").isJsonNull()) && !jsonObj.get("RestoreLog").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RestoreLog` to be a primitive type in the JSON string but got `%s`", jsonObj.get("RestoreLog").toString()));
-      }
-      if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InspectContainerState.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InspectContainerState' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InspectContainerState> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InspectContainerState.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InspectContainerState>() {
-           @Override
-           public void write(JsonWriter out, InspectContainerState value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InspectContainerState read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of InspectContainerState given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectContainerState
-   * @throws IOException if the JSON string is invalid with respect to InspectContainerState
-   */
-  public static InspectContainerState fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InspectContainerState.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of InspectContainerState to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `CgroupPath` to the URL query string
+    if (getCgroupPath() != null) {
+      joiner.add(String.format("%sCgroupPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CheckpointLog` to the URL query string
+    if (getCheckpointLog() != null) {
+      joiner.add(String.format("%sCheckpointLog%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckpointLog()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CheckpointPath` to the URL query string
+    if (getCheckpointPath() != null) {
+      joiner.add(String.format("%sCheckpointPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckpointPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Checkpointed` to the URL query string
+    if (getCheckpointed() != null) {
+      joiner.add(String.format("%sCheckpointed%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckpointed()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CheckpointedAt` to the URL query string
+    if (getCheckpointedAt() != null) {
+      joiner.add(String.format("%sCheckpointedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckpointedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ConmonPid` to the URL query string
+    if (getConmonPid() != null) {
+      joiner.add(String.format("%sConmonPid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConmonPid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Dead` to the URL query string
+    if (getDead() != null) {
+      joiner.add(String.format("%sDead%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDead()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Error` to the URL query string
+    if (getError() != null) {
+      joiner.add(String.format("%sError%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getError()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ExitCode` to the URL query string
+    if (getExitCode() != null) {
+      joiner.add(String.format("%sExitCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `FinishedAt` to the URL query string
+    if (getFinishedAt() != null) {
+      joiner.add(String.format("%sFinishedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFinishedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Health` to the URL query string
+    if (getHealth() != null) {
+      joiner.add(getHealth().toUrlQueryString(prefix + "Health" + suffix));
+    }
+
+    // add `OOMKilled` to the URL query string
+    if (getOoMKilled() != null) {
+      joiner.add(String.format("%sOOMKilled%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOoMKilled()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `OciVersion` to the URL query string
+    if (getOciVersion() != null) {
+      joiner.add(String.format("%sOciVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOciVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Paused` to the URL query string
+    if (getPaused() != null) {
+      joiner.add(String.format("%sPaused%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPaused()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Pid` to the URL query string
+    if (getPid() != null) {
+      joiner.add(String.format("%sPid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Restarting` to the URL query string
+    if (getRestarting() != null) {
+      joiner.add(String.format("%sRestarting%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestarting()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RestoreLog` to the URL query string
+    if (getRestoreLog() != null) {
+      joiner.add(String.format("%sRestoreLog%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestoreLog()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Restored` to the URL query string
+    if (getRestored() != null) {
+      joiner.add(String.format("%sRestored%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestored()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RestoredAt` to the URL query string
+    if (getRestoredAt() != null) {
+      joiner.add(String.format("%sRestoredAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestoredAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Running` to the URL query string
+    if (getRunning() != null) {
+      joiner.add(String.format("%sRunning%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRunning()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StartedAt` to the URL query string
+    if (getStartedAt() != null) {
+      joiner.add(String.format("%sStartedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StoppedByUser` to the URL query string
+    if (getStoppedByUser() != null) {
+      joiner.add(String.format("%sStoppedByUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStoppedByUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

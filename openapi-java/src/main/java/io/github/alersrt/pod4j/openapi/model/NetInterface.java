@@ -13,56 +13,43 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.NetAddress;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * NetInterface
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  NetInterface.JSON_PROPERTY_MAC_ADDRESS,
+  NetInterface.JSON_PROPERTY_SUBNETS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetInterface {
-  public static final String SERIALIZED_NAME_MAC_ADDRESS = "mac_address";
-  @SerializedName(SERIALIZED_NAME_MAC_ADDRESS)
+  public static final String JSON_PROPERTY_MAC_ADDRESS = "mac_address";
   private String macAddress;
 
-  public static final String SERIALIZED_NAME_SUBNETS = "subnets";
-  @SerializedName(SERIALIZED_NAME_SUBNETS)
-  private List<NetAddress> subnets = new ArrayList<>();
+  public static final String JSON_PROPERTY_SUBNETS = "subnets";
+  private List<@Valid NetAddress> subnets = new ArrayList<>();
 
-  public NetInterface() {
+  public NetInterface() { 
   }
 
   public NetInterface macAddress(String macAddress) {
@@ -75,16 +62,22 @@ public class NetInterface {
    * @return macAddress
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMacAddress() {
     return macAddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMacAddress(String macAddress) {
     this.macAddress = macAddress;
   }
 
 
-  public NetInterface subnets(List<NetAddress> subnets) {
+  public NetInterface subnets(List<@Valid NetAddress> subnets) {
     this.subnets = subnets;
     return this;
   }
@@ -102,16 +95,25 @@ public class NetInterface {
    * @return subnets
    */
   @javax.annotation.Nullable
-  public List<NetAddress> getSubnets() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SUBNETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid NetAddress> getSubnets() {
     return subnets;
   }
 
-  public void setSubnets(List<NetAddress> subnets) {
+
+  @JsonProperty(JSON_PROPERTY_SUBNETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSubnets(List<@Valid NetAddress> subnets) {
     this.subnets = subnets;
   }
 
 
-
+  /**
+   * Return true if this NetInterface object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -151,107 +153,54 @@ public class NetInterface {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("mac_address");
-    openapiFields.add("subnets");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to NetInterface
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!NetInterface.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in NetInterface is not found in the empty JSON string", NetInterface.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!NetInterface.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `NetInterface` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("mac_address") != null && !jsonObj.get("mac_address").isJsonNull()) && !jsonObj.get("mac_address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `mac_address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mac_address").toString()));
-      }
-      if (jsonObj.get("subnets") != null && !jsonObj.get("subnets").isJsonNull()) {
-        JsonArray jsonArraysubnets = jsonObj.getAsJsonArray("subnets");
-        if (jsonArraysubnets != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("subnets").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `subnets` to be an array in the JSON string but got `%s`", jsonObj.get("subnets").toString()));
-          }
-
-          // validate the optional field `subnets` (array)
-          for (int i = 0; i < jsonArraysubnets.size(); i++) {
-            NetAddress.validateJsonElement(jsonArraysubnets.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!NetInterface.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'NetInterface' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<NetInterface> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(NetInterface.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<NetInterface>() {
-           @Override
-           public void write(JsonWriter out, NetInterface value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public NetInterface read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of NetInterface given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of NetInterface
-   * @throws IOException if the JSON string is invalid with respect to NetInterface
-   */
-  public static NetInterface fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, NetInterface.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of NetInterface to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `mac_address` to the URL query string
+    if (getMacAddress() != null) {
+      joiner.add(String.format("%smac_address%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMacAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `subnets` to the URL query string
+    if (getSubnets() != null) {
+      for (int i = 0; i < getSubnets().size(); i++) {
+        if (getSubnets().get(i) != null) {
+          joiner.add(getSubnets().get(i).toUrlQueryString(String.format("%ssubnets%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

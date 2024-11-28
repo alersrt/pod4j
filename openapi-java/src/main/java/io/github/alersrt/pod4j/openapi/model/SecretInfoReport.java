@@ -13,67 +13,54 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.SecretSpec;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * SecretInfoReport
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  SecretInfoReport.JSON_PROPERTY_CREATED_AT,
+  SecretInfoReport.JSON_PROPERTY_I_D,
+  SecretInfoReport.JSON_PROPERTY_SECRET_DATA,
+  SecretInfoReport.JSON_PROPERTY_SPEC,
+  SecretInfoReport.JSON_PROPERTY_UPDATED_AT
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SecretInfoReport {
-  public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  public static final String JSON_PROPERTY_CREATED_AT = "CreatedAt";
   private OffsetDateTime createdAt;
 
-  public static final String SERIALIZED_NAME_I_D = "ID";
-  @SerializedName(SERIALIZED_NAME_I_D)
+  public static final String JSON_PROPERTY_I_D = "ID";
   private String ID;
 
-  public static final String SERIALIZED_NAME_SECRET_DATA = "SecretData";
-  @SerializedName(SERIALIZED_NAME_SECRET_DATA)
+  public static final String JSON_PROPERTY_SECRET_DATA = "SecretData";
   private String secretData;
 
-  public static final String SERIALIZED_NAME_SPEC = "Spec";
-  @SerializedName(SERIALIZED_NAME_SPEC)
+  public static final String JSON_PROPERTY_SPEC = "Spec";
   private SecretSpec spec;
 
-  public static final String SERIALIZED_NAME_UPDATED_AT = "UpdatedAt";
-  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  public static final String JSON_PROPERTY_UPDATED_AT = "UpdatedAt";
   private OffsetDateTime updatedAt;
 
-  public SecretInfoReport() {
+  public SecretInfoReport() { 
   }
 
   public SecretInfoReport createdAt(OffsetDateTime createdAt) {
@@ -86,10 +73,17 @@ public class SecretInfoReport {
    * @return createdAt
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getCreatedAt() {
     return createdAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
   }
@@ -105,10 +99,16 @@ public class SecretInfoReport {
    * @return ID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getID() {
     return ID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setID(String ID) {
     this.ID = ID;
   }
@@ -124,10 +124,16 @@ public class SecretInfoReport {
    * @return secretData
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SECRET_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSecretData() {
     return secretData;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SECRET_DATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSecretData(String secretData) {
     this.secretData = secretData;
   }
@@ -143,10 +149,17 @@ public class SecretInfoReport {
    * @return spec
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SPEC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public SecretSpec getSpec() {
     return spec;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SPEC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSpec(SecretSpec spec) {
     this.spec = spec;
   }
@@ -162,16 +175,25 @@ public class SecretInfoReport {
    * @return updatedAt
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_UPDATED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UPDATED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUpdatedAt(OffsetDateTime updatedAt) {
     this.updatedAt = updatedAt;
   }
 
 
-
+  /**
+   * Return true if this SecretInfoReport object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -217,103 +239,64 @@ public class SecretInfoReport {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("CreatedAt");
-    openapiFields.add("ID");
-    openapiFields.add("SecretData");
-    openapiFields.add("Spec");
-    openapiFields.add("UpdatedAt");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to SecretInfoReport
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!SecretInfoReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in SecretInfoReport is not found in the empty JSON string", SecretInfoReport.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SecretInfoReport.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SecretInfoReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
-      }
-      if ((jsonObj.get("SecretData") != null && !jsonObj.get("SecretData").isJsonNull()) && !jsonObj.get("SecretData").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `SecretData` to be a primitive type in the JSON string but got `%s`", jsonObj.get("SecretData").toString()));
-      }
-      // validate the optional field `Spec`
-      if (jsonObj.get("Spec") != null && !jsonObj.get("Spec").isJsonNull()) {
-        SecretSpec.validateJsonElement(jsonObj.get("Spec"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!SecretInfoReport.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'SecretInfoReport' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<SecretInfoReport> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(SecretInfoReport.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<SecretInfoReport>() {
-           @Override
-           public void write(JsonWriter out, SecretInfoReport value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public SecretInfoReport read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of SecretInfoReport given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of SecretInfoReport
-   * @throws IOException if the JSON string is invalid with respect to SecretInfoReport
-   */
-  public static SecretInfoReport fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, SecretInfoReport.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of SecretInfoReport to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `CreatedAt` to the URL query string
+    if (getCreatedAt() != null) {
+      joiner.add(String.format("%sCreatedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreatedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ID` to the URL query string
+    if (getID() != null) {
+      joiner.add(String.format("%sID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `SecretData` to the URL query string
+    if (getSecretData() != null) {
+      joiner.add(String.format("%sSecretData%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSecretData()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Spec` to the URL query string
+    if (getSpec() != null) {
+      joiner.add(getSpec().toUrlQueryString(prefix + "Spec" + suffix));
+    }
+
+    // add `UpdatedAt` to the URL query string
+    if (getUpdatedAt() != null) {
+      joiner.add(String.format("%sUpdatedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUpdatedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

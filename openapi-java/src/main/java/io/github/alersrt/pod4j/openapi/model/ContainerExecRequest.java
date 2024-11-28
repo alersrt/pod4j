@@ -13,87 +13,74 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerExecRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerExecRequest.JSON_PROPERTY_ATTACH_STDERR,
+  ContainerExecRequest.JSON_PROPERTY_ATTACH_STDIN,
+  ContainerExecRequest.JSON_PROPERTY_ATTACH_STDOUT,
+  ContainerExecRequest.JSON_PROPERTY_CMD,
+  ContainerExecRequest.JSON_PROPERTY_DETACH_KEYS,
+  ContainerExecRequest.JSON_PROPERTY_ENV,
+  ContainerExecRequest.JSON_PROPERTY_PRIVILEGED,
+  ContainerExecRequest.JSON_PROPERTY_TTY,
+  ContainerExecRequest.JSON_PROPERTY_USER,
+  ContainerExecRequest.JSON_PROPERTY_WORKING_DIR
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerExecRequest {
-  public static final String SERIALIZED_NAME_ATTACH_STDERR = "AttachStderr";
-  @SerializedName(SERIALIZED_NAME_ATTACH_STDERR)
+  public static final String JSON_PROPERTY_ATTACH_STDERR = "AttachStderr";
   private Boolean attachStderr;
 
-  public static final String SERIALIZED_NAME_ATTACH_STDIN = "AttachStdin";
-  @SerializedName(SERIALIZED_NAME_ATTACH_STDIN)
+  public static final String JSON_PROPERTY_ATTACH_STDIN = "AttachStdin";
   private Boolean attachStdin;
 
-  public static final String SERIALIZED_NAME_ATTACH_STDOUT = "AttachStdout";
-  @SerializedName(SERIALIZED_NAME_ATTACH_STDOUT)
+  public static final String JSON_PROPERTY_ATTACH_STDOUT = "AttachStdout";
   private Boolean attachStdout;
 
-  public static final String SERIALIZED_NAME_CMD = "Cmd";
-  @SerializedName(SERIALIZED_NAME_CMD)
+  public static final String JSON_PROPERTY_CMD = "Cmd";
   private List<String> cmd = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DETACH_KEYS = "DetachKeys";
-  @SerializedName(SERIALIZED_NAME_DETACH_KEYS)
+  public static final String JSON_PROPERTY_DETACH_KEYS = "DetachKeys";
   private String detachKeys;
 
-  public static final String SERIALIZED_NAME_ENV = "Env";
-  @SerializedName(SERIALIZED_NAME_ENV)
+  public static final String JSON_PROPERTY_ENV = "Env";
   private List<String> env = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_PRIVILEGED = "Privileged";
-  @SerializedName(SERIALIZED_NAME_PRIVILEGED)
+  public static final String JSON_PROPERTY_PRIVILEGED = "Privileged";
   private Boolean privileged = false;
 
-  public static final String SERIALIZED_NAME_TTY = "Tty";
-  @SerializedName(SERIALIZED_NAME_TTY)
+  public static final String JSON_PROPERTY_TTY = "Tty";
   private Boolean tty;
 
-  public static final String SERIALIZED_NAME_USER = "User";
-  @SerializedName(SERIALIZED_NAME_USER)
+  public static final String JSON_PROPERTY_USER = "User";
   private String user;
 
-  public static final String SERIALIZED_NAME_WORKING_DIR = "WorkingDir";
-  @SerializedName(SERIALIZED_NAME_WORKING_DIR)
+  public static final String JSON_PROPERTY_WORKING_DIR = "WorkingDir";
   private String workingDir;
 
-  public ContainerExecRequest() {
+  public ContainerExecRequest() { 
   }
 
   public ContainerExecRequest attachStderr(Boolean attachStderr) {
@@ -106,10 +93,16 @@ public class ContainerExecRequest {
    * @return attachStderr
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAttachStderr() {
     return attachStderr;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachStderr(Boolean attachStderr) {
     this.attachStderr = attachStderr;
   }
@@ -125,10 +118,16 @@ public class ContainerExecRequest {
    * @return attachStdin
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAttachStdin() {
     return attachStdin;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachStdin(Boolean attachStdin) {
     this.attachStdin = attachStdin;
   }
@@ -144,10 +143,16 @@ public class ContainerExecRequest {
    * @return attachStdout
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAttachStdout() {
     return attachStdout;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachStdout(Boolean attachStdout) {
     this.attachStdout = attachStdout;
   }
@@ -171,10 +176,16 @@ public class ContainerExecRequest {
    * @return cmd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCmd() {
     return cmd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCmd(List<String> cmd) {
     this.cmd = cmd;
   }
@@ -190,10 +201,16 @@ public class ContainerExecRequest {
    * @return detachKeys
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDetachKeys() {
     return detachKeys;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDetachKeys(String detachKeys) {
     this.detachKeys = detachKeys;
   }
@@ -217,10 +234,16 @@ public class ContainerExecRequest {
    * @return env
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ENV)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getEnv() {
     return env;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ENV)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnv(List<String> env) {
     this.env = env;
   }
@@ -236,10 +259,16 @@ public class ContainerExecRequest {
    * @return privileged
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getPrivileged() {
     return privileged;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PRIVILEGED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPrivileged(Boolean privileged) {
     this.privileged = privileged;
   }
@@ -255,10 +284,16 @@ public class ContainerExecRequest {
    * @return tty
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TTY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getTty() {
     return tty;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TTY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTty(Boolean tty) {
     this.tty = tty;
   }
@@ -274,10 +309,16 @@ public class ContainerExecRequest {
    * @return user
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUser() {
     return user;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUser(String user) {
     this.user = user;
   }
@@ -293,16 +334,24 @@ public class ContainerExecRequest {
    * @return workingDir
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getWorkingDir() {
     return workingDir;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWorkingDir(String workingDir) {
     this.workingDir = workingDir;
   }
 
 
-
+  /**
+   * Return true if this ContainerExec_request object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -358,115 +407,97 @@ public class ContainerExecRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("AttachStderr");
-    openapiFields.add("AttachStdin");
-    openapiFields.add("AttachStdout");
-    openapiFields.add("Cmd");
-    openapiFields.add("DetachKeys");
-    openapiFields.add("Env");
-    openapiFields.add("Privileged");
-    openapiFields.add("Tty");
-    openapiFields.add("User");
-    openapiFields.add("WorkingDir");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerExecRequest
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerExecRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerExecRequest is not found in the empty JSON string", ContainerExecRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerExecRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerExecRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull() && !jsonObj.get("Cmd").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Cmd` to be an array in the JSON string but got `%s`", jsonObj.get("Cmd").toString()));
-      }
-      if ((jsonObj.get("DetachKeys") != null && !jsonObj.get("DetachKeys").isJsonNull()) && !jsonObj.get("DetachKeys").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `DetachKeys` to be a primitive type in the JSON string but got `%s`", jsonObj.get("DetachKeys").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull() && !jsonObj.get("Env").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
-      }
-      if ((jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) && !jsonObj.get("User").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `User` to be a primitive type in the JSON string but got `%s`", jsonObj.get("User").toString()));
-      }
-      if ((jsonObj.get("WorkingDir") != null && !jsonObj.get("WorkingDir").isJsonNull()) && !jsonObj.get("WorkingDir").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `WorkingDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("WorkingDir").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerExecRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerExecRequest' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerExecRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerExecRequest.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerExecRequest>() {
-           @Override
-           public void write(JsonWriter out, ContainerExecRequest value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerExecRequest read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerExecRequest given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerExecRequest
-   * @throws IOException if the JSON string is invalid with respect to ContainerExecRequest
-   */
-  public static ContainerExecRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerExecRequest.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerExecRequest to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `AttachStderr` to the URL query string
+    if (getAttachStderr() != null) {
+      joiner.add(String.format("%sAttachStderr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStderr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `AttachStdin` to the URL query string
+    if (getAttachStdin() != null) {
+      joiner.add(String.format("%sAttachStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `AttachStdout` to the URL query string
+    if (getAttachStdout() != null) {
+      joiner.add(String.format("%sAttachStdout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Cmd` to the URL query string
+    if (getCmd() != null) {
+      for (int i = 0; i < getCmd().size(); i++) {
+        joiner.add(String.format("%sCmd%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCmd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `DetachKeys` to the URL query string
+    if (getDetachKeys() != null) {
+      joiner.add(String.format("%sDetachKeys%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDetachKeys()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Env` to the URL query string
+    if (getEnv() != null) {
+      for (int i = 0; i < getEnv().size(); i++) {
+        joiner.add(String.format("%sEnv%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getEnv().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Privileged` to the URL query string
+    if (getPrivileged() != null) {
+      joiner.add(String.format("%sPrivileged%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPrivileged()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Tty` to the URL query string
+    if (getTty() != null) {
+      joiner.add(String.format("%sTty%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTty()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `User` to the URL query string
+    if (getUser() != null) {
+      joiner.add(String.format("%sUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `WorkingDir` to the URL query string
+    if (getWorkingDir() != null) {
+      joiner.add(String.format("%sWorkingDir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWorkingDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

@@ -13,101 +13,88 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ConfigReference;
 import io.github.alersrt.pod4j.openapi.model.IPAM;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * CreateRequest
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  CreateRequest.JSON_PROPERTY_ATTACHABLE,
+  CreateRequest.JSON_PROPERTY_CHECK_DUPLICATE,
+  CreateRequest.JSON_PROPERTY_CONFIG_FROM,
+  CreateRequest.JSON_PROPERTY_CONFIG_ONLY,
+  CreateRequest.JSON_PROPERTY_DRIVER,
+  CreateRequest.JSON_PROPERTY_ENABLE_I_PV6,
+  CreateRequest.JSON_PROPERTY_I_P_A_M,
+  CreateRequest.JSON_PROPERTY_INGRESS,
+  CreateRequest.JSON_PROPERTY_INTERNAL,
+  CreateRequest.JSON_PROPERTY_LABELS,
+  CreateRequest.JSON_PROPERTY_NAME,
+  CreateRequest.JSON_PROPERTY_OPTIONS,
+  CreateRequest.JSON_PROPERTY_SCOPE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class CreateRequest {
-  public static final String SERIALIZED_NAME_ATTACHABLE = "Attachable";
-  @SerializedName(SERIALIZED_NAME_ATTACHABLE)
+  public static final String JSON_PROPERTY_ATTACHABLE = "Attachable";
   private Boolean attachable;
 
-  public static final String SERIALIZED_NAME_CHECK_DUPLICATE = "CheckDuplicate";
-  @SerializedName(SERIALIZED_NAME_CHECK_DUPLICATE)
+  public static final String JSON_PROPERTY_CHECK_DUPLICATE = "CheckDuplicate";
   private Boolean checkDuplicate;
 
-  public static final String SERIALIZED_NAME_CONFIG_FROM = "ConfigFrom";
-  @SerializedName(SERIALIZED_NAME_CONFIG_FROM)
+  public static final String JSON_PROPERTY_CONFIG_FROM = "ConfigFrom";
   private ConfigReference configFrom;
 
-  public static final String SERIALIZED_NAME_CONFIG_ONLY = "ConfigOnly";
-  @SerializedName(SERIALIZED_NAME_CONFIG_ONLY)
+  public static final String JSON_PROPERTY_CONFIG_ONLY = "ConfigOnly";
   private Boolean configOnly;
 
-  public static final String SERIALIZED_NAME_DRIVER = "Driver";
-  @SerializedName(SERIALIZED_NAME_DRIVER)
+  public static final String JSON_PROPERTY_DRIVER = "Driver";
   private String driver;
 
-  public static final String SERIALIZED_NAME_ENABLE_I_PV6 = "EnableIPv6";
-  @SerializedName(SERIALIZED_NAME_ENABLE_I_PV6)
+  public static final String JSON_PROPERTY_ENABLE_I_PV6 = "EnableIPv6";
   private Boolean enableIPv6;
 
-  public static final String SERIALIZED_NAME_I_P_A_M = "IPAM";
-  @SerializedName(SERIALIZED_NAME_I_P_A_M)
+  public static final String JSON_PROPERTY_I_P_A_M = "IPAM";
   private IPAM ipam;
 
-  public static final String SERIALIZED_NAME_INGRESS = "Ingress";
-  @SerializedName(SERIALIZED_NAME_INGRESS)
+  public static final String JSON_PROPERTY_INGRESS = "Ingress";
   private Boolean ingress;
 
-  public static final String SERIALIZED_NAME_INTERNAL = "Internal";
-  @SerializedName(SERIALIZED_NAME_INTERNAL)
+  public static final String JSON_PROPERTY_INTERNAL = "Internal";
   private Boolean internal;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public static final String SERIALIZED_NAME_OPTIONS = "Options";
-  @SerializedName(SERIALIZED_NAME_OPTIONS)
+  public static final String JSON_PROPERTY_OPTIONS = "Options";
   private Map<String, String> options = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_SCOPE = "Scope";
-  @SerializedName(SERIALIZED_NAME_SCOPE)
+  public static final String JSON_PROPERTY_SCOPE = "Scope";
   private String scope;
 
-  public CreateRequest() {
+  public CreateRequest() { 
   }
 
   public CreateRequest attachable(Boolean attachable) {
@@ -120,10 +107,16 @@ public class CreateRequest {
    * @return attachable
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ATTACHABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAttachable() {
     return attachable;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ATTACHABLE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachable(Boolean attachable) {
     this.attachable = attachable;
   }
@@ -139,10 +132,16 @@ public class CreateRequest {
    * @return checkDuplicate
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CHECK_DUPLICATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCheckDuplicate() {
     return checkDuplicate;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CHECK_DUPLICATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCheckDuplicate(Boolean checkDuplicate) {
     this.checkDuplicate = checkDuplicate;
   }
@@ -158,10 +157,17 @@ public class CreateRequest {
    * @return configFrom
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONFIG_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ConfigReference getConfigFrom() {
     return configFrom;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONFIG_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConfigFrom(ConfigReference configFrom) {
     this.configFrom = configFrom;
   }
@@ -177,10 +183,16 @@ public class CreateRequest {
    * @return configOnly
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONFIG_ONLY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getConfigOnly() {
     return configOnly;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONFIG_ONLY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConfigOnly(Boolean configOnly) {
     this.configOnly = configOnly;
   }
@@ -196,10 +208,16 @@ public class CreateRequest {
    * @return driver
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDriver() {
     return driver;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDriver(String driver) {
     this.driver = driver;
   }
@@ -215,10 +233,16 @@ public class CreateRequest {
    * @return enableIPv6
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ENABLE_I_PV6)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getEnableIPv6() {
     return enableIPv6;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ENABLE_I_PV6)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnableIPv6(Boolean enableIPv6) {
     this.enableIPv6 = enableIPv6;
   }
@@ -234,10 +258,17 @@ public class CreateRequest {
    * @return ipam
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_I_P_A_M)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public IPAM getIPAM() {
     return ipam;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_I_P_A_M)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIPAM(IPAM ipam) {
     this.ipam = ipam;
   }
@@ -253,10 +284,16 @@ public class CreateRequest {
    * @return ingress
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INGRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIngress() {
     return ingress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INGRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIngress(Boolean ingress) {
     this.ingress = ingress;
   }
@@ -272,10 +309,16 @@ public class CreateRequest {
    * @return internal
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INTERNAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getInternal() {
     return internal;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INTERNAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInternal(Boolean internal) {
     this.internal = internal;
   }
@@ -299,10 +342,16 @@ public class CreateRequest {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -318,10 +367,16 @@ public class CreateRequest {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -345,10 +400,16 @@ public class CreateRequest {
    * @return options
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getOptions() {
     return options;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptions(Map<String, String> options) {
     this.options = options;
   }
@@ -364,16 +425,24 @@ public class CreateRequest {
    * @return scope
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SCOPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getScope() {
     return scope;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SCOPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setScope(String scope) {
     this.scope = scope;
   }
 
 
-
+  /**
+   * Return true if this CreateRequest object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -435,118 +504,112 @@ public class CreateRequest {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Attachable");
-    openapiFields.add("CheckDuplicate");
-    openapiFields.add("ConfigFrom");
-    openapiFields.add("ConfigOnly");
-    openapiFields.add("Driver");
-    openapiFields.add("EnableIPv6");
-    openapiFields.add("IPAM");
-    openapiFields.add("Ingress");
-    openapiFields.add("Internal");
-    openapiFields.add("Labels");
-    openapiFields.add("Name");
-    openapiFields.add("Options");
-    openapiFields.add("Scope");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to CreateRequest
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!CreateRequest.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in CreateRequest is not found in the empty JSON string", CreateRequest.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateRequest.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateRequest` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `ConfigFrom`
-      if (jsonObj.get("ConfigFrom") != null && !jsonObj.get("ConfigFrom").isJsonNull()) {
-        ConfigReference.validateJsonElement(jsonObj.get("ConfigFrom"));
-      }
-      if ((jsonObj.get("Driver") != null && !jsonObj.get("Driver").isJsonNull()) && !jsonObj.get("Driver").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Driver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Driver").toString()));
-      }
-      // validate the optional field `IPAM`
-      if (jsonObj.get("IPAM") != null && !jsonObj.get("IPAM").isJsonNull()) {
-        IPAM.validateJsonElement(jsonObj.get("IPAM"));
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      if ((jsonObj.get("Scope") != null && !jsonObj.get("Scope").isJsonNull()) && !jsonObj.get("Scope").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Scope` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Scope").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!CreateRequest.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'CreateRequest' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<CreateRequest> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(CreateRequest.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<CreateRequest>() {
-           @Override
-           public void write(JsonWriter out, CreateRequest value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public CreateRequest read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of CreateRequest given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of CreateRequest
-   * @throws IOException if the JSON string is invalid with respect to CreateRequest
-   */
-  public static CreateRequest fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, CreateRequest.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of CreateRequest to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Attachable` to the URL query string
+    if (getAttachable() != null) {
+      joiner.add(String.format("%sAttachable%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachable()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CheckDuplicate` to the URL query string
+    if (getCheckDuplicate() != null) {
+      joiner.add(String.format("%sCheckDuplicate%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCheckDuplicate()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ConfigFrom` to the URL query string
+    if (getConfigFrom() != null) {
+      joiner.add(getConfigFrom().toUrlQueryString(prefix + "ConfigFrom" + suffix));
+    }
+
+    // add `ConfigOnly` to the URL query string
+    if (getConfigOnly() != null) {
+      joiner.add(String.format("%sConfigOnly%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getConfigOnly()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Driver` to the URL query string
+    if (getDriver() != null) {
+      joiner.add(String.format("%sDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `EnableIPv6` to the URL query string
+    if (getEnableIPv6() != null) {
+      joiner.add(String.format("%sEnableIPv6%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEnableIPv6()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IPAM` to the URL query string
+    if (getIPAM() != null) {
+      joiner.add(getIPAM().toUrlQueryString(prefix + "IPAM" + suffix));
+    }
+
+    // add `Ingress` to the URL query string
+    if (getIngress() != null) {
+      joiner.add(String.format("%sIngress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIngress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Internal` to the URL query string
+    if (getInternal() != null) {
+      joiner.add(String.format("%sInternal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInternal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Options` to the URL query string
+    if (getOptions() != null) {
+      for (String _key : getOptions().keySet()) {
+        joiner.add(String.format("%sOptions%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getOptions().get(_key), URLEncoder.encode(ApiClient.valueToString(getOptions().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Scope` to the URL query string
+    if (getScope() != null) {
+      joiner.add(String.format("%sScope%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getScope()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

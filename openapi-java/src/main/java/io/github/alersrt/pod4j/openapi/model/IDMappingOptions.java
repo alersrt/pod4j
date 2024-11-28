@@ -13,73 +13,60 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.AutoUserNsOptions;
 import io.github.alersrt.pod4j.openapi.model.IDMap;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * IDMappingOptions are used for specifying how ID mapping should be set up for a layer or container.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  IDMappingOptions.JSON_PROPERTY_AUTO_USER_NS,
+  IDMappingOptions.JSON_PROPERTY_AUTO_USER_NS_OPTS,
+  IDMappingOptions.JSON_PROPERTY_GI_D_MAP,
+  IDMappingOptions.JSON_PROPERTY_HOST_G_I_D_MAPPING,
+  IDMappingOptions.JSON_PROPERTY_HOST_U_I_D_MAPPING,
+  IDMappingOptions.JSON_PROPERTY_UI_D_MAP
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IDMappingOptions {
-  public static final String SERIALIZED_NAME_AUTO_USER_NS = "AutoUserNs";
-  @SerializedName(SERIALIZED_NAME_AUTO_USER_NS)
+  public static final String JSON_PROPERTY_AUTO_USER_NS = "AutoUserNs";
   private Boolean autoUserNs;
 
-  public static final String SERIALIZED_NAME_AUTO_USER_NS_OPTS = "AutoUserNsOpts";
-  @SerializedName(SERIALIZED_NAME_AUTO_USER_NS_OPTS)
+  public static final String JSON_PROPERTY_AUTO_USER_NS_OPTS = "AutoUserNsOpts";
   private AutoUserNsOptions autoUserNsOpts;
 
-  public static final String SERIALIZED_NAME_GI_D_MAP = "GIDMap";
-  @SerializedName(SERIALIZED_NAME_GI_D_MAP)
-  private List<IDMap> giDMap = new ArrayList<>();
+  public static final String JSON_PROPERTY_GI_D_MAP = "GIDMap";
+  private List<@Valid IDMap> giDMap = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_HOST_G_I_D_MAPPING = "HostGIDMapping";
-  @SerializedName(SERIALIZED_NAME_HOST_G_I_D_MAPPING)
+  public static final String JSON_PROPERTY_HOST_G_I_D_MAPPING = "HostGIDMapping";
   private Boolean hostGIDMapping;
 
-  public static final String SERIALIZED_NAME_HOST_U_I_D_MAPPING = "HostUIDMapping";
-  @SerializedName(SERIALIZED_NAME_HOST_U_I_D_MAPPING)
+  public static final String JSON_PROPERTY_HOST_U_I_D_MAPPING = "HostUIDMapping";
   private Boolean hostUIDMapping;
 
-  public static final String SERIALIZED_NAME_UI_D_MAP = "UIDMap";
-  @SerializedName(SERIALIZED_NAME_UI_D_MAP)
-  private List<IDMap> uiDMap = new ArrayList<>();
+  public static final String JSON_PROPERTY_UI_D_MAP = "UIDMap";
+  private List<@Valid IDMap> uiDMap = new ArrayList<>();
 
-  public IDMappingOptions() {
+  public IDMappingOptions() { 
   }
 
   public IDMappingOptions autoUserNs(Boolean autoUserNs) {
@@ -92,10 +79,16 @@ public class IDMappingOptions {
    * @return autoUserNs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_AUTO_USER_NS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAutoUserNs() {
     return autoUserNs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AUTO_USER_NS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAutoUserNs(Boolean autoUserNs) {
     this.autoUserNs = autoUserNs;
   }
@@ -111,16 +104,23 @@ public class IDMappingOptions {
    * @return autoUserNsOpts
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_AUTO_USER_NS_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public AutoUserNsOptions getAutoUserNsOpts() {
     return autoUserNsOpts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AUTO_USER_NS_OPTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAutoUserNsOpts(AutoUserNsOptions autoUserNsOpts) {
     this.autoUserNsOpts = autoUserNsOpts;
   }
 
 
-  public IDMappingOptions giDMap(List<IDMap> giDMap) {
+  public IDMappingOptions giDMap(List<@Valid IDMap> giDMap) {
     this.giDMap = giDMap;
     return this;
   }
@@ -138,11 +138,18 @@ public class IDMappingOptions {
    * @return giDMap
    */
   @javax.annotation.Nullable
-  public List<IDMap> getGiDMap() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_GI_D_MAP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid IDMap> getGiDMap() {
     return giDMap;
   }
 
-  public void setGiDMap(List<IDMap> giDMap) {
+
+  @JsonProperty(JSON_PROPERTY_GI_D_MAP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGiDMap(List<@Valid IDMap> giDMap) {
     this.giDMap = giDMap;
   }
 
@@ -157,10 +164,16 @@ public class IDMappingOptions {
    * @return hostGIDMapping
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOST_G_I_D_MAPPING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getHostGIDMapping() {
     return hostGIDMapping;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOST_G_I_D_MAPPING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostGIDMapping(Boolean hostGIDMapping) {
     this.hostGIDMapping = hostGIDMapping;
   }
@@ -176,16 +189,22 @@ public class IDMappingOptions {
    * @return hostUIDMapping
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOST_U_I_D_MAPPING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getHostUIDMapping() {
     return hostUIDMapping;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOST_U_I_D_MAPPING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostUIDMapping(Boolean hostUIDMapping) {
     this.hostUIDMapping = hostUIDMapping;
   }
 
 
-  public IDMappingOptions uiDMap(List<IDMap> uiDMap) {
+  public IDMappingOptions uiDMap(List<@Valid IDMap> uiDMap) {
     this.uiDMap = uiDMap;
     return this;
   }
@@ -203,16 +222,25 @@ public class IDMappingOptions {
    * @return uiDMap
    */
   @javax.annotation.Nullable
-  public List<IDMap> getUiDMap() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_UI_D_MAP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid IDMap> getUiDMap() {
     return uiDMap;
   }
 
-  public void setUiDMap(List<IDMap> uiDMap) {
+
+  @JsonProperty(JSON_PROPERTY_UI_D_MAP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUiDMap(List<@Valid IDMap> uiDMap) {
     this.uiDMap = uiDMap;
   }
 
 
-
+  /**
+   * Return true if this IDMappingOptions object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -260,126 +288,79 @@ public class IDMappingOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("AutoUserNs");
-    openapiFields.add("AutoUserNsOpts");
-    openapiFields.add("GIDMap");
-    openapiFields.add("HostGIDMapping");
-    openapiFields.add("HostUIDMapping");
-    openapiFields.add("UIDMap");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to IDMappingOptions
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!IDMappingOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in IDMappingOptions is not found in the empty JSON string", IDMappingOptions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!IDMappingOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IDMappingOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `AutoUserNsOpts`
-      if (jsonObj.get("AutoUserNsOpts") != null && !jsonObj.get("AutoUserNsOpts").isJsonNull()) {
-        AutoUserNsOptions.validateJsonElement(jsonObj.get("AutoUserNsOpts"));
-      }
-      if (jsonObj.get("GIDMap") != null && !jsonObj.get("GIDMap").isJsonNull()) {
-        JsonArray jsonArraygiDMap = jsonObj.getAsJsonArray("GIDMap");
-        if (jsonArraygiDMap != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("GIDMap").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `GIDMap` to be an array in the JSON string but got `%s`", jsonObj.get("GIDMap").toString()));
-          }
-
-          // validate the optional field `GIDMap` (array)
-          for (int i = 0; i < jsonArraygiDMap.size(); i++) {
-            IDMap.validateJsonElement(jsonArraygiDMap.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("UIDMap") != null && !jsonObj.get("UIDMap").isJsonNull()) {
-        JsonArray jsonArrayuiDMap = jsonObj.getAsJsonArray("UIDMap");
-        if (jsonArrayuiDMap != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("UIDMap").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `UIDMap` to be an array in the JSON string but got `%s`", jsonObj.get("UIDMap").toString()));
-          }
-
-          // validate the optional field `UIDMap` (array)
-          for (int i = 0; i < jsonArrayuiDMap.size(); i++) {
-            IDMap.validateJsonElement(jsonArrayuiDMap.get(i));
-          };
-        }
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!IDMappingOptions.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'IDMappingOptions' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<IDMappingOptions> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(IDMappingOptions.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<IDMappingOptions>() {
-           @Override
-           public void write(JsonWriter out, IDMappingOptions value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public IDMappingOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of IDMappingOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of IDMappingOptions
-   * @throws IOException if the JSON string is invalid with respect to IDMappingOptions
-   */
-  public static IDMappingOptions fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, IDMappingOptions.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of IDMappingOptions to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `AutoUserNs` to the URL query string
+    if (getAutoUserNs() != null) {
+      joiner.add(String.format("%sAutoUserNs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAutoUserNs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `AutoUserNsOpts` to the URL query string
+    if (getAutoUserNsOpts() != null) {
+      joiner.add(getAutoUserNsOpts().toUrlQueryString(prefix + "AutoUserNsOpts" + suffix));
+    }
+
+    // add `GIDMap` to the URL query string
+    if (getGiDMap() != null) {
+      for (int i = 0; i < getGiDMap().size(); i++) {
+        if (getGiDMap().get(i) != null) {
+          joiner.add(getGiDMap().get(i).toUrlQueryString(String.format("%sGIDMap%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `HostGIDMapping` to the URL query string
+    if (getHostGIDMapping() != null) {
+      joiner.add(String.format("%sHostGIDMapping%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostGIDMapping()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `HostUIDMapping` to the URL query string
+    if (getHostUIDMapping() != null) {
+      joiner.add(String.format("%sHostUIDMapping%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostUIDMapping()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `UIDMap` to the URL query string
+    if (getUiDMap() != null) {
+      for (int i = 0; i < getUiDMap().size(); i++) {
+        if (getUiDMap().get(i) != null) {
+          joiner.add(getUiDMap().get(i).toUrlQueryString(String.format("%sUIDMap%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

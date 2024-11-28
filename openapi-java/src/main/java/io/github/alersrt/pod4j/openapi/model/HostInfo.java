@@ -13,12 +13,17 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.CPUUsage;
 import io.github.alersrt.pod4j.openapi.model.ConmonInfo;
 import io.github.alersrt.pod4j.openapi.model.DistributionInfo;
@@ -29,179 +34,161 @@ import io.github.alersrt.pod4j.openapi.model.PastaInfo;
 import io.github.alersrt.pod4j.openapi.model.RemoteSocket;
 import io.github.alersrt.pod4j.openapi.model.SecurityInfo;
 import io.github.alersrt.pod4j.openapi.model.SlirpInfo;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * HostInfo describes the libpod host
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  HostInfo.JSON_PROPERTY_ARCH,
+  HostInfo.JSON_PROPERTY_BUILDAH_VERSION,
+  HostInfo.JSON_PROPERTY_CGROUP_CONTROLLERS,
+  HostInfo.JSON_PROPERTY_CGROUP_MANAGER,
+  HostInfo.JSON_PROPERTY_CGROUP_VERSION,
+  HostInfo.JSON_PROPERTY_CONMON,
+  HostInfo.JSON_PROPERTY_CPU_UTILIZATION,
+  HostInfo.JSON_PROPERTY_CPUS,
+  HostInfo.JSON_PROPERTY_DATABASE_BACKEND,
+  HostInfo.JSON_PROPERTY_DISTRIBUTION,
+  HostInfo.JSON_PROPERTY_EVENT_LOGGER,
+  HostInfo.JSON_PROPERTY_FREE_LOCKS,
+  HostInfo.JSON_PROPERTY_HOSTNAME,
+  HostInfo.JSON_PROPERTY_ID_MAPPINGS,
+  HostInfo.JSON_PROPERTY_KERNEL,
+  HostInfo.JSON_PROPERTY_LINKMODE,
+  HostInfo.JSON_PROPERTY_LOG_DRIVER,
+  HostInfo.JSON_PROPERTY_MEM_FREE,
+  HostInfo.JSON_PROPERTY_MEM_TOTAL,
+  HostInfo.JSON_PROPERTY_NETWORK_BACKEND,
+  HostInfo.JSON_PROPERTY_NETWORK_BACKEND_INFO,
+  HostInfo.JSON_PROPERTY_OCI_RUNTIME,
+  HostInfo.JSON_PROPERTY_OS,
+  HostInfo.JSON_PROPERTY_PASTA,
+  HostInfo.JSON_PROPERTY_REMOTE_SOCKET,
+  HostInfo.JSON_PROPERTY_ROOTLESS_NETWORK_CMD,
+  HostInfo.JSON_PROPERTY_RUNTIME_INFO,
+  HostInfo.JSON_PROPERTY_SECURITY,
+  HostInfo.JSON_PROPERTY_SERVICE_IS_REMOTE,
+  HostInfo.JSON_PROPERTY_SLIRP4NETNS,
+  HostInfo.JSON_PROPERTY_SWAP_FREE,
+  HostInfo.JSON_PROPERTY_SWAP_TOTAL,
+  HostInfo.JSON_PROPERTY_UPTIME,
+  HostInfo.JSON_PROPERTY_VARIANT
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class HostInfo {
-  public static final String SERIALIZED_NAME_ARCH = "arch";
-  @SerializedName(SERIALIZED_NAME_ARCH)
+  public static final String JSON_PROPERTY_ARCH = "arch";
   private String arch;
 
-  public static final String SERIALIZED_NAME_BUILDAH_VERSION = "buildahVersion";
-  @SerializedName(SERIALIZED_NAME_BUILDAH_VERSION)
+  public static final String JSON_PROPERTY_BUILDAH_VERSION = "buildahVersion";
   private String buildahVersion;
 
-  public static final String SERIALIZED_NAME_CGROUP_CONTROLLERS = "cgroupControllers";
-  @SerializedName(SERIALIZED_NAME_CGROUP_CONTROLLERS)
+  public static final String JSON_PROPERTY_CGROUP_CONTROLLERS = "cgroupControllers";
   private List<String> cgroupControllers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CGROUP_MANAGER = "cgroupManager";
-  @SerializedName(SERIALIZED_NAME_CGROUP_MANAGER)
+  public static final String JSON_PROPERTY_CGROUP_MANAGER = "cgroupManager";
   private String cgroupManager;
 
-  public static final String SERIALIZED_NAME_CGROUP_VERSION = "cgroupVersion";
-  @SerializedName(SERIALIZED_NAME_CGROUP_VERSION)
+  public static final String JSON_PROPERTY_CGROUP_VERSION = "cgroupVersion";
   private String cgroupVersion;
 
-  public static final String SERIALIZED_NAME_CONMON = "conmon";
-  @SerializedName(SERIALIZED_NAME_CONMON)
+  public static final String JSON_PROPERTY_CONMON = "conmon";
   private ConmonInfo conmon;
 
-  public static final String SERIALIZED_NAME_CPU_UTILIZATION = "cpuUtilization";
-  @SerializedName(SERIALIZED_NAME_CPU_UTILIZATION)
+  public static final String JSON_PROPERTY_CPU_UTILIZATION = "cpuUtilization";
   private CPUUsage cpuUtilization;
 
-  public static final String SERIALIZED_NAME_CPUS = "cpus";
-  @SerializedName(SERIALIZED_NAME_CPUS)
+  public static final String JSON_PROPERTY_CPUS = "cpus";
   private Long cpus;
 
-  public static final String SERIALIZED_NAME_DATABASE_BACKEND = "databaseBackend";
-  @SerializedName(SERIALIZED_NAME_DATABASE_BACKEND)
+  public static final String JSON_PROPERTY_DATABASE_BACKEND = "databaseBackend";
   private String databaseBackend;
 
-  public static final String SERIALIZED_NAME_DISTRIBUTION = "distribution";
-  @SerializedName(SERIALIZED_NAME_DISTRIBUTION)
+  public static final String JSON_PROPERTY_DISTRIBUTION = "distribution";
   private DistributionInfo distribution;
 
-  public static final String SERIALIZED_NAME_EVENT_LOGGER = "eventLogger";
-  @SerializedName(SERIALIZED_NAME_EVENT_LOGGER)
+  public static final String JSON_PROPERTY_EVENT_LOGGER = "eventLogger";
   private String eventLogger;
 
-  public static final String SERIALIZED_NAME_FREE_LOCKS = "freeLocks";
-  @SerializedName(SERIALIZED_NAME_FREE_LOCKS)
+  public static final String JSON_PROPERTY_FREE_LOCKS = "freeLocks";
   private Integer freeLocks;
 
-  public static final String SERIALIZED_NAME_HOSTNAME = "hostname";
-  @SerializedName(SERIALIZED_NAME_HOSTNAME)
+  public static final String JSON_PROPERTY_HOSTNAME = "hostname";
   private String hostname;
 
-  public static final String SERIALIZED_NAME_ID_MAPPINGS = "idMappings";
-  @SerializedName(SERIALIZED_NAME_ID_MAPPINGS)
+  public static final String JSON_PROPERTY_ID_MAPPINGS = "idMappings";
   private IDMappings idMappings;
 
-  public static final String SERIALIZED_NAME_KERNEL = "kernel";
-  @SerializedName(SERIALIZED_NAME_KERNEL)
+  public static final String JSON_PROPERTY_KERNEL = "kernel";
   private String kernel;
 
-  public static final String SERIALIZED_NAME_LINKMODE = "linkmode";
-  @SerializedName(SERIALIZED_NAME_LINKMODE)
+  public static final String JSON_PROPERTY_LINKMODE = "linkmode";
   private String linkmode;
 
-  public static final String SERIALIZED_NAME_LOG_DRIVER = "logDriver";
-  @SerializedName(SERIALIZED_NAME_LOG_DRIVER)
+  public static final String JSON_PROPERTY_LOG_DRIVER = "logDriver";
   private String logDriver;
 
-  public static final String SERIALIZED_NAME_MEM_FREE = "memFree";
-  @SerializedName(SERIALIZED_NAME_MEM_FREE)
+  public static final String JSON_PROPERTY_MEM_FREE = "memFree";
   private Long memFree;
 
-  public static final String SERIALIZED_NAME_MEM_TOTAL = "memTotal";
-  @SerializedName(SERIALIZED_NAME_MEM_TOTAL)
+  public static final String JSON_PROPERTY_MEM_TOTAL = "memTotal";
   private Long memTotal;
 
-  public static final String SERIALIZED_NAME_NETWORK_BACKEND = "networkBackend";
-  @SerializedName(SERIALIZED_NAME_NETWORK_BACKEND)
+  public static final String JSON_PROPERTY_NETWORK_BACKEND = "networkBackend";
   private String networkBackend;
 
-  public static final String SERIALIZED_NAME_NETWORK_BACKEND_INFO = "networkBackendInfo";
-  @SerializedName(SERIALIZED_NAME_NETWORK_BACKEND_INFO)
+  public static final String JSON_PROPERTY_NETWORK_BACKEND_INFO = "networkBackendInfo";
   private NetworkInfo networkBackendInfo;
 
-  public static final String SERIALIZED_NAME_OCI_RUNTIME = "ociRuntime";
-  @SerializedName(SERIALIZED_NAME_OCI_RUNTIME)
+  public static final String JSON_PROPERTY_OCI_RUNTIME = "ociRuntime";
   private OCIRuntimeInfo ociRuntime;
 
-  public static final String SERIALIZED_NAME_OS = "os";
-  @SerializedName(SERIALIZED_NAME_OS)
+  public static final String JSON_PROPERTY_OS = "os";
   private String os;
 
-  public static final String SERIALIZED_NAME_PASTA = "pasta";
-  @SerializedName(SERIALIZED_NAME_PASTA)
+  public static final String JSON_PROPERTY_PASTA = "pasta";
   private PastaInfo pasta;
 
-  public static final String SERIALIZED_NAME_REMOTE_SOCKET = "remoteSocket";
-  @SerializedName(SERIALIZED_NAME_REMOTE_SOCKET)
+  public static final String JSON_PROPERTY_REMOTE_SOCKET = "remoteSocket";
   private RemoteSocket remoteSocket;
 
-  public static final String SERIALIZED_NAME_ROOTLESS_NETWORK_CMD = "rootlessNetworkCmd";
-  @SerializedName(SERIALIZED_NAME_ROOTLESS_NETWORK_CMD)
+  public static final String JSON_PROPERTY_ROOTLESS_NETWORK_CMD = "rootlessNetworkCmd";
   private String rootlessNetworkCmd;
 
-  public static final String SERIALIZED_NAME_RUNTIME_INFO = "runtimeInfo";
-  @SerializedName(SERIALIZED_NAME_RUNTIME_INFO)
+  public static final String JSON_PROPERTY_RUNTIME_INFO = "runtimeInfo";
   private Map<String, Object> runtimeInfo = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_SECURITY = "security";
-  @SerializedName(SERIALIZED_NAME_SECURITY)
+  public static final String JSON_PROPERTY_SECURITY = "security";
   private SecurityInfo security;
 
-  public static final String SERIALIZED_NAME_SERVICE_IS_REMOTE = "serviceIsRemote";
-  @SerializedName(SERIALIZED_NAME_SERVICE_IS_REMOTE)
+  public static final String JSON_PROPERTY_SERVICE_IS_REMOTE = "serviceIsRemote";
   private Boolean serviceIsRemote;
 
-  public static final String SERIALIZED_NAME_SLIRP4NETNS = "slirp4netns";
-  @SerializedName(SERIALIZED_NAME_SLIRP4NETNS)
+  public static final String JSON_PROPERTY_SLIRP4NETNS = "slirp4netns";
   private SlirpInfo slirp4netns;
 
-  public static final String SERIALIZED_NAME_SWAP_FREE = "swapFree";
-  @SerializedName(SERIALIZED_NAME_SWAP_FREE)
+  public static final String JSON_PROPERTY_SWAP_FREE = "swapFree";
   private Long swapFree;
 
-  public static final String SERIALIZED_NAME_SWAP_TOTAL = "swapTotal";
-  @SerializedName(SERIALIZED_NAME_SWAP_TOTAL)
+  public static final String JSON_PROPERTY_SWAP_TOTAL = "swapTotal";
   private Long swapTotal;
 
-  public static final String SERIALIZED_NAME_UPTIME = "uptime";
-  @SerializedName(SERIALIZED_NAME_UPTIME)
+  public static final String JSON_PROPERTY_UPTIME = "uptime";
   private String uptime;
 
-  public static final String SERIALIZED_NAME_VARIANT = "variant";
-  @SerializedName(SERIALIZED_NAME_VARIANT)
+  public static final String JSON_PROPERTY_VARIANT = "variant";
   private String variant;
 
-  public HostInfo() {
+  public HostInfo() { 
   }
 
   public HostInfo arch(String arch) {
@@ -214,10 +201,16 @@ public class HostInfo {
    * @return arch
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArch() {
     return arch;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArch(String arch) {
     this.arch = arch;
   }
@@ -233,10 +226,16 @@ public class HostInfo {
    * @return buildahVersion
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BUILDAH_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getBuildahVersion() {
     return buildahVersion;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BUILDAH_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBuildahVersion(String buildahVersion) {
     this.buildahVersion = buildahVersion;
   }
@@ -260,10 +259,16 @@ public class HostInfo {
    * @return cgroupControllers
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_CONTROLLERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCgroupControllers() {
     return cgroupControllers;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_CONTROLLERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupControllers(List<String> cgroupControllers) {
     this.cgroupControllers = cgroupControllers;
   }
@@ -279,10 +284,16 @@ public class HostInfo {
    * @return cgroupManager
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_MANAGER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCgroupManager() {
     return cgroupManager;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_MANAGER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupManager(String cgroupManager) {
     this.cgroupManager = cgroupManager;
   }
@@ -298,10 +309,16 @@ public class HostInfo {
    * @return cgroupVersion
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCgroupVersion() {
     return cgroupVersion;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupVersion(String cgroupVersion) {
     this.cgroupVersion = cgroupVersion;
   }
@@ -317,10 +334,17 @@ public class HostInfo {
    * @return conmon
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONMON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ConmonInfo getConmon() {
     return conmon;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONMON)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConmon(ConmonInfo conmon) {
     this.conmon = conmon;
   }
@@ -336,10 +360,17 @@ public class HostInfo {
    * @return cpuUtilization
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CPU_UTILIZATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public CPUUsage getCpuUtilization() {
     return cpuUtilization;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPU_UTILIZATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpuUtilization(CPUUsage cpuUtilization) {
     this.cpuUtilization = cpuUtilization;
   }
@@ -355,10 +386,16 @@ public class HostInfo {
    * @return cpus
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getCpus() {
     return cpus;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpus(Long cpus) {
     this.cpus = cpus;
   }
@@ -374,10 +411,16 @@ public class HostInfo {
    * @return databaseBackend
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DATABASE_BACKEND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDatabaseBackend() {
     return databaseBackend;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DATABASE_BACKEND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDatabaseBackend(String databaseBackend) {
     this.databaseBackend = databaseBackend;
   }
@@ -393,10 +436,17 @@ public class HostInfo {
    * @return distribution
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DISTRIBUTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public DistributionInfo getDistribution() {
     return distribution;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DISTRIBUTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDistribution(DistributionInfo distribution) {
     this.distribution = distribution;
   }
@@ -412,10 +462,16 @@ public class HostInfo {
    * @return eventLogger
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EVENT_LOGGER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getEventLogger() {
     return eventLogger;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EVENT_LOGGER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEventLogger(String eventLogger) {
     this.eventLogger = eventLogger;
   }
@@ -431,10 +487,16 @@ public class HostInfo {
    * @return freeLocks
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_FREE_LOCKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getFreeLocks() {
     return freeLocks;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_FREE_LOCKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFreeLocks(Integer freeLocks) {
     this.freeLocks = freeLocks;
   }
@@ -450,10 +512,16 @@ public class HostInfo {
    * @return hostname
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHostname() {
     return hostname;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostname(String hostname) {
     this.hostname = hostname;
   }
@@ -469,10 +537,17 @@ public class HostInfo {
    * @return idMappings
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_ID_MAPPINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public IDMappings getIdMappings() {
     return idMappings;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID_MAPPINGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdMappings(IDMappings idMappings) {
     this.idMappings = idMappings;
   }
@@ -488,10 +563,16 @@ public class HostInfo {
    * @return kernel
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_KERNEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getKernel() {
     return kernel;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_KERNEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setKernel(String kernel) {
     this.kernel = kernel;
   }
@@ -507,10 +588,16 @@ public class HostInfo {
    * @return linkmode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LINKMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getLinkmode() {
     return linkmode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LINKMODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLinkmode(String linkmode) {
     this.linkmode = linkmode;
   }
@@ -526,10 +613,16 @@ public class HostInfo {
    * @return logDriver
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LOG_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getLogDriver() {
     return logDriver;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LOG_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLogDriver(String logDriver) {
     this.logDriver = logDriver;
   }
@@ -545,10 +638,16 @@ public class HostInfo {
    * @return memFree
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM_FREE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getMemFree() {
     return memFree;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM_FREE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemFree(Long memFree) {
     this.memFree = memFree;
   }
@@ -564,10 +663,16 @@ public class HostInfo {
    * @return memTotal
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM_TOTAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getMemTotal() {
     return memTotal;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM_TOTAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemTotal(Long memTotal) {
     this.memTotal = memTotal;
   }
@@ -583,10 +688,16 @@ public class HostInfo {
    * @return networkBackend
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_BACKEND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNetworkBackend() {
     return networkBackend;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_BACKEND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworkBackend(String networkBackend) {
     this.networkBackend = networkBackend;
   }
@@ -602,10 +713,17 @@ public class HostInfo {
    * @return networkBackendInfo
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_BACKEND_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public NetworkInfo getNetworkBackendInfo() {
     return networkBackendInfo;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORK_BACKEND_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworkBackendInfo(NetworkInfo networkBackendInfo) {
     this.networkBackendInfo = networkBackendInfo;
   }
@@ -621,10 +739,17 @@ public class HostInfo {
    * @return ociRuntime
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OCIRuntimeInfo getOciRuntime() {
     return ociRuntime;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOciRuntime(OCIRuntimeInfo ociRuntime) {
     this.ociRuntime = ociRuntime;
   }
@@ -640,10 +765,16 @@ public class HostInfo {
    * @return os
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOs() {
     return os;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOs(String os) {
     this.os = os;
   }
@@ -659,10 +790,17 @@ public class HostInfo {
    * @return pasta
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PASTA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PastaInfo getPasta() {
     return pasta;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PASTA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPasta(PastaInfo pasta) {
     this.pasta = pasta;
   }
@@ -678,10 +816,17 @@ public class HostInfo {
    * @return remoteSocket
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_REMOTE_SOCKET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public RemoteSocket getRemoteSocket() {
     return remoteSocket;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REMOTE_SOCKET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRemoteSocket(RemoteSocket remoteSocket) {
     this.remoteSocket = remoteSocket;
   }
@@ -697,10 +842,16 @@ public class HostInfo {
    * @return rootlessNetworkCmd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ROOTLESS_NETWORK_CMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRootlessNetworkCmd() {
     return rootlessNetworkCmd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOTLESS_NETWORK_CMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootlessNetworkCmd(String rootlessNetworkCmd) {
     this.rootlessNetworkCmd = rootlessNetworkCmd;
   }
@@ -724,10 +875,16 @@ public class HostInfo {
    * @return runtimeInfo
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RUNTIME_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getRuntimeInfo() {
     return runtimeInfo;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RUNTIME_INFO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRuntimeInfo(Map<String, Object> runtimeInfo) {
     this.runtimeInfo = runtimeInfo;
   }
@@ -743,10 +900,17 @@ public class HostInfo {
    * @return security
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SECURITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public SecurityInfo getSecurity() {
     return security;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SECURITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSecurity(SecurityInfo security) {
     this.security = security;
   }
@@ -762,10 +926,16 @@ public class HostInfo {
    * @return serviceIsRemote
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SERVICE_IS_REMOTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getServiceIsRemote() {
     return serviceIsRemote;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SERVICE_IS_REMOTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setServiceIsRemote(Boolean serviceIsRemote) {
     this.serviceIsRemote = serviceIsRemote;
   }
@@ -781,10 +951,17 @@ public class HostInfo {
    * @return slirp4netns
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SLIRP4NETNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public SlirpInfo getSlirp4netns() {
     return slirp4netns;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SLIRP4NETNS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSlirp4netns(SlirpInfo slirp4netns) {
     this.slirp4netns = slirp4netns;
   }
@@ -800,10 +977,16 @@ public class HostInfo {
    * @return swapFree
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SWAP_FREE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSwapFree() {
     return swapFree;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SWAP_FREE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSwapFree(Long swapFree) {
     this.swapFree = swapFree;
   }
@@ -819,10 +1002,16 @@ public class HostInfo {
    * @return swapTotal
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SWAP_TOTAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSwapTotal() {
     return swapTotal;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SWAP_TOTAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSwapTotal(Long swapTotal) {
     this.swapTotal = swapTotal;
   }
@@ -838,10 +1027,16 @@ public class HostInfo {
    * @return uptime
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UPTIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUptime() {
     return uptime;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UPTIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUptime(String uptime) {
     this.uptime = uptime;
   }
@@ -857,16 +1052,24 @@ public class HostInfo {
    * @return variant
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVariant() {
     return variant;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVariant(String variant) {
     this.variant = variant;
   }
 
 
-
+  /**
+   * Return true if this HostInfo object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -970,211 +1173,217 @@ public class HostInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("arch");
-    openapiFields.add("buildahVersion");
-    openapiFields.add("cgroupControllers");
-    openapiFields.add("cgroupManager");
-    openapiFields.add("cgroupVersion");
-    openapiFields.add("conmon");
-    openapiFields.add("cpuUtilization");
-    openapiFields.add("cpus");
-    openapiFields.add("databaseBackend");
-    openapiFields.add("distribution");
-    openapiFields.add("eventLogger");
-    openapiFields.add("freeLocks");
-    openapiFields.add("hostname");
-    openapiFields.add("idMappings");
-    openapiFields.add("kernel");
-    openapiFields.add("linkmode");
-    openapiFields.add("logDriver");
-    openapiFields.add("memFree");
-    openapiFields.add("memTotal");
-    openapiFields.add("networkBackend");
-    openapiFields.add("networkBackendInfo");
-    openapiFields.add("ociRuntime");
-    openapiFields.add("os");
-    openapiFields.add("pasta");
-    openapiFields.add("remoteSocket");
-    openapiFields.add("rootlessNetworkCmd");
-    openapiFields.add("runtimeInfo");
-    openapiFields.add("security");
-    openapiFields.add("serviceIsRemote");
-    openapiFields.add("slirp4netns");
-    openapiFields.add("swapFree");
-    openapiFields.add("swapTotal");
-    openapiFields.add("uptime");
-    openapiFields.add("variant");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to HostInfo
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!HostInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in HostInfo is not found in the empty JSON string", HostInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!HostInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HostInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("arch") != null && !jsonObj.get("arch").isJsonNull()) && !jsonObj.get("arch").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arch").toString()));
-      }
-      if ((jsonObj.get("buildahVersion") != null && !jsonObj.get("buildahVersion").isJsonNull()) && !jsonObj.get("buildahVersion").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `buildahVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("buildahVersion").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("cgroupControllers") != null && !jsonObj.get("cgroupControllers").isJsonNull() && !jsonObj.get("cgroupControllers").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cgroupControllers` to be an array in the JSON string but got `%s`", jsonObj.get("cgroupControllers").toString()));
-      }
-      if ((jsonObj.get("cgroupManager") != null && !jsonObj.get("cgroupManager").isJsonNull()) && !jsonObj.get("cgroupManager").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cgroupManager` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroupManager").toString()));
-      }
-      if ((jsonObj.get("cgroupVersion") != null && !jsonObj.get("cgroupVersion").isJsonNull()) && !jsonObj.get("cgroupVersion").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cgroupVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroupVersion").toString()));
-      }
-      // validate the optional field `conmon`
-      if (jsonObj.get("conmon") != null && !jsonObj.get("conmon").isJsonNull()) {
-        ConmonInfo.validateJsonElement(jsonObj.get("conmon"));
-      }
-      // validate the optional field `cpuUtilization`
-      if (jsonObj.get("cpuUtilization") != null && !jsonObj.get("cpuUtilization").isJsonNull()) {
-        CPUUsage.validateJsonElement(jsonObj.get("cpuUtilization"));
-      }
-      if ((jsonObj.get("databaseBackend") != null && !jsonObj.get("databaseBackend").isJsonNull()) && !jsonObj.get("databaseBackend").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `databaseBackend` to be a primitive type in the JSON string but got `%s`", jsonObj.get("databaseBackend").toString()));
-      }
-      // validate the optional field `distribution`
-      if (jsonObj.get("distribution") != null && !jsonObj.get("distribution").isJsonNull()) {
-        DistributionInfo.validateJsonElement(jsonObj.get("distribution"));
-      }
-      if ((jsonObj.get("eventLogger") != null && !jsonObj.get("eventLogger").isJsonNull()) && !jsonObj.get("eventLogger").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `eventLogger` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eventLogger").toString()));
-      }
-      if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
-      }
-      // validate the optional field `idMappings`
-      if (jsonObj.get("idMappings") != null && !jsonObj.get("idMappings").isJsonNull()) {
-        IDMappings.validateJsonElement(jsonObj.get("idMappings"));
-      }
-      if ((jsonObj.get("kernel") != null && !jsonObj.get("kernel").isJsonNull()) && !jsonObj.get("kernel").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `kernel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("kernel").toString()));
-      }
-      if ((jsonObj.get("linkmode") != null && !jsonObj.get("linkmode").isJsonNull()) && !jsonObj.get("linkmode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `linkmode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("linkmode").toString()));
-      }
-      if ((jsonObj.get("logDriver") != null && !jsonObj.get("logDriver").isJsonNull()) && !jsonObj.get("logDriver").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `logDriver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("logDriver").toString()));
-      }
-      if ((jsonObj.get("networkBackend") != null && !jsonObj.get("networkBackend").isJsonNull()) && !jsonObj.get("networkBackend").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `networkBackend` to be a primitive type in the JSON string but got `%s`", jsonObj.get("networkBackend").toString()));
-      }
-      // validate the optional field `networkBackendInfo`
-      if (jsonObj.get("networkBackendInfo") != null && !jsonObj.get("networkBackendInfo").isJsonNull()) {
-        NetworkInfo.validateJsonElement(jsonObj.get("networkBackendInfo"));
-      }
-      // validate the optional field `ociRuntime`
-      if (jsonObj.get("ociRuntime") != null && !jsonObj.get("ociRuntime").isJsonNull()) {
-        OCIRuntimeInfo.validateJsonElement(jsonObj.get("ociRuntime"));
-      }
-      if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
-      }
-      // validate the optional field `pasta`
-      if (jsonObj.get("pasta") != null && !jsonObj.get("pasta").isJsonNull()) {
-        PastaInfo.validateJsonElement(jsonObj.get("pasta"));
-      }
-      // validate the optional field `remoteSocket`
-      if (jsonObj.get("remoteSocket") != null && !jsonObj.get("remoteSocket").isJsonNull()) {
-        RemoteSocket.validateJsonElement(jsonObj.get("remoteSocket"));
-      }
-      if ((jsonObj.get("rootlessNetworkCmd") != null && !jsonObj.get("rootlessNetworkCmd").isJsonNull()) && !jsonObj.get("rootlessNetworkCmd").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `rootlessNetworkCmd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootlessNetworkCmd").toString()));
-      }
-      // validate the optional field `security`
-      if (jsonObj.get("security") != null && !jsonObj.get("security").isJsonNull()) {
-        SecurityInfo.validateJsonElement(jsonObj.get("security"));
-      }
-      // validate the optional field `slirp4netns`
-      if (jsonObj.get("slirp4netns") != null && !jsonObj.get("slirp4netns").isJsonNull()) {
-        SlirpInfo.validateJsonElement(jsonObj.get("slirp4netns"));
-      }
-      if ((jsonObj.get("uptime") != null && !jsonObj.get("uptime").isJsonNull()) && !jsonObj.get("uptime").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `uptime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uptime").toString()));
-      }
-      if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!HostInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'HostInfo' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<HostInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(HostInfo.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<HostInfo>() {
-           @Override
-           public void write(JsonWriter out, HostInfo value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public HostInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of HostInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of HostInfo
-   * @throws IOException if the JSON string is invalid with respect to HostInfo
-   */
-  public static HostInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, HostInfo.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of HostInfo to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `arch` to the URL query string
+    if (getArch() != null) {
+      joiner.add(String.format("%sarch%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArch()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `buildahVersion` to the URL query string
+    if (getBuildahVersion() != null) {
+      joiner.add(String.format("%sbuildahVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBuildahVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cgroupControllers` to the URL query string
+    if (getCgroupControllers() != null) {
+      for (int i = 0; i < getCgroupControllers().size(); i++) {
+        joiner.add(String.format("%scgroupControllers%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCgroupControllers().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `cgroupManager` to the URL query string
+    if (getCgroupManager() != null) {
+      joiner.add(String.format("%scgroupManager%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupManager()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cgroupVersion` to the URL query string
+    if (getCgroupVersion() != null) {
+      joiner.add(String.format("%scgroupVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `conmon` to the URL query string
+    if (getConmon() != null) {
+      joiner.add(getConmon().toUrlQueryString(prefix + "conmon" + suffix));
+    }
+
+    // add `cpuUtilization` to the URL query string
+    if (getCpuUtilization() != null) {
+      joiner.add(getCpuUtilization().toUrlQueryString(prefix + "cpuUtilization" + suffix));
+    }
+
+    // add `cpus` to the URL query string
+    if (getCpus() != null) {
+      joiner.add(String.format("%scpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `databaseBackend` to the URL query string
+    if (getDatabaseBackend() != null) {
+      joiner.add(String.format("%sdatabaseBackend%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDatabaseBackend()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `distribution` to the URL query string
+    if (getDistribution() != null) {
+      joiner.add(getDistribution().toUrlQueryString(prefix + "distribution" + suffix));
+    }
+
+    // add `eventLogger` to the URL query string
+    if (getEventLogger() != null) {
+      joiner.add(String.format("%seventLogger%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEventLogger()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `freeLocks` to the URL query string
+    if (getFreeLocks() != null) {
+      joiner.add(String.format("%sfreeLocks%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getFreeLocks()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `hostname` to the URL query string
+    if (getHostname() != null) {
+      joiner.add(String.format("%shostname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `idMappings` to the URL query string
+    if (getIdMappings() != null) {
+      joiner.add(getIdMappings().toUrlQueryString(prefix + "idMappings" + suffix));
+    }
+
+    // add `kernel` to the URL query string
+    if (getKernel() != null) {
+      joiner.add(String.format("%skernel%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getKernel()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `linkmode` to the URL query string
+    if (getLinkmode() != null) {
+      joiner.add(String.format("%slinkmode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLinkmode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `logDriver` to the URL query string
+    if (getLogDriver() != null) {
+      joiner.add(String.format("%slogDriver%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLogDriver()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `memFree` to the URL query string
+    if (getMemFree() != null) {
+      joiner.add(String.format("%smemFree%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemFree()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `memTotal` to the URL query string
+    if (getMemTotal() != null) {
+      joiner.add(String.format("%smemTotal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemTotal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `networkBackend` to the URL query string
+    if (getNetworkBackend() != null) {
+      joiner.add(String.format("%snetworkBackend%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNetworkBackend()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `networkBackendInfo` to the URL query string
+    if (getNetworkBackendInfo() != null) {
+      joiner.add(getNetworkBackendInfo().toUrlQueryString(prefix + "networkBackendInfo" + suffix));
+    }
+
+    // add `ociRuntime` to the URL query string
+    if (getOciRuntime() != null) {
+      joiner.add(getOciRuntime().toUrlQueryString(prefix + "ociRuntime" + suffix));
+    }
+
+    // add `os` to the URL query string
+    if (getOs() != null) {
+      joiner.add(String.format("%sos%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `pasta` to the URL query string
+    if (getPasta() != null) {
+      joiner.add(getPasta().toUrlQueryString(prefix + "pasta" + suffix));
+    }
+
+    // add `remoteSocket` to the URL query string
+    if (getRemoteSocket() != null) {
+      joiner.add(getRemoteSocket().toUrlQueryString(prefix + "remoteSocket" + suffix));
+    }
+
+    // add `rootlessNetworkCmd` to the URL query string
+    if (getRootlessNetworkCmd() != null) {
+      joiner.add(String.format("%srootlessNetworkCmd%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRootlessNetworkCmd()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `runtimeInfo` to the URL query string
+    if (getRuntimeInfo() != null) {
+      for (String _key : getRuntimeInfo().keySet()) {
+        joiner.add(String.format("%sruntimeInfo%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getRuntimeInfo().get(_key), URLEncoder.encode(ApiClient.valueToString(getRuntimeInfo().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `security` to the URL query string
+    if (getSecurity() != null) {
+      joiner.add(getSecurity().toUrlQueryString(prefix + "security" + suffix));
+    }
+
+    // add `serviceIsRemote` to the URL query string
+    if (getServiceIsRemote() != null) {
+      joiner.add(String.format("%sserviceIsRemote%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getServiceIsRemote()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `slirp4netns` to the URL query string
+    if (getSlirp4netns() != null) {
+      joiner.add(getSlirp4netns().toUrlQueryString(prefix + "slirp4netns" + suffix));
+    }
+
+    // add `swapFree` to the URL query string
+    if (getSwapFree() != null) {
+      joiner.add(String.format("%sswapFree%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSwapFree()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `swapTotal` to the URL query string
+    if (getSwapTotal() != null) {
+      joiner.add(String.format("%sswapTotal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSwapTotal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `uptime` to the URL query string
+    if (getUptime() != null) {
+      joiner.add(String.format("%suptime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUptime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `variant` to the URL query string
+    if (getVariant() != null) {
+      joiner.add(String.format("%svariant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

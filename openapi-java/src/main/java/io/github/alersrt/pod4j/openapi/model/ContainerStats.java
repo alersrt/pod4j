@@ -13,118 +13,105 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ContainerNetworkStats;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerStats contains the statistics information for a running container
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerStats.JSON_PROPERTY_AVG_C_P_U,
+  ContainerStats.JSON_PROPERTY_BLOCK_INPUT,
+  ContainerStats.JSON_PROPERTY_BLOCK_OUTPUT,
+  ContainerStats.JSON_PROPERTY_C_P_U,
+  ContainerStats.JSON_PROPERTY_CP_U_NANO,
+  ContainerStats.JSON_PROPERTY_CP_U_SYSTEM_NANO,
+  ContainerStats.JSON_PROPERTY_CONTAINER_I_D,
+  ContainerStats.JSON_PROPERTY_DURATION,
+  ContainerStats.JSON_PROPERTY_MEM_LIMIT,
+  ContainerStats.JSON_PROPERTY_MEM_PERC,
+  ContainerStats.JSON_PROPERTY_MEM_USAGE,
+  ContainerStats.JSON_PROPERTY_NAME,
+  ContainerStats.JSON_PROPERTY_NETWORK,
+  ContainerStats.JSON_PROPERTY_PI_DS,
+  ContainerStats.JSON_PROPERTY_PER_C_P_U,
+  ContainerStats.JSON_PROPERTY_SYSTEM_NANO,
+  ContainerStats.JSON_PROPERTY_UP_TIME
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerStats {
-  public static final String SERIALIZED_NAME_AVG_C_P_U = "AvgCPU";
-  @SerializedName(SERIALIZED_NAME_AVG_C_P_U)
+  public static final String JSON_PROPERTY_AVG_C_P_U = "AvgCPU";
   private Double avgCPU;
 
-  public static final String SERIALIZED_NAME_BLOCK_INPUT = "BlockInput";
-  @SerializedName(SERIALIZED_NAME_BLOCK_INPUT)
+  public static final String JSON_PROPERTY_BLOCK_INPUT = "BlockInput";
   private Integer blockInput;
 
-  public static final String SERIALIZED_NAME_BLOCK_OUTPUT = "BlockOutput";
-  @SerializedName(SERIALIZED_NAME_BLOCK_OUTPUT)
+  public static final String JSON_PROPERTY_BLOCK_OUTPUT = "BlockOutput";
   private Integer blockOutput;
 
-  public static final String SERIALIZED_NAME_C_P_U = "CPU";
-  @SerializedName(SERIALIZED_NAME_C_P_U)
+  public static final String JSON_PROPERTY_C_P_U = "CPU";
   private Double CPU;
 
-  public static final String SERIALIZED_NAME_CP_U_NANO = "CPUNano";
-  @SerializedName(SERIALIZED_NAME_CP_U_NANO)
+  public static final String JSON_PROPERTY_CP_U_NANO = "CPUNano";
   private Integer cpUNano;
 
-  public static final String SERIALIZED_NAME_CP_U_SYSTEM_NANO = "CPUSystemNano";
-  @SerializedName(SERIALIZED_NAME_CP_U_SYSTEM_NANO)
+  public static final String JSON_PROPERTY_CP_U_SYSTEM_NANO = "CPUSystemNano";
   private Integer cpUSystemNano;
 
-  public static final String SERIALIZED_NAME_CONTAINER_I_D = "ContainerID";
-  @SerializedName(SERIALIZED_NAME_CONTAINER_I_D)
+  public static final String JSON_PROPERTY_CONTAINER_I_D = "ContainerID";
   private String containerID;
 
-  public static final String SERIALIZED_NAME_DURATION = "Duration";
-  @SerializedName(SERIALIZED_NAME_DURATION)
+  public static final String JSON_PROPERTY_DURATION = "Duration";
   private Integer duration;
 
-  public static final String SERIALIZED_NAME_MEM_LIMIT = "MemLimit";
-  @SerializedName(SERIALIZED_NAME_MEM_LIMIT)
+  public static final String JSON_PROPERTY_MEM_LIMIT = "MemLimit";
   private Integer memLimit;
 
-  public static final String SERIALIZED_NAME_MEM_PERC = "MemPerc";
-  @SerializedName(SERIALIZED_NAME_MEM_PERC)
+  public static final String JSON_PROPERTY_MEM_PERC = "MemPerc";
   private Double memPerc;
 
-  public static final String SERIALIZED_NAME_MEM_USAGE = "MemUsage";
-  @SerializedName(SERIALIZED_NAME_MEM_USAGE)
+  public static final String JSON_PROPERTY_MEM_USAGE = "MemUsage";
   private Integer memUsage;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public static final String SERIALIZED_NAME_NETWORK = "Network";
-  @SerializedName(SERIALIZED_NAME_NETWORK)
+  public static final String JSON_PROPERTY_NETWORK = "Network";
   private Map<String, ContainerNetworkStats> network = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_PI_DS = "PIDs";
-  @SerializedName(SERIALIZED_NAME_PI_DS)
+  public static final String JSON_PROPERTY_PI_DS = "PIDs";
   private Integer piDs;
 
-  public static final String SERIALIZED_NAME_PER_C_P_U = "PerCPU";
-  @SerializedName(SERIALIZED_NAME_PER_C_P_U)
+  public static final String JSON_PROPERTY_PER_C_P_U = "PerCPU";
   private List<Integer> perCPU = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SYSTEM_NANO = "SystemNano";
-  @SerializedName(SERIALIZED_NAME_SYSTEM_NANO)
+  public static final String JSON_PROPERTY_SYSTEM_NANO = "SystemNano";
   private Integer systemNano;
 
-  public static final String SERIALIZED_NAME_UP_TIME = "UpTime";
-  @SerializedName(SERIALIZED_NAME_UP_TIME)
+  public static final String JSON_PROPERTY_UP_TIME = "UpTime";
   private Long upTime;
 
-  public ContainerStats() {
+  public ContainerStats() { 
   }
 
   public ContainerStats avgCPU(Double avgCPU) {
@@ -137,10 +124,16 @@ public class ContainerStats {
    * @return avgCPU
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_AVG_C_P_U)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getAvgCPU() {
     return avgCPU;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AVG_C_P_U)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAvgCPU(Double avgCPU) {
     this.avgCPU = avgCPU;
   }
@@ -156,10 +149,16 @@ public class ContainerStats {
    * @return blockInput
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BLOCK_INPUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getBlockInput() {
     return blockInput;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BLOCK_INPUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBlockInput(Integer blockInput) {
     this.blockInput = blockInput;
   }
@@ -175,10 +174,16 @@ public class ContainerStats {
    * @return blockOutput
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BLOCK_OUTPUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getBlockOutput() {
     return blockOutput;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BLOCK_OUTPUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBlockOutput(Integer blockOutput) {
     this.blockOutput = blockOutput;
   }
@@ -194,10 +199,16 @@ public class ContainerStats {
    * @return CPU
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_C_P_U)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getCPU() {
     return CPU;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_C_P_U)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCPU(Double CPU) {
     this.CPU = CPU;
   }
@@ -213,10 +224,16 @@ public class ContainerStats {
    * @return cpUNano
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CP_U_NANO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getCpUNano() {
     return cpUNano;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CP_U_NANO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpUNano(Integer cpUNano) {
     this.cpUNano = cpUNano;
   }
@@ -232,10 +249,16 @@ public class ContainerStats {
    * @return cpUSystemNano
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CP_U_SYSTEM_NANO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getCpUSystemNano() {
     return cpUSystemNano;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CP_U_SYSTEM_NANO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpUSystemNano(Integer cpUSystemNano) {
     this.cpUSystemNano = cpUSystemNano;
   }
@@ -251,10 +274,16 @@ public class ContainerStats {
    * @return containerID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getContainerID() {
     return containerID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainerID(String containerID) {
     this.containerID = containerID;
   }
@@ -270,10 +299,16 @@ public class ContainerStats {
    * @return duration
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DURATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getDuration() {
     return duration;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DURATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDuration(Integer duration) {
     this.duration = duration;
   }
@@ -289,10 +324,16 @@ public class ContainerStats {
    * @return memLimit
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getMemLimit() {
     return memLimit;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemLimit(Integer memLimit) {
     this.memLimit = memLimit;
   }
@@ -308,10 +349,16 @@ public class ContainerStats {
    * @return memPerc
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM_PERC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getMemPerc() {
     return memPerc;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM_PERC)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemPerc(Double memPerc) {
     this.memPerc = memPerc;
   }
@@ -327,10 +374,16 @@ public class ContainerStats {
    * @return memUsage
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEM_USAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getMemUsage() {
     return memUsage;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEM_USAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemUsage(Integer memUsage) {
     this.memUsage = memUsage;
   }
@@ -346,10 +399,16 @@ public class ContainerStats {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -373,10 +432,17 @@ public class ContainerStats {
    * @return network
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, ContainerNetworkStats> getNetwork() {
     return network;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetwork(Map<String, ContainerNetworkStats> network) {
     this.network = network;
   }
@@ -392,10 +458,16 @@ public class ContainerStats {
    * @return piDs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PI_DS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getPiDs() {
     return piDs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PI_DS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPiDs(Integer piDs) {
     this.piDs = piDs;
   }
@@ -419,10 +491,16 @@ public class ContainerStats {
    * @return perCPU
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PER_C_P_U)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Integer> getPerCPU() {
     return perCPU;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PER_C_P_U)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPerCPU(List<Integer> perCPU) {
     this.perCPU = perCPU;
   }
@@ -438,10 +516,16 @@ public class ContainerStats {
    * @return systemNano
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SYSTEM_NANO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getSystemNano() {
     return systemNano;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SYSTEM_NANO)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSystemNano(Integer systemNano) {
     this.systemNano = systemNano;
   }
@@ -457,16 +541,24 @@ public class ContainerStats {
    * @return upTime
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UP_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getUpTime() {
     return upTime;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UP_TIME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUpTime(Long upTime) {
     this.upTime = upTime;
   }
 
 
-
+  /**
+   * Return true if this ContainerStats object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -536,115 +628,133 @@ public class ContainerStats {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("AvgCPU");
-    openapiFields.add("BlockInput");
-    openapiFields.add("BlockOutput");
-    openapiFields.add("CPU");
-    openapiFields.add("CPUNano");
-    openapiFields.add("CPUSystemNano");
-    openapiFields.add("ContainerID");
-    openapiFields.add("Duration");
-    openapiFields.add("MemLimit");
-    openapiFields.add("MemPerc");
-    openapiFields.add("MemUsage");
-    openapiFields.add("Name");
-    openapiFields.add("Network");
-    openapiFields.add("PIDs");
-    openapiFields.add("PerCPU");
-    openapiFields.add("SystemNano");
-    openapiFields.add("UpTime");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerStats
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerStats.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerStats is not found in the empty JSON string", ContainerStats.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerStats.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerStats` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("ContainerID") != null && !jsonObj.get("ContainerID").isJsonNull()) && !jsonObj.get("ContainerID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ContainerID").toString()));
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("PerCPU") != null && !jsonObj.get("PerCPU").isJsonNull() && !jsonObj.get("PerCPU").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `PerCPU` to be an array in the JSON string but got `%s`", jsonObj.get("PerCPU").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerStats.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerStats' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerStats> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerStats.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerStats>() {
-           @Override
-           public void write(JsonWriter out, ContainerStats value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerStats read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerStats given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerStats
-   * @throws IOException if the JSON string is invalid with respect to ContainerStats
-   */
-  public static ContainerStats fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerStats.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerStats to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `AvgCPU` to the URL query string
+    if (getAvgCPU() != null) {
+      joiner.add(String.format("%sAvgCPU%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAvgCPU()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `BlockInput` to the URL query string
+    if (getBlockInput() != null) {
+      joiner.add(String.format("%sBlockInput%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBlockInput()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `BlockOutput` to the URL query string
+    if (getBlockOutput() != null) {
+      joiner.add(String.format("%sBlockOutput%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBlockOutput()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CPU` to the URL query string
+    if (getCPU() != null) {
+      joiner.add(String.format("%sCPU%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCPU()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CPUNano` to the URL query string
+    if (getCpUNano() != null) {
+      joiner.add(String.format("%sCPUNano%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpUNano()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CPUSystemNano` to the URL query string
+    if (getCpUSystemNano() != null) {
+      joiner.add(String.format("%sCPUSystemNano%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpUSystemNano()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ContainerID` to the URL query string
+    if (getContainerID() != null) {
+      joiner.add(String.format("%sContainerID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainerID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Duration` to the URL query string
+    if (getDuration() != null) {
+      joiner.add(String.format("%sDuration%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDuration()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `MemLimit` to the URL query string
+    if (getMemLimit() != null) {
+      joiner.add(String.format("%sMemLimit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `MemPerc` to the URL query string
+    if (getMemPerc() != null) {
+      joiner.add(String.format("%sMemPerc%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemPerc()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `MemUsage` to the URL query string
+    if (getMemUsage() != null) {
+      joiner.add(String.format("%sMemUsage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemUsage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Network` to the URL query string
+    if (getNetwork() != null) {
+      for (String _key : getNetwork().keySet()) {
+        if (getNetwork().get(_key) != null) {
+          joiner.add(getNetwork().get(_key).toUrlQueryString(String.format("%sNetwork%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
+      }
+    }
+
+    // add `PIDs` to the URL query string
+    if (getPiDs() != null) {
+      joiner.add(String.format("%sPIDs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPiDs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `PerCPU` to the URL query string
+    if (getPerCPU() != null) {
+      for (int i = 0; i < getPerCPU().size(); i++) {
+        joiner.add(String.format("%sPerCPU%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getPerCPU().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `SystemNano` to the URL query string
+    if (getSystemNano() != null) {
+      joiner.add(String.format("%sSystemNano%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSystemNano()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `UpTime` to the URL query string
+    if (getUpTime() != null) {
+      joiner.add(String.format("%sUpTime%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUpTime()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

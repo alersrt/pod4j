@@ -13,94 +13,81 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ManifestSummary;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * Summary
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  Summary.JSON_PROPERTY_CONTAINERS,
+  Summary.JSON_PROPERTY_CREATED,
+  Summary.JSON_PROPERTY_ID,
+  Summary.JSON_PROPERTY_LABELS,
+  Summary.JSON_PROPERTY_MANIFESTS,
+  Summary.JSON_PROPERTY_PARENT_ID,
+  Summary.JSON_PROPERTY_REPO_DIGESTS,
+  Summary.JSON_PROPERTY_REPO_TAGS,
+  Summary.JSON_PROPERTY_SHARED_SIZE,
+  Summary.JSON_PROPERTY_SIZE,
+  Summary.JSON_PROPERTY_VIRTUAL_SIZE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Summary {
-  public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
-  @SerializedName(SERIALIZED_NAME_CONTAINERS)
+  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
   private Long containers;
 
-  public static final String SERIALIZED_NAME_CREATED = "Created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
+  public static final String JSON_PROPERTY_CREATED = "Created";
   private Long created;
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "Id";
   private String id;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_MANIFESTS = "Manifests";
-  @SerializedName(SERIALIZED_NAME_MANIFESTS)
-  private List<ManifestSummary> manifests = new ArrayList<>();
+  public static final String JSON_PROPERTY_MANIFESTS = "Manifests";
+  private List<@Valid ManifestSummary> manifests = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_PARENT_ID = "ParentId";
-  @SerializedName(SERIALIZED_NAME_PARENT_ID)
+  public static final String JSON_PROPERTY_PARENT_ID = "ParentId";
   private String parentId;
 
-  public static final String SERIALIZED_NAME_REPO_DIGESTS = "RepoDigests";
-  @SerializedName(SERIALIZED_NAME_REPO_DIGESTS)
+  public static final String JSON_PROPERTY_REPO_DIGESTS = "RepoDigests";
   private List<String> repoDigests = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_REPO_TAGS = "RepoTags";
-  @SerializedName(SERIALIZED_NAME_REPO_TAGS)
+  public static final String JSON_PROPERTY_REPO_TAGS = "RepoTags";
   private List<String> repoTags = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SHARED_SIZE = "SharedSize";
-  @SerializedName(SERIALIZED_NAME_SHARED_SIZE)
+  public static final String JSON_PROPERTY_SHARED_SIZE = "SharedSize";
   private Long sharedSize;
 
-  public static final String SERIALIZED_NAME_SIZE = "Size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
+  public static final String JSON_PROPERTY_SIZE = "Size";
   private Long size;
 
-  public static final String SERIALIZED_NAME_VIRTUAL_SIZE = "VirtualSize";
-  @SerializedName(SERIALIZED_NAME_VIRTUAL_SIZE)
+  public static final String JSON_PROPERTY_VIRTUAL_SIZE = "VirtualSize";
   private Long virtualSize;
 
-  public Summary() {
+  public Summary() { 
   }
 
   public Summary containers(Long containers) {
@@ -113,10 +100,17 @@ public class Summary {
    * @return containers
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Long getContainers() {
     return containers;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setContainers(Long containers) {
     this.containers = containers;
   }
@@ -132,10 +126,17 @@ public class Summary {
    * @return created
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Long getCreated() {
     return created;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreated(Long created) {
     this.created = created;
   }
@@ -151,10 +152,17 @@ public class Summary {
    * @return id
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
   }
@@ -178,16 +186,23 @@ public class Summary {
    * @return labels
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
 
 
-  public Summary manifests(List<ManifestSummary> manifests) {
+  public Summary manifests(List<@Valid ManifestSummary> manifests) {
     this.manifests = manifests;
     return this;
   }
@@ -205,11 +220,18 @@ public class Summary {
    * @return manifests
    */
   @javax.annotation.Nullable
-  public List<ManifestSummary> getManifests() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_MANIFESTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid ManifestSummary> getManifests() {
     return manifests;
   }
 
-  public void setManifests(List<ManifestSummary> manifests) {
+
+  @JsonProperty(JSON_PROPERTY_MANIFESTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setManifests(List<@Valid ManifestSummary> manifests) {
     this.manifests = manifests;
   }
 
@@ -224,10 +246,17 @@ public class Summary {
    * @return parentId
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_PARENT_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getParentId() {
     return parentId;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PARENT_ID)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setParentId(String parentId) {
     this.parentId = parentId;
   }
@@ -251,10 +280,17 @@ public class Summary {
    * @return repoDigests
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getRepoDigests() {
     return repoDigests;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRepoDigests(List<String> repoDigests) {
     this.repoDigests = repoDigests;
   }
@@ -278,10 +314,17 @@ public class Summary {
    * @return repoTags
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getRepoTags() {
     return repoTags;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRepoTags(List<String> repoTags) {
     this.repoTags = repoTags;
   }
@@ -297,10 +340,17 @@ public class Summary {
    * @return sharedSize
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Long getSharedSize() {
     return sharedSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSharedSize(Long sharedSize) {
     this.sharedSize = sharedSize;
   }
@@ -316,10 +366,17 @@ public class Summary {
    * @return size
    */
   @javax.annotation.Nonnull
+  @NotNull
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Long getSize() {
     return size;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -335,16 +392,24 @@ public class Summary {
    * @return virtualSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getVirtualSize() {
     return virtualSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVirtualSize(Long virtualSize) {
     this.virtualSize = virtualSize;
   }
 
 
-
+  /**
+   * Return true if this Summary object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -402,147 +467,111 @@ public class Summary {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Containers");
-    openapiFields.add("Created");
-    openapiFields.add("Id");
-    openapiFields.add("Labels");
-    openapiFields.add("Manifests");
-    openapiFields.add("ParentId");
-    openapiFields.add("RepoDigests");
-    openapiFields.add("RepoTags");
-    openapiFields.add("SharedSize");
-    openapiFields.add("Size");
-    openapiFields.add("VirtualSize");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("Containers");
-    openapiRequiredFields.add("Created");
-    openapiRequiredFields.add("Id");
-    openapiRequiredFields.add("Labels");
-    openapiRequiredFields.add("ParentId");
-    openapiRequiredFields.add("RepoDigests");
-    openapiRequiredFields.add("RepoTags");
-    openapiRequiredFields.add("SharedSize");
-    openapiRequiredFields.add("Size");
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Summary
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Summary.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Summary is not found in the empty JSON string", Summary.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Summary.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Summary` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-
-      // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : Summary.openapiRequiredFields) {
-        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if (!jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      if (jsonObj.get("Manifests") != null && !jsonObj.get("Manifests").isJsonNull()) {
-        JsonArray jsonArraymanifests = jsonObj.getAsJsonArray("Manifests");
-        if (jsonArraymanifests != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Manifests").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Manifests` to be an array in the JSON string but got `%s`", jsonObj.get("Manifests").toString()));
-          }
-
-          // validate the optional field `Manifests` (array)
-          for (int i = 0; i < jsonArraymanifests.size(); i++) {
-            ManifestSummary.validateJsonElement(jsonArraymanifests.get(i));
-          };
-        }
-      }
-      if (!jsonObj.get("ParentId").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ParentId` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ParentId").toString()));
-      }
-      // ensure the required json array is present
-      if (jsonObj.get("RepoDigests") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("RepoDigests").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RepoDigests` to be an array in the JSON string but got `%s`", jsonObj.get("RepoDigests").toString()));
-      }
-      // ensure the required json array is present
-      if (jsonObj.get("RepoTags") == null) {
-        throw new IllegalArgumentException("Expected the field `linkedContent` to be an array in the JSON string but got `null`");
-      } else if (!jsonObj.get("RepoTags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RepoTags` to be an array in the JSON string but got `%s`", jsonObj.get("RepoTags").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Summary.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Summary' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Summary> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Summary.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Summary>() {
-           @Override
-           public void write(JsonWriter out, Summary value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Summary read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of Summary given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Summary
-   * @throws IOException if the JSON string is invalid with respect to Summary
-   */
-  public static Summary fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Summary.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of Summary to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Containers` to the URL query string
+    if (getContainers() != null) {
+      joiner.add(String.format("%sContainers%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainers()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Created` to the URL query string
+    if (getCreated() != null) {
+      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Manifests` to the URL query string
+    if (getManifests() != null) {
+      for (int i = 0; i < getManifests().size(); i++) {
+        if (getManifests().get(i) != null) {
+          joiner.add(getManifests().get(i).toUrlQueryString(String.format("%sManifests%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `ParentId` to the URL query string
+    if (getParentId() != null) {
+      joiner.add(String.format("%sParentId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getParentId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RepoDigests` to the URL query string
+    if (getRepoDigests() != null) {
+      for (int i = 0; i < getRepoDigests().size(); i++) {
+        joiner.add(String.format("%sRepoDigests%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getRepoDigests().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `RepoTags` to the URL query string
+    if (getRepoTags() != null) {
+      for (int i = 0; i < getRepoTags().size(); i++) {
+        joiner.add(String.format("%sRepoTags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getRepoTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `SharedSize` to the URL query string
+    if (getSharedSize() != null) {
+      joiner.add(String.format("%sSharedSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSharedSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `VirtualSize` to the URL query string
+    if (getVirtualSize() != null) {
+      joiner.add(String.format("%sVirtualSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVirtualSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

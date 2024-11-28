@@ -13,68 +13,55 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Schema2PlatformSpec;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * This is publicly visible as c/image/manifest.Schema2ManifestDescriptor.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  Schema2ManifestDescriptor.JSON_PROPERTY_DIGEST,
+  Schema2ManifestDescriptor.JSON_PROPERTY_MEDIA_TYPE,
+  Schema2ManifestDescriptor.JSON_PROPERTY_PLATFORM,
+  Schema2ManifestDescriptor.JSON_PROPERTY_SIZE,
+  Schema2ManifestDescriptor.JSON_PROPERTY_URLS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2ManifestDescriptor {
-  public static final String SERIALIZED_NAME_DIGEST = "digest";
-  @SerializedName(SERIALIZED_NAME_DIGEST)
+  public static final String JSON_PROPERTY_DIGEST = "digest";
   private String digest;
 
-  public static final String SERIALIZED_NAME_MEDIA_TYPE = "mediaType";
-  @SerializedName(SERIALIZED_NAME_MEDIA_TYPE)
+  public static final String JSON_PROPERTY_MEDIA_TYPE = "mediaType";
   private String mediaType;
 
-  public static final String SERIALIZED_NAME_PLATFORM = "platform";
-  @SerializedName(SERIALIZED_NAME_PLATFORM)
+  public static final String JSON_PROPERTY_PLATFORM = "platform";
   private Schema2PlatformSpec platform;
 
-  public static final String SERIALIZED_NAME_SIZE = "size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
+  public static final String JSON_PROPERTY_SIZE = "size";
   private Long size;
 
-  public static final String SERIALIZED_NAME_URLS = "urls";
-  @SerializedName(SERIALIZED_NAME_URLS)
+  public static final String JSON_PROPERTY_URLS = "urls";
   private List<String> urls = new ArrayList<>();
 
-  public Schema2ManifestDescriptor() {
+  public Schema2ManifestDescriptor() { 
   }
 
   public Schema2ManifestDescriptor digest(String digest) {
@@ -87,10 +74,16 @@ public class Schema2ManifestDescriptor {
    * @return digest
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DIGEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDigest() {
     return digest;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DIGEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDigest(String digest) {
     this.digest = digest;
   }
@@ -106,10 +99,16 @@ public class Schema2ManifestDescriptor {
    * @return mediaType
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMediaType() {
     return mediaType;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMediaType(String mediaType) {
     this.mediaType = mediaType;
   }
@@ -125,10 +124,17 @@ public class Schema2ManifestDescriptor {
    * @return platform
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PLATFORM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Schema2PlatformSpec getPlatform() {
     return platform;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PLATFORM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPlatform(Schema2PlatformSpec platform) {
     this.platform = platform;
   }
@@ -144,10 +150,16 @@ public class Schema2ManifestDescriptor {
    * @return size
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSize() {
     return size;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -171,16 +183,24 @@ public class Schema2ManifestDescriptor {
    * @return urls
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_URLS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getUrls() {
     return urls;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_URLS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUrls(List<String> urls) {
     this.urls = urls;
   }
 
 
-
+  /**
+   * Return true if this Schema2ManifestDescriptor object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -226,107 +246,68 @@ public class Schema2ManifestDescriptor {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("digest");
-    openapiFields.add("mediaType");
-    openapiFields.add("platform");
-    openapiFields.add("size");
-    openapiFields.add("urls");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to Schema2ManifestDescriptor
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!Schema2ManifestDescriptor.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in Schema2ManifestDescriptor is not found in the empty JSON string", Schema2ManifestDescriptor.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!Schema2ManifestDescriptor.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `Schema2ManifestDescriptor` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("digest") != null && !jsonObj.get("digest").isJsonNull()) && !jsonObj.get("digest").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `digest` to be a primitive type in the JSON string but got `%s`", jsonObj.get("digest").toString()));
-      }
-      if ((jsonObj.get("mediaType") != null && !jsonObj.get("mediaType").isJsonNull()) && !jsonObj.get("mediaType").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `mediaType` to be a primitive type in the JSON string but got `%s`", jsonObj.get("mediaType").toString()));
-      }
-      // validate the optional field `platform`
-      if (jsonObj.get("platform") != null && !jsonObj.get("platform").isJsonNull()) {
-        Schema2PlatformSpec.validateJsonElement(jsonObj.get("platform"));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("urls") != null && !jsonObj.get("urls").isJsonNull() && !jsonObj.get("urls").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `urls` to be an array in the JSON string but got `%s`", jsonObj.get("urls").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!Schema2ManifestDescriptor.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'Schema2ManifestDescriptor' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<Schema2ManifestDescriptor> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(Schema2ManifestDescriptor.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<Schema2ManifestDescriptor>() {
-           @Override
-           public void write(JsonWriter out, Schema2ManifestDescriptor value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public Schema2ManifestDescriptor read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of Schema2ManifestDescriptor given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of Schema2ManifestDescriptor
-   * @throws IOException if the JSON string is invalid with respect to Schema2ManifestDescriptor
-   */
-  public static Schema2ManifestDescriptor fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, Schema2ManifestDescriptor.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of Schema2ManifestDescriptor to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `digest` to the URL query string
+    if (getDigest() != null) {
+      joiner.add(String.format("%sdigest%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDigest()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `mediaType` to the URL query string
+    if (getMediaType() != null) {
+      joiner.add(String.format("%smediaType%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMediaType()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `platform` to the URL query string
+    if (getPlatform() != null) {
+      joiner.add(getPlatform().toUrlQueryString(prefix + "platform" + suffix));
+    }
+
+    // add `size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%ssize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `urls` to the URL query string
+    if (getUrls() != null) {
+      for (int i = 0; i < getUrls().size(); i++) {
+        joiner.add(String.format("%surls%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getUrls().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

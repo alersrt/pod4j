@@ -13,64 +13,51 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Task;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ServiceInfo represents service parameters with the list of service&#39;s tasks
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ServiceInfo.JSON_PROPERTY_LOCAL_L_B_INDEX,
+  ServiceInfo.JSON_PROPERTY_PORTS,
+  ServiceInfo.JSON_PROPERTY_TASKS,
+  ServiceInfo.JSON_PROPERTY_V_I_P
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ServiceInfo {
-  public static final String SERIALIZED_NAME_LOCAL_L_B_INDEX = "LocalLBIndex";
-  @SerializedName(SERIALIZED_NAME_LOCAL_L_B_INDEX)
+  public static final String JSON_PROPERTY_LOCAL_L_B_INDEX = "LocalLBIndex";
   private Long localLBIndex;
 
-  public static final String SERIALIZED_NAME_PORTS = "Ports";
-  @SerializedName(SERIALIZED_NAME_PORTS)
+  public static final String JSON_PROPERTY_PORTS = "Ports";
   private List<String> ports = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_TASKS = "Tasks";
-  @SerializedName(SERIALIZED_NAME_TASKS)
-  private List<Task> tasks = new ArrayList<>();
+  public static final String JSON_PROPERTY_TASKS = "Tasks";
+  private List<@Valid Task> tasks = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_V_I_P = "VIP";
-  @SerializedName(SERIALIZED_NAME_V_I_P)
+  public static final String JSON_PROPERTY_V_I_P = "VIP";
   private String VIP;
 
-  public ServiceInfo() {
+  public ServiceInfo() { 
   }
 
   public ServiceInfo localLBIndex(Long localLBIndex) {
@@ -83,10 +70,16 @@ public class ServiceInfo {
    * @return localLBIndex
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LOCAL_L_B_INDEX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getLocalLBIndex() {
     return localLBIndex;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LOCAL_L_B_INDEX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocalLBIndex(Long localLBIndex) {
     this.localLBIndex = localLBIndex;
   }
@@ -110,16 +103,22 @@ public class ServiceInfo {
    * @return ports
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getPorts() {
     return ports;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPorts(List<String> ports) {
     this.ports = ports;
   }
 
 
-  public ServiceInfo tasks(List<Task> tasks) {
+  public ServiceInfo tasks(List<@Valid Task> tasks) {
     this.tasks = tasks;
     return this;
   }
@@ -137,11 +136,18 @@ public class ServiceInfo {
    * @return tasks
    */
   @javax.annotation.Nullable
-  public List<Task> getTasks() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid Task> getTasks() {
     return tasks;
   }
 
-  public void setTasks(List<Task> tasks) {
+
+  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTasks(List<@Valid Task> tasks) {
     this.tasks = tasks;
   }
 
@@ -156,16 +162,24 @@ public class ServiceInfo {
    * @return VIP
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_V_I_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVIP() {
     return VIP;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_V_I_P)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVIP(String VIP) {
     this.VIP = VIP;
   }
 
 
-
+  /**
+   * Return true if this ServiceInfo object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -209,113 +223,68 @@ public class ServiceInfo {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("LocalLBIndex");
-    openapiFields.add("Ports");
-    openapiFields.add("Tasks");
-    openapiFields.add("VIP");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ServiceInfo
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ServiceInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ServiceInfo is not found in the empty JSON string", ServiceInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ServiceInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ServiceInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Ports") != null && !jsonObj.get("Ports").isJsonNull() && !jsonObj.get("Ports").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Ports` to be an array in the JSON string but got `%s`", jsonObj.get("Ports").toString()));
-      }
-      if (jsonObj.get("Tasks") != null && !jsonObj.get("Tasks").isJsonNull()) {
-        JsonArray jsonArraytasks = jsonObj.getAsJsonArray("Tasks");
-        if (jsonArraytasks != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Tasks").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Tasks` to be an array in the JSON string but got `%s`", jsonObj.get("Tasks").toString()));
-          }
-
-          // validate the optional field `Tasks` (array)
-          for (int i = 0; i < jsonArraytasks.size(); i++) {
-            Task.validateJsonElement(jsonArraytasks.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("VIP") != null && !jsonObj.get("VIP").isJsonNull()) && !jsonObj.get("VIP").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `VIP` to be a primitive type in the JSON string but got `%s`", jsonObj.get("VIP").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ServiceInfo.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ServiceInfo' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ServiceInfo> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ServiceInfo.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ServiceInfo>() {
-           @Override
-           public void write(JsonWriter out, ServiceInfo value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ServiceInfo read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ServiceInfo given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ServiceInfo
-   * @throws IOException if the JSON string is invalid with respect to ServiceInfo
-   */
-  public static ServiceInfo fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ServiceInfo.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ServiceInfo to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `LocalLBIndex` to the URL query string
+    if (getLocalLBIndex() != null) {
+      joiner.add(String.format("%sLocalLBIndex%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLocalLBIndex()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Ports` to the URL query string
+    if (getPorts() != null) {
+      for (int i = 0; i < getPorts().size(); i++) {
+        joiner.add(String.format("%sPorts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getPorts().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Tasks` to the URL query string
+    if (getTasks() != null) {
+      for (int i = 0; i < getTasks().size(); i++) {
+        if (getTasks().get(i) != null) {
+          joiner.add(getTasks().get(i).toUrlQueryString(String.format("%sTasks%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `VIP` to the URL query string
+    if (getVIP() != null) {
+      joiner.add(String.format("%sVIP%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVIP()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

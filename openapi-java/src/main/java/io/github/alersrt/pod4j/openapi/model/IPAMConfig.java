@@ -13,63 +13,50 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * IPAMConfig represents IPAM configurations
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  IPAMConfig.JSON_PROPERTY_AUXILIARY_ADDRESSES,
+  IPAMConfig.JSON_PROPERTY_GATEWAY,
+  IPAMConfig.JSON_PROPERTY_IP_RANGE,
+  IPAMConfig.JSON_PROPERTY_SUBNET
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IPAMConfig {
-  public static final String SERIALIZED_NAME_AUXILIARY_ADDRESSES = "AuxiliaryAddresses";
-  @SerializedName(SERIALIZED_NAME_AUXILIARY_ADDRESSES)
+  public static final String JSON_PROPERTY_AUXILIARY_ADDRESSES = "AuxiliaryAddresses";
   private Map<String, String> auxiliaryAddresses = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_GATEWAY = "Gateway";
-  @SerializedName(SERIALIZED_NAME_GATEWAY)
+  public static final String JSON_PROPERTY_GATEWAY = "Gateway";
   private String gateway;
 
-  public static final String SERIALIZED_NAME_IP_RANGE = "IPRange";
-  @SerializedName(SERIALIZED_NAME_IP_RANGE)
+  public static final String JSON_PROPERTY_IP_RANGE = "IPRange";
   private String ipRange;
 
-  public static final String SERIALIZED_NAME_SUBNET = "Subnet";
-  @SerializedName(SERIALIZED_NAME_SUBNET)
+  public static final String JSON_PROPERTY_SUBNET = "Subnet";
   private String subnet;
 
-  public IPAMConfig() {
+  public IPAMConfig() { 
   }
 
   public IPAMConfig auxiliaryAddresses(Map<String, String> auxiliaryAddresses) {
@@ -90,10 +77,16 @@ public class IPAMConfig {
    * @return auxiliaryAddresses
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_AUXILIARY_ADDRESSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getAuxiliaryAddresses() {
     return auxiliaryAddresses;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AUXILIARY_ADDRESSES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAuxiliaryAddresses(Map<String, String> auxiliaryAddresses) {
     this.auxiliaryAddresses = auxiliaryAddresses;
   }
@@ -109,10 +102,16 @@ public class IPAMConfig {
    * @return gateway
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_GATEWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGateway() {
     return gateway;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GATEWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGateway(String gateway) {
     this.gateway = gateway;
   }
@@ -128,10 +127,16 @@ public class IPAMConfig {
    * @return ipRange
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IP_RANGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIpRange() {
     return ipRange;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IP_RANGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpRange(String ipRange) {
     this.ipRange = ipRange;
   }
@@ -147,16 +152,24 @@ public class IPAMConfig {
    * @return subnet
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SUBNET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSubnet() {
     return subnet;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SUBNET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubnet(String subnet) {
     this.subnet = subnet;
   }
 
 
-
+  /**
+   * Return true if this IPAMConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -200,101 +213,63 @@ public class IPAMConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("AuxiliaryAddresses");
-    openapiFields.add("Gateway");
-    openapiFields.add("IPRange");
-    openapiFields.add("Subnet");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to IPAMConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!IPAMConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in IPAMConfig is not found in the empty JSON string", IPAMConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!IPAMConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IPAMConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Gateway") != null && !jsonObj.get("Gateway").isJsonNull()) && !jsonObj.get("Gateway").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Gateway` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Gateway").toString()));
-      }
-      if ((jsonObj.get("IPRange") != null && !jsonObj.get("IPRange").isJsonNull()) && !jsonObj.get("IPRange").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IPRange` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPRange").toString()));
-      }
-      if ((jsonObj.get("Subnet") != null && !jsonObj.get("Subnet").isJsonNull()) && !jsonObj.get("Subnet").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Subnet` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Subnet").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!IPAMConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'IPAMConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<IPAMConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(IPAMConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<IPAMConfig>() {
-           @Override
-           public void write(JsonWriter out, IPAMConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public IPAMConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of IPAMConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of IPAMConfig
-   * @throws IOException if the JSON string is invalid with respect to IPAMConfig
-   */
-  public static IPAMConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, IPAMConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of IPAMConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `AuxiliaryAddresses` to the URL query string
+    if (getAuxiliaryAddresses() != null) {
+      for (String _key : getAuxiliaryAddresses().keySet()) {
+        joiner.add(String.format("%sAuxiliaryAddresses%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getAuxiliaryAddresses().get(_key), URLEncoder.encode(ApiClient.valueToString(getAuxiliaryAddresses().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Gateway` to the URL query string
+    if (getGateway() != null) {
+      joiner.add(String.format("%sGateway%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getGateway()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IPRange` to the URL query string
+    if (getIpRange() != null) {
+      joiner.add(String.format("%sIPRange%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpRange()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Subnet` to the URL query string
+    if (getSubnet() != null) {
+      joiner.add(String.format("%sSubnet%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubnet()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

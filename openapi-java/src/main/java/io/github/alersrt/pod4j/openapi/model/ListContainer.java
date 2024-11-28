@@ -13,161 +13,148 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ContainerSize;
 import io.github.alersrt.pod4j.openapi.model.ListContainerNamespaces;
 import io.github.alersrt.pod4j.openapi.model.PortMapping;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ListContainer describes a container suitable for listing
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ListContainer.JSON_PROPERTY_AUTO_REMOVE,
+  ListContainer.JSON_PROPERTY_CI_D_FILE,
+  ListContainer.JSON_PROPERTY_COMMAND,
+  ListContainer.JSON_PROPERTY_CREATED,
+  ListContainer.JSON_PROPERTY_CREATED_AT,
+  ListContainer.JSON_PROPERTY_EXIT_CODE,
+  ListContainer.JSON_PROPERTY_EXITED,
+  ListContainer.JSON_PROPERTY_EXITED_AT,
+  ListContainer.JSON_PROPERTY_EXPOSED_PORTS,
+  ListContainer.JSON_PROPERTY_ID,
+  ListContainer.JSON_PROPERTY_IMAGE,
+  ListContainer.JSON_PROPERTY_IMAGE_I_D,
+  ListContainer.JSON_PROPERTY_IS_INFRA,
+  ListContainer.JSON_PROPERTY_LABELS,
+  ListContainer.JSON_PROPERTY_MOUNTS,
+  ListContainer.JSON_PROPERTY_NAMES,
+  ListContainer.JSON_PROPERTY_NAMESPACES,
+  ListContainer.JSON_PROPERTY_NETWORKS,
+  ListContainer.JSON_PROPERTY_PID,
+  ListContainer.JSON_PROPERTY_POD,
+  ListContainer.JSON_PROPERTY_POD_NAME,
+  ListContainer.JSON_PROPERTY_PORTS,
+  ListContainer.JSON_PROPERTY_RESTARTS,
+  ListContainer.JSON_PROPERTY_SIZE,
+  ListContainer.JSON_PROPERTY_STARTED_AT,
+  ListContainer.JSON_PROPERTY_STATE,
+  ListContainer.JSON_PROPERTY_STATUS
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ListContainer {
-  public static final String SERIALIZED_NAME_AUTO_REMOVE = "AutoRemove";
-  @SerializedName(SERIALIZED_NAME_AUTO_REMOVE)
+  public static final String JSON_PROPERTY_AUTO_REMOVE = "AutoRemove";
   private Boolean autoRemove;
 
-  public static final String SERIALIZED_NAME_CI_D_FILE = "CIDFile";
-  @SerializedName(SERIALIZED_NAME_CI_D_FILE)
+  public static final String JSON_PROPERTY_CI_D_FILE = "CIDFile";
   private String ciDFile;
 
-  public static final String SERIALIZED_NAME_COMMAND = "Command";
-  @SerializedName(SERIALIZED_NAME_COMMAND)
+  public static final String JSON_PROPERTY_COMMAND = "Command";
   private List<String> command = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CREATED = "Created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
+  public static final String JSON_PROPERTY_CREATED = "Created";
   private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
-  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  public static final String JSON_PROPERTY_CREATED_AT = "CreatedAt";
   private String createdAt;
 
-  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+  public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
   private Integer exitCode;
 
-  public static final String SERIALIZED_NAME_EXITED = "Exited";
-  @SerializedName(SERIALIZED_NAME_EXITED)
+  public static final String JSON_PROPERTY_EXITED = "Exited";
   private Boolean exited;
 
-  public static final String SERIALIZED_NAME_EXITED_AT = "ExitedAt";
-  @SerializedName(SERIALIZED_NAME_EXITED_AT)
+  public static final String JSON_PROPERTY_EXITED_AT = "ExitedAt";
   private Long exitedAt;
 
-  public static final String SERIALIZED_NAME_EXPOSED_PORTS = "ExposedPorts";
-  @SerializedName(SERIALIZED_NAME_EXPOSED_PORTS)
+  public static final String JSON_PROPERTY_EXPOSED_PORTS = "ExposedPorts";
   private Object exposedPorts;
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "Id";
   private String id;
 
-  public static final String SERIALIZED_NAME_IMAGE = "Image";
-  @SerializedName(SERIALIZED_NAME_IMAGE)
+  public static final String JSON_PROPERTY_IMAGE = "Image";
   private String image;
 
-  public static final String SERIALIZED_NAME_IMAGE_I_D = "ImageID";
-  @SerializedName(SERIALIZED_NAME_IMAGE_I_D)
+  public static final String JSON_PROPERTY_IMAGE_I_D = "ImageID";
   private String imageID;
 
-  public static final String SERIALIZED_NAME_IS_INFRA = "IsInfra";
-  @SerializedName(SERIALIZED_NAME_IS_INFRA)
+  public static final String JSON_PROPERTY_IS_INFRA = "IsInfra";
   private Boolean isInfra;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_MOUNTS = "Mounts";
-  @SerializedName(SERIALIZED_NAME_MOUNTS)
+  public static final String JSON_PROPERTY_MOUNTS = "Mounts";
   private List<String> mounts = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NAMES = "Names";
-  @SerializedName(SERIALIZED_NAME_NAMES)
+  public static final String JSON_PROPERTY_NAMES = "Names";
   private List<String> names = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_NAMESPACES = "Namespaces";
-  @SerializedName(SERIALIZED_NAME_NAMESPACES)
+  public static final String JSON_PROPERTY_NAMESPACES = "Namespaces";
   private ListContainerNamespaces namespaces;
 
-  public static final String SERIALIZED_NAME_NETWORKS = "Networks";
-  @SerializedName(SERIALIZED_NAME_NETWORKS)
+  public static final String JSON_PROPERTY_NETWORKS = "Networks";
   private List<String> networks = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_PID = "Pid";
-  @SerializedName(SERIALIZED_NAME_PID)
+  public static final String JSON_PROPERTY_PID = "Pid";
   private Long pid;
 
-  public static final String SERIALIZED_NAME_POD = "Pod";
-  @SerializedName(SERIALIZED_NAME_POD)
+  public static final String JSON_PROPERTY_POD = "Pod";
   private String pod;
 
-  public static final String SERIALIZED_NAME_POD_NAME = "PodName";
-  @SerializedName(SERIALIZED_NAME_POD_NAME)
+  public static final String JSON_PROPERTY_POD_NAME = "PodName";
   private String podName;
 
-  public static final String SERIALIZED_NAME_PORTS = "Ports";
-  @SerializedName(SERIALIZED_NAME_PORTS)
-  private List<PortMapping> ports = new ArrayList<>();
+  public static final String JSON_PROPERTY_PORTS = "Ports";
+  private List<@Valid PortMapping> ports = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_RESTARTS = "Restarts";
-  @SerializedName(SERIALIZED_NAME_RESTARTS)
+  public static final String JSON_PROPERTY_RESTARTS = "Restarts";
   private Integer restarts;
 
-  public static final String SERIALIZED_NAME_SIZE = "Size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
+  public static final String JSON_PROPERTY_SIZE = "Size";
   private ContainerSize size;
 
-  public static final String SERIALIZED_NAME_STARTED_AT = "StartedAt";
-  @SerializedName(SERIALIZED_NAME_STARTED_AT)
+  public static final String JSON_PROPERTY_STARTED_AT = "StartedAt";
   private Long startedAt;
 
-  public static final String SERIALIZED_NAME_STATE = "State";
-  @SerializedName(SERIALIZED_NAME_STATE)
+  public static final String JSON_PROPERTY_STATE = "State";
   private String state;
 
-  public static final String SERIALIZED_NAME_STATUS = "Status";
-  @SerializedName(SERIALIZED_NAME_STATUS)
+  public static final String JSON_PROPERTY_STATUS = "Status";
   private String status;
 
-  public ListContainer() {
+  public ListContainer() { 
   }
 
   public ListContainer autoRemove(Boolean autoRemove) {
@@ -180,10 +167,16 @@ public class ListContainer {
    * @return autoRemove
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAutoRemove() {
     return autoRemove;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAutoRemove(Boolean autoRemove) {
     this.autoRemove = autoRemove;
   }
@@ -199,10 +192,16 @@ public class ListContainer {
    * @return ciDFile
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CI_D_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCiDFile() {
     return ciDFile;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CI_D_FILE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCiDFile(String ciDFile) {
     this.ciDFile = ciDFile;
   }
@@ -226,10 +225,16 @@ public class ListContainer {
    * @return command
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCommand() {
     return command;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCommand(List<String> command) {
     this.command = command;
   }
@@ -245,10 +250,17 @@ public class ListContainer {
    * @return created
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getCreated() {
     return created;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
@@ -264,10 +276,16 @@ public class ListContainer {
    * @return createdAt
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCreatedAt() {
     return createdAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
   }
@@ -283,10 +301,16 @@ public class ListContainer {
    * @return exitCode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getExitCode() {
     return exitCode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXIT_CODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitCode(Integer exitCode) {
     this.exitCode = exitCode;
   }
@@ -302,10 +326,16 @@ public class ListContainer {
    * @return exited
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXITED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getExited() {
     return exited;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXITED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExited(Boolean exited) {
     this.exited = exited;
   }
@@ -321,10 +351,16 @@ public class ListContainer {
    * @return exitedAt
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXITED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getExitedAt() {
     return exitedAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXITED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitedAt(Long exitedAt) {
     this.exitedAt = exitedAt;
   }
@@ -340,10 +376,16 @@ public class ListContainer {
    * @return exposedPorts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getExposedPorts() {
     return exposedPorts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExposedPorts(Object exposedPorts) {
     this.exposedPorts = exposedPorts;
   }
@@ -359,10 +401,16 @@ public class ListContainer {
    * @return id
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -378,10 +426,16 @@ public class ListContainer {
    * @return image
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImage() {
     return image;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImage(String image) {
     this.image = image;
   }
@@ -397,10 +451,16 @@ public class ListContainer {
    * @return imageID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImageID() {
     return imageID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImageID(String imageID) {
     this.imageID = imageID;
   }
@@ -416,10 +476,16 @@ public class ListContainer {
    * @return isInfra
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IS_INFRA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsInfra() {
     return isInfra;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IS_INFRA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsInfra(Boolean isInfra) {
     this.isInfra = isInfra;
   }
@@ -443,10 +509,16 @@ public class ListContainer {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -470,10 +542,16 @@ public class ListContainer {
    * @return mounts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getMounts() {
     return mounts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMounts(List<String> mounts) {
     this.mounts = mounts;
   }
@@ -497,10 +575,16 @@ public class ListContainer {
    * @return names
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getNames() {
     return names;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNames(List<String> names) {
     this.names = names;
   }
@@ -516,10 +600,17 @@ public class ListContainer {
    * @return namespaces
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_NAMESPACES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ListContainerNamespaces getNamespaces() {
     return namespaces;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAMESPACES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNamespaces(ListContainerNamespaces namespaces) {
     this.namespaces = namespaces;
   }
@@ -543,10 +634,16 @@ public class ListContainer {
    * @return networks
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NETWORKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getNetworks() {
     return networks;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NETWORKS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworks(List<String> networks) {
     this.networks = networks;
   }
@@ -562,10 +659,16 @@ public class ListContainer {
    * @return pid
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getPid() {
     return pid;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPid(Long pid) {
     this.pid = pid;
   }
@@ -581,10 +684,16 @@ public class ListContainer {
    * @return pod
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_POD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPod() {
     return pod;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_POD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPod(String pod) {
     this.pod = pod;
   }
@@ -600,16 +709,22 @@ public class ListContainer {
    * @return podName
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_POD_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPodName() {
     return podName;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_POD_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPodName(String podName) {
     this.podName = podName;
   }
 
 
-  public ListContainer ports(List<PortMapping> ports) {
+  public ListContainer ports(List<@Valid PortMapping> ports) {
     this.ports = ports;
     return this;
   }
@@ -627,11 +742,18 @@ public class ListContainer {
    * @return ports
    */
   @javax.annotation.Nullable
-  public List<PortMapping> getPorts() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid PortMapping> getPorts() {
     return ports;
   }
 
-  public void setPorts(List<PortMapping> ports) {
+
+  @JsonProperty(JSON_PROPERTY_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPorts(List<@Valid PortMapping> ports) {
     this.ports = ports;
   }
 
@@ -646,10 +768,16 @@ public class ListContainer {
    * @return restarts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTARTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRestarts() {
     return restarts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTARTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestarts(Integer restarts) {
     this.restarts = restarts;
   }
@@ -665,10 +793,17 @@ public class ListContainer {
    * @return size
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ContainerSize getSize() {
     return size;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(ContainerSize size) {
     this.size = size;
   }
@@ -684,10 +819,16 @@ public class ListContainer {
    * @return startedAt
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STARTED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getStartedAt() {
     return startedAt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STARTED_AT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartedAt(Long startedAt) {
     this.startedAt = startedAt;
   }
@@ -703,10 +844,16 @@ public class ListContainer {
    * @return state
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getState() {
     return state;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setState(String state) {
     this.state = state;
   }
@@ -722,16 +869,24 @@ public class ListContainer {
    * @return status
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getStatus() {
     return status;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(String status) {
     this.status = status;
   }
 
 
-
+  /**
+   * Return true if this ListContainer object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -821,180 +976,199 @@ public class ListContainer {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("AutoRemove");
-    openapiFields.add("CIDFile");
-    openapiFields.add("Command");
-    openapiFields.add("Created");
-    openapiFields.add("CreatedAt");
-    openapiFields.add("ExitCode");
-    openapiFields.add("Exited");
-    openapiFields.add("ExitedAt");
-    openapiFields.add("ExposedPorts");
-    openapiFields.add("Id");
-    openapiFields.add("Image");
-    openapiFields.add("ImageID");
-    openapiFields.add("IsInfra");
-    openapiFields.add("Labels");
-    openapiFields.add("Mounts");
-    openapiFields.add("Names");
-    openapiFields.add("Namespaces");
-    openapiFields.add("Networks");
-    openapiFields.add("Pid");
-    openapiFields.add("Pod");
-    openapiFields.add("PodName");
-    openapiFields.add("Ports");
-    openapiFields.add("Restarts");
-    openapiFields.add("Size");
-    openapiFields.add("StartedAt");
-    openapiFields.add("State");
-    openapiFields.add("Status");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ListContainer
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ListContainer.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ListContainer is not found in the empty JSON string", ListContainer.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ListContainer.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ListContainer` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("CIDFile") != null && !jsonObj.get("CIDFile").isJsonNull()) && !jsonObj.get("CIDFile").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CIDFile` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CIDFile").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Command") != null && !jsonObj.get("Command").isJsonNull() && !jsonObj.get("Command").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Command` to be an array in the JSON string but got `%s`", jsonObj.get("Command").toString()));
-      }
-      if ((jsonObj.get("CreatedAt") != null && !jsonObj.get("CreatedAt").isJsonNull()) && !jsonObj.get("CreatedAt").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CreatedAt` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CreatedAt").toString()));
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      if ((jsonObj.get("Image") != null && !jsonObj.get("Image").isJsonNull()) && !jsonObj.get("Image").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Image").toString()));
-      }
-      if ((jsonObj.get("ImageID") != null && !jsonObj.get("ImageID").isJsonNull()) && !jsonObj.get("ImageID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ImageID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ImageID").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Mounts") != null && !jsonObj.get("Mounts").isJsonNull() && !jsonObj.get("Mounts").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Mounts` to be an array in the JSON string but got `%s`", jsonObj.get("Mounts").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Names") != null && !jsonObj.get("Names").isJsonNull() && !jsonObj.get("Names").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Names` to be an array in the JSON string but got `%s`", jsonObj.get("Names").toString()));
-      }
-      // validate the optional field `Namespaces`
-      if (jsonObj.get("Namespaces") != null && !jsonObj.get("Namespaces").isJsonNull()) {
-        ListContainerNamespaces.validateJsonElement(jsonObj.get("Namespaces"));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Networks") != null && !jsonObj.get("Networks").isJsonNull() && !jsonObj.get("Networks").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Networks` to be an array in the JSON string but got `%s`", jsonObj.get("Networks").toString()));
-      }
-      if ((jsonObj.get("Pod") != null && !jsonObj.get("Pod").isJsonNull()) && !jsonObj.get("Pod").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Pod` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Pod").toString()));
-      }
-      if ((jsonObj.get("PodName") != null && !jsonObj.get("PodName").isJsonNull()) && !jsonObj.get("PodName").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `PodName` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PodName").toString()));
-      }
-      if (jsonObj.get("Ports") != null && !jsonObj.get("Ports").isJsonNull()) {
-        JsonArray jsonArrayports = jsonObj.getAsJsonArray("Ports");
-        if (jsonArrayports != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Ports").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Ports` to be an array in the JSON string but got `%s`", jsonObj.get("Ports").toString()));
-          }
-
-          // validate the optional field `Ports` (array)
-          for (int i = 0; i < jsonArrayports.size(); i++) {
-            PortMapping.validateJsonElement(jsonArrayports.get(i));
-          };
-        }
-      }
-      // validate the optional field `Size`
-      if (jsonObj.get("Size") != null && !jsonObj.get("Size").isJsonNull()) {
-        ContainerSize.validateJsonElement(jsonObj.get("Size"));
-      }
-      if ((jsonObj.get("State") != null && !jsonObj.get("State").isJsonNull()) && !jsonObj.get("State").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `State` to be a primitive type in the JSON string but got `%s`", jsonObj.get("State").toString()));
-      }
-      if ((jsonObj.get("Status") != null && !jsonObj.get("Status").isJsonNull()) && !jsonObj.get("Status").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Status").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ListContainer.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ListContainer' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ListContainer> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ListContainer.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ListContainer>() {
-           @Override
-           public void write(JsonWriter out, ListContainer value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ListContainer read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ListContainer given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ListContainer
-   * @throws IOException if the JSON string is invalid with respect to ListContainer
-   */
-  public static ListContainer fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ListContainer.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ListContainer to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `AutoRemove` to the URL query string
+    if (getAutoRemove() != null) {
+      joiner.add(String.format("%sAutoRemove%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAutoRemove()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CIDFile` to the URL query string
+    if (getCiDFile() != null) {
+      joiner.add(String.format("%sCIDFile%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCiDFile()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Command` to the URL query string
+    if (getCommand() != null) {
+      for (int i = 0; i < getCommand().size(); i++) {
+        joiner.add(String.format("%sCommand%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Created` to the URL query string
+    if (getCreated() != null) {
+      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CreatedAt` to the URL query string
+    if (getCreatedAt() != null) {
+      joiner.add(String.format("%sCreatedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreatedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ExitCode` to the URL query string
+    if (getExitCode() != null) {
+      joiner.add(String.format("%sExitCode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitCode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Exited` to the URL query string
+    if (getExited() != null) {
+      joiner.add(String.format("%sExited%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExited()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ExitedAt` to the URL query string
+    if (getExitedAt() != null) {
+      joiner.add(String.format("%sExitedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ExposedPorts` to the URL query string
+    if (getExposedPorts() != null) {
+      joiner.add(String.format("%sExposedPorts%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExposedPorts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Image` to the URL query string
+    if (getImage() != null) {
+      joiner.add(String.format("%sImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ImageID` to the URL query string
+    if (getImageID() != null) {
+      joiner.add(String.format("%sImageID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImageID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IsInfra` to the URL query string
+    if (getIsInfra() != null) {
+      joiner.add(String.format("%sIsInfra%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIsInfra()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Mounts` to the URL query string
+    if (getMounts() != null) {
+      for (int i = 0; i < getMounts().size(); i++) {
+        joiner.add(String.format("%sMounts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getMounts().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Names` to the URL query string
+    if (getNames() != null) {
+      for (int i = 0; i < getNames().size(); i++) {
+        joiner.add(String.format("%sNames%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getNames().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Namespaces` to the URL query string
+    if (getNamespaces() != null) {
+      joiner.add(getNamespaces().toUrlQueryString(prefix + "Namespaces" + suffix));
+    }
+
+    // add `Networks` to the URL query string
+    if (getNetworks() != null) {
+      for (int i = 0; i < getNetworks().size(); i++) {
+        joiner.add(String.format("%sNetworks%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getNetworks().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Pid` to the URL query string
+    if (getPid() != null) {
+      joiner.add(String.format("%sPid%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPid()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Pod` to the URL query string
+    if (getPod() != null) {
+      joiner.add(String.format("%sPod%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `PodName` to the URL query string
+    if (getPodName() != null) {
+      joiner.add(String.format("%sPodName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPodName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Ports` to the URL query string
+    if (getPorts() != null) {
+      for (int i = 0; i < getPorts().size(); i++) {
+        if (getPorts().get(i) != null) {
+          joiner.add(getPorts().get(i).toUrlQueryString(String.format("%sPorts%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `Restarts` to the URL query string
+    if (getRestarts() != null) {
+      joiner.add(String.format("%sRestarts%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestarts()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(getSize().toUrlQueryString(prefix + "Size" + suffix));
+    }
+
+    // add `StartedAt` to the URL query string
+    if (getStartedAt() != null) {
+      joiner.add(String.format("%sStartedAt%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStartedAt()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `State` to the URL query string
+    if (getState() != null) {
+      joiner.add(String.format("%sState%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Status` to the URL query string
+    if (getStatus() != null) {
+      joiner.add(String.format("%sStatus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStatus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

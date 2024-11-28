@@ -13,65 +13,52 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * EndpointResource contains network resources allocated and used for a container in a network.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  EndpointResource.JSON_PROPERTY_ENDPOINT_I_D,
+  EndpointResource.JSON_PROPERTY_IPV4_ADDRESS,
+  EndpointResource.JSON_PROPERTY_IPV6_ADDRESS,
+  EndpointResource.JSON_PROPERTY_MAC_ADDRESS,
+  EndpointResource.JSON_PROPERTY_NAME
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class EndpointResource {
-  public static final String SERIALIZED_NAME_ENDPOINT_I_D = "EndpointID";
-  @SerializedName(SERIALIZED_NAME_ENDPOINT_I_D)
+  public static final String JSON_PROPERTY_ENDPOINT_I_D = "EndpointID";
   private String endpointID;
 
-  public static final String SERIALIZED_NAME_IPV4_ADDRESS = "IPv4Address";
-  @SerializedName(SERIALIZED_NAME_IPV4_ADDRESS)
+  public static final String JSON_PROPERTY_IPV4_ADDRESS = "IPv4Address";
   private String ipv4Address;
 
-  public static final String SERIALIZED_NAME_IPV6_ADDRESS = "IPv6Address";
-  @SerializedName(SERIALIZED_NAME_IPV6_ADDRESS)
+  public static final String JSON_PROPERTY_IPV6_ADDRESS = "IPv6Address";
   private String ipv6Address;
 
-  public static final String SERIALIZED_NAME_MAC_ADDRESS = "MacAddress";
-  @SerializedName(SERIALIZED_NAME_MAC_ADDRESS)
+  public static final String JSON_PROPERTY_MAC_ADDRESS = "MacAddress";
   private String macAddress;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public EndpointResource() {
+  public EndpointResource() { 
   }
 
   public EndpointResource endpointID(String endpointID) {
@@ -84,10 +71,16 @@ public class EndpointResource {
    * @return endpointID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getEndpointID() {
     return endpointID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEndpointID(String endpointID) {
     this.endpointID = endpointID;
   }
@@ -103,10 +96,16 @@ public class EndpointResource {
    * @return ipv4Address
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IPV4_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIpv4Address() {
     return ipv4Address;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IPV4_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv4Address(String ipv4Address) {
     this.ipv4Address = ipv4Address;
   }
@@ -122,10 +121,16 @@ public class EndpointResource {
    * @return ipv6Address
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IPV6_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getIpv6Address() {
     return ipv6Address;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IPV6_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv6Address(String ipv6Address) {
     this.ipv6Address = ipv6Address;
   }
@@ -141,10 +146,16 @@ public class EndpointResource {
    * @return macAddress
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMacAddress() {
     return macAddress;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMacAddress(String macAddress) {
     this.macAddress = macAddress;
   }
@@ -160,16 +171,24 @@ public class EndpointResource {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
 
 
-
+  /**
+   * Return true if this EndpointResource object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -215,108 +234,64 @@ public class EndpointResource {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("EndpointID");
-    openapiFields.add("IPv4Address");
-    openapiFields.add("IPv6Address");
-    openapiFields.add("MacAddress");
-    openapiFields.add("Name");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to EndpointResource
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!EndpointResource.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in EndpointResource is not found in the empty JSON string", EndpointResource.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!EndpointResource.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EndpointResource` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("EndpointID") != null && !jsonObj.get("EndpointID").isJsonNull()) && !jsonObj.get("EndpointID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `EndpointID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("EndpointID").toString()));
-      }
-      if ((jsonObj.get("IPv4Address") != null && !jsonObj.get("IPv4Address").isJsonNull()) && !jsonObj.get("IPv4Address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IPv4Address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPv4Address").toString()));
-      }
-      if ((jsonObj.get("IPv6Address") != null && !jsonObj.get("IPv6Address").isJsonNull()) && !jsonObj.get("IPv6Address").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `IPv6Address` to be a primitive type in the JSON string but got `%s`", jsonObj.get("IPv6Address").toString()));
-      }
-      if ((jsonObj.get("MacAddress") != null && !jsonObj.get("MacAddress").isJsonNull()) && !jsonObj.get("MacAddress").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `MacAddress` to be a primitive type in the JSON string but got `%s`", jsonObj.get("MacAddress").toString()));
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!EndpointResource.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'EndpointResource' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<EndpointResource> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(EndpointResource.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<EndpointResource>() {
-           @Override
-           public void write(JsonWriter out, EndpointResource value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public EndpointResource read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of EndpointResource given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of EndpointResource
-   * @throws IOException if the JSON string is invalid with respect to EndpointResource
-   */
-  public static EndpointResource fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, EndpointResource.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of EndpointResource to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `EndpointID` to the URL query string
+    if (getEndpointID() != null) {
+      joiner.add(String.format("%sEndpointID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getEndpointID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IPv4Address` to the URL query string
+    if (getIpv4Address() != null) {
+      joiner.add(String.format("%sIPv4Address%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpv4Address()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `IPv6Address` to the URL query string
+    if (getIpv6Address() != null) {
+      joiner.add(String.format("%sIPv6Address%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getIpv6Address()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `MacAddress` to the URL query string
+    if (getMacAddress() != null) {
+      joiner.add(String.format("%sMacAddress%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMacAddress()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

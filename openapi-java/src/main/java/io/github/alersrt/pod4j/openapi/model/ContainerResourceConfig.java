@@ -13,94 +13,81 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.LinuxIntelRdt;
 import io.github.alersrt.pod4j.openapi.model.LinuxResources;
 import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.LinuxWeightDevice;
 import io.github.alersrt.pod4j.openapi.model.POSIXRlimit;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ContainerResourceConfig
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ContainerResourceConfig.JSON_PROPERTY_INTEL_RDT,
+  ContainerResourceConfig.JSON_PROPERTY_OOM_SCORE_ADJ,
+  ContainerResourceConfig.JSON_PROPERTY_R_LIMITS,
+  ContainerResourceConfig.JSON_PROPERTY_RESOURCE_LIMITS,
+  ContainerResourceConfig.JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE,
+  ContainerResourceConfig.JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE,
+  ContainerResourceConfig.JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE,
+  ContainerResourceConfig.JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE,
+  ContainerResourceConfig.JSON_PROPERTY_UNIFIED,
+  ContainerResourceConfig.JSON_PROPERTY_WEIGHT_DEVICE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerResourceConfig {
-  public static final String SERIALIZED_NAME_INTEL_RDT = "intelRdt";
-  @SerializedName(SERIALIZED_NAME_INTEL_RDT)
+  public static final String JSON_PROPERTY_INTEL_RDT = "intelRdt";
   private LinuxIntelRdt intelRdt;
 
-  public static final String SERIALIZED_NAME_OOM_SCORE_ADJ = "oom_score_adj";
-  @SerializedName(SERIALIZED_NAME_OOM_SCORE_ADJ)
+  public static final String JSON_PROPERTY_OOM_SCORE_ADJ = "oom_score_adj";
   private Long oomScoreAdj;
 
-  public static final String SERIALIZED_NAME_R_LIMITS = "r_limits";
-  @SerializedName(SERIALIZED_NAME_R_LIMITS)
-  private List<POSIXRlimit> rLimits = new ArrayList<>();
+  public static final String JSON_PROPERTY_R_LIMITS = "r_limits";
+  private List<@Valid POSIXRlimit> rLimits = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_RESOURCE_LIMITS = "resource_limits";
-  @SerializedName(SERIALIZED_NAME_RESOURCE_LIMITS)
+  public static final String JSON_PROPERTY_RESOURCE_LIMITS = "resource_limits";
   private LinuxResources resourceLimits;
 
-  public static final String SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
-  @SerializedName(SERIALIZED_NAME_THROTTLE_READ_BPS_DEVICE)
+  public static final String JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE = "throttleReadBpsDevice";
   private Map<String, LinuxThrottleDevice> throttleReadBpsDevice = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE = "throttleReadIOPSDevice";
-  @SerializedName(SERIALIZED_NAME_THROTTLE_READ_I_O_P_S_DEVICE)
+  public static final String JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE = "throttleReadIOPSDevice";
   private Map<String, LinuxThrottleDevice> throttleReadIOPSDevice = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
-  @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_BPS_DEVICE)
+  public static final String JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE = "throttleWriteBpsDevice";
   private Map<String, LinuxThrottleDevice> throttleWriteBpsDevice = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE = "throttleWriteIOPSDevice";
-  @SerializedName(SERIALIZED_NAME_THROTTLE_WRITE_I_O_P_S_DEVICE)
+  public static final String JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE = "throttleWriteIOPSDevice";
   private Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_UNIFIED = "unified";
-  @SerializedName(SERIALIZED_NAME_UNIFIED)
+  public static final String JSON_PROPERTY_UNIFIED = "unified";
   private Map<String, String> unified = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_WEIGHT_DEVICE = "weightDevice";
-  @SerializedName(SERIALIZED_NAME_WEIGHT_DEVICE)
+  public static final String JSON_PROPERTY_WEIGHT_DEVICE = "weightDevice";
   private Map<String, LinuxWeightDevice> weightDevice = new HashMap<>();
 
-  public ContainerResourceConfig() {
+  public ContainerResourceConfig() { 
   }
 
   public ContainerResourceConfig intelRdt(LinuxIntelRdt intelRdt) {
@@ -113,10 +100,17 @@ public class ContainerResourceConfig {
    * @return intelRdt
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_INTEL_RDT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public LinuxIntelRdt getIntelRdt() {
     return intelRdt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INTEL_RDT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIntelRdt(LinuxIntelRdt intelRdt) {
     this.intelRdt = intelRdt;
   }
@@ -132,16 +126,22 @@ public class ContainerResourceConfig {
    * @return oomScoreAdj
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getOomScoreAdj() {
     return oomScoreAdj;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOomScoreAdj(Long oomScoreAdj) {
     this.oomScoreAdj = oomScoreAdj;
   }
 
 
-  public ContainerResourceConfig rLimits(List<POSIXRlimit> rLimits) {
+  public ContainerResourceConfig rLimits(List<@Valid POSIXRlimit> rLimits) {
     this.rLimits = rLimits;
     return this;
   }
@@ -159,11 +159,18 @@ public class ContainerResourceConfig {
    * @return rLimits
    */
   @javax.annotation.Nullable
-  public List<POSIXRlimit> getrLimits() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_R_LIMITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid POSIXRlimit> getrLimits() {
     return rLimits;
   }
 
-  public void setrLimits(List<POSIXRlimit> rLimits) {
+
+  @JsonProperty(JSON_PROPERTY_R_LIMITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setrLimits(List<@Valid POSIXRlimit> rLimits) {
     this.rLimits = rLimits;
   }
 
@@ -178,10 +185,17 @@ public class ContainerResourceConfig {
    * @return resourceLimits
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public LinuxResources getResourceLimits() {
     return resourceLimits;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResourceLimits(LinuxResources resourceLimits) {
     this.resourceLimits = resourceLimits;
   }
@@ -205,10 +219,17 @@ public class ContainerResourceConfig {
    * @return throttleReadBpsDevice
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, LinuxThrottleDevice> getThrottleReadBpsDevice() {
     return throttleReadBpsDevice;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setThrottleReadBpsDevice(Map<String, LinuxThrottleDevice> throttleReadBpsDevice) {
     this.throttleReadBpsDevice = throttleReadBpsDevice;
   }
@@ -232,10 +253,17 @@ public class ContainerResourceConfig {
    * @return throttleReadIOPSDevice
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, LinuxThrottleDevice> getThrottleReadIOPSDevice() {
     return throttleReadIOPSDevice;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setThrottleReadIOPSDevice(Map<String, LinuxThrottleDevice> throttleReadIOPSDevice) {
     this.throttleReadIOPSDevice = throttleReadIOPSDevice;
   }
@@ -259,10 +287,17 @@ public class ContainerResourceConfig {
    * @return throttleWriteBpsDevice
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, LinuxThrottleDevice> getThrottleWriteBpsDevice() {
     return throttleWriteBpsDevice;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setThrottleWriteBpsDevice(Map<String, LinuxThrottleDevice> throttleWriteBpsDevice) {
     this.throttleWriteBpsDevice = throttleWriteBpsDevice;
   }
@@ -286,10 +321,17 @@ public class ContainerResourceConfig {
    * @return throttleWriteIOPSDevice
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, LinuxThrottleDevice> getThrottleWriteIOPSDevice() {
     return throttleWriteIOPSDevice;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setThrottleWriteIOPSDevice(Map<String, LinuxThrottleDevice> throttleWriteIOPSDevice) {
     this.throttleWriteIOPSDevice = throttleWriteIOPSDevice;
   }
@@ -313,10 +355,16 @@ public class ContainerResourceConfig {
    * @return unified
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UNIFIED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getUnified() {
     return unified;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UNIFIED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUnified(Map<String, String> unified) {
     this.unified = unified;
   }
@@ -340,16 +388,25 @@ public class ContainerResourceConfig {
    * @return weightDevice
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, LinuxWeightDevice> getWeightDevice() {
     return weightDevice;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWeightDevice(Map<String, LinuxWeightDevice> weightDevice) {
     this.weightDevice = weightDevice;
   }
 
 
-
+  /**
+   * Return true if this ContainerResourceConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -405,120 +462,123 @@ public class ContainerResourceConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("intelRdt");
-    openapiFields.add("oom_score_adj");
-    openapiFields.add("r_limits");
-    openapiFields.add("resource_limits");
-    openapiFields.add("throttleReadBpsDevice");
-    openapiFields.add("throttleReadIOPSDevice");
-    openapiFields.add("throttleWriteBpsDevice");
-    openapiFields.add("throttleWriteIOPSDevice");
-    openapiFields.add("unified");
-    openapiFields.add("weightDevice");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ContainerResourceConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ContainerResourceConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ContainerResourceConfig is not found in the empty JSON string", ContainerResourceConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ContainerResourceConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ContainerResourceConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `intelRdt`
-      if (jsonObj.get("intelRdt") != null && !jsonObj.get("intelRdt").isJsonNull()) {
-        LinuxIntelRdt.validateJsonElement(jsonObj.get("intelRdt"));
-      }
-      if (jsonObj.get("r_limits") != null && !jsonObj.get("r_limits").isJsonNull()) {
-        JsonArray jsonArrayrLimits = jsonObj.getAsJsonArray("r_limits");
-        if (jsonArrayrLimits != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("r_limits").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `r_limits` to be an array in the JSON string but got `%s`", jsonObj.get("r_limits").toString()));
-          }
-
-          // validate the optional field `r_limits` (array)
-          for (int i = 0; i < jsonArrayrLimits.size(); i++) {
-            POSIXRlimit.validateJsonElement(jsonArrayrLimits.get(i));
-          };
-        }
-      }
-      // validate the optional field `resource_limits`
-      if (jsonObj.get("resource_limits") != null && !jsonObj.get("resource_limits").isJsonNull()) {
-        LinuxResources.validateJsonElement(jsonObj.get("resource_limits"));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ContainerResourceConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ContainerResourceConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ContainerResourceConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ContainerResourceConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ContainerResourceConfig>() {
-           @Override
-           public void write(JsonWriter out, ContainerResourceConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ContainerResourceConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ContainerResourceConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ContainerResourceConfig
-   * @throws IOException if the JSON string is invalid with respect to ContainerResourceConfig
-   */
-  public static ContainerResourceConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ContainerResourceConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ContainerResourceConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `intelRdt` to the URL query string
+    if (getIntelRdt() != null) {
+      joiner.add(getIntelRdt().toUrlQueryString(prefix + "intelRdt" + suffix));
+    }
+
+    // add `oom_score_adj` to the URL query string
+    if (getOomScoreAdj() != null) {
+      joiner.add(String.format("%soom_score_adj%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOomScoreAdj()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `r_limits` to the URL query string
+    if (getrLimits() != null) {
+      for (int i = 0; i < getrLimits().size(); i++) {
+        if (getrLimits().get(i) != null) {
+          joiner.add(getrLimits().get(i).toUrlQueryString(String.format("%sr_limits%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `resource_limits` to the URL query string
+    if (getResourceLimits() != null) {
+      joiner.add(getResourceLimits().toUrlQueryString(prefix + "resource_limits" + suffix));
+    }
+
+    // add `throttleReadBpsDevice` to the URL query string
+    if (getThrottleReadBpsDevice() != null) {
+      for (String _key : getThrottleReadBpsDevice().keySet()) {
+        if (getThrottleReadBpsDevice().get(_key) != null) {
+          joiner.add(getThrottleReadBpsDevice().get(_key).toUrlQueryString(String.format("%sthrottleReadBpsDevice%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
+      }
+    }
+
+    // add `throttleReadIOPSDevice` to the URL query string
+    if (getThrottleReadIOPSDevice() != null) {
+      for (String _key : getThrottleReadIOPSDevice().keySet()) {
+        if (getThrottleReadIOPSDevice().get(_key) != null) {
+          joiner.add(getThrottleReadIOPSDevice().get(_key).toUrlQueryString(String.format("%sthrottleReadIOPSDevice%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
+      }
+    }
+
+    // add `throttleWriteBpsDevice` to the URL query string
+    if (getThrottleWriteBpsDevice() != null) {
+      for (String _key : getThrottleWriteBpsDevice().keySet()) {
+        if (getThrottleWriteBpsDevice().get(_key) != null) {
+          joiner.add(getThrottleWriteBpsDevice().get(_key).toUrlQueryString(String.format("%sthrottleWriteBpsDevice%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
+      }
+    }
+
+    // add `throttleWriteIOPSDevice` to the URL query string
+    if (getThrottleWriteIOPSDevice() != null) {
+      for (String _key : getThrottleWriteIOPSDevice().keySet()) {
+        if (getThrottleWriteIOPSDevice().get(_key) != null) {
+          joiner.add(getThrottleWriteIOPSDevice().get(_key).toUrlQueryString(String.format("%sthrottleWriteIOPSDevice%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
+      }
+    }
+
+    // add `unified` to the URL query string
+    if (getUnified() != null) {
+      for (String _key : getUnified().keySet()) {
+        joiner.add(String.format("%sunified%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getUnified().get(_key), URLEncoder.encode(ApiClient.valueToString(getUnified().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `weightDevice` to the URL query string
+    if (getWeightDevice() != null) {
+      for (String _key : getWeightDevice().keySet()) {
+        if (getWeightDevice().get(_key) != null) {
+          joiner.add(getWeightDevice().get(_key).toUrlQueryString(String.format("%sweightDevice%s%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix))));
+        }
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

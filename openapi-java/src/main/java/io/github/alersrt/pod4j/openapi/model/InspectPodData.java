@@ -13,196 +13,183 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.InspectBlkioThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.InspectBlkioWeightDevice;
 import io.github.alersrt.pod4j.openapi.model.InspectDevice;
 import io.github.alersrt.pod4j.openapi.model.InspectMount;
 import io.github.alersrt.pod4j.openapi.model.InspectPodContainerInfo;
 import io.github.alersrt.pod4j.openapi.model.InspectPodInfraConfig;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectPodData contains detailed information on a pod&#39;s configuration and state. It is used as the output of Inspect on pods.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  InspectPodData.JSON_PROPERTY_CGROUP_PARENT,
+  InspectPodData.JSON_PROPERTY_CGROUP_PATH,
+  InspectPodData.JSON_PROPERTY_CONTAINERS,
+  InspectPodData.JSON_PROPERTY_CREATE_CGROUP,
+  InspectPodData.JSON_PROPERTY_CREATE_COMMAND,
+  InspectPodData.JSON_PROPERTY_CREATE_INFRA,
+  InspectPodData.JSON_PROPERTY_CREATED,
+  InspectPodData.JSON_PROPERTY_EXIT_POLICY,
+  InspectPodData.JSON_PROPERTY_HOSTNAME,
+  InspectPodData.JSON_PROPERTY_ID,
+  InspectPodData.JSON_PROPERTY_INFRA_CONFIG,
+  InspectPodData.JSON_PROPERTY_INFRA_CONTAINER_I_D,
+  InspectPodData.JSON_PROPERTY_LABELS,
+  InspectPodData.JSON_PROPERTY_LOCK_NUMBER,
+  InspectPodData.JSON_PROPERTY_NAME,
+  InspectPodData.JSON_PROPERTY_NAMESPACE,
+  InspectPodData.JSON_PROPERTY_NUM_CONTAINERS,
+  InspectPodData.JSON_PROPERTY_RESTART_POLICY,
+  InspectPodData.JSON_PROPERTY_SHARED_NAMESPACES,
+  InspectPodData.JSON_PROPERTY_STATE,
+  InspectPodData.JSON_PROPERTY_BLKIO_WEIGHT,
+  InspectPodData.JSON_PROPERTY_BLKIO_WEIGHT_DEVICE,
+  InspectPodData.JSON_PROPERTY_CPU_PERIOD,
+  InspectPodData.JSON_PROPERTY_CPU_QUOTA,
+  InspectPodData.JSON_PROPERTY_CPU_SHARES,
+  InspectPodData.JSON_PROPERTY_CPUSET_CPUS,
+  InspectPodData.JSON_PROPERTY_CPUSET_MEMS,
+  InspectPodData.JSON_PROPERTY_DEVICE_READ_BPS,
+  InspectPodData.JSON_PROPERTY_DEVICE_WRITE_BPS,
+  InspectPodData.JSON_PROPERTY_DEVICES,
+  InspectPodData.JSON_PROPERTY_MEMORY_LIMIT,
+  InspectPodData.JSON_PROPERTY_MEMORY_SWAP,
+  InspectPodData.JSON_PROPERTY_MOUNTS,
+  InspectPodData.JSON_PROPERTY_SECURITY_OPT,
+  InspectPodData.JSON_PROPERTY_VOLUMES_FROM
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectPodData {
-  public static final String SERIALIZED_NAME_CGROUP_PARENT = "CgroupParent";
-  @SerializedName(SERIALIZED_NAME_CGROUP_PARENT)
+  public static final String JSON_PROPERTY_CGROUP_PARENT = "CgroupParent";
   private String cgroupParent;
 
-  public static final String SERIALIZED_NAME_CGROUP_PATH = "CgroupPath";
-  @SerializedName(SERIALIZED_NAME_CGROUP_PATH)
+  public static final String JSON_PROPERTY_CGROUP_PATH = "CgroupPath";
   private String cgroupPath;
 
-  public static final String SERIALIZED_NAME_CONTAINERS = "Containers";
-  @SerializedName(SERIALIZED_NAME_CONTAINERS)
-  private List<InspectPodContainerInfo> containers = new ArrayList<>();
+  public static final String JSON_PROPERTY_CONTAINERS = "Containers";
+  private List<@Valid InspectPodContainerInfo> containers = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CREATE_CGROUP = "CreateCgroup";
-  @SerializedName(SERIALIZED_NAME_CREATE_CGROUP)
+  public static final String JSON_PROPERTY_CREATE_CGROUP = "CreateCgroup";
   private Boolean createCgroup;
 
-  public static final String SERIALIZED_NAME_CREATE_COMMAND = "CreateCommand";
-  @SerializedName(SERIALIZED_NAME_CREATE_COMMAND)
+  public static final String JSON_PROPERTY_CREATE_COMMAND = "CreateCommand";
   private List<String> createCommand = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CREATE_INFRA = "CreateInfra";
-  @SerializedName(SERIALIZED_NAME_CREATE_INFRA)
+  public static final String JSON_PROPERTY_CREATE_INFRA = "CreateInfra";
   private Boolean createInfra;
 
-  public static final String SERIALIZED_NAME_CREATED = "Created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
+  public static final String JSON_PROPERTY_CREATED = "Created";
   private OffsetDateTime created;
 
-  public static final String SERIALIZED_NAME_EXIT_POLICY = "ExitPolicy";
-  @SerializedName(SERIALIZED_NAME_EXIT_POLICY)
+  public static final String JSON_PROPERTY_EXIT_POLICY = "ExitPolicy";
   private String exitPolicy;
 
-  public static final String SERIALIZED_NAME_HOSTNAME = "Hostname";
-  @SerializedName(SERIALIZED_NAME_HOSTNAME)
+  public static final String JSON_PROPERTY_HOSTNAME = "Hostname";
   private String hostname;
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "Id";
   private String id;
 
-  public static final String SERIALIZED_NAME_INFRA_CONFIG = "InfraConfig";
-  @SerializedName(SERIALIZED_NAME_INFRA_CONFIG)
+  public static final String JSON_PROPERTY_INFRA_CONFIG = "InfraConfig";
   private InspectPodInfraConfig infraConfig;
 
-  public static final String SERIALIZED_NAME_INFRA_CONTAINER_I_D = "InfraContainerID";
-  @SerializedName(SERIALIZED_NAME_INFRA_CONTAINER_I_D)
+  public static final String JSON_PROPERTY_INFRA_CONTAINER_I_D = "InfraContainerID";
   private String infraContainerID;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_LOCK_NUMBER = "LockNumber";
-  @SerializedName(SERIALIZED_NAME_LOCK_NUMBER)
+  public static final String JSON_PROPERTY_LOCK_NUMBER = "LockNumber";
   private Integer lockNumber;
 
-  public static final String SERIALIZED_NAME_NAME = "Name";
-  @SerializedName(SERIALIZED_NAME_NAME)
+  public static final String JSON_PROPERTY_NAME = "Name";
   private String name;
 
-  public static final String SERIALIZED_NAME_NAMESPACE = "Namespace";
-  @SerializedName(SERIALIZED_NAME_NAMESPACE)
+  public static final String JSON_PROPERTY_NAMESPACE = "Namespace";
   private String namespace;
 
-  public static final String SERIALIZED_NAME_NUM_CONTAINERS = "NumContainers";
-  @SerializedName(SERIALIZED_NAME_NUM_CONTAINERS)
+  public static final String JSON_PROPERTY_NUM_CONTAINERS = "NumContainers";
   private Integer numContainers;
 
-  public static final String SERIALIZED_NAME_RESTART_POLICY = "RestartPolicy";
-  @SerializedName(SERIALIZED_NAME_RESTART_POLICY)
+  public static final String JSON_PROPERTY_RESTART_POLICY = "RestartPolicy";
   private String restartPolicy;
 
-  public static final String SERIALIZED_NAME_SHARED_NAMESPACES = "SharedNamespaces";
-  @SerializedName(SERIALIZED_NAME_SHARED_NAMESPACES)
+  public static final String JSON_PROPERTY_SHARED_NAMESPACES = "SharedNamespaces";
   private List<String> sharedNamespaces = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_STATE = "State";
-  @SerializedName(SERIALIZED_NAME_STATE)
+  public static final String JSON_PROPERTY_STATE = "State";
   private String state;
 
-  public static final String SERIALIZED_NAME_BLKIO_WEIGHT = "blkio_weight";
-  @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT)
+  public static final String JSON_PROPERTY_BLKIO_WEIGHT = "blkio_weight";
   private Integer blkioWeight;
 
-  public static final String SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE = "blkio_weight_device";
-  @SerializedName(SERIALIZED_NAME_BLKIO_WEIGHT_DEVICE)
-  private List<InspectBlkioWeightDevice> blkioWeightDevice = new ArrayList<>();
+  public static final String JSON_PROPERTY_BLKIO_WEIGHT_DEVICE = "blkio_weight_device";
+  private List<@Valid InspectBlkioWeightDevice> blkioWeightDevice = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CPU_PERIOD = "cpu_period";
-  @SerializedName(SERIALIZED_NAME_CPU_PERIOD)
+  public static final String JSON_PROPERTY_CPU_PERIOD = "cpu_period";
   private Integer cpuPeriod;
 
-  public static final String SERIALIZED_NAME_CPU_QUOTA = "cpu_quota";
-  @SerializedName(SERIALIZED_NAME_CPU_QUOTA)
+  public static final String JSON_PROPERTY_CPU_QUOTA = "cpu_quota";
   private Long cpuQuota;
 
-  public static final String SERIALIZED_NAME_CPU_SHARES = "cpu_shares";
-  @SerializedName(SERIALIZED_NAME_CPU_SHARES)
+  public static final String JSON_PROPERTY_CPU_SHARES = "cpu_shares";
   private Integer cpuShares;
 
-  public static final String SERIALIZED_NAME_CPUSET_CPUS = "cpuset_cpus";
-  @SerializedName(SERIALIZED_NAME_CPUSET_CPUS)
+  public static final String JSON_PROPERTY_CPUSET_CPUS = "cpuset_cpus";
   private String cpusetCpus;
 
-  public static final String SERIALIZED_NAME_CPUSET_MEMS = "cpuset_mems";
-  @SerializedName(SERIALIZED_NAME_CPUSET_MEMS)
+  public static final String JSON_PROPERTY_CPUSET_MEMS = "cpuset_mems";
   private String cpusetMems;
 
-  public static final String SERIALIZED_NAME_DEVICE_READ_BPS = "device_read_bps";
-  @SerializedName(SERIALIZED_NAME_DEVICE_READ_BPS)
-  private List<InspectBlkioThrottleDevice> deviceReadBps = new ArrayList<>();
+  public static final String JSON_PROPERTY_DEVICE_READ_BPS = "device_read_bps";
+  private List<@Valid InspectBlkioThrottleDevice> deviceReadBps = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DEVICE_WRITE_BPS = "device_write_bps";
-  @SerializedName(SERIALIZED_NAME_DEVICE_WRITE_BPS)
-  private List<InspectBlkioThrottleDevice> deviceWriteBps = new ArrayList<>();
+  public static final String JSON_PROPERTY_DEVICE_WRITE_BPS = "device_write_bps";
+  private List<@Valid InspectBlkioThrottleDevice> deviceWriteBps = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DEVICES = "devices";
-  @SerializedName(SERIALIZED_NAME_DEVICES)
-  private List<InspectDevice> devices = new ArrayList<>();
+  public static final String JSON_PROPERTY_DEVICES = "devices";
+  private List<@Valid InspectDevice> devices = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_MEMORY_LIMIT = "memory_limit";
-  @SerializedName(SERIALIZED_NAME_MEMORY_LIMIT)
+  public static final String JSON_PROPERTY_MEMORY_LIMIT = "memory_limit";
   private Integer memoryLimit;
 
-  public static final String SERIALIZED_NAME_MEMORY_SWAP = "memory_swap";
-  @SerializedName(SERIALIZED_NAME_MEMORY_SWAP)
+  public static final String JSON_PROPERTY_MEMORY_SWAP = "memory_swap";
   private Integer memorySwap;
 
-  public static final String SERIALIZED_NAME_MOUNTS = "mounts";
-  @SerializedName(SERIALIZED_NAME_MOUNTS)
-  private List<InspectMount> mounts = new ArrayList<>();
+  public static final String JSON_PROPERTY_MOUNTS = "mounts";
+  private List<@Valid InspectMount> mounts = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_SECURITY_OPT = "security_opt";
-  @SerializedName(SERIALIZED_NAME_SECURITY_OPT)
+  public static final String JSON_PROPERTY_SECURITY_OPT = "security_opt";
   private List<String> securityOpt = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_VOLUMES_FROM = "volumes_from";
-  @SerializedName(SERIALIZED_NAME_VOLUMES_FROM)
+  public static final String JSON_PROPERTY_VOLUMES_FROM = "volumes_from";
   private List<String> volumesFrom = new ArrayList<>();
 
-  public InspectPodData() {
+  public InspectPodData() { 
   }
 
   public InspectPodData cgroupParent(String cgroupParent) {
@@ -215,10 +202,16 @@ public class InspectPodData {
    * @return cgroupParent
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCgroupParent() {
     return cgroupParent;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupParent(String cgroupParent) {
     this.cgroupParent = cgroupParent;
   }
@@ -234,16 +227,22 @@ public class InspectPodData {
    * @return cgroupPath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCgroupPath() {
     return cgroupPath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CGROUP_PATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCgroupPath(String cgroupPath) {
     this.cgroupPath = cgroupPath;
   }
 
 
-  public InspectPodData containers(List<InspectPodContainerInfo> containers) {
+  public InspectPodData containers(List<@Valid InspectPodContainerInfo> containers) {
     this.containers = containers;
     return this;
   }
@@ -261,11 +260,18 @@ public class InspectPodData {
    * @return containers
    */
   @javax.annotation.Nullable
-  public List<InspectPodContainerInfo> getContainers() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid InspectPodContainerInfo> getContainers() {
     return containers;
   }
 
-  public void setContainers(List<InspectPodContainerInfo> containers) {
+
+  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContainers(List<@Valid InspectPodContainerInfo> containers) {
     this.containers = containers;
   }
 
@@ -280,10 +286,16 @@ public class InspectPodData {
    * @return createCgroup
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATE_CGROUP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCreateCgroup() {
     return createCgroup;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATE_CGROUP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreateCgroup(Boolean createCgroup) {
     this.createCgroup = createCgroup;
   }
@@ -307,10 +319,16 @@ public class InspectPodData {
    * @return createCommand
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATE_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCreateCommand() {
     return createCommand;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATE_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreateCommand(List<String> createCommand) {
     this.createCommand = createCommand;
   }
@@ -326,10 +344,16 @@ public class InspectPodData {
    * @return createInfra
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATE_INFRA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCreateInfra() {
     return createInfra;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATE_INFRA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreateInfra(Boolean createInfra) {
     this.createInfra = createInfra;
   }
@@ -345,10 +369,17 @@ public class InspectPodData {
    * @return created
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public OffsetDateTime getCreated() {
     return created;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreated(OffsetDateTime created) {
     this.created = created;
   }
@@ -364,10 +395,16 @@ public class InspectPodData {
    * @return exitPolicy
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXIT_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getExitPolicy() {
     return exitPolicy;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXIT_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExitPolicy(String exitPolicy) {
     this.exitPolicy = exitPolicy;
   }
@@ -383,10 +420,16 @@ public class InspectPodData {
    * @return hostname
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHostname() {
     return hostname;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostname(String hostname) {
     this.hostname = hostname;
   }
@@ -402,10 +445,16 @@ public class InspectPodData {
    * @return id
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -421,10 +470,17 @@ public class InspectPodData {
    * @return infraConfig
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_INFRA_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public InspectPodInfraConfig getInfraConfig() {
     return infraConfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INFRA_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfraConfig(InspectPodInfraConfig infraConfig) {
     this.infraConfig = infraConfig;
   }
@@ -440,10 +496,16 @@ public class InspectPodData {
    * @return infraContainerID
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_INFRA_CONTAINER_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getInfraContainerID() {
     return infraContainerID;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_INFRA_CONTAINER_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfraContainerID(String infraContainerID) {
     this.infraContainerID = infraContainerID;
   }
@@ -467,10 +529,16 @@ public class InspectPodData {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -486,10 +554,16 @@ public class InspectPodData {
    * @return lockNumber
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LOCK_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getLockNumber() {
     return lockNumber;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LOCK_NUMBER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLockNumber(Integer lockNumber) {
     this.lockNumber = lockNumber;
   }
@@ -505,10 +579,16 @@ public class InspectPodData {
    * @return name
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
   }
@@ -524,10 +604,16 @@ public class InspectPodData {
    * @return namespace
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NAMESPACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNamespace() {
     return namespace;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NAMESPACE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNamespace(String namespace) {
     this.namespace = namespace;
   }
@@ -543,10 +629,16 @@ public class InspectPodData {
    * @return numContainers
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NUM_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getNumContainers() {
     return numContainers;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NUM_CONTAINERS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNumContainers(Integer numContainers) {
     this.numContainers = numContainers;
   }
@@ -562,10 +654,16 @@ public class InspectPodData {
    * @return restartPolicy
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRestartPolicy() {
     return restartPolicy;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRestartPolicy(String restartPolicy) {
     this.restartPolicy = restartPolicy;
   }
@@ -589,10 +687,16 @@ public class InspectPodData {
    * @return sharedNamespaces
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SHARED_NAMESPACES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getSharedNamespaces() {
     return sharedNamespaces;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SHARED_NAMESPACES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSharedNamespaces(List<String> sharedNamespaces) {
     this.sharedNamespaces = sharedNamespaces;
   }
@@ -608,10 +712,16 @@ public class InspectPodData {
    * @return state
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getState() {
     return state;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setState(String state) {
     this.state = state;
   }
@@ -627,16 +737,22 @@ public class InspectPodData {
    * @return blkioWeight
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getBlkioWeight() {
     return blkioWeight;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBlkioWeight(Integer blkioWeight) {
     this.blkioWeight = blkioWeight;
   }
 
 
-  public InspectPodData blkioWeightDevice(List<InspectBlkioWeightDevice> blkioWeightDevice) {
+  public InspectPodData blkioWeightDevice(List<@Valid InspectBlkioWeightDevice> blkioWeightDevice) {
     this.blkioWeightDevice = blkioWeightDevice;
     return this;
   }
@@ -654,11 +770,18 @@ public class InspectPodData {
    * @return blkioWeightDevice
    */
   @javax.annotation.Nullable
-  public List<InspectBlkioWeightDevice> getBlkioWeightDevice() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid InspectBlkioWeightDevice> getBlkioWeightDevice() {
     return blkioWeightDevice;
   }
 
-  public void setBlkioWeightDevice(List<InspectBlkioWeightDevice> blkioWeightDevice) {
+
+  @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBlkioWeightDevice(List<@Valid InspectBlkioWeightDevice> blkioWeightDevice) {
     this.blkioWeightDevice = blkioWeightDevice;
   }
 
@@ -673,10 +796,16 @@ public class InspectPodData {
    * @return cpuPeriod
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getCpuPeriod() {
     return cpuPeriod;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpuPeriod(Integer cpuPeriod) {
     this.cpuPeriod = cpuPeriod;
   }
@@ -692,10 +821,16 @@ public class InspectPodData {
    * @return cpuQuota
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getCpuQuota() {
     return cpuQuota;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpuQuota(Long cpuQuota) {
     this.cpuQuota = cpuQuota;
   }
@@ -711,10 +846,16 @@ public class InspectPodData {
    * @return cpuShares
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPU_SHARES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getCpuShares() {
     return cpuShares;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPU_SHARES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpuShares(Integer cpuShares) {
     this.cpuShares = cpuShares;
   }
@@ -730,10 +871,16 @@ public class InspectPodData {
    * @return cpusetCpus
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCpusetCpus() {
     return cpusetCpus;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpusetCpus(String cpusetCpus) {
     this.cpusetCpus = cpusetCpus;
   }
@@ -749,16 +896,22 @@ public class InspectPodData {
    * @return cpusetMems
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCpusetMems() {
     return cpusetMems;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpusetMems(String cpusetMems) {
     this.cpusetMems = cpusetMems;
   }
 
 
-  public InspectPodData deviceReadBps(List<InspectBlkioThrottleDevice> deviceReadBps) {
+  public InspectPodData deviceReadBps(List<@Valid InspectBlkioThrottleDevice> deviceReadBps) {
     this.deviceReadBps = deviceReadBps;
     return this;
   }
@@ -776,16 +929,23 @@ public class InspectPodData {
    * @return deviceReadBps
    */
   @javax.annotation.Nullable
-  public List<InspectBlkioThrottleDevice> getDeviceReadBps() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DEVICE_READ_BPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid InspectBlkioThrottleDevice> getDeviceReadBps() {
     return deviceReadBps;
   }
 
-  public void setDeviceReadBps(List<InspectBlkioThrottleDevice> deviceReadBps) {
+
+  @JsonProperty(JSON_PROPERTY_DEVICE_READ_BPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDeviceReadBps(List<@Valid InspectBlkioThrottleDevice> deviceReadBps) {
     this.deviceReadBps = deviceReadBps;
   }
 
 
-  public InspectPodData deviceWriteBps(List<InspectBlkioThrottleDevice> deviceWriteBps) {
+  public InspectPodData deviceWriteBps(List<@Valid InspectBlkioThrottleDevice> deviceWriteBps) {
     this.deviceWriteBps = deviceWriteBps;
     return this;
   }
@@ -803,16 +963,23 @@ public class InspectPodData {
    * @return deviceWriteBps
    */
   @javax.annotation.Nullable
-  public List<InspectBlkioThrottleDevice> getDeviceWriteBps() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DEVICE_WRITE_BPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid InspectBlkioThrottleDevice> getDeviceWriteBps() {
     return deviceWriteBps;
   }
 
-  public void setDeviceWriteBps(List<InspectBlkioThrottleDevice> deviceWriteBps) {
+
+  @JsonProperty(JSON_PROPERTY_DEVICE_WRITE_BPS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDeviceWriteBps(List<@Valid InspectBlkioThrottleDevice> deviceWriteBps) {
     this.deviceWriteBps = deviceWriteBps;
   }
 
 
-  public InspectPodData devices(List<InspectDevice> devices) {
+  public InspectPodData devices(List<@Valid InspectDevice> devices) {
     this.devices = devices;
     return this;
   }
@@ -830,11 +997,18 @@ public class InspectPodData {
    * @return devices
    */
   @javax.annotation.Nullable
-  public List<InspectDevice> getDevices() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DEVICES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid InspectDevice> getDevices() {
     return devices;
   }
 
-  public void setDevices(List<InspectDevice> devices) {
+
+  @JsonProperty(JSON_PROPERTY_DEVICES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDevices(List<@Valid InspectDevice> devices) {
     this.devices = devices;
   }
 
@@ -849,10 +1023,16 @@ public class InspectPodData {
    * @return memoryLimit
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEMORY_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getMemoryLimit() {
     return memoryLimit;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEMORY_LIMIT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemoryLimit(Integer memoryLimit) {
     this.memoryLimit = memoryLimit;
   }
@@ -868,16 +1048,22 @@ public class InspectPodData {
    * @return memorySwap
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getMemorySwap() {
     return memorySwap;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemorySwap(Integer memorySwap) {
     this.memorySwap = memorySwap;
   }
 
 
-  public InspectPodData mounts(List<InspectMount> mounts) {
+  public InspectPodData mounts(List<@Valid InspectMount> mounts) {
     this.mounts = mounts;
     return this;
   }
@@ -895,11 +1081,18 @@ public class InspectPodData {
    * @return mounts
    */
   @javax.annotation.Nullable
-  public List<InspectMount> getMounts() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid InspectMount> getMounts() {
     return mounts;
   }
 
-  public void setMounts(List<InspectMount> mounts) {
+
+  @JsonProperty(JSON_PROPERTY_MOUNTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMounts(List<@Valid InspectMount> mounts) {
     this.mounts = mounts;
   }
 
@@ -922,10 +1115,16 @@ public class InspectPodData {
    * @return securityOpt
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getSecurityOpt() {
     return securityOpt;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSecurityOpt(List<String> securityOpt) {
     this.securityOpt = securityOpt;
   }
@@ -949,16 +1148,24 @@ public class InspectPodData {
    * @return volumesFrom
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getVolumesFrom() {
     return volumesFrom;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVolumesFrom(List<String> volumesFrom) {
     this.volumesFrom = volumesFrom;
   }
 
 
-
+  /**
+   * Return true if this InspectPodData object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1064,263 +1271,264 @@ public class InspectPodData {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("CgroupParent");
-    openapiFields.add("CgroupPath");
-    openapiFields.add("Containers");
-    openapiFields.add("CreateCgroup");
-    openapiFields.add("CreateCommand");
-    openapiFields.add("CreateInfra");
-    openapiFields.add("Created");
-    openapiFields.add("ExitPolicy");
-    openapiFields.add("Hostname");
-    openapiFields.add("Id");
-    openapiFields.add("InfraConfig");
-    openapiFields.add("InfraContainerID");
-    openapiFields.add("Labels");
-    openapiFields.add("LockNumber");
-    openapiFields.add("Name");
-    openapiFields.add("Namespace");
-    openapiFields.add("NumContainers");
-    openapiFields.add("RestartPolicy");
-    openapiFields.add("SharedNamespaces");
-    openapiFields.add("State");
-    openapiFields.add("blkio_weight");
-    openapiFields.add("blkio_weight_device");
-    openapiFields.add("cpu_period");
-    openapiFields.add("cpu_quota");
-    openapiFields.add("cpu_shares");
-    openapiFields.add("cpuset_cpus");
-    openapiFields.add("cpuset_mems");
-    openapiFields.add("device_read_bps");
-    openapiFields.add("device_write_bps");
-    openapiFields.add("devices");
-    openapiFields.add("memory_limit");
-    openapiFields.add("memory_swap");
-    openapiFields.add("mounts");
-    openapiFields.add("security_opt");
-    openapiFields.add("volumes_from");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectPodData
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectPodData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectPodData is not found in the empty JSON string", InspectPodData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InspectPodData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectPodData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("CgroupParent") != null && !jsonObj.get("CgroupParent").isJsonNull()) && !jsonObj.get("CgroupParent").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CgroupParent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupParent").toString()));
-      }
-      if ((jsonObj.get("CgroupPath") != null && !jsonObj.get("CgroupPath").isJsonNull()) && !jsonObj.get("CgroupPath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CgroupPath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupPath").toString()));
-      }
-      if (jsonObj.get("Containers") != null && !jsonObj.get("Containers").isJsonNull()) {
-        JsonArray jsonArraycontainers = jsonObj.getAsJsonArray("Containers");
-        if (jsonArraycontainers != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Containers").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Containers` to be an array in the JSON string but got `%s`", jsonObj.get("Containers").toString()));
-          }
-
-          // validate the optional field `Containers` (array)
-          for (int i = 0; i < jsonArraycontainers.size(); i++) {
-            InspectPodContainerInfo.validateJsonElement(jsonArraycontainers.get(i));
-          };
-        }
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("CreateCommand") != null && !jsonObj.get("CreateCommand").isJsonNull() && !jsonObj.get("CreateCommand").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CreateCommand` to be an array in the JSON string but got `%s`", jsonObj.get("CreateCommand").toString()));
-      }
-      if ((jsonObj.get("ExitPolicy") != null && !jsonObj.get("ExitPolicy").isJsonNull()) && !jsonObj.get("ExitPolicy").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ExitPolicy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ExitPolicy").toString()));
-      }
-      if ((jsonObj.get("Hostname") != null && !jsonObj.get("Hostname").isJsonNull()) && !jsonObj.get("Hostname").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Hostname").toString()));
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      // validate the optional field `InfraConfig`
-      if (jsonObj.get("InfraConfig") != null && !jsonObj.get("InfraConfig").isJsonNull()) {
-        InspectPodInfraConfig.validateJsonElement(jsonObj.get("InfraConfig"));
-      }
-      if ((jsonObj.get("InfraContainerID") != null && !jsonObj.get("InfraContainerID").isJsonNull()) && !jsonObj.get("InfraContainerID").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `InfraContainerID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("InfraContainerID").toString()));
-      }
-      if ((jsonObj.get("Name") != null && !jsonObj.get("Name").isJsonNull()) && !jsonObj.get("Name").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Name").toString()));
-      }
-      if ((jsonObj.get("Namespace") != null && !jsonObj.get("Namespace").isJsonNull()) && !jsonObj.get("Namespace").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Namespace` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Namespace").toString()));
-      }
-      if ((jsonObj.get("RestartPolicy") != null && !jsonObj.get("RestartPolicy").isJsonNull()) && !jsonObj.get("RestartPolicy").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RestartPolicy` to be a primitive type in the JSON string but got `%s`", jsonObj.get("RestartPolicy").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("SharedNamespaces") != null && !jsonObj.get("SharedNamespaces").isJsonNull() && !jsonObj.get("SharedNamespaces").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `SharedNamespaces` to be an array in the JSON string but got `%s`", jsonObj.get("SharedNamespaces").toString()));
-      }
-      if ((jsonObj.get("State") != null && !jsonObj.get("State").isJsonNull()) && !jsonObj.get("State").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `State` to be a primitive type in the JSON string but got `%s`", jsonObj.get("State").toString()));
-      }
-      if (jsonObj.get("blkio_weight_device") != null && !jsonObj.get("blkio_weight_device").isJsonNull()) {
-        JsonArray jsonArrayblkioWeightDevice = jsonObj.getAsJsonArray("blkio_weight_device");
-        if (jsonArrayblkioWeightDevice != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("blkio_weight_device").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `blkio_weight_device` to be an array in the JSON string but got `%s`", jsonObj.get("blkio_weight_device").toString()));
-          }
-
-          // validate the optional field `blkio_weight_device` (array)
-          for (int i = 0; i < jsonArrayblkioWeightDevice.size(); i++) {
-            InspectBlkioWeightDevice.validateJsonElement(jsonArrayblkioWeightDevice.get(i));
-          };
-        }
-      }
-      if ((jsonObj.get("cpuset_cpus") != null && !jsonObj.get("cpuset_cpus").isJsonNull()) && !jsonObj.get("cpuset_cpus").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cpuset_cpus` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cpuset_cpus").toString()));
-      }
-      if ((jsonObj.get("cpuset_mems") != null && !jsonObj.get("cpuset_mems").isJsonNull()) && !jsonObj.get("cpuset_mems").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `cpuset_mems` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cpuset_mems").toString()));
-      }
-      if (jsonObj.get("device_read_bps") != null && !jsonObj.get("device_read_bps").isJsonNull()) {
-        JsonArray jsonArraydeviceReadBps = jsonObj.getAsJsonArray("device_read_bps");
-        if (jsonArraydeviceReadBps != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("device_read_bps").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `device_read_bps` to be an array in the JSON string but got `%s`", jsonObj.get("device_read_bps").toString()));
-          }
-
-          // validate the optional field `device_read_bps` (array)
-          for (int i = 0; i < jsonArraydeviceReadBps.size(); i++) {
-            InspectBlkioThrottleDevice.validateJsonElement(jsonArraydeviceReadBps.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("device_write_bps") != null && !jsonObj.get("device_write_bps").isJsonNull()) {
-        JsonArray jsonArraydeviceWriteBps = jsonObj.getAsJsonArray("device_write_bps");
-        if (jsonArraydeviceWriteBps != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("device_write_bps").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `device_write_bps` to be an array in the JSON string but got `%s`", jsonObj.get("device_write_bps").toString()));
-          }
-
-          // validate the optional field `device_write_bps` (array)
-          for (int i = 0; i < jsonArraydeviceWriteBps.size(); i++) {
-            InspectBlkioThrottleDevice.validateJsonElement(jsonArraydeviceWriteBps.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("devices") != null && !jsonObj.get("devices").isJsonNull()) {
-        JsonArray jsonArraydevices = jsonObj.getAsJsonArray("devices");
-        if (jsonArraydevices != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("devices").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `devices` to be an array in the JSON string but got `%s`", jsonObj.get("devices").toString()));
-          }
-
-          // validate the optional field `devices` (array)
-          for (int i = 0; i < jsonArraydevices.size(); i++) {
-            InspectDevice.validateJsonElement(jsonArraydevices.get(i));
-          };
-        }
-      }
-      if (jsonObj.get("mounts") != null && !jsonObj.get("mounts").isJsonNull()) {
-        JsonArray jsonArraymounts = jsonObj.getAsJsonArray("mounts");
-        if (jsonArraymounts != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("mounts").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `mounts` to be an array in the JSON string but got `%s`", jsonObj.get("mounts").toString()));
-          }
-
-          // validate the optional field `mounts` (array)
-          for (int i = 0; i < jsonArraymounts.size(); i++) {
-            InspectMount.validateJsonElement(jsonArraymounts.get(i));
-          };
-        }
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("security_opt") != null && !jsonObj.get("security_opt").isJsonNull() && !jsonObj.get("security_opt").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `security_opt` to be an array in the JSON string but got `%s`", jsonObj.get("security_opt").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("volumes_from") != null && !jsonObj.get("volumes_from").isJsonNull() && !jsonObj.get("volumes_from").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `volumes_from` to be an array in the JSON string but got `%s`", jsonObj.get("volumes_from").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InspectPodData.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InspectPodData' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InspectPodData> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InspectPodData.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InspectPodData>() {
-           @Override
-           public void write(JsonWriter out, InspectPodData value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InspectPodData read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of InspectPodData given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectPodData
-   * @throws IOException if the JSON string is invalid with respect to InspectPodData
-   */
-  public static InspectPodData fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InspectPodData.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of InspectPodData to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `CgroupParent` to the URL query string
+    if (getCgroupParent() != null) {
+      joiner.add(String.format("%sCgroupParent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CgroupPath` to the URL query string
+    if (getCgroupPath() != null) {
+      joiner.add(String.format("%sCgroupPath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCgroupPath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Containers` to the URL query string
+    if (getContainers() != null) {
+      for (int i = 0; i < getContainers().size(); i++) {
+        if (getContainers().get(i) != null) {
+          joiner.add(getContainers().get(i).toUrlQueryString(String.format("%sContainers%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `CreateCgroup` to the URL query string
+    if (getCreateCgroup() != null) {
+      joiner.add(String.format("%sCreateCgroup%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreateCgroup()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `CreateCommand` to the URL query string
+    if (getCreateCommand() != null) {
+      for (int i = 0; i < getCreateCommand().size(); i++) {
+        joiner.add(String.format("%sCreateCommand%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCreateCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `CreateInfra` to the URL query string
+    if (getCreateInfra() != null) {
+      joiner.add(String.format("%sCreateInfra%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreateInfra()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Created` to the URL query string
+    if (getCreated() != null) {
+      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ExitPolicy` to the URL query string
+    if (getExitPolicy() != null) {
+      joiner.add(String.format("%sExitPolicy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getExitPolicy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Hostname` to the URL query string
+    if (getHostname() != null) {
+      joiner.add(String.format("%sHostname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `InfraConfig` to the URL query string
+    if (getInfraConfig() != null) {
+      joiner.add(getInfraConfig().toUrlQueryString(prefix + "InfraConfig" + suffix));
+    }
+
+    // add `InfraContainerID` to the URL query string
+    if (getInfraContainerID() != null) {
+      joiner.add(String.format("%sInfraContainerID%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getInfraContainerID()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `LockNumber` to the URL query string
+    if (getLockNumber() != null) {
+      joiner.add(String.format("%sLockNumber%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getLockNumber()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Name` to the URL query string
+    if (getName() != null) {
+      joiner.add(String.format("%sName%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getName()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Namespace` to the URL query string
+    if (getNamespace() != null) {
+      joiner.add(String.format("%sNamespace%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNamespace()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `NumContainers` to the URL query string
+    if (getNumContainers() != null) {
+      joiner.add(String.format("%sNumContainers%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNumContainers()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RestartPolicy` to the URL query string
+    if (getRestartPolicy() != null) {
+      joiner.add(String.format("%sRestartPolicy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRestartPolicy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `SharedNamespaces` to the URL query string
+    if (getSharedNamespaces() != null) {
+      for (int i = 0; i < getSharedNamespaces().size(); i++) {
+        joiner.add(String.format("%sSharedNamespaces%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getSharedNamespaces().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `State` to the URL query string
+    if (getState() != null) {
+      joiner.add(String.format("%sState%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getState()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `blkio_weight` to the URL query string
+    if (getBlkioWeight() != null) {
+      joiner.add(String.format("%sblkio_weight%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getBlkioWeight()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `blkio_weight_device` to the URL query string
+    if (getBlkioWeightDevice() != null) {
+      for (int i = 0; i < getBlkioWeightDevice().size(); i++) {
+        if (getBlkioWeightDevice().get(i) != null) {
+          joiner.add(getBlkioWeightDevice().get(i).toUrlQueryString(String.format("%sblkio_weight_device%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `cpu_period` to the URL query string
+    if (getCpuPeriod() != null) {
+      joiner.add(String.format("%scpu_period%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuPeriod()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cpu_quota` to the URL query string
+    if (getCpuQuota() != null) {
+      joiner.add(String.format("%scpu_quota%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuQuota()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cpu_shares` to the URL query string
+    if (getCpuShares() != null) {
+      joiner.add(String.format("%scpu_shares%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpuShares()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cpuset_cpus` to the URL query string
+    if (getCpusetCpus() != null) {
+      joiner.add(String.format("%scpuset_cpus%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetCpus()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `cpuset_mems` to the URL query string
+    if (getCpusetMems() != null) {
+      joiner.add(String.format("%scpuset_mems%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCpusetMems()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `device_read_bps` to the URL query string
+    if (getDeviceReadBps() != null) {
+      for (int i = 0; i < getDeviceReadBps().size(); i++) {
+        if (getDeviceReadBps().get(i) != null) {
+          joiner.add(getDeviceReadBps().get(i).toUrlQueryString(String.format("%sdevice_read_bps%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `device_write_bps` to the URL query string
+    if (getDeviceWriteBps() != null) {
+      for (int i = 0; i < getDeviceWriteBps().size(); i++) {
+        if (getDeviceWriteBps().get(i) != null) {
+          joiner.add(getDeviceWriteBps().get(i).toUrlQueryString(String.format("%sdevice_write_bps%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `devices` to the URL query string
+    if (getDevices() != null) {
+      for (int i = 0; i < getDevices().size(); i++) {
+        if (getDevices().get(i) != null) {
+          joiner.add(getDevices().get(i).toUrlQueryString(String.format("%sdevices%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `memory_limit` to the URL query string
+    if (getMemoryLimit() != null) {
+      joiner.add(String.format("%smemory_limit%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemoryLimit()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `memory_swap` to the URL query string
+    if (getMemorySwap() != null) {
+      joiner.add(String.format("%smemory_swap%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getMemorySwap()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `mounts` to the URL query string
+    if (getMounts() != null) {
+      for (int i = 0; i < getMounts().size(); i++) {
+        if (getMounts().get(i) != null) {
+          joiner.add(getMounts().get(i).toUrlQueryString(String.format("%smounts%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `security_opt` to the URL query string
+    if (getSecurityOpt() != null) {
+      for (int i = 0; i < getSecurityOpt().size(); i++) {
+        joiner.add(String.format("%ssecurity_opt%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getSecurityOpt().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `volumes_from` to the URL query string
+    if (getVolumesFrom() != null) {
+      for (int i = 0; i < getVolumesFrom().size(); i++) {
+        joiner.add(String.format("%svolumes_from%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getVolumesFrom().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    return joiner.toString();
   }
 }
 

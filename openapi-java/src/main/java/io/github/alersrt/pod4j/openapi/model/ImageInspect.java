@@ -13,131 +13,118 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Config;
 import io.github.alersrt.pod4j.openapi.model.GraphDriverData;
 import io.github.alersrt.pod4j.openapi.model.Metadata;
 import io.github.alersrt.pod4j.openapi.model.RootFS;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * ImageInspect
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  ImageInspect.JSON_PROPERTY_ARCHITECTURE,
+  ImageInspect.JSON_PROPERTY_AUTHOR,
+  ImageInspect.JSON_PROPERTY_COMMENT,
+  ImageInspect.JSON_PROPERTY_CONFIG,
+  ImageInspect.JSON_PROPERTY_CONTAINER,
+  ImageInspect.JSON_PROPERTY_CONTAINER_CONFIG,
+  ImageInspect.JSON_PROPERTY_CREATED,
+  ImageInspect.JSON_PROPERTY_DOCKER_VERSION,
+  ImageInspect.JSON_PROPERTY_GRAPH_DRIVER,
+  ImageInspect.JSON_PROPERTY_ID,
+  ImageInspect.JSON_PROPERTY_METADATA,
+  ImageInspect.JSON_PROPERTY_OS,
+  ImageInspect.JSON_PROPERTY_OS_VERSION,
+  ImageInspect.JSON_PROPERTY_PARENT,
+  ImageInspect.JSON_PROPERTY_REPO_DIGESTS,
+  ImageInspect.JSON_PROPERTY_REPO_TAGS,
+  ImageInspect.JSON_PROPERTY_ROOT_F_S,
+  ImageInspect.JSON_PROPERTY_SIZE,
+  ImageInspect.JSON_PROPERTY_VARIANT,
+  ImageInspect.JSON_PROPERTY_VIRTUAL_SIZE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageInspect {
-  public static final String SERIALIZED_NAME_ARCHITECTURE = "Architecture";
-  @SerializedName(SERIALIZED_NAME_ARCHITECTURE)
+  public static final String JSON_PROPERTY_ARCHITECTURE = "Architecture";
   private String architecture;
 
-  public static final String SERIALIZED_NAME_AUTHOR = "Author";
-  @SerializedName(SERIALIZED_NAME_AUTHOR)
+  public static final String JSON_PROPERTY_AUTHOR = "Author";
   private String author;
 
-  public static final String SERIALIZED_NAME_COMMENT = "Comment";
-  @SerializedName(SERIALIZED_NAME_COMMENT)
+  public static final String JSON_PROPERTY_COMMENT = "Comment";
   private String comment;
 
-  public static final String SERIALIZED_NAME_CONFIG = "Config";
-  @SerializedName(SERIALIZED_NAME_CONFIG)
+  public static final String JSON_PROPERTY_CONFIG = "Config";
   private Config config;
 
-  public static final String SERIALIZED_NAME_CONTAINER = "Container";
-  @SerializedName(SERIALIZED_NAME_CONTAINER)
+  public static final String JSON_PROPERTY_CONTAINER = "Container";
   private String container;
 
-  public static final String SERIALIZED_NAME_CONTAINER_CONFIG = "ContainerConfig";
-  @SerializedName(SERIALIZED_NAME_CONTAINER_CONFIG)
+  public static final String JSON_PROPERTY_CONTAINER_CONFIG = "ContainerConfig";
   private Config containerConfig;
 
-  public static final String SERIALIZED_NAME_CREATED = "Created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
+  public static final String JSON_PROPERTY_CREATED = "Created";
   private String created;
 
-  public static final String SERIALIZED_NAME_DOCKER_VERSION = "DockerVersion";
-  @SerializedName(SERIALIZED_NAME_DOCKER_VERSION)
+  public static final String JSON_PROPERTY_DOCKER_VERSION = "DockerVersion";
   private String dockerVersion;
 
-  public static final String SERIALIZED_NAME_GRAPH_DRIVER = "GraphDriver";
-  @SerializedName(SERIALIZED_NAME_GRAPH_DRIVER)
+  public static final String JSON_PROPERTY_GRAPH_DRIVER = "GraphDriver";
   private GraphDriverData graphDriver;
 
-  public static final String SERIALIZED_NAME_ID = "Id";
-  @SerializedName(SERIALIZED_NAME_ID)
+  public static final String JSON_PROPERTY_ID = "Id";
   private String id;
 
-  public static final String SERIALIZED_NAME_METADATA = "Metadata";
-  @SerializedName(SERIALIZED_NAME_METADATA)
+  public static final String JSON_PROPERTY_METADATA = "Metadata";
   private Metadata metadata;
 
-  public static final String SERIALIZED_NAME_OS = "Os";
-  @SerializedName(SERIALIZED_NAME_OS)
+  public static final String JSON_PROPERTY_OS = "Os";
   private String os;
 
-  public static final String SERIALIZED_NAME_OS_VERSION = "OsVersion";
-  @SerializedName(SERIALIZED_NAME_OS_VERSION)
+  public static final String JSON_PROPERTY_OS_VERSION = "OsVersion";
   private String osVersion;
 
-  public static final String SERIALIZED_NAME_PARENT = "Parent";
-  @SerializedName(SERIALIZED_NAME_PARENT)
+  public static final String JSON_PROPERTY_PARENT = "Parent";
   private String parent;
 
-  public static final String SERIALIZED_NAME_REPO_DIGESTS = "RepoDigests";
-  @SerializedName(SERIALIZED_NAME_REPO_DIGESTS)
+  public static final String JSON_PROPERTY_REPO_DIGESTS = "RepoDigests";
   private List<String> repoDigests = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_REPO_TAGS = "RepoTags";
-  @SerializedName(SERIALIZED_NAME_REPO_TAGS)
+  public static final String JSON_PROPERTY_REPO_TAGS = "RepoTags";
   private List<String> repoTags = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ROOT_F_S = "RootFS";
-  @SerializedName(SERIALIZED_NAME_ROOT_F_S)
+  public static final String JSON_PROPERTY_ROOT_F_S = "RootFS";
   private RootFS rootFS;
 
-  public static final String SERIALIZED_NAME_SIZE = "Size";
-  @SerializedName(SERIALIZED_NAME_SIZE)
+  public static final String JSON_PROPERTY_SIZE = "Size";
   private Long size;
 
-  public static final String SERIALIZED_NAME_VARIANT = "Variant";
-  @SerializedName(SERIALIZED_NAME_VARIANT)
+  public static final String JSON_PROPERTY_VARIANT = "Variant";
   private String variant;
 
-  public static final String SERIALIZED_NAME_VIRTUAL_SIZE = "VirtualSize";
-  @SerializedName(SERIALIZED_NAME_VIRTUAL_SIZE)
+  public static final String JSON_PROPERTY_VIRTUAL_SIZE = "VirtualSize";
   private Long virtualSize;
 
-  public ImageInspect() {
+  public ImageInspect() { 
   }
 
   public ImageInspect architecture(String architecture) {
@@ -150,10 +137,16 @@ public class ImageInspect {
    * @return architecture
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArchitecture() {
     return architecture;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArchitecture(String architecture) {
     this.architecture = architecture;
   }
@@ -169,10 +162,16 @@ public class ImageInspect {
    * @return author
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAuthor() {
     return author;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAuthor(String author) {
     this.author = author;
   }
@@ -188,10 +187,16 @@ public class ImageInspect {
    * @return comment
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_COMMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getComment() {
     return comment;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_COMMENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setComment(String comment) {
     this.comment = comment;
   }
@@ -207,10 +212,17 @@ public class ImageInspect {
    * @return config
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Config getConfig() {
     return config;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConfig(Config config) {
     this.config = config;
   }
@@ -226,10 +238,16 @@ public class ImageInspect {
    * @return container
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getContainer() {
     return container;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainer(String container) {
     this.container = container;
   }
@@ -245,10 +263,17 @@ public class ImageInspect {
    * @return containerConfig
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Config getContainerConfig() {
     return containerConfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainerConfig(Config containerConfig) {
     this.containerConfig = containerConfig;
   }
@@ -264,10 +289,16 @@ public class ImageInspect {
    * @return created
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCreated() {
     return created;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreated(String created) {
     this.created = created;
   }
@@ -283,10 +314,16 @@ public class ImageInspect {
    * @return dockerVersion
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DOCKER_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDockerVersion() {
     return dockerVersion;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DOCKER_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDockerVersion(String dockerVersion) {
     this.dockerVersion = dockerVersion;
   }
@@ -302,10 +339,17 @@ public class ImageInspect {
    * @return graphDriver
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public GraphDriverData getGraphDriver() {
     return graphDriver;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGraphDriver(GraphDriverData graphDriver) {
     this.graphDriver = graphDriver;
   }
@@ -321,10 +365,16 @@ public class ImageInspect {
    * @return id
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
   }
@@ -340,10 +390,17 @@ public class ImageInspect {
    * @return metadata
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_METADATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Metadata getMetadata() {
     return metadata;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_METADATA)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetadata(Metadata metadata) {
     this.metadata = metadata;
   }
@@ -359,10 +416,16 @@ public class ImageInspect {
    * @return os
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOs() {
     return os;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOs(String os) {
     this.os = os;
   }
@@ -378,10 +441,16 @@ public class ImageInspect {
    * @return osVersion
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OS_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOsVersion() {
     return osVersion;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OS_VERSION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOsVersion(String osVersion) {
     this.osVersion = osVersion;
   }
@@ -397,10 +466,16 @@ public class ImageInspect {
    * @return parent
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getParent() {
     return parent;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PARENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setParent(String parent) {
     this.parent = parent;
   }
@@ -424,10 +499,16 @@ public class ImageInspect {
    * @return repoDigests
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getRepoDigests() {
     return repoDigests;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRepoDigests(List<String> repoDigests) {
     this.repoDigests = repoDigests;
   }
@@ -451,10 +532,16 @@ public class ImageInspect {
    * @return repoTags
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getRepoTags() {
     return repoTags;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_REPO_TAGS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRepoTags(List<String> repoTags) {
     this.repoTags = repoTags;
   }
@@ -470,10 +557,17 @@ public class ImageInspect {
    * @return rootFS
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_ROOT_F_S)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public RootFS getRootFS() {
     return rootFS;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ROOT_F_S)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRootFS(RootFS rootFS) {
     this.rootFS = rootFS;
   }
@@ -489,10 +583,16 @@ public class ImageInspect {
    * @return size
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getSize() {
     return size;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(Long size) {
     this.size = size;
   }
@@ -508,10 +608,16 @@ public class ImageInspect {
    * @return variant
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVariant() {
     return variant;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VARIANT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVariant(String variant) {
     this.variant = variant;
   }
@@ -527,16 +633,24 @@ public class ImageInspect {
    * @return virtualSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Long getVirtualSize() {
     return virtualSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVirtualSize(Long virtualSize) {
     this.virtualSize = virtualSize;
   }
 
 
-
+  /**
+   * Return true if this ImageInspect object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -612,169 +726,147 @@ public class ImageInspect {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Architecture");
-    openapiFields.add("Author");
-    openapiFields.add("Comment");
-    openapiFields.add("Config");
-    openapiFields.add("Container");
-    openapiFields.add("ContainerConfig");
-    openapiFields.add("Created");
-    openapiFields.add("DockerVersion");
-    openapiFields.add("GraphDriver");
-    openapiFields.add("Id");
-    openapiFields.add("Metadata");
-    openapiFields.add("Os");
-    openapiFields.add("OsVersion");
-    openapiFields.add("Parent");
-    openapiFields.add("RepoDigests");
-    openapiFields.add("RepoTags");
-    openapiFields.add("RootFS");
-    openapiFields.add("Size");
-    openapiFields.add("Variant");
-    openapiFields.add("VirtualSize");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ImageInspect
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!ImageInspect.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ImageInspect is not found in the empty JSON string", ImageInspect.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ImageInspect.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ImageInspect` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("Architecture") != null && !jsonObj.get("Architecture").isJsonNull()) && !jsonObj.get("Architecture").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Architecture` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Architecture").toString()));
-      }
-      if ((jsonObj.get("Author") != null && !jsonObj.get("Author").isJsonNull()) && !jsonObj.get("Author").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Author` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Author").toString()));
-      }
-      if ((jsonObj.get("Comment") != null && !jsonObj.get("Comment").isJsonNull()) && !jsonObj.get("Comment").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Comment` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Comment").toString()));
-      }
-      // validate the optional field `Config`
-      if (jsonObj.get("Config") != null && !jsonObj.get("Config").isJsonNull()) {
-        Config.validateJsonElement(jsonObj.get("Config"));
-      }
-      if ((jsonObj.get("Container") != null && !jsonObj.get("Container").isJsonNull()) && !jsonObj.get("Container").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Container` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Container").toString()));
-      }
-      // validate the optional field `ContainerConfig`
-      if (jsonObj.get("ContainerConfig") != null && !jsonObj.get("ContainerConfig").isJsonNull()) {
-        Config.validateJsonElement(jsonObj.get("ContainerConfig"));
-      }
-      if ((jsonObj.get("Created") != null && !jsonObj.get("Created").isJsonNull()) && !jsonObj.get("Created").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Created` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Created").toString()));
-      }
-      if ((jsonObj.get("DockerVersion") != null && !jsonObj.get("DockerVersion").isJsonNull()) && !jsonObj.get("DockerVersion").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `DockerVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("DockerVersion").toString()));
-      }
-      // validate the optional field `GraphDriver`
-      if (jsonObj.get("GraphDriver") != null && !jsonObj.get("GraphDriver").isJsonNull()) {
-        GraphDriverData.validateJsonElement(jsonObj.get("GraphDriver"));
-      }
-      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-      }
-      // validate the optional field `Metadata`
-      if (jsonObj.get("Metadata") != null && !jsonObj.get("Metadata").isJsonNull()) {
-        Metadata.validateJsonElement(jsonObj.get("Metadata"));
-      }
-      if ((jsonObj.get("Os") != null && !jsonObj.get("Os").isJsonNull()) && !jsonObj.get("Os").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Os").toString()));
-      }
-      if ((jsonObj.get("OsVersion") != null && !jsonObj.get("OsVersion").isJsonNull()) && !jsonObj.get("OsVersion").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `OsVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OsVersion").toString()));
-      }
-      if ((jsonObj.get("Parent") != null && !jsonObj.get("Parent").isJsonNull()) && !jsonObj.get("Parent").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Parent` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Parent").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("RepoDigests") != null && !jsonObj.get("RepoDigests").isJsonNull() && !jsonObj.get("RepoDigests").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RepoDigests` to be an array in the JSON string but got `%s`", jsonObj.get("RepoDigests").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("RepoTags") != null && !jsonObj.get("RepoTags").isJsonNull() && !jsonObj.get("RepoTags").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `RepoTags` to be an array in the JSON string but got `%s`", jsonObj.get("RepoTags").toString()));
-      }
-      // validate the optional field `RootFS`
-      if (jsonObj.get("RootFS") != null && !jsonObj.get("RootFS").isJsonNull()) {
-        RootFS.validateJsonElement(jsonObj.get("RootFS"));
-      }
-      if ((jsonObj.get("Variant") != null && !jsonObj.get("Variant").isJsonNull()) && !jsonObj.get("Variant").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Variant").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ImageInspect.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ImageInspect' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ImageInspect> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ImageInspect.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<ImageInspect>() {
-           @Override
-           public void write(JsonWriter out, ImageInspect value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public ImageInspect read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of ImageInspect given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of ImageInspect
-   * @throws IOException if the JSON string is invalid with respect to ImageInspect
-   */
-  public static ImageInspect fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ImageInspect.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of ImageInspect to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Architecture` to the URL query string
+    if (getArchitecture() != null) {
+      joiner.add(String.format("%sArchitecture%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getArchitecture()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Author` to the URL query string
+    if (getAuthor() != null) {
+      joiner.add(String.format("%sAuthor%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAuthor()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Comment` to the URL query string
+    if (getComment() != null) {
+      joiner.add(String.format("%sComment%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getComment()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Config` to the URL query string
+    if (getConfig() != null) {
+      joiner.add(getConfig().toUrlQueryString(prefix + "Config" + suffix));
+    }
+
+    // add `Container` to the URL query string
+    if (getContainer() != null) {
+      joiner.add(String.format("%sContainer%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainer()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ContainerConfig` to the URL query string
+    if (getContainerConfig() != null) {
+      joiner.add(getContainerConfig().toUrlQueryString(prefix + "ContainerConfig" + suffix));
+    }
+
+    // add `Created` to the URL query string
+    if (getCreated() != null) {
+      joiner.add(String.format("%sCreated%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getCreated()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `DockerVersion` to the URL query string
+    if (getDockerVersion() != null) {
+      joiner.add(String.format("%sDockerVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDockerVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `GraphDriver` to the URL query string
+    if (getGraphDriver() != null) {
+      joiner.add(getGraphDriver().toUrlQueryString(prefix + "GraphDriver" + suffix));
+    }
+
+    // add `Id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format("%sId%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getId()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Metadata` to the URL query string
+    if (getMetadata() != null) {
+      joiner.add(getMetadata().toUrlQueryString(prefix + "Metadata" + suffix));
+    }
+
+    // add `Os` to the URL query string
+    if (getOs() != null) {
+      joiner.add(String.format("%sOs%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOs()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `OsVersion` to the URL query string
+    if (getOsVersion() != null) {
+      joiner.add(String.format("%sOsVersion%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOsVersion()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Parent` to the URL query string
+    if (getParent() != null) {
+      joiner.add(String.format("%sParent%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getParent()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `RepoDigests` to the URL query string
+    if (getRepoDigests() != null) {
+      for (int i = 0; i < getRepoDigests().size(); i++) {
+        joiner.add(String.format("%sRepoDigests%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getRepoDigests().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `RepoTags` to the URL query string
+    if (getRepoTags() != null) {
+      for (int i = 0; i < getRepoTags().size(); i++) {
+        joiner.add(String.format("%sRepoTags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getRepoTags().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `RootFS` to the URL query string
+    if (getRootFS() != null) {
+      joiner.add(getRootFS().toUrlQueryString(prefix + "RootFS" + suffix));
+    }
+
+    // add `Size` to the URL query string
+    if (getSize() != null) {
+      joiner.add(String.format("%sSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Variant` to the URL query string
+    if (getVariant() != null) {
+      joiner.add(String.format("%sVariant%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVariant()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `VirtualSize` to the URL query string
+    if (getVirtualSize() != null) {
+      joiner.add(String.format("%sVirtualSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getVirtualSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

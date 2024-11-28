@@ -13,65 +13,52 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-import java.util.Arrays;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
-
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Arrays;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import io.github.alersrt.pod4j.openapi.JSON;
 
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * PortMapping
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  PortMapping.JSON_PROPERTY_CONTAINER_PORT,
+  PortMapping.JSON_PROPERTY_HOST_IP,
+  PortMapping.JSON_PROPERTY_HOST_PORT,
+  PortMapping.JSON_PROPERTY_PROTOCOL,
+  PortMapping.JSON_PROPERTY_RANGE
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PortMapping {
-  public static final String SERIALIZED_NAME_CONTAINER_PORT = "container_port";
-  @SerializedName(SERIALIZED_NAME_CONTAINER_PORT)
+  public static final String JSON_PROPERTY_CONTAINER_PORT = "container_port";
   private Integer containerPort;
 
-  public static final String SERIALIZED_NAME_HOST_IP = "host_ip";
-  @SerializedName(SERIALIZED_NAME_HOST_IP)
+  public static final String JSON_PROPERTY_HOST_IP = "host_ip";
   private String hostIp;
 
-  public static final String SERIALIZED_NAME_HOST_PORT = "host_port";
-  @SerializedName(SERIALIZED_NAME_HOST_PORT)
+  public static final String JSON_PROPERTY_HOST_PORT = "host_port";
   private Integer hostPort;
 
-  public static final String SERIALIZED_NAME_PROTOCOL = "protocol";
-  @SerializedName(SERIALIZED_NAME_PROTOCOL)
+  public static final String JSON_PROPERTY_PROTOCOL = "protocol";
   private String protocol;
 
-  public static final String SERIALIZED_NAME_RANGE = "range";
-  @SerializedName(SERIALIZED_NAME_RANGE)
+  public static final String JSON_PROPERTY_RANGE = "range";
   private Integer range;
 
-  public PortMapping() {
+  public PortMapping() { 
   }
 
   public PortMapping containerPort(Integer containerPort) {
@@ -84,10 +71,16 @@ public class PortMapping {
    * @return containerPort
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_PORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getContainerPort() {
     return containerPort;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CONTAINER_PORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainerPort(Integer containerPort) {
     this.containerPort = containerPort;
   }
@@ -103,10 +96,16 @@ public class PortMapping {
    * @return hostIp
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOST_IP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHostIp() {
     return hostIp;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOST_IP)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostIp(String hostIp) {
     this.hostIp = hostIp;
   }
@@ -122,10 +121,16 @@ public class PortMapping {
    * @return hostPort
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOST_PORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getHostPort() {
     return hostPort;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOST_PORT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostPort(Integer hostPort) {
     this.hostPort = hostPort;
   }
@@ -141,10 +146,16 @@ public class PortMapping {
    * @return protocol
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PROTOCOL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProtocol() {
     return protocol;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PROTOCOL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProtocol(String protocol) {
     this.protocol = protocol;
   }
@@ -160,16 +171,24 @@ public class PortMapping {
    * @return range
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_RANGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getRange() {
     return range;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_RANGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRange(Integer range) {
     this.range = range;
   }
 
 
-
+  /**
+   * Return true if this PortMapping object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -215,99 +234,64 @@ public class PortMapping {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("container_port");
-    openapiFields.add("host_ip");
-    openapiFields.add("host_port");
-    openapiFields.add("protocol");
-    openapiFields.add("range");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to PortMapping
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!PortMapping.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in PortMapping is not found in the empty JSON string", PortMapping.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!PortMapping.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PortMapping` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      if ((jsonObj.get("host_ip") != null && !jsonObj.get("host_ip").isJsonNull()) && !jsonObj.get("host_ip").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `host_ip` to be a primitive type in the JSON string but got `%s`", jsonObj.get("host_ip").toString()));
-      }
-      if ((jsonObj.get("protocol") != null && !jsonObj.get("protocol").isJsonNull()) && !jsonObj.get("protocol").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `protocol` to be a primitive type in the JSON string but got `%s`", jsonObj.get("protocol").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!PortMapping.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'PortMapping' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<PortMapping> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(PortMapping.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<PortMapping>() {
-           @Override
-           public void write(JsonWriter out, PortMapping value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public PortMapping read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of PortMapping given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of PortMapping
-   * @throws IOException if the JSON string is invalid with respect to PortMapping
-   */
-  public static PortMapping fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, PortMapping.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of PortMapping to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `container_port` to the URL query string
+    if (getContainerPort() != null) {
+      joiner.add(String.format("%scontainer_port%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getContainerPort()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `host_ip` to the URL query string
+    if (getHostIp() != null) {
+      joiner.add(String.format("%shost_ip%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostIp()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `host_port` to the URL query string
+    if (getHostPort() != null) {
+      joiner.add(String.format("%shost_port%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostPort()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `protocol` to the URL query string
+    if (getProtocol() != null) {
+      joiner.add(String.format("%sprotocol%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getProtocol()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `range` to the URL query string
+    if (getRange() != null) {
+      joiner.add(String.format("%srange%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getRange()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

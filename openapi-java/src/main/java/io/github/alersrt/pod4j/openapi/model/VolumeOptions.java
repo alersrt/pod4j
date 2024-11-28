@@ -13,64 +13,51 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Driver;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * VolumeOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  VolumeOptions.JSON_PROPERTY_DRIVER_CONFIG,
+  VolumeOptions.JSON_PROPERTY_LABELS,
+  VolumeOptions.JSON_PROPERTY_NO_COPY,
+  VolumeOptions.JSON_PROPERTY_SUBPATH
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class VolumeOptions {
-  public static final String SERIALIZED_NAME_DRIVER_CONFIG = "DriverConfig";
-  @SerializedName(SERIALIZED_NAME_DRIVER_CONFIG)
+  public static final String JSON_PROPERTY_DRIVER_CONFIG = "DriverConfig";
   private Driver driverConfig;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_NO_COPY = "NoCopy";
-  @SerializedName(SERIALIZED_NAME_NO_COPY)
+  public static final String JSON_PROPERTY_NO_COPY = "NoCopy";
   private Boolean noCopy;
 
-  public static final String SERIALIZED_NAME_SUBPATH = "Subpath";
-  @SerializedName(SERIALIZED_NAME_SUBPATH)
+  public static final String JSON_PROPERTY_SUBPATH = "Subpath";
   private String subpath;
 
-  public VolumeOptions() {
+  public VolumeOptions() { 
   }
 
   public VolumeOptions driverConfig(Driver driverConfig) {
@@ -83,10 +70,17 @@ public class VolumeOptions {
    * @return driverConfig
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_DRIVER_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Driver getDriverConfig() {
     return driverConfig;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DRIVER_CONFIG)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDriverConfig(Driver driverConfig) {
     this.driverConfig = driverConfig;
   }
@@ -110,10 +104,16 @@ public class VolumeOptions {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -129,10 +129,16 @@ public class VolumeOptions {
    * @return noCopy
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_NO_COPY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getNoCopy() {
     return noCopy;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_NO_COPY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNoCopy(Boolean noCopy) {
     this.noCopy = noCopy;
   }
@@ -148,16 +154,24 @@ public class VolumeOptions {
    * @return subpath
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SUBPATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSubpath() {
     return subpath;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SUBPATH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSubpath(String subpath) {
     this.subpath = subpath;
   }
 
 
-
+  /**
+   * Return true if this VolumeOptions object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -201,99 +215,63 @@ public class VolumeOptions {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("DriverConfig");
-    openapiFields.add("Labels");
-    openapiFields.add("NoCopy");
-    openapiFields.add("Subpath");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to VolumeOptions
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!VolumeOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in VolumeOptions is not found in the empty JSON string", VolumeOptions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!VolumeOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `VolumeOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the optional field `DriverConfig`
-      if (jsonObj.get("DriverConfig") != null && !jsonObj.get("DriverConfig").isJsonNull()) {
-        Driver.validateJsonElement(jsonObj.get("DriverConfig"));
-      }
-      if ((jsonObj.get("Subpath") != null && !jsonObj.get("Subpath").isJsonNull()) && !jsonObj.get("Subpath").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Subpath` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Subpath").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!VolumeOptions.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'VolumeOptions' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<VolumeOptions> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(VolumeOptions.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<VolumeOptions>() {
-           @Override
-           public void write(JsonWriter out, VolumeOptions value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public VolumeOptions read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of VolumeOptions given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of VolumeOptions
-   * @throws IOException if the JSON string is invalid with respect to VolumeOptions
-   */
-  public static VolumeOptions fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, VolumeOptions.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of VolumeOptions to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `DriverConfig` to the URL query string
+    if (getDriverConfig() != null) {
+      joiner.add(getDriverConfig().toUrlQueryString(prefix + "DriverConfig" + suffix));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `NoCopy` to the URL query string
+    if (getNoCopy() != null) {
+      joiner.add(String.format("%sNoCopy%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getNoCopy()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Subpath` to the URL query string
+    if (getSubpath() != null) {
+      joiner.add(String.format("%sSubpath%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSubpath()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 

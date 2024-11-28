@@ -13,200 +13,187 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.StringJoiner;
 import java.util.Objects;
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import java.util.Map;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.InspectSecret;
 import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
 import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.TypeAdapterFactory;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import io.github.alersrt.pod4j.openapi.JSON;
-
+import io.github.alersrt.pod4j.openapi.ApiClient;
 /**
  * InspectContainerConfig holds further data about how a container was initially configured.
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T15:23:24.636316917+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@JsonPropertyOrder({
+  InspectContainerConfig.JSON_PROPERTY_ANNOTATIONS,
+  InspectContainerConfig.JSON_PROPERTY_ATTACH_STDERR,
+  InspectContainerConfig.JSON_PROPERTY_ATTACH_STDIN,
+  InspectContainerConfig.JSON_PROPERTY_ATTACH_STDOUT,
+  InspectContainerConfig.JSON_PROPERTY_CHROOT_DIRS,
+  InspectContainerConfig.JSON_PROPERTY_CMD,
+  InspectContainerConfig.JSON_PROPERTY_CREATE_COMMAND,
+  InspectContainerConfig.JSON_PROPERTY_DOMAINNAME,
+  InspectContainerConfig.JSON_PROPERTY_ENTRYPOINT,
+  InspectContainerConfig.JSON_PROPERTY_ENV,
+  InspectContainerConfig.JSON_PROPERTY_EXPOSED_PORTS,
+  InspectContainerConfig.JSON_PROPERTY_HEALTH_LOG_DESTINATION,
+  InspectContainerConfig.JSON_PROPERTY_HEALTHCHECK,
+  InspectContainerConfig.JSON_PROPERTY_HEALTHCHECK_MAX_LOG_COUNT,
+  InspectContainerConfig.JSON_PROPERTY_HEALTHCHECK_MAX_LOG_SIZE,
+  InspectContainerConfig.JSON_PROPERTY_HEALTHCHECK_ON_FAILURE_ACTION,
+  InspectContainerConfig.JSON_PROPERTY_HOSTNAME,
+  InspectContainerConfig.JSON_PROPERTY_IMAGE,
+  InspectContainerConfig.JSON_PROPERTY_LABELS,
+  InspectContainerConfig.JSON_PROPERTY_ON_BUILD,
+  InspectContainerConfig.JSON_PROPERTY_OPEN_STDIN,
+  InspectContainerConfig.JSON_PROPERTY_PASSWD,
+  InspectContainerConfig.JSON_PROPERTY_SECRETS,
+  InspectContainerConfig.JSON_PROPERTY_STARTUP_HEALTH_CHECK,
+  InspectContainerConfig.JSON_PROPERTY_STDIN_ONCE,
+  InspectContainerConfig.JSON_PROPERTY_STOP_SIGNAL,
+  InspectContainerConfig.JSON_PROPERTY_STOP_TIMEOUT,
+  InspectContainerConfig.JSON_PROPERTY_SYSTEMD_MODE,
+  InspectContainerConfig.JSON_PROPERTY_TIMEOUT,
+  InspectContainerConfig.JSON_PROPERTY_TIMEZONE,
+  InspectContainerConfig.JSON_PROPERTY_TTY,
+  InspectContainerConfig.JSON_PROPERTY_UMASK,
+  InspectContainerConfig.JSON_PROPERTY_USER,
+  InspectContainerConfig.JSON_PROPERTY_VOLUMES,
+  InspectContainerConfig.JSON_PROPERTY_WORKING_DIR,
+  InspectContainerConfig.JSON_PROPERTY_SD_NOTIFY_MODE,
+  InspectContainerConfig.JSON_PROPERTY_SD_NOTIFY_SOCKET
+})
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerConfig {
-  public static final String SERIALIZED_NAME_ANNOTATIONS = "Annotations";
-  @SerializedName(SERIALIZED_NAME_ANNOTATIONS)
+  public static final String JSON_PROPERTY_ANNOTATIONS = "Annotations";
   private Map<String, String> annotations = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_ATTACH_STDERR = "AttachStderr";
-  @SerializedName(SERIALIZED_NAME_ATTACH_STDERR)
+  public static final String JSON_PROPERTY_ATTACH_STDERR = "AttachStderr";
   private Boolean attachStderr;
 
-  public static final String SERIALIZED_NAME_ATTACH_STDIN = "AttachStdin";
-  @SerializedName(SERIALIZED_NAME_ATTACH_STDIN)
+  public static final String JSON_PROPERTY_ATTACH_STDIN = "AttachStdin";
   private Boolean attachStdin;
 
-  public static final String SERIALIZED_NAME_ATTACH_STDOUT = "AttachStdout";
-  @SerializedName(SERIALIZED_NAME_ATTACH_STDOUT)
+  public static final String JSON_PROPERTY_ATTACH_STDOUT = "AttachStdout";
   private Boolean attachStdout;
 
-  public static final String SERIALIZED_NAME_CHROOT_DIRS = "ChrootDirs";
-  @SerializedName(SERIALIZED_NAME_CHROOT_DIRS)
+  public static final String JSON_PROPERTY_CHROOT_DIRS = "ChrootDirs";
   private List<String> chrootDirs = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CMD = "Cmd";
-  @SerializedName(SERIALIZED_NAME_CMD)
+  public static final String JSON_PROPERTY_CMD = "Cmd";
   private List<String> cmd = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_CREATE_COMMAND = "CreateCommand";
-  @SerializedName(SERIALIZED_NAME_CREATE_COMMAND)
+  public static final String JSON_PROPERTY_CREATE_COMMAND = "CreateCommand";
   private List<String> createCommand = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_DOMAINNAME = "Domainname";
-  @SerializedName(SERIALIZED_NAME_DOMAINNAME)
+  public static final String JSON_PROPERTY_DOMAINNAME = "Domainname";
   private String domainname;
 
-  public static final String SERIALIZED_NAME_ENTRYPOINT = "Entrypoint";
-  @SerializedName(SERIALIZED_NAME_ENTRYPOINT)
+  public static final String JSON_PROPERTY_ENTRYPOINT = "Entrypoint";
   private List<String> entrypoint = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_ENV = "Env";
-  @SerializedName(SERIALIZED_NAME_ENV)
+  public static final String JSON_PROPERTY_ENV = "Env";
   private List<String> env = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_EXPOSED_PORTS = "ExposedPorts";
-  @SerializedName(SERIALIZED_NAME_EXPOSED_PORTS)
+  public static final String JSON_PROPERTY_EXPOSED_PORTS = "ExposedPorts";
   private Map<String, Object> exposedPorts = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_HEALTH_LOG_DESTINATION = "HealthLogDestination";
-  @SerializedName(SERIALIZED_NAME_HEALTH_LOG_DESTINATION)
+  public static final String JSON_PROPERTY_HEALTH_LOG_DESTINATION = "HealthLogDestination";
   private String healthLogDestination;
 
-  public static final String SERIALIZED_NAME_HEALTHCHECK = "Healthcheck";
-  @SerializedName(SERIALIZED_NAME_HEALTHCHECK)
+  public static final String JSON_PROPERTY_HEALTHCHECK = "Healthcheck";
   private Schema2HealthConfig healthcheck;
 
-  public static final String SERIALIZED_NAME_HEALTHCHECK_MAX_LOG_COUNT = "HealthcheckMaxLogCount";
-  @SerializedName(SERIALIZED_NAME_HEALTHCHECK_MAX_LOG_COUNT)
+  public static final String JSON_PROPERTY_HEALTHCHECK_MAX_LOG_COUNT = "HealthcheckMaxLogCount";
   private Integer healthcheckMaxLogCount;
 
-  public static final String SERIALIZED_NAME_HEALTHCHECK_MAX_LOG_SIZE = "HealthcheckMaxLogSize";
-  @SerializedName(SERIALIZED_NAME_HEALTHCHECK_MAX_LOG_SIZE)
+  public static final String JSON_PROPERTY_HEALTHCHECK_MAX_LOG_SIZE = "HealthcheckMaxLogSize";
   private Integer healthcheckMaxLogSize;
 
-  public static final String SERIALIZED_NAME_HEALTHCHECK_ON_FAILURE_ACTION = "HealthcheckOnFailureAction";
-  @SerializedName(SERIALIZED_NAME_HEALTHCHECK_ON_FAILURE_ACTION)
+  public static final String JSON_PROPERTY_HEALTHCHECK_ON_FAILURE_ACTION = "HealthcheckOnFailureAction";
   private String healthcheckOnFailureAction;
 
-  public static final String SERIALIZED_NAME_HOSTNAME = "Hostname";
-  @SerializedName(SERIALIZED_NAME_HOSTNAME)
+  public static final String JSON_PROPERTY_HOSTNAME = "Hostname";
   private String hostname;
 
-  public static final String SERIALIZED_NAME_IMAGE = "Image";
-  @SerializedName(SERIALIZED_NAME_IMAGE)
+  public static final String JSON_PROPERTY_IMAGE = "Image";
   private String image;
 
-  public static final String SERIALIZED_NAME_LABELS = "Labels";
-  @SerializedName(SERIALIZED_NAME_LABELS)
+  public static final String JSON_PROPERTY_LABELS = "Labels";
   private Map<String, String> labels = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_ON_BUILD = "OnBuild";
-  @SerializedName(SERIALIZED_NAME_ON_BUILD)
+  public static final String JSON_PROPERTY_ON_BUILD = "OnBuild";
   private String onBuild;
 
-  public static final String SERIALIZED_NAME_OPEN_STDIN = "OpenStdin";
-  @SerializedName(SERIALIZED_NAME_OPEN_STDIN)
+  public static final String JSON_PROPERTY_OPEN_STDIN = "OpenStdin";
   private Boolean openStdin;
 
-  public static final String SERIALIZED_NAME_PASSWD = "Passwd";
-  @SerializedName(SERIALIZED_NAME_PASSWD)
+  public static final String JSON_PROPERTY_PASSWD = "Passwd";
   private Boolean passwd;
 
-  public static final String SERIALIZED_NAME_SECRETS = "Secrets";
-  @SerializedName(SERIALIZED_NAME_SECRETS)
-  private List<InspectSecret> secrets = new ArrayList<>();
+  public static final String JSON_PROPERTY_SECRETS = "Secrets";
+  private List<@Valid InspectSecret> secrets = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_STARTUP_HEALTH_CHECK = "StartupHealthCheck";
-  @SerializedName(SERIALIZED_NAME_STARTUP_HEALTH_CHECK)
+  public static final String JSON_PROPERTY_STARTUP_HEALTH_CHECK = "StartupHealthCheck";
   private StartupHealthCheck startupHealthCheck;
 
-  public static final String SERIALIZED_NAME_STDIN_ONCE = "StdinOnce";
-  @SerializedName(SERIALIZED_NAME_STDIN_ONCE)
+  public static final String JSON_PROPERTY_STDIN_ONCE = "StdinOnce";
   private Boolean stdinOnce;
 
-  public static final String SERIALIZED_NAME_STOP_SIGNAL = "StopSignal";
-  @SerializedName(SERIALIZED_NAME_STOP_SIGNAL)
+  public static final String JSON_PROPERTY_STOP_SIGNAL = "StopSignal";
   private String stopSignal;
 
-  public static final String SERIALIZED_NAME_STOP_TIMEOUT = "StopTimeout";
-  @SerializedName(SERIALIZED_NAME_STOP_TIMEOUT)
+  public static final String JSON_PROPERTY_STOP_TIMEOUT = "StopTimeout";
   private Integer stopTimeout;
 
-  public static final String SERIALIZED_NAME_SYSTEMD_MODE = "SystemdMode";
-  @SerializedName(SERIALIZED_NAME_SYSTEMD_MODE)
+  public static final String JSON_PROPERTY_SYSTEMD_MODE = "SystemdMode";
   private Boolean systemdMode;
 
-  public static final String SERIALIZED_NAME_TIMEOUT = "Timeout";
-  @SerializedName(SERIALIZED_NAME_TIMEOUT)
+  public static final String JSON_PROPERTY_TIMEOUT = "Timeout";
   private Integer timeout;
 
-  public static final String SERIALIZED_NAME_TIMEZONE = "Timezone";
-  @SerializedName(SERIALIZED_NAME_TIMEZONE)
+  public static final String JSON_PROPERTY_TIMEZONE = "Timezone";
   private String timezone;
 
-  public static final String SERIALIZED_NAME_TTY = "Tty";
-  @SerializedName(SERIALIZED_NAME_TTY)
+  public static final String JSON_PROPERTY_TTY = "Tty";
   private Boolean tty;
 
-  public static final String SERIALIZED_NAME_UMASK = "Umask";
-  @SerializedName(SERIALIZED_NAME_UMASK)
+  public static final String JSON_PROPERTY_UMASK = "Umask";
   private String umask;
 
-  public static final String SERIALIZED_NAME_USER = "User";
-  @SerializedName(SERIALIZED_NAME_USER)
+  public static final String JSON_PROPERTY_USER = "User";
   private String user;
 
-  public static final String SERIALIZED_NAME_VOLUMES = "Volumes";
-  @SerializedName(SERIALIZED_NAME_VOLUMES)
+  public static final String JSON_PROPERTY_VOLUMES = "Volumes";
   private Map<String, Object> volumes = new HashMap<>();
 
-  public static final String SERIALIZED_NAME_WORKING_DIR = "WorkingDir";
-  @SerializedName(SERIALIZED_NAME_WORKING_DIR)
+  public static final String JSON_PROPERTY_WORKING_DIR = "WorkingDir";
   private String workingDir;
 
-  public static final String SERIALIZED_NAME_SD_NOTIFY_MODE = "sdNotifyMode";
-  @SerializedName(SERIALIZED_NAME_SD_NOTIFY_MODE)
+  public static final String JSON_PROPERTY_SD_NOTIFY_MODE = "sdNotifyMode";
   private String sdNotifyMode;
 
-  public static final String SERIALIZED_NAME_SD_NOTIFY_SOCKET = "sdNotifySocket";
-  @SerializedName(SERIALIZED_NAME_SD_NOTIFY_SOCKET)
+  public static final String JSON_PROPERTY_SD_NOTIFY_SOCKET = "sdNotifySocket";
   private String sdNotifySocket;
 
-  public InspectContainerConfig() {
+  public InspectContainerConfig() { 
   }
 
   public InspectContainerConfig annotations(Map<String, String> annotations) {
@@ -227,10 +214,16 @@ public class InspectContainerConfig {
    * @return annotations
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getAnnotations() {
     return annotations;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAnnotations(Map<String, String> annotations) {
     this.annotations = annotations;
   }
@@ -246,10 +239,16 @@ public class InspectContainerConfig {
    * @return attachStderr
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAttachStderr() {
     return attachStderr;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachStderr(Boolean attachStderr) {
     this.attachStderr = attachStderr;
   }
@@ -265,10 +264,16 @@ public class InspectContainerConfig {
    * @return attachStdin
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAttachStdin() {
     return attachStdin;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachStdin(Boolean attachStdin) {
     this.attachStdin = attachStdin;
   }
@@ -284,10 +289,16 @@ public class InspectContainerConfig {
    * @return attachStdout
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAttachStdout() {
     return attachStdout;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAttachStdout(Boolean attachStdout) {
     this.attachStdout = attachStdout;
   }
@@ -311,10 +322,16 @@ public class InspectContainerConfig {
    * @return chrootDirs
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CHROOT_DIRS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getChrootDirs() {
     return chrootDirs;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CHROOT_DIRS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChrootDirs(List<String> chrootDirs) {
     this.chrootDirs = chrootDirs;
   }
@@ -338,10 +355,16 @@ public class InspectContainerConfig {
    * @return cmd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCmd() {
     return cmd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CMD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCmd(List<String> cmd) {
     this.cmd = cmd;
   }
@@ -365,10 +388,16 @@ public class InspectContainerConfig {
    * @return createCommand
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_CREATE_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getCreateCommand() {
     return createCommand;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_CREATE_COMMAND)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreateCommand(List<String> createCommand) {
     this.createCommand = createCommand;
   }
@@ -384,10 +413,16 @@ public class InspectContainerConfig {
    * @return domainname
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_DOMAINNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDomainname() {
     return domainname;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_DOMAINNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDomainname(String domainname) {
     this.domainname = domainname;
   }
@@ -411,10 +446,16 @@ public class InspectContainerConfig {
    * @return entrypoint
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getEntrypoint() {
     return entrypoint;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEntrypoint(List<String> entrypoint) {
     this.entrypoint = entrypoint;
   }
@@ -438,10 +479,16 @@ public class InspectContainerConfig {
    * @return env
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ENV)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getEnv() {
     return env;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ENV)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnv(List<String> env) {
     this.env = env;
   }
@@ -465,10 +512,16 @@ public class InspectContainerConfig {
    * @return exposedPorts
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getExposedPorts() {
     return exposedPorts;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExposedPorts(Map<String, Object> exposedPorts) {
     this.exposedPorts = exposedPorts;
   }
@@ -484,10 +537,16 @@ public class InspectContainerConfig {
    * @return healthLogDestination
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHealthLogDestination() {
     return healthLogDestination;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthLogDestination(String healthLogDestination) {
     this.healthLogDestination = healthLogDestination;
   }
@@ -503,10 +562,17 @@ public class InspectContainerConfig {
    * @return healthcheck
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Schema2HealthConfig getHealthcheck() {
     return healthcheck;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthcheck(Schema2HealthConfig healthcheck) {
     this.healthcheck = healthcheck;
   }
@@ -522,10 +588,16 @@ public class InspectContainerConfig {
    * @return healthcheckMaxLogCount
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK_MAX_LOG_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getHealthcheckMaxLogCount() {
     return healthcheckMaxLogCount;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK_MAX_LOG_COUNT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthcheckMaxLogCount(Integer healthcheckMaxLogCount) {
     this.healthcheckMaxLogCount = healthcheckMaxLogCount;
   }
@@ -541,10 +613,16 @@ public class InspectContainerConfig {
    * @return healthcheckMaxLogSize
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK_MAX_LOG_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getHealthcheckMaxLogSize() {
     return healthcheckMaxLogSize;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK_MAX_LOG_SIZE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthcheckMaxLogSize(Integer healthcheckMaxLogSize) {
     this.healthcheckMaxLogSize = healthcheckMaxLogSize;
   }
@@ -560,10 +638,16 @@ public class InspectContainerConfig {
    * @return healthcheckOnFailureAction
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK_ON_FAILURE_ACTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHealthcheckOnFailureAction() {
     return healthcheckOnFailureAction;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HEALTHCHECK_ON_FAILURE_ACTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHealthcheckOnFailureAction(String healthcheckOnFailureAction) {
     this.healthcheckOnFailureAction = healthcheckOnFailureAction;
   }
@@ -579,10 +663,16 @@ public class InspectContainerConfig {
    * @return hostname
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHostname() {
     return hostname;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_HOSTNAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostname(String hostname) {
     this.hostname = hostname;
   }
@@ -598,10 +688,16 @@ public class InspectContainerConfig {
    * @return image
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getImage() {
     return image;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_IMAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setImage(String image) {
     this.image = image;
   }
@@ -625,10 +721,16 @@ public class InspectContainerConfig {
    * @return labels
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getLabels() {
     return labels;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_LABELS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabels(Map<String, String> labels) {
     this.labels = labels;
   }
@@ -644,10 +746,16 @@ public class InspectContainerConfig {
    * @return onBuild
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_ON_BUILD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOnBuild() {
     return onBuild;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_ON_BUILD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOnBuild(String onBuild) {
     this.onBuild = onBuild;
   }
@@ -663,10 +771,16 @@ public class InspectContainerConfig {
    * @return openStdin
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getOpenStdin() {
     return openStdin;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOpenStdin(Boolean openStdin) {
     this.openStdin = openStdin;
   }
@@ -682,16 +796,22 @@ public class InspectContainerConfig {
    * @return passwd
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_PASSWD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getPasswd() {
     return passwd;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_PASSWD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPasswd(Boolean passwd) {
     this.passwd = passwd;
   }
 
 
-  public InspectContainerConfig secrets(List<InspectSecret> secrets) {
+  public InspectContainerConfig secrets(List<@Valid InspectSecret> secrets) {
     this.secrets = secrets;
     return this;
   }
@@ -709,11 +829,18 @@ public class InspectContainerConfig {
    * @return secrets
    */
   @javax.annotation.Nullable
-  public List<InspectSecret> getSecrets() {
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_SECRETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<@Valid InspectSecret> getSecrets() {
     return secrets;
   }
 
-  public void setSecrets(List<InspectSecret> secrets) {
+
+  @JsonProperty(JSON_PROPERTY_SECRETS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSecrets(List<@Valid InspectSecret> secrets) {
     this.secrets = secrets;
   }
 
@@ -728,10 +855,17 @@ public class InspectContainerConfig {
    * @return startupHealthCheck
    */
   @javax.annotation.Nullable
+  @Valid
+
+  @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CHECK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public StartupHealthCheck getStartupHealthCheck() {
     return startupHealthCheck;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CHECK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStartupHealthCheck(StartupHealthCheck startupHealthCheck) {
     this.startupHealthCheck = startupHealthCheck;
   }
@@ -747,10 +881,16 @@ public class InspectContainerConfig {
    * @return stdinOnce
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getStdinOnce() {
     return stdinOnce;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStdinOnce(Boolean stdinOnce) {
     this.stdinOnce = stdinOnce;
   }
@@ -766,10 +906,16 @@ public class InspectContainerConfig {
    * @return stopSignal
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getStopSignal() {
     return stopSignal;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStopSignal(String stopSignal) {
     this.stopSignal = stopSignal;
   }
@@ -785,10 +931,16 @@ public class InspectContainerConfig {
    * @return stopTimeout
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getStopTimeout() {
     return stopTimeout;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStopTimeout(Integer stopTimeout) {
     this.stopTimeout = stopTimeout;
   }
@@ -804,10 +956,16 @@ public class InspectContainerConfig {
    * @return systemdMode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SYSTEMD_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getSystemdMode() {
     return systemdMode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SYSTEMD_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSystemdMode(Boolean systemdMode) {
     this.systemdMode = systemdMode;
   }
@@ -823,10 +981,16 @@ public class InspectContainerConfig {
    * @return timeout
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TIMEOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Integer getTimeout() {
     return timeout;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TIMEOUT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTimeout(Integer timeout) {
     this.timeout = timeout;
   }
@@ -842,10 +1006,16 @@ public class InspectContainerConfig {
    * @return timezone
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TIMEZONE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getTimezone() {
     return timezone;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TIMEZONE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTimezone(String timezone) {
     this.timezone = timezone;
   }
@@ -861,10 +1031,16 @@ public class InspectContainerConfig {
    * @return tty
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_TTY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getTty() {
     return tty;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_TTY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTty(Boolean tty) {
     this.tty = tty;
   }
@@ -880,10 +1056,16 @@ public class InspectContainerConfig {
    * @return umask
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_UMASK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUmask() {
     return umask;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_UMASK)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUmask(String umask) {
     this.umask = umask;
   }
@@ -899,10 +1081,16 @@ public class InspectContainerConfig {
    * @return user
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUser() {
     return user;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUser(String user) {
     this.user = user;
   }
@@ -926,10 +1114,16 @@ public class InspectContainerConfig {
    * @return volumes
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getVolumes() {
     return volumes;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_VOLUMES)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVolumes(Map<String, Object> volumes) {
     this.volumes = volumes;
   }
@@ -945,10 +1139,16 @@ public class InspectContainerConfig {
    * @return workingDir
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getWorkingDir() {
     return workingDir;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_WORKING_DIR)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWorkingDir(String workingDir) {
     this.workingDir = workingDir;
   }
@@ -964,10 +1164,16 @@ public class InspectContainerConfig {
    * @return sdNotifyMode
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SD_NOTIFY_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSdNotifyMode() {
     return sdNotifyMode;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SD_NOTIFY_MODE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSdNotifyMode(String sdNotifyMode) {
     this.sdNotifyMode = sdNotifyMode;
   }
@@ -983,16 +1189,24 @@ public class InspectContainerConfig {
    * @return sdNotifySocket
    */
   @javax.annotation.Nullable
+
+  @JsonProperty(JSON_PROPERTY_SD_NOTIFY_SOCKET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSdNotifySocket() {
     return sdNotifySocket;
   }
 
+
+  @JsonProperty(JSON_PROPERTY_SD_NOTIFY_SOCKET)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSdNotifySocket(String sdNotifySocket) {
     this.sdNotifySocket = sdNotifySocket;
   }
 
 
-
+  /**
+   * Return true if this InspectContainerConfig object is equal to o.
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -1102,206 +1316,265 @@ public class InspectContainerConfig {
     return o.toString().replace("\n", "\n    ");
   }
 
-
-  public static HashSet<String> openapiFields;
-  public static HashSet<String> openapiRequiredFields;
-
-  static {
-    // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("Annotations");
-    openapiFields.add("AttachStderr");
-    openapiFields.add("AttachStdin");
-    openapiFields.add("AttachStdout");
-    openapiFields.add("ChrootDirs");
-    openapiFields.add("Cmd");
-    openapiFields.add("CreateCommand");
-    openapiFields.add("Domainname");
-    openapiFields.add("Entrypoint");
-    openapiFields.add("Env");
-    openapiFields.add("ExposedPorts");
-    openapiFields.add("HealthLogDestination");
-    openapiFields.add("Healthcheck");
-    openapiFields.add("HealthcheckMaxLogCount");
-    openapiFields.add("HealthcheckMaxLogSize");
-    openapiFields.add("HealthcheckOnFailureAction");
-    openapiFields.add("Hostname");
-    openapiFields.add("Image");
-    openapiFields.add("Labels");
-    openapiFields.add("OnBuild");
-    openapiFields.add("OpenStdin");
-    openapiFields.add("Passwd");
-    openapiFields.add("Secrets");
-    openapiFields.add("StartupHealthCheck");
-    openapiFields.add("StdinOnce");
-    openapiFields.add("StopSignal");
-    openapiFields.add("StopTimeout");
-    openapiFields.add("SystemdMode");
-    openapiFields.add("Timeout");
-    openapiFields.add("Timezone");
-    openapiFields.add("Tty");
-    openapiFields.add("Umask");
-    openapiFields.add("User");
-    openapiFields.add("Volumes");
-    openapiFields.add("WorkingDir");
-    openapiFields.add("sdNotifyMode");
-    openapiFields.add("sdNotifySocket");
-
-    // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+  /**
+   * Convert the instance into URL query string.
+   *
+   * @return URL query string
+   */
+  public String toUrlQueryString() {
+    return toUrlQueryString(null);
   }
 
   /**
-   * Validates the JSON Element and throws an exception if issues found
+   * Convert the instance into URL query string.
    *
-   * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to InspectContainerConfig
+   * @param prefix prefix of the query string
+   * @return URL query string
    */
-  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-      if (jsonElement == null) {
-        if (!InspectContainerConfig.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectContainerConfig is not found in the empty JSON string", InspectContainerConfig.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InspectContainerConfig.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectContainerConfig` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
-        }
-      }
-        JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("ChrootDirs") != null && !jsonObj.get("ChrootDirs").isJsonNull() && !jsonObj.get("ChrootDirs").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `ChrootDirs` to be an array in the JSON string but got `%s`", jsonObj.get("ChrootDirs").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Cmd") != null && !jsonObj.get("Cmd").isJsonNull() && !jsonObj.get("Cmd").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Cmd` to be an array in the JSON string but got `%s`", jsonObj.get("Cmd").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("CreateCommand") != null && !jsonObj.get("CreateCommand").isJsonNull() && !jsonObj.get("CreateCommand").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `CreateCommand` to be an array in the JSON string but got `%s`", jsonObj.get("CreateCommand").toString()));
-      }
-      if ((jsonObj.get("Domainname") != null && !jsonObj.get("Domainname").isJsonNull()) && !jsonObj.get("Domainname").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Domainname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Domainname").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Entrypoint") != null && !jsonObj.get("Entrypoint").isJsonNull() && !jsonObj.get("Entrypoint").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Entrypoint` to be an array in the JSON string but got `%s`", jsonObj.get("Entrypoint").toString()));
-      }
-      // ensure the optional json data is an array if present
-      if (jsonObj.get("Env") != null && !jsonObj.get("Env").isJsonNull() && !jsonObj.get("Env").isJsonArray()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Env` to be an array in the JSON string but got `%s`", jsonObj.get("Env").toString()));
-      }
-      if ((jsonObj.get("HealthLogDestination") != null && !jsonObj.get("HealthLogDestination").isJsonNull()) && !jsonObj.get("HealthLogDestination").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `HealthLogDestination` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HealthLogDestination").toString()));
-      }
-      // validate the optional field `Healthcheck`
-      if (jsonObj.get("Healthcheck") != null && !jsonObj.get("Healthcheck").isJsonNull()) {
-        Schema2HealthConfig.validateJsonElement(jsonObj.get("Healthcheck"));
-      }
-      if ((jsonObj.get("HealthcheckOnFailureAction") != null && !jsonObj.get("HealthcheckOnFailureAction").isJsonNull()) && !jsonObj.get("HealthcheckOnFailureAction").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `HealthcheckOnFailureAction` to be a primitive type in the JSON string but got `%s`", jsonObj.get("HealthcheckOnFailureAction").toString()));
-      }
-      if ((jsonObj.get("Hostname") != null && !jsonObj.get("Hostname").isJsonNull()) && !jsonObj.get("Hostname").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Hostname").toString()));
-      }
-      if ((jsonObj.get("Image") != null && !jsonObj.get("Image").isJsonNull()) && !jsonObj.get("Image").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Image` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Image").toString()));
-      }
-      if ((jsonObj.get("OnBuild") != null && !jsonObj.get("OnBuild").isJsonNull()) && !jsonObj.get("OnBuild").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `OnBuild` to be a primitive type in the JSON string but got `%s`", jsonObj.get("OnBuild").toString()));
-      }
-      if (jsonObj.get("Secrets") != null && !jsonObj.get("Secrets").isJsonNull()) {
-        JsonArray jsonArraysecrets = jsonObj.getAsJsonArray("Secrets");
-        if (jsonArraysecrets != null) {
-          // ensure the json data is an array
-          if (!jsonObj.get("Secrets").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Secrets` to be an array in the JSON string but got `%s`", jsonObj.get("Secrets").toString()));
-          }
-
-          // validate the optional field `Secrets` (array)
-          for (int i = 0; i < jsonArraysecrets.size(); i++) {
-            InspectSecret.validateJsonElement(jsonArraysecrets.get(i));
-          };
-        }
-      }
-      // validate the optional field `StartupHealthCheck`
-      if (jsonObj.get("StartupHealthCheck") != null && !jsonObj.get("StartupHealthCheck").isJsonNull()) {
-        StartupHealthCheck.validateJsonElement(jsonObj.get("StartupHealthCheck"));
-      }
-      if ((jsonObj.get("StopSignal") != null && !jsonObj.get("StopSignal").isJsonNull()) && !jsonObj.get("StopSignal").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `StopSignal` to be a primitive type in the JSON string but got `%s`", jsonObj.get("StopSignal").toString()));
-      }
-      if ((jsonObj.get("Timezone") != null && !jsonObj.get("Timezone").isJsonNull()) && !jsonObj.get("Timezone").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Timezone` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Timezone").toString()));
-      }
-      if ((jsonObj.get("Umask") != null && !jsonObj.get("Umask").isJsonNull()) && !jsonObj.get("Umask").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `Umask` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Umask").toString()));
-      }
-      if ((jsonObj.get("User") != null && !jsonObj.get("User").isJsonNull()) && !jsonObj.get("User").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `User` to be a primitive type in the JSON string but got `%s`", jsonObj.get("User").toString()));
-      }
-      if ((jsonObj.get("WorkingDir") != null && !jsonObj.get("WorkingDir").isJsonNull()) && !jsonObj.get("WorkingDir").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `WorkingDir` to be a primitive type in the JSON string but got `%s`", jsonObj.get("WorkingDir").toString()));
-      }
-      if ((jsonObj.get("sdNotifyMode") != null && !jsonObj.get("sdNotifyMode").isJsonNull()) && !jsonObj.get("sdNotifyMode").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `sdNotifyMode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sdNotifyMode").toString()));
-      }
-      if ((jsonObj.get("sdNotifySocket") != null && !jsonObj.get("sdNotifySocket").isJsonNull()) && !jsonObj.get("sdNotifySocket").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `sdNotifySocket` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sdNotifySocket").toString()));
-      }
-  }
-
-  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-    @SuppressWarnings("unchecked")
-    @Override
-    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!InspectContainerConfig.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'InspectContainerConfig' and its subtypes
-       }
-       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<InspectContainerConfig> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(InspectContainerConfig.class));
-
-       return (TypeAdapter<T>) new TypeAdapter<InspectContainerConfig>() {
-           @Override
-           public void write(JsonWriter out, InspectContainerConfig value) throws IOException {
-             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-             elementAdapter.write(out, obj);
-           }
-
-           @Override
-           public InspectContainerConfig read(JsonReader in) throws IOException {
-             JsonElement jsonElement = elementAdapter.read(in);
-             validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
-           }
-
-       }.nullSafe();
+  public String toUrlQueryString(String prefix) {
+    String suffix = "";
+    String containerSuffix = "";
+    String containerPrefix = "";
+    if (prefix == null) {
+      // style=form, explode=true, e.g. /pet?name=cat&type=manx
+      prefix = "";
+    } else {
+      // deepObject style e.g. /pet?id[name]=cat&id[type]=manx
+      prefix = prefix + "[";
+      suffix = "]";
+      containerSuffix = "]";
+      containerPrefix = "[";
     }
-  }
 
-  /**
-   * Create an instance of InspectContainerConfig given an JSON string
-   *
-   * @param jsonString JSON string
-   * @return An instance of InspectContainerConfig
-   * @throws IOException if the JSON string is invalid with respect to InspectContainerConfig
-   */
-  public static InspectContainerConfig fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, InspectContainerConfig.class);
-  }
+    StringJoiner joiner = new StringJoiner("&");
 
-  /**
-   * Convert an instance of InspectContainerConfig to an JSON string
-   *
-   * @return JSON string
-   */
-  public String toJson() {
-    return JSON.getGson().toJson(this);
+    // add `Annotations` to the URL query string
+    if (getAnnotations() != null) {
+      for (String _key : getAnnotations().keySet()) {
+        joiner.add(String.format("%sAnnotations%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getAnnotations().get(_key), URLEncoder.encode(ApiClient.valueToString(getAnnotations().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `AttachStderr` to the URL query string
+    if (getAttachStderr() != null) {
+      joiner.add(String.format("%sAttachStderr%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStderr()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `AttachStdin` to the URL query string
+    if (getAttachStdin() != null) {
+      joiner.add(String.format("%sAttachStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `AttachStdout` to the URL query string
+    if (getAttachStdout() != null) {
+      joiner.add(String.format("%sAttachStdout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getAttachStdout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `ChrootDirs` to the URL query string
+    if (getChrootDirs() != null) {
+      for (int i = 0; i < getChrootDirs().size(); i++) {
+        joiner.add(String.format("%sChrootDirs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getChrootDirs().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Cmd` to the URL query string
+    if (getCmd() != null) {
+      for (int i = 0; i < getCmd().size(); i++) {
+        joiner.add(String.format("%sCmd%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCmd().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `CreateCommand` to the URL query string
+    if (getCreateCommand() != null) {
+      for (int i = 0; i < getCreateCommand().size(); i++) {
+        joiner.add(String.format("%sCreateCommand%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getCreateCommand().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Domainname` to the URL query string
+    if (getDomainname() != null) {
+      joiner.add(String.format("%sDomainname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getDomainname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Entrypoint` to the URL query string
+    if (getEntrypoint() != null) {
+      for (int i = 0; i < getEntrypoint().size(); i++) {
+        joiner.add(String.format("%sEntrypoint%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getEntrypoint().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `Env` to the URL query string
+    if (getEnv() != null) {
+      for (int i = 0; i < getEnv().size(); i++) {
+        joiner.add(String.format("%sEnv%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+            URLEncoder.encode(ApiClient.valueToString(getEnv().get(i)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `ExposedPorts` to the URL query string
+    if (getExposedPorts() != null) {
+      for (String _key : getExposedPorts().keySet()) {
+        joiner.add(String.format("%sExposedPorts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getExposedPorts().get(_key), URLEncoder.encode(ApiClient.valueToString(getExposedPorts().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `HealthLogDestination` to the URL query string
+    if (getHealthLogDestination() != null) {
+      joiner.add(String.format("%sHealthLogDestination%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthLogDestination()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Healthcheck` to the URL query string
+    if (getHealthcheck() != null) {
+      joiner.add(getHealthcheck().toUrlQueryString(prefix + "Healthcheck" + suffix));
+    }
+
+    // add `HealthcheckMaxLogCount` to the URL query string
+    if (getHealthcheckMaxLogCount() != null) {
+      joiner.add(String.format("%sHealthcheckMaxLogCount%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthcheckMaxLogCount()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `HealthcheckMaxLogSize` to the URL query string
+    if (getHealthcheckMaxLogSize() != null) {
+      joiner.add(String.format("%sHealthcheckMaxLogSize%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthcheckMaxLogSize()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `HealthcheckOnFailureAction` to the URL query string
+    if (getHealthcheckOnFailureAction() != null) {
+      joiner.add(String.format("%sHealthcheckOnFailureAction%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHealthcheckOnFailureAction()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Hostname` to the URL query string
+    if (getHostname() != null) {
+      joiner.add(String.format("%sHostname%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getHostname()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Image` to the URL query string
+    if (getImage() != null) {
+      joiner.add(String.format("%sImage%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getImage()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Labels` to the URL query string
+    if (getLabels() != null) {
+      for (String _key : getLabels().keySet()) {
+        joiner.add(String.format("%sLabels%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getLabels().get(_key), URLEncoder.encode(ApiClient.valueToString(getLabels().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `OnBuild` to the URL query string
+    if (getOnBuild() != null) {
+      joiner.add(String.format("%sOnBuild%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOnBuild()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `OpenStdin` to the URL query string
+    if (getOpenStdin() != null) {
+      joiner.add(String.format("%sOpenStdin%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getOpenStdin()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Passwd` to the URL query string
+    if (getPasswd() != null) {
+      joiner.add(String.format("%sPasswd%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getPasswd()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Secrets` to the URL query string
+    if (getSecrets() != null) {
+      for (int i = 0; i < getSecrets().size(); i++) {
+        if (getSecrets().get(i) != null) {
+          joiner.add(getSecrets().get(i).toUrlQueryString(String.format("%sSecrets%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `StartupHealthCheck` to the URL query string
+    if (getStartupHealthCheck() != null) {
+      joiner.add(getStartupHealthCheck().toUrlQueryString(prefix + "StartupHealthCheck" + suffix));
+    }
+
+    // add `StdinOnce` to the URL query string
+    if (getStdinOnce() != null) {
+      joiner.add(String.format("%sStdinOnce%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStdinOnce()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StopSignal` to the URL query string
+    if (getStopSignal() != null) {
+      joiner.add(String.format("%sStopSignal%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopSignal()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `StopTimeout` to the URL query string
+    if (getStopTimeout() != null) {
+      joiner.add(String.format("%sStopTimeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getStopTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `SystemdMode` to the URL query string
+    if (getSystemdMode() != null) {
+      joiner.add(String.format("%sSystemdMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSystemdMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Timeout` to the URL query string
+    if (getTimeout() != null) {
+      joiner.add(String.format("%sTimeout%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTimeout()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Timezone` to the URL query string
+    if (getTimezone() != null) {
+      joiner.add(String.format("%sTimezone%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTimezone()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Tty` to the URL query string
+    if (getTty() != null) {
+      joiner.add(String.format("%sTty%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getTty()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Umask` to the URL query string
+    if (getUmask() != null) {
+      joiner.add(String.format("%sUmask%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUmask()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `User` to the URL query string
+    if (getUser() != null) {
+      joiner.add(String.format("%sUser%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getUser()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `Volumes` to the URL query string
+    if (getVolumes() != null) {
+      for (String _key : getVolumes().keySet()) {
+        joiner.add(String.format("%sVolumes%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+            getVolumes().get(_key), URLEncoder.encode(ApiClient.valueToString(getVolumes().get(_key)), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+      }
+    }
+
+    // add `WorkingDir` to the URL query string
+    if (getWorkingDir() != null) {
+      joiner.add(String.format("%sWorkingDir%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getWorkingDir()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `sdNotifyMode` to the URL query string
+    if (getSdNotifyMode() != null) {
+      joiner.add(String.format("%ssdNotifyMode%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSdNotifyMode()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    // add `sdNotifySocket` to the URL query string
+    if (getSdNotifySocket() != null) {
+      joiner.add(String.format("%ssdNotifySocket%s=%s", prefix, suffix, URLEncoder.encode(ApiClient.valueToString(getSdNotifySocket()), StandardCharsets.UTF_8).replaceAll("\\+", "%20")));
+    }
+
+    return joiner.toString();
   }
 }
 
