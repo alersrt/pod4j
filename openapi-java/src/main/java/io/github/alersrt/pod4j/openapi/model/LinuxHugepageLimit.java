@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxHugepageLimit.JSON_PROPERTY_LIMIT,
   LinuxHugepageLimit.JSON_PROPERTY_PAGE_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxHugepageLimit {
   public static final String JSON_PROPERTY_LIMIT = "limit";
   private Integer limit;
@@ -58,7 +58,7 @@ public class LinuxHugepageLimit {
    * Limit is the limit of \&quot;hugepagesize\&quot; hugetlb reservations (if supported) or usage.
    * @return limit
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -83,7 +83,7 @@ public class LinuxHugepageLimit {
    * Pagesize is the hugepage size. Format: \&quot;&lt;size&gt;&lt;unit-prefix&gt;B&#39; (e.g. 64KB, 2MB, 1GB, etc.).
    * @return pageSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PAGE_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

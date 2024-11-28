@@ -13,29 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Platform;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * This structure provides &#x60;application/vnd.oci.descriptor.v1+json&#x60; mediatype when marshalled to JSON.
  */
@@ -49,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Descriptor.JSON_PROPERTY_SIZE,
   Descriptor.JSON_PROPERTY_URLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Descriptor {
   public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
   private Map<String, String> annotations = new HashMap<>();
@@ -95,7 +86,7 @@ public class Descriptor {
    * Annotations contains arbitrary metadata relating to the targeted content.
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -120,7 +111,7 @@ public class Descriptor {
    * ArtifactType is the IANA media type of this artifact.
    * @return artifactType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -153,7 +144,7 @@ public class Descriptor {
    * Data is an embedding of the targeted content. This is encoded as a base64 string when marshalled to JSON (automatically, by encoding/json). If present, Data can be used directly to avoid fetching the targeted content.
    * @return data
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -178,7 +169,7 @@ public class Descriptor {
    * The following is an example of the contents of Digest types:  sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc  This allows to abstract the digest behind this type and work only in those terms.
    * @return digest
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DIGEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -203,7 +194,7 @@ public class Descriptor {
    * MediaType is the media type of the object this schema refers to.
    * @return mediaType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -228,7 +219,7 @@ public class Descriptor {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PLATFORM)
@@ -254,7 +245,7 @@ public class Descriptor {
    * Size specifies the size in bytes of the blob.
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -287,7 +278,7 @@ public class Descriptor {
    * URLs specifies a list of URLs from which this object MAY be downloaded
    * @return urls
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_URLS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

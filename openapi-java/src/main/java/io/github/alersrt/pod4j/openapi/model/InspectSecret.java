@@ -41,7 +41,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectSecret.JSON_PROPERTY_NAME,
   InspectSecret.JSON_PROPERTY_U_I_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectSecret {
   public static final String JSON_PROPERTY_G_I_D = "GID";
   private Integer GID;
@@ -70,7 +70,7 @@ public class InspectSecret {
    * ID is the GID of the mounted secret file
    * @return GID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -95,7 +95,7 @@ public class InspectSecret {
    * ID is the ID of the secret
    * @return ID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -120,7 +120,7 @@ public class InspectSecret {
    * ID is the ID of the mode of the mounted secret file
    * @return mode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -145,7 +145,7 @@ public class InspectSecret {
    * Name is the name of the secret
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -170,7 +170,7 @@ public class InspectSecret {
    * ID is the UID of the mounted secret file
    * @return UID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_U_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PluginConfigInterface.JSON_PROPERTY_SOCKET,
   PluginConfigInterface.JSON_PROPERTY_TYPES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PluginConfigInterface {
   public static final String JSON_PROPERTY_PROTOCOL_SCHEME = "ProtocolScheme";
   private String protocolScheme;
@@ -65,7 +65,7 @@ public class PluginConfigInterface {
    * Protocol to use for clients connecting to the plugin.
    * @return protocolScheme
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PROTOCOL_SCHEME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -90,7 +90,7 @@ public class PluginConfigInterface {
    * socket
    * @return socket
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_SOCKET)
@@ -124,7 +124,7 @@ public class PluginConfigInterface {
    * types
    * @return types
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 

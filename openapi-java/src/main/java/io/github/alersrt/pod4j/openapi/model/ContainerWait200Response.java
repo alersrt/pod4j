@@ -13,25 +13,16 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ContainerWait200ResponseError;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerWait200Response
  */
@@ -39,7 +30,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerWait200Response.JSON_PROPERTY_ERROR,
   ContainerWait200Response.JSON_PROPERTY_STATUS_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerWait200Response {
   public static final String JSON_PROPERTY_ERROR = "Error";
   private ContainerWait200ResponseError error;
@@ -59,7 +50,7 @@ public class ContainerWait200Response {
    * Get error
    * @return error
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ERROR)
@@ -85,7 +76,7 @@ public class ContainerWait200Response {
    * container exit code
    * @return statusCode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATUS_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

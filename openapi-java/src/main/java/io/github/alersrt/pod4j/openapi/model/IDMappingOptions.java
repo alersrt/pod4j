@@ -13,28 +13,18 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.AutoUserNsOptions;
-import io.github.alersrt.pod4j.openapi.model.IDMap;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * IDMappingOptions are used for specifying how ID mapping should be set up for a layer or container.
  */
@@ -46,7 +36,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   IDMappingOptions.JSON_PROPERTY_HOST_U_I_D_MAPPING,
   IDMappingOptions.JSON_PROPERTY_UI_D_MAP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IDMappingOptions {
   public static final String JSON_PROPERTY_AUTO_USER_NS = "AutoUserNs";
   private Boolean autoUserNs;
@@ -78,7 +68,7 @@ public class IDMappingOptions {
    * Get autoUserNs
    * @return autoUserNs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTO_USER_NS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -103,7 +93,7 @@ public class IDMappingOptions {
    * Get autoUserNsOpts
    * @return autoUserNsOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_AUTO_USER_NS_OPTS)
@@ -137,7 +127,7 @@ public class IDMappingOptions {
    * Get giDMap
    * @return giDMap
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_GI_D_MAP)
@@ -163,7 +153,7 @@ public class IDMappingOptions {
    * Get hostGIDMapping
    * @return hostGIDMapping
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOST_G_I_D_MAPPING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -188,7 +178,7 @@ public class IDMappingOptions {
    * UIDMap and GIDMap are used for setting up a layer&#39;s root filesystem for use inside of a user namespace where ID mapping is being used. If HostUIDMapping/HostGIDMapping is true, no mapping of the respective type will be used.  Otherwise, if UIDMap and/or GIDMap contain at least one mapping, one or both will be used.  By default, if neither of those conditions apply, if the layer has a parent layer, the parent layer&#39;s mapping will be used, and if it does not have a parent layer, the mapping which was passed to the Store object when it was initialized will be used.
    * @return hostUIDMapping
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOST_U_I_D_MAPPING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -221,7 +211,7 @@ public class IDMappingOptions {
    * Get uiDMap
    * @return uiDMap
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_UI_D_MAP)

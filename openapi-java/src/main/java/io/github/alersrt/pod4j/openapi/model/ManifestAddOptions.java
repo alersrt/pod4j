@@ -53,7 +53,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ManifestAddOptions.JSON_PROPERTY_SUBJECT,
   ManifestAddOptions.JSON_PROPERTY_VARIANT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestAddOptions {
   public static final String JSON_PROPERTY_ALL = "all";
   private Boolean all;
@@ -106,7 +106,7 @@ public class ManifestAddOptions {
    * True when operating on a list to include all images
    * @return all
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ALL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -139,7 +139,7 @@ public class ManifestAddOptions {
    * Annotation to add to the item in the manifest list
    * @return annotation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -172,7 +172,7 @@ public class ManifestAddOptions {
    * Annotations to add to the item in the manifest list by a map which is preferred over Annotation
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -197,7 +197,7 @@ public class ManifestAddOptions {
    * Arch overrides the architecture for the item in the manifest list
    * @return arch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -230,7 +230,7 @@ public class ManifestAddOptions {
    * Feature list for the item in the manifest list
    * @return features
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -263,7 +263,7 @@ public class ManifestAddOptions {
    * Images is an optional list of image references to add to manifest list
    * @return images
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -296,7 +296,7 @@ public class ManifestAddOptions {
    * IndexAnnotation is a slice of key&#x3D;value annotations to add to the manifest list itself
    * @return indexAnnotation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -329,7 +329,7 @@ public class ManifestAddOptions {
    * IndexAnnotations is a map of key:value annotations to add to the manifest list itself, by a map which is preferred over IndexAnnotation
    * @return indexAnnotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -354,7 +354,7 @@ public class ManifestAddOptions {
    * OS overrides the operating system for the item in the manifest list
    * @return os
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -387,7 +387,7 @@ public class ManifestAddOptions {
    * OS features for the item in the manifest list
    * @return osFeatures
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -412,7 +412,7 @@ public class ManifestAddOptions {
    * OSVersion overrides the operating system for the item in the manifest list
    * @return osVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -437,7 +437,7 @@ public class ManifestAddOptions {
    * IndexSubject is a subject value to set in the manifest list itself
    * @return subject
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUBJECT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -462,7 +462,7 @@ public class ManifestAddOptions {
    * Variant for the item in the manifest list
    * @return variant
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VARIANT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

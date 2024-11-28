@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ImageSearch200Response
  */
-public class ImageSearch200ResponseTest {
+class ImageSearch200ResponseTest {
     private final ImageSearch200Response model = new ImageSearch200Response();
 
     /**
      * Model tests for ImageSearch200Response
      */
     @Test
-    public void testImageSearch200Response() {
+    void testImageSearch200Response() {
         // TODO: test ImageSearch200Response
     }
 
@@ -41,7 +42,7 @@ public class ImageSearch200ResponseTest {
      * Test the property 'automated'
      */
     @Test
-    public void automatedTest() {
+    void automatedTest() {
         // TODO: test automated
     }
 
@@ -49,7 +50,7 @@ public class ImageSearch200ResponseTest {
      * Test the property 'description'
      */
     @Test
-    public void descriptionTest() {
+    void descriptionTest() {
         // TODO: test description
     }
 
@@ -57,7 +58,7 @@ public class ImageSearch200ResponseTest {
      * Test the property 'index'
      */
     @Test
-    public void indexTest() {
+    void indexTest() {
         // TODO: test index
     }
 
@@ -65,7 +66,7 @@ public class ImageSearch200ResponseTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -73,7 +74,7 @@ public class ImageSearch200ResponseTest {
      * Test the property 'official'
      */
     @Test
-    public void officialTest() {
+    void officialTest() {
         // TODO: test official
     }
 
@@ -81,7 +82,7 @@ public class ImageSearch200ResponseTest {
      * Test the property 'stars'
      */
     @Test
-    public void starsTest() {
+    void starsTest() {
         // TODO: test stars
     }
 
@@ -89,7 +90,7 @@ public class ImageSearch200ResponseTest {
      * Test the property 'tag'
      */
     @Test
-    public void tagTest() {
+    void tagTest() {
         // TODO: test tag
     }
 

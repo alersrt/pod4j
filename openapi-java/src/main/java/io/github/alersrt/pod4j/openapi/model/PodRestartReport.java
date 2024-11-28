@@ -40,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PodRestartReport.JSON_PROPERTY_ERRS,
   PodRestartReport.JSON_PROPERTY_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodRestartReport {
   public static final String JSON_PROPERTY_ERRS = "Errs";
   private List<String> errs = new ArrayList<>();
@@ -68,7 +68,7 @@ public class PodRestartReport {
    * Get errs
    * @return errs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ERRS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -93,7 +93,7 @@ public class PodRestartReport {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

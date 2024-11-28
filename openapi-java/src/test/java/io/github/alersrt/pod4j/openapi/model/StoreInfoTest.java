@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ContainerStore;
 import io.github.alersrt.pod4j.openapi.model.ImageStore;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for StoreInfo
  */
-public class StoreInfoTest {
+class StoreInfoTest {
     private final StoreInfo model = new StoreInfo();
 
     /**
      * Model tests for StoreInfo
      */
     @Test
-    public void testStoreInfo() {
+    void testStoreInfo() {
         // TODO: test StoreInfo
     }
 
@@ -45,7 +46,7 @@ public class StoreInfoTest {
      * Test the property 'configFile'
      */
     @Test
-    public void configFileTest() {
+    void configFileTest() {
         // TODO: test configFile
     }
 
@@ -53,7 +54,7 @@ public class StoreInfoTest {
      * Test the property 'containerStore'
      */
     @Test
-    public void containerStoreTest() {
+    void containerStoreTest() {
         // TODO: test containerStore
     }
 
@@ -61,7 +62,7 @@ public class StoreInfoTest {
      * Test the property 'graphDriverName'
      */
     @Test
-    public void graphDriverNameTest() {
+    void graphDriverNameTest() {
         // TODO: test graphDriverName
     }
 
@@ -69,7 +70,7 @@ public class StoreInfoTest {
      * Test the property 'graphOptions'
      */
     @Test
-    public void graphOptionsTest() {
+    void graphOptionsTest() {
         // TODO: test graphOptions
     }
 
@@ -77,7 +78,7 @@ public class StoreInfoTest {
      * Test the property 'graphRoot'
      */
     @Test
-    public void graphRootTest() {
+    void graphRootTest() {
         // TODO: test graphRoot
     }
 
@@ -85,7 +86,7 @@ public class StoreInfoTest {
      * Test the property 'graphRootAllocated'
      */
     @Test
-    public void graphRootAllocatedTest() {
+    void graphRootAllocatedTest() {
         // TODO: test graphRootAllocated
     }
 
@@ -93,7 +94,7 @@ public class StoreInfoTest {
      * Test the property 'graphRootUsed'
      */
     @Test
-    public void graphRootUsedTest() {
+    void graphRootUsedTest() {
         // TODO: test graphRootUsed
     }
 
@@ -101,7 +102,7 @@ public class StoreInfoTest {
      * Test the property 'graphStatus'
      */
     @Test
-    public void graphStatusTest() {
+    void graphStatusTest() {
         // TODO: test graphStatus
     }
 
@@ -109,7 +110,7 @@ public class StoreInfoTest {
      * Test the property 'imageCopyTmpDir'
      */
     @Test
-    public void imageCopyTmpDirTest() {
+    void imageCopyTmpDirTest() {
         // TODO: test imageCopyTmpDir
     }
 
@@ -117,7 +118,7 @@ public class StoreInfoTest {
      * Test the property 'imageStore'
      */
     @Test
-    public void imageStoreTest() {
+    void imageStoreTest() {
         // TODO: test imageStore
     }
 
@@ -125,7 +126,7 @@ public class StoreInfoTest {
      * Test the property 'runRoot'
      */
     @Test
-    public void runRootTest() {
+    void runRootTest() {
         // TODO: test runRoot
     }
 
@@ -133,7 +134,7 @@ public class StoreInfoTest {
      * Test the property 'transientStore'
      */
     @Test
-    public void transientStoreTest() {
+    void transientStoreTest() {
         // TODO: test transientStore
     }
 
@@ -141,7 +142,7 @@ public class StoreInfoTest {
      * Test the property 'volumePath'
      */
     @Test
-    public void volumePathTest() {
+    void volumePathTest() {
         // TODO: test volumePath
     }
 

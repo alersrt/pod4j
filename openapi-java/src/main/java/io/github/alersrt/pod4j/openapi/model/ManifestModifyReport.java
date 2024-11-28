@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ManifestModifyReport.JSON_PROPERTY_FILES,
   ManifestModifyReport.JSON_PROPERTY_IMAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestModifyReport {
   public static final String JSON_PROPERTY_ID = "Id";
   private String id;
@@ -68,7 +68,7 @@ public class ManifestModifyReport {
    * Manifest List ID
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -101,7 +101,7 @@ public class ManifestModifyReport {
    * Errors associated with operation
    * @return errors
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ERRORS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -134,7 +134,7 @@ public class ManifestModifyReport {
    * Files added to manifest list, otherwise not provided.
    * @return files
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -167,7 +167,7 @@ public class ManifestModifyReport {
    * Images added to or removed from manifest list, otherwise not provided.
    * @return images
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

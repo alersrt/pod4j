@@ -48,7 +48,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SystemDfContainerReport.JSON_PROPERTY_SIZE,
   SystemDfContainerReport.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemDfContainerReport {
   public static final String JSON_PROPERTY_COMMAND = "Command";
   private List<String> command = new ArrayList<>();
@@ -97,7 +97,7 @@ public class SystemDfContainerReport {
    * Get command
    * @return command
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -122,7 +122,7 @@ public class SystemDfContainerReport {
    * Get containerID
    * @return containerID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -147,7 +147,7 @@ public class SystemDfContainerReport {
    * Get created
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -173,7 +173,7 @@ public class SystemDfContainerReport {
    * Get image
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -198,7 +198,7 @@ public class SystemDfContainerReport {
    * Get localVolumes
    * @return localVolumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LOCAL_VOLUMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -223,7 +223,7 @@ public class SystemDfContainerReport {
    * Get names
    * @return names
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -248,7 +248,7 @@ public class SystemDfContainerReport {
    * Get rwSize
    * @return rwSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RW_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -273,7 +273,7 @@ public class SystemDfContainerReport {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -298,7 +298,7 @@ public class SystemDfContainerReport {
    * Get status
    * @return status
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

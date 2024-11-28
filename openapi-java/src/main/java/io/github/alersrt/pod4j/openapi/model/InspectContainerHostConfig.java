@@ -118,7 +118,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectContainerHostConfig.JSON_PROPERTY_VOLUME_DRIVER,
   InspectContainerHostConfig.JSON_PROPERTY_VOLUMES_FROM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerHostConfig {
   public static final String JSON_PROPERTY_ANNOTATIONS = "Annotations";
   private Map<String, String> annotations = new HashMap<>();
@@ -350,7 +350,7 @@ public class InspectContainerHostConfig {
    * Annotations are provided to the runtime when the container is started.
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -375,7 +375,7 @@ public class InspectContainerHostConfig {
    * AutoRemove is whether the container will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.
    * @return autoRemove
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -400,7 +400,7 @@ public class InspectContainerHostConfig {
    * AutoRemoveImage is whether the container&#39;s image will be automatically removed on exiting. It is not handled directly within libpod and is stored in an annotation.
    * @return autoRemoveImage
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTO_REMOVE_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -433,7 +433,7 @@ public class InspectContainerHostConfig {
    * Binds contains an array of user-added mounts. Both volume mounts and named volumes are included. Tmpfs mounts are NOT included. In &#39;docker inspect&#39; this is separated into &#39;Binds&#39; and &#39;Mounts&#39; based on how a mount was added. We do not make this distinction and do not include a Mounts field in inspect. Format: &lt;src&gt;:&lt;destination&gt;[:&lt;comma-separated options&gt;]
    * @return binds
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BINDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -466,7 +466,7 @@ public class InspectContainerHostConfig {
    * BlkioDeviceReadBps is an array of I/O throttle parameters for individual device nodes. This specifically sets read rate cap in bytes per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
    * @return blkioDeviceReadBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
@@ -500,7 +500,7 @@ public class InspectContainerHostConfig {
    * BlkioDeviceReadIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the read rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
    * @return blkioDeviceReadIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
@@ -534,7 +534,7 @@ public class InspectContainerHostConfig {
    * BlkioDeviceWriteBps is an array of I/O throttle parameters for individual device nodes. this specifically sets write rate cap in bytes per second for device nodes. as with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
    * @return blkioDeviceWriteBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
@@ -568,7 +568,7 @@ public class InspectContainerHostConfig {
    * BlkioDeviceWriteIOps is an array of I/O throttle parameters for individual device nodes. This specifically sets the write rate cap in iops per second for device nodes. As with BlkioWeightDevice, we pull the path from /sys/dev, and we don&#39;t guarantee the path will be identical to the original (though the node will be).
    * @return blkioDeviceWriteIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
@@ -594,7 +594,7 @@ public class InspectContainerHostConfig {
    * BlkioWeight indicates the I/O resources allocated to the container. It is a relative weight in the scheduler for assigning I/O time versus other Cgroups.
    * @return blkioWeight
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -627,7 +627,7 @@ public class InspectContainerHostConfig {
    * BlkioWeightDevice is an array of I/O resource priorities for individual device nodes. Unfortunately, the spec only stores the device&#39;s Major/Minor numbers and not the path, which is used here. Fortunately, the kernel provides an interface for retrieving the path of a given node by major:minor at /sys/dev/. However, the exact path in use may not be what was used in the original CLI invocation - though it is guaranteed that the device node will be the same, and using the given path will be functionally identical.
    * @return blkioWeightDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
@@ -661,7 +661,7 @@ public class InspectContainerHostConfig {
    * CapAdd is a list of capabilities added to the container. It is not directly stored by Libpod, and instead computed from the capabilities listed in the container&#39;s spec, compared against a set of default capabilities.
    * @return capAdd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAP_ADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -694,7 +694,7 @@ public class InspectContainerHostConfig {
    * CapDrop is a list of capabilities removed from the container. It is not directly stored by libpod, and instead computed from the capabilities listed in the container&#39;s spec, compared against a set of default capabilities.
    * @return capDrop
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAP_DROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -719,7 +719,7 @@ public class InspectContainerHostConfig {
    * Cgroup contains the container&#39;s cgroup. It is presently not populated. TODO.
    * @return cgroup
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -752,7 +752,7 @@ public class InspectContainerHostConfig {
    * CgroupConf is the configuration for cgroup v2.
    * @return cgroupConf
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_CONF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -777,7 +777,7 @@ public class InspectContainerHostConfig {
    * CgroupManager is the cgroup manager used by the container. At present, allowed values are either \&quot;cgroupfs\&quot; or \&quot;systemd\&quot;.
    * @return cgroupManager
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_MANAGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -802,7 +802,7 @@ public class InspectContainerHostConfig {
    * CgroupMode is the configuration of the container&#39;s cgroup namespace. Populated as follows: private - a cgroup namespace has been created host - No cgroup namespace created container:&lt;id&gt; - Using another container&#39;s cgroup namespace ns:&lt;path&gt; - A path to a cgroup namespace has been specified
    * @return cgroupMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -827,7 +827,7 @@ public class InspectContainerHostConfig {
    * CgroupParent is the Cgroup parent of the container. Only set if not default.
    * @return cgroupParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -852,7 +852,7 @@ public class InspectContainerHostConfig {
    * Cgroups contains the container&#39;s Cgroup mode. Allowed values are \&quot;default\&quot; (container is creating Cgroups) and \&quot;disabled\&quot; (container is not creating Cgroups). This is Libpod-specific and not included in &#x60;docker inspect&#x60;.
    * @return cgroups
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -885,7 +885,7 @@ public class InspectContainerHostConfig {
    * ConsoleSize is an array of 2 integers showing the size of the container&#39;s console. It is only set if the container is creating a terminal. TODO.
    * @return consoleSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONSOLE_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -910,7 +910,7 @@ public class InspectContainerHostConfig {
    * ContainerIDFile is a file created during container creation to hold the ID of the created container. This is not handled within libpod and is stored in an annotation.
    * @return containerIDFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_I_D_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -935,7 +935,7 @@ public class InspectContainerHostConfig {
    * CpuCount is Windows-only and not presently implemented.
    * @return cpuCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -960,7 +960,7 @@ public class InspectContainerHostConfig {
    * CpuPercent is Windows-only and not presently implemented.
    * @return cpuPercent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -985,7 +985,7 @@ public class InspectContainerHostConfig {
    * CpuPeriod is the length of a CPU period in microseconds. It relates directly to CpuQuota.
    * @return cpuPeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1010,7 +1010,7 @@ public class InspectContainerHostConfig {
    * CpuPeriod is the amount of time (in microseconds) that a container can use the CPU in every CpuPeriod.
    * @return cpuQuota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1035,7 +1035,7 @@ public class InspectContainerHostConfig {
    * CpuRealtimePeriod is the length of time (in microseconds) of the CPU realtime period. If set to 0, no time will be allocated to realtime tasks.
    * @return cpuRealtimePeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1060,7 +1060,7 @@ public class InspectContainerHostConfig {
    * CpuRealtimeRuntime is the length of time (in microseconds) allocated for realtime tasks within every CpuRealtimePeriod.
    * @return cpuRealtimeRuntime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1085,7 +1085,7 @@ public class InspectContainerHostConfig {
    * CpuShares indicates the CPU resources allocated to the container. It is a relative weight in the scheduler for assigning CPU time versus other Cgroups.
    * @return cpuShares
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_SHARES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1110,7 +1110,7 @@ public class InspectContainerHostConfig {
    * CpusetCpus is the set of CPUs that the container will execute on. Formatted as &#x60;0-3&#x60; or &#x60;0,2&#x60;. Default (if unset) is all CPUs.
    * @return cpusetCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1135,7 +1135,7 @@ public class InspectContainerHostConfig {
    * CpusetMems is the set of memory nodes the container will use. Formatted as &#x60;0-3&#x60; or &#x60;0,2&#x60;. Default (if unset) is all memory nodes.
    * @return cpusetMems
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1168,7 +1168,7 @@ public class InspectContainerHostConfig {
    * Devices is a list of device nodes that will be added to the container. These are stored in the OCI spec only as type, major, minor while we display the host path. We convert this with /sys/dev, but we cannot guarantee that the host path will be identical - only that the actual device will be.
    * @return devices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICES)
@@ -1194,7 +1194,7 @@ public class InspectContainerHostConfig {
    * DiskQuota is the maximum amount of disk space the container may use (in bytes). Presently not populated. TODO.
    * @return diskQuota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DISK_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1227,7 +1227,7 @@ public class InspectContainerHostConfig {
    * Dns is a list of DNS nameservers that will be added to the container&#39;s resolv.conf
    * @return dns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1260,7 +1260,7 @@ public class InspectContainerHostConfig {
    * DnsOptions is a list of DNS options that will be set in the container&#39;s resolv.conf
    * @return dnsOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1293,7 +1293,7 @@ public class InspectContainerHostConfig {
    * DnsSearch is a list of DNS search domains that will be set in the container&#39;s resolv.conf
    * @return dnsSearch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1326,7 +1326,7 @@ public class InspectContainerHostConfig {
    * ExtraHosts contains hosts that will be added to the container&#39;s etc/hosts.
    * @return extraHosts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXTRA_HOSTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1359,7 +1359,7 @@ public class InspectContainerHostConfig {
    * GroupAdd contains groups that the user inside the container will be added to.
    * @return groupAdd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GROUP_ADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1384,7 +1384,7 @@ public class InspectContainerHostConfig {
    * Get idMappings
    * @return idMappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ID_MAPPINGS)
@@ -1410,7 +1410,7 @@ public class InspectContainerHostConfig {
    * IOMaximumBandwidth is Windows-only and not presently implemented.
    * @return ioMaximumBandwidth
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1435,7 +1435,7 @@ public class InspectContainerHostConfig {
    * IOMaximumIOps is Windows-only and not presently implemented.
    * @return ioMaximumIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1460,7 +1460,7 @@ public class InspectContainerHostConfig {
    * Init indicates whether the container has an init mounted into it.
    * @return init
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1485,7 +1485,7 @@ public class InspectContainerHostConfig {
    * IntelRdtClosID defines the Intel RDT CAT Class Of Service (COS) that all processes of the container should run in.
    * @return intelRdtClosID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INTEL_RDT_CLOS_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1510,7 +1510,7 @@ public class InspectContainerHostConfig {
    * IpcMode represents the configuration of the container&#39;s IPC namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, an IPC namespace will be created host - No IPC namespace created container:&lt;id&gt; - Using another container&#39;s IPC namespace ns:&lt;path&gt; - A path to an IPC namespace has been specified
    * @return ipcMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPC_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1535,7 +1535,7 @@ public class InspectContainerHostConfig {
    * Isolation is presently unused and provided solely for Docker compatibility.
    * @return isolation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ISOLATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1560,7 +1560,7 @@ public class InspectContainerHostConfig {
    * KernelMemory is the maximum amount of memory the kernel will devote to the container.
    * @return kernelMemory
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1593,7 +1593,7 @@ public class InspectContainerHostConfig {
    * Links is unused, and provided purely for Docker compatibility.
    * @return links
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1618,7 +1618,7 @@ public class InspectContainerHostConfig {
    * Get logConfig
    * @return logConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_LOG_CONFIG)
@@ -1644,7 +1644,7 @@ public class InspectContainerHostConfig {
    * Memory indicates the memory resources allocated to the container. This is the limit (in bytes) of RAM the container may use.
    * @return memory
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1669,7 +1669,7 @@ public class InspectContainerHostConfig {
    * MemoryReservation is the reservation (soft limit) of memory available to the container. Soft limits are warnings only and can be exceeded.
    * @return memoryReservation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1694,7 +1694,7 @@ public class InspectContainerHostConfig {
    * MemorySwap is the total limit for all memory available to the container, including swap. 0 indicates that there is no limit to the amount of memory available.
    * @return memorySwap
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1719,7 +1719,7 @@ public class InspectContainerHostConfig {
    * MemorySwappiness is the willingness of the kernel to page container memory to swap. It is an integer from 0 to 100, with low numbers being more likely to be put into swap. 1, the default, will not set swappiness and use the system defaults.
    * @return memorySwappiness
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1744,7 +1744,7 @@ public class InspectContainerHostConfig {
    * NanoCpus indicates number of CPUs allocated to the container. It is an integer where one full CPU is indicated by 1000000000 (one billion). Thus, 2.5 CPUs (fractional portions of CPUs are allowed) would be 2500000000 (2.5 billion). In &#39;docker inspect&#39; this is set exclusively of two further options in the output (CpuPeriod and CpuQuota) which are both used to implement this functionality. We can&#39;t distinguish here, so if CpuQuota is set to the default of 100000, we will set both CpuQuota, CpuPeriod, and NanoCpus. If CpuQuota is not the default, we will not set NanoCpus.
    * @return nanoCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NANO_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1769,7 +1769,7 @@ public class InspectContainerHostConfig {
    * NetworkMode is the configuration of the container&#39;s network namespace. Populated as follows: default - A network namespace is being created and configured via CNI none - A network namespace is being created, not configured via CNI host - No network namespace created container:&lt;id&gt; - Using another container&#39;s network namespace ns:&lt;path&gt; - A path to a network namespace has been specified
    * @return networkMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1794,7 +1794,7 @@ public class InspectContainerHostConfig {
    * OomKillDisable indicates whether the kernel OOM killer is disabled for the container.
    * @return oomKillDisable
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1819,7 +1819,7 @@ public class InspectContainerHostConfig {
    * OOMScoreAdj is an adjustment that will be made to the container&#39;s OOM score.
    * @return oomScoreAdj
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1844,7 +1844,7 @@ public class InspectContainerHostConfig {
    * PidMode represents the configuration of the container&#39;s PID namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, a PID namespace will be created host - No PID namespace created container:&lt;id&gt; - Using another container&#39;s PID namespace ns:&lt;path&gt; - A path to a PID namespace has been specified
    * @return pidMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1869,7 +1869,7 @@ public class InspectContainerHostConfig {
    * PidsLimit is the maximum number of PIDs that may be created within the container. 0, the default, indicates no limit.
    * @return pidsLimit
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1902,7 +1902,7 @@ public class InspectContainerHostConfig {
    * PortBindings contains the container&#39;s port bindings. It is formatted as map[string][]InspectHostPort. The string key here is formatted as &lt;integer port number&gt;/&lt;protocol&gt; and represents the container port. A single container port may be bound to multiple host ports (on different IPs).
    * @return portBindings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
@@ -1928,7 +1928,7 @@ public class InspectContainerHostConfig {
    * Privileged indicates whether the container is running with elevated privileges. This has a very specific meaning in the Docker sense, so it&#39;s very difficult to decode from the spec and config, and so is stored as an annotation.
    * @return privileged
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PRIVILEGED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1953,7 +1953,7 @@ public class InspectContainerHostConfig {
    * PublishAllPorts indicates whether image ports are being published. This is not directly stored in libpod and is saved as an annotation.
    * @return publishAllPorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PUBLISH_ALL_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1978,7 +1978,7 @@ public class InspectContainerHostConfig {
    * ReadonlyRootfs is whether the container will be mounted read-only.
    * @return readonlyRootfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READONLY_ROOTFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2003,7 +2003,7 @@ public class InspectContainerHostConfig {
    * Get restartPolicy
    * @return restartPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
@@ -2029,7 +2029,7 @@ public class InspectContainerHostConfig {
    * Runtime is provided purely for Docker compatibility. It is set unconditionally to \&quot;oci\&quot; as Podman does not presently support non-OCI runtimes.
    * @return runtime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2062,7 +2062,7 @@ public class InspectContainerHostConfig {
    * SecurityOpt is a list of security-related options that are set in the container.
    * @return securityOpt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2087,7 +2087,7 @@ public class InspectContainerHostConfig {
    * Get shmSize
    * @return shmSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHM_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2120,7 +2120,7 @@ public class InspectContainerHostConfig {
    * Tmpfs is a list of tmpfs filesystems that will be mounted into the container. It is a map of destination path to options for the mount.
    * @return tmpfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TMPFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2145,7 +2145,7 @@ public class InspectContainerHostConfig {
    * UTSMode represents the configuration of the container&#39;s UID namespace. Populated as follows: \&quot;\&quot; (empty string) - Default, a UTS namespace will be created host - no UTS namespace created container:&lt;id&gt; - Using another container&#39;s UTS namespace ns:&lt;path&gt; - A path to a UTS namespace has been specified
    * @return utSMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UT_S_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2178,7 +2178,7 @@ public class InspectContainerHostConfig {
    * Ulimits is a set of ulimits that will be set within the container.
    * @return ulimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ULIMITS)
@@ -2204,7 +2204,7 @@ public class InspectContainerHostConfig {
    * UsernsMode represents the configuration of the container&#39;s user namespace. When running rootless, a user namespace is created outside of libpod to allow some privileged operations. This will not be reflected here. Populated as follows: \&quot;\&quot; (empty string) - No user namespace will be created private - The container will be run in a user namespace container:&lt;id&gt; - Using another container&#39;s user namespace ns:&lt;path&gt; - A path to a user namespace has been specified TODO Rootless has an additional &#39;keep-id&#39; option, presently not reflected here.
    * @return usernsMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USERNS_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2229,7 +2229,7 @@ public class InspectContainerHostConfig {
    * VolumeDriver is presently unused and is retained for Docker compatibility.
    * @return volumeDriver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUME_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2262,7 +2262,7 @@ public class InspectContainerHostConfig {
    * VolumesFrom is a list of containers which this container uses volumes from. This is not handled directly within libpod and is stored in an annotation. It is formatted as an array of container names and IDs.
    * @return volumesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,26 +13,16 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
-import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerHealthCheckConfig describes a container healthcheck with attributes like command, retries, interval, start period, and timeout.
  */
@@ -44,7 +34,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerHealthCheckConfig.JSON_PROPERTY_HEALTHCONFIG,
   ContainerHealthCheckConfig.JSON_PROPERTY_STARTUP_HEALTH_CONFIG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerHealthCheckConfig {
   public static final String JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION = "health_check_on_failure_action";
   private Long healthCheckOnFailureAction;
@@ -76,7 +66,7 @@ public class ContainerHealthCheckConfig {
    * HealthCheckOnFailureAction defines how Podman reacts when a container&#39;s health status turns unhealthy.
    * @return healthCheckOnFailureAction
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -101,7 +91,7 @@ public class ContainerHealthCheckConfig {
    * HealthLogDestination defines the destination where the log is stored
    * @return healthLogDestination
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -126,7 +116,7 @@ public class ContainerHealthCheckConfig {
    * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
    * @return healthMaxLogCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -151,7 +141,7 @@ public class ContainerHealthCheckConfig {
    * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length)
    * @return healthMaxLogSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -176,7 +166,7 @@ public class ContainerHealthCheckConfig {
    * Get healthconfig
    * @return healthconfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HEALTHCONFIG)
@@ -202,7 +192,7 @@ public class ContainerHealthCheckConfig {
    * Get startupHealthConfig
    * @return startupHealthConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CONFIG)

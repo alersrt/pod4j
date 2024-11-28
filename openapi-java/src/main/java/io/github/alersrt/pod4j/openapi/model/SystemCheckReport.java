@@ -49,7 +49,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SystemCheckReport.JSON_PROPERTY_REMOVED_IMAGES,
   SystemCheckReport.JSON_PROPERTY_REMOVED_LAYERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemCheckReport {
   public static final String JSON_PROPERTY_CONTAINERS = "Containers";
   private Map<String, List<String>> containers = new HashMap<>();
@@ -98,7 +98,7 @@ public class SystemCheckReport {
    * Get containers
    * @return containers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
@@ -124,7 +124,7 @@ public class SystemCheckReport {
    * Get errors
    * @return errors
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ERRORS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -157,7 +157,7 @@ public class SystemCheckReport {
    * Get images
    * @return images
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IMAGES)
@@ -191,7 +191,7 @@ public class SystemCheckReport {
    * Get layers
    * @return layers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_LAYERS)
@@ -225,7 +225,7 @@ public class SystemCheckReport {
    * Get roImages
    * @return roImages
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RO_IMAGES)
@@ -259,7 +259,7 @@ public class SystemCheckReport {
    * Get roLayers
    * @return roLayers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RO_LAYERS)
@@ -293,7 +293,7 @@ public class SystemCheckReport {
    * Get removedContainers
    * @return removedContainers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REMOVED_CONTAINERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -326,7 +326,7 @@ public class SystemCheckReport {
    * Get removedImages
    * @return removedImages
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_REMOVED_IMAGES)
@@ -360,7 +360,7 @@ public class SystemCheckReport {
    * Get removedLayers
    * @return removedLayers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REMOVED_LAYERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

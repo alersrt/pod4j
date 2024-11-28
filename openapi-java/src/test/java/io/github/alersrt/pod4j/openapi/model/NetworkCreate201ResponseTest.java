@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for NetworkCreate201Response
  */
-public class NetworkCreate201ResponseTest {
+class NetworkCreate201ResponseTest {
     private final NetworkCreate201Response model = new NetworkCreate201Response();
 
     /**
      * Model tests for NetworkCreate201Response
      */
     @Test
-    public void testNetworkCreate201Response() {
+    void testNetworkCreate201Response() {
         // TODO: test NetworkCreate201Response
     }
 
@@ -41,7 +42,7 @@ public class NetworkCreate201ResponseTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -49,7 +50,7 @@ public class NetworkCreate201ResponseTest {
      * Test the property 'warning'
      */
     @Test
-    public void warningTest() {
+    void warningTest() {
         // TODO: test warning
     }
 

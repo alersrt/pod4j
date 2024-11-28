@@ -62,7 +62,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ManifestModifyOptions.JSON_PROPERTY_SUBJECT,
   ManifestModifyOptions.JSON_PROPERTY_VARIANT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestModifyOptions {
   public static final String JSON_PROPERTY_ALL = "all";
   private Boolean all;
@@ -142,7 +142,7 @@ public class ManifestModifyOptions {
    * True when operating on a list to include all images
    * @return all
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ALL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -175,7 +175,7 @@ public class ManifestModifyOptions {
    * Annotation to add to the item in the manifest list
    * @return annotation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -208,7 +208,7 @@ public class ManifestModifyOptions {
    * Annotations to add to the item in the manifest list by a map which is preferred over Annotation
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -233,7 +233,7 @@ public class ManifestModifyOptions {
    * Arch overrides the architecture for the item in the manifest list
    * @return arch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -266,7 +266,7 @@ public class ManifestModifyOptions {
    * Get artifactAnnotations
    * @return artifactAnnotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -291,7 +291,7 @@ public class ManifestModifyOptions {
    * Get artifactConfig
    * @return artifactConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_CONFIG)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -316,7 +316,7 @@ public class ManifestModifyOptions {
    * Get artifactConfigType
    * @return artifactConfigType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_CONFIG_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -341,7 +341,7 @@ public class ManifestModifyOptions {
    * Get artifactExcludeTitles
    * @return artifactExcludeTitles
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_EXCLUDE_TITLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -374,7 +374,7 @@ public class ManifestModifyOptions {
    * Get artifactFiles
    * @return artifactFiles
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_FILES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -399,7 +399,7 @@ public class ManifestModifyOptions {
    * Get artifactLayerType
    * @return artifactLayerType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_LAYER_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -424,7 +424,7 @@ public class ManifestModifyOptions {
    * Get artifactSubject
    * @return artifactSubject
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_SUBJECT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -449,7 +449,7 @@ public class ManifestModifyOptions {
    * The following are all of the fields from ManifestAddArtifactOptions. We can&#39;t just embed the whole structure because it embeds a ManifestAnnotateOptions, which would conflict with the one that ManifestAddOptions embeds.
    * @return artifactType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARTIFACT_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -482,7 +482,7 @@ public class ManifestModifyOptions {
    * Feature list for the item in the manifest list
    * @return features
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -515,7 +515,7 @@ public class ManifestModifyOptions {
    * Images is an optional list of image references to add to manifest list
    * @return images
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -548,7 +548,7 @@ public class ManifestModifyOptions {
    * IndexAnnotation is a slice of key&#x3D;value annotations to add to the manifest list itself
    * @return indexAnnotation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -581,7 +581,7 @@ public class ManifestModifyOptions {
    * IndexAnnotations is a map of key:value annotations to add to the manifest list itself, by a map which is preferred over IndexAnnotation
    * @return indexAnnotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INDEX_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -606,7 +606,7 @@ public class ManifestModifyOptions {
    * Get operation
    * @return operation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPERATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -631,7 +631,7 @@ public class ManifestModifyOptions {
    * OS overrides the operating system for the item in the manifest list
    * @return os
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -664,7 +664,7 @@ public class ManifestModifyOptions {
    * OS features for the item in the manifest list
    * @return osFeatures
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -689,7 +689,7 @@ public class ManifestModifyOptions {
    * OSVersion overrides the operating system for the item in the manifest list
    * @return osVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -714,7 +714,7 @@ public class ManifestModifyOptions {
    * IndexSubject is a subject value to set in the manifest list itself
    * @return subject
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUBJECT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -739,7 +739,7 @@ public class ManifestModifyOptions {
    * Variant for the item in the manifest list
    * @return variant
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VARIANT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

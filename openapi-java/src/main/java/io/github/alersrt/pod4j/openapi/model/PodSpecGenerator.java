@@ -96,7 +96,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PodSpecGenerator.JSON_PROPERTY_VOLUMES,
   PodSpecGenerator.JSON_PROPERTY_VOLUMES_FROM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodSpecGenerator {
   public static final String JSON_PROPERTY_NETWORKS = "Networks";
   private Map<String, PerNetworkOptions> networks = new HashMap<>();
@@ -256,7 +256,7 @@ public class PodSpecGenerator {
    * Map of networks names to ids the container should join to. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network.
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
@@ -282,7 +282,7 @@ public class PodSpecGenerator {
    * CgroupParent is the parent for the Cgroup that the pod will create. This pod cgroup will, in turn, be the default cgroup parent for all containers in the pod. Optional.
    * @return cgroupParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -315,7 +315,7 @@ public class PodSpecGenerator {
    * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
    * @return cniNetworks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CNI_NETWORKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -340,7 +340,7 @@ public class PodSpecGenerator {
    * CPU period of the cpuset, determined by --cpus
    * @return cpuPeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -365,7 +365,7 @@ public class PodSpecGenerator {
    * CPU quota of the cpuset, determined by --cpus
    * @return cpuQuota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -398,7 +398,7 @@ public class PodSpecGenerator {
    * DNSOption is a set of DNS options that will be used in the infra container&#39;s resolv.conf, which will, by default, be shared with all containers in the pod. Conflicts with NoInfra&#x3D;true. Optional.
    * @return dnsOption
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_OPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -431,7 +431,7 @@ public class PodSpecGenerator {
    * DNSSearch is a set of DNS search domains that will be used in the infra container&#39;s resolv.conf, which will, by default, be shared with all containers in the pod. If not provided, DNS search domains from the host&#39;s resolv.conf will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return dnsSearch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -464,7 +464,7 @@ public class PodSpecGenerator {
    * DNSServer is a set of DNS servers that will be used in the infra container&#39;s resolv.conf, which will, by default, be shared with all containers in the pod. If not provided, the host&#39;s DNS servers will be used, unless the only server set is a localhost address. As the container cannot connect to the host&#39;s localhost, a default server will instead be set. Conflicts with NoInfra&#x3D;true. Optional.
    * @return dnsServer
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SERVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -489,7 +489,7 @@ public class PodSpecGenerator {
    * ExitPolicy determines the pod&#39;s exit and stop behaviour.
    * @return exitPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -522,7 +522,7 @@ public class PodSpecGenerator {
    * HostAdd is a set of hosts that will be added to the infra container&#39;s etc/hosts that will, by default, be shared with all containers in the pod. Conflicts with NoInfra&#x3D;true and NoManageHosts. Optional.
    * @return hostadd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -547,7 +547,7 @@ public class PodSpecGenerator {
    * Hostname is the pod&#39;s hostname. If not set, the name of the pod will be used (if a name was not provided here, the name auto-generated for the pod will be used). This will be used by the infra container and all containers in the pod as long as the UTS namespace is shared. Optional.
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -572,7 +572,7 @@ public class PodSpecGenerator {
    * Get idmappings
    * @return idmappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
@@ -606,7 +606,7 @@ public class PodSpecGenerator {
    * Image volumes bind-mount a container-image mount into the pod&#39;s infra container. Optional.
    * @return imageVolumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
@@ -640,7 +640,7 @@ public class PodSpecGenerator {
    * InfraCommand sets the command that will be used to start the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -665,7 +665,7 @@ public class PodSpecGenerator {
    * InfraConmonPidFile is a custom path to store the infra container&#39;s conmon PID.
    * @return infraConmonPidFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_CONMON_PID_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -690,7 +690,7 @@ public class PodSpecGenerator {
    * InfraImage is the image that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraImage
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -715,7 +715,7 @@ public class PodSpecGenerator {
    * InfraName is the name that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -740,7 +740,7 @@ public class PodSpecGenerator {
    * Get ipcns
    * @return ipcns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IPCNS)
@@ -774,7 +774,7 @@ public class PodSpecGenerator {
    * Labels are key-value pairs that are used to add metadata to pods. Optional.
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -807,7 +807,7 @@ public class PodSpecGenerator {
    * Mounts are mounts that will be added to the pod. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return mounts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MOUNTS)
@@ -833,7 +833,7 @@ public class PodSpecGenerator {
    * Name is the name of the pod. If not provided, a name will be generated when the pod is created. Optional.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -858,7 +858,7 @@ public class PodSpecGenerator {
    * Get netns
    * @return netns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETNS)
@@ -892,7 +892,7 @@ public class PodSpecGenerator {
    * NetworkOptions are additional options for each network Optional.
    * @return networkOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
@@ -918,7 +918,7 @@ public class PodSpecGenerator {
    * NoInfra tells the pod not to create an infra container. If this is done, many networking-related options will become unavailable. Conflicts with setting any options in PodNetworkConfig, and the InfraCommand and InfraImages in this struct. Optional.
    * @return noInfra
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_INFRA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -943,7 +943,7 @@ public class PodSpecGenerator {
    * NoManageHosts indicates that /etc/hosts should not be managed by the pod. Instead, each container will create a separate /etc/hosts as they would if not in a pod. Conflicts with HostAdd.
    * @return noManageHosts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_MANAGE_HOSTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -968,7 +968,7 @@ public class PodSpecGenerator {
    * NoManageResolvConf indicates that /etc/resolv.conf should not be managed by the pod. Instead, each container will create and manage a separate resolv.conf as if they had not joined a pod. Conflicts with NoInfra&#x3D;true and DNSServer, DNSSearch, DNSOption. Optional.
    * @return noManageResolvConf
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_MANAGE_RESOLV_CONF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1001,7 +1001,7 @@ public class PodSpecGenerator {
    * Overlay volumes are named volumes that will be added to the pod. Optional.
    * @return overlayVolumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
@@ -1027,7 +1027,7 @@ public class PodSpecGenerator {
    * Get pidns
    * @return pidns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PIDNS)
@@ -1061,7 +1061,7 @@ public class PodSpecGenerator {
    * Get podCreateCommand
    * @return podCreateCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD_CREATE_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1094,7 +1094,7 @@ public class PodSpecGenerator {
    * Devices contains user specified Devices to be added to the Pod
    * @return podDevices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD_DEVICES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1127,7 +1127,7 @@ public class PodSpecGenerator {
    * PortMappings is a set of ports to map into the infra container. As, by default, containers share their network with the infra container, this will forward the ports to the entire pod. Only available if NetNS is set to Bridge, Slirp, or Pasta. Optional.
    * @return portmappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORTMAPPINGS)
@@ -1153,7 +1153,7 @@ public class PodSpecGenerator {
    * Get resourceLimits
    * @return resourceLimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
@@ -1179,7 +1179,7 @@ public class PodSpecGenerator {
    * RestartPolicy is the pod&#39;s restart policy - an action which will be taken when one or all the containers in the pod exits. If not given, the default policy will be set to Always, which restarts the containers in the pod when they exit indefinitely. Optional.
    * @return restartPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1204,7 +1204,7 @@ public class PodSpecGenerator {
    * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
    * @return restartTries
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1237,7 +1237,7 @@ public class PodSpecGenerator {
    * Get securityOpt
    * @return securityOpt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1262,7 +1262,7 @@ public class PodSpecGenerator {
    * The ID of the pod&#39;s service container.
    * @return serviceContainerID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SERVICE_CONTAINER_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1287,7 +1287,7 @@ public class PodSpecGenerator {
    * PodCreateCommand is the command used to create this pod. This will be shown in the output of Inspect() on the pod, and may also be used by some tools that wish to recreate the pod (e.g. &#x60;podman generate systemd --new&#x60;). Optional. ShareParent determines if all containers in the pod will share the pod&#39;s cgroup as the cgroup parent
    * @return shareParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARE_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1320,7 +1320,7 @@ public class PodSpecGenerator {
    * SharedNamespaces instructs the pod to share a set of namespaces. Shared namespaces will be joined (by default) by every container which joins the pod. If not set and NoInfra is false, the pod will set a default set of namespaces to share. Conflicts with NoInfra&#x3D;true. Optional.
    * @return sharedNamespaces
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARED_NAMESPACES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1345,7 +1345,7 @@ public class PodSpecGenerator {
    * ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.
    * @return shmSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHM_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1370,7 +1370,7 @@ public class PodSpecGenerator {
    * ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional
    * @return shmSizeSystemd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1403,7 +1403,7 @@ public class PodSpecGenerator {
    * Sysctl sets kernel parameters for the pod
    * @return sysctl
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSCTL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1436,7 +1436,7 @@ public class PodSpecGenerator {
    * ThrottleReadBpsDevice contains the rate at which the devices in the pod can be read from/accessed
    * @return throttleReadBpsDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
@@ -1462,7 +1462,7 @@ public class PodSpecGenerator {
    * Get userns
    * @return userns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_USERNS)
@@ -1488,7 +1488,7 @@ public class PodSpecGenerator {
    * Get utsns
    * @return utsns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_UTSNS)
@@ -1522,7 +1522,7 @@ public class PodSpecGenerator {
    * Volumes are named volumes that will be added to the pod. These will supersede Image Volumes and VolumesFrom  volumes where there are conflicts. Optional.
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)
@@ -1556,7 +1556,7 @@ public class PodSpecGenerator {
    * VolumesFrom is a set of containers whose volumes will be added to this pod. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are &#39;ro&#39;, &#39;rw&#39;, and &#39;z&#39;. Options will be used for all volumes sourced from the container.
    * @return volumesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

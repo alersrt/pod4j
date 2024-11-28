@@ -40,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Subnet.JSON_PROPERTY_LEASE_RANGE,
   Subnet.JSON_PROPERTY_SUBNET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Subnet {
   public static final String JSON_PROPERTY_GATEWAY = "gateway";
   private String gateway;
@@ -63,7 +63,7 @@ public class Subnet {
    * Gateway IP for this Network.
    * @return gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -88,7 +88,7 @@ public class Subnet {
    * Get leaseRange
    * @return leaseRange
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_LEASE_RANGE)
@@ -114,7 +114,7 @@ public class Subnet {
    * Subnet for this Network in CIDR form.
    * @return subnet
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUBNET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

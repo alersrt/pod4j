@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodBasicConfig
  */
-public class PodBasicConfigTest {
+class PodBasicConfigTest {
     private final PodBasicConfig model = new PodBasicConfig();
 
     /**
      * Model tests for PodBasicConfig
      */
     @Test
-    public void testPodBasicConfig() {
+    void testPodBasicConfig() {
         // TODO: test PodBasicConfig
     }
 
@@ -46,7 +47,7 @@ public class PodBasicConfigTest {
      * Test the property 'exitPolicy'
      */
     @Test
-    public void exitPolicyTest() {
+    void exitPolicyTest() {
         // TODO: test exitPolicy
     }
 
@@ -54,7 +55,7 @@ public class PodBasicConfigTest {
      * Test the property 'hostname'
      */
     @Test
-    public void hostnameTest() {
+    void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -62,7 +63,7 @@ public class PodBasicConfigTest {
      * Test the property 'infraCommand'
      */
     @Test
-    public void infraCommandTest() {
+    void infraCommandTest() {
         // TODO: test infraCommand
     }
 
@@ -70,7 +71,7 @@ public class PodBasicConfigTest {
      * Test the property 'infraConmonPidFile'
      */
     @Test
-    public void infraConmonPidFileTest() {
+    void infraConmonPidFileTest() {
         // TODO: test infraConmonPidFile
     }
 
@@ -78,7 +79,7 @@ public class PodBasicConfigTest {
      * Test the property 'infraImage'
      */
     @Test
-    public void infraImageTest() {
+    void infraImageTest() {
         // TODO: test infraImage
     }
 
@@ -86,7 +87,7 @@ public class PodBasicConfigTest {
      * Test the property 'infraName'
      */
     @Test
-    public void infraNameTest() {
+    void infraNameTest() {
         // TODO: test infraName
     }
 
@@ -94,7 +95,7 @@ public class PodBasicConfigTest {
      * Test the property 'ipcns'
      */
     @Test
-    public void ipcnsTest() {
+    void ipcnsTest() {
         // TODO: test ipcns
     }
 
@@ -102,7 +103,7 @@ public class PodBasicConfigTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -110,7 +111,7 @@ public class PodBasicConfigTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -118,7 +119,7 @@ public class PodBasicConfigTest {
      * Test the property 'noInfra'
      */
     @Test
-    public void noInfraTest() {
+    void noInfraTest() {
         // TODO: test noInfra
     }
 
@@ -126,7 +127,7 @@ public class PodBasicConfigTest {
      * Test the property 'pidns'
      */
     @Test
-    public void pidnsTest() {
+    void pidnsTest() {
         // TODO: test pidns
     }
 
@@ -134,7 +135,7 @@ public class PodBasicConfigTest {
      * Test the property 'podCreateCommand'
      */
     @Test
-    public void podCreateCommandTest() {
+    void podCreateCommandTest() {
         // TODO: test podCreateCommand
     }
 
@@ -142,7 +143,7 @@ public class PodBasicConfigTest {
      * Test the property 'podDevices'
      */
     @Test
-    public void podDevicesTest() {
+    void podDevicesTest() {
         // TODO: test podDevices
     }
 
@@ -150,7 +151,7 @@ public class PodBasicConfigTest {
      * Test the property 'restartPolicy'
      */
     @Test
-    public void restartPolicyTest() {
+    void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
@@ -158,7 +159,7 @@ public class PodBasicConfigTest {
      * Test the property 'restartTries'
      */
     @Test
-    public void restartTriesTest() {
+    void restartTriesTest() {
         // TODO: test restartTries
     }
 
@@ -166,7 +167,7 @@ public class PodBasicConfigTest {
      * Test the property 'shareParent'
      */
     @Test
-    public void shareParentTest() {
+    void shareParentTest() {
         // TODO: test shareParent
     }
 
@@ -174,7 +175,7 @@ public class PodBasicConfigTest {
      * Test the property 'sharedNamespaces'
      */
     @Test
-    public void sharedNamespacesTest() {
+    void sharedNamespacesTest() {
         // TODO: test sharedNamespaces
     }
 
@@ -182,7 +183,7 @@ public class PodBasicConfigTest {
      * Test the property 'sysctl'
      */
     @Test
-    public void sysctlTest() {
+    void sysctlTest() {
         // TODO: test sysctl
     }
 
@@ -190,7 +191,7 @@ public class PodBasicConfigTest {
      * Test the property 'userns'
      */
     @Test
-    public void usernsTest() {
+    void usernsTest() {
         // TODO: test userns
     }
 
@@ -198,7 +199,7 @@ public class PodBasicConfigTest {
      * Test the property 'utsns'
      */
     @Test
-    public void utsnsTest() {
+    void utsnsTest() {
         // TODO: test utsns
     }
 

@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ImageProperties.JSON_PROPERTY_PLATFORM,
   ImageProperties.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageProperties {
   public static final String JSON_PROPERTY_CONTAINERS = "Containers";
   private List<String> containers = new ArrayList<>();
@@ -74,7 +74,7 @@ public class ImageProperties {
    * Containers is an array containing the IDs of the containers that are using this image.
    * @return containers
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
@@ -100,7 +100,7 @@ public class ImageProperties {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -127,7 +127,7 @@ public class ImageProperties {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SIZE)

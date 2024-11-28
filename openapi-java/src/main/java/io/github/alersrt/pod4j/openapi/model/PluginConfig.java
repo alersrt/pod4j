@@ -62,7 +62,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PluginConfig.JSON_PROPERTY_WORK_DIR,
   PluginConfig.JSON_PROPERTY_ROOTFS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PluginConfig {
   public static final String JSON_PROPERTY_ARGS = "Args";
   private PluginConfigArgs args;
@@ -124,7 +124,7 @@ public class PluginConfig {
    * Get args
    * @return args
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -151,7 +151,7 @@ public class PluginConfig {
    * description
    * @return description
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
@@ -177,7 +177,7 @@ public class PluginConfig {
    * Docker Version used to create the plugin
    * @return dockerVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DOCKER_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -202,7 +202,7 @@ public class PluginConfig {
    * documentation
    * @return documentation
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_DOCUMENTATION)
@@ -236,7 +236,7 @@ public class PluginConfig {
    * entrypoint
    * @return entrypoint
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
@@ -270,7 +270,7 @@ public class PluginConfig {
    * env
    * @return env
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -297,7 +297,7 @@ public class PluginConfig {
    * Get _interface
    * @return _interface
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -324,7 +324,7 @@ public class PluginConfig {
    * ipc host
    * @return ipcHost
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_IPC_HOST)
@@ -350,7 +350,7 @@ public class PluginConfig {
    * Get linux
    * @return linux
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -385,7 +385,7 @@ public class PluginConfig {
    * mounts
    * @return mounts
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -412,7 +412,7 @@ public class PluginConfig {
    * Get network
    * @return network
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -439,7 +439,7 @@ public class PluginConfig {
    * pid host
    * @return pidHost
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_PID_HOST)
@@ -465,7 +465,7 @@ public class PluginConfig {
    * propagated mount
    * @return propagatedMount
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_PROPAGATED_MOUNT)
@@ -491,7 +491,7 @@ public class PluginConfig {
    * Get user
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_USER)
@@ -517,7 +517,7 @@ public class PluginConfig {
    * work dir
    * @return workDir
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_WORK_DIR)
@@ -543,7 +543,7 @@ public class PluginConfig {
    * Get rootfs
    * @return rootfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ROOTFS)

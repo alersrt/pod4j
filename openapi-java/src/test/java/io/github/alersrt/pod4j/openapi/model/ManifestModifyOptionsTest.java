@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ManifestModifyOptions
  */
-public class ManifestModifyOptionsTest {
+class ManifestModifyOptionsTest {
     private final ManifestModifyOptions model = new ManifestModifyOptions();
 
     /**
      * Model tests for ManifestModifyOptions
      */
     @Test
-    public void testManifestModifyOptions() {
+    void testManifestModifyOptions() {
         // TODO: test ManifestModifyOptions
     }
 
@@ -45,7 +46,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'all'
      */
     @Test
-    public void allTest() {
+    void allTest() {
         // TODO: test all
     }
 
@@ -53,7 +54,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'annotation'
      */
     @Test
-    public void annotationTest() {
+    void annotationTest() {
         // TODO: test annotation
     }
 
@@ -61,7 +62,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'annotations'
      */
     @Test
-    public void annotationsTest() {
+    void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -69,7 +70,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'arch'
      */
     @Test
-    public void archTest() {
+    void archTest() {
         // TODO: test arch
     }
 
@@ -77,7 +78,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'artifactAnnotations'
      */
     @Test
-    public void artifactAnnotationsTest() {
+    void artifactAnnotationsTest() {
         // TODO: test artifactAnnotations
     }
 
@@ -85,7 +86,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'artifactConfig'
      */
     @Test
-    public void artifactConfigTest() {
+    void artifactConfigTest() {
         // TODO: test artifactConfig
     }
 
@@ -93,7 +94,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'artifactConfigType'
      */
     @Test
-    public void artifactConfigTypeTest() {
+    void artifactConfigTypeTest() {
         // TODO: test artifactConfigType
     }
 
@@ -101,7 +102,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'artifactExcludeTitles'
      */
     @Test
-    public void artifactExcludeTitlesTest() {
+    void artifactExcludeTitlesTest() {
         // TODO: test artifactExcludeTitles
     }
 
@@ -109,7 +110,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'artifactFiles'
      */
     @Test
-    public void artifactFilesTest() {
+    void artifactFilesTest() {
         // TODO: test artifactFiles
     }
 
@@ -117,7 +118,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'artifactLayerType'
      */
     @Test
-    public void artifactLayerTypeTest() {
+    void artifactLayerTypeTest() {
         // TODO: test artifactLayerType
     }
 
@@ -125,7 +126,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'artifactSubject'
      */
     @Test
-    public void artifactSubjectTest() {
+    void artifactSubjectTest() {
         // TODO: test artifactSubject
     }
 
@@ -133,7 +134,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'artifactType'
      */
     @Test
-    public void artifactTypeTest() {
+    void artifactTypeTest() {
         // TODO: test artifactType
     }
 
@@ -141,7 +142,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'features'
      */
     @Test
-    public void featuresTest() {
+    void featuresTest() {
         // TODO: test features
     }
 
@@ -149,7 +150,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'images'
      */
     @Test
-    public void imagesTest() {
+    void imagesTest() {
         // TODO: test images
     }
 
@@ -157,7 +158,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'indexAnnotation'
      */
     @Test
-    public void indexAnnotationTest() {
+    void indexAnnotationTest() {
         // TODO: test indexAnnotation
     }
 
@@ -165,7 +166,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'indexAnnotations'
      */
     @Test
-    public void indexAnnotationsTest() {
+    void indexAnnotationsTest() {
         // TODO: test indexAnnotations
     }
 
@@ -173,7 +174,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'operation'
      */
     @Test
-    public void operationTest() {
+    void operationTest() {
         // TODO: test operation
     }
 
@@ -181,7 +182,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'os'
      */
     @Test
-    public void osTest() {
+    void osTest() {
         // TODO: test os
     }
 
@@ -189,7 +190,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'osFeatures'
      */
     @Test
-    public void osFeaturesTest() {
+    void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
@@ -197,7 +198,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'osVersion'
      */
     @Test
-    public void osVersionTest() {
+    void osVersionTest() {
         // TODO: test osVersion
     }
 
@@ -205,7 +206,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'subject'
      */
     @Test
-    public void subjectTest() {
+    void subjectTest() {
         // TODO: test subject
     }
 
@@ -213,7 +214,7 @@ public class ManifestModifyOptionsTest {
      * Test the property 'variant'
      */
     @Test
-    public void variantTest() {
+    void variantTest() {
         // TODO: test variant
     }
 

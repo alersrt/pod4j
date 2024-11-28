@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Schema2ListPublic.JSON_PROPERTY_MEDIA_TYPE,
   Schema2ListPublic.JSON_PROPERTY_SCHEMA_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2ListPublic {
   public static final String JSON_PROPERTY_MANIFESTS = "manifests";
   private List<@Valid Schema2ManifestDescriptor> manifests = new ArrayList<>();
@@ -73,7 +73,7 @@ public class Schema2ListPublic {
    * Get manifests
    * @return manifests
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MANIFESTS)
@@ -99,7 +99,7 @@ public class Schema2ListPublic {
    * Get mediaType
    * @return mediaType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -124,7 +124,7 @@ public class Schema2ListPublic {
    * Get schemaVersion
    * @return schemaVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SCHEMA_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

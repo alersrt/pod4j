@@ -28,6 +28,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
 /**
  * API tests for ManifestsApi
@@ -37,18 +42,22 @@ public class ManifestsApiTest {
 
     private final ManifestsApi api = new ManifestsApi();
 
+
     /**
      * Add image
      *
      * Add an image to a manifest list  Deprecated: As of 4.0.0 use ManifestModifyLibpod instead 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void manifestAddLibpodTest() throws ApiException {
         String name = null;
         ManifestAddOptions options = null;
-        IdResponse response = api.manifestAddLibpod(name, options);
+        IdResponse response =
+                api.manifestAddLibpod(name, options);
+        
         // TODO: test validations
     }
 
@@ -57,7 +66,8 @@ public class ManifestsApiTest {
      *
      * Create a manifest list
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void manifestCreateLibpodTest() throws ApiException {
@@ -66,7 +76,9 @@ public class ManifestsApiTest {
         Boolean all = null;
         Boolean amend = null;
         ManifestModifyOptions options = null;
-        IdResponse response = api.manifestCreateLibpod(name, images, all, amend, options);
+        IdResponse response =
+                api.manifestCreateLibpod(name, images, all, amend, options);
+        
         // TODO: test validations
     }
 
@@ -75,12 +87,15 @@ public class ManifestsApiTest {
      *
      * Delete named manifest list  As of v4.0.0 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void manifestDeleteLibpodTest() throws ApiException {
         String name = null;
-        LibpodImagesRemoveReport response = api.manifestDeleteLibpod(name);
+        LibpodImagesRemoveReport response =
+                api.manifestDeleteLibpod(name);
+        
         // TODO: test validations
     }
 
@@ -89,12 +104,15 @@ public class ManifestsApiTest {
      *
      * Check if manifest list exists  Note: There is no contract that the manifest list will exist for a follow-on operation 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void manifestExistsLibpodTest() throws ApiException {
         String name = null;
+
         api.manifestExistsLibpod(name);
+
         // TODO: test validations
     }
 
@@ -103,13 +121,16 @@ public class ManifestsApiTest {
      *
      * Display attributes of given manifest list
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void manifestInspectLibpodTest() throws ApiException {
         String name = null;
         Boolean tlsVerify = null;
-        Schema2ListPublic response = api.manifestInspectLibpod(name, tlsVerify);
+        Schema2ListPublic response =
+                api.manifestInspectLibpod(name, tlsVerify);
+        
         // TODO: test validations
     }
 
@@ -118,14 +139,17 @@ public class ManifestsApiTest {
      *
      * Add/Remove an image(s) to a manifest list  Note: operations are not atomic when multiple Images are provided.  As of v4.0.0 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void manifestModifyLibpodTest() throws ApiException {
         String name = null;
         ManifestModifyOptions options = null;
         Boolean tlsVerify = null;
-        ManifestModifyReport response = api.manifestModifyLibpod(name, options, tlsVerify);
+        ManifestModifyReport response =
+                api.manifestModifyLibpod(name, options, tlsVerify);
+        
         // TODO: test validations
     }
 
@@ -134,7 +158,8 @@ public class ManifestsApiTest {
      *
      * Push a manifest list or image index to the named registry  As of v4.0.0 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void manifestPushLibpodTest() throws ApiException {
@@ -145,7 +170,9 @@ public class ManifestsApiTest {
         Boolean all = null;
         Boolean tlsVerify = null;
         Boolean quiet = null;
-        IdResponse response = api.manifestPushLibpod(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet);
+        IdResponse response =
+                api.manifestPushLibpod(name, destination, addCompression, forceCompressionFormat, all, tlsVerify, quiet);
+        
         // TODO: test validations
     }
 
@@ -154,14 +181,17 @@ public class ManifestsApiTest {
      *
      * Push a manifest list or image index to a registry  Deprecated: As of 4.0.0 use ManifestPushLibpod instead 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void manifestPushV3LibpodTest() throws ApiException {
         String name = null;
         String destination = null;
         Boolean all = null;
-        IdResponse response = api.manifestPushV3Libpod(name, destination, all);
+        IdResponse response =
+                api.manifestPushV3Libpod(name, destination, all);
+        
         // TODO: test validations
     }
 

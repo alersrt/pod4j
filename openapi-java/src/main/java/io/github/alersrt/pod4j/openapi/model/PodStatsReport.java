@@ -46,7 +46,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PodStatsReport.JSON_PROPERTY_P_I_D_S,
   PodStatsReport.JSON_PROPERTY_POD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodStatsReport {
   public static final String JSON_PROPERTY_BLOCK_I_O = "BlockIO";
   private String blockIO;
@@ -90,7 +90,7 @@ public class PodStatsReport {
    * Humanized disk usage read + write
    * @return blockIO
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BLOCK_I_O)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -115,7 +115,7 @@ public class PodStatsReport {
    * Container ID
    * @return CID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_C_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -140,7 +140,7 @@ public class PodStatsReport {
    * Percentage of CPU utilized by pod
    * @return CPU
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_C_P_U)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -165,7 +165,7 @@ public class PodStatsReport {
    * Percentage of Memory utilized by pod
    * @return mem
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -190,7 +190,7 @@ public class PodStatsReport {
    * Humanized Memory usage and maximum
    * @return memUsage
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM_USAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -215,7 +215,7 @@ public class PodStatsReport {
    * Memory usage and maximum in bytes
    * @return memUsageBytes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM_USAGE_BYTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -240,7 +240,7 @@ public class PodStatsReport {
    * Pod Name
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -265,7 +265,7 @@ public class PodStatsReport {
    * Network usage inbound + outbound
    * @return netIO
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NET_I_O)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -290,7 +290,7 @@ public class PodStatsReport {
    * Container PID
    * @return PIDS
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_P_I_D_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -315,7 +315,7 @@ public class PodStatsReport {
    * Pod ID
    * @return pod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

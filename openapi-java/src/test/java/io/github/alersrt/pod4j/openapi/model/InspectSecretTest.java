@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectSecret
  */
-public class InspectSecretTest {
+class InspectSecretTest {
     private final InspectSecret model = new InspectSecret();
 
     /**
      * Model tests for InspectSecret
      */
     @Test
-    public void testInspectSecret() {
+    void testInspectSecret() {
         // TODO: test InspectSecret
     }
 
@@ -41,7 +42,7 @@ public class InspectSecretTest {
      * Test the property 'GID'
      */
     @Test
-    public void GIDTest() {
+    void GIDTest() {
         // TODO: test GID
     }
 
@@ -49,7 +50,7 @@ public class InspectSecretTest {
      * Test the property 'ID'
      */
     @Test
-    public void IDTest() {
+    void IDTest() {
         // TODO: test ID
     }
 
@@ -57,7 +58,7 @@ public class InspectSecretTest {
      * Test the property 'mode'
      */
     @Test
-    public void modeTest() {
+    void modeTest() {
         // TODO: test mode
     }
 
@@ -65,7 +66,7 @@ public class InspectSecretTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -73,7 +74,7 @@ public class InspectSecretTest {
      * Test the property 'UID'
      */
     @Test
-    public void UIDTest() {
+    void UIDTest() {
         // TODO: test UID
     }
 

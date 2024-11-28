@@ -13,24 +13,15 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * AuthConfig contains authorization information for connecting to a Registry
  */
@@ -43,7 +34,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   AuthConfig.JSON_PROPERTY_SERVERADDRESS,
   AuthConfig.JSON_PROPERTY_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class AuthConfig {
   public static final String JSON_PROPERTY_AUTH = "auth";
   private String auth;
@@ -78,7 +69,7 @@ public class AuthConfig {
    * Get auth
    * @return auth
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -103,7 +94,7 @@ public class AuthConfig {
    * Email is an optional value associated with the username. This field is deprecated and will be removed in a later version of docker.
    * @return email
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EMAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -128,7 +119,7 @@ public class AuthConfig {
    * IdentityToken is used to authenticate the user and get an access token for the registry.
    * @return identitytoken
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IDENTITYTOKEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -153,7 +144,7 @@ public class AuthConfig {
    * Get password
    * @return password
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PASSWORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -178,7 +169,7 @@ public class AuthConfig {
    * RegistryToken is a bearer token to be sent to a registry
    * @return registrytoken
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REGISTRYTOKEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -203,7 +194,7 @@ public class AuthConfig {
    * Get serveraddress
    * @return serveraddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SERVERADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -228,7 +219,7 @@ public class AuthConfig {
    * Get username
    * @return username
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USERNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

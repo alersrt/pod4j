@@ -13,33 +13,34 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Config;
 import io.github.alersrt.pod4j.openapi.model.GraphDriverData;
 import io.github.alersrt.pod4j.openapi.model.Metadata;
 import io.github.alersrt.pod4j.openapi.model.RootFS;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ImageInspect
  */
-public class ImageInspectTest {
+class ImageInspectTest {
     private final ImageInspect model = new ImageInspect();
 
     /**
      * Model tests for ImageInspect
      */
     @Test
-    public void testImageInspect() {
+    void testImageInspect() {
         // TODO: test ImageInspect
     }
 
@@ -47,7 +48,7 @@ public class ImageInspectTest {
      * Test the property 'architecture'
      */
     @Test
-    public void architectureTest() {
+    void architectureTest() {
         // TODO: test architecture
     }
 
@@ -55,7 +56,7 @@ public class ImageInspectTest {
      * Test the property 'author'
      */
     @Test
-    public void authorTest() {
+    void authorTest() {
         // TODO: test author
     }
 
@@ -63,7 +64,7 @@ public class ImageInspectTest {
      * Test the property 'comment'
      */
     @Test
-    public void commentTest() {
+    void commentTest() {
         // TODO: test comment
     }
 
@@ -71,7 +72,7 @@ public class ImageInspectTest {
      * Test the property 'config'
      */
     @Test
-    public void configTest() {
+    void configTest() {
         // TODO: test config
     }
 
@@ -79,7 +80,7 @@ public class ImageInspectTest {
      * Test the property 'container'
      */
     @Test
-    public void containerTest() {
+    void containerTest() {
         // TODO: test container
     }
 
@@ -87,7 +88,7 @@ public class ImageInspectTest {
      * Test the property 'containerConfig'
      */
     @Test
-    public void containerConfigTest() {
+    void containerConfigTest() {
         // TODO: test containerConfig
     }
 
@@ -95,7 +96,7 @@ public class ImageInspectTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -103,7 +104,7 @@ public class ImageInspectTest {
      * Test the property 'dockerVersion'
      */
     @Test
-    public void dockerVersionTest() {
+    void dockerVersionTest() {
         // TODO: test dockerVersion
     }
 
@@ -111,7 +112,7 @@ public class ImageInspectTest {
      * Test the property 'graphDriver'
      */
     @Test
-    public void graphDriverTest() {
+    void graphDriverTest() {
         // TODO: test graphDriver
     }
 
@@ -119,7 +120,7 @@ public class ImageInspectTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -127,7 +128,7 @@ public class ImageInspectTest {
      * Test the property 'metadata'
      */
     @Test
-    public void metadataTest() {
+    void metadataTest() {
         // TODO: test metadata
     }
 
@@ -135,7 +136,7 @@ public class ImageInspectTest {
      * Test the property 'os'
      */
     @Test
-    public void osTest() {
+    void osTest() {
         // TODO: test os
     }
 
@@ -143,7 +144,7 @@ public class ImageInspectTest {
      * Test the property 'osVersion'
      */
     @Test
-    public void osVersionTest() {
+    void osVersionTest() {
         // TODO: test osVersion
     }
 
@@ -151,7 +152,7 @@ public class ImageInspectTest {
      * Test the property 'parent'
      */
     @Test
-    public void parentTest() {
+    void parentTest() {
         // TODO: test parent
     }
 
@@ -159,7 +160,7 @@ public class ImageInspectTest {
      * Test the property 'repoDigests'
      */
     @Test
-    public void repoDigestsTest() {
+    void repoDigestsTest() {
         // TODO: test repoDigests
     }
 
@@ -167,7 +168,7 @@ public class ImageInspectTest {
      * Test the property 'repoTags'
      */
     @Test
-    public void repoTagsTest() {
+    void repoTagsTest() {
         // TODO: test repoTags
     }
 
@@ -175,7 +176,7 @@ public class ImageInspectTest {
      * Test the property 'rootFS'
      */
     @Test
-    public void rootFSTest() {
+    void rootFSTest() {
         // TODO: test rootFS
     }
 
@@ -183,7 +184,7 @@ public class ImageInspectTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 
@@ -191,7 +192,7 @@ public class ImageInspectTest {
      * Test the property 'variant'
      */
     @Test
-    public void variantTest() {
+    void variantTest() {
         // TODO: test variant
     }
 
@@ -199,7 +200,7 @@ public class ImageInspectTest {
      * Test the property 'virtualSize'
      */
     @Test
-    public void virtualSizeTest() {
+    void virtualSizeTest() {
         // TODO: test virtualSize
     }
 

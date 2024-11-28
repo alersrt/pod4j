@@ -47,7 +47,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SystemPruneReport.JSON_PROPERTY_RECLAIMED_SPACE,
   SystemPruneReport.JSON_PROPERTY_VOLUME_PRUNE_REPORTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemPruneReport {
   public static final String JSON_PROPERTY_CONTAINER_PRUNE_REPORTS = "ContainerPruneReports";
   private List<@Valid PruneReport> containerPruneReports = new ArrayList<>();
@@ -87,7 +87,7 @@ public class SystemPruneReport {
    * Get containerPruneReports
    * @return containerPruneReports
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_PRUNE_REPORTS)
@@ -121,7 +121,7 @@ public class SystemPruneReport {
    * Get imagePruneReports
    * @return imagePruneReports
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IMAGE_PRUNE_REPORTS)
@@ -155,7 +155,7 @@ public class SystemPruneReport {
    * Get networkPruneReports
    * @return networkPruneReports
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_PRUNE_REPORTS)
@@ -189,7 +189,7 @@ public class SystemPruneReport {
    * Get podPruneReport
    * @return podPruneReport
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_POD_PRUNE_REPORT)
@@ -215,7 +215,7 @@ public class SystemPruneReport {
    * Get reclaimedSpace
    * @return reclaimedSpace
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RECLAIMED_SPACE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -248,7 +248,7 @@ public class SystemPruneReport {
    * Get volumePruneReports
    * @return volumePruneReports
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VOLUME_PRUNE_REPORTS)

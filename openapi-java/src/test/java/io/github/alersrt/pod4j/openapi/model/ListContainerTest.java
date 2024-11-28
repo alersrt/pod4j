@@ -13,35 +13,36 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ContainerSize;
 import io.github.alersrt.pod4j.openapi.model.ListContainerNamespaces;
 import io.github.alersrt.pod4j.openapi.model.PortMapping;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ListContainer
  */
-public class ListContainerTest {
+class ListContainerTest {
     private final ListContainer model = new ListContainer();
 
     /**
      * Model tests for ListContainer
      */
     @Test
-    public void testListContainer() {
+    void testListContainer() {
         // TODO: test ListContainer
     }
 
@@ -49,7 +50,7 @@ public class ListContainerTest {
      * Test the property 'autoRemove'
      */
     @Test
-    public void autoRemoveTest() {
+    void autoRemoveTest() {
         // TODO: test autoRemove
     }
 
@@ -57,7 +58,7 @@ public class ListContainerTest {
      * Test the property 'ciDFile'
      */
     @Test
-    public void ciDFileTest() {
+    void ciDFileTest() {
         // TODO: test ciDFile
     }
 
@@ -65,7 +66,7 @@ public class ListContainerTest {
      * Test the property 'command'
      */
     @Test
-    public void commandTest() {
+    void commandTest() {
         // TODO: test command
     }
 
@@ -73,7 +74,7 @@ public class ListContainerTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -81,7 +82,7 @@ public class ListContainerTest {
      * Test the property 'createdAt'
      */
     @Test
-    public void createdAtTest() {
+    void createdAtTest() {
         // TODO: test createdAt
     }
 
@@ -89,7 +90,7 @@ public class ListContainerTest {
      * Test the property 'exitCode'
      */
     @Test
-    public void exitCodeTest() {
+    void exitCodeTest() {
         // TODO: test exitCode
     }
 
@@ -97,7 +98,7 @@ public class ListContainerTest {
      * Test the property 'exited'
      */
     @Test
-    public void exitedTest() {
+    void exitedTest() {
         // TODO: test exited
     }
 
@@ -105,7 +106,7 @@ public class ListContainerTest {
      * Test the property 'exitedAt'
      */
     @Test
-    public void exitedAtTest() {
+    void exitedAtTest() {
         // TODO: test exitedAt
     }
 
@@ -113,7 +114,7 @@ public class ListContainerTest {
      * Test the property 'exposedPorts'
      */
     @Test
-    public void exposedPortsTest() {
+    void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
@@ -121,7 +122,7 @@ public class ListContainerTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -129,7 +130,7 @@ public class ListContainerTest {
      * Test the property 'image'
      */
     @Test
-    public void imageTest() {
+    void imageTest() {
         // TODO: test image
     }
 
@@ -137,7 +138,7 @@ public class ListContainerTest {
      * Test the property 'imageID'
      */
     @Test
-    public void imageIDTest() {
+    void imageIDTest() {
         // TODO: test imageID
     }
 
@@ -145,7 +146,7 @@ public class ListContainerTest {
      * Test the property 'isInfra'
      */
     @Test
-    public void isInfraTest() {
+    void isInfraTest() {
         // TODO: test isInfra
     }
 
@@ -153,7 +154,7 @@ public class ListContainerTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -161,7 +162,7 @@ public class ListContainerTest {
      * Test the property 'mounts'
      */
     @Test
-    public void mountsTest() {
+    void mountsTest() {
         // TODO: test mounts
     }
 
@@ -169,7 +170,7 @@ public class ListContainerTest {
      * Test the property 'names'
      */
     @Test
-    public void namesTest() {
+    void namesTest() {
         // TODO: test names
     }
 
@@ -177,7 +178,7 @@ public class ListContainerTest {
      * Test the property 'namespaces'
      */
     @Test
-    public void namespacesTest() {
+    void namespacesTest() {
         // TODO: test namespaces
     }
 
@@ -185,7 +186,7 @@ public class ListContainerTest {
      * Test the property 'networks'
      */
     @Test
-    public void networksTest() {
+    void networksTest() {
         // TODO: test networks
     }
 
@@ -193,7 +194,7 @@ public class ListContainerTest {
      * Test the property 'pid'
      */
     @Test
-    public void pidTest() {
+    void pidTest() {
         // TODO: test pid
     }
 
@@ -201,7 +202,7 @@ public class ListContainerTest {
      * Test the property 'pod'
      */
     @Test
-    public void podTest() {
+    void podTest() {
         // TODO: test pod
     }
 
@@ -209,7 +210,7 @@ public class ListContainerTest {
      * Test the property 'podName'
      */
     @Test
-    public void podNameTest() {
+    void podNameTest() {
         // TODO: test podName
     }
 
@@ -217,7 +218,7 @@ public class ListContainerTest {
      * Test the property 'ports'
      */
     @Test
-    public void portsTest() {
+    void portsTest() {
         // TODO: test ports
     }
 
@@ -225,7 +226,7 @@ public class ListContainerTest {
      * Test the property 'restarts'
      */
     @Test
-    public void restartsTest() {
+    void restartsTest() {
         // TODO: test restarts
     }
 
@@ -233,7 +234,7 @@ public class ListContainerTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 
@@ -241,7 +242,7 @@ public class ListContainerTest {
      * Test the property 'startedAt'
      */
     @Test
-    public void startedAtTest() {
+    void startedAtTest() {
         // TODO: test startedAt
     }
 
@@ -249,7 +250,7 @@ public class ListContainerTest {
      * Test the property 'state'
      */
     @Test
-    public void stateTest() {
+    void stateTest() {
         // TODO: test state
     }
 
@@ -257,7 +258,7 @@ public class ListContainerTest {
      * Test the property 'status'
      */
     @Test
-    public void statusTest() {
+    void statusTest() {
         // TODO: test status
     }
 

@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ImageDelete200ResponseInner
  */
-public class ImageDelete200ResponseInnerTest {
+class ImageDelete200ResponseInnerTest {
     private final ImageDelete200ResponseInner model = new ImageDelete200ResponseInner();
 
     /**
      * Model tests for ImageDelete200ResponseInner
      */
     @Test
-    public void testImageDelete200ResponseInner() {
+    void testImageDelete200ResponseInner() {
         // TODO: test ImageDelete200ResponseInner
     }
 
@@ -43,7 +44,7 @@ public class ImageDelete200ResponseInnerTest {
      * Test the property 'deleted'
      */
     @Test
-    public void deletedTest() {
+    void deletedTest() {
         // TODO: test deleted
     }
 
@@ -51,7 +52,7 @@ public class ImageDelete200ResponseInnerTest {
      * Test the property 'untagged'
      */
     @Test
-    public void untaggedTest() {
+    void untaggedTest() {
         // TODO: test untagged
     }
 

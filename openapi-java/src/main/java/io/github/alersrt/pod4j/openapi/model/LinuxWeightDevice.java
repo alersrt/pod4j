@@ -40,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxWeightDevice.JSON_PROPERTY_MINOR,
   LinuxWeightDevice.JSON_PROPERTY_WEIGHT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxWeightDevice {
   public static final String JSON_PROPERTY_LEAF_WEIGHT = "leafWeight";
   private Integer leafWeight;
@@ -66,7 +66,7 @@ public class LinuxWeightDevice {
    * LeafWeight is the bandwidth rate for the device while competing with the cgroup&#39;s child cgroups, CFQ scheduler only
    * @return leafWeight
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LEAF_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -91,7 +91,7 @@ public class LinuxWeightDevice {
    * Major is the device&#39;s major number.
    * @return major
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAJOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -116,7 +116,7 @@ public class LinuxWeightDevice {
    * Minor is the device&#39;s minor number.
    * @return minor
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MINOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -141,7 +141,7 @@ public class LinuxWeightDevice {
    * Weight is the bandwidth rate for the device.
    * @return weight
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Metadata
  */
-public class MetadataTest {
+class MetadataTest {
     private final Metadata model = new Metadata();
 
     /**
      * Model tests for Metadata
      */
     @Test
-    public void testMetadata() {
+    void testMetadata() {
         // TODO: test Metadata
     }
 
@@ -42,7 +43,7 @@ public class MetadataTest {
      * Test the property 'lastTagTime'
      */
     @Test
-    public void lastTagTimeTest() {
+    void lastTagTimeTest() {
         // TODO: test lastTagTime
     }
 

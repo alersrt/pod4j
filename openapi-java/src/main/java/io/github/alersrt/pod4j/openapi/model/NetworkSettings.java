@@ -61,7 +61,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   NetworkSettings.JSON_PROPERTY_SECONDARY_I_P_ADDRESSES,
   NetworkSettings.JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkSettings {
   public static final String JSON_PROPERTY_BRIDGE = "Bridge";
   private String bridge;
@@ -129,7 +129,7 @@ public class NetworkSettings {
    * Get bridge
    * @return bridge
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BRIDGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -154,7 +154,7 @@ public class NetworkSettings {
    * Get endpointID
    * @return endpointID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -179,7 +179,7 @@ public class NetworkSettings {
    * Get gateway
    * @return gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -204,7 +204,7 @@ public class NetworkSettings {
    * Get globalIPv6Address
    * @return globalIPv6Address
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -229,7 +229,7 @@ public class NetworkSettings {
    * Get globalIPv6PrefixLen
    * @return globalIPv6PrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -254,7 +254,7 @@ public class NetworkSettings {
    * HairpinMode specifies if hairpin NAT should be enabled on the virtual interface  Deprecated: This field is never set and will be removed in a future release.
    * @return hairpinMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HAIRPIN_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -279,7 +279,7 @@ public class NetworkSettings {
    * Get ipAddress
    * @return ipAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -304,7 +304,7 @@ public class NetworkSettings {
    * Get ipPrefixLen
    * @return ipPrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -329,7 +329,7 @@ public class NetworkSettings {
    * Get ipv6Gateway
    * @return ipv6Gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -354,7 +354,7 @@ public class NetworkSettings {
    * LinkLocalIPv6Address is an IPv6 unicast address using the link-local prefix  Deprecated: This field is never set and will be removed in a future release.
    * @return linkLocalIPv6Address
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINK_LOCAL_I_PV6_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -379,7 +379,7 @@ public class NetworkSettings {
    * LinkLocalIPv6PrefixLen is the prefix length of an IPv6 unicast address  Deprecated: This field is never set and will be removed in a future release.
    * @return linkLocalIPv6PrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINK_LOCAL_I_PV6_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -404,7 +404,7 @@ public class NetworkSettings {
    * Get macAddress
    * @return macAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -437,7 +437,7 @@ public class NetworkSettings {
    * Get networks
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
@@ -471,7 +471,7 @@ public class NetworkSettings {
    * PortMap is a collection of PortBinding indexed by Port
    * @return ports
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORTS)
@@ -497,7 +497,7 @@ public class NetworkSettings {
    * Get sandboxID
    * @return sandboxID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SANDBOX_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -522,7 +522,7 @@ public class NetworkSettings {
    * Get sandboxKey
    * @return sandboxKey
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SANDBOX_KEY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -555,7 +555,7 @@ public class NetworkSettings {
    * Get secondaryIPAddresses
    * @return secondaryIPAddresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECONDARY_I_P_ADDRESSES)
@@ -589,7 +589,7 @@ public class NetworkSettings {
    * Get secondaryIPv6Addresses
    * @return secondaryIPv6Addresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES)

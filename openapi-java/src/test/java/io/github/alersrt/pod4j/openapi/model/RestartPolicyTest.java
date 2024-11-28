@@ -13,27 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for RestartPolicy
  */
-public class RestartPolicyTest {
+class RestartPolicyTest {
     private final RestartPolicy model = new RestartPolicy();
 
     /**
      * Model tests for RestartPolicy
      */
     @Test
-    public void testRestartPolicy() {
+    void testRestartPolicy() {
         // TODO: test RestartPolicy
     }
 
@@ -41,7 +41,7 @@ public class RestartPolicyTest {
      * Test the property 'maximumRetryCount'
      */
     @Test
-    public void maximumRetryCountTest() {
+    void maximumRetryCountTest() {
         // TODO: test maximumRetryCount
     }
 
@@ -49,7 +49,7 @@ public class RestartPolicyTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 

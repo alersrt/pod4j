@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PluginConfigUser.JSON_PROPERTY_G_I_D,
   PluginConfigUser.JSON_PROPERTY_U_I_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PluginConfigUser {
   public static final String JSON_PROPERTY_G_I_D = "GID";
   private Integer GID;
@@ -58,7 +58,7 @@ public class PluginConfigUser {
    * g ID
    * @return GID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -83,7 +83,7 @@ public class PluginConfigUser {
    * UID
    * @return UID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_U_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

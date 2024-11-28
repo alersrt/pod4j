@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Platform;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Descriptor
  */
-public class DescriptorTest {
+class DescriptorTest {
     private final Descriptor model = new Descriptor();
 
     /**
      * Model tests for Descriptor
      */
     @Test
-    public void testDescriptor() {
+    void testDescriptor() {
         // TODO: test Descriptor
     }
 
@@ -46,7 +47,7 @@ public class DescriptorTest {
      * Test the property 'annotations'
      */
     @Test
-    public void annotationsTest() {
+    void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -54,7 +55,7 @@ public class DescriptorTest {
      * Test the property 'artifactType'
      */
     @Test
-    public void artifactTypeTest() {
+    void artifactTypeTest() {
         // TODO: test artifactType
     }
 
@@ -62,7 +63,7 @@ public class DescriptorTest {
      * Test the property 'data'
      */
     @Test
-    public void dataTest() {
+    void dataTest() {
         // TODO: test data
     }
 
@@ -70,7 +71,7 @@ public class DescriptorTest {
      * Test the property 'digest'
      */
     @Test
-    public void digestTest() {
+    void digestTest() {
         // TODO: test digest
     }
 
@@ -78,7 +79,7 @@ public class DescriptorTest {
      * Test the property 'mediaType'
      */
     @Test
-    public void mediaTypeTest() {
+    void mediaTypeTest() {
         // TODO: test mediaType
     }
 
@@ -86,7 +87,7 @@ public class DescriptorTest {
      * Test the property 'platform'
      */
     @Test
-    public void platformTest() {
+    void platformTest() {
         // TODO: test platform
     }
 
@@ -94,7 +95,7 @@ public class DescriptorTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 
@@ -102,7 +103,7 @@ public class DescriptorTest {
      * Test the property 'urls'
      */
     @Test
-    public void urlsTest() {
+    void urlsTest() {
         // TODO: test urls
     }
 

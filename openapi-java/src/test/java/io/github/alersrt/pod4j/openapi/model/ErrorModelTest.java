@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ErrorModel
  */
-public class ErrorModelTest {
+class ErrorModelTest {
     private final ErrorModel model = new ErrorModel();
 
     /**
      * Model tests for ErrorModel
      */
     @Test
-    public void testErrorModel() {
+    void testErrorModel() {
         // TODO: test ErrorModel
     }
 
@@ -41,7 +42,7 @@ public class ErrorModelTest {
      * Test the property 'cause'
      */
     @Test
-    public void causeTest() {
+    void causeTest() {
         // TODO: test cause
     }
 
@@ -49,7 +50,7 @@ public class ErrorModelTest {
      * Test the property 'message'
      */
     @Test
-    public void messageTest() {
+    void messageTest() {
         // TODO: test message
     }
 
@@ -57,7 +58,7 @@ public class ErrorModelTest {
      * Test the property 'response'
      */
     @Test
-    public void responseTest() {
+    void responseTest() {
         // TODO: test response
     }
 

@@ -52,7 +52,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Summary.JSON_PROPERTY_SIZE,
   Summary.JSON_PROPERTY_VIRTUAL_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Summary {
   public static final String JSON_PROPERTY_CONTAINERS = "Containers";
   private Long containers;
@@ -99,7 +99,7 @@ public class Summary {
    * Number of containers using this image. Includes both stopped and running containers.  This size is not calculated by default, and depends on which API endpoint is used. &#x60;-1&#x60; indicates that the value has not been set / calculated.
    * @return containers
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
@@ -125,7 +125,7 @@ public class Summary {
    * Date and time at which the image was created as a Unix timestamp (number of seconds since EPOCH).
    * @return created
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -151,7 +151,7 @@ public class Summary {
    * ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image&#39;s configuration (which includes the digests of layers used by the image).  Note that this digest differs from the &#x60;RepoDigests&#x60; below, which holds digests of image manifests that reference the image.
    * @return id
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_ID)
@@ -185,7 +185,7 @@ public class Summary {
    * User-defined key/value metadata.
    * @return labels
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_LABELS)
@@ -219,7 +219,7 @@ public class Summary {
    * Manifests is a list of image manifests available in this image.  It provides a more detailed view of the platform-specific image manifests or other image-attached data like build attestations.  WARNING: This is experimental and may change at any time without any backward compatibility.
    * @return manifests
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MANIFESTS)
@@ -245,7 +245,7 @@ public class Summary {
    * ID of the parent image.  Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry.
    * @return parentId
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_PARENT_ID)
@@ -279,7 +279,7 @@ public class Summary {
    * List of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image.  These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated.
    * @return repoDigests
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
@@ -313,7 +313,7 @@ public class Summary {
    * List of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \&quot;untagged\&quot;, in which case it can still be referenced by its ID.
    * @return repoTags
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_REPO_TAGS)
@@ -339,7 +339,7 @@ public class Summary {
    * Total size of image layers that are shared between this image and other images.  This size is not calculated by default. &#x60;-1&#x60; indicates that the value has not been set / calculated.
    * @return sharedSize
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
@@ -365,7 +365,7 @@ public class Summary {
    * Total size of the image including all layers it is composed of.
    * @return size
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_SIZE)
@@ -391,7 +391,7 @@ public class Summary {
    * Total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead.
    * @return virtualSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

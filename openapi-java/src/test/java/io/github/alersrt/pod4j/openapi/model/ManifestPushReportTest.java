@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ManifestPushReport
  */
-public class ManifestPushReportTest {
+class ManifestPushReportTest {
     private final ManifestPushReport model = new ManifestPushReport();
 
     /**
      * Model tests for ManifestPushReport
      */
     @Test
-    public void testManifestPushReport() {
+    void testManifestPushReport() {
         // TODO: test ManifestPushReport
     }
 
@@ -41,7 +42,7 @@ public class ManifestPushReportTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -49,7 +50,7 @@ public class ManifestPushReportTest {
      * Test the property 'error'
      */
     @Test
-    public void errorTest() {
+    void errorTest() {
         // TODO: test error
     }
 
@@ -57,7 +58,7 @@ public class ManifestPushReportTest {
      * Test the property 'stream'
      */
     @Test
-    public void streamTest() {
+    void streamTest() {
         // TODO: test stream
     }
 

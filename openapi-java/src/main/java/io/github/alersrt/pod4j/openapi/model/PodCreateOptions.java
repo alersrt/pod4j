@@ -67,7 +67,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PodCreateOptions.JSON_PROPERTY_VOLUME,
   PodCreateOptions.JSON_PROPERTY_VOLUMES_FROM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodCreateOptions {
   public static final String JSON_PROPERTY_CGROUP_PARENT = "cgroup_parent";
   private String cgroupParent;
@@ -159,7 +159,7 @@ public class PodCreateOptions {
    * Get cgroupParent
    * @return cgroupParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -184,7 +184,7 @@ public class PodCreateOptions {
    * Get containerCommand
    * @return containerCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -209,7 +209,7 @@ public class PodCreateOptions {
    * Get containerConmonPidfile
    * @return containerConmonPidfile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_CONMON_PIDFILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -234,7 +234,7 @@ public class PodCreateOptions {
    * Get containerName
    * @return containerName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -259,7 +259,7 @@ public class PodCreateOptions {
    * Get cpus
    * @return cpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -284,7 +284,7 @@ public class PodCreateOptions {
    * Get cpusetCpus
    * @return cpusetCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -317,7 +317,7 @@ public class PodCreateOptions {
    * Get createCommand
    * @return createCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATE_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -350,7 +350,7 @@ public class PodCreateOptions {
    * Get deviceReadBps
    * @return deviceReadBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEVICE_READ_BPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -383,7 +383,7 @@ public class PodCreateOptions {
    * Get devices
    * @return devices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEVICES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -408,7 +408,7 @@ public class PodCreateOptions {
    * Get exitPolicy
    * @return exitPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -433,7 +433,7 @@ public class PodCreateOptions {
    * Get hostname
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -458,7 +458,7 @@ public class PodCreateOptions {
    * Get infra
    * @return infra
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -483,7 +483,7 @@ public class PodCreateOptions {
    * Get infraImage
    * @return infraImage
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -508,7 +508,7 @@ public class PodCreateOptions {
    * Get ipc
    * @return ipc
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPC)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -541,7 +541,7 @@ public class PodCreateOptions {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -566,7 +566,7 @@ public class PodCreateOptions {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -591,7 +591,7 @@ public class PodCreateOptions {
    * Get net
    * @return net
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NET)
@@ -617,7 +617,7 @@ public class PodCreateOptions {
    * Get pid
    * @return pid
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -642,7 +642,7 @@ public class PodCreateOptions {
    * Get restart
    * @return restart
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -675,7 +675,7 @@ public class PodCreateOptions {
    * Get securityOpt
    * @return securityOpt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -708,7 +708,7 @@ public class PodCreateOptions {
    * Get share
    * @return share
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -733,7 +733,7 @@ public class PodCreateOptions {
    * Get shareParent
    * @return shareParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARE_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -766,7 +766,7 @@ public class PodCreateOptions {
    * Get sysctl
    * @return sysctl
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSCTL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -791,7 +791,7 @@ public class PodCreateOptions {
    * Get uts
    * @return uts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -824,7 +824,7 @@ public class PodCreateOptions {
    * Get volume
    * @return volume
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -857,7 +857,7 @@ public class PodCreateOptions {
    * Get volumesFrom
    * @return volumesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

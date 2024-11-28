@@ -44,7 +44,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PodResourceConfig.JSON_PROPERTY_RESOURCE_LIMITS,
   PodResourceConfig.JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodResourceConfig {
   public static final String JSON_PROPERTY_CPU_PERIOD = "cpu_period";
   private Integer cpuPeriod;
@@ -70,7 +70,7 @@ public class PodResourceConfig {
    * CPU period of the cpuset, determined by --cpus
    * @return cpuPeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -95,7 +95,7 @@ public class PodResourceConfig {
    * CPU quota of the cpuset, determined by --cpus
    * @return cpuQuota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -120,7 +120,7 @@ public class PodResourceConfig {
    * Get resourceLimits
    * @return resourceLimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
@@ -154,7 +154,7 @@ public class PodResourceConfig {
    * ThrottleReadBpsDevice contains the rate at which the devices in the pod can be read from/accessed
    * @return throttleReadBpsDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)

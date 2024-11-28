@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ManifestSummarySize
  */
-public class ManifestSummarySizeTest {
+class ManifestSummarySizeTest {
     private final ManifestSummarySize model = new ManifestSummarySize();
 
     /**
      * Model tests for ManifestSummarySize
      */
     @Test
-    public void testManifestSummarySize() {
+    void testManifestSummarySize() {
         // TODO: test ManifestSummarySize
     }
 
@@ -41,7 +42,7 @@ public class ManifestSummarySizeTest {
      * Test the property 'content'
      */
     @Test
-    public void contentTest() {
+    void contentTest() {
         // TODO: test content
     }
 
@@ -49,7 +50,7 @@ public class ManifestSummarySizeTest {
      * Test the property 'total'
      */
     @Test
-    public void totalTest() {
+    void totalTest() {
         // TODO: test total
     }
 

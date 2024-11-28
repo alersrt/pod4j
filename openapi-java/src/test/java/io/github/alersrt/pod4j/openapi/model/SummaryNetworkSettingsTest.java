@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SummaryNetworkSettings
  */
-public class SummaryNetworkSettingsTest {
+class SummaryNetworkSettingsTest {
     private final SummaryNetworkSettings model = new SummaryNetworkSettings();
 
     /**
      * Model tests for SummaryNetworkSettings
      */
     @Test
-    public void testSummaryNetworkSettings() {
+    void testSummaryNetworkSettings() {
         // TODO: test SummaryNetworkSettings
     }
 
@@ -44,7 +45,7 @@ public class SummaryNetworkSettingsTest {
      * Test the property 'networks'
      */
     @Test
-    public void networksTest() {
+    void networksTest() {
         // TODO: test networks
     }
 

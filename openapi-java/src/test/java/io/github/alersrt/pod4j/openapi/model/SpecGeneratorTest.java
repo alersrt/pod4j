@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
 import io.github.alersrt.pod4j.openapi.model.ImageVolume;
 import io.github.alersrt.pod4j.openapi.model.LinuxDevice;
@@ -38,26 +38,26 @@ import io.github.alersrt.pod4j.openapi.model.PortMapping;
 import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
 import io.github.alersrt.pod4j.openapi.model.Secret;
 import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SpecGenerator
  */
-public class SpecGeneratorTest {
+class SpecGeneratorTest {
     private final SpecGenerator model = new SpecGenerator();
 
     /**
      * Model tests for SpecGenerator
      */
     @Test
-    public void testSpecGenerator() {
+    void testSpecGenerator() {
         // TODO: test SpecGenerator
     }
 
@@ -65,7 +65,7 @@ public class SpecGeneratorTest {
      * Test the property 'networks'
      */
     @Test
-    public void networksTest() {
+    void networksTest() {
         // TODO: test networks
     }
 
@@ -73,7 +73,7 @@ public class SpecGeneratorTest {
      * Test the property 'annotations'
      */
     @Test
-    public void annotationsTest() {
+    void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -81,7 +81,7 @@ public class SpecGeneratorTest {
      * Test the property 'apparmorProfile'
      */
     @Test
-    public void apparmorProfileTest() {
+    void apparmorProfileTest() {
         // TODO: test apparmorProfile
     }
 
@@ -89,7 +89,7 @@ public class SpecGeneratorTest {
      * Test the property 'baseHostsFile'
      */
     @Test
-    public void baseHostsFileTest() {
+    void baseHostsFileTest() {
         // TODO: test baseHostsFile
     }
 
@@ -97,7 +97,7 @@ public class SpecGeneratorTest {
      * Test the property 'capAdd'
      */
     @Test
-    public void capAddTest() {
+    void capAddTest() {
         // TODO: test capAdd
     }
 
@@ -105,7 +105,7 @@ public class SpecGeneratorTest {
      * Test the property 'capDrop'
      */
     @Test
-    public void capDropTest() {
+    void capDropTest() {
         // TODO: test capDrop
     }
 
@@ -113,7 +113,7 @@ public class SpecGeneratorTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    public void cgroupParentTest() {
+    void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -121,7 +121,7 @@ public class SpecGeneratorTest {
      * Test the property 'cgroupns'
      */
     @Test
-    public void cgroupnsTest() {
+    void cgroupnsTest() {
         // TODO: test cgroupns
     }
 
@@ -129,7 +129,7 @@ public class SpecGeneratorTest {
      * Test the property 'cgroupsMode'
      */
     @Test
-    public void cgroupsModeTest() {
+    void cgroupsModeTest() {
         // TODO: test cgroupsMode
     }
 
@@ -137,7 +137,7 @@ public class SpecGeneratorTest {
      * Test the property 'chrootDirectories'
      */
     @Test
-    public void chrootDirectoriesTest() {
+    void chrootDirectoriesTest() {
         // TODO: test chrootDirectories
     }
 
@@ -145,7 +145,7 @@ public class SpecGeneratorTest {
      * Test the property 'cniNetworks'
      */
     @Test
-    public void cniNetworksTest() {
+    void cniNetworksTest() {
         // TODO: test cniNetworks
     }
 
@@ -153,7 +153,7 @@ public class SpecGeneratorTest {
      * Test the property 'command'
      */
     @Test
-    public void commandTest() {
+    void commandTest() {
         // TODO: test command
     }
 
@@ -161,7 +161,7 @@ public class SpecGeneratorTest {
      * Test the property 'conmonPidFile'
      */
     @Test
-    public void conmonPidFileTest() {
+    void conmonPidFileTest() {
         // TODO: test conmonPidFile
     }
 
@@ -169,7 +169,7 @@ public class SpecGeneratorTest {
      * Test the property 'containerCreateCommand'
      */
     @Test
-    public void containerCreateCommandTest() {
+    void containerCreateCommandTest() {
         // TODO: test containerCreateCommand
     }
 
@@ -177,7 +177,7 @@ public class SpecGeneratorTest {
      * Test the property 'createWorkingDir'
      */
     @Test
-    public void createWorkingDirTest() {
+    void createWorkingDirTest() {
         // TODO: test createWorkingDir
     }
 
@@ -185,7 +185,7 @@ public class SpecGeneratorTest {
      * Test the property 'dependencyContainers'
      */
     @Test
-    public void dependencyContainersTest() {
+    void dependencyContainersTest() {
         // TODO: test dependencyContainers
     }
 
@@ -193,7 +193,7 @@ public class SpecGeneratorTest {
      * Test the property 'deviceCgroupRule'
      */
     @Test
-    public void deviceCgroupRuleTest() {
+    void deviceCgroupRuleTest() {
         // TODO: test deviceCgroupRule
     }
 
@@ -201,7 +201,7 @@ public class SpecGeneratorTest {
      * Test the property 'devices'
      */
     @Test
-    public void devicesTest() {
+    void devicesTest() {
         // TODO: test devices
     }
 
@@ -209,7 +209,7 @@ public class SpecGeneratorTest {
      * Test the property 'devicesFrom'
      */
     @Test
-    public void devicesFromTest() {
+    void devicesFromTest() {
         // TODO: test devicesFrom
     }
 
@@ -217,7 +217,7 @@ public class SpecGeneratorTest {
      * Test the property 'dnsOption'
      */
     @Test
-    public void dnsOptionTest() {
+    void dnsOptionTest() {
         // TODO: test dnsOption
     }
 
@@ -225,7 +225,7 @@ public class SpecGeneratorTest {
      * Test the property 'dnsSearch'
      */
     @Test
-    public void dnsSearchTest() {
+    void dnsSearchTest() {
         // TODO: test dnsSearch
     }
 
@@ -233,7 +233,7 @@ public class SpecGeneratorTest {
      * Test the property 'dnsServer'
      */
     @Test
-    public void dnsServerTest() {
+    void dnsServerTest() {
         // TODO: test dnsServer
     }
 
@@ -241,7 +241,7 @@ public class SpecGeneratorTest {
      * Test the property 'entrypoint'
      */
     @Test
-    public void entrypointTest() {
+    void entrypointTest() {
         // TODO: test entrypoint
     }
 
@@ -249,7 +249,7 @@ public class SpecGeneratorTest {
      * Test the property 'env'
      */
     @Test
-    public void envTest() {
+    void envTest() {
         // TODO: test env
     }
 
@@ -257,7 +257,7 @@ public class SpecGeneratorTest {
      * Test the property 'envHost'
      */
     @Test
-    public void envHostTest() {
+    void envHostTest() {
         // TODO: test envHost
     }
 
@@ -265,7 +265,7 @@ public class SpecGeneratorTest {
      * Test the property 'envmerge'
      */
     @Test
-    public void envmergeTest() {
+    void envmergeTest() {
         // TODO: test envmerge
     }
 
@@ -273,7 +273,7 @@ public class SpecGeneratorTest {
      * Test the property 'expose'
      */
     @Test
-    public void exposeTest() {
+    void exposeTest() {
         // TODO: test expose
     }
 
@@ -281,7 +281,7 @@ public class SpecGeneratorTest {
      * Test the property 'groupEntry'
      */
     @Test
-    public void groupEntryTest() {
+    void groupEntryTest() {
         // TODO: test groupEntry
     }
 
@@ -289,7 +289,7 @@ public class SpecGeneratorTest {
      * Test the property 'groups'
      */
     @Test
-    public void groupsTest() {
+    void groupsTest() {
         // TODO: test groups
     }
 
@@ -297,7 +297,7 @@ public class SpecGeneratorTest {
      * Test the property 'healthCheckOnFailureAction'
      */
     @Test
-    public void healthCheckOnFailureActionTest() {
+    void healthCheckOnFailureActionTest() {
         // TODO: test healthCheckOnFailureAction
     }
 
@@ -305,7 +305,7 @@ public class SpecGeneratorTest {
      * Test the property 'healthLogDestination'
      */
     @Test
-    public void healthLogDestinationTest() {
+    void healthLogDestinationTest() {
         // TODO: test healthLogDestination
     }
 
@@ -313,7 +313,7 @@ public class SpecGeneratorTest {
      * Test the property 'healthMaxLogCount'
      */
     @Test
-    public void healthMaxLogCountTest() {
+    void healthMaxLogCountTest() {
         // TODO: test healthMaxLogCount
     }
 
@@ -321,7 +321,7 @@ public class SpecGeneratorTest {
      * Test the property 'healthMaxLogSize'
      */
     @Test
-    public void healthMaxLogSizeTest() {
+    void healthMaxLogSizeTest() {
         // TODO: test healthMaxLogSize
     }
 
@@ -329,7 +329,7 @@ public class SpecGeneratorTest {
      * Test the property 'healthconfig'
      */
     @Test
-    public void healthconfigTest() {
+    void healthconfigTest() {
         // TODO: test healthconfig
     }
 
@@ -337,7 +337,7 @@ public class SpecGeneratorTest {
      * Test the property 'hostDeviceList'
      */
     @Test
-    public void hostDeviceListTest() {
+    void hostDeviceListTest() {
         // TODO: test hostDeviceList
     }
 
@@ -345,7 +345,7 @@ public class SpecGeneratorTest {
      * Test the property 'hostadd'
      */
     @Test
-    public void hostaddTest() {
+    void hostaddTest() {
         // TODO: test hostadd
     }
 
@@ -353,7 +353,7 @@ public class SpecGeneratorTest {
      * Test the property 'hostname'
      */
     @Test
-    public void hostnameTest() {
+    void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -361,7 +361,7 @@ public class SpecGeneratorTest {
      * Test the property 'hostusers'
      */
     @Test
-    public void hostusersTest() {
+    void hostusersTest() {
         // TODO: test hostusers
     }
 
@@ -369,7 +369,7 @@ public class SpecGeneratorTest {
      * Test the property 'httpproxy'
      */
     @Test
-    public void httpproxyTest() {
+    void httpproxyTest() {
         // TODO: test httpproxy
     }
 
@@ -377,7 +377,7 @@ public class SpecGeneratorTest {
      * Test the property 'idmappings'
      */
     @Test
-    public void idmappingsTest() {
+    void idmappingsTest() {
         // TODO: test idmappings
     }
 
@@ -385,7 +385,7 @@ public class SpecGeneratorTest {
      * Test the property 'image'
      */
     @Test
-    public void imageTest() {
+    void imageTest() {
         // TODO: test image
     }
 
@@ -393,7 +393,7 @@ public class SpecGeneratorTest {
      * Test the property 'imageArch'
      */
     @Test
-    public void imageArchTest() {
+    void imageArchTest() {
         // TODO: test imageArch
     }
 
@@ -401,7 +401,7 @@ public class SpecGeneratorTest {
      * Test the property 'imageOs'
      */
     @Test
-    public void imageOsTest() {
+    void imageOsTest() {
         // TODO: test imageOs
     }
 
@@ -409,7 +409,7 @@ public class SpecGeneratorTest {
      * Test the property 'imageVariant'
      */
     @Test
-    public void imageVariantTest() {
+    void imageVariantTest() {
         // TODO: test imageVariant
     }
 
@@ -417,7 +417,7 @@ public class SpecGeneratorTest {
      * Test the property 'imageVolumeMode'
      */
     @Test
-    public void imageVolumeModeTest() {
+    void imageVolumeModeTest() {
         // TODO: test imageVolumeMode
     }
 
@@ -425,7 +425,7 @@ public class SpecGeneratorTest {
      * Test the property 'imageVolumes'
      */
     @Test
-    public void imageVolumesTest() {
+    void imageVolumesTest() {
         // TODO: test imageVolumes
     }
 
@@ -433,7 +433,7 @@ public class SpecGeneratorTest {
      * Test the property 'init'
      */
     @Test
-    public void initTest() {
+    void initTest() {
         // TODO: test init
     }
 
@@ -441,7 +441,7 @@ public class SpecGeneratorTest {
      * Test the property 'initContainerType'
      */
     @Test
-    public void initContainerTypeTest() {
+    void initContainerTypeTest() {
         // TODO: test initContainerType
     }
 
@@ -449,7 +449,7 @@ public class SpecGeneratorTest {
      * Test the property 'initPath'
      */
     @Test
-    public void initPathTest() {
+    void initPathTest() {
         // TODO: test initPath
     }
 
@@ -457,7 +457,7 @@ public class SpecGeneratorTest {
      * Test the property 'intelRdt'
      */
     @Test
-    public void intelRdtTest() {
+    void intelRdtTest() {
         // TODO: test intelRdt
     }
 
@@ -465,7 +465,7 @@ public class SpecGeneratorTest {
      * Test the property 'ipcns'
      */
     @Test
-    public void ipcnsTest() {
+    void ipcnsTest() {
         // TODO: test ipcns
     }
 
@@ -473,7 +473,7 @@ public class SpecGeneratorTest {
      * Test the property 'labelNested'
      */
     @Test
-    public void labelNestedTest() {
+    void labelNestedTest() {
         // TODO: test labelNested
     }
 
@@ -481,7 +481,7 @@ public class SpecGeneratorTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -489,7 +489,7 @@ public class SpecGeneratorTest {
      * Test the property 'logConfiguration'
      */
     @Test
-    public void logConfigurationTest() {
+    void logConfigurationTest() {
         // TODO: test logConfiguration
     }
 
@@ -497,7 +497,7 @@ public class SpecGeneratorTest {
      * Test the property 'managePassword'
      */
     @Test
-    public void managePasswordTest() {
+    void managePasswordTest() {
         // TODO: test managePassword
     }
 
@@ -505,7 +505,7 @@ public class SpecGeneratorTest {
      * Test the property 'mask'
      */
     @Test
-    public void maskTest() {
+    void maskTest() {
         // TODO: test mask
     }
 
@@ -513,7 +513,7 @@ public class SpecGeneratorTest {
      * Test the property 'mounts'
      */
     @Test
-    public void mountsTest() {
+    void mountsTest() {
         // TODO: test mounts
     }
 
@@ -521,7 +521,7 @@ public class SpecGeneratorTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -529,7 +529,7 @@ public class SpecGeneratorTest {
      * Test the property 'netns'
      */
     @Test
-    public void netnsTest() {
+    void netnsTest() {
         // TODO: test netns
     }
 
@@ -537,7 +537,7 @@ public class SpecGeneratorTest {
      * Test the property 'networkOptions'
      */
     @Test
-    public void networkOptionsTest() {
+    void networkOptionsTest() {
         // TODO: test networkOptions
     }
 
@@ -545,7 +545,7 @@ public class SpecGeneratorTest {
      * Test the property 'noNewPrivileges'
      */
     @Test
-    public void noNewPrivilegesTest() {
+    void noNewPrivilegesTest() {
         // TODO: test noNewPrivileges
     }
 
@@ -553,7 +553,7 @@ public class SpecGeneratorTest {
      * Test the property 'ociRuntime'
      */
     @Test
-    public void ociRuntimeTest() {
+    void ociRuntimeTest() {
         // TODO: test ociRuntime
     }
 
@@ -561,7 +561,7 @@ public class SpecGeneratorTest {
      * Test the property 'oomScoreAdj'
      */
     @Test
-    public void oomScoreAdjTest() {
+    void oomScoreAdjTest() {
         // TODO: test oomScoreAdj
     }
 
@@ -569,7 +569,7 @@ public class SpecGeneratorTest {
      * Test the property 'overlayVolumes'
      */
     @Test
-    public void overlayVolumesTest() {
+    void overlayVolumesTest() {
         // TODO: test overlayVolumes
     }
 
@@ -577,7 +577,7 @@ public class SpecGeneratorTest {
      * Test the property 'passwdEntry'
      */
     @Test
-    public void passwdEntryTest() {
+    void passwdEntryTest() {
         // TODO: test passwdEntry
     }
 
@@ -585,7 +585,7 @@ public class SpecGeneratorTest {
      * Test the property 'personality'
      */
     @Test
-    public void personalityTest() {
+    void personalityTest() {
         // TODO: test personality
     }
 
@@ -593,7 +593,7 @@ public class SpecGeneratorTest {
      * Test the property 'pidns'
      */
     @Test
-    public void pidnsTest() {
+    void pidnsTest() {
         // TODO: test pidns
     }
 
@@ -601,7 +601,7 @@ public class SpecGeneratorTest {
      * Test the property 'pod'
      */
     @Test
-    public void podTest() {
+    void podTest() {
         // TODO: test pod
     }
 
@@ -609,7 +609,7 @@ public class SpecGeneratorTest {
      * Test the property 'portmappings'
      */
     @Test
-    public void portmappingsTest() {
+    void portmappingsTest() {
         // TODO: test portmappings
     }
 
@@ -617,7 +617,7 @@ public class SpecGeneratorTest {
      * Test the property 'privileged'
      */
     @Test
-    public void privilegedTest() {
+    void privilegedTest() {
         // TODO: test privileged
     }
 
@@ -625,7 +625,7 @@ public class SpecGeneratorTest {
      * Test the property 'procfsOpts'
      */
     @Test
-    public void procfsOptsTest() {
+    void procfsOptsTest() {
         // TODO: test procfsOpts
     }
 
@@ -633,7 +633,7 @@ public class SpecGeneratorTest {
      * Test the property 'publishImagePorts'
      */
     @Test
-    public void publishImagePortsTest() {
+    void publishImagePortsTest() {
         // TODO: test publishImagePorts
     }
 
@@ -641,7 +641,7 @@ public class SpecGeneratorTest {
      * Test the property 'rLimits'
      */
     @Test
-    public void rLimitsTest() {
+    void rLimitsTest() {
         // TODO: test rLimits
     }
 
@@ -649,7 +649,7 @@ public class SpecGeneratorTest {
      * Test the property 'rawImageName'
      */
     @Test
-    public void rawImageNameTest() {
+    void rawImageNameTest() {
         // TODO: test rawImageName
     }
 
@@ -657,7 +657,7 @@ public class SpecGeneratorTest {
      * Test the property 'readOnlyFilesystem'
      */
     @Test
-    public void readOnlyFilesystemTest() {
+    void readOnlyFilesystemTest() {
         // TODO: test readOnlyFilesystem
     }
 
@@ -665,7 +665,7 @@ public class SpecGeneratorTest {
      * Test the property 'readWriteTmpfs'
      */
     @Test
-    public void readWriteTmpfsTest() {
+    void readWriteTmpfsTest() {
         // TODO: test readWriteTmpfs
     }
 
@@ -673,7 +673,7 @@ public class SpecGeneratorTest {
      * Test the property 'remove'
      */
     @Test
-    public void removeTest() {
+    void removeTest() {
         // TODO: test remove
     }
 
@@ -681,7 +681,7 @@ public class SpecGeneratorTest {
      * Test the property 'removeImage'
      */
     @Test
-    public void removeImageTest() {
+    void removeImageTest() {
         // TODO: test removeImage
     }
 
@@ -689,7 +689,7 @@ public class SpecGeneratorTest {
      * Test the property 'resourceLimits'
      */
     @Test
-    public void resourceLimitsTest() {
+    void resourceLimitsTest() {
         // TODO: test resourceLimits
     }
 
@@ -697,7 +697,7 @@ public class SpecGeneratorTest {
      * Test the property 'restartPolicy'
      */
     @Test
-    public void restartPolicyTest() {
+    void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
@@ -705,7 +705,7 @@ public class SpecGeneratorTest {
      * Test the property 'restartTries'
      */
     @Test
-    public void restartTriesTest() {
+    void restartTriesTest() {
         // TODO: test restartTries
     }
 
@@ -713,7 +713,7 @@ public class SpecGeneratorTest {
      * Test the property 'rootfs'
      */
     @Test
-    public void rootfsTest() {
+    void rootfsTest() {
         // TODO: test rootfs
     }
 
@@ -721,7 +721,7 @@ public class SpecGeneratorTest {
      * Test the property 'rootfsMapping'
      */
     @Test
-    public void rootfsMappingTest() {
+    void rootfsMappingTest() {
         // TODO: test rootfsMapping
     }
 
@@ -729,7 +729,7 @@ public class SpecGeneratorTest {
      * Test the property 'rootfsOverlay'
      */
     @Test
-    public void rootfsOverlayTest() {
+    void rootfsOverlayTest() {
         // TODO: test rootfsOverlay
     }
 
@@ -737,7 +737,7 @@ public class SpecGeneratorTest {
      * Test the property 'rootfsPropagation'
      */
     @Test
-    public void rootfsPropagationTest() {
+    void rootfsPropagationTest() {
         // TODO: test rootfsPropagation
     }
 
@@ -745,7 +745,7 @@ public class SpecGeneratorTest {
      * Test the property 'sdnotifyMode'
      */
     @Test
-    public void sdnotifyModeTest() {
+    void sdnotifyModeTest() {
         // TODO: test sdnotifyMode
     }
 
@@ -753,7 +753,7 @@ public class SpecGeneratorTest {
      * Test the property 'seccompPolicy'
      */
     @Test
-    public void seccompPolicyTest() {
+    void seccompPolicyTest() {
         // TODO: test seccompPolicy
     }
 
@@ -761,7 +761,7 @@ public class SpecGeneratorTest {
      * Test the property 'seccompProfilePath'
      */
     @Test
-    public void seccompProfilePathTest() {
+    void seccompProfilePathTest() {
         // TODO: test seccompProfilePath
     }
 
@@ -769,7 +769,7 @@ public class SpecGeneratorTest {
      * Test the property 'secretEnv'
      */
     @Test
-    public void secretEnvTest() {
+    void secretEnvTest() {
         // TODO: test secretEnv
     }
 
@@ -777,7 +777,7 @@ public class SpecGeneratorTest {
      * Test the property 'secrets'
      */
     @Test
-    public void secretsTest() {
+    void secretsTest() {
         // TODO: test secrets
     }
 
@@ -785,7 +785,7 @@ public class SpecGeneratorTest {
      * Test the property 'selinuxOpts'
      */
     @Test
-    public void selinuxOptsTest() {
+    void selinuxOptsTest() {
         // TODO: test selinuxOpts
     }
 
@@ -793,7 +793,7 @@ public class SpecGeneratorTest {
      * Test the property 'shmSize'
      */
     @Test
-    public void shmSizeTest() {
+    void shmSizeTest() {
         // TODO: test shmSize
     }
 
@@ -801,7 +801,7 @@ public class SpecGeneratorTest {
      * Test the property 'shmSizeSystemd'
      */
     @Test
-    public void shmSizeSystemdTest() {
+    void shmSizeSystemdTest() {
         // TODO: test shmSizeSystemd
     }
 
@@ -809,7 +809,7 @@ public class SpecGeneratorTest {
      * Test the property 'startupHealthConfig'
      */
     @Test
-    public void startupHealthConfigTest() {
+    void startupHealthConfigTest() {
         // TODO: test startupHealthConfig
     }
 
@@ -817,7 +817,7 @@ public class SpecGeneratorTest {
      * Test the property 'stdin'
      */
     @Test
-    public void stdinTest() {
+    void stdinTest() {
         // TODO: test stdin
     }
 
@@ -825,7 +825,7 @@ public class SpecGeneratorTest {
      * Test the property 'stopSignal'
      */
     @Test
-    public void stopSignalTest() {
+    void stopSignalTest() {
         // TODO: test stopSignal
     }
 
@@ -833,7 +833,7 @@ public class SpecGeneratorTest {
      * Test the property 'stopTimeout'
      */
     @Test
-    public void stopTimeoutTest() {
+    void stopTimeoutTest() {
         // TODO: test stopTimeout
     }
 
@@ -841,7 +841,7 @@ public class SpecGeneratorTest {
      * Test the property 'storageOpts'
      */
     @Test
-    public void storageOptsTest() {
+    void storageOptsTest() {
         // TODO: test storageOpts
     }
 
@@ -849,7 +849,7 @@ public class SpecGeneratorTest {
      * Test the property 'sysctl'
      */
     @Test
-    public void sysctlTest() {
+    void sysctlTest() {
         // TODO: test sysctl
     }
 
@@ -857,7 +857,7 @@ public class SpecGeneratorTest {
      * Test the property 'systemd'
      */
     @Test
-    public void systemdTest() {
+    void systemdTest() {
         // TODO: test systemd
     }
 
@@ -865,7 +865,7 @@ public class SpecGeneratorTest {
      * Test the property 'terminal'
      */
     @Test
-    public void terminalTest() {
+    void terminalTest() {
         // TODO: test terminal
     }
 
@@ -873,7 +873,7 @@ public class SpecGeneratorTest {
      * Test the property 'throttleReadBpsDevice'
      */
     @Test
-    public void throttleReadBpsDeviceTest() {
+    void throttleReadBpsDeviceTest() {
         // TODO: test throttleReadBpsDevice
     }
 
@@ -881,7 +881,7 @@ public class SpecGeneratorTest {
      * Test the property 'throttleReadIOPSDevice'
      */
     @Test
-    public void throttleReadIOPSDeviceTest() {
+    void throttleReadIOPSDeviceTest() {
         // TODO: test throttleReadIOPSDevice
     }
 
@@ -889,7 +889,7 @@ public class SpecGeneratorTest {
      * Test the property 'throttleWriteBpsDevice'
      */
     @Test
-    public void throttleWriteBpsDeviceTest() {
+    void throttleWriteBpsDeviceTest() {
         // TODO: test throttleWriteBpsDevice
     }
 
@@ -897,7 +897,7 @@ public class SpecGeneratorTest {
      * Test the property 'throttleWriteIOPSDevice'
      */
     @Test
-    public void throttleWriteIOPSDeviceTest() {
+    void throttleWriteIOPSDeviceTest() {
         // TODO: test throttleWriteIOPSDevice
     }
 
@@ -905,7 +905,7 @@ public class SpecGeneratorTest {
      * Test the property 'timeout'
      */
     @Test
-    public void timeoutTest() {
+    void timeoutTest() {
         // TODO: test timeout
     }
 
@@ -913,7 +913,7 @@ public class SpecGeneratorTest {
      * Test the property 'timezone'
      */
     @Test
-    public void timezoneTest() {
+    void timezoneTest() {
         // TODO: test timezone
     }
 
@@ -921,7 +921,7 @@ public class SpecGeneratorTest {
      * Test the property 'umask'
      */
     @Test
-    public void umaskTest() {
+    void umaskTest() {
         // TODO: test umask
     }
 
@@ -929,7 +929,7 @@ public class SpecGeneratorTest {
      * Test the property 'unified'
      */
     @Test
-    public void unifiedTest() {
+    void unifiedTest() {
         // TODO: test unified
     }
 
@@ -937,7 +937,7 @@ public class SpecGeneratorTest {
      * Test the property 'unmask'
      */
     @Test
-    public void unmaskTest() {
+    void unmaskTest() {
         // TODO: test unmask
     }
 
@@ -945,7 +945,7 @@ public class SpecGeneratorTest {
      * Test the property 'unsetenv'
      */
     @Test
-    public void unsetenvTest() {
+    void unsetenvTest() {
         // TODO: test unsetenv
     }
 
@@ -953,7 +953,7 @@ public class SpecGeneratorTest {
      * Test the property 'unsetenvall'
      */
     @Test
-    public void unsetenvallTest() {
+    void unsetenvallTest() {
         // TODO: test unsetenvall
     }
 
@@ -961,7 +961,7 @@ public class SpecGeneratorTest {
      * Test the property 'useImageHosts'
      */
     @Test
-    public void useImageHostsTest() {
+    void useImageHostsTest() {
         // TODO: test useImageHosts
     }
 
@@ -969,7 +969,7 @@ public class SpecGeneratorTest {
      * Test the property 'useImageResolveConf'
      */
     @Test
-    public void useImageResolveConfTest() {
+    void useImageResolveConfTest() {
         // TODO: test useImageResolveConf
     }
 
@@ -977,7 +977,7 @@ public class SpecGeneratorTest {
      * Test the property 'user'
      */
     @Test
-    public void userTest() {
+    void userTest() {
         // TODO: test user
     }
 
@@ -985,7 +985,7 @@ public class SpecGeneratorTest {
      * Test the property 'userns'
      */
     @Test
-    public void usernsTest() {
+    void usernsTest() {
         // TODO: test userns
     }
 
@@ -993,7 +993,7 @@ public class SpecGeneratorTest {
      * Test the property 'utsns'
      */
     @Test
-    public void utsnsTest() {
+    void utsnsTest() {
         // TODO: test utsns
     }
 
@@ -1001,7 +1001,7 @@ public class SpecGeneratorTest {
      * Test the property '_volatile'
      */
     @Test
-    public void _volatileTest() {
+    void _volatileTest() {
         // TODO: test _volatile
     }
 
@@ -1009,7 +1009,7 @@ public class SpecGeneratorTest {
      * Test the property 'volumes'
      */
     @Test
-    public void volumesTest() {
+    void volumesTest() {
         // TODO: test volumes
     }
 
@@ -1017,7 +1017,7 @@ public class SpecGeneratorTest {
      * Test the property 'volumesFrom'
      */
     @Test
-    public void volumesFromTest() {
+    void volumesFromTest() {
         // TODO: test volumesFrom
     }
 
@@ -1025,7 +1025,7 @@ public class SpecGeneratorTest {
      * Test the property 'weightDevice'
      */
     @Test
-    public void weightDeviceTest() {
+    void weightDeviceTest() {
         // TODO: test weightDevice
     }
 
@@ -1033,7 +1033,7 @@ public class SpecGeneratorTest {
      * Test the property 'workDir'
      */
     @Test
-    public void workDirTest() {
+    void workDirTest() {
         // TODO: test workDir
     }
 

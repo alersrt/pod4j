@@ -13,30 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.PluginDevice;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PluginConfigLinux
  */
-public class PluginConfigLinuxTest {
+class PluginConfigLinuxTest {
     private final PluginConfigLinux model = new PluginConfigLinux();
 
     /**
      * Model tests for PluginConfigLinux
      */
     @Test
-    public void testPluginConfigLinux() {
+    void testPluginConfigLinux() {
         // TODO: test PluginConfigLinux
     }
 
@@ -44,7 +44,7 @@ public class PluginConfigLinuxTest {
      * Test the property 'allowAllDevices'
      */
     @Test
-    public void allowAllDevicesTest() {
+    void allowAllDevicesTest() {
         // TODO: test allowAllDevices
     }
 
@@ -52,7 +52,7 @@ public class PluginConfigLinuxTest {
      * Test the property 'capabilities'
      */
     @Test
-    public void capabilitiesTest() {
+    void capabilitiesTest() {
         // TODO: test capabilities
     }
 
@@ -60,7 +60,7 @@ public class PluginConfigLinuxTest {
      * Test the property 'devices'
      */
     @Test
-    public void devicesTest() {
+    void devicesTest() {
         // TODO: test devices
     }
 

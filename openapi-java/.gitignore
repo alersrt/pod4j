@@ -5,6 +5,8 @@
 !/src/
 !/docs/
 !/swagger-latest.yaml
+!.openapi-generator-ignore
+!.openapi-generator-config.json
 
 ## Infrastructure
 !.gitignore

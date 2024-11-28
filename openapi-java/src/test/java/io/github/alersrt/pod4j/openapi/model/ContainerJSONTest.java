@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Config;
 import io.github.alersrt.pod4j.openapi.model.ContainerNode;
 import io.github.alersrt.pod4j.openapi.model.ContainerState;
@@ -25,24 +25,25 @@ import io.github.alersrt.pod4j.openapi.model.GraphDriverData;
 import io.github.alersrt.pod4j.openapi.model.HostConfig;
 import io.github.alersrt.pod4j.openapi.model.MountPoint;
 import io.github.alersrt.pod4j.openapi.model.NetworkSettings;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerJSON
  */
-public class ContainerJSONTest {
+class ContainerJSONTest {
     private final ContainerJSON model = new ContainerJSON();
 
     /**
      * Model tests for ContainerJSON
      */
     @Test
-    public void testContainerJSON() {
+    void testContainerJSON() {
         // TODO: test ContainerJSON
     }
 
@@ -50,7 +51,7 @@ public class ContainerJSONTest {
      * Test the property 'appArmorProfile'
      */
     @Test
-    public void appArmorProfileTest() {
+    void appArmorProfileTest() {
         // TODO: test appArmorProfile
     }
 
@@ -58,7 +59,7 @@ public class ContainerJSONTest {
      * Test the property 'args'
      */
     @Test
-    public void argsTest() {
+    void argsTest() {
         // TODO: test args
     }
 
@@ -66,7 +67,7 @@ public class ContainerJSONTest {
      * Test the property 'config'
      */
     @Test
-    public void configTest() {
+    void configTest() {
         // TODO: test config
     }
 
@@ -74,7 +75,7 @@ public class ContainerJSONTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -82,7 +83,7 @@ public class ContainerJSONTest {
      * Test the property 'driver'
      */
     @Test
-    public void driverTest() {
+    void driverTest() {
         // TODO: test driver
     }
 
@@ -90,7 +91,7 @@ public class ContainerJSONTest {
      * Test the property 'execIDs'
      */
     @Test
-    public void execIDsTest() {
+    void execIDsTest() {
         // TODO: test execIDs
     }
 
@@ -98,7 +99,7 @@ public class ContainerJSONTest {
      * Test the property 'graphDriver'
      */
     @Test
-    public void graphDriverTest() {
+    void graphDriverTest() {
         // TODO: test graphDriver
     }
 
@@ -106,7 +107,7 @@ public class ContainerJSONTest {
      * Test the property 'hostConfig'
      */
     @Test
-    public void hostConfigTest() {
+    void hostConfigTest() {
         // TODO: test hostConfig
     }
 
@@ -114,7 +115,7 @@ public class ContainerJSONTest {
      * Test the property 'hostnamePath'
      */
     @Test
-    public void hostnamePathTest() {
+    void hostnamePathTest() {
         // TODO: test hostnamePath
     }
 
@@ -122,7 +123,7 @@ public class ContainerJSONTest {
      * Test the property 'hostsPath'
      */
     @Test
-    public void hostsPathTest() {
+    void hostsPathTest() {
         // TODO: test hostsPath
     }
 
@@ -130,7 +131,7 @@ public class ContainerJSONTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -138,7 +139,7 @@ public class ContainerJSONTest {
      * Test the property 'image'
      */
     @Test
-    public void imageTest() {
+    void imageTest() {
         // TODO: test image
     }
 
@@ -146,7 +147,7 @@ public class ContainerJSONTest {
      * Test the property 'logPath'
      */
     @Test
-    public void logPathTest() {
+    void logPathTest() {
         // TODO: test logPath
     }
 
@@ -154,7 +155,7 @@ public class ContainerJSONTest {
      * Test the property 'mountLabel'
      */
     @Test
-    public void mountLabelTest() {
+    void mountLabelTest() {
         // TODO: test mountLabel
     }
 
@@ -162,7 +163,7 @@ public class ContainerJSONTest {
      * Test the property 'mounts'
      */
     @Test
-    public void mountsTest() {
+    void mountsTest() {
         // TODO: test mounts
     }
 
@@ -170,7 +171,7 @@ public class ContainerJSONTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -178,7 +179,7 @@ public class ContainerJSONTest {
      * Test the property 'networkSettings'
      */
     @Test
-    public void networkSettingsTest() {
+    void networkSettingsTest() {
         // TODO: test networkSettings
     }
 
@@ -186,7 +187,7 @@ public class ContainerJSONTest {
      * Test the property 'node'
      */
     @Test
-    public void nodeTest() {
+    void nodeTest() {
         // TODO: test node
     }
 
@@ -194,7 +195,7 @@ public class ContainerJSONTest {
      * Test the property 'path'
      */
     @Test
-    public void pathTest() {
+    void pathTest() {
         // TODO: test path
     }
 
@@ -202,7 +203,7 @@ public class ContainerJSONTest {
      * Test the property 'platform'
      */
     @Test
-    public void platformTest() {
+    void platformTest() {
         // TODO: test platform
     }
 
@@ -210,7 +211,7 @@ public class ContainerJSONTest {
      * Test the property 'processLabel'
      */
     @Test
-    public void processLabelTest() {
+    void processLabelTest() {
         // TODO: test processLabel
     }
 
@@ -218,7 +219,7 @@ public class ContainerJSONTest {
      * Test the property 'resolvConfPath'
      */
     @Test
-    public void resolvConfPathTest() {
+    void resolvConfPathTest() {
         // TODO: test resolvConfPath
     }
 
@@ -226,7 +227,7 @@ public class ContainerJSONTest {
      * Test the property 'restartCount'
      */
     @Test
-    public void restartCountTest() {
+    void restartCountTest() {
         // TODO: test restartCount
     }
 
@@ -234,7 +235,7 @@ public class ContainerJSONTest {
      * Test the property 'sizeRootFs'
      */
     @Test
-    public void sizeRootFsTest() {
+    void sizeRootFsTest() {
         // TODO: test sizeRootFs
     }
 
@@ -242,7 +243,7 @@ public class ContainerJSONTest {
      * Test the property 'sizeRw'
      */
     @Test
-    public void sizeRwTest() {
+    void sizeRwTest() {
         // TODO: test sizeRw
     }
 
@@ -250,7 +251,7 @@ public class ContainerJSONTest {
      * Test the property 'state'
      */
     @Test
-    public void stateTest() {
+    void stateTest() {
         // TODO: test state
     }
 

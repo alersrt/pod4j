@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodRmReport
  */
-public class PodRmReportTest {
+class PodRmReportTest {
     private final PodRmReport model = new PodRmReport();
 
     /**
      * Model tests for PodRmReport
      */
     @Test
-    public void testPodRmReport() {
+    void testPodRmReport() {
         // TODO: test PodRmReport
     }
 
@@ -43,7 +44,7 @@ public class PodRmReportTest {
      * Test the property 'err'
      */
     @Test
-    public void errTest() {
+    void errTest() {
         // TODO: test err
     }
 
@@ -51,7 +52,7 @@ public class PodRmReportTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -59,7 +60,7 @@ public class PodRmReportTest {
      * Test the property 'removedCtrs'
      */
     @Test
-    public void removedCtrsTest() {
+    void removedCtrsTest() {
         // TODO: test removedCtrs
     }
 

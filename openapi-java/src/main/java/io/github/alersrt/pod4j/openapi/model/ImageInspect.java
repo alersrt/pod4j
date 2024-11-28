@@ -13,30 +13,18 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Config;
-import io.github.alersrt.pod4j.openapi.model.GraphDriverData;
-import io.github.alersrt.pod4j.openapi.model.Metadata;
-import io.github.alersrt.pod4j.openapi.model.RootFS;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ImageInspect
  */
@@ -62,7 +50,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ImageInspect.JSON_PROPERTY_VARIANT,
   ImageInspect.JSON_PROPERTY_VIRTUAL_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageInspect {
   public static final String JSON_PROPERTY_ARCHITECTURE = "Architecture";
   private String architecture;
@@ -136,7 +124,7 @@ public class ImageInspect {
    * Architecture is the hardware CPU architecture that the image runs on.
    * @return architecture
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -161,7 +149,7 @@ public class ImageInspect {
    * Author is the name of the author that was specified when committing the image, or as specified through MAINTAINER (deprecated) in the Dockerfile.
    * @return author
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTHOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -186,7 +174,7 @@ public class ImageInspect {
    * Comment is an optional message that can be set when committing or importing the image.
    * @return comment
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_COMMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -211,7 +199,7 @@ public class ImageInspect {
    * Get config
    * @return config
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONFIG)
@@ -237,7 +225,7 @@ public class ImageInspect {
    * Container is for backwards compat but is basically unused
    * @return container
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -262,7 +250,7 @@ public class ImageInspect {
    * Get containerConfig
    * @return containerConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_CONFIG)
@@ -288,7 +276,7 @@ public class ImageInspect {
    * Created is the date and time at which the image was created, formatted in RFC 3339 nano-seconds (time.RFC3339Nano).  This information is only available if present in the image, and omitted otherwise.
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -313,7 +301,7 @@ public class ImageInspect {
    * DockerVersion is the version of Docker that was used to build the image.  Depending on how the image was created, this field may be empty.
    * @return dockerVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DOCKER_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -338,7 +326,7 @@ public class ImageInspect {
    * Get graphDriver
    * @return graphDriver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
@@ -364,7 +352,7 @@ public class ImageInspect {
    * ID is the content-addressable ID of an image.  This identifier is a content-addressable digest calculated from the image&#39;s configuration (which includes the digests of layers used by the image).  Note that this digest differs from the &#x60;RepoDigests&#x60; below, which holds digests of image manifests that reference the image.
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -389,7 +377,7 @@ public class ImageInspect {
    * Get metadata
    * @return metadata
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_METADATA)
@@ -415,7 +403,7 @@ public class ImageInspect {
    * OS is the Operating System the image is built to run on.
    * @return os
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -440,7 +428,7 @@ public class ImageInspect {
    * OsVersion is the version of the Operating System the image is built to run on (especially for Windows).
    * @return osVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -465,7 +453,7 @@ public class ImageInspect {
    * Parent is the ID of the parent image.  Depending on how the image was created, this field may be empty and is only set for images that were built/created locally. This field is empty if the image was pulled from an image registry.
    * @return parent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -498,7 +486,7 @@ public class ImageInspect {
    * RepoDigests is a list of content-addressable digests of locally available image manifests that the image is referenced from. Multiple manifests can refer to the same image.  These digests are usually only available if the image was either pulled from a registry, or if the image was pushed to a registry, which is when the manifest is generated and its digest calculated.
    * @return repoDigests
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -531,7 +519,7 @@ public class ImageInspect {
    * RepoTags is a list of image names/tags in the local image cache that reference this image.  Multiple image tags can refer to the same image, and this list may be empty if no tags reference the image, in which case the image is \&quot;untagged\&quot;, in which case it can still be referenced by its ID.
    * @return repoTags
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REPO_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -556,7 +544,7 @@ public class ImageInspect {
    * Get rootFS
    * @return rootFS
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ROOT_F_S)
@@ -582,7 +570,7 @@ public class ImageInspect {
    * Size is the total size of the image including all layers it is composed of.
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -607,7 +595,7 @@ public class ImageInspect {
    * Variant is the CPU architecture variant (presently ARM-only).
    * @return variant
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VARIANT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -632,7 +620,7 @@ public class ImageInspect {
    * VirtualSize is the total size of the image including all layers it is composed of.  Deprecated: this field is omitted in API v1.44, but kept for backward compatibility. Use Size instead.
    * @return virtualSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -40,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Port.JSON_PROPERTY_PUBLIC_PORT,
   Port.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Port {
   public static final String JSON_PROPERTY_I_P = "IP";
   private String IP;
@@ -66,7 +66,7 @@ public class Port {
    * Host IP address that the container&#39;s port is mapped to
    * @return IP
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_I_P)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -91,7 +91,7 @@ public class Port {
    * Port on the container
    * @return privatePort
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_PRIVATE_PORT)
@@ -117,7 +117,7 @@ public class Port {
    * Port exposed on the host
    * @return publicPort
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PUBLIC_PORT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -142,7 +142,7 @@ public class Port {
    * type
    * @return type
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_TYPE)

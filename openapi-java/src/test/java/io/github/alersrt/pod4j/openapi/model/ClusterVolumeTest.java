@@ -13,34 +13,35 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ClusterVolumeSpec;
 import io.github.alersrt.pod4j.openapi.model.Info;
 import io.github.alersrt.pod4j.openapi.model.PublishStatus;
 import io.github.alersrt.pod4j.openapi.model.Version;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ClusterVolume
  */
-public class ClusterVolumeTest {
+class ClusterVolumeTest {
     private final ClusterVolume model = new ClusterVolume();
 
     /**
      * Model tests for ClusterVolume
      */
     @Test
-    public void testClusterVolume() {
+    void testClusterVolume() {
         // TODO: test ClusterVolume
     }
 
@@ -48,7 +49,7 @@ public class ClusterVolumeTest {
      * Test the property 'createdAt'
      */
     @Test
-    public void createdAtTest() {
+    void createdAtTest() {
         // TODO: test createdAt
     }
 
@@ -56,7 +57,7 @@ public class ClusterVolumeTest {
      * Test the property 'ID'
      */
     @Test
-    public void IDTest() {
+    void IDTest() {
         // TODO: test ID
     }
 
@@ -64,7 +65,7 @@ public class ClusterVolumeTest {
      * Test the property 'info'
      */
     @Test
-    public void infoTest() {
+    void infoTest() {
         // TODO: test info
     }
 
@@ -72,7 +73,7 @@ public class ClusterVolumeTest {
      * Test the property 'publishStatus'
      */
     @Test
-    public void publishStatusTest() {
+    void publishStatusTest() {
         // TODO: test publishStatus
     }
 
@@ -80,7 +81,7 @@ public class ClusterVolumeTest {
      * Test the property 'spec'
      */
     @Test
-    public void specTest() {
+    void specTest() {
         // TODO: test spec
     }
 
@@ -88,7 +89,7 @@ public class ClusterVolumeTest {
      * Test the property 'updatedAt'
      */
     @Test
-    public void updatedAtTest() {
+    void updatedAtTest() {
         // TODO: test updatedAt
     }
 
@@ -96,7 +97,7 @@ public class ClusterVolumeTest {
      * Test the property 'version'
      */
     @Test
-    public void versionTest() {
+    void versionTest() {
         // TODO: test version
     }
 

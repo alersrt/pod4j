@@ -45,7 +45,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SecretInfoReportCompat.JSON_PROPERTY_UPDATED_AT,
   SecretInfoReportCompat.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SecretInfoReportCompat {
   public static final String JSON_PROPERTY_CREATED_AT = "CreatedAt";
   private OffsetDateTime createdAt;
@@ -77,7 +77,7 @@ public class SecretInfoReportCompat {
    * Get createdAt
    * @return createdAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
@@ -103,7 +103,7 @@ public class SecretInfoReportCompat {
    * Get ID
    * @return ID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -128,7 +128,7 @@ public class SecretInfoReportCompat {
    * Get secretData
    * @return secretData
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECRET_DATA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -153,7 +153,7 @@ public class SecretInfoReportCompat {
    * Get spec
    * @return spec
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SPEC)
@@ -179,7 +179,7 @@ public class SecretInfoReportCompat {
    * Get updatedAt
    * @return updatedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_UPDATED_AT)
@@ -205,7 +205,7 @@ public class SecretInfoReportCompat {
    * Get version
    * @return version
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VERSION)

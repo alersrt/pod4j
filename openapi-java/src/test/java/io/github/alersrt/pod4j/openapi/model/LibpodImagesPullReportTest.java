@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LibpodImagesPullReport
  */
-public class LibpodImagesPullReportTest {
+class LibpodImagesPullReportTest {
     private final LibpodImagesPullReport model = new LibpodImagesPullReport();
 
     /**
      * Model tests for LibpodImagesPullReport
      */
     @Test
-    public void testLibpodImagesPullReport() {
+    void testLibpodImagesPullReport() {
         // TODO: test LibpodImagesPullReport
     }
 
@@ -43,7 +44,7 @@ public class LibpodImagesPullReportTest {
      * Test the property 'error'
      */
     @Test
-    public void errorTest() {
+    void errorTest() {
         // TODO: test error
     }
 
@@ -51,7 +52,7 @@ public class LibpodImagesPullReportTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -59,7 +60,7 @@ public class LibpodImagesPullReportTest {
      * Test the property 'images'
      */
     @Test
-    public void imagesTest() {
+    void imagesTest() {
         // TODO: test images
     }
 
@@ -67,7 +68,7 @@ public class LibpodImagesPullReportTest {
      * Test the property 'stream'
      */
     @Test
-    public void streamTest() {
+    void streamTest() {
         // TODO: test stream
     }
 

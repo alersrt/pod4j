@@ -13,30 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Schema2PlatformSpec;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Schema2ManifestDescriptor
  */
-public class Schema2ManifestDescriptorTest {
+class Schema2ManifestDescriptorTest {
     private final Schema2ManifestDescriptor model = new Schema2ManifestDescriptor();
 
     /**
      * Model tests for Schema2ManifestDescriptor
      */
     @Test
-    public void testSchema2ManifestDescriptor() {
+    void testSchema2ManifestDescriptor() {
         // TODO: test Schema2ManifestDescriptor
     }
 
@@ -44,7 +44,7 @@ public class Schema2ManifestDescriptorTest {
      * Test the property 'digest'
      */
     @Test
-    public void digestTest() {
+    void digestTest() {
         // TODO: test digest
     }
 
@@ -52,7 +52,7 @@ public class Schema2ManifestDescriptorTest {
      * Test the property 'mediaType'
      */
     @Test
-    public void mediaTypeTest() {
+    void mediaTypeTest() {
         // TODO: test mediaType
     }
 
@@ -60,7 +60,7 @@ public class Schema2ManifestDescriptorTest {
      * Test the property 'platform'
      */
     @Test
-    public void platformTest() {
+    void platformTest() {
         // TODO: test platform
     }
 
@@ -68,7 +68,7 @@ public class Schema2ManifestDescriptorTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 
@@ -76,7 +76,7 @@ public class Schema2ManifestDescriptorTest {
      * Test the property 'urls'
      */
     @Test
-    public void urlsTest() {
+    void urlsTest() {
         // TODO: test urls
     }
 

@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerNetworkStats
  */
-public class ContainerNetworkStatsTest {
+class ContainerNetworkStatsTest {
     private final ContainerNetworkStats model = new ContainerNetworkStats();
 
     /**
      * Model tests for ContainerNetworkStats
      */
     @Test
-    public void testContainerNetworkStats() {
+    void testContainerNetworkStats() {
         // TODO: test ContainerNetworkStats
     }
 
@@ -41,7 +42,7 @@ public class ContainerNetworkStatsTest {
      * Test the property 'rxBytes'
      */
     @Test
-    public void rxBytesTest() {
+    void rxBytesTest() {
         // TODO: test rxBytes
     }
 
@@ -49,7 +50,7 @@ public class ContainerNetworkStatsTest {
      * Test the property 'rxDropped'
      */
     @Test
-    public void rxDroppedTest() {
+    void rxDroppedTest() {
         // TODO: test rxDropped
     }
 
@@ -57,7 +58,7 @@ public class ContainerNetworkStatsTest {
      * Test the property 'rxErrors'
      */
     @Test
-    public void rxErrorsTest() {
+    void rxErrorsTest() {
         // TODO: test rxErrors
     }
 
@@ -65,7 +66,7 @@ public class ContainerNetworkStatsTest {
      * Test the property 'rxPackets'
      */
     @Test
-    public void rxPacketsTest() {
+    void rxPacketsTest() {
         // TODO: test rxPackets
     }
 
@@ -73,7 +74,7 @@ public class ContainerNetworkStatsTest {
      * Test the property 'txBytes'
      */
     @Test
-    public void txBytesTest() {
+    void txBytesTest() {
         // TODO: test txBytes
     }
 
@@ -81,7 +82,7 @@ public class ContainerNetworkStatsTest {
      * Test the property 'txDropped'
      */
     @Test
-    public void txDroppedTest() {
+    void txDroppedTest() {
         // TODO: test txDropped
     }
 
@@ -89,7 +90,7 @@ public class ContainerNetworkStatsTest {
      * Test the property 'txErrors'
      */
     @Test
-    public void txErrorsTest() {
+    void txErrorsTest() {
         // TODO: test txErrors
     }
 
@@ -97,7 +98,7 @@ public class ContainerNetworkStatsTest {
      * Test the property 'txPackets'
      */
     @Test
-    public void txPacketsTest() {
+    void txPacketsTest() {
         // TODO: test txPackets
     }
 

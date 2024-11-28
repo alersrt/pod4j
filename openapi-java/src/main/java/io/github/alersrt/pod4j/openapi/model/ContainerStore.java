@@ -13,24 +13,15 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerStore describes the quantity of containers in the store by status
  */
@@ -40,7 +31,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerStore.JSON_PROPERTY_RUNNING,
   ContainerStore.JSON_PROPERTY_STOPPED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerStore {
   public static final String JSON_PROPERTY_NUMBER = "number";
   private Long number;
@@ -66,7 +57,7 @@ public class ContainerStore {
    * Get number
    * @return number
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -91,7 +82,7 @@ public class ContainerStore {
    * Get paused
    * @return paused
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PAUSED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -116,7 +107,7 @@ public class ContainerStore {
    * Get running
    * @return running
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RUNNING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -141,7 +132,7 @@ public class ContainerStore {
    * Get stopped
    * @return stopped
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOPPED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

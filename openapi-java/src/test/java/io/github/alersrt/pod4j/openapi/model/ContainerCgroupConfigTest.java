@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerCgroupConfig
  */
-public class ContainerCgroupConfigTest {
+class ContainerCgroupConfigTest {
     private final ContainerCgroupConfig model = new ContainerCgroupConfig();
 
     /**
      * Model tests for ContainerCgroupConfig
      */
     @Test
-    public void testContainerCgroupConfig() {
+    void testContainerCgroupConfig() {
         // TODO: test ContainerCgroupConfig
     }
 
@@ -42,7 +43,7 @@ public class ContainerCgroupConfigTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    public void cgroupParentTest() {
+    void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -50,7 +51,7 @@ public class ContainerCgroupConfigTest {
      * Test the property 'cgroupns'
      */
     @Test
-    public void cgroupnsTest() {
+    void cgroupnsTest() {
         // TODO: test cgroupns
     }
 
@@ -58,7 +59,7 @@ public class ContainerCgroupConfigTest {
      * Test the property 'cgroupsMode'
      */
     @Test
-    public void cgroupsModeTest() {
+    void cgroupsModeTest() {
         // TODO: test cgroupsMode
     }
 

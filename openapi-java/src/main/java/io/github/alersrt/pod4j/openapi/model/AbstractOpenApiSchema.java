@@ -13,16 +13,15 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.util.Objects;
-import java.lang.reflect.Type;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonValue;
+
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Abstract class for oneOf,anyOf schemas defined in OpenAPI spec
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public abstract class AbstractOpenApiSchema {
 
     // store the actual instance of the schema/object

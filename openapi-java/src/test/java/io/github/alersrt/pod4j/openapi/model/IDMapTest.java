@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for IDMap
  */
-public class IDMapTest {
+class IDMapTest {
     private final IDMap model = new IDMap();
 
     /**
      * Model tests for IDMap
      */
     @Test
-    public void testIDMap() {
+    void testIDMap() {
         // TODO: test IDMap
     }
 
@@ -41,7 +42,7 @@ public class IDMapTest {
      * Test the property 'containerId'
      */
     @Test
-    public void containerIdTest() {
+    void containerIdTest() {
         // TODO: test containerId
     }
 
@@ -49,7 +50,7 @@ public class IDMapTest {
      * Test the property 'hostId'
      */
     @Test
-    public void hostIdTest() {
+    void hostIdTest() {
         // TODO: test hostId
     }
 
@@ -57,7 +58,7 @@ public class IDMapTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 

@@ -40,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ImageVolume.JSON_PROPERTY_SOURCE,
   ImageVolume.JSON_PROPERTY_SUB_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageVolume {
   public static final String JSON_PROPERTY_DESTINATION = "Destination";
   private String destination;
@@ -66,7 +66,7 @@ public class ImageVolume {
    * Destination is the absolute path of the mount in the container.
    * @return destination
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DESTINATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -91,7 +91,7 @@ public class ImageVolume {
    * ReadWrite sets the volume writable.
    * @return readWrite
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READ_WRITE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -116,7 +116,7 @@ public class ImageVolume {
    * Source is the source of the image volume.  The image can be referred to by name and by ID.
    * @return source
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -141,7 +141,7 @@ public class ImageVolume {
    * SubPath mounts a particular path within the image. If empty, the whole image is mounted.
    * @return subPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUB_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

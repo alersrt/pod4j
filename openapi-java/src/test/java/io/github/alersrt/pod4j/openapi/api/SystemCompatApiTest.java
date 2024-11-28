@@ -26,6 +26,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
 /**
  * API tests for SystemCompatApi
@@ -35,15 +40,21 @@ public class SystemCompatApiTest {
 
     private final SystemCompatApi api = new SystemCompatApi();
 
+
     /**
      * Check auth configuration
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void systemAuthTest() throws ApiException {
         AuthConfig authConfig = null;
-        AuthReport response = api.systemAuth(authConfig);
+        AuthReport response =
+                api.systemAuth(authConfig);
+        
         // TODO: test validations
     }
 
@@ -52,11 +63,14 @@ public class SystemCompatApiTest {
      *
      * Return information about disk usage for containers, images, and volumes
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void systemDataUsageTest() throws ApiException {
-        SystemDfReport response = api.systemDataUsage();
+        SystemDfReport response =
+                api.systemDataUsage();
+        
         // TODO: test validations
     }
 
@@ -65,14 +79,17 @@ public class SystemCompatApiTest {
      *
      * Returns events filtered on query parameters
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void systemEventsTest() throws ApiException {
         String since = null;
         String until = null;
         String filters = null;
+
         api.systemEvents(since, until, filters);
+
         // TODO: test validations
     }
 
@@ -81,11 +98,14 @@ public class SystemCompatApiTest {
      *
      * Returns information on the system and libpod configuration
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void systemInfoTest() throws ApiException {
+
         api.systemInfo();
+
         // TODO: test validations
     }
 
@@ -94,22 +114,30 @@ public class SystemCompatApiTest {
      *
      * Return protocol information in response headers. &#x60;HEAD /libpod/_ping&#x60; is also supported. &#x60;/_ping&#x60; is available for compatibility with other engines. The &#39;_ping&#39; endpoints are not versioned. 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void systemPingTest() throws ApiException {
-        String response = api.systemPing();
+        String response =
+                api.systemPing();
+        
         // TODO: test validations
     }
 
     /**
      * Component Version information
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void systemVersionTest() throws ApiException {
-        SystemComponentVersion response = api.systemVersion();
+        SystemComponentVersion response =
+                api.systemVersion();
+        
         // TODO: test validations
     }
 

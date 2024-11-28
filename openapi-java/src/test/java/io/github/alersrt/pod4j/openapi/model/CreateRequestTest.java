@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ConfigReference;
 import io.github.alersrt.pod4j.openapi.model.IPAM;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for CreateRequest
  */
-public class CreateRequestTest {
+class CreateRequestTest {
     private final CreateRequest model = new CreateRequest();
 
     /**
      * Model tests for CreateRequest
      */
     @Test
-    public void testCreateRequest() {
+    void testCreateRequest() {
         // TODO: test CreateRequest
     }
 
@@ -45,7 +46,7 @@ public class CreateRequestTest {
      * Test the property 'attachable'
      */
     @Test
-    public void attachableTest() {
+    void attachableTest() {
         // TODO: test attachable
     }
 
@@ -53,7 +54,7 @@ public class CreateRequestTest {
      * Test the property 'checkDuplicate'
      */
     @Test
-    public void checkDuplicateTest() {
+    void checkDuplicateTest() {
         // TODO: test checkDuplicate
     }
 
@@ -61,7 +62,7 @@ public class CreateRequestTest {
      * Test the property 'configFrom'
      */
     @Test
-    public void configFromTest() {
+    void configFromTest() {
         // TODO: test configFrom
     }
 
@@ -69,7 +70,7 @@ public class CreateRequestTest {
      * Test the property 'configOnly'
      */
     @Test
-    public void configOnlyTest() {
+    void configOnlyTest() {
         // TODO: test configOnly
     }
 
@@ -77,7 +78,7 @@ public class CreateRequestTest {
      * Test the property 'driver'
      */
     @Test
-    public void driverTest() {
+    void driverTest() {
         // TODO: test driver
     }
 
@@ -85,7 +86,7 @@ public class CreateRequestTest {
      * Test the property 'enableIPv6'
      */
     @Test
-    public void enableIPv6Test() {
+    void enableIPv6Test() {
         // TODO: test enableIPv6
     }
 
@@ -93,7 +94,7 @@ public class CreateRequestTest {
      * Test the property 'ipam'
      */
     @Test
-    public void ipamTest() {
+    void ipamTest() {
         // TODO: test ipam
     }
 
@@ -101,7 +102,7 @@ public class CreateRequestTest {
      * Test the property 'ingress'
      */
     @Test
-    public void ingressTest() {
+    void ingressTest() {
         // TODO: test ingress
     }
 
@@ -109,7 +110,7 @@ public class CreateRequestTest {
      * Test the property 'internal'
      */
     @Test
-    public void internalTest() {
+    void internalTest() {
         // TODO: test internal
     }
 
@@ -117,7 +118,7 @@ public class CreateRequestTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -125,7 +126,7 @@ public class CreateRequestTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -133,7 +134,7 @@ public class CreateRequestTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 
@@ -141,7 +142,7 @@ public class CreateRequestTest {
      * Test the property 'scope'
      */
     @Test
-    public void scopeTest() {
+    void scopeTest() {
         // TODO: test scope
     }
 

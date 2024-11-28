@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ImageVolume;
 import io.github.alersrt.pod4j.openapi.model.LinuxDevice;
 import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
@@ -26,26 +26,27 @@ import io.github.alersrt.pod4j.openapi.model.NamedVolume;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
 import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
 import io.github.alersrt.pod4j.openapi.model.Secret;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerStorageConfig
  */
-public class ContainerStorageConfigTest {
+class ContainerStorageConfigTest {
     private final ContainerStorageConfig model = new ContainerStorageConfig();
 
     /**
      * Model tests for ContainerStorageConfig
      */
     @Test
-    public void testContainerStorageConfig() {
+    void testContainerStorageConfig() {
         // TODO: test ContainerStorageConfig
     }
 
@@ -53,7 +54,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'chrootDirectories'
      */
     @Test
-    public void chrootDirectoriesTest() {
+    void chrootDirectoriesTest() {
         // TODO: test chrootDirectories
     }
 
@@ -61,7 +62,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'createWorkingDir'
      */
     @Test
-    public void createWorkingDirTest() {
+    void createWorkingDirTest() {
         // TODO: test createWorkingDir
     }
 
@@ -69,7 +70,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'deviceCgroupRule'
      */
     @Test
-    public void deviceCgroupRuleTest() {
+    void deviceCgroupRuleTest() {
         // TODO: test deviceCgroupRule
     }
 
@@ -77,7 +78,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'devices'
      */
     @Test
-    public void devicesTest() {
+    void devicesTest() {
         // TODO: test devices
     }
 
@@ -85,7 +86,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'devicesFrom'
      */
     @Test
-    public void devicesFromTest() {
+    void devicesFromTest() {
         // TODO: test devicesFrom
     }
 
@@ -93,7 +94,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'hostDeviceList'
      */
     @Test
-    public void hostDeviceListTest() {
+    void hostDeviceListTest() {
         // TODO: test hostDeviceList
     }
 
@@ -101,7 +102,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'image'
      */
     @Test
-    public void imageTest() {
+    void imageTest() {
         // TODO: test image
     }
 
@@ -109,7 +110,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'imageArch'
      */
     @Test
-    public void imageArchTest() {
+    void imageArchTest() {
         // TODO: test imageArch
     }
 
@@ -117,7 +118,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'imageOs'
      */
     @Test
-    public void imageOsTest() {
+    void imageOsTest() {
         // TODO: test imageOs
     }
 
@@ -125,7 +126,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'imageVariant'
      */
     @Test
-    public void imageVariantTest() {
+    void imageVariantTest() {
         // TODO: test imageVariant
     }
 
@@ -133,7 +134,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'imageVolumeMode'
      */
     @Test
-    public void imageVolumeModeTest() {
+    void imageVolumeModeTest() {
         // TODO: test imageVolumeMode
     }
 
@@ -141,7 +142,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'imageVolumes'
      */
     @Test
-    public void imageVolumesTest() {
+    void imageVolumesTest() {
         // TODO: test imageVolumes
     }
 
@@ -149,7 +150,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'init'
      */
     @Test
-    public void initTest() {
+    void initTest() {
         // TODO: test init
     }
 
@@ -157,7 +158,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'initPath'
      */
     @Test
-    public void initPathTest() {
+    void initPathTest() {
         // TODO: test initPath
     }
 
@@ -165,7 +166,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'ipcns'
      */
     @Test
-    public void ipcnsTest() {
+    void ipcnsTest() {
         // TODO: test ipcns
     }
 
@@ -173,7 +174,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'mounts'
      */
     @Test
-    public void mountsTest() {
+    void mountsTest() {
         // TODO: test mounts
     }
 
@@ -181,7 +182,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'overlayVolumes'
      */
     @Test
-    public void overlayVolumesTest() {
+    void overlayVolumesTest() {
         // TODO: test overlayVolumes
     }
 
@@ -189,7 +190,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'rawImageName'
      */
     @Test
-    public void rawImageNameTest() {
+    void rawImageNameTest() {
         // TODO: test rawImageName
     }
 
@@ -197,7 +198,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'rootfs'
      */
     @Test
-    public void rootfsTest() {
+    void rootfsTest() {
         // TODO: test rootfs
     }
 
@@ -205,7 +206,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'rootfsMapping'
      */
     @Test
-    public void rootfsMappingTest() {
+    void rootfsMappingTest() {
         // TODO: test rootfsMapping
     }
 
@@ -213,7 +214,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'rootfsOverlay'
      */
     @Test
-    public void rootfsOverlayTest() {
+    void rootfsOverlayTest() {
         // TODO: test rootfsOverlay
     }
 
@@ -221,7 +222,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'rootfsPropagation'
      */
     @Test
-    public void rootfsPropagationTest() {
+    void rootfsPropagationTest() {
         // TODO: test rootfsPropagation
     }
 
@@ -229,7 +230,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'secrets'
      */
     @Test
-    public void secretsTest() {
+    void secretsTest() {
         // TODO: test secrets
     }
 
@@ -237,7 +238,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'shmSize'
      */
     @Test
-    public void shmSizeTest() {
+    void shmSizeTest() {
         // TODO: test shmSize
     }
 
@@ -245,7 +246,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'shmSizeSystemd'
      */
     @Test
-    public void shmSizeSystemdTest() {
+    void shmSizeSystemdTest() {
         // TODO: test shmSizeSystemd
     }
 
@@ -253,7 +254,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'storageOpts'
      */
     @Test
-    public void storageOptsTest() {
+    void storageOptsTest() {
         // TODO: test storageOpts
     }
 
@@ -261,7 +262,7 @@ public class ContainerStorageConfigTest {
      * Test the property '_volatile'
      */
     @Test
-    public void _volatileTest() {
+    void _volatileTest() {
         // TODO: test _volatile
     }
 
@@ -269,7 +270,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'volumes'
      */
     @Test
-    public void volumesTest() {
+    void volumesTest() {
         // TODO: test volumes
     }
 
@@ -277,7 +278,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'volumesFrom'
      */
     @Test
-    public void volumesFromTest() {
+    void volumesFromTest() {
         // TODO: test volumesFrom
     }
 
@@ -285,7 +286,7 @@ public class ContainerStorageConfigTest {
      * Test the property 'workDir'
      */
     @Test
-    public void workDirTest() {
+    void workDirTest() {
         // TODO: test workDir
     }
 

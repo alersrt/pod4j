@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainersPruneReport
  */
-public class ContainersPruneReportTest {
+class ContainersPruneReportTest {
     private final ContainersPruneReport model = new ContainersPruneReport();
 
     /**
      * Model tests for ContainersPruneReport
      */
     @Test
-    public void testContainersPruneReport() {
+    void testContainersPruneReport() {
         // TODO: test ContainersPruneReport
     }
 
@@ -43,7 +44,7 @@ public class ContainersPruneReportTest {
      * Test the property 'containersDeleted'
      */
     @Test
-    public void containersDeletedTest() {
+    void containersDeletedTest() {
         // TODO: test containersDeleted
     }
 
@@ -51,7 +52,7 @@ public class ContainersPruneReportTest {
      * Test the property 'spaceReclaimed'
      */
     @Test
-    public void spaceReclaimedTest() {
+    void spaceReclaimedTest() {
         // TODO: test spaceReclaimed
     }
 

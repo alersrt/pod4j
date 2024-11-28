@@ -80,7 +80,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectContainerConfig.JSON_PROPERTY_SD_NOTIFY_MODE,
   InspectContainerConfig.JSON_PROPERTY_SD_NOTIFY_SOCKET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerConfig {
   public static final String JSON_PROPERTY_ANNOTATIONS = "Annotations";
   private Map<String, String> annotations = new HashMap<>();
@@ -213,7 +213,7 @@ public class InspectContainerConfig {
    * Container annotations
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -238,7 +238,7 @@ public class InspectContainerConfig {
    * Unused, at present
    * @return attachStderr
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -263,7 +263,7 @@ public class InspectContainerConfig {
    * Unused, at present
    * @return attachStdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -288,7 +288,7 @@ public class InspectContainerConfig {
    * Unused, at present
    * @return attachStdout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -321,7 +321,7 @@ public class InspectContainerConfig {
    * ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories.
    * @return chrootDirs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CHROOT_DIRS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -354,7 +354,7 @@ public class InspectContainerConfig {
    * Container command
    * @return cmd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -387,7 +387,7 @@ public class InspectContainerConfig {
    * CreateCommand is the full command plus arguments of the process the container has been created with.
    * @return createCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATE_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -412,7 +412,7 @@ public class InspectContainerConfig {
    * Container domain name - unused at present
    * @return domainname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DOMAINNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -445,7 +445,7 @@ public class InspectContainerConfig {
    * Container entrypoint
    * @return entrypoint
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -478,7 +478,7 @@ public class InspectContainerConfig {
    * Container environment variables
    * @return env
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -511,7 +511,7 @@ public class InspectContainerConfig {
    * ExposedPorts includes ports the container has exposed.
    * @return exposedPorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -536,7 +536,7 @@ public class InspectContainerConfig {
    * HealthLogDestination defines the destination where the log is stored
    * @return healthLogDestination
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -561,7 +561,7 @@ public class InspectContainerConfig {
    * Get healthcheck
    * @return healthcheck
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
@@ -587,7 +587,7 @@ public class InspectContainerConfig {
    * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
    * @return healthcheckMaxLogCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTHCHECK_MAX_LOG_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -612,7 +612,7 @@ public class InspectContainerConfig {
    * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length)
    * @return healthcheckMaxLogSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTHCHECK_MAX_LOG_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -637,7 +637,7 @@ public class InspectContainerConfig {
    * HealthcheckOnFailureAction defines an action to take once the container turns unhealthy.
    * @return healthcheckOnFailureAction
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTHCHECK_ON_FAILURE_ACTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -662,7 +662,7 @@ public class InspectContainerConfig {
    * Container hostname
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -687,7 +687,7 @@ public class InspectContainerConfig {
    * Container image
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -720,7 +720,7 @@ public class InspectContainerConfig {
    * Container labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -745,7 +745,7 @@ public class InspectContainerConfig {
    * On-build arguments - presently unused. More of Buildah&#39;s domain.
    * @return onBuild
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ON_BUILD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -770,7 +770,7 @@ public class InspectContainerConfig {
    * Whether the container leaves STDIN open
    * @return openStdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -795,7 +795,7 @@ public class InspectContainerConfig {
    * Passwd determines whether or not podman can add entries to /etc/passwd and /etc/group
    * @return passwd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PASSWD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -828,7 +828,7 @@ public class InspectContainerConfig {
    * Secrets are the secrets mounted in the container
    * @return secrets
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECRETS)
@@ -854,7 +854,7 @@ public class InspectContainerConfig {
    * Get startupHealthCheck
    * @return startupHealthCheck
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CHECK)
@@ -880,7 +880,7 @@ public class InspectContainerConfig {
    * Whether STDIN is only left open once. Presently not supported by Podman, unused.
    * @return stdinOnce
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -905,7 +905,7 @@ public class InspectContainerConfig {
    * Container stop signal
    * @return stopSignal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -930,7 +930,7 @@ public class InspectContainerConfig {
    * StopTimeout is time before container is stopped when calling stop
    * @return stopTimeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -955,7 +955,7 @@ public class InspectContainerConfig {
    * SystemdMode is whether the container is running in systemd mode. In systemd mode, the container configuration is customized to optimize running systemd in the container.
    * @return systemdMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSTEMD_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -980,7 +980,7 @@ public class InspectContainerConfig {
    * Timeout is time before container is killed by conmon
    * @return timeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1005,7 +1005,7 @@ public class InspectContainerConfig {
    * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine
    * @return timezone
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TIMEZONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1030,7 +1030,7 @@ public class InspectContainerConfig {
    * Whether the container creates a TTY
    * @return tty
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1055,7 +1055,7 @@ public class InspectContainerConfig {
    * Umask is the umask inside the container.
    * @return umask
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UMASK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1080,7 +1080,7 @@ public class InspectContainerConfig {
    * User the container was launched with
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1113,7 +1113,7 @@ public class InspectContainerConfig {
    * Unused, at present. I&#39;ve never seen this field populated.
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1138,7 +1138,7 @@ public class InspectContainerConfig {
    * Container working directory
    * @return workingDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WORKING_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1163,7 +1163,7 @@ public class InspectContainerConfig {
    * SdNotifyMode is the sd-notify mode of the container.
    * @return sdNotifyMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SD_NOTIFY_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1188,7 +1188,7 @@ public class InspectContainerConfig {
    * SdNotifySocket is the NOTIFY_SOCKET in use by/configured for the container.
    * @return sdNotifySocket
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SD_NOTIFY_SOCKET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

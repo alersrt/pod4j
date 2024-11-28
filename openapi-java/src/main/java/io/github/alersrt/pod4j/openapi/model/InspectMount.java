@@ -48,7 +48,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectMount.JSON_PROPERTY_SUB_PATH,
   InspectMount.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectMount {
   public static final String JSON_PROPERTY_DESTINATION = "Destination";
   private String destination;
@@ -92,7 +92,7 @@ public class InspectMount {
    * The destination directory for the volume. Specified as a path within the container, as it would be passed into the OCI runtime.
    * @return destination
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DESTINATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -117,7 +117,7 @@ public class InspectMount {
    * The driver used for the named volume. Empty for bind mounts.
    * @return driver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -142,7 +142,7 @@ public class InspectMount {
    * Contains SELinux :z/:Z mount options. Unclear what, if anything, else goes in here.
    * @return mode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -167,7 +167,7 @@ public class InspectMount {
    * The name of the volume. Empty for bind mounts.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -200,7 +200,7 @@ public class InspectMount {
    * All remaining mount options. Additional data, not present in the original output.
    * @return options
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -225,7 +225,7 @@ public class InspectMount {
    * Mount propagation for the mount. Can be empty if not specified, but is always printed - no omitempty.
    * @return propagation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PROPAGATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -250,7 +250,7 @@ public class InspectMount {
    * Whether the volume is read-write
    * @return RW
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_R_W)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -275,7 +275,7 @@ public class InspectMount {
    * The source directory for the volume.
    * @return source
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -300,7 +300,7 @@ public class InspectMount {
    * SubPath object from the volume. Specified as a path within the source volume to be mounted at the Destination.
    * @return subPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUB_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -325,7 +325,7 @@ public class InspectMount {
    * Whether the mount is a volume or bind mount. Allowed values are \&quot;volume\&quot; and \&quot;bind\&quot;.
    * @return type
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

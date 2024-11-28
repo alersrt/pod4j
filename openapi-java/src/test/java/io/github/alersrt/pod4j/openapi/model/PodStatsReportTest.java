@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodStatsReport
  */
-public class PodStatsReportTest {
+class PodStatsReportTest {
     private final PodStatsReport model = new PodStatsReport();
 
     /**
      * Model tests for PodStatsReport
      */
     @Test
-    public void testPodStatsReport() {
+    void testPodStatsReport() {
         // TODO: test PodStatsReport
     }
 
@@ -41,7 +42,7 @@ public class PodStatsReportTest {
      * Test the property 'blockIO'
      */
     @Test
-    public void blockIOTest() {
+    void blockIOTest() {
         // TODO: test blockIO
     }
 
@@ -49,7 +50,7 @@ public class PodStatsReportTest {
      * Test the property 'CID'
      */
     @Test
-    public void CIDTest() {
+    void CIDTest() {
         // TODO: test CID
     }
 
@@ -57,7 +58,7 @@ public class PodStatsReportTest {
      * Test the property 'CPU'
      */
     @Test
-    public void CPUTest() {
+    void CPUTest() {
         // TODO: test CPU
     }
 
@@ -65,7 +66,7 @@ public class PodStatsReportTest {
      * Test the property 'mem'
      */
     @Test
-    public void memTest() {
+    void memTest() {
         // TODO: test mem
     }
 
@@ -73,7 +74,7 @@ public class PodStatsReportTest {
      * Test the property 'memUsage'
      */
     @Test
-    public void memUsageTest() {
+    void memUsageTest() {
         // TODO: test memUsage
     }
 
@@ -81,7 +82,7 @@ public class PodStatsReportTest {
      * Test the property 'memUsageBytes'
      */
     @Test
-    public void memUsageBytesTest() {
+    void memUsageBytesTest() {
         // TODO: test memUsageBytes
     }
 
@@ -89,7 +90,7 @@ public class PodStatsReportTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -97,7 +98,7 @@ public class PodStatsReportTest {
      * Test the property 'netIO'
      */
     @Test
-    public void netIOTest() {
+    void netIOTest() {
         // TODO: test netIO
     }
 
@@ -105,7 +106,7 @@ public class PodStatsReportTest {
      * Test the property 'PIDS'
      */
     @Test
-    public void PIDSTest() {
+    void PIDSTest() {
         // TODO: test PIDS
     }
 
@@ -113,7 +114,7 @@ public class PodStatsReportTest {
      * Test the property 'pod'
      */
     @Test
-    public void podTest() {
+    void podTest() {
         // TODO: test pod
     }
 

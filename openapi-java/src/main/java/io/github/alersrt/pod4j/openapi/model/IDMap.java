@@ -13,24 +13,15 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * IDMap contains a single entry for user namespace range remapping. An array of IDMap entries represents the structure that will be provided to the Linux kernel for creating a user namespace.
  */
@@ -39,7 +30,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   IDMap.JSON_PROPERTY_HOST_ID,
   IDMap.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IDMap {
   public static final String JSON_PROPERTY_CONTAINER_ID = "container_id";
   private Long containerId;
@@ -62,7 +53,7 @@ public class IDMap {
    * Get containerId
    * @return containerId
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -87,7 +78,7 @@ public class IDMap {
    * Get hostId
    * @return hostId
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOST_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -112,7 +103,7 @@ public class IDMap {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

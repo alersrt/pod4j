@@ -41,7 +41,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   TmpfsOptions.JSON_PROPERTY_OPTIONS,
   TmpfsOptions.JSON_PROPERTY_SIZE_BYTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class TmpfsOptions {
   public static final String JSON_PROPERTY_MODE = "Mode";
   private Integer mode;
@@ -64,7 +64,7 @@ public class TmpfsOptions {
    * The bits have the same definition on all systems, so that information about files can be moved from one system to another portably. Not all bits apply to all systems. The only required bit is [ModeDir] for directories.
    * @return mode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -97,7 +97,7 @@ public class TmpfsOptions {
    * Options to be passed to the tmpfs mount. An array of arrays. Flag options should be provided as 1-length arrays. Other types should be provided as 2-length arrays, where the first item is the key and the second the value.
    * @return options
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_OPTIONS)
@@ -123,7 +123,7 @@ public class TmpfsOptions {
    * Size sets the size of the tmpfs, in bytes.  This will be converted to an operating system specific value depending on the host. For example, on linux, it will be converted to use a &#39;k&#39;, &#39;m&#39; or &#39;g&#39; syntax. BSD, though not widely supported with docker, uses a straight byte value.  Percentages are not supported.
    * @return sizeBytes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE_BYTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

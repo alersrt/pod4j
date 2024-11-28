@@ -39,7 +39,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   WaitResponse.JSON_PROPERTY_ERROR,
   WaitResponse.JSON_PROPERTY_STATUS_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class WaitResponse {
   public static final String JSON_PROPERTY_ERROR = "Error";
   private WaitExitError error;
@@ -59,7 +59,7 @@ public class WaitResponse {
    * Get error
    * @return error
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ERROR)
@@ -85,7 +85,7 @@ public class WaitResponse {
    * Exit code of the container
    * @return statusCode
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_STATUS_CODE)

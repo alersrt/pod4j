@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Config;
 import io.github.alersrt.pod4j.openapi.model.HostConfig;
 import io.github.alersrt.pod4j.openapi.model.MountPoint;
@@ -25,26 +25,27 @@ import io.github.alersrt.pod4j.openapi.model.NetworkingConfig;
 import io.github.alersrt.pod4j.openapi.model.Platform;
 import io.github.alersrt.pod4j.openapi.model.Port;
 import io.github.alersrt.pod4j.openapi.model.SummaryNetworkSettings;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Container
  */
-public class ContainerTest {
+class ContainerTest {
     private final Container model = new Container();
 
     /**
      * Model tests for Container
      */
     @Test
-    public void testContainer() {
+    void testContainer() {
         // TODO: test Container
     }
 
@@ -52,7 +53,7 @@ public class ContainerTest {
      * Test the property 'command'
      */
     @Test
-    public void commandTest() {
+    void commandTest() {
         // TODO: test command
     }
 
@@ -60,7 +61,7 @@ public class ContainerTest {
      * Test the property 'config'
      */
     @Test
-    public void configTest() {
+    void configTest() {
         // TODO: test config
     }
 
@@ -68,7 +69,7 @@ public class ContainerTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -76,7 +77,7 @@ public class ContainerTest {
      * Test the property 'defaultReadOnlyNonRecursive'
      */
     @Test
-    public void defaultReadOnlyNonRecursiveTest() {
+    void defaultReadOnlyNonRecursiveTest() {
         // TODO: test defaultReadOnlyNonRecursive
     }
 
@@ -84,7 +85,7 @@ public class ContainerTest {
      * Test the property 'hostConfig'
      */
     @Test
-    public void hostConfigTest() {
+    void hostConfigTest() {
         // TODO: test hostConfig
     }
 
@@ -92,7 +93,7 @@ public class ContainerTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -100,7 +101,7 @@ public class ContainerTest {
      * Test the property 'image'
      */
     @Test
-    public void imageTest() {
+    void imageTest() {
         // TODO: test image
     }
 
@@ -108,7 +109,7 @@ public class ContainerTest {
      * Test the property 'imageID'
      */
     @Test
-    public void imageIDTest() {
+    void imageIDTest() {
         // TODO: test imageID
     }
 
@@ -116,7 +117,7 @@ public class ContainerTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -124,7 +125,7 @@ public class ContainerTest {
      * Test the property 'mounts'
      */
     @Test
-    public void mountsTest() {
+    void mountsTest() {
         // TODO: test mounts
     }
 
@@ -132,7 +133,7 @@ public class ContainerTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -140,7 +141,7 @@ public class ContainerTest {
      * Test the property 'names'
      */
     @Test
-    public void namesTest() {
+    void namesTest() {
         // TODO: test names
     }
 
@@ -148,7 +149,7 @@ public class ContainerTest {
      * Test the property 'networkSettings'
      */
     @Test
-    public void networkSettingsTest() {
+    void networkSettingsTest() {
         // TODO: test networkSettings
     }
 
@@ -156,7 +157,7 @@ public class ContainerTest {
      * Test the property 'networkingConfig'
      */
     @Test
-    public void networkingConfigTest() {
+    void networkingConfigTest() {
         // TODO: test networkingConfig
     }
 
@@ -164,7 +165,7 @@ public class ContainerTest {
      * Test the property 'platform'
      */
     @Test
-    public void platformTest() {
+    void platformTest() {
         // TODO: test platform
     }
 
@@ -172,7 +173,7 @@ public class ContainerTest {
      * Test the property 'ports'
      */
     @Test
-    public void portsTest() {
+    void portsTest() {
         // TODO: test ports
     }
 
@@ -180,7 +181,7 @@ public class ContainerTest {
      * Test the property 'sizeRootFs'
      */
     @Test
-    public void sizeRootFsTest() {
+    void sizeRootFsTest() {
         // TODO: test sizeRootFs
     }
 
@@ -188,7 +189,7 @@ public class ContainerTest {
      * Test the property 'sizeRw'
      */
     @Test
-    public void sizeRwTest() {
+    void sizeRwTest() {
         // TODO: test sizeRw
     }
 
@@ -196,7 +197,7 @@ public class ContainerTest {
      * Test the property 'state'
      */
     @Test
-    public void stateTest() {
+    void stateTest() {
         // TODO: test state
     }
 
@@ -204,7 +205,7 @@ public class ContainerTest {
      * Test the property 'status'
      */
     @Test
-    public void statusTest() {
+    void statusTest() {
         // TODO: test status
     }
 

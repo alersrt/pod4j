@@ -13,29 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.HealthcheckConfig;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * It should hold only portable information about the container. Here, \&quot;portable\&quot; means \&quot;independent from the host we are running on\&quot;. Non-portable information *should* appear in HostConfig. All fields added to this struct must be marked &#x60;omitempty&#x60; to keep getting predictable hashes from the old &#x60;v1Compatibility&#x60; configuration.
  */
@@ -66,7 +57,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Config.JSON_PROPERTY_VOLUMES,
   Config.JSON_PROPERTY_WORKING_DIR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Config {
   public static final String JSON_PROPERTY_ARGS_ESCAPED = "ArgsEscaped";
   private Boolean argsEscaped;
@@ -155,7 +146,7 @@ public class Config {
    * Get argsEscaped
    * @return argsEscaped
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARGS_ESCAPED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -180,7 +171,7 @@ public class Config {
    * Get attachStderr
    * @return attachStderr
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -205,7 +196,7 @@ public class Config {
    * Get attachStdin
    * @return attachStdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -230,7 +221,7 @@ public class Config {
    * Get attachStdout
    * @return attachStdout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -263,7 +254,7 @@ public class Config {
    * We need to override the json decoder to accept both options.
    * @return cmd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -288,7 +279,7 @@ public class Config {
    * Get domainname
    * @return domainname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DOMAINNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -321,7 +312,7 @@ public class Config {
    * We need to override the json decoder to accept both options.
    * @return entrypoint
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -354,7 +345,7 @@ public class Config {
    * Get env
    * @return env
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -387,7 +378,7 @@ public class Config {
    * PortSet is a collection of structs indexed by Port
    * @return exposedPorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -412,7 +403,7 @@ public class Config {
    * Get healthcheck
    * @return healthcheck
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
@@ -438,7 +429,7 @@ public class Config {
    * Get hostname
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -463,7 +454,7 @@ public class Config {
    * Get image
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -496,7 +487,7 @@ public class Config {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -521,7 +512,7 @@ public class Config {
    * Mac Address of the container.  Deprecated: this field is deprecated since API v1.44. Use EndpointSettings.MacAddress instead.
    * @return macAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -546,7 +537,7 @@ public class Config {
    * Get networkDisabled
    * @return networkDisabled
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_DISABLED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -579,7 +570,7 @@ public class Config {
    * Get onBuild
    * @return onBuild
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ON_BUILD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -604,7 +595,7 @@ public class Config {
    * Get openStdin
    * @return openStdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -637,7 +628,7 @@ public class Config {
    * We need to override the json decoder to accept both options.
    * @return shell
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHELL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -662,7 +653,7 @@ public class Config {
    * Get stdinOnce
    * @return stdinOnce
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -687,7 +678,7 @@ public class Config {
    * Get stopSignal
    * @return stopSignal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -712,7 +703,7 @@ public class Config {
    * Get stopTimeout
    * @return stopTimeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -737,7 +728,7 @@ public class Config {
    * Get tty
    * @return tty
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -762,7 +753,7 @@ public class Config {
    * Get user
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -795,7 +786,7 @@ public class Config {
    * Get volumes
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -820,7 +811,7 @@ public class Config {
    * Get workingDir
    * @return workingDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WORKING_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,24 +13,15 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * HealthCheckLog describes the results of a single healthcheck
  */
@@ -40,7 +31,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   HealthCheckLog.JSON_PROPERTY_OUTPUT,
   HealthCheckLog.JSON_PROPERTY_START
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class HealthCheckLog {
   public static final String JSON_PROPERTY_END = "End";
   private String end;
@@ -66,7 +57,7 @@ public class HealthCheckLog {
    * End time as a string
    * @return end
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_END)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -91,7 +82,7 @@ public class HealthCheckLog {
    * Exitcode is 0 or 1
    * @return exitCode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -116,7 +107,7 @@ public class HealthCheckLog {
    * Output is the stdout/stderr from the healthcheck command
    * @return output
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OUTPUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -141,7 +132,7 @@ public class HealthCheckLog {
    * Start time as string
    * @return start
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_START)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

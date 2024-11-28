@@ -41,7 +41,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxDeviceCgroup.JSON_PROPERTY_MINOR,
   LinuxDeviceCgroup.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxDeviceCgroup {
   public static final String JSON_PROPERTY_ACCESS = "access";
   private String access;
@@ -70,7 +70,7 @@ public class LinuxDeviceCgroup {
    * Cgroup access permissions format, rwm.
    * @return access
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ACCESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -95,7 +95,7 @@ public class LinuxDeviceCgroup {
    * Allow or deny
    * @return allow
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ALLOW)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -120,7 +120,7 @@ public class LinuxDeviceCgroup {
    * Major is the device&#39;s major number.
    * @return major
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAJOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -145,7 +145,7 @@ public class LinuxDeviceCgroup {
    * Minor is the device&#39;s minor number.
    * @return minor
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MINOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -170,7 +170,7 @@ public class LinuxDeviceCgroup {
    * Device type, block, char, etc.
    * @return type
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

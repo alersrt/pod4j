@@ -61,7 +61,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PodBasicConfig.JSON_PROPERTY_USERNS,
   PodBasicConfig.JSON_PROPERTY_UTSNS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodBasicConfig {
   public static final String JSON_PROPERTY_EXIT_POLICY = "exit_policy";
   private String exitPolicy;
@@ -135,7 +135,7 @@ public class PodBasicConfig {
    * ExitPolicy determines the pod&#39;s exit and stop behaviour.
    * @return exitPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -160,7 +160,7 @@ public class PodBasicConfig {
    * Hostname is the pod&#39;s hostname. If not set, the name of the pod will be used (if a name was not provided here, the name auto-generated for the pod will be used). This will be used by the infra container and all containers in the pod as long as the UTS namespace is shared. Optional.
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -193,7 +193,7 @@ public class PodBasicConfig {
    * InfraCommand sets the command that will be used to start the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -218,7 +218,7 @@ public class PodBasicConfig {
    * InfraConmonPidFile is a custom path to store the infra container&#39;s conmon PID.
    * @return infraConmonPidFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_CONMON_PID_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -243,7 +243,7 @@ public class PodBasicConfig {
    * InfraImage is the image that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraImage
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -268,7 +268,7 @@ public class PodBasicConfig {
    * InfraName is the name that will be used for the infra container. If not set, the default set in the Libpod configuration file will be used. Conflicts with NoInfra&#x3D;true. Optional.
    * @return infraName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -293,7 +293,7 @@ public class PodBasicConfig {
    * Get ipcns
    * @return ipcns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IPCNS)
@@ -327,7 +327,7 @@ public class PodBasicConfig {
    * Labels are key-value pairs that are used to add metadata to pods. Optional.
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -352,7 +352,7 @@ public class PodBasicConfig {
    * Name is the name of the pod. If not provided, a name will be generated when the pod is created. Optional.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -377,7 +377,7 @@ public class PodBasicConfig {
    * NoInfra tells the pod not to create an infra container. If this is done, many networking-related options will become unavailable. Conflicts with setting any options in PodNetworkConfig, and the InfraCommand and InfraImages in this struct. Optional.
    * @return noInfra
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_INFRA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -402,7 +402,7 @@ public class PodBasicConfig {
    * Get pidns
    * @return pidns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PIDNS)
@@ -436,7 +436,7 @@ public class PodBasicConfig {
    * Get podCreateCommand
    * @return podCreateCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD_CREATE_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -469,7 +469,7 @@ public class PodBasicConfig {
    * Devices contains user specified Devices to be added to the Pod
    * @return podDevices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD_DEVICES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -494,7 +494,7 @@ public class PodBasicConfig {
    * RestartPolicy is the pod&#39;s restart policy - an action which will be taken when one or all the containers in the pod exits. If not given, the default policy will be set to Always, which restarts the containers in the pod when they exit indefinitely. Optional.
    * @return restartPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -519,7 +519,7 @@ public class PodBasicConfig {
    * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
    * @return restartTries
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -544,7 +544,7 @@ public class PodBasicConfig {
    * PodCreateCommand is the command used to create this pod. This will be shown in the output of Inspect() on the pod, and may also be used by some tools that wish to recreate the pod (e.g. &#x60;podman generate systemd --new&#x60;). Optional. ShareParent determines if all containers in the pod will share the pod&#39;s cgroup as the cgroup parent
    * @return shareParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARE_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -577,7 +577,7 @@ public class PodBasicConfig {
    * SharedNamespaces instructs the pod to share a set of namespaces. Shared namespaces will be joined (by default) by every container which joins the pod. If not set and NoInfra is false, the pod will set a default set of namespaces to share. Conflicts with NoInfra&#x3D;true. Optional.
    * @return sharedNamespaces
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARED_NAMESPACES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -610,7 +610,7 @@ public class PodBasicConfig {
    * Sysctl sets kernel parameters for the pod
    * @return sysctl
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSCTL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -635,7 +635,7 @@ public class PodBasicConfig {
    * Get userns
    * @return userns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_USERNS)
@@ -661,7 +661,7 @@ public class PodBasicConfig {
    * Get utsns
    * @return utsns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_UTSNS)

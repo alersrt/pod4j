@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for NetworkConnectOptions
  */
-public class NetworkConnectOptionsTest {
+class NetworkConnectOptionsTest {
     private final NetworkConnectOptions model = new NetworkConnectOptions();
 
     /**
      * Model tests for NetworkConnectOptions
      */
     @Test
-    public void testNetworkConnectOptions() {
+    void testNetworkConnectOptions() {
         // TODO: test NetworkConnectOptions
     }
 
@@ -43,7 +44,7 @@ public class NetworkConnectOptionsTest {
      * Test the property 'aliases'
      */
     @Test
-    public void aliasesTest() {
+    void aliasesTest() {
         // TODO: test aliases
     }
 
@@ -51,7 +52,7 @@ public class NetworkConnectOptionsTest {
      * Test the property 'container'
      */
     @Test
-    public void containerTest() {
+    void containerTest() {
         // TODO: test container
     }
 
@@ -59,7 +60,7 @@ public class NetworkConnectOptionsTest {
      * Test the property 'interfaceName'
      */
     @Test
-    public void interfaceNameTest() {
+    void interfaceNameTest() {
         // TODO: test interfaceName
     }
 
@@ -67,7 +68,7 @@ public class NetworkConnectOptionsTest {
      * Test the property 'staticIps'
      */
     @Test
-    public void staticIpsTest() {
+    void staticIpsTest() {
         // TODO: test staticIps
     }
 
@@ -75,7 +76,7 @@ public class NetworkConnectOptionsTest {
      * Test the property 'staticMac'
      */
     @Test
-    public void staticMacTest() {
+    void staticMacTest() {
         // TODO: test staticMac
     }
 

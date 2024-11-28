@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for IPAMConfig
  */
-public class IPAMConfigTest {
+class IPAMConfigTest {
     private final IPAMConfig model = new IPAMConfig();
 
     /**
      * Model tests for IPAMConfig
      */
     @Test
-    public void testIPAMConfig() {
+    void testIPAMConfig() {
         // TODO: test IPAMConfig
     }
 
@@ -43,7 +44,7 @@ public class IPAMConfigTest {
      * Test the property 'auxiliaryAddresses'
      */
     @Test
-    public void auxiliaryAddressesTest() {
+    void auxiliaryAddressesTest() {
         // TODO: test auxiliaryAddresses
     }
 
@@ -51,7 +52,7 @@ public class IPAMConfigTest {
      * Test the property 'gateway'
      */
     @Test
-    public void gatewayTest() {
+    void gatewayTest() {
         // TODO: test gateway
     }
 
@@ -59,7 +60,7 @@ public class IPAMConfigTest {
      * Test the property 'ipRange'
      */
     @Test
-    public void ipRangeTest() {
+    void ipRangeTest() {
         // TODO: test ipRange
     }
 
@@ -67,7 +68,7 @@ public class IPAMConfigTest {
      * Test the property 'subnet'
      */
     @Test
-    public void subnetTest() {
+    void subnetTest() {
         // TODO: test subnet
     }
 

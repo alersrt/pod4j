@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
 import io.github.alersrt.pod4j.openapi.model.StartupHealthCheck;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerHealthCheckConfig
  */
-public class ContainerHealthCheckConfigTest {
+class ContainerHealthCheckConfigTest {
     private final ContainerHealthCheckConfig model = new ContainerHealthCheckConfig();
 
     /**
      * Model tests for ContainerHealthCheckConfig
      */
     @Test
-    public void testContainerHealthCheckConfig() {
+    void testContainerHealthCheckConfig() {
         // TODO: test ContainerHealthCheckConfig
     }
 
@@ -43,7 +44,7 @@ public class ContainerHealthCheckConfigTest {
      * Test the property 'healthCheckOnFailureAction'
      */
     @Test
-    public void healthCheckOnFailureActionTest() {
+    void healthCheckOnFailureActionTest() {
         // TODO: test healthCheckOnFailureAction
     }
 
@@ -51,7 +52,7 @@ public class ContainerHealthCheckConfigTest {
      * Test the property 'healthLogDestination'
      */
     @Test
-    public void healthLogDestinationTest() {
+    void healthLogDestinationTest() {
         // TODO: test healthLogDestination
     }
 
@@ -59,7 +60,7 @@ public class ContainerHealthCheckConfigTest {
      * Test the property 'healthMaxLogCount'
      */
     @Test
-    public void healthMaxLogCountTest() {
+    void healthMaxLogCountTest() {
         // TODO: test healthMaxLogCount
     }
 
@@ -67,7 +68,7 @@ public class ContainerHealthCheckConfigTest {
      * Test the property 'healthMaxLogSize'
      */
     @Test
-    public void healthMaxLogSizeTest() {
+    void healthMaxLogSizeTest() {
         // TODO: test healthMaxLogSize
     }
 
@@ -75,7 +76,7 @@ public class ContainerHealthCheckConfigTest {
      * Test the property 'healthconfig'
      */
     @Test
-    public void healthconfigTest() {
+    void healthconfigTest() {
         // TODO: test healthconfig
     }
 
@@ -83,7 +84,7 @@ public class ContainerHealthCheckConfigTest {
      * Test the property 'startupHealthConfig'
      */
     @Test
-    public void startupHealthConfigTest() {
+    void startupHealthConfigTest() {
         // TODO: test startupHealthConfig
     }
 

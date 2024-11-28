@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.DNSNetworkInfo;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for NetworkInfo
  */
-public class NetworkInfoTest {
+class NetworkInfoTest {
     private final NetworkInfo model = new NetworkInfo();
 
     /**
      * Model tests for NetworkInfo
      */
     @Test
-    public void testNetworkInfo() {
+    void testNetworkInfo() {
         // TODO: test NetworkInfo
     }
 
@@ -42,7 +43,7 @@ public class NetworkInfoTest {
      * Test the property 'backend'
      */
     @Test
-    public void backendTest() {
+    void backendTest() {
         // TODO: test backend
     }
 
@@ -50,7 +51,7 @@ public class NetworkInfoTest {
      * Test the property 'dns'
      */
     @Test
-    public void dnsTest() {
+    void dnsTest() {
         // TODO: test dns
     }
 
@@ -58,7 +59,7 @@ public class NetworkInfoTest {
      * Test the property '_package'
      */
     @Test
-    public void _packageTest() {
+    void _packageTest() {
         // TODO: test _package
     }
 
@@ -66,7 +67,7 @@ public class NetworkInfoTest {
      * Test the property 'path'
      */
     @Test
-    public void pathTest() {
+    void pathTest() {
         // TODO: test path
     }
 
@@ -74,7 +75,7 @@ public class NetworkInfoTest {
      * Test the property 'version'
      */
     @Test
-    public void versionTest() {
+    void versionTest() {
         // TODO: test version
     }
 

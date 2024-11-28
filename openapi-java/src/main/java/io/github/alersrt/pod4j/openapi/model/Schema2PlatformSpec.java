@@ -44,7 +44,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Schema2PlatformSpec.JSON_PROPERTY_OS_VERSION,
   Schema2PlatformSpec.JSON_PROPERTY_VARIANT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2PlatformSpec {
   public static final String JSON_PROPERTY_ARCHITECTURE = "architecture";
   private String architecture;
@@ -76,7 +76,7 @@ public class Schema2PlatformSpec {
    * Get architecture
    * @return architecture
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -109,7 +109,7 @@ public class Schema2PlatformSpec {
    * Get features
    * @return features
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -134,7 +134,7 @@ public class Schema2PlatformSpec {
    * Get os
    * @return os
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -167,7 +167,7 @@ public class Schema2PlatformSpec {
    * Get osFeatures
    * @return osFeatures
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -192,7 +192,7 @@ public class Schema2PlatformSpec {
    * Get osVersion
    * @return osVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -217,7 +217,7 @@ public class Schema2PlatformSpec {
    * Get variant
    * @return variant
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VARIANT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

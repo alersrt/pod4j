@@ -13,25 +13,16 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Health;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerState stores container&#39;s running state it&#39;s part of ContainerJSONBase and will return by \&quot;inspect\&quot; command
  */
@@ -49,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerState.JSON_PROPERTY_STARTED_AT,
   ContainerState.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerState {
   public static final String JSON_PROPERTY_DEAD = "Dead";
   private Boolean dead;
@@ -99,7 +90,7 @@ public class ContainerState {
    * Get dead
    * @return dead
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEAD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -124,7 +115,7 @@ public class ContainerState {
    * Get error
    * @return error
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ERROR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -149,7 +140,7 @@ public class ContainerState {
    * Get exitCode
    * @return exitCode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -174,7 +165,7 @@ public class ContainerState {
    * Get finishedAt
    * @return finishedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_FINISHED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -199,7 +190,7 @@ public class ContainerState {
    * Get health
    * @return health
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HEALTH)
@@ -225,7 +216,7 @@ public class ContainerState {
    * Get ooMKilled
    * @return ooMKilled
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OO_M_KILLED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -250,7 +241,7 @@ public class ContainerState {
    * Get paused
    * @return paused
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PAUSED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -275,7 +266,7 @@ public class ContainerState {
    * Get pid
    * @return pid
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -300,7 +291,7 @@ public class ContainerState {
    * Get restarting
    * @return restarting
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTARTING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -325,7 +316,7 @@ public class ContainerState {
    * Get running
    * @return running
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RUNNING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -350,7 +341,7 @@ public class ContainerState {
    * Get startedAt
    * @return startedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STARTED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -375,7 +366,7 @@ public class ContainerState {
    * Get status
    * @return status
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

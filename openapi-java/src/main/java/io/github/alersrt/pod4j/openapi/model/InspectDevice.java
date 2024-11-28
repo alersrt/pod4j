@@ -39,7 +39,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectDevice.JSON_PROPERTY_PATH_IN_CONTAINER,
   InspectDevice.JSON_PROPERTY_PATH_ON_HOST
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectDevice {
   public static final String JSON_PROPERTY_CGROUP_PERMISSIONS = "CgroupPermissions";
   private String cgroupPermissions;
@@ -62,7 +62,7 @@ public class InspectDevice {
    * CgroupPermissions is the permissions of the mounted device. Presently not populated. TODO.
    * @return cgroupPermissions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PERMISSIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -87,7 +87,7 @@ public class InspectDevice {
    * PathInContainer is the path of the device within the container.
    * @return pathInContainer
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PATH_IN_CONTAINER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -112,7 +112,7 @@ public class InspectDevice {
    * PathOnHost is the path of the device on the host.
    * @return pathOnHost
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PATH_ON_HOST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

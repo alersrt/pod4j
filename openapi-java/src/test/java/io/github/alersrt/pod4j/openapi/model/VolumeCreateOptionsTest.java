@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for VolumeCreateOptions
  */
-public class VolumeCreateOptionsTest {
+class VolumeCreateOptionsTest {
     private final VolumeCreateOptions model = new VolumeCreateOptions();
 
     /**
      * Model tests for VolumeCreateOptions
      */
     @Test
-    public void testVolumeCreateOptions() {
+    void testVolumeCreateOptions() {
         // TODO: test VolumeCreateOptions
     }
 
@@ -43,7 +44,7 @@ public class VolumeCreateOptionsTest {
      * Test the property 'driver'
      */
     @Test
-    public void driverTest() {
+    void driverTest() {
         // TODO: test driver
     }
 
@@ -51,7 +52,7 @@ public class VolumeCreateOptionsTest {
      * Test the property 'ignoreIfExists'
      */
     @Test
-    public void ignoreIfExistsTest() {
+    void ignoreIfExistsTest() {
         // TODO: test ignoreIfExists
     }
 
@@ -59,7 +60,7 @@ public class VolumeCreateOptionsTest {
      * Test the property 'label'
      */
     @Test
-    public void labelTest() {
+    void labelTest() {
         // TODO: test label
     }
 
@@ -67,7 +68,7 @@ public class VolumeCreateOptionsTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -75,7 +76,7 @@ public class VolumeCreateOptionsTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -83,7 +84,7 @@ public class VolumeCreateOptionsTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 

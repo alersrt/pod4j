@@ -13,28 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ImageConfig
  */
@@ -50,7 +41,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ImageConfig.JSON_PROPERTY_VOLUMES,
   ImageConfig.JSON_PROPERTY_WORKING_DIR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageConfig {
   public static final String JSON_PROPERTY_ARGS_ESCAPED = "ArgsEscaped";
   private Boolean argsEscaped;
@@ -94,7 +85,7 @@ public class ImageConfig {
    * ArgsEscaped  Deprecated: This field is present only for legacy compatibility with Docker and should not be used by new image builders.  It is used by Docker for Windows images to indicate that the &#x60;Entrypoint&#x60; or &#x60;Cmd&#x60; or both, contains only a single element array, that is a pre-escaped, and combined into a single string &#x60;CommandLine&#x60;. If &#x60;true&#x60; the value in &#x60;Entrypoint&#x60; or &#x60;Cmd&#x60; should be used as-is to avoid double escaping. https://github.com/opencontainers/image-spec/pull/892
    * @return argsEscaped
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARGS_ESCAPED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -127,7 +118,7 @@ public class ImageConfig {
    * Cmd defines the default arguments to the entrypoint of the container.
    * @return cmd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -160,7 +151,7 @@ public class ImageConfig {
    * Entrypoint defines a list of arguments to use as the command to execute when the container starts.
    * @return entrypoint
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -193,7 +184,7 @@ public class ImageConfig {
    * Env is a list of environment variables to be used in a container.
    * @return env
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -226,7 +217,7 @@ public class ImageConfig {
    * ExposedPorts a set of ports to expose from a container running this image.
    * @return exposedPorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -259,7 +250,7 @@ public class ImageConfig {
    * Labels contains arbitrary metadata for the container.
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -284,7 +275,7 @@ public class ImageConfig {
    * StopSignal contains the system call signal that will be sent to the container to exit.
    * @return stopSignal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -309,7 +300,7 @@ public class ImageConfig {
    * User defines the username or UID which the process in the container should run as.
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -342,7 +333,7 @@ public class ImageConfig {
    * Volumes is a set of directories describing where the process is likely write data specific to a container instance.
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -367,7 +358,7 @@ public class ImageConfig {
    * WorkingDir sets the current working directory of the entrypoint process in the container.
    * @return workingDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WORKING_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

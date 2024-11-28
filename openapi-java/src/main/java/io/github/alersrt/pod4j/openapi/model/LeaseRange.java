@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LeaseRange.JSON_PROPERTY_END_IP,
   LeaseRange.JSON_PROPERTY_START_IP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LeaseRange {
   public static final String JSON_PROPERTY_END_IP = "end_ip";
   private String endIp;
@@ -58,7 +58,7 @@ public class LeaseRange {
    * EndIP last IP in the subnet which should be used to assign ips.
    * @return endIp
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_END_IP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -83,7 +83,7 @@ public class LeaseRange {
    * StartIP first IP in the subnet which should be used to assign ips.
    * @return startIp
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_START_IP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

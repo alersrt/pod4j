@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.InspectExecProcess;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectExecSession
  */
-public class InspectExecSessionTest {
+class InspectExecSessionTest {
     private final InspectExecSession model = new InspectExecSession();
 
     /**
      * Model tests for InspectExecSession
      */
     @Test
-    public void testInspectExecSession() {
+    void testInspectExecSession() {
         // TODO: test InspectExecSession
     }
 
@@ -42,7 +43,7 @@ public class InspectExecSessionTest {
      * Test the property 'canRemove'
      */
     @Test
-    public void canRemoveTest() {
+    void canRemoveTest() {
         // TODO: test canRemove
     }
 
@@ -50,7 +51,7 @@ public class InspectExecSessionTest {
      * Test the property 'containerID'
      */
     @Test
-    public void containerIDTest() {
+    void containerIDTest() {
         // TODO: test containerID
     }
 
@@ -58,7 +59,7 @@ public class InspectExecSessionTest {
      * Test the property 'detachKeys'
      */
     @Test
-    public void detachKeysTest() {
+    void detachKeysTest() {
         // TODO: test detachKeys
     }
 
@@ -66,7 +67,7 @@ public class InspectExecSessionTest {
      * Test the property 'exitCode'
      */
     @Test
-    public void exitCodeTest() {
+    void exitCodeTest() {
         // TODO: test exitCode
     }
 
@@ -74,7 +75,7 @@ public class InspectExecSessionTest {
      * Test the property 'ID'
      */
     @Test
-    public void IDTest() {
+    void IDTest() {
         // TODO: test ID
     }
 
@@ -82,7 +83,7 @@ public class InspectExecSessionTest {
      * Test the property 'openStderr'
      */
     @Test
-    public void openStderrTest() {
+    void openStderrTest() {
         // TODO: test openStderr
     }
 
@@ -90,7 +91,7 @@ public class InspectExecSessionTest {
      * Test the property 'openStdin'
      */
     @Test
-    public void openStdinTest() {
+    void openStdinTest() {
         // TODO: test openStdin
     }
 
@@ -98,7 +99,7 @@ public class InspectExecSessionTest {
      * Test the property 'openStdout'
      */
     @Test
-    public void openStdoutTest() {
+    void openStdoutTest() {
         // TODO: test openStdout
     }
 
@@ -106,7 +107,7 @@ public class InspectExecSessionTest {
      * Test the property 'pid'
      */
     @Test
-    public void pidTest() {
+    void pidTest() {
         // TODO: test pid
     }
 
@@ -114,7 +115,7 @@ public class InspectExecSessionTest {
      * Test the property 'processConfig'
      */
     @Test
-    public void processConfigTest() {
+    void processConfigTest() {
         // TODO: test processConfig
     }
 
@@ -122,7 +123,7 @@ public class InspectExecSessionTest {
      * Test the property 'running'
      */
     @Test
-    public void runningTest() {
+    void runningTest() {
         // TODO: test running
     }
 

@@ -59,7 +59,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectPodInfraConfig.JSON_PROPERTY_USERNS,
   InspectPodInfraConfig.JSON_PROPERTY_UTS_NS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectPodInfraConfig {
   public static final String JSON_PROPERTY_DN_S_OPTION = "DNSOption";
   private List<String> dnSOption = new ArrayList<>();
@@ -135,7 +135,7 @@ public class InspectPodInfraConfig {
    * DNSOption is a set of DNS options that will be used by the infra container&#39;s resolv.conf and shared with the remainder of the pod.
    * @return dnSOption
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DN_S_OPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -168,7 +168,7 @@ public class InspectPodInfraConfig {
    * DNSSearch is a set of DNS search domains that will be used by the infra container&#39;s resolv.conf and shared with the remainder of the pod.
    * @return dnSSearch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DN_S_SEARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -201,7 +201,7 @@ public class InspectPodInfraConfig {
    * DNSServer is a set of DNS Servers that will be used by the infra container&#39;s resolv.conf and shared with the remainder of the pod.
    * @return dnSServer
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DN_S_SERVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -234,7 +234,7 @@ public class InspectPodInfraConfig {
    * HostAdd adds a number of hosts to the infra container&#39;s resolv.conf which will be shared with the rest of the pod.
    * @return hostAdd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOST_ADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -259,7 +259,7 @@ public class InspectPodInfraConfig {
    * HostNetwork is whether the infra container (and thus the whole pod) will use the host&#39;s network and not create a network namespace.
    * @return hostNetwork
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOST_NETWORK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -292,7 +292,7 @@ public class InspectPodInfraConfig {
    * NetworkOptions are additional options for each network
    * @return networkOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
@@ -326,7 +326,7 @@ public class InspectPodInfraConfig {
    * Networks is a list of networks the pod will join.
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -351,7 +351,7 @@ public class InspectPodInfraConfig {
    * NoManageHosts indicates that the pod will not manage /etc/hosts and instead each container will handle their own.
    * @return noManageHosts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_MANAGE_HOSTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -376,7 +376,7 @@ public class InspectPodInfraConfig {
    * NoManageResolvConf indicates that the pod will not manage resolv.conf and instead each container will handle their own.
    * @return noManageResolvConf
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_MANAGE_RESOLV_CONF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -409,7 +409,7 @@ public class InspectPodInfraConfig {
    * PortBindings are ports that will be forwarded to the infra container and then shared with the pod.
    * @return portBindings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
@@ -435,7 +435,7 @@ public class InspectPodInfraConfig {
    * StaticIP is a static IPv4 that will be assigned to the infra container and then used by the pod.
    * @return staticIP
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATIC_I_P)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -460,7 +460,7 @@ public class InspectPodInfraConfig {
    * StaticMAC is a static MAC address that will be assigned to the infra container and then used by the pod.
    * @return staticMAC
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATIC_M_A_C)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -485,7 +485,7 @@ public class InspectPodInfraConfig {
    * CPUPeriod contains the CPU period of the pod
    * @return cpuPeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -510,7 +510,7 @@ public class InspectPodInfraConfig {
    * CPUQuota contains the CPU quota of the pod
    * @return cpuQuota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -535,7 +535,7 @@ public class InspectPodInfraConfig {
    * CPUSetCPUs contains linux specific CPU data for the container
    * @return cpusetCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -560,7 +560,7 @@ public class InspectPodInfraConfig {
    * Pid is the PID namespace mode of the pod&#39;s infra container
    * @return pidNs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID_NS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -585,7 +585,7 @@ public class InspectPodInfraConfig {
    * UserNS is the usernamespace that all the containers in the pod will join.
    * @return userns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USERNS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -610,7 +610,7 @@ public class InspectPodInfraConfig {
    * UtsNS is the uts namespace that all containers in the pod will join
    * @return utsNs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UTS_NS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

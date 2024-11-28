@@ -45,7 +45,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SystemDfImageReport.JSON_PROPERTY_TAG,
   SystemDfImageReport.JSON_PROPERTY_UNIQUE_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemDfImageReport {
   public static final String JSON_PROPERTY_CONTAINERS = "Containers";
   private Long containers;
@@ -83,7 +83,7 @@ public class SystemDfImageReport {
    * Get containers
    * @return containers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -108,7 +108,7 @@ public class SystemDfImageReport {
    * Get created
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -134,7 +134,7 @@ public class SystemDfImageReport {
    * Get imageID
    * @return imageID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -159,7 +159,7 @@ public class SystemDfImageReport {
    * Get repository
    * @return repository
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REPOSITORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -184,7 +184,7 @@ public class SystemDfImageReport {
    * Get sharedSize
    * @return sharedSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -209,7 +209,7 @@ public class SystemDfImageReport {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -234,7 +234,7 @@ public class SystemDfImageReport {
    * Get tag
    * @return tag
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TAG)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -259,7 +259,7 @@ public class SystemDfImageReport {
    * Get uniqueSize
    * @return uniqueSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNIQUE_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

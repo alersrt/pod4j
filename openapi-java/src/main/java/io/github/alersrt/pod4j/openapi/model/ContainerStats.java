@@ -13,29 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ContainerNetworkStats;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerStats contains the statistics information for a running container
  */
@@ -58,7 +49,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerStats.JSON_PROPERTY_SYSTEM_NANO,
   ContainerStats.JSON_PROPERTY_UP_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerStats {
   public static final String JSON_PROPERTY_AVG_C_P_U = "AvgCPU";
   private Double avgCPU;
@@ -123,7 +114,7 @@ public class ContainerStats {
    * Get avgCPU
    * @return avgCPU
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AVG_C_P_U)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -148,7 +139,7 @@ public class ContainerStats {
    * Get blockInput
    * @return blockInput
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BLOCK_INPUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -173,7 +164,7 @@ public class ContainerStats {
    * Get blockOutput
    * @return blockOutput
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BLOCK_OUTPUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -198,7 +189,7 @@ public class ContainerStats {
    * Get CPU
    * @return CPU
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_C_P_U)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -223,7 +214,7 @@ public class ContainerStats {
    * Get cpUNano
    * @return cpUNano
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CP_U_NANO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -248,7 +239,7 @@ public class ContainerStats {
    * Get cpUSystemNano
    * @return cpUSystemNano
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CP_U_SYSTEM_NANO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -273,7 +264,7 @@ public class ContainerStats {
    * Get containerID
    * @return containerID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -298,7 +289,7 @@ public class ContainerStats {
    * Get duration
    * @return duration
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DURATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -323,7 +314,7 @@ public class ContainerStats {
    * Get memLimit
    * @return memLimit
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -348,7 +339,7 @@ public class ContainerStats {
    * Get memPerc
    * @return memPerc
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM_PERC)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -373,7 +364,7 @@ public class ContainerStats {
    * Get memUsage
    * @return memUsage
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM_USAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -398,7 +389,7 @@ public class ContainerStats {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -431,7 +422,7 @@ public class ContainerStats {
    * Map of interface name to network statistics for that interface.
    * @return network
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK)
@@ -457,7 +448,7 @@ public class ContainerStats {
    * Get piDs
    * @return piDs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PI_DS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -490,7 +481,7 @@ public class ContainerStats {
    * Get perCPU
    * @return perCPU
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PER_C_P_U)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -515,7 +506,7 @@ public class ContainerStats {
    * Get systemNano
    * @return systemNano
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSTEM_NANO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -540,7 +531,7 @@ public class ContainerStats {
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return upTime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UP_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

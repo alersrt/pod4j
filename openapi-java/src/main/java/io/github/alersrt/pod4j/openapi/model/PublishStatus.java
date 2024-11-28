@@ -41,7 +41,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PublishStatus.JSON_PROPERTY_PUBLISH_CONTEXT,
   PublishStatus.JSON_PROPERTY_STATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PublishStatus {
   public static final String JSON_PROPERTY_NODE_I_D = "NodeID";
   private String nodeID;
@@ -64,7 +64,7 @@ public class PublishStatus {
    * NodeID is the ID of the swarm node this Volume is published to.
    * @return nodeID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NODE_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -97,7 +97,7 @@ public class PublishStatus {
    * PublishContext is the PublishContext returned by the CSI plugin when a volume is published.
    * @return publishContext
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PUBLISH_CONTEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -122,7 +122,7 @@ public class PublishStatus {
    * PublishState represents the state of a Volume as it pertains to its use on a particular Node.
    * @return state
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

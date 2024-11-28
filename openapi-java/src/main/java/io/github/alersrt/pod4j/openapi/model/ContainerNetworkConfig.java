@@ -13,31 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import io.github.alersrt.pod4j.openapi.model.PerNetworkOptions;
-import io.github.alersrt.pod4j.openapi.model.PortMapping;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerNetworkConfig contains information on a container&#39;s network configuration.
  */
@@ -57,7 +46,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerNetworkConfig.JSON_PROPERTY_USE_IMAGE_HOSTS,
   ContainerNetworkConfig.JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerNetworkConfig {
   public static final String JSON_PROPERTY_NETWORKS = "Networks";
   private Map<String, PerNetworkOptions> networks = new HashMap<>();
@@ -121,7 +110,7 @@ public class ContainerNetworkConfig {
    * Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
@@ -147,7 +136,7 @@ public class ContainerNetworkConfig {
    * BaseHostsFile is the path to a hosts file, the entries from this file are added to the containers hosts file. As special value \&quot;image\&quot; is allowed which uses the /etc/hosts file from within the image and \&quot;none\&quot; which uses no base file at all. If it is empty we should default to the base_hosts_file configuration in containers.conf. Optional.
    * @return baseHostsFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BASE_HOSTS_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -180,7 +169,7 @@ public class ContainerNetworkConfig {
    * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
    * @return cniNetworks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CNI_NETWORKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -213,7 +202,7 @@ public class ContainerNetworkConfig {
    * DNSOptions is a set of DNS options that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsOption
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_OPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -246,7 +235,7 @@ public class ContainerNetworkConfig {
    * DNSSearch is a set of DNS search domains that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsSearch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -279,7 +268,7 @@ public class ContainerNetworkConfig {
    * DNSServers is a set of DNS servers that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsServer
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SERVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -304,7 +293,7 @@ public class ContainerNetworkConfig {
    * Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \&quot;tcp\&quot;, \&quot;udp\&quot;, and \&quot;sctp\&quot;, or some combination of the three separated by commas. If protocol is set to \&quot;\&quot; we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.
    * @return expose
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXPOSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -337,7 +326,7 @@ public class ContainerNetworkConfig {
    * HostAdd is a set of hosts which will be added to the container&#39;s etc/hosts file. Conflicts with UseImageHosts. Optional.
    * @return hostadd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -362,7 +351,7 @@ public class ContainerNetworkConfig {
    * Get netns
    * @return netns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETNS)
@@ -396,7 +385,7 @@ public class ContainerNetworkConfig {
    * NetworkOptions are additional options for each network Optional.
    * @return networkOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
@@ -430,7 +419,7 @@ public class ContainerNetworkConfig {
    * PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.
    * @return portmappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORTMAPPINGS)
@@ -456,7 +445,7 @@ public class ContainerNetworkConfig {
    * PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.
    * @return publishImagePorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PUBLISH_IMAGE_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -481,7 +470,7 @@ public class ContainerNetworkConfig {
    * UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.
    * @return useImageHosts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USE_IMAGE_HOSTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -506,7 +495,7 @@ public class ContainerNetworkConfig {
    * UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional.
    * @return useImageResolveConf
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
 @JsonPropertyOrder({
   Metadata.JSON_PROPERTY_LAST_TAG_TIME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Metadata {
   public static final String JSON_PROPERTY_LAST_TAG_TIME = "LastTagTime";
   private OffsetDateTime lastTagTime;
@@ -55,7 +55,7 @@ public class Metadata {
    * LastTagTime is the date and time at which the image was last tagged.
    * @return lastTagTime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_LAST_TAG_TIME)

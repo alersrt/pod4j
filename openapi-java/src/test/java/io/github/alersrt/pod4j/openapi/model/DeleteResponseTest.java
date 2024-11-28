@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for DeleteResponse
  */
-public class DeleteResponseTest {
+class DeleteResponseTest {
     private final DeleteResponse model = new DeleteResponse();
 
     /**
      * Model tests for DeleteResponse
      */
     @Test
-    public void testDeleteResponse() {
+    void testDeleteResponse() {
         // TODO: test DeleteResponse
     }
 
@@ -41,7 +42,7 @@ public class DeleteResponseTest {
      * Test the property 'deleted'
      */
     @Test
-    public void deletedTest() {
+    void deletedTest() {
         // TODO: test deleted
     }
 
@@ -49,7 +50,7 @@ public class DeleteResponseTest {
      * Test the property 'untagged'
      */
     @Test
-    public void untaggedTest() {
+    void untaggedTest() {
         // TODO: test untagged
     }
 

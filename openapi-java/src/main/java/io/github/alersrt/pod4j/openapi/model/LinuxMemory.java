@@ -45,7 +45,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxMemory.JSON_PROPERTY_SWAPPINESS,
   LinuxMemory.JSON_PROPERTY_USE_HIERARCHY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxMemory {
   public static final String JSON_PROPERTY_CHECK_BEFORE_UPDATE = "checkBeforeUpdate";
   private Boolean checkBeforeUpdate;
@@ -86,7 +86,7 @@ public class LinuxMemory {
    * CheckBeforeUpdate enables checking if a new memory limit is lower than the current usage during update, and if so, rejecting the new limit.
    * @return checkBeforeUpdate
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CHECK_BEFORE_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -111,7 +111,7 @@ public class LinuxMemory {
    * DisableOOMKiller disables the OOM killer for out of memory conditions
    * @return disableOOMKiller
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DISABLE_O_O_M_KILLER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -136,7 +136,7 @@ public class LinuxMemory {
    * Kernel memory limit (in bytes).  Deprecated: kernel-memory limits are not supported in cgroups v2, and were obsoleted in [kernel v5.4]. This field should no longer be used, as it may be ignored by runtimes.  [kernel v5.4]: https://github.com/torvalds/linux/commit/0158115f702b0ba208ab0
    * @return kernel
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -161,7 +161,7 @@ public class LinuxMemory {
    * Kernel memory limit for tcp (in bytes)
    * @return kernelTCP
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL_T_C_P)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -186,7 +186,7 @@ public class LinuxMemory {
    * Memory limit (in bytes).
    * @return limit
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -211,7 +211,7 @@ public class LinuxMemory {
    * Memory reservation or soft_limit (in bytes).
    * @return reservation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESERVATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -236,7 +236,7 @@ public class LinuxMemory {
    * Total memory limit (memory + swap).
    * @return swap
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SWAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -261,7 +261,7 @@ public class LinuxMemory {
    * How aggressive the kernel will swap memory pages.
    * @return swappiness
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SWAPPINESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -286,7 +286,7 @@ public class LinuxMemory {
    * Enables hierarchical memory accounting
    * @return useHierarchy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USE_HIERARCHY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

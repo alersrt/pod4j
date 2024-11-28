@@ -37,7 +37,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
 @JsonPropertyOrder({
   ImagePropertiesSize.JSON_PROPERTY_UNPACKED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImagePropertiesSize {
   public static final String JSON_PROPERTY_UNPACKED = "Unpacked";
   private Long unpacked;
@@ -54,7 +54,7 @@ public class ImagePropertiesSize {
    * Unpacked is the size (in bytes) of the locally unpacked (uncompressed) image content that&#39;s directly usable by the containers running this image. It&#39;s independent of the distributable content - e.g. the image might still have an unpacked data that&#39;s still used by some container even when the distributable/compressed content is already gone.
    * @return unpacked
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_UNPACKED)

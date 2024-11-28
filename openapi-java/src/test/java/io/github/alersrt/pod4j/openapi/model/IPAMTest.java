@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.IPAMConfig;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for IPAM
  */
-public class IPAMTest {
+class IPAMTest {
     private final IPAM model = new IPAM();
 
     /**
      * Model tests for IPAM
      */
     @Test
-    public void testIPAM() {
+    void testIPAM() {
         // TODO: test IPAM
     }
 
@@ -46,7 +47,7 @@ public class IPAMTest {
      * Test the property 'config'
      */
     @Test
-    public void configTest() {
+    void configTest() {
         // TODO: test config
     }
 
@@ -54,7 +55,7 @@ public class IPAMTest {
      * Test the property 'driver'
      */
     @Test
-    public void driverTest() {
+    void driverTest() {
         // TODO: test driver
     }
 
@@ -62,7 +63,7 @@ public class IPAMTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 

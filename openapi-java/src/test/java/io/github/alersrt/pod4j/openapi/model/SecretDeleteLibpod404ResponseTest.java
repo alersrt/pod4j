@@ -13,27 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretDeleteLibpod404Response
  */
-public class SecretDeleteLibpod404ResponseTest {
+class SecretDeleteLibpod404ResponseTest {
     private final SecretDeleteLibpod404Response model = new SecretDeleteLibpod404Response();
 
     /**
      * Model tests for SecretDeleteLibpod404Response
      */
     @Test
-    public void testSecretDeleteLibpod404Response() {
+    void testSecretDeleteLibpod404Response() {
         // TODO: test SecretDeleteLibpod404Response
     }
 
@@ -41,7 +41,7 @@ public class SecretDeleteLibpod404ResponseTest {
      * Test the property 'cause'
      */
     @Test
-    public void causeTest() {
+    void causeTest() {
         // TODO: test cause
     }
 
@@ -49,7 +49,7 @@ public class SecretDeleteLibpod404ResponseTest {
      * Test the property 'message'
      */
     @Test
-    public void messageTest() {
+    void messageTest() {
         // TODO: test message
     }
 
@@ -57,7 +57,7 @@ public class SecretDeleteLibpod404ResponseTest {
      * Test the property 'response'
      */
     @Test
-    public void responseTest() {
+    void responseTest() {
         // TODO: test response
     }
 

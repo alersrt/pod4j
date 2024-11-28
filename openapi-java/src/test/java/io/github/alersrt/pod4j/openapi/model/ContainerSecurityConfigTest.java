@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerSecurityConfig
  */
-public class ContainerSecurityConfigTest {
+class ContainerSecurityConfigTest {
     private final ContainerSecurityConfig model = new ContainerSecurityConfig();
 
     /**
      * Model tests for ContainerSecurityConfig
      */
     @Test
-    public void testContainerSecurityConfig() {
+    void testContainerSecurityConfig() {
         // TODO: test ContainerSecurityConfig
     }
 
@@ -45,7 +46,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'apparmorProfile'
      */
     @Test
-    public void apparmorProfileTest() {
+    void apparmorProfileTest() {
         // TODO: test apparmorProfile
     }
 
@@ -53,7 +54,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'capAdd'
      */
     @Test
-    public void capAddTest() {
+    void capAddTest() {
         // TODO: test capAdd
     }
 
@@ -61,7 +62,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'capDrop'
      */
     @Test
-    public void capDropTest() {
+    void capDropTest() {
         // TODO: test capDrop
     }
 
@@ -69,7 +70,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'groups'
      */
     @Test
-    public void groupsTest() {
+    void groupsTest() {
         // TODO: test groups
     }
 
@@ -77,7 +78,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'idmappings'
      */
     @Test
-    public void idmappingsTest() {
+    void idmappingsTest() {
         // TODO: test idmappings
     }
 
@@ -85,7 +86,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'labelNested'
      */
     @Test
-    public void labelNestedTest() {
+    void labelNestedTest() {
         // TODO: test labelNested
     }
 
@@ -93,7 +94,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'mask'
      */
     @Test
-    public void maskTest() {
+    void maskTest() {
         // TODO: test mask
     }
 
@@ -101,7 +102,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'noNewPrivileges'
      */
     @Test
-    public void noNewPrivilegesTest() {
+    void noNewPrivilegesTest() {
         // TODO: test noNewPrivileges
     }
 
@@ -109,7 +110,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'privileged'
      */
     @Test
-    public void privilegedTest() {
+    void privilegedTest() {
         // TODO: test privileged
     }
 
@@ -117,7 +118,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'procfsOpts'
      */
     @Test
-    public void procfsOptsTest() {
+    void procfsOptsTest() {
         // TODO: test procfsOpts
     }
 
@@ -125,7 +126,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'readOnlyFilesystem'
      */
     @Test
-    public void readOnlyFilesystemTest() {
+    void readOnlyFilesystemTest() {
         // TODO: test readOnlyFilesystem
     }
 
@@ -133,7 +134,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'readWriteTmpfs'
      */
     @Test
-    public void readWriteTmpfsTest() {
+    void readWriteTmpfsTest() {
         // TODO: test readWriteTmpfs
     }
 
@@ -141,7 +142,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'seccompPolicy'
      */
     @Test
-    public void seccompPolicyTest() {
+    void seccompPolicyTest() {
         // TODO: test seccompPolicy
     }
 
@@ -149,7 +150,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'seccompProfilePath'
      */
     @Test
-    public void seccompProfilePathTest() {
+    void seccompProfilePathTest() {
         // TODO: test seccompProfilePath
     }
 
@@ -157,7 +158,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'selinuxOpts'
      */
     @Test
-    public void selinuxOptsTest() {
+    void selinuxOptsTest() {
         // TODO: test selinuxOpts
     }
 
@@ -165,7 +166,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'umask'
      */
     @Test
-    public void umaskTest() {
+    void umaskTest() {
         // TODO: test umask
     }
 
@@ -173,7 +174,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'unmask'
      */
     @Test
-    public void unmaskTest() {
+    void unmaskTest() {
         // TODO: test unmask
     }
 
@@ -181,7 +182,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'user'
      */
     @Test
-    public void userTest() {
+    void userTest() {
         // TODO: test user
     }
 
@@ -189,7 +190,7 @@ public class ContainerSecurityConfigTest {
      * Test the property 'userns'
      */
     @Test
-    public void usernsTest() {
+    void usernsTest() {
         // TODO: test userns
     }
 

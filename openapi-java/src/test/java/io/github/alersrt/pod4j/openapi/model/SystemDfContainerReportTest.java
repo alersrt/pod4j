@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemDfContainerReport
  */
-public class SystemDfContainerReportTest {
+class SystemDfContainerReportTest {
     private final SystemDfContainerReport model = new SystemDfContainerReport();
 
     /**
      * Model tests for SystemDfContainerReport
      */
     @Test
-    public void testSystemDfContainerReport() {
+    void testSystemDfContainerReport() {
         // TODO: test SystemDfContainerReport
     }
 
@@ -44,7 +45,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'command'
      */
     @Test
-    public void commandTest() {
+    void commandTest() {
         // TODO: test command
     }
 
@@ -52,7 +53,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'containerID'
      */
     @Test
-    public void containerIDTest() {
+    void containerIDTest() {
         // TODO: test containerID
     }
 
@@ -60,7 +61,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -68,7 +69,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'image'
      */
     @Test
-    public void imageTest() {
+    void imageTest() {
         // TODO: test image
     }
 
@@ -76,7 +77,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'localVolumes'
      */
     @Test
-    public void localVolumesTest() {
+    void localVolumesTest() {
         // TODO: test localVolumes
     }
 
@@ -84,7 +85,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'names'
      */
     @Test
-    public void namesTest() {
+    void namesTest() {
         // TODO: test names
     }
 
@@ -92,7 +93,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'rwSize'
      */
     @Test
-    public void rwSizeTest() {
+    void rwSizeTest() {
         // TODO: test rwSize
     }
 
@@ -100,7 +101,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 
@@ -108,7 +109,7 @@ public class SystemDfContainerReportTest {
      * Test the property 'status'
      */
     @Test
-    public void statusTest() {
+    void statusTest() {
         // TODO: test status
     }
 

@@ -45,7 +45,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   StartupHealthCheck.JSON_PROPERTY_TEST,
   StartupHealthCheck.JSON_PROPERTY_TIMEOUT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class StartupHealthCheck {
   public static final String JSON_PROPERTY_INTERVAL = "Interval";
   private Long interval;
@@ -80,7 +80,7 @@ public class StartupHealthCheck {
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return interval
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INTERVAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -105,7 +105,7 @@ public class StartupHealthCheck {
    * Retries is the number of consecutive failures needed to consider a container as unhealthy. Zero means inherit.
    * @return retries
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RETRIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -130,7 +130,7 @@ public class StartupHealthCheck {
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return startInterval
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_START_INTERVAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -155,7 +155,7 @@ public class StartupHealthCheck {
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return startPeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_START_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -180,7 +180,7 @@ public class StartupHealthCheck {
    * Successes are the number of successes required to mark the startup HC as passed. If set to 0, a single success will mark the HC as passed.
    * @return successes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUCCESSES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -213,7 +213,7 @@ public class StartupHealthCheck {
    * Test is the test to perform to check that the container is healthy. An empty slice means to inherit the default. The options are: {} : inherit healthcheck {\&quot;NONE\&quot;} : disable healthcheck {\&quot;CMD\&quot;, args...} : exec arguments directly {\&quot;CMD-SHELL\&quot;, command} : run command with system&#39;s default shell
    * @return test
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -238,7 +238,7 @@ public class StartupHealthCheck {
    * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
    * @return timeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,28 +13,18 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.IDMappingOptions;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerSecurityConfig is a container&#39;s security features, including SELinux, Apparmor, and Seccomp.
  */
@@ -59,7 +49,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerSecurityConfig.JSON_PROPERTY_USER,
   ContainerSecurityConfig.JSON_PROPERTY_USERNS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerSecurityConfig {
   public static final String JSON_PROPERTY_APPARMOR_PROFILE = "apparmor_profile";
   private String apparmorProfile;
@@ -130,7 +120,7 @@ public class ContainerSecurityConfig {
    * ApparmorProfile is the name of the Apparmor profile the container will use. Optional.
    * @return apparmorProfile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_APPARMOR_PROFILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -163,7 +153,7 @@ public class ContainerSecurityConfig {
    * CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.
    * @return capAdd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAP_ADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -196,7 +186,7 @@ public class ContainerSecurityConfig {
    * CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.
    * @return capDrop
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAP_DROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -229,7 +219,7 @@ public class ContainerSecurityConfig {
    * Groups are a list of supplemental groups the container&#39;s user will be granted access to. Optional.
    * @return groups
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -254,7 +244,7 @@ public class ContainerSecurityConfig {
    * Get idmappings
    * @return idmappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
@@ -280,7 +270,7 @@ public class ContainerSecurityConfig {
    * LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.
    * @return labelNested
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABEL_NESTED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -313,7 +303,7 @@ public class ContainerSecurityConfig {
    * Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional
    * @return mask
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MASK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -338,7 +328,7 @@ public class ContainerSecurityConfig {
    * NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.
    * @return noNewPrivileges
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_NEW_PRIVILEGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -363,7 +353,7 @@ public class ContainerSecurityConfig {
    * Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.
    * @return privileged
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PRIVILEGED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -396,7 +386,7 @@ public class ContainerSecurityConfig {
    * ProcOpts are the options used for the proc mount.
    * @return procfsOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PROCFS_OPTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -421,7 +411,7 @@ public class ContainerSecurityConfig {
    * ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.
    * @return readOnlyFilesystem
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READ_ONLY_FILESYSTEM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -446,7 +436,7 @@ public class ContainerSecurityConfig {
    * ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.
    * @return readWriteTmpfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READ_WRITE_TMPFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -471,7 +461,7 @@ public class ContainerSecurityConfig {
    * SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image
    * @return seccompPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECCOMP_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -496,7 +486,7 @@ public class ContainerSecurityConfig {
    * SeccompProfilePath is the path to a JSON file containing the container&#39;s Seccomp profile. If not specified, no Seccomp profile will be used. Optional.
    * @return seccompProfilePath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECCOMP_PROFILE_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -529,7 +519,7 @@ public class ContainerSecurityConfig {
    * SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.
    * @return selinuxOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SELINUX_OPTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -554,7 +544,7 @@ public class ContainerSecurityConfig {
    * Umask is the umask the init process of the container will be run with.
    * @return umask
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UMASK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -587,7 +577,7 @@ public class ContainerSecurityConfig {
    * Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.
    * @return unmask
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNMASK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -612,7 +602,7 @@ public class ContainerSecurityConfig {
    * User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container&#39;s /etc/passwd. If unset, the container will be run as root. Optional.
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -637,7 +627,7 @@ public class ContainerSecurityConfig {
    * Get userns
    * @return userns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_USERNS)

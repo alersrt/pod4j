@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.HealthcheckConfig;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Config
  */
-public class ConfigTest {
+class ConfigTest {
     private final Config model = new Config();
 
     /**
      * Model tests for Config
      */
     @Test
-    public void testConfig() {
+    void testConfig() {
         // TODO: test Config
     }
 
@@ -46,7 +47,7 @@ public class ConfigTest {
      * Test the property 'argsEscaped'
      */
     @Test
-    public void argsEscapedTest() {
+    void argsEscapedTest() {
         // TODO: test argsEscaped
     }
 
@@ -54,7 +55,7 @@ public class ConfigTest {
      * Test the property 'attachStderr'
      */
     @Test
-    public void attachStderrTest() {
+    void attachStderrTest() {
         // TODO: test attachStderr
     }
 
@@ -62,7 +63,7 @@ public class ConfigTest {
      * Test the property 'attachStdin'
      */
     @Test
-    public void attachStdinTest() {
+    void attachStdinTest() {
         // TODO: test attachStdin
     }
 
@@ -70,7 +71,7 @@ public class ConfigTest {
      * Test the property 'attachStdout'
      */
     @Test
-    public void attachStdoutTest() {
+    void attachStdoutTest() {
         // TODO: test attachStdout
     }
 
@@ -78,7 +79,7 @@ public class ConfigTest {
      * Test the property 'cmd'
      */
     @Test
-    public void cmdTest() {
+    void cmdTest() {
         // TODO: test cmd
     }
 
@@ -86,7 +87,7 @@ public class ConfigTest {
      * Test the property 'domainname'
      */
     @Test
-    public void domainnameTest() {
+    void domainnameTest() {
         // TODO: test domainname
     }
 
@@ -94,7 +95,7 @@ public class ConfigTest {
      * Test the property 'entrypoint'
      */
     @Test
-    public void entrypointTest() {
+    void entrypointTest() {
         // TODO: test entrypoint
     }
 
@@ -102,7 +103,7 @@ public class ConfigTest {
      * Test the property 'env'
      */
     @Test
-    public void envTest() {
+    void envTest() {
         // TODO: test env
     }
 
@@ -110,7 +111,7 @@ public class ConfigTest {
      * Test the property 'exposedPorts'
      */
     @Test
-    public void exposedPortsTest() {
+    void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
@@ -118,7 +119,7 @@ public class ConfigTest {
      * Test the property 'healthcheck'
      */
     @Test
-    public void healthcheckTest() {
+    void healthcheckTest() {
         // TODO: test healthcheck
     }
 
@@ -126,7 +127,7 @@ public class ConfigTest {
      * Test the property 'hostname'
      */
     @Test
-    public void hostnameTest() {
+    void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -134,7 +135,7 @@ public class ConfigTest {
      * Test the property 'image'
      */
     @Test
-    public void imageTest() {
+    void imageTest() {
         // TODO: test image
     }
 
@@ -142,7 +143,7 @@ public class ConfigTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -150,7 +151,7 @@ public class ConfigTest {
      * Test the property 'macAddress'
      */
     @Test
-    public void macAddressTest() {
+    void macAddressTest() {
         // TODO: test macAddress
     }
 
@@ -158,7 +159,7 @@ public class ConfigTest {
      * Test the property 'networkDisabled'
      */
     @Test
-    public void networkDisabledTest() {
+    void networkDisabledTest() {
         // TODO: test networkDisabled
     }
 
@@ -166,7 +167,7 @@ public class ConfigTest {
      * Test the property 'onBuild'
      */
     @Test
-    public void onBuildTest() {
+    void onBuildTest() {
         // TODO: test onBuild
     }
 
@@ -174,7 +175,7 @@ public class ConfigTest {
      * Test the property 'openStdin'
      */
     @Test
-    public void openStdinTest() {
+    void openStdinTest() {
         // TODO: test openStdin
     }
 
@@ -182,7 +183,7 @@ public class ConfigTest {
      * Test the property 'shell'
      */
     @Test
-    public void shellTest() {
+    void shellTest() {
         // TODO: test shell
     }
 
@@ -190,7 +191,7 @@ public class ConfigTest {
      * Test the property 'stdinOnce'
      */
     @Test
-    public void stdinOnceTest() {
+    void stdinOnceTest() {
         // TODO: test stdinOnce
     }
 
@@ -198,7 +199,7 @@ public class ConfigTest {
      * Test the property 'stopSignal'
      */
     @Test
-    public void stopSignalTest() {
+    void stopSignalTest() {
         // TODO: test stopSignal
     }
 
@@ -206,7 +207,7 @@ public class ConfigTest {
      * Test the property 'stopTimeout'
      */
     @Test
-    public void stopTimeoutTest() {
+    void stopTimeoutTest() {
         // TODO: test stopTimeout
     }
 
@@ -214,7 +215,7 @@ public class ConfigTest {
      * Test the property 'tty'
      */
     @Test
-    public void ttyTest() {
+    void ttyTest() {
         // TODO: test tty
     }
 
@@ -222,7 +223,7 @@ public class ConfigTest {
      * Test the property 'user'
      */
     @Test
-    public void userTest() {
+    void userTest() {
         // TODO: test user
     }
 
@@ -230,7 +231,7 @@ public class ConfigTest {
      * Test the property 'volumes'
      */
     @Test
-    public void volumesTest() {
+    void volumesTest() {
         // TODO: test volumes
     }
 
@@ -238,7 +239,7 @@ public class ConfigTest {
      * Test the property 'workingDir'
      */
     @Test
-    public void workingDirTest() {
+    void workingDirTest() {
         // TODO: test workingDir
     }
 

@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for DistributionInfo
  */
-public class DistributionInfoTest {
+class DistributionInfoTest {
     private final DistributionInfo model = new DistributionInfo();
 
     /**
      * Model tests for DistributionInfo
      */
     @Test
-    public void testDistributionInfo() {
+    void testDistributionInfo() {
         // TODO: test DistributionInfo
     }
 
@@ -41,7 +42,7 @@ public class DistributionInfoTest {
      * Test the property 'codename'
      */
     @Test
-    public void codenameTest() {
+    void codenameTest() {
         // TODO: test codename
     }
 
@@ -49,7 +50,7 @@ public class DistributionInfoTest {
      * Test the property 'distribution'
      */
     @Test
-    public void distributionTest() {
+    void distributionTest() {
         // TODO: test distribution
     }
 
@@ -57,7 +58,7 @@ public class DistributionInfoTest {
      * Test the property 'variant'
      */
     @Test
-    public void variantTest() {
+    void variantTest() {
         // TODO: test variant
     }
 
@@ -65,7 +66,7 @@ public class DistributionInfoTest {
      * Test the property 'version'
      */
     @Test
-    public void versionTest() {
+    void versionTest() {
         // TODO: test version
     }
 

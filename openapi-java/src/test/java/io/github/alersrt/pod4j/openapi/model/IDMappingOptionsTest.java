@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.AutoUserNsOptions;
 import io.github.alersrt.pod4j.openapi.model.IDMap;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for IDMappingOptions
  */
-public class IDMappingOptionsTest {
+class IDMappingOptionsTest {
     private final IDMappingOptions model = new IDMappingOptions();
 
     /**
      * Model tests for IDMappingOptions
      */
     @Test
-    public void testIDMappingOptions() {
+    void testIDMappingOptions() {
         // TODO: test IDMappingOptions
     }
 
@@ -45,7 +46,7 @@ public class IDMappingOptionsTest {
      * Test the property 'autoUserNs'
      */
     @Test
-    public void autoUserNsTest() {
+    void autoUserNsTest() {
         // TODO: test autoUserNs
     }
 
@@ -53,7 +54,7 @@ public class IDMappingOptionsTest {
      * Test the property 'autoUserNsOpts'
      */
     @Test
-    public void autoUserNsOptsTest() {
+    void autoUserNsOptsTest() {
         // TODO: test autoUserNsOpts
     }
 
@@ -61,7 +62,7 @@ public class IDMappingOptionsTest {
      * Test the property 'giDMap'
      */
     @Test
-    public void giDMapTest() {
+    void giDMapTest() {
         // TODO: test giDMap
     }
 
@@ -69,7 +70,7 @@ public class IDMappingOptionsTest {
      * Test the property 'hostGIDMapping'
      */
     @Test
-    public void hostGIDMappingTest() {
+    void hostGIDMappingTest() {
         // TODO: test hostGIDMapping
     }
 
@@ -77,7 +78,7 @@ public class IDMappingOptionsTest {
      * Test the property 'hostUIDMapping'
      */
     @Test
-    public void hostUIDMappingTest() {
+    void hostUIDMappingTest() {
         // TODO: test hostUIDMapping
     }
 
@@ -85,7 +86,7 @@ public class IDMappingOptionsTest {
      * Test the property 'uiDMap'
      */
     @Test
-    public void uiDMapTest() {
+    void uiDMapTest() {
         // TODO: test uiDMap
     }
 

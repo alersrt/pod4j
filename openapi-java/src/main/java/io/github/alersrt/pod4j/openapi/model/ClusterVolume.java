@@ -13,31 +13,19 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ClusterVolumeSpec;
-import io.github.alersrt.pod4j.openapi.model.Info;
-import io.github.alersrt.pod4j.openapi.model.PublishStatus;
-import io.github.alersrt.pod4j.openapi.model.Version;
-import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ClusterVolume contains options and information specific to, and only present on, Swarm CSI cluster volumes.
  */
@@ -50,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ClusterVolume.JSON_PROPERTY_UPDATED_AT,
   ClusterVolume.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ClusterVolume {
   public static final String JSON_PROPERTY_CREATED_AT = "CreatedAt";
   private OffsetDateTime createdAt;
@@ -85,7 +73,7 @@ public class ClusterVolume {
    * Get createdAt
    * @return createdAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
@@ -111,7 +99,7 @@ public class ClusterVolume {
    * ID is the Swarm ID of the volume. Because cluster volumes are Swarm objects, they have an ID, unlike non-cluster volumes, which only have a Name. This ID can be used to refer to the cluster volume.
    * @return ID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -136,7 +124,7 @@ public class ClusterVolume {
    * Get info
    * @return info
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_INFO)
@@ -170,7 +158,7 @@ public class ClusterVolume {
    * PublishStatus contains the status of the volume as it pertains to its publishing on Nodes.
    * @return publishStatus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PUBLISH_STATUS)
@@ -196,7 +184,7 @@ public class ClusterVolume {
    * Get spec
    * @return spec
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SPEC)
@@ -222,7 +210,7 @@ public class ClusterVolume {
    * Get updatedAt
    * @return updatedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_UPDATED_AT)
@@ -248,7 +236,7 @@ public class ClusterVolume {
    * Get version
    * @return version
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VERSION)

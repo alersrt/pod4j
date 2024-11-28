@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for NamedVolume
  */
-public class NamedVolumeTest {
+class NamedVolumeTest {
     private final NamedVolume model = new NamedVolume();
 
     /**
      * Model tests for NamedVolume
      */
     @Test
-    public void testNamedVolume() {
+    void testNamedVolume() {
         // TODO: test NamedVolume
     }
 
@@ -43,7 +44,7 @@ public class NamedVolumeTest {
      * Test the property 'dest'
      */
     @Test
-    public void destTest() {
+    void destTest() {
         // TODO: test dest
     }
 
@@ -51,7 +52,7 @@ public class NamedVolumeTest {
      * Test the property 'isAnonymous'
      */
     @Test
-    public void isAnonymousTest() {
+    void isAnonymousTest() {
         // TODO: test isAnonymous
     }
 
@@ -59,7 +60,7 @@ public class NamedVolumeTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -67,7 +68,7 @@ public class NamedVolumeTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 
@@ -75,7 +76,7 @@ public class NamedVolumeTest {
      * Test the property 'subPath'
      */
     @Test
-    public void subPathTest() {
+    void subPathTest() {
         // TODO: test subPath
     }
 

@@ -13,30 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Schema2ManifestDescriptor;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Schema2ListPublic
  */
-public class Schema2ListPublicTest {
+class Schema2ListPublicTest {
     private final Schema2ListPublic model = new Schema2ListPublic();
 
     /**
      * Model tests for Schema2ListPublic
      */
     @Test
-    public void testSchema2ListPublic() {
+    void testSchema2ListPublic() {
         // TODO: test Schema2ListPublic
     }
 
@@ -44,7 +44,7 @@ public class Schema2ListPublicTest {
      * Test the property 'manifests'
      */
     @Test
-    public void manifestsTest() {
+    void manifestsTest() {
         // TODO: test manifests
     }
 
@@ -52,7 +52,7 @@ public class Schema2ListPublicTest {
      * Test the property 'mediaType'
      */
     @Test
-    public void mediaTypeTest() {
+    void mediaTypeTest() {
         // TODO: test mediaType
     }
 
@@ -60,7 +60,7 @@ public class Schema2ListPublicTest {
      * Test the property 'schemaVersion'
      */
     @Test
-    public void schemaVersionTest() {
+    void schemaVersionTest() {
         // TODO: test schemaVersion
     }
 

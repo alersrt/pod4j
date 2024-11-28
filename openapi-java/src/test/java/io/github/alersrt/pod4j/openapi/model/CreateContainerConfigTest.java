@@ -13,34 +13,35 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.HealthcheckConfig;
 import io.github.alersrt.pod4j.openapi.model.HostConfig;
 import io.github.alersrt.pod4j.openapi.model.NetworkingConfig;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for CreateContainerConfig
  */
-public class CreateContainerConfigTest {
+class CreateContainerConfigTest {
     private final CreateContainerConfig model = new CreateContainerConfig();
 
     /**
      * Model tests for CreateContainerConfig
      */
     @Test
-    public void testCreateContainerConfig() {
+    void testCreateContainerConfig() {
         // TODO: test CreateContainerConfig
     }
 
@@ -48,7 +49,7 @@ public class CreateContainerConfigTest {
      * Test the property 'argsEscaped'
      */
     @Test
-    public void argsEscapedTest() {
+    void argsEscapedTest() {
         // TODO: test argsEscaped
     }
 
@@ -56,7 +57,7 @@ public class CreateContainerConfigTest {
      * Test the property 'attachStderr'
      */
     @Test
-    public void attachStderrTest() {
+    void attachStderrTest() {
         // TODO: test attachStderr
     }
 
@@ -64,7 +65,7 @@ public class CreateContainerConfigTest {
      * Test the property 'attachStdin'
      */
     @Test
-    public void attachStdinTest() {
+    void attachStdinTest() {
         // TODO: test attachStdin
     }
 
@@ -72,7 +73,7 @@ public class CreateContainerConfigTest {
      * Test the property 'attachStdout'
      */
     @Test
-    public void attachStdoutTest() {
+    void attachStdoutTest() {
         // TODO: test attachStdout
     }
 
@@ -80,7 +81,7 @@ public class CreateContainerConfigTest {
      * Test the property 'cmd'
      */
     @Test
-    public void cmdTest() {
+    void cmdTest() {
         // TODO: test cmd
     }
 
@@ -88,7 +89,7 @@ public class CreateContainerConfigTest {
      * Test the property 'domainname'
      */
     @Test
-    public void domainnameTest() {
+    void domainnameTest() {
         // TODO: test domainname
     }
 
@@ -96,7 +97,7 @@ public class CreateContainerConfigTest {
      * Test the property 'entrypoint'
      */
     @Test
-    public void entrypointTest() {
+    void entrypointTest() {
         // TODO: test entrypoint
     }
 
@@ -104,7 +105,7 @@ public class CreateContainerConfigTest {
      * Test the property 'env'
      */
     @Test
-    public void envTest() {
+    void envTest() {
         // TODO: test env
     }
 
@@ -112,7 +113,7 @@ public class CreateContainerConfigTest {
      * Test the property 'envMerge'
      */
     @Test
-    public void envMergeTest() {
+    void envMergeTest() {
         // TODO: test envMerge
     }
 
@@ -120,7 +121,7 @@ public class CreateContainerConfigTest {
      * Test the property 'exposedPorts'
      */
     @Test
-    public void exposedPortsTest() {
+    void exposedPortsTest() {
         // TODO: test exposedPorts
     }
 
@@ -128,7 +129,7 @@ public class CreateContainerConfigTest {
      * Test the property 'healthcheck'
      */
     @Test
-    public void healthcheckTest() {
+    void healthcheckTest() {
         // TODO: test healthcheck
     }
 
@@ -136,7 +137,7 @@ public class CreateContainerConfigTest {
      * Test the property 'hostConfig'
      */
     @Test
-    public void hostConfigTest() {
+    void hostConfigTest() {
         // TODO: test hostConfig
     }
 
@@ -144,7 +145,7 @@ public class CreateContainerConfigTest {
      * Test the property 'hostname'
      */
     @Test
-    public void hostnameTest() {
+    void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -152,7 +153,7 @@ public class CreateContainerConfigTest {
      * Test the property 'image'
      */
     @Test
-    public void imageTest() {
+    void imageTest() {
         // TODO: test image
     }
 
@@ -160,7 +161,7 @@ public class CreateContainerConfigTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -168,7 +169,7 @@ public class CreateContainerConfigTest {
      * Test the property 'macAddress'
      */
     @Test
-    public void macAddressTest() {
+    void macAddressTest() {
         // TODO: test macAddress
     }
 
@@ -176,7 +177,7 @@ public class CreateContainerConfigTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -184,7 +185,7 @@ public class CreateContainerConfigTest {
      * Test the property 'networkDisabled'
      */
     @Test
-    public void networkDisabledTest() {
+    void networkDisabledTest() {
         // TODO: test networkDisabled
     }
 
@@ -192,7 +193,7 @@ public class CreateContainerConfigTest {
      * Test the property 'networkingConfig'
      */
     @Test
-    public void networkingConfigTest() {
+    void networkingConfigTest() {
         // TODO: test networkingConfig
     }
 
@@ -200,7 +201,7 @@ public class CreateContainerConfigTest {
      * Test the property 'onBuild'
      */
     @Test
-    public void onBuildTest() {
+    void onBuildTest() {
         // TODO: test onBuild
     }
 
@@ -208,7 +209,7 @@ public class CreateContainerConfigTest {
      * Test the property 'openStdin'
      */
     @Test
-    public void openStdinTest() {
+    void openStdinTest() {
         // TODO: test openStdin
     }
 
@@ -216,7 +217,7 @@ public class CreateContainerConfigTest {
      * Test the property 'shell'
      */
     @Test
-    public void shellTest() {
+    void shellTest() {
         // TODO: test shell
     }
 
@@ -224,7 +225,7 @@ public class CreateContainerConfigTest {
      * Test the property 'stdinOnce'
      */
     @Test
-    public void stdinOnceTest() {
+    void stdinOnceTest() {
         // TODO: test stdinOnce
     }
 
@@ -232,7 +233,7 @@ public class CreateContainerConfigTest {
      * Test the property 'stopSignal'
      */
     @Test
-    public void stopSignalTest() {
+    void stopSignalTest() {
         // TODO: test stopSignal
     }
 
@@ -240,7 +241,7 @@ public class CreateContainerConfigTest {
      * Test the property 'stopTimeout'
      */
     @Test
-    public void stopTimeoutTest() {
+    void stopTimeoutTest() {
         // TODO: test stopTimeout
     }
 
@@ -248,7 +249,7 @@ public class CreateContainerConfigTest {
      * Test the property 'tty'
      */
     @Test
-    public void ttyTest() {
+    void ttyTest() {
         // TODO: test tty
     }
 
@@ -256,7 +257,7 @@ public class CreateContainerConfigTest {
      * Test the property 'unsetEnv'
      */
     @Test
-    public void unsetEnvTest() {
+    void unsetEnvTest() {
         // TODO: test unsetEnv
     }
 
@@ -264,7 +265,7 @@ public class CreateContainerConfigTest {
      * Test the property 'unsetEnvAll'
      */
     @Test
-    public void unsetEnvAllTest() {
+    void unsetEnvAllTest() {
         // TODO: test unsetEnvAll
     }
 
@@ -272,7 +273,7 @@ public class CreateContainerConfigTest {
      * Test the property 'user'
      */
     @Test
-    public void userTest() {
+    void userTest() {
         // TODO: test user
     }
 
@@ -280,7 +281,7 @@ public class CreateContainerConfigTest {
      * Test the property 'volumes'
      */
     @Test
-    public void volumesTest() {
+    void volumesTest() {
         // TODO: test volumes
     }
 
@@ -288,7 +289,7 @@ public class CreateContainerConfigTest {
      * Test the property 'workingDir'
      */
     @Test
-    public void workingDirTest() {
+    void workingDirTest() {
         // TODO: test workingDir
     }
 

@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxDevice.JSON_PROPERTY_TYPE,
   LinuxDevice.JSON_PROPERTY_UID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxDevice {
   public static final String JSON_PROPERTY_FILE_MODE = "fileMode";
   private Integer fileMode;
@@ -78,7 +78,7 @@ public class LinuxDevice {
    * The bits have the same definition on all systems, so that information about files can be moved from one system to another portably. Not all bits apply to all systems. The only required bit is [ModeDir] for directories.
    * @return fileMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_FILE_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -103,7 +103,7 @@ public class LinuxDevice {
    * Gid of the device.
    * @return gid
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -128,7 +128,7 @@ public class LinuxDevice {
    * Major is the device&#39;s major number.
    * @return major
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAJOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -153,7 +153,7 @@ public class LinuxDevice {
    * Minor is the device&#39;s minor number.
    * @return minor
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MINOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -178,7 +178,7 @@ public class LinuxDevice {
    * Path to the device.
    * @return path
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -203,7 +203,7 @@ public class LinuxDevice {
    * Device type, block, char, etc.
    * @return type
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -228,7 +228,7 @@ public class LinuxDevice {
    * UID of the device.
    * @return uid
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

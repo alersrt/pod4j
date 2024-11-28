@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectExecProcess.JSON_PROPERTY_TTY,
   InspectExecProcess.JSON_PROPERTY_USER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectExecProcess {
   public static final String JSON_PROPERTY_ARGUMENTS = "arguments";
   private List<String> arguments = new ArrayList<>();
@@ -80,7 +80,7 @@ public class InspectExecProcess {
    * Arguments are the arguments to the entrypoint command of the exec session.
    * @return arguments
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARGUMENTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -105,7 +105,7 @@ public class InspectExecProcess {
    * Entrypoint is the entrypoint for the exec session (the command that will be executed in the container).
    * @return entrypoint
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -130,7 +130,7 @@ public class InspectExecProcess {
    * Privileged is whether the exec session will be started with elevated privileges.
    * @return privileged
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PRIVILEGED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -155,7 +155,7 @@ public class InspectExecProcess {
    * Tty is whether the exec session created a terminal.
    * @return tty
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -180,7 +180,7 @@ public class InspectExecProcess {
    * User is the user the exec session was started as.
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

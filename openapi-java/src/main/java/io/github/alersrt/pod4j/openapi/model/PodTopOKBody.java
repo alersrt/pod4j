@@ -40,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PodTopOKBody.JSON_PROPERTY_PROCESSES,
   PodTopOKBody.JSON_PROPERTY_TITLES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PodTopOKBody {
   public static final String JSON_PROPERTY_PROCESSES = "Processes";
   private List<List<String>> processes = new ArrayList<>();
@@ -68,7 +68,7 @@ public class PodTopOKBody {
    * Each process running in the container, where each is process is an array of values corresponding to the titles.
    * @return processes
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -103,7 +103,7 @@ public class PodTopOKBody {
    * The ps column titles
    * @return titles
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_TITLES)

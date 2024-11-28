@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Port
  */
-public class PortTest {
+class PortTest {
     private final Port model = new Port();
 
     /**
      * Model tests for Port
      */
     @Test
-    public void testPort() {
+    void testPort() {
         // TODO: test Port
     }
 
@@ -41,7 +42,7 @@ public class PortTest {
      * Test the property 'IP'
      */
     @Test
-    public void IPTest() {
+    void IPTest() {
         // TODO: test IP
     }
 
@@ -49,7 +50,7 @@ public class PortTest {
      * Test the property 'privatePort'
      */
     @Test
-    public void privatePortTest() {
+    void privatePortTest() {
         // TODO: test privatePort
     }
 
@@ -57,7 +58,7 @@ public class PortTest {
      * Test the property 'publicPort'
      */
     @Test
-    public void publicPortTest() {
+    void publicPortTest() {
         // TODO: test publicPort
     }
 
@@ -65,7 +66,7 @@ public class PortTest {
      * Test the property 'type'
      */
     @Test
-    public void typeTest() {
+    void typeTest() {
         // TODO: test type
     }
 

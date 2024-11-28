@@ -40,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SystemDfVolumeReport.JSON_PROPERTY_SIZE,
   SystemDfVolumeReport.JSON_PROPERTY_VOLUME_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemDfVolumeReport {
   public static final String JSON_PROPERTY_LINKS = "Links";
   private Long links;
@@ -66,7 +66,7 @@ public class SystemDfVolumeReport {
    * Get links
    * @return links
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -91,7 +91,7 @@ public class SystemDfVolumeReport {
    * Get reclaimableSize
    * @return reclaimableSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RECLAIMABLE_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -116,7 +116,7 @@ public class SystemDfVolumeReport {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -141,7 +141,7 @@ public class SystemDfVolumeReport {
    * Get volumeName
    * @return volumeName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUME_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

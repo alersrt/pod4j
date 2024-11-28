@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for DisconnectOptions
  */
-public class DisconnectOptionsTest {
+class DisconnectOptionsTest {
     private final DisconnectOptions model = new DisconnectOptions();
 
     /**
      * Model tests for DisconnectOptions
      */
     @Test
-    public void testDisconnectOptions() {
+    void testDisconnectOptions() {
         // TODO: test DisconnectOptions
     }
 
@@ -41,7 +42,7 @@ public class DisconnectOptionsTest {
      * Test the property 'container'
      */
     @Test
-    public void containerTest() {
+    void containerTest() {
         // TODO: test container
     }
 
@@ -49,7 +50,7 @@ public class DisconnectOptionsTest {
      * Test the property 'force'
      */
     @Test
-    public void forceTest() {
+    void forceTest() {
         // TODO: test force
     }
 

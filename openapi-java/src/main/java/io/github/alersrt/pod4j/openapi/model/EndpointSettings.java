@@ -13,29 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.EndpointIPAMConfig;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * EndpointSettings stores the network endpoint details
  */
@@ -55,7 +46,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   EndpointSettings.JSON_PROPERTY_MAC_ADDRESS,
   EndpointSettings.JSON_PROPERTY_NETWORK_I_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class EndpointSettings {
   public static final String JSON_PROPERTY_ALIASES = "Aliases";
   private List<String> aliases = new ArrayList<>();
@@ -119,7 +110,7 @@ public class EndpointSettings {
    * Get aliases
    * @return aliases
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ALIASES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -152,7 +143,7 @@ public class EndpointSettings {
    * DNSNames holds all the (non fully qualified) DNS names associated to this endpoint. First entry is used to generate PTR records.
    * @return dnSNames
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DN_S_NAMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -185,7 +176,7 @@ public class EndpointSettings {
    * Get driverOpts
    * @return driverOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -210,7 +201,7 @@ public class EndpointSettings {
    * Get endpointID
    * @return endpointID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -235,7 +226,7 @@ public class EndpointSettings {
    * Get gateway
    * @return gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -260,7 +251,7 @@ public class EndpointSettings {
    * Get globalIPv6Address
    * @return globalIPv6Address
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -285,7 +276,7 @@ public class EndpointSettings {
    * Get globalIPv6PrefixLen
    * @return globalIPv6PrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -310,7 +301,7 @@ public class EndpointSettings {
    * Get ipAMConfig
    * @return ipAMConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IP_A_M_CONFIG)
@@ -336,7 +327,7 @@ public class EndpointSettings {
    * Get ipAddress
    * @return ipAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -361,7 +352,7 @@ public class EndpointSettings {
    * Get ipPrefixLen
    * @return ipPrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -386,7 +377,7 @@ public class EndpointSettings {
    * Get ipv6Gateway
    * @return ipv6Gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -419,7 +410,7 @@ public class EndpointSettings {
    * Get links
    * @return links
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -444,7 +435,7 @@ public class EndpointSettings {
    * MacAddress may be used to specify a MAC address when the container is created. Once the container is running, it becomes operational data (it may contain a generated address).
    * @return macAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -469,7 +460,7 @@ public class EndpointSettings {
    * Operational data
    * @return networkID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

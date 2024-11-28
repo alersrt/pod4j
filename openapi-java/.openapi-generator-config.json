@@ -1,0 +1,11 @@
+{
+  "modelPackage": "io.github.alersrt.pod4j.openapi.model",
+  "apiPackage": "io.github.alersrt.pod4j.openapi.api",
+  "cleanupOutput": "true",
+  "annotationLibrary": "none",
+  "library": "native",
+  "serializationLibrary": "jackson",
+  "useBeanValidation": "true",
+  "dateLibrary": "java8",
+  "useJakartaEe": "true"
+}

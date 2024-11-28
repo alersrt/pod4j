@@ -44,7 +44,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PluginSettings.JSON_PROPERTY_ENV,
   PluginSettings.JSON_PROPERTY_MOUNTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PluginSettings {
   public static final String JSON_PROPERTY_ARGS = "Args";
   private List<String> args = new ArrayList<>();
@@ -78,7 +78,7 @@ public class PluginSettings {
    * args
    * @return args
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_ARGS)
@@ -112,7 +112,7 @@ public class PluginSettings {
    * devices
    * @return devices
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -147,7 +147,7 @@ public class PluginSettings {
    * env
    * @return env
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_ENV)
@@ -181,7 +181,7 @@ public class PluginSettings {
    * mounts
    * @return mounts
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 

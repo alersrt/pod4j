@@ -47,7 +47,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxBlockIO.JSON_PROPERTY_WEIGHT,
   LinuxBlockIO.JSON_PROPERTY_WEIGHT_DEVICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxBlockIO {
   public static final String JSON_PROPERTY_LEAF_WEIGHT = "leafWeight";
   private Integer leafWeight;
@@ -82,7 +82,7 @@ public class LinuxBlockIO {
    * Specifies tasks&#39; weight in the given cgroup while competing with the cgroup&#39;s child cgroups, CFQ scheduler only
    * @return leafWeight
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LEAF_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -115,7 +115,7 @@ public class LinuxBlockIO {
    * IO read rate limit per cgroup per device, bytes per second
    * @return throttleReadBpsDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
@@ -149,7 +149,7 @@ public class LinuxBlockIO {
    * IO read rate limit per cgroup per device, IO per second
    * @return throttleReadIOPSDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
@@ -183,7 +183,7 @@ public class LinuxBlockIO {
    * IO write rate limit per cgroup per device, bytes per second
    * @return throttleWriteBpsDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
@@ -217,7 +217,7 @@ public class LinuxBlockIO {
    * IO write rate limit per cgroup per device, IO per second
    * @return throttleWriteIOPSDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
@@ -243,7 +243,7 @@ public class LinuxBlockIO {
    * Specifies per cgroup weight
    * @return weight
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -276,7 +276,7 @@ public class LinuxBlockIO {
    * Weight per cgroup per device, can override BlkioWeight
    * @return weightDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)

@@ -39,7 +39,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxIDMapping.JSON_PROPERTY_HOST_I_D,
   LinuxIDMapping.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxIDMapping {
   public static final String JSON_PROPERTY_CONTAINER_I_D = "containerID";
   private Integer containerID;
@@ -62,7 +62,7 @@ public class LinuxIDMapping {
    * ContainerID is the starting UID/GID in the container
    * @return containerID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -87,7 +87,7 @@ public class LinuxIDMapping {
    * HostID is the starting UID/GID on the host to be mapped to &#39;ContainerID&#39;
    * @return hostID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOST_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -112,7 +112,7 @@ public class LinuxIDMapping {
    * Size is the number of IDs to be mapped
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

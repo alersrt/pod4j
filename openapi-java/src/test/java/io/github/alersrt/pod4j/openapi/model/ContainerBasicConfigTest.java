@@ -13,34 +13,35 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.LinuxPersonality;
 import io.github.alersrt.pod4j.openapi.model.LogConfigLibpod;
 import io.github.alersrt.pod4j.openapi.model.Namespace;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerBasicConfig
  */
-public class ContainerBasicConfigTest {
+class ContainerBasicConfigTest {
     private final ContainerBasicConfig model = new ContainerBasicConfig();
 
     /**
      * Model tests for ContainerBasicConfig
      */
     @Test
-    public void testContainerBasicConfig() {
+    void testContainerBasicConfig() {
         // TODO: test ContainerBasicConfig
     }
 
@@ -48,7 +49,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'annotations'
      */
     @Test
-    public void annotationsTest() {
+    void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -56,7 +57,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'command'
      */
     @Test
-    public void commandTest() {
+    void commandTest() {
         // TODO: test command
     }
 
@@ -64,7 +65,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'conmonPidFile'
      */
     @Test
-    public void conmonPidFileTest() {
+    void conmonPidFileTest() {
         // TODO: test conmonPidFile
     }
 
@@ -72,7 +73,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'containerCreateCommand'
      */
     @Test
-    public void containerCreateCommandTest() {
+    void containerCreateCommandTest() {
         // TODO: test containerCreateCommand
     }
 
@@ -80,7 +81,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'dependencyContainers'
      */
     @Test
-    public void dependencyContainersTest() {
+    void dependencyContainersTest() {
         // TODO: test dependencyContainers
     }
 
@@ -88,7 +89,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'entrypoint'
      */
     @Test
-    public void entrypointTest() {
+    void entrypointTest() {
         // TODO: test entrypoint
     }
 
@@ -96,7 +97,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'env'
      */
     @Test
-    public void envTest() {
+    void envTest() {
         // TODO: test env
     }
 
@@ -104,7 +105,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'envHost'
      */
     @Test
-    public void envHostTest() {
+    void envHostTest() {
         // TODO: test envHost
     }
 
@@ -112,7 +113,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'envmerge'
      */
     @Test
-    public void envmergeTest() {
+    void envmergeTest() {
         // TODO: test envmerge
     }
 
@@ -120,7 +121,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'groupEntry'
      */
     @Test
-    public void groupEntryTest() {
+    void groupEntryTest() {
         // TODO: test groupEntry
     }
 
@@ -128,7 +129,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'hostname'
      */
     @Test
-    public void hostnameTest() {
+    void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -136,7 +137,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'hostusers'
      */
     @Test
-    public void hostusersTest() {
+    void hostusersTest() {
         // TODO: test hostusers
     }
 
@@ -144,7 +145,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'httpproxy'
      */
     @Test
-    public void httpproxyTest() {
+    void httpproxyTest() {
         // TODO: test httpproxy
     }
 
@@ -152,7 +153,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'initContainerType'
      */
     @Test
-    public void initContainerTypeTest() {
+    void initContainerTypeTest() {
         // TODO: test initContainerType
     }
 
@@ -160,7 +161,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -168,7 +169,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'logConfiguration'
      */
     @Test
-    public void logConfigurationTest() {
+    void logConfigurationTest() {
         // TODO: test logConfiguration
     }
 
@@ -176,7 +177,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'managePassword'
      */
     @Test
-    public void managePasswordTest() {
+    void managePasswordTest() {
         // TODO: test managePassword
     }
 
@@ -184,7 +185,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -192,7 +193,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'ociRuntime'
      */
     @Test
-    public void ociRuntimeTest() {
+    void ociRuntimeTest() {
         // TODO: test ociRuntime
     }
 
@@ -200,7 +201,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'passwdEntry'
      */
     @Test
-    public void passwdEntryTest() {
+    void passwdEntryTest() {
         // TODO: test passwdEntry
     }
 
@@ -208,7 +209,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'personality'
      */
     @Test
-    public void personalityTest() {
+    void personalityTest() {
         // TODO: test personality
     }
 
@@ -216,7 +217,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'pidns'
      */
     @Test
-    public void pidnsTest() {
+    void pidnsTest() {
         // TODO: test pidns
     }
 
@@ -224,7 +225,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'pod'
      */
     @Test
-    public void podTest() {
+    void podTest() {
         // TODO: test pod
     }
 
@@ -232,7 +233,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'remove'
      */
     @Test
-    public void removeTest() {
+    void removeTest() {
         // TODO: test remove
     }
 
@@ -240,7 +241,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'removeImage'
      */
     @Test
-    public void removeImageTest() {
+    void removeImageTest() {
         // TODO: test removeImage
     }
 
@@ -248,7 +249,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'restartPolicy'
      */
     @Test
-    public void restartPolicyTest() {
+    void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
@@ -256,7 +257,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'restartTries'
      */
     @Test
-    public void restartTriesTest() {
+    void restartTriesTest() {
         // TODO: test restartTries
     }
 
@@ -264,7 +265,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'sdnotifyMode'
      */
     @Test
-    public void sdnotifyModeTest() {
+    void sdnotifyModeTest() {
         // TODO: test sdnotifyMode
     }
 
@@ -272,7 +273,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'secretEnv'
      */
     @Test
-    public void secretEnvTest() {
+    void secretEnvTest() {
         // TODO: test secretEnv
     }
 
@@ -280,7 +281,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'stdin'
      */
     @Test
-    public void stdinTest() {
+    void stdinTest() {
         // TODO: test stdin
     }
 
@@ -288,7 +289,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'stopSignal'
      */
     @Test
-    public void stopSignalTest() {
+    void stopSignalTest() {
         // TODO: test stopSignal
     }
 
@@ -296,7 +297,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'stopTimeout'
      */
     @Test
-    public void stopTimeoutTest() {
+    void stopTimeoutTest() {
         // TODO: test stopTimeout
     }
 
@@ -304,7 +305,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'sysctl'
      */
     @Test
-    public void sysctlTest() {
+    void sysctlTest() {
         // TODO: test sysctl
     }
 
@@ -312,7 +313,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'systemd'
      */
     @Test
-    public void systemdTest() {
+    void systemdTest() {
         // TODO: test systemd
     }
 
@@ -320,7 +321,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'terminal'
      */
     @Test
-    public void terminalTest() {
+    void terminalTest() {
         // TODO: test terminal
     }
 
@@ -328,7 +329,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'timeout'
      */
     @Test
-    public void timeoutTest() {
+    void timeoutTest() {
         // TODO: test timeout
     }
 
@@ -336,7 +337,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'timezone'
      */
     @Test
-    public void timezoneTest() {
+    void timezoneTest() {
         // TODO: test timezone
     }
 
@@ -344,7 +345,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'unsetenv'
      */
     @Test
-    public void unsetenvTest() {
+    void unsetenvTest() {
         // TODO: test unsetenv
     }
 
@@ -352,7 +353,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'unsetenvall'
      */
     @Test
-    public void unsetenvallTest() {
+    void unsetenvallTest() {
         // TODO: test unsetenvall
     }
 
@@ -360,7 +361,7 @@ public class ContainerBasicConfigTest {
      * Test the property 'utsns'
      */
     @Test
-    public void utsnsTest() {
+    void utsnsTest() {
         // TODO: test utsns
     }
 

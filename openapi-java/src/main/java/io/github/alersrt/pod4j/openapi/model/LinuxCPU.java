@@ -45,7 +45,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxCPU.JSON_PROPERTY_REALTIME_RUNTIME,
   LinuxCPU.JSON_PROPERTY_SHARES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxCPU {
   public static final String JSON_PROPERTY_BURST = "burst";
   private Integer burst;
@@ -86,7 +86,7 @@ public class LinuxCPU {
    * CPU hardcap burst limit (in usecs). Allowed accumulated cpu time additionally for burst in a given period.
    * @return burst
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BURST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -111,7 +111,7 @@ public class LinuxCPU {
    * CPUs to use within the cpuset. Default is to use any CPU available.
    * @return cpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -136,7 +136,7 @@ public class LinuxCPU {
    * cgroups are configured with minimum weight, 0: default behavior, 1: SCHED_IDLE.
    * @return idle
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IDLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -161,7 +161,7 @@ public class LinuxCPU {
    * List of memory nodes in the cpuset. Default is to use any available memory node.
    * @return mems
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -186,7 +186,7 @@ public class LinuxCPU {
    * CPU period to be used for hardcapping (in usecs).
    * @return period
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -211,7 +211,7 @@ public class LinuxCPU {
    * CPU hardcap limit (in usecs). Allowed cpu time in a given period.
    * @return quota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -236,7 +236,7 @@ public class LinuxCPU {
    * CPU period to be used for realtime scheduling (in usecs).
    * @return realtimePeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REALTIME_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -261,7 +261,7 @@ public class LinuxCPU {
    * How much time realtime scheduling may use (in usecs).
    * @return realtimeRuntime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REALTIME_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -286,7 +286,7 @@ public class LinuxCPU {
    * CPU shares (relative weight (ratio) vs. other cgroups with cpu shares).
    * @return shares
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

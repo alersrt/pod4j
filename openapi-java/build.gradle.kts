@@ -5,7 +5,6 @@ plugins {
     id("maven-publish")
     id("signing")
     id("org.jreleaser") version "1.15.0"
-    id("com.diffplug.spotless") version "6.25.0"
 }
 
 repositories {
@@ -17,6 +16,7 @@ version = "5.3.0"
 
 dependencies {
     implementation("com.google.code.findbugs:jsr305:3.0.2")
+    implementation("org.hibernate.validator:hibernate-validator:8.0.0.Final")
     implementation("com.fasterxml.jackson.core:jackson-core:2.18.1")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.18.1")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.18.1")

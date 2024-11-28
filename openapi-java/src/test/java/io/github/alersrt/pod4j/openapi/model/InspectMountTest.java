@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectMount
  */
-public class InspectMountTest {
+class InspectMountTest {
     private final InspectMount model = new InspectMount();
 
     /**
      * Model tests for InspectMount
      */
     @Test
-    public void testInspectMount() {
+    void testInspectMount() {
         // TODO: test InspectMount
     }
 
@@ -43,7 +44,7 @@ public class InspectMountTest {
      * Test the property 'destination'
      */
     @Test
-    public void destinationTest() {
+    void destinationTest() {
         // TODO: test destination
     }
 
@@ -51,7 +52,7 @@ public class InspectMountTest {
      * Test the property 'driver'
      */
     @Test
-    public void driverTest() {
+    void driverTest() {
         // TODO: test driver
     }
 
@@ -59,7 +60,7 @@ public class InspectMountTest {
      * Test the property 'mode'
      */
     @Test
-    public void modeTest() {
+    void modeTest() {
         // TODO: test mode
     }
 
@@ -67,7 +68,7 @@ public class InspectMountTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -75,7 +76,7 @@ public class InspectMountTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 
@@ -83,7 +84,7 @@ public class InspectMountTest {
      * Test the property 'propagation'
      */
     @Test
-    public void propagationTest() {
+    void propagationTest() {
         // TODO: test propagation
     }
 
@@ -91,7 +92,7 @@ public class InspectMountTest {
      * Test the property 'RW'
      */
     @Test
-    public void RWTest() {
+    void RWTest() {
         // TODO: test RW
     }
 
@@ -99,7 +100,7 @@ public class InspectMountTest {
      * Test the property 'source'
      */
     @Test
-    public void sourceTest() {
+    void sourceTest() {
         // TODO: test source
     }
 
@@ -107,7 +108,7 @@ public class InspectMountTest {
      * Test the property 'subPath'
      */
     @Test
-    public void subPathTest() {
+    void subPathTest() {
         // TODO: test subPath
     }
 
@@ -115,7 +116,7 @@ public class InspectMountTest {
      * Test the property 'type'
      */
     @Test
-    public void typeTest() {
+    void typeTest() {
         // TODO: test type
     }
 

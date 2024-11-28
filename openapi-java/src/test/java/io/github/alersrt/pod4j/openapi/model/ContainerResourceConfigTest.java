@@ -13,36 +13,37 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.LinuxIntelRdt;
 import io.github.alersrt.pod4j.openapi.model.LinuxResources;
 import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.LinuxWeightDevice;
 import io.github.alersrt.pod4j.openapi.model.POSIXRlimit;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerResourceConfig
  */
-public class ContainerResourceConfigTest {
+class ContainerResourceConfigTest {
     private final ContainerResourceConfig model = new ContainerResourceConfig();
 
     /**
      * Model tests for ContainerResourceConfig
      */
     @Test
-    public void testContainerResourceConfig() {
+    void testContainerResourceConfig() {
         // TODO: test ContainerResourceConfig
     }
 
@@ -50,7 +51,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'intelRdt'
      */
     @Test
-    public void intelRdtTest() {
+    void intelRdtTest() {
         // TODO: test intelRdt
     }
 
@@ -58,7 +59,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'oomScoreAdj'
      */
     @Test
-    public void oomScoreAdjTest() {
+    void oomScoreAdjTest() {
         // TODO: test oomScoreAdj
     }
 
@@ -66,7 +67,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'rLimits'
      */
     @Test
-    public void rLimitsTest() {
+    void rLimitsTest() {
         // TODO: test rLimits
     }
 
@@ -74,7 +75,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'resourceLimits'
      */
     @Test
-    public void resourceLimitsTest() {
+    void resourceLimitsTest() {
         // TODO: test resourceLimits
     }
 
@@ -82,7 +83,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'throttleReadBpsDevice'
      */
     @Test
-    public void throttleReadBpsDeviceTest() {
+    void throttleReadBpsDeviceTest() {
         // TODO: test throttleReadBpsDevice
     }
 
@@ -90,7 +91,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'throttleReadIOPSDevice'
      */
     @Test
-    public void throttleReadIOPSDeviceTest() {
+    void throttleReadIOPSDeviceTest() {
         // TODO: test throttleReadIOPSDevice
     }
 
@@ -98,7 +99,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'throttleWriteBpsDevice'
      */
     @Test
-    public void throttleWriteBpsDeviceTest() {
+    void throttleWriteBpsDeviceTest() {
         // TODO: test throttleWriteBpsDevice
     }
 
@@ -106,7 +107,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'throttleWriteIOPSDevice'
      */
     @Test
-    public void throttleWriteIOPSDeviceTest() {
+    void throttleWriteIOPSDeviceTest() {
         // TODO: test throttleWriteIOPSDevice
     }
 
@@ -114,7 +115,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'unified'
      */
     @Test
-    public void unifiedTest() {
+    void unifiedTest() {
         // TODO: test unified
     }
 
@@ -122,7 +123,7 @@ public class ContainerResourceConfigTest {
      * Test the property 'weightDevice'
      */
     @Test
-    public void weightDeviceTest() {
+    void weightDeviceTest() {
         // TODO: test weightDevice
     }
 

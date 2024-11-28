@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxIntelRdt
  */
-public class LinuxIntelRdtTest {
+class LinuxIntelRdtTest {
     private final LinuxIntelRdt model = new LinuxIntelRdt();
 
     /**
      * Model tests for LinuxIntelRdt
      */
     @Test
-    public void testLinuxIntelRdt() {
+    void testLinuxIntelRdt() {
         // TODO: test LinuxIntelRdt
     }
 
@@ -41,7 +42,7 @@ public class LinuxIntelRdtTest {
      * Test the property 'closID'
      */
     @Test
-    public void closIDTest() {
+    void closIDTest() {
         // TODO: test closID
     }
 
@@ -49,7 +50,7 @@ public class LinuxIntelRdtTest {
      * Test the property 'enableCMT'
      */
     @Test
-    public void enableCMTTest() {
+    void enableCMTTest() {
         // TODO: test enableCMT
     }
 
@@ -57,7 +58,7 @@ public class LinuxIntelRdtTest {
      * Test the property 'enableMBM'
      */
     @Test
-    public void enableMBMTest() {
+    void enableMBMTest() {
         // TODO: test enableMBM
     }
 
@@ -65,7 +66,7 @@ public class LinuxIntelRdtTest {
      * Test the property 'l3CacheSchema'
      */
     @Test
-    public void l3CacheSchemaTest() {
+    void l3CacheSchemaTest() {
         // TODO: test l3CacheSchema
     }
 
@@ -73,7 +74,7 @@ public class LinuxIntelRdtTest {
      * Test the property 'memBwSchema'
      */
     @Test
-    public void memBwSchemaTest() {
+    void memBwSchemaTest() {
         // TODO: test memBwSchema
     }
 

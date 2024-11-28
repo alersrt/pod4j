@@ -13,31 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.HealthcheckConfig;
-import io.github.alersrt.pod4j.openapi.model.HostConfig;
-import io.github.alersrt.pod4j.openapi.model.NetworkingConfig;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * CreateContainerConfig used when compatible endpoint creates a container
  */
@@ -74,7 +63,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   CreateContainerConfig.JSON_PROPERTY_VOLUMES,
   CreateContainerConfig.JSON_PROPERTY_WORKING_DIR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class CreateContainerConfig {
   public static final String JSON_PROPERTY_ARGS_ESCAPED = "ArgsEscaped";
   private Boolean argsEscaped;
@@ -181,7 +170,7 @@ public class CreateContainerConfig {
    * Get argsEscaped
    * @return argsEscaped
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARGS_ESCAPED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -206,7 +195,7 @@ public class CreateContainerConfig {
    * Get attachStderr
    * @return attachStderr
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -231,7 +220,7 @@ public class CreateContainerConfig {
    * Get attachStdin
    * @return attachStdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -256,7 +245,7 @@ public class CreateContainerConfig {
    * Get attachStdout
    * @return attachStdout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -289,7 +278,7 @@ public class CreateContainerConfig {
    * We need to override the json decoder to accept both options.
    * @return cmd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -314,7 +303,7 @@ public class CreateContainerConfig {
    * Get domainname
    * @return domainname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DOMAINNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -347,7 +336,7 @@ public class CreateContainerConfig {
    * We need to override the json decoder to accept both options.
    * @return entrypoint
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -380,7 +369,7 @@ public class CreateContainerConfig {
    * Get env
    * @return env
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -413,7 +402,7 @@ public class CreateContainerConfig {
    * Get envMerge
    * @return envMerge
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV_MERGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -446,7 +435,7 @@ public class CreateContainerConfig {
    * PortSet is a collection of structs indexed by Port
    * @return exposedPorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -471,7 +460,7 @@ public class CreateContainerConfig {
    * Get healthcheck
    * @return healthcheck
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
@@ -497,7 +486,7 @@ public class CreateContainerConfig {
    * Get hostConfig
    * @return hostConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
@@ -523,7 +512,7 @@ public class CreateContainerConfig {
    * Get hostname
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -548,7 +537,7 @@ public class CreateContainerConfig {
    * Get image
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -581,7 +570,7 @@ public class CreateContainerConfig {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -606,7 +595,7 @@ public class CreateContainerConfig {
    * Mac Address of the container.  Deprecated: this field is deprecated since API v1.44. Use EndpointSettings.MacAddress instead.
    * @return macAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -631,7 +620,7 @@ public class CreateContainerConfig {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -656,7 +645,7 @@ public class CreateContainerConfig {
    * Get networkDisabled
    * @return networkDisabled
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_DISABLED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -681,7 +670,7 @@ public class CreateContainerConfig {
    * Get networkingConfig
    * @return networkingConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORKING_CONFIG)
@@ -715,7 +704,7 @@ public class CreateContainerConfig {
    * Get onBuild
    * @return onBuild
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ON_BUILD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -740,7 +729,7 @@ public class CreateContainerConfig {
    * Get openStdin
    * @return openStdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -773,7 +762,7 @@ public class CreateContainerConfig {
    * We need to override the json decoder to accept both options.
    * @return shell
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHELL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -798,7 +787,7 @@ public class CreateContainerConfig {
    * Get stdinOnce
    * @return stdinOnce
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STDIN_ONCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -823,7 +812,7 @@ public class CreateContainerConfig {
    * Get stopSignal
    * @return stopSignal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -848,7 +837,7 @@ public class CreateContainerConfig {
    * Get stopTimeout
    * @return stopTimeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -873,7 +862,7 @@ public class CreateContainerConfig {
    * Get tty
    * @return tty
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -906,7 +895,7 @@ public class CreateContainerConfig {
    * Get unsetEnv
    * @return unsetEnv
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNSET_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -931,7 +920,7 @@ public class CreateContainerConfig {
    * Get unsetEnvAll
    * @return unsetEnvAll
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNSET_ENV_ALL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -956,7 +945,7 @@ public class CreateContainerConfig {
    * Get user
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -989,7 +978,7 @@ public class CreateContainerConfig {
    * Get volumes
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1014,7 +1003,7 @@ public class CreateContainerConfig {
    * Get workingDir
    * @return workingDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WORKING_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

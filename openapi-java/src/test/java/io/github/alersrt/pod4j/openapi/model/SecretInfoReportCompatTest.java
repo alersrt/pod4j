@@ -13,30 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.SecretSpec;
 import io.github.alersrt.pod4j.openapi.model.SecretVersion;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretInfoReportCompat
  */
-public class SecretInfoReportCompatTest {
+class SecretInfoReportCompatTest {
     private final SecretInfoReportCompat model = new SecretInfoReportCompat();
 
     /**
      * Model tests for SecretInfoReportCompat
      */
     @Test
-    public void testSecretInfoReportCompat() {
+    void testSecretInfoReportCompat() {
         // TODO: test SecretInfoReportCompat
     }
 
@@ -44,7 +44,7 @@ public class SecretInfoReportCompatTest {
      * Test the property 'createdAt'
      */
     @Test
-    public void createdAtTest() {
+    void createdAtTest() {
         // TODO: test createdAt
     }
 
@@ -52,7 +52,7 @@ public class SecretInfoReportCompatTest {
      * Test the property 'ID'
      */
     @Test
-    public void IDTest() {
+    void IDTest() {
         // TODO: test ID
     }
 
@@ -60,7 +60,7 @@ public class SecretInfoReportCompatTest {
      * Test the property 'secretData'
      */
     @Test
-    public void secretDataTest() {
+    void secretDataTest() {
         // TODO: test secretData
     }
 
@@ -68,7 +68,7 @@ public class SecretInfoReportCompatTest {
      * Test the property 'spec'
      */
     @Test
-    public void specTest() {
+    void specTest() {
         // TODO: test spec
     }
 
@@ -76,7 +76,7 @@ public class SecretInfoReportCompatTest {
      * Test the property 'updatedAt'
      */
     @Test
-    public void updatedAtTest() {
+    void updatedAtTest() {
         // TODO: test updatedAt
     }
 
@@ -84,7 +84,7 @@ public class SecretInfoReportCompatTest {
      * Test the property 'version'
      */
     @Test
-    public void versionTest() {
+    void versionTest() {
         // TODO: test version
     }
 

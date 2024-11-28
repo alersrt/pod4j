@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for CPUUsage
  */
-public class CPUUsageTest {
+class CPUUsageTest {
     private final CPUUsage model = new CPUUsage();
 
     /**
      * Model tests for CPUUsage
      */
     @Test
-    public void testCPUUsage() {
+    void testCPUUsage() {
         // TODO: test CPUUsage
     }
 
@@ -41,7 +42,7 @@ public class CPUUsageTest {
      * Test the property 'idlePercent'
      */
     @Test
-    public void idlePercentTest() {
+    void idlePercentTest() {
         // TODO: test idlePercent
     }
 
@@ -49,7 +50,7 @@ public class CPUUsageTest {
      * Test the property 'systemPercent'
      */
     @Test
-    public void systemPercentTest() {
+    void systemPercentTest() {
         // TODO: test systemPercent
     }
 
@@ -57,7 +58,7 @@ public class CPUUsageTest {
      * Test the property 'userPercent'
      */
     @Test
-    public void userPercentTest() {
+    void userPercentTest() {
         // TODO: test userPercent
     }
 

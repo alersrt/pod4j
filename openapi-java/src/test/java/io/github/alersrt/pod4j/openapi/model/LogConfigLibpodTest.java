@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LogConfigLibpod
  */
-public class LogConfigLibpodTest {
+class LogConfigLibpodTest {
     private final LogConfigLibpod model = new LogConfigLibpod();
 
     /**
      * Model tests for LogConfigLibpod
      */
     @Test
-    public void testLogConfigLibpod() {
+    void testLogConfigLibpod() {
         // TODO: test LogConfigLibpod
     }
 
@@ -43,7 +44,7 @@ public class LogConfigLibpodTest {
      * Test the property 'driver'
      */
     @Test
-    public void driverTest() {
+    void driverTest() {
         // TODO: test driver
     }
 
@@ -51,7 +52,7 @@ public class LogConfigLibpodTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 
@@ -59,7 +60,7 @@ public class LogConfigLibpodTest {
      * Test the property 'path'
      */
     @Test
-    public void pathTest() {
+    void pathTest() {
         // TODO: test path
     }
 
@@ -67,7 +68,7 @@ public class LogConfigLibpodTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 

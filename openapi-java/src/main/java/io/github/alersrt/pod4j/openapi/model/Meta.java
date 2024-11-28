@@ -41,7 +41,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Meta.JSON_PROPERTY_UPDATED_AT,
   Meta.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Meta {
   public static final String JSON_PROPERTY_CREATED_AT = "CreatedAt";
   private OffsetDateTime createdAt;
@@ -64,7 +64,7 @@ public class Meta {
    * Get createdAt
    * @return createdAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
@@ -90,7 +90,7 @@ public class Meta {
    * Get updatedAt
    * @return updatedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_UPDATED_AT)
@@ -116,7 +116,7 @@ public class Meta {
    * Get version
    * @return version
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VERSION)

@@ -13,27 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecurityInfo
  */
-public class SecurityInfoTest {
+class SecurityInfoTest {
     private final SecurityInfo model = new SecurityInfo();
 
     /**
      * Model tests for SecurityInfo
      */
     @Test
-    public void testSecurityInfo() {
+    void testSecurityInfo() {
         // TODO: test SecurityInfo
     }
 
@@ -41,7 +41,7 @@ public class SecurityInfoTest {
      * Test the property 'apparmorEnabled'
      */
     @Test
-    public void apparmorEnabledTest() {
+    void apparmorEnabledTest() {
         // TODO: test apparmorEnabled
     }
 
@@ -49,7 +49,7 @@ public class SecurityInfoTest {
      * Test the property 'capabilities'
      */
     @Test
-    public void capabilitiesTest() {
+    void capabilitiesTest() {
         // TODO: test capabilities
     }
 
@@ -57,7 +57,7 @@ public class SecurityInfoTest {
      * Test the property 'rootless'
      */
     @Test
-    public void rootlessTest() {
+    void rootlessTest() {
         // TODO: test rootless
     }
 
@@ -65,7 +65,7 @@ public class SecurityInfoTest {
      * Test the property 'seccompEnabled'
      */
     @Test
-    public void seccompEnabledTest() {
+    void seccompEnabledTest() {
         // TODO: test seccompEnabled
     }
 
@@ -73,7 +73,7 @@ public class SecurityInfoTest {
      * Test the property 'seccompProfilePath'
      */
     @Test
-    public void seccompProfilePathTest() {
+    void seccompProfilePathTest() {
         // TODO: test seccompProfilePath
     }
 
@@ -81,7 +81,7 @@ public class SecurityInfoTest {
      * Test the property 'selinuxEnabled'
      */
     @Test
-    public void selinuxEnabledTest() {
+    void selinuxEnabledTest() {
         // TODO: test selinuxEnabled
     }
 

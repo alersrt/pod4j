@@ -58,7 +58,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LibpodImageSummary.JSON_PROPERTY_SIZE,
   LibpodImageSummary.JSON_PROPERTY_VIRTUAL_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LibpodImageSummary {
   public static final String JSON_PROPERTY_ARCH = "Arch";
   private String arch;
@@ -126,7 +126,7 @@ public class LibpodImageSummary {
    * Podman extensions
    * @return arch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -151,7 +151,7 @@ public class LibpodImageSummary {
    * Get containers
    * @return containers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -176,7 +176,7 @@ public class LibpodImageSummary {
    * Get created
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -201,7 +201,7 @@ public class LibpodImageSummary {
    * Get dangling
    * @return dangling
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DANGLING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -226,7 +226,7 @@ public class LibpodImageSummary {
    * Get digest
    * @return digest
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DIGEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -259,7 +259,7 @@ public class LibpodImageSummary {
    * Get history
    * @return history
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HISTORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -284,7 +284,7 @@ public class LibpodImageSummary {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -309,7 +309,7 @@ public class LibpodImageSummary {
    * IsManifestList is a ptr so we can distinguish between a true json empty response and false.  the docker compat side needs to return empty; where as the libpod side needs a value of true or false
    * @return isManifestList
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IS_MANIFEST_LIST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -342,7 +342,7 @@ public class LibpodImageSummary {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -375,7 +375,7 @@ public class LibpodImageSummary {
    * Get names
    * @return names
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -400,7 +400,7 @@ public class LibpodImageSummary {
    * Get os
    * @return os
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -425,7 +425,7 @@ public class LibpodImageSummary {
    * Get parentId
    * @return parentId
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PARENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -450,7 +450,7 @@ public class LibpodImageSummary {
    * Get readOnly
    * @return readOnly
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READ_ONLY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -483,7 +483,7 @@ public class LibpodImageSummary {
    * Get repoDigests
    * @return repoDigests
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -516,7 +516,7 @@ public class LibpodImageSummary {
    * Get repoTags
    * @return repoTags
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REPO_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -541,7 +541,7 @@ public class LibpodImageSummary {
    * Get sharedSize
    * @return sharedSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARED_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -566,7 +566,7 @@ public class LibpodImageSummary {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -591,7 +591,7 @@ public class LibpodImageSummary {
    * Get virtualSize
    * @return virtualSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -50,7 +50,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Volume.JSON_PROPERTY_STATUS,
   Volume.JSON_PROPERTY_USAGE_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Volume {
   public static final String JSON_PROPERTY_CLUSTER_VOLUME = "ClusterVolume";
   private ClusterVolume clusterVolume;
@@ -94,7 +94,7 @@ public class Volume {
    * Get clusterVolume
    * @return clusterVolume
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CLUSTER_VOLUME)
@@ -120,7 +120,7 @@ public class Volume {
    * Date/Time the volume was created.
    * @return createdAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -145,7 +145,7 @@ public class Volume {
    * Name of the volume driver used by the volume.
    * @return driver
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
@@ -179,7 +179,7 @@ public class Volume {
    * User-defined key/value metadata.
    * @return labels
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_LABELS)
@@ -205,7 +205,7 @@ public class Volume {
    * Mount path of the volume on the host.
    * @return mountpoint
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_MOUNTPOINT)
@@ -231,7 +231,7 @@ public class Volume {
    * Name of the volume.
    * @return name
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -265,7 +265,7 @@ public class Volume {
    * The driver specific options used when creating the volume.
    * @return options
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_OPTIONS)
@@ -291,7 +291,7 @@ public class Volume {
    * The level at which the volume exists. Either &#x60;global&#x60; for cluster-wide, or &#x60;local&#x60; for machine level.
    * @return scope
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_SCOPE)
@@ -325,7 +325,7 @@ public class Volume {
    * Low-level details about the volume, provided by the volume driver. Details are returned as a map with key/value pairs: &#x60;{\&quot;key\&quot;:\&quot;value\&quot;,\&quot;key2\&quot;:\&quot;value2\&quot;}&#x60;.  The &#x60;Status&#x60; field is optional, and is omitted if the volume driver does not support this feature.
    * @return status
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -350,7 +350,7 @@ public class Volume {
    * Get usageData
    * @return usageData
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_USAGE_DATA)

@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for BindOptions
  */
-public class BindOptionsTest {
+class BindOptionsTest {
     private final BindOptions model = new BindOptions();
 
     /**
      * Model tests for BindOptions
      */
     @Test
-    public void testBindOptions() {
+    void testBindOptions() {
         // TODO: test BindOptions
     }
 
@@ -41,7 +42,7 @@ public class BindOptionsTest {
      * Test the property 'createMountpoint'
      */
     @Test
-    public void createMountpointTest() {
+    void createMountpointTest() {
         // TODO: test createMountpoint
     }
 
@@ -49,7 +50,7 @@ public class BindOptionsTest {
      * Test the property 'nonRecursive'
      */
     @Test
-    public void nonRecursiveTest() {
+    void nonRecursiveTest() {
         // TODO: test nonRecursive
     }
 
@@ -57,7 +58,7 @@ public class BindOptionsTest {
      * Test the property 'propagation'
      */
     @Test
-    public void propagationTest() {
+    void propagationTest() {
         // TODO: test propagation
     }
 
@@ -65,7 +66,7 @@ public class BindOptionsTest {
      * Test the property 'readOnlyForceRecursive'
      */
     @Test
-    public void readOnlyForceRecursiveTest() {
+    void readOnlyForceRecursiveTest() {
         // TODO: test readOnlyForceRecursive
     }
 
@@ -73,7 +74,7 @@ public class BindOptionsTest {
      * Test the property 'readOnlyNonRecursive'
      */
     @Test
-    public void readOnlyNonRecursiveTest() {
+    void readOnlyNonRecursiveTest() {
         // TODO: test readOnlyNonRecursive
     }
 

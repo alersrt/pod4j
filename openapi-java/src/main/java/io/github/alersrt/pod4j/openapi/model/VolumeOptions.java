@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   VolumeOptions.JSON_PROPERTY_NO_COPY,
   VolumeOptions.JSON_PROPERTY_SUBPATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class VolumeOptions {
   public static final String JSON_PROPERTY_DRIVER_CONFIG = "DriverConfig";
   private Driver driverConfig;
@@ -69,7 +69,7 @@ public class VolumeOptions {
    * Get driverConfig
    * @return driverConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DRIVER_CONFIG)
@@ -103,7 +103,7 @@ public class VolumeOptions {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -128,7 +128,7 @@ public class VolumeOptions {
    * Get noCopy
    * @return noCopy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_COPY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -153,7 +153,7 @@ public class VolumeOptions {
    * Get subpath
    * @return subpath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUBPATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

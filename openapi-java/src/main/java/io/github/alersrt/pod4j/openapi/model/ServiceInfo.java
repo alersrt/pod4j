@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ServiceInfo.JSON_PROPERTY_TASKS,
   ServiceInfo.JSON_PROPERTY_V_I_P
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ServiceInfo {
   public static final String JSON_PROPERTY_LOCAL_L_B_INDEX = "LocalLBIndex";
   private Long localLBIndex;
@@ -69,7 +69,7 @@ public class ServiceInfo {
    * Get localLBIndex
    * @return localLBIndex
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LOCAL_L_B_INDEX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -102,7 +102,7 @@ public class ServiceInfo {
    * Get ports
    * @return ports
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -135,7 +135,7 @@ public class ServiceInfo {
    * Get tasks
    * @return tasks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_TASKS)
@@ -161,7 +161,7 @@ public class ServiceInfo {
    * Get VIP
    * @return VIP
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_V_I_P)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

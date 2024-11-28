@@ -13,34 +13,35 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Address;
 import io.github.alersrt.pod4j.openapi.model.EndpointSettings;
 import io.github.alersrt.pod4j.openapi.model.PortBinding;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for NetworkSettings
  */
-public class NetworkSettingsTest {
+class NetworkSettingsTest {
     private final NetworkSettings model = new NetworkSettings();
 
     /**
      * Model tests for NetworkSettings
      */
     @Test
-    public void testNetworkSettings() {
+    void testNetworkSettings() {
         // TODO: test NetworkSettings
     }
 
@@ -48,7 +49,7 @@ public class NetworkSettingsTest {
      * Test the property 'bridge'
      */
     @Test
-    public void bridgeTest() {
+    void bridgeTest() {
         // TODO: test bridge
     }
 
@@ -56,7 +57,7 @@ public class NetworkSettingsTest {
      * Test the property 'endpointID'
      */
     @Test
-    public void endpointIDTest() {
+    void endpointIDTest() {
         // TODO: test endpointID
     }
 
@@ -64,7 +65,7 @@ public class NetworkSettingsTest {
      * Test the property 'gateway'
      */
     @Test
-    public void gatewayTest() {
+    void gatewayTest() {
         // TODO: test gateway
     }
 
@@ -72,7 +73,7 @@ public class NetworkSettingsTest {
      * Test the property 'globalIPv6Address'
      */
     @Test
-    public void globalIPv6AddressTest() {
+    void globalIPv6AddressTest() {
         // TODO: test globalIPv6Address
     }
 
@@ -80,7 +81,7 @@ public class NetworkSettingsTest {
      * Test the property 'globalIPv6PrefixLen'
      */
     @Test
-    public void globalIPv6PrefixLenTest() {
+    void globalIPv6PrefixLenTest() {
         // TODO: test globalIPv6PrefixLen
     }
 
@@ -88,7 +89,7 @@ public class NetworkSettingsTest {
      * Test the property 'hairpinMode'
      */
     @Test
-    public void hairpinModeTest() {
+    void hairpinModeTest() {
         // TODO: test hairpinMode
     }
 
@@ -96,7 +97,7 @@ public class NetworkSettingsTest {
      * Test the property 'ipAddress'
      */
     @Test
-    public void ipAddressTest() {
+    void ipAddressTest() {
         // TODO: test ipAddress
     }
 
@@ -104,7 +105,7 @@ public class NetworkSettingsTest {
      * Test the property 'ipPrefixLen'
      */
     @Test
-    public void ipPrefixLenTest() {
+    void ipPrefixLenTest() {
         // TODO: test ipPrefixLen
     }
 
@@ -112,7 +113,7 @@ public class NetworkSettingsTest {
      * Test the property 'ipv6Gateway'
      */
     @Test
-    public void ipv6GatewayTest() {
+    void ipv6GatewayTest() {
         // TODO: test ipv6Gateway
     }
 
@@ -120,7 +121,7 @@ public class NetworkSettingsTest {
      * Test the property 'linkLocalIPv6Address'
      */
     @Test
-    public void linkLocalIPv6AddressTest() {
+    void linkLocalIPv6AddressTest() {
         // TODO: test linkLocalIPv6Address
     }
 
@@ -128,7 +129,7 @@ public class NetworkSettingsTest {
      * Test the property 'linkLocalIPv6PrefixLen'
      */
     @Test
-    public void linkLocalIPv6PrefixLenTest() {
+    void linkLocalIPv6PrefixLenTest() {
         // TODO: test linkLocalIPv6PrefixLen
     }
 
@@ -136,7 +137,7 @@ public class NetworkSettingsTest {
      * Test the property 'macAddress'
      */
     @Test
-    public void macAddressTest() {
+    void macAddressTest() {
         // TODO: test macAddress
     }
 
@@ -144,7 +145,7 @@ public class NetworkSettingsTest {
      * Test the property 'networks'
      */
     @Test
-    public void networksTest() {
+    void networksTest() {
         // TODO: test networks
     }
 
@@ -152,7 +153,7 @@ public class NetworkSettingsTest {
      * Test the property 'ports'
      */
     @Test
-    public void portsTest() {
+    void portsTest() {
         // TODO: test ports
     }
 
@@ -160,7 +161,7 @@ public class NetworkSettingsTest {
      * Test the property 'sandboxID'
      */
     @Test
-    public void sandboxIDTest() {
+    void sandboxIDTest() {
         // TODO: test sandboxID
     }
 
@@ -168,7 +169,7 @@ public class NetworkSettingsTest {
      * Test the property 'sandboxKey'
      */
     @Test
-    public void sandboxKeyTest() {
+    void sandboxKeyTest() {
         // TODO: test sandboxKey
     }
 
@@ -176,7 +177,7 @@ public class NetworkSettingsTest {
      * Test the property 'secondaryIPAddresses'
      */
     @Test
-    public void secondaryIPAddressesTest() {
+    void secondaryIPAddressesTest() {
         // TODO: test secondaryIPAddresses
     }
 
@@ -184,7 +185,7 @@ public class NetworkSettingsTest {
      * Test the property 'secondaryIPv6Addresses'
      */
     @Test
-    public void secondaryIPv6AddressesTest() {
+    void secondaryIPv6AddressesTest() {
         // TODO: test secondaryIPv6Addresses
     }
 

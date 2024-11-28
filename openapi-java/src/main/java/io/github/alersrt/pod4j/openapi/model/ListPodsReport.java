@@ -52,7 +52,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ListPodsReport.JSON_PROPERTY_NETWORKS,
   ListPodsReport.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ListPodsReport {
   public static final String JSON_PROPERTY_CGROUP = "Cgroup";
   private String cgroup;
@@ -96,7 +96,7 @@ public class ListPodsReport {
    * Get cgroup
    * @return cgroup
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -129,7 +129,7 @@ public class ListPodsReport {
    * Get containers
    * @return containers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
@@ -155,7 +155,7 @@ public class ListPodsReport {
    * Get created
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -181,7 +181,7 @@ public class ListPodsReport {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -206,7 +206,7 @@ public class ListPodsReport {
    * Get infraId
    * @return infraId
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -239,7 +239,7 @@ public class ListPodsReport {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -264,7 +264,7 @@ public class ListPodsReport {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -289,7 +289,7 @@ public class ListPodsReport {
    * Get namespace
    * @return namespace
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAMESPACE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -322,7 +322,7 @@ public class ListPodsReport {
    * Network names connected to infra container
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -347,7 +347,7 @@ public class ListPodsReport {
    * Get status
    * @return status
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,34 +13,21 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.DriverData;
-import io.github.alersrt.pod4j.openapi.model.History;
-import io.github.alersrt.pod4j.openapi.model.ImageConfig;
-import io.github.alersrt.pod4j.openapi.model.RootFS;
-import io.github.alersrt.pod4j.openapi.model.Schema2HealthConfig;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ImageData
  */
@@ -69,7 +56,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ImageData.JSON_PROPERTY_VERSION,
   ImageData.JSON_PROPERTY_VIRTUAL_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageData {
   public static final String JSON_PROPERTY_ANNOTATIONS = "Annotations";
   private Map<String, String> annotations = new HashMap<>();
@@ -160,7 +147,7 @@ public class ImageData {
    * Get annotations
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -185,7 +172,7 @@ public class ImageData {
    * Get architecture
    * @return architecture
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARCHITECTURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -210,7 +197,7 @@ public class ImageData {
    * Get author
    * @return author
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTHOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -235,7 +222,7 @@ public class ImageData {
    * Get comment
    * @return comment
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_COMMENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -260,7 +247,7 @@ public class ImageData {
    * Get config
    * @return config
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONFIG)
@@ -286,7 +273,7 @@ public class ImageData {
    * Get created
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -312,7 +299,7 @@ public class ImageData {
    * The following is an example of the contents of Digest types:  sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc  This allows to abstract the digest behind this type and work only in those terms.
    * @return digest
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DIGEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -337,7 +324,7 @@ public class ImageData {
    * Get graphDriver
    * @return graphDriver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
@@ -363,7 +350,7 @@ public class ImageData {
    * Get healthcheck
    * @return healthcheck
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HEALTHCHECK)
@@ -397,7 +384,7 @@ public class ImageData {
    * Get history
    * @return history
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HISTORY)
@@ -423,7 +410,7 @@ public class ImageData {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -456,7 +443,7 @@ public class ImageData {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -481,7 +468,7 @@ public class ImageData {
    * Get manifestType
    * @return manifestType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MANIFEST_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -514,7 +501,7 @@ public class ImageData {
    * Get namesHistory
    * @return namesHistory
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAMES_HISTORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -539,7 +526,7 @@ public class ImageData {
    * Get os
    * @return os
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -564,7 +551,7 @@ public class ImageData {
    * Get parent
    * @return parent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -597,7 +584,7 @@ public class ImageData {
    * Get repoDigests
    * @return repoDigests
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REPO_DIGESTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -630,7 +617,7 @@ public class ImageData {
    * Get repoTags
    * @return repoTags
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REPO_TAGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -655,7 +642,7 @@ public class ImageData {
    * Get rootFS
    * @return rootFS
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ROOT_F_S)
@@ -681,7 +668,7 @@ public class ImageData {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -706,7 +693,7 @@ public class ImageData {
    * Get user
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -731,7 +718,7 @@ public class ImageData {
    * Get version
    * @return version
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -756,7 +743,7 @@ public class ImageData {
    * Get virtualSize
    * @return virtualSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

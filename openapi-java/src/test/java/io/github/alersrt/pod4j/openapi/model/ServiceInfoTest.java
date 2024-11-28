@@ -13,30 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Task;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ServiceInfo
  */
-public class ServiceInfoTest {
+class ServiceInfoTest {
     private final ServiceInfo model = new ServiceInfo();
 
     /**
      * Model tests for ServiceInfo
      */
     @Test
-    public void testServiceInfo() {
+    void testServiceInfo() {
         // TODO: test ServiceInfo
     }
 
@@ -44,7 +44,7 @@ public class ServiceInfoTest {
      * Test the property 'localLBIndex'
      */
     @Test
-    public void localLBIndexTest() {
+    void localLBIndexTest() {
         // TODO: test localLBIndex
     }
 
@@ -52,7 +52,7 @@ public class ServiceInfoTest {
      * Test the property 'ports'
      */
     @Test
-    public void portsTest() {
+    void portsTest() {
         // TODO: test ports
     }
 
@@ -60,7 +60,7 @@ public class ServiceInfoTest {
      * Test the property 'tasks'
      */
     @Test
-    public void tasksTest() {
+    void tasksTest() {
         // TODO: test tasks
     }
 
@@ -68,7 +68,7 @@ public class ServiceInfoTest {
      * Test the property 'VIP'
      */
     @Test
-    public void VIPTest() {
+    void VIPTest() {
         // TODO: test VIP
     }
 

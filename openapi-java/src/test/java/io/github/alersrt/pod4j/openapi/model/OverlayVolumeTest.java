@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for OverlayVolume
  */
-public class OverlayVolumeTest {
+class OverlayVolumeTest {
     private final OverlayVolume model = new OverlayVolume();
 
     /**
      * Model tests for OverlayVolume
      */
     @Test
-    public void testOverlayVolume() {
+    void testOverlayVolume() {
         // TODO: test OverlayVolume
     }
 
@@ -43,7 +44,7 @@ public class OverlayVolumeTest {
      * Test the property 'destination'
      */
     @Test
-    public void destinationTest() {
+    void destinationTest() {
         // TODO: test destination
     }
 
@@ -51,7 +52,7 @@ public class OverlayVolumeTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 
@@ -59,7 +60,7 @@ public class OverlayVolumeTest {
      * Test the property 'source'
      */
     @Test
-    public void sourceTest() {
+    void sourceTest() {
         // TODO: test source
     }
 

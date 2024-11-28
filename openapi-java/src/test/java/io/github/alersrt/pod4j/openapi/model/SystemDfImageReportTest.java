@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemDfImageReport
  */
-public class SystemDfImageReportTest {
+class SystemDfImageReportTest {
     private final SystemDfImageReport model = new SystemDfImageReport();
 
     /**
      * Model tests for SystemDfImageReport
      */
     @Test
-    public void testSystemDfImageReport() {
+    void testSystemDfImageReport() {
         // TODO: test SystemDfImageReport
     }
 
@@ -42,7 +43,7 @@ public class SystemDfImageReportTest {
      * Test the property 'containers'
      */
     @Test
-    public void containersTest() {
+    void containersTest() {
         // TODO: test containers
     }
 
@@ -50,7 +51,7 @@ public class SystemDfImageReportTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -58,7 +59,7 @@ public class SystemDfImageReportTest {
      * Test the property 'imageID'
      */
     @Test
-    public void imageIDTest() {
+    void imageIDTest() {
         // TODO: test imageID
     }
 
@@ -66,7 +67,7 @@ public class SystemDfImageReportTest {
      * Test the property 'repository'
      */
     @Test
-    public void repositoryTest() {
+    void repositoryTest() {
         // TODO: test repository
     }
 
@@ -74,7 +75,7 @@ public class SystemDfImageReportTest {
      * Test the property 'sharedSize'
      */
     @Test
-    public void sharedSizeTest() {
+    void sharedSizeTest() {
         // TODO: test sharedSize
     }
 
@@ -82,7 +83,7 @@ public class SystemDfImageReportTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 
@@ -90,7 +91,7 @@ public class SystemDfImageReportTest {
      * Test the property 'tag'
      */
     @Test
-    public void tagTest() {
+    void tagTest() {
         // TODO: test tag
     }
 
@@ -98,7 +99,7 @@ public class SystemDfImageReportTest {
      * Test the property 'uniqueSize'
      */
     @Test
-    public void uniqueSizeTest() {
+    void uniqueSizeTest() {
         // TODO: test uniqueSize
     }
 

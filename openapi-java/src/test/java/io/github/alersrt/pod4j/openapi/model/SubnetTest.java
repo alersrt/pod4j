@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.LeaseRange;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Subnet
  */
-public class SubnetTest {
+class SubnetTest {
     private final Subnet model = new Subnet();
 
     /**
      * Model tests for Subnet
      */
     @Test
-    public void testSubnet() {
+    void testSubnet() {
         // TODO: test Subnet
     }
 
@@ -42,7 +43,7 @@ public class SubnetTest {
      * Test the property 'gateway'
      */
     @Test
-    public void gatewayTest() {
+    void gatewayTest() {
         // TODO: test gateway
     }
 
@@ -50,7 +51,7 @@ public class SubnetTest {
      * Test the property 'leaseRange'
      */
     @Test
-    public void leaseRangeTest() {
+    void leaseRangeTest() {
         // TODO: test leaseRange
     }
 
@@ -58,7 +59,7 @@ public class SubnetTest {
      * Test the property 'subnet'
      */
     @Test
-    public void subnetTest() {
+    void subnetTest() {
         // TODO: test subnet
     }
 

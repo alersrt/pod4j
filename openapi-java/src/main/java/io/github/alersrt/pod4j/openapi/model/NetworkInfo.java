@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   NetworkInfo.JSON_PROPERTY_PATH,
   NetworkInfo.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkInfo {
   public static final String JSON_PROPERTY_BACKEND = "backend";
   private String backend;
@@ -71,7 +71,7 @@ public class NetworkInfo {
    * Get backend
    * @return backend
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BACKEND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -96,7 +96,7 @@ public class NetworkInfo {
    * Get dns
    * @return dns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DNS)
@@ -122,7 +122,7 @@ public class NetworkInfo {
    * Get _package
    * @return _package
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PACKAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -147,7 +147,7 @@ public class NetworkInfo {
    * Get path
    * @return path
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -172,7 +172,7 @@ public class NetworkInfo {
    * Get version
    * @return version
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

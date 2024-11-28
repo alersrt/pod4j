@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ImageSearch200Response.JSON_PROPERTY_STARS,
   ImageSearch200Response.JSON_PROPERTY_TAG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ImageSearch200Response {
   public static final String JSON_PROPERTY_AUTOMATED = "Automated";
   private String automated;
@@ -78,7 +78,7 @@ public class ImageSearch200Response {
    * Automated indicates if the image was created by an automated build.
    * @return automated
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTOMATED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -103,7 +103,7 @@ public class ImageSearch200Response {
    * Description of the image.
    * @return description
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -128,7 +128,7 @@ public class ImageSearch200Response {
    * Index is the image index
    * @return index
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INDEX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -153,7 +153,7 @@ public class ImageSearch200Response {
    * Name is the canonical name of the image
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -178,7 +178,7 @@ public class ImageSearch200Response {
    * Official indicates if it&#39;s an official image.
    * @return official
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OFFICIAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -203,7 +203,7 @@ public class ImageSearch200Response {
    * Stars is the number of stars of the image.
    * @return stars
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STARS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -228,7 +228,7 @@ public class ImageSearch200Response {
    * Tag is the image tag
    * @return tag
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TAG)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

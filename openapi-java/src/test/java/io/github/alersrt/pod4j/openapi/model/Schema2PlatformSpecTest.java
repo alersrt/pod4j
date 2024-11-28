@@ -13,29 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Schema2PlatformSpec
  */
-public class Schema2PlatformSpecTest {
+class Schema2PlatformSpecTest {
     private final Schema2PlatformSpec model = new Schema2PlatformSpec();
 
     /**
      * Model tests for Schema2PlatformSpec
      */
     @Test
-    public void testSchema2PlatformSpec() {
+    void testSchema2PlatformSpec() {
         // TODO: test Schema2PlatformSpec
     }
 
@@ -43,7 +43,7 @@ public class Schema2PlatformSpecTest {
      * Test the property 'architecture'
      */
     @Test
-    public void architectureTest() {
+    void architectureTest() {
         // TODO: test architecture
     }
 
@@ -51,7 +51,7 @@ public class Schema2PlatformSpecTest {
      * Test the property 'features'
      */
     @Test
-    public void featuresTest() {
+    void featuresTest() {
         // TODO: test features
     }
 
@@ -59,7 +59,7 @@ public class Schema2PlatformSpecTest {
      * Test the property 'os'
      */
     @Test
-    public void osTest() {
+    void osTest() {
         // TODO: test os
     }
 
@@ -67,7 +67,7 @@ public class Schema2PlatformSpecTest {
      * Test the property 'osFeatures'
      */
     @Test
-    public void osFeaturesTest() {
+    void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
@@ -75,7 +75,7 @@ public class Schema2PlatformSpecTest {
      * Test the property 'osVersion'
      */
     @Test
-    public void osVersionTest() {
+    void osVersionTest() {
         // TODO: test osVersion
     }
 
@@ -83,7 +83,7 @@ public class Schema2PlatformSpecTest {
      * Test the property 'variant'
      */
     @Test
-    public void variantTest() {
+    void variantTest() {
         // TODO: test variant
     }
 

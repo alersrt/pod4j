@@ -56,7 +56,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   VolumeConfigResponse.JSON_PROPERTY_TIMEOUT,
   VolumeConfigResponse.JSON_PROPERTY_U_I_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class VolumeConfigResponse {
   public static final String JSON_PROPERTY_ANONYMOUS = "Anonymous";
   private Boolean anonymous;
@@ -121,7 +121,7 @@ public class VolumeConfigResponse {
    * Anonymous indicates that the volume was created as an anonymous volume for a specific container, and will be removed when any container using it is removed.
    * @return anonymous
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANONYMOUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -146,7 +146,7 @@ public class VolumeConfigResponse {
    * CreatedAt is the date and time the volume was created at. This is not stored for older Libpod volumes; if so, it will be omitted.
    * @return createdAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
@@ -172,7 +172,7 @@ public class VolumeConfigResponse {
    * Driver is the driver used to create the volume. If set to \&quot;local\&quot; or \&quot;\&quot;, the Local driver (Podman built-in code) is used to service the volume; otherwise, a volume plugin with the given name is used to mount and manage the volume.
    * @return driver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -197,7 +197,7 @@ public class VolumeConfigResponse {
    * GID is the GID that the volume was created with.
    * @return GID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -230,7 +230,7 @@ public class VolumeConfigResponse {
    * Labels includes the volume&#39;s configured labels, key:value pairs that can be passed during volume creation to provide information for third party tools.
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -255,7 +255,7 @@ public class VolumeConfigResponse {
    * LockNumber is the number of the volume&#39;s Libpod lock.
    * @return lockNumber
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LOCK_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -280,7 +280,7 @@ public class VolumeConfigResponse {
    * MountCount is the number of times this volume has been mounted.
    * @return mountCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MOUNT_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -305,7 +305,7 @@ public class VolumeConfigResponse {
    * Mountpoint is the path on the host where the volume is mounted.
    * @return mountpoint
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MOUNTPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -330,7 +330,7 @@ public class VolumeConfigResponse {
    * Name is the name of the volume.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -355,7 +355,7 @@ public class VolumeConfigResponse {
    * NeedsChown indicates that the next time the volume is mounted into a container, the container will chown the volume to the container process UID/GID.
    * @return needsChown
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NEEDS_CHOWN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -380,7 +380,7 @@ public class VolumeConfigResponse {
    * NeedsCopyUp indicates that the next time the volume is mounted into
    * @return needsCopyUp
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NEEDS_COPY_UP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -413,7 +413,7 @@ public class VolumeConfigResponse {
    * Options is a set of options that were used when creating the volume. For the Local driver, these are mount options that will be used to determine how a local filesystem is mounted; they are handled as parameters to Mount in a manner described in the volume create manpage. For non-local drivers, these are passed as-is to the volume plugin.
    * @return options
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -438,7 +438,7 @@ public class VolumeConfigResponse {
    * Scope is unused and provided solely for Docker compatibility. It is unconditionally set to \&quot;local\&quot;.
    * @return scope
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SCOPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -471,7 +471,7 @@ public class VolumeConfigResponse {
    * Status is used to return information on the volume&#39;s current state, if the volume was created using a volume plugin (uses a Driver that is not the local driver). Status is provided to us by an external program, so no guarantees are made about its format or contents. Further, it is an optional field, so it may not be set even in cases where a volume plugin is in use.
    * @return status
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -496,7 +496,7 @@ public class VolumeConfigResponse {
    * StorageID is the ID of the container backing the volume in c/storage. Only used with Image Volumes.
    * @return storageID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STORAGE_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -521,7 +521,7 @@ public class VolumeConfigResponse {
    * Timeout is the specified driver timeout if given
    * @return timeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -546,7 +546,7 @@ public class VolumeConfigResponse {
    * UID is the UID that the volume was created with.
    * @return UID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_U_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

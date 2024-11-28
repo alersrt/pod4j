@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.AttestationProperties;
 import io.github.alersrt.pod4j.openapi.model.Descriptor;
 import io.github.alersrt.pod4j.openapi.model.ImageProperties;
 import io.github.alersrt.pod4j.openapi.model.ManifestSummarySize;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ManifestSummary
  */
-public class ManifestSummaryTest {
+class ManifestSummaryTest {
     private final ManifestSummary model = new ManifestSummary();
 
     /**
      * Model tests for ManifestSummary
      */
     @Test
-    public void testManifestSummary() {
+    void testManifestSummary() {
         // TODO: test ManifestSummary
     }
 
@@ -45,7 +46,7 @@ public class ManifestSummaryTest {
      * Test the property 'attestationData'
      */
     @Test
-    public void attestationDataTest() {
+    void attestationDataTest() {
         // TODO: test attestationData
     }
 
@@ -53,7 +54,7 @@ public class ManifestSummaryTest {
      * Test the property 'available'
      */
     @Test
-    public void availableTest() {
+    void availableTest() {
         // TODO: test available
     }
 
@@ -61,7 +62,7 @@ public class ManifestSummaryTest {
      * Test the property 'descriptor'
      */
     @Test
-    public void descriptorTest() {
+    void descriptorTest() {
         // TODO: test descriptor
     }
 
@@ -69,7 +70,7 @@ public class ManifestSummaryTest {
      * Test the property 'ID'
      */
     @Test
-    public void IDTest() {
+    void IDTest() {
         // TODO: test ID
     }
 
@@ -77,7 +78,7 @@ public class ManifestSummaryTest {
      * Test the property 'imageData'
      */
     @Test
-    public void imageDataTest() {
+    void imageDataTest() {
         // TODO: test imageData
     }
 
@@ -85,7 +86,7 @@ public class ManifestSummaryTest {
      * Test the property 'kind'
      */
     @Test
-    public void kindTest() {
+    void kindTest() {
         // TODO: test kind
     }
 
@@ -93,7 +94,7 @@ public class ManifestSummaryTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 

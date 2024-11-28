@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PlayKubePod.JSON_PROPERTY_INIT_CONTAINERS,
   PlayKubePod.JSON_PROPERTY_LOGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PlayKubePod {
   public static final String JSON_PROPERTY_CONTAINER_ERRORS = "ContainerErrors";
   private List<String> containerErrors = new ArrayList<>();
@@ -80,7 +80,7 @@ public class PlayKubePod {
    * ContainerErrors - any errors that occurred while starting containers in the pod.
    * @return containerErrors
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_ERRORS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -113,7 +113,7 @@ public class PlayKubePod {
    * Containers - the IDs of the containers running in the created pod.
    * @return containers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -138,7 +138,7 @@ public class PlayKubePod {
    * ID - ID of the pod created as a result of play kube.
    * @return ID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -171,7 +171,7 @@ public class PlayKubePod {
    * InitContainers - the IDs of the init containers to be run in the created pod.
    * @return initContainers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT_CONTAINERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -204,7 +204,7 @@ public class PlayKubePod {
    * Logs - non-fatal errors and log messages while processing.
    * @return logs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LOGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

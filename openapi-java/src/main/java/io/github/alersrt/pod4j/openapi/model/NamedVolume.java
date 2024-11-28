@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   NamedVolume.JSON_PROPERTY_OPTIONS,
   NamedVolume.JSON_PROPERTY_SUB_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NamedVolume {
   public static final String JSON_PROPERTY_DEST = "Dest";
   private String dest;
@@ -72,7 +72,7 @@ public class NamedVolume {
    * Destination to mount the named volume within the container. Must be an absolute path. Path will be created if it does not exist.
    * @return dest
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -97,7 +97,7 @@ public class NamedVolume {
    * IsAnonymous sets the named volume as anonymous even if it has a name This is used for emptyDir volumes from a kube yaml
    * @return isAnonymous
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IS_ANONYMOUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -122,7 +122,7 @@ public class NamedVolume {
    * Name is the name of the named volume to be mounted. May be empty. If empty, a new named volume with a pseudorandomly generated name will be mounted at the given destination.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -155,7 +155,7 @@ public class NamedVolume {
    * Options are options that the named volume will be mounted with.
    * @return options
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -180,7 +180,7 @@ public class NamedVolume {
    * SubPath stores the sub directory of the named volume to be mounted in the container
    * @return subPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUB_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

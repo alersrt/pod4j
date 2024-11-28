@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.NetworkPruneReport;
 import io.github.alersrt.pod4j.openapi.model.PodPruneReport;
 import io.github.alersrt.pod4j.openapi.model.PruneReport;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemPruneReport
  */
-public class SystemPruneReportTest {
+class SystemPruneReportTest {
     private final SystemPruneReport model = new SystemPruneReport();
 
     /**
      * Model tests for SystemPruneReport
      */
     @Test
-    public void testSystemPruneReport() {
+    void testSystemPruneReport() {
         // TODO: test SystemPruneReport
     }
 
@@ -46,7 +47,7 @@ public class SystemPruneReportTest {
      * Test the property 'containerPruneReports'
      */
     @Test
-    public void containerPruneReportsTest() {
+    void containerPruneReportsTest() {
         // TODO: test containerPruneReports
     }
 
@@ -54,7 +55,7 @@ public class SystemPruneReportTest {
      * Test the property 'imagePruneReports'
      */
     @Test
-    public void imagePruneReportsTest() {
+    void imagePruneReportsTest() {
         // TODO: test imagePruneReports
     }
 
@@ -62,7 +63,7 @@ public class SystemPruneReportTest {
      * Test the property 'networkPruneReports'
      */
     @Test
-    public void networkPruneReportsTest() {
+    void networkPruneReportsTest() {
         // TODO: test networkPruneReports
     }
 
@@ -70,7 +71,7 @@ public class SystemPruneReportTest {
      * Test the property 'podPruneReport'
      */
     @Test
-    public void podPruneReportTest() {
+    void podPruneReportTest() {
         // TODO: test podPruneReport
     }
 
@@ -78,7 +79,7 @@ public class SystemPruneReportTest {
      * Test the property 'reclaimedSpace'
      */
     @Test
-    public void reclaimedSpaceTest() {
+    void reclaimedSpaceTest() {
         // TODO: test reclaimedSpace
     }
 
@@ -86,7 +87,7 @@ public class SystemPruneReportTest {
      * Test the property 'volumePruneReports'
      */
     @Test
-    public void volumePruneReportsTest() {
+    void volumePruneReportsTest() {
         // TODO: test volumePruneReports
     }
 

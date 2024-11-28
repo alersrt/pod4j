@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ManifestAddOptions
  */
-public class ManifestAddOptionsTest {
+class ManifestAddOptionsTest {
     private final ManifestAddOptions model = new ManifestAddOptions();
 
     /**
      * Model tests for ManifestAddOptions
      */
     @Test
-    public void testManifestAddOptions() {
+    void testManifestAddOptions() {
         // TODO: test ManifestAddOptions
     }
 
@@ -45,7 +46,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'all'
      */
     @Test
-    public void allTest() {
+    void allTest() {
         // TODO: test all
     }
 
@@ -53,7 +54,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'annotation'
      */
     @Test
-    public void annotationTest() {
+    void annotationTest() {
         // TODO: test annotation
     }
 
@@ -61,7 +62,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'annotations'
      */
     @Test
-    public void annotationsTest() {
+    void annotationsTest() {
         // TODO: test annotations
     }
 
@@ -69,7 +70,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'arch'
      */
     @Test
-    public void archTest() {
+    void archTest() {
         // TODO: test arch
     }
 
@@ -77,7 +78,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'features'
      */
     @Test
-    public void featuresTest() {
+    void featuresTest() {
         // TODO: test features
     }
 
@@ -85,7 +86,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'images'
      */
     @Test
-    public void imagesTest() {
+    void imagesTest() {
         // TODO: test images
     }
 
@@ -93,7 +94,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'indexAnnotation'
      */
     @Test
-    public void indexAnnotationTest() {
+    void indexAnnotationTest() {
         // TODO: test indexAnnotation
     }
 
@@ -101,7 +102,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'indexAnnotations'
      */
     @Test
-    public void indexAnnotationsTest() {
+    void indexAnnotationsTest() {
         // TODO: test indexAnnotations
     }
 
@@ -109,7 +110,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'os'
      */
     @Test
-    public void osTest() {
+    void osTest() {
         // TODO: test os
     }
 
@@ -117,7 +118,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'osFeatures'
      */
     @Test
-    public void osFeaturesTest() {
+    void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
@@ -125,7 +126,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'osVersion'
      */
     @Test
-    public void osVersionTest() {
+    void osVersionTest() {
         // TODO: test osVersion
     }
 
@@ -133,7 +134,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'subject'
      */
     @Test
-    public void subjectTest() {
+    void subjectTest() {
         // TODO: test subject
     }
 
@@ -141,7 +142,7 @@ public class ManifestAddOptionsTest {
      * Test the property 'variant'
      */
     @Test
-    public void variantTest() {
+    void variantTest() {
         // TODO: test variant
     }
 

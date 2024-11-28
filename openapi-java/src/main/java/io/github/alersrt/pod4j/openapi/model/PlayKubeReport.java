@@ -54,7 +54,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PlayKubeReport.JSON_PROPERTY_VOLUME_RM_REPORT,
   PlayKubeReport.JSON_PROPERTY_VOLUMES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PlayKubeReport {
   public static final String JSON_PROPERTY_EXIT_CODE = "ExitCode";
   private Integer exitCode;
@@ -95,7 +95,7 @@ public class PlayKubeReport {
    * If set, exit with the specified exit code.
    * @return exitCode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -128,7 +128,7 @@ public class PlayKubeReport {
    * Pods - pods created by play kube.
    * @return pods
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PODS)
@@ -162,7 +162,7 @@ public class PlayKubeReport {
    * Get rmReport
    * @return rmReport
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RM_REPORT)
@@ -196,7 +196,7 @@ public class PlayKubeReport {
    * Get secretRmReport
    * @return secretRmReport
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECRET_RM_REPORT)
@@ -230,7 +230,7 @@ public class PlayKubeReport {
    * Secrets - secrets created by play kube
    * @return secrets
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECRETS)
@@ -256,7 +256,7 @@ public class PlayKubeReport {
    * ServiceContainerID - ID of the service container if one is created
    * @return serviceContainerID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SERVICE_CONTAINER_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -289,7 +289,7 @@ public class PlayKubeReport {
    * Get stopReport
    * @return stopReport
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_STOP_REPORT)
@@ -323,7 +323,7 @@ public class PlayKubeReport {
    * Get volumeRmReport
    * @return volumeRmReport
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VOLUME_RM_REPORT)
@@ -357,7 +357,7 @@ public class PlayKubeReport {
    * Volumes - volumes created by play kube.
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)

@@ -24,6 +24,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
 /**
  * API tests for ExecApi
@@ -33,18 +38,22 @@ public class ExecApiTest {
 
     private final ExecApi api = new ExecApi();
 
+
     /**
      * Create an exec instance
      *
      * Create an exec session to run a command inside a running container. Exec sessions will be automatically removed 5 minutes after they exit.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerExecLibpodTest() throws ApiException {
         String name = null;
         ContainerExecRequest control = null;
+
         api.containerExecLibpod(name, control);
+
         // TODO: test validations
     }
 
@@ -53,12 +62,15 @@ public class ExecApiTest {
      *
      * Return low-level information about an exec instance.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void execInspectLibpodTest() throws ApiException {
         String id = null;
+
         api.execInspectLibpod(id);
+
         // TODO: test validations
     }
 
@@ -67,14 +79,17 @@ public class ExecApiTest {
      *
      * Resize the TTY session used by an exec instance. This endpoint only works if tty was specified as part of creating and starting the exec instance. 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void execResizeLibpodTest() throws ApiException {
         String id = null;
         Integer h = null;
         Integer w = null;
+
         api.execResizeLibpod(id, h, w);
+
         // TODO: test validations
     }
 
@@ -83,13 +98,16 @@ public class ExecApiTest {
      *
      * Starts a previously set up exec instance. If detach is true, this endpoint returns immediately after starting the command. Otherwise, it sets up an interactive session with the command. The stream format is the same as the attach endpoint. 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void execStartLibpodTest() throws ApiException {
         String id = null;
         ExecStartLibpodRequest control = null;
+
         api.execStartLibpod(id, control);
+
         // TODO: test validations
     }
 

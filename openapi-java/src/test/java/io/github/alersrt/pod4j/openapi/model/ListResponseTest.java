@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Volume;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ListResponse
  */
-public class ListResponseTest {
+class ListResponseTest {
     private final ListResponse model = new ListResponse();
 
     /**
      * Model tests for ListResponse
      */
     @Test
-    public void testListResponse() {
+    void testListResponse() {
         // TODO: test ListResponse
     }
 
@@ -44,7 +45,7 @@ public class ListResponseTest {
      * Test the property 'volumes'
      */
     @Test
-    public void volumesTest() {
+    void volumesTest() {
         // TODO: test volumes
     }
 
@@ -52,7 +53,7 @@ public class ListResponseTest {
      * Test the property 'warnings'
      */
     @Test
-    public void warningsTest() {
+    void warningsTest() {
         // TODO: test warnings
     }
 

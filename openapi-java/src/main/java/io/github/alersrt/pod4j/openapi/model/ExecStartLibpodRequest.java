@@ -13,24 +13,15 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ExecStartLibpodRequest
  */
@@ -40,7 +31,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ExecStartLibpodRequest.JSON_PROPERTY_H,
   ExecStartLibpodRequest.JSON_PROPERTY_W
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ExecStartLibpodRequest {
   public static final String JSON_PROPERTY_DETACH = "Detach";
   private Boolean detach;
@@ -66,7 +57,7 @@ public class ExecStartLibpodRequest {
    * Detach from the command.
    * @return detach
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DETACH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -91,7 +82,7 @@ public class ExecStartLibpodRequest {
    * Allocate a pseudo-TTY.
    * @return tty
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -116,7 +107,7 @@ public class ExecStartLibpodRequest {
    * Height of the TTY session in characters. Tty must be set to true to use it.
    * @return h
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_H)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -141,7 +132,7 @@ public class ExecStartLibpodRequest {
    * Width of the TTY session in characters. Tty must be set to true to use it.
    * @return w
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_W)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

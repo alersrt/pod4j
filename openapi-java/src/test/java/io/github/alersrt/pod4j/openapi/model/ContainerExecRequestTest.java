@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerExecRequest
  */
-public class ContainerExecRequestTest {
+class ContainerExecRequestTest {
     private final ContainerExecRequest model = new ContainerExecRequest();
 
     /**
      * Model tests for ContainerExecRequest
      */
     @Test
-    public void testContainerExecRequest() {
+    void testContainerExecRequest() {
         // TODO: test ContainerExecRequest
     }
 
@@ -43,7 +44,7 @@ public class ContainerExecRequestTest {
      * Test the property 'attachStderr'
      */
     @Test
-    public void attachStderrTest() {
+    void attachStderrTest() {
         // TODO: test attachStderr
     }
 
@@ -51,7 +52,7 @@ public class ContainerExecRequestTest {
      * Test the property 'attachStdin'
      */
     @Test
-    public void attachStdinTest() {
+    void attachStdinTest() {
         // TODO: test attachStdin
     }
 
@@ -59,7 +60,7 @@ public class ContainerExecRequestTest {
      * Test the property 'attachStdout'
      */
     @Test
-    public void attachStdoutTest() {
+    void attachStdoutTest() {
         // TODO: test attachStdout
     }
 
@@ -67,7 +68,7 @@ public class ContainerExecRequestTest {
      * Test the property 'cmd'
      */
     @Test
-    public void cmdTest() {
+    void cmdTest() {
         // TODO: test cmd
     }
 
@@ -75,7 +76,7 @@ public class ContainerExecRequestTest {
      * Test the property 'detachKeys'
      */
     @Test
-    public void detachKeysTest() {
+    void detachKeysTest() {
         // TODO: test detachKeys
     }
 
@@ -83,7 +84,7 @@ public class ContainerExecRequestTest {
      * Test the property 'env'
      */
     @Test
-    public void envTest() {
+    void envTest() {
         // TODO: test env
     }
 
@@ -91,7 +92,7 @@ public class ContainerExecRequestTest {
      * Test the property 'privileged'
      */
     @Test
-    public void privilegedTest() {
+    void privilegedTest() {
         // TODO: test privileged
     }
 
@@ -99,7 +100,7 @@ public class ContainerExecRequestTest {
      * Test the property 'tty'
      */
     @Test
-    public void ttyTest() {
+    void ttyTest() {
         // TODO: test tty
     }
 
@@ -107,7 +108,7 @@ public class ContainerExecRequestTest {
      * Test the property 'user'
      */
     @Test
-    public void userTest() {
+    void userTest() {
         // TODO: test user
     }
 
@@ -115,7 +116,7 @@ public class ContainerExecRequestTest {
      * Test the property 'workingDir'
      */
     @Test
-    public void workingDirTest() {
+    void workingDirTest() {
         // TODO: test workingDir
     }
 

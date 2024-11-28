@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LibpodImagesPullReport.JSON_PROPERTY_IMAGES,
   LibpodImagesPullReport.JSON_PROPERTY_STREAM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LibpodImagesPullReport {
   public static final String JSON_PROPERTY_ERROR = "error";
   private String error;
@@ -68,7 +68,7 @@ public class LibpodImagesPullReport {
    * Error contains text of errors from c/image
    * @return error
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ERROR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -93,7 +93,7 @@ public class LibpodImagesPullReport {
    * ID contains image id (retained for backwards compatibility)
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -126,7 +126,7 @@ public class LibpodImagesPullReport {
    * Images contains the ID&#39;s of the images pulled
    * @return images
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -151,7 +151,7 @@ public class LibpodImagesPullReport {
    * Stream used to provide output from c/image
    * @return stream
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STREAM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

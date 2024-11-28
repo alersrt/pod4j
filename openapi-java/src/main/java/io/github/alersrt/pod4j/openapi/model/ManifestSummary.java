@@ -47,7 +47,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ManifestSummary.JSON_PROPERTY_KIND,
   ManifestSummary.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ManifestSummary {
   public static final String JSON_PROPERTY_ATTESTATION_DATA = "AttestationData";
   private AttestationProperties attestationData;
@@ -82,7 +82,7 @@ public class ManifestSummary {
    * Get attestationData
    * @return attestationData
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ATTESTATION_DATA)
@@ -108,7 +108,7 @@ public class ManifestSummary {
    * Indicates whether all the child content (image config, layers) is fully available locally
    * @return available
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_AVAILABLE)
@@ -134,7 +134,7 @@ public class ManifestSummary {
    * Get descriptor
    * @return descriptor
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -161,7 +161,7 @@ public class ManifestSummary {
    * ID is the content-addressable ID of an image and is the same as the digest of the image manifest.
    * @return ID
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_I_D)
@@ -187,7 +187,7 @@ public class ManifestSummary {
    * Get imageData
    * @return imageData
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IMAGE_DATA)
@@ -213,7 +213,7 @@ public class ManifestSummary {
    * Get kind
    * @return kind
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_KIND)
@@ -239,7 +239,7 @@ public class ManifestSummary {
    * Get size
    * @return size
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 

@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LibpodImagesRemoveReport.JSON_PROPERTY_EXIT_CODE,
   LibpodImagesRemoveReport.JSON_PROPERTY_UNTAGGED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LibpodImagesRemoveReport {
   public static final String JSON_PROPERTY_DELETED = "Deleted";
   private List<String> deleted = new ArrayList<>();
@@ -76,7 +76,7 @@ public class LibpodImagesRemoveReport {
    * Deleted images.
    * @return deleted
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DELETED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -109,7 +109,7 @@ public class LibpodImagesRemoveReport {
    * Image removal requires is to return data and an error.
    * @return errors
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ERRORS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -134,7 +134,7 @@ public class LibpodImagesRemoveReport {
    * ExitCode describes the exit codes as described in the &#x60;podman rmi&#x60; man page.
    * @return exitCode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -167,7 +167,7 @@ public class LibpodImagesRemoveReport {
    * Untagged images. Can be longer than Deleted.
    * @return untagged
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNTAGGED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

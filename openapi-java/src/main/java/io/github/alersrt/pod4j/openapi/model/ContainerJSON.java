@@ -13,33 +13,18 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.Config;
-import io.github.alersrt.pod4j.openapi.model.ContainerNode;
-import io.github.alersrt.pod4j.openapi.model.ContainerState;
-import io.github.alersrt.pod4j.openapi.model.GraphDriverData;
-import io.github.alersrt.pod4j.openapi.model.HostConfig;
-import io.github.alersrt.pod4j.openapi.model.MountPoint;
-import io.github.alersrt.pod4j.openapi.model.NetworkSettings;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerJSON is newly used struct along with MountPoint
  */
@@ -71,7 +56,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerJSON.JSON_PROPERTY_SIZE_RW,
   ContainerJSON.JSON_PROPERTY_STATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerJSON {
   public static final String JSON_PROPERTY_APP_ARMOR_PROFILE = "AppArmorProfile";
   private String appArmorProfile;
@@ -163,7 +148,7 @@ public class ContainerJSON {
    * Get appArmorProfile
    * @return appArmorProfile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_APP_ARMOR_PROFILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -196,7 +181,7 @@ public class ContainerJSON {
    * Get args
    * @return args
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -221,7 +206,7 @@ public class ContainerJSON {
    * Get config
    * @return config
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONFIG)
@@ -247,7 +232,7 @@ public class ContainerJSON {
    * Get created
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -272,7 +257,7 @@ public class ContainerJSON {
    * Get driver
    * @return driver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -305,7 +290,7 @@ public class ContainerJSON {
    * Get execIDs
    * @return execIDs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXEC_I_DS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -330,7 +315,7 @@ public class ContainerJSON {
    * Get graphDriver
    * @return graphDriver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
@@ -356,7 +341,7 @@ public class ContainerJSON {
    * Get hostConfig
    * @return hostConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
@@ -382,7 +367,7 @@ public class ContainerJSON {
    * Get hostnamePath
    * @return hostnamePath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -407,7 +392,7 @@ public class ContainerJSON {
    * Get hostsPath
    * @return hostsPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTS_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -432,7 +417,7 @@ public class ContainerJSON {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -457,7 +442,7 @@ public class ContainerJSON {
    * Get image
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -482,7 +467,7 @@ public class ContainerJSON {
    * Get logPath
    * @return logPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LOG_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -507,7 +492,7 @@ public class ContainerJSON {
    * Get mountLabel
    * @return mountLabel
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MOUNT_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -540,7 +525,7 @@ public class ContainerJSON {
    * Get mounts
    * @return mounts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MOUNTS)
@@ -566,7 +551,7 @@ public class ContainerJSON {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -591,7 +576,7 @@ public class ContainerJSON {
    * Get networkSettings
    * @return networkSettings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_SETTINGS)
@@ -617,7 +602,7 @@ public class ContainerJSON {
    * Get node
    * @return node
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NODE)
@@ -643,7 +628,7 @@ public class ContainerJSON {
    * Get path
    * @return path
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -668,7 +653,7 @@ public class ContainerJSON {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PLATFORM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -693,7 +678,7 @@ public class ContainerJSON {
    * Get processLabel
    * @return processLabel
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PROCESS_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -718,7 +703,7 @@ public class ContainerJSON {
    * Get resolvConfPath
    * @return resolvConfPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESOLV_CONF_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -743,7 +728,7 @@ public class ContainerJSON {
    * Get restartCount
    * @return restartCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -768,7 +753,7 @@ public class ContainerJSON {
    * Get sizeRootFs
    * @return sizeRootFs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE_ROOT_FS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -793,7 +778,7 @@ public class ContainerJSON {
    * Get sizeRw
    * @return sizeRw
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE_RW)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -818,7 +803,7 @@ public class ContainerJSON {
    * Get state
    * @return state
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_STATE)

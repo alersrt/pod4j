@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ContainerNetworkStats;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerStats
  */
-public class ContainerStatsTest {
+class ContainerStatsTest {
     private final ContainerStats model = new ContainerStats();
 
     /**
      * Model tests for ContainerStats
      */
     @Test
-    public void testContainerStats() {
+    void testContainerStats() {
         // TODO: test ContainerStats
     }
 
@@ -46,7 +47,7 @@ public class ContainerStatsTest {
      * Test the property 'avgCPU'
      */
     @Test
-    public void avgCPUTest() {
+    void avgCPUTest() {
         // TODO: test avgCPU
     }
 
@@ -54,7 +55,7 @@ public class ContainerStatsTest {
      * Test the property 'blockInput'
      */
     @Test
-    public void blockInputTest() {
+    void blockInputTest() {
         // TODO: test blockInput
     }
 
@@ -62,7 +63,7 @@ public class ContainerStatsTest {
      * Test the property 'blockOutput'
      */
     @Test
-    public void blockOutputTest() {
+    void blockOutputTest() {
         // TODO: test blockOutput
     }
 
@@ -70,7 +71,7 @@ public class ContainerStatsTest {
      * Test the property 'CPU'
      */
     @Test
-    public void CPUTest() {
+    void CPUTest() {
         // TODO: test CPU
     }
 
@@ -78,7 +79,7 @@ public class ContainerStatsTest {
      * Test the property 'cpUNano'
      */
     @Test
-    public void cpUNanoTest() {
+    void cpUNanoTest() {
         // TODO: test cpUNano
     }
 
@@ -86,7 +87,7 @@ public class ContainerStatsTest {
      * Test the property 'cpUSystemNano'
      */
     @Test
-    public void cpUSystemNanoTest() {
+    void cpUSystemNanoTest() {
         // TODO: test cpUSystemNano
     }
 
@@ -94,7 +95,7 @@ public class ContainerStatsTest {
      * Test the property 'containerID'
      */
     @Test
-    public void containerIDTest() {
+    void containerIDTest() {
         // TODO: test containerID
     }
 
@@ -102,7 +103,7 @@ public class ContainerStatsTest {
      * Test the property 'duration'
      */
     @Test
-    public void durationTest() {
+    void durationTest() {
         // TODO: test duration
     }
 
@@ -110,7 +111,7 @@ public class ContainerStatsTest {
      * Test the property 'memLimit'
      */
     @Test
-    public void memLimitTest() {
+    void memLimitTest() {
         // TODO: test memLimit
     }
 
@@ -118,7 +119,7 @@ public class ContainerStatsTest {
      * Test the property 'memPerc'
      */
     @Test
-    public void memPercTest() {
+    void memPercTest() {
         // TODO: test memPerc
     }
 
@@ -126,7 +127,7 @@ public class ContainerStatsTest {
      * Test the property 'memUsage'
      */
     @Test
-    public void memUsageTest() {
+    void memUsageTest() {
         // TODO: test memUsage
     }
 
@@ -134,7 +135,7 @@ public class ContainerStatsTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -142,7 +143,7 @@ public class ContainerStatsTest {
      * Test the property 'network'
      */
     @Test
-    public void networkTest() {
+    void networkTest() {
         // TODO: test network
     }
 
@@ -150,7 +151,7 @@ public class ContainerStatsTest {
      * Test the property 'piDs'
      */
     @Test
-    public void piDsTest() {
+    void piDsTest() {
         // TODO: test piDs
     }
 
@@ -158,7 +159,7 @@ public class ContainerStatsTest {
      * Test the property 'perCPU'
      */
     @Test
-    public void perCPUTest() {
+    void perCPUTest() {
         // TODO: test perCPU
     }
 
@@ -166,7 +167,7 @@ public class ContainerStatsTest {
      * Test the property 'systemNano'
      */
     @Test
-    public void systemNanoTest() {
+    void systemNanoTest() {
         // TODO: test systemNano
     }
 
@@ -174,7 +175,7 @@ public class ContainerStatsTest {
      * Test the property 'upTime'
      */
     @Test
-    public void upTimeTest() {
+    void upTimeTest() {
         // TODO: test upTime
     }
 

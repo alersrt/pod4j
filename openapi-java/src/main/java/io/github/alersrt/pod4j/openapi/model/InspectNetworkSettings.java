@@ -62,7 +62,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectNetworkSettings.JSON_PROPERTY_SECONDARY_I_P_ADDRESSES,
   InspectNetworkSettings.JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectNetworkSettings {
   public static final String JSON_PROPERTY_ADDITIONAL_M_A_C_ADDRESSES = "AdditionalMACAddresses";
   private List<String> additionalMACAddresses = new ArrayList<>();
@@ -141,7 +141,7 @@ public class InspectNetworkSettings {
    * AdditionalMacAddresses is a set of additional MAC Addresses beyond the first. CNI may configure more than one interface for a single network, which can cause this.
    * @return additionalMACAddresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ADDITIONAL_M_A_C_ADDRESSES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -166,7 +166,7 @@ public class InspectNetworkSettings {
    * Get bridge
    * @return bridge
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BRIDGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -191,7 +191,7 @@ public class InspectNetworkSettings {
    * EndpointID is unused, maintained exclusively for compatibility.
    * @return endpointID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -216,7 +216,7 @@ public class InspectNetworkSettings {
    * Gateway is the IP address of the gateway this network will use.
    * @return gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -241,7 +241,7 @@ public class InspectNetworkSettings {
    * GlobalIPv6Address is the global-scope IPv6 Address for this network.
    * @return globalIPv6Address
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -266,7 +266,7 @@ public class InspectNetworkSettings {
    * GlobalIPv6PrefixLen is the length of the subnet mask of this network.
    * @return globalIPv6PrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -291,7 +291,7 @@ public class InspectNetworkSettings {
    * Get hairpinMode
    * @return hairpinMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HAIRPIN_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -316,7 +316,7 @@ public class InspectNetworkSettings {
    * IPAddress is the IP address for this network.
    * @return ipAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -341,7 +341,7 @@ public class InspectNetworkSettings {
    * IPPrefixLen is the length of the subnet mask of this network.
    * @return ipPrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -366,7 +366,7 @@ public class InspectNetworkSettings {
    * IPv6Gateway is the IPv6 gateway this network will use.
    * @return ipv6Gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -391,7 +391,7 @@ public class InspectNetworkSettings {
    * Get linkLocalIPv6Address
    * @return linkLocalIPv6Address
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINK_LOCAL_I_PV6_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -416,7 +416,7 @@ public class InspectNetworkSettings {
    * Get linkLocalIPv6PrefixLen
    * @return linkLocalIPv6PrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINK_LOCAL_I_PV6_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -441,7 +441,7 @@ public class InspectNetworkSettings {
    * MacAddress is the MAC address for the interface in this network.
    * @return macAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -474,7 +474,7 @@ public class InspectNetworkSettings {
    * Networks contains information on non-default networks this container has joined. It is a map of network name to network information.
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
@@ -508,7 +508,7 @@ public class InspectNetworkSettings {
    * Get ports
    * @return ports
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORTS)
@@ -534,7 +534,7 @@ public class InspectNetworkSettings {
    * Get sandboxID
    * @return sandboxID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SANDBOX_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -559,7 +559,7 @@ public class InspectNetworkSettings {
    * Get sandboxKey
    * @return sandboxKey
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SANDBOX_KEY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -592,7 +592,7 @@ public class InspectNetworkSettings {
    * SecondaryIPAddresses is a list of extra IP Addresses that the container has been assigned in this network.
    * @return secondaryIPAddresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECONDARY_I_P_ADDRESSES)
@@ -626,7 +626,7 @@ public class InspectNetworkSettings {
    * SecondaryIPv6Addresses is a list of extra IPv6 Addresses that the container has been assigned in this network.
    * @return secondaryIPv6Addresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES)

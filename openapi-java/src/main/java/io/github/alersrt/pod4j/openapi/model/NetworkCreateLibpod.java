@@ -57,7 +57,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   NetworkCreateLibpod.JSON_PROPERTY_ROUTES,
   NetworkCreateLibpod.JSON_PROPERTY_SUBNETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkCreateLibpod {
   public static final String JSON_PROPERTY_CREATED = "created";
   private OffsetDateTime created;
@@ -113,7 +113,7 @@ public class NetworkCreateLibpod {
    * Created contains the timestamp when this network was created.
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -139,7 +139,7 @@ public class NetworkCreateLibpod {
    * DNSEnabled is whether name resolution is active for container on this Network. Only supported with the bridge driver.
    * @return dnsEnabled
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_ENABLED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -164,7 +164,7 @@ public class NetworkCreateLibpod {
    * Driver for this Network, e.g. bridge, macvlan...
    * @return driver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -189,7 +189,7 @@ public class NetworkCreateLibpod {
    * ID of the Network.
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -214,7 +214,7 @@ public class NetworkCreateLibpod {
    * Internal is whether the Network should not have external routes to public or other Networks.
    * @return internal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INTERNAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -247,7 +247,7 @@ public class NetworkCreateLibpod {
    * IPAMOptions contains options used for the ip assignment.
    * @return ipamOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPAM_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -272,7 +272,7 @@ public class NetworkCreateLibpod {
    * IPv6Enabled if set to true an ipv6 subnet should be created for this net.
    * @return ipv6Enabled
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPV6_ENABLED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -305,7 +305,7 @@ public class NetworkCreateLibpod {
    * Labels is a set of key-value labels that have been applied to the Network.
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -330,7 +330,7 @@ public class NetworkCreateLibpod {
    * Name of the Network.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -363,7 +363,7 @@ public class NetworkCreateLibpod {
    * List of custom DNS server for podman&#39;s DNS resolver at network level, all the containers attached to this network will consider resolvers configured at network level.
    * @return networkDnsServers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_DNS_SERVERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -388,7 +388,7 @@ public class NetworkCreateLibpod {
    * NetworkInterface is the network interface name on the host.
    * @return networkInterface
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_INTERFACE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -421,7 +421,7 @@ public class NetworkCreateLibpod {
    * Options is a set of key-value options that have been applied to the Network.
    * @return options
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -454,7 +454,7 @@ public class NetworkCreateLibpod {
    * Routes to use for this network.
    * @return routes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ROUTES)
@@ -488,7 +488,7 @@ public class NetworkCreateLibpod {
    * Subnets to use for this network.
    * @return subnets
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SUBNETS)

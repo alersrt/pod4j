@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ContainerWait200ResponseError;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerWait200Response
  */
-public class ContainerWait200ResponseTest {
+class ContainerWait200ResponseTest {
     private final ContainerWait200Response model = new ContainerWait200Response();
 
     /**
      * Model tests for ContainerWait200Response
      */
     @Test
-    public void testContainerWait200Response() {
+    void testContainerWait200Response() {
         // TODO: test ContainerWait200Response
     }
 
@@ -42,7 +43,7 @@ public class ContainerWait200ResponseTest {
      * Test the property 'error'
      */
     @Test
-    public void errorTest() {
+    void errorTest() {
         // TODO: test error
     }
 
@@ -50,7 +51,7 @@ public class ContainerWait200ResponseTest {
      * Test the property 'statusCode'
      */
     @Test
-    public void statusCodeTest() {
+    void statusCodeTest() {
         // TODO: test statusCode
     }
 

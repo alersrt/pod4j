@@ -85,7 +85,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectContainerData.JSON_PROPERTY_STATIC_DIR,
   InspectContainerData.JSON_PROPERTY_LOCK_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerData {
   public static final String JSON_PROPERTY_APP_ARMOR_PROFILE = "AppArmorProfile";
   private String appArmorProfile;
@@ -219,7 +219,7 @@ public class InspectContainerData {
    * Get appArmorProfile
    * @return appArmorProfile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_APP_ARMOR_PROFILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -252,7 +252,7 @@ public class InspectContainerData {
    * Get args
    * @return args
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARGS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -285,7 +285,7 @@ public class InspectContainerData {
    * Get boundingCaps
    * @return boundingCaps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BOUNDING_CAPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -310,7 +310,7 @@ public class InspectContainerData {
    * Get config
    * @return config
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONFIG)
@@ -336,7 +336,7 @@ public class InspectContainerData {
    * Get conmonPidFile
    * @return conmonPidFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -361,7 +361,7 @@ public class InspectContainerData {
    * Get created
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -395,7 +395,7 @@ public class InspectContainerData {
    * Get dependencies
    * @return dependencies
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEPENDENCIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -420,7 +420,7 @@ public class InspectContainerData {
    * Get driver
    * @return driver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -453,7 +453,7 @@ public class InspectContainerData {
    * Get effectiveCaps
    * @return effectiveCaps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EFFECTIVE_CAPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -486,7 +486,7 @@ public class InspectContainerData {
    * Get execIDs
    * @return execIDs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXEC_I_DS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -511,7 +511,7 @@ public class InspectContainerData {
    * Get graphDriver
    * @return graphDriver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER)
@@ -537,7 +537,7 @@ public class InspectContainerData {
    * Get hostConfig
    * @return hostConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HOST_CONFIG)
@@ -563,7 +563,7 @@ public class InspectContainerData {
    * Get hostnamePath
    * @return hostnamePath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -588,7 +588,7 @@ public class InspectContainerData {
    * Get hostsPath
    * @return hostsPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTS_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -613,7 +613,7 @@ public class InspectContainerData {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -638,7 +638,7 @@ public class InspectContainerData {
    * Get image
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -663,7 +663,7 @@ public class InspectContainerData {
    * Get imageDigest
    * @return imageDigest
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_DIGEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -688,7 +688,7 @@ public class InspectContainerData {
    * Get imageName
    * @return imageName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -713,7 +713,7 @@ public class InspectContainerData {
    * Get isInfra
    * @return isInfra
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IS_INFRA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -738,7 +738,7 @@ public class InspectContainerData {
    * Get isService
    * @return isService
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IS_SERVICE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -763,7 +763,7 @@ public class InspectContainerData {
    * Get kubeExitCodePropagation
    * @return kubeExitCodePropagation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KUBE_EXIT_CODE_PROPAGATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -788,7 +788,7 @@ public class InspectContainerData {
    * Get mountLabel
    * @return mountLabel
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MOUNT_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -821,7 +821,7 @@ public class InspectContainerData {
    * Get mounts
    * @return mounts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MOUNTS)
@@ -847,7 +847,7 @@ public class InspectContainerData {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -872,7 +872,7 @@ public class InspectContainerData {
    * Get namespace
    * @return namespace
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAMESPACE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -897,7 +897,7 @@ public class InspectContainerData {
    * Get networkSettings
    * @return networkSettings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_SETTINGS)
@@ -923,7 +923,7 @@ public class InspectContainerData {
    * Get ocIConfigPath
    * @return ocIConfigPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OC_I_CONFIG_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -948,7 +948,7 @@ public class InspectContainerData {
    * Get ocIRuntime
    * @return ocIRuntime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OC_I_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -973,7 +973,7 @@ public class InspectContainerData {
    * Get path
    * @return path
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -998,7 +998,7 @@ public class InspectContainerData {
    * Get pidFile
    * @return pidFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1023,7 +1023,7 @@ public class InspectContainerData {
    * Get pod
    * @return pod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1048,7 +1048,7 @@ public class InspectContainerData {
    * Get processLabel
    * @return processLabel
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PROCESS_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1073,7 +1073,7 @@ public class InspectContainerData {
    * Get resolvConfPath
    * @return resolvConfPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESOLV_CONF_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1098,7 +1098,7 @@ public class InspectContainerData {
    * Get restartCount
    * @return restartCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1123,7 +1123,7 @@ public class InspectContainerData {
    * Get rootfs
    * @return rootfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1148,7 +1148,7 @@ public class InspectContainerData {
    * Get sizeRootFs
    * @return sizeRootFs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE_ROOT_FS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1173,7 +1173,7 @@ public class InspectContainerData {
    * Get sizeRw
    * @return sizeRw
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE_RW)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1198,7 +1198,7 @@ public class InspectContainerData {
    * Get state
    * @return state
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_STATE)
@@ -1224,7 +1224,7 @@ public class InspectContainerData {
    * Get staticDir
    * @return staticDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATIC_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1249,7 +1249,7 @@ public class InspectContainerData {
    * Get lockNumber
    * @return lockNumber
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LOCK_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

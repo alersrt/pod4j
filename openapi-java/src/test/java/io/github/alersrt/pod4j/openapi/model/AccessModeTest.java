@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.TypeMount;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for AccessMode
  */
-public class AccessModeTest {
+class AccessModeTest {
     private final AccessMode model = new AccessMode();
 
     /**
      * Model tests for AccessMode
      */
     @Test
-    public void testAccessMode() {
+    void testAccessMode() {
         // TODO: test AccessMode
     }
 
@@ -42,7 +43,7 @@ public class AccessModeTest {
      * Test the property 'blockVolume'
      */
     @Test
-    public void blockVolumeTest() {
+    void blockVolumeTest() {
         // TODO: test blockVolume
     }
 
@@ -50,7 +51,7 @@ public class AccessModeTest {
      * Test the property 'mountVolume'
      */
     @Test
-    public void mountVolumeTest() {
+    void mountVolumeTest() {
         // TODO: test mountVolume
     }
 
@@ -58,7 +59,7 @@ public class AccessModeTest {
      * Test the property 'scope'
      */
     @Test
-    public void scopeTest() {
+    void scopeTest() {
         // TODO: test scope
     }
 
@@ -66,7 +67,7 @@ public class AccessModeTest {
      * Test the property 'sharing'
      */
     @Test
-    public void sharingTest() {
+    void sharingTest() {
         // TODO: test sharing
     }
 

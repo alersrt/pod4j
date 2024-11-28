@@ -13,24 +13,15 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Statistics for an individual container network interface
  */
@@ -44,7 +35,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerNetworkStats.JSON_PROPERTY_TX_ERRORS,
   ContainerNetworkStats.JSON_PROPERTY_TX_PACKETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerNetworkStats {
   public static final String JSON_PROPERTY_RX_BYTES = "RxBytes";
   private Integer rxBytes;
@@ -82,7 +73,7 @@ public class ContainerNetworkStats {
    * Get rxBytes
    * @return rxBytes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RX_BYTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -107,7 +98,7 @@ public class ContainerNetworkStats {
    * Get rxDropped
    * @return rxDropped
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RX_DROPPED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -132,7 +123,7 @@ public class ContainerNetworkStats {
    * Get rxErrors
    * @return rxErrors
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RX_ERRORS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -157,7 +148,7 @@ public class ContainerNetworkStats {
    * Get rxPackets
    * @return rxPackets
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RX_PACKETS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -182,7 +173,7 @@ public class ContainerNetworkStats {
    * Get txBytes
    * @return txBytes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TX_BYTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -207,7 +198,7 @@ public class ContainerNetworkStats {
    * Get txDropped
    * @return txDropped
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TX_DROPPED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -232,7 +223,7 @@ public class ContainerNetworkStats {
    * Get txErrors
    * @return txErrors
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TX_ERRORS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -257,7 +248,7 @@ public class ContainerNetworkStats {
    * Get txPackets
    * @return txPackets
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TX_PACKETS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

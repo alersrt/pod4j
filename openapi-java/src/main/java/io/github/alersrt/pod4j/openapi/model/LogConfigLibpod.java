@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LogConfigLibpod.JSON_PROPERTY_PATH,
   LogConfigLibpod.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LogConfigLibpod {
   public static final String JSON_PROPERTY_DRIVER = "driver";
   private String driver;
@@ -68,7 +68,7 @@ public class LogConfigLibpod {
    * LogDriver is the container&#39;s log driver. Optional.
    * @return driver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -101,7 +101,7 @@ public class LogConfigLibpod {
    * A set of options to accompany the log driver. Optional.
    * @return options
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -126,7 +126,7 @@ public class LogConfigLibpod {
    * LogPath is the path the container&#39;s logs will be stored at. Only available if LogDriver is set to \&quot;json-file\&quot; or \&quot;k8s-file\&quot;. Optional.
    * @return path
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -151,7 +151,7 @@ public class LogConfigLibpod {
    * Size is the maximum size of the log file Optional.
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

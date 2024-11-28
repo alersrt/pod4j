@@ -52,7 +52,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SystemComponentVersion.JSON_PROPERTY_PLATFORM,
   SystemComponentVersion.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemComponentVersion {
   public static final String JSON_PROPERTY_API_VERSION = "ApiVersion";
   private String apiVersion;
@@ -102,7 +102,7 @@ public class SystemComponentVersion {
    * Get apiVersion
    * @return apiVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_API_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -127,7 +127,7 @@ public class SystemComponentVersion {
    * Get arch
    * @return arch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -152,7 +152,7 @@ public class SystemComponentVersion {
    * Get buildTime
    * @return buildTime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BUILD_TIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -185,7 +185,7 @@ public class SystemComponentVersion {
    * Get components
    * @return components
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_COMPONENTS)
@@ -211,7 +211,7 @@ public class SystemComponentVersion {
    * Get experimental
    * @return experimental
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXPERIMENTAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -236,7 +236,7 @@ public class SystemComponentVersion {
    * Get gitCommit
    * @return gitCommit
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GIT_COMMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -261,7 +261,7 @@ public class SystemComponentVersion {
    * Get goVersion
    * @return goVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GO_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -286,7 +286,7 @@ public class SystemComponentVersion {
    * Get kernelVersion
    * @return kernelVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -311,7 +311,7 @@ public class SystemComponentVersion {
    * Get minAPIVersion
    * @return minAPIVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MIN_A_P_I_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -336,7 +336,7 @@ public class SystemComponentVersion {
    * Get os
    * @return os
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -361,7 +361,7 @@ public class SystemComponentVersion {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PLATFORM)
@@ -387,7 +387,7 @@ public class SystemComponentVersion {
    * Get version
    * @return version
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

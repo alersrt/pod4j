@@ -182,7 +182,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SpecGenerator.JSON_PROPERTY_WEIGHT_DEVICE,
   SpecGenerator.JSON_PROPERTY_WORK_DIR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SpecGenerator {
   public static final String JSON_PROPERTY_NETWORKS = "Networks";
   private Map<String, PerNetworkOptions> networks = new HashMap<>();
@@ -570,7 +570,7 @@ public class SpecGenerator {
    * Map of networks names or ids that the container should join. You can request additional settings for each network, you can set network aliases, static ips, static mac address  and the network interface name for this container on the specific network. If the map is empty and the bridge network mode is set the container will be joined to the default network. Optional.
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
@@ -604,7 +604,7 @@ public class SpecGenerator {
    * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -629,7 +629,7 @@ public class SpecGenerator {
    * ApparmorProfile is the name of the Apparmor profile the container will use. Optional.
    * @return apparmorProfile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_APPARMOR_PROFILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -654,7 +654,7 @@ public class SpecGenerator {
    * BaseHostsFile is the path to a hosts file, the entries from this file are added to the containers hosts file. As special value \&quot;image\&quot; is allowed which uses the /etc/hosts file from within the image and \&quot;none\&quot; which uses no base file at all. If it is empty we should default to the base_hosts_file configuration in containers.conf. Optional.
    * @return baseHostsFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BASE_HOSTS_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -687,7 +687,7 @@ public class SpecGenerator {
    * CapAdd are capabilities which will be added to the container. Conflicts with Privileged. Optional.
    * @return capAdd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAP_ADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -720,7 +720,7 @@ public class SpecGenerator {
    * CapDrop are capabilities which will be removed from the container. Conflicts with Privileged. Optional.
    * @return capDrop
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAP_DROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -745,7 +745,7 @@ public class SpecGenerator {
    * CgroupParent is the container&#39;s Cgroup parent. If not set, the default for the current cgroup driver will be used. Optional.
    * @return cgroupParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -770,7 +770,7 @@ public class SpecGenerator {
    * Get cgroupns
    * @return cgroupns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CGROUPNS)
@@ -796,7 +796,7 @@ public class SpecGenerator {
    * CgroupsMode sets a policy for how cgroups will be created for the container, including the ability to disable creation entirely. Optional.
    * @return cgroupsMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUPS_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -829,7 +829,7 @@ public class SpecGenerator {
    * ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.
    * @return chrootDirectories
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CHROOT_DIRECTORIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -862,7 +862,7 @@ public class SpecGenerator {
    * CNINetworks is a list of CNI networks to join the container to. If this list is empty, the default CNI network will be joined instead. If at least one entry is present, we will not join the default network (unless it is part of this list). Only available if NetNS is set to bridge. Optional. Deprecated: as of podman 4.0 use \&quot;Networks\&quot; instead.
    * @return cniNetworks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CNI_NETWORKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -895,7 +895,7 @@ public class SpecGenerator {
    * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return command
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -920,7 +920,7 @@ public class SpecGenerator {
    * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
    * @return conmonPidFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -953,7 +953,7 @@ public class SpecGenerator {
    * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
    * @return containerCreateCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_CREATE_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -978,7 +978,7 @@ public class SpecGenerator {
    * Create the working directory if it doesn&#39;t exist. If unset, it doesn&#39;t create it. Optional.
    * @return createWorkingDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATE_WORKING_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1011,7 +1011,7 @@ public class SpecGenerator {
    * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
    * @return dependencyContainers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEPENDENCY_CONTAINERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1044,7 +1044,7 @@ public class SpecGenerator {
    * DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.
    * @return deviceCgroupRule
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULE)
@@ -1078,7 +1078,7 @@ public class SpecGenerator {
    * Devices are devices that will be added to the container. Optional.
    * @return devices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICES)
@@ -1112,7 +1112,7 @@ public class SpecGenerator {
    * DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.
    * @return devicesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEVICES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1145,7 +1145,7 @@ public class SpecGenerator {
    * DNSOptions is a set of DNS options that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS options which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsOption
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_OPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1178,7 +1178,7 @@ public class SpecGenerator {
    * DNSSearch is a set of DNS search domains that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS search domains which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsSearch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1211,7 +1211,7 @@ public class SpecGenerator {
    * DNSServers is a set of DNS servers that will be used in the container&#39;s resolv.conf, replacing the host&#39;s DNS Servers which are used by default. Conflicts with UseImageResolvConf. Optional.
    * @return dnsServer
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SERVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1244,7 +1244,7 @@ public class SpecGenerator {
    * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return entrypoint
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1277,7 +1277,7 @@ public class SpecGenerator {
    * Env is a set of environment variables that will be set in the container. Optional.
    * @return env
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1302,7 +1302,7 @@ public class SpecGenerator {
    * EnvHost indicates that the host environment should be added to container Optional.
    * @return envHost
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV_HOST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1335,7 +1335,7 @@ public class SpecGenerator {
    * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
    * @return envmerge
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENVMERGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1360,7 +1360,7 @@ public class SpecGenerator {
    * Expose is a number of ports that will be forwarded to the container if PublishExposedPorts is set. Expose is a map of uint16 (port number) to a string representing protocol i.e map[uint16]string. Allowed protocols are \&quot;tcp\&quot;, \&quot;udp\&quot;, and \&quot;sctp\&quot;, or some combination of the three separated by commas. If protocol is set to \&quot;\&quot; we will assume TCP. Only available if NetNS is set to Bridge or Slirp, and PublishExposedPorts is set. Optional.
    * @return expose
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXPOSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1385,7 +1385,7 @@ public class SpecGenerator {
    * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
    * @return groupEntry
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GROUP_ENTRY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1418,7 +1418,7 @@ public class SpecGenerator {
    * Groups are a list of supplemental groups the container&#39;s user will be granted access to. Optional.
    * @return groups
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GROUPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1443,7 +1443,7 @@ public class SpecGenerator {
    * HealthCheckOnFailureAction defines how Podman reacts when a container&#39;s health status turns unhealthy.
    * @return healthCheckOnFailureAction
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_CHECK_ON_FAILURE_ACTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1468,7 +1468,7 @@ public class SpecGenerator {
    * HealthLogDestination defines the destination where the log is stored
    * @return healthLogDestination
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_LOG_DESTINATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1493,7 +1493,7 @@ public class SpecGenerator {
    * HealthMaxLogCount is maximum number of attempts in the HealthCheck log file. (&#39;0&#39; value means an infinite number of attempts in the log file)
    * @return healthMaxLogCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1518,7 +1518,7 @@ public class SpecGenerator {
    * HealthMaxLogSize is the maximum length in characters of stored HealthCheck log (\&quot;0\&quot; value means an infinite log length)
    * @return healthMaxLogSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MAX_LOG_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1543,7 +1543,7 @@ public class SpecGenerator {
    * Get healthconfig
    * @return healthconfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HEALTHCONFIG)
@@ -1577,7 +1577,7 @@ public class SpecGenerator {
    * HostDeviceList is used to recreate the mounted device on inherited containers
    * @return hostDeviceList
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HOST_DEVICE_LIST)
@@ -1611,7 +1611,7 @@ public class SpecGenerator {
    * HostAdd is a set of hosts which will be added to the container&#39;s etc/hosts file. Conflicts with UseImageHosts. Optional.
    * @return hostadd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1636,7 +1636,7 @@ public class SpecGenerator {
    * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1669,7 +1669,7 @@ public class SpecGenerator {
    * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
    * @return hostusers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTUSERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1694,7 +1694,7 @@ public class SpecGenerator {
    * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
    * @return httpproxy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HTTPPROXY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1719,7 +1719,7 @@ public class SpecGenerator {
    * Get idmappings
    * @return idmappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IDMAPPINGS)
@@ -1745,7 +1745,7 @@ public class SpecGenerator {
    * Image is the image the container will be based on. The image will be used as the container&#39;s root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1770,7 +1770,7 @@ public class SpecGenerator {
    * ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.
    * @return imageArch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_ARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1795,7 +1795,7 @@ public class SpecGenerator {
    * ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.
    * @return imageOs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1820,7 +1820,7 @@ public class SpecGenerator {
    * ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.
    * @return imageVariant
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_VARIANT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1845,7 +1845,7 @@ public class SpecGenerator {
    * ImageVolumeMode indicates how image volumes will be created. Supported modes are \&quot;ignore\&quot; (do not create), \&quot;tmpfs\&quot; (create as tmpfs), and \&quot;anonymous\&quot; (create as anonymous volumes). The default if unset is anonymous. Optional.
    * @return imageVolumeMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_VOLUME_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1878,7 +1878,7 @@ public class SpecGenerator {
    * Image volumes bind-mount a container-image mount into the container. Optional.
    * @return imageVolumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
@@ -1904,7 +1904,7 @@ public class SpecGenerator {
    * Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.
    * @return init
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1929,7 +1929,7 @@ public class SpecGenerator {
    * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
    * @return initContainerType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT_CONTAINER_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1954,7 +1954,7 @@ public class SpecGenerator {
    * InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.
    * @return initPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1979,7 +1979,7 @@ public class SpecGenerator {
    * Get intelRdt
    * @return intelRdt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_INTEL_RDT)
@@ -2005,7 +2005,7 @@ public class SpecGenerator {
    * Get ipcns
    * @return ipcns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IPCNS)
@@ -2031,7 +2031,7 @@ public class SpecGenerator {
    * LabelNested indicates whether or not the container is allowed to run fully nested containers including SELinux labelling. Optional.
    * @return labelNested
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABEL_NESTED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2064,7 +2064,7 @@ public class SpecGenerator {
    * Labels are key-value pairs that are used to add metadata to containers. Optional.
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2089,7 +2089,7 @@ public class SpecGenerator {
    * Get logConfiguration
    * @return logConfiguration
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_LOG_CONFIGURATION)
@@ -2115,7 +2115,7 @@ public class SpecGenerator {
    * Passwd is a container run option that determines if we are validating users/groups before running the container
    * @return managePassword
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MANAGE_PASSWORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2148,7 +2148,7 @@ public class SpecGenerator {
    * Mask is the path we want to mask in the container. This masks the paths given in addition to the default list. Optional
    * @return mask
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MASK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2181,7 +2181,7 @@ public class SpecGenerator {
    * Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return mounts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MOUNTS)
@@ -2207,7 +2207,7 @@ public class SpecGenerator {
    * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2232,7 +2232,7 @@ public class SpecGenerator {
    * Get netns
    * @return netns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETNS)
@@ -2266,7 +2266,7 @@ public class SpecGenerator {
    * NetworkOptions are additional options for each network Optional.
    * @return networkOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
@@ -2292,7 +2292,7 @@ public class SpecGenerator {
    * NoNewPrivileges is whether the container will set the no new privileges flag on create, which disables gaining additional privileges (e.g. via setuid) in the container. Optional.
    * @return noNewPrivileges
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_NEW_PRIVILEGES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2317,7 +2317,7 @@ public class SpecGenerator {
    * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
    * @return ociRuntime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2342,7 +2342,7 @@ public class SpecGenerator {
    * OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container&#39;s process. Optional.
    * @return oomScoreAdj
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2375,7 +2375,7 @@ public class SpecGenerator {
    * Overlay volumes are named volumes that will be added to the container. Optional.
    * @return overlayVolumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
@@ -2401,7 +2401,7 @@ public class SpecGenerator {
    * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
    * @return passwdEntry
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PASSWD_ENTRY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2426,7 +2426,7 @@ public class SpecGenerator {
    * Get personality
    * @return personality
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PERSONALITY)
@@ -2452,7 +2452,7 @@ public class SpecGenerator {
    * Get pidns
    * @return pidns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PIDNS)
@@ -2478,7 +2478,7 @@ public class SpecGenerator {
    * Pod is the ID of the pod the container will join. Optional.
    * @return pod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2511,7 +2511,7 @@ public class SpecGenerator {
    * PortBindings is a set of ports to map into the container. Only available if NetNS is set to bridge, slirp, or pasta. Optional.
    * @return portmappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORTMAPPINGS)
@@ -2537,7 +2537,7 @@ public class SpecGenerator {
    * Privileged is whether the container is privileged. Privileged does the following: Adds all devices on the system to the container. Adds all capabilities to the container. Disables Seccomp, SELinux, and Apparmor confinement. (Though SELinux can be manually re-enabled). TODO: this conflicts with things. TODO: this does more. Optional.
    * @return privileged
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PRIVILEGED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2570,7 +2570,7 @@ public class SpecGenerator {
    * ProcOpts are the options used for the proc mount.
    * @return procfsOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PROCFS_OPTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2595,7 +2595,7 @@ public class SpecGenerator {
    * PublishExposedPorts will publish ports specified in the image to random unused ports (guaranteed to be above 1024) on the host. This is based on ports set in Expose below, and any ports specified by the Image (if one is given). Only available if NetNS is set to Bridge or Slirp. Optional.
    * @return publishImagePorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PUBLISH_IMAGE_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2628,7 +2628,7 @@ public class SpecGenerator {
    * Rlimits are POSIX rlimits to apply to the container. Optional.
    * @return rLimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_R_LIMITS)
@@ -2654,7 +2654,7 @@ public class SpecGenerator {
    * RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.
    * @return rawImageName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RAW_IMAGE_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2679,7 +2679,7 @@ public class SpecGenerator {
    * ReadOnlyFilesystem indicates that everything will be mounted as read-only. Optional.
    * @return readOnlyFilesystem
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READ_ONLY_FILESYSTEM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2704,7 +2704,7 @@ public class SpecGenerator {
    * ReadWriteTmpfs indicates that when running with a ReadOnlyFilesystem mount temporary file systems. Optional.
    * @return readWriteTmpfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READ_WRITE_TMPFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2729,7 +2729,7 @@ public class SpecGenerator {
    * Remove indicates if the container should be removed once it has been started and exits. Optional.
    * @return remove
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REMOVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2754,7 +2754,7 @@ public class SpecGenerator {
    * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
    * @return removeImage
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REMOVE_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2779,7 +2779,7 @@ public class SpecGenerator {
    * Get resourceLimits
    * @return resourceLimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
@@ -2805,7 +2805,7 @@ public class SpecGenerator {
    * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
    * @return restartPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2830,7 +2830,7 @@ public class SpecGenerator {
    * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
    * @return restartTries
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2855,7 +2855,7 @@ public class SpecGenerator {
    * Rootfs is the path to a directory that will be used as the container&#39;s root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.
    * @return rootfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2880,7 +2880,7 @@ public class SpecGenerator {
    * RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.
    * @return rootfsMapping
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS_MAPPING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2905,7 +2905,7 @@ public class SpecGenerator {
    * RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.
    * @return rootfsOverlay
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS_OVERLAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2930,7 +2930,7 @@ public class SpecGenerator {
    * RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.
    * @return rootfsPropagation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS_PROPAGATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2955,7 +2955,7 @@ public class SpecGenerator {
    * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
    * @return sdnotifyMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SDNOTIFY_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2980,7 +2980,7 @@ public class SpecGenerator {
    * SeccompPolicy determines which seccomp profile gets applied the container. valid values: empty,default,image
    * @return seccompPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECCOMP_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3005,7 +3005,7 @@ public class SpecGenerator {
    * SeccompProfilePath is the path to a JSON file containing the container&#39;s Seccomp profile. If not specified, no Seccomp profile will be used. Optional.
    * @return seccompProfilePath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECCOMP_PROFILE_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3038,7 +3038,7 @@ public class SpecGenerator {
    * EnvSecrets are secrets that will be set as environment variables Optional.
    * @return secretEnv
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECRET_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3071,7 +3071,7 @@ public class SpecGenerator {
    * Secrets are the secrets that will be added to the container Optional.
    * @return secrets
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECRETS)
@@ -3105,7 +3105,7 @@ public class SpecGenerator {
    * SelinuxProcessLabel is the process label the container will use. If SELinux is enabled and this is not specified, a label will be automatically generated if not specified. Optional.
    * @return selinuxOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SELINUX_OPTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3130,7 +3130,7 @@ public class SpecGenerator {
    * ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.
    * @return shmSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHM_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3155,7 +3155,7 @@ public class SpecGenerator {
    * ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional
    * @return shmSizeSystemd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3180,7 +3180,7 @@ public class SpecGenerator {
    * Get startupHealthConfig
    * @return startupHealthConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_STARTUP_HEALTH_CONFIG)
@@ -3206,7 +3206,7 @@ public class SpecGenerator {
    * Stdin is whether the container will keep its STDIN open. Optional.
    * @return stdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3231,7 +3231,7 @@ public class SpecGenerator {
    * It implements the [os.Signal] interface.
    * @return stopSignal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3256,7 +3256,7 @@ public class SpecGenerator {
    * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
    * @return stopTimeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3289,7 +3289,7 @@ public class SpecGenerator {
    * StorageOpts is the container&#39;s storage options Optional.
    * @return storageOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STORAGE_OPTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3322,7 +3322,7 @@ public class SpecGenerator {
    * Sysctl sets kernel parameters for the container
    * @return sysctl
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSCTL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3347,7 +3347,7 @@ public class SpecGenerator {
    * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
    * @return systemd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSTEMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3372,7 +3372,7 @@ public class SpecGenerator {
    * Terminal is whether the container will create a PTY. Optional.
    * @return terminal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TERMINAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3405,7 +3405,7 @@ public class SpecGenerator {
    * IO read rate limit per cgroup per device, bytes per second
    * @return throttleReadBpsDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
@@ -3439,7 +3439,7 @@ public class SpecGenerator {
    * IO read rate limit per cgroup per device, IO per second
    * @return throttleReadIOPSDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
@@ -3473,7 +3473,7 @@ public class SpecGenerator {
    * IO write rate limit per cgroup per device, bytes per second
    * @return throttleWriteBpsDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
@@ -3507,7 +3507,7 @@ public class SpecGenerator {
    * IO write rate limit per cgroup per device, IO per second
    * @return throttleWriteIOPSDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
@@ -3533,7 +3533,7 @@ public class SpecGenerator {
    * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
    * @return timeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3558,7 +3558,7 @@ public class SpecGenerator {
    * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
    * @return timezone
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TIMEZONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3583,7 +3583,7 @@ public class SpecGenerator {
    * Umask is the umask the init process of the container will be run with.
    * @return umask
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UMASK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3616,7 +3616,7 @@ public class SpecGenerator {
    * CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.
    * @return unified
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNIFIED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3649,7 +3649,7 @@ public class SpecGenerator {
    * Unmask a path in the container. Some paths are masked by default, preventing them from being accessed within the container; this undoes that masking. If ALL is passed, all paths will be unmasked. Optional.
    * @return unmask
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNMASK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3682,7 +3682,7 @@ public class SpecGenerator {
    * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
    * @return unsetenv
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNSETENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3707,7 +3707,7 @@ public class SpecGenerator {
    * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
    * @return unsetenvall
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNSETENVALL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3732,7 +3732,7 @@ public class SpecGenerator {
    * UseImageHosts indicates that /etc/hosts should not be managed by Podman, and instead sourced from the image. Conflicts with HostAdd. Optional.
    * @return useImageHosts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USE_IMAGE_HOSTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3757,7 +3757,7 @@ public class SpecGenerator {
    * UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional.
    * @return useImageResolveConf
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USE_IMAGE_RESOLVE_CONF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3782,7 +3782,7 @@ public class SpecGenerator {
    * User is the user the container will be run as. Can be given as a UID or a username; if a username, it will be resolved within the container, using the container&#39;s /etc/passwd. If unset, the container will be run as root. Optional.
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3807,7 +3807,7 @@ public class SpecGenerator {
    * Get userns
    * @return userns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_USERNS)
@@ -3833,7 +3833,7 @@ public class SpecGenerator {
    * Get utsns
    * @return utsns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_UTSNS)
@@ -3859,7 +3859,7 @@ public class SpecGenerator {
    * Volatile specifies whether the container storage can be optimized at the cost of not syncing all the dirty files in memory. Optional.
    * @return _volatile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLATILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3892,7 +3892,7 @@ public class SpecGenerator {
    * Volumes are named volumes that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)
@@ -3926,7 +3926,7 @@ public class SpecGenerator {
    * VolumesFrom is a set of containers whose volumes will be added to this container. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are &#39;ro&#39;, &#39;rw&#39;, and &#39;z&#39;. Options will be used for all volumes sourced from the container. Optional.
    * @return volumesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -3959,7 +3959,7 @@ public class SpecGenerator {
    * Weight per cgroup per device, can override BlkioWeight
    * @return weightDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)
@@ -3985,7 +3985,7 @@ public class SpecGenerator {
    * WorkDir is the container&#39;s working directory. If unset, the default, /, will be used. Optional.
    * @return workDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WORK_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,29 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for RootFS
  */
-public class RootFSTest {
+class RootFSTest {
     private final RootFS model = new RootFS();
 
     /**
      * Model tests for RootFS
      */
     @Test
-    public void testRootFS() {
+    void testRootFS() {
         // TODO: test RootFS
     }
 
@@ -43,7 +43,7 @@ public class RootFSTest {
      * Test the property 'layers'
      */
     @Test
-    public void layersTest() {
+    void layersTest() {
         // TODO: test layers
     }
 
@@ -51,7 +51,7 @@ public class RootFSTest {
      * Test the property 'type'
      */
     @Test
-    public void typeTest() {
+    void typeTest() {
         // TODO: test type
     }
 

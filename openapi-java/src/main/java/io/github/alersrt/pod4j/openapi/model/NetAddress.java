@@ -39,7 +39,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   NetAddress.JSON_PROPERTY_GATEWAY,
   NetAddress.JSON_PROPERTY_IPNET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetAddress {
   public static final String JSON_PROPERTY_GATEWAY = "gateway";
   private String gateway;
@@ -59,7 +59,7 @@ public class NetAddress {
    * Gateway for the network. This can be empty if there is no gateway, e.g. internal network.
    * @return gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -84,7 +84,7 @@ public class NetAddress {
    * Get ipnet
    * @return ipnet
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IPNET)

@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   VolumeCreate.JSON_PROPERTY_LABELS,
   VolumeCreate.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class VolumeCreate {
   public static final String JSON_PROPERTY_DRIVER = "Driver";
   private String driver;
@@ -68,7 +68,7 @@ public class VolumeCreate {
    * Name of the volume driver to use.
    * @return driver
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
@@ -102,7 +102,7 @@ public class VolumeCreate {
    * A mapping of driver options and values. These options are passed directly to the driver and are driver specific.
    * @return driverOpts
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
@@ -136,7 +136,7 @@ public class VolumeCreate {
    * User-defined key/value metadata.
    * @return labels
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_LABELS)
@@ -162,7 +162,7 @@ public class VolumeCreate {
    * The new volume&#39;s name. If not specified, Docker generates a name.
    * @return name
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_NAME)

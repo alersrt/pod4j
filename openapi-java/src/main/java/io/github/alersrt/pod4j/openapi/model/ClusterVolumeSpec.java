@@ -13,30 +13,18 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.AccessMode;
-import io.github.alersrt.pod4j.openapi.model.CapacityRange;
-import io.github.alersrt.pod4j.openapi.model.Secret;
-import io.github.alersrt.pod4j.openapi.model.TopologyRequirement;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ClusterVolumeSpec
  */
@@ -48,7 +36,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ClusterVolumeSpec.JSON_PROPERTY_GROUP,
   ClusterVolumeSpec.JSON_PROPERTY_SECRETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ClusterVolumeSpec {
   public static final String JSON_PROPERTY_ACCESS_MODE = "AccessMode";
   private AccessMode accessMode;
@@ -80,7 +68,7 @@ public class ClusterVolumeSpec {
    * Get accessMode
    * @return accessMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ACCESS_MODE)
@@ -106,7 +94,7 @@ public class ClusterVolumeSpec {
    * Get accessibilityRequirements
    * @return accessibilityRequirements
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ACCESSIBILITY_REQUIREMENTS)
@@ -132,7 +120,7 @@ public class ClusterVolumeSpec {
    * Get availability
    * @return availability
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AVAILABILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -157,7 +145,7 @@ public class ClusterVolumeSpec {
    * Get capacityRange
    * @return capacityRange
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CAPACITY_RANGE)
@@ -183,7 +171,7 @@ public class ClusterVolumeSpec {
    * Group defines the volume group of this volume. Volumes belonging to the same group can be referred to by group name when creating Services. Referring to a volume by group instructs swarm to treat volumes in that group interchangeably for the purpose of scheduling. Volumes with an empty string for a group technically all belong to the same, emptystring group.
    * @return group
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GROUP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -216,7 +204,7 @@ public class ClusterVolumeSpec {
    * Secrets defines Swarm Secrets that are passed to the CSI storage plugin when operating on this volume.
    * @return secrets
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECRETS)

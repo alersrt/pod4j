@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.Topology;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for TopologyRequirement
  */
-public class TopologyRequirementTest {
+class TopologyRequirementTest {
     private final TopologyRequirement model = new TopologyRequirement();
 
     /**
      * Model tests for TopologyRequirement
      */
     @Test
-    public void testTopologyRequirement() {
+    void testTopologyRequirement() {
         // TODO: test TopologyRequirement
     }
 
@@ -44,7 +45,7 @@ public class TopologyRequirementTest {
      * Test the property 'preferred'
      */
     @Test
-    public void preferredTest() {
+    void preferredTest() {
         // TODO: test preferred
     }
 
@@ -52,7 +53,7 @@ public class TopologyRequirementTest {
      * Test the property 'requisite'
      */
     @Test
-    public void requisiteTest() {
+    void requisiteTest() {
         // TODO: test requisite
     }
 

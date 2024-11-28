@@ -13,29 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Schema2HealthConfig
  */
-public class Schema2HealthConfigTest {
+class Schema2HealthConfigTest {
     private final Schema2HealthConfig model = new Schema2HealthConfig();
 
     /**
      * Model tests for Schema2HealthConfig
      */
     @Test
-    public void testSchema2HealthConfig() {
+    void testSchema2HealthConfig() {
         // TODO: test Schema2HealthConfig
     }
 
@@ -43,7 +43,7 @@ public class Schema2HealthConfigTest {
      * Test the property 'interval'
      */
     @Test
-    public void intervalTest() {
+    void intervalTest() {
         // TODO: test interval
     }
 
@@ -51,7 +51,7 @@ public class Schema2HealthConfigTest {
      * Test the property 'retries'
      */
     @Test
-    public void retriesTest() {
+    void retriesTest() {
         // TODO: test retries
     }
 
@@ -59,7 +59,7 @@ public class Schema2HealthConfigTest {
      * Test the property 'startInterval'
      */
     @Test
-    public void startIntervalTest() {
+    void startIntervalTest() {
         // TODO: test startInterval
     }
 
@@ -67,7 +67,7 @@ public class Schema2HealthConfigTest {
      * Test the property 'startPeriod'
      */
     @Test
-    public void startPeriodTest() {
+    void startPeriodTest() {
         // TODO: test startPeriod
     }
 
@@ -75,7 +75,7 @@ public class Schema2HealthConfigTest {
      * Test the property 'test'
      */
     @Test
-    public void testTest() {
+    void testTest() {
         // TODO: test test
     }
 
@@ -83,7 +83,7 @@ public class Schema2HealthConfigTest {
      * Test the property 'timeout'
      */
     @Test
-    public void timeoutTest() {
+    void timeoutTest() {
         // TODO: test timeout
     }
 

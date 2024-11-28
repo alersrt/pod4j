@@ -45,7 +45,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   SystemDfReport.JSON_PROPERTY_IMAGES_SIZE,
   SystemDfReport.JSON_PROPERTY_VOLUMES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class SystemDfReport {
   public static final String JSON_PROPERTY_CONTAINERS = "Containers";
   private List<@Valid SystemDfContainerReport> containers = new ArrayList<>();
@@ -79,7 +79,7 @@ public class SystemDfReport {
    * Get containers
    * @return containers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
@@ -113,7 +113,7 @@ public class SystemDfReport {
    * Get images
    * @return images
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IMAGES)
@@ -139,7 +139,7 @@ public class SystemDfReport {
    * Get imagesSize
    * @return imagesSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGES_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -172,7 +172,7 @@ public class SystemDfReport {
    * Get volumes
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)

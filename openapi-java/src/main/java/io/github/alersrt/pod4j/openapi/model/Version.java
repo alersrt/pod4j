@@ -37,7 +37,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
 @JsonPropertyOrder({
   Version.JSON_PROPERTY_INDEX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Version {
   public static final String JSON_PROPERTY_INDEX = "Index";
   private Integer index;
@@ -54,7 +54,7 @@ public class Version {
    * Get index
    * @return index
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INDEX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

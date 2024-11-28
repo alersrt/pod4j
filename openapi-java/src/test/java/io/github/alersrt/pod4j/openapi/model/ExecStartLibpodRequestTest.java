@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ExecStartLibpodRequest
  */
-public class ExecStartLibpodRequestTest {
+class ExecStartLibpodRequestTest {
     private final ExecStartLibpodRequest model = new ExecStartLibpodRequest();
 
     /**
      * Model tests for ExecStartLibpodRequest
      */
     @Test
-    public void testExecStartLibpodRequest() {
+    void testExecStartLibpodRequest() {
         // TODO: test ExecStartLibpodRequest
     }
 
@@ -41,7 +42,7 @@ public class ExecStartLibpodRequestTest {
      * Test the property 'detach'
      */
     @Test
-    public void detachTest() {
+    void detachTest() {
         // TODO: test detach
     }
 
@@ -49,7 +50,7 @@ public class ExecStartLibpodRequestTest {
      * Test the property 'tty'
      */
     @Test
-    public void ttyTest() {
+    void ttyTest() {
         // TODO: test tty
     }
 
@@ -57,7 +58,7 @@ public class ExecStartLibpodRequestTest {
      * Test the property 'h'
      */
     @Test
-    public void hTest() {
+    void hTest() {
         // TODO: test h
     }
 
@@ -65,7 +66,7 @@ public class ExecStartLibpodRequestTest {
      * Test the property 'w'
      */
     @Test
-    public void wTest() {
+    void wTest() {
         // TODO: test w
     }
 

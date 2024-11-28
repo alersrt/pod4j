@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for HealthcheckResult
  */
-public class HealthcheckResultTest {
+class HealthcheckResultTest {
     private final HealthcheckResult model = new HealthcheckResult();
 
     /**
      * Model tests for HealthcheckResult
      */
     @Test
-    public void testHealthcheckResult() {
+    void testHealthcheckResult() {
         // TODO: test HealthcheckResult
     }
 
@@ -42,7 +43,7 @@ public class HealthcheckResultTest {
      * Test the property 'end'
      */
     @Test
-    public void endTest() {
+    void endTest() {
         // TODO: test end
     }
 
@@ -50,7 +51,7 @@ public class HealthcheckResultTest {
      * Test the property 'exitCode'
      */
     @Test
-    public void exitCodeTest() {
+    void exitCodeTest() {
         // TODO: test exitCode
     }
 
@@ -58,7 +59,7 @@ public class HealthcheckResultTest {
      * Test the property 'output'
      */
     @Test
-    public void outputTest() {
+    void outputTest() {
         // TODO: test output
     }
 
@@ -66,7 +67,7 @@ public class HealthcheckResultTest {
      * Test the property 'start'
      */
     @Test
-    public void startTest() {
+    void startTest() {
         // TODO: test start
     }
 

@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Task
  */
-public class TaskTest {
+class TaskTest {
     private final Task model = new Task();
 
     /**
      * Model tests for Task
      */
     @Test
-    public void testTask() {
+    void testTask() {
         // TODO: test Task
     }
 
@@ -43,7 +44,7 @@ public class TaskTest {
      * Test the property 'endpointID'
      */
     @Test
-    public void endpointIDTest() {
+    void endpointIDTest() {
         // TODO: test endpointID
     }
 
@@ -51,7 +52,7 @@ public class TaskTest {
      * Test the property 'endpointIP'
      */
     @Test
-    public void endpointIPTest() {
+    void endpointIPTest() {
         // TODO: test endpointIP
     }
 
@@ -59,7 +60,7 @@ public class TaskTest {
      * Test the property 'info'
      */
     @Test
-    public void infoTest() {
+    void infoTest() {
         // TODO: test info
     }
 
@@ -67,7 +68,7 @@ public class TaskTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 

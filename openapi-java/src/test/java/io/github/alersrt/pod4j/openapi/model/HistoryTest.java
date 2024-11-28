@@ -13,28 +13,29 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for History
  */
-public class HistoryTest {
+class HistoryTest {
     private final History model = new History();
 
     /**
      * Model tests for History
      */
     @Test
-    public void testHistory() {
+    void testHistory() {
         // TODO: test History
     }
 
@@ -42,7 +43,7 @@ public class HistoryTest {
      * Test the property 'author'
      */
     @Test
-    public void authorTest() {
+    void authorTest() {
         // TODO: test author
     }
 
@@ -50,7 +51,7 @@ public class HistoryTest {
      * Test the property 'comment'
      */
     @Test
-    public void commentTest() {
+    void commentTest() {
         // TODO: test comment
     }
 
@@ -58,7 +59,7 @@ public class HistoryTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -66,7 +67,7 @@ public class HistoryTest {
      * Test the property 'createdBy'
      */
     @Test
-    public void createdByTest() {
+    void createdByTest() {
         // TODO: test createdBy
     }
 
@@ -74,7 +75,7 @@ public class HistoryTest {
      * Test the property 'emptyLayer'
      */
     @Test
-    public void emptyLayerTest() {
+    void emptyLayerTest() {
         // TODO: test emptyLayer
     }
 

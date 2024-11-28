@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PluginConfigArgs.JSON_PROPERTY_SETTABLE,
   PluginConfigArgs.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PluginConfigArgs {
   public static final String JSON_PROPERTY_DESCRIPTION = "Description";
   private String description;
@@ -68,7 +68,7 @@ public class PluginConfigArgs {
    * description
    * @return description
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
@@ -94,7 +94,7 @@ public class PluginConfigArgs {
    * name
    * @return name
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -128,7 +128,7 @@ public class PluginConfigArgs {
    * settable
    * @return settable
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_SETTABLE)
@@ -162,7 +162,7 @@ public class PluginConfigArgs {
    * value
    * @return value
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_VALUE)

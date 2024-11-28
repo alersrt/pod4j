@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.PluginConfig;
 import io.github.alersrt.pod4j.openapi.model.PluginSettings;
-import java.io.IOException;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Plugin
  */
-public class PluginTest {
+class PluginTest {
     private final Plugin model = new Plugin();
 
     /**
      * Model tests for Plugin
      */
     @Test
-    public void testPlugin() {
+    void testPlugin() {
         // TODO: test Plugin
     }
 
@@ -43,7 +44,7 @@ public class PluginTest {
      * Test the property 'config'
      */
     @Test
-    public void configTest() {
+    void configTest() {
         // TODO: test config
     }
 
@@ -51,7 +52,7 @@ public class PluginTest {
      * Test the property 'enabled'
      */
     @Test
-    public void enabledTest() {
+    void enabledTest() {
         // TODO: test enabled
     }
 
@@ -59,7 +60,7 @@ public class PluginTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -67,7 +68,7 @@ public class PluginTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -75,7 +76,7 @@ public class PluginTest {
      * Test the property 'pluginReference'
      */
     @Test
-    public void pluginReferenceTest() {
+    void pluginReferenceTest() {
         // TODO: test pluginReference
     }
 
@@ -83,7 +84,7 @@ public class PluginTest {
      * Test the property 'settings'
      */
     @Test
-    public void settingsTest() {
+    void settingsTest() {
         // TODO: test settings
     }
 

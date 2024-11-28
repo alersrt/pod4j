@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ClusterVolume;
 import io.github.alersrt.pod4j.openapi.model.UsageData;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Volume
  */
-public class VolumeTest {
+class VolumeTest {
     private final Volume model = new Volume();
 
     /**
      * Model tests for Volume
      */
     @Test
-    public void testVolume() {
+    void testVolume() {
         // TODO: test Volume
     }
 
@@ -45,7 +46,7 @@ public class VolumeTest {
      * Test the property 'clusterVolume'
      */
     @Test
-    public void clusterVolumeTest() {
+    void clusterVolumeTest() {
         // TODO: test clusterVolume
     }
 
@@ -53,7 +54,7 @@ public class VolumeTest {
      * Test the property 'createdAt'
      */
     @Test
-    public void createdAtTest() {
+    void createdAtTest() {
         // TODO: test createdAt
     }
 
@@ -61,7 +62,7 @@ public class VolumeTest {
      * Test the property 'driver'
      */
     @Test
-    public void driverTest() {
+    void driverTest() {
         // TODO: test driver
     }
 
@@ -69,7 +70,7 @@ public class VolumeTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -77,7 +78,7 @@ public class VolumeTest {
      * Test the property 'mountpoint'
      */
     @Test
-    public void mountpointTest() {
+    void mountpointTest() {
         // TODO: test mountpoint
     }
 
@@ -85,7 +86,7 @@ public class VolumeTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -93,7 +94,7 @@ public class VolumeTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 
@@ -101,7 +102,7 @@ public class VolumeTest {
      * Test the property 'scope'
      */
     @Test
-    public void scopeTest() {
+    void scopeTest() {
         // TODO: test scope
     }
 
@@ -109,7 +110,7 @@ public class VolumeTest {
      * Test the property 'status'
      */
     @Test
-    public void statusTest() {
+    void statusTest() {
         // TODO: test status
     }
 
@@ -117,7 +118,7 @@ public class VolumeTest {
      * Test the property 'usageData'
      */
     @Test
-    public void usageDataTest() {
+    void usageDataTest() {
         // TODO: test usageData
     }
 

@@ -71,7 +71,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ListContainer.JSON_PROPERTY_STATE,
   ListContainer.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ListContainer {
   public static final String JSON_PROPERTY_AUTO_REMOVE = "AutoRemove";
   private Boolean autoRemove;
@@ -166,7 +166,7 @@ public class ListContainer {
    * AutoRemove
    * @return autoRemove
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -191,7 +191,7 @@ public class ListContainer {
    * CIDFile specified at creation time.
    * @return ciDFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CI_D_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -224,7 +224,7 @@ public class ListContainer {
    * Container command
    * @return command
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -249,7 +249,7 @@ public class ListContainer {
    * Container creation time
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -275,7 +275,7 @@ public class ListContainer {
    * Human-readable container creation time.
    * @return createdAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -300,7 +300,7 @@ public class ListContainer {
    * If container has exited, the return code from the command
    * @return exitCode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -325,7 +325,7 @@ public class ListContainer {
    * If container has exited/stopped
    * @return exited
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXITED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -350,7 +350,7 @@ public class ListContainer {
    * Time container exited
    * @return exitedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXITED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -375,7 +375,7 @@ public class ListContainer {
    * ExposedPorts contains the ports that are exposed but not forwarded, see Ports for forwarded ports. The key is the port number and the string slice contains the protocols, i.e. \&quot;tcp\&quot;, \&quot;udp\&quot; and \&quot;sctp\&quot;.
    * @return exposedPorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXPOSED_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -400,7 +400,7 @@ public class ListContainer {
    * The unique identifier for the container
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -425,7 +425,7 @@ public class ListContainer {
    * Container image
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -450,7 +450,7 @@ public class ListContainer {
    * Container image ID
    * @return imageID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -475,7 +475,7 @@ public class ListContainer {
    * If this container is a Pod infra container
    * @return isInfra
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IS_INFRA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -508,7 +508,7 @@ public class ListContainer {
    * Labels for container
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -541,7 +541,7 @@ public class ListContainer {
    * User volume mounts
    * @return mounts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MOUNTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -574,7 +574,7 @@ public class ListContainer {
    * The names assigned to the container
    * @return names
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAMES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -599,7 +599,7 @@ public class ListContainer {
    * Get namespaces
    * @return namespaces
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NAMESPACES)
@@ -633,7 +633,7 @@ public class ListContainer {
    * The network names assigned to the container
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -658,7 +658,7 @@ public class ListContainer {
    * The process id of the container
    * @return pid
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -683,7 +683,7 @@ public class ListContainer {
    * If the container is part of Pod, the Pod ID. Requires the pod boolean to be set
    * @return pod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -708,7 +708,7 @@ public class ListContainer {
    * If the container is part of Pod, the Pod name. Requires the pod boolean to be set
    * @return podName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -741,7 +741,7 @@ public class ListContainer {
    * Port mappings
    * @return ports
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORTS)
@@ -767,7 +767,7 @@ public class ListContainer {
    * Restarts is how many times the container was restarted by its restart policy. This is NOT incremented by normal container restarts (only by restart policy).
    * @return restarts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTARTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -792,7 +792,7 @@ public class ListContainer {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SIZE)
@@ -818,7 +818,7 @@ public class ListContainer {
    * Time when container started
    * @return startedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STARTED_AT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -843,7 +843,7 @@ public class ListContainer {
    * State of container
    * @return state
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -868,7 +868,7 @@ public class ListContainer {
    * Status is a human-readable approximation of a duration for json output
    * @return status
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

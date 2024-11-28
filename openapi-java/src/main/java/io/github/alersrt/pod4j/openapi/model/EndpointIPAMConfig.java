@@ -13,26 +13,17 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * EndpointIPAMConfig represents IPAM configurations for the endpoint
  */
@@ -41,7 +32,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   EndpointIPAMConfig.JSON_PROPERTY_IPV6_ADDRESS,
   EndpointIPAMConfig.JSON_PROPERTY_LINK_LOCAL_I_PS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class EndpointIPAMConfig {
   public static final String JSON_PROPERTY_IPV4_ADDRESS = "IPv4Address";
   private String ipv4Address;
@@ -64,7 +55,7 @@ public class EndpointIPAMConfig {
    * Get ipv4Address
    * @return ipv4Address
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPV4_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -89,7 +80,7 @@ public class EndpointIPAMConfig {
    * Get ipv6Address
    * @return ipv6Address
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPV6_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -122,7 +113,7 @@ public class EndpointIPAMConfig {
    * Get linkLocalIPs
    * @return linkLocalIPs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINK_LOCAL_I_PS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

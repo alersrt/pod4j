@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxRdma.JSON_PROPERTY_HCA_HANDLES,
   LinuxRdma.JSON_PROPERTY_HCA_OBJECTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxRdma {
   public static final String JSON_PROPERTY_HCA_HANDLES = "hcaHandles";
   private Integer hcaHandles;
@@ -58,7 +58,7 @@ public class LinuxRdma {
    * Maximum number of HCA handles that can be opened. Default is \&quot;no limit\&quot;.
    * @return hcaHandles
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HCA_HANDLES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -83,7 +83,7 @@ public class LinuxRdma {
    * Maximum number of HCA objects that can be created. Default is \&quot;no limit\&quot;.
    * @return hcaObjects
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HCA_OBJECTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

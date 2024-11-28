@@ -48,7 +48,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectExecSession.JSON_PROPERTY_PROCESS_CONFIG,
   InspectExecSession.JSON_PROPERTY_RUNNING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectExecSession {
   public static final String JSON_PROPERTY_CAN_REMOVE = "CanRemove";
   private Boolean canRemove;
@@ -95,7 +95,7 @@ public class InspectExecSession {
    * CanRemove is legacy and used purely for compatibility reasons. Will always be set to true, unless the exec session is running.
    * @return canRemove
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAN_REMOVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -120,7 +120,7 @@ public class InspectExecSession {
    * ContainerID is the ID of the container this exec session is attached to.
    * @return containerID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -145,7 +145,7 @@ public class InspectExecSession {
    * DetachKeys are the detach keys used by the exec session. If set to \&quot;\&quot; the default keys are being used. Will show \&quot;&lt;none&gt;\&quot; if no detach keys are set.
    * @return detachKeys
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -170,7 +170,7 @@ public class InspectExecSession {
    * ExitCode is the exit code of the exec session. Will be set to 0 if the exec session has not yet exited.
    * @return exitCode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -195,7 +195,7 @@ public class InspectExecSession {
    * ID is the ID of the exec session.
    * @return ID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -220,7 +220,7 @@ public class InspectExecSession {
    * OpenStderr is whether the container&#39;s STDERR stream will be attached. Always set to true if the exec session created a TTY.
    * @return openStderr
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPEN_STDERR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -245,7 +245,7 @@ public class InspectExecSession {
    * OpenStdin is whether the container&#39;s STDIN stream will be attached to.
    * @return openStdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPEN_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -270,7 +270,7 @@ public class InspectExecSession {
    * OpenStdout is whether the container&#39;s STDOUT stream will be attached. Always set to true if the exec session created a TTY.
    * @return openStdout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPEN_STDOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -295,7 +295,7 @@ public class InspectExecSession {
    * Pid is the PID of the exec session&#39;s process. Will be set to 0 if the exec session is not running.
    * @return pid
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -320,7 +320,7 @@ public class InspectExecSession {
    * Get processConfig
    * @return processConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PROCESS_CONFIG)
@@ -346,7 +346,7 @@ public class InspectExecSession {
    * Running is whether the exec session is running.
    * @return running
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RUNNING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

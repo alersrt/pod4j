@@ -39,7 +39,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   POSIXRlimit.JSON_PROPERTY_SOFT,
   POSIXRlimit.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class POSIXRlimit {
   public static final String JSON_PROPERTY_HARD = "hard";
   private Integer hard;
@@ -62,7 +62,7 @@ public class POSIXRlimit {
    * Hard is the hard limit for the specified type
    * @return hard
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HARD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -87,7 +87,7 @@ public class POSIXRlimit {
    * Soft is the soft limit for the specified type
    * @return soft
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SOFT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -112,7 +112,7 @@ public class POSIXRlimit {
    * Type of the rlimit to set
    * @return type
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.CPUUsage;
 import io.github.alersrt.pod4j.openapi.model.ConmonInfo;
 import io.github.alersrt.pod4j.openapi.model.DistributionInfo;
@@ -28,26 +28,27 @@ import io.github.alersrt.pod4j.openapi.model.PastaInfo;
 import io.github.alersrt.pod4j.openapi.model.RemoteSocket;
 import io.github.alersrt.pod4j.openapi.model.SecurityInfo;
 import io.github.alersrt.pod4j.openapi.model.SlirpInfo;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for HostInfo
  */
-public class HostInfoTest {
+class HostInfoTest {
     private final HostInfo model = new HostInfo();
 
     /**
      * Model tests for HostInfo
      */
     @Test
-    public void testHostInfo() {
+    void testHostInfo() {
         // TODO: test HostInfo
     }
 
@@ -55,7 +56,7 @@ public class HostInfoTest {
      * Test the property 'arch'
      */
     @Test
-    public void archTest() {
+    void archTest() {
         // TODO: test arch
     }
 
@@ -63,7 +64,7 @@ public class HostInfoTest {
      * Test the property 'buildahVersion'
      */
     @Test
-    public void buildahVersionTest() {
+    void buildahVersionTest() {
         // TODO: test buildahVersion
     }
 
@@ -71,7 +72,7 @@ public class HostInfoTest {
      * Test the property 'cgroupControllers'
      */
     @Test
-    public void cgroupControllersTest() {
+    void cgroupControllersTest() {
         // TODO: test cgroupControllers
     }
 
@@ -79,7 +80,7 @@ public class HostInfoTest {
      * Test the property 'cgroupManager'
      */
     @Test
-    public void cgroupManagerTest() {
+    void cgroupManagerTest() {
         // TODO: test cgroupManager
     }
 
@@ -87,7 +88,7 @@ public class HostInfoTest {
      * Test the property 'cgroupVersion'
      */
     @Test
-    public void cgroupVersionTest() {
+    void cgroupVersionTest() {
         // TODO: test cgroupVersion
     }
 
@@ -95,7 +96,7 @@ public class HostInfoTest {
      * Test the property 'conmon'
      */
     @Test
-    public void conmonTest() {
+    void conmonTest() {
         // TODO: test conmon
     }
 
@@ -103,7 +104,7 @@ public class HostInfoTest {
      * Test the property 'cpuUtilization'
      */
     @Test
-    public void cpuUtilizationTest() {
+    void cpuUtilizationTest() {
         // TODO: test cpuUtilization
     }
 
@@ -111,7 +112,7 @@ public class HostInfoTest {
      * Test the property 'cpus'
      */
     @Test
-    public void cpusTest() {
+    void cpusTest() {
         // TODO: test cpus
     }
 
@@ -119,7 +120,7 @@ public class HostInfoTest {
      * Test the property 'databaseBackend'
      */
     @Test
-    public void databaseBackendTest() {
+    void databaseBackendTest() {
         // TODO: test databaseBackend
     }
 
@@ -127,7 +128,7 @@ public class HostInfoTest {
      * Test the property 'distribution'
      */
     @Test
-    public void distributionTest() {
+    void distributionTest() {
         // TODO: test distribution
     }
 
@@ -135,7 +136,7 @@ public class HostInfoTest {
      * Test the property 'eventLogger'
      */
     @Test
-    public void eventLoggerTest() {
+    void eventLoggerTest() {
         // TODO: test eventLogger
     }
 
@@ -143,7 +144,7 @@ public class HostInfoTest {
      * Test the property 'freeLocks'
      */
     @Test
-    public void freeLocksTest() {
+    void freeLocksTest() {
         // TODO: test freeLocks
     }
 
@@ -151,7 +152,7 @@ public class HostInfoTest {
      * Test the property 'hostname'
      */
     @Test
-    public void hostnameTest() {
+    void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -159,7 +160,7 @@ public class HostInfoTest {
      * Test the property 'idMappings'
      */
     @Test
-    public void idMappingsTest() {
+    void idMappingsTest() {
         // TODO: test idMappings
     }
 
@@ -167,7 +168,7 @@ public class HostInfoTest {
      * Test the property 'kernel'
      */
     @Test
-    public void kernelTest() {
+    void kernelTest() {
         // TODO: test kernel
     }
 
@@ -175,7 +176,7 @@ public class HostInfoTest {
      * Test the property 'linkmode'
      */
     @Test
-    public void linkmodeTest() {
+    void linkmodeTest() {
         // TODO: test linkmode
     }
 
@@ -183,7 +184,7 @@ public class HostInfoTest {
      * Test the property 'logDriver'
      */
     @Test
-    public void logDriverTest() {
+    void logDriverTest() {
         // TODO: test logDriver
     }
 
@@ -191,7 +192,7 @@ public class HostInfoTest {
      * Test the property 'memFree'
      */
     @Test
-    public void memFreeTest() {
+    void memFreeTest() {
         // TODO: test memFree
     }
 
@@ -199,7 +200,7 @@ public class HostInfoTest {
      * Test the property 'memTotal'
      */
     @Test
-    public void memTotalTest() {
+    void memTotalTest() {
         // TODO: test memTotal
     }
 
@@ -207,7 +208,7 @@ public class HostInfoTest {
      * Test the property 'networkBackend'
      */
     @Test
-    public void networkBackendTest() {
+    void networkBackendTest() {
         // TODO: test networkBackend
     }
 
@@ -215,7 +216,7 @@ public class HostInfoTest {
      * Test the property 'networkBackendInfo'
      */
     @Test
-    public void networkBackendInfoTest() {
+    void networkBackendInfoTest() {
         // TODO: test networkBackendInfo
     }
 
@@ -223,7 +224,7 @@ public class HostInfoTest {
      * Test the property 'ociRuntime'
      */
     @Test
-    public void ociRuntimeTest() {
+    void ociRuntimeTest() {
         // TODO: test ociRuntime
     }
 
@@ -231,7 +232,7 @@ public class HostInfoTest {
      * Test the property 'os'
      */
     @Test
-    public void osTest() {
+    void osTest() {
         // TODO: test os
     }
 
@@ -239,7 +240,7 @@ public class HostInfoTest {
      * Test the property 'pasta'
      */
     @Test
-    public void pastaTest() {
+    void pastaTest() {
         // TODO: test pasta
     }
 
@@ -247,7 +248,7 @@ public class HostInfoTest {
      * Test the property 'remoteSocket'
      */
     @Test
-    public void remoteSocketTest() {
+    void remoteSocketTest() {
         // TODO: test remoteSocket
     }
 
@@ -255,7 +256,7 @@ public class HostInfoTest {
      * Test the property 'rootlessNetworkCmd'
      */
     @Test
-    public void rootlessNetworkCmdTest() {
+    void rootlessNetworkCmdTest() {
         // TODO: test rootlessNetworkCmd
     }
 
@@ -263,7 +264,7 @@ public class HostInfoTest {
      * Test the property 'runtimeInfo'
      */
     @Test
-    public void runtimeInfoTest() {
+    void runtimeInfoTest() {
         // TODO: test runtimeInfo
     }
 
@@ -271,7 +272,7 @@ public class HostInfoTest {
      * Test the property 'security'
      */
     @Test
-    public void securityTest() {
+    void securityTest() {
         // TODO: test security
     }
 
@@ -279,7 +280,7 @@ public class HostInfoTest {
      * Test the property 'serviceIsRemote'
      */
     @Test
-    public void serviceIsRemoteTest() {
+    void serviceIsRemoteTest() {
         // TODO: test serviceIsRemote
     }
 
@@ -287,7 +288,7 @@ public class HostInfoTest {
      * Test the property 'slirp4netns'
      */
     @Test
-    public void slirp4netnsTest() {
+    void slirp4netnsTest() {
         // TODO: test slirp4netns
     }
 
@@ -295,7 +296,7 @@ public class HostInfoTest {
      * Test the property 'swapFree'
      */
     @Test
-    public void swapFreeTest() {
+    void swapFreeTest() {
         // TODO: test swapFree
     }
 
@@ -303,7 +304,7 @@ public class HostInfoTest {
      * Test the property 'swapTotal'
      */
     @Test
-    public void swapTotalTest() {
+    void swapTotalTest() {
         // TODO: test swapTotal
     }
 
@@ -311,7 +312,7 @@ public class HostInfoTest {
      * Test the property 'uptime'
      */
     @Test
-    public void uptimeTest() {
+    void uptimeTest() {
         // TODO: test uptime
     }
 
@@ -319,7 +320,7 @@ public class HostInfoTest {
      * Test the property 'variant'
      */
     @Test
-    public void variantTest() {
+    void variantTest() {
         // TODO: test variant
     }
 

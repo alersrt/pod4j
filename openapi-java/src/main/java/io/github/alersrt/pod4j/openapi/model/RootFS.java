@@ -40,7 +40,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   RootFS.JSON_PROPERTY_LAYERS,
   RootFS.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class RootFS {
   public static final String JSON_PROPERTY_LAYERS = "Layers";
   private List<String> layers = new ArrayList<>();
@@ -68,7 +68,7 @@ public class RootFS {
    * Get layers
    * @return layers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LAYERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -93,7 +93,7 @@ public class RootFS {
    * Get type
    * @return type
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

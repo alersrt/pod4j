@@ -13,37 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.DeviceMapping;
-import io.github.alersrt.pod4j.openapi.model.DeviceRequest;
-import io.github.alersrt.pod4j.openapi.model.LogConfig;
-import io.github.alersrt.pod4j.openapi.model.Mount;
-import io.github.alersrt.pod4j.openapi.model.PortBinding;
-import io.github.alersrt.pod4j.openapi.model.RestartPolicy;
-import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.Ulimit;
-import io.github.alersrt.pod4j.openapi.model.WeightDevice;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Here, \&quot;non-portable\&quot; means \&quot;dependent of the host we are running on\&quot;. Portable information *should* appear in Config.
  */
@@ -120,7 +103,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   HostConfig.JSON_PROPERTY_VOLUME_DRIVER,
   HostConfig.JSON_PROPERTY_VOLUMES_FROM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class HostConfig {
   public static final String JSON_PROPERTY_ANNOTATIONS = "Annotations";
   private Map<String, String> annotations = new HashMap<>();
@@ -355,7 +338,7 @@ public class HostConfig {
    * Get annotations
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -380,7 +363,7 @@ public class HostConfig {
    * Get autoRemove
    * @return autoRemove
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUTO_REMOVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -413,7 +396,7 @@ public class HostConfig {
    * Applicable to all platforms
    * @return binds
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BINDS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -446,7 +429,7 @@ public class HostConfig {
    * Get blkioDeviceReadBps
    * @return blkioDeviceReadBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
@@ -480,7 +463,7 @@ public class HostConfig {
    * Get blkioDeviceReadIOps
    * @return blkioDeviceReadIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
@@ -514,7 +497,7 @@ public class HostConfig {
    * Get blkioDeviceWriteBps
    * @return blkioDeviceWriteBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
@@ -548,7 +531,7 @@ public class HostConfig {
    * Get blkioDeviceWriteIOps
    * @return blkioDeviceWriteIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
@@ -574,7 +557,7 @@ public class HostConfig {
    * Get blkioWeight
    * @return blkioWeight
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -607,7 +590,7 @@ public class HostConfig {
    * Get blkioWeightDevice
    * @return blkioWeightDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
@@ -641,7 +624,7 @@ public class HostConfig {
    * We need to override the json decoder to accept both options.
    * @return capAdd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAP_ADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -674,7 +657,7 @@ public class HostConfig {
    * We need to override the json decoder to accept both options.
    * @return capDrop
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAP_DROP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -699,7 +682,7 @@ public class HostConfig {
    * Get cgroup
    * @return cgroup
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -724,7 +707,7 @@ public class HostConfig {
    * Applicable to UNIX platforms
    * @return cgroupParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -749,7 +732,7 @@ public class HostConfig {
    * CgroupnsMode represents the cgroup namespace mode of the container
    * @return cgroupnsMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUPNS_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -782,7 +765,7 @@ public class HostConfig {
    * Get consoleSize
    * @return consoleSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONSOLE_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -807,7 +790,7 @@ public class HostConfig {
    * Get containerIDFile
    * @return containerIDFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_I_D_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -832,7 +815,7 @@ public class HostConfig {
    * Applicable to Windows
    * @return cpuCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -857,7 +840,7 @@ public class HostConfig {
    * Get cpuPercent
    * @return cpuPercent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -882,7 +865,7 @@ public class HostConfig {
    * Get cpuPeriod
    * @return cpuPeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -907,7 +890,7 @@ public class HostConfig {
    * Get cpuQuota
    * @return cpuQuota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -932,7 +915,7 @@ public class HostConfig {
    * Get cpuRealtimePeriod
    * @return cpuRealtimePeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -957,7 +940,7 @@ public class HostConfig {
    * Get cpuRealtimeRuntime
    * @return cpuRealtimeRuntime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -982,7 +965,7 @@ public class HostConfig {
    * Applicable to all platforms
    * @return cpuShares
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_SHARES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1007,7 +990,7 @@ public class HostConfig {
    * Get cpusetCpus
    * @return cpusetCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1032,7 +1015,7 @@ public class HostConfig {
    * Get cpusetMems
    * @return cpusetMems
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1065,7 +1048,7 @@ public class HostConfig {
    * Get deviceCgroupRules
    * @return deviceCgroupRules
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1098,7 +1081,7 @@ public class HostConfig {
    * Get deviceRequests
    * @return deviceRequests
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICE_REQUESTS)
@@ -1132,7 +1115,7 @@ public class HostConfig {
    * Get devices
    * @return devices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICES)
@@ -1166,7 +1149,7 @@ public class HostConfig {
    * Get dns
    * @return dns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1199,7 +1182,7 @@ public class HostConfig {
    * Get dnsOptions
    * @return dnsOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1232,7 +1215,7 @@ public class HostConfig {
    * Get dnsSearch
    * @return dnsSearch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1265,7 +1248,7 @@ public class HostConfig {
    * Get extraHosts
    * @return extraHosts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXTRA_HOSTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1298,7 +1281,7 @@ public class HostConfig {
    * Get groupAdd
    * @return groupAdd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GROUP_ADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1323,7 +1306,7 @@ public class HostConfig {
    * Get ioMaximumBandwidth
    * @return ioMaximumBandwidth
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1348,7 +1331,7 @@ public class HostConfig {
    * Get ioMaximumIOps
    * @return ioMaximumIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1373,7 +1356,7 @@ public class HostConfig {
    * Run a custom init inside the container, if null, use the daemon&#39;s configured settings
    * @return init
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1398,7 +1381,7 @@ public class HostConfig {
    * Get ipcMode
    * @return ipcMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPC_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1423,7 +1406,7 @@ public class HostConfig {
    * Isolation represents the isolation technology of a container. The supported values are platform specific
    * @return isolation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ISOLATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1448,7 +1431,7 @@ public class HostConfig {
    * KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.
    * @return kernelMemory
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1473,7 +1456,7 @@ public class HostConfig {
    * Get kernelMemoryTCP
    * @return kernelMemoryTCP
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY_T_C_P)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1506,7 +1489,7 @@ public class HostConfig {
    * Get links
    * @return links
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1531,7 +1514,7 @@ public class HostConfig {
    * Get logConfig
    * @return logConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_LOG_CONFIG)
@@ -1565,7 +1548,7 @@ public class HostConfig {
    * MaskedPaths is the list of paths to be masked inside the container (this overrides the default set of paths)
    * @return maskedPaths
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MASKED_PATHS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1590,7 +1573,7 @@ public class HostConfig {
    * Get memory
    * @return memory
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1615,7 +1598,7 @@ public class HostConfig {
    * Get memoryReservation
    * @return memoryReservation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1640,7 +1623,7 @@ public class HostConfig {
    * Get memorySwap
    * @return memorySwap
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1665,7 +1648,7 @@ public class HostConfig {
    * Get memorySwappiness
    * @return memorySwappiness
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1698,7 +1681,7 @@ public class HostConfig {
    * Mounts specs used by the container
    * @return mounts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MOUNTS)
@@ -1724,7 +1707,7 @@ public class HostConfig {
    * Get nanoCpus
    * @return nanoCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NANO_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1749,7 +1732,7 @@ public class HostConfig {
    * Get networkMode
    * @return networkMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1774,7 +1757,7 @@ public class HostConfig {
    * Get oomKillDisable
    * @return oomKillDisable
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1799,7 +1782,7 @@ public class HostConfig {
    * Get oomScoreAdj
    * @return oomScoreAdj
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1824,7 +1807,7 @@ public class HostConfig {
    * Get pidMode
    * @return pidMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1849,7 +1832,7 @@ public class HostConfig {
    * Get pidsLimit
    * @return pidsLimit
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1882,7 +1865,7 @@ public class HostConfig {
    * PortMap is a collection of PortBinding indexed by Port
    * @return portBindings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORT_BINDINGS)
@@ -1908,7 +1891,7 @@ public class HostConfig {
    * Get privileged
    * @return privileged
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PRIVILEGED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1933,7 +1916,7 @@ public class HostConfig {
    * Get publishAllPorts
    * @return publishAllPorts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PUBLISH_ALL_PORTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1966,7 +1949,7 @@ public class HostConfig {
    * ReadonlyPaths is the list of paths to be set as read-only inside the container (this overrides the default set of paths)
    * @return readonlyPaths
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READONLY_PATHS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1991,7 +1974,7 @@ public class HostConfig {
    * Get readonlyRootfs
    * @return readonlyRootfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_READONLY_ROOTFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2016,7 +1999,7 @@ public class HostConfig {
    * Get restartPolicy
    * @return restartPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
@@ -2042,7 +2025,7 @@ public class HostConfig {
    * Get runtime
    * @return runtime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2075,7 +2058,7 @@ public class HostConfig {
    * Get securityOpt
    * @return securityOpt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2100,7 +2083,7 @@ public class HostConfig {
    * Get shmSize
    * @return shmSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHM_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2133,7 +2116,7 @@ public class HostConfig {
    * Get storageOpt
    * @return storageOpt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STORAGE_OPT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2166,7 +2149,7 @@ public class HostConfig {
    * Get sysctls
    * @return sysctls
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSCTLS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2199,7 +2182,7 @@ public class HostConfig {
    * Get tmpfs
    * @return tmpfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TMPFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2224,7 +2207,7 @@ public class HostConfig {
    * Get utSMode
    * @return utSMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UT_S_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2257,7 +2240,7 @@ public class HostConfig {
    * Get ulimits
    * @return ulimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ULIMITS)
@@ -2283,7 +2266,7 @@ public class HostConfig {
    * Get usernsMode
    * @return usernsMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USERNS_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2308,7 +2291,7 @@ public class HostConfig {
    * Get volumeDriver
    * @return volumeDriver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUME_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -2341,7 +2324,7 @@ public class HostConfig {
    * Get volumesFrom
    * @return volumesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

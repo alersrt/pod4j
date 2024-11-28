@@ -45,7 +45,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Info.JSON_PROPERTY_VOLUME_CONTEXT,
   Info.JSON_PROPERTY_VOLUME_I_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Info {
   public static final String JSON_PROPERTY_ACCESSIBLE_TOPOLOGY = "AccessibleTopology";
   private List<@Valid Topology> accessibleTopology = new ArrayList<>();
@@ -79,7 +79,7 @@ public class Info {
    * AccessibleTopology is the topology this volume is actually accessible from.
    * @return accessibleTopology
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ACCESSIBLE_TOPOLOGY)
@@ -105,7 +105,7 @@ public class Info {
    * CapacityBytes is the capacity of the volume in bytes. A value of 0 indicates that the capacity is unknown.
    * @return capacityBytes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAPACITY_BYTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -138,7 +138,7 @@ public class Info {
    * VolumeContext is the context originating from the CSI storage plugin when the Volume is created.
    * @return volumeContext
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUME_CONTEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -163,7 +163,7 @@ public class Info {
    * VolumeID is the ID of the Volume as seen by the CSI storage plugin. This is distinct from the Volume&#39;s Swarm ID, which is the ID used by all of the Docker Engine to refer to the Volume. If this field is blank, then the Volume has not been successfully created yet.
    * @return volumeID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUME_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

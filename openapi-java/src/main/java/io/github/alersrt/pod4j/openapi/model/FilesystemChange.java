@@ -13,24 +13,16 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.constraints.NotNull;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * FilesystemChange
  */
@@ -38,7 +30,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   FilesystemChange.JSON_PROPERTY_KIND,
   FilesystemChange.JSON_PROPERTY_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class FilesystemChange {
   public static final String JSON_PROPERTY_KIND = "Kind";
   private Integer kind;
@@ -58,7 +50,7 @@ public class FilesystemChange {
    * Can be one of:  &#x60;0&#x60;: Modified (\&quot;C\&quot;) &#x60;1&#x60;: Added (\&quot;A\&quot;) &#x60;2&#x60;: Deleted (\&quot;D\&quot;)
    * @return kind
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_KIND)
@@ -84,7 +76,7 @@ public class FilesystemChange {
    * Path to file or directory that has changed.
    * @return path
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_PATH)

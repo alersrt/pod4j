@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerNode
  */
-public class ContainerNodeTest {
+class ContainerNodeTest {
     private final ContainerNode model = new ContainerNode();
 
     /**
      * Model tests for ContainerNode
      */
     @Test
-    public void testContainerNode() {
+    void testContainerNode() {
         // TODO: test ContainerNode
     }
 
@@ -43,7 +44,7 @@ public class ContainerNodeTest {
      * Test the property 'addr'
      */
     @Test
-    public void addrTest() {
+    void addrTest() {
         // TODO: test addr
     }
 
@@ -51,7 +52,7 @@ public class ContainerNodeTest {
      * Test the property 'cpus'
      */
     @Test
-    public void cpusTest() {
+    void cpusTest() {
         // TODO: test cpus
     }
 
@@ -59,7 +60,7 @@ public class ContainerNodeTest {
      * Test the property 'ID'
      */
     @Test
-    public void IDTest() {
+    void IDTest() {
         // TODO: test ID
     }
 
@@ -67,7 +68,7 @@ public class ContainerNodeTest {
      * Test the property 'IP'
      */
     @Test
-    public void IPTest() {
+    void IPTest() {
         // TODO: test IP
     }
 
@@ -75,7 +76,7 @@ public class ContainerNodeTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -83,7 +84,7 @@ public class ContainerNodeTest {
      * Test the property 'memory'
      */
     @Test
-    public void memoryTest() {
+    void memoryTest() {
         // TODO: test memory
     }
 
@@ -91,7 +92,7 @@ public class ContainerNodeTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 

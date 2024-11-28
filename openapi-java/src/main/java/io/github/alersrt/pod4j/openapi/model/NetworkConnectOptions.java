@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   NetworkConnectOptions.JSON_PROPERTY_STATIC_IPS,
   NetworkConnectOptions.JSON_PROPERTY_STATIC_MAC
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetworkConnectOptions {
   public static final String JSON_PROPERTY_ALIASES = "aliases";
   private List<String> aliases = new ArrayList<>();
@@ -80,7 +80,7 @@ public class NetworkConnectOptions {
    * Aliases contains a list of names which the dns server should resolve to this container. Should only be set when DNSEnabled is true on the Network. If aliases are set but there is no dns support for this network the network interface implementation should ignore this and NOT error. Optional.
    * @return aliases
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ALIASES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -105,7 +105,7 @@ public class NetworkConnectOptions {
    * Get container
    * @return container
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -130,7 +130,7 @@ public class NetworkConnectOptions {
    * InterfaceName for this container. Required in the backend. Optional in the frontend. Will be filled with ethX (where X is a integer) when empty.
    * @return interfaceName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INTERFACE_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -163,7 +163,7 @@ public class NetworkConnectOptions {
    * StaticIPs for this container. Optional.
    * @return staticIps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATIC_IPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -188,7 +188,7 @@ public class NetworkConnectOptions {
    * StaticMac for this container. Optional.
    * @return staticMac
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATIC_MAC)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

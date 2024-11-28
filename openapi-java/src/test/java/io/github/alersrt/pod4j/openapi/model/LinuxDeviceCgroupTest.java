@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxDeviceCgroup
  */
-public class LinuxDeviceCgroupTest {
+class LinuxDeviceCgroupTest {
     private final LinuxDeviceCgroup model = new LinuxDeviceCgroup();
 
     /**
      * Model tests for LinuxDeviceCgroup
      */
     @Test
-    public void testLinuxDeviceCgroup() {
+    void testLinuxDeviceCgroup() {
         // TODO: test LinuxDeviceCgroup
     }
 
@@ -41,7 +42,7 @@ public class LinuxDeviceCgroupTest {
      * Test the property 'access'
      */
     @Test
-    public void accessTest() {
+    void accessTest() {
         // TODO: test access
     }
 
@@ -49,7 +50,7 @@ public class LinuxDeviceCgroupTest {
      * Test the property 'allow'
      */
     @Test
-    public void allowTest() {
+    void allowTest() {
         // TODO: test allow
     }
 
@@ -57,7 +58,7 @@ public class LinuxDeviceCgroupTest {
      * Test the property 'major'
      */
     @Test
-    public void majorTest() {
+    void majorTest() {
         // TODO: test major
     }
 
@@ -65,7 +66,7 @@ public class LinuxDeviceCgroupTest {
      * Test the property 'minor'
      */
     @Test
-    public void minorTest() {
+    void minorTest() {
         // TODO: test minor
     }
 
@@ -73,7 +74,7 @@ public class LinuxDeviceCgroupTest {
      * Test the property 'type'
      */
     @Test
-    public void typeTest() {
+    void typeTest() {
         // TODO: test type
     }
 

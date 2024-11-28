@@ -13,28 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+
+import java.util.NoSuchElementException;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LibpodContainersRmReport
  */
-public class LibpodContainersRmReportTest {
+class LibpodContainersRmReportTest {
     private final LibpodContainersRmReport model = new LibpodContainersRmReport();
 
     /**
      * Model tests for LibpodContainersRmReport
      */
     @Test
-    public void testLibpodContainersRmReport() {
+    void testLibpodContainersRmReport() {
         // TODO: test LibpodContainersRmReport
     }
 
@@ -42,7 +47,7 @@ public class LibpodContainersRmReportTest {
      * Test the property 'err'
      */
     @Test
-    public void errTest() {
+    void errTest() {
         // TODO: test err
     }
 
@@ -50,7 +55,7 @@ public class LibpodContainersRmReportTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 

@@ -13,31 +13,32 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LibpodImageSummary
  */
-public class LibpodImageSummaryTest {
+class LibpodImageSummaryTest {
     private final LibpodImageSummary model = new LibpodImageSummary();
 
     /**
      * Model tests for LibpodImageSummary
      */
     @Test
-    public void testLibpodImageSummary() {
+    void testLibpodImageSummary() {
         // TODO: test LibpodImageSummary
     }
 
@@ -45,7 +46,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'arch'
      */
     @Test
-    public void archTest() {
+    void archTest() {
         // TODO: test arch
     }
 
@@ -53,7 +54,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'containers'
      */
     @Test
-    public void containersTest() {
+    void containersTest() {
         // TODO: test containers
     }
 
@@ -61,7 +62,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -69,7 +70,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'dangling'
      */
     @Test
-    public void danglingTest() {
+    void danglingTest() {
         // TODO: test dangling
     }
 
@@ -77,7 +78,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'digest'
      */
     @Test
-    public void digestTest() {
+    void digestTest() {
         // TODO: test digest
     }
 
@@ -85,7 +86,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'history'
      */
     @Test
-    public void historyTest() {
+    void historyTest() {
         // TODO: test history
     }
 
@@ -93,7 +94,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -101,7 +102,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'isManifestList'
      */
     @Test
-    public void isManifestListTest() {
+    void isManifestListTest() {
         // TODO: test isManifestList
     }
 
@@ -109,7 +110,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -117,7 +118,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'names'
      */
     @Test
-    public void namesTest() {
+    void namesTest() {
         // TODO: test names
     }
 
@@ -125,7 +126,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'os'
      */
     @Test
-    public void osTest() {
+    void osTest() {
         // TODO: test os
     }
 
@@ -133,7 +134,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'parentId'
      */
     @Test
-    public void parentIdTest() {
+    void parentIdTest() {
         // TODO: test parentId
     }
 
@@ -141,7 +142,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'readOnly'
      */
     @Test
-    public void readOnlyTest() {
+    void readOnlyTest() {
         // TODO: test readOnly
     }
 
@@ -149,7 +150,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'repoDigests'
      */
     @Test
-    public void repoDigestsTest() {
+    void repoDigestsTest() {
         // TODO: test repoDigests
     }
 
@@ -157,7 +158,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'repoTags'
      */
     @Test
-    public void repoTagsTest() {
+    void repoTagsTest() {
         // TODO: test repoTags
     }
 
@@ -165,7 +166,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'sharedSize'
      */
     @Test
-    public void sharedSizeTest() {
+    void sharedSizeTest() {
         // TODO: test sharedSize
     }
 
@@ -173,7 +174,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 
@@ -181,7 +182,7 @@ public class LibpodImageSummaryTest {
      * Test the property 'virtualSize'
      */
     @Test
-    public void virtualSizeTest() {
+    void virtualSizeTest() {
         // TODO: test virtualSize
     }
 

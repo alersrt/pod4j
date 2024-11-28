@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.LinuxInterfacePriority;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LinuxNetwork
  */
-public class LinuxNetworkTest {
+class LinuxNetworkTest {
     private final LinuxNetwork model = new LinuxNetwork();
 
     /**
      * Model tests for LinuxNetwork
      */
     @Test
-    public void testLinuxNetwork() {
+    void testLinuxNetwork() {
         // TODO: test LinuxNetwork
     }
 
@@ -44,7 +45,7 @@ public class LinuxNetworkTest {
      * Test the property 'classID'
      */
     @Test
-    public void classIDTest() {
+    void classIDTest() {
         // TODO: test classID
     }
 
@@ -52,7 +53,7 @@ public class LinuxNetworkTest {
      * Test the property 'priorities'
      */
     @Test
-    public void prioritiesTest() {
+    void prioritiesTest() {
         // TODO: test priorities
     }
 

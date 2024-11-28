@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectRestartPolicy.JSON_PROPERTY_MAXIMUM_RETRY_COUNT,
   InspectRestartPolicy.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectRestartPolicy {
   public static final String JSON_PROPERTY_MAXIMUM_RETRY_COUNT = "MaximumRetryCount";
   private Integer maximumRetryCount;
@@ -58,7 +58,7 @@ public class InspectRestartPolicy {
    * MaximumRetryCount is the maximum number of retries allowed if the \&quot;on-failure\&quot; restart policy is in use. Not used if \&quot;on-failure\&quot; is not set.
    * @return maximumRetryCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAXIMUM_RETRY_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -83,7 +83,7 @@ public class InspectRestartPolicy {
    * Name contains the container&#39;s restart policy. Allowable values are \&quot;no\&quot; or \&quot;\&quot; (take no action), \&quot;on-failure\&quot; (restart on non-zero exit code, with an optional max retry count), and \&quot;always\&quot; (always restart on container stop, unless explicitly requested by API). Note that this is NOT actually a name of any sort - the poor naming is for Docker compatibility.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

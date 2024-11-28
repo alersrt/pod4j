@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   PortBinding.JSON_PROPERTY_HOST_IP,
   PortBinding.JSON_PROPERTY_HOST_PORT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class PortBinding {
   public static final String JSON_PROPERTY_HOST_IP = "HostIp";
   private String hostIp;
@@ -58,7 +58,7 @@ public class PortBinding {
    * HostIP is the host IP Address
    * @return hostIp
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOST_IP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -83,7 +83,7 @@ public class PortBinding {
    * HostPort is the host port number
    * @return hostPort
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOST_PORT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

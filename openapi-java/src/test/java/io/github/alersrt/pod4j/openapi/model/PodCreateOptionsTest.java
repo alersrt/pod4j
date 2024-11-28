@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.NetOptions;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PodCreateOptions
  */
-public class PodCreateOptionsTest {
+class PodCreateOptionsTest {
     private final PodCreateOptions model = new PodCreateOptions();
 
     /**
      * Model tests for PodCreateOptions
      */
     @Test
-    public void testPodCreateOptions() {
+    void testPodCreateOptions() {
         // TODO: test PodCreateOptions
     }
 
@@ -46,7 +47,7 @@ public class PodCreateOptionsTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    public void cgroupParentTest() {
+    void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -54,7 +55,7 @@ public class PodCreateOptionsTest {
      * Test the property 'containerCommand'
      */
     @Test
-    public void containerCommandTest() {
+    void containerCommandTest() {
         // TODO: test containerCommand
     }
 
@@ -62,7 +63,7 @@ public class PodCreateOptionsTest {
      * Test the property 'containerConmonPidfile'
      */
     @Test
-    public void containerConmonPidfileTest() {
+    void containerConmonPidfileTest() {
         // TODO: test containerConmonPidfile
     }
 
@@ -70,7 +71,7 @@ public class PodCreateOptionsTest {
      * Test the property 'containerName'
      */
     @Test
-    public void containerNameTest() {
+    void containerNameTest() {
         // TODO: test containerName
     }
 
@@ -78,7 +79,7 @@ public class PodCreateOptionsTest {
      * Test the property 'cpus'
      */
     @Test
-    public void cpusTest() {
+    void cpusTest() {
         // TODO: test cpus
     }
 
@@ -86,7 +87,7 @@ public class PodCreateOptionsTest {
      * Test the property 'cpusetCpus'
      */
     @Test
-    public void cpusetCpusTest() {
+    void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
@@ -94,7 +95,7 @@ public class PodCreateOptionsTest {
      * Test the property 'createCommand'
      */
     @Test
-    public void createCommandTest() {
+    void createCommandTest() {
         // TODO: test createCommand
     }
 
@@ -102,7 +103,7 @@ public class PodCreateOptionsTest {
      * Test the property 'deviceReadBps'
      */
     @Test
-    public void deviceReadBpsTest() {
+    void deviceReadBpsTest() {
         // TODO: test deviceReadBps
     }
 
@@ -110,7 +111,7 @@ public class PodCreateOptionsTest {
      * Test the property 'devices'
      */
     @Test
-    public void devicesTest() {
+    void devicesTest() {
         // TODO: test devices
     }
 
@@ -118,7 +119,7 @@ public class PodCreateOptionsTest {
      * Test the property 'exitPolicy'
      */
     @Test
-    public void exitPolicyTest() {
+    void exitPolicyTest() {
         // TODO: test exitPolicy
     }
 
@@ -126,7 +127,7 @@ public class PodCreateOptionsTest {
      * Test the property 'hostname'
      */
     @Test
-    public void hostnameTest() {
+    void hostnameTest() {
         // TODO: test hostname
     }
 
@@ -134,7 +135,7 @@ public class PodCreateOptionsTest {
      * Test the property 'infra'
      */
     @Test
-    public void infraTest() {
+    void infraTest() {
         // TODO: test infra
     }
 
@@ -142,7 +143,7 @@ public class PodCreateOptionsTest {
      * Test the property 'infraImage'
      */
     @Test
-    public void infraImageTest() {
+    void infraImageTest() {
         // TODO: test infraImage
     }
 
@@ -150,7 +151,7 @@ public class PodCreateOptionsTest {
      * Test the property 'ipc'
      */
     @Test
-    public void ipcTest() {
+    void ipcTest() {
         // TODO: test ipc
     }
 
@@ -158,7 +159,7 @@ public class PodCreateOptionsTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -166,7 +167,7 @@ public class PodCreateOptionsTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -174,7 +175,7 @@ public class PodCreateOptionsTest {
      * Test the property 'net'
      */
     @Test
-    public void netTest() {
+    void netTest() {
         // TODO: test net
     }
 
@@ -182,7 +183,7 @@ public class PodCreateOptionsTest {
      * Test the property 'pid'
      */
     @Test
-    public void pidTest() {
+    void pidTest() {
         // TODO: test pid
     }
 
@@ -190,7 +191,7 @@ public class PodCreateOptionsTest {
      * Test the property 'restart'
      */
     @Test
-    public void restartTest() {
+    void restartTest() {
         // TODO: test restart
     }
 
@@ -198,7 +199,7 @@ public class PodCreateOptionsTest {
      * Test the property 'securityOpt'
      */
     @Test
-    public void securityOptTest() {
+    void securityOptTest() {
         // TODO: test securityOpt
     }
 
@@ -206,7 +207,7 @@ public class PodCreateOptionsTest {
      * Test the property 'share'
      */
     @Test
-    public void shareTest() {
+    void shareTest() {
         // TODO: test share
     }
 
@@ -214,7 +215,7 @@ public class PodCreateOptionsTest {
      * Test the property 'shareParent'
      */
     @Test
-    public void shareParentTest() {
+    void shareParentTest() {
         // TODO: test shareParent
     }
 
@@ -222,7 +223,7 @@ public class PodCreateOptionsTest {
      * Test the property 'sysctl'
      */
     @Test
-    public void sysctlTest() {
+    void sysctlTest() {
         // TODO: test sysctl
     }
 
@@ -230,7 +231,7 @@ public class PodCreateOptionsTest {
      * Test the property 'uts'
      */
     @Test
-    public void utsTest() {
+    void utsTest() {
         // TODO: test uts
     }
 
@@ -238,7 +239,7 @@ public class PodCreateOptionsTest {
      * Test the property 'volume'
      */
     @Test
-    public void volumeTest() {
+    void volumeTest() {
         // TODO: test volume
     }
 
@@ -246,7 +247,7 @@ public class PodCreateOptionsTest {
      * Test the property 'volumesFrom'
      */
     @Test
-    public void volumesFromTest() {
+    void volumesFromTest() {
         // TODO: test volumesFrom
     }
 

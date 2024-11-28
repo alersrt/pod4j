@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Platform
  */
-public class PlatformTest {
+class PlatformTest {
     private final Platform model = new Platform();
 
     /**
      * Model tests for Platform
      */
     @Test
-    public void testPlatform() {
+    void testPlatform() {
         // TODO: test Platform
     }
 
@@ -43,7 +44,7 @@ public class PlatformTest {
      * Test the property 'architecture'
      */
     @Test
-    public void architectureTest() {
+    void architectureTest() {
         // TODO: test architecture
     }
 
@@ -51,7 +52,7 @@ public class PlatformTest {
      * Test the property 'os'
      */
     @Test
-    public void osTest() {
+    void osTest() {
         // TODO: test os
     }
 
@@ -59,7 +60,7 @@ public class PlatformTest {
      * Test the property 'osFeatures'
      */
     @Test
-    public void osFeaturesTest() {
+    void osFeaturesTest() {
         // TODO: test osFeatures
     }
 
@@ -67,7 +68,7 @@ public class PlatformTest {
      * Test the property 'osVersion'
      */
     @Test
-    public void osVersionTest() {
+    void osVersionTest() {
         // TODO: test osVersion
     }
 
@@ -75,7 +76,7 @@ public class PlatformTest {
      * Test the property 'variant'
      */
     @Test
-    public void variantTest() {
+    void variantTest() {
         // TODO: test variant
     }
 

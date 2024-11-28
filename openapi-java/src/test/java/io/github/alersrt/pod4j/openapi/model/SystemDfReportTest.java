@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.SystemDfContainerReport;
 import io.github.alersrt.pod4j.openapi.model.SystemDfImageReport;
 import io.github.alersrt.pod4j.openapi.model.SystemDfVolumeReport;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SystemDfReport
  */
-public class SystemDfReportTest {
+class SystemDfReportTest {
     private final SystemDfReport model = new SystemDfReport();
 
     /**
      * Model tests for SystemDfReport
      */
     @Test
-    public void testSystemDfReport() {
+    void testSystemDfReport() {
         // TODO: test SystemDfReport
     }
 
@@ -46,7 +47,7 @@ public class SystemDfReportTest {
      * Test the property 'containers'
      */
     @Test
-    public void containersTest() {
+    void containersTest() {
         // TODO: test containers
     }
 
@@ -54,7 +55,7 @@ public class SystemDfReportTest {
      * Test the property 'images'
      */
     @Test
-    public void imagesTest() {
+    void imagesTest() {
         // TODO: test images
     }
 
@@ -62,7 +63,7 @@ public class SystemDfReportTest {
      * Test the property 'imagesSize'
      */
     @Test
-    public void imagesSizeTest() {
+    void imagesSizeTest() {
         // TODO: test imagesSize
     }
 
@@ -70,7 +71,7 @@ public class SystemDfReportTest {
      * Test the property 'volumes'
      */
     @Test
-    public void volumesTest() {
+    void volumesTest() {
         // TODO: test volumes
     }
 

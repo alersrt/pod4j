@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectLogConfig
  */
-public class InspectLogConfigTest {
+class InspectLogConfigTest {
     private final InspectLogConfig model = new InspectLogConfig();
 
     /**
      * Model tests for InspectLogConfig
      */
     @Test
-    public void testInspectLogConfig() {
+    void testInspectLogConfig() {
         // TODO: test InspectLogConfig
     }
 
@@ -43,7 +44,7 @@ public class InspectLogConfigTest {
      * Test the property 'config'
      */
     @Test
-    public void configTest() {
+    void configTest() {
         // TODO: test config
     }
 
@@ -51,7 +52,7 @@ public class InspectLogConfigTest {
      * Test the property 'path'
      */
     @Test
-    public void pathTest() {
+    void pathTest() {
         // TODO: test path
     }
 
@@ -59,7 +60,7 @@ public class InspectLogConfigTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 
@@ -67,7 +68,7 @@ public class InspectLogConfigTest {
      * Test the property 'tag'
      */
     @Test
-    public void tagTest() {
+    void tagTest() {
         // TODO: test tag
     }
 
@@ -75,7 +76,7 @@ public class InspectLogConfigTest {
      * Test the property 'type'
      */
     @Test
-    public void typeTest() {
+    void typeTest() {
         // TODO: test type
     }
 

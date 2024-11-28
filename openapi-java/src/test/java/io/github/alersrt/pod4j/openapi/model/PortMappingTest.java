@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PortMapping
  */
-public class PortMappingTest {
+class PortMappingTest {
     private final PortMapping model = new PortMapping();
 
     /**
      * Model tests for PortMapping
      */
     @Test
-    public void testPortMapping() {
+    void testPortMapping() {
         // TODO: test PortMapping
     }
 
@@ -41,7 +42,7 @@ public class PortMappingTest {
      * Test the property 'containerPort'
      */
     @Test
-    public void containerPortTest() {
+    void containerPortTest() {
         // TODO: test containerPort
     }
 
@@ -49,7 +50,7 @@ public class PortMappingTest {
      * Test the property 'hostIp'
      */
     @Test
-    public void hostIpTest() {
+    void hostIpTest() {
         // TODO: test hostIp
     }
 
@@ -57,7 +58,7 @@ public class PortMappingTest {
      * Test the property 'hostPort'
      */
     @Test
-    public void hostPortTest() {
+    void hostPortTest() {
         // TODO: test hostPort
     }
 
@@ -65,7 +66,7 @@ public class PortMappingTest {
      * Test the property 'protocol'
      */
     @Test
-    public void protocolTest() {
+    void protocolTest() {
         // TODO: test protocol
     }
 
@@ -73,7 +74,7 @@ public class PortMappingTest {
      * Test the property 'range'
      */
     @Test
-    public void rangeTest() {
+    void rangeTest() {
         // TODO: test range
     }
 

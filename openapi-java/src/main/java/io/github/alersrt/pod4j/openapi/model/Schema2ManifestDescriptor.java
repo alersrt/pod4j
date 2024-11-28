@@ -44,7 +44,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Schema2ManifestDescriptor.JSON_PROPERTY_SIZE,
   Schema2ManifestDescriptor.JSON_PROPERTY_URLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Schema2ManifestDescriptor {
   public static final String JSON_PROPERTY_DIGEST = "digest";
   private String digest;
@@ -73,7 +73,7 @@ public class Schema2ManifestDescriptor {
    * The following is an example of the contents of Digest types:  sha256:7173b809ca12ec5dee4506cd86be934c4596dd234ee82c0662eac04a8c2c71dc  This allows to abstract the digest behind this type and work only in those terms.
    * @return digest
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DIGEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -98,7 +98,7 @@ public class Schema2ManifestDescriptor {
    * Get mediaType
    * @return mediaType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEDIA_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -123,7 +123,7 @@ public class Schema2ManifestDescriptor {
    * Get platform
    * @return platform
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PLATFORM)
@@ -149,7 +149,7 @@ public class Schema2ManifestDescriptor {
    * Get size
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -182,7 +182,7 @@ public class Schema2ManifestDescriptor {
    * Get urls
    * @return urls
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_URLS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

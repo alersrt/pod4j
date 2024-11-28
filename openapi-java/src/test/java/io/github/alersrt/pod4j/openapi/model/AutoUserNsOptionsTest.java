@@ -13,30 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.IDMap;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for AutoUserNsOptions
  */
-public class AutoUserNsOptionsTest {
+class AutoUserNsOptionsTest {
     private final AutoUserNsOptions model = new AutoUserNsOptions();
 
     /**
      * Model tests for AutoUserNsOptions
      */
     @Test
-    public void testAutoUserNsOptions() {
+    void testAutoUserNsOptions() {
         // TODO: test AutoUserNsOptions
     }
 
@@ -44,7 +45,7 @@ public class AutoUserNsOptionsTest {
      * Test the property 'additionalGIDMappings'
      */
     @Test
-    public void additionalGIDMappingsTest() {
+    void additionalGIDMappingsTest() {
         // TODO: test additionalGIDMappings
     }
 
@@ -52,7 +53,7 @@ public class AutoUserNsOptionsTest {
      * Test the property 'additionalUIDMappings'
      */
     @Test
-    public void additionalUIDMappingsTest() {
+    void additionalUIDMappingsTest() {
         // TODO: test additionalUIDMappings
     }
 
@@ -60,7 +61,7 @@ public class AutoUserNsOptionsTest {
      * Test the property 'groupFile'
      */
     @Test
-    public void groupFileTest() {
+    void groupFileTest() {
         // TODO: test groupFile
     }
 
@@ -68,7 +69,7 @@ public class AutoUserNsOptionsTest {
      * Test the property 'initialSize'
      */
     @Test
-    public void initialSizeTest() {
+    void initialSizeTest() {
         // TODO: test initialSize
     }
 
@@ -76,7 +77,7 @@ public class AutoUserNsOptionsTest {
      * Test the property 'passwdFile'
      */
     @Test
-    public void passwdFileTest() {
+    void passwdFileTest() {
         // TODO: test passwdFile
     }
 
@@ -84,7 +85,7 @@ public class AutoUserNsOptionsTest {
      * Test the property 'size'
      */
     @Test
-    public void sizeTest() {
+    void sizeTest() {
         // TODO: test size
     }
 

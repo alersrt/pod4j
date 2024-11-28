@@ -82,7 +82,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectPodData.JSON_PROPERTY_SECURITY_OPT,
   InspectPodData.JSON_PROPERTY_VOLUMES_FROM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectPodData {
   public static final String JSON_PROPERTY_CGROUP_PARENT = "CgroupParent";
   private String cgroupParent;
@@ -201,7 +201,7 @@ public class InspectPodData {
    * CgroupParent is the parent of the pod&#39;s Cgroup.
    * @return cgroupParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -226,7 +226,7 @@ public class InspectPodData {
    * CgroupPath is the path to the pod&#39;s Cgroup.
    * @return cgroupPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -259,7 +259,7 @@ public class InspectPodData {
    * Containers gives a brief summary of all containers in the pod and their current status.
    * @return containers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONTAINERS)
@@ -285,7 +285,7 @@ public class InspectPodData {
    * CreateCgroup is whether this pod will create its own Cgroup to group containers under.
    * @return createCgroup
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATE_CGROUP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -318,7 +318,7 @@ public class InspectPodData {
    * CreateCommand is the full command plus arguments of the process the container has been created with.
    * @return createCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATE_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -343,7 +343,7 @@ public class InspectPodData {
    * CreateInfra is whether this pod will create an infra container to share namespaces.
    * @return createInfra
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATE_INFRA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -368,7 +368,7 @@ public class InspectPodData {
    * Created is the time when the pod was created.
    * @return created
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CREATED)
@@ -394,7 +394,7 @@ public class InspectPodData {
    * ExitPolicy of the pod.
    * @return exitPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -419,7 +419,7 @@ public class InspectPodData {
    * Hostname is the hostname that the pod will set.
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -444,7 +444,7 @@ public class InspectPodData {
    * ID is the ID of the pod.
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -469,7 +469,7 @@ public class InspectPodData {
    * Get infraConfig
    * @return infraConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_INFRA_CONFIG)
@@ -495,7 +495,7 @@ public class InspectPodData {
    * InfraContainerID is the ID of the pod&#39;s infra container, if one is present.
    * @return infraContainerID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INFRA_CONTAINER_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -528,7 +528,7 @@ public class InspectPodData {
    * Labels is a set of key-value labels that have been applied to the pod.
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -553,7 +553,7 @@ public class InspectPodData {
    * Number of the pod&#39;s Libpod lock.
    * @return lockNumber
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LOCK_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -578,7 +578,7 @@ public class InspectPodData {
    * Name is the name of the pod.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -603,7 +603,7 @@ public class InspectPodData {
    * Namespace is the Libpod namespace the pod is placed in.
    * @return namespace
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAMESPACE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -628,7 +628,7 @@ public class InspectPodData {
    * NumContainers is the number of containers in the pod, including the infra container.
    * @return numContainers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NUM_CONTAINERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -653,7 +653,7 @@ public class InspectPodData {
    * RestartPolicy of the pod.
    * @return restartPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -686,7 +686,7 @@ public class InspectPodData {
    * SharedNamespaces contains a list of namespaces that will be shared by containers within the pod. Can only be set if CreateInfra is true.
    * @return sharedNamespaces
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHARED_NAMESPACES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -711,7 +711,7 @@ public class InspectPodData {
    * State represents the current state of the pod.
    * @return state
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -736,7 +736,7 @@ public class InspectPodData {
    * BlkioWeight contains the blkio weight limit for the pod
    * @return blkioWeight
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -769,7 +769,7 @@ public class InspectPodData {
    * BlkioWeightDevice contains the blkio weight device limits for the pod
    * @return blkioWeightDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
@@ -795,7 +795,7 @@ public class InspectPodData {
    * CPUPeriod contains the CPU period of the pod
    * @return cpuPeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -820,7 +820,7 @@ public class InspectPodData {
    * CPUQuota contains the CPU quota of the pod
    * @return cpuQuota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -845,7 +845,7 @@ public class InspectPodData {
    * CPUShares contains the cpu shares for the pod
    * @return cpuShares
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_SHARES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -870,7 +870,7 @@ public class InspectPodData {
    * CPUSetCPUs contains linux specific CPU data for the pod
    * @return cpusetCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -895,7 +895,7 @@ public class InspectPodData {
    * CPUSetMems contains linux specific CPU data for the pod
    * @return cpusetMems
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -928,7 +928,7 @@ public class InspectPodData {
    * BlkioDeviceReadBps contains the Read/Access limit for the pod&#39;s devices
    * @return deviceReadBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICE_READ_BPS)
@@ -962,7 +962,7 @@ public class InspectPodData {
    * BlkioDeviceReadBps contains the Read/Access limit for the pod&#39;s devices
    * @return deviceWriteBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICE_WRITE_BPS)
@@ -996,7 +996,7 @@ public class InspectPodData {
    * Devices contains the specified host devices
    * @return devices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICES)
@@ -1022,7 +1022,7 @@ public class InspectPodData {
    * MemoryLimit contains the specified cgroup memory limit for the pod
    * @return memoryLimit
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1047,7 +1047,7 @@ public class InspectPodData {
    * MemorySwap contains the specified memory swap limit for the pod
    * @return memorySwap
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1080,7 +1080,7 @@ public class InspectPodData {
    * Mounts contains volume related information for the pod
    * @return mounts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MOUNTS)
@@ -1114,7 +1114,7 @@ public class InspectPodData {
    * SecurityOpt contains the specified security labels and related SELinux information
    * @return securityOpt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECURITY_OPT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1147,7 +1147,7 @@ public class InspectPodData {
    * VolumesFrom contains the containers that the pod inherits mounts from
    * @return volumesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

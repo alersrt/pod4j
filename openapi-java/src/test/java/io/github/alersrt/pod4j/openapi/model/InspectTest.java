@@ -13,37 +13,38 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ConfigReference;
 import io.github.alersrt.pod4j.openapi.model.EndpointResource;
 import io.github.alersrt.pod4j.openapi.model.IPAM;
 import io.github.alersrt.pod4j.openapi.model.PeerInfo;
 import io.github.alersrt.pod4j.openapi.model.ServiceInfo;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for Inspect
  */
-public class InspectTest {
+class InspectTest {
     private final Inspect model = new Inspect();
 
     /**
      * Model tests for Inspect
      */
     @Test
-    public void testInspect() {
+    void testInspect() {
         // TODO: test Inspect
     }
 
@@ -51,7 +52,7 @@ public class InspectTest {
      * Test the property 'attachable'
      */
     @Test
-    public void attachableTest() {
+    void attachableTest() {
         // TODO: test attachable
     }
 
@@ -59,7 +60,7 @@ public class InspectTest {
      * Test the property 'configFrom'
      */
     @Test
-    public void configFromTest() {
+    void configFromTest() {
         // TODO: test configFrom
     }
 
@@ -67,7 +68,7 @@ public class InspectTest {
      * Test the property 'configOnly'
      */
     @Test
-    public void configOnlyTest() {
+    void configOnlyTest() {
         // TODO: test configOnly
     }
 
@@ -75,7 +76,7 @@ public class InspectTest {
      * Test the property 'containers'
      */
     @Test
-    public void containersTest() {
+    void containersTest() {
         // TODO: test containers
     }
 
@@ -83,7 +84,7 @@ public class InspectTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -91,7 +92,7 @@ public class InspectTest {
      * Test the property 'driver'
      */
     @Test
-    public void driverTest() {
+    void driverTest() {
         // TODO: test driver
     }
 
@@ -99,7 +100,7 @@ public class InspectTest {
      * Test the property 'enableIPv6'
      */
     @Test
-    public void enableIPv6Test() {
+    void enableIPv6Test() {
         // TODO: test enableIPv6
     }
 
@@ -107,7 +108,7 @@ public class InspectTest {
      * Test the property 'ipam'
      */
     @Test
-    public void ipamTest() {
+    void ipamTest() {
         // TODO: test ipam
     }
 
@@ -115,7 +116,7 @@ public class InspectTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -123,7 +124,7 @@ public class InspectTest {
      * Test the property 'ingress'
      */
     @Test
-    public void ingressTest() {
+    void ingressTest() {
         // TODO: test ingress
     }
 
@@ -131,7 +132,7 @@ public class InspectTest {
      * Test the property 'internal'
      */
     @Test
-    public void internalTest() {
+    void internalTest() {
         // TODO: test internal
     }
 
@@ -139,7 +140,7 @@ public class InspectTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -147,7 +148,7 @@ public class InspectTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -155,7 +156,7 @@ public class InspectTest {
      * Test the property 'options'
      */
     @Test
-    public void optionsTest() {
+    void optionsTest() {
         // TODO: test options
     }
 
@@ -163,7 +164,7 @@ public class InspectTest {
      * Test the property 'peers'
      */
     @Test
-    public void peersTest() {
+    void peersTest() {
         // TODO: test peers
     }
 
@@ -171,7 +172,7 @@ public class InspectTest {
      * Test the property 'scope'
      */
     @Test
-    public void scopeTest() {
+    void scopeTest() {
         // TODO: test scope
     }
 
@@ -179,7 +180,7 @@ public class InspectTest {
      * Test the property 'services'
      */
     @Test
-    public void servicesTest() {
+    void servicesTest() {
         // TODO: test services
     }
 

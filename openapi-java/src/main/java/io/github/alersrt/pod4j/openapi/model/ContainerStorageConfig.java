@@ -13,36 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ImageVolume;
-import io.github.alersrt.pod4j.openapi.model.LinuxDevice;
-import io.github.alersrt.pod4j.openapi.model.LinuxDeviceCgroup;
-import io.github.alersrt.pod4j.openapi.model.Mount;
-import io.github.alersrt.pod4j.openapi.model.NamedVolume;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
-import io.github.alersrt.pod4j.openapi.model.OverlayVolume;
-import io.github.alersrt.pod4j.openapi.model.Secret;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerStorageConfig contains information on the storage configuration of a container.
  */
@@ -78,7 +62,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerStorageConfig.JSON_PROPERTY_VOLUMES_FROM,
   ContainerStorageConfig.JSON_PROPERTY_WORK_DIR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerStorageConfig {
   public static final String JSON_PROPERTY_CHROOT_DIRECTORIES = "chroot_directories";
   private List<String> chrootDirectories = new ArrayList<>();
@@ -190,7 +174,7 @@ public class ContainerStorageConfig {
    * ChrootDirs is an additional set of directories that need to be treated as root directories. Standard bind mounts will be mounted into paths relative to these directories. Optional.
    * @return chrootDirectories
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CHROOT_DIRECTORIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -215,7 +199,7 @@ public class ContainerStorageConfig {
    * Create the working directory if it doesn&#39;t exist. If unset, it doesn&#39;t create it. Optional.
    * @return createWorkingDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CREATE_WORKING_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -248,7 +232,7 @@ public class ContainerStorageConfig {
    * DeviceCgroupRule are device cgroup rules that allow containers to use additional types of devices.
    * @return deviceCgroupRule
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULE)
@@ -282,7 +266,7 @@ public class ContainerStorageConfig {
    * Devices are devices that will be added to the container. Optional.
    * @return devices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICES)
@@ -316,7 +300,7 @@ public class ContainerStorageConfig {
    * DevicesFrom specifies that this container will mount the device(s) from other container(s). Optional.
    * @return devicesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEVICES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -349,7 +333,7 @@ public class ContainerStorageConfig {
    * HostDeviceList is used to recreate the mounted device on inherited containers
    * @return hostDeviceList
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HOST_DEVICE_LIST)
@@ -375,7 +359,7 @@ public class ContainerStorageConfig {
    * Image is the image the container will be based on. The image will be used as the container&#39;s root filesystem, and its environment vars, volumes, and other configuration will be applied to the container. Conflicts with Rootfs. At least one of Image or Rootfs must be specified.
    * @return image
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -400,7 +384,7 @@ public class ContainerStorageConfig {
    * ImageArch is the user-specified image architecture. Used to select a different variant from a manifest list. Optional.
    * @return imageArch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_ARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -425,7 +409,7 @@ public class ContainerStorageConfig {
    * ImageOS is the user-specified OS of the image. Used to select a different variant from a manifest list. Optional.
    * @return imageOs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -450,7 +434,7 @@ public class ContainerStorageConfig {
    * ImageVariant is the user-specified image variant. Used to select a different variant from a manifest list. Optional.
    * @return imageVariant
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_VARIANT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -475,7 +459,7 @@ public class ContainerStorageConfig {
    * ImageVolumeMode indicates how image volumes will be created. Supported modes are \&quot;ignore\&quot; (do not create), \&quot;tmpfs\&quot; (create as tmpfs), and \&quot;anonymous\&quot; (create as anonymous volumes). The default if unset is anonymous. Optional.
    * @return imageVolumeMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_VOLUME_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -508,7 +492,7 @@ public class ContainerStorageConfig {
    * Image volumes bind-mount a container-image mount into the container. Optional.
    * @return imageVolumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IMAGE_VOLUMES)
@@ -534,7 +518,7 @@ public class ContainerStorageConfig {
    * Init specifies that an init binary will be mounted into the container, and will be used as PID1. Optional.
    * @return init
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -559,7 +543,7 @@ public class ContainerStorageConfig {
    * InitPath specifies the path to the init binary that will be added if Init is specified above. If not specified, the default set in the Libpod config will be used. Ignored if Init above is not set. Optional.
    * @return initPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -584,7 +568,7 @@ public class ContainerStorageConfig {
    * Get ipcns
    * @return ipcns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IPCNS)
@@ -618,7 +602,7 @@ public class ContainerStorageConfig {
    * Mounts are mounts that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return mounts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MOUNTS)
@@ -652,7 +636,7 @@ public class ContainerStorageConfig {
    * Overlay volumes are named volumes that will be added to the container. Optional.
    * @return overlayVolumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_OVERLAY_VOLUMES)
@@ -678,7 +662,7 @@ public class ContainerStorageConfig {
    * RawImageName is the user-specified and unprocessed input referring to a local or a remote image. Optional, but strongly encouraged to be set if Image is set.
    * @return rawImageName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RAW_IMAGE_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -703,7 +687,7 @@ public class ContainerStorageConfig {
    * Rootfs is the path to a directory that will be used as the container&#39;s root filesystem. No modification will be made to the directory, it will be directly mounted into the container as root. Conflicts with Image. At least one of Image or Rootfs must be specified.
    * @return rootfs
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -728,7 +712,7 @@ public class ContainerStorageConfig {
    * RootfsMapping specifies if there are UID/GID mappings to apply to the rootfs. Optional.
    * @return rootfsMapping
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS_MAPPING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -753,7 +737,7 @@ public class ContainerStorageConfig {
    * RootfsOverlay tells if rootfs is actually an overlay on top of base path. Optional.
    * @return rootfsOverlay
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS_OVERLAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -778,7 +762,7 @@ public class ContainerStorageConfig {
    * RootfsPropagation is the rootfs propagation mode for the container. If not set, the default of rslave will be used. Optional.
    * @return rootfsPropagation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTFS_PROPAGATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -811,7 +795,7 @@ public class ContainerStorageConfig {
    * Secrets are the secrets that will be added to the container Optional.
    * @return secrets
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECRETS)
@@ -837,7 +821,7 @@ public class ContainerStorageConfig {
    * ShmSize is the size of the tmpfs to mount in at /dev/shm, in bytes. Conflicts with ShmSize if IpcNS is not private. Optional.
    * @return shmSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHM_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -862,7 +846,7 @@ public class ContainerStorageConfig {
    * ShmSizeSystemd is the size of systemd-specific tmpfs mounts specifically /run, /run/lock, /var/log/journal and /tmp. Optional
    * @return shmSizeSystemd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SHM_SIZE_SYSTEMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -895,7 +879,7 @@ public class ContainerStorageConfig {
    * StorageOpts is the container&#39;s storage options Optional.
    * @return storageOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STORAGE_OPTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -920,7 +904,7 @@ public class ContainerStorageConfig {
    * Volatile specifies whether the container storage can be optimized at the cost of not syncing all the dirty files in memory. Optional.
    * @return _volatile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLATILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -953,7 +937,7 @@ public class ContainerStorageConfig {
    * Volumes are named volumes that will be added to the container. These will supersede Image Volumes and VolumesFrom volumes where there are conflicts. Optional.
    * @return volumes
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_VOLUMES)
@@ -987,7 +971,7 @@ public class ContainerStorageConfig {
    * VolumesFrom is a set of containers whose volumes will be added to this container. The name or ID of the container must be provided, and may optionally be followed by a : and then one or more comma-separated options. Valid options are &#39;ro&#39;, &#39;rw&#39;, and &#39;z&#39;. Options will be used for all volumes sourced from the container. Optional.
    * @return volumesFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUMES_FROM)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1012,7 +996,7 @@ public class ContainerStorageConfig {
    * WorkDir is the container&#39;s working directory. If unset, the default, /, will be used. Optional.
    * @return workDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WORK_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

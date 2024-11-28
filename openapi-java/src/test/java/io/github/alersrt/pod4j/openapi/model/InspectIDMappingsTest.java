@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectIDMappings
  */
-public class InspectIDMappingsTest {
+class InspectIDMappingsTest {
     private final InspectIDMappings model = new InspectIDMappings();
 
     /**
      * Model tests for InspectIDMappings
      */
     @Test
-    public void testInspectIDMappings() {
+    void testInspectIDMappings() {
         // TODO: test InspectIDMappings
     }
 
@@ -43,7 +44,7 @@ public class InspectIDMappingsTest {
      * Test the property 'gidMap'
      */
     @Test
-    public void gidMapTest() {
+    void gidMapTest() {
         // TODO: test gidMap
     }
 
@@ -51,7 +52,7 @@ public class InspectIDMappingsTest {
      * Test the property 'uidMap'
      */
     @Test
-    public void uidMapTest() {
+    void uidMapTest() {
         // TODO: test uidMap
     }
 

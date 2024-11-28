@@ -13,28 +13,18 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.ConfigReference;
-import io.github.alersrt.pod4j.openapi.model.IPAM;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * CreateRequest
  */
@@ -53,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   CreateRequest.JSON_PROPERTY_OPTIONS,
   CreateRequest.JSON_PROPERTY_SCOPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class CreateRequest {
   public static final String JSON_PROPERTY_ATTACHABLE = "Attachable";
   private Boolean attachable;
@@ -106,7 +96,7 @@ public class CreateRequest {
    * Get attachable
    * @return attachable
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACHABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -131,7 +121,7 @@ public class CreateRequest {
    * Deprecated: CheckDuplicate is deprecated since API v1.44, but it defaults to true when sent by the client package to older daemons.
    * @return checkDuplicate
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CHECK_DUPLICATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -156,7 +146,7 @@ public class CreateRequest {
    * Get configFrom
    * @return configFrom
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONFIG_FROM)
@@ -182,7 +172,7 @@ public class CreateRequest {
    * Get configOnly
    * @return configOnly
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONFIG_ONLY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -207,7 +197,7 @@ public class CreateRequest {
    * Get driver
    * @return driver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -232,7 +222,7 @@ public class CreateRequest {
    * Get enableIPv6
    * @return enableIPv6
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENABLE_I_PV6)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -257,7 +247,7 @@ public class CreateRequest {
    * Get ipam
    * @return ipam
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_I_P_A_M)
@@ -283,7 +273,7 @@ public class CreateRequest {
    * Get ingress
    * @return ingress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INGRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -308,7 +298,7 @@ public class CreateRequest {
    * Get internal
    * @return internal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INTERNAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -341,7 +331,7 @@ public class CreateRequest {
    * Get labels
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -366,7 +356,7 @@ public class CreateRequest {
    * Get name
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -399,7 +389,7 @@ public class CreateRequest {
    * Get options
    * @return options
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -424,7 +414,7 @@ public class CreateRequest {
    * Get scope
    * @return scope
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SCOPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,24 +13,16 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.constraints.Min;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ErrorModel is used in remote connections with podman
  */
@@ -39,7 +31,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ErrorModel.JSON_PROPERTY_MESSAGE,
   ErrorModel.JSON_PROPERTY_RESPONSE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ErrorModel {
   public static final String JSON_PROPERTY_CAUSE = "cause";
   private String cause;
@@ -62,7 +54,7 @@ public class ErrorModel {
    * API root cause formatted for automated parsing
    * @return cause
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CAUSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -87,7 +79,7 @@ public class ErrorModel {
    * human error message, formatted for a human to read
    * @return message
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MESSAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -113,7 +105,7 @@ public class ErrorModel {
    * minimum: 400
    * @return response
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
  @Min(400L)
   @JsonProperty(JSON_PROPERTY_RESPONSE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -57,7 +57,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxResources.JSON_PROPERTY_RDMA,
   LinuxResources.JSON_PROPERTY_UNIFIED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxResources {
   public static final String JSON_PROPERTY_BLOCK_I_O = "blockIO";
   private LinuxBlockIO blockIO;
@@ -98,7 +98,7 @@ public class LinuxResources {
    * Get blockIO
    * @return blockIO
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLOCK_I_O)
@@ -124,7 +124,7 @@ public class LinuxResources {
    * Get cpu
    * @return cpu
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CPU)
@@ -158,7 +158,7 @@ public class LinuxResources {
    * Devices configures the device allowlist.
    * @return devices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICES)
@@ -192,7 +192,7 @@ public class LinuxResources {
    * Hugetlb limits (in bytes). Default to reservation limits if supported.
    * @return hugepageLimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HUGEPAGE_LIMITS)
@@ -218,7 +218,7 @@ public class LinuxResources {
    * Get memory
    * @return memory
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_MEMORY)
@@ -244,7 +244,7 @@ public class LinuxResources {
    * Get network
    * @return network
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK)
@@ -270,7 +270,7 @@ public class LinuxResources {
    * Get pids
    * @return pids
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PIDS)
@@ -304,7 +304,7 @@ public class LinuxResources {
    * Rdma resource restriction configuration. Limits are a set of key value pairs that define RDMA resource limits, where the key is device name and value is resource limits.
    * @return rdma
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RDMA)
@@ -338,7 +338,7 @@ public class LinuxResources {
    * Unified resources.
    * @return unified
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNIFIED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

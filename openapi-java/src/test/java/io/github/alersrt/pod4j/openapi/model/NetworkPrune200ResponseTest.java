@@ -13,29 +13,30 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for NetworkPrune200Response
  */
-public class NetworkPrune200ResponseTest {
+class NetworkPrune200ResponseTest {
     private final NetworkPrune200Response model = new NetworkPrune200Response();
 
     /**
      * Model tests for NetworkPrune200Response
      */
     @Test
-    public void testNetworkPrune200Response() {
+    void testNetworkPrune200Response() {
         // TODO: test NetworkPrune200Response
     }
 
@@ -43,7 +44,7 @@ public class NetworkPrune200ResponseTest {
      * Test the property 'networksDeleted'
      */
     @Test
-    public void networksDeletedTest() {
+    void networksDeletedTest() {
         // TODO: test networksDeleted
     }
 

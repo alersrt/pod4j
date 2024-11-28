@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for AuthConfig
  */
-public class AuthConfigTest {
+class AuthConfigTest {
     private final AuthConfig model = new AuthConfig();
 
     /**
      * Model tests for AuthConfig
      */
     @Test
-    public void testAuthConfig() {
+    void testAuthConfig() {
         // TODO: test AuthConfig
     }
 
@@ -41,7 +42,7 @@ public class AuthConfigTest {
      * Test the property 'auth'
      */
     @Test
-    public void authTest() {
+    void authTest() {
         // TODO: test auth
     }
 
@@ -49,7 +50,7 @@ public class AuthConfigTest {
      * Test the property 'email'
      */
     @Test
-    public void emailTest() {
+    void emailTest() {
         // TODO: test email
     }
 
@@ -57,7 +58,7 @@ public class AuthConfigTest {
      * Test the property 'identitytoken'
      */
     @Test
-    public void identitytokenTest() {
+    void identitytokenTest() {
         // TODO: test identitytoken
     }
 
@@ -65,7 +66,7 @@ public class AuthConfigTest {
      * Test the property 'password'
      */
     @Test
-    public void passwordTest() {
+    void passwordTest() {
         // TODO: test password
     }
 
@@ -73,7 +74,7 @@ public class AuthConfigTest {
      * Test the property 'registrytoken'
      */
     @Test
-    public void registrytokenTest() {
+    void registrytokenTest() {
         // TODO: test registrytoken
     }
 
@@ -81,7 +82,7 @@ public class AuthConfigTest {
      * Test the property 'serveraddress'
      */
     @Test
-    public void serveraddressTest() {
+    void serveraddressTest() {
         // TODO: test serveraddress
     }
 
@@ -89,7 +90,7 @@ public class AuthConfigTest {
      * Test the property 'username'
      */
     @Test
-    public void usernameTest() {
+    void usernameTest() {
         // TODO: test username
     }
 

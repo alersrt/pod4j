@@ -54,7 +54,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   NetOptions.JSON_PROPERTY_NO_MANAGE_RESOLV_CONF,
   NetOptions.JSON_PROPERTY_PORTMAPPINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class NetOptions {
   public static final String JSON_PROPERTY_DNS_OPTION = "dns_option";
   private List<String> dnsOption = new ArrayList<>();
@@ -109,7 +109,7 @@ public class NetOptions {
    * Get dnsOption
    * @return dnsOption
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_OPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -142,7 +142,7 @@ public class NetOptions {
    * Get dnsSearch
    * @return dnsSearch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SEARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -175,7 +175,7 @@ public class NetOptions {
    * Get dnsServer
    * @return dnsServer
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DNS_SERVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -208,7 +208,7 @@ public class NetOptions {
    * Get hostadd
    * @return hostadd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTADD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -233,7 +233,7 @@ public class NetOptions {
    * Get netns
    * @return netns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETNS)
@@ -267,7 +267,7 @@ public class NetOptions {
    * Get networkAlias
    * @return networkAlias
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_ALIAS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -300,7 +300,7 @@ public class NetOptions {
    * NetworkOptions are additional options for each network
    * @return networkOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_OPTIONS)
@@ -334,7 +334,7 @@ public class NetOptions {
    * Get networks
    * @return networks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORKS)
@@ -360,7 +360,7 @@ public class NetOptions {
    * Get noManageHosts
    * @return noManageHosts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_MANAGE_HOSTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -385,7 +385,7 @@ public class NetOptions {
    * Get noManageResolvConf
    * @return noManageResolvConf
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NO_MANAGE_RESOLV_CONF)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -418,7 +418,7 @@ public class NetOptions {
    * Get portmappings
    * @return portmappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PORTMAPPINGS)

@@ -13,35 +13,36 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.DeviceMapping;
 import io.github.alersrt.pod4j.openapi.model.DeviceRequest;
 import io.github.alersrt.pod4j.openapi.model.RestartPolicy;
 import io.github.alersrt.pod4j.openapi.model.ThrottleDevice;
 import io.github.alersrt.pod4j.openapi.model.Ulimit;
 import io.github.alersrt.pod4j.openapi.model.WeightDevice;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for UpdateConfig
  */
-public class UpdateConfigTest {
+class UpdateConfigTest {
     private final UpdateConfig model = new UpdateConfig();
 
     /**
      * Model tests for UpdateConfig
      */
     @Test
-    public void testUpdateConfig() {
+    void testUpdateConfig() {
         // TODO: test UpdateConfig
     }
 
@@ -49,7 +50,7 @@ public class UpdateConfigTest {
      * Test the property 'blkioDeviceReadBps'
      */
     @Test
-    public void blkioDeviceReadBpsTest() {
+    void blkioDeviceReadBpsTest() {
         // TODO: test blkioDeviceReadBps
     }
 
@@ -57,7 +58,7 @@ public class UpdateConfigTest {
      * Test the property 'blkioDeviceReadIOps'
      */
     @Test
-    public void blkioDeviceReadIOpsTest() {
+    void blkioDeviceReadIOpsTest() {
         // TODO: test blkioDeviceReadIOps
     }
 
@@ -65,7 +66,7 @@ public class UpdateConfigTest {
      * Test the property 'blkioDeviceWriteBps'
      */
     @Test
-    public void blkioDeviceWriteBpsTest() {
+    void blkioDeviceWriteBpsTest() {
         // TODO: test blkioDeviceWriteBps
     }
 
@@ -73,7 +74,7 @@ public class UpdateConfigTest {
      * Test the property 'blkioDeviceWriteIOps'
      */
     @Test
-    public void blkioDeviceWriteIOpsTest() {
+    void blkioDeviceWriteIOpsTest() {
         // TODO: test blkioDeviceWriteIOps
     }
 
@@ -81,7 +82,7 @@ public class UpdateConfigTest {
      * Test the property 'blkioWeight'
      */
     @Test
-    public void blkioWeightTest() {
+    void blkioWeightTest() {
         // TODO: test blkioWeight
     }
 
@@ -89,7 +90,7 @@ public class UpdateConfigTest {
      * Test the property 'blkioWeightDevice'
      */
     @Test
-    public void blkioWeightDeviceTest() {
+    void blkioWeightDeviceTest() {
         // TODO: test blkioWeightDevice
     }
 
@@ -97,7 +98,7 @@ public class UpdateConfigTest {
      * Test the property 'cgroupParent'
      */
     @Test
-    public void cgroupParentTest() {
+    void cgroupParentTest() {
         // TODO: test cgroupParent
     }
 
@@ -105,7 +106,7 @@ public class UpdateConfigTest {
      * Test the property 'cpuCount'
      */
     @Test
-    public void cpuCountTest() {
+    void cpuCountTest() {
         // TODO: test cpuCount
     }
 
@@ -113,7 +114,7 @@ public class UpdateConfigTest {
      * Test the property 'cpuPercent'
      */
     @Test
-    public void cpuPercentTest() {
+    void cpuPercentTest() {
         // TODO: test cpuPercent
     }
 
@@ -121,7 +122,7 @@ public class UpdateConfigTest {
      * Test the property 'cpuPeriod'
      */
     @Test
-    public void cpuPeriodTest() {
+    void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
@@ -129,7 +130,7 @@ public class UpdateConfigTest {
      * Test the property 'cpuQuota'
      */
     @Test
-    public void cpuQuotaTest() {
+    void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
@@ -137,7 +138,7 @@ public class UpdateConfigTest {
      * Test the property 'cpuRealtimePeriod'
      */
     @Test
-    public void cpuRealtimePeriodTest() {
+    void cpuRealtimePeriodTest() {
         // TODO: test cpuRealtimePeriod
     }
 
@@ -145,7 +146,7 @@ public class UpdateConfigTest {
      * Test the property 'cpuRealtimeRuntime'
      */
     @Test
-    public void cpuRealtimeRuntimeTest() {
+    void cpuRealtimeRuntimeTest() {
         // TODO: test cpuRealtimeRuntime
     }
 
@@ -153,7 +154,7 @@ public class UpdateConfigTest {
      * Test the property 'cpuShares'
      */
     @Test
-    public void cpuSharesTest() {
+    void cpuSharesTest() {
         // TODO: test cpuShares
     }
 
@@ -161,7 +162,7 @@ public class UpdateConfigTest {
      * Test the property 'cpusetCpus'
      */
     @Test
-    public void cpusetCpusTest() {
+    void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
@@ -169,7 +170,7 @@ public class UpdateConfigTest {
      * Test the property 'cpusetMems'
      */
     @Test
-    public void cpusetMemsTest() {
+    void cpusetMemsTest() {
         // TODO: test cpusetMems
     }
 
@@ -177,7 +178,7 @@ public class UpdateConfigTest {
      * Test the property 'deviceCgroupRules'
      */
     @Test
-    public void deviceCgroupRulesTest() {
+    void deviceCgroupRulesTest() {
         // TODO: test deviceCgroupRules
     }
 
@@ -185,7 +186,7 @@ public class UpdateConfigTest {
      * Test the property 'deviceRequests'
      */
     @Test
-    public void deviceRequestsTest() {
+    void deviceRequestsTest() {
         // TODO: test deviceRequests
     }
 
@@ -193,7 +194,7 @@ public class UpdateConfigTest {
      * Test the property 'devices'
      */
     @Test
-    public void devicesTest() {
+    void devicesTest() {
         // TODO: test devices
     }
 
@@ -201,7 +202,7 @@ public class UpdateConfigTest {
      * Test the property 'ioMaximumBandwidth'
      */
     @Test
-    public void ioMaximumBandwidthTest() {
+    void ioMaximumBandwidthTest() {
         // TODO: test ioMaximumBandwidth
     }
 
@@ -209,7 +210,7 @@ public class UpdateConfigTest {
      * Test the property 'ioMaximumIOps'
      */
     @Test
-    public void ioMaximumIOpsTest() {
+    void ioMaximumIOpsTest() {
         // TODO: test ioMaximumIOps
     }
 
@@ -217,7 +218,7 @@ public class UpdateConfigTest {
      * Test the property 'kernelMemory'
      */
     @Test
-    public void kernelMemoryTest() {
+    void kernelMemoryTest() {
         // TODO: test kernelMemory
     }
 
@@ -225,7 +226,7 @@ public class UpdateConfigTest {
      * Test the property 'kernelMemoryTCP'
      */
     @Test
-    public void kernelMemoryTCPTest() {
+    void kernelMemoryTCPTest() {
         // TODO: test kernelMemoryTCP
     }
 
@@ -233,7 +234,7 @@ public class UpdateConfigTest {
      * Test the property 'memory'
      */
     @Test
-    public void memoryTest() {
+    void memoryTest() {
         // TODO: test memory
     }
 
@@ -241,7 +242,7 @@ public class UpdateConfigTest {
      * Test the property 'memoryReservation'
      */
     @Test
-    public void memoryReservationTest() {
+    void memoryReservationTest() {
         // TODO: test memoryReservation
     }
 
@@ -249,7 +250,7 @@ public class UpdateConfigTest {
      * Test the property 'memorySwap'
      */
     @Test
-    public void memorySwapTest() {
+    void memorySwapTest() {
         // TODO: test memorySwap
     }
 
@@ -257,7 +258,7 @@ public class UpdateConfigTest {
      * Test the property 'memorySwappiness'
      */
     @Test
-    public void memorySwappinessTest() {
+    void memorySwappinessTest() {
         // TODO: test memorySwappiness
     }
 
@@ -265,7 +266,7 @@ public class UpdateConfigTest {
      * Test the property 'nanoCpus'
      */
     @Test
-    public void nanoCpusTest() {
+    void nanoCpusTest() {
         // TODO: test nanoCpus
     }
 
@@ -273,7 +274,7 @@ public class UpdateConfigTest {
      * Test the property 'oomKillDisable'
      */
     @Test
-    public void oomKillDisableTest() {
+    void oomKillDisableTest() {
         // TODO: test oomKillDisable
     }
 
@@ -281,7 +282,7 @@ public class UpdateConfigTest {
      * Test the property 'pidsLimit'
      */
     @Test
-    public void pidsLimitTest() {
+    void pidsLimitTest() {
         // TODO: test pidsLimit
     }
 
@@ -289,7 +290,7 @@ public class UpdateConfigTest {
      * Test the property 'restartPolicy'
      */
     @Test
-    public void restartPolicyTest() {
+    void restartPolicyTest() {
         // TODO: test restartPolicy
     }
 
@@ -297,7 +298,7 @@ public class UpdateConfigTest {
      * Test the property 'ulimits'
      */
     @Test
-    public void ulimitsTest() {
+    void ulimitsTest() {
         // TODO: test ulimits
     }
 

@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Secret.JSON_PROPERTY_KEY,
   Secret.JSON_PROPERTY_SECRET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Secret {
   public static final String JSON_PROPERTY_KEY = "Key";
   private String key;
@@ -58,7 +58,7 @@ public class Secret {
    * Key is the name of the key of the key-value pair passed to the plugin.
    * @return key
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KEY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -83,7 +83,7 @@ public class Secret {
    * Secret is the swarm Secret object from which to read data. This can be a Secret name or ID. The Secret data is retrieved by Swarm and used as the value of the key-value pair passed to the plugin.
    * @return secret
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECRET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

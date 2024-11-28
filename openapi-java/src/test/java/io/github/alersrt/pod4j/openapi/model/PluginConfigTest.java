@@ -13,11 +13,11 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.PluginConfigArgs;
 import io.github.alersrt.pod4j.openapi.model.PluginConfigInterface;
 import io.github.alersrt.pod4j.openapi.model.PluginConfigLinux;
@@ -26,24 +26,24 @@ import io.github.alersrt.pod4j.openapi.model.PluginConfigRootfs;
 import io.github.alersrt.pod4j.openapi.model.PluginConfigUser;
 import io.github.alersrt.pod4j.openapi.model.PluginEnv;
 import io.github.alersrt.pod4j.openapi.model.PluginMount;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for PluginConfig
  */
-public class PluginConfigTest {
+class PluginConfigTest {
     private final PluginConfig model = new PluginConfig();
 
     /**
      * Model tests for PluginConfig
      */
     @Test
-    public void testPluginConfig() {
+    void testPluginConfig() {
         // TODO: test PluginConfig
     }
 
@@ -51,7 +51,7 @@ public class PluginConfigTest {
      * Test the property 'args'
      */
     @Test
-    public void argsTest() {
+    void argsTest() {
         // TODO: test args
     }
 
@@ -59,7 +59,7 @@ public class PluginConfigTest {
      * Test the property 'description'
      */
     @Test
-    public void descriptionTest() {
+    void descriptionTest() {
         // TODO: test description
     }
 
@@ -67,7 +67,7 @@ public class PluginConfigTest {
      * Test the property 'dockerVersion'
      */
     @Test
-    public void dockerVersionTest() {
+    void dockerVersionTest() {
         // TODO: test dockerVersion
     }
 
@@ -75,7 +75,7 @@ public class PluginConfigTest {
      * Test the property 'documentation'
      */
     @Test
-    public void documentationTest() {
+    void documentationTest() {
         // TODO: test documentation
     }
 
@@ -83,7 +83,7 @@ public class PluginConfigTest {
      * Test the property 'entrypoint'
      */
     @Test
-    public void entrypointTest() {
+    void entrypointTest() {
         // TODO: test entrypoint
     }
 
@@ -91,7 +91,7 @@ public class PluginConfigTest {
      * Test the property 'env'
      */
     @Test
-    public void envTest() {
+    void envTest() {
         // TODO: test env
     }
 
@@ -99,7 +99,7 @@ public class PluginConfigTest {
      * Test the property '_interface'
      */
     @Test
-    public void _interfaceTest() {
+    void _interfaceTest() {
         // TODO: test _interface
     }
 
@@ -107,7 +107,7 @@ public class PluginConfigTest {
      * Test the property 'ipcHost'
      */
     @Test
-    public void ipcHostTest() {
+    void ipcHostTest() {
         // TODO: test ipcHost
     }
 
@@ -115,7 +115,7 @@ public class PluginConfigTest {
      * Test the property 'linux'
      */
     @Test
-    public void linuxTest() {
+    void linuxTest() {
         // TODO: test linux
     }
 
@@ -123,7 +123,7 @@ public class PluginConfigTest {
      * Test the property 'mounts'
      */
     @Test
-    public void mountsTest() {
+    void mountsTest() {
         // TODO: test mounts
     }
 
@@ -131,7 +131,7 @@ public class PluginConfigTest {
      * Test the property 'network'
      */
     @Test
-    public void networkTest() {
+    void networkTest() {
         // TODO: test network
     }
 
@@ -139,7 +139,7 @@ public class PluginConfigTest {
      * Test the property 'pidHost'
      */
     @Test
-    public void pidHostTest() {
+    void pidHostTest() {
         // TODO: test pidHost
     }
 
@@ -147,7 +147,7 @@ public class PluginConfigTest {
      * Test the property 'propagatedMount'
      */
     @Test
-    public void propagatedMountTest() {
+    void propagatedMountTest() {
         // TODO: test propagatedMount
     }
 
@@ -155,7 +155,7 @@ public class PluginConfigTest {
      * Test the property 'user'
      */
     @Test
-    public void userTest() {
+    void userTest() {
         // TODO: test user
     }
 
@@ -163,7 +163,7 @@ public class PluginConfigTest {
      * Test the property 'workDir'
      */
     @Test
-    public void workDirTest() {
+    void workDirTest() {
         // TODO: test workDir
     }
 
@@ -171,7 +171,7 @@ public class PluginConfigTest {
      * Test the property 'rootfs'
      */
     @Test
-    public void rootfsTest() {
+    void rootfsTest() {
         // TODO: test rootfs
     }
 

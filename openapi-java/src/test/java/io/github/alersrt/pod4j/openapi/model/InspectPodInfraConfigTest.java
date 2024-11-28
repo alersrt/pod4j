@@ -13,32 +13,33 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.InspectHostPort;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for InspectPodInfraConfig
  */
-public class InspectPodInfraConfigTest {
+class InspectPodInfraConfigTest {
     private final InspectPodInfraConfig model = new InspectPodInfraConfig();
 
     /**
      * Model tests for InspectPodInfraConfig
      */
     @Test
-    public void testInspectPodInfraConfig() {
+    void testInspectPodInfraConfig() {
         // TODO: test InspectPodInfraConfig
     }
 
@@ -46,7 +47,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'dnSOption'
      */
     @Test
-    public void dnSOptionTest() {
+    void dnSOptionTest() {
         // TODO: test dnSOption
     }
 
@@ -54,7 +55,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'dnSSearch'
      */
     @Test
-    public void dnSSearchTest() {
+    void dnSSearchTest() {
         // TODO: test dnSSearch
     }
 
@@ -62,7 +63,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'dnSServer'
      */
     @Test
-    public void dnSServerTest() {
+    void dnSServerTest() {
         // TODO: test dnSServer
     }
 
@@ -70,7 +71,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'hostAdd'
      */
     @Test
-    public void hostAddTest() {
+    void hostAddTest() {
         // TODO: test hostAdd
     }
 
@@ -78,7 +79,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'hostNetwork'
      */
     @Test
-    public void hostNetworkTest() {
+    void hostNetworkTest() {
         // TODO: test hostNetwork
     }
 
@@ -86,7 +87,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'networkOptions'
      */
     @Test
-    public void networkOptionsTest() {
+    void networkOptionsTest() {
         // TODO: test networkOptions
     }
 
@@ -94,7 +95,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'networks'
      */
     @Test
-    public void networksTest() {
+    void networksTest() {
         // TODO: test networks
     }
 
@@ -102,7 +103,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'noManageHosts'
      */
     @Test
-    public void noManageHostsTest() {
+    void noManageHostsTest() {
         // TODO: test noManageHosts
     }
 
@@ -110,7 +111,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'noManageResolvConf'
      */
     @Test
-    public void noManageResolvConfTest() {
+    void noManageResolvConfTest() {
         // TODO: test noManageResolvConf
     }
 
@@ -118,7 +119,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'portBindings'
      */
     @Test
-    public void portBindingsTest() {
+    void portBindingsTest() {
         // TODO: test portBindings
     }
 
@@ -126,7 +127,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'staticIP'
      */
     @Test
-    public void staticIPTest() {
+    void staticIPTest() {
         // TODO: test staticIP
     }
 
@@ -134,7 +135,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'staticMAC'
      */
     @Test
-    public void staticMACTest() {
+    void staticMACTest() {
         // TODO: test staticMAC
     }
 
@@ -142,7 +143,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'cpuPeriod'
      */
     @Test
-    public void cpuPeriodTest() {
+    void cpuPeriodTest() {
         // TODO: test cpuPeriod
     }
 
@@ -150,7 +151,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'cpuQuota'
      */
     @Test
-    public void cpuQuotaTest() {
+    void cpuQuotaTest() {
         // TODO: test cpuQuota
     }
 
@@ -158,7 +159,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'cpusetCpus'
      */
     @Test
-    public void cpusetCpusTest() {
+    void cpusetCpusTest() {
         // TODO: test cpusetCpus
     }
 
@@ -166,7 +167,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'pidNs'
      */
     @Test
-    public void pidNsTest() {
+    void pidNsTest() {
         // TODO: test pidNs
     }
 
@@ -174,7 +175,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'userns'
      */
     @Test
-    public void usernsTest() {
+    void usernsTest() {
         // TODO: test userns
     }
 
@@ -182,7 +183,7 @@ public class InspectPodInfraConfigTest {
      * Test the property 'utsNs'
      */
     @Test
-    public void utsNsTest() {
+    void utsNsTest() {
         // TODO: test utsNs
     }
 

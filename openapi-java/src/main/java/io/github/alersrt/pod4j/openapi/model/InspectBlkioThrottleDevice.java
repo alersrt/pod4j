@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectBlkioThrottleDevice.JSON_PROPERTY_PATH,
   InspectBlkioThrottleDevice.JSON_PROPERTY_RATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectBlkioThrottleDevice {
   public static final String JSON_PROPERTY_PATH = "Path";
   private String path;
@@ -58,7 +58,7 @@ public class InspectBlkioThrottleDevice {
    * Path is the path to the device this applies to.
    * @return path
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -83,7 +83,7 @@ public class InspectBlkioThrottleDevice {
    * Rate is the maximum rate. It is in either bytes per second or iops per second, determined by where it is used - documentation will indicate which is appropriate.
    * @return rate
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

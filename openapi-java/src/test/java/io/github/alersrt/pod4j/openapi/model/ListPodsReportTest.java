@@ -13,33 +13,34 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.github.alersrt.pod4j.openapi.model.ListPodContainer;
-import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ListPodsReport
  */
-public class ListPodsReportTest {
+class ListPodsReportTest {
     private final ListPodsReport model = new ListPodsReport();
 
     /**
      * Model tests for ListPodsReport
      */
     @Test
-    public void testListPodsReport() {
+    void testListPodsReport() {
         // TODO: test ListPodsReport
     }
 
@@ -47,7 +48,7 @@ public class ListPodsReportTest {
      * Test the property 'cgroup'
      */
     @Test
-    public void cgroupTest() {
+    void cgroupTest() {
         // TODO: test cgroup
     }
 
@@ -55,7 +56,7 @@ public class ListPodsReportTest {
      * Test the property 'containers'
      */
     @Test
-    public void containersTest() {
+    void containersTest() {
         // TODO: test containers
     }
 
@@ -63,7 +64,7 @@ public class ListPodsReportTest {
      * Test the property 'created'
      */
     @Test
-    public void createdTest() {
+    void createdTest() {
         // TODO: test created
     }
 
@@ -71,7 +72,7 @@ public class ListPodsReportTest {
      * Test the property 'id'
      */
     @Test
-    public void idTest() {
+    void idTest() {
         // TODO: test id
     }
 
@@ -79,7 +80,7 @@ public class ListPodsReportTest {
      * Test the property 'infraId'
      */
     @Test
-    public void infraIdTest() {
+    void infraIdTest() {
         // TODO: test infraId
     }
 
@@ -87,7 +88,7 @@ public class ListPodsReportTest {
      * Test the property 'labels'
      */
     @Test
-    public void labelsTest() {
+    void labelsTest() {
         // TODO: test labels
     }
 
@@ -95,7 +96,7 @@ public class ListPodsReportTest {
      * Test the property 'name'
      */
     @Test
-    public void nameTest() {
+    void nameTest() {
         // TODO: test name
     }
 
@@ -103,7 +104,7 @@ public class ListPodsReportTest {
      * Test the property 'namespace'
      */
     @Test
-    public void namespaceTest() {
+    void namespaceTest() {
         // TODO: test namespace
     }
 
@@ -111,7 +112,7 @@ public class ListPodsReportTest {
      * Test the property 'networks'
      */
     @Test
-    public void networksTest() {
+    void networksTest() {
         // TODO: test networks
     }
 
@@ -119,7 +120,7 @@ public class ListPodsReportTest {
      * Test the property 'status'
      */
     @Test
-    public void statusTest() {
+    void statusTest() {
         // TODO: test status
     }
 

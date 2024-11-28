@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for ContainerStore
  */
-public class ContainerStoreTest {
+class ContainerStoreTest {
     private final ContainerStore model = new ContainerStore();
 
     /**
      * Model tests for ContainerStore
      */
     @Test
-    public void testContainerStore() {
+    void testContainerStore() {
         // TODO: test ContainerStore
     }
 
@@ -41,7 +42,7 @@ public class ContainerStoreTest {
      * Test the property 'number'
      */
     @Test
-    public void numberTest() {
+    void numberTest() {
         // TODO: test number
     }
 
@@ -49,7 +50,7 @@ public class ContainerStoreTest {
      * Test the property 'paused'
      */
     @Test
-    public void pausedTest() {
+    void pausedTest() {
         // TODO: test paused
     }
 
@@ -57,7 +58,7 @@ public class ContainerStoreTest {
      * Test the property 'running'
      */
     @Test
-    public void runningTest() {
+    void runningTest() {
         // TODO: test running
     }
 
@@ -65,7 +66,7 @@ public class ContainerStoreTest {
      * Test the property 'stopped'
      */
     @Test
-    public void stoppedTest() {
+    void stoppedTest() {
         // TODO: test stopped
     }
 

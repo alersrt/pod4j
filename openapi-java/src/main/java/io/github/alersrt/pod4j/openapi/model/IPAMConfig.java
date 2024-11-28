@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   IPAMConfig.JSON_PROPERTY_IP_RANGE,
   IPAMConfig.JSON_PROPERTY_SUBNET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class IPAMConfig {
   public static final String JSON_PROPERTY_AUXILIARY_ADDRESSES = "AuxiliaryAddresses";
   private Map<String, String> auxiliaryAddresses = new HashMap<>();
@@ -76,7 +76,7 @@ public class IPAMConfig {
    * Get auxiliaryAddresses
    * @return auxiliaryAddresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_AUXILIARY_ADDRESSES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -101,7 +101,7 @@ public class IPAMConfig {
    * Get gateway
    * @return gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -126,7 +126,7 @@ public class IPAMConfig {
    * Get ipRange
    * @return ipRange
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_RANGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -151,7 +151,7 @@ public class IPAMConfig {
    * Get subnet
    * @return subnet
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SUBNET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

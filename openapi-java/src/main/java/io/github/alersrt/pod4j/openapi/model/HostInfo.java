@@ -13,38 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.CPUUsage;
-import io.github.alersrt.pod4j.openapi.model.ConmonInfo;
-import io.github.alersrt.pod4j.openapi.model.DistributionInfo;
-import io.github.alersrt.pod4j.openapi.model.IDMappings;
-import io.github.alersrt.pod4j.openapi.model.NetworkInfo;
-import io.github.alersrt.pod4j.openapi.model.OCIRuntimeInfo;
-import io.github.alersrt.pod4j.openapi.model.PastaInfo;
-import io.github.alersrt.pod4j.openapi.model.RemoteSocket;
-import io.github.alersrt.pod4j.openapi.model.SecurityInfo;
-import io.github.alersrt.pod4j.openapi.model.SlirpInfo;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * HostInfo describes the libpod host
  */
@@ -84,7 +66,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   HostInfo.JSON_PROPERTY_UPTIME,
   HostInfo.JSON_PROPERTY_VARIANT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class HostInfo {
   public static final String JSON_PROPERTY_ARCH = "arch";
   private String arch;
@@ -200,7 +182,7 @@ public class HostInfo {
    * Get arch
    * @return arch
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ARCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -225,7 +207,7 @@ public class HostInfo {
    * Get buildahVersion
    * @return buildahVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BUILDAH_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -258,7 +240,7 @@ public class HostInfo {
    * Get cgroupControllers
    * @return cgroupControllers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_CONTROLLERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -283,7 +265,7 @@ public class HostInfo {
    * Get cgroupManager
    * @return cgroupManager
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_MANAGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -308,7 +290,7 @@ public class HostInfo {
    * Get cgroupVersion
    * @return cgroupVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -333,7 +315,7 @@ public class HostInfo {
    * Get conmon
    * @return conmon
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONMON)
@@ -359,7 +341,7 @@ public class HostInfo {
    * Get cpuUtilization
    * @return cpuUtilization
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CPU_UTILIZATION)
@@ -385,7 +367,7 @@ public class HostInfo {
    * Get cpus
    * @return cpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -410,7 +392,7 @@ public class HostInfo {
    * Get databaseBackend
    * @return databaseBackend
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DATABASE_BACKEND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -435,7 +417,7 @@ public class HostInfo {
    * Get distribution
    * @return distribution
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DISTRIBUTION)
@@ -461,7 +443,7 @@ public class HostInfo {
    * Get eventLogger
    * @return eventLogger
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EVENT_LOGGER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -486,7 +468,7 @@ public class HostInfo {
    * Get freeLocks
    * @return freeLocks
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_FREE_LOCKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -511,7 +493,7 @@ public class HostInfo {
    * Get hostname
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -536,7 +518,7 @@ public class HostInfo {
    * Get idMappings
    * @return idMappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ID_MAPPINGS)
@@ -562,7 +544,7 @@ public class HostInfo {
    * Get kernel
    * @return kernel
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -587,7 +569,7 @@ public class HostInfo {
    * Get linkmode
    * @return linkmode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINKMODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -612,7 +594,7 @@ public class HostInfo {
    * Get logDriver
    * @return logDriver
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LOG_DRIVER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -637,7 +619,7 @@ public class HostInfo {
    * Get memFree
    * @return memFree
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM_FREE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -662,7 +644,7 @@ public class HostInfo {
    * Get memTotal
    * @return memTotal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM_TOTAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -687,7 +669,7 @@ public class HostInfo {
    * Get networkBackend
    * @return networkBackend
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_BACKEND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -712,7 +694,7 @@ public class HostInfo {
    * Get networkBackendInfo
    * @return networkBackendInfo
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_NETWORK_BACKEND_INFO)
@@ -738,7 +720,7 @@ public class HostInfo {
    * Get ociRuntime
    * @return ociRuntime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
@@ -764,7 +746,7 @@ public class HostInfo {
    * Get os
    * @return os
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -789,7 +771,7 @@ public class HostInfo {
    * Get pasta
    * @return pasta
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PASTA)
@@ -815,7 +797,7 @@ public class HostInfo {
    * Get remoteSocket
    * @return remoteSocket
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_REMOTE_SOCKET)
@@ -841,7 +823,7 @@ public class HostInfo {
    * RootlessNetworkCmd returns the default rootless network command (slirp4netns or pasta)
    * @return rootlessNetworkCmd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ROOTLESS_NETWORK_CMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -874,7 +856,7 @@ public class HostInfo {
    * Get runtimeInfo
    * @return runtimeInfo
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RUNTIME_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -899,7 +881,7 @@ public class HostInfo {
    * Get security
    * @return security
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECURITY)
@@ -925,7 +907,7 @@ public class HostInfo {
    * ServiceIsRemote is true when the podman/libpod service is remote to the client
    * @return serviceIsRemote
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SERVICE_IS_REMOTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -950,7 +932,7 @@ public class HostInfo {
    * Get slirp4netns
    * @return slirp4netns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SLIRP4NETNS)
@@ -976,7 +958,7 @@ public class HostInfo {
    * Get swapFree
    * @return swapFree
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SWAP_FREE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1001,7 +983,7 @@ public class HostInfo {
    * Get swapTotal
    * @return swapTotal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SWAP_TOTAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1026,7 +1008,7 @@ public class HostInfo {
    * Get uptime
    * @return uptime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UPTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1051,7 +1033,7 @@ public class HostInfo {
    * Get variant
    * @return variant
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VARIANT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

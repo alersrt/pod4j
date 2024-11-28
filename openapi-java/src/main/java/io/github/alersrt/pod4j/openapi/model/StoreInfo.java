@@ -53,7 +53,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   StoreInfo.JSON_PROPERTY_TRANSIENT_STORE,
   StoreInfo.JSON_PROPERTY_VOLUME_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class StoreInfo {
   public static final String JSON_PROPERTY_CONFIG_FILE = "configFile";
   private String configFile;
@@ -106,7 +106,7 @@ public class StoreInfo {
    * Get configFile
    * @return configFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONFIG_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -131,7 +131,7 @@ public class StoreInfo {
    * Get containerStore
    * @return containerStore
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_STORE)
@@ -157,7 +157,7 @@ public class StoreInfo {
    * Get graphDriverName
    * @return graphDriverName
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GRAPH_DRIVER_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -190,7 +190,7 @@ public class StoreInfo {
    * Get graphOptions
    * @return graphOptions
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GRAPH_OPTIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -215,7 +215,7 @@ public class StoreInfo {
    * Get graphRoot
    * @return graphRoot
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GRAPH_ROOT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -240,7 +240,7 @@ public class StoreInfo {
    * GraphRootAllocated is how much space the graphroot has in bytes
    * @return graphRootAllocated
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GRAPH_ROOT_ALLOCATED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -265,7 +265,7 @@ public class StoreInfo {
    * GraphRootUsed is how much of graphroot is used in bytes
    * @return graphRootUsed
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GRAPH_ROOT_USED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -298,7 +298,7 @@ public class StoreInfo {
    * Get graphStatus
    * @return graphStatus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GRAPH_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -323,7 +323,7 @@ public class StoreInfo {
    * Get imageCopyTmpDir
    * @return imageCopyTmpDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IMAGE_COPY_TMP_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -348,7 +348,7 @@ public class StoreInfo {
    * Get imageStore
    * @return imageStore
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_IMAGE_STORE)
@@ -374,7 +374,7 @@ public class StoreInfo {
    * Get runRoot
    * @return runRoot
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RUN_ROOT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -399,7 +399,7 @@ public class StoreInfo {
    * Get transientStore
    * @return transientStore
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TRANSIENT_STORE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -424,7 +424,7 @@ public class StoreInfo {
    * Get volumePath
    * @return volumePath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_VOLUME_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

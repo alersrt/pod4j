@@ -13,33 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.LinuxIntelRdt;
-import io.github.alersrt.pod4j.openapi.model.LinuxResources;
-import io.github.alersrt.pod4j.openapi.model.LinuxThrottleDevice;
-import io.github.alersrt.pod4j.openapi.model.LinuxWeightDevice;
-import io.github.alersrt.pod4j.openapi.model.POSIXRlimit;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerResourceConfig
  */
@@ -55,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerResourceConfig.JSON_PROPERTY_UNIFIED,
   ContainerResourceConfig.JSON_PROPERTY_WEIGHT_DEVICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerResourceConfig {
   public static final String JSON_PROPERTY_INTEL_RDT = "intelRdt";
   private LinuxIntelRdt intelRdt;
@@ -99,7 +86,7 @@ public class ContainerResourceConfig {
    * Get intelRdt
    * @return intelRdt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_INTEL_RDT)
@@ -125,7 +112,7 @@ public class ContainerResourceConfig {
    * OOMScoreAdj adjusts the score used by the OOM killer to determine processes to kill for the container&#39;s process. Optional.
    * @return oomScoreAdj
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OOM_SCORE_ADJ)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -158,7 +145,7 @@ public class ContainerResourceConfig {
    * Rlimits are POSIX rlimits to apply to the container. Optional.
    * @return rLimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_R_LIMITS)
@@ -184,7 +171,7 @@ public class ContainerResourceConfig {
    * Get resourceLimits
    * @return resourceLimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_LIMITS)
@@ -218,7 +205,7 @@ public class ContainerResourceConfig {
    * IO read rate limit per cgroup per device, bytes per second
    * @return throttleReadBpsDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_READ_BPS_DEVICE)
@@ -252,7 +239,7 @@ public class ContainerResourceConfig {
    * IO read rate limit per cgroup per device, IO per second
    * @return throttleReadIOPSDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_READ_I_O_P_S_DEVICE)
@@ -286,7 +273,7 @@ public class ContainerResourceConfig {
    * IO write rate limit per cgroup per device, bytes per second
    * @return throttleWriteBpsDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_BPS_DEVICE)
@@ -320,7 +307,7 @@ public class ContainerResourceConfig {
    * IO write rate limit per cgroup per device, IO per second
    * @return throttleWriteIOPSDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_THROTTLE_WRITE_I_O_P_S_DEVICE)
@@ -354,7 +341,7 @@ public class ContainerResourceConfig {
    * CgroupConf are key-value options passed into the container runtime that are used to configure cgroup v2. Optional.
    * @return unified
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNIFIED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -387,7 +374,7 @@ public class ContainerResourceConfig {
    * Weight per cgroup per device, can override BlkioWeight
    * @return weightDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_WEIGHT_DEVICE)

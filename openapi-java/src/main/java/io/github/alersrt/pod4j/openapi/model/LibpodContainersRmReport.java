@@ -42,7 +42,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LibpodContainersRmReport.JSON_PROPERTY_ERR,
   LibpodContainersRmReport.JSON_PROPERTY_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LibpodContainersRmReport {
   public static final String JSON_PROPERTY_ERR = "Err";
   private JsonNullable<String> err = JsonNullable.<String>undefined();
@@ -62,7 +62,7 @@ public class LibpodContainersRmReport {
    * Error which occurred during Rm operation (if any). This field is optional and may be omitted if no error occurred.
    * @return err
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonIgnore
   public String getErr() {
@@ -95,7 +95,7 @@ public class LibpodContainersRmReport {
    * Get id
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -57,7 +57,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectAdditionalNetwork.JSON_PROPERTY_SECONDARY_I_P_ADDRESSES,
   InspectAdditionalNetwork.JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectAdditionalNetwork {
   public static final String JSON_PROPERTY_ADDITIONAL_M_A_C_ADDRESSES = "AdditionalMACAddresses";
   private List<String> additionalMACAddresses = new ArrayList<>();
@@ -127,7 +127,7 @@ public class InspectAdditionalNetwork {
    * AdditionalMacAddresses is a set of additional MAC Addresses beyond the first. CNI may configure more than one interface for a single network, which can cause this.
    * @return additionalMACAddresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ADDITIONAL_M_A_C_ADDRESSES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -160,7 +160,7 @@ public class InspectAdditionalNetwork {
    * Aliases are any network aliases the container has in this network.
    * @return aliases
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ALIASES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -193,7 +193,7 @@ public class InspectAdditionalNetwork {
    * DriverOpts is presently unused and maintained exclusively for compatibility.
    * @return driverOpts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DRIVER_OPTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -218,7 +218,7 @@ public class InspectAdditionalNetwork {
    * EndpointID is unused, maintained exclusively for compatibility.
    * @return endpointID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENDPOINT_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -243,7 +243,7 @@ public class InspectAdditionalNetwork {
    * Gateway is the IP address of the gateway this network will use.
    * @return gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -268,7 +268,7 @@ public class InspectAdditionalNetwork {
    * GlobalIPv6Address is the global-scope IPv6 Address for this network.
    * @return globalIPv6Address
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -293,7 +293,7 @@ public class InspectAdditionalNetwork {
    * GlobalIPv6PrefixLen is the length of the subnet mask of this network.
    * @return globalIPv6PrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GLOBAL_I_PV6_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -326,7 +326,7 @@ public class InspectAdditionalNetwork {
    * IPAMConfig is presently unused and maintained exclusively for compatibility.
    * @return ipAMConfig
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_A_M_CONFIG)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -351,7 +351,7 @@ public class InspectAdditionalNetwork {
    * IPAddress is the IP address for this network.
    * @return ipAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -376,7 +376,7 @@ public class InspectAdditionalNetwork {
    * IPPrefixLen is the length of the subnet mask of this network.
    * @return ipPrefixLen
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IP_PREFIX_LEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -401,7 +401,7 @@ public class InspectAdditionalNetwork {
    * IPv6Gateway is the IPv6 gateway this network will use.
    * @return ipv6Gateway
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPV6_GATEWAY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -434,7 +434,7 @@ public class InspectAdditionalNetwork {
    * Links is presently unused and maintained exclusively for compatibility.
    * @return links
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LINKS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -459,7 +459,7 @@ public class InspectAdditionalNetwork {
    * MacAddress is the MAC address for the interface in this network.
    * @return macAddress
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MAC_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -484,7 +484,7 @@ public class InspectAdditionalNetwork {
    * Name of the network we&#39;re connecting to.
    * @return networkID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NETWORK_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -517,7 +517,7 @@ public class InspectAdditionalNetwork {
    * SecondaryIPAddresses is a list of extra IP Addresses that the container has been assigned in this network.
    * @return secondaryIPAddresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECONDARY_I_P_ADDRESSES)
@@ -551,7 +551,7 @@ public class InspectAdditionalNetwork {
    * SecondaryIPv6Addresses is a list of extra IPv6 Addresses that the container has been assigned in this network.
    * @return secondaryIPv6Addresses
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_SECONDARY_I_PV6_ADDRESSES)

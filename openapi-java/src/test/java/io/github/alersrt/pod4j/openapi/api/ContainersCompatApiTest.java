@@ -31,6 +31,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
 /**
  * API tests for ContainersCompatApi
@@ -40,18 +45,22 @@ public class ContainersCompatApiTest {
 
     private final ContainersCompatApi api = new ContainersCompatApi();
 
+
     /**
      * Get files from a container
      *
      * Get a tar archive of files from a container
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerArchiveTest() throws ApiException {
         String name = null;
         String path = null;
-        File response = api.containerArchive(name, path);
+        File response =
+                api.containerArchive(name, path);
+        
         // TODO: test validations
     }
 
@@ -60,14 +69,17 @@ public class ContainersCompatApiTest {
      *
      * Copy a tar archive of files from a container
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerArchiveLibpodTest() throws ApiException {
         String name = null;
         String path = null;
         String rename = null;
-        File response = api.containerArchiveLibpod(name, path, rename);
+        File response =
+                api.containerArchiveLibpod(name, path, rename);
+        
         // TODO: test validations
     }
 
@@ -76,7 +88,8 @@ public class ContainersCompatApiTest {
      *
      * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  It uses the same stream format as docker, see the libpod attach endpoint for a description of the format. 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerAttachTest() throws ApiException {
@@ -87,7 +100,9 @@ public class ContainersCompatApiTest {
         Boolean stdout = null;
         Boolean stderr = null;
         Boolean stdin = null;
+
         api.containerAttach(name, detachKeys, logs, stream, stdout, stderr, stdin);
+
         // TODO: test validations
     }
 
@@ -96,34 +111,45 @@ public class ContainersCompatApiTest {
      *
      * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerChangesLibpodTest() throws ApiException {
         String name = null;
         String parent = null;
         String diffType = null;
+
         api.containerChangesLibpod(name, parent, diffType);
+
         // TODO: test validations
     }
 
     /**
      * Create a container
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerCreateTest() throws ApiException {
         CreateContainerConfig body = null;
         String name = null;
-        ContainerCreateResponse response = api.containerCreate(body, name);
+        ContainerCreateResponse response =
+                api.containerCreate(body, name);
+        
         // TODO: test validations
     }
 
     /**
      * Remove a container
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerDeleteTest() throws ApiException {
@@ -131,7 +157,9 @@ public class ContainersCompatApiTest {
         Boolean force = null;
         Boolean v = null;
         Boolean link = null;
+
         api.containerDelete(name, force, v, link);
+
         // TODO: test validations
     }
 
@@ -140,12 +168,15 @@ public class ContainersCompatApiTest {
      *
      * Export the contents of a container as a tarball.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerExportTest() throws ApiException {
         String name = null;
+
         api.containerExport(name);
+
         // TODO: test validations
     }
 
@@ -154,13 +185,16 @@ public class ContainersCompatApiTest {
      *
      * Return low-level information about a container.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerInspectTest() throws ApiException {
         String name = null;
         Boolean size = null;
-        ContainerJSON response = api.containerInspect(name, size);
+        ContainerJSON response =
+                api.containerInspect(name, size);
+        
         // TODO: test validations
     }
 
@@ -169,14 +203,17 @@ public class ContainersCompatApiTest {
      *
      * Signal to send to the container as an integer or string (e.g. SIGINT)
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerKillTest() throws ApiException {
         String name = null;
         Boolean all = null;
         String signal = null;
+
         api.containerKill(name, all, signal);
+
         // TODO: test validations
     }
 
@@ -185,7 +222,8 @@ public class ContainersCompatApiTest {
      *
      * Returns a list of containers
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerListTest() throws ApiException {
@@ -194,7 +232,9 @@ public class ContainersCompatApiTest {
         Integer limit = null;
         Boolean size = null;
         String filters = null;
-        List<Container> response = api.containerList(all, external, limit, size, filters);
+        List<Container> response =
+                api.containerList(all, external, limit, size, filters);
+        
         // TODO: test validations
     }
 
@@ -203,7 +243,8 @@ public class ContainersCompatApiTest {
      *
      * Get stdout and stderr logs from a container.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerLogsTest() throws ApiException {
@@ -215,7 +256,9 @@ public class ContainersCompatApiTest {
         String until = null;
         Boolean timestamps = null;
         String tail = null;
+
         api.containerLogs(name, follow, stdout, stderr, since, until, timestamps, tail);
+
         // TODO: test validations
     }
 
@@ -224,12 +267,15 @@ public class ContainersCompatApiTest {
      *
      * Use the cgroups freezer to suspend all processes in a container.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerPauseTest() throws ApiException {
         String name = null;
+
         api.containerPause(name);
+
         // TODO: test validations
     }
 
@@ -238,12 +284,15 @@ public class ContainersCompatApiTest {
      *
      * Remove containers not in use
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerPruneTest() throws ApiException {
         String filters = null;
-        List<ContainersPruneReport> response = api.containerPrune(filters);
+        List<ContainersPruneReport> response =
+                api.containerPrune(filters);
+        
         // TODO: test validations
     }
 
@@ -252,13 +301,16 @@ public class ContainersCompatApiTest {
      *
      * Change the name of an existing container.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerRenameTest() throws ApiException {
         String name = null;
         String name2 = null;
+
         api.containerRename(name, name2);
+
         // TODO: test validations
     }
 
@@ -267,7 +319,8 @@ public class ContainersCompatApiTest {
      *
      * Resize the terminal attached to a container (for use with Attach).
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerResizeTest() throws ApiException {
@@ -275,33 +328,45 @@ public class ContainersCompatApiTest {
         Integer h = null;
         Integer w = null;
         Boolean running = null;
-        Object response = api.containerResize(name, h, w, running);
+        Object response =
+                api.containerResize(name, h, w, running);
+        
         // TODO: test validations
     }
 
     /**
      * Restart container
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerRestartTest() throws ApiException {
         String name = null;
         Integer t = null;
+
         api.containerRestart(name, t);
+
         // TODO: test validations
     }
 
     /**
      * Start a container
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerStartTest() throws ApiException {
         String name = null;
         String detachKeys = null;
+
         api.containerStart(name, detachKeys);
+
         // TODO: test validations
     }
 
@@ -310,14 +375,17 @@ public class ContainersCompatApiTest {
      *
      * This returns a live stream of a container’s resource usage statistics.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerStatsTest() throws ApiException {
         String name = null;
         Boolean stream = null;
         Boolean oneShot = null;
-        Object response = api.containerStats(name, stream, oneShot);
+        Object response =
+                api.containerStats(name, stream, oneShot);
+        
         // TODO: test validations
     }
 
@@ -326,26 +394,34 @@ public class ContainersCompatApiTest {
      *
      * Stop a container
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerStopTest() throws ApiException {
         String name = null;
         Integer t = null;
+
         api.containerStop(name, t);
+
         // TODO: test validations
     }
 
     /**
      * List processes running inside a container
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerTopTest() throws ApiException {
         String name = null;
         String psArgs = null;
-        ContainerTopOKBody response = api.containerTop(name, psArgs);
+        ContainerTopOKBody response =
+                api.containerTop(name, psArgs);
+        
         // TODO: test validations
     }
 
@@ -354,12 +430,15 @@ public class ContainersCompatApiTest {
      *
      * Resume a paused container
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerUnpauseTest() throws ApiException {
         String name = null;
+
         api.containerUnpause(name);
+
         // TODO: test validations
     }
 
@@ -368,13 +447,16 @@ public class ContainersCompatApiTest {
      *
      * Change configuration settings for an existing container without requiring recreation.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerUpdateTest() throws ApiException {
         String name = null;
         UpdateConfig resources = null;
+
         api.containerUpdate(name, resources);
+
         // TODO: test validations
     }
 
@@ -383,14 +465,17 @@ public class ContainersCompatApiTest {
      *
      * Block until a container stops or given condition is met.
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void containerWaitTest() throws ApiException {
         String name = null;
         String condition = null;
         String interval = null;
-        ContainerWait200Response response = api.containerWait(name, condition, interval);
+        ContainerWait200Response response =
+                api.containerWait(name, condition, interval);
+        
         // TODO: test validations
     }
 
@@ -399,7 +484,8 @@ public class ContainersCompatApiTest {
      *
      * Create a new image from a container
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void imageCommitTest() throws ApiException {
@@ -411,7 +497,9 @@ public class ContainersCompatApiTest {
         Boolean pause = null;
         String changes = null;
         Boolean squash = null;
+
         api.imageCommit(container, repo, tag, comment, author, pause, changes, squash);
+
         // TODO: test validations
     }
 
@@ -420,7 +508,8 @@ public class ContainersCompatApiTest {
      *
      * Put a tar archive of files into a container
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void putContainerArchiveTest() throws ApiException {
@@ -429,7 +518,9 @@ public class ContainersCompatApiTest {
         String noOverwriteDirNonDir = null;
         String copyUIDGID = null;
         String request = null;
+
         api.putContainerArchive(name, path, noOverwriteDirNonDir, copyUIDGID, request);
+
         // TODO: test validations
     }
 

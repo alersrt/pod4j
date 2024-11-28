@@ -13,27 +13,18 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.IDMap;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
+import io.github.alersrt.pod4j.openapi.ApiClient;
 import jakarta.validation.Valid;
 
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * AutoUserNsOptions
  */
@@ -45,7 +36,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   AutoUserNsOptions.JSON_PROPERTY_PASSWD_FILE,
   AutoUserNsOptions.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class AutoUserNsOptions {
   public static final String JSON_PROPERTY_ADDITIONAL_G_I_D_MAPPINGS = "AdditionalGIDMappings";
   private List<@Valid IDMap> additionalGIDMappings = new ArrayList<>();
@@ -85,7 +76,7 @@ public class AutoUserNsOptions {
    * AdditionalGIDMappings specified additional GID mappings to include in the generated user namespace.
    * @return additionalGIDMappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ADDITIONAL_G_I_D_MAPPINGS)
@@ -119,7 +110,7 @@ public class AutoUserNsOptions {
    * AdditionalUIDMappings specified additional UID mappings to include in the generated user namespace.
    * @return additionalUIDMappings
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ADDITIONAL_U_I_D_MAPPINGS)
@@ -145,7 +136,7 @@ public class AutoUserNsOptions {
    * GroupFile to use if the container uses a volume.
    * @return groupFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GROUP_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -170,7 +161,7 @@ public class AutoUserNsOptions {
    * InitialSize defines the minimum size for the user namespace. The created user namespace will have at least this size.
    * @return initialSize
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INITIAL_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -195,7 +186,7 @@ public class AutoUserNsOptions {
    * PasswdFile to use if the container uses a volume.
    * @return passwdFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PASSWD_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -220,7 +211,7 @@ public class AutoUserNsOptions {
    * Size defines the size for the user namespace.  If it is set to a value bigger than 0, the user namespace will have exactly this size. If it is not set, some heuristics will be used to find its size.
    * @return size
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SIZE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

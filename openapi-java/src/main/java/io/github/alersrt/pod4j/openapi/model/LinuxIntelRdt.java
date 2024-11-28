@@ -41,7 +41,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   LinuxIntelRdt.JSON_PROPERTY_L3_CACHE_SCHEMA,
   LinuxIntelRdt.JSON_PROPERTY_MEM_BW_SCHEMA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class LinuxIntelRdt {
   public static final String JSON_PROPERTY_CLOS_I_D = "closID";
   private String closID;
@@ -70,7 +70,7 @@ public class LinuxIntelRdt {
    * The identity for RDT Class of Service
    * @return closID
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CLOS_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -95,7 +95,7 @@ public class LinuxIntelRdt {
    * EnableCMT is the flag to indicate if the Intel RDT CMT is enabled. CMT (Cache Monitoring Technology) supports monitoring of the last-level cache (LLC) occupancy for the container.
    * @return enableCMT
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENABLE_C_M_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -120,7 +120,7 @@ public class LinuxIntelRdt {
    * EnableMBM is the flag to indicate if the Intel RDT MBM is enabled. MBM (Memory Bandwidth Monitoring) supports monitoring of total and local memory bandwidth for the container.
    * @return enableMBM
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENABLE_M_B_M)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -145,7 +145,7 @@ public class LinuxIntelRdt {
    * The schema for L3 cache id and capacity bitmask (CBM) Format: \&quot;L3:&lt;cache_id0&gt;&#x3D;&lt;cbm0&gt;;&lt;cache_id1&gt;&#x3D;&lt;cbm1&gt;;...\&quot;
    * @return l3CacheSchema
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_L3_CACHE_SCHEMA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -170,7 +170,7 @@ public class LinuxIntelRdt {
    * The schema of memory bandwidth per L3 cache id Format: \&quot;MB:&lt;cache_id0&gt;&#x3D;bandwidth0;&lt;cache_id1&gt;&#x3D;bandwidth1;...\&quot; The unit of memory bandwidth is specified in \&quot;percentages\&quot; by default, and in \&quot;MBps\&quot; if MBA Software Controller is enabled.
    * @return memBwSchema
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEM_BW_SCHEMA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

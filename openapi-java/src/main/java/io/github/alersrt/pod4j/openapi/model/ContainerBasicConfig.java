@@ -13,31 +13,20 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import io.github.alersrt.pod4j.openapi.model.LinuxPersonality;
-import io.github.alersrt.pod4j.openapi.model.LogConfigLibpod;
-import io.github.alersrt.pod4j.openapi.model.Namespace;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import io.github.alersrt.pod4j.openapi.ApiClient;
+import jakarta.validation.Valid;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
-import io.github.alersrt.pod4j.openapi.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerBasicConfig
  */
@@ -83,7 +72,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerBasicConfig.JSON_PROPERTY_UNSETENVALL,
   ContainerBasicConfig.JSON_PROPERTY_UTSNS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerBasicConfig {
   public static final String JSON_PROPERTY_ANNOTATIONS = "annotations";
   private Map<String, String> annotations = new HashMap<>();
@@ -225,7 +214,7 @@ public class ContainerBasicConfig {
    * Annotations are key-value options passed into the container runtime that can be used to trigger special behavior. Optional.
    * @return annotations
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ANNOTATIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -258,7 +247,7 @@ public class ContainerBasicConfig {
    * Command is the container&#39;s command. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return command
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -283,7 +272,7 @@ public class ContainerBasicConfig {
    * ConmonPidFile is a path at which a PID file for Conmon will be placed. If not given, a default location will be used. Optional.
    * @return conmonPidFile
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONMON_PID_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -316,7 +305,7 @@ public class ContainerBasicConfig {
    * ContainerCreateCommand is the command that was used to create this container. This will be shown in the output of Inspect() on the container, and may also be used by some tools that wish to recreate the container (e.g. &#x60;podman generate systemd --new&#x60;). Optional.
    * @return containerCreateCommand
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONTAINER_CREATE_COMMAND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -349,7 +338,7 @@ public class ContainerBasicConfig {
    * DependencyContainers is an array of containers this container depends on. Dependency containers must be started before this container. Dependencies can be specified by name or full/partial ID. Optional.
    * @return dependencyContainers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEPENDENCY_CONTAINERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -382,7 +371,7 @@ public class ContainerBasicConfig {
    * Entrypoint is the container&#39;s entrypoint. If not given and Image is specified, this will be populated by the image&#39;s configuration. Optional.
    * @return entrypoint
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENTRYPOINT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -415,7 +404,7 @@ public class ContainerBasicConfig {
    * Env is a set of environment variables that will be set in the container. Optional.
    * @return env
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -440,7 +429,7 @@ public class ContainerBasicConfig {
    * EnvHost indicates that the host environment should be added to container Optional.
    * @return envHost
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV_HOST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -473,7 +462,7 @@ public class ContainerBasicConfig {
    * EnvMerge takes the specified environment variables from image and preprocess them before injecting them into the container. Optional.
    * @return envmerge
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENVMERGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -498,7 +487,7 @@ public class ContainerBasicConfig {
    * GroupEntry specifies an arbitrary string to append to the container&#39;s /etc/group file. Optional.
    * @return groupEntry
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_GROUP_ENTRY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -523,7 +512,7 @@ public class ContainerBasicConfig {
    * Hostname is the container&#39;s hostname. If not set, the hostname will not be modified (if UtsNS is not private) or will be set to the container ID (if UtsNS is private). Conflicts with UtsNS if UtsNS is not set to private. Optional.
    * @return hostname
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTNAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -556,7 +545,7 @@ public class ContainerBasicConfig {
    * HostUsers is a list of host usernames or UIDs to add to the container etc/passwd file
    * @return hostusers
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HOSTUSERS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -581,7 +570,7 @@ public class ContainerBasicConfig {
    * EnvHTTPProxy indicates that the http host proxy environment variables should be added to container Optional.
    * @return httpproxy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_HTTPPROXY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -606,7 +595,7 @@ public class ContainerBasicConfig {
    * InitContainerType describes if this container is an init container and if so, what type: always or once. Optional.
    * @return initContainerType
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_INIT_CONTAINER_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -639,7 +628,7 @@ public class ContainerBasicConfig {
    * Labels are key-value pairs that are used to add metadata to containers. Optional.
    * @return labels
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_LABELS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -664,7 +653,7 @@ public class ContainerBasicConfig {
    * Get logConfiguration
    * @return logConfiguration
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_LOG_CONFIGURATION)
@@ -690,7 +679,7 @@ public class ContainerBasicConfig {
    * Passwd is a container run option that determines if we are validating users/groups before running the container
    * @return managePassword
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MANAGE_PASSWORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -715,7 +704,7 @@ public class ContainerBasicConfig {
    * Name is the name the container will be given. If no name is provided, one will be randomly generated. Optional.
    * @return name
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -740,7 +729,7 @@ public class ContainerBasicConfig {
    * OCIRuntime is the name of the OCI runtime that will be used to create the container. If not specified, the default will be used. Optional.
    * @return ociRuntime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OCI_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -765,7 +754,7 @@ public class ContainerBasicConfig {
    * PasswdEntry specifies an arbitrary string to append to the container&#39;s /etc/passwd file. Optional.
    * @return passwdEntry
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PASSWD_ENTRY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -790,7 +779,7 @@ public class ContainerBasicConfig {
    * Get personality
    * @return personality
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PERSONALITY)
@@ -816,7 +805,7 @@ public class ContainerBasicConfig {
    * Get pidns
    * @return pidns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_PIDNS)
@@ -842,7 +831,7 @@ public class ContainerBasicConfig {
    * Pod is the ID of the pod the container will join. Optional.
    * @return pod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_POD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -867,7 +856,7 @@ public class ContainerBasicConfig {
    * Remove indicates if the container should be removed once it has been started and exits. Optional.
    * @return remove
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REMOVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -892,7 +881,7 @@ public class ContainerBasicConfig {
    * RemoveImage indicates that the container should remove the image it was created from after it exits. Only allowed if Remove is set to true and Image, not Rootfs, is in use. Optional.
    * @return removeImage
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_REMOVE_IMAGE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -917,7 +906,7 @@ public class ContainerBasicConfig {
    * RestartPolicy is the container&#39;s restart policy - an action which will be taken when the container exits. If not given, the default policy, which does nothing, will be used. Optional.
    * @return restartPolicy
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_POLICY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -942,7 +931,7 @@ public class ContainerBasicConfig {
    * RestartRetries is the number of attempts that will be made to restart the container. Only available when RestartPolicy is set to \&quot;on-failure\&quot;. Optional.
    * @return restartTries
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTART_TRIES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -967,7 +956,7 @@ public class ContainerBasicConfig {
    * Determine how to handle the NOTIFY_SOCKET - do we participate or pass it through \&quot;container\&quot; - let the OCI runtime deal with it, advertise conmon&#39;s MAINPID \&quot;conmon-only\&quot; - advertise conmon&#39;s MAINPID, send READY when started, don&#39;t pass to OCI \&quot;ignore\&quot; - unset NOTIFY_SOCKET Optional.
    * @return sdnotifyMode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SDNOTIFY_MODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1000,7 +989,7 @@ public class ContainerBasicConfig {
    * EnvSecrets are secrets that will be set as environment variables Optional.
    * @return secretEnv
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SECRET_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1025,7 +1014,7 @@ public class ContainerBasicConfig {
    * Stdin is whether the container will keep its STDIN open. Optional.
    * @return stdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1050,7 +1039,7 @@ public class ContainerBasicConfig {
    * It implements the [os.Signal] interface.
    * @return stopSignal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_SIGNAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1075,7 +1064,7 @@ public class ContainerBasicConfig {
    * StopTimeout is a timeout between the container&#39;s stop signal being sent and SIGKILL being sent. If not provided, the default will be used. If 0 is used, stop signal will not be sent, and SIGKILL will be sent instead. Optional.
    * @return stopTimeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOP_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1108,7 +1097,7 @@ public class ContainerBasicConfig {
    * Sysctl sets kernel parameters for the container
    * @return sysctl
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSCTL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1133,7 +1122,7 @@ public class ContainerBasicConfig {
    * Systemd is whether the container will be started in systemd mode. Valid options are \&quot;true\&quot;, \&quot;false\&quot;, and \&quot;always\&quot;. \&quot;true\&quot; enables this mode only if the binary run in the container is sbin/init or systemd. \&quot;always\&quot; unconditionally enables systemd mode. \&quot;false\&quot; unconditionally disables systemd mode. If enabled, mounts and stop signal will be modified. If set to \&quot;always\&quot; or set to \&quot;true\&quot; and conditionally triggered, conflicts with StopSignal. If not specified, \&quot;false\&quot; will be assumed. Optional.
    * @return systemd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_SYSTEMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1158,7 +1147,7 @@ public class ContainerBasicConfig {
    * Terminal is whether the container will create a PTY. Optional.
    * @return terminal
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TERMINAL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1183,7 +1172,7 @@ public class ContainerBasicConfig {
    * Timeout is a maximum time in seconds the container will run before main process is sent SIGKILL. If 0 is used, signal will not be sent. Container can run indefinitely if they do not stop after the default termination signal. Optional.
    * @return timeout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TIMEOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1208,7 +1197,7 @@ public class ContainerBasicConfig {
    * Timezone is the timezone inside the container. Local means it has the same timezone as the host machine Optional.
    * @return timezone
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TIMEZONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1241,7 +1230,7 @@ public class ContainerBasicConfig {
    * UnsetEnv unsets the specified default environment variables from the image or from built-in or containers.conf Optional.
    * @return unsetenv
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNSETENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1266,7 +1255,7 @@ public class ContainerBasicConfig {
    * UnsetEnvAll unsetall default environment variables from the image or from built-in or containers.conf UnsetEnvAll unsets all default environment variables from the image or from built-in Optional.
    * @return unsetenvall
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UNSETENVALL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1291,7 +1280,7 @@ public class ContainerBasicConfig {
    * Get utsns
    * @return utsns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_UTSNS)

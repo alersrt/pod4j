@@ -13,26 +13,17 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import jakarta.validation.constraints.*;
-import jakarta.validation.Valid;
-
-
 import io.github.alersrt.pod4j.openapi.ApiClient;
+
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * ContainerExecRequest
  */
@@ -48,7 +39,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ContainerExecRequest.JSON_PROPERTY_USER,
   ContainerExecRequest.JSON_PROPERTY_WORKING_DIR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ContainerExecRequest {
   public static final String JSON_PROPERTY_ATTACH_STDERR = "AttachStderr";
   private Boolean attachStderr;
@@ -92,7 +83,7 @@ public class ContainerExecRequest {
    * Attach to stderr of the exec command
    * @return attachStderr
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDERR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -117,7 +108,7 @@ public class ContainerExecRequest {
    * Attach to stdin of the exec command
    * @return attachStdin
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDIN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -142,7 +133,7 @@ public class ContainerExecRequest {
    * Attach to stdout of the exec command
    * @return attachStdout
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ATTACH_STDOUT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -175,7 +166,7 @@ public class ContainerExecRequest {
    * Command to run, as a string or array of strings.
    * @return cmd
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CMD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -200,7 +191,7 @@ public class ContainerExecRequest {
    * \&quot;Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _.\&quot; 
    * @return detachKeys
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DETACH_KEYS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -233,7 +224,7 @@ public class ContainerExecRequest {
    * A list of environment variables in the form [\&quot;VAR&#x3D;value\&quot;, ...]
    * @return env
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ENV)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -258,7 +249,7 @@ public class ContainerExecRequest {
    * Runs the exec process with extended privileges
    * @return privileged
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PRIVILEGED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -283,7 +274,7 @@ public class ContainerExecRequest {
    * Allocate a pseudo-TTY
    * @return tty
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_TTY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -308,7 +299,7 @@ public class ContainerExecRequest {
    * \&quot;The user, and optionally, group to run the exec process inside the container. Format is one of: user, user:group, uid, or uid:gid.\&quot; 
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -333,7 +324,7 @@ public class ContainerExecRequest {
    * The working directory for the exec process inside the container.
    * @return workingDir
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_WORKING_DIR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

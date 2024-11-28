@@ -43,7 +43,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   ListContainerNamespaces.JSON_PROPERTY_USER,
   ListContainerNamespaces.JSON_PROPERTY_UTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class ListContainerNamespaces {
   public static final String JSON_PROPERTY_CGROUP = "Cgroup";
   private String cgroup;
@@ -78,7 +78,7 @@ public class ListContainerNamespaces {
    * Cgroup namespace
    * @return cgroup
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -103,7 +103,7 @@ public class ListContainerNamespaces {
    * IPC namespace
    * @return ipc
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IPC)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -128,7 +128,7 @@ public class ListContainerNamespaces {
    * Mount namespace
    * @return mnt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -153,7 +153,7 @@ public class ListContainerNamespaces {
    * Network namespace
    * @return net
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NET)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -178,7 +178,7 @@ public class ListContainerNamespaces {
    * PID namespace
    * @return pidns
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PIDNS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -203,7 +203,7 @@ public class ListContainerNamespaces {
    * User namespace
    * @return user
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -228,7 +228,7 @@ public class ListContainerNamespaces {
    * UTS namespace
    * @return uts
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_UTS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

@@ -13,27 +13,27 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for SecretCreateReport
  */
-public class SecretCreateReportTest {
+class SecretCreateReportTest {
     private final SecretCreateReport model = new SecretCreateReport();
 
     /**
      * Model tests for SecretCreateReport
      */
     @Test
-    public void testSecretCreateReport() {
+    void testSecretCreateReport() {
         // TODO: test SecretCreateReport
     }
 
@@ -41,7 +41,7 @@ public class SecretCreateReportTest {
      * Test the property 'ID'
      */
     @Test
-    public void IDTest() {
+    void IDTest() {
         // TODO: test ID
     }
 

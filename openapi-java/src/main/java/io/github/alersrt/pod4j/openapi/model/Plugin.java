@@ -44,7 +44,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Plugin.JSON_PROPERTY_PLUGIN_REFERENCE,
   Plugin.JSON_PROPERTY_SETTINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Plugin {
   public static final String JSON_PROPERTY_CONFIG = "Config";
   private PluginConfig config;
@@ -76,7 +76,7 @@ public class Plugin {
    * Get config
    * @return config
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 
@@ -103,7 +103,7 @@ public class Plugin {
    * True if the plugin is running. False if the plugin is not running, only installed.
    * @return enabled
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_ENABLED)
@@ -129,7 +129,7 @@ public class Plugin {
    * Id
    * @return id
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -154,7 +154,7 @@ public class Plugin {
    * name
    * @return name
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -180,7 +180,7 @@ public class Plugin {
    * plugin remote reference used to push/pull the plugin
    * @return pluginReference
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PLUGIN_REFERENCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -205,7 +205,7 @@ public class Plugin {
    * Get settings
    * @return settings
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
   @Valid
 

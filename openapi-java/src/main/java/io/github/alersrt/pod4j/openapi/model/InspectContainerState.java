@@ -61,7 +61,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   InspectContainerState.JSON_PROPERTY_STATUS,
   InspectContainerState.JSON_PROPERTY_STOPPED_BY_USER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class InspectContainerState {
   public static final String JSON_PROPERTY_CGROUP_PATH = "CgroupPath";
   private String cgroupPath;
@@ -144,7 +144,7 @@ public class InspectContainerState {
    * Get cgroupPath
    * @return cgroupPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -169,7 +169,7 @@ public class InspectContainerState {
    * Get checkpointLog
    * @return checkpointLog
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CHECKPOINT_LOG)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -194,7 +194,7 @@ public class InspectContainerState {
    * Get checkpointPath
    * @return checkpointPath
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CHECKPOINT_PATH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -219,7 +219,7 @@ public class InspectContainerState {
    * Get checkpointed
    * @return checkpointed
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CHECKPOINTED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -244,7 +244,7 @@ public class InspectContainerState {
    * Get checkpointedAt
    * @return checkpointedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_CHECKPOINTED_AT)
@@ -270,7 +270,7 @@ public class InspectContainerState {
    * Get conmonPid
    * @return conmonPid
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CONMON_PID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -295,7 +295,7 @@ public class InspectContainerState {
    * Get dead
    * @return dead
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEAD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -320,7 +320,7 @@ public class InspectContainerState {
    * Get error
    * @return error
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_ERROR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -345,7 +345,7 @@ public class InspectContainerState {
    * Get exitCode
    * @return exitCode
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_EXIT_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -370,7 +370,7 @@ public class InspectContainerState {
    * Get finishedAt
    * @return finishedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_FINISHED_AT)
@@ -396,7 +396,7 @@ public class InspectContainerState {
    * Get health
    * @return health
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_HEALTH)
@@ -422,7 +422,7 @@ public class InspectContainerState {
    * Get ooMKilled
    * @return ooMKilled
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OO_M_KILLED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -447,7 +447,7 @@ public class InspectContainerState {
    * Get ociVersion
    * @return ociVersion
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OCI_VERSION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -472,7 +472,7 @@ public class InspectContainerState {
    * Get paused
    * @return paused
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PAUSED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -497,7 +497,7 @@ public class InspectContainerState {
    * Get pid
    * @return pid
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -522,7 +522,7 @@ public class InspectContainerState {
    * Get restarting
    * @return restarting
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTARTING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -547,7 +547,7 @@ public class InspectContainerState {
    * Get restoreLog
    * @return restoreLog
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTORE_LOG)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -572,7 +572,7 @@ public class InspectContainerState {
    * Get restored
    * @return restored
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RESTORED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -597,7 +597,7 @@ public class InspectContainerState {
    * Get restoredAt
    * @return restoredAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_RESTORED_AT)
@@ -623,7 +623,7 @@ public class InspectContainerState {
    * Get running
    * @return running
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_RUNNING)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -648,7 +648,7 @@ public class InspectContainerState {
    * Get startedAt
    * @return startedAt
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_STARTED_AT)
@@ -674,7 +674,7 @@ public class InspectContainerState {
    * Get status
    * @return status
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -699,7 +699,7 @@ public class InspectContainerState {
    * Get stoppedByUser
    * @return stoppedByUser
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_STOPPED_BY_USER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)

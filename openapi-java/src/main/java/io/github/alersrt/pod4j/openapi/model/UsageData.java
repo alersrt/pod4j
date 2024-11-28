@@ -38,7 +38,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   UsageData.JSON_PROPERTY_REF_COUNT,
   UsageData.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class UsageData {
   public static final String JSON_PROPERTY_REF_COUNT = "RefCount";
   private Long refCount;
@@ -58,7 +58,7 @@ public class UsageData {
    * The number of containers referencing this volume. This field is set to &#x60;-1&#x60; if the reference-count is not available.
    * @return refCount
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_REF_COUNT)
@@ -84,7 +84,7 @@ public class UsageData {
    * Amount of disk space used by the volume (in bytes). This information is only available for volumes created with the &#x60;\&quot;local\&quot;&#x60; volume driver. For volumes created with other volume drivers, this field is set to &#x60;-1&#x60; (\&quot;not available\&quot;)
    * @return size
    */
-  @javax.annotation.Nonnull
+  @jakarta.annotation.Nonnull
   @NotNull
 
   @JsonProperty(JSON_PROPERTY_SIZE)

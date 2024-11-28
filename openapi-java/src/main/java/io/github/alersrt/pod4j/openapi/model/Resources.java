@@ -74,7 +74,7 @@ import io.github.alersrt.pod4j.openapi.ApiClient;
   Resources.JSON_PROPERTY_PIDS_LIMIT,
   Resources.JSON_PROPERTY_ULIMITS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T19:32:38.690938181+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-28T20:49:08.759389952+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
 public class Resources {
   public static final String JSON_PROPERTY_BLKIO_DEVICE_READ_BPS = "BlkioDeviceReadBps";
   private List<@Valid ThrottleDevice> blkioDeviceReadBps = new ArrayList<>();
@@ -189,7 +189,7 @@ public class Resources {
    * Get blkioDeviceReadBps
    * @return blkioDeviceReadBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_BPS)
@@ -223,7 +223,7 @@ public class Resources {
    * Get blkioDeviceReadIOps
    * @return blkioDeviceReadIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_READ_I_OPS)
@@ -257,7 +257,7 @@ public class Resources {
    * Get blkioDeviceWriteBps
    * @return blkioDeviceWriteBps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_BPS)
@@ -291,7 +291,7 @@ public class Resources {
    * Get blkioDeviceWriteIOps
    * @return blkioDeviceWriteIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_DEVICE_WRITE_I_OPS)
@@ -317,7 +317,7 @@ public class Resources {
    * Get blkioWeight
    * @return blkioWeight
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -350,7 +350,7 @@ public class Resources {
    * Get blkioWeightDevice
    * @return blkioWeightDevice
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_BLKIO_WEIGHT_DEVICE)
@@ -376,7 +376,7 @@ public class Resources {
    * Applicable to UNIX platforms
    * @return cgroupParent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CGROUP_PARENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -401,7 +401,7 @@ public class Resources {
    * Applicable to Windows
    * @return cpuCount
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_COUNT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -426,7 +426,7 @@ public class Resources {
    * Get cpuPercent
    * @return cpuPercent
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERCENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -451,7 +451,7 @@ public class Resources {
    * Get cpuPeriod
    * @return cpuPeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -476,7 +476,7 @@ public class Resources {
    * Get cpuQuota
    * @return cpuQuota
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_QUOTA)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -501,7 +501,7 @@ public class Resources {
    * Get cpuRealtimePeriod
    * @return cpuRealtimePeriod
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_REALTIME_PERIOD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -526,7 +526,7 @@ public class Resources {
    * Get cpuRealtimeRuntime
    * @return cpuRealtimeRuntime
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_REALTIME_RUNTIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -551,7 +551,7 @@ public class Resources {
    * Applicable to all platforms
    * @return cpuShares
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPU_SHARES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -576,7 +576,7 @@ public class Resources {
    * Get cpusetCpus
    * @return cpusetCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -601,7 +601,7 @@ public class Resources {
    * Get cpusetMems
    * @return cpusetMems
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_CPUSET_MEMS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -634,7 +634,7 @@ public class Resources {
    * Get deviceCgroupRules
    * @return deviceCgroupRules
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_DEVICE_CGROUP_RULES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -667,7 +667,7 @@ public class Resources {
    * Get deviceRequests
    * @return deviceRequests
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICE_REQUESTS)
@@ -701,7 +701,7 @@ public class Resources {
    * Get devices
    * @return devices
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_DEVICES)
@@ -727,7 +727,7 @@ public class Resources {
    * Get ioMaximumBandwidth
    * @return ioMaximumBandwidth
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_BANDWIDTH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -752,7 +752,7 @@ public class Resources {
    * Get ioMaximumIOps
    * @return ioMaximumIOps
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_IO_MAXIMUM_I_OPS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -777,7 +777,7 @@ public class Resources {
    * KernelMemory specifies the kernel memory limit (in bytes) for the container. Deprecated: kernel 5.4 deprecated kmem.limit_in_bytes.
    * @return kernelMemory
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -802,7 +802,7 @@ public class Resources {
    * Get kernelMemoryTCP
    * @return kernelMemoryTCP
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_KERNEL_MEMORY_T_C_P)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -827,7 +827,7 @@ public class Resources {
    * Get memory
    * @return memory
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -852,7 +852,7 @@ public class Resources {
    * Get memoryReservation
    * @return memoryReservation
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_RESERVATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -877,7 +877,7 @@ public class Resources {
    * Get memorySwap
    * @return memorySwap
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_SWAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -902,7 +902,7 @@ public class Resources {
    * Get memorySwappiness
    * @return memorySwappiness
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_MEMORY_SWAPPINESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -927,7 +927,7 @@ public class Resources {
    * Get nanoCpus
    * @return nanoCpus
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_NANO_CPUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -952,7 +952,7 @@ public class Resources {
    * Get oomKillDisable
    * @return oomKillDisable
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_OOM_KILL_DISABLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -977,7 +977,7 @@ public class Resources {
    * Get pidsLimit
    * @return pidsLimit
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
 
   @JsonProperty(JSON_PROPERTY_PIDS_LIMIT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -1010,7 +1010,7 @@ public class Resources {
    * Get ulimits
    * @return ulimits
    */
-  @javax.annotation.Nullable
+  @jakarta.annotation.Nullable
   @Valid
 
   @JsonProperty(JSON_PROPERTY_ULIMITS)

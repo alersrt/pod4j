@@ -13,27 +13,28 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * Model tests for LeaseRange
  */
-public class LeaseRangeTest {
+class LeaseRangeTest {
     private final LeaseRange model = new LeaseRange();
 
     /**
      * Model tests for LeaseRange
      */
     @Test
-    public void testLeaseRange() {
+    void testLeaseRange() {
         // TODO: test LeaseRange
     }
 
@@ -41,7 +42,7 @@ public class LeaseRangeTest {
      * Test the property 'endIp'
      */
     @Test
-    public void endIpTest() {
+    void endIpTest() {
         // TODO: test endIp
     }
 
@@ -49,7 +50,7 @@ public class LeaseRangeTest {
      * Test the property 'startIp'
      */
     @Test
-    public void startIpTest() {
+    void startIpTest() {
         // TODO: test startIp
     }
 

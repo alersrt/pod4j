@@ -25,6 +25,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
 
 /**
  * API tests for VolumesApi
@@ -34,28 +39,39 @@ public class VolumesApiTest {
 
     private final VolumesApi api = new VolumesApi();
 
+
     /**
      * Create a volume
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void volumeCreateLibpodTest() throws ApiException {
         VolumeCreateOptions create = null;
-        VolumeConfigResponse response = api.volumeCreateLibpod(create);
+        VolumeConfigResponse response =
+                api.volumeCreateLibpod(create);
+        
         // TODO: test validations
     }
 
     /**
      * Remove volume
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void volumeDeleteLibpodTest() throws ApiException {
         String name = null;
         Boolean force = null;
+
         api.volumeDeleteLibpod(name, force);
+
         // TODO: test validations
     }
 
@@ -64,24 +80,32 @@ public class VolumesApiTest {
      *
      * Check if a volume exists
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void volumeExistsLibpodTest() throws ApiException {
         String name = null;
+
         api.volumeExistsLibpod(name);
+
         // TODO: test validations
     }
 
     /**
      * Inspect volume
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void volumeInspectLibpodTest() throws ApiException {
         String name = null;
-        VolumeConfigResponse response = api.volumeInspectLibpod(name);
+        VolumeConfigResponse response =
+                api.volumeInspectLibpod(name);
+        
         // TODO: test validations
     }
 
@@ -90,24 +114,32 @@ public class VolumesApiTest {
      *
      * Returns a list of volumes
      *
-     * @throws ApiException if the Api call fails
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void volumeListLibpodTest() throws ApiException {
         String filters = null;
-        List<VolumeConfigResponse> response = api.volumeListLibpod(filters);
+        List<VolumeConfigResponse> response =
+                api.volumeListLibpod(filters);
+        
         // TODO: test validations
     }
 
     /**
      * Prune volumes
      *
-     * @throws ApiException if the Api call fails
+     *
+     *
+     * @throws ApiException
+     *          if the Api call fails
      */
     @Test
     public void volumePruneLibpodTest() throws ApiException {
         String filters = null;
-        List<PruneReport> response = api.volumePruneLibpod(filters);
+        List<PruneReport> response =
+                api.volumePruneLibpod(filters);
+        
         // TODO: test validations
     }
 
