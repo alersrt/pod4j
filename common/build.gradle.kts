@@ -4,6 +4,7 @@ plugins {
     id("java")
     id("maven-publish")
     id("signing")
+    id("io.freefair.lombok") version "8.11"
 }
 
 repositories {
