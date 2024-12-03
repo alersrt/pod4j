@@ -3,11 +3,7 @@ package io.github.alersrt.pod4j;
 import io.github.alersrt.pod4j.exceptions.PodmanException;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
-import io.github.alersrt.pod4j.openapi.api.ContainersApi;
 import io.github.alersrt.pod4j.openapi.api.PodsApi;
-import io.github.alersrt.pod4j.openapi.model.InspectContainerData;
-import io.github.alersrt.pod4j.openapi.model.InspectContainerHostConfig;
-import io.github.alersrt.pod4j.openapi.model.PlayKubePod;
 import io.github.alersrt.pod4j.openapi.model.PlayKubeReport;
 import okhttp3.OkHttpClient;
 import okhttp3.unixdomainsockets.UnixDomainSocketFactory;
@@ -18,10 +14,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Stream;
 
 public class KubePlayer {
 
@@ -87,38 +79,6 @@ public class KubePlayer {
         final var pods = new PodsApi(this.api);
         String yaml = readFile(this.yamlPath);
         pods.playKubeDownLibpod(null, true, yaml);
-    }
-
-    public Integer getMappedPort(String containerName, String containerPort) throws ApiException {
-        var containerApi = new ContainersApi(api);
-
-        InspectContainerData data = null;
-        for (PlayKubePod playKubePod : this.report.getPods()) {
-            if (playKubePod.getContainers() != null) {
-                for (String container : playKubePod.getContainers()) {
-                    data = containerApi.containerInspectLibpod(container, true);
-                    if (data != null && data.getId() != null && data.getId().equals(container)) {
-                        break;
-                    }
-                }
-            }
-        }
-
-        if (data == null) {
-            throw new PodmanException("There is no related containers");
-        }
-
-        return Stream.ofNullable(data.getHostConfig())
-                .map(InspectContainerHostConfig::getPortBindings)
-                .filter(Objects::nonNull)
-                .map(Map::entrySet)
-                .flatMap(Set::stream)
-                .filter(bind -> bind.getKey().matches("^%s/(tcp|upd)$".formatted(containerPort)))
-                .map(bind -> bind.getValue().get(0).getHostPort())
-                .filter(Objects::nonNull)
-                .map(Integer::parseInt)
-                .findAny()
-                .orElse(null);
     }
 
     private String readFile(String filename) throws IOException {
