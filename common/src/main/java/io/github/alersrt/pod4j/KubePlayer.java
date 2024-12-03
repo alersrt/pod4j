@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -57,11 +58,11 @@ public class KubePlayer {
                 null,
                 null,
                 null,
-                null,
+                List.of("bridge"),
                 false,
                 false,
                 null,
-                true,
+                false,
                 true,
                 true,
                 true,
