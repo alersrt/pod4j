@@ -1,0 +1,28 @@
+## Ignore all files
+/*
+gradle.properties
+
+## Include project files
+!/common/
+!/openapi-java/
+
+## Infrastructure
+!system.properties
+!.editorconfig
+!.gitignore
+
+## Documentation
+!common/README.md
+!CONTRIBUTING.md
+!LICENSE
+
+## Gradle wrapper
+!gradle/
+!gradlew
+!gradlew.bat
+!common/build.gradle.kts
+!common/settings.gradle.kts
+
+## Exclude IDE files
+# JetBrains
+*.iml
