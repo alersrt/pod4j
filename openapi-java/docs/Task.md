@@ -14,4 +14,8 @@ Task carries the information about one backend task
 |**name** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

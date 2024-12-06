@@ -13,4 +13,8 @@
 |**throttleReadBpsDevice** | [**Map&lt;String, LinuxThrottleDevice&gt;**](LinuxThrottleDevice.md) | ThrottleReadBpsDevice contains the rate at which the devices in the pod can be read from/accessed |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

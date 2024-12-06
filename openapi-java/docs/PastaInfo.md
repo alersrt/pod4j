@@ -13,4 +13,8 @@ PastaInfo describes the pasta executable that is being used
 |**version** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

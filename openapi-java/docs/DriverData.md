@@ -12,4 +12,8 @@ DriverData handles the data for a storage driver
 |**name** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

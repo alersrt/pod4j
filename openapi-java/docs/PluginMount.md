@@ -17,4 +17,8 @@ PluginMount plugin mount
 |**type** | **String** | type |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

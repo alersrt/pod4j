@@ -14,4 +14,8 @@
 |**emptyLayer** | **Boolean** | EmptyLayer is used to mark if the history item created a filesystem diff. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

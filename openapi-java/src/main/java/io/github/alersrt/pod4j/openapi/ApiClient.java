@@ -13,19 +13,7 @@
 
 package io.github.alersrt.pod4j.openapi;
 
-import io.github.alersrt.pod4j.openapi.auth.ApiKeyAuth;
-import io.github.alersrt.pod4j.openapi.auth.Authentication;
-import io.github.alersrt.pod4j.openapi.auth.HttpBasicAuth;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Headers;
-import okhttp3.Interceptor;
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.*;
 import okhttp3.internal.http.HttpMethod;
 import okhttp3.internal.tls.OkHostnameVerifier;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -34,14 +22,15 @@ import okio.Buffer;
 import okio.BufferedSink;
 import okio.Okio;
 
+import javax.net.ssl.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
@@ -50,54 +39,46 @@ import java.security.SecureRandom;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
+
+import io.github.alersrt.pod4j.openapi.auth.Authentication;
+import io.github.alersrt.pod4j.openapi.auth.HttpBasicAuth;
+import io.github.alersrt.pod4j.openapi.auth.HttpBearerAuth;
+import io.github.alersrt.pod4j.openapi.auth.ApiKeyAuth;
 
 /**
  * <p>ApiClient class.</p>
  */
 public class ApiClient {
 
-    private final Map<String, String> defaultHeaderMap = new HashMap<String, String>();
-    private final Map<String, String> defaultCookieMap = new HashMap<String, String>();
+    private String basePath = "http://podman.io";
     protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
-            new ServerConfiguration(
-                    "http://podman.io",
-                    "No description provided",
-                    new HashMap<String, ServerVariable>()
-            ),
-            new ServerConfiguration(
-                    "https://podman.io",
-                    "No description provided",
-                    new HashMap<String, ServerVariable>()
-            )
-    ));
+    new ServerConfiguration(
+      "http://podman.io",
+      "No description provided",
+      new HashMap<String, ServerVariable>()
+    ),
+    new ServerConfiguration(
+      "https://podman.io",
+      "No description provided",
+      new HashMap<String, ServerVariable>()
+    )
+  ));
     protected Integer serverIndex = 0;
     protected Map<String, String> serverVariables = null;
-    private String basePath = "http://podman.io";
     private boolean debugging = false;
+    private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
+    private Map<String, String> defaultCookieMap = new HashMap<String, String>();
     private String tempFolderPath = null;
 
     private Map<String, Authentication> authentications;
@@ -144,13 +125,13 @@ public class ApiClient {
     }
 
     private void initHttpClient() {
-        initHttpClient(Collections.emptyList());
+        initHttpClient(Collections.<Interceptor>emptyList());
     }
 
     private void initHttpClient(List<Interceptor> interceptors) {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addNetworkInterceptor(getProgressInterceptor());
-        for (Interceptor interceptor : interceptors) {
+        for (Interceptor interceptor: interceptors) {
             builder.addInterceptor(interceptor);
         }
 
@@ -163,7 +144,7 @@ public class ApiClient {
         json = new JSON();
 
         // Set default User-Agent.
-        setUserAgent("OpenAPI-Generator/5.3.0/java");
+        setUserAgent("OpenAPI-Generator/5.3.0-1/java");
 
         authentications = new HashMap<String, Authentication>();
     }
@@ -482,8 +463,8 @@ public class ApiClient {
      *
      * @param accessKey Access Key
      * @param secretKey Secret Key
-     * @param region    Region
-     * @param service   Service to access to
+     * @param region Region
+     * @param service Service to access to
      */
     public void setAWS4Configuration(String accessKey, String secretKey, String region, String service) {
         throw new RuntimeException("No AWS4 authentication configured!");
@@ -492,11 +473,11 @@ public class ApiClient {
     /**
      * Helper method to set credentials for AWSV4 Signature
      *
-     * @param accessKey    Access Key
-     * @param secretKey    Secret Key
+     * @param accessKey Access Key
+     * @param secretKey Secret Key
      * @param sessionToken Session Token
-     * @param region       Region
-     * @param service      Service to access to
+     * @param region Region
+     * @param service Service to access to
      */
     public void setAWS4Configuration(String accessKey, String secretKey, String sessionToken, String region, String service) {
         throw new RuntimeException("No AWS4 authentication configured!");
@@ -516,7 +497,7 @@ public class ApiClient {
     /**
      * Add a default header.
      *
-     * @param key   The header's key
+     * @param key The header's key
      * @param value The header's value
      * @return ApiClient
      */
@@ -528,7 +509,7 @@ public class ApiClient {
     /**
      * Add a default cookie.
      *
-     * @param key   The cookie's key
+     * @param key The cookie's key
      * @param value The cookie's value
      * @return ApiClient
      */
@@ -574,8 +555,8 @@ public class ApiClient {
      * with file response. The default value is <code>null</code>, i.e. using
      * the system's default temporary folder.
      *
-     * @return Temporary folder path
      * @see <a href="https://docs.oracle.com/javase/7/docs/api/java/nio/file/Files.html#createTempFile(java.lang.String,%20java.lang.String,%20java.nio.file.attribute.FileAttribute...)">createTempFile</a>
+     * @return Temporary folder path
      */
     public String getTempFolderPath() {
         return tempFolderPath;
@@ -688,10 +669,10 @@ public class ApiClient {
 
     /**
      * Formats the specified query parameter to a list containing a single {@code Pair} object.
-     * <p>
+     *
      * Note that {@code value} must not be a collection.
      *
-     * @param name  The name of the parameter.
+     * @param name The name of the parameter.
      * @param value The value of the parameter.
      * @return A list containing a single {@code Pair} object.
      */
@@ -709,12 +690,12 @@ public class ApiClient {
 
     /**
      * Formats the specified collection query parameters to a list of {@code Pair} objects.
-     * <p>
+     *
      * Note that the values of each of the returned Pair objects are percent-encoded.
      *
      * @param collectionFormat The collection format of the parameter.
-     * @param name             The name of the parameter.
-     * @param value            The value of the parameter.
+     * @param name The name of the parameter.
+     * @param value The value of the parameter.
      * @return A list of {@code Pair} objects.
      */
     public List<Pair> parameterToPairs(String collectionFormat, String name, Collection value) {
@@ -761,7 +742,7 @@ public class ApiClient {
      * Formats the specified collection path parameter to a string value.
      *
      * @param collectionFormat The collection format of the parameter.
-     * @param value            The value of the parameter.
+     * @param value The value of the parameter.
      * @return String representation of the parameter
      */
     public String collectionPathParameterToString(String collectionFormat, Collection value) {
@@ -782,7 +763,7 @@ public class ApiClient {
             delimiter = "|";
         }
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder() ;
         for (Object item : value) {
             sb.append(delimiter);
             sb.append(parameterToString(item));
@@ -805,12 +786,11 @@ public class ApiClient {
     /**
      * Check if the given MIME is a JSON MIME.
      * JSON MIME examples:
-     * application/json
-     * application/json; charset=UTF8
-     * APPLICATION/JSON
-     * application/vnd.company+json
+     *   application/json
+     *   application/json; charset=UTF8
+     *   APPLICATION/JSON
+     *   application/vnd.company+json
      * "* / *" is also default to JSON
-     *
      * @param mime MIME (Multipurpose Internet Mail Extensions)
      * @return True if the given MIME is JSON, false otherwise.
      */
@@ -821,12 +801,12 @@ public class ApiClient {
 
     /**
      * Select the Accept header's value from the given accepts array:
-     * if JSON exists in the given array, use it;
-     * otherwise use all of them (joining into a string)
+     *   if JSON exists in the given array, use it;
+     *   otherwise use all of them (joining into a string)
      *
      * @param accepts The accepts array to select from
      * @return The Accept header to use. If the given array is empty,
-     * null will be returned (not to set the Accept header explicitly).
+     *   null will be returned (not to set the Accept header explicitly).
      */
     public String selectHeaderAccept(String[] accepts) {
         if (accepts.length == 0) {
@@ -842,12 +822,12 @@ public class ApiClient {
 
     /**
      * Select the Content-Type header's value from the given array:
-     * if JSON exists in the given array, use it;
-     * otherwise use the first one of the array.
+     *   if JSON exists in the given array, use it;
+     *   otherwise use the first one of the array.
      *
      * @param contentTypes The Content-Type array to select from
      * @return The Content-Type header to use. If the given array is empty,
-     * returns null. If it matches "any", JSON will be used.
+     *   returns null. If it matches "any", JSON will be used.
      */
     public String selectHeaderContentType(String[] contentTypes) {
         if (contentTypes.length == 0) {
@@ -874,19 +854,23 @@ public class ApiClient {
      * @return Escaped string
      */
     public String escapeString(String str) {
-        return URLEncoder.encode(str, StandardCharsets.UTF_8).replaceAll("\\+", "%20");
+        try {
+            return URLEncoder.encode(str, "utf8").replaceAll("\\+", "%20");
+        } catch (UnsupportedEncodingException e) {
+            return str;
+        }
     }
 
     /**
      * Deserialize response body to Java object, according to the return type and
      * the Content-Type response header.
      *
-     * @param <T>        Type
-     * @param response   HTTP response
+     * @param <T> Type
+     * @param response HTTP response
      * @param returnType The type of the Java object
      * @return The deserialized Java object
      * @throws io.github.alersrt.pod4j.openapi.ApiException If fail to deserialize response body, i.e. cannot read response body
-     *                                                      or the Content-Type of the response is not supported.
+     *   or the Content-Type of the response is not supported.
      */
     @SuppressWarnings("unchecked")
     public <T> T deserialize(Response response, Type returnType) throws ApiException {
@@ -943,7 +927,7 @@ public class ApiClient {
      * Serialize the given Java object into request body according to the object's
      * class and the request Content-Type.
      *
-     * @param obj         The Java object
+     * @param obj The Java object
      * @param contentType The request Content-Type
      * @return The serialized request body
      * @throws io.github.alersrt.pod4j.openapi.ApiException If fail to serialize the given object
@@ -966,7 +950,7 @@ public class ApiClient {
             }
             return RequestBody.create(content, MediaType.parse(contentType));
         } else if (obj instanceof String) {
-            return RequestBody.create((String) obj, contentType == null ? null : MediaType.parse(contentType));
+            return RequestBody.create((String) obj, MediaType.parse(contentType));
         } else {
             throw new ApiException("Content type \"" + contentType + "\" is not supported");
         }
@@ -976,8 +960,8 @@ public class ApiClient {
      * Download file from the given response.
      *
      * @param response An instance of the Response object
-     * @return Downloaded file
      * @throws io.github.alersrt.pod4j.openapi.ApiException If fail to read file content from response and write to disk
+     * @return Downloaded file
      */
     public File downloadFileFromResponse(Response response) throws ApiException {
         try {
@@ -1037,7 +1021,7 @@ public class ApiClient {
     /**
      * {@link #execute(Call, Type)}
      *
-     * @param <T>  Type
+     * @param <T> Type
      * @param call An instance of the Call object
      * @return ApiResponse&lt;T&gt;
      * @throws io.github.alersrt.pod4j.openapi.ApiException If fail to execute the call
@@ -1050,11 +1034,11 @@ public class ApiClient {
      * Execute HTTP call and deserialize the HTTP response body into the given return type.
      *
      * @param returnType The return type used to deserialize HTTP response body
-     * @param <T>        The return type corresponding to (same with) returnType
-     * @param call       Call
+     * @param <T> The return type corresponding to (same with) returnType
+     * @param call Call
      * @return ApiResponse object containing response status, headers and
-     * data, which is a Java object deserialized from response body and would be null
-     * when returnType is null.
+     *   data, which is a Java object deserialized from response body and would be null
+     *   when returnType is null.
      * @throws io.github.alersrt.pod4j.openapi.ApiException If fail to execute the call
      */
     public <T> ApiResponse<T> execute(Call call, Type returnType) throws ApiException {
@@ -1070,8 +1054,8 @@ public class ApiClient {
     /**
      * {@link #executeAsync(Call, Type, ApiCallback)}
      *
-     * @param <T>      Type
-     * @param call     An instance of the Call object
+     * @param <T> Type
+     * @param call An instance of the Call object
      * @param callback ApiCallback&lt;T&gt;
      */
     public <T> void executeAsync(Call call, ApiCallback<T> callback) {
@@ -1081,10 +1065,10 @@ public class ApiClient {
     /**
      * Execute HTTP call asynchronously.
      *
-     * @param <T>        Type
-     * @param call       The callback to be executed when the API call finishes
+     * @param <T> Type
+     * @param call The callback to be executed when the API call finishes
      * @param returnType Return type
-     * @param callback   ApiCallback
+     * @param callback ApiCallback
      * @see #execute(Call, Type)
      */
     @SuppressWarnings("unchecked")
@@ -1099,7 +1083,7 @@ public class ApiClient {
             public void onResponse(Call call, Response response) throws IOException {
                 T result;
                 try {
-                    result = handleResponse(response, returnType);
+                    result = (T) handleResponse(response, returnType);
                 } catch (ApiException e) {
                     callback.onFailure(e, response.code(), response.headers().toMultimap());
                     return;
@@ -1115,12 +1099,12 @@ public class ApiClient {
     /**
      * Handle the given response, return the deserialized object when the response is successful.
      *
-     * @param <T>        Type
-     * @param response   Response
+     * @param <T> Type
+     * @param response Response
      * @param returnType Return type
      * @return Type
      * @throws io.github.alersrt.pod4j.openapi.ApiException If the response has an unsuccessful status code or
-     *                                                      fail to deserialize the response body
+     *                      fail to deserialize the response body
      */
     public <T> T handleResponse(Response response, Type returnType) throws ApiException {
         if (response.isSuccessful()) {
@@ -1154,17 +1138,17 @@ public class ApiClient {
     /**
      * Build HTTP call with the given options.
      *
-     * @param baseUrl               The base URL
-     * @param path                  The sub-path of the HTTP URL
-     * @param method                The request method, one of "GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH" and "DELETE"
-     * @param queryParams           The query parameters
+     * @param baseUrl The base URL
+     * @param path The sub-path of the HTTP URL
+     * @param method The request method, one of "GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH" and "DELETE"
+     * @param queryParams The query parameters
      * @param collectionQueryParams The collection query parameters
-     * @param body                  The request body object
-     * @param headerParams          The header parameters
-     * @param cookieParams          The cookie parameters
-     * @param formParams            The form parameters
-     * @param authNames             The authentications to apply
-     * @param callback              Callback for upload/download progress
+     * @param body The request body object
+     * @param headerParams The header parameters
+     * @param cookieParams The cookie parameters
+     * @param formParams The form parameters
+     * @param authNames The authentications to apply
+     * @param callback Callback for upload/download progress
      * @return The HTTP call
      * @throws io.github.alersrt.pod4j.openapi.ApiException If fail to serialize the request body object
      */
@@ -1177,17 +1161,17 @@ public class ApiClient {
     /**
      * Build an HTTP request with the given options.
      *
-     * @param baseUrl               The base URL
-     * @param path                  The sub-path of the HTTP URL
-     * @param method                The request method, one of "GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH" and "DELETE"
-     * @param queryParams           The query parameters
+     * @param baseUrl The base URL
+     * @param path The sub-path of the HTTP URL
+     * @param method The request method, one of "GET", "HEAD", "OPTIONS", "POST", "PUT", "PATCH" and "DELETE"
+     * @param queryParams The query parameters
      * @param collectionQueryParams The collection query parameters
-     * @param body                  The request body object
-     * @param headerParams          The header parameters
-     * @param cookieParams          The cookie parameters
-     * @param formParams            The form parameters
-     * @param authNames             The authentications to apply
-     * @param callback              Callback for upload/download progress
+     * @param body The request body object
+     * @param headerParams The header parameters
+     * @param cookieParams The cookie parameters
+     * @param formParams The form parameters
+     * @param authNames The authentications to apply
+     * @param callback Callback for upload/download progress
      * @return The HTTP request
      * @throws io.github.alersrt.pod4j.openapi.ApiException If fail to serialize the request body object
      */
@@ -1249,9 +1233,9 @@ public class ApiClient {
     /**
      * Build full URL by concatenating base path, the given sub path and query parameters.
      *
-     * @param baseUrl               The base URL
-     * @param path                  The sub path
-     * @param queryParams           The query parameters
+     * @param baseUrl The base URL
+     * @param path The sub path
+     * @param queryParams The query parameters
      * @param collectionQueryParams The collection query parameters
      * @return The full URL
      */
@@ -1264,7 +1248,7 @@ public class ApiClient {
             if (serverIndex != null) {
                 if (serverIndex < 0 || serverIndex >= servers.size()) {
                     throw new ArrayIndexOutOfBoundsException(String.format(
-                            "Invalid index %d when selecting the host settings. Must be less than %d", serverIndex, servers.size()
+                    "Invalid index %d when selecting the host settings. Must be less than %d", serverIndex, servers.size()
                     ));
                 }
                 baseURL = servers.get(serverIndex).URL(serverVariables);
@@ -1315,7 +1299,7 @@ public class ApiClient {
      * Set header parameters to the request builder, including default headers.
      *
      * @param headerParams Header parameters in the form of Map
-     * @param reqBuilder   Request.Builder
+     * @param reqBuilder Request.Builder
      */
     public void processHeaderParams(Map<String, String> headerParams, Request.Builder reqBuilder) {
         for (Entry<String, String> param : headerParams.entrySet()) {
@@ -1332,7 +1316,7 @@ public class ApiClient {
      * Set cookie parameters to the request builder, including default cookies.
      *
      * @param cookieParams Cookie parameters in the form of Map
-     * @param reqBuilder   Request.Builder
+     * @param reqBuilder Request.Builder
      */
     public void processCookieParams(Map<String, String> cookieParams, Request.Builder reqBuilder) {
         for (Entry<String, String> param : cookieParams.entrySet()) {
@@ -1348,13 +1332,13 @@ public class ApiClient {
     /**
      * Update query and header parameters based on authentication settings.
      *
-     * @param authNames    The authentications to apply
-     * @param queryParams  List of query parameters
+     * @param authNames The authentications to apply
+     * @param queryParams List of query parameters
      * @param headerParams Map of header parameters
      * @param cookieParams Map of cookie parameters
-     * @param payload      HTTP request body
-     * @param method       HTTP method
-     * @param uri          URI
+     * @param payload HTTP request body
+     * @param method HTTP method
+     * @param uri URI
      * @throws io.github.alersrt.pod4j.openapi.ApiException If fails to update the parameters
      */
     public void updateParamsForAuth(String[] authNames, List<Pair> queryParams, Map<String, String> headerParams,
@@ -1392,10 +1376,12 @@ public class ApiClient {
     public RequestBody buildRequestBodyMultipart(Map<String, Object> formParams) {
         MultipartBody.Builder mpBuilder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         for (Entry<String, Object> param : formParams.entrySet()) {
-            if (param.getValue() instanceof File file) {
+            if (param.getValue() instanceof File) {
+                File file = (File) param.getValue();
                 addPartToMultiPartBuilder(mpBuilder, param.getKey(), file);
-            } else if (param.getValue() instanceof List list) {
-                for (Object item : list) {
+            } else if (param.getValue() instanceof List) {
+                List list = (List) param.getValue();
+                for (Object item: list) {
                     if (item instanceof File) {
                         addPartToMultiPartBuilder(mpBuilder, param.getKey(), (File) item);
                     } else {
@@ -1427,10 +1413,10 @@ public class ApiClient {
     /**
      * Add a Content-Disposition Header for the given key and file to the MultipartBody Builder.
      *
-     * @param mpBuilder MultipartBody.Builder
-     * @param key       The key of the Header element
-     * @param file      The file to add to the Header
-     */
+     * @param mpBuilder MultipartBody.Builder 
+     * @param key The key of the Header element
+     * @param file The file to add to the Header
+     */ 
     private void addPartToMultiPartBuilder(MultipartBody.Builder mpBuilder, String key, File file) {
         Headers partHeaders = Headers.of("Content-Disposition", "form-data; name=\"" + key + "\"; filename=\"" + file.getName() + "\"");
         MediaType mediaType = MediaType.parse(guessContentTypeFromFile(file));
@@ -1441,8 +1427,8 @@ public class ApiClient {
      * Add a Content-Disposition Header for the given key and complex object to the MultipartBody Builder.
      *
      * @param mpBuilder MultipartBody.Builder
-     * @param key       The key of the Header element
-     * @param obj       The complex object to add to the Header
+     * @param key The key of the Header element
+     * @param obj The complex object to add to the Header
      */
     private void addPartToMultiPartBuilder(MultipartBody.Builder mpBuilder, String key, Object obj) {
         RequestBody requestBody;
@@ -1472,10 +1458,11 @@ public class ApiClient {
             public Response intercept(Interceptor.Chain chain) throws IOException {
                 final Request request = chain.request();
                 final Response originalResponse = chain.proceed(request);
-                if (request.tag() instanceof ApiCallback callback) {
+                if (request.tag() instanceof ApiCallback) {
+                    final ApiCallback callback = (ApiCallback) request.tag();
                     return originalResponse.newBuilder()
-                            .body(new ProgressResponseBody(originalResponse.body(), callback))
-                            .build();
+                        .body(new ProgressResponseBody(originalResponse.body(), callback))
+                        .build();
                 }
                 return originalResponse;
             }
@@ -1540,9 +1527,9 @@ public class ApiClient {
             SSLContext sslContext = SSLContext.getInstance("TLS");
             sslContext.init(keyManagers, trustManagers, new SecureRandom());
             httpClient = httpClient.newBuilder()
-                    .sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustManagers[0])
-                    .hostnameVerifier(hostnameVerifier)
-                    .build();
+                            .sslSocketFactory(sslContext.getSocketFactory(), (X509TrustManager) trustManagers[0])
+                            .hostnameVerifier(hostnameVerifier)
+                            .build();
         } catch (GeneralSecurityException e) {
             throw new RuntimeException(e);
         }

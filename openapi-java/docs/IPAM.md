@@ -13,4 +13,8 @@ IPAM represents IP Address Management
 |**options** | **Map&lt;String, String&gt;** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

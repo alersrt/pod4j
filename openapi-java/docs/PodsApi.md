@@ -2,40 +2,38 @@
 
 All URIs are relative to *http://podman.io*
 
-| Method                                                        | HTTP request                            | Description                                      |
-|---------------------------------------------------------------|-----------------------------------------|--------------------------------------------------|
-| [**generateKubeLibpod**](PodsApi.md#generateKubeLibpod)       | **GET** /libpod/generate/kube           | Generate a Kubernetes YAML file.                 |
-| [**generateSystemdLibpod**](PodsApi.md#generateSystemdLibpod) | **GET** /libpod/generate/{name}/systemd | Generate Systemd Units                           |
-| [**kubeApplyLibpod**](PodsApi.md#kubeApplyLibpod)             | **POST** /libpod/kube/apply             | Apply a podman workload or Kubernetes YAML file. |
-| [**playKubeDownLibpod**](PodsApi.md#playKubeDownLibpod)       | **DELETE** /libpod/play/kube            | Remove resources created from kube play          |
-| [**playKubeLibpod**](PodsApi.md#playKubeLibpod)               | **POST** /libpod/play/kube              | Play a Kubernetes YAML file.                     |
-| [**podCreateLibpod**](PodsApi.md#podCreateLibpod)             | **POST** /libpod/pods/create            | Create a pod                                     |
-| [**podDeleteLibpod**](PodsApi.md#podDeleteLibpod)             | **DELETE** /libpod/pods/{name}          | Remove pod                                       |
-| [**podExistsLibpod**](PodsApi.md#podExistsLibpod)             | **GET** /libpod/pods/{name}/exists      | Pod exists                                       |
-| [**podInspectLibpod**](PodsApi.md#podInspectLibpod)           | **GET** /libpod/pods/{name}/json        | Inspect pod                                      |
-| [**podKillLibpod**](PodsApi.md#podKillLibpod)                 | **POST** /libpod/pods/{name}/kill       | Kill a pod                                       |
-| [**podListLibpod**](PodsApi.md#podListLibpod)                 | **GET** /libpod/pods/json               | List pods                                        |
-| [**podPauseLibpod**](PodsApi.md#podPauseLibpod)               | **POST** /libpod/pods/{name}/pause      | Pause a pod                                      |
-| [**podPruneLibpod**](PodsApi.md#podPruneLibpod)               | **POST** /libpod/pods/prune             | Prune unused pods                                |
-| [**podRestartLibpod**](PodsApi.md#podRestartLibpod)           | **POST** /libpod/pods/{name}/restart    | Restart a pod                                    |
-| [**podStartLibpod**](PodsApi.md#podStartLibpod)               | **POST** /libpod/pods/{name}/start      | Start a pod                                      |
-| [**podStatsAllLibpod**](PodsApi.md#podStatsAllLibpod)         | **GET** /libpod/pods/stats              | Statistics for one or more pods                  |
-| [**podStopLibpod**](PodsApi.md#podStopLibpod)                 | **POST** /libpod/pods/{name}/stop       | Stop a pod                                       |
-| [**podTopLibpod**](PodsApi.md#podTopLibpod)                   | **GET** /libpod/pods/{name}/top         | List processes                                   |
-| [**podUnpauseLibpod**](PodsApi.md#podUnpauseLibpod)           | **POST** /libpod/pods/{name}/unpause    | Unpause a pod                                    |
+| Method | HTTP request | Description |
+|------------- | ------------- | -------------|
+| [**generateKubeLibpod**](PodsApi.md#generateKubeLibpod) | **GET** /libpod/generate/kube | Generate a Kubernetes YAML file. |
+| [**generateSystemdLibpod**](PodsApi.md#generateSystemdLibpod) | **GET** /libpod/generate/{name}/systemd | Generate Systemd Units |
+| [**kubeApplyLibpod**](PodsApi.md#kubeApplyLibpod) | **POST** /libpod/kube/apply | Apply a podman workload or Kubernetes YAML file. |
+| [**playKubeDownLibpod**](PodsApi.md#playKubeDownLibpod) | **DELETE** /libpod/play/kube | Remove resources created from kube play |
+| [**playKubeLibpod**](PodsApi.md#playKubeLibpod) | **POST** /libpod/play/kube | Play a Kubernetes YAML file. |
+| [**podCreateLibpod**](PodsApi.md#podCreateLibpod) | **POST** /libpod/pods/create | Create a pod |
+| [**podDeleteLibpod**](PodsApi.md#podDeleteLibpod) | **DELETE** /libpod/pods/{name} | Remove pod |
+| [**podExistsLibpod**](PodsApi.md#podExistsLibpod) | **GET** /libpod/pods/{name}/exists | Pod exists |
+| [**podInspectLibpod**](PodsApi.md#podInspectLibpod) | **GET** /libpod/pods/{name}/json | Inspect pod |
+| [**podKillLibpod**](PodsApi.md#podKillLibpod) | **POST** /libpod/pods/{name}/kill | Kill a pod |
+| [**podListLibpod**](PodsApi.md#podListLibpod) | **GET** /libpod/pods/json | List pods |
+| [**podPauseLibpod**](PodsApi.md#podPauseLibpod) | **POST** /libpod/pods/{name}/pause | Pause a pod |
+| [**podPruneLibpod**](PodsApi.md#podPruneLibpod) | **POST** /libpod/pods/prune | Prune unused pods |
+| [**podRestartLibpod**](PodsApi.md#podRestartLibpod) | **POST** /libpod/pods/{name}/restart | Restart a pod |
+| [**podStartLibpod**](PodsApi.md#podStartLibpod) | **POST** /libpod/pods/{name}/start | Start a pod |
+| [**podStatsAllLibpod**](PodsApi.md#podStatsAllLibpod) | **GET** /libpod/pods/stats | Statistics for one or more pods |
+| [**podStopLibpod**](PodsApi.md#podStopLibpod) | **POST** /libpod/pods/{name}/stop | Stop a pod |
+| [**podTopLibpod**](PodsApi.md#podTopLibpod) | **GET** /libpod/pods/{name}/top | List processes |
+| [**podUnpauseLibpod**](PodsApi.md#podUnpauseLibpod) | **POST** /libpod/pods/{name}/unpause | Unpause a pod |
+
 
 <a id="generateKubeLibpod"></a>
-
 # **generateKubeLibpod**
-
-> File generateKubeLibpod(names, service, type, replicas, noTrunc, podmanOnly)
+> File generateKubeLibpod(names).service(service).type(type).replicas(replicas).noTrunc(noTrunc).podmanOnly(podmanOnly).execute();
 
 Generate a Kubernetes YAML file.
 
 Generate Kubernetes YAML based on a pod or container.
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -57,7 +55,13 @@ public class Example {
     Boolean noTrunc = false; // Boolean | don't truncate annotations to the Kubernetes maximum length of 63 characters
     Boolean podmanOnly = false; // Boolean | add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes)
     try {
-      File result = apiInstance.generateKubeLibpod(names, service, type, replicas, noTrunc, podmanOnly);
+      File result = apiInstance.generateKubeLibpod(names)
+            .service(service)
+            .type(type)
+            .replicas(replicas)
+            .noTrunc(noTrunc)
+            .podmanOnly(podmanOnly)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#generateKubeLibpod");
@@ -72,14 +76,14 @@ public class Example {
 
 ### Parameters
 
-| Name           | Type                                | Description                                                                                | Notes                         |
-|----------------|-------------------------------------|--------------------------------------------------------------------------------------------|-------------------------------|
-| **names**      | [**List&lt;String&gt;**](String.md) | Name or ID of the container or pod.                                                        |                               |
-| **service**    | **Boolean**                         | Generate YAML for a Kubernetes service object.                                             | [optional] [default to false] |
-| **type**       | **String**                          | Generate YAML for the given Kubernetes kind.                                               | [optional] [default to pod]   |
-| **replicas**   | **Integer**                         | Set the replica number for Deployment kind.                                                | [optional] [default to 0]     |
-| **noTrunc**    | **Boolean**                         | don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters           | [optional] [default to false] |
-| **podmanOnly** | **Boolean**                         | add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) | [optional] [default to false] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **names** | [**List&lt;String&gt;**](String.md)| Name or ID of the container or pod. | |
+| **service** | **Boolean**| Generate YAML for a Kubernetes service object. | [optional] [default to false] |
+| **type** | **String**| Generate YAML for the given Kubernetes kind. | [optional] [default to pod] |
+| **replicas** | **Integer**| Set the replica number for Deployment kind. | [optional] [default to 0] |
+| **noTrunc** | **Boolean**| don&#39;t truncate annotations to the Kubernetes maximum length of 63 characters | [optional] [default to false] |
+| **podmanOnly** | **Boolean**| add podman-only reserved annotations in generated YAML file (cannot be used by Kubernetes) | [optional] [default to false] |
 
 ### Return type
 
@@ -91,29 +95,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: text/vnd.yaml, application/json
+ - **Content-Type**: Not defined
+ - **Accept**: text/vnd.yaml, application/json
 
 ### HTTP response details
-
-| Status code | Description                         | Response headers |
-|-------------|-------------------------------------|------------------|
-| **200**     | Kubernetes YAML file describing pod | -                |
-| **500**     | Internal server error               | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Kubernetes YAML file describing pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="generateSystemdLibpod"></a>
-
 # **generateSystemdLibpod**
-
-> Map&lt;String, String&gt; generateSystemdLibpod(name, useName, _new, noHeader, startTimeout, stopTimeout,
-> restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables)
+> Map&lt;String, String&gt; generateSystemdLibpod(name).useName(useName)._new(_new).noHeader(noHeader).startTimeout(startTimeout).stopTimeout(stopTimeout).restartPolicy(restartPolicy).containerPrefix(containerPrefix).podPrefix(podPrefix).separator(separator).restartSec(restartSec).wants(wants).after(after).requires(requires).additionalEnvVariables(additionalEnvVariables).execute();
 
 Generate Systemd Units
 
 Generate Systemd Units based on a pod or container.
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -144,7 +143,22 @@ public class Example {
     List<String> requires = Arrays.asList(); // List<String> | Systemd Requires list for the container or pods.
     List<String> additionalEnvVariables = Arrays.asList(); // List<String> | Set environment variables to the systemd unit files.
     try {
-      Map<String, String> result = apiInstance.generateSystemdLibpod(name, useName, _new, noHeader, startTimeout, stopTimeout, restartPolicy, containerPrefix, podPrefix, separator, restartSec, wants, after, requires, additionalEnvVariables);
+      Map<String, String> result = apiInstance.generateSystemdLibpod(name)
+            .useName(useName)
+            ._new(_new)
+            .noHeader(noHeader)
+            .startTimeout(startTimeout)
+            .stopTimeout(stopTimeout)
+            .restartPolicy(restartPolicy)
+            .containerPrefix(containerPrefix)
+            .podPrefix(podPrefix)
+            .separator(separator)
+            .restartSec(restartSec)
+            .wants(wants)
+            .after(after)
+            .requires(requires)
+            .additionalEnvVariables(additionalEnvVariables)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#generateSystemdLibpod");
@@ -159,23 +173,23 @@ public class Example {
 
 ### Parameters
 
-| Name                       | Type                                | Description                                                                | Notes                                                                                                             |
-|----------------------------|-------------------------------------|----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| **name**                   | **String**                          | Name or ID of the container or pod.                                        |                                                                                                                   |
-| **useName**                | **Boolean**                         | Use container/pod names instead of IDs.                                    | [optional] [default to false]                                                                                     |
-| **_new**                   | **Boolean**                         | Create a new container instead of starting an existing one.                | [optional] [default to false]                                                                                     |
-| **noHeader**               | **Boolean**                         | Do not generate the header including the Podman version and the timestamp. | [optional] [default to false]                                                                                     |
-| **startTimeout**           | **Integer**                         | Start timeout in seconds.                                                  | [optional] [default to 0]                                                                                         |
-| **stopTimeout**            | **Integer**                         | Stop timeout in seconds.                                                   | [optional] [default to 10]                                                                                        |
-| **restartPolicy**          | **String**                          | Systemd restart-policy.                                                    | [optional] [default to on-failure] [enum: no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, always] |
-| **containerPrefix**        | **String**                          | Systemd unit name prefix for containers.                                   | [optional] [default to container]                                                                                 |
-| **podPrefix**              | **String**                          | Systemd unit name prefix for pods.                                         | [optional] [default to pod]                                                                                       |
-| **separator**              | **String**                          | Systemd unit name separator between name/id and prefix.                    | [optional] [default to -]                                                                                         |
-| **restartSec**             | **Integer**                         | Configures the time to sleep before restarting a service.                  | [optional] [default to 0]                                                                                         |
-| **wants**                  | [**List&lt;String&gt;**](String.md) | Systemd Wants list for the container or pods.                              | [optional]                                                                                                        |
-| **after**                  | [**List&lt;String&gt;**](String.md) | Systemd After list for the container or pods.                              | [optional]                                                                                                        |
-| **requires**               | [**List&lt;String&gt;**](String.md) | Systemd Requires list for the container or pods.                           | [optional]                                                                                                        |
-| **additionalEnvVariables** | [**List&lt;String&gt;**](String.md) | Set environment variables to the systemd unit files.                       | [optional]                                                                                                        |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| Name or ID of the container or pod. | |
+| **useName** | **Boolean**| Use container/pod names instead of IDs. | [optional] [default to false] |
+| **_new** | **Boolean**| Create a new container instead of starting an existing one. | [optional] [default to false] |
+| **noHeader** | **Boolean**| Do not generate the header including the Podman version and the timestamp. | [optional] [default to false] |
+| **startTimeout** | **Integer**| Start timeout in seconds. | [optional] [default to 0] |
+| **stopTimeout** | **Integer**| Stop timeout in seconds. | [optional] [default to 10] |
+| **restartPolicy** | **String**| Systemd restart-policy. | [optional] [default to on-failure] [enum: no, on-success, on-failure, on-abnormal, on-watchdog, on-abort, always] |
+| **containerPrefix** | **String**| Systemd unit name prefix for containers. | [optional] [default to container] |
+| **podPrefix** | **String**| Systemd unit name prefix for pods. | [optional] [default to pod] |
+| **separator** | **String**| Systemd unit name separator between name/id and prefix. | [optional] [default to -] |
+| **restartSec** | **Integer**| Configures the time to sleep before restarting a service. | [optional] [default to 0] |
+| **wants** | [**List&lt;String&gt;**](String.md)| Systemd Wants list for the container or pods. | [optional] |
+| **after** | [**List&lt;String&gt;**](String.md)| Systemd After list for the container or pods. | [optional] |
+| **requires** | [**List&lt;String&gt;**](String.md)| Systemd Requires list for the container or pods. | [optional] |
+| **additionalEnvVariables** | [**List&lt;String&gt;**](String.md)| Set environment variables to the systemd unit files. | [optional] |
 
 ### Return type
 
@@ -187,28 +201,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | no error              | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | no error |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="kubeApplyLibpod"></a>
-
 # **kubeApplyLibpod**
-
-> File kubeApplyLibpod(caCertFile, kubeConfig, namespace, service, _file, request)
+> File kubeApplyLibpod().caCertFile(caCertFile).kubeConfig(kubeConfig).namespace(namespace).service(service)._file(_file).request(request).execute();
 
 Apply a podman workload or Kubernetes YAML file.
 
 Deploy a podman container, pod, volume, or Kubernetes yaml to a Kubernetes cluster.
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -230,7 +240,14 @@ public class Example {
     String _file = "_file_example"; // String | Path to the Kubernetes yaml file to deploy.
     String request = "request_example"; // String | Kubernetes YAML file.
     try {
-      File result = apiInstance.kubeApplyLibpod(caCertFile, kubeConfig, namespace, service, _file, request);
+      File result = apiInstance.kubeApplyLibpod()
+            .caCertFile(caCertFile)
+            .kubeConfig(kubeConfig)
+            .namespace(namespace)
+            .service(service)
+            ._file(_file)
+            .request(request)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#kubeApplyLibpod");
@@ -245,14 +262,14 @@ public class Example {
 
 ### Parameters
 
-| Name           | Type        | Description                                                        | Notes      |
-|----------------|-------------|--------------------------------------------------------------------|------------|
-| **caCertFile** | **String**  | Path to the CA cert file for the Kubernetes cluster.               | [optional] |
-| **kubeConfig** | **String**  | Path to the kubeconfig file for the Kubernetes cluster.            | [optional] |
-| **namespace**  | **String**  | The namespace to deploy the workload to on the Kubernetes cluster. | [optional] |
-| **service**    | **Boolean** | Create a service object for the container being deployed.          | [optional] |
-| **_file**      | **String**  | Path to the Kubernetes yaml file to deploy.                        | [optional] |
-| **request**    | **String**  | Kubernetes YAML file.                                              | [optional] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **caCertFile** | **String**| Path to the CA cert file for the Kubernetes cluster. | [optional] |
+| **kubeConfig** | **String**| Path to the kubeconfig file for the Kubernetes cluster. | [optional] |
+| **namespace** | **String**| The namespace to deploy the workload to on the Kubernetes cluster. | [optional] |
+| **service** | **Boolean**| Create a service object for the container being deployed. | [optional] |
+| **_file** | **String**| Path to the Kubernetes yaml file to deploy. | [optional] |
+| **request** | **String**| Kubernetes YAML file. | [optional] |
 
 ### Return type
 
@@ -264,28 +281,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-tar
-- **Accept**: application/json
+ - **Content-Type**: application/json, application/x-tar
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description                                           | Response headers |
-|-------------|-------------------------------------------------------|------------------|
-| **200**     | Kubernetes YAML file successfully deployed to cluster | -                |
-| **500**     | Internal server error                                 | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Kubernetes YAML file successfully deployed to cluster |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="playKubeDownLibpod"></a>
-
 # **playKubeDownLibpod**
-
-> PlayKubeReport playKubeDownLibpod(contentType, force, request)
+> PlayKubeReport playKubeDownLibpod().contentType(contentType).force(force).request(request).execute();
 
 Remove resources created from kube play
 
 Tears down pods, secrets, and volumes defined in a YAML file
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -304,7 +317,11 @@ public class Example {
     Boolean force = false; // Boolean | Remove volumes.
     String request = "request_example"; // String | Kubernetes YAML file.
     try {
-      PlayKubeReport result = apiInstance.playKubeDownLibpod(contentType, force, request);
+      PlayKubeReport result = apiInstance.playKubeDownLibpod()
+            .contentType(contentType)
+            .force(force)
+            .request(request)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#playKubeDownLibpod");
@@ -319,11 +336,11 @@ public class Example {
 
 ### Parameters
 
-| Name            | Type        | Description           | Notes                                                                    |
-|-----------------|-------------|-----------------------|--------------------------------------------------------------------------|
-| **contentType** | **String**  |                       | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
-| **force**       | **Boolean** | Remove volumes.       | [optional] [default to false]                                            |
-| **request**     | **String**  | Kubernetes YAML file. | [optional]                                                               |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **contentType** | **String**|  | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
+| **force** | **Boolean**| Remove volumes. | [optional] [default to false] |
+| **request** | **String**| Kubernetes YAML file. | [optional] |
 
 ### Return type
 
@@ -335,37 +352,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-tar
-- **Accept**: application/json
+ - **Content-Type**: application/json, application/x-tar
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | PlayKube response     | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | PlayKube response |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="playKubeLibpod"></a>
-
 # **playKubeLibpod**
-
-> PlayKubeReport playKubeLibpod(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc,
-> publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build,
-> request)
+> PlayKubeReport playKubeLibpod().contentType(contentType).annotations(annotations).logDriver(logDriver).logOptions(logOptions).network(network).noHosts(noHosts).noTrunc(noTrunc).publishPorts(publishPorts).publishAllPorts(publishAllPorts).replace(replace).serviceContainer(serviceContainer).start(start).staticIPs(staticIPs).staticMACs(staticMACs).tlsVerify(tlsVerify).userns(userns).wait(wait).build(build).request(request).execute();
 
 Play a Kubernetes YAML file.
 
-Create and run pods based on a Kubernetes YAML file. ### Content-Type Then endpoint support two Content-Type -
-&#x60;plain/text&#x60; for yaml format - &#x60;application/x-tar&#x60; for sending context(s) required for building
-images #### Tar format The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the
-file format requires context to build an image, it uses the image name and check for corresponding folder. For example,
-the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar ├── play.yaml └── foobar/
-└── Containerfile &#x60;&#x60;&#x60; The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we
-are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote
-spec: containers:  - name: container image: foobar &#x60;&#x60;&#x60;
+Create and run pods based on a Kubernetes YAML file.  ### Content-Type  Then endpoint support two Content-Type  - &#x60;plain/text&#x60; for yaml format  - &#x60;application/x-tar&#x60; for sending context(s) required for building images  #### Tar format  The tar format must contain a &#x60;play.yaml&#x60; file at the root that will be used. If the file format requires context to build an image, it uses the image name and check for corresponding folder.  For example, the client sends a tar file with the following structure:  &#x60;&#x60;&#x60; └── content.tar  ├── play.yaml  └── foobar/      └── Containerfile &#x60;&#x60;&#x60;  The &#x60;play.yaml&#x60; is the following, the &#x60;foobar&#x60; image means we are looking for a context with this name. &#x60;&#x60;&#x60; apiVersion: v1 kind: Pod metadata: name: demo-build-remote spec: containers:  - name: container    image: foobar &#x60;&#x60;&#x60; 
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -400,7 +404,27 @@ public class Example {
     Boolean build = true; // Boolean | Build the images with corresponding context.
     String request = "request_example"; // String | Kubernetes YAML file.
     try {
-      PlayKubeReport result = apiInstance.playKubeLibpod(contentType, annotations, logDriver, logOptions, network, noHosts, noTrunc, publishPorts, publishAllPorts, replace, serviceContainer, start, staticIPs, staticMACs, tlsVerify, userns, wait, build, request);
+      PlayKubeReport result = apiInstance.playKubeLibpod()
+            .contentType(contentType)
+            .annotations(annotations)
+            .logDriver(logDriver)
+            .logOptions(logOptions)
+            .network(network)
+            .noHosts(noHosts)
+            .noTrunc(noTrunc)
+            .publishPorts(publishPorts)
+            .publishAllPorts(publishAllPorts)
+            .replace(replace)
+            .serviceContainer(serviceContainer)
+            .start(start)
+            .staticIPs(staticIPs)
+            .staticMACs(staticMACs)
+            .tlsVerify(tlsVerify)
+            .userns(userns)
+            .wait(wait)
+            .build(build)
+            .request(request)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#playKubeLibpod");
@@ -415,27 +439,27 @@ public class Example {
 
 ### Parameters
 
-| Name                 | Type                                | Description                                                                                                                   | Notes                                                                    |
-|----------------------|-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
-| **contentType**      | **String**                          |                                                                                                                               | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
-| **annotations**      | **String**                          | JSON encoded value of annotations (a map[string]string).                                                                      | [optional]                                                               |
-| **logDriver**        | **String**                          | Logging driver for the containers in the pod.                                                                                 | [optional]                                                               |
-| **logOptions**       | [**List&lt;String&gt;**](String.md) | logging driver options                                                                                                        | [optional]                                                               |
-| **network**          | [**List&lt;String&gt;**](String.md) | USe the network mode or specify an array of networks.                                                                         | [optional]                                                               |
-| **noHosts**          | **Boolean**                         | do not setup /etc/hosts file in container                                                                                     | [optional] [default to false]                                            |
-| **noTrunc**          | **Boolean**                         | use annotations that are not truncated to the Kubernetes maximum length of 63 characters                                      | [optional] [default to false]                                            |
-| **publishPorts**     | [**List&lt;String&gt;**](String.md) | publish a container&#39;s port, or a range of ports, to the host                                                              | [optional]                                                               |
-| **publishAllPorts**  | **Boolean**                         | Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published | [optional]                                                               |
-| **replace**          | **Boolean**                         | replace existing pods and containers                                                                                          | [optional] [default to false]                                            |
-| **serviceContainer** | **Boolean**                         | Starts a service container before all pods.                                                                                   | [optional] [default to false]                                            |
-| **start**            | **Boolean**                         | Start the pod after creating it.                                                                                              | [optional] [default to true]                                             |
-| **staticIPs**        | [**List&lt;String&gt;**](String.md) | Static IPs used for the pods.                                                                                                 | [optional]                                                               |
-| **staticMACs**       | [**List&lt;String&gt;**](String.md) | Static MACs used for the pods.                                                                                                | [optional]                                                               |
-| **tlsVerify**        | **Boolean**                         | Require HTTPS and verify signatures when contacting registries.                                                               | [optional] [default to true]                                             |
-| **userns**           | **String**                          | Set the user namespace mode for the pods.                                                                                     | [optional]                                                               |
-| **wait**             | **Boolean**                         | Clean up all objects created when a SIGTERM is received or pods exit.                                                         | [optional] [default to false]                                            |
-| **build**            | **Boolean**                         | Build the images with corresponding context.                                                                                  | [optional]                                                               |
-| **request**          | **String**                          | Kubernetes YAML file.                                                                                                         | [optional]                                                               |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **contentType** | **String**|  | [optional] [default to plain/text] [enum: plain/text, application/x-tar] |
+| **annotations** | **String**| JSON encoded value of annotations (a map[string]string). | [optional] |
+| **logDriver** | **String**| Logging driver for the containers in the pod. | [optional] |
+| **logOptions** | [**List&lt;String&gt;**](String.md)| logging driver options | [optional] |
+| **network** | [**List&lt;String&gt;**](String.md)| USe the network mode or specify an array of networks. | [optional] |
+| **noHosts** | **Boolean**| do not setup /etc/hosts file in container | [optional] [default to false] |
+| **noTrunc** | **Boolean**| use annotations that are not truncated to the Kubernetes maximum length of 63 characters | [optional] [default to false] |
+| **publishPorts** | [**List&lt;String&gt;**](String.md)| publish a container&#39;s port, or a range of ports, to the host | [optional] |
+| **publishAllPorts** | **Boolean**| Whether to publish all ports defined in the K8S YAML file (containerPort, hostPort), if false only hostPort will be published | [optional] |
+| **replace** | **Boolean**| replace existing pods and containers | [optional] [default to false] |
+| **serviceContainer** | **Boolean**| Starts a service container before all pods. | [optional] [default to false] |
+| **start** | **Boolean**| Start the pod after creating it. | [optional] [default to true] |
+| **staticIPs** | [**List&lt;String&gt;**](String.md)| Static IPs used for the pods. | [optional] |
+| **staticMACs** | [**List&lt;String&gt;**](String.md)| Static MACs used for the pods. | [optional] |
+| **tlsVerify** | **Boolean**| Require HTTPS and verify signatures when contacting registries. | [optional] [default to true] |
+| **userns** | **String**| Set the user namespace mode for the pods. | [optional] |
+| **wait** | **Boolean**| Clean up all objects created when a SIGTERM is received or pods exit. | [optional] [default to false] |
+| **build** | **Boolean**| Build the images with corresponding context. | [optional] |
+| **request** | **String**| Kubernetes YAML file. | [optional] |
 
 ### Return type
 
@@ -447,26 +471,22 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-tar
-- **Accept**: application/json
+ - **Content-Type**: application/json, application/x-tar
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | PlayKube response     | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | PlayKube response |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podCreateLibpod"></a>
-
 # **podCreateLibpod**
-
-> IdResponse podCreateLibpod(create)
+> IdResponse podCreateLibpod().create(create).execute();
 
 Create a pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -483,7 +503,9 @@ public class Example {
     PodsApi apiInstance = new PodsApi(defaultClient);
     PodSpecGenerator create = new PodSpecGenerator(); // PodSpecGenerator | attributes for creating a pod
     try {
-      IdResponse result = apiInstance.podCreateLibpod(create);
+      IdResponse result = apiInstance.podCreateLibpod()
+            .create(create)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podCreateLibpod");
@@ -498,9 +520,9 @@ public class Example {
 
 ### Parameters
 
-| Name       | Type                                        | Description                   | Notes      |
-|------------|---------------------------------------------|-------------------------------|------------|
-| **create** | [**PodSpecGenerator**](PodSpecGenerator.md) | attributes for creating a pod | [optional] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **create** | [**PodSpecGenerator**](PodSpecGenerator.md)| attributes for creating a pod | [optional] |
 
 ### Return type
 
@@ -512,28 +534,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/x-tar
-- **Accept**: application/json
+ - **Content-Type**: application/json, application/x-tar
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description              | Response headers |
-|-------------|--------------------------|------------------|
-| **201**     |                          | -                |
-| **400**     | Bad parameter in request | -                |
-| **409**     | status conflict          | -                |
-| **500**     | Internal server error    | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** |  |  -  |
+| **400** | Bad parameter in request |  -  |
+| **409** | status conflict |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podDeleteLibpod"></a>
-
 # **podDeleteLibpod**
-
-> PodRmReport podDeleteLibpod(name, force)
+> PodRmReport podDeleteLibpod(name).force(force).execute();
 
 Remove pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -551,7 +569,9 @@ public class Example {
     String name = "name_example"; // String | the name or ID of the pod
     Boolean force = true; // Boolean | force removal of a running pod by first stopping all containers, then removing all containers in the pod
     try {
-      PodRmReport result = apiInstance.podDeleteLibpod(name, force);
+      PodRmReport result = apiInstance.podDeleteLibpod(name)
+            .force(force)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podDeleteLibpod");
@@ -566,10 +586,10 @@ public class Example {
 
 ### Parameters
 
-| Name      | Type        | Description                                                                                              | Notes      |
-|-----------|-------------|----------------------------------------------------------------------------------------------------------|------------|
-| **name**  | **String**  | the name or ID of the pod                                                                                |            |
-| **force** | **Boolean** | force removal of a running pod by first stopping all containers, then removing all containers in the pod | [optional] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
+| **force** | **Boolean**| force removal of a running pod by first stopping all containers, then removing all containers in the pod | [optional] |
 
 ### Return type
 
@@ -581,30 +601,26 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description              | Response headers |
-|-------------|--------------------------|------------------|
-| **200**     | Rm pod                   | -                |
-| **400**     | Bad parameter in request | -                |
-| **404**     | No such pod              | -                |
-| **500**     | Internal server error    | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Rm pod |  -  |
+| **400** | Bad parameter in request |  -  |
+| **404** | No such pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podExistsLibpod"></a>
-
 # **podExistsLibpod**
-
-> podExistsLibpod(name)
+> podExistsLibpod(name).execute();
 
 Pod exists
 
 Check if a pod exists by name or ID
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -621,7 +637,8 @@ public class Example {
     PodsApi apiInstance = new PodsApi(defaultClient);
     String name = "name_example"; // String | the name or ID of the pod
     try {
-      apiInstance.podExistsLibpod(name);
+      apiInstance.podExistsLibpod(name)
+            .execute();
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podExistsLibpod");
       System.err.println("Status code: " + e.getCode());
@@ -635,9 +652,9 @@ public class Example {
 
 ### Parameters
 
-| Name     | Type       | Description               | Notes |
-|----------|------------|---------------------------|-------|
-| **name** | **String** | the name or ID of the pod |       |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
 
 ### Return type
 
@@ -649,27 +666,23 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **204**     | pod exists            | -                |
-| **404**     | No such pod           | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **204** | pod exists |  -  |
+| **404** | No such pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podInspectLibpod"></a>
-
 # **podInspectLibpod**
-
-> InspectPodData podInspectLibpod(name)
+> InspectPodData podInspectLibpod(name).execute();
 
 Inspect pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -686,7 +699,8 @@ public class Example {
     PodsApi apiInstance = new PodsApi(defaultClient);
     String name = "name_example"; // String | the name or ID of the pod
     try {
-      InspectPodData result = apiInstance.podInspectLibpod(name);
+      InspectPodData result = apiInstance.podInspectLibpod(name)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podInspectLibpod");
@@ -701,9 +715,9 @@ public class Example {
 
 ### Parameters
 
-| Name     | Type       | Description               | Notes |
-|----------|------------|---------------------------|-------|
-| **name** | **String** | the name or ID of the pod |       |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
 
 ### Return type
 
@@ -715,27 +729,23 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | Inspect pod           | -                |
-| **404**     | No such pod           | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Inspect pod |  -  |
+| **404** | No such pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podKillLibpod"></a>
-
 # **podKillLibpod**
-
-> PodKillReport podKillLibpod(name, signal)
+> PodKillReport podKillLibpod(name).signal(signal).execute();
 
 Kill a pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -753,7 +763,9 @@ public class Example {
     String name = "name_example"; // String | the name or ID of the pod
     String signal = "SIGKILL"; // String | signal to be sent to pod
     try {
-      PodKillReport result = apiInstance.podKillLibpod(name, signal);
+      PodKillReport result = apiInstance.podKillLibpod(name)
+            .signal(signal)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podKillLibpod");
@@ -768,10 +780,10 @@ public class Example {
 
 ### Parameters
 
-| Name       | Type       | Description               | Notes                           |
-|------------|------------|---------------------------|---------------------------------|
-| **name**   | **String** | the name or ID of the pod |                                 |
-| **signal** | **String** | signal to be sent to pod  | [optional] [default to SIGKILL] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
+| **signal** | **String**| signal to be sent to pod | [optional] [default to SIGKILL] |
 
 ### Return type
 
@@ -783,29 +795,25 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description              | Response headers |
-|-------------|--------------------------|------------------|
-| **200**     | Kill Pod                 | -                |
-| **400**     | Bad parameter in request | -                |
-| **404**     | No such pod              | -                |
-| **409**     | Kill Pod                 | -                |
-| **500**     | Internal server error    | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Kill Pod |  -  |
+| **400** | Bad parameter in request |  -  |
+| **404** | No such pod |  -  |
+| **409** | Kill Pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podListLibpod"></a>
-
 # **podListLibpod**
-
-> List&lt;ListPodsReport&gt; podListLibpod(filters)
+> List&lt;ListPodsReport&gt; podListLibpod().filters(filters).execute();
 
 List pods
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -822,7 +830,9 @@ public class Example {
     PodsApi apiInstance = new PodsApi(defaultClient);
     String filters = "filters_example"; // String | JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - `id=<pod-id>` Matches all of pod id.   - `label=<key>` or `label=<key>:<value>` Matches pods based on the presence of a label alone or a label and a value.   - `name=<pod-name>` Matches all of pod name.   - `until=<timestamp>` List pods created before this timestamp. The `<timestamp>` can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. `10m`, `1h30m`) computed relative to the daemon machine’s time.   - `status=<pod-status>` Pod's status: `stopped`, `running`, `paused`, `exited`, `dead`, `created`, `degraded`.   - `network=<pod-network>` Name or full ID of network.   - `ctr-names=<pod-ctr-names>` Container name within the pod.   - `ctr-ids=<pod-ctr-ids>` Container ID within the pod.   - `ctr-status=<pod-ctr-status>` Container status within the pod.   - `ctr-number=<pod-ctr-number>` Number of containers in the pod. 
     try {
-      List<ListPodsReport> result = apiInstance.podListLibpod(filters);
+      List<ListPodsReport> result = apiInstance.podListLibpod()
+            .filters(filters)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podListLibpod");
@@ -837,9 +847,9 @@ public class Example {
 
 ### Parameters
 
-| Name        | Type       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | Notes      |
-|-------------|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
-| **filters** | **String** | JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - &#x60;id&#x3D;&lt;pod-id&gt;&#x60; Matches all of pod id.   - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches pods based on the presence of a label alone or a label and a value.   - &#x60;name&#x3D;&lt;pod-name&gt;&#x60; Matches all of pod name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List pods created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;status&#x3D;&lt;pod-status&gt;&#x60; Pod&#39;s status: &#x60;stopped&#x60;, &#x60;running&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60;, &#x60;dead&#x60;, &#x60;created&#x60;, &#x60;degraded&#x60;.   - &#x60;network&#x3D;&lt;pod-network&gt;&#x60; Name or full ID of network.   - &#x60;ctr-names&#x3D;&lt;pod-ctr-names&gt;&#x60; Container name within the pod.   - &#x60;ctr-ids&#x3D;&lt;pod-ctr-ids&gt;&#x60; Container ID within the pod.   - &#x60;ctr-status&#x3D;&lt;pod-ctr-status&gt;&#x60; Container status within the pod.   - &#x60;ctr-number&#x3D;&lt;pod-ctr-number&gt;&#x60; Number of containers in the pod. | [optional] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **filters** | **String**| JSON encoded value of the filters (a map[string][]string) to process on the pods list. Available filters:   - &#x60;id&#x3D;&lt;pod-id&gt;&#x60; Matches all of pod id.   - &#x60;label&#x3D;&lt;key&gt;&#x60; or &#x60;label&#x3D;&lt;key&gt;:&lt;value&gt;&#x60; Matches pods based on the presence of a label alone or a label and a value.   - &#x60;name&#x3D;&lt;pod-name&gt;&#x60; Matches all of pod name.   - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; List pods created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;status&#x3D;&lt;pod-status&gt;&#x60; Pod&#39;s status: &#x60;stopped&#x60;, &#x60;running&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60;, &#x60;dead&#x60;, &#x60;created&#x60;, &#x60;degraded&#x60;.   - &#x60;network&#x3D;&lt;pod-network&gt;&#x60; Name or full ID of network.   - &#x60;ctr-names&#x3D;&lt;pod-ctr-names&gt;&#x60; Container name within the pod.   - &#x60;ctr-ids&#x3D;&lt;pod-ctr-ids&gt;&#x60; Container ID within the pod.   - &#x60;ctr-status&#x3D;&lt;pod-ctr-status&gt;&#x60; Container status within the pod.   - &#x60;ctr-number&#x3D;&lt;pod-ctr-number&gt;&#x60; Number of containers in the pod.  | [optional] |
 
 ### Return type
 
@@ -851,29 +861,25 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description              | Response headers |
-|-------------|--------------------------|------------------|
-| **200**     | List pods                | -                |
-| **400**     | Bad parameter in request | -                |
-| **500**     | Internal server error    | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | List pods |  -  |
+| **400** | Bad parameter in request |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podPauseLibpod"></a>
-
 # **podPauseLibpod**
-
-> PodPauseReport podPauseLibpod(name)
+> PodPauseReport podPauseLibpod(name).execute();
 
 Pause a pod
 
 Pause a pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -890,7 +896,8 @@ public class Example {
     PodsApi apiInstance = new PodsApi(defaultClient);
     String name = "name_example"; // String | the name or ID of the pod
     try {
-      PodPauseReport result = apiInstance.podPauseLibpod(name);
+      PodPauseReport result = apiInstance.podPauseLibpod(name)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podPauseLibpod");
@@ -905,9 +912,9 @@ public class Example {
 
 ### Parameters
 
-| Name     | Type       | Description               | Notes |
-|----------|------------|---------------------------|-------|
-| **name** | **String** | the name or ID of the pod |       |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
 
 ### Return type
 
@@ -919,28 +926,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | Pause pod             | -                |
-| **404**     | No such pod           | -                |
-| **409**     | Pause pod             | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pause pod |  -  |
+| **404** | No such pod |  -  |
+| **409** | Pause pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podPruneLibpod"></a>
-
 # **podPruneLibpod**
-
-> PodPruneReport podPruneLibpod()
+> PodPruneReport podPruneLibpod().execute();
 
 Prune unused pods
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -956,7 +959,8 @@ public class Example {
 
     PodsApi apiInstance = new PodsApi(defaultClient);
     try {
-      PodPruneReport result = apiInstance.podPruneLibpod();
+      PodPruneReport result = apiInstance.podPruneLibpod()
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podPruneLibpod");
@@ -970,7 +974,6 @@ public class Example {
 ```
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -983,28 +986,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description              | Response headers |
-|-------------|--------------------------|------------------|
-| **200**     | Prune pod                | -                |
-| **400**     | Bad parameter in request | -                |
-| **409**     | pod already exists       | -                |
-| **500**     | Internal server error    | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Prune pod |  -  |
+| **400** | Bad parameter in request |  -  |
+| **409** | pod already exists |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podRestartLibpod"></a>
-
 # **podRestartLibpod**
-
-> PodRestartReport podRestartLibpod(name)
+> PodRestartReport podRestartLibpod(name).execute();
 
 Restart a pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -1021,7 +1020,8 @@ public class Example {
     PodsApi apiInstance = new PodsApi(defaultClient);
     String name = "name_example"; // String | the name or ID of the pod
     try {
-      PodRestartReport result = apiInstance.podRestartLibpod(name);
+      PodRestartReport result = apiInstance.podRestartLibpod(name)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podRestartLibpod");
@@ -1036,9 +1036,9 @@ public class Example {
 
 ### Parameters
 
-| Name     | Type       | Description               | Notes |
-|----------|------------|---------------------------|-------|
-| **name** | **String** | the name or ID of the pod |       |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
 
 ### Return type
 
@@ -1050,28 +1050,24 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | Restart pod           | -                |
-| **404**     | No such pod           | -                |
-| **409**     | Restart pod           | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Restart pod |  -  |
+| **404** | No such pod |  -  |
+| **409** | Restart pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podStartLibpod"></a>
-
 # **podStartLibpod**
-
-> PodStartReport podStartLibpod(name)
+> PodStartReport podStartLibpod(name).execute();
 
 Start a pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -1088,7 +1084,8 @@ public class Example {
     PodsApi apiInstance = new PodsApi(defaultClient);
     String name = "name_example"; // String | the name or ID of the pod
     try {
-      PodStartReport result = apiInstance.podStartLibpod(name);
+      PodStartReport result = apiInstance.podStartLibpod(name)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podStartLibpod");
@@ -1103,9 +1100,9 @@ public class Example {
 
 ### Parameters
 
-| Name     | Type       | Description               | Notes |
-|----------|------------|---------------------------|-------|
-| **name** | **String** | the name or ID of the pod |       |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
 
 ### Return type
 
@@ -1117,31 +1114,27 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | Start pod             | -                |
-| **304**     | Pod already started   | -                |
-| **404**     | No such pod           | -                |
-| **409**     | Start pod             | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Start pod |  -  |
+| **304** | Pod already started |  -  |
+| **404** | No such pod |  -  |
+| **409** | Start pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podStatsAllLibpod"></a>
-
 # **podStatsAllLibpod**
-
-> List&lt;PodStatsReport&gt; podStatsAllLibpod(all, namesOrIDs)
+> List&lt;PodStatsReport&gt; podStatsAllLibpod().all(all).namesOrIDs(namesOrIDs).execute();
 
 Statistics for one or more pods
 
 Display a live stream of resource usage statistics for the containers in one or more pods
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -1159,7 +1152,10 @@ public class Example {
     Boolean all = true; // Boolean | Provide statistics for all running pods.
     List<String> namesOrIDs = Arrays.asList(); // List<String> | Names or IDs of pods.
     try {
-      List<PodStatsReport> result = apiInstance.podStatsAllLibpod(all, namesOrIDs);
+      List<PodStatsReport> result = apiInstance.podStatsAllLibpod()
+            .all(all)
+            .namesOrIDs(namesOrIDs)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podStatsAllLibpod");
@@ -1174,10 +1170,10 @@ public class Example {
 
 ### Parameters
 
-| Name           | Type                                | Description                              | Notes      |
-|----------------|-------------------------------------|------------------------------------------|------------|
-| **all**        | **Boolean**                         | Provide statistics for all running pods. | [optional] |
-| **namesOrIDs** | [**List&lt;String&gt;**](String.md) | Names or IDs of pods.                    | [optional] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **all** | **Boolean**| Provide statistics for all running pods. | [optional] |
+| **namesOrIDs** | [**List&lt;String&gt;**](String.md)| Names or IDs of pods. | [optional] |
 
 ### Return type
 
@@ -1189,27 +1185,23 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | Pod Statistics        | -                |
-| **404**     | No such pod           | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pod Statistics |  -  |
+| **404** | No such pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podStopLibpod"></a>
-
 # **podStopLibpod**
-
-> PodStopReport podStopLibpod(name, t)
+> PodStopReport podStopLibpod(name).t(t).execute();
 
 Stop a pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -1227,7 +1219,9 @@ public class Example {
     String name = "name_example"; // String | the name or ID of the pod
     Integer t = 56; // Integer | timeout
     try {
-      PodStopReport result = apiInstance.podStopLibpod(name, t);
+      PodStopReport result = apiInstance.podStopLibpod(name)
+            .t(t)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podStopLibpod");
@@ -1242,10 +1236,10 @@ public class Example {
 
 ### Parameters
 
-| Name     | Type        | Description               | Notes      |
-|----------|-------------|---------------------------|------------|
-| **name** | **String**  | the name or ID of the pod |            |
-| **t**    | **Integer** | timeout                   | [optional] |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
+| **t** | **Integer**| timeout | [optional] |
 
 ### Return type
 
@@ -1257,32 +1251,28 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description              | Response headers |
-|-------------|--------------------------|------------------|
-| **200**     | Stop pod                 | -                |
-| **304**     | Pod already stopped      | -                |
-| **400**     | Bad parameter in request | -                |
-| **404**     | No such pod              | -                |
-| **409**     | Stop pod                 | -                |
-| **500**     | Internal server error    | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Stop pod |  -  |
+| **304** | Pod already stopped |  -  |
+| **400** | Bad parameter in request |  -  |
+| **404** | No such pod |  -  |
+| **409** | Stop pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podTopLibpod"></a>
-
 # **podTopLibpod**
-
-> PodTopOKBody podTopLibpod(name, stream, delay, psArgs)
+> PodTopOKBody podTopLibpod(name).stream(stream).delay(delay).psArgs(psArgs).execute();
 
 List processes
 
 List processes running inside a pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -1302,7 +1292,11 @@ public class Example {
     Integer delay = 5; // Integer | if streaming, delay in seconds between updates. Must be >1. (As of version 4.0)
     String psArgs = "psArgs_example"; // String | arguments to pass to ps such as aux. 
     try {
-      PodTopOKBody result = apiInstance.podTopLibpod(name, stream, delay, psArgs);
+      PodTopOKBody result = apiInstance.podTopLibpod(name)
+            .stream(stream)
+            .delay(delay)
+            .psArgs(psArgs)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podTopLibpod");
@@ -1317,12 +1311,12 @@ public class Example {
 
 ### Parameters
 
-| Name       | Type        | Description                                                                        | Notes                     |
-|------------|-------------|------------------------------------------------------------------------------------|---------------------------|
-| **name**   | **String**  | Name of pod to query for processes                                                 |                           |
-| **stream** | **Boolean** | when true, repeatedly stream the latest output (As of version 4.0)                 | [optional]                |
-| **delay**  | **Integer** | if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) | [optional] [default to 5] |
-| **psArgs** | **String**  | arguments to pass to ps such as aux.                                               | [optional]                |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| Name of pod to query for processes | |
+| **stream** | **Boolean**| when true, repeatedly stream the latest output (As of version 4.0) | [optional] |
+| **delay** | **Integer**| if streaming, delay in seconds between updates. Must be &gt;1. (As of version 4.0) | [optional] [default to 5] |
+| **psArgs** | **String**| arguments to pass to ps such as aux.  | [optional] |
 
 ### Return type
 
@@ -1334,27 +1328,23 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | List processes in pod | -                |
-| **404**     | No such pod           | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | List processes in pod |  -  |
+| **404** | No such pod |  -  |
+| **500** | Internal server error |  -  |
 
 <a id="podUnpauseLibpod"></a>
-
 # **podUnpauseLibpod**
-
-> PodUnpauseReport podUnpauseLibpod(name)
+> PodUnpauseReport podUnpauseLibpod(name).execute();
 
 Unpause a pod
 
 ### Example
-
 ```java
 // Import classes:
 import io.github.alersrt.pod4j.openapi.ApiClient;
@@ -1371,7 +1361,8 @@ public class Example {
     PodsApi apiInstance = new PodsApi(defaultClient);
     String name = "name_example"; // String | the name or ID of the pod
     try {
-      PodUnpauseReport result = apiInstance.podUnpauseLibpod(name);
+      PodUnpauseReport result = apiInstance.podUnpauseLibpod(name)
+            .execute();
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling PodsApi#podUnpauseLibpod");
@@ -1386,9 +1377,9 @@ public class Example {
 
 ### Parameters
 
-| Name     | Type       | Description               | Notes |
-|----------|------------|---------------------------|-------|
-| **name** | **String** | the name or ID of the pod |       |
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **name** | **String**| the name or ID of the pod | |
 
 ### Return type
 
@@ -1400,15 +1391,14 @@ No authorization required
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 ### HTTP response details
-
-| Status code | Description           | Response headers |
-|-------------|-----------------------|------------------|
-| **200**     | Unpause pod           | -                |
-| **404**     | No such pod           | -                |
-| **409**     | Unpause pod           | -                |
-| **500**     | Internal server error | -                |
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Unpause pod |  -  |
+| **404** | No such pod |  -  |
+| **409** | Unpause pod |  -  |
+| **500** | Internal server error |  -  |
 

@@ -29,4 +29,8 @@ InspectNetworkSettings holds information about the network settings of the conta
 |**secondaryIPv6Addresses** | [**List&lt;Address&gt;**](Address.md) | SecondaryIPv6Addresses is a list of extra IPv6 Addresses that the container has been assigned in this network. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

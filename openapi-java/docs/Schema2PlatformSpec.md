@@ -16,4 +16,8 @@ Schema2PlatformSpec describes the platform which a particular manifest is specia
 |**variant** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

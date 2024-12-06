@@ -11,4 +11,8 @@
 |**tty** | **Boolean** | Allocate a pseudo-TTY. Presently ignored. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

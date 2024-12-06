@@ -12,4 +12,8 @@ AuthenticateOKBody authenticate o k body
 |**status** | **String** | The status of the authentication |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

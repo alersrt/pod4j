@@ -32,4 +32,8 @@ swagger 2.0 does not support oneOf for schema validation.  Operation \"update\" 
 |**variant** | **String** | Variant for the item in the manifest list |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

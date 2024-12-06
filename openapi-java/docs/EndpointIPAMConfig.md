@@ -13,4 +13,8 @@ EndpointIPAMConfig represents IPAM configurations for the endpoint
 |**linkLocalIPs** | **List&lt;String&gt;** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

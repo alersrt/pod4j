@@ -12,4 +12,8 @@ LinuxPersonality represents the Linux personality syscall input
 |**flags** | **List&lt;String&gt;** | Additional flags |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

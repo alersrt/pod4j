@@ -15,4 +15,8 @@ Info is the overall struct that describes the host system running libpod/podman
 |**version** | [**Version**](Version.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

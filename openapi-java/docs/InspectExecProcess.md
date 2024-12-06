@@ -15,4 +15,8 @@ InspectExecProcess contains information about the process in a given exec sessio
 |**user** | **String** | User is the user the exec session was started as. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

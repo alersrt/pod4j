@@ -13,4 +13,8 @@
 |**untagged** | **List&lt;String&gt;** | Untagged images. Can be longer than Deleted. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

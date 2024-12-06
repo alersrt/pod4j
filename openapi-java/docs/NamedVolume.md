@@ -15,4 +15,8 @@ NamedVolume holds information about a named volume that will be mounted into the
 |**subPath** | **String** | SubPath stores the sub directory of the named volume to be mounted in the container |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -13,4 +13,8 @@ POSIXRlimit type and restrictions
 |**type** | **String** | Type of the rlimit to set |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

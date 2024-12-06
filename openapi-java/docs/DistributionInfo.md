@@ -14,4 +14,8 @@ DistributionInfo describes the host distribution for libpod
 |**version** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

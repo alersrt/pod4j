@@ -20,4 +20,8 @@ InspectMount provides a record of a single mount in a container. It contains fie
 |**type** | **String** | Whether the mount is a volume or bind mount. Allowed values are \&quot;volume\&quot; and \&quot;bind\&quot;. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -14,4 +14,8 @@
 |**readOnlyNonRecursive** | **Boolean** | ReadOnlyNonRecursive makes the mount non-recursively read-only, but still leaves the mount recursive (unless NonRecursive is set to true in conjunction). |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

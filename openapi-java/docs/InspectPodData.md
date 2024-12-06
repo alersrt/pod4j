@@ -45,4 +45,8 @@ InspectPodData contains detailed information on a pod's configuration and state.
 |**volumesFrom** | **List&lt;String&gt;** | VolumesFrom contains the containers that the pod inherits mounts from |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

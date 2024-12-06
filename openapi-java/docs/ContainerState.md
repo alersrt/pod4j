@@ -22,4 +22,8 @@ ContainerState stores container's running state it's part of ContainerJSONBase a
 |**status** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

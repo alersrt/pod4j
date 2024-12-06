@@ -17,4 +17,8 @@ ClusterVolume contains options and information specific to, and only present on,
 |**version** | [**Version**](Version.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

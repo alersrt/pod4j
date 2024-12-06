@@ -12,4 +12,8 @@ RemoteSocket describes information about the API socket
 |**path** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

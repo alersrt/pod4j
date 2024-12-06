@@ -13,199 +13,224 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * Size is the size information of the content related to this manifest. Note: These sizes only take the locally available content into account.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class ManifestSummarySize {
-    public static final String SERIALIZED_NAME_CONTENT = "Content";
-    public static final String SERIALIZED_NAME_TOTAL = "Total";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class ManifestSummarySize implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Content");
-        openapiFields.add("Total");
+  public static final String SERIALIZED_NAME_CONTENT = "Content";
+  @SerializedName(SERIALIZED_NAME_CONTENT)
+  private Long content;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_TOTAL = "Total";
+  @SerializedName(SERIALIZED_NAME_TOTAL)
+  private Long total;
+
+  public ManifestSummarySize() {
+  }
+
+  public ManifestSummarySize content(Long content) {
+    this.content = content;
+    return this;
+  }
+
+  /**
+   * Content is the size (in bytes) of all the locally present content in the content store (e.g. image config, layers) referenced by this manifest and its children. This only includes blobs in the content store.
+   * @return content
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getContent() {
+    return content;
+  }
+
+  public void setContent(Long content) {
+    this.content = content;
+  }
+
+
+  public ManifestSummarySize total(Long total) {
+    this.total = total;
+    return this;
+  }
+
+  /**
+   * Total is the total size (in bytes) of all the locally present data (both distributable and non-distributable) that&#39;s related to this manifest and its children. This equal to the sum of [Content] size AND all the sizes in the [Size] struct present in the Kind-specific data struct. For example, for an image kind (Kind &#x3D;&#x3D; ManifestKindImage), this would include the size of the image content and unpacked image snapshots ([Size.Content] + [ImageData.Size.Unpacked]).
+   * @return total
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getTotal() {
+    return total;
+  }
+
+  public void setTotal(Long total) {
+    this.total = total;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_CONTENT)
-    private Long content;
-    @SerializedName(SERIALIZED_NAME_TOTAL)
-    private Long total;
-
-    public ManifestSummarySize() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    ManifestSummarySize manifestSummarySize = (ManifestSummarySize) o;
+    return Objects.equals(this.content, manifestSummarySize.content) &&
+        Objects.equals(this.total, manifestSummarySize.total);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ManifestSummarySize
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ManifestSummarySize.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestSummarySize is not found in the empty JSON string", ManifestSummarySize.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(content, total);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ManifestSummarySize.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestSummarySize` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ManifestSummarySize {\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Content");
+    openapiFields.add("Total");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ManifestSummarySize
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ManifestSummarySize.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ManifestSummarySize is not found in the empty JSON string", ManifestSummarySize.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ManifestSummarySize.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ManifestSummarySize` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-    }
+  }
 
-    /**
-     * Create an instance of ManifestSummarySize given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ManifestSummarySize
-     * @throws IOException if the JSON string is invalid with respect to ManifestSummarySize
-     */
-    public static ManifestSummarySize fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, ManifestSummarySize.class);
-    }
-
-    public ManifestSummarySize content(Long content) {
-        this.content = content;
-        return this;
-    }
-
-    /**
-     * Content is the size (in bytes) of all the locally present content in the content store (e.g. image config, layers) referenced by this manifest and its children. This only includes blobs in the content store.
-     *
-     * @return content
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getContent() {
-        return content;
-    }
-
-    public void setContent(Long content) {
-        this.content = content;
-    }
-
-    public ManifestSummarySize total(Long total) {
-        this.total = total;
-        return this;
-    }
-
-    /**
-     * Total is the total size (in bytes) of all the locally present data (both distributable and non-distributable) that&#39;s related to this manifest and its children. This equal to the sum of [Content] size AND all the sizes in the [Size] struct present in the Kind-specific data struct. For example, for an image kind (Kind &#x3D;&#x3D; ManifestKindImage), this would include the size of the image content and unpacked image snapshots ([Size.Content] + [ImageData.Size.Unpacked]).
-     *
-     * @return total
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getTotal() {
-        return total;
-    }
-
-    public void setTotal(Long total) {
-        this.total = total;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ManifestSummarySize manifestSummarySize = (ManifestSummarySize) o;
-        return Objects.equals(this.content, manifestSummarySize.content) &&
-                Objects.equals(this.total, manifestSummarySize.total);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ManifestSummarySize.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ManifestSummarySize' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ManifestSummarySize> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ManifestSummarySize.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ManifestSummarySize>() {
+           @Override
+           public void write(JsonWriter out, ManifestSummarySize value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ManifestSummarySize read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(content, total);
-    }
+  /**
+   * Create an instance of ManifestSummarySize given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ManifestSummarySize
+   * @throws IOException if the JSON string is invalid with respect to ManifestSummarySize
+   */
+  public static ManifestSummarySize fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ManifestSummarySize.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class ManifestSummarySize {\n" +
-                "    content: " + toIndentedString(content) + "\n" +
-                "    total: " + toIndentedString(total) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of ManifestSummarySize to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!ManifestSummarySize.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'ManifestSummarySize' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ManifestSummarySize> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(ManifestSummarySize.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<ManifestSummarySize>() {
-                @Override
-                public void write(JsonWriter out, ManifestSummarySize value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public ManifestSummarySize read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of ManifestSummarySize to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

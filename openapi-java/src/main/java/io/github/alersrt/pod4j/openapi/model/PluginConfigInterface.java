@@ -13,266 +13,290 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-
+import io.github.alersrt.pod4j.openapi.model.PluginInterfaceType;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * PluginConfigInterface The interface between Docker and the plugin
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class PluginConfigInterface {
-    public static final String SERIALIZED_NAME_PROTOCOL_SCHEME = "ProtocolScheme";
-    public static final String SERIALIZED_NAME_SOCKET = "Socket";
-    public static final String SERIALIZED_NAME_TYPES = "Types";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class PluginConfigInterface implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("ProtocolScheme");
-        openapiFields.add("Socket");
-        openapiFields.add("Types");
+  public static final String SERIALIZED_NAME_SOCKET = "Socket";
+  @SerializedName(SERIALIZED_NAME_SOCKET)
+  private String socket;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("Socket");
-        openapiRequiredFields.add("Types");
+  public static final String SERIALIZED_NAME_TYPES = "Types";
+  @SerializedName(SERIALIZED_NAME_TYPES)
+  private List<@Valid PluginInterfaceType> types = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_PROTOCOL_SCHEME = "ProtocolScheme";
+  @SerializedName(SERIALIZED_NAME_PROTOCOL_SCHEME)
+  private String protocolScheme;
+
+  public PluginConfigInterface() {
+  }
+
+  public PluginConfigInterface socket(String socket) {
+    this.socket = socket;
+    return this;
+  }
+
+  /**
+   * socket
+   * @return socket
+   */
+  @jakarta.annotation.Nonnull
+  @NotNull
+
+  public String getSocket() {
+    return socket;
+  }
+
+  public void setSocket(String socket) {
+    this.socket = socket;
+  }
+
+
+  public PluginConfigInterface types(List<@Valid PluginInterfaceType> types) {
+    this.types = types;
+    return this;
+  }
+
+  public PluginConfigInterface addTypesItem(PluginInterfaceType typesItem) {
+    if (this.types == null) {
+      this.types = new ArrayList<>();
     }
+    this.types.add(typesItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_PROTOCOL_SCHEME)
-    private String protocolScheme;
-    @SerializedName(SERIALIZED_NAME_SOCKET)
-    private String socket;
-    @SerializedName(SERIALIZED_NAME_TYPES)
-    private List<@Valid PluginInterfaceType> types = new ArrayList<>();
+  /**
+   * types
+   * @return types
+   */
+  @jakarta.annotation.Nonnull
+  @NotNull
+  @Valid
 
-    public PluginConfigInterface() {
+  public List<@Valid PluginInterfaceType> getTypes() {
+    return types;
+  }
+
+  public void setTypes(List<@Valid PluginInterfaceType> types) {
+    this.types = types;
+  }
+
+
+  public PluginConfigInterface protocolScheme(String protocolScheme) {
+    this.protocolScheme = protocolScheme;
+    return this;
+  }
+
+  /**
+   * Protocol to use for clients connecting to the plugin.
+   * @return protocolScheme
+   */
+  @jakarta.annotation.Nullable
+
+  public String getProtocolScheme() {
+    return protocolScheme;
+  }
+
+  public void setProtocolScheme(String protocolScheme) {
+    this.protocolScheme = protocolScheme;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PluginConfigInterface pluginConfigInterface = (PluginConfigInterface) o;
+    return Objects.equals(this.socket, pluginConfigInterface.socket) &&
+        Objects.equals(this.types, pluginConfigInterface.types) &&
+        Objects.equals(this.protocolScheme, pluginConfigInterface.protocolScheme);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to PluginConfigInterface
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!PluginConfigInterface.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in PluginConfigInterface is not found in the empty JSON string", PluginConfigInterface.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(socket, types, protocolScheme);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!PluginConfigInterface.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginConfigInterface` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
-        }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class PluginConfigInterface {\n");
+    sb.append("    socket: ").append(toIndentedString(socket)).append("\n");
+    sb.append("    types: ").append(toIndentedString(types)).append("\n");
+    sb.append("    protocolScheme: ").append(toIndentedString(protocolScheme)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
 
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : PluginConfigInterface.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
-            }
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Socket");
+    openapiFields.add("Types");
+    openapiFields.add("ProtocolScheme");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("Socket");
+    openapiRequiredFields.add("Types");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PluginConfigInterface
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PluginConfigInterface.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PluginConfigInterface is not found in the empty JSON string", PluginConfigInterface.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PluginConfigInterface.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginConfigInterface` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : PluginConfigInterface.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("ProtocolScheme") != null && !jsonObj.get("ProtocolScheme").isJsonNull()) && !jsonObj.get("ProtocolScheme").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `ProtocolScheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ProtocolScheme").toString()));
-        }
-        if (!jsonObj.get("Socket").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Socket` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Socket").toString()));
-        }
-        // ensure the json data is an array
-        if (!jsonObj.get("Types").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Types` to be an array in the JSON string but got `%s`", jsonObj.get("Types").toString()));
-        }
+      if (!jsonObj.get("Socket").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Socket` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Socket").toString()));
+      }
+      // ensure the json data is an array
+      if (!jsonObj.get("Types").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Types` to be an array in the JSON string but got `%s`", jsonObj.get("Types").toString()));
+      }
 
-        JsonArray jsonArraytypes = jsonObj.getAsJsonArray("Types");
-        // validate the required field `Types` (array)
-        for (int i = 0; i < jsonArraytypes.size(); i++) {
-            PluginInterfaceType.validateJsonElement(jsonArraytypes.get(i));
-        }
-    }
+      JsonArray jsonArraytypes = jsonObj.getAsJsonArray("Types");
+      // validate the required field `Types` (array)
+      for (int i = 0; i < jsonArraytypes.size(); i++) {
+        PluginInterfaceType.validateJsonElement(jsonArraytypes.get(i));
+      };
+      if ((jsonObj.get("ProtocolScheme") != null && !jsonObj.get("ProtocolScheme").isJsonNull()) && !jsonObj.get("ProtocolScheme").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ProtocolScheme` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ProtocolScheme").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of PluginConfigInterface given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PluginConfigInterface
-     * @throws IOException if the JSON string is invalid with respect to PluginConfigInterface
-     */
-    public static PluginConfigInterface fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, PluginConfigInterface.class);
-    }
-
-    public PluginConfigInterface protocolScheme(String protocolScheme) {
-        this.protocolScheme = protocolScheme;
-        return this;
-    }
-
-    /**
-     * Protocol to use for clients connecting to the plugin.
-     *
-     * @return protocolScheme
-     */
-    @jakarta.annotation.Nullable
-
-    public String getProtocolScheme() {
-        return protocolScheme;
-    }
-
-    public void setProtocolScheme(String protocolScheme) {
-        this.protocolScheme = protocolScheme;
-    }
-
-    public PluginConfigInterface socket(String socket) {
-        this.socket = socket;
-        return this;
-    }
-
-    /**
-     * socket
-     *
-     * @return socket
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-
-    public String getSocket() {
-        return socket;
-    }
-
-    public void setSocket(String socket) {
-        this.socket = socket;
-    }
-
-    public PluginConfigInterface types(List<@Valid PluginInterfaceType> types) {
-        this.types = types;
-        return this;
-    }
-
-    public PluginConfigInterface addTypesItem(PluginInterfaceType typesItem) {
-        if (this.types == null) {
-            this.types = new ArrayList<>();
-        }
-        this.types.add(typesItem);
-        return this;
-    }
-
-    /**
-     * types
-     *
-     * @return types
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-    @Valid
-
-    public List<@Valid PluginInterfaceType> getTypes() {
-        return types;
-    }
-
-    public void setTypes(List<@Valid PluginInterfaceType> types) {
-        this.types = types;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PluginConfigInterface pluginConfigInterface = (PluginConfigInterface) o;
-        return Objects.equals(this.protocolScheme, pluginConfigInterface.protocolScheme) &&
-                Objects.equals(this.socket, pluginConfigInterface.socket) &&
-                Objects.equals(this.types, pluginConfigInterface.types);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PluginConfigInterface.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PluginConfigInterface' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PluginConfigInterface> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PluginConfigInterface.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PluginConfigInterface>() {
+           @Override
+           public void write(JsonWriter out, PluginConfigInterface value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PluginConfigInterface read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(protocolScheme, socket, types);
-    }
+  /**
+   * Create an instance of PluginConfigInterface given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PluginConfigInterface
+   * @throws IOException if the JSON string is invalid with respect to PluginConfigInterface
+   */
+  public static PluginConfigInterface fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PluginConfigInterface.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class PluginConfigInterface {\n" +
-                "    protocolScheme: " + toIndentedString(protocolScheme) + "\n" +
-                "    socket: " + toIndentedString(socket) + "\n" +
-                "    types: " + toIndentedString(types) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of PluginConfigInterface to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!PluginConfigInterface.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'PluginConfigInterface' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<PluginConfigInterface> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(PluginConfigInterface.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<PluginConfigInterface>() {
-                @Override
-                public void write(JsonWriter out, PluginConfigInterface value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public PluginConfigInterface read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of PluginConfigInterface to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

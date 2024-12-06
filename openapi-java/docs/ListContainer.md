@@ -37,4 +37,8 @@ ListContainer describes a container suitable for listing
 |**status** | **String** | Status is a human-readable approximation of a duration for json output |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

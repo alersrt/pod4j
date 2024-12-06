@@ -13,4 +13,8 @@
 |**w** | **Integer** | Width of the TTY session in characters. Tty must be set to true to use it. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

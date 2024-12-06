@@ -24,4 +24,8 @@ ContainerNetworkConfig contains information on a container's network configurati
 |**useImageResolveConf** | **Boolean** | UseImageResolvConf indicates that resolv.conf should not be managed by Podman, but instead sourced from the image. Conflicts with DNSServer, DNSSearch, DNSOption. Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

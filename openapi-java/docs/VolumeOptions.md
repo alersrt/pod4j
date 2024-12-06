@@ -13,4 +13,8 @@
 |**subpath** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

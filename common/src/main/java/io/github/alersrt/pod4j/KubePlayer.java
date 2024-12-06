@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.List;
 
 public class KubePlayer {
 
@@ -45,27 +44,9 @@ public class KubePlayer {
     public void start() throws ApiException, IOException {
         final var pods = new PodsApi(this.api);
         String yaml = readFile(this.yamlPath);
-        this.report = pods.playKubeLibpod(
-                null,
-                null,
-                null,
-                null,
-                List.of("bridge"),
-                false,
-                false,
-                null,
-                false,
-                true,
-                true,
-                true,
-                null,
-                null,
-                false,
-                null,
-                true,
-                false,
-                yaml
-        );
+        this.report = pods.playKubeLibpod()
+                .request(yaml)
+                .execute();
 
         if (this.report == null || this.report.getPods() == null || this.report.getPods().isEmpty()) {
             throw new PodmanException("There is no related pods");
@@ -78,7 +59,10 @@ public class KubePlayer {
     public void stop() throws ApiException, IOException {
         final var pods = new PodsApi(this.api);
         String yaml = readFile(this.yamlPath);
-        pods.playKubeDownLibpod(null, true, yaml);
+        pods.playKubeDownLibpod()
+                .force(true)
+                .request(yaml)
+                .execute();
     }
 
     private String readFile(String filename) throws IOException {

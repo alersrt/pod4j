@@ -12,4 +12,8 @@
 |**soft** | **Long** | Soft is the soft limit that will be applied. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

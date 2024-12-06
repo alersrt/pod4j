@@ -14,4 +14,8 @@ HealthCheckLog describes the results of a single healthcheck
 |**start** | **String** | Start time as string |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

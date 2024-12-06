@@ -15,4 +15,8 @@
 |**size** | **Integer** | Size defines the size for the user namespace.  If it is set to a value bigger than 0, the user namespace will have exactly this size. If it is not set, some heuristics will be used to find its size. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

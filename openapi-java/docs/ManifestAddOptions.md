@@ -23,4 +23,8 @@ ManifestAddOptions provides model for adding digests to manifest list
 |**variant** | **String** | Variant for the item in the manifest list |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

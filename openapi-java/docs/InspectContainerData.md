@@ -50,4 +50,8 @@ InspectContainerData provides a detailed record of a container's configuration a
 |**lockNumber** | **Integer** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

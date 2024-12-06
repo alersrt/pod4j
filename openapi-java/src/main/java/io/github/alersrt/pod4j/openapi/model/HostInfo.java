@@ -13,1150 +13,1217 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-import jakarta.validation.Valid;
-
+import io.github.alersrt.pod4j.openapi.model.CPUUsage;
+import io.github.alersrt.pod4j.openapi.model.ConmonInfo;
+import io.github.alersrt.pod4j.openapi.model.DistributionInfo;
+import io.github.alersrt.pod4j.openapi.model.IDMappings;
+import io.github.alersrt.pod4j.openapi.model.NetworkInfo;
+import io.github.alersrt.pod4j.openapi.model.OCIRuntimeInfo;
+import io.github.alersrt.pod4j.openapi.model.PastaInfo;
+import io.github.alersrt.pod4j.openapi.model.RemoteSocket;
+import io.github.alersrt.pod4j.openapi.model.SecurityInfo;
+import io.github.alersrt.pod4j.openapi.model.SlirpInfo;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * HostInfo describes the libpod host
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class HostInfo {
-    public static final String SERIALIZED_NAME_ARCH = "arch";
-    public static final String SERIALIZED_NAME_BUILDAH_VERSION = "buildahVersion";
-    public static final String SERIALIZED_NAME_CGROUP_CONTROLLERS = "cgroupControllers";
-    public static final String SERIALIZED_NAME_CGROUP_MANAGER = "cgroupManager";
-    public static final String SERIALIZED_NAME_CGROUP_VERSION = "cgroupVersion";
-    public static final String SERIALIZED_NAME_CONMON = "conmon";
-    public static final String SERIALIZED_NAME_CPU_UTILIZATION = "cpuUtilization";
-    public static final String SERIALIZED_NAME_CPUS = "cpus";
-    public static final String SERIALIZED_NAME_DATABASE_BACKEND = "databaseBackend";
-    public static final String SERIALIZED_NAME_DISTRIBUTION = "distribution";
-    public static final String SERIALIZED_NAME_EVENT_LOGGER = "eventLogger";
-    public static final String SERIALIZED_NAME_FREE_LOCKS = "freeLocks";
-    public static final String SERIALIZED_NAME_HOSTNAME = "hostname";
-    public static final String SERIALIZED_NAME_ID_MAPPINGS = "idMappings";
-    public static final String SERIALIZED_NAME_KERNEL = "kernel";
-    public static final String SERIALIZED_NAME_LINKMODE = "linkmode";
-    public static final String SERIALIZED_NAME_LOG_DRIVER = "logDriver";
-    public static final String SERIALIZED_NAME_MEM_FREE = "memFree";
-    public static final String SERIALIZED_NAME_MEM_TOTAL = "memTotal";
-    public static final String SERIALIZED_NAME_NETWORK_BACKEND = "networkBackend";
-    public static final String SERIALIZED_NAME_NETWORK_BACKEND_INFO = "networkBackendInfo";
-    public static final String SERIALIZED_NAME_OCI_RUNTIME = "ociRuntime";
-    public static final String SERIALIZED_NAME_OS = "os";
-    public static final String SERIALIZED_NAME_PASTA = "pasta";
-    public static final String SERIALIZED_NAME_REMOTE_SOCKET = "remoteSocket";
-    public static final String SERIALIZED_NAME_ROOTLESS_NETWORK_CMD = "rootlessNetworkCmd";
-    public static final String SERIALIZED_NAME_RUNTIME_INFO = "runtimeInfo";
-    public static final String SERIALIZED_NAME_SECURITY = "security";
-    public static final String SERIALIZED_NAME_SERVICE_IS_REMOTE = "serviceIsRemote";
-    public static final String SERIALIZED_NAME_SLIRP4NETNS = "slirp4netns";
-    public static final String SERIALIZED_NAME_SWAP_FREE = "swapFree";
-    public static final String SERIALIZED_NAME_SWAP_TOTAL = "swapTotal";
-    public static final String SERIALIZED_NAME_UPTIME = "uptime";
-    public static final String SERIALIZED_NAME_VARIANT = "variant";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class HostInfo implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("arch");
-        openapiFields.add("buildahVersion");
-        openapiFields.add("cgroupControllers");
-        openapiFields.add("cgroupManager");
-        openapiFields.add("cgroupVersion");
-        openapiFields.add("conmon");
-        openapiFields.add("cpuUtilization");
-        openapiFields.add("cpus");
-        openapiFields.add("databaseBackend");
-        openapiFields.add("distribution");
-        openapiFields.add("eventLogger");
-        openapiFields.add("freeLocks");
-        openapiFields.add("hostname");
-        openapiFields.add("idMappings");
-        openapiFields.add("kernel");
-        openapiFields.add("linkmode");
-        openapiFields.add("logDriver");
-        openapiFields.add("memFree");
-        openapiFields.add("memTotal");
-        openapiFields.add("networkBackend");
-        openapiFields.add("networkBackendInfo");
-        openapiFields.add("ociRuntime");
-        openapiFields.add("os");
-        openapiFields.add("pasta");
-        openapiFields.add("remoteSocket");
-        openapiFields.add("rootlessNetworkCmd");
-        openapiFields.add("runtimeInfo");
-        openapiFields.add("security");
-        openapiFields.add("serviceIsRemote");
-        openapiFields.add("slirp4netns");
-        openapiFields.add("swapFree");
-        openapiFields.add("swapTotal");
-        openapiFields.add("uptime");
-        openapiFields.add("variant");
+  public static final String SERIALIZED_NAME_ARCH = "arch";
+  @SerializedName(SERIALIZED_NAME_ARCH)
+  private String arch;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_BUILDAH_VERSION = "buildahVersion";
+  @SerializedName(SERIALIZED_NAME_BUILDAH_VERSION)
+  private String buildahVersion;
+
+  public static final String SERIALIZED_NAME_CGROUP_CONTROLLERS = "cgroupControllers";
+  @SerializedName(SERIALIZED_NAME_CGROUP_CONTROLLERS)
+  private List<String> cgroupControllers = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_CGROUP_MANAGER = "cgroupManager";
+  @SerializedName(SERIALIZED_NAME_CGROUP_MANAGER)
+  private String cgroupManager;
+
+  public static final String SERIALIZED_NAME_CGROUP_VERSION = "cgroupVersion";
+  @SerializedName(SERIALIZED_NAME_CGROUP_VERSION)
+  private String cgroupVersion;
+
+  public static final String SERIALIZED_NAME_CONMON = "conmon";
+  @SerializedName(SERIALIZED_NAME_CONMON)
+  private ConmonInfo conmon;
+
+  public static final String SERIALIZED_NAME_CPU_UTILIZATION = "cpuUtilization";
+  @SerializedName(SERIALIZED_NAME_CPU_UTILIZATION)
+  private CPUUsage cpuUtilization;
+
+  public static final String SERIALIZED_NAME_CPUS = "cpus";
+  @SerializedName(SERIALIZED_NAME_CPUS)
+  private Long cpus;
+
+  public static final String SERIALIZED_NAME_DATABASE_BACKEND = "databaseBackend";
+  @SerializedName(SERIALIZED_NAME_DATABASE_BACKEND)
+  private String databaseBackend;
+
+  public static final String SERIALIZED_NAME_DISTRIBUTION = "distribution";
+  @SerializedName(SERIALIZED_NAME_DISTRIBUTION)
+  private DistributionInfo distribution;
+
+  public static final String SERIALIZED_NAME_EVENT_LOGGER = "eventLogger";
+  @SerializedName(SERIALIZED_NAME_EVENT_LOGGER)
+  private String eventLogger;
+
+  public static final String SERIALIZED_NAME_FREE_LOCKS = "freeLocks";
+  @SerializedName(SERIALIZED_NAME_FREE_LOCKS)
+  private Integer freeLocks;
+
+  public static final String SERIALIZED_NAME_HOSTNAME = "hostname";
+  @SerializedName(SERIALIZED_NAME_HOSTNAME)
+  private String hostname;
+
+  public static final String SERIALIZED_NAME_ID_MAPPINGS = "idMappings";
+  @SerializedName(SERIALIZED_NAME_ID_MAPPINGS)
+  private IDMappings idMappings;
+
+  public static final String SERIALIZED_NAME_KERNEL = "kernel";
+  @SerializedName(SERIALIZED_NAME_KERNEL)
+  private String kernel;
+
+  public static final String SERIALIZED_NAME_LINKMODE = "linkmode";
+  @SerializedName(SERIALIZED_NAME_LINKMODE)
+  private String linkmode;
+
+  public static final String SERIALIZED_NAME_LOG_DRIVER = "logDriver";
+  @SerializedName(SERIALIZED_NAME_LOG_DRIVER)
+  private String logDriver;
+
+  public static final String SERIALIZED_NAME_MEM_FREE = "memFree";
+  @SerializedName(SERIALIZED_NAME_MEM_FREE)
+  private Long memFree;
+
+  public static final String SERIALIZED_NAME_MEM_TOTAL = "memTotal";
+  @SerializedName(SERIALIZED_NAME_MEM_TOTAL)
+  private Long memTotal;
+
+  public static final String SERIALIZED_NAME_NETWORK_BACKEND = "networkBackend";
+  @SerializedName(SERIALIZED_NAME_NETWORK_BACKEND)
+  private String networkBackend;
+
+  public static final String SERIALIZED_NAME_NETWORK_BACKEND_INFO = "networkBackendInfo";
+  @SerializedName(SERIALIZED_NAME_NETWORK_BACKEND_INFO)
+  private NetworkInfo networkBackendInfo;
+
+  public static final String SERIALIZED_NAME_OCI_RUNTIME = "ociRuntime";
+  @SerializedName(SERIALIZED_NAME_OCI_RUNTIME)
+  private OCIRuntimeInfo ociRuntime;
+
+  public static final String SERIALIZED_NAME_OS = "os";
+  @SerializedName(SERIALIZED_NAME_OS)
+  private String os;
+
+  public static final String SERIALIZED_NAME_PASTA = "pasta";
+  @SerializedName(SERIALIZED_NAME_PASTA)
+  private PastaInfo pasta;
+
+  public static final String SERIALIZED_NAME_REMOTE_SOCKET = "remoteSocket";
+  @SerializedName(SERIALIZED_NAME_REMOTE_SOCKET)
+  private RemoteSocket remoteSocket;
+
+  public static final String SERIALIZED_NAME_ROOTLESS_NETWORK_CMD = "rootlessNetworkCmd";
+  @SerializedName(SERIALIZED_NAME_ROOTLESS_NETWORK_CMD)
+  private String rootlessNetworkCmd;
+
+  public static final String SERIALIZED_NAME_RUNTIME_INFO = "runtimeInfo";
+  @SerializedName(SERIALIZED_NAME_RUNTIME_INFO)
+  private Map<String, Object> runtimeInfo = new HashMap<>();
+
+  public static final String SERIALIZED_NAME_SECURITY = "security";
+  @SerializedName(SERIALIZED_NAME_SECURITY)
+  private SecurityInfo security;
+
+  public static final String SERIALIZED_NAME_SERVICE_IS_REMOTE = "serviceIsRemote";
+  @SerializedName(SERIALIZED_NAME_SERVICE_IS_REMOTE)
+  private Boolean serviceIsRemote;
+
+  public static final String SERIALIZED_NAME_SLIRP4NETNS = "slirp4netns";
+  @SerializedName(SERIALIZED_NAME_SLIRP4NETNS)
+  private SlirpInfo slirp4netns;
+
+  public static final String SERIALIZED_NAME_SWAP_FREE = "swapFree";
+  @SerializedName(SERIALIZED_NAME_SWAP_FREE)
+  private Long swapFree;
+
+  public static final String SERIALIZED_NAME_SWAP_TOTAL = "swapTotal";
+  @SerializedName(SERIALIZED_NAME_SWAP_TOTAL)
+  private Long swapTotal;
+
+  public static final String SERIALIZED_NAME_UPTIME = "uptime";
+  @SerializedName(SERIALIZED_NAME_UPTIME)
+  private String uptime;
+
+  public static final String SERIALIZED_NAME_VARIANT = "variant";
+  @SerializedName(SERIALIZED_NAME_VARIANT)
+  private String variant;
+
+  public HostInfo() {
+  }
+
+  public HostInfo arch(String arch) {
+    this.arch = arch;
+    return this;
+  }
+
+  /**
+   * Get arch
+   * @return arch
+   */
+  @jakarta.annotation.Nullable
+
+  public String getArch() {
+    return arch;
+  }
+
+  public void setArch(String arch) {
+    this.arch = arch;
+  }
+
+
+  public HostInfo buildahVersion(String buildahVersion) {
+    this.buildahVersion = buildahVersion;
+    return this;
+  }
+
+  /**
+   * Get buildahVersion
+   * @return buildahVersion
+   */
+  @jakarta.annotation.Nullable
+
+  public String getBuildahVersion() {
+    return buildahVersion;
+  }
+
+  public void setBuildahVersion(String buildahVersion) {
+    this.buildahVersion = buildahVersion;
+  }
+
+
+  public HostInfo cgroupControllers(List<String> cgroupControllers) {
+    this.cgroupControllers = cgroupControllers;
+    return this;
+  }
+
+  public HostInfo addCgroupControllersItem(String cgroupControllersItem) {
+    if (this.cgroupControllers == null) {
+      this.cgroupControllers = new ArrayList<>();
     }
+    this.cgroupControllers.add(cgroupControllersItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_ARCH)
-    private String arch;
-    @SerializedName(SERIALIZED_NAME_BUILDAH_VERSION)
-    private String buildahVersion;
-    @SerializedName(SERIALIZED_NAME_CGROUP_CONTROLLERS)
-    private List<String> cgroupControllers = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_CGROUP_MANAGER)
-    private String cgroupManager;
-    @SerializedName(SERIALIZED_NAME_CGROUP_VERSION)
-    private String cgroupVersion;
-    @SerializedName(SERIALIZED_NAME_CONMON)
-    private ConmonInfo conmon;
-    @SerializedName(SERIALIZED_NAME_CPU_UTILIZATION)
-    private CPUUsage cpuUtilization;
-    @SerializedName(SERIALIZED_NAME_CPUS)
-    private Long cpus;
-    @SerializedName(SERIALIZED_NAME_DATABASE_BACKEND)
-    private String databaseBackend;
-    @SerializedName(SERIALIZED_NAME_DISTRIBUTION)
-    private DistributionInfo distribution;
-    @SerializedName(SERIALIZED_NAME_EVENT_LOGGER)
-    private String eventLogger;
-    @SerializedName(SERIALIZED_NAME_FREE_LOCKS)
-    private Integer freeLocks;
-    @SerializedName(SERIALIZED_NAME_HOSTNAME)
-    private String hostname;
-    @SerializedName(SERIALIZED_NAME_ID_MAPPINGS)
-    private IDMappings idMappings;
-    @SerializedName(SERIALIZED_NAME_KERNEL)
-    private String kernel;
-    @SerializedName(SERIALIZED_NAME_LINKMODE)
-    private String linkmode;
-    @SerializedName(SERIALIZED_NAME_LOG_DRIVER)
-    private String logDriver;
-    @SerializedName(SERIALIZED_NAME_MEM_FREE)
-    private Long memFree;
-    @SerializedName(SERIALIZED_NAME_MEM_TOTAL)
-    private Long memTotal;
-    @SerializedName(SERIALIZED_NAME_NETWORK_BACKEND)
-    private String networkBackend;
-    @SerializedName(SERIALIZED_NAME_NETWORK_BACKEND_INFO)
-    private NetworkInfo networkBackendInfo;
-    @SerializedName(SERIALIZED_NAME_OCI_RUNTIME)
-    private OCIRuntimeInfo ociRuntime;
-    @SerializedName(SERIALIZED_NAME_OS)
-    private String os;
-    @SerializedName(SERIALIZED_NAME_PASTA)
-    private PastaInfo pasta;
-    @SerializedName(SERIALIZED_NAME_REMOTE_SOCKET)
-    private RemoteSocket remoteSocket;
-    @SerializedName(SERIALIZED_NAME_ROOTLESS_NETWORK_CMD)
-    private String rootlessNetworkCmd;
-    @SerializedName(SERIALIZED_NAME_RUNTIME_INFO)
-    private Map<String, Object> runtimeInfo = new HashMap<>();
-    @SerializedName(SERIALIZED_NAME_SECURITY)
-    private SecurityInfo security;
-    @SerializedName(SERIALIZED_NAME_SERVICE_IS_REMOTE)
-    private Boolean serviceIsRemote;
-    @SerializedName(SERIALIZED_NAME_SLIRP4NETNS)
-    private SlirpInfo slirp4netns;
-    @SerializedName(SERIALIZED_NAME_SWAP_FREE)
-    private Long swapFree;
-    @SerializedName(SERIALIZED_NAME_SWAP_TOTAL)
-    private Long swapTotal;
-    @SerializedName(SERIALIZED_NAME_UPTIME)
-    private String uptime;
-    @SerializedName(SERIALIZED_NAME_VARIANT)
-    private String variant;
+  /**
+   * Get cgroupControllers
+   * @return cgroupControllers
+   */
+  @jakarta.annotation.Nullable
 
-    public HostInfo() {
+  public List<String> getCgroupControllers() {
+    return cgroupControllers;
+  }
+
+  public void setCgroupControllers(List<String> cgroupControllers) {
+    this.cgroupControllers = cgroupControllers;
+  }
+
+
+  public HostInfo cgroupManager(String cgroupManager) {
+    this.cgroupManager = cgroupManager;
+    return this;
+  }
+
+  /**
+   * Get cgroupManager
+   * @return cgroupManager
+   */
+  @jakarta.annotation.Nullable
+
+  public String getCgroupManager() {
+    return cgroupManager;
+  }
+
+  public void setCgroupManager(String cgroupManager) {
+    this.cgroupManager = cgroupManager;
+  }
+
+
+  public HostInfo cgroupVersion(String cgroupVersion) {
+    this.cgroupVersion = cgroupVersion;
+    return this;
+  }
+
+  /**
+   * Get cgroupVersion
+   * @return cgroupVersion
+   */
+  @jakarta.annotation.Nullable
+
+  public String getCgroupVersion() {
+    return cgroupVersion;
+  }
+
+  public void setCgroupVersion(String cgroupVersion) {
+    this.cgroupVersion = cgroupVersion;
+  }
+
+
+  public HostInfo conmon(ConmonInfo conmon) {
+    this.conmon = conmon;
+    return this;
+  }
+
+  /**
+   * Get conmon
+   * @return conmon
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public ConmonInfo getConmon() {
+    return conmon;
+  }
+
+  public void setConmon(ConmonInfo conmon) {
+    this.conmon = conmon;
+  }
+
+
+  public HostInfo cpuUtilization(CPUUsage cpuUtilization) {
+    this.cpuUtilization = cpuUtilization;
+    return this;
+  }
+
+  /**
+   * Get cpuUtilization
+   * @return cpuUtilization
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public CPUUsage getCpuUtilization() {
+    return cpuUtilization;
+  }
+
+  public void setCpuUtilization(CPUUsage cpuUtilization) {
+    this.cpuUtilization = cpuUtilization;
+  }
+
+
+  public HostInfo cpus(Long cpus) {
+    this.cpus = cpus;
+    return this;
+  }
+
+  /**
+   * Get cpus
+   * @return cpus
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getCpus() {
+    return cpus;
+  }
+
+  public void setCpus(Long cpus) {
+    this.cpus = cpus;
+  }
+
+
+  public HostInfo databaseBackend(String databaseBackend) {
+    this.databaseBackend = databaseBackend;
+    return this;
+  }
+
+  /**
+   * Get databaseBackend
+   * @return databaseBackend
+   */
+  @jakarta.annotation.Nullable
+
+  public String getDatabaseBackend() {
+    return databaseBackend;
+  }
+
+  public void setDatabaseBackend(String databaseBackend) {
+    this.databaseBackend = databaseBackend;
+  }
+
+
+  public HostInfo distribution(DistributionInfo distribution) {
+    this.distribution = distribution;
+    return this;
+  }
+
+  /**
+   * Get distribution
+   * @return distribution
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public DistributionInfo getDistribution() {
+    return distribution;
+  }
+
+  public void setDistribution(DistributionInfo distribution) {
+    this.distribution = distribution;
+  }
+
+
+  public HostInfo eventLogger(String eventLogger) {
+    this.eventLogger = eventLogger;
+    return this;
+  }
+
+  /**
+   * Get eventLogger
+   * @return eventLogger
+   */
+  @jakarta.annotation.Nullable
+
+  public String getEventLogger() {
+    return eventLogger;
+  }
+
+  public void setEventLogger(String eventLogger) {
+    this.eventLogger = eventLogger;
+  }
+
+
+  public HostInfo freeLocks(Integer freeLocks) {
+    this.freeLocks = freeLocks;
+    return this;
+  }
+
+  /**
+   * Get freeLocks
+   * @return freeLocks
+   */
+  @jakarta.annotation.Nullable
+
+  public Integer getFreeLocks() {
+    return freeLocks;
+  }
+
+  public void setFreeLocks(Integer freeLocks) {
+    this.freeLocks = freeLocks;
+  }
+
+
+  public HostInfo hostname(String hostname) {
+    this.hostname = hostname;
+    return this;
+  }
+
+  /**
+   * Get hostname
+   * @return hostname
+   */
+  @jakarta.annotation.Nullable
+
+  public String getHostname() {
+    return hostname;
+  }
+
+  public void setHostname(String hostname) {
+    this.hostname = hostname;
+  }
+
+
+  public HostInfo idMappings(IDMappings idMappings) {
+    this.idMappings = idMappings;
+    return this;
+  }
+
+  /**
+   * Get idMappings
+   * @return idMappings
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public IDMappings getIdMappings() {
+    return idMappings;
+  }
+
+  public void setIdMappings(IDMappings idMappings) {
+    this.idMappings = idMappings;
+  }
+
+
+  public HostInfo kernel(String kernel) {
+    this.kernel = kernel;
+    return this;
+  }
+
+  /**
+   * Get kernel
+   * @return kernel
+   */
+  @jakarta.annotation.Nullable
+
+  public String getKernel() {
+    return kernel;
+  }
+
+  public void setKernel(String kernel) {
+    this.kernel = kernel;
+  }
+
+
+  public HostInfo linkmode(String linkmode) {
+    this.linkmode = linkmode;
+    return this;
+  }
+
+  /**
+   * Get linkmode
+   * @return linkmode
+   */
+  @jakarta.annotation.Nullable
+
+  public String getLinkmode() {
+    return linkmode;
+  }
+
+  public void setLinkmode(String linkmode) {
+    this.linkmode = linkmode;
+  }
+
+
+  public HostInfo logDriver(String logDriver) {
+    this.logDriver = logDriver;
+    return this;
+  }
+
+  /**
+   * Get logDriver
+   * @return logDriver
+   */
+  @jakarta.annotation.Nullable
+
+  public String getLogDriver() {
+    return logDriver;
+  }
+
+  public void setLogDriver(String logDriver) {
+    this.logDriver = logDriver;
+  }
+
+
+  public HostInfo memFree(Long memFree) {
+    this.memFree = memFree;
+    return this;
+  }
+
+  /**
+   * Get memFree
+   * @return memFree
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getMemFree() {
+    return memFree;
+  }
+
+  public void setMemFree(Long memFree) {
+    this.memFree = memFree;
+  }
+
+
+  public HostInfo memTotal(Long memTotal) {
+    this.memTotal = memTotal;
+    return this;
+  }
+
+  /**
+   * Get memTotal
+   * @return memTotal
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getMemTotal() {
+    return memTotal;
+  }
+
+  public void setMemTotal(Long memTotal) {
+    this.memTotal = memTotal;
+  }
+
+
+  public HostInfo networkBackend(String networkBackend) {
+    this.networkBackend = networkBackend;
+    return this;
+  }
+
+  /**
+   * Get networkBackend
+   * @return networkBackend
+   */
+  @jakarta.annotation.Nullable
+
+  public String getNetworkBackend() {
+    return networkBackend;
+  }
+
+  public void setNetworkBackend(String networkBackend) {
+    this.networkBackend = networkBackend;
+  }
+
+
+  public HostInfo networkBackendInfo(NetworkInfo networkBackendInfo) {
+    this.networkBackendInfo = networkBackendInfo;
+    return this;
+  }
+
+  /**
+   * Get networkBackendInfo
+   * @return networkBackendInfo
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public NetworkInfo getNetworkBackendInfo() {
+    return networkBackendInfo;
+  }
+
+  public void setNetworkBackendInfo(NetworkInfo networkBackendInfo) {
+    this.networkBackendInfo = networkBackendInfo;
+  }
+
+
+  public HostInfo ociRuntime(OCIRuntimeInfo ociRuntime) {
+    this.ociRuntime = ociRuntime;
+    return this;
+  }
+
+  /**
+   * Get ociRuntime
+   * @return ociRuntime
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public OCIRuntimeInfo getOciRuntime() {
+    return ociRuntime;
+  }
+
+  public void setOciRuntime(OCIRuntimeInfo ociRuntime) {
+    this.ociRuntime = ociRuntime;
+  }
+
+
+  public HostInfo os(String os) {
+    this.os = os;
+    return this;
+  }
+
+  /**
+   * Get os
+   * @return os
+   */
+  @jakarta.annotation.Nullable
+
+  public String getOs() {
+    return os;
+  }
+
+  public void setOs(String os) {
+    this.os = os;
+  }
+
+
+  public HostInfo pasta(PastaInfo pasta) {
+    this.pasta = pasta;
+    return this;
+  }
+
+  /**
+   * Get pasta
+   * @return pasta
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public PastaInfo getPasta() {
+    return pasta;
+  }
+
+  public void setPasta(PastaInfo pasta) {
+    this.pasta = pasta;
+  }
+
+
+  public HostInfo remoteSocket(RemoteSocket remoteSocket) {
+    this.remoteSocket = remoteSocket;
+    return this;
+  }
+
+  /**
+   * Get remoteSocket
+   * @return remoteSocket
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public RemoteSocket getRemoteSocket() {
+    return remoteSocket;
+  }
+
+  public void setRemoteSocket(RemoteSocket remoteSocket) {
+    this.remoteSocket = remoteSocket;
+  }
+
+
+  public HostInfo rootlessNetworkCmd(String rootlessNetworkCmd) {
+    this.rootlessNetworkCmd = rootlessNetworkCmd;
+    return this;
+  }
+
+  /**
+   * RootlessNetworkCmd returns the default rootless network command (slirp4netns or pasta)
+   * @return rootlessNetworkCmd
+   */
+  @jakarta.annotation.Nullable
+
+  public String getRootlessNetworkCmd() {
+    return rootlessNetworkCmd;
+  }
+
+  public void setRootlessNetworkCmd(String rootlessNetworkCmd) {
+    this.rootlessNetworkCmd = rootlessNetworkCmd;
+  }
+
+
+  public HostInfo runtimeInfo(Map<String, Object> runtimeInfo) {
+    this.runtimeInfo = runtimeInfo;
+    return this;
+  }
+
+  public HostInfo putRuntimeInfoItem(String key, Object runtimeInfoItem) {
+    if (this.runtimeInfo == null) {
+      this.runtimeInfo = new HashMap<>();
     }
+    this.runtimeInfo.put(key, runtimeInfoItem);
+    return this;
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to HostInfo
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!HostInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in HostInfo is not found in the empty JSON string", HostInfo.openapiRequiredFields));
-            }
-        }
+  /**
+   * Get runtimeInfo
+   * @return runtimeInfo
+   */
+  @jakarta.annotation.Nullable
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!HostInfo.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HostInfo` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  public Map<String, Object> getRuntimeInfo() {
+    return runtimeInfo;
+  }
+
+  public void setRuntimeInfo(Map<String, Object> runtimeInfo) {
+    this.runtimeInfo = runtimeInfo;
+  }
+
+
+  public HostInfo security(SecurityInfo security) {
+    this.security = security;
+    return this;
+  }
+
+  /**
+   * Get security
+   * @return security
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public SecurityInfo getSecurity() {
+    return security;
+  }
+
+  public void setSecurity(SecurityInfo security) {
+    this.security = security;
+  }
+
+
+  public HostInfo serviceIsRemote(Boolean serviceIsRemote) {
+    this.serviceIsRemote = serviceIsRemote;
+    return this;
+  }
+
+  /**
+   * ServiceIsRemote is true when the podman/libpod service is remote to the client
+   * @return serviceIsRemote
+   */
+  @jakarta.annotation.Nullable
+
+  public Boolean getServiceIsRemote() {
+    return serviceIsRemote;
+  }
+
+  public void setServiceIsRemote(Boolean serviceIsRemote) {
+    this.serviceIsRemote = serviceIsRemote;
+  }
+
+
+  public HostInfo slirp4netns(SlirpInfo slirp4netns) {
+    this.slirp4netns = slirp4netns;
+    return this;
+  }
+
+  /**
+   * Get slirp4netns
+   * @return slirp4netns
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public SlirpInfo getSlirp4netns() {
+    return slirp4netns;
+  }
+
+  public void setSlirp4netns(SlirpInfo slirp4netns) {
+    this.slirp4netns = slirp4netns;
+  }
+
+
+  public HostInfo swapFree(Long swapFree) {
+    this.swapFree = swapFree;
+    return this;
+  }
+
+  /**
+   * Get swapFree
+   * @return swapFree
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getSwapFree() {
+    return swapFree;
+  }
+
+  public void setSwapFree(Long swapFree) {
+    this.swapFree = swapFree;
+  }
+
+
+  public HostInfo swapTotal(Long swapTotal) {
+    this.swapTotal = swapTotal;
+    return this;
+  }
+
+  /**
+   * Get swapTotal
+   * @return swapTotal
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getSwapTotal() {
+    return swapTotal;
+  }
+
+  public void setSwapTotal(Long swapTotal) {
+    this.swapTotal = swapTotal;
+  }
+
+
+  public HostInfo uptime(String uptime) {
+    this.uptime = uptime;
+    return this;
+  }
+
+  /**
+   * Get uptime
+   * @return uptime
+   */
+  @jakarta.annotation.Nullable
+
+  public String getUptime() {
+    return uptime;
+  }
+
+  public void setUptime(String uptime) {
+    this.uptime = uptime;
+  }
+
+
+  public HostInfo variant(String variant) {
+    this.variant = variant;
+    return this;
+  }
+
+  /**
+   * Get variant
+   * @return variant
+   */
+  @jakarta.annotation.Nullable
+
+  public String getVariant() {
+    return variant;
+  }
+
+  public void setVariant(String variant) {
+    this.variant = variant;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    HostInfo hostInfo = (HostInfo) o;
+    return Objects.equals(this.arch, hostInfo.arch) &&
+        Objects.equals(this.buildahVersion, hostInfo.buildahVersion) &&
+        Objects.equals(this.cgroupControllers, hostInfo.cgroupControllers) &&
+        Objects.equals(this.cgroupManager, hostInfo.cgroupManager) &&
+        Objects.equals(this.cgroupVersion, hostInfo.cgroupVersion) &&
+        Objects.equals(this.conmon, hostInfo.conmon) &&
+        Objects.equals(this.cpuUtilization, hostInfo.cpuUtilization) &&
+        Objects.equals(this.cpus, hostInfo.cpus) &&
+        Objects.equals(this.databaseBackend, hostInfo.databaseBackend) &&
+        Objects.equals(this.distribution, hostInfo.distribution) &&
+        Objects.equals(this.eventLogger, hostInfo.eventLogger) &&
+        Objects.equals(this.freeLocks, hostInfo.freeLocks) &&
+        Objects.equals(this.hostname, hostInfo.hostname) &&
+        Objects.equals(this.idMappings, hostInfo.idMappings) &&
+        Objects.equals(this.kernel, hostInfo.kernel) &&
+        Objects.equals(this.linkmode, hostInfo.linkmode) &&
+        Objects.equals(this.logDriver, hostInfo.logDriver) &&
+        Objects.equals(this.memFree, hostInfo.memFree) &&
+        Objects.equals(this.memTotal, hostInfo.memTotal) &&
+        Objects.equals(this.networkBackend, hostInfo.networkBackend) &&
+        Objects.equals(this.networkBackendInfo, hostInfo.networkBackendInfo) &&
+        Objects.equals(this.ociRuntime, hostInfo.ociRuntime) &&
+        Objects.equals(this.os, hostInfo.os) &&
+        Objects.equals(this.pasta, hostInfo.pasta) &&
+        Objects.equals(this.remoteSocket, hostInfo.remoteSocket) &&
+        Objects.equals(this.rootlessNetworkCmd, hostInfo.rootlessNetworkCmd) &&
+        Objects.equals(this.runtimeInfo, hostInfo.runtimeInfo) &&
+        Objects.equals(this.security, hostInfo.security) &&
+        Objects.equals(this.serviceIsRemote, hostInfo.serviceIsRemote) &&
+        Objects.equals(this.slirp4netns, hostInfo.slirp4netns) &&
+        Objects.equals(this.swapFree, hostInfo.swapFree) &&
+        Objects.equals(this.swapTotal, hostInfo.swapTotal) &&
+        Objects.equals(this.uptime, hostInfo.uptime) &&
+        Objects.equals(this.variant, hostInfo.variant);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(arch, buildahVersion, cgroupControllers, cgroupManager, cgroupVersion, conmon, cpuUtilization, cpus, databaseBackend, distribution, eventLogger, freeLocks, hostname, idMappings, kernel, linkmode, logDriver, memFree, memTotal, networkBackend, networkBackendInfo, ociRuntime, os, pasta, remoteSocket, rootlessNetworkCmd, runtimeInfo, security, serviceIsRemote, slirp4netns, swapFree, swapTotal, uptime, variant);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class HostInfo {\n");
+    sb.append("    arch: ").append(toIndentedString(arch)).append("\n");
+    sb.append("    buildahVersion: ").append(toIndentedString(buildahVersion)).append("\n");
+    sb.append("    cgroupControllers: ").append(toIndentedString(cgroupControllers)).append("\n");
+    sb.append("    cgroupManager: ").append(toIndentedString(cgroupManager)).append("\n");
+    sb.append("    cgroupVersion: ").append(toIndentedString(cgroupVersion)).append("\n");
+    sb.append("    conmon: ").append(toIndentedString(conmon)).append("\n");
+    sb.append("    cpuUtilization: ").append(toIndentedString(cpuUtilization)).append("\n");
+    sb.append("    cpus: ").append(toIndentedString(cpus)).append("\n");
+    sb.append("    databaseBackend: ").append(toIndentedString(databaseBackend)).append("\n");
+    sb.append("    distribution: ").append(toIndentedString(distribution)).append("\n");
+    sb.append("    eventLogger: ").append(toIndentedString(eventLogger)).append("\n");
+    sb.append("    freeLocks: ").append(toIndentedString(freeLocks)).append("\n");
+    sb.append("    hostname: ").append(toIndentedString(hostname)).append("\n");
+    sb.append("    idMappings: ").append(toIndentedString(idMappings)).append("\n");
+    sb.append("    kernel: ").append(toIndentedString(kernel)).append("\n");
+    sb.append("    linkmode: ").append(toIndentedString(linkmode)).append("\n");
+    sb.append("    logDriver: ").append(toIndentedString(logDriver)).append("\n");
+    sb.append("    memFree: ").append(toIndentedString(memFree)).append("\n");
+    sb.append("    memTotal: ").append(toIndentedString(memTotal)).append("\n");
+    sb.append("    networkBackend: ").append(toIndentedString(networkBackend)).append("\n");
+    sb.append("    networkBackendInfo: ").append(toIndentedString(networkBackendInfo)).append("\n");
+    sb.append("    ociRuntime: ").append(toIndentedString(ociRuntime)).append("\n");
+    sb.append("    os: ").append(toIndentedString(os)).append("\n");
+    sb.append("    pasta: ").append(toIndentedString(pasta)).append("\n");
+    sb.append("    remoteSocket: ").append(toIndentedString(remoteSocket)).append("\n");
+    sb.append("    rootlessNetworkCmd: ").append(toIndentedString(rootlessNetworkCmd)).append("\n");
+    sb.append("    runtimeInfo: ").append(toIndentedString(runtimeInfo)).append("\n");
+    sb.append("    security: ").append(toIndentedString(security)).append("\n");
+    sb.append("    serviceIsRemote: ").append(toIndentedString(serviceIsRemote)).append("\n");
+    sb.append("    slirp4netns: ").append(toIndentedString(slirp4netns)).append("\n");
+    sb.append("    swapFree: ").append(toIndentedString(swapFree)).append("\n");
+    sb.append("    swapTotal: ").append(toIndentedString(swapTotal)).append("\n");
+    sb.append("    uptime: ").append(toIndentedString(uptime)).append("\n");
+    sb.append("    variant: ").append(toIndentedString(variant)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("arch");
+    openapiFields.add("buildahVersion");
+    openapiFields.add("cgroupControllers");
+    openapiFields.add("cgroupManager");
+    openapiFields.add("cgroupVersion");
+    openapiFields.add("conmon");
+    openapiFields.add("cpuUtilization");
+    openapiFields.add("cpus");
+    openapiFields.add("databaseBackend");
+    openapiFields.add("distribution");
+    openapiFields.add("eventLogger");
+    openapiFields.add("freeLocks");
+    openapiFields.add("hostname");
+    openapiFields.add("idMappings");
+    openapiFields.add("kernel");
+    openapiFields.add("linkmode");
+    openapiFields.add("logDriver");
+    openapiFields.add("memFree");
+    openapiFields.add("memTotal");
+    openapiFields.add("networkBackend");
+    openapiFields.add("networkBackendInfo");
+    openapiFields.add("ociRuntime");
+    openapiFields.add("os");
+    openapiFields.add("pasta");
+    openapiFields.add("remoteSocket");
+    openapiFields.add("rootlessNetworkCmd");
+    openapiFields.add("runtimeInfo");
+    openapiFields.add("security");
+    openapiFields.add("serviceIsRemote");
+    openapiFields.add("slirp4netns");
+    openapiFields.add("swapFree");
+    openapiFields.add("swapTotal");
+    openapiFields.add("uptime");
+    openapiFields.add("variant");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to HostInfo
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!HostInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in HostInfo is not found in the empty JSON string", HostInfo.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!HostInfo.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HostInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("arch") != null && !jsonObj.get("arch").isJsonNull()) && !jsonObj.get("arch").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arch").toString()));
-        }
-        if ((jsonObj.get("buildahVersion") != null && !jsonObj.get("buildahVersion").isJsonNull()) && !jsonObj.get("buildahVersion").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `buildahVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("buildahVersion").toString()));
-        }
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("cgroupControllers") != null && !jsonObj.get("cgroupControllers").isJsonNull() && !jsonObj.get("cgroupControllers").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `cgroupControllers` to be an array in the JSON string but got `%s`", jsonObj.get("cgroupControllers").toString()));
-        }
-        if ((jsonObj.get("cgroupManager") != null && !jsonObj.get("cgroupManager").isJsonNull()) && !jsonObj.get("cgroupManager").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `cgroupManager` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroupManager").toString()));
-        }
-        if ((jsonObj.get("cgroupVersion") != null && !jsonObj.get("cgroupVersion").isJsonNull()) && !jsonObj.get("cgroupVersion").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `cgroupVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroupVersion").toString()));
-        }
-        // validate the optional field `conmon`
-        if (jsonObj.get("conmon") != null && !jsonObj.get("conmon").isJsonNull()) {
-            ConmonInfo.validateJsonElement(jsonObj.get("conmon"));
-        }
-        // validate the optional field `cpuUtilization`
-        if (jsonObj.get("cpuUtilization") != null && !jsonObj.get("cpuUtilization").isJsonNull()) {
-            CPUUsage.validateJsonElement(jsonObj.get("cpuUtilization"));
-        }
-        if ((jsonObj.get("databaseBackend") != null && !jsonObj.get("databaseBackend").isJsonNull()) && !jsonObj.get("databaseBackend").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `databaseBackend` to be a primitive type in the JSON string but got `%s`", jsonObj.get("databaseBackend").toString()));
-        }
-        // validate the optional field `distribution`
-        if (jsonObj.get("distribution") != null && !jsonObj.get("distribution").isJsonNull()) {
-            DistributionInfo.validateJsonElement(jsonObj.get("distribution"));
-        }
-        if ((jsonObj.get("eventLogger") != null && !jsonObj.get("eventLogger").isJsonNull()) && !jsonObj.get("eventLogger").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `eventLogger` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eventLogger").toString()));
-        }
-        if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
-        }
-        // validate the optional field `idMappings`
-        if (jsonObj.get("idMappings") != null && !jsonObj.get("idMappings").isJsonNull()) {
-            IDMappings.validateJsonElement(jsonObj.get("idMappings"));
-        }
-        if ((jsonObj.get("kernel") != null && !jsonObj.get("kernel").isJsonNull()) && !jsonObj.get("kernel").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `kernel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("kernel").toString()));
-        }
-        if ((jsonObj.get("linkmode") != null && !jsonObj.get("linkmode").isJsonNull()) && !jsonObj.get("linkmode").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `linkmode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("linkmode").toString()));
-        }
-        if ((jsonObj.get("logDriver") != null && !jsonObj.get("logDriver").isJsonNull()) && !jsonObj.get("logDriver").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `logDriver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("logDriver").toString()));
-        }
-        if ((jsonObj.get("networkBackend") != null && !jsonObj.get("networkBackend").isJsonNull()) && !jsonObj.get("networkBackend").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `networkBackend` to be a primitive type in the JSON string but got `%s`", jsonObj.get("networkBackend").toString()));
-        }
-        // validate the optional field `networkBackendInfo`
-        if (jsonObj.get("networkBackendInfo") != null && !jsonObj.get("networkBackendInfo").isJsonNull()) {
-            NetworkInfo.validateJsonElement(jsonObj.get("networkBackendInfo"));
-        }
-        // validate the optional field `ociRuntime`
-        if (jsonObj.get("ociRuntime") != null && !jsonObj.get("ociRuntime").isJsonNull()) {
-            OCIRuntimeInfo.validateJsonElement(jsonObj.get("ociRuntime"));
-        }
-        if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
-        }
-        // validate the optional field `pasta`
-        if (jsonObj.get("pasta") != null && !jsonObj.get("pasta").isJsonNull()) {
-            PastaInfo.validateJsonElement(jsonObj.get("pasta"));
-        }
-        // validate the optional field `remoteSocket`
-        if (jsonObj.get("remoteSocket") != null && !jsonObj.get("remoteSocket").isJsonNull()) {
-            RemoteSocket.validateJsonElement(jsonObj.get("remoteSocket"));
-        }
-        if ((jsonObj.get("rootlessNetworkCmd") != null && !jsonObj.get("rootlessNetworkCmd").isJsonNull()) && !jsonObj.get("rootlessNetworkCmd").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `rootlessNetworkCmd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootlessNetworkCmd").toString()));
-        }
-        // validate the optional field `security`
-        if (jsonObj.get("security") != null && !jsonObj.get("security").isJsonNull()) {
-            SecurityInfo.validateJsonElement(jsonObj.get("security"));
-        }
-        // validate the optional field `slirp4netns`
-        if (jsonObj.get("slirp4netns") != null && !jsonObj.get("slirp4netns").isJsonNull()) {
-            SlirpInfo.validateJsonElement(jsonObj.get("slirp4netns"));
-        }
-        if ((jsonObj.get("uptime") != null && !jsonObj.get("uptime").isJsonNull()) && !jsonObj.get("uptime").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `uptime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uptime").toString()));
-        }
-        if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
-        }
-    }
-
-    /**
-     * Create an instance of HostInfo given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of HostInfo
-     * @throws IOException if the JSON string is invalid with respect to HostInfo
-     */
-    public static HostInfo fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, HostInfo.class);
-    }
-
-    public HostInfo arch(String arch) {
-        this.arch = arch;
-        return this;
-    }
-
-    /**
-     * Get arch
-     *
-     * @return arch
-     */
-    @jakarta.annotation.Nullable
-
-    public String getArch() {
-        return arch;
-    }
-
-    public void setArch(String arch) {
-        this.arch = arch;
-    }
-
-    public HostInfo buildahVersion(String buildahVersion) {
-        this.buildahVersion = buildahVersion;
-        return this;
-    }
-
-    /**
-     * Get buildahVersion
-     *
-     * @return buildahVersion
-     */
-    @jakarta.annotation.Nullable
-
-    public String getBuildahVersion() {
-        return buildahVersion;
-    }
-
-    public void setBuildahVersion(String buildahVersion) {
-        this.buildahVersion = buildahVersion;
-    }
-
-    public HostInfo cgroupControllers(List<String> cgroupControllers) {
-        this.cgroupControllers = cgroupControllers;
-        return this;
-    }
-
-    public HostInfo addCgroupControllersItem(String cgroupControllersItem) {
-        if (this.cgroupControllers == null) {
-            this.cgroupControllers = new ArrayList<>();
-        }
-        this.cgroupControllers.add(cgroupControllersItem);
-        return this;
-    }
-
-    /**
-     * Get cgroupControllers
-     *
-     * @return cgroupControllers
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getCgroupControllers() {
-        return cgroupControllers;
-    }
-
-    public void setCgroupControllers(List<String> cgroupControllers) {
-        this.cgroupControllers = cgroupControllers;
-    }
-
-    public HostInfo cgroupManager(String cgroupManager) {
-        this.cgroupManager = cgroupManager;
-        return this;
-    }
-
-    /**
-     * Get cgroupManager
-     *
-     * @return cgroupManager
-     */
-    @jakarta.annotation.Nullable
-
-    public String getCgroupManager() {
-        return cgroupManager;
-    }
-
-    public void setCgroupManager(String cgroupManager) {
-        this.cgroupManager = cgroupManager;
-    }
-
-    public HostInfo cgroupVersion(String cgroupVersion) {
-        this.cgroupVersion = cgroupVersion;
-        return this;
-    }
-
-    /**
-     * Get cgroupVersion
-     *
-     * @return cgroupVersion
-     */
-    @jakarta.annotation.Nullable
-
-    public String getCgroupVersion() {
-        return cgroupVersion;
-    }
-
-    public void setCgroupVersion(String cgroupVersion) {
-        this.cgroupVersion = cgroupVersion;
-    }
-
-    public HostInfo conmon(ConmonInfo conmon) {
-        this.conmon = conmon;
-        return this;
-    }
-
-    /**
-     * Get conmon
-     *
-     * @return conmon
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public ConmonInfo getConmon() {
-        return conmon;
-    }
-
-    public void setConmon(ConmonInfo conmon) {
-        this.conmon = conmon;
-    }
-
-    public HostInfo cpuUtilization(CPUUsage cpuUtilization) {
-        this.cpuUtilization = cpuUtilization;
-        return this;
-    }
-
-    /**
-     * Get cpuUtilization
-     *
-     * @return cpuUtilization
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public CPUUsage getCpuUtilization() {
-        return cpuUtilization;
-    }
-
-    public void setCpuUtilization(CPUUsage cpuUtilization) {
-        this.cpuUtilization = cpuUtilization;
-    }
-
-    public HostInfo cpus(Long cpus) {
-        this.cpus = cpus;
-        return this;
-    }
-
-    /**
-     * Get cpus
-     *
-     * @return cpus
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getCpus() {
-        return cpus;
-    }
-
-    public void setCpus(Long cpus) {
-        this.cpus = cpus;
-    }
-
-    public HostInfo databaseBackend(String databaseBackend) {
-        this.databaseBackend = databaseBackend;
-        return this;
-    }
-
-    /**
-     * Get databaseBackend
-     *
-     * @return databaseBackend
-     */
-    @jakarta.annotation.Nullable
-
-    public String getDatabaseBackend() {
-        return databaseBackend;
-    }
-
-    public void setDatabaseBackend(String databaseBackend) {
-        this.databaseBackend = databaseBackend;
-    }
-
-    public HostInfo distribution(DistributionInfo distribution) {
-        this.distribution = distribution;
-        return this;
-    }
-
-    /**
-     * Get distribution
-     *
-     * @return distribution
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public DistributionInfo getDistribution() {
-        return distribution;
-    }
-
-    public void setDistribution(DistributionInfo distribution) {
-        this.distribution = distribution;
-    }
-
-    public HostInfo eventLogger(String eventLogger) {
-        this.eventLogger = eventLogger;
-        return this;
-    }
-
-    /**
-     * Get eventLogger
-     *
-     * @return eventLogger
-     */
-    @jakarta.annotation.Nullable
-
-    public String getEventLogger() {
-        return eventLogger;
-    }
-
-    public void setEventLogger(String eventLogger) {
-        this.eventLogger = eventLogger;
-    }
-
-    public HostInfo freeLocks(Integer freeLocks) {
-        this.freeLocks = freeLocks;
-        return this;
-    }
-
-    /**
-     * Get freeLocks
-     *
-     * @return freeLocks
-     */
-    @jakarta.annotation.Nullable
-
-    public Integer getFreeLocks() {
-        return freeLocks;
-    }
-
-    public void setFreeLocks(Integer freeLocks) {
-        this.freeLocks = freeLocks;
-    }
-
-    public HostInfo hostname(String hostname) {
-        this.hostname = hostname;
-        return this;
-    }
-
-    /**
-     * Get hostname
-     *
-     * @return hostname
-     */
-    @jakarta.annotation.Nullable
-
-    public String getHostname() {
-        return hostname;
-    }
-
-    public void setHostname(String hostname) {
-        this.hostname = hostname;
-    }
-
-    public HostInfo idMappings(IDMappings idMappings) {
-        this.idMappings = idMappings;
-        return this;
-    }
-
-    /**
-     * Get idMappings
-     *
-     * @return idMappings
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public IDMappings getIdMappings() {
-        return idMappings;
-    }
-
-    public void setIdMappings(IDMappings idMappings) {
-        this.idMappings = idMappings;
-    }
-
-    public HostInfo kernel(String kernel) {
-        this.kernel = kernel;
-        return this;
-    }
-
-    /**
-     * Get kernel
-     *
-     * @return kernel
-     */
-    @jakarta.annotation.Nullable
-
-    public String getKernel() {
-        return kernel;
-    }
-
-    public void setKernel(String kernel) {
-        this.kernel = kernel;
-    }
-
-    public HostInfo linkmode(String linkmode) {
-        this.linkmode = linkmode;
-        return this;
-    }
-
-    /**
-     * Get linkmode
-     *
-     * @return linkmode
-     */
-    @jakarta.annotation.Nullable
-
-    public String getLinkmode() {
-        return linkmode;
-    }
-
-    public void setLinkmode(String linkmode) {
-        this.linkmode = linkmode;
-    }
-
-    public HostInfo logDriver(String logDriver) {
-        this.logDriver = logDriver;
-        return this;
-    }
-
-    /**
-     * Get logDriver
-     *
-     * @return logDriver
-     */
-    @jakarta.annotation.Nullable
-
-    public String getLogDriver() {
-        return logDriver;
-    }
-
-    public void setLogDriver(String logDriver) {
-        this.logDriver = logDriver;
-    }
-
-    public HostInfo memFree(Long memFree) {
-        this.memFree = memFree;
-        return this;
-    }
-
-    /**
-     * Get memFree
-     *
-     * @return memFree
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getMemFree() {
-        return memFree;
-    }
-
-    public void setMemFree(Long memFree) {
-        this.memFree = memFree;
-    }
-
-    public HostInfo memTotal(Long memTotal) {
-        this.memTotal = memTotal;
-        return this;
-    }
-
-    /**
-     * Get memTotal
-     *
-     * @return memTotal
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getMemTotal() {
-        return memTotal;
-    }
-
-    public void setMemTotal(Long memTotal) {
-        this.memTotal = memTotal;
-    }
-
-    public HostInfo networkBackend(String networkBackend) {
-        this.networkBackend = networkBackend;
-        return this;
-    }
-
-    /**
-     * Get networkBackend
-     *
-     * @return networkBackend
-     */
-    @jakarta.annotation.Nullable
-
-    public String getNetworkBackend() {
-        return networkBackend;
-    }
-
-    public void setNetworkBackend(String networkBackend) {
-        this.networkBackend = networkBackend;
-    }
-
-    public HostInfo networkBackendInfo(NetworkInfo networkBackendInfo) {
-        this.networkBackendInfo = networkBackendInfo;
-        return this;
-    }
-
-    /**
-     * Get networkBackendInfo
-     *
-     * @return networkBackendInfo
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public NetworkInfo getNetworkBackendInfo() {
-        return networkBackendInfo;
-    }
-
-    public void setNetworkBackendInfo(NetworkInfo networkBackendInfo) {
-        this.networkBackendInfo = networkBackendInfo;
-    }
-
-    public HostInfo ociRuntime(OCIRuntimeInfo ociRuntime) {
-        this.ociRuntime = ociRuntime;
-        return this;
-    }
-
-    /**
-     * Get ociRuntime
-     *
-     * @return ociRuntime
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public OCIRuntimeInfo getOciRuntime() {
-        return ociRuntime;
-    }
-
-    public void setOciRuntime(OCIRuntimeInfo ociRuntime) {
-        this.ociRuntime = ociRuntime;
-    }
-
-    public HostInfo os(String os) {
-        this.os = os;
-        return this;
-    }
-
-    /**
-     * Get os
-     *
-     * @return os
-     */
-    @jakarta.annotation.Nullable
-
-    public String getOs() {
-        return os;
-    }
-
-    public void setOs(String os) {
-        this.os = os;
-    }
-
-    public HostInfo pasta(PastaInfo pasta) {
-        this.pasta = pasta;
-        return this;
-    }
-
-    /**
-     * Get pasta
-     *
-     * @return pasta
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public PastaInfo getPasta() {
-        return pasta;
-    }
-
-    public void setPasta(PastaInfo pasta) {
-        this.pasta = pasta;
-    }
-
-    public HostInfo remoteSocket(RemoteSocket remoteSocket) {
-        this.remoteSocket = remoteSocket;
-        return this;
-    }
-
-    /**
-     * Get remoteSocket
-     *
-     * @return remoteSocket
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public RemoteSocket getRemoteSocket() {
-        return remoteSocket;
-    }
-
-    public void setRemoteSocket(RemoteSocket remoteSocket) {
-        this.remoteSocket = remoteSocket;
-    }
-
-    public HostInfo rootlessNetworkCmd(String rootlessNetworkCmd) {
-        this.rootlessNetworkCmd = rootlessNetworkCmd;
-        return this;
-    }
-
-    /**
-     * RootlessNetworkCmd returns the default rootless network command (slirp4netns or pasta)
-     *
-     * @return rootlessNetworkCmd
-     */
-    @jakarta.annotation.Nullable
-
-    public String getRootlessNetworkCmd() {
-        return rootlessNetworkCmd;
-    }
-
-    public void setRootlessNetworkCmd(String rootlessNetworkCmd) {
-        this.rootlessNetworkCmd = rootlessNetworkCmd;
-    }
-
-    public HostInfo runtimeInfo(Map<String, Object> runtimeInfo) {
-        this.runtimeInfo = runtimeInfo;
-        return this;
-    }
-
-    public HostInfo putRuntimeInfoItem(String key, Object runtimeInfoItem) {
-        if (this.runtimeInfo == null) {
-            this.runtimeInfo = new HashMap<>();
-        }
-        this.runtimeInfo.put(key, runtimeInfoItem);
-        return this;
-    }
-
-    /**
-     * Get runtimeInfo
-     *
-     * @return runtimeInfo
-     */
-    @jakarta.annotation.Nullable
-
-    public Map<String, Object> getRuntimeInfo() {
-        return runtimeInfo;
-    }
-
-    public void setRuntimeInfo(Map<String, Object> runtimeInfo) {
-        this.runtimeInfo = runtimeInfo;
-    }
-
-    public HostInfo security(SecurityInfo security) {
-        this.security = security;
-        return this;
-    }
-
-    /**
-     * Get security
-     *
-     * @return security
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public SecurityInfo getSecurity() {
-        return security;
-    }
-
-    public void setSecurity(SecurityInfo security) {
-        this.security = security;
-    }
-
-    public HostInfo serviceIsRemote(Boolean serviceIsRemote) {
-        this.serviceIsRemote = serviceIsRemote;
-        return this;
-    }
-
-    /**
-     * ServiceIsRemote is true when the podman/libpod service is remote to the client
-     *
-     * @return serviceIsRemote
-     */
-    @jakarta.annotation.Nullable
-
-    public Boolean getServiceIsRemote() {
-        return serviceIsRemote;
-    }
-
-    public void setServiceIsRemote(Boolean serviceIsRemote) {
-        this.serviceIsRemote = serviceIsRemote;
-    }
-
-    public HostInfo slirp4netns(SlirpInfo slirp4netns) {
-        this.slirp4netns = slirp4netns;
-        return this;
-    }
-
-    /**
-     * Get slirp4netns
-     *
-     * @return slirp4netns
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public SlirpInfo getSlirp4netns() {
-        return slirp4netns;
-    }
-
-    public void setSlirp4netns(SlirpInfo slirp4netns) {
-        this.slirp4netns = slirp4netns;
-    }
-
-    public HostInfo swapFree(Long swapFree) {
-        this.swapFree = swapFree;
-        return this;
-    }
-
-    /**
-     * Get swapFree
-     *
-     * @return swapFree
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getSwapFree() {
-        return swapFree;
-    }
-
-    public void setSwapFree(Long swapFree) {
-        this.swapFree = swapFree;
-    }
-
-    public HostInfo swapTotal(Long swapTotal) {
-        this.swapTotal = swapTotal;
-        return this;
-    }
-
-    /**
-     * Get swapTotal
-     *
-     * @return swapTotal
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getSwapTotal() {
-        return swapTotal;
-    }
-
-    public void setSwapTotal(Long swapTotal) {
-        this.swapTotal = swapTotal;
-    }
-
-    public HostInfo uptime(String uptime) {
-        this.uptime = uptime;
-        return this;
-    }
-
-    /**
-     * Get uptime
-     *
-     * @return uptime
-     */
-    @jakarta.annotation.Nullable
-
-    public String getUptime() {
-        return uptime;
-    }
-
-    public void setUptime(String uptime) {
-        this.uptime = uptime;
-    }
-
-    public HostInfo variant(String variant) {
-        this.variant = variant;
-        return this;
-    }
-
-    /**
-     * Get variant
-     *
-     * @return variant
-     */
-    @jakarta.annotation.Nullable
-
-    public String getVariant() {
-        return variant;
-    }
-
-    public void setVariant(String variant) {
-        this.variant = variant;
-    }
-
+      if ((jsonObj.get("arch") != null && !jsonObj.get("arch").isJsonNull()) && !jsonObj.get("arch").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `arch` to be a primitive type in the JSON string but got `%s`", jsonObj.get("arch").toString()));
+      }
+      if ((jsonObj.get("buildahVersion") != null && !jsonObj.get("buildahVersion").isJsonNull()) && !jsonObj.get("buildahVersion").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `buildahVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("buildahVersion").toString()));
+      }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("cgroupControllers") != null && !jsonObj.get("cgroupControllers").isJsonNull() && !jsonObj.get("cgroupControllers").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cgroupControllers` to be an array in the JSON string but got `%s`", jsonObj.get("cgroupControllers").toString()));
+      }
+      if ((jsonObj.get("cgroupManager") != null && !jsonObj.get("cgroupManager").isJsonNull()) && !jsonObj.get("cgroupManager").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cgroupManager` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroupManager").toString()));
+      }
+      if ((jsonObj.get("cgroupVersion") != null && !jsonObj.get("cgroupVersion").isJsonNull()) && !jsonObj.get("cgroupVersion").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `cgroupVersion` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cgroupVersion").toString()));
+      }
+      // validate the optional field `conmon`
+      if (jsonObj.get("conmon") != null && !jsonObj.get("conmon").isJsonNull()) {
+        ConmonInfo.validateJsonElement(jsonObj.get("conmon"));
+      }
+      // validate the optional field `cpuUtilization`
+      if (jsonObj.get("cpuUtilization") != null && !jsonObj.get("cpuUtilization").isJsonNull()) {
+        CPUUsage.validateJsonElement(jsonObj.get("cpuUtilization"));
+      }
+      if ((jsonObj.get("databaseBackend") != null && !jsonObj.get("databaseBackend").isJsonNull()) && !jsonObj.get("databaseBackend").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `databaseBackend` to be a primitive type in the JSON string but got `%s`", jsonObj.get("databaseBackend").toString()));
+      }
+      // validate the optional field `distribution`
+      if (jsonObj.get("distribution") != null && !jsonObj.get("distribution").isJsonNull()) {
+        DistributionInfo.validateJsonElement(jsonObj.get("distribution"));
+      }
+      if ((jsonObj.get("eventLogger") != null && !jsonObj.get("eventLogger").isJsonNull()) && !jsonObj.get("eventLogger").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `eventLogger` to be a primitive type in the JSON string but got `%s`", jsonObj.get("eventLogger").toString()));
+      }
+      if ((jsonObj.get("hostname") != null && !jsonObj.get("hostname").isJsonNull()) && !jsonObj.get("hostname").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `hostname` to be a primitive type in the JSON string but got `%s`", jsonObj.get("hostname").toString()));
+      }
+      // validate the optional field `idMappings`
+      if (jsonObj.get("idMappings") != null && !jsonObj.get("idMappings").isJsonNull()) {
+        IDMappings.validateJsonElement(jsonObj.get("idMappings"));
+      }
+      if ((jsonObj.get("kernel") != null && !jsonObj.get("kernel").isJsonNull()) && !jsonObj.get("kernel").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `kernel` to be a primitive type in the JSON string but got `%s`", jsonObj.get("kernel").toString()));
+      }
+      if ((jsonObj.get("linkmode") != null && !jsonObj.get("linkmode").isJsonNull()) && !jsonObj.get("linkmode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `linkmode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("linkmode").toString()));
+      }
+      if ((jsonObj.get("logDriver") != null && !jsonObj.get("logDriver").isJsonNull()) && !jsonObj.get("logDriver").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `logDriver` to be a primitive type in the JSON string but got `%s`", jsonObj.get("logDriver").toString()));
+      }
+      if ((jsonObj.get("networkBackend") != null && !jsonObj.get("networkBackend").isJsonNull()) && !jsonObj.get("networkBackend").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `networkBackend` to be a primitive type in the JSON string but got `%s`", jsonObj.get("networkBackend").toString()));
+      }
+      // validate the optional field `networkBackendInfo`
+      if (jsonObj.get("networkBackendInfo") != null && !jsonObj.get("networkBackendInfo").isJsonNull()) {
+        NetworkInfo.validateJsonElement(jsonObj.get("networkBackendInfo"));
+      }
+      // validate the optional field `ociRuntime`
+      if (jsonObj.get("ociRuntime") != null && !jsonObj.get("ociRuntime").isJsonNull()) {
+        OCIRuntimeInfo.validateJsonElement(jsonObj.get("ociRuntime"));
+      }
+      if ((jsonObj.get("os") != null && !jsonObj.get("os").isJsonNull()) && !jsonObj.get("os").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `os` to be a primitive type in the JSON string but got `%s`", jsonObj.get("os").toString()));
+      }
+      // validate the optional field `pasta`
+      if (jsonObj.get("pasta") != null && !jsonObj.get("pasta").isJsonNull()) {
+        PastaInfo.validateJsonElement(jsonObj.get("pasta"));
+      }
+      // validate the optional field `remoteSocket`
+      if (jsonObj.get("remoteSocket") != null && !jsonObj.get("remoteSocket").isJsonNull()) {
+        RemoteSocket.validateJsonElement(jsonObj.get("remoteSocket"));
+      }
+      if ((jsonObj.get("rootlessNetworkCmd") != null && !jsonObj.get("rootlessNetworkCmd").isJsonNull()) && !jsonObj.get("rootlessNetworkCmd").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `rootlessNetworkCmd` to be a primitive type in the JSON string but got `%s`", jsonObj.get("rootlessNetworkCmd").toString()));
+      }
+      // validate the optional field `security`
+      if (jsonObj.get("security") != null && !jsonObj.get("security").isJsonNull()) {
+        SecurityInfo.validateJsonElement(jsonObj.get("security"));
+      }
+      // validate the optional field `slirp4netns`
+      if (jsonObj.get("slirp4netns") != null && !jsonObj.get("slirp4netns").isJsonNull()) {
+        SlirpInfo.validateJsonElement(jsonObj.get("slirp4netns"));
+      }
+      if ((jsonObj.get("uptime") != null && !jsonObj.get("uptime").isJsonNull()) && !jsonObj.get("uptime").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `uptime` to be a primitive type in the JSON string but got `%s`", jsonObj.get("uptime").toString()));
+      }
+      if ((jsonObj.get("variant") != null && !jsonObj.get("variant").isJsonNull()) && !jsonObj.get("variant").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `variant` to be a primitive type in the JSON string but got `%s`", jsonObj.get("variant").toString()));
+      }
+  }
+
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        HostInfo hostInfo = (HostInfo) o;
-        return Objects.equals(this.arch, hostInfo.arch) &&
-                Objects.equals(this.buildahVersion, hostInfo.buildahVersion) &&
-                Objects.equals(this.cgroupControllers, hostInfo.cgroupControllers) &&
-                Objects.equals(this.cgroupManager, hostInfo.cgroupManager) &&
-                Objects.equals(this.cgroupVersion, hostInfo.cgroupVersion) &&
-                Objects.equals(this.conmon, hostInfo.conmon) &&
-                Objects.equals(this.cpuUtilization, hostInfo.cpuUtilization) &&
-                Objects.equals(this.cpus, hostInfo.cpus) &&
-                Objects.equals(this.databaseBackend, hostInfo.databaseBackend) &&
-                Objects.equals(this.distribution, hostInfo.distribution) &&
-                Objects.equals(this.eventLogger, hostInfo.eventLogger) &&
-                Objects.equals(this.freeLocks, hostInfo.freeLocks) &&
-                Objects.equals(this.hostname, hostInfo.hostname) &&
-                Objects.equals(this.idMappings, hostInfo.idMappings) &&
-                Objects.equals(this.kernel, hostInfo.kernel) &&
-                Objects.equals(this.linkmode, hostInfo.linkmode) &&
-                Objects.equals(this.logDriver, hostInfo.logDriver) &&
-                Objects.equals(this.memFree, hostInfo.memFree) &&
-                Objects.equals(this.memTotal, hostInfo.memTotal) &&
-                Objects.equals(this.networkBackend, hostInfo.networkBackend) &&
-                Objects.equals(this.networkBackendInfo, hostInfo.networkBackendInfo) &&
-                Objects.equals(this.ociRuntime, hostInfo.ociRuntime) &&
-                Objects.equals(this.os, hostInfo.os) &&
-                Objects.equals(this.pasta, hostInfo.pasta) &&
-                Objects.equals(this.remoteSocket, hostInfo.remoteSocket) &&
-                Objects.equals(this.rootlessNetworkCmd, hostInfo.rootlessNetworkCmd) &&
-                Objects.equals(this.runtimeInfo, hostInfo.runtimeInfo) &&
-                Objects.equals(this.security, hostInfo.security) &&
-                Objects.equals(this.serviceIsRemote, hostInfo.serviceIsRemote) &&
-                Objects.equals(this.slirp4netns, hostInfo.slirp4netns) &&
-                Objects.equals(this.swapFree, hostInfo.swapFree) &&
-                Objects.equals(this.swapTotal, hostInfo.swapTotal) &&
-                Objects.equals(this.uptime, hostInfo.uptime) &&
-                Objects.equals(this.variant, hostInfo.variant);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!HostInfo.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'HostInfo' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<HostInfo> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(HostInfo.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<HostInfo>() {
+           @Override
+           public void write(JsonWriter out, HostInfo value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public HostInfo read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(arch, buildahVersion, cgroupControllers, cgroupManager, cgroupVersion, conmon, cpuUtilization, cpus, databaseBackend, distribution, eventLogger, freeLocks, hostname, idMappings, kernel, linkmode, logDriver, memFree, memTotal, networkBackend, networkBackendInfo, ociRuntime, os, pasta, remoteSocket, rootlessNetworkCmd, runtimeInfo, security, serviceIsRemote, slirp4netns, swapFree, swapTotal, uptime, variant);
-    }
+  /**
+   * Create an instance of HostInfo given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of HostInfo
+   * @throws IOException if the JSON string is invalid with respect to HostInfo
+   */
+  public static HostInfo fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, HostInfo.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class HostInfo {\n" +
-                "    arch: " + toIndentedString(arch) + "\n" +
-                "    buildahVersion: " + toIndentedString(buildahVersion) + "\n" +
-                "    cgroupControllers: " + toIndentedString(cgroupControllers) + "\n" +
-                "    cgroupManager: " + toIndentedString(cgroupManager) + "\n" +
-                "    cgroupVersion: " + toIndentedString(cgroupVersion) + "\n" +
-                "    conmon: " + toIndentedString(conmon) + "\n" +
-                "    cpuUtilization: " + toIndentedString(cpuUtilization) + "\n" +
-                "    cpus: " + toIndentedString(cpus) + "\n" +
-                "    databaseBackend: " + toIndentedString(databaseBackend) + "\n" +
-                "    distribution: " + toIndentedString(distribution) + "\n" +
-                "    eventLogger: " + toIndentedString(eventLogger) + "\n" +
-                "    freeLocks: " + toIndentedString(freeLocks) + "\n" +
-                "    hostname: " + toIndentedString(hostname) + "\n" +
-                "    idMappings: " + toIndentedString(idMappings) + "\n" +
-                "    kernel: " + toIndentedString(kernel) + "\n" +
-                "    linkmode: " + toIndentedString(linkmode) + "\n" +
-                "    logDriver: " + toIndentedString(logDriver) + "\n" +
-                "    memFree: " + toIndentedString(memFree) + "\n" +
-                "    memTotal: " + toIndentedString(memTotal) + "\n" +
-                "    networkBackend: " + toIndentedString(networkBackend) + "\n" +
-                "    networkBackendInfo: " + toIndentedString(networkBackendInfo) + "\n" +
-                "    ociRuntime: " + toIndentedString(ociRuntime) + "\n" +
-                "    os: " + toIndentedString(os) + "\n" +
-                "    pasta: " + toIndentedString(pasta) + "\n" +
-                "    remoteSocket: " + toIndentedString(remoteSocket) + "\n" +
-                "    rootlessNetworkCmd: " + toIndentedString(rootlessNetworkCmd) + "\n" +
-                "    runtimeInfo: " + toIndentedString(runtimeInfo) + "\n" +
-                "    security: " + toIndentedString(security) + "\n" +
-                "    serviceIsRemote: " + toIndentedString(serviceIsRemote) + "\n" +
-                "    slirp4netns: " + toIndentedString(slirp4netns) + "\n" +
-                "    swapFree: " + toIndentedString(swapFree) + "\n" +
-                "    swapTotal: " + toIndentedString(swapTotal) + "\n" +
-                "    uptime: " + toIndentedString(uptime) + "\n" +
-                "    variant: " + toIndentedString(variant) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of HostInfo to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!HostInfo.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'HostInfo' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<HostInfo> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(HostInfo.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<HostInfo>() {
-                @Override
-                public void write(JsonWriter out, HostInfo value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public HostInfo read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of HostInfo to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

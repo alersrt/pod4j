@@ -26,4 +26,8 @@
 |**UID** | **Long** | UID is the UID that the volume was created with. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

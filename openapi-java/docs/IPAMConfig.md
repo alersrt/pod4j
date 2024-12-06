@@ -14,4 +14,8 @@ IPAMConfig represents IPAM configurations
 |**subnet** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

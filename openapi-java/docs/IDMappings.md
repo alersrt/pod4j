@@ -12,4 +12,8 @@ IDMappings describe the GID and UID mappings
 |**uidmap** | [**List&lt;IDMap&gt;**](IDMap.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

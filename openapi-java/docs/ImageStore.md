@@ -11,4 +11,8 @@ ImageStore describes the image store.  Right now only the number of images prese
 |**number** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

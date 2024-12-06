@@ -13,4 +13,8 @@ Health stores information about the container's healthcheck results
 |**status** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

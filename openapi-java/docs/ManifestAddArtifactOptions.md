@@ -29,4 +29,8 @@ ManifestAddArtifactOptions provides the model for creating artifact manifests fo
 |**variant** | **String** | Variant for the item in the manifest list |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -12,4 +12,8 @@ Namespace describes the namespace
 |**value** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

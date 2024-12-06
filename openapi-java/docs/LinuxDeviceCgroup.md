@@ -15,4 +15,8 @@ LinuxDeviceCgroup represents a device rule for the devices specified to the devi
 |**type** | **String** | Device type, block, char, etc. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

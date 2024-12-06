@@ -15,4 +15,8 @@
 |**version** | [**SecretVersion**](SecretVersion.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

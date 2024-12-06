@@ -13,234 +13,260 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * DeviceMapping
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class DeviceMapping {
-    public static final String SERIALIZED_NAME_CGROUP_PERMISSIONS = "CgroupPermissions";
-    public static final String SERIALIZED_NAME_PATH_IN_CONTAINER = "PathInContainer";
-    public static final String SERIALIZED_NAME_PATH_ON_HOST = "PathOnHost";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class DeviceMapping implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("CgroupPermissions");
-        openapiFields.add("PathInContainer");
-        openapiFields.add("PathOnHost");
+  public static final String SERIALIZED_NAME_CGROUP_PERMISSIONS = "CgroupPermissions";
+  @SerializedName(SERIALIZED_NAME_CGROUP_PERMISSIONS)
+  private String cgroupPermissions;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_PATH_IN_CONTAINER = "PathInContainer";
+  @SerializedName(SERIALIZED_NAME_PATH_IN_CONTAINER)
+  private String pathInContainer;
+
+  public static final String SERIALIZED_NAME_PATH_ON_HOST = "PathOnHost";
+  @SerializedName(SERIALIZED_NAME_PATH_ON_HOST)
+  private String pathOnHost;
+
+  public DeviceMapping() {
+  }
+
+  public DeviceMapping cgroupPermissions(String cgroupPermissions) {
+    this.cgroupPermissions = cgroupPermissions;
+    return this;
+  }
+
+  /**
+   * Get cgroupPermissions
+   * @return cgroupPermissions
+   */
+  @jakarta.annotation.Nullable
+
+  public String getCgroupPermissions() {
+    return cgroupPermissions;
+  }
+
+  public void setCgroupPermissions(String cgroupPermissions) {
+    this.cgroupPermissions = cgroupPermissions;
+  }
+
+
+  public DeviceMapping pathInContainer(String pathInContainer) {
+    this.pathInContainer = pathInContainer;
+    return this;
+  }
+
+  /**
+   * Get pathInContainer
+   * @return pathInContainer
+   */
+  @jakarta.annotation.Nullable
+
+  public String getPathInContainer() {
+    return pathInContainer;
+  }
+
+  public void setPathInContainer(String pathInContainer) {
+    this.pathInContainer = pathInContainer;
+  }
+
+
+  public DeviceMapping pathOnHost(String pathOnHost) {
+    this.pathOnHost = pathOnHost;
+    return this;
+  }
+
+  /**
+   * Get pathOnHost
+   * @return pathOnHost
+   */
+  @jakarta.annotation.Nullable
+
+  public String getPathOnHost() {
+    return pathOnHost;
+  }
+
+  public void setPathOnHost(String pathOnHost) {
+    this.pathOnHost = pathOnHost;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_CGROUP_PERMISSIONS)
-    private String cgroupPermissions;
-    @SerializedName(SERIALIZED_NAME_PATH_IN_CONTAINER)
-    private String pathInContainer;
-    @SerializedName(SERIALIZED_NAME_PATH_ON_HOST)
-    private String pathOnHost;
-
-    public DeviceMapping() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    DeviceMapping deviceMapping = (DeviceMapping) o;
+    return Objects.equals(this.cgroupPermissions, deviceMapping.cgroupPermissions) &&
+        Objects.equals(this.pathInContainer, deviceMapping.pathInContainer) &&
+        Objects.equals(this.pathOnHost, deviceMapping.pathOnHost);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to DeviceMapping
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!DeviceMapping.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in DeviceMapping is not found in the empty JSON string", DeviceMapping.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(cgroupPermissions, pathInContainer, pathOnHost);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!DeviceMapping.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeviceMapping` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class DeviceMapping {\n");
+    sb.append("    cgroupPermissions: ").append(toIndentedString(cgroupPermissions)).append("\n");
+    sb.append("    pathInContainer: ").append(toIndentedString(pathInContainer)).append("\n");
+    sb.append("    pathOnHost: ").append(toIndentedString(pathOnHost)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("CgroupPermissions");
+    openapiFields.add("PathInContainer");
+    openapiFields.add("PathOnHost");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to DeviceMapping
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!DeviceMapping.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in DeviceMapping is not found in the empty JSON string", DeviceMapping.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!DeviceMapping.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `DeviceMapping` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("CgroupPermissions") != null && !jsonObj.get("CgroupPermissions").isJsonNull()) && !jsonObj.get("CgroupPermissions").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `CgroupPermissions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupPermissions").toString()));
-        }
-        if ((jsonObj.get("PathInContainer") != null && !jsonObj.get("PathInContainer").isJsonNull()) && !jsonObj.get("PathInContainer").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `PathInContainer` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PathInContainer").toString()));
-        }
-        if ((jsonObj.get("PathOnHost") != null && !jsonObj.get("PathOnHost").isJsonNull()) && !jsonObj.get("PathOnHost").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `PathOnHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PathOnHost").toString()));
-        }
-    }
+      if ((jsonObj.get("CgroupPermissions") != null && !jsonObj.get("CgroupPermissions").isJsonNull()) && !jsonObj.get("CgroupPermissions").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `CgroupPermissions` to be a primitive type in the JSON string but got `%s`", jsonObj.get("CgroupPermissions").toString()));
+      }
+      if ((jsonObj.get("PathInContainer") != null && !jsonObj.get("PathInContainer").isJsonNull()) && !jsonObj.get("PathInContainer").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `PathInContainer` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PathInContainer").toString()));
+      }
+      if ((jsonObj.get("PathOnHost") != null && !jsonObj.get("PathOnHost").isJsonNull()) && !jsonObj.get("PathOnHost").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `PathOnHost` to be a primitive type in the JSON string but got `%s`", jsonObj.get("PathOnHost").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of DeviceMapping given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of DeviceMapping
-     * @throws IOException if the JSON string is invalid with respect to DeviceMapping
-     */
-    public static DeviceMapping fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, DeviceMapping.class);
-    }
-
-    public DeviceMapping cgroupPermissions(String cgroupPermissions) {
-        this.cgroupPermissions = cgroupPermissions;
-        return this;
-    }
-
-    /**
-     * Get cgroupPermissions
-     *
-     * @return cgroupPermissions
-     */
-    @jakarta.annotation.Nullable
-
-    public String getCgroupPermissions() {
-        return cgroupPermissions;
-    }
-
-    public void setCgroupPermissions(String cgroupPermissions) {
-        this.cgroupPermissions = cgroupPermissions;
-    }
-
-    public DeviceMapping pathInContainer(String pathInContainer) {
-        this.pathInContainer = pathInContainer;
-        return this;
-    }
-
-    /**
-     * Get pathInContainer
-     *
-     * @return pathInContainer
-     */
-    @jakarta.annotation.Nullable
-
-    public String getPathInContainer() {
-        return pathInContainer;
-    }
-
-    public void setPathInContainer(String pathInContainer) {
-        this.pathInContainer = pathInContainer;
-    }
-
-    public DeviceMapping pathOnHost(String pathOnHost) {
-        this.pathOnHost = pathOnHost;
-        return this;
-    }
-
-    /**
-     * Get pathOnHost
-     *
-     * @return pathOnHost
-     */
-    @jakarta.annotation.Nullable
-
-    public String getPathOnHost() {
-        return pathOnHost;
-    }
-
-    public void setPathOnHost(String pathOnHost) {
-        this.pathOnHost = pathOnHost;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        DeviceMapping deviceMapping = (DeviceMapping) o;
-        return Objects.equals(this.cgroupPermissions, deviceMapping.cgroupPermissions) &&
-                Objects.equals(this.pathInContainer, deviceMapping.pathInContainer) &&
-                Objects.equals(this.pathOnHost, deviceMapping.pathOnHost);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!DeviceMapping.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'DeviceMapping' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<DeviceMapping> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(DeviceMapping.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<DeviceMapping>() {
+           @Override
+           public void write(JsonWriter out, DeviceMapping value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public DeviceMapping read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(cgroupPermissions, pathInContainer, pathOnHost);
-    }
+  /**
+   * Create an instance of DeviceMapping given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of DeviceMapping
+   * @throws IOException if the JSON string is invalid with respect to DeviceMapping
+   */
+  public static DeviceMapping fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, DeviceMapping.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class DeviceMapping {\n" +
-                "    cgroupPermissions: " + toIndentedString(cgroupPermissions) + "\n" +
-                "    pathInContainer: " + toIndentedString(pathInContainer) + "\n" +
-                "    pathOnHost: " + toIndentedString(pathOnHost) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of DeviceMapping to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!DeviceMapping.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'DeviceMapping' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<DeviceMapping> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(DeviceMapping.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<DeviceMapping>() {
-                @Override
-                public void write(JsonWriter out, DeviceMapping value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public DeviceMapping read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of DeviceMapping to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

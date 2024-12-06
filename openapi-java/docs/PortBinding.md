@@ -12,4 +12,8 @@ PortBinding represents a binding between a Host IP address and a Host Port
 |**hostPort** | **String** | HostPort is the host port number |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

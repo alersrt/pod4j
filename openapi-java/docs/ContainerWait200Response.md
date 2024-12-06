@@ -11,4 +11,8 @@
 |**statusCode** | **Long** | container exit code |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

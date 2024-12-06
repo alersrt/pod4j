@@ -19,4 +19,8 @@ LinuxCPU for Linux cgroup 'cpu' resource management
 |**shares** | **Integer** | CPU shares (relative weight (ratio) vs. other cgroups with cpu shares). |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -12,4 +12,8 @@ ContainerSize holds the size of the container's root filesystem and top read-wri
 |**rwSize** | **Long** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

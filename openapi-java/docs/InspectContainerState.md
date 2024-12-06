@@ -33,4 +33,8 @@ InspectContainerState provides a detailed record of a container's current state.
 |**stoppedByUser** | **Boolean** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

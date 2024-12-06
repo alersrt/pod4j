@@ -36,4 +36,8 @@ ContainerJSON is newly used struct along with MountPoint
 |**state** | [**ContainerState**](ContainerState.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

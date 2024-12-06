@@ -12,4 +12,8 @@ AuthReport describes the response for authentication check
 |**status** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

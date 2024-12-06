@@ -12,4 +12,8 @@
 |**state** | **String** | State is the current status of the container. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

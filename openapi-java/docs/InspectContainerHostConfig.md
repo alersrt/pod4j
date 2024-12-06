@@ -80,4 +80,8 @@ nolint:revive,stylecheck // Field names are fixed for compatibility and cannot b
 |**volumesFrom** | **List&lt;String&gt;** | VolumesFrom is a list of containers which this container uses volumes from. This is not handled directly within libpod and is stored in an annotation. It is formatted as an array of container names and IDs. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

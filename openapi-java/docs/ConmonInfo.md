@@ -13,4 +13,8 @@ ConmonInfo describes the conmon executable being used
 |**version** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

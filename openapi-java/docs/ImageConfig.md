@@ -19,4 +19,8 @@
 |**workingDir** | **String** | WorkingDir sets the current working directory of the entrypoint process in the container. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

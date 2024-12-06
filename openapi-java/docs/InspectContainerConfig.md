@@ -47,4 +47,8 @@ InspectContainerConfig holds further data about how a container was initially co
 |**sdNotifySocket** | **String** | SdNotifySocket is the NOTIFY_SOCKET in use by/configured for the container. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

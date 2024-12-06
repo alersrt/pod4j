@@ -12,4 +12,8 @@ NetworkRmReport describes the results of network removal
 |**name** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

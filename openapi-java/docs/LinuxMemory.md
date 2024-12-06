@@ -19,4 +19,8 @@ LinuxMemory for Linux cgroup 'memory' resource management
 |**useHierarchy** | **Boolean** | Enables hierarchical memory accounting |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

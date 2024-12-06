@@ -19,4 +19,8 @@ SystemCheckReport provides a report of what a storage consistency check found, a
 |**removedLayers** | **List&lt;String&gt;** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

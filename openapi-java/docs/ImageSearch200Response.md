@@ -16,4 +16,8 @@
 |**tag** | **String** | Tag is the image tag |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -13,13 +13,22 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
 import io.github.alersrt.pod4j.openapi.model.Container;
 import io.github.alersrt.pod4j.openapi.model.ContainerCreateResponse;
 import io.github.alersrt.pod4j.openapi.model.ContainerJSON;
@@ -27,10 +36,10 @@ import io.github.alersrt.pod4j.openapi.model.ContainerTopOKBody;
 import io.github.alersrt.pod4j.openapi.model.ContainerWait200Response;
 import io.github.alersrt.pod4j.openapi.model.ContainersPruneReport;
 import io.github.alersrt.pod4j.openapi.model.CreateContainerConfig;
-import io.github.alersrt.pod4j.openapi.model.UpdateConfig;
-import jakarta.validation.constraints.NotNull;
-
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
 import java.io.File;
+import io.github.alersrt.pod4j.openapi.model.UpdateConfig;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,31 +83,15 @@ public class ContainersCompatApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for containerArchive
-     *
-     * @param name      container name or id (required)
-     * @param path      Path to a directory in the container to extract (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerArchiveCall(String name, String path, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call containerArchiveCall(String name, String path, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -108,7 +101,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/archive"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -121,7 +114,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -135,7 +128,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -155,102 +148,129 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Get files from a container
-     * Get a tar archive of files from a container
-     *
-     * @param name container name or id (required)
-     * @param path Path to a directory in the container to extract (required)
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public File containerArchive(String name, String path) throws ApiException {
-        ApiResponse<File> localVarResp = containerArchiveWithHttpInfo(name, path);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Get files from a container
-     * Get a tar archive of files from a container
-     *
-     * @param name container name or id (required)
-     * @param path Path to a directory in the container to extract (required)
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<File> containerArchiveWithHttpInfo(@NotNull String name, @NotNull String path) throws ApiException {
+    private ApiResponse<File> containerArchiveWithHttpInfo( @NotNull String name,  @NotNull String path) throws ApiException {
         okhttp3.Call localVarCall = containerArchiveValidateBeforeCall(name, path, null);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Get files from a container (asynchronously)
-     * Get a tar archive of files from a container
-     *
-     * @param name      container name or id (required)
-     * @param path      Path to a directory in the container to extract (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerArchiveAsync(String name, String path, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call containerArchiveAsync(String name, String path, final ApiCallback<File> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerArchiveValidateBeforeCall(name, path, _callback);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerArchiveRequest {
+        private final String name;
+        private final String path;
+
+        private APIcontainerArchiveRequest(String name, String path) {
+            this.name = name;
+            this.path = path;
+        }
+
+        /**
+         * Build call for containerArchive
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerArchiveCall(name, path, _callback);
+        }
+
+        /**
+         * Execute containerArchive request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = containerArchiveWithHttpInfo(name, path);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerArchive request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return containerArchiveWithHttpInfo(name, path);
+        }
+
+        /**
+         * Execute containerArchive request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return containerArchiveAsync(name, path, _callback);
+        }
+    }
+
     /**
-     * Build call for containerArchiveLibpod
-     *
-     * @param name      container name or id (required)
-     * @param path      Path to a directory in the container to extract (required)
-     * @param rename    JSON encoded map[string]string to translate paths (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Get files from a container
+     * Get a tar archive of files from a container
+     * @param name container name or id (required)
+     * @param path Path to a directory in the container to extract (required)
+     * @return APIcontainerArchiveRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerArchiveLibpodCall(String name, String path, String rename, final ApiCallback _callback) throws ApiException {
+    public APIcontainerArchiveRequest containerArchive(String name, String path) {
+        return new APIcontainerArchiveRequest(name, path);
+    }
+    private okhttp3.Call containerArchiveLibpodCall(String name, String path, String rename, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -260,7 +280,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/archive"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -277,7 +297,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -291,7 +311,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -311,109 +331,140 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Copy files from a container
-     * Copy a tar archive of files from a container
-     *
-     * @param name   container name or id (required)
-     * @param path   Path to a directory in the container to extract (required)
-     * @param rename JSON encoded map[string]string to translate paths (optional)
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public File containerArchiveLibpod(String name, String path, String rename) throws ApiException {
-        ApiResponse<File> localVarResp = containerArchiveLibpodWithHttpInfo(name, path, rename);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Copy files from a container
-     * Copy a tar archive of files from a container
-     *
-     * @param name   container name or id (required)
-     * @param path   Path to a directory in the container to extract (required)
-     * @param rename JSON encoded map[string]string to translate paths (optional)
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<File> containerArchiveLibpodWithHttpInfo(@NotNull String name, @NotNull String path, String rename) throws ApiException {
+    private ApiResponse<File> containerArchiveLibpodWithHttpInfo( @NotNull String name,  @NotNull String path, String rename) throws ApiException {
         okhttp3.Call localVarCall = containerArchiveLibpodValidateBeforeCall(name, path, rename, null);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Copy files from a container (asynchronously)
-     * Copy a tar archive of files from a container
-     *
-     * @param name      container name or id (required)
-     * @param path      Path to a directory in the container to extract (required)
-     * @param rename    JSON encoded map[string]string to translate paths (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerArchiveLibpodAsync(String name, String path, String rename, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call containerArchiveLibpodAsync(String name, String path, String rename, final ApiCallback<File> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerArchiveLibpodValidateBeforeCall(name, path, rename, _callback);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerArchiveLibpodRequest {
+        private final String name;
+        private final String path;
+        private String rename;
+
+        private APIcontainerArchiveLibpodRequest(String name, String path) {
+            this.name = name;
+            this.path = path;
+        }
+
+        /**
+         * Set rename
+         * @param rename JSON encoded map[string]string to translate paths (optional)
+         * @return APIcontainerArchiveLibpodRequest
+         */
+        public APIcontainerArchiveLibpodRequest rename(String rename) {
+            this.rename = rename;
+            return this;
+        }
+
+        /**
+         * Build call for containerArchiveLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerArchiveLibpodCall(name, path, rename, _callback);
+        }
+
+        /**
+         * Execute containerArchiveLibpod request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = containerArchiveLibpodWithHttpInfo(name, path, rename);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerArchiveLibpod request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return containerArchiveLibpodWithHttpInfo(name, path, rename);
+        }
+
+        /**
+         * Execute containerArchiveLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return containerArchiveLibpodAsync(name, path, rename, _callback);
+        }
+    }
+
     /**
-     * Build call for containerAttach
-     *
-     * @param name       the name or ID of the container (required)
-     * @param detachKeys keys to use for detaching from the container (optional)
-     * @param logs       Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
-     * @param stream     Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
-     * @param stdout     Attach to container STDOUT (optional)
-     * @param stderr     Attach to container STDERR (optional)
-     * @param stdin      Attach to container STDIN (optional)
-     * @param _callback  Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Copy files from a container
+     * Copy a tar archive of files from a container
+     * @param name container name or id (required)
+     * @param path Path to a directory in the container to extract (required)
+     * @return APIcontainerArchiveLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerAttachCall(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin, final ApiCallback _callback) throws ApiException {
+    public APIcontainerArchiveLibpodRequest containerArchiveLibpod(String name, String path) {
+        return new APIcontainerArchiveLibpodRequest(name, path);
+    }
+    private okhttp3.Call containerAttachCall(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -423,7 +474,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/attach"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -456,7 +507,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -470,7 +521,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -485,110 +536,188 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Attach to a container
-     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  It uses the same stream format as docker, see the libpod attach endpoint for a description of the format.
-     *
-     * @param name       the name or ID of the container (required)
-     * @param detachKeys keys to use for detaching from the container (optional)
-     * @param logs       Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
-     * @param stream     Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
-     * @param stdout     Attach to container STDOUT (optional)
-     * @param stderr     Attach to container STDERR (optional)
-     * @param stdin      Attach to container STDIN (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerAttach(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin) throws ApiException {
-        containerAttachWithHttpInfo(name, detachKeys, logs, stream, stdout, stderr, stdin);
-    }
 
-    /**
-     * Attach to a container
-     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  It uses the same stream format as docker, see the libpod attach endpoint for a description of the format.
-     *
-     * @param name       the name or ID of the container (required)
-     * @param detachKeys keys to use for detaching from the container (optional)
-     * @param logs       Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
-     * @param stream     Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
-     * @param stdout     Attach to container STDOUT (optional)
-     * @param stderr     Attach to container STDERR (optional)
-     * @param stdin      Attach to container STDIN (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerAttachWithHttpInfo(@NotNull String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin) throws ApiException {
+    private ApiResponse<Void> containerAttachWithHttpInfo( @NotNull String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin) throws ApiException {
         okhttp3.Call localVarCall = containerAttachValidateBeforeCall(name, detachKeys, logs, stream, stdout, stderr, stdin, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Attach to a container (asynchronously)
-     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  It uses the same stream format as docker, see the libpod attach endpoint for a description of the format.
-     *
-     * @param name       the name or ID of the container (required)
-     * @param detachKeys keys to use for detaching from the container (optional)
-     * @param logs       Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
-     * @param stream     Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
-     * @param stdout     Attach to container STDOUT (optional)
-     * @param stderr     Attach to container STDERR (optional)
-     * @param stdin      Attach to container STDIN (optional)
-     * @param _callback  The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerAttachAsync(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerAttachAsync(String name, String detachKeys, Boolean logs, Boolean stream, Boolean stdout, Boolean stderr, Boolean stdin, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerAttachValidateBeforeCall(name, detachKeys, logs, stream, stdout, stderr, stdin, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerAttachRequest {
+        private final String name;
+        private String detachKeys;
+        private Boolean logs;
+        private Boolean stream;
+        private Boolean stdout;
+        private Boolean stderr;
+        private Boolean stdin;
+
+        private APIcontainerAttachRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set detachKeys
+         * @param detachKeys keys to use for detaching from the container (optional)
+         * @return APIcontainerAttachRequest
+         */
+        public APIcontainerAttachRequest detachKeys(String detachKeys) {
+            this.detachKeys = detachKeys;
+            return this;
+        }
+
+        /**
+         * Set logs
+         * @param logs Stream all logs from the container across the connection. Happens before streaming attach (if requested). At least one of logs or stream must be set (optional)
+         * @return APIcontainerAttachRequest
+         */
+        public APIcontainerAttachRequest logs(Boolean logs) {
+            this.logs = logs;
+            return this;
+        }
+
+        /**
+         * Set stream
+         * @param stream Attach to the container. If unset, and logs is set, only the container&#39;s logs will be sent. At least one of stream or logs must be set (optional, default to true)
+         * @return APIcontainerAttachRequest
+         */
+        public APIcontainerAttachRequest stream(Boolean stream) {
+            this.stream = stream;
+            return this;
+        }
+
+        /**
+         * Set stdout
+         * @param stdout Attach to container STDOUT (optional)
+         * @return APIcontainerAttachRequest
+         */
+        public APIcontainerAttachRequest stdout(Boolean stdout) {
+            this.stdout = stdout;
+            return this;
+        }
+
+        /**
+         * Set stderr
+         * @param stderr Attach to container STDERR (optional)
+         * @return APIcontainerAttachRequest
+         */
+        public APIcontainerAttachRequest stderr(Boolean stderr) {
+            this.stderr = stderr;
+            return this;
+        }
+
+        /**
+         * Set stdin
+         * @param stdin Attach to container STDIN (optional)
+         * @return APIcontainerAttachRequest
+         */
+        public APIcontainerAttachRequest stdin(Boolean stdin) {
+            this.stdin = stdin;
+            return this;
+        }
+
+        /**
+         * Build call for containerAttach
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerAttachCall(name, detachKeys, logs, stream, stdout, stderr, stdin, _callback);
+        }
+
+        /**
+         * Execute containerAttach request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerAttachWithHttpInfo(name, detachKeys, logs, stream, stdout, stderr, stdin);
+        }
+
+        /**
+         * Execute containerAttach request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerAttachWithHttpInfo(name, detachKeys, logs, stream, stdout, stderr, stdin);
+        }
+
+        /**
+         * Execute containerAttach request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerAttachAsync(name, detachKeys, logs, stream, stdout, stderr, stdin, _callback);
+        }
+    }
+
     /**
-     * Build call for containerChangesLibpod
-     *
-     * @param name      the name or id of the container (required)
-     * @param parent    specify a second layer which is used to compare against it instead of the parent layer (optional)
-     * @param diffType  select what you want to match, default is all (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Attach to a container
+     * Attach to a container to read its output or send it input. You can attach to the same container multiple times and you can reattach to containers that have been detached.  It uses the same stream format as docker, see the libpod attach endpoint for a description of the format. 
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerAttachRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 101 </td><td> No error, connection has been hijacked for transporting streams. </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerChangesLibpodCall(String name, String parent, String diffType, final ApiCallback _callback) throws ApiException {
+    public APIcontainerAttachRequest containerAttach(String name) {
+        return new APIcontainerAttachRequest(name);
+    }
+    private okhttp3.Call containerChangesLibpodCall(String name, String parent, String diffType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -598,7 +727,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/libpod/containers/{name}/changes"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -615,9 +744,9 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json",
-                "application/octet-stream",
-                "text/plain"
+            "application/json",
+            "application/octet-stream",
+            "text/plain"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -631,7 +760,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -646,96 +775,139 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Report on changes to container&#39;s filesystem; adds, deletes or modifications.
-     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted
-     *
-     * @param name     the name or id of the container (required)
-     * @param parent   specify a second layer which is used to compare against it instead of the parent layer (optional)
-     * @param diffType select what you want to match, default is all (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerChangesLibpod(String name, String parent, String diffType) throws ApiException {
-        containerChangesLibpodWithHttpInfo(name, parent, diffType);
-    }
 
-    /**
-     * Report on changes to container&#39;s filesystem; adds, deletes or modifications.
-     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted
-     *
-     * @param name     the name or id of the container (required)
-     * @param parent   specify a second layer which is used to compare against it instead of the parent layer (optional)
-     * @param diffType select what you want to match, default is all (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerChangesLibpodWithHttpInfo(@NotNull String name, String parent, String diffType) throws ApiException {
+    private ApiResponse<Void> containerChangesLibpodWithHttpInfo( @NotNull String name, String parent, String diffType) throws ApiException {
         okhttp3.Call localVarCall = containerChangesLibpodValidateBeforeCall(name, parent, diffType, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Report on changes to container&#39;s filesystem; adds, deletes or modifications. (asynchronously)
-     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted
-     *
-     * @param name      the name or id of the container (required)
-     * @param parent    specify a second layer which is used to compare against it instead of the parent layer (optional)
-     * @param diffType  select what you want to match, default is all (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerChangesLibpodAsync(String name, String parent, String diffType, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerChangesLibpodAsync(String name, String parent, String diffType, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerChangesLibpodValidateBeforeCall(name, parent, diffType, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerChangesLibpodRequest {
+        private final String name;
+        private String parent;
+        private String diffType;
+
+        private APIcontainerChangesLibpodRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set parent
+         * @param parent specify a second layer which is used to compare against it instead of the parent layer (optional)
+         * @return APIcontainerChangesLibpodRequest
+         */
+        public APIcontainerChangesLibpodRequest parent(String parent) {
+            this.parent = parent;
+            return this;
+        }
+
+        /**
+         * Set diffType
+         * @param diffType select what you want to match, default is all (optional)
+         * @return APIcontainerChangesLibpodRequest
+         */
+        public APIcontainerChangesLibpodRequest diffType(String diffType) {
+            this.diffType = diffType;
+            return this;
+        }
+
+        /**
+         * Build call for containerChangesLibpod
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerChangesLibpodCall(name, parent, diffType, _callback);
+        }
+
+        /**
+         * Execute containerChangesLibpod request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerChangesLibpodWithHttpInfo(name, parent, diffType);
+        }
+
+        /**
+         * Execute containerChangesLibpod request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerChangesLibpodWithHttpInfo(name, parent, diffType);
+        }
+
+        /**
+         * Execute containerChangesLibpod request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerChangesLibpodAsync(name, parent, diffType, _callback);
+        }
+    }
+
     /**
-     * Build call for containerCreate
-     *
-     * @param body      Container to create (required)
-     * @param name      container name (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Report on changes to container&#39;s filesystem; adds, deletes or modifications.
+     * Returns which files in a container&#39;s filesystem have been added, deleted, or modified. The Kind of modification can be one of:  0: Modified 1: Added 2: Deleted 
+     * @param name the name or id of the container (required)
+     * @return APIcontainerChangesLibpodRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Array of Changes </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerCreateCall(CreateContainerConfig body, String name, final ApiCallback _callback) throws ApiException {
+    public APIcontainerChangesLibpodRequest containerChangesLibpod(String name) {
+        return new APIcontainerChangesLibpodRequest(name);
+    }
+    private okhttp3.Call containerCreateCall(CreateContainerConfig body, String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -757,7 +929,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -765,15 +937,15 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -788,104 +960,142 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Create a container
-     *
-     * @param body Container to create (required)
-     * @param name container name (optional)
-     * @return ContainerCreateResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ContainerCreateResponse containerCreate(CreateContainerConfig body, String name) throws ApiException {
-        ApiResponse<ContainerCreateResponse> localVarResp = containerCreateWithHttpInfo(body, name);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Create a container
-     *
-     * @param body Container to create (required)
-     * @param name container name (optional)
-     * @return ApiResponse&lt;ContainerCreateResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<ContainerCreateResponse> containerCreateWithHttpInfo(@NotNull CreateContainerConfig body, String name) throws ApiException {
+    private ApiResponse<ContainerCreateResponse> containerCreateWithHttpInfo( @NotNull CreateContainerConfig body, String name) throws ApiException {
         okhttp3.Call localVarCall = containerCreateValidateBeforeCall(body, name, null);
-        Type localVarReturnType = new TypeToken<ContainerCreateResponse>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ContainerCreateResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Create a container (asynchronously)
-     *
-     * @param body      Container to create (required)
-     * @param name      container name (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerCreateAsync(CreateContainerConfig body, String name, final ApiCallback<ContainerCreateResponse> _callback) throws ApiException {
+    private okhttp3.Call containerCreateAsync(CreateContainerConfig body, String name, final ApiCallback<ContainerCreateResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerCreateValidateBeforeCall(body, name, _callback);
-        Type localVarReturnType = new TypeToken<ContainerCreateResponse>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ContainerCreateResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerCreateRequest {
+        private final CreateContainerConfig body;
+        private String name;
+
+        private APIcontainerCreateRequest(CreateContainerConfig body) {
+            this.body = body;
+        }
+
+        /**
+         * Set name
+         * @param name container name (optional)
+         * @return APIcontainerCreateRequest
+         */
+        public APIcontainerCreateRequest name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        /**
+         * Build call for containerCreate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerCreateCall(body, name, _callback);
+        }
+
+        /**
+         * Execute containerCreate request
+         * @return ContainerCreateResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ContainerCreateResponse execute() throws ApiException {
+            ApiResponse<ContainerCreateResponse> localVarResp = containerCreateWithHttpInfo(body, name);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerCreate request with HTTP info returned
+         * @return ApiResponse&lt;ContainerCreateResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ContainerCreateResponse> executeWithHttpInfo() throws ApiException {
+            return containerCreateWithHttpInfo(body, name);
+        }
+
+        /**
+         * Execute containerCreate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ContainerCreateResponse> _callback) throws ApiException {
+            return containerCreateAsync(body, name, _callback);
+        }
+    }
+
     /**
-     * Build call for containerDelete
-     *
-     * @param name      the name or ID of the container (required)
-     * @param force     If the container is running, kill it before removing it. (optional, default to false)
-     * @param v         Remove the volumes associated with the container. (optional, default to false)
-     * @param link      not supported (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Create a container
+     * 
+     * @param body Container to create (required)
+     * @return APIcontainerCreateRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Create container </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerDeleteCall(String name, Boolean force, Boolean v, Boolean link, final ApiCallback _callback) throws ApiException {
+    public APIcontainerCreateRequest containerCreate(CreateContainerConfig body) {
+        return new APIcontainerCreateRequest(body);
+    }
+    private okhttp3.Call containerDeleteCall(String name, Boolean force, Boolean v, Boolean link, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -895,7 +1105,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -916,7 +1126,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -930,7 +1140,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -945,99 +1155,160 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Remove a container
-     *
-     * @param name  the name or ID of the container (required)
-     * @param force If the container is running, kill it before removing it. (optional, default to false)
-     * @param v     Remove the volumes associated with the container. (optional, default to false)
-     * @param link  not supported (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerDelete(String name, Boolean force, Boolean v, Boolean link) throws ApiException {
-        containerDeleteWithHttpInfo(name, force, v, link);
-    }
 
-    /**
-     * Remove a container
-     *
-     * @param name  the name or ID of the container (required)
-     * @param force If the container is running, kill it before removing it. (optional, default to false)
-     * @param v     Remove the volumes associated with the container. (optional, default to false)
-     * @param link  not supported (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerDeleteWithHttpInfo(@NotNull String name, Boolean force, Boolean v, Boolean link) throws ApiException {
+    private ApiResponse<Void> containerDeleteWithHttpInfo( @NotNull String name, Boolean force, Boolean v, Boolean link) throws ApiException {
         okhttp3.Call localVarCall = containerDeleteValidateBeforeCall(name, force, v, link, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Remove a container (asynchronously)
-     *
-     * @param name      the name or ID of the container (required)
-     * @param force     If the container is running, kill it before removing it. (optional, default to false)
-     * @param v         Remove the volumes associated with the container. (optional, default to false)
-     * @param link      not supported (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerDeleteAsync(String name, Boolean force, Boolean v, Boolean link, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerDeleteAsync(String name, Boolean force, Boolean v, Boolean link, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerDeleteValidateBeforeCall(name, force, v, link, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerDeleteRequest {
+        private final String name;
+        private Boolean force;
+        private Boolean v;
+        private Boolean link;
+
+        private APIcontainerDeleteRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set force
+         * @param force If the container is running, kill it before removing it. (optional, default to false)
+         * @return APIcontainerDeleteRequest
+         */
+        public APIcontainerDeleteRequest force(Boolean force) {
+            this.force = force;
+            return this;
+        }
+
+        /**
+         * Set v
+         * @param v Remove the volumes associated with the container. (optional, default to false)
+         * @return APIcontainerDeleteRequest
+         */
+        public APIcontainerDeleteRequest v(Boolean v) {
+            this.v = v;
+            return this;
+        }
+
+        /**
+         * Set link
+         * @param link not supported (optional)
+         * @return APIcontainerDeleteRequest
+         */
+        public APIcontainerDeleteRequest link(Boolean link) {
+            this.link = link;
+            return this;
+        }
+
+        /**
+         * Build call for containerDelete
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerDeleteCall(name, force, v, link, _callback);
+        }
+
+        /**
+         * Execute containerDelete request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerDeleteWithHttpInfo(name, force, v, link);
+        }
+
+        /**
+         * Execute containerDelete request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerDeleteWithHttpInfo(name, force, v, link);
+        }
+
+        /**
+         * Execute containerDelete request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerDeleteAsync(name, force, v, link, _callback);
+        }
+    }
+
     /**
-     * Build call for containerExport
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Remove a container
+     * 
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerDeleteRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerExportCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIcontainerDeleteRequest containerDelete(String name) {
+        return new APIcontainerDeleteRequest(name);
+    }
+    private okhttp3.Call containerExportCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1047,7 +1318,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/export"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1056,7 +1327,7 @@ public class ContainersCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1070,7 +1341,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1085,88 +1356,117 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Export a container
-     * Export the contents of a container as a tarball.
-     *
-     * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerExport(String name) throws ApiException {
-        containerExportWithHttpInfo(name);
-    }
 
-    /**
-     * Export a container
-     * Export the contents of a container as a tarball.
-     *
-     * @param name the name or ID of the container (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerExportWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<Void> containerExportWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = containerExportValidateBeforeCall(name, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Export a container (asynchronously)
-     * Export the contents of a container as a tarball.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerExportAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerExportAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerExportValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerExportRequest {
+        private final String name;
+
+        private APIcontainerExportRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for containerExport
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerExportCall(name, _callback);
+        }
+
+        /**
+         * Execute containerExport request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerExportWithHttpInfo(name);
+        }
+
+        /**
+         * Execute containerExport request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerExportWithHttpInfo(name);
+        }
+
+        /**
+         * Execute containerExport request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerExportAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for containerInspect
-     *
-     * @param name      the name or id of the container (required)
-     * @param size      include the size of the container (optional, default to false)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Export a container
+     * Export the contents of a container as a tarball.
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerExportRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> tarball is returned in body </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerInspectCall(String name, Boolean size, final ApiCallback _callback) throws ApiException {
+    public APIcontainerExportRequest containerExport(String name) {
+        return new APIcontainerExportRequest(name);
+    }
+    private okhttp3.Call containerInspectCall(String name, Boolean size, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1176,7 +1476,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/json"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1189,7 +1489,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1203,7 +1503,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1218,99 +1518,132 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Inspect container
-     * Return low-level information about a container.
-     *
-     * @param name the name or id of the container (required)
-     * @param size include the size of the container (optional, default to false)
-     * @return ContainerJSON
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ContainerJSON containerInspect(String name, Boolean size) throws ApiException {
-        ApiResponse<ContainerJSON> localVarResp = containerInspectWithHttpInfo(name, size);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Inspect container
-     * Return low-level information about a container.
-     *
-     * @param name the name or id of the container (required)
-     * @param size include the size of the container (optional, default to false)
-     * @return ApiResponse&lt;ContainerJSON&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<ContainerJSON> containerInspectWithHttpInfo(@NotNull String name, Boolean size) throws ApiException {
+    private ApiResponse<ContainerJSON> containerInspectWithHttpInfo( @NotNull String name, Boolean size) throws ApiException {
         okhttp3.Call localVarCall = containerInspectValidateBeforeCall(name, size, null);
-        Type localVarReturnType = new TypeToken<ContainerJSON>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ContainerJSON>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Inspect container (asynchronously)
-     * Return low-level information about a container.
-     *
-     * @param name      the name or id of the container (required)
-     * @param size      include the size of the container (optional, default to false)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerInspectAsync(String name, Boolean size, final ApiCallback<ContainerJSON> _callback) throws ApiException {
+    private okhttp3.Call containerInspectAsync(String name, Boolean size, final ApiCallback<ContainerJSON> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerInspectValidateBeforeCall(name, size, _callback);
-        Type localVarReturnType = new TypeToken<ContainerJSON>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ContainerJSON>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerInspectRequest {
+        private final String name;
+        private Boolean size;
+
+        private APIcontainerInspectRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set size
+         * @param size include the size of the container (optional, default to false)
+         * @return APIcontainerInspectRequest
+         */
+        public APIcontainerInspectRequest size(Boolean size) {
+            this.size = size;
+            return this;
+        }
+
+        /**
+         * Build call for containerInspect
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerInspectCall(name, size, _callback);
+        }
+
+        /**
+         * Execute containerInspect request
+         * @return ContainerJSON
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ContainerJSON execute() throws ApiException {
+            ApiResponse<ContainerJSON> localVarResp = containerInspectWithHttpInfo(name, size);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerInspect request with HTTP info returned
+         * @return ApiResponse&lt;ContainerJSON&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ContainerJSON> executeWithHttpInfo() throws ApiException {
+            return containerInspectWithHttpInfo(name, size);
+        }
+
+        /**
+         * Execute containerInspect request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ContainerJSON> _callback) throws ApiException {
+            return containerInspectAsync(name, size, _callback);
+        }
+    }
+
     /**
-     * Build call for containerKill
-     *
-     * @param name      the name or ID of the container (required)
-     * @param all       Send kill signal to all containers (optional, default to false)
-     * @param signal    signal to be sent to container (optional, default to SIGKILL)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Inspect container
+     * Return low-level information about a container.
+     * @param name the name or id of the container (required)
+     * @return APIcontainerInspectRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Inspect container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerKillCall(String name, Boolean all, String signal, final ApiCallback _callback) throws ApiException {
+    public APIcontainerInspectRequest containerInspect(String name) {
+        return new APIcontainerInspectRequest(name);
+    }
+    private okhttp3.Call containerKillCall(String name, Boolean all, String signal, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1320,7 +1653,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/kill"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1337,7 +1670,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1351,7 +1684,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1366,100 +1699,144 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Kill container
-     * Signal to send to the container as an integer or string (e.g. SIGINT)
-     *
-     * @param name   the name or ID of the container (required)
-     * @param all    Send kill signal to all containers (optional, default to false)
-     * @param signal signal to be sent to container (optional, default to SIGKILL)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerKill(String name, Boolean all, String signal) throws ApiException {
-        containerKillWithHttpInfo(name, all, signal);
-    }
 
-    /**
-     * Kill container
-     * Signal to send to the container as an integer or string (e.g. SIGINT)
-     *
-     * @param name   the name or ID of the container (required)
-     * @param all    Send kill signal to all containers (optional, default to false)
-     * @param signal signal to be sent to container (optional, default to SIGKILL)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerKillWithHttpInfo(@NotNull String name, Boolean all, String signal) throws ApiException {
+    private ApiResponse<Void> containerKillWithHttpInfo( @NotNull String name, Boolean all, String signal) throws ApiException {
         okhttp3.Call localVarCall = containerKillValidateBeforeCall(name, all, signal, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Kill container (asynchronously)
-     * Signal to send to the container as an integer or string (e.g. SIGINT)
-     *
-     * @param name      the name or ID of the container (required)
-     * @param all       Send kill signal to all containers (optional, default to false)
-     * @param signal    signal to be sent to container (optional, default to SIGKILL)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerKillAsync(String name, Boolean all, String signal, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerKillAsync(String name, Boolean all, String signal, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerKillValidateBeforeCall(name, all, signal, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerKillRequest {
+        private final String name;
+        private Boolean all;
+        private String signal;
+
+        private APIcontainerKillRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set all
+         * @param all Send kill signal to all containers (optional, default to false)
+         * @return APIcontainerKillRequest
+         */
+        public APIcontainerKillRequest all(Boolean all) {
+            this.all = all;
+            return this;
+        }
+
+        /**
+         * Set signal
+         * @param signal signal to be sent to container (optional, default to SIGKILL)
+         * @return APIcontainerKillRequest
+         */
+        public APIcontainerKillRequest signal(String signal) {
+            this.signal = signal;
+            return this;
+        }
+
+        /**
+         * Build call for containerKill
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerKillCall(name, all, signal, _callback);
+        }
+
+        /**
+         * Execute containerKill request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerKillWithHttpInfo(name, all, signal);
+        }
+
+        /**
+         * Execute containerKill request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerKillWithHttpInfo(name, all, signal);
+        }
+
+        /**
+         * Execute containerKill request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerKillAsync(name, all, signal, _callback);
+        }
+    }
+
     /**
-     * Build call for containerList
-     *
-     * @param all       Return all containers. By default, only running containers are shown (optional, default to false)
-     * @param external  Return containers in storage not controlled by Podman (optional, default to false)
-     * @param limit     Return this number of most recently created containers, including non-running ones. (optional)
-     * @param size      Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
-     * @param filters   A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Kill container
+     * Signal to send to the container as an integer or string (e.g. SIGINT)
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerKillRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerListCall(Boolean all, Boolean external, Integer limit, Boolean size, String filters, final ApiCallback _callback) throws ApiException {
+    public APIcontainerKillRequest containerKill(String name) {
+        return new APIcontainerKillRequest(name);
+    }
+    private okhttp3.Call containerListCall(Boolean all, Boolean external, Integer limit, Boolean size, String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1497,7 +1874,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1511,7 +1888,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1521,112 +1898,173 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * List containers
-     * Returns a list of containers
-     *
-     * @param all      Return all containers. By default, only running containers are shown (optional, default to false)
-     * @param external Return containers in storage not controlled by Podman (optional, default to false)
-     * @param limit    Return this number of most recently created containers, including non-running ones. (optional)
-     * @param size     Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
-     * @param filters  A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
-     * @return List&lt;Container&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<Container> containerList(Boolean all, Boolean external, Integer limit, Boolean size, String filters) throws ApiException {
-        ApiResponse<List<Container>> localVarResp = containerListWithHttpInfo(all, external, limit, size, filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * List containers
-     * Returns a list of containers
-     *
-     * @param all      Return all containers. By default, only running containers are shown (optional, default to false)
-     * @param external Return containers in storage not controlled by Podman (optional, default to false)
-     * @param limit    Return this number of most recently created containers, including non-running ones. (optional)
-     * @param size     Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
-     * @param filters  A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
-     * @return ApiResponse&lt;List&lt;Container&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<Container>> containerListWithHttpInfo(Boolean all, Boolean external, Integer limit, Boolean size, String filters) throws ApiException {
+    private ApiResponse<List<Container>> containerListWithHttpInfo(Boolean all, Boolean external, Integer limit, Boolean size, String filters) throws ApiException {
         okhttp3.Call localVarCall = containerListValidateBeforeCall(all, external, limit, size, filters, null);
-        Type localVarReturnType = new TypeToken<List<Container>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<Container>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * List containers (asynchronously)
-     * Returns a list of containers
-     *
-     * @param all       Return all containers. By default, only running containers are shown (optional, default to false)
-     * @param external  Return containers in storage not controlled by Podman (optional, default to false)
-     * @param limit     Return this number of most recently created containers, including non-running ones. (optional)
-     * @param size      Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
-     * @param filters   A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerListAsync(Boolean all, Boolean external, Integer limit, Boolean size, String filters, final ApiCallback<List<Container>> _callback) throws ApiException {
+    private okhttp3.Call containerListAsync(Boolean all, Boolean external, Integer limit, Boolean size, String filters, final ApiCallback<List<Container>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerListValidateBeforeCall(all, external, limit, size, filters, _callback);
-        Type localVarReturnType = new TypeToken<List<Container>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<Container>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerListRequest {
+        private Boolean all;
+        private Boolean external;
+        private Integer limit;
+        private Boolean size;
+        private String filters;
+
+        private APIcontainerListRequest() {
+        }
+
+        /**
+         * Set all
+         * @param all Return all containers. By default, only running containers are shown (optional, default to false)
+         * @return APIcontainerListRequest
+         */
+        public APIcontainerListRequest all(Boolean all) {
+            this.all = all;
+            return this;
+        }
+
+        /**
+         * Set external
+         * @param external Return containers in storage not controlled by Podman (optional, default to false)
+         * @return APIcontainerListRequest
+         */
+        public APIcontainerListRequest external(Boolean external) {
+            this.external = external;
+            return this;
+        }
+
+        /**
+         * Set limit
+         * @param limit Return this number of most recently created containers, including non-running ones. (optional)
+         * @return APIcontainerListRequest
+         */
+        public APIcontainerListRequest limit(Integer limit) {
+            this.limit = limit;
+            return this;
+        }
+
+        /**
+         * Set size
+         * @param size Return the size of container as fields SizeRw and SizeRootFs. (optional, default to false)
+         * @return APIcontainerListRequest
+         */
+        public APIcontainerListRequest size(Boolean size) {
+            this.size = size;
+            return this;
+        }
+
+        /**
+         * Set filters
+         * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the containers list. Available filters: - &#x60;ancestor&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;, &#x60;&lt;image id&gt;&#x60;, or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;before&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;expose&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;exited&#x3D;&lt;int&gt;&#x60; containers with exit code of &#x60;&lt;int&gt;&#x60; - &#x60;health&#x60;&#x3D;(&#x60;starting&#x60;, &#x60;healthy&#x60;, &#x60;unhealthy&#x60; or &#x60;none&#x60;) - &#x60;id&#x3D;&lt;ID&gt;&#x60; a container&#39;s ID - &#x60;is-task&#x60;&#x3D;(&#x60;true&#x60; or &#x60;false&#x60;) - &#x60;label&#x60;&#x3D;(&#x60;key&#x60; or &#x60;\&quot;key&#x3D;value\&quot;&#x60;) of a container label - &#x60;name&#x3D;&lt;name&gt;&#x60; a container&#39;s name - &#x60;network&#x60;&#x3D;(&#x60;&lt;network id&gt;&#x60; or &#x60;&lt;network name&gt;&#x60;) - &#x60;publish&#x60;&#x3D;(&#x60;&lt;port&gt;[/&lt;proto&gt;]&#x60; or &#x60;&lt;startport-endport&gt;/[&lt;proto&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;container id&gt;&#x60; or &#x60;&lt;container name&gt;&#x60;) - &#x60;status&#x60;&#x3D;(&#x60;created&#x60;, &#x60;restarting&#x60;, &#x60;running&#x60;, &#x60;removing&#x60;, &#x60;paused&#x60;, &#x60;exited&#x60; or &#x60;dead&#x60;) - &#x60;volume&#x60;&#x3D;(&#x60;&lt;volume name&gt;&#x60; or &#x60;&lt;mount point destination&gt;&#x60;)  (optional)
+         * @return APIcontainerListRequest
+         */
+        public APIcontainerListRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for containerList
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerListCall(all, external, limit, size, filters, _callback);
+        }
+
+        /**
+         * Execute containerList request
+         * @return List&lt;Container&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<Container> execute() throws ApiException {
+            ApiResponse<List<Container>> localVarResp = containerListWithHttpInfo(all, external, limit, size, filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerList request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;Container&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<Container>> executeWithHttpInfo() throws ApiException {
+            return containerListWithHttpInfo(all, external, limit, size, filters);
+        }
+
+        /**
+         * Execute containerList request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<Container>> _callback) throws ApiException {
+            return containerListAsync(all, external, limit, size, filters, _callback);
+        }
+    }
+
     /**
-     * Build call for containerLogs
-     *
-     * @param name       the name or ID of the container (required)
-     * @param follow     Keep connection after returning logs. (optional)
-     * @param stdout     Return logs from stdout (optional)
-     * @param stderr     Return logs from stderr (optional)
-     * @param since      Only return logs since this time, as a UNIX timestamp (optional)
-     * @param until      Only return logs before this time, as a UNIX timestamp (optional)
-     * @param timestamps Add timestamps to every log line (optional, default to false)
-     * @param tail       Only return this number of log lines from the end of the logs (optional, default to all)
-     * @param _callback  Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * List containers
+     * Returns a list of containers
+     * @return APIcontainerListRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List Containers </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerLogsCall(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail, final ApiCallback _callback) throws ApiException {
+    public APIcontainerListRequest containerList() {
+        return new APIcontainerListRequest();
+    }
+    private okhttp3.Call containerLogsCall(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1636,7 +2074,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/logs"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1673,7 +2111,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1687,7 +2125,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1702,108 +2140,194 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Get container logs
-     * Get stdout and stderr logs from a container.
-     *
-     * @param name       the name or ID of the container (required)
-     * @param follow     Keep connection after returning logs. (optional)
-     * @param stdout     Return logs from stdout (optional)
-     * @param stderr     Return logs from stderr (optional)
-     * @param since      Only return logs since this time, as a UNIX timestamp (optional)
-     * @param until      Only return logs before this time, as a UNIX timestamp (optional)
-     * @param timestamps Add timestamps to every log line (optional, default to false)
-     * @param tail       Only return this number of log lines from the end of the logs (optional, default to all)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerLogs(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail) throws ApiException {
-        containerLogsWithHttpInfo(name, follow, stdout, stderr, since, until, timestamps, tail);
-    }
 
-    /**
-     * Get container logs
-     * Get stdout and stderr logs from a container.
-     *
-     * @param name       the name or ID of the container (required)
-     * @param follow     Keep connection after returning logs. (optional)
-     * @param stdout     Return logs from stdout (optional)
-     * @param stderr     Return logs from stderr (optional)
-     * @param since      Only return logs since this time, as a UNIX timestamp (optional)
-     * @param until      Only return logs before this time, as a UNIX timestamp (optional)
-     * @param timestamps Add timestamps to every log line (optional, default to false)
-     * @param tail       Only return this number of log lines from the end of the logs (optional, default to all)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerLogsWithHttpInfo(@NotNull String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail) throws ApiException {
+    private ApiResponse<Void> containerLogsWithHttpInfo( @NotNull String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail) throws ApiException {
         okhttp3.Call localVarCall = containerLogsValidateBeforeCall(name, follow, stdout, stderr, since, until, timestamps, tail, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Get container logs (asynchronously)
-     * Get stdout and stderr logs from a container.
-     *
-     * @param name       the name or ID of the container (required)
-     * @param follow     Keep connection after returning logs. (optional)
-     * @param stdout     Return logs from stdout (optional)
-     * @param stderr     Return logs from stderr (optional)
-     * @param since      Only return logs since this time, as a UNIX timestamp (optional)
-     * @param until      Only return logs before this time, as a UNIX timestamp (optional)
-     * @param timestamps Add timestamps to every log line (optional, default to false)
-     * @param tail       Only return this number of log lines from the end of the logs (optional, default to all)
-     * @param _callback  The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerLogsAsync(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerLogsAsync(String name, Boolean follow, Boolean stdout, Boolean stderr, String since, String until, Boolean timestamps, String tail, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerLogsValidateBeforeCall(name, follow, stdout, stderr, since, until, timestamps, tail, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerLogsRequest {
+        private final String name;
+        private Boolean follow;
+        private Boolean stdout;
+        private Boolean stderr;
+        private String since;
+        private String until;
+        private Boolean timestamps;
+        private String tail;
+
+        private APIcontainerLogsRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set follow
+         * @param follow Keep connection after returning logs. (optional)
+         * @return APIcontainerLogsRequest
+         */
+        public APIcontainerLogsRequest follow(Boolean follow) {
+            this.follow = follow;
+            return this;
+        }
+
+        /**
+         * Set stdout
+         * @param stdout Return logs from stdout (optional)
+         * @return APIcontainerLogsRequest
+         */
+        public APIcontainerLogsRequest stdout(Boolean stdout) {
+            this.stdout = stdout;
+            return this;
+        }
+
+        /**
+         * Set stderr
+         * @param stderr Return logs from stderr (optional)
+         * @return APIcontainerLogsRequest
+         */
+        public APIcontainerLogsRequest stderr(Boolean stderr) {
+            this.stderr = stderr;
+            return this;
+        }
+
+        /**
+         * Set since
+         * @param since Only return logs since this time, as a UNIX timestamp (optional)
+         * @return APIcontainerLogsRequest
+         */
+        public APIcontainerLogsRequest since(String since) {
+            this.since = since;
+            return this;
+        }
+
+        /**
+         * Set until
+         * @param until Only return logs before this time, as a UNIX timestamp (optional)
+         * @return APIcontainerLogsRequest
+         */
+        public APIcontainerLogsRequest until(String until) {
+            this.until = until;
+            return this;
+        }
+
+        /**
+         * Set timestamps
+         * @param timestamps Add timestamps to every log line (optional, default to false)
+         * @return APIcontainerLogsRequest
+         */
+        public APIcontainerLogsRequest timestamps(Boolean timestamps) {
+            this.timestamps = timestamps;
+            return this;
+        }
+
+        /**
+         * Set tail
+         * @param tail Only return this number of log lines from the end of the logs (optional, default to all)
+         * @return APIcontainerLogsRequest
+         */
+        public APIcontainerLogsRequest tail(String tail) {
+            this.tail = tail;
+            return this;
+        }
+
+        /**
+         * Build call for containerLogs
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerLogsCall(name, follow, stdout, stderr, since, until, timestamps, tail, _callback);
+        }
+
+        /**
+         * Execute containerLogs request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerLogsWithHttpInfo(name, follow, stdout, stderr, since, until, timestamps, tail);
+        }
+
+        /**
+         * Execute containerLogs request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerLogsWithHttpInfo(name, follow, stdout, stderr, since, until, timestamps, tail);
+        }
+
+        /**
+         * Execute containerLogs request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerLogsAsync(name, follow, stdout, stderr, since, until, timestamps, tail, _callback);
+        }
+    }
+
     /**
-     * Build call for containerPause
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Get container logs
+     * Get stdout and stderr logs from a container.
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerLogsRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> logs returned as a stream in response body. </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerPauseCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIcontainerLogsRequest containerLogs(String name) {
+        return new APIcontainerLogsRequest(name);
+    }
+    private okhttp3.Call containerPauseCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1813,7 +2337,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/pause"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1822,7 +2346,7 @@ public class ContainersCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1836,7 +2360,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1851,86 +2375,117 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Pause container
-     * Use the cgroups freezer to suspend all processes in a container.
-     *
-     * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerPause(String name) throws ApiException {
-        containerPauseWithHttpInfo(name);
-    }
 
-    /**
-     * Pause container
-     * Use the cgroups freezer to suspend all processes in a container.
-     *
-     * @param name the name or ID of the container (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerPauseWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<Void> containerPauseWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = containerPauseValidateBeforeCall(name, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Pause container (asynchronously)
-     * Use the cgroups freezer to suspend all processes in a container.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerPauseAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerPauseAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerPauseValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerPauseRequest {
+        private final String name;
+
+        private APIcontainerPauseRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for containerPause
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerPauseCall(name, _callback);
+        }
+
+        /**
+         * Execute containerPause request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerPauseWithHttpInfo(name);
+        }
+
+        /**
+         * Execute containerPause request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerPauseWithHttpInfo(name);
+        }
+
+        /**
+         * Execute containerPause request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerPauseAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for containerPrune
-     *
-     * @param filters   Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Pause container
+     * Use the cgroups freezer to suspend all processes in a container.
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerPauseRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerPruneCall(String filters, final ApiCallback _callback) throws ApiException {
+    public APIcontainerPauseRequest containerPause(String name) {
+        return new APIcontainerPauseRequest(name);
+    }
+    private okhttp3.Call containerPruneCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1952,7 +2507,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1966,7 +2521,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1976,92 +2531,124 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Delete stopped containers
-     * Remove containers not in use
-     *
-     * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @return List&lt;ContainersPruneReport&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<ContainersPruneReport> containerPrune(String filters) throws ApiException {
-        ApiResponse<List<ContainersPruneReport>> localVarResp = containerPruneWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Delete stopped containers
-     * Remove containers not in use
-     *
-     * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @return ApiResponse&lt;List&lt;ContainersPruneReport&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<ContainersPruneReport>> containerPruneWithHttpInfo(String filters) throws ApiException {
+    private ApiResponse<List<ContainersPruneReport>> containerPruneWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = containerPruneValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<ContainersPruneReport>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<ContainersPruneReport>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Delete stopped containers (asynchronously)
-     * Remove containers not in use
-     *
-     * @param filters   Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerPruneAsync(String filters, final ApiCallback<List<ContainersPruneReport>> _callback) throws ApiException {
+    private okhttp3.Call containerPruneAsync(String filters, final ApiCallback<List<ContainersPruneReport>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerPruneValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<ContainersPruneReport>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<ContainersPruneReport>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerPruneRequest {
+        private String filters;
+
+        private APIcontainerPruneRequest() {
+        }
+
+        /**
+         * Set filters
+         * @param filters Filters to process on the prune list, encoded as JSON (a &#x60;map[string][]string&#x60;).  Available filters:  - &#x60;until&#x3D;&lt;timestamp&gt;&#x60; Prune containers created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.  - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune containers with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
+         * @return APIcontainerPruneRequest
+         */
+        public APIcontainerPruneRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for containerPrune
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerPruneCall(filters, _callback);
+        }
+
+        /**
+         * Execute containerPrune request
+         * @return List&lt;ContainersPruneReport&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<ContainersPruneReport> execute() throws ApiException {
+            ApiResponse<List<ContainersPruneReport>> localVarResp = containerPruneWithHttpInfo(filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerPrune request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;ContainersPruneReport&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<ContainersPruneReport>> executeWithHttpInfo() throws ApiException {
+            return containerPruneWithHttpInfo(filters);
+        }
+
+        /**
+         * Execute containerPrune request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<ContainersPruneReport>> _callback) throws ApiException {
+            return containerPruneAsync(filters, _callback);
+        }
+    }
+
     /**
-     * Build call for containerRename
-     *
-     * @param name      Full or partial ID or full name of the container to rename (required)
-     * @param name2     New name for the container (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Delete stopped containers
+     * Remove containers not in use
+     * @return APIcontainerPruneRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Prune Containers </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerRenameCall(String name, String name2, final ApiCallback _callback) throws ApiException {
+    public APIcontainerPruneRequest containerPrune() {
+        return new APIcontainerPruneRequest();
+    }
+    private okhttp3.Call containerRenameCall(String name, String name2, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2071,7 +2658,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/rename"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2084,7 +2671,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2098,7 +2685,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2118,96 +2705,125 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Rename an existing container
-     * Change the name of an existing container.
-     *
-     * @param name  Full or partial ID or full name of the container to rename (required)
-     * @param name2 New name for the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerRename(String name, String name2) throws ApiException {
-        containerRenameWithHttpInfo(name, name2);
-    }
 
-    /**
-     * Rename an existing container
-     * Change the name of an existing container.
-     *
-     * @param name  Full or partial ID or full name of the container to rename (required)
-     * @param name2 New name for the container (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerRenameWithHttpInfo(@NotNull String name, @NotNull String name2) throws ApiException {
+    private ApiResponse<Void> containerRenameWithHttpInfo( @NotNull String name,  @NotNull String name2) throws ApiException {
         okhttp3.Call localVarCall = containerRenameValidateBeforeCall(name, name2, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Rename an existing container (asynchronously)
-     * Change the name of an existing container.
-     *
-     * @param name      Full or partial ID or full name of the container to rename (required)
-     * @param name2     New name for the container (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerRenameAsync(String name, String name2, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerRenameAsync(String name, String name2, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerRenameValidateBeforeCall(name, name2, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerRenameRequest {
+        private final String name;
+        private final String name2;
+
+        private APIcontainerRenameRequest(String name, String name2) {
+            this.name = name;
+            this.name2 = name2;
+        }
+
+        /**
+         * Build call for containerRename
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerRenameCall(name, name2, _callback);
+        }
+
+        /**
+         * Execute containerRename request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerRenameWithHttpInfo(name, name2);
+        }
+
+        /**
+         * Execute containerRename request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerRenameWithHttpInfo(name, name2);
+        }
+
+        /**
+         * Execute containerRename request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerRenameAsync(name, name2, _callback);
+        }
+    }
+
     /**
-     * Build call for containerResize
-     *
-     * @param name      the name or ID of the container (required)
-     * @param h         Height to set for the terminal, in characters (optional)
-     * @param w         Width to set for the terminal, in characters (optional)
-     * @param running   Ignore containers not running errors (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Rename an existing container
+     * Change the name of an existing container.
+     * @param name Full or partial ID or full name of the container to rename (required)
+     * @param name2 New name for the container (required)
+     * @return APIcontainerRenameRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerResizeCall(String name, Integer h, Integer w, Boolean running, final ApiCallback _callback) throws ApiException {
+    public APIcontainerRenameRequest containerRename(String name, String name2) {
+        return new APIcontainerRenameRequest(name, name2);
+    }
+    private okhttp3.Call containerResizeCall(String name, Integer h, Integer w, Boolean running, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2217,7 +2833,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/resize"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2238,7 +2854,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2252,7 +2868,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2267,103 +2883,154 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Resize a container&#39;s TTY
-     * Resize the terminal attached to a container (for use with Attach).
-     *
-     * @param name    the name or ID of the container (required)
-     * @param h       Height to set for the terminal, in characters (optional)
-     * @param w       Width to set for the terminal, in characters (optional)
-     * @param running Ignore containers not running errors (optional)
-     * @return Object
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public Object containerResize(String name, Integer h, Integer w, Boolean running) throws ApiException {
-        ApiResponse<Object> localVarResp = containerResizeWithHttpInfo(name, h, w, running);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Resize a container&#39;s TTY
-     * Resize the terminal attached to a container (for use with Attach).
-     *
-     * @param name    the name or ID of the container (required)
-     * @param h       Height to set for the terminal, in characters (optional)
-     * @param w       Width to set for the terminal, in characters (optional)
-     * @param running Ignore containers not running errors (optional)
-     * @return ApiResponse&lt;Object&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Object> containerResizeWithHttpInfo(@NotNull String name, Integer h, Integer w, Boolean running) throws ApiException {
+    private ApiResponse<Object> containerResizeWithHttpInfo( @NotNull String name, Integer h, Integer w, Boolean running) throws ApiException {
         okhttp3.Call localVarCall = containerResizeValidateBeforeCall(name, h, w, running, null);
-        Type localVarReturnType = new TypeToken<Object>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Resize a container&#39;s TTY (asynchronously)
-     * Resize the terminal attached to a container (for use with Attach).
-     *
-     * @param name      the name or ID of the container (required)
-     * @param h         Height to set for the terminal, in characters (optional)
-     * @param w         Width to set for the terminal, in characters (optional)
-     * @param running   Ignore containers not running errors (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerResizeAsync(String name, Integer h, Integer w, Boolean running, final ApiCallback<Object> _callback) throws ApiException {
+    private okhttp3.Call containerResizeAsync(String name, Integer h, Integer w, Boolean running, final ApiCallback<Object> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerResizeValidateBeforeCall(name, h, w, running, _callback);
-        Type localVarReturnType = new TypeToken<Object>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerResizeRequest {
+        private final String name;
+        private Integer h;
+        private Integer w;
+        private Boolean running;
+
+        private APIcontainerResizeRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set h
+         * @param h Height to set for the terminal, in characters (optional)
+         * @return APIcontainerResizeRequest
+         */
+        public APIcontainerResizeRequest h(Integer h) {
+            this.h = h;
+            return this;
+        }
+
+        /**
+         * Set w
+         * @param w Width to set for the terminal, in characters (optional)
+         * @return APIcontainerResizeRequest
+         */
+        public APIcontainerResizeRequest w(Integer w) {
+            this.w = w;
+            return this;
+        }
+
+        /**
+         * Set running
+         * @param running Ignore containers not running errors (optional)
+         * @return APIcontainerResizeRequest
+         */
+        public APIcontainerResizeRequest running(Boolean running) {
+            this.running = running;
+            return this;
+        }
+
+        /**
+         * Build call for containerResize
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerResizeCall(name, h, w, running, _callback);
+        }
+
+        /**
+         * Execute containerResize request
+         * @return Object
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public Object execute() throws ApiException {
+            ApiResponse<Object> localVarResp = containerResizeWithHttpInfo(name, h, w, running);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerResize request with HTTP info returned
+         * @return ApiResponse&lt;Object&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Object> executeWithHttpInfo() throws ApiException {
+            return containerResizeWithHttpInfo(name, h, w, running);
+        }
+
+        /**
+         * Execute containerResize request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Object> _callback) throws ApiException {
+            return containerResizeAsync(name, h, w, running, _callback);
+        }
+    }
+
     /**
-     * Build call for containerRestart
-     *
-     * @param name      the name or ID of the container (required)
-     * @param t         timeout before sending kill signal to container (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Resize a container&#39;s TTY
+     * Resize the terminal attached to a container (for use with Attach).
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerResizeRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerRestartCall(String name, Integer t, final ApiCallback _callback) throws ApiException {
+    public APIcontainerResizeRequest containerResize(String name) {
+        return new APIcontainerResizeRequest(name);
+    }
+    private okhttp3.Call containerRestartCall(String name, Integer t, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2373,7 +3040,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/restart"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2386,7 +3053,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2400,7 +3067,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2415,89 +3082,128 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Restart container
-     *
-     * @param name the name or ID of the container (required)
-     * @param t    timeout before sending kill signal to container (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerRestart(String name, Integer t) throws ApiException {
-        containerRestartWithHttpInfo(name, t);
-    }
 
-    /**
-     * Restart container
-     *
-     * @param name the name or ID of the container (required)
-     * @param t    timeout before sending kill signal to container (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerRestartWithHttpInfo(@NotNull String name, Integer t) throws ApiException {
+    private ApiResponse<Void> containerRestartWithHttpInfo( @NotNull String name, Integer t) throws ApiException {
         okhttp3.Call localVarCall = containerRestartValidateBeforeCall(name, t, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Restart container (asynchronously)
-     *
-     * @param name      the name or ID of the container (required)
-     * @param t         timeout before sending kill signal to container (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerRestartAsync(String name, Integer t, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerRestartAsync(String name, Integer t, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerRestartValidateBeforeCall(name, t, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerRestartRequest {
+        private final String name;
+        private Integer t;
+
+        private APIcontainerRestartRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set t
+         * @param t timeout before sending kill signal to container (optional)
+         * @return APIcontainerRestartRequest
+         */
+        public APIcontainerRestartRequest t(Integer t) {
+            this.t = t;
+            return this;
+        }
+
+        /**
+         * Build call for containerRestart
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerRestartCall(name, t, _callback);
+        }
+
+        /**
+         * Execute containerRestart request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerRestartWithHttpInfo(name, t);
+        }
+
+        /**
+         * Execute containerRestart request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerRestartWithHttpInfo(name, t);
+        }
+
+        /**
+         * Execute containerRestart request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerRestartAsync(name, t, _callback);
+        }
+    }
+
     /**
-     * Build call for containerStart
-     *
-     * @param name       the name or ID of the container (required)
-     * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
-     * @param _callback  Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Restart container
+     * 
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerRestartRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStartCall(String name, String detachKeys, final ApiCallback _callback) throws ApiException {
+    public APIcontainerRestartRequest containerRestart(String name) {
+        return new APIcontainerRestartRequest(name);
+    }
+    private okhttp3.Call containerStartCall(String name, String detachKeys, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2507,7 +3213,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/start"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2520,7 +3226,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2534,7 +3240,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2549,92 +3255,133 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Start a container
-     *
-     * @param name       the name or ID of the container (required)
-     * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerStart(String name, String detachKeys) throws ApiException {
-        containerStartWithHttpInfo(name, detachKeys);
-    }
 
-    /**
-     * Start a container
-     *
-     * @param name       the name or ID of the container (required)
-     * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerStartWithHttpInfo(@NotNull String name, String detachKeys) throws ApiException {
+    private ApiResponse<Void> containerStartWithHttpInfo( @NotNull String name, String detachKeys) throws ApiException {
         okhttp3.Call localVarCall = containerStartValidateBeforeCall(name, detachKeys, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Start a container (asynchronously)
-     *
-     * @param name       the name or ID of the container (required)
-     * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
-     * @param _callback  The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerStartAsync(String name, String detachKeys, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerStartAsync(String name, String detachKeys, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerStartValidateBeforeCall(name, detachKeys, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerStartRequest {
+        private final String name;
+        private String detachKeys;
+
+        private APIcontainerStartRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set detachKeys
+         * @param detachKeys Override the key sequence for detaching a container. Format is a single character [a-Z] or ctrl-&lt;value&gt; where &lt;value&gt; is one of: a-z, @, ^, [, , or _. (optional, default to ctrl-p,ctrl-q)
+         * @return APIcontainerStartRequest
+         */
+        public APIcontainerStartRequest detachKeys(String detachKeys) {
+            this.detachKeys = detachKeys;
+            return this;
+        }
+
+        /**
+         * Build call for containerStart
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerStartCall(name, detachKeys, _callback);
+        }
+
+        /**
+         * Execute containerStart request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerStartWithHttpInfo(name, detachKeys);
+        }
+
+        /**
+         * Execute containerStart request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerStartWithHttpInfo(name, detachKeys);
+        }
+
+        /**
+         * Execute containerStart request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerStartAsync(name, detachKeys, _callback);
+        }
+    }
+
     /**
-     * Build call for containerStats
-     *
-     * @param name      the name or ID of the container (required)
-     * @param stream    Stream the output (optional, default to true)
-     * @param oneShot   Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return. (optional, default to false)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Start a container
+     * 
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerStartRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already started </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStatsCall(String name, Boolean stream, Boolean oneShot, final ApiCallback _callback) throws ApiException {
+    public APIcontainerStartRequest containerStart(String name) {
+        return new APIcontainerStartRequest(name);
+    }
+    private okhttp3.Call containerStatsCall(String name, Boolean stream, Boolean oneShot, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2644,7 +3391,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/stats"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2661,7 +3408,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2675,7 +3422,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2690,101 +3437,143 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Get stats for a container
-     * This returns a live stream of a container’s resource usage statistics.
-     *
-     * @param name    the name or ID of the container (required)
-     * @param stream  Stream the output (optional, default to true)
-     * @param oneShot Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return. (optional, default to false)
-     * @return Object
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public Object containerStats(String name, Boolean stream, Boolean oneShot) throws ApiException {
-        ApiResponse<Object> localVarResp = containerStatsWithHttpInfo(name, stream, oneShot);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Get stats for a container
-     * This returns a live stream of a container’s resource usage statistics.
-     *
-     * @param name    the name or ID of the container (required)
-     * @param stream  Stream the output (optional, default to true)
-     * @param oneShot Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return. (optional, default to false)
-     * @return ApiResponse&lt;Object&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Object> containerStatsWithHttpInfo(@NotNull String name, Boolean stream, Boolean oneShot) throws ApiException {
+    private ApiResponse<Object> containerStatsWithHttpInfo( @NotNull String name, Boolean stream, Boolean oneShot) throws ApiException {
         okhttp3.Call localVarCall = containerStatsValidateBeforeCall(name, stream, oneShot, null);
-        Type localVarReturnType = new TypeToken<Object>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Get stats for a container (asynchronously)
-     * This returns a live stream of a container’s resource usage statistics.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param stream    Stream the output (optional, default to true)
-     * @param oneShot   Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return. (optional, default to false)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerStatsAsync(String name, Boolean stream, Boolean oneShot, final ApiCallback<Object> _callback) throws ApiException {
+    private okhttp3.Call containerStatsAsync(String name, Boolean stream, Boolean oneShot, final ApiCallback<Object> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerStatsValidateBeforeCall(name, stream, oneShot, _callback);
-        Type localVarReturnType = new TypeToken<Object>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<Object>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerStatsRequest {
+        private final String name;
+        private Boolean stream;
+        private Boolean oneShot;
+
+        private APIcontainerStatsRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set stream
+         * @param stream Stream the output (optional, default to true)
+         * @return APIcontainerStatsRequest
+         */
+        public APIcontainerStatsRequest stream(Boolean stream) {
+            this.stream = stream;
+            return this;
+        }
+
+        /**
+         * Set oneShot
+         * @param oneShot Provide a one-shot response in which preCPU stats are blank, resulting in a single cycle return. (optional, default to false)
+         * @return APIcontainerStatsRequest
+         */
+        public APIcontainerStatsRequest oneShot(Boolean oneShot) {
+            this.oneShot = oneShot;
+            return this;
+        }
+
+        /**
+         * Build call for containerStats
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerStatsCall(name, stream, oneShot, _callback);
+        }
+
+        /**
+         * Execute containerStats request
+         * @return Object
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public Object execute() throws ApiException {
+            ApiResponse<Object> localVarResp = containerStatsWithHttpInfo(name, stream, oneShot);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerStats request with HTTP info returned
+         * @return ApiResponse&lt;Object&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Object> executeWithHttpInfo() throws ApiException {
+            return containerStatsWithHttpInfo(name, stream, oneShot);
+        }
+
+        /**
+         * Execute containerStats request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Object> _callback) throws ApiException {
+            return containerStatsAsync(name, stream, oneShot, _callback);
+        }
+    }
+
     /**
-     * Build call for containerStop
-     *
-     * @param name      the name or ID of the container (required)
-     * @param t         number of seconds to wait before killing container (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Get stats for a container
+     * This returns a live stream of a container’s resource usage statistics.
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerStatsRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerStopCall(String name, Integer t, final ApiCallback _callback) throws ApiException {
+    public APIcontainerStatsRequest containerStats(String name) {
+        return new APIcontainerStatsRequest(name);
+    }
+    private okhttp3.Call containerStopCall(String name, Integer t, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2794,7 +3583,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/stop"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2807,7 +3596,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2821,7 +3610,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2836,94 +3625,133 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Stop a container
-     * Stop a container
-     *
-     * @param name the name or ID of the container (required)
-     * @param t    number of seconds to wait before killing container (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerStop(String name, Integer t) throws ApiException {
-        containerStopWithHttpInfo(name, t);
-    }
 
-    /**
-     * Stop a container
-     * Stop a container
-     *
-     * @param name the name or ID of the container (required)
-     * @param t    number of seconds to wait before killing container (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerStopWithHttpInfo(@NotNull String name, Integer t) throws ApiException {
+    private ApiResponse<Void> containerStopWithHttpInfo( @NotNull String name, Integer t) throws ApiException {
         okhttp3.Call localVarCall = containerStopValidateBeforeCall(name, t, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Stop a container (asynchronously)
-     * Stop a container
-     *
-     * @param name      the name or ID of the container (required)
-     * @param t         number of seconds to wait before killing container (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerStopAsync(String name, Integer t, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerStopAsync(String name, Integer t, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerStopValidateBeforeCall(name, t, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerStopRequest {
+        private final String name;
+        private Integer t;
+
+        private APIcontainerStopRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set t
+         * @param t number of seconds to wait before killing container (optional)
+         * @return APIcontainerStopRequest
+         */
+        public APIcontainerStopRequest t(Integer t) {
+            this.t = t;
+            return this;
+        }
+
+        /**
+         * Build call for containerStop
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerStopCall(name, t, _callback);
+        }
+
+        /**
+         * Execute containerStop request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerStopWithHttpInfo(name, t);
+        }
+
+        /**
+         * Execute containerStop request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerStopWithHttpInfo(name, t);
+        }
+
+        /**
+         * Execute containerStop request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerStopAsync(name, t, _callback);
+        }
+    }
+
     /**
-     * Build call for containerTop
-     *
-     * @param name      the name or ID of the container (required)
-     * @param psArgs    arguments to pass to ps such as aux. (optional, default to -ef)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Stop a container
+     * Stop a container
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerStopRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 304 </td><td> Container already stopped </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerTopCall(String name, String psArgs, final ApiCallback _callback) throws ApiException {
+    public APIcontainerStopRequest containerStop(String name) {
+        return new APIcontainerStopRequest(name);
+    }
+    private okhttp3.Call containerTopCall(String name, String psArgs, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2933,7 +3761,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/top"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2946,7 +3774,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2960,7 +3788,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2975,93 +3803,132 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * List processes running inside a container
-     *
-     * @param name   the name or ID of the container (required)
-     * @param psArgs arguments to pass to ps such as aux. (optional, default to -ef)
-     * @return ContainerTopOKBody
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ContainerTopOKBody containerTop(String name, String psArgs) throws ApiException {
-        ApiResponse<ContainerTopOKBody> localVarResp = containerTopWithHttpInfo(name, psArgs);
-        return localVarResp.getData();
-    }
 
-    /**
-     * List processes running inside a container
-     *
-     * @param name   the name or ID of the container (required)
-     * @param psArgs arguments to pass to ps such as aux. (optional, default to -ef)
-     * @return ApiResponse&lt;ContainerTopOKBody&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<ContainerTopOKBody> containerTopWithHttpInfo(@NotNull String name, String psArgs) throws ApiException {
+    private ApiResponse<ContainerTopOKBody> containerTopWithHttpInfo( @NotNull String name, String psArgs) throws ApiException {
         okhttp3.Call localVarCall = containerTopValidateBeforeCall(name, psArgs, null);
-        Type localVarReturnType = new TypeToken<ContainerTopOKBody>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ContainerTopOKBody>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * List processes running inside a container (asynchronously)
-     *
-     * @param name      the name or ID of the container (required)
-     * @param psArgs    arguments to pass to ps such as aux. (optional, default to -ef)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerTopAsync(String name, String psArgs, final ApiCallback<ContainerTopOKBody> _callback) throws ApiException {
+    private okhttp3.Call containerTopAsync(String name, String psArgs, final ApiCallback<ContainerTopOKBody> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerTopValidateBeforeCall(name, psArgs, _callback);
-        Type localVarReturnType = new TypeToken<ContainerTopOKBody>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ContainerTopOKBody>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerTopRequest {
+        private final String name;
+        private String psArgs;
+
+        private APIcontainerTopRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set psArgs
+         * @param psArgs arguments to pass to ps such as aux. (optional, default to -ef)
+         * @return APIcontainerTopRequest
+         */
+        public APIcontainerTopRequest psArgs(String psArgs) {
+            this.psArgs = psArgs;
+            return this;
+        }
+
+        /**
+         * Build call for containerTop
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerTopCall(name, psArgs, _callback);
+        }
+
+        /**
+         * Execute containerTop request
+         * @return ContainerTopOKBody
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ContainerTopOKBody execute() throws ApiException {
+            ApiResponse<ContainerTopOKBody> localVarResp = containerTopWithHttpInfo(name, psArgs);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerTop request with HTTP info returned
+         * @return ApiResponse&lt;ContainerTopOKBody&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ContainerTopOKBody> executeWithHttpInfo() throws ApiException {
+            return containerTopWithHttpInfo(name, psArgs);
+        }
+
+        /**
+         * Execute containerTop request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ContainerTopOKBody> _callback) throws ApiException {
+            return containerTopAsync(name, psArgs, _callback);
+        }
+    }
+
     /**
-     * Build call for containerUnpause
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * List processes running inside a container
+     * 
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerTopRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> List processes in container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerUnpauseCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIcontainerTopRequest containerTop(String name) {
+        return new APIcontainerTopRequest(name);
+    }
+    private okhttp3.Call containerUnpauseCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3071,7 +3938,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/unpause"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3080,7 +3947,7 @@ public class ContainersCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3094,7 +3961,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3109,88 +3976,117 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Unpause container
-     * Resume a paused container
-     *
-     * @param name the name or ID of the container (required)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerUnpause(String name) throws ApiException {
-        containerUnpauseWithHttpInfo(name);
-    }
 
-    /**
-     * Unpause container
-     * Resume a paused container
-     *
-     * @param name the name or ID of the container (required)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerUnpauseWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<Void> containerUnpauseWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = containerUnpauseValidateBeforeCall(name, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Unpause container (asynchronously)
-     * Resume a paused container
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerUnpauseAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerUnpauseAsync(String name, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerUnpauseValidateBeforeCall(name, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerUnpauseRequest {
+        private final String name;
+
+        private APIcontainerUnpauseRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for containerUnpause
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerUnpauseCall(name, _callback);
+        }
+
+        /**
+         * Execute containerUnpause request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerUnpauseWithHttpInfo(name);
+        }
+
+        /**
+         * Execute containerUnpause request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerUnpauseWithHttpInfo(name);
+        }
+
+        /**
+         * Execute containerUnpause request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerUnpauseAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for containerUpdate
-     *
-     * @param name      Full or partial ID or full name of the container to rename (required)
-     * @param resources attributes for updating the container (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Unpause container
+     * Resume a paused container
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerUnpauseRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 204 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerUpdateCall(String name, UpdateConfig resources, final ApiCallback _callback) throws ApiException {
+    public APIcontainerUnpauseRequest containerUnpause(String name) {
+        return new APIcontainerUnpauseRequest(name);
+    }
+    private okhttp3.Call containerUpdateCall(String name, UpdateConfig resources, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3200,7 +4096,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/update"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3209,7 +4105,7 @@ public class ContainersCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3217,15 +4113,15 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3240,92 +4136,128 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Update configuration of an existing container
-     * Change configuration settings for an existing container without requiring recreation.
-     *
-     * @param name      Full or partial ID or full name of the container to rename (required)
-     * @param resources attributes for updating the container (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void containerUpdate(String name, UpdateConfig resources) throws ApiException {
-        containerUpdateWithHttpInfo(name, resources);
-    }
 
-    /**
-     * Update configuration of an existing container
-     * Change configuration settings for an existing container without requiring recreation.
-     *
-     * @param name      Full or partial ID or full name of the container to rename (required)
-     * @param resources attributes for updating the container (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> containerUpdateWithHttpInfo(@NotNull String name, UpdateConfig resources) throws ApiException {
+    private ApiResponse<Void> containerUpdateWithHttpInfo( @NotNull String name, UpdateConfig resources) throws ApiException {
         okhttp3.Call localVarCall = containerUpdateValidateBeforeCall(name, resources, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Update configuration of an existing container (asynchronously)
-     * Change configuration settings for an existing container without requiring recreation.
-     *
-     * @param name      Full or partial ID or full name of the container to rename (required)
-     * @param resources attributes for updating the container (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerUpdateAsync(String name, UpdateConfig resources, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call containerUpdateAsync(String name, UpdateConfig resources, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerUpdateValidateBeforeCall(name, resources, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerUpdateRequest {
+        private final String name;
+        private UpdateConfig resources;
+
+        private APIcontainerUpdateRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set resources
+         * @param resources attributes for updating the container (optional)
+         * @return APIcontainerUpdateRequest
+         */
+        public APIcontainerUpdateRequest resources(UpdateConfig resources) {
+            this.resources = resources;
+            return this;
+        }
+
+        /**
+         * Build call for containerUpdate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerUpdateCall(name, resources, _callback);
+        }
+
+        /**
+         * Execute containerUpdate request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            containerUpdateWithHttpInfo(name, resources);
+        }
+
+        /**
+         * Execute containerUpdate request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return containerUpdateWithHttpInfo(name, resources);
+        }
+
+        /**
+         * Execute containerUpdate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return containerUpdateAsync(name, resources, _callback);
+        }
+    }
+
     /**
-     * Build call for containerWait
-     *
-     * @param name      the name or ID of the container (required)
-     * @param condition wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped  (optional)
-     * @param interval  Time Interval to wait before polling for completion. (optional, default to 250ms)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Update configuration of an existing container
+     * Change configuration settings for an existing container without requiring recreation.
+     * @param name Full or partial ID or full name of the container to rename (required)
+     * @return APIcontainerUpdateRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call containerWaitCall(String name, String condition, String interval, final ApiCallback _callback) throws ApiException {
+    public APIcontainerUpdateRequest containerUpdate(String name) {
+        return new APIcontainerUpdateRequest(name);
+    }
+    private okhttp3.Call containerWaitCall(String name, String condition, String interval, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3335,7 +4267,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/wait"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3352,7 +4284,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3366,7 +4298,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3381,106 +4313,143 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Wait on a container
-     * Block until a container stops or given condition is met.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param condition wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped  (optional)
-     * @param interval  Time Interval to wait before polling for completion. (optional, default to 250ms)
-     * @return ContainerWait200Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ContainerWait200Response containerWait(String name, String condition, String interval) throws ApiException {
-        ApiResponse<ContainerWait200Response> localVarResp = containerWaitWithHttpInfo(name, condition, interval);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Wait on a container
-     * Block until a container stops or given condition is met.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param condition wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped  (optional)
-     * @param interval  Time Interval to wait before polling for completion. (optional, default to 250ms)
-     * @return ApiResponse&lt;ContainerWait200Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<ContainerWait200Response> containerWaitWithHttpInfo(@NotNull String name, String condition, String interval) throws ApiException {
+    private ApiResponse<ContainerWait200Response> containerWaitWithHttpInfo( @NotNull String name, String condition, String interval) throws ApiException {
         okhttp3.Call localVarCall = containerWaitValidateBeforeCall(name, condition, interval, null);
-        Type localVarReturnType = new TypeToken<ContainerWait200Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ContainerWait200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Wait on a container (asynchronously)
-     * Block until a container stops or given condition is met.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param condition wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped  (optional)
-     * @param interval  Time Interval to wait before polling for completion. (optional, default to 250ms)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call containerWaitAsync(String name, String condition, String interval, final ApiCallback<ContainerWait200Response> _callback) throws ApiException {
+    private okhttp3.Call containerWaitAsync(String name, String condition, String interval, final ApiCallback<ContainerWait200Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = containerWaitValidateBeforeCall(name, condition, interval, _callback);
-        Type localVarReturnType = new TypeToken<ContainerWait200Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ContainerWait200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIcontainerWaitRequest {
+        private final String name;
+        private String condition;
+        private String interval;
+
+        private APIcontainerWaitRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set condition
+         * @param condition wait until container is to a given condition. default is stopped. valid conditions are:   - configured   - created   - exited   - paused   - running   - stopped  (optional)
+         * @return APIcontainerWaitRequest
+         */
+        public APIcontainerWaitRequest condition(String condition) {
+            this.condition = condition;
+            return this;
+        }
+
+        /**
+         * Set interval
+         * @param interval Time Interval to wait before polling for completion. (optional, default to 250ms)
+         * @return APIcontainerWaitRequest
+         */
+        public APIcontainerWaitRequest interval(String interval) {
+            this.interval = interval;
+            return this;
+        }
+
+        /**
+         * Build call for containerWait
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return containerWaitCall(name, condition, interval, _callback);
+        }
+
+        /**
+         * Execute containerWait request
+         * @return ContainerWait200Response
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ContainerWait200Response execute() throws ApiException {
+            ApiResponse<ContainerWait200Response> localVarResp = containerWaitWithHttpInfo(name, condition, interval);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute containerWait request with HTTP info returned
+         * @return ApiResponse&lt;ContainerWait200Response&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ContainerWait200Response> executeWithHttpInfo() throws ApiException {
+            return containerWaitWithHttpInfo(name, condition, interval);
+        }
+
+        /**
+         * Execute containerWait request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ContainerWait200Response> _callback) throws ApiException {
+            return containerWaitAsync(name, condition, interval, _callback);
+        }
+    }
+
     /**
-     * Build call for imageCommit
-     *
-     * @param container the name or ID of a container (optional)
-     * @param repo      the repository name for the created image (optional)
-     * @param tag       tag name for the created image (optional)
-     * @param comment   commit message (optional)
-     * @param author    author of the image (optional)
-     * @param pause     pause the container before committing it (optional)
-     * @param changes   instructions to apply while committing in Dockerfile format (optional)
-     * @param squash    squash newly built layers into a single new layer (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Wait on a container
+     * Block until a container stops or given condition is met.
+     * @param name the name or ID of the container (required)
+     * @return APIcontainerWaitRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Wait container </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageCommitCall(String container, String repo, String tag, String comment, String author, Boolean pause, String changes, Boolean squash, final ApiCallback _callback) throws ApiException {
+    public APIcontainerWaitRequest containerWait(String name) {
+        return new APIcontainerWaitRequest(name);
+    }
+    private okhttp3.Call imageCommitCall(String container, String repo, String tag, String comment, String author, Boolean pause, String changes, Boolean squash, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3530,7 +4499,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3544,7 +4513,7 @@ public class ContainersCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3554,114 +4523,202 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * New Image
-     * Create a new image from a container
-     *
-     * @param container the name or ID of a container (optional)
-     * @param repo      the repository name for the created image (optional)
-     * @param tag       tag name for the created image (optional)
-     * @param comment   commit message (optional)
-     * @param author    author of the image (optional)
-     * @param pause     pause the container before committing it (optional)
-     * @param changes   instructions to apply while committing in Dockerfile format (optional)
-     * @param squash    squash newly built layers into a single new layer (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void imageCommit(String container, String repo, String tag, String comment, String author, Boolean pause, String changes, Boolean squash) throws ApiException {
-        imageCommitWithHttpInfo(container, repo, tag, comment, author, pause, changes, squash);
-    }
 
-    /**
-     * New Image
-     * Create a new image from a container
-     *
-     * @param container the name or ID of a container (optional)
-     * @param repo      the repository name for the created image (optional)
-     * @param tag       tag name for the created image (optional)
-     * @param comment   commit message (optional)
-     * @param author    author of the image (optional)
-     * @param pause     pause the container before committing it (optional)
-     * @param changes   instructions to apply while committing in Dockerfile format (optional)
-     * @param squash    squash newly built layers into a single new layer (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> imageCommitWithHttpInfo(String container, String repo, String tag, String comment, String author, Boolean pause, String changes, Boolean squash) throws ApiException {
+    private ApiResponse<Void> imageCommitWithHttpInfo(String container, String repo, String tag, String comment, String author, Boolean pause, String changes, Boolean squash) throws ApiException {
         okhttp3.Call localVarCall = imageCommitValidateBeforeCall(container, repo, tag, comment, author, pause, changes, squash, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * New Image (asynchronously)
-     * Create a new image from a container
-     *
-     * @param container the name or ID of a container (optional)
-     * @param repo      the repository name for the created image (optional)
-     * @param tag       tag name for the created image (optional)
-     * @param comment   commit message (optional)
-     * @param author    author of the image (optional)
-     * @param pause     pause the container before committing it (optional)
-     * @param changes   instructions to apply while committing in Dockerfile format (optional)
-     * @param squash    squash newly built layers into a single new layer (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageCommitAsync(String container, String repo, String tag, String comment, String author, Boolean pause, String changes, Boolean squash, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call imageCommitAsync(String container, String repo, String tag, String comment, String author, Boolean pause, String changes, Boolean squash, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageCommitValidateBeforeCall(container, repo, tag, comment, author, pause, changes, squash, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIimageCommitRequest {
+        private String container;
+        private String repo;
+        private String tag;
+        private String comment;
+        private String author;
+        private Boolean pause;
+        private String changes;
+        private Boolean squash;
+
+        private APIimageCommitRequest() {
+        }
+
+        /**
+         * Set container
+         * @param container the name or ID of a container (optional)
+         * @return APIimageCommitRequest
+         */
+        public APIimageCommitRequest container(String container) {
+            this.container = container;
+            return this;
+        }
+
+        /**
+         * Set repo
+         * @param repo the repository name for the created image (optional)
+         * @return APIimageCommitRequest
+         */
+        public APIimageCommitRequest repo(String repo) {
+            this.repo = repo;
+            return this;
+        }
+
+        /**
+         * Set tag
+         * @param tag tag name for the created image (optional)
+         * @return APIimageCommitRequest
+         */
+        public APIimageCommitRequest tag(String tag) {
+            this.tag = tag;
+            return this;
+        }
+
+        /**
+         * Set comment
+         * @param comment commit message (optional)
+         * @return APIimageCommitRequest
+         */
+        public APIimageCommitRequest comment(String comment) {
+            this.comment = comment;
+            return this;
+        }
+
+        /**
+         * Set author
+         * @param author author of the image (optional)
+         * @return APIimageCommitRequest
+         */
+        public APIimageCommitRequest author(String author) {
+            this.author = author;
+            return this;
+        }
+
+        /**
+         * Set pause
+         * @param pause pause the container before committing it (optional)
+         * @return APIimageCommitRequest
+         */
+        public APIimageCommitRequest pause(Boolean pause) {
+            this.pause = pause;
+            return this;
+        }
+
+        /**
+         * Set changes
+         * @param changes instructions to apply while committing in Dockerfile format (optional)
+         * @return APIimageCommitRequest
+         */
+        public APIimageCommitRequest changes(String changes) {
+            this.changes = changes;
+            return this;
+        }
+
+        /**
+         * Set squash
+         * @param squash squash newly built layers into a single new layer (optional)
+         * @return APIimageCommitRequest
+         */
+        public APIimageCommitRequest squash(Boolean squash) {
+            this.squash = squash;
+            return this;
+        }
+
+        /**
+         * Build call for imageCommit
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageCommitCall(container, repo, tag, comment, author, pause, changes, squash, _callback);
+        }
+
+        /**
+         * Execute imageCommit request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            imageCommitWithHttpInfo(container, repo, tag, comment, author, pause, changes, squash);
+        }
+
+        /**
+         * Execute imageCommit request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return imageCommitWithHttpInfo(container, repo, tag, comment, author, pause, changes, squash);
+        }
+
+        /**
+         * Execute imageCommit request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return imageCommitAsync(container, repo, tag, comment, author, pause, changes, squash, _callback);
+        }
+    }
+
     /**
-     * Build call for putContainerArchive
-     *
-     * @param name                 container name or id (required)
-     * @param path                 Path to a directory in the container to extract (required)
-     * @param noOverwriteDirNonDir if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true) (optional)
-     * @param copyUIDGID           copy UID/GID maps to the dest file or di (1 or true) (optional)
-     * @param request              tarfile of files to copy into the container (optional)
-     * @param _callback            Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * New Image
+     * Create a new image from a container
+     * @return APIimageCommitRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call putContainerArchiveCall(String name, String path, String noOverwriteDirNonDir, String copyUIDGID, String request, final ApiCallback _callback) throws ApiException {
+    public APIimageCommitRequest imageCommit() {
+        return new APIimageCommitRequest();
+    }
+    private okhttp3.Call putContainerArchiveCall(String name, String path, String noOverwriteDirNonDir, String copyUIDGID, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -3671,7 +4728,7 @@ public class ContainersCompatApi {
 
         // create path and map variables
         String localVarPath = "/containers/{name}/archive"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3692,7 +4749,7 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -3700,15 +4757,15 @@ public class ContainersCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -3728,79 +4785,152 @@ public class ContainersCompatApi {
 
     }
 
-    /**
-     * Put files into a container
-     * Put a tar archive of files into a container
-     *
-     * @param name                 container name or id (required)
-     * @param path                 Path to a directory in the container to extract (required)
-     * @param noOverwriteDirNonDir if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true) (optional)
-     * @param copyUIDGID           copy UID/GID maps to the dest file or di (1 or true) (optional)
-     * @param request              tarfile of files to copy into the container (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void putContainerArchive(String name, String path, String noOverwriteDirNonDir, String copyUIDGID, String request) throws ApiException {
-        putContainerArchiveWithHttpInfo(name, path, noOverwriteDirNonDir, copyUIDGID, request);
-    }
 
-    /**
-     * Put files into a container
-     * Put a tar archive of files into a container
-     *
-     * @param name                 container name or id (required)
-     * @param path                 Path to a directory in the container to extract (required)
-     * @param noOverwriteDirNonDir if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true) (optional)
-     * @param copyUIDGID           copy UID/GID maps to the dest file or di (1 or true) (optional)
-     * @param request              tarfile of files to copy into the container (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> putContainerArchiveWithHttpInfo(@NotNull String name, @NotNull String path, String noOverwriteDirNonDir, String copyUIDGID, String request) throws ApiException {
+    private ApiResponse<Void> putContainerArchiveWithHttpInfo( @NotNull String name,  @NotNull String path, String noOverwriteDirNonDir, String copyUIDGID, String request) throws ApiException {
         okhttp3.Call localVarCall = putContainerArchiveValidateBeforeCall(name, path, noOverwriteDirNonDir, copyUIDGID, request, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Put files into a container (asynchronously)
-     * Put a tar archive of files into a container
-     *
-     * @param name                 container name or id (required)
-     * @param path                 Path to a directory in the container to extract (required)
-     * @param noOverwriteDirNonDir if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true) (optional)
-     * @param copyUIDGID           copy UID/GID maps to the dest file or di (1 or true) (optional)
-     * @param request              tarfile of files to copy into the container (optional)
-     * @param _callback            The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call putContainerArchiveAsync(String name, String path, String noOverwriteDirNonDir, String copyUIDGID, String request, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call putContainerArchiveAsync(String name, String path, String noOverwriteDirNonDir, String copyUIDGID, String request, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = putContainerArchiveValidateBeforeCall(name, path, noOverwriteDirNonDir, copyUIDGID, request, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
+    }
+
+    public class APIputContainerArchiveRequest {
+        private final String name;
+        private final String path;
+        private String noOverwriteDirNonDir;
+        private String copyUIDGID;
+        private String request;
+
+        private APIputContainerArchiveRequest(String name, String path) {
+            this.name = name;
+            this.path = path;
+        }
+
+        /**
+         * Set noOverwriteDirNonDir
+         * @param noOverwriteDirNonDir if unpacking the given content would cause an existing directory to be replaced with a non-directory and vice versa (1 or true) (optional)
+         * @return APIputContainerArchiveRequest
+         */
+        public APIputContainerArchiveRequest noOverwriteDirNonDir(String noOverwriteDirNonDir) {
+            this.noOverwriteDirNonDir = noOverwriteDirNonDir;
+            return this;
+        }
+
+        /**
+         * Set copyUIDGID
+         * @param copyUIDGID copy UID/GID maps to the dest file or di (1 or true) (optional)
+         * @return APIputContainerArchiveRequest
+         */
+        public APIputContainerArchiveRequest copyUIDGID(String copyUIDGID) {
+            this.copyUIDGID = copyUIDGID;
+            return this;
+        }
+
+        /**
+         * Set request
+         * @param request tarfile of files to copy into the container (optional)
+         * @return APIputContainerArchiveRequest
+         */
+        public APIputContainerArchiveRequest request(String request) {
+            this.request = request;
+            return this;
+        }
+
+        /**
+         * Build call for putContainerArchive
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return putContainerArchiveCall(name, path, noOverwriteDirNonDir, copyUIDGID, request, _callback);
+        }
+
+        /**
+         * Execute putContainerArchive request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            putContainerArchiveWithHttpInfo(name, path, noOverwriteDirNonDir, copyUIDGID, request);
+        }
+
+        /**
+         * Execute putContainerArchive request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return putContainerArchiveWithHttpInfo(name, path, noOverwriteDirNonDir, copyUIDGID, request);
+        }
+
+        /**
+         * Execute putContainerArchive request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return putContainerArchiveAsync(name, path, noOverwriteDirNonDir, copyUIDGID, request, _callback);
+        }
+    }
+
+    /**
+     * Put files into a container
+     * Put a tar archive of files into a container
+     * @param name container name or id (required)
+     * @param path Path to a directory in the container to extract (required)
+     * @return APIputContainerArchiveRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 403 </td><td> the container rootfs is read-only </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such container </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIputContainerArchiveRequest putContainerArchive(String name, String path) {
+        return new APIputContainerArchiveRequest(name, path);
     }
 }

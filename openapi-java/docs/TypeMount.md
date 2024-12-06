@@ -12,4 +12,8 @@ TypeMount contains options for using a volume as a Mount-type volume.
 |**mountFlags** | **List&lt;String&gt;** | MountFlags defines flags to pass when mounting the volume. Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -12,4 +12,8 @@ WeightDevice is a structure that holds device:weight pair
 |**weight** | **Integer** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -12,4 +12,8 @@ PeerInfo represents one peer of an overlay network
 |**name** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

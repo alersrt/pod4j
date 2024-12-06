@@ -8,8 +8,12 @@ OK response to ContainerWait operation
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**error** | [**WaitExitError**](WaitExitError.md) |  |  [optional] |
 |**statusCode** | **Long** | Exit code of the container |  |
+|**error** | [**WaitExitError**](WaitExitError.md) |  |  [optional] |
 
+
+## Implemented Interfaces
+
+* Serializable
 
 

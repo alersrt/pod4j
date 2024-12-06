@@ -15,4 +15,8 @@
 |**options** | **Map&lt;String, String&gt;** | Mapping of driver options and values. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

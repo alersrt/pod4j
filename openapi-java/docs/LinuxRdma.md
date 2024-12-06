@@ -12,4 +12,8 @@ LinuxRdma for Linux cgroup 'rdma' resource management (Linux 4.11)
 |**hcaObjects** | **Integer** | Maximum number of HCA objects that can be created. Default is \&quot;no limit\&quot;. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

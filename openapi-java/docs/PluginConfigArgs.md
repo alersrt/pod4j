@@ -14,4 +14,8 @@ PluginConfigArgs plugin config args
 |**value** | **List&lt;String&gt;** | value |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

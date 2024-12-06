@@ -11,4 +11,8 @@
 |**path** | **String** | Path to file or directory that has changed. |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

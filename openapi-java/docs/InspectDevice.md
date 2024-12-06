@@ -12,4 +12,8 @@
 |**pathOnHost** | **String** | PathOnHost is the path of the device on the host. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

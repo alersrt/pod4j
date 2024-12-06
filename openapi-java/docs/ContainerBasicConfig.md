@@ -49,4 +49,8 @@
 |**utsns** | [**Namespace**](Namespace.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

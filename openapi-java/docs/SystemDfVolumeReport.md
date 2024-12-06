@@ -14,4 +14,8 @@ SystemDfVolumeReport describes a volume and its size
 |**volumeName** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

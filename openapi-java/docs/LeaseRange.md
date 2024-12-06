@@ -11,4 +11,8 @@
 |**startIp** | **String** | StartIP first IP in the subnet which should be used to assign ips. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

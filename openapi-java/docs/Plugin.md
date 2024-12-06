@@ -10,10 +10,14 @@ Plugin A plugin for the Engine API
 |------------ | ------------- | ------------- | -------------|
 |**config** | [**PluginConfig**](PluginConfig.md) |  |  |
 |**enabled** | **Boolean** | True if the plugin is running. False if the plugin is not running, only installed. |  |
-|**id** | **String** | Id |  [optional] |
 |**name** | **String** | name |  |
-|**pluginReference** | **String** | plugin remote reference used to push/pull the plugin |  [optional] |
 |**settings** | [**PluginSettings**](PluginSettings.md) |  |  |
+|**id** | **String** | Id |  [optional] |
+|**pluginReference** | **String** | plugin remote reference used to push/pull the plugin |  [optional] |
 
+
+## Implemented Interfaces
+
+* Serializable
 
 

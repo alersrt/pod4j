@@ -13,377 +13,409 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-import jakarta.validation.Valid;
-
+import io.github.alersrt.pod4j.openapi.model.ClusterVolumeSpec;
+import io.github.alersrt.pod4j.openapi.model.Info;
+import io.github.alersrt.pod4j.openapi.model.PublishStatus;
+import io.github.alersrt.pod4j.openapi.model.Version;
 import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * ClusterVolume contains options and information specific to, and only present on, Swarm CSI cluster volumes.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class ClusterVolume {
-    public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
-    public static final String SERIALIZED_NAME_I_D = "ID";
-    public static final String SERIALIZED_NAME_INFO = "Info";
-    public static final String SERIALIZED_NAME_PUBLISH_STATUS = "PublishStatus";
-    public static final String SERIALIZED_NAME_SPEC = "Spec";
-    public static final String SERIALIZED_NAME_UPDATED_AT = "UpdatedAt";
-    public static final String SERIALIZED_NAME_VERSION = "Version";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class ClusterVolume implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("CreatedAt");
-        openapiFields.add("ID");
-        openapiFields.add("Info");
-        openapiFields.add("PublishStatus");
-        openapiFields.add("Spec");
-        openapiFields.add("UpdatedAt");
-        openapiFields.add("Version");
+  public static final String SERIALIZED_NAME_CREATED_AT = "CreatedAt";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private OffsetDateTime createdAt;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_I_D = "ID";
+  @SerializedName(SERIALIZED_NAME_I_D)
+  private String ID;
+
+  public static final String SERIALIZED_NAME_INFO = "Info";
+  @SerializedName(SERIALIZED_NAME_INFO)
+  private Info info;
+
+  public static final String SERIALIZED_NAME_PUBLISH_STATUS = "PublishStatus";
+  @SerializedName(SERIALIZED_NAME_PUBLISH_STATUS)
+  private List<@Valid PublishStatus> publishStatus = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SPEC = "Spec";
+  @SerializedName(SERIALIZED_NAME_SPEC)
+  private ClusterVolumeSpec spec;
+
+  public static final String SERIALIZED_NAME_UPDATED_AT = "UpdatedAt";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  private OffsetDateTime updatedAt;
+
+  public static final String SERIALIZED_NAME_VERSION = "Version";
+  @SerializedName(SERIALIZED_NAME_VERSION)
+  private Version version;
+
+  public ClusterVolume() {
+  }
+
+  public ClusterVolume createdAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+    return this;
+  }
+
+  /**
+   * Get createdAt
+   * @return createdAt
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+  }
+
+
+  public ClusterVolume ID(String ID) {
+    this.ID = ID;
+    return this;
+  }
+
+  /**
+   * ID is the Swarm ID of the volume. Because cluster volumes are Swarm objects, they have an ID, unlike non-cluster volumes, which only have a Name. This ID can be used to refer to the cluster volume.
+   * @return ID
+   */
+  @jakarta.annotation.Nullable
+
+  public String getID() {
+    return ID;
+  }
+
+  public void setID(String ID) {
+    this.ID = ID;
+  }
+
+
+  public ClusterVolume info(Info info) {
+    this.info = info;
+    return this;
+  }
+
+  /**
+   * Get info
+   * @return info
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public Info getInfo() {
+    return info;
+  }
+
+  public void setInfo(Info info) {
+    this.info = info;
+  }
+
+
+  public ClusterVolume publishStatus(List<@Valid PublishStatus> publishStatus) {
+    this.publishStatus = publishStatus;
+    return this;
+  }
+
+  public ClusterVolume addPublishStatusItem(PublishStatus publishStatusItem) {
+    if (this.publishStatus == null) {
+      this.publishStatus = new ArrayList<>();
     }
+    this.publishStatus.add(publishStatusItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_CREATED_AT)
-    private OffsetDateTime createdAt;
-    @SerializedName(SERIALIZED_NAME_I_D)
-    private String ID;
-    @SerializedName(SERIALIZED_NAME_INFO)
-    private Info info;
-    @SerializedName(SERIALIZED_NAME_PUBLISH_STATUS)
-    private List<@Valid PublishStatus> publishStatus = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_SPEC)
-    private ClusterVolumeSpec spec;
-    @SerializedName(SERIALIZED_NAME_UPDATED_AT)
-    private OffsetDateTime updatedAt;
-    @SerializedName(SERIALIZED_NAME_VERSION)
-    private Version version;
+  /**
+   * PublishStatus contains the status of the volume as it pertains to its publishing on Nodes.
+   * @return publishStatus
+   */
+  @jakarta.annotation.Nullable
+  @Valid
 
-    public ClusterVolume() {
+  public List<@Valid PublishStatus> getPublishStatus() {
+    return publishStatus;
+  }
+
+  public void setPublishStatus(List<@Valid PublishStatus> publishStatus) {
+    this.publishStatus = publishStatus;
+  }
+
+
+  public ClusterVolume spec(ClusterVolumeSpec spec) {
+    this.spec = spec;
+    return this;
+  }
+
+  /**
+   * Get spec
+   * @return spec
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public ClusterVolumeSpec getSpec() {
+    return spec;
+  }
+
+  public void setSpec(ClusterVolumeSpec spec) {
+    this.spec = spec;
+  }
+
+
+  public ClusterVolume updatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+  /**
+   * Get updatedAt
+   * @return updatedAt
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public OffsetDateTime getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
+
+  public ClusterVolume version(Version version) {
+    this.version = version;
+    return this;
+  }
+
+  /**
+   * Get version
+   * @return version
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public Version getVersion() {
+    return version;
+  }
+
+  public void setVersion(Version version) {
+    this.version = version;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    ClusterVolume clusterVolume = (ClusterVolume) o;
+    return Objects.equals(this.createdAt, clusterVolume.createdAt) &&
+        Objects.equals(this.ID, clusterVolume.ID) &&
+        Objects.equals(this.info, clusterVolume.info) &&
+        Objects.equals(this.publishStatus, clusterVolume.publishStatus) &&
+        Objects.equals(this.spec, clusterVolume.spec) &&
+        Objects.equals(this.updatedAt, clusterVolume.updatedAt) &&
+        Objects.equals(this.version, clusterVolume.version);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to ClusterVolume
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!ClusterVolume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in ClusterVolume is not found in the empty JSON string", ClusterVolume.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(createdAt, ID, info, publishStatus, spec, updatedAt, version);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!ClusterVolume.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ClusterVolume` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class ClusterVolume {\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
+    sb.append("    info: ").append(toIndentedString(info)).append("\n");
+    sb.append("    publishStatus: ").append(toIndentedString(publishStatus)).append("\n");
+    sb.append("    spec: ").append(toIndentedString(spec)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("CreatedAt");
+    openapiFields.add("ID");
+    openapiFields.add("Info");
+    openapiFields.add("PublishStatus");
+    openapiFields.add("Spec");
+    openapiFields.add("UpdatedAt");
+    openapiFields.add("Version");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ClusterVolume
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!ClusterVolume.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ClusterVolume is not found in the empty JSON string", ClusterVolume.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!ClusterVolume.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ClusterVolume` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+      if ((jsonObj.get("ID") != null && !jsonObj.get("ID").isJsonNull()) && !jsonObj.get("ID").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `ID` to be a primitive type in the JSON string but got `%s`", jsonObj.get("ID").toString()));
+      }
+      // validate the optional field `Info`
+      if (jsonObj.get("Info") != null && !jsonObj.get("Info").isJsonNull()) {
+        Info.validateJsonElement(jsonObj.get("Info"));
+      }
+      if (jsonObj.get("PublishStatus") != null && !jsonObj.get("PublishStatus").isJsonNull()) {
+        JsonArray jsonArraypublishStatus = jsonObj.getAsJsonArray("PublishStatus");
+        if (jsonArraypublishStatus != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("PublishStatus").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `PublishStatus` to be an array in the JSON string but got `%s`", jsonObj.get("PublishStatus").toString()));
+          }
+
+          // validate the optional field `PublishStatus` (array)
+          for (int i = 0; i < jsonArraypublishStatus.size(); i++) {
+            PublishStatus.validateJsonElement(jsonArraypublishStatus.get(i));
+          };
         }
-        // validate the optional field `Info`
-        if (jsonObj.get("Info") != null && !jsonObj.get("Info").isJsonNull()) {
-            Info.validateJsonElement(jsonObj.get("Info"));
-        }
-        if (jsonObj.get("PublishStatus") != null && !jsonObj.get("PublishStatus").isJsonNull()) {
-            JsonArray jsonArraypublishStatus = jsonObj.getAsJsonArray("PublishStatus");
-            if (jsonArraypublishStatus != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("PublishStatus").isJsonArray()) {
-                    throw new IllegalArgumentException(String.format("Expected the field `PublishStatus` to be an array in the JSON string but got `%s`", jsonObj.get("PublishStatus").toString()));
-                }
+      }
+      // validate the optional field `Spec`
+      if (jsonObj.get("Spec") != null && !jsonObj.get("Spec").isJsonNull()) {
+        ClusterVolumeSpec.validateJsonElement(jsonObj.get("Spec"));
+      }
+      // validate the optional field `Version`
+      if (jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) {
+        Version.validateJsonElement(jsonObj.get("Version"));
+      }
+  }
 
-                // validate the optional field `PublishStatus` (array)
-                for (int i = 0; i < jsonArraypublishStatus.size(); i++) {
-                    PublishStatus.validateJsonElement(jsonArraypublishStatus.get(i));
-                }
-            }
-        }
-        // validate the optional field `Spec`
-        if (jsonObj.get("Spec") != null && !jsonObj.get("Spec").isJsonNull()) {
-            ClusterVolumeSpec.validateJsonElement(jsonObj.get("Spec"));
-        }
-        // validate the optional field `Version`
-        if (jsonObj.get("Version") != null && !jsonObj.get("Version").isJsonNull()) {
-            Version.validateJsonElement(jsonObj.get("Version"));
-        }
-    }
-
-    /**
-     * Create an instance of ClusterVolume given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of ClusterVolume
-     * @throws IOException if the JSON string is invalid with respect to ClusterVolume
-     */
-    public static ClusterVolume fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, ClusterVolume.class);
-    }
-
-    public ClusterVolume createdAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-        return this;
-    }
-
-    /**
-     * Get createdAt
-     *
-     * @return createdAt
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public ClusterVolume ID(String ID) {
-        this.ID = ID;
-        return this;
-    }
-
-    /**
-     * ID is the Swarm ID of the volume. Because cluster volumes are Swarm objects, they have an ID, unlike non-cluster volumes, which only have a Name. This ID can be used to refer to the cluster volume.
-     *
-     * @return ID
-     */
-    @jakarta.annotation.Nullable
-
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public ClusterVolume info(Info info) {
-        this.info = info;
-        return this;
-    }
-
-    /**
-     * Get info
-     *
-     * @return info
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public Info getInfo() {
-        return info;
-    }
-
-    public void setInfo(Info info) {
-        this.info = info;
-    }
-
-    public ClusterVolume publishStatus(List<@Valid PublishStatus> publishStatus) {
-        this.publishStatus = publishStatus;
-        return this;
-    }
-
-    public ClusterVolume addPublishStatusItem(PublishStatus publishStatusItem) {
-        if (this.publishStatus == null) {
-            this.publishStatus = new ArrayList<>();
-        }
-        this.publishStatus.add(publishStatusItem);
-        return this;
-    }
-
-    /**
-     * PublishStatus contains the status of the volume as it pertains to its publishing on Nodes.
-     *
-     * @return publishStatus
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public List<@Valid PublishStatus> getPublishStatus() {
-        return publishStatus;
-    }
-
-    public void setPublishStatus(List<@Valid PublishStatus> publishStatus) {
-        this.publishStatus = publishStatus;
-    }
-
-    public ClusterVolume spec(ClusterVolumeSpec spec) {
-        this.spec = spec;
-        return this;
-    }
-
-    /**
-     * Get spec
-     *
-     * @return spec
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public ClusterVolumeSpec getSpec() {
-        return spec;
-    }
-
-    public void setSpec(ClusterVolumeSpec spec) {
-        this.spec = spec;
-    }
-
-    public ClusterVolume updatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-        return this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return updatedAt
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public OffsetDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(OffsetDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public ClusterVolume version(Version version) {
-        this.version = version;
-        return this;
-    }
-
-    /**
-     * Get version
-     *
-     * @return version
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public Version getVersion() {
-        return version;
-    }
-
-    public void setVersion(Version version) {
-        this.version = version;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ClusterVolume clusterVolume = (ClusterVolume) o;
-        return Objects.equals(this.createdAt, clusterVolume.createdAt) &&
-                Objects.equals(this.ID, clusterVolume.ID) &&
-                Objects.equals(this.info, clusterVolume.info) &&
-                Objects.equals(this.publishStatus, clusterVolume.publishStatus) &&
-                Objects.equals(this.spec, clusterVolume.spec) &&
-                Objects.equals(this.updatedAt, clusterVolume.updatedAt) &&
-                Objects.equals(this.version, clusterVolume.version);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!ClusterVolume.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ClusterVolume' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<ClusterVolume> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ClusterVolume.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<ClusterVolume>() {
+           @Override
+           public void write(JsonWriter out, ClusterVolume value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public ClusterVolume read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(createdAt, ID, info, publishStatus, spec, updatedAt, version);
-    }
+  /**
+   * Create an instance of ClusterVolume given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ClusterVolume
+   * @throws IOException if the JSON string is invalid with respect to ClusterVolume
+   */
+  public static ClusterVolume fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ClusterVolume.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class ClusterVolume {\n" +
-                "    createdAt: " + toIndentedString(createdAt) + "\n" +
-                "    ID: " + toIndentedString(ID) + "\n" +
-                "    info: " + toIndentedString(info) + "\n" +
-                "    publishStatus: " + toIndentedString(publishStatus) + "\n" +
-                "    spec: " + toIndentedString(spec) + "\n" +
-                "    updatedAt: " + toIndentedString(updatedAt) + "\n" +
-                "    version: " + toIndentedString(version) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of ClusterVolume to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!ClusterVolume.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'ClusterVolume' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<ClusterVolume> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(ClusterVolume.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<ClusterVolume>() {
-                @Override
-                public void write(JsonWriter out, ClusterVolume value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public ClusterVolume read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of ClusterVolume to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

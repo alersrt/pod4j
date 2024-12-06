@@ -12,4 +12,8 @@ Secret represents a Swarm Secret value that must be passed to the CSI storage pl
 |**secret** | **String** | Secret is the swarm Secret object from which to read data. This can be a Secret name or ID. The Secret data is retrieved by Swarm and used as the value of the key-value pair passed to the plugin. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -13,215 +13,239 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
-
+import io.github.alersrt.pod4j.openapi.model.WaitExitError;
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * OK response to ContainerWait operation
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class WaitResponse {
-    public static final String SERIALIZED_NAME_ERROR = "Error";
-    public static final String SERIALIZED_NAME_STATUS_CODE = "StatusCode";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class WaitResponse implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Error");
-        openapiFields.add("StatusCode");
+  public static final String SERIALIZED_NAME_STATUS_CODE = "StatusCode";
+  @SerializedName(SERIALIZED_NAME_STATUS_CODE)
+  private Long statusCode;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
-        openapiRequiredFields.add("StatusCode");
+  public static final String SERIALIZED_NAME_ERROR = "Error";
+  @SerializedName(SERIALIZED_NAME_ERROR)
+  private WaitExitError error;
+
+  public WaitResponse() {
+  }
+
+  public WaitResponse statusCode(Long statusCode) {
+    this.statusCode = statusCode;
+    return this;
+  }
+
+  /**
+   * Exit code of the container
+   * @return statusCode
+   */
+  @jakarta.annotation.Nonnull
+  @NotNull
+
+  public Long getStatusCode() {
+    return statusCode;
+  }
+
+  public void setStatusCode(Long statusCode) {
+    this.statusCode = statusCode;
+  }
+
+
+  public WaitResponse error(WaitExitError error) {
+    this.error = error;
+    return this;
+  }
+
+  /**
+   * Get error
+   * @return error
+   */
+  @jakarta.annotation.Nullable
+  @Valid
+
+  public WaitExitError getError() {
+    return error;
+  }
+
+  public void setError(WaitExitError error) {
+    this.error = error;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_ERROR)
-    private WaitExitError error;
-    @SerializedName(SERIALIZED_NAME_STATUS_CODE)
-    private Long statusCode;
-
-    public WaitResponse() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    WaitResponse waitResponse = (WaitResponse) o;
+    return Objects.equals(this.statusCode, waitResponse.statusCode) &&
+        Objects.equals(this.error, waitResponse.error);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to WaitResponse
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!WaitResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in WaitResponse is not found in the empty JSON string", WaitResponse.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(statusCode, error);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!WaitResponse.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `WaitResponse` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
-        }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class WaitResponse {\n");
+    sb.append("    statusCode: ").append(toIndentedString(statusCode)).append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
 
-        // check to make sure all required properties/fields are present in the JSON string
-        for (String requiredField : WaitResponse.openapiRequiredFields) {
-            if (jsonElement.getAsJsonObject().get(requiredField) == null) {
-                throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement));
-            }
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("StatusCode");
+    openapiFields.add("Error");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields.add("StatusCode");
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to WaitResponse
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!WaitResponse.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in WaitResponse is not found in the empty JSON string", WaitResponse.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!WaitResponse.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `WaitResponse` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
+
+      // check to make sure all required properties/fields are present in the JSON string
+      for (String requiredField : WaitResponse.openapiRequiredFields) {
+        if (jsonElement.getAsJsonObject().get(requiredField) == null) {
+          throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // validate the optional field `Error`
-        if (jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull()) {
-            WaitExitError.validateJsonElement(jsonObj.get("Error"));
-        }
-    }
+      // validate the optional field `Error`
+      if (jsonObj.get("Error") != null && !jsonObj.get("Error").isJsonNull()) {
+        WaitExitError.validateJsonElement(jsonObj.get("Error"));
+      }
+  }
 
-    /**
-     * Create an instance of WaitResponse given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of WaitResponse
-     * @throws IOException if the JSON string is invalid with respect to WaitResponse
-     */
-    public static WaitResponse fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, WaitResponse.class);
-    }
-
-    public WaitResponse error(WaitExitError error) {
-        this.error = error;
-        return this;
-    }
-
-    /**
-     * Get error
-     *
-     * @return error
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public WaitExitError getError() {
-        return error;
-    }
-
-    public void setError(WaitExitError error) {
-        this.error = error;
-    }
-
-    public WaitResponse statusCode(Long statusCode) {
-        this.statusCode = statusCode;
-        return this;
-    }
-
-    /**
-     * Exit code of the container
-     *
-     * @return statusCode
-     */
-    @jakarta.annotation.Nonnull
-    @NotNull
-
-    public Long getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(Long statusCode) {
-        this.statusCode = statusCode;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        WaitResponse waitResponse = (WaitResponse) o;
-        return Objects.equals(this.error, waitResponse.error) &&
-                Objects.equals(this.statusCode, waitResponse.statusCode);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!WaitResponse.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'WaitResponse' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<WaitResponse> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(WaitResponse.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<WaitResponse>() {
+           @Override
+           public void write(JsonWriter out, WaitResponse value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public WaitResponse read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(error, statusCode);
-    }
+  /**
+   * Create an instance of WaitResponse given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of WaitResponse
+   * @throws IOException if the JSON string is invalid with respect to WaitResponse
+   */
+  public static WaitResponse fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, WaitResponse.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class WaitResponse {\n" +
-                "    error: " + toIndentedString(error) + "\n" +
-                "    statusCode: " + toIndentedString(statusCode) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of WaitResponse to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!WaitResponse.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'WaitResponse' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<WaitResponse> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(WaitResponse.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<WaitResponse>() {
-                @Override
-                public void write(JsonWriter out, WaitResponse value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public WaitResponse read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of WaitResponse to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

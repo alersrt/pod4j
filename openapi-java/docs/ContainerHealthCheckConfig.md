@@ -16,4 +16,8 @@ ContainerHealthCheckConfig describes a container healthcheck with attributes lik
 |**startupHealthConfig** | [**StartupHealthCheck**](StartupHealthCheck.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

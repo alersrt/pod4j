@@ -24,4 +24,8 @@ EndpointSettings stores the network endpoint details
 |**networkID** | **String** | Operational data |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -13,13 +13,14 @@
 
 package io.github.alersrt.pod4j.openapi.auth;
 
-import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ApiException;
+
 import okhttp3.Credentials;
 
 import java.net.URI;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
 
 public class HttpBasicAuth implements Authentication {
     private String username;
@@ -48,7 +49,7 @@ public class HttpBasicAuth implements Authentication {
             return;
         }
         headerParams.put("Authorization", Credentials.basic(
-                username == null ? "" : username,
-                password == null ? "" : password));
+            username == null ? "" : username,
+            password == null ? "" : password));
     }
 }

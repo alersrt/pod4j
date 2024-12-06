@@ -13,4 +13,8 @@ PublishStatus represents the status of the volume as published to an individual 
 |**state** | **String** | PublishState represents the state of a Volume as it pertains to its use on a particular Node. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

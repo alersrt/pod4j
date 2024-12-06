@@ -14,4 +14,8 @@ LogConfig describes the logging characteristics for a container
 |**size** | **Long** | Size is the maximum size of the log file Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

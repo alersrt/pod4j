@@ -14,4 +14,8 @@
 |**range** | **Integer** | Range is the number of ports that will be forwarded, starting at HostPort and ContainerPort and counting up. This is 1-indexed, so 1 is assumed to be a single port (only the Hostport:Containerport mapping will be added), 2 is two ports (both Hostport:Containerport and Hostport+1:Containerport+1), etc. If unset, assumed to be 1 (a single port). Both hostport + range and containerport + range must be less than 65536. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

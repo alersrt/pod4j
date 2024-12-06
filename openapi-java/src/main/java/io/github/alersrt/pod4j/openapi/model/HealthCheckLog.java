@@ -13,260 +13,287 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * HealthCheckLog describes the results of a single healthcheck
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class HealthCheckLog {
-    public static final String SERIALIZED_NAME_END = "End";
-    public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
-    public static final String SERIALIZED_NAME_OUTPUT = "Output";
-    public static final String SERIALIZED_NAME_START = "Start";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class HealthCheckLog implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("End");
-        openapiFields.add("ExitCode");
-        openapiFields.add("Output");
-        openapiFields.add("Start");
+  public static final String SERIALIZED_NAME_END = "End";
+  @SerializedName(SERIALIZED_NAME_END)
+  private String end;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_EXIT_CODE = "ExitCode";
+  @SerializedName(SERIALIZED_NAME_EXIT_CODE)
+  private Long exitCode;
+
+  public static final String SERIALIZED_NAME_OUTPUT = "Output";
+  @SerializedName(SERIALIZED_NAME_OUTPUT)
+  private String output;
+
+  public static final String SERIALIZED_NAME_START = "Start";
+  @SerializedName(SERIALIZED_NAME_START)
+  private String start;
+
+  public HealthCheckLog() {
+  }
+
+  public HealthCheckLog end(String end) {
+    this.end = end;
+    return this;
+  }
+
+  /**
+   * End time as a string
+   * @return end
+   */
+  @jakarta.annotation.Nullable
+
+  public String getEnd() {
+    return end;
+  }
+
+  public void setEnd(String end) {
+    this.end = end;
+  }
+
+
+  public HealthCheckLog exitCode(Long exitCode) {
+    this.exitCode = exitCode;
+    return this;
+  }
+
+  /**
+   * Exitcode is 0 or 1
+   * @return exitCode
+   */
+  @jakarta.annotation.Nullable
+
+  public Long getExitCode() {
+    return exitCode;
+  }
+
+  public void setExitCode(Long exitCode) {
+    this.exitCode = exitCode;
+  }
+
+
+  public HealthCheckLog output(String output) {
+    this.output = output;
+    return this;
+  }
+
+  /**
+   * Output is the stdout/stderr from the healthcheck command
+   * @return output
+   */
+  @jakarta.annotation.Nullable
+
+  public String getOutput() {
+    return output;
+  }
+
+  public void setOutput(String output) {
+    this.output = output;
+  }
+
+
+  public HealthCheckLog start(String start) {
+    this.start = start;
+    return this;
+  }
+
+  /**
+   * Start time as string
+   * @return start
+   */
+  @jakarta.annotation.Nullable
+
+  public String getStart() {
+    return start;
+  }
+
+  public void setStart(String start) {
+    this.start = start;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_END)
-    private String end;
-    @SerializedName(SERIALIZED_NAME_EXIT_CODE)
-    private Long exitCode;
-    @SerializedName(SERIALIZED_NAME_OUTPUT)
-    private String output;
-    @SerializedName(SERIALIZED_NAME_START)
-    private String start;
-
-    public HealthCheckLog() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    HealthCheckLog healthCheckLog = (HealthCheckLog) o;
+    return Objects.equals(this.end, healthCheckLog.end) &&
+        Objects.equals(this.exitCode, healthCheckLog.exitCode) &&
+        Objects.equals(this.output, healthCheckLog.output) &&
+        Objects.equals(this.start, healthCheckLog.start);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to HealthCheckLog
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!HealthCheckLog.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in HealthCheckLog is not found in the empty JSON string", HealthCheckLog.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(end, exitCode, output, start);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!HealthCheckLog.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HealthCheckLog` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class HealthCheckLog {\n");
+    sb.append("    end: ").append(toIndentedString(end)).append("\n");
+    sb.append("    exitCode: ").append(toIndentedString(exitCode)).append("\n");
+    sb.append("    output: ").append(toIndentedString(output)).append("\n");
+    sb.append("    start: ").append(toIndentedString(start)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("End");
+    openapiFields.add("ExitCode");
+    openapiFields.add("Output");
+    openapiFields.add("Start");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to HealthCheckLog
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!HealthCheckLog.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in HealthCheckLog is not found in the empty JSON string", HealthCheckLog.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!HealthCheckLog.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `HealthCheckLog` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("End") != null && !jsonObj.get("End").isJsonNull()) && !jsonObj.get("End").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `End` to be a primitive type in the JSON string but got `%s`", jsonObj.get("End").toString()));
-        }
-        if ((jsonObj.get("Output") != null && !jsonObj.get("Output").isJsonNull()) && !jsonObj.get("Output").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Output` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Output").toString()));
-        }
-        if ((jsonObj.get("Start") != null && !jsonObj.get("Start").isJsonNull()) && !jsonObj.get("Start").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Start` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Start").toString()));
-        }
-    }
+      if ((jsonObj.get("End") != null && !jsonObj.get("End").isJsonNull()) && !jsonObj.get("End").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `End` to be a primitive type in the JSON string but got `%s`", jsonObj.get("End").toString()));
+      }
+      if ((jsonObj.get("Output") != null && !jsonObj.get("Output").isJsonNull()) && !jsonObj.get("Output").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Output` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Output").toString()));
+      }
+      if ((jsonObj.get("Start") != null && !jsonObj.get("Start").isJsonNull()) && !jsonObj.get("Start").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Start` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Start").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of HealthCheckLog given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of HealthCheckLog
-     * @throws IOException if the JSON string is invalid with respect to HealthCheckLog
-     */
-    public static HealthCheckLog fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, HealthCheckLog.class);
-    }
-
-    public HealthCheckLog end(String end) {
-        this.end = end;
-        return this;
-    }
-
-    /**
-     * End time as a string
-     *
-     * @return end
-     */
-    @jakarta.annotation.Nullable
-
-    public String getEnd() {
-        return end;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    public HealthCheckLog exitCode(Long exitCode) {
-        this.exitCode = exitCode;
-        return this;
-    }
-
-    /**
-     * Exitcode is 0 or 1
-     *
-     * @return exitCode
-     */
-    @jakarta.annotation.Nullable
-
-    public Long getExitCode() {
-        return exitCode;
-    }
-
-    public void setExitCode(Long exitCode) {
-        this.exitCode = exitCode;
-    }
-
-    public HealthCheckLog output(String output) {
-        this.output = output;
-        return this;
-    }
-
-    /**
-     * Output is the stdout/stderr from the healthcheck command
-     *
-     * @return output
-     */
-    @jakarta.annotation.Nullable
-
-    public String getOutput() {
-        return output;
-    }
-
-    public void setOutput(String output) {
-        this.output = output;
-    }
-
-    public HealthCheckLog start(String start) {
-        this.start = start;
-        return this;
-    }
-
-    /**
-     * Start time as string
-     *
-     * @return start
-     */
-    @jakarta.annotation.Nullable
-
-    public String getStart() {
-        return start;
-    }
-
-    public void setStart(String start) {
-        this.start = start;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        HealthCheckLog healthCheckLog = (HealthCheckLog) o;
-        return Objects.equals(this.end, healthCheckLog.end) &&
-                Objects.equals(this.exitCode, healthCheckLog.exitCode) &&
-                Objects.equals(this.output, healthCheckLog.output) &&
-                Objects.equals(this.start, healthCheckLog.start);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!HealthCheckLog.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'HealthCheckLog' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<HealthCheckLog> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(HealthCheckLog.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<HealthCheckLog>() {
+           @Override
+           public void write(JsonWriter out, HealthCheckLog value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public HealthCheckLog read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(end, exitCode, output, start);
-    }
+  /**
+   * Create an instance of HealthCheckLog given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of HealthCheckLog
+   * @throws IOException if the JSON string is invalid with respect to HealthCheckLog
+   */
+  public static HealthCheckLog fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, HealthCheckLog.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class HealthCheckLog {\n" +
-                "    end: " + toIndentedString(end) + "\n" +
-                "    exitCode: " + toIndentedString(exitCode) + "\n" +
-                "    output: " + toIndentedString(output) + "\n" +
-                "    start: " + toIndentedString(start) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of HealthCheckLog to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!HealthCheckLog.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'HealthCheckLog' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<HealthCheckLog> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(HealthCheckLog.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<HealthCheckLog>() {
-                @Override
-                public void write(JsonWriter out, HealthCheckLog value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public HealthCheckLog read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of HealthCheckLog to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

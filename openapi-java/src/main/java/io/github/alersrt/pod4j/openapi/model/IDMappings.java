@@ -13,249 +13,273 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-import jakarta.validation.Valid;
-
+import io.github.alersrt.pod4j.openapi.model.IDMap;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * IDMappings describe the GID and UID mappings
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class IDMappings {
-    public static final String SERIALIZED_NAME_GIDMAP = "gidmap";
-    public static final String SERIALIZED_NAME_UIDMAP = "uidmap";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class IDMappings implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("gidmap");
-        openapiFields.add("uidmap");
+  public static final String SERIALIZED_NAME_GIDMAP = "gidmap";
+  @SerializedName(SERIALIZED_NAME_GIDMAP)
+  private List<@Valid IDMap> gidmap = new ArrayList<>();
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_UIDMAP = "uidmap";
+  @SerializedName(SERIALIZED_NAME_UIDMAP)
+  private List<@Valid IDMap> uidmap = new ArrayList<>();
+
+  public IDMappings() {
+  }
+
+  public IDMappings gidmap(List<@Valid IDMap> gidmap) {
+    this.gidmap = gidmap;
+    return this;
+  }
+
+  public IDMappings addGidmapItem(IDMap gidmapItem) {
+    if (this.gidmap == null) {
+      this.gidmap = new ArrayList<>();
     }
+    this.gidmap.add(gidmapItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_GIDMAP)
-    private List<@Valid IDMap> gidmap = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_UIDMAP)
-    private List<@Valid IDMap> uidmap = new ArrayList<>();
+  /**
+   * Get gidmap
+   * @return gidmap
+   */
+  @jakarta.annotation.Nullable
+  @Valid
 
-    public IDMappings() {
+  public List<@Valid IDMap> getGidmap() {
+    return gidmap;
+  }
+
+  public void setGidmap(List<@Valid IDMap> gidmap) {
+    this.gidmap = gidmap;
+  }
+
+
+  public IDMappings uidmap(List<@Valid IDMap> uidmap) {
+    this.uidmap = uidmap;
+    return this;
+  }
+
+  public IDMappings addUidmapItem(IDMap uidmapItem) {
+    if (this.uidmap == null) {
+      this.uidmap = new ArrayList<>();
     }
+    this.uidmap.add(uidmapItem);
+    return this;
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to IDMappings
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!IDMappings.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in IDMappings is not found in the empty JSON string", IDMappings.openapiRequiredFields));
-            }
-        }
+  /**
+   * Get uidmap
+   * @return uidmap
+   */
+  @jakarta.annotation.Nullable
+  @Valid
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!IDMappings.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IDMappings` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  public List<@Valid IDMap> getUidmap() {
+    return uidmap;
+  }
+
+  public void setUidmap(List<@Valid IDMap> uidmap) {
+    this.uidmap = uidmap;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    IDMappings idMappings = (IDMappings) o;
+    return Objects.equals(this.gidmap, idMappings.gidmap) &&
+        Objects.equals(this.uidmap, idMappings.uidmap);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(gidmap, uidmap);
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class IDMappings {\n");
+    sb.append("    gidmap: ").append(toIndentedString(gidmap)).append("\n");
+    sb.append("    uidmap: ").append(toIndentedString(uidmap)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("gidmap");
+    openapiFields.add("uidmap");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to IDMappings
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!IDMappings.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in IDMappings is not found in the empty JSON string", IDMappings.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!IDMappings.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `IDMappings` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if (jsonObj.get("gidmap") != null && !jsonObj.get("gidmap").isJsonNull()) {
-            JsonArray jsonArraygidmap = jsonObj.getAsJsonArray("gidmap");
-            if (jsonArraygidmap != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("gidmap").isJsonArray()) {
-                    throw new IllegalArgumentException(String.format("Expected the field `gidmap` to be an array in the JSON string but got `%s`", jsonObj.get("gidmap").toString()));
-                }
+      if (jsonObj.get("gidmap") != null && !jsonObj.get("gidmap").isJsonNull()) {
+        JsonArray jsonArraygidmap = jsonObj.getAsJsonArray("gidmap");
+        if (jsonArraygidmap != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("gidmap").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `gidmap` to be an array in the JSON string but got `%s`", jsonObj.get("gidmap").toString()));
+          }
 
-                // validate the optional field `gidmap` (array)
-                for (int i = 0; i < jsonArraygidmap.size(); i++) {
-                    IDMap.validateJsonElement(jsonArraygidmap.get(i));
-                }
-            }
+          // validate the optional field `gidmap` (array)
+          for (int i = 0; i < jsonArraygidmap.size(); i++) {
+            IDMap.validateJsonElement(jsonArraygidmap.get(i));
+          };
         }
-        if (jsonObj.get("uidmap") != null && !jsonObj.get("uidmap").isJsonNull()) {
-            JsonArray jsonArrayuidmap = jsonObj.getAsJsonArray("uidmap");
-            if (jsonArrayuidmap != null) {
-                // ensure the json data is an array
-                if (!jsonObj.get("uidmap").isJsonArray()) {
-                    throw new IllegalArgumentException(String.format("Expected the field `uidmap` to be an array in the JSON string but got `%s`", jsonObj.get("uidmap").toString()));
-                }
+      }
+      if (jsonObj.get("uidmap") != null && !jsonObj.get("uidmap").isJsonNull()) {
+        JsonArray jsonArrayuidmap = jsonObj.getAsJsonArray("uidmap");
+        if (jsonArrayuidmap != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("uidmap").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `uidmap` to be an array in the JSON string but got `%s`", jsonObj.get("uidmap").toString()));
+          }
 
-                // validate the optional field `uidmap` (array)
-                for (int i = 0; i < jsonArrayuidmap.size(); i++) {
-                    IDMap.validateJsonElement(jsonArrayuidmap.get(i));
-                }
-            }
+          // validate the optional field `uidmap` (array)
+          for (int i = 0; i < jsonArrayuidmap.size(); i++) {
+            IDMap.validateJsonElement(jsonArrayuidmap.get(i));
+          };
         }
-    }
+      }
+  }
 
-    /**
-     * Create an instance of IDMappings given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of IDMappings
-     * @throws IOException if the JSON string is invalid with respect to IDMappings
-     */
-    public static IDMappings fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, IDMappings.class);
-    }
-
-    public IDMappings gidmap(List<@Valid IDMap> gidmap) {
-        this.gidmap = gidmap;
-        return this;
-    }
-
-    public IDMappings addGidmapItem(IDMap gidmapItem) {
-        if (this.gidmap == null) {
-            this.gidmap = new ArrayList<>();
-        }
-        this.gidmap.add(gidmapItem);
-        return this;
-    }
-
-    /**
-     * Get gidmap
-     *
-     * @return gidmap
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public List<@Valid IDMap> getGidmap() {
-        return gidmap;
-    }
-
-    public void setGidmap(List<@Valid IDMap> gidmap) {
-        this.gidmap = gidmap;
-    }
-
-    public IDMappings uidmap(List<@Valid IDMap> uidmap) {
-        this.uidmap = uidmap;
-        return this;
-    }
-
-    public IDMappings addUidmapItem(IDMap uidmapItem) {
-        if (this.uidmap == null) {
-            this.uidmap = new ArrayList<>();
-        }
-        this.uidmap.add(uidmapItem);
-        return this;
-    }
-
-    /**
-     * Get uidmap
-     *
-     * @return uidmap
-     */
-    @jakarta.annotation.Nullable
-    @Valid
-
-    public List<@Valid IDMap> getUidmap() {
-        return uidmap;
-    }
-
-    public void setUidmap(List<@Valid IDMap> uidmap) {
-        this.uidmap = uidmap;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        IDMappings idMappings = (IDMappings) o;
-        return Objects.equals(this.gidmap, idMappings.gidmap) &&
-                Objects.equals(this.uidmap, idMappings.uidmap);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!IDMappings.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'IDMappings' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<IDMappings> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(IDMappings.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<IDMappings>() {
+           @Override
+           public void write(JsonWriter out, IDMappings value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public IDMappings read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(gidmap, uidmap);
-    }
+  /**
+   * Create an instance of IDMappings given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of IDMappings
+   * @throws IOException if the JSON string is invalid with respect to IDMappings
+   */
+  public static IDMappings fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, IDMappings.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class IDMappings {\n" +
-                "    gidmap: " + toIndentedString(gidmap) + "\n" +
-                "    uidmap: " + toIndentedString(uidmap) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of IDMappings to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!IDMappings.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'IDMappings' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<IDMappings> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(IDMappings.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<IDMappings>() {
-                @Override
-                public void write(JsonWriter out, IDMappings value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public IDMappings read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of IDMappings to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

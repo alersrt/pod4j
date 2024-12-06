@@ -44,4 +44,8 @@ HostInfo describes the libpod host
 |**variant** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

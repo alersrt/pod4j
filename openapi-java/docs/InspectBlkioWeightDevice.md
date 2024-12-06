@@ -12,4 +12,8 @@ InspectBlkioWeightDevice holds information about the relative weight of an indiv
 |**weight** | **Integer** | Weight is the relative weight the scheduler will use when scheduling I/O. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

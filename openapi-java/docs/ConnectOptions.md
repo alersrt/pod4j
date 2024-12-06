@@ -12,4 +12,8 @@ ConnectOptions represents the data to be used to connect a container to the netw
 |**endpointConfig** | [**EndpointSettings**](EndpointSettings.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

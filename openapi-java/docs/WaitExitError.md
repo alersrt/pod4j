@@ -11,4 +11,8 @@ WaitExitError container waiting error, if any
 |**message** | **String** | Details of an error |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

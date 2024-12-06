@@ -14,4 +14,8 @@ ImageVolume is a volume based on a container image.  The container image is firs
 |**subPath** | **String** | SubPath mounts a particular path within the image. If empty, the whole image is mounted. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

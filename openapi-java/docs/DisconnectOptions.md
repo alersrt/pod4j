@@ -12,4 +12,8 @@ DisconnectOptions represents the data to be used to disconnect a container from 
 |**force** | **Boolean** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -13,199 +13,224 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * PluginConfigUser plugin config user
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class PluginConfigUser {
-    public static final String SERIALIZED_NAME_G_I_D = "GID";
-    public static final String SERIALIZED_NAME_U_I_D = "UID";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class PluginConfigUser implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("GID");
-        openapiFields.add("UID");
+  public static final String SERIALIZED_NAME_G_I_D = "GID";
+  @SerializedName(SERIALIZED_NAME_G_I_D)
+  private Integer GID;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_U_I_D = "UID";
+  @SerializedName(SERIALIZED_NAME_U_I_D)
+  private Integer UID;
+
+  public PluginConfigUser() {
+  }
+
+  public PluginConfigUser GID(Integer GID) {
+    this.GID = GID;
+    return this;
+  }
+
+  /**
+   * g ID
+   * @return GID
+   */
+  @jakarta.annotation.Nullable
+
+  public Integer getGID() {
+    return GID;
+  }
+
+  public void setGID(Integer GID) {
+    this.GID = GID;
+  }
+
+
+  public PluginConfigUser UID(Integer UID) {
+    this.UID = UID;
+    return this;
+  }
+
+  /**
+   * UID
+   * @return UID
+   */
+  @jakarta.annotation.Nullable
+
+  public Integer getUID() {
+    return UID;
+  }
+
+  public void setUID(Integer UID) {
+    this.UID = UID;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_G_I_D)
-    private Integer GID;
-    @SerializedName(SERIALIZED_NAME_U_I_D)
-    private Integer UID;
-
-    public PluginConfigUser() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    PluginConfigUser pluginConfigUser = (PluginConfigUser) o;
+    return Objects.equals(this.GID, pluginConfigUser.GID) &&
+        Objects.equals(this.UID, pluginConfigUser.UID);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to PluginConfigUser
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!PluginConfigUser.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in PluginConfigUser is not found in the empty JSON string", PluginConfigUser.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(GID, UID);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!PluginConfigUser.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginConfigUser` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class PluginConfigUser {\n");
+    sb.append("    GID: ").append(toIndentedString(GID)).append("\n");
+    sb.append("    UID: ").append(toIndentedString(UID)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("GID");
+    openapiFields.add("UID");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PluginConfigUser
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PluginConfigUser.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PluginConfigUser is not found in the empty JSON string", PluginConfigUser.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PluginConfigUser.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PluginConfigUser` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-    }
+  }
 
-    /**
-     * Create an instance of PluginConfigUser given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PluginConfigUser
-     * @throws IOException if the JSON string is invalid with respect to PluginConfigUser
-     */
-    public static PluginConfigUser fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, PluginConfigUser.class);
-    }
-
-    public PluginConfigUser GID(Integer GID) {
-        this.GID = GID;
-        return this;
-    }
-
-    /**
-     * g ID
-     *
-     * @return GID
-     */
-    @jakarta.annotation.Nullable
-
-    public Integer getGID() {
-        return GID;
-    }
-
-    public void setGID(Integer GID) {
-        this.GID = GID;
-    }
-
-    public PluginConfigUser UID(Integer UID) {
-        this.UID = UID;
-        return this;
-    }
-
-    /**
-     * UID
-     *
-     * @return UID
-     */
-    @jakarta.annotation.Nullable
-
-    public Integer getUID() {
-        return UID;
-    }
-
-    public void setUID(Integer UID) {
-        this.UID = UID;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PluginConfigUser pluginConfigUser = (PluginConfigUser) o;
-        return Objects.equals(this.GID, pluginConfigUser.GID) &&
-                Objects.equals(this.UID, pluginConfigUser.UID);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PluginConfigUser.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PluginConfigUser' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PluginConfigUser> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PluginConfigUser.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PluginConfigUser>() {
+           @Override
+           public void write(JsonWriter out, PluginConfigUser value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PluginConfigUser read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(GID, UID);
-    }
+  /**
+   * Create an instance of PluginConfigUser given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PluginConfigUser
+   * @throws IOException if the JSON string is invalid with respect to PluginConfigUser
+   */
+  public static PluginConfigUser fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PluginConfigUser.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class PluginConfigUser {\n" +
-                "    GID: " + toIndentedString(GID) + "\n" +
-                "    UID: " + toIndentedString(UID) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of PluginConfigUser to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!PluginConfigUser.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'PluginConfigUser' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<PluginConfigUser> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(PluginConfigUser.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<PluginConfigUser>() {
-                @Override
-                public void write(JsonWriter out, PluginConfigUser value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public PluginConfigUser read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of PluginConfigUser to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

@@ -42,4 +42,8 @@ Those attributes can be updated at runtime.
 |**ulimits** | [**List&lt;Ulimit&gt;**](Ulimit.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

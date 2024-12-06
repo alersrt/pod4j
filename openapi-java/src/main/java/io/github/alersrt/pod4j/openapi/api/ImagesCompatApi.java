@@ -13,22 +13,31 @@
 
 package io.github.alersrt.pod4j.openapi.api;
 
-import com.google.gson.reflect.TypeToken;
 import io.github.alersrt.pod4j.openapi.ApiCallback;
 import io.github.alersrt.pod4j.openapi.ApiClient;
 import io.github.alersrt.pod4j.openapi.ApiException;
 import io.github.alersrt.pod4j.openapi.ApiResponse;
 import io.github.alersrt.pod4j.openapi.Configuration;
 import io.github.alersrt.pod4j.openapi.Pair;
+import io.github.alersrt.pod4j.openapi.ProgressRequestBody;
+import io.github.alersrt.pod4j.openapi.ProgressResponseBody;
+
+import com.google.gson.reflect.TypeToken;
+
+import java.io.IOException;
+
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import io.github.alersrt.pod4j.openapi.model.ErrorModel;
+import java.io.File;
 import io.github.alersrt.pod4j.openapi.model.HistoryResponse;
 import io.github.alersrt.pod4j.openapi.model.ImageBuild200Response;
 import io.github.alersrt.pod4j.openapi.model.ImageDelete200ResponseInner;
 import io.github.alersrt.pod4j.openapi.model.ImageInspect;
 import io.github.alersrt.pod4j.openapi.model.ImageSearch200Response;
 import io.github.alersrt.pod4j.openapi.model.Summary;
-import jakarta.validation.constraints.NotNull;
 
-import java.io.File;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,58 +81,15 @@ public class ImagesCompatApi {
         this.localCustomBaseUrl = customBaseUrl;
     }
 
-    /**
-     * Build call for imageBuild
-     *
-     * @param contentType     (optional, default to application/x-tar)
-     * @param xRegistryConfig (optional)
-     * @param dockerfile      Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
-     * @param t               A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
-     * @param extrahosts      TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
-     * @param remote          A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
-     * @param retry           Number of times to retry in case of failure when performing push/pull.  (optional, default to 3)
-     * @param retryDelay      Delay between retries in case of push/pull failures.  (optional, default to 2s)
-     * @param q               Suppress verbose build output  (optional, default to false)
-     * @param compatvolumes   Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
-     * @param nocache         Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
-     * @param cachefrom       JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
-     * @param pull            Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
-     * @param rm              Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
-     * @param forcerm         Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
-     * @param memory          Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
-     * @param memswap         MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
-     * @param cpushares       CPUShares (relative weight (As of version 1.xx)  (optional)
-     * @param cpusetcpus      CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
-     * @param cpuperiod       CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
-     * @param cpuquota        CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
-     * @param buildargs       JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
-     * @param shmsize         ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
-     * @param squash          Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
-     * @param labels          JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
-     * @param networkmode     Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
-     * @param platform        Platform format os[/arch[/variant]] Can be comma separated list for multi arch builds. (As of version 1.xx)  (optional)
-     * @param target          Target build stage (As of version 1.xx)  (optional)
-     * @param outputs         output configuration TBD (As of version 1.xx)  (optional)
-     * @param inputStream     A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz.  (optional)
-     * @param _callback       Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageBuildCall(String contentType, String xRegistryConfig, String dockerfile, String t, String extrahosts, String remote, Integer retry, String retryDelay, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, String networkmode, String platform, String target, String outputs, File inputStream, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call imageBuildCall(String contentType, String xRegistryConfig, String dockerfile, String t, String extrahosts, String remote, Integer retry, String retryDelay, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, String networkmode, String platform, String target, String outputs, File inputStream, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -257,7 +223,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -265,15 +231,15 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -283,187 +249,448 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Create image
-     * Build an image from the given Dockerfile(s)
-     *
-     * @param contentType     (optional, default to application/x-tar)
-     * @param xRegistryConfig (optional)
-     * @param dockerfile      Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
-     * @param t               A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
-     * @param extrahosts      TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
-     * @param remote          A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
-     * @param retry           Number of times to retry in case of failure when performing push/pull.  (optional, default to 3)
-     * @param retryDelay      Delay between retries in case of push/pull failures.  (optional, default to 2s)
-     * @param q               Suppress verbose build output  (optional, default to false)
-     * @param compatvolumes   Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
-     * @param nocache         Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
-     * @param cachefrom       JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
-     * @param pull            Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
-     * @param rm              Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
-     * @param forcerm         Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
-     * @param memory          Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
-     * @param memswap         MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
-     * @param cpushares       CPUShares (relative weight (As of version 1.xx)  (optional)
-     * @param cpusetcpus      CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
-     * @param cpuperiod       CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
-     * @param cpuquota        CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
-     * @param buildargs       JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
-     * @param shmsize         ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
-     * @param squash          Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
-     * @param labels          JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
-     * @param networkmode     Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
-     * @param platform        Platform format os[/arch[/variant]] Can be comma separated list for multi arch builds. (As of version 1.xx)  (optional)
-     * @param target          Target build stage (As of version 1.xx)  (optional)
-     * @param outputs         output configuration TBD (As of version 1.xx)  (optional)
-     * @param inputStream     A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz.  (optional)
-     * @return ImageBuild200Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ImageBuild200Response imageBuild(String contentType, String xRegistryConfig, String dockerfile, String t, String extrahosts, String remote, Integer retry, String retryDelay, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, String networkmode, String platform, String target, String outputs, File inputStream) throws ApiException {
-        ApiResponse<ImageBuild200Response> localVarResp = imageBuildWithHttpInfo(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Create image
-     * Build an image from the given Dockerfile(s)
-     *
-     * @param contentType     (optional, default to application/x-tar)
-     * @param xRegistryConfig (optional)
-     * @param dockerfile      Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
-     * @param t               A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
-     * @param extrahosts      TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
-     * @param remote          A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
-     * @param retry           Number of times to retry in case of failure when performing push/pull.  (optional, default to 3)
-     * @param retryDelay      Delay between retries in case of push/pull failures.  (optional, default to 2s)
-     * @param q               Suppress verbose build output  (optional, default to false)
-     * @param compatvolumes   Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
-     * @param nocache         Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
-     * @param cachefrom       JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
-     * @param pull            Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
-     * @param rm              Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
-     * @param forcerm         Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
-     * @param memory          Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
-     * @param memswap         MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
-     * @param cpushares       CPUShares (relative weight (As of version 1.xx)  (optional)
-     * @param cpusetcpus      CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
-     * @param cpuperiod       CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
-     * @param cpuquota        CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
-     * @param buildargs       JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
-     * @param shmsize         ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
-     * @param squash          Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
-     * @param labels          JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
-     * @param networkmode     Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
-     * @param platform        Platform format os[/arch[/variant]] Can be comma separated list for multi arch builds. (As of version 1.xx)  (optional)
-     * @param target          Target build stage (As of version 1.xx)  (optional)
-     * @param outputs         output configuration TBD (As of version 1.xx)  (optional)
-     * @param inputStream     A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz.  (optional)
-     * @return ApiResponse&lt;ImageBuild200Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<ImageBuild200Response> imageBuildWithHttpInfo(String contentType, String xRegistryConfig, String dockerfile, String t, String extrahosts, String remote, Integer retry, String retryDelay, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, String networkmode, String platform, String target, String outputs, File inputStream) throws ApiException {
+    private ApiResponse<ImageBuild200Response> imageBuildWithHttpInfo(String contentType, String xRegistryConfig, String dockerfile, String t, String extrahosts, String remote, Integer retry, String retryDelay, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, String networkmode, String platform, String target, String outputs, File inputStream) throws ApiException {
         okhttp3.Call localVarCall = imageBuildValidateBeforeCall(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream, null);
-        Type localVarReturnType = new TypeToken<ImageBuild200Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ImageBuild200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Create image (asynchronously)
-     * Build an image from the given Dockerfile(s)
-     *
-     * @param contentType     (optional, default to application/x-tar)
-     * @param xRegistryConfig (optional)
-     * @param dockerfile      Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
-     * @param t               A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
-     * @param extrahosts      TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
-     * @param remote          A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
-     * @param retry           Number of times to retry in case of failure when performing push/pull.  (optional, default to 3)
-     * @param retryDelay      Delay between retries in case of push/pull failures.  (optional, default to 2s)
-     * @param q               Suppress verbose build output  (optional, default to false)
-     * @param compatvolumes   Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
-     * @param nocache         Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
-     * @param cachefrom       JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
-     * @param pull            Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
-     * @param rm              Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
-     * @param forcerm         Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
-     * @param memory          Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
-     * @param memswap         MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
-     * @param cpushares       CPUShares (relative weight (As of version 1.xx)  (optional)
-     * @param cpusetcpus      CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
-     * @param cpuperiod       CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
-     * @param cpuquota        CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
-     * @param buildargs       JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
-     * @param shmsize         ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
-     * @param squash          Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
-     * @param labels          JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
-     * @param networkmode     Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
-     * @param platform        Platform format os[/arch[/variant]] Can be comma separated list for multi arch builds. (As of version 1.xx)  (optional)
-     * @param target          Target build stage (As of version 1.xx)  (optional)
-     * @param outputs         output configuration TBD (As of version 1.xx)  (optional)
-     * @param inputStream     A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz.  (optional)
-     * @param _callback       The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageBuildAsync(String contentType, String xRegistryConfig, String dockerfile, String t, String extrahosts, String remote, Integer retry, String retryDelay, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, String networkmode, String platform, String target, String outputs, File inputStream, final ApiCallback<ImageBuild200Response> _callback) throws ApiException {
+    private okhttp3.Call imageBuildAsync(String contentType, String xRegistryConfig, String dockerfile, String t, String extrahosts, String remote, Integer retry, String retryDelay, Boolean q, Boolean compatvolumes, Boolean nocache, String cachefrom, Boolean pull, Boolean rm, Boolean forcerm, Integer memory, Integer memswap, Integer cpushares, String cpusetcpus, Integer cpuperiod, Integer cpuquota, String buildargs, Integer shmsize, Boolean squash, String labels, String networkmode, String platform, String target, String outputs, File inputStream, final ApiCallback<ImageBuild200Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageBuildValidateBeforeCall(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream, _callback);
-        Type localVarReturnType = new TypeToken<ImageBuild200Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ImageBuild200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageBuildRequest {
+        private String contentType;
+        private String xRegistryConfig;
+        private String dockerfile;
+        private String t;
+        private String extrahosts;
+        private String remote;
+        private Integer retry;
+        private String retryDelay;
+        private Boolean q;
+        private Boolean compatvolumes;
+        private Boolean nocache;
+        private String cachefrom;
+        private Boolean pull;
+        private Boolean rm;
+        private Boolean forcerm;
+        private Integer memory;
+        private Integer memswap;
+        private Integer cpushares;
+        private String cpusetcpus;
+        private Integer cpuperiod;
+        private Integer cpuquota;
+        private String buildargs;
+        private Integer shmsize;
+        private Boolean squash;
+        private String labels;
+        private String networkmode;
+        private String platform;
+        private String target;
+        private String outputs;
+        private File inputStream;
+
+        private APIimageBuildRequest() {
+        }
+
+        /**
+         * Set contentType
+         * @param contentType  (optional, default to application/x-tar)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest contentType(String contentType) {
+            this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * Set xRegistryConfig
+         * @param xRegistryConfig  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest xRegistryConfig(String xRegistryConfig) {
+            this.xRegistryConfig = xRegistryConfig;
+            return this;
+        }
+
+        /**
+         * Set dockerfile
+         * @param dockerfile Path within the build context to the &#x60;Dockerfile&#x60;. This is ignored if remote is specified and points to an external &#x60;Dockerfile&#x60;.  (optional, default to Dockerfile)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest dockerfile(String dockerfile) {
+            this.dockerfile = dockerfile;
+            return this;
+        }
+
+        /**
+         * Set t
+         * @param t A name and optional tag to apply to the image in the &#x60;name:tag&#x60; format. If you omit the tag, the default latest value is assumed. You can provide several t parameters. (optional, default to latest)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest t(String t) {
+            this.t = t;
+            return this;
+        }
+
+        /**
+         * Set extrahosts
+         * @param extrahosts TBD Extra hosts to add to /etc/hosts (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest extrahosts(String extrahosts) {
+            this.extrahosts = extrahosts;
+            return this;
+        }
+
+        /**
+         * Set remote
+         * @param remote A Git repository URI or HTTP/HTTPS context URI. If the URI points to a single text file, the file’s contents are placed into a file called Dockerfile and the image is built from that file. If the URI points to a tarball, the file is downloaded by the daemon and the contents therein used as the context for the build. If the URI points to a tarball and the dockerfile parameter is also specified, there must be a file with the corresponding path inside the tarball. (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest remote(String remote) {
+            this.remote = remote;
+            return this;
+        }
+
+        /**
+         * Set retry
+         * @param retry Number of times to retry in case of failure when performing push/pull.  (optional, default to 3)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest retry(Integer retry) {
+            this.retry = retry;
+            return this;
+        }
+
+        /**
+         * Set retryDelay
+         * @param retryDelay Delay between retries in case of push/pull failures.  (optional, default to 2s)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest retryDelay(String retryDelay) {
+            this.retryDelay = retryDelay;
+            return this;
+        }
+
+        /**
+         * Set q
+         * @param q Suppress verbose build output  (optional, default to false)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest q(Boolean q) {
+            this.q = q;
+            return this;
+        }
+
+        /**
+         * Set compatvolumes
+         * @param compatvolumes Contents of base images to be modified on ADD or COPY only (As of Podman version v5.2)  (optional, default to false)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest compatvolumes(Boolean compatvolumes) {
+            this.compatvolumes = compatvolumes;
+            return this;
+        }
+
+        /**
+         * Set nocache
+         * @param nocache Do not use the cache when building the image (As of version 1.xx)  (optional, default to false)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest nocache(Boolean nocache) {
+            this.nocache = nocache;
+            return this;
+        }
+
+        /**
+         * Set cachefrom
+         * @param cachefrom JSON array of images used to build cache resolution (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest cachefrom(String cachefrom) {
+            this.cachefrom = cachefrom;
+            return this;
+        }
+
+        /**
+         * Set pull
+         * @param pull Attempt to pull the image even if an older image exists locally (As of version 1.xx)  (optional, default to false)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest pull(Boolean pull) {
+            this.pull = pull;
+            return this;
+        }
+
+        /**
+         * Set rm
+         * @param rm Remove intermediate containers after a successful build (As of version 1.xx)  (optional, default to true)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest rm(Boolean rm) {
+            this.rm = rm;
+            return this;
+        }
+
+        /**
+         * Set forcerm
+         * @param forcerm Always remove intermediate containers, even upon failure (As of version 1.xx)  (optional, default to false)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest forcerm(Boolean forcerm) {
+            this.forcerm = forcerm;
+            return this;
+        }
+
+        /**
+         * Set memory
+         * @param memory Memory is the upper limit (in bytes) on how much memory running containers can use (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest memory(Integer memory) {
+            this.memory = memory;
+            return this;
+        }
+
+        /**
+         * Set memswap
+         * @param memswap MemorySwap limits the amount of memory and swap together (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest memswap(Integer memswap) {
+            this.memswap = memswap;
+            return this;
+        }
+
+        /**
+         * Set cpushares
+         * @param cpushares CPUShares (relative weight (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest cpushares(Integer cpushares) {
+            this.cpushares = cpushares;
+            return this;
+        }
+
+        /**
+         * Set cpusetcpus
+         * @param cpusetcpus CPUSetCPUs in which to allow execution (0-3, 0,1) (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest cpusetcpus(String cpusetcpus) {
+            this.cpusetcpus = cpusetcpus;
+            return this;
+        }
+
+        /**
+         * Set cpuperiod
+         * @param cpuperiod CPUPeriod limits the CPU CFS (Completely Fair Scheduler) period (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest cpuperiod(Integer cpuperiod) {
+            this.cpuperiod = cpuperiod;
+            return this;
+        }
+
+        /**
+         * Set cpuquota
+         * @param cpuquota CPUQuota limits the CPU CFS (Completely Fair Scheduler) quota (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest cpuquota(Integer cpuquota) {
+            this.cpuquota = cpuquota;
+            return this;
+        }
+
+        /**
+         * Set buildargs
+         * @param buildargs JSON map of string pairs denoting build-time variables. For example, the build argument &#x60;Foo&#x60; with the value of &#x60;bar&#x60; would be encoded in JSON as &#x60;[\&quot;Foo\&quot;:\&quot;bar\&quot;]&#x60;.  For example, buildargs&#x3D;{\&quot;Foo\&quot;:\&quot;bar\&quot;}.  Note(s): * This should not be used to pass secrets. * The value of buildargs should be URI component encoded before being passed to the API.  (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest buildargs(String buildargs) {
+            this.buildargs = buildargs;
+            return this;
+        }
+
+        /**
+         * Set shmsize
+         * @param shmsize ShmSize is the \&quot;size\&quot; value to use when mounting an shmfs on the container&#39;s /dev/shm directory. Default is 64MB (As of version 1.xx)  (optional, default to 67108864)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest shmsize(Integer shmsize) {
+            this.shmsize = shmsize;
+            return this;
+        }
+
+        /**
+         * Set squash
+         * @param squash Silently ignored. Squash the resulting images layers into a single layer (As of version 1.xx)  (optional, default to false)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest squash(Boolean squash) {
+            this.squash = squash;
+            return this;
+        }
+
+        /**
+         * Set labels
+         * @param labels JSON map of key, value pairs to set as labels on the new image (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest labels(String labels) {
+            this.labels = labels;
+            return this;
+        }
+
+        /**
+         * Set networkmode
+         * @param networkmode Sets the networking mode for the run commands during build. Supported standard values are:   * &#x60;bridge&#x60; limited to containers within a single host, port mapping required for external access   * &#x60;host&#x60; no isolation between host and containers on this network   * &#x60;none&#x60; disable all networking for this container   * container:&lt;nameOrID&gt; share networking with given container   ---All other values are assumed to be a custom network&#39;s name (As of version 1.xx)  (optional, default to bridge)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest networkmode(String networkmode) {
+            this.networkmode = networkmode;
+            return this;
+        }
+
+        /**
+         * Set platform
+         * @param platform Platform format os[/arch[/variant]] Can be comma separated list for multi arch builds. (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest platform(String platform) {
+            this.platform = platform;
+            return this;
+        }
+
+        /**
+         * Set target
+         * @param target Target build stage (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest target(String target) {
+            this.target = target;
+            return this;
+        }
+
+        /**
+         * Set outputs
+         * @param outputs output configuration TBD (As of version 1.xx)  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest outputs(String outputs) {
+            this.outputs = outputs;
+            return this;
+        }
+
+        /**
+         * Set inputStream
+         * @param inputStream A tar archive compressed with one of the following algorithms: identity (no compression), gzip, bzip2, xz.  (optional)
+         * @return APIimageBuildRequest
+         */
+        public APIimageBuildRequest inputStream(File inputStream) {
+            this.inputStream = inputStream;
+            return this;
+        }
+
+        /**
+         * Build call for imageBuild
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageBuildCall(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream, _callback);
+        }
+
+        /**
+         * Execute imageBuild request
+         * @return ImageBuild200Response
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ImageBuild200Response execute() throws ApiException {
+            ApiResponse<ImageBuild200Response> localVarResp = imageBuildWithHttpInfo(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageBuild request with HTTP info returned
+         * @return ApiResponse&lt;ImageBuild200Response&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ImageBuild200Response> executeWithHttpInfo() throws ApiException {
+            return imageBuildWithHttpInfo(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream);
+        }
+
+        /**
+         * Execute imageBuild request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ImageBuild200Response> _callback) throws ApiException {
+            return imageBuildAsync(contentType, xRegistryConfig, dockerfile, t, extrahosts, remote, retry, retryDelay, q, compatvolumes, nocache, cachefrom, pull, rm, forcerm, memory, memswap, cpushares, cpusetcpus, cpuperiod, cpuquota, buildargs, shmsize, squash, labels, networkmode, platform, target, outputs, inputStream, _callback);
+        }
+    }
+
     /**
-     * Build call for imageCreate
-     *
-     * @param xRegistryAuth A base64-encoded auth configuration. (optional)
-     * @param fromImage     Name of the image to pull. The name may include a tag or digest. This parameter may only be used when pulling an image. The pull is cancelled if the HTTP connection is closed. (optional)
-     * @param fromSrc       Source to import. The value may be a URL from which the image can be retrieved or - to read the image from the request body. This parameter may only be used when importing an image (optional)
-     * @param repo          Repository name given to an image when it is imported. The repo may include a tag. This parameter may only be used when importing an image. (optional)
-     * @param tag           Tag or digest. If empty when pulling an image, this causes all tags for the given image to be pulled. (optional)
-     * @param message       Set commit message for imported image. (optional)
-     * @param platform      Platform in the format os[/arch[/variant]] (optional)
-     * @param inputImage    Image content if fromSrc parameter was used (optional)
-     * @param _callback     Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Create image
+     * Build an image from the given Dockerfile(s)
+     * @return APIimageBuildRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK (As of version 1.xx) </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageCreateCall(String xRegistryAuth, String fromImage, String fromSrc, String repo, String tag, String message, String platform, File inputImage, final ApiCallback _callback) throws ApiException {
+    public APIimageBuildRequest imageBuild() {
+        return new APIimageBuildRequest();
+    }
+    private okhttp3.Call imageCreateCall(String xRegistryAuth, String fromImage, String fromSrc, String repo, String tag, String message, String platform, File inputImage, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -509,7 +736,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -517,15 +744,15 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "text/plain",
-                "application/octet-stream"
+            "text/plain",
+            "application/octet-stream"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -535,117 +762,206 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Create an image
-     * Create an image by either pulling it from a registry or importing it.
-     *
-     * @param xRegistryAuth A base64-encoded auth configuration. (optional)
-     * @param fromImage     Name of the image to pull. The name may include a tag or digest. This parameter may only be used when pulling an image. The pull is cancelled if the HTTP connection is closed. (optional)
-     * @param fromSrc       Source to import. The value may be a URL from which the image can be retrieved or - to read the image from the request body. This parameter may only be used when importing an image (optional)
-     * @param repo          Repository name given to an image when it is imported. The repo may include a tag. This parameter may only be used when importing an image. (optional)
-     * @param tag           Tag or digest. If empty when pulling an image, this causes all tags for the given image to be pulled. (optional)
-     * @param message       Set commit message for imported image. (optional)
-     * @param platform      Platform in the format os[/arch[/variant]] (optional)
-     * @param inputImage    Image content if fromSrc parameter was used (optional)
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public File imageCreate(String xRegistryAuth, String fromImage, String fromSrc, String repo, String tag, String message, String platform, File inputImage) throws ApiException {
-        ApiResponse<File> localVarResp = imageCreateWithHttpInfo(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Create an image
-     * Create an image by either pulling it from a registry or importing it.
-     *
-     * @param xRegistryAuth A base64-encoded auth configuration. (optional)
-     * @param fromImage     Name of the image to pull. The name may include a tag or digest. This parameter may only be used when pulling an image. The pull is cancelled if the HTTP connection is closed. (optional)
-     * @param fromSrc       Source to import. The value may be a URL from which the image can be retrieved or - to read the image from the request body. This parameter may only be used when importing an image (optional)
-     * @param repo          Repository name given to an image when it is imported. The repo may include a tag. This parameter may only be used when importing an image. (optional)
-     * @param tag           Tag or digest. If empty when pulling an image, this causes all tags for the given image to be pulled. (optional)
-     * @param message       Set commit message for imported image. (optional)
-     * @param platform      Platform in the format os[/arch[/variant]] (optional)
-     * @param inputImage    Image content if fromSrc parameter was used (optional)
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<File> imageCreateWithHttpInfo(String xRegistryAuth, String fromImage, String fromSrc, String repo, String tag, String message, String platform, File inputImage) throws ApiException {
+    private ApiResponse<File> imageCreateWithHttpInfo(String xRegistryAuth, String fromImage, String fromSrc, String repo, String tag, String message, String platform, File inputImage) throws ApiException {
         okhttp3.Call localVarCall = imageCreateValidateBeforeCall(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage, null);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Create an image (asynchronously)
-     * Create an image by either pulling it from a registry or importing it.
-     *
-     * @param xRegistryAuth A base64-encoded auth configuration. (optional)
-     * @param fromImage     Name of the image to pull. The name may include a tag or digest. This parameter may only be used when pulling an image. The pull is cancelled if the HTTP connection is closed. (optional)
-     * @param fromSrc       Source to import. The value may be a URL from which the image can be retrieved or - to read the image from the request body. This parameter may only be used when importing an image (optional)
-     * @param repo          Repository name given to an image when it is imported. The repo may include a tag. This parameter may only be used when importing an image. (optional)
-     * @param tag           Tag or digest. If empty when pulling an image, this causes all tags for the given image to be pulled. (optional)
-     * @param message       Set commit message for imported image. (optional)
-     * @param platform      Platform in the format os[/arch[/variant]] (optional)
-     * @param inputImage    Image content if fromSrc parameter was used (optional)
-     * @param _callback     The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageCreateAsync(String xRegistryAuth, String fromImage, String fromSrc, String repo, String tag, String message, String platform, File inputImage, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call imageCreateAsync(String xRegistryAuth, String fromImage, String fromSrc, String repo, String tag, String message, String platform, File inputImage, final ApiCallback<File> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageCreateValidateBeforeCall(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage, _callback);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageCreateRequest {
+        private String xRegistryAuth;
+        private String fromImage;
+        private String fromSrc;
+        private String repo;
+        private String tag;
+        private String message;
+        private String platform;
+        private File inputImage;
+
+        private APIimageCreateRequest() {
+        }
+
+        /**
+         * Set xRegistryAuth
+         * @param xRegistryAuth A base64-encoded auth configuration. (optional)
+         * @return APIimageCreateRequest
+         */
+        public APIimageCreateRequest xRegistryAuth(String xRegistryAuth) {
+            this.xRegistryAuth = xRegistryAuth;
+            return this;
+        }
+
+        /**
+         * Set fromImage
+         * @param fromImage Name of the image to pull. The name may include a tag or digest. This parameter may only be used when pulling an image. The pull is cancelled if the HTTP connection is closed. (optional)
+         * @return APIimageCreateRequest
+         */
+        public APIimageCreateRequest fromImage(String fromImage) {
+            this.fromImage = fromImage;
+            return this;
+        }
+
+        /**
+         * Set fromSrc
+         * @param fromSrc Source to import. The value may be a URL from which the image can be retrieved or - to read the image from the request body. This parameter may only be used when importing an image (optional)
+         * @return APIimageCreateRequest
+         */
+        public APIimageCreateRequest fromSrc(String fromSrc) {
+            this.fromSrc = fromSrc;
+            return this;
+        }
+
+        /**
+         * Set repo
+         * @param repo Repository name given to an image when it is imported. The repo may include a tag. This parameter may only be used when importing an image. (optional)
+         * @return APIimageCreateRequest
+         */
+        public APIimageCreateRequest repo(String repo) {
+            this.repo = repo;
+            return this;
+        }
+
+        /**
+         * Set tag
+         * @param tag Tag or digest. If empty when pulling an image, this causes all tags for the given image to be pulled. (optional)
+         * @return APIimageCreateRequest
+         */
+        public APIimageCreateRequest tag(String tag) {
+            this.tag = tag;
+            return this;
+        }
+
+        /**
+         * Set message
+         * @param message Set commit message for imported image. (optional)
+         * @return APIimageCreateRequest
+         */
+        public APIimageCreateRequest message(String message) {
+            this.message = message;
+            return this;
+        }
+
+        /**
+         * Set platform
+         * @param platform Platform in the format os[/arch[/variant]] (optional)
+         * @return APIimageCreateRequest
+         */
+        public APIimageCreateRequest platform(String platform) {
+            this.platform = platform;
+            return this;
+        }
+
+        /**
+         * Set inputImage
+         * @param inputImage Image content if fromSrc parameter was used (optional)
+         * @return APIimageCreateRequest
+         */
+        public APIimageCreateRequest inputImage(File inputImage) {
+            this.inputImage = inputImage;
+            return this;
+        }
+
+        /**
+         * Build call for imageCreate
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageCreateCall(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage, _callback);
+        }
+
+        /**
+         * Execute imageCreate request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = imageCreateWithHttpInfo(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageCreate request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return imageCreateWithHttpInfo(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage);
+        }
+
+        /**
+         * Execute imageCreate request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return imageCreateAsync(xRegistryAuth, fromImage, fromSrc, repo, tag, message, platform, inputImage, _callback);
+        }
+    }
+
     /**
-     * Build call for imageDelete
-     *
-     * @param name      name or ID of image to delete (required)
-     * @param force     remove the image even if used by containers or has other tags (optional)
-     * @param noprune   do not remove dangling parent images (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Create an image
+     * Create an image by either pulling it from a registry or importing it.
+     * @return APIimageCreateRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageDeleteCall(String name, Boolean force, Boolean noprune, final ApiCallback _callback) throws ApiException {
+    public APIimageCreateRequest imageCreate() {
+        return new APIimageCreateRequest();
+    }
+    private okhttp3.Call imageDeleteCall(String name, Boolean force, Boolean noprune, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -655,7 +971,7 @@ public class ImagesCompatApi {
 
         // create path and map variables
         String localVarPath = "/images/{name}"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -672,7 +988,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -686,7 +1002,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -701,101 +1017,148 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Remove Image
-     * Delete an image from local storage
-     *
-     * @param name    name or ID of image to delete (required)
-     * @param force   remove the image even if used by containers or has other tags (optional)
-     * @param noprune do not remove dangling parent images (optional)
-     * @return List&lt;ImageDelete200ResponseInner&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<ImageDelete200ResponseInner> imageDelete(String name, Boolean force, Boolean noprune) throws ApiException {
-        ApiResponse<List<ImageDelete200ResponseInner>> localVarResp = imageDeleteWithHttpInfo(name, force, noprune);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Remove Image
-     * Delete an image from local storage
-     *
-     * @param name    name or ID of image to delete (required)
-     * @param force   remove the image even if used by containers or has other tags (optional)
-     * @param noprune do not remove dangling parent images (optional)
-     * @return ApiResponse&lt;List&lt;ImageDelete200ResponseInner&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<ImageDelete200ResponseInner>> imageDeleteWithHttpInfo(@NotNull String name, Boolean force, Boolean noprune) throws ApiException {
+    private ApiResponse<List<ImageDelete200ResponseInner>> imageDeleteWithHttpInfo( @NotNull String name, Boolean force, Boolean noprune) throws ApiException {
         okhttp3.Call localVarCall = imageDeleteValidateBeforeCall(name, force, noprune, null);
-        Type localVarReturnType = new TypeToken<List<ImageDelete200ResponseInner>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<ImageDelete200ResponseInner>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Remove Image (asynchronously)
-     * Delete an image from local storage
-     *
-     * @param name      name or ID of image to delete (required)
-     * @param force     remove the image even if used by containers or has other tags (optional)
-     * @param noprune   do not remove dangling parent images (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageDeleteAsync(String name, Boolean force, Boolean noprune, final ApiCallback<List<ImageDelete200ResponseInner>> _callback) throws ApiException {
+    private okhttp3.Call imageDeleteAsync(String name, Boolean force, Boolean noprune, final ApiCallback<List<ImageDelete200ResponseInner>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageDeleteValidateBeforeCall(name, force, noprune, _callback);
-        Type localVarReturnType = new TypeToken<List<ImageDelete200ResponseInner>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<ImageDelete200ResponseInner>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageDeleteRequest {
+        private final String name;
+        private Boolean force;
+        private Boolean noprune;
+
+        private APIimageDeleteRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set force
+         * @param force remove the image even if used by containers or has other tags (optional)
+         * @return APIimageDeleteRequest
+         */
+        public APIimageDeleteRequest force(Boolean force) {
+            this.force = force;
+            return this;
+        }
+
+        /**
+         * Set noprune
+         * @param noprune do not remove dangling parent images (optional)
+         * @return APIimageDeleteRequest
+         */
+        public APIimageDeleteRequest noprune(Boolean noprune) {
+            this.noprune = noprune;
+            return this;
+        }
+
+        /**
+         * Build call for imageDelete
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageDeleteCall(name, force, noprune, _callback);
+        }
+
+        /**
+         * Execute imageDelete request
+         * @return List&lt;ImageDelete200ResponseInner&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<ImageDelete200ResponseInner> execute() throws ApiException {
+            ApiResponse<List<ImageDelete200ResponseInner>> localVarResp = imageDeleteWithHttpInfo(name, force, noprune);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageDelete request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;ImageDelete200ResponseInner&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<ImageDelete200ResponseInner>> executeWithHttpInfo() throws ApiException {
+            return imageDeleteWithHttpInfo(name, force, noprune);
+        }
+
+        /**
+         * Execute imageDelete request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<ImageDelete200ResponseInner>> _callback) throws ApiException {
+            return imageDeleteAsync(name, force, noprune, _callback);
+        }
+    }
+
     /**
-     * Build call for imageGet
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Remove Image
+     * Delete an image from local storage
+     * @param name name or ID of image to delete (required)
+     * @return APIimageDeleteRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageGetCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIimageDeleteRequest imageDelete(String name) {
+        return new APIimageDeleteRequest(name);
+    }
+    private okhttp3.Call imageGetCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -805,7 +1168,7 @@ public class ImagesCompatApi {
 
         // create path and map variables
         String localVarPath = "/images/{name}/get"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -814,7 +1177,7 @@ public class ImagesCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/x-tar"
+            "application/x-tar"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -828,7 +1191,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -843,89 +1206,116 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Export an image
-     * Export an image in tarball format
-     *
-     * @param name the name or ID of the container (required)
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public File imageGet(String name) throws ApiException {
-        ApiResponse<File> localVarResp = imageGetWithHttpInfo(name);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Export an image
-     * Export an image in tarball format
-     *
-     * @param name the name or ID of the container (required)
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<File> imageGetWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<File> imageGetWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = imageGetValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Export an image (asynchronously)
-     * Export an image in tarball format
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageGetAsync(String name, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call imageGetAsync(String name, final ApiCallback<File> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageGetValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageGetRequest {
+        private final String name;
+
+        private APIimageGetRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for imageGet
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageGetCall(name, _callback);
+        }
+
+        /**
+         * Execute imageGet request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = imageGetWithHttpInfo(name);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageGet request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return imageGetWithHttpInfo(name);
+        }
+
+        /**
+         * Execute imageGet request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return imageGetAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for imageGetAll
-     *
-     * @param names     one or more image names or IDs comma separated (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Export an image
+     * Export an image in tarball format
+     * @param name the name or ID of the container (required)
+     * @return APIimageGetRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageGetAllCall(String names, final ApiCallback _callback) throws ApiException {
+    public APIimageGetRequest imageGet(String name) {
+        return new APIimageGetRequest(name);
+    }
+    private okhttp3.Call imageGetAllCall(String names, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -947,7 +1337,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -961,7 +1351,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -976,90 +1366,116 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Export several images
-     * Get a tarball containing all images and metadata for several image repositories
-     *
-     * @param names one or more image names or IDs comma separated (required)
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public File imageGetAll(String names) throws ApiException {
-        ApiResponse<File> localVarResp = imageGetAllWithHttpInfo(names);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Export several images
-     * Get a tarball containing all images and metadata for several image repositories
-     *
-     * @param names one or more image names or IDs comma separated (required)
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<File> imageGetAllWithHttpInfo(@NotNull String names) throws ApiException {
+    private ApiResponse<File> imageGetAllWithHttpInfo( @NotNull String names) throws ApiException {
         okhttp3.Call localVarCall = imageGetAllValidateBeforeCall(names, null);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Export several images (asynchronously)
-     * Get a tarball containing all images and metadata for several image repositories
-     *
-     * @param names     one or more image names or IDs comma separated (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageGetAllAsync(String names, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call imageGetAllAsync(String names, final ApiCallback<File> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageGetAllValidateBeforeCall(names, _callback);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageGetAllRequest {
+        private final String names;
+
+        private APIimageGetAllRequest(String names) {
+            this.names = names;
+        }
+
+        /**
+         * Build call for imageGetAll
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageGetAllCall(names, _callback);
+        }
+
+        /**
+         * Execute imageGetAll request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = imageGetAllWithHttpInfo(names);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageGetAll request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return imageGetAllWithHttpInfo(names);
+        }
+
+        /**
+         * Execute imageGetAll request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return imageGetAllAsync(names, _callback);
+        }
+    }
+
     /**
-     * Build call for imageHistory
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Export several images
+     * Get a tarball containing all images and metadata for several image repositories
+     * @param names one or more image names or IDs comma separated (required)
+     * @return APIimageGetAllRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageHistoryCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIimageGetAllRequest imageGetAll(String names) {
+        return new APIimageGetAllRequest(names);
+    }
+    private okhttp3.Call imageHistoryCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1069,7 +1485,7 @@ public class ImagesCompatApi {
 
         // create path and map variables
         String localVarPath = "/images/{name}/history"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1078,7 +1494,7 @@ public class ImagesCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1092,7 +1508,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1107,93 +1523,121 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * History of an image
-     * Return parent layers of an image.
-     *
-     * @param name the name or ID of the container (required)
-     * @return HistoryResponse
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public HistoryResponse imageHistory(String name) throws ApiException {
-        ApiResponse<HistoryResponse> localVarResp = imageHistoryWithHttpInfo(name);
-        return localVarResp.getData();
-    }
 
-    /**
-     * History of an image
-     * Return parent layers of an image.
-     *
-     * @param name the name or ID of the container (required)
-     * @return ApiResponse&lt;HistoryResponse&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<HistoryResponse> imageHistoryWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<HistoryResponse> imageHistoryWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = imageHistoryValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<HistoryResponse>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<HistoryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * History of an image (asynchronously)
-     * Return parent layers of an image.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageHistoryAsync(String name, final ApiCallback<HistoryResponse> _callback) throws ApiException {
+    private okhttp3.Call imageHistoryAsync(String name, final ApiCallback<HistoryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageHistoryValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<HistoryResponse>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<HistoryResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageHistoryRequest {
+        private final String name;
+
+        private APIimageHistoryRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for imageHistory
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageHistoryCall(name, _callback);
+        }
+
+        /**
+         * Execute imageHistory request
+         * @return HistoryResponse
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public HistoryResponse execute() throws ApiException {
+            ApiResponse<HistoryResponse> localVarResp = imageHistoryWithHttpInfo(name);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageHistory request with HTTP info returned
+         * @return ApiResponse&lt;HistoryResponse&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<HistoryResponse> executeWithHttpInfo() throws ApiException {
+            return imageHistoryWithHttpInfo(name);
+        }
+
+        /**
+         * Execute imageHistory request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<HistoryResponse> _callback) throws ApiException {
+            return imageHistoryAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for imageInspect
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * History of an image
+     * Return parent layers of an image.
+     * @param name the name or ID of the container (required)
+     * @return APIimageHistoryRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image History </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageInspectCall(String name, final ApiCallback _callback) throws ApiException {
+    public APIimageHistoryRequest imageHistory(String name) {
+        return new APIimageHistoryRequest(name);
+    }
+    private okhttp3.Call imageInspectCall(String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1203,7 +1647,7 @@ public class ImagesCompatApi {
 
         // create path and map variables
         String localVarPath = "/images/{name}/json"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1212,7 +1656,7 @@ public class ImagesCompatApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1226,7 +1670,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1241,94 +1685,121 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Inspect an image
-     * Return low-level information about an image.
-     *
-     * @param name the name or ID of the container (required)
-     * @return ImageInspect
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ImageInspect imageInspect(String name) throws ApiException {
-        ApiResponse<ImageInspect> localVarResp = imageInspectWithHttpInfo(name);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Inspect an image
-     * Return low-level information about an image.
-     *
-     * @param name the name or ID of the container (required)
-     * @return ApiResponse&lt;ImageInspect&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<ImageInspect> imageInspectWithHttpInfo(@NotNull String name) throws ApiException {
+    private ApiResponse<ImageInspect> imageInspectWithHttpInfo( @NotNull String name) throws ApiException {
         okhttp3.Call localVarCall = imageInspectValidateBeforeCall(name, null);
-        Type localVarReturnType = new TypeToken<ImageInspect>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ImageInspect>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Inspect an image (asynchronously)
-     * Return low-level information about an image.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageInspectAsync(String name, final ApiCallback<ImageInspect> _callback) throws ApiException {
+    private okhttp3.Call imageInspectAsync(String name, final ApiCallback<ImageInspect> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageInspectValidateBeforeCall(name, _callback);
-        Type localVarReturnType = new TypeToken<ImageInspect>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ImageInspect>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageInspectRequest {
+        private final String name;
+
+        private APIimageInspectRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Build call for imageInspect
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageInspectCall(name, _callback);
+        }
+
+        /**
+         * Execute imageInspect request
+         * @return ImageInspect
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ImageInspect execute() throws ApiException {
+            ApiResponse<ImageInspect> localVarResp = imageInspectWithHttpInfo(name);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageInspect request with HTTP info returned
+         * @return ApiResponse&lt;ImageInspect&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ImageInspect> executeWithHttpInfo() throws ApiException {
+            return imageInspectWithHttpInfo(name);
+        }
+
+        /**
+         * Execute imageInspect request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ImageInspect> _callback) throws ApiException {
+            return imageInspectAsync(name, _callback);
+        }
+    }
+
     /**
-     * Build call for imageList
-     *
-     * @param all       Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
-     * @param filters   A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
-     * @param digests   Not supported (optional, default to false)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Inspect an image
+     * Return low-level information about an image.
+     * @param name the name or ID of the container (required)
+     * @return APIimageInspectRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Inspect </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageListCall(Boolean all, String filters, Boolean digests, final ApiCallback _callback) throws ApiException {
+    public APIimageInspectRequest imageInspect(String name) {
+        return new APIimageInspectRequest(name);
+    }
+    private okhttp3.Call imageListCall(Boolean all, String filters, Boolean digests, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1358,7 +1829,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1372,7 +1843,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1382,96 +1853,146 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * List Images
-     * Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image.
-     *
-     * @param all     Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
-     * @param digests Not supported (optional, default to false)
-     * @return List&lt;Summary&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<Summary> imageList(Boolean all, String filters, Boolean digests) throws ApiException {
-        ApiResponse<List<Summary>> localVarResp = imageListWithHttpInfo(all, filters, digests);
-        return localVarResp.getData();
-    }
 
-    /**
-     * List Images
-     * Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image.
-     *
-     * @param all     Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
-     * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
-     * @param digests Not supported (optional, default to false)
-     * @return ApiResponse&lt;List&lt;Summary&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<Summary>> imageListWithHttpInfo(Boolean all, String filters, Boolean digests) throws ApiException {
+    private ApiResponse<List<Summary>> imageListWithHttpInfo(Boolean all, String filters, Boolean digests) throws ApiException {
         okhttp3.Call localVarCall = imageListValidateBeforeCall(all, filters, digests, null);
-        Type localVarReturnType = new TypeToken<List<Summary>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<Summary>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * List Images (asynchronously)
-     * Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image.
-     *
-     * @param all       Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
-     * @param filters   A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
-     * @param digests   Not supported (optional, default to false)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageListAsync(Boolean all, String filters, Boolean digests, final ApiCallback<List<Summary>> _callback) throws ApiException {
+    private okhttp3.Call imageListAsync(Boolean all, String filters, Boolean digests, final ApiCallback<List<Summary>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageListValidateBeforeCall(all, filters, digests, _callback);
-        Type localVarReturnType = new TypeToken<List<Summary>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<Summary>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageListRequest {
+        private Boolean all;
+        private String filters;
+        private Boolean digests;
+
+        private APIimageListRequest() {
+        }
+
+        /**
+         * Set all
+         * @param all Show all images. Only images from a final layer (no children) are shown by default. (optional, default to false)
+         * @return APIimageListRequest
+         */
+        public APIimageListRequest all(Boolean all) {
+            this.all = all;
+            return this;
+        }
+
+        /**
+         * Set filters
+         * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;before&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;) - &#x60;dangling&#x3D;true&#x60; - &#x60;label&#x3D;key&#x60; or &#x60;label&#x3D;\&quot;key&#x3D;value\&quot;&#x60; of an image label - &#x60;reference&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;) - &#x60;since&#x60;&#x3D;(&#x60;&lt;image-name&gt;[:&lt;tag&gt;]&#x60;,  &#x60;&lt;image id&gt;&#x60; or &#x60;&lt;image@digest&gt;&#x60;)  (optional)
+         * @return APIimageListRequest
+         */
+        public APIimageListRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Set digests
+         * @param digests Not supported (optional, default to false)
+         * @return APIimageListRequest
+         */
+        public APIimageListRequest digests(Boolean digests) {
+            this.digests = digests;
+            return this;
+        }
+
+        /**
+         * Build call for imageList
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageListCall(all, filters, digests, _callback);
+        }
+
+        /**
+         * Execute imageList request
+         * @return List&lt;Summary&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<Summary> execute() throws ApiException {
+            ApiResponse<List<Summary>> localVarResp = imageListWithHttpInfo(all, filters, digests);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageList request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;Summary&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<Summary>> executeWithHttpInfo() throws ApiException {
+            return imageListWithHttpInfo(all, filters, digests);
+        }
+
+        /**
+         * Execute imageList request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<Summary>> _callback) throws ApiException {
+            return imageListAsync(all, filters, digests, _callback);
+        }
+    }
+
     /**
-     * Build call for imageLoad
-     *
-     * @param quiet     not supported (optional)
-     * @param request   tarball of container image (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * List Images
+     * Returns a list of images on the server. Note that it uses a different, smaller representation of an image than inspecting a single image.
+     * @return APIimageListRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image summary for compat API </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageLoadCall(Boolean quiet, String request, final ApiCallback _callback) throws ApiException {
+    public APIimageListRequest imageList() {
+        return new APIimageListRequest();
+    }
+    private okhttp3.Call imageLoadCall(Boolean quiet, String request, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1493,7 +2014,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1501,15 +2022,15 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarContentTypes = {
-                "application/json",
-                "application/x-tar"
+            "application/json",
+            "application/x-tar"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1519,86 +2040,131 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Import image
-     * Load a set of images and tags into a repository.
-     *
-     * @param quiet   not supported (optional)
-     * @param request tarball of container image (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void imageLoad(Boolean quiet, String request) throws ApiException {
-        imageLoadWithHttpInfo(quiet, request);
-    }
 
-    /**
-     * Import image
-     * Load a set of images and tags into a repository.
-     *
-     * @param quiet   not supported (optional)
-     * @param request tarball of container image (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> imageLoadWithHttpInfo(Boolean quiet, String request) throws ApiException {
+    private ApiResponse<Void> imageLoadWithHttpInfo(Boolean quiet, String request) throws ApiException {
         okhttp3.Call localVarCall = imageLoadValidateBeforeCall(quiet, request, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Import image (asynchronously)
-     * Load a set of images and tags into a repository.
-     *
-     * @param quiet     not supported (optional)
-     * @param request   tarball of container image (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageLoadAsync(Boolean quiet, String request, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call imageLoadAsync(Boolean quiet, String request, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageLoadValidateBeforeCall(quiet, request, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
     }
 
+    public class APIimageLoadRequest {
+        private Boolean quiet;
+        private String request;
+
+        private APIimageLoadRequest() {
+        }
+
+        /**
+         * Set quiet
+         * @param quiet not supported (optional)
+         * @return APIimageLoadRequest
+         */
+        public APIimageLoadRequest quiet(Boolean quiet) {
+            this.quiet = quiet;
+            return this;
+        }
+
+        /**
+         * Set request
+         * @param request tarball of container image (optional)
+         * @return APIimageLoadRequest
+         */
+        public APIimageLoadRequest request(String request) {
+            this.request = request;
+            return this;
+        }
+
+        /**
+         * Build call for imageLoad
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageLoadCall(quiet, request, _callback);
+        }
+
+        /**
+         * Execute imageLoad request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            imageLoadWithHttpInfo(quiet, request);
+        }
+
+        /**
+         * Execute imageLoad request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return imageLoadWithHttpInfo(quiet, request);
+        }
+
+        /**
+         * Execute imageLoad request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return imageLoadAsync(quiet, request, _callback);
+        }
+    }
+
     /**
-     * Build call for imagePrune
-     *
-     * @param filters   filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Import image
+     * Load a set of images and tags into a repository.
+     * @return APIimageLoadRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imagePruneCall(String filters, final ApiCallback _callback) throws ApiException {
+    public APIimageLoadRequest imageLoad() {
+        return new APIimageLoadRequest();
+    }
+    private okhttp3.Call imagePruneCall(String filters, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1620,7 +2186,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1634,7 +2200,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1644,97 +2210,124 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Prune unused images
-     * Remove images from local storage that are not being used by a container
-     *
-     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @return List&lt;ImageDelete200ResponseInner&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public List<ImageDelete200ResponseInner> imagePrune(String filters) throws ApiException {
-        ApiResponse<List<ImageDelete200ResponseInner>> localVarResp = imagePruneWithHttpInfo(filters);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Prune unused images
-     * Remove images from local storage that are not being used by a container
-     *
-     * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @return ApiResponse&lt;List&lt;ImageDelete200ResponseInner&gt;&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<List<ImageDelete200ResponseInner>> imagePruneWithHttpInfo(String filters) throws ApiException {
+    private ApiResponse<List<ImageDelete200ResponseInner>> imagePruneWithHttpInfo(String filters) throws ApiException {
         okhttp3.Call localVarCall = imagePruneValidateBeforeCall(filters, null);
-        Type localVarReturnType = new TypeToken<List<ImageDelete200ResponseInner>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<ImageDelete200ResponseInner>>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Prune unused images (asynchronously)
-     * Remove images from local storage that are not being used by a container
-     *
-     * @param filters   filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imagePruneAsync(String filters, final ApiCallback<List<ImageDelete200ResponseInner>> _callback) throws ApiException {
+    private okhttp3.Call imagePruneAsync(String filters, final ApiCallback<List<ImageDelete200ResponseInner>> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imagePruneValidateBeforeCall(filters, _callback);
-        Type localVarReturnType = new TypeToken<List<ImageDelete200ResponseInner>>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<List<ImageDelete200ResponseInner>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimagePruneRequest {
+        private String filters;
+
+        private APIimagePruneRequest() {
+        }
+
+        /**
+         * Set filters
+         * @param filters filters to apply to image pruning, encoded as JSON (map[string][]string). Available filters:   - &#x60;dangling&#x3D;&lt;boolean&gt;&#x60; When set to &#x60;true&#x60; (or &#x60;1&#x60;), prune only      unused *and* untagged images. When set to &#x60;false&#x60;      (or &#x60;0&#x60;), all unused images are pruned.   - &#x60;until&#x3D;&lt;string&gt;&#x60; Prune images created before this timestamp. The &#x60;&lt;timestamp&gt;&#x60; can be Unix timestamps, date formatted timestamps, or Go duration strings (e.g. &#x60;10m&#x60;, &#x60;1h30m&#x60;) computed relative to the daemon machine’s time.   - &#x60;label&#x60; (&#x60;label&#x3D;&lt;key&gt;&#x60;, &#x60;label&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;, &#x60;label!&#x3D;&lt;key&gt;&#x60;, or &#x60;label!&#x3D;&lt;key&gt;&#x3D;&lt;value&gt;&#x60;) Prune images with (or without, in case &#x60;label!&#x3D;...&#x60; is used) the specified labels.  (optional)
+         * @return APIimagePruneRequest
+         */
+        public APIimagePruneRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Build call for imagePrune
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imagePruneCall(filters, _callback);
+        }
+
+        /**
+         * Execute imagePrune request
+         * @return List&lt;ImageDelete200ResponseInner&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public List<ImageDelete200ResponseInner> execute() throws ApiException {
+            ApiResponse<List<ImageDelete200ResponseInner>> localVarResp = imagePruneWithHttpInfo(filters);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imagePrune request with HTTP info returned
+         * @return ApiResponse&lt;List&lt;ImageDelete200ResponseInner&gt;&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<List<ImageDelete200ResponseInner>> executeWithHttpInfo() throws ApiException {
+            return imagePruneWithHttpInfo(filters);
+        }
+
+        /**
+         * Execute imagePrune request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<List<ImageDelete200ResponseInner>> _callback) throws ApiException {
+            return imagePruneAsync(filters, _callback);
+        }
+    }
+
     /**
-     * Build call for imagePush
-     *
-     * @param name          Name of image to push. (required)
-     * @param tag           The tag to associate with the image on the registry. (optional)
-     * @param all           All indicates whether to push all images related to the image list (optional)
-     * @param compress      Use compression on image. (optional)
-     * @param destination   Allows for pushing the image to a different destination than the image refers to. (optional)
-     * @param format        Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
-     * @param tlsVerify     Require TLS verification. (optional, default to true)
-     * @param xRegistryAuth A base64-encoded auth configuration. (optional)
-     * @param _callback     Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Prune unused images
+     * Remove images from local storage that are not being used by a container
+     * @return APIimagePruneRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Image Delete </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imagePushCall(String name, String tag, Boolean all, Boolean compress, String destination, String format, Boolean tlsVerify, String xRegistryAuth, final ApiCallback _callback) throws ApiException {
+    public APIimagePruneRequest imagePrune() {
+        return new APIimagePruneRequest();
+    }
+    private okhttp3.Call imagePushCall(String name, String tag, Boolean all, Boolean compress, String destination, String format, Boolean tlsVerify, String xRegistryAuth, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1744,7 +2337,7 @@ public class ImagesCompatApi {
 
         // create path and map variables
         String localVarPath = "/images/{name}/push"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -1781,7 +2374,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1795,7 +2388,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1810,118 +2403,198 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Push Image
-     * Push an image to a container registry
-     *
-     * @param name          Name of image to push. (required)
-     * @param tag           The tag to associate with the image on the registry. (optional)
-     * @param all           All indicates whether to push all images related to the image list (optional)
-     * @param compress      Use compression on image. (optional)
-     * @param destination   Allows for pushing the image to a different destination than the image refers to. (optional)
-     * @param format        Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
-     * @param tlsVerify     Require TLS verification. (optional, default to true)
-     * @param xRegistryAuth A base64-encoded auth configuration. (optional)
-     * @return File
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public File imagePush(String name, String tag, Boolean all, Boolean compress, String destination, String format, Boolean tlsVerify, String xRegistryAuth) throws ApiException {
-        ApiResponse<File> localVarResp = imagePushWithHttpInfo(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Push Image
-     * Push an image to a container registry
-     *
-     * @param name          Name of image to push. (required)
-     * @param tag           The tag to associate with the image on the registry. (optional)
-     * @param all           All indicates whether to push all images related to the image list (optional)
-     * @param compress      Use compression on image. (optional)
-     * @param destination   Allows for pushing the image to a different destination than the image refers to. (optional)
-     * @param format        Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
-     * @param tlsVerify     Require TLS verification. (optional, default to true)
-     * @param xRegistryAuth A base64-encoded auth configuration. (optional)
-     * @return ApiResponse&lt;File&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<File> imagePushWithHttpInfo(@NotNull String name, String tag, Boolean all, Boolean compress, String destination, String format, Boolean tlsVerify, String xRegistryAuth) throws ApiException {
+    private ApiResponse<File> imagePushWithHttpInfo( @NotNull String name, String tag, Boolean all, Boolean compress, String destination, String format, Boolean tlsVerify, String xRegistryAuth) throws ApiException {
         okhttp3.Call localVarCall = imagePushValidateBeforeCall(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth, null);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Push Image (asynchronously)
-     * Push an image to a container registry
-     *
-     * @param name          Name of image to push. (required)
-     * @param tag           The tag to associate with the image on the registry. (optional)
-     * @param all           All indicates whether to push all images related to the image list (optional)
-     * @param compress      Use compression on image. (optional)
-     * @param destination   Allows for pushing the image to a different destination than the image refers to. (optional)
-     * @param format        Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
-     * @param tlsVerify     Require TLS verification. (optional, default to true)
-     * @param xRegistryAuth A base64-encoded auth configuration. (optional)
-     * @param _callback     The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imagePushAsync(String name, String tag, Boolean all, Boolean compress, String destination, String format, Boolean tlsVerify, String xRegistryAuth, final ApiCallback<File> _callback) throws ApiException {
+    private okhttp3.Call imagePushAsync(String name, String tag, Boolean all, Boolean compress, String destination, String format, Boolean tlsVerify, String xRegistryAuth, final ApiCallback<File> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imagePushValidateBeforeCall(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth, _callback);
-        Type localVarReturnType = new TypeToken<File>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<File>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimagePushRequest {
+        private final String name;
+        private String tag;
+        private Boolean all;
+        private Boolean compress;
+        private String destination;
+        private String format;
+        private Boolean tlsVerify;
+        private String xRegistryAuth;
+
+        private APIimagePushRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set tag
+         * @param tag The tag to associate with the image on the registry. (optional)
+         * @return APIimagePushRequest
+         */
+        public APIimagePushRequest tag(String tag) {
+            this.tag = tag;
+            return this;
+        }
+
+        /**
+         * Set all
+         * @param all All indicates whether to push all images related to the image list (optional)
+         * @return APIimagePushRequest
+         */
+        public APIimagePushRequest all(Boolean all) {
+            this.all = all;
+            return this;
+        }
+
+        /**
+         * Set compress
+         * @param compress Use compression on image. (optional)
+         * @return APIimagePushRequest
+         */
+        public APIimagePushRequest compress(Boolean compress) {
+            this.compress = compress;
+            return this;
+        }
+
+        /**
+         * Set destination
+         * @param destination Allows for pushing the image to a different destination than the image refers to. (optional)
+         * @return APIimagePushRequest
+         */
+        public APIimagePushRequest destination(String destination) {
+            this.destination = destination;
+            return this;
+        }
+
+        /**
+         * Set format
+         * @param format Manifest type (oci, v2s1, or v2s2) to use when pushing an image. Default is manifest type of source, with fallbacks. (optional)
+         * @return APIimagePushRequest
+         */
+        public APIimagePushRequest format(String format) {
+            this.format = format;
+            return this;
+        }
+
+        /**
+         * Set tlsVerify
+         * @param tlsVerify Require TLS verification. (optional, default to true)
+         * @return APIimagePushRequest
+         */
+        public APIimagePushRequest tlsVerify(Boolean tlsVerify) {
+            this.tlsVerify = tlsVerify;
+            return this;
+        }
+
+        /**
+         * Set xRegistryAuth
+         * @param xRegistryAuth A base64-encoded auth configuration. (optional)
+         * @return APIimagePushRequest
+         */
+        public APIimagePushRequest xRegistryAuth(String xRegistryAuth) {
+            this.xRegistryAuth = xRegistryAuth;
+            return this;
+        }
+
+        /**
+         * Build call for imagePush
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imagePushCall(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth, _callback);
+        }
+
+        /**
+         * Execute imagePush request
+         * @return File
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public File execute() throws ApiException {
+            ApiResponse<File> localVarResp = imagePushWithHttpInfo(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imagePush request with HTTP info returned
+         * @return ApiResponse&lt;File&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<File> executeWithHttpInfo() throws ApiException {
+            return imagePushWithHttpInfo(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth);
+        }
+
+        /**
+         * Execute imagePush request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<File> _callback) throws ApiException {
+            return imagePushAsync(name, tag, all, compress, destination, format, tlsVerify, xRegistryAuth, _callback);
+        }
+    }
+
     /**
-     * Build call for imageSearch
-     *
-     * @param term      term to search (optional)
-     * @param limit     maximum number of results (optional, default to 25)
-     * @param filters   A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-     * @param listTags  list the available tags in the repository (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Push Image
+     * Push an image to a container registry
+     * @param name Name of image to push. (required)
+     * @return APIimagePushRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageSearchCall(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags, final ApiCallback _callback) throws ApiException {
+    public APIimagePushRequest imagePush(String name) {
+        return new APIimagePushRequest(name);
+    }
+    private okhttp3.Call imageSearchCall(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -1959,7 +2632,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -1973,7 +2646,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -1983,109 +2656,173 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Search images
-     * Search registries for an image
-     *
-     * @param term      term to search (optional)
-     * @param limit     maximum number of results (optional, default to 25)
-     * @param filters   A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-     * @param listTags  list the available tags in the repository (optional)
-     * @return ImageSearch200Response
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ImageSearch200Response imageSearch(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags) throws ApiException {
-        ApiResponse<ImageSearch200Response> localVarResp = imageSearchWithHttpInfo(term, limit, filters, tlsVerify, listTags);
-        return localVarResp.getData();
-    }
 
-    /**
-     * Search images
-     * Search registries for an image
-     *
-     * @param term      term to search (optional)
-     * @param limit     maximum number of results (optional, default to 25)
-     * @param filters   A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-     * @param listTags  list the available tags in the repository (optional)
-     * @return ApiResponse&lt;ImageSearch200Response&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<ImageSearch200Response> imageSearchWithHttpInfo(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags) throws ApiException {
+    private ApiResponse<ImageSearch200Response> imageSearchWithHttpInfo(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags) throws ApiException {
         okhttp3.Call localVarCall = imageSearchValidateBeforeCall(term, limit, filters, tlsVerify, listTags, null);
-        Type localVarReturnType = new TypeToken<ImageSearch200Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ImageSearch200Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
-    /**
-     * Search images (asynchronously)
-     * Search registries for an image
-     *
-     * @param term      term to search (optional)
-     * @param limit     maximum number of results (optional, default to 25)
-     * @param filters   A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
-     * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
-     * @param listTags  list the available tags in the repository (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageSearchAsync(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags, final ApiCallback<ImageSearch200Response> _callback) throws ApiException {
+    private okhttp3.Call imageSearchAsync(String term, Integer limit, String filters, Boolean tlsVerify, Boolean listTags, final ApiCallback<ImageSearch200Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageSearchValidateBeforeCall(term, limit, filters, tlsVerify, listTags, _callback);
-        Type localVarReturnType = new TypeToken<ImageSearch200Response>() {
-        }.getType();
+        Type localVarReturnType = new TypeToken<ImageSearch200Response>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
+    public class APIimageSearchRequest {
+        private String term;
+        private Integer limit;
+        private String filters;
+        private Boolean tlsVerify;
+        private Boolean listTags;
+
+        private APIimageSearchRequest() {
+        }
+
+        /**
+         * Set term
+         * @param term term to search (optional)
+         * @return APIimageSearchRequest
+         */
+        public APIimageSearchRequest term(String term) {
+            this.term = term;
+            return this;
+        }
+
+        /**
+         * Set limit
+         * @param limit maximum number of results (optional, default to 25)
+         * @return APIimageSearchRequest
+         */
+        public APIimageSearchRequest limit(Integer limit) {
+            this.limit = limit;
+            return this;
+        }
+
+        /**
+         * Set filters
+         * @param filters A JSON encoded value of the filters (a &#x60;map[string][]string&#x60;) to process on the images list. Available filters: - &#x60;is-automated&#x3D;(true|false)&#x60; - &#x60;is-official&#x3D;(true|false)&#x60; - &#x60;stars&#x3D;&lt;number&gt;&#x60; Matches images that have at least &#39;number&#39; stars.  (optional)
+         * @return APIimageSearchRequest
+         */
+        public APIimageSearchRequest filters(String filters) {
+            this.filters = filters;
+            return this;
+        }
+
+        /**
+         * Set tlsVerify
+         * @param tlsVerify Require HTTPS and verify signatures when contacting registries. (optional, default to true)
+         * @return APIimageSearchRequest
+         */
+        public APIimageSearchRequest tlsVerify(Boolean tlsVerify) {
+            this.tlsVerify = tlsVerify;
+            return this;
+        }
+
+        /**
+         * Set listTags
+         * @param listTags list the available tags in the repository (optional)
+         * @return APIimageSearchRequest
+         */
+        public APIimageSearchRequest listTags(Boolean listTags) {
+            this.listTags = listTags;
+            return this;
+        }
+
+        /**
+         * Build call for imageSearch
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageSearchCall(term, limit, filters, tlsVerify, listTags, _callback);
+        }
+
+        /**
+         * Execute imageSearch request
+         * @return ImageSearch200Response
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ImageSearch200Response execute() throws ApiException {
+            ApiResponse<ImageSearch200Response> localVarResp = imageSearchWithHttpInfo(term, limit, filters, tlsVerify, listTags);
+            return localVarResp.getData();
+        }
+
+        /**
+         * Execute imageSearch request with HTTP info returned
+         * @return ApiResponse&lt;ImageSearch200Response&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<ImageSearch200Response> executeWithHttpInfo() throws ApiException {
+            return imageSearchWithHttpInfo(term, limit, filters, tlsVerify, listTags);
+        }
+
+        /**
+         * Execute imageSearch request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<ImageSearch200Response> _callback) throws ApiException {
+            return imageSearchAsync(term, limit, filters, tlsVerify, listTags, _callback);
+        }
+    }
+
     /**
-     * Build call for imageTag
-     *
-     * @param name      the name or ID of the container (required)
-     * @param repo      the repository to tag in (optional)
-     * @param tag       the name of the new tag (optional)
-     * @param _callback Callback for upload/download progress
-     * @return Call to execute
-     * @throws ApiException If fail to serialize the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
+     * Search images
+     * Search registries for an image
+     * @return APIimageSearchRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Registry Search </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
      */
-    public okhttp3.Call imageTagCall(String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
+    public APIimageSearchRequest imageSearch() {
+        return new APIimageSearchRequest();
+    }
+    private okhttp3.Call imageTagCall(String name, String repo, String tag, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[]{};
+        String[] localBasePaths = new String[] {  };
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null) {
+        if (localCustomBaseUrl != null){
             basePath = localCustomBaseUrl;
-        } else if (localBasePaths.length > 0) {
+        } else if ( localBasePaths.length > 0 ) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -2095,7 +2832,7 @@ public class ImagesCompatApi {
 
         // create path and map variables
         String localVarPath = "/images/{name}/tag"
-                .replace("{" + "name" + "}", localVarApiClient.escapeString(name));
+            .replace("{" + "name" + "}", localVarApiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -2112,7 +2849,7 @@ public class ImagesCompatApi {
         }
 
         final String[] localVarAccepts = {
-                "application/json"
+            "application/json"
         };
         final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -2126,7 +2863,7 @@ public class ImagesCompatApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[]{};
+        String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -2141,73 +2878,138 @@ public class ImagesCompatApi {
 
     }
 
-    /**
-     * Tag an image
-     * Tag an image so that it becomes part of a repository.
-     *
-     * @param name the name or ID of the container (required)
-     * @param repo the repository to tag in (optional)
-     * @param tag  the name of the new tag (optional)
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public void imageTag(String name, String repo, String tag) throws ApiException {
-        imageTagWithHttpInfo(name, repo, tag);
-    }
 
-    /**
-     * Tag an image
-     * Tag an image so that it becomes part of a repository.
-     *
-     * @param name the name or ID of the container (required)
-     * @param repo the repository to tag in (optional)
-     * @param tag  the name of the new tag (optional)
-     * @return ApiResponse&lt;Void&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public ApiResponse<Void> imageTagWithHttpInfo(@NotNull String name, String repo, String tag) throws ApiException {
+    private ApiResponse<Void> imageTagWithHttpInfo( @NotNull String name, String repo, String tag) throws ApiException {
         okhttp3.Call localVarCall = imageTagValidateBeforeCall(name, repo, tag, null);
         return localVarApiClient.execute(localVarCall);
     }
 
-    /**
-     * Tag an image (asynchronously)
-     * Tag an image so that it becomes part of a repository.
-     *
-     * @param name      the name or ID of the container (required)
-     * @param repo      the repository to tag in (optional)
-     * @param tag       the name of the new tag (optional)
-     * @param _callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details <table summary="Response Details" border="1">
-     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-     * <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
-     * <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
-     * <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
-     * <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
-     * <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
-     * </table>
-     */
-    public okhttp3.Call imageTagAsync(String name, String repo, String tag, final ApiCallback<Void> _callback) throws ApiException {
+    private okhttp3.Call imageTagAsync(String name, String repo, String tag, final ApiCallback<Void> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = imageTagValidateBeforeCall(name, repo, tag, _callback);
         localVarApiClient.executeAsync(localVarCall, _callback);
         return localVarCall;
+    }
+
+    public class APIimageTagRequest {
+        private final String name;
+        private String repo;
+        private String tag;
+
+        private APIimageTagRequest(String name) {
+            this.name = name;
+        }
+
+        /**
+         * Set repo
+         * @param repo the repository to tag in (optional)
+         * @return APIimageTagRequest
+         */
+        public APIimageTagRequest repo(String repo) {
+            this.repo = repo;
+            return this;
+        }
+
+        /**
+         * Set tag
+         * @param tag the name of the new tag (optional)
+         * @return APIimageTagRequest
+         */
+        public APIimageTagRequest tag(String tag) {
+            this.tag = tag;
+            return this;
+        }
+
+        /**
+         * Build call for imageTag
+         * @param _callback ApiCallback API callback
+         * @return Call to execute
+         * @throws ApiException If fail to serialize the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call buildCall(final ApiCallback _callback) throws ApiException {
+            return imageTagCall(name, repo, tag, _callback);
+        }
+
+        /**
+         * Execute imageTag request
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public void execute() throws ApiException {
+            imageTagWithHttpInfo(name, repo, tag);
+        }
+
+        /**
+         * Execute imageTag request with HTTP info returned
+         * @return ApiResponse&lt;Void&gt;
+         * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public ApiResponse<Void> executeWithHttpInfo() throws ApiException {
+            return imageTagWithHttpInfo(name, repo, tag);
+        }
+
+        /**
+         * Execute imageTag request (asynchronously)
+         * @param _callback The callback to be executed when the API call finishes
+         * @return The request call
+         * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+         * @http.response.details
+         <table summary="Response Details" border="1">
+            <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+            <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+            <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+            <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+            <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+            <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+         </table>
+         */
+        public okhttp3.Call executeAsync(final ApiCallback<Void> _callback) throws ApiException {
+            return imageTagAsync(name, repo, tag, _callback);
+        }
+    }
+
+    /**
+     * Tag an image
+     * Tag an image so that it becomes part of a repository.
+     * @param name the name or ID of the container (required)
+     * @return APIimageTagRequest
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> no error </td><td>  -  </td></tr>
+        <tr><td> 400 </td><td> Bad parameter in request </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> No such image </td><td>  -  </td></tr>
+        <tr><td> 409 </td><td> Conflict error in operation </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal server error </td><td>  -  </td></tr>
+     </table>
+     */
+    public APIimageTagRequest imageTag(String name) {
+        return new APIimageTagRequest(name);
     }
 }

@@ -13,245 +13,271 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * PodStartReport
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class PodStartReport {
-    public static final String SERIALIZED_NAME_ERRS = "Errs";
-    public static final String SERIALIZED_NAME_ID = "Id";
-    public static final String SERIALIZED_NAME_RAW_INPUT = "RawInput";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class PodStartReport implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Errs");
-        openapiFields.add("Id");
-        openapiFields.add("RawInput");
+  public static final String SERIALIZED_NAME_ERRS = "Errs";
+  @SerializedName(SERIALIZED_NAME_ERRS)
+  private List<String> errs = new ArrayList<>();
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_ID = "Id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
+  public static final String SERIALIZED_NAME_RAW_INPUT = "RawInput";
+  @SerializedName(SERIALIZED_NAME_RAW_INPUT)
+  private String rawInput;
+
+  public PodStartReport() {
+  }
+
+  public PodStartReport errs(List<String> errs) {
+    this.errs = errs;
+    return this;
+  }
+
+  public PodStartReport addErrsItem(String errsItem) {
+    if (this.errs == null) {
+      this.errs = new ArrayList<>();
     }
+    this.errs.add(errsItem);
+    return this;
+  }
 
-    @SerializedName(SERIALIZED_NAME_ERRS)
-    private List<String> errs = new ArrayList<>();
-    @SerializedName(SERIALIZED_NAME_ID)
-    private String id;
-    @SerializedName(SERIALIZED_NAME_RAW_INPUT)
-    private String rawInput;
+  /**
+   * Get errs
+   * @return errs
+   */
+  @jakarta.annotation.Nullable
 
-    public PodStartReport() {
+  public List<String> getErrs() {
+    return errs;
+  }
+
+  public void setErrs(List<String> errs) {
+    this.errs = errs;
+  }
+
+
+  public PodStartReport id(String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @jakarta.annotation.Nullable
+
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public PodStartReport rawInput(String rawInput) {
+    this.rawInput = rawInput;
+    return this;
+  }
+
+  /**
+   * Get rawInput
+   * @return rawInput
+   */
+  @jakarta.annotation.Nullable
+
+  public String getRawInput() {
+    return rawInput;
+  }
+
+  public void setRawInput(String rawInput) {
+    this.rawInput = rawInput;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    PodStartReport podStartReport = (PodStartReport) o;
+    return Objects.equals(this.errs, podStartReport.errs) &&
+        Objects.equals(this.id, podStartReport.id) &&
+        Objects.equals(this.rawInput, podStartReport.rawInput);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to PodStartReport
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!PodStartReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in PodStartReport is not found in the empty JSON string", PodStartReport.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(errs, id, rawInput);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!PodStartReport.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodStartReport` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class PodStartReport {\n");
+    sb.append("    errs: ").append(toIndentedString(errs)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    rawInput: ").append(toIndentedString(rawInput)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Errs");
+    openapiFields.add("Id");
+    openapiFields.add("RawInput");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to PodStartReport
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!PodStartReport.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in PodStartReport is not found in the empty JSON string", PodStartReport.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!PodStartReport.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `PodStartReport` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        // ensure the optional json data is an array if present
-        if (jsonObj.get("Errs") != null && !jsonObj.get("Errs").isJsonNull() && !jsonObj.get("Errs").isJsonArray()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Errs` to be an array in the JSON string but got `%s`", jsonObj.get("Errs").toString()));
-        }
-        if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
-        }
-        if ((jsonObj.get("RawInput") != null && !jsonObj.get("RawInput").isJsonNull()) && !jsonObj.get("RawInput").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `RawInput` to be a primitive type in the JSON string but got `%s`", jsonObj.get("RawInput").toString()));
-        }
-    }
+      // ensure the optional json data is an array if present
+      if (jsonObj.get("Errs") != null && !jsonObj.get("Errs").isJsonNull() && !jsonObj.get("Errs").isJsonArray()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Errs` to be an array in the JSON string but got `%s`", jsonObj.get("Errs").toString()));
+      }
+      if ((jsonObj.get("Id") != null && !jsonObj.get("Id").isJsonNull()) && !jsonObj.get("Id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Id").toString()));
+      }
+      if ((jsonObj.get("RawInput") != null && !jsonObj.get("RawInput").isJsonNull()) && !jsonObj.get("RawInput").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `RawInput` to be a primitive type in the JSON string but got `%s`", jsonObj.get("RawInput").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of PodStartReport given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of PodStartReport
-     * @throws IOException if the JSON string is invalid with respect to PodStartReport
-     */
-    public static PodStartReport fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, PodStartReport.class);
-    }
-
-    public PodStartReport errs(List<String> errs) {
-        this.errs = errs;
-        return this;
-    }
-
-    public PodStartReport addErrsItem(String errsItem) {
-        if (this.errs == null) {
-            this.errs = new ArrayList<>();
-        }
-        this.errs.add(errsItem);
-        return this;
-    }
-
-    /**
-     * Get errs
-     *
-     * @return errs
-     */
-    @jakarta.annotation.Nullable
-
-    public List<String> getErrs() {
-        return errs;
-    }
-
-    public void setErrs(List<String> errs) {
-        this.errs = errs;
-    }
-
-    public PodStartReport id(String id) {
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * Get id
-     *
-     * @return id
-     */
-    @jakarta.annotation.Nullable
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public PodStartReport rawInput(String rawInput) {
-        this.rawInput = rawInput;
-        return this;
-    }
-
-    /**
-     * Get rawInput
-     *
-     * @return rawInput
-     */
-    @jakarta.annotation.Nullable
-
-    public String getRawInput() {
-        return rawInput;
-    }
-
-    public void setRawInput(String rawInput) {
-        this.rawInput = rawInput;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PodStartReport podStartReport = (PodStartReport) o;
-        return Objects.equals(this.errs, podStartReport.errs) &&
-                Objects.equals(this.id, podStartReport.id) &&
-                Objects.equals(this.rawInput, podStartReport.rawInput);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!PodStartReport.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'PodStartReport' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<PodStartReport> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(PodStartReport.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<PodStartReport>() {
+           @Override
+           public void write(JsonWriter out, PodStartReport value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public PodStartReport read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(errs, id, rawInput);
-    }
+  /**
+   * Create an instance of PodStartReport given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of PodStartReport
+   * @throws IOException if the JSON string is invalid with respect to PodStartReport
+   */
+  public static PodStartReport fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, PodStartReport.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class PodStartReport {\n" +
-                "    errs: " + toIndentedString(errs) + "\n" +
-                "    id: " + toIndentedString(id) + "\n" +
-                "    rawInput: " + toIndentedString(rawInput) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of PodStartReport to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!PodStartReport.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'PodStartReport' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<PodStartReport> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(PodStartReport.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<PodStartReport>() {
-                @Override
-                public void write(JsonWriter out, PodStartReport value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public PodStartReport read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of PodStartReport to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

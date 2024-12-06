@@ -20,4 +20,8 @@
 |**running** | **Boolean** | Running is whether the exec session is running. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

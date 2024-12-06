@@ -20,4 +20,8 @@
 |**portmappings** | [**List&lt;PortMapping&gt;**](PortMapping.md) | PortMappings is a set of ports to map into the infra container. As, by default, containers share their network with the infra container, this will forward the ports to the entire pod. Only available if NetNS is set to Bridge, Slirp, or Pasta. Optional. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

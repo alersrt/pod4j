@@ -11,4 +11,8 @@
 |**ipnet** | [**IPNet**](IPNet.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

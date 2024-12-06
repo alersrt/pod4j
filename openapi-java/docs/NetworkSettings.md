@@ -28,4 +28,8 @@ NetworkSettings exposes the network settings in the api
 |**secondaryIPv6Addresses** | [**List&lt;Address&gt;**](Address.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

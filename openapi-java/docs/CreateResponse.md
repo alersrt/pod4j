@@ -12,4 +12,8 @@ OK response to ContainerCreate operation
 |**warnings** | **List&lt;String&gt;** | Warnings encountered when creating the container |  |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

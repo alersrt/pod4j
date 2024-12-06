@@ -12,4 +12,8 @@
 |**pathOnHost** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

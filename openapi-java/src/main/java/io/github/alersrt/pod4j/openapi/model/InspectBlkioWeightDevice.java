@@ -13,202 +13,227 @@
 
 package io.github.alersrt.pod4j.openapi.model;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.TypeAdapterFactory;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.github.alersrt.pod4j.openapi.JSON;
-
 import java.io.IOException;
+import java.util.Arrays;
+import java.io.Serializable;
+import jakarta.validation.constraints.*;
+import jakarta.validation.Valid;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapterFactory;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.TypeAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
+
+import io.github.alersrt.pod4j.openapi.JSON;
 
 /**
  * InspectBlkioWeightDevice holds information about the relative weight of an individual device node. Weights are used in the I/O scheduler to give relative priority to some accesses.
  */
-@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-29T01:29:49.168634544+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
-public class InspectBlkioWeightDevice {
-    public static final String SERIALIZED_NAME_PATH = "Path";
-    public static final String SERIALIZED_NAME_WEIGHT = "Weight";
-    public static HashSet<String> openapiFields;
-    public static HashSet<String> openapiRequiredFields;
+@jakarta.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-12-06T22:01:10.352312929+07:00[Asia/Barnaul]", comments = "Generator version: 7.7.0")
+public class InspectBlkioWeightDevice implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-    static {
-        // a set of all properties/fields (JSON key names)
-        openapiFields = new HashSet<String>();
-        openapiFields.add("Path");
-        openapiFields.add("Weight");
+  public static final String SERIALIZED_NAME_PATH = "Path";
+  @SerializedName(SERIALIZED_NAME_PATH)
+  private String path;
 
-        // a set of required properties/fields (JSON key names)
-        openapiRequiredFields = new HashSet<String>();
+  public static final String SERIALIZED_NAME_WEIGHT = "Weight";
+  @SerializedName(SERIALIZED_NAME_WEIGHT)
+  private Integer weight;
+
+  public InspectBlkioWeightDevice() {
+  }
+
+  public InspectBlkioWeightDevice path(String path) {
+    this.path = path;
+    return this;
+  }
+
+  /**
+   * Path is the path to the device this applies to.
+   * @return path
+   */
+  @jakarta.annotation.Nullable
+
+  public String getPath() {
+    return path;
+  }
+
+  public void setPath(String path) {
+    this.path = path;
+  }
+
+
+  public InspectBlkioWeightDevice weight(Integer weight) {
+    this.weight = weight;
+    return this;
+  }
+
+  /**
+   * Weight is the relative weight the scheduler will use when scheduling I/O.
+   * @return weight
+   */
+  @jakarta.annotation.Nullable
+
+  public Integer getWeight() {
+    return weight;
+  }
+
+  public void setWeight(Integer weight) {
+    this.weight = weight;
+  }
+
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
-
-    @SerializedName(SERIALIZED_NAME_PATH)
-    private String path;
-    @SerializedName(SERIALIZED_NAME_WEIGHT)
-    private Integer weight;
-
-    public InspectBlkioWeightDevice() {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
+    InspectBlkioWeightDevice inspectBlkioWeightDevice = (InspectBlkioWeightDevice) o;
+    return Objects.equals(this.path, inspectBlkioWeightDevice.path) &&
+        Objects.equals(this.weight, inspectBlkioWeightDevice.weight);
+  }
 
-    /**
-     * Validates the JSON Element and throws an exception if issues found
-     *
-     * @param jsonElement JSON Element
-     * @throws IOException if the JSON Element is invalid with respect to InspectBlkioWeightDevice
-     */
-    public static void validateJsonElement(JsonElement jsonElement) throws IOException {
-        if (jsonElement == null) {
-            if (!InspectBlkioWeightDevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-                throw new IllegalArgumentException(String.format("The required field(s) %s in InspectBlkioWeightDevice is not found in the empty JSON string", InspectBlkioWeightDevice.openapiRequiredFields));
-            }
-        }
+  @Override
+  public int hashCode() {
+    return Objects.hash(path, weight);
+  }
 
-        Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-        // check to see if the JSON string contains additional fields
-        for (Map.Entry<String, JsonElement> entry : entries) {
-            if (!InspectBlkioWeightDevice.openapiFields.contains(entry.getKey())) {
-                throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectBlkioWeightDevice` properties. JSON: %s", entry.getKey(), jsonElement));
-            }
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class InspectBlkioWeightDevice {\n");
+    sb.append("    path: ").append(toIndentedString(path)).append("\n");
+    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+
+  public static HashSet<String> openapiFields;
+  public static HashSet<String> openapiRequiredFields;
+
+  static {
+    // a set of all properties/fields (JSON key names)
+    openapiFields = new HashSet<String>();
+    openapiFields.add("Path");
+    openapiFields.add("Weight");
+
+    // a set of required properties/fields (JSON key names)
+    openapiRequiredFields = new HashSet<String>();
+  }
+
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InspectBlkioWeightDevice
+   */
+  public static void validateJsonElement(JsonElement jsonElement) throws IOException {
+      if (jsonElement == null) {
+        if (!InspectBlkioWeightDevice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in InspectBlkioWeightDevice is not found in the empty JSON string", InspectBlkioWeightDevice.openapiRequiredFields.toString()));
         }
+      }
+
+      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
+      // check to see if the JSON string contains additional fields
+      for (Map.Entry<String, JsonElement> entry : entries) {
+        if (!InspectBlkioWeightDevice.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InspectBlkioWeightDevice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        }
+      }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-        if ((jsonObj.get("Path") != null && !jsonObj.get("Path").isJsonNull()) && !jsonObj.get("Path").isJsonPrimitive()) {
-            throw new IllegalArgumentException(String.format("Expected the field `Path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Path").toString()));
-        }
-    }
+      if ((jsonObj.get("Path") != null && !jsonObj.get("Path").isJsonNull()) && !jsonObj.get("Path").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `Path` to be a primitive type in the JSON string but got `%s`", jsonObj.get("Path").toString()));
+      }
+  }
 
-    /**
-     * Create an instance of InspectBlkioWeightDevice given an JSON string
-     *
-     * @param jsonString JSON string
-     * @return An instance of InspectBlkioWeightDevice
-     * @throws IOException if the JSON string is invalid with respect to InspectBlkioWeightDevice
-     */
-    public static InspectBlkioWeightDevice fromJson(String jsonString) throws IOException {
-        return JSON.getGson().fromJson(jsonString, InspectBlkioWeightDevice.class);
-    }
-
-    public InspectBlkioWeightDevice path(String path) {
-        this.path = path;
-        return this;
-    }
-
-    /**
-     * Path is the path to the device this applies to.
-     *
-     * @return path
-     */
-    @jakarta.annotation.Nullable
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public InspectBlkioWeightDevice weight(Integer weight) {
-        this.weight = weight;
-        return this;
-    }
-
-    /**
-     * Weight is the relative weight the scheduler will use when scheduling I/O.
-     *
-     * @return weight
-     */
-    @jakarta.annotation.Nullable
-
-    public Integer getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
-
+  public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
+    @SuppressWarnings("unchecked")
     @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        InspectBlkioWeightDevice inspectBlkioWeightDevice = (InspectBlkioWeightDevice) o;
-        return Objects.equals(this.path, inspectBlkioWeightDevice.path) &&
-                Objects.equals(this.weight, inspectBlkioWeightDevice.weight);
+    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
+       if (!InspectBlkioWeightDevice.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'InspectBlkioWeightDevice' and its subtypes
+       }
+       final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
+       final TypeAdapter<InspectBlkioWeightDevice> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(InspectBlkioWeightDevice.class));
+
+       return (TypeAdapter<T>) new TypeAdapter<InspectBlkioWeightDevice>() {
+           @Override
+           public void write(JsonWriter out, InspectBlkioWeightDevice value) throws IOException {
+             JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             elementAdapter.write(out, obj);
+           }
+
+           @Override
+           public InspectBlkioWeightDevice read(JsonReader in) throws IOException {
+             JsonElement jsonElement = elementAdapter.read(in);
+             validateJsonElement(jsonElement);
+             return thisAdapter.fromJsonTree(jsonElement);
+           }
+
+       }.nullSafe();
     }
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(path, weight);
-    }
+  /**
+   * Create an instance of InspectBlkioWeightDevice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InspectBlkioWeightDevice
+   * @throws IOException if the JSON string is invalid with respect to InspectBlkioWeightDevice
+   */
+  public static InspectBlkioWeightDevice fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, InspectBlkioWeightDevice.class);
+  }
 
-    @Override
-    public String toString() {
-        String sb = "class InspectBlkioWeightDevice {\n" +
-                "    path: " + toIndentedString(path) + "\n" +
-                "    weight: " + toIndentedString(weight) + "\n" +
-                "}";
-        return sb;
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Convert an instance of InspectBlkioWeightDevice to an JSON string
-     *
-     * @return JSON string
-     */
-    public String toJson() {
-        return JSON.getGson().toJson(this);
-    }
-
-    public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
-        @SuppressWarnings("unchecked")
-        @Override
-        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-            if (!InspectBlkioWeightDevice.class.isAssignableFrom(type.getRawType())) {
-                return null; // this class only serializes 'InspectBlkioWeightDevice' and its subtypes
-            }
-            final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-            final TypeAdapter<InspectBlkioWeightDevice> thisAdapter
-                    = gson.getDelegateAdapter(this, TypeToken.get(InspectBlkioWeightDevice.class));
-
-            return (TypeAdapter<T>) new TypeAdapter<InspectBlkioWeightDevice>() {
-                @Override
-                public void write(JsonWriter out, InspectBlkioWeightDevice value) throws IOException {
-                    JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
-                    elementAdapter.write(out, obj);
-                }
-
-                @Override
-                public InspectBlkioWeightDevice read(JsonReader in) throws IOException {
-                    JsonElement jsonElement = elementAdapter.read(in);
-                    validateJsonElement(jsonElement);
-                    return thisAdapter.fromJsonTree(jsonElement);
-                }
-
-            }.nullSafe();
-        }
-    }
+  /**
+   * Convert an instance of InspectBlkioWeightDevice to an JSON string
+   *
+   * @return JSON string
+   */
+  public String toJson() {
+    return JSON.getGson().toJson(this);
+  }
 }
 

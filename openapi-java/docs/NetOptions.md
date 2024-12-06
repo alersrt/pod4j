@@ -21,4 +21,8 @@ NetOptions reflect the shared network options between pods and containers
 |**portmappings** | [**List&lt;PortMapping&gt;**](PortMapping.md) |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

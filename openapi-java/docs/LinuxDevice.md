@@ -17,4 +17,8 @@ LinuxDevice represents the mknod information for a Linux special device file
 |**uid** | **Integer** | UID of the device. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

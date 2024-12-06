@@ -13,4 +13,8 @@ HealthCheckResults describes the results/logs from a healthcheck
 |**status** | **String** | Status starting, healthy or unhealthy |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -15,4 +15,8 @@
 |**secrets** | [**List&lt;Secret&gt;**](Secret.md) | Secrets defines Swarm Secrets that are passed to the CSI storage plugin when operating on this volume. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

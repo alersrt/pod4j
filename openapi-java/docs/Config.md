@@ -35,4 +35,8 @@ It should hold only portable information about the container. Here, \"portable\"
 |**workingDir** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

@@ -14,4 +14,8 @@ LinuxWeightDevice struct holds a `major:minor weight` pair for weightDevice
 |**weight** | **Integer** | Weight is the bandwidth rate for the device. |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 

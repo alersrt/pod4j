@@ -17,4 +17,8 @@ Deprecated: ContainerNode was used for the classic Docker Swarm standalone API. 
 |**name** | **String** |  |  [optional] |
 
 
+## Implemented Interfaces
+
+* Serializable
+
 
