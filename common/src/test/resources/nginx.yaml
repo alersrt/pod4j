@@ -17,7 +17,5 @@ spec:
         failureThreshold: 3
         successThreshold: 1
       ports:
-        - name: http
-          containerPort: 80
+        - containerPort: 80
           protocol: TCP
-          hostPort: 8080
